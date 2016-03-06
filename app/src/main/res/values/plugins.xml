@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="event_time">Time</string>
+    <string name="event_date">Date</string>
+    <string name="event_wificonn">WiFi Connection</string>
+    <string name="event_celllocation">Cell Location</string>
+
+    <string name="profile_wifi">WiFi</string>
+    <string name="profile_cellular">Mobile data</string>
+    <string name="profile_bluetooth">Bluetooth</string>
+    <string name="profile_rotation">Auto Rotation</string>
+</resources>
