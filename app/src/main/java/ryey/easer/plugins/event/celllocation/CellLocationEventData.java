@@ -19,38 +19,88 @@
 
 package ryey.easer.plugins.event.celllocation;
 
+import android.telephony.CellLocation;
+import android.telephony.cdma.CdmaCellLocation;
+import android.telephony.gsm.GsmCellLocation;
+
+import java.util.List;
+
 import ryey.easer.commons.EventData;
 
 public class CellLocationEventData implements EventData {
-    String location = null;
+    Integer cid = null;
+    Integer lac = null;
 
     public CellLocationEventData() {}
 
-    public CellLocationEventData(String data) {
-        location = data;
+    public CellLocationEventData(String repr) {
+        set(repr);
+    }
+
+    public CellLocationEventData(int cid, int lac) {
+        this.cid = cid;
+        this.lac = lac;
+    }
+
+    public static CellLocationEventData fromCellLocation(CellLocation location) {
+        int cid, lac;
+        if (location != null) {
+            if (location instanceof GsmCellLocation) {
+                cid = ((GsmCellLocation) location).getCid();
+                lac = ((GsmCellLocation) location).getLac();
+            }
+            else if (location instanceof CdmaCellLocation) {
+                cid = ((CdmaCellLocation) location).getBaseStationId();
+                lac = ((CdmaCellLocation) location).getSystemId();
+            } else {
+                return null;
+            }
+            return new CellLocationEventData(cid, lac);
+        }
+        return null;
     }
 
     @Override
     public Object get() {
-        return location;
+        return toString();
     }
 
     @Override
     public void set(Object obj) {
-        if (obj instanceof String) {
-            location = (String) obj;
+        if (obj instanceof List) {
+            for (Object d : (List) obj) {
+                if (!(d instanceof Integer))
+                    throw new RuntimeException("illegal data");
+            }
+            set((List<Integer>)obj);
+        } else if (obj instanceof String) {
+            set((String) obj);
         } else {
             throw new RuntimeException("illegal data");
         }
     }
 
+    public void set(List<Integer> obj) {
+        if (obj.size() != 2)
+            throw new RuntimeException("illegal data");
+        cid = obj.get(0);
+        lac = obj.get(1);
+    }
+
+    public void set(String repr) {
+        String[] parts = repr.split("-");
+        cid = Integer.valueOf(parts[0]);
+        lac = Integer.valueOf(parts[1]);
+    }
+
     @Override
     public boolean isValid() {
-        if (location == null)
-            return false;
-        String[] parts = location.split("-");
-        if (parts.length != 2)
+        if (cid == null || lac == null)
             return false;
         return true;
+    }
+
+    public String toString() {
+        return String.format("%d-%d", lac, cid);
     }
 }

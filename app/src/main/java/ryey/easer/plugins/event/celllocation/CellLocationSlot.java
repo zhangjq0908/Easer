@@ -19,6 +19,7 @@
 
 package ryey.easer.plugins.event.celllocation;
 
+import android.app.PendingIntent;
 import android.content.Context;
 import android.telephony.CellLocation;
 import android.telephony.PhoneStateListener;
@@ -33,11 +34,10 @@ public class CellLocationSlot extends AbstractSlot {
     static TelephonyManager telephonyManager = null;
 
     CellLocationListener cellLocationListener = new CellLocationListener();
-    Integer t_cid = null;
-    Integer t_lac = null;
 
-    Integer cid = null;
-    Integer lac = null;
+    CellLocationEventData target = null;
+
+    CellLocationEventData curr = null;
 
     public CellLocationSlot(Context context) {
         super(context);
@@ -57,23 +57,18 @@ public class CellLocationSlot extends AbstractSlot {
     }
 
     public void setStation(int cid, int lac) {
-        t_cid = cid;
-        t_lac = lac;
+        target = new CellLocationEventData(cid, lac);
     }
 
     public void setStation(String repr) {
         if (repr == null)
             return;
-        String[] parts = repr.split("-");
-        Integer cid = Integer.valueOf(parts[0]);
-        Integer lac = Integer.valueOf(parts[1]);
-        t_cid = cid;
-        t_lac = lac;
+        target = new CellLocationEventData(repr);
     }
 
     @Override
     public boolean isValid() {
-        if (t_cid == null || t_lac == null)
+        if (!target.isValid())
             return false;
         return true;
     }
@@ -94,14 +89,12 @@ public class CellLocationSlot extends AbstractSlot {
         @Override
         public void onCellLocationChanged(CellLocation location) {
             super.onCellLocationChanged(location);
-            if (location != null) {
-                if (location instanceof GsmCellLocation) {
-                    cid = ((GsmCellLocation) location).getCid();
-                    lac = ((GsmCellLocation) location).getLac();
-                }
-                else if (location instanceof CdmaCellLocation) {
-                    cid = ((CdmaCellLocation) location).getBaseStationId();
-                    lac = ((CdmaCellLocation) location).getSystemId();
+            curr = CellLocationEventData.fromCellLocation(location);
+            if (curr.equals(target)) {
+                try {
+                    notifySelfIntent.send();
+                } catch (PendingIntent.CanceledException e) {
+                    e.printStackTrace();
                 }
             }
         }

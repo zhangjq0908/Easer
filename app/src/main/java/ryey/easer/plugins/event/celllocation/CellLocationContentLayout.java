@@ -20,7 +20,14 @@
 package ryey.easer.plugins.event.celllocation;
 
 import android.content.Context;
+import android.telephony.TelephonyManager;
+import android.text.Layout;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import ryey.easer.R;
 import ryey.easer.commons.StorageData;
@@ -33,7 +40,23 @@ public class CellLocationContentLayout extends SwitchItemLayout.LabeledContentLa
         super(context);
         setDesc(context.getString(R.string.event_celllocation));
         editText = new EditText(context);
-        addView(editText);
+        editText.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        ImageButton imgButton = new ImageButton(context);
+        imgButton.setImageResource(R.drawable.ic_add_location_black);
+        imgButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TelephonyManager telephonyManager = (TelephonyManager) getContext().getSystemService(Context.TELEPHONY_SERVICE);
+                CellLocationEventData locationData = CellLocationEventData.fromCellLocation(telephonyManager.getCellLocation());
+                editText.setText(locationData.toString());
+            }
+        });
+        LinearLayout layout = new LinearLayout(context);
+        layout.setOrientation(LinearLayout.HORIZONTAL);
+        layout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+        layout.addView(imgButton);
+        layout.addView(editText);
+        addView(layout);
     }
 
     @Override

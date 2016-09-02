@@ -133,7 +133,18 @@ public class SwitchItemLayout extends LinearLayout {
             View child;
             for (int i = 0; i < getChildCount(); i++) {
                 child = getChildAt(i);
-                child.setEnabled(enabled);
+                setEnabled(child, enabled);
+            }
+        }
+
+        protected static void setEnabled(View v, boolean enabled) {
+            v.setEnabled(enabled);
+            if (v instanceof ViewGroup) {
+                View child;
+                for (int i = 0; i < ((ViewGroup) v).getChildCount(); i++) {
+                    child = ((ViewGroup) v).getChildAt(i);
+                    setEnabled(child, enabled);
+                }
             }
         }
     }
