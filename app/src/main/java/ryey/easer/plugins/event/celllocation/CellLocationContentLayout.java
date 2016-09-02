@@ -21,10 +21,8 @@ package ryey.easer.plugins.event.celllocation;
 
 import android.content.Context;
 import android.telephony.TelephonyManager;
-import android.text.Layout;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -47,7 +45,11 @@ public class CellLocationContentLayout extends SwitchItemLayout.LabeledContentLa
             @Override
             public void onClick(View view) {
                 TelephonyManager telephonyManager = (TelephonyManager) getContext().getSystemService(Context.TELEPHONY_SERVICE);
-                CellLocationEventData locationData = CellLocationEventData.fromCellLocation(telephonyManager.getCellLocation());
+                CellLocationSingleData singleData = CellLocationSingleData.fromCellLocation(telephonyManager.getCellLocation());
+                CellLocationEventData locationData = CellLocationEventData.fromString(editText.getText().toString());
+                if (locationData == null)
+                    return;
+                locationData.add(singleData);
                 editText.setText(locationData.toString());
             }
         });
@@ -62,7 +64,7 @@ public class CellLocationContentLayout extends SwitchItemLayout.LabeledContentLa
     @Override
     public void fill(StorageData data) {
         if (data instanceof CellLocationEventData) {
-            editText.setText((String) data.get());
+            editText.setText(data.toString());
         } else {
             throw new RuntimeException("illegal data");
         }
@@ -70,6 +72,6 @@ public class CellLocationContentLayout extends SwitchItemLayout.LabeledContentLa
 
     @Override
     public StorageData getData() {
-        return new CellLocationEventData(editText.getText().toString());
+        return CellLocationEventData.fromString(editText.getText().toString());
     }
 }

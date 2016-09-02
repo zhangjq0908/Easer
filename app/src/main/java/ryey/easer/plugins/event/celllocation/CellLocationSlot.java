@@ -24,8 +24,6 @@ import android.content.Context;
 import android.telephony.CellLocation;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
-import android.telephony.cdma.CdmaCellLocation;
-import android.telephony.gsm.GsmCellLocation;
 
 import ryey.easer.commons.AbstractSlot;
 import ryey.easer.commons.EventData;
@@ -37,7 +35,7 @@ public class CellLocationSlot extends AbstractSlot {
 
     CellLocationEventData target = null;
 
-    CellLocationEventData curr = null;
+    CellLocationSingleData curr = null;
 
     public CellLocationSlot(Context context) {
         super(context);
@@ -50,20 +48,10 @@ public class CellLocationSlot extends AbstractSlot {
     @Override
     public void set(EventData data) {
         if (data instanceof CellLocationEventData) {
-            setStation((String) data.get());
+            target = (CellLocationEventData) data;
         } else {
             throw new RuntimeException("illegal data");
         }
-    }
-
-    public void setStation(int cid, int lac) {
-        target = new CellLocationEventData(cid, lac);
-    }
-
-    public void setStation(String repr) {
-        if (repr == null)
-            return;
-        target = new CellLocationEventData(repr);
     }
 
     @Override
@@ -89,8 +77,8 @@ public class CellLocationSlot extends AbstractSlot {
         @Override
         public void onCellLocationChanged(CellLocation location) {
             super.onCellLocationChanged(location);
-            curr = CellLocationEventData.fromCellLocation(location);
-            if (curr.equals(target)) {
+            curr = CellLocationSingleData.fromCellLocation(location);
+            if (target.contains(curr)) {
                 try {
                     notifySelfIntent.send();
                 } catch (PendingIntent.CanceledException e) {

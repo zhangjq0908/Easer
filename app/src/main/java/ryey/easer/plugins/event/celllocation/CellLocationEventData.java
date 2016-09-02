@@ -19,88 +19,78 @@
 
 package ryey.easer.plugins.event.celllocation;
 
-import android.telephony.CellLocation;
-import android.telephony.cdma.CdmaCellLocation;
-import android.telephony.gsm.GsmCellLocation;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import ryey.easer.commons.EventData;
 
 public class CellLocationEventData implements EventData {
-    Integer cid = null;
-    Integer lac = null;
+    protected List<CellLocationSingleData> data;
 
-    public CellLocationEventData() {}
-
-    public CellLocationEventData(String repr) {
-        set(repr);
+    {
+        data = new ArrayList<>();
     }
 
-    public CellLocationEventData(int cid, int lac) {
-        this.cid = cid;
-        this.lac = lac;
-    }
-
-    public static CellLocationEventData fromCellLocation(CellLocation location) {
-        int cid, lac;
-        if (location != null) {
-            if (location instanceof GsmCellLocation) {
-                cid = ((GsmCellLocation) location).getCid();
-                lac = ((GsmCellLocation) location).getLac();
-            }
-            else if (location instanceof CdmaCellLocation) {
-                cid = ((CdmaCellLocation) location).getBaseStationId();
-                lac = ((CdmaCellLocation) location).getSystemId();
-            } else {
-                return null;
-            }
-            return new CellLocationEventData(cid, lac);
-        }
-        return null;
+    public static CellLocationEventData fromString(String repr) {
+        CellLocationEventData cellLocationEventData = new CellLocationEventData();
+        cellLocationEventData.set(repr);
+        if (cellLocationEventData.isValid())
+            return cellLocationEventData;
+        else
+            return null;
     }
 
     @Override
     public Object get() {
-        return toString();
+        return data;
     }
 
     @Override
     public void set(Object obj) {
-        if (obj instanceof List) {
-            for (Object d : (List) obj) {
-                if (!(d instanceof Integer))
-                    throw new RuntimeException("illegal data");
+        if (obj instanceof String) {
+            String[] parts = ((String) obj).split(",");
+            for (String single : parts) {
+                CellLocationSingleData singleData = new CellLocationSingleData();
+                singleData.set(single.trim());
+                if (singleData.isValid())
+                    data.add(singleData);
             }
-            set((List<Integer>)obj);
-        } else if (obj instanceof String) {
-            set((String) obj);
         } else {
             throw new RuntimeException("illegal data");
         }
     }
 
-    public void set(List<Integer> obj) {
-        if (obj.size() != 2)
-            throw new RuntimeException("illegal data");
-        cid = obj.get(0);
-        lac = obj.get(1);
-    }
-
-    public void set(String repr) {
-        String[] parts = repr.split("-");
-        cid = Integer.valueOf(parts[0]);
-        lac = Integer.valueOf(parts[1]);
-    }
-
     @Override
     public boolean isValid() {
-        if (cid == null || lac == null)
+        if (data.size() == 0)
             return false;
         return true;
     }
 
+    public boolean add(CellLocationSingleData singleData) {
+        if (contains(singleData))
+            return false;
+        data.add(singleData);
+        return true;
+    }
+
     public String toString() {
-        return String.format("%d-%d", lac, cid);
+        String str = "";
+        if (data.size() > 0) {
+            str += data.get(0).toString();
+            for (int i = 1; i < data.size(); i++) {
+                CellLocationSingleData singleData = data.get(i);
+                str += "," + singleData.toString();
+            }
+        }
+        return str;
+    }
+
+    public boolean contains(CellLocationSingleData singleData) {
+        for (CellLocationSingleData singleData1 : data) {
+            if (singleData.equals(singleData1))
+                return true;
+        }
+        return false;
     }
 }
