@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -78,6 +78,16 @@ public class TimeSlot extends AbstractSlot {
     public void cancel() {
         if (calendar != null) {
             mAlarmManager.cancel(notifySelfIntent);
+        }
+    }
+
+    @Override
+    public void check() {
+        Calendar cal = Calendar.getInstance();
+        if (cal.after(calendar)) {
+            changeSatisfiedState(true);
+        } else {
+            changeSatisfiedState(false);
         }
     }
 }

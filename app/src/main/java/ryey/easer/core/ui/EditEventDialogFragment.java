@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -41,24 +41,27 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.R;
-import ryey.easer.core.data.EventStructure;
-import ryey.easer.core.data.storage.DataStorage;
-import ryey.easer.core.data.storage.xml.event.EventXmlDataStorage;
-import ryey.easer.core.data.storage.xml.profile.ProfileXmlDataStorage;
 import ryey.easer.commons.EventData;
 import ryey.easer.commons.EventPlugin;
 import ryey.easer.commons.StorageData;
-import ryey.easer.commons.SwitchItemLayout;
+import ryey.easer.core.data.EventStructure;
+import ryey.easer.core.data.storage.EventDataStorage;
+import ryey.easer.core.data.storage.xml.event.XmlEventDataStorage;
+import ryey.easer.core.data.storage.xml.profile.XmlProfileDataStorage;
+import ryey.easer.plugins.PluginRegistry;
 
+/*
+ * TODO: change the layout
+ *  TODO: change from checkbox to radiobutton
+ */
 public class EditEventDialogFragment extends DialogFragment {
     public enum Purpose {
         add, edit, delete;
     }
     public static final String CONTENT_NAME = "ryey.easer.EVENT.NAME";
 
-    DataStorage<EventStructure> storage = null;
+    EventDataStorage storage = null;
 
     Purpose purpose;
     String oldName = null;
@@ -67,6 +70,9 @@ public class EditEventDialogFragment extends DialogFragment {
     Map<String, SwitchItemLayout> items = new HashMap<>();
 
     EditText mEditText_name = null;
+    private static final String NON = ""; //TODO: more robust
+    Spinner mSpinner_parent = null;
+    List<String> mEventList = null;
     Spinner mSpinner_profile = null;
     List<String> mProfileList = null;
 
@@ -83,7 +89,7 @@ public class EditEventDialogFragment extends DialogFragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            storage = EventXmlDataStorage.getInstance(activity);
+            storage = XmlEventDataStorage.getInstance(activity);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -122,9 +128,30 @@ public class EditEventDialogFragment extends DialogFragment {
 
         mEditText_name = (EditText) mView.findViewById(R.id.editText_event_title);
 
+        mSpinner_parent = (Spinner) mView.findViewById(R.id.spinner_parent);
+        try {
+            mEventList = (XmlEventDataStorage.getInstance(getActivity())).list();
+            mEventList.add(0, NON);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_profile, mEventList); //TODO: change layout
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+            mSpinner_parent.setAdapter(adapter);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        mSpinner_parent.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                adapterView.setSelection(i);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
         mSpinner_profile = (Spinner) mView.findViewById(R.id.spinner_profile);
         try {
-            mProfileList = (ProfileXmlDataStorage.getInstance(getActivity())).list();
+            mProfileList = (XmlProfileDataStorage.getInstance(getActivity())).list();
+            mProfileList.add(0, NON);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_profile, mProfileList);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
             mSpinner_profile.setAdapter(adapter);
@@ -142,7 +169,7 @@ public class EditEventDialogFragment extends DialogFragment {
         });
 
         for (EventPlugin eventPlugin : PluginRegistry.getInstance().getEventPlugins()) {
-            SwitchItemLayout view = eventPlugin.view(getActivity());
+            SwitchItemLayout view = new SwitchItemLayout(getActivity(), eventPlugin.view(getActivity()));
             LinearLayout layout = (LinearLayout) mView.findViewById(R.id.layout_events);
             layout.addView(view);
             items.put(eventPlugin.name(), view);
@@ -168,19 +195,30 @@ public class EditEventDialogFragment extends DialogFragment {
     protected void loadFromEvent(EventStructure event) {
         oldName = event.getName();
         mEditText_name.setText(oldName);
-        String profile = event.getProfile();
+        String profile = event.getProfileName();
+        if (profile == null)
+            profile = NON;
         mSpinner_profile.setSelection(mProfileList.indexOf(profile));
+        String parent = event.getParentName();
+        mSpinner_parent.setSelection(mEventList.indexOf(parent));
 
         for (EventPlugin plugin : PluginRegistry.getInstance().getEventPlugins()) {
             SwitchItemLayout item = items.get(plugin.name());
-            item.fill(event.get(plugin.name()));
+            if (event.getEventData().pluginClass() == plugin.getClass()) {
+                item.fill(event.getEventData());
+            } else {
+                item.fill(null);
+            }
         }
     }
 
     protected EventStructure saveToEvent() {
         EventStructure event = new EventStructure(mEditText_name.getText().toString());
         String profile = (String) mSpinner_profile.getSelectedItem();
-        event.setProfile(profile);
+        event.setProfileName(profile);
+        String parent = (String) mSpinner_parent.getSelectedItem();
+        if (!parent.equals(NON))
+            event.setParentName(parent);
 
         for (EventPlugin plugin : PluginRegistry.getInstance().getEventPlugins()) {
             SwitchItemLayout item = items.get(plugin.name());
@@ -188,11 +226,12 @@ public class EditEventDialogFragment extends DialogFragment {
             if (data == null)
                 continue;
             if (data instanceof EventData) {
-                event.set(plugin.name(), (EventData) data);
+                event.setEventData((EventData) data);
             } else {
                 Log.wtf(getClass().getSimpleName(), "data of plugin's Layout is not instance of EventData");
                 throw new RuntimeException("data of plugin's Layout is not instance of EventData");
             }
+            break;
         }
 
         return event;

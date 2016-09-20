@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -43,13 +43,13 @@ import java.io.IOException;
 import java.util.List;
 
 import ryey.easer.R;
-import ryey.easer.core.data.storage.DataStorage;
-import ryey.easer.core.data.storage.xml.profile.ProfileXmlDataStorage;
+import ryey.easer.core.data.storage.ProfileDataStorage;
+import ryey.easer.core.data.storage.xml.profile.XmlProfileDataStorage;
 
 public class ProfileListFragment extends ListFragment {
     public static final String ACTION_DATA_CHANGED = "ryey.easer.ACTION.PROFILE_DATA_CHANGED";
 
-    DataStorage<ryey.easer.core.data.ProfileStructure> mStorage = null;
+    ProfileDataStorage mStorage = null;
 
     BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
@@ -82,7 +82,7 @@ public class ProfileListFragment extends ListFragment {
         registerForContextMenu(getListView());
 
         try {
-            mStorage = ProfileXmlDataStorage.getInstance(getActivity());
+            mStorage = XmlProfileDataStorage.getInstance(getActivity());
             List<String> items = mStorage.list();
             Log.d(getClass().getSimpleName(), "items: " + items);
             ListAdapter adapter = new ProfileListAdapter(getActivity(), items);

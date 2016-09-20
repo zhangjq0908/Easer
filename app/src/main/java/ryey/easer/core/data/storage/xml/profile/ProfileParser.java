@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -28,12 +28,12 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import ryey.easer.commons.C;
-import ryey.easer.plugins.PluginRegistry;
-import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.commons.IllegalXmlException;
+import ryey.easer.commons.OperationData;
+import ryey.easer.commons.OperationPlugin;
 import ryey.easer.commons.XmlHelper;
-import ryey.easer.commons.ProfileData;
-import ryey.easer.commons.ProfilePlugin;
+import ryey.easer.core.data.ProfileStructure;
+import ryey.easer.plugins.PluginRegistry;
 
 public class ProfileParser {
     private static final String ns = null;
@@ -88,9 +88,10 @@ public class ProfileParser {
         }
         switch (spec) {
             default:
-                for (ProfilePlugin plugin : PluginRegistry.getInstance().getProfilePlugins()) {
+                for (OperationPlugin plugin : PluginRegistry.getInstance().getOperationPlugins()) {
                     if (spec.equals(plugin.name())) {
-                        ProfileData data = plugin.parse(parser);
+                        OperationData data = plugin.data();
+                        data.parse(parser);
                         profile.set(plugin.name(), data);
                         break;
                     }

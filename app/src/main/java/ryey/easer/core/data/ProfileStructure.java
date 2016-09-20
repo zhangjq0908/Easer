@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -22,13 +22,13 @@ package ryey.easer.core.data;
 import java.util.HashMap;
 import java.util.Map;
 
-import ryey.easer.commons.ProfileData;
+import ryey.easer.commons.OperationData;
 
 public class ProfileStructure {
 
     String name;
 
-    Map<String, ProfileData> data = new HashMap<>();
+    Map<String, OperationData> data = new HashMap<>();
 
     public ProfileStructure() {
     }
@@ -45,10 +45,10 @@ public class ProfileStructure {
         this.name = name;
     }
 
-    public ProfileData get(String key) {
+    public OperationData get(String key) {
         return data.get(key);
     }
-    public void set(String key, ProfileData value) {
+    public void set(String key, OperationData value) {
         data.put(key, value);
     }
 
@@ -59,7 +59,7 @@ public class ProfileStructure {
         ProfileStructure ot = (ProfileStructure) o;
         if (!getName().equals(ot.getName()))
             return false;
-        if (!data.equals(((EventStructure) o).data))
+        if (!data.equals(((ProfileStructure) o).data))
             return false;
         return true;
     }

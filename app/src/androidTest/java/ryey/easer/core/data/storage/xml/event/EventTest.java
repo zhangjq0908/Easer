@@ -28,10 +28,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
 
-import ryey.easer.core.data.EventStructure;
 import ryey.easer.commons.IllegalXmlException;
+import ryey.easer.core.data.EventStructure;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class EventTest {
 
@@ -40,12 +40,13 @@ public class EventTest {
 
     @BeforeClass
     public static void setUpAll() throws ParseException {
-        t_xml = "<?xml version='1.0' encoding='utf-8' standalone='no' ?><event><enabled>false</enabled><name>123</name><profile>profile</profile><trigger><situation spec=\"time\"><at>13:23</at></situation><logic>and</logic></trigger></event>";
+        t_xml = "<?xml version='1.0' encoding='utf-8' standalone='no' ?><event><name>123</name><profile>profile</profile><after>myparent</after><trigger><situation spec=\"time\"><at>13:23</at></situation></trigger></event>";
 
         t_event = new EventStructure();
         t_event.setName("123");
-        t_event.setEnabled(false);
-        t_event.setProfile("profile");
+        t_event.setParentName("myparent");
+//        t_event.setEnabled(false);
+        t_event.setProfileName("profile");
 //        t_event.setTime(Utils.TextToTime("13:23"));
     }
 
@@ -55,8 +56,9 @@ public class EventTest {
         EventParser eventParser = new EventParser();
         EventStructure event = eventParser.parse(byteArrayInputStream);
         assertEquals("123", event.getName());
-        assertEquals(false, event.isEnabled());
-        assertEquals("profile", event.getProfile());
+//        assertEquals(false, event.isEnabled());
+        assertEquals("profile", event.getProfileName());
+        assertEquals("myparent", event.getParentName());
 //        assertEquals("13:23", Utils.TimeToText(event.getTime()));
         byteArrayInputStream.close();
     }

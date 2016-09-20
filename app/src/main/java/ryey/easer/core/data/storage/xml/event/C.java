@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -19,8 +19,10 @@
 
 package ryey.easer.core.data.storage.xml.event;
 
-public class C {
+public class C extends ryey.easer.commons.C {
     public static final String EVENT = "event";
     public static final String ENABLED = "enabled";
     public static final String TRIG = "trigger";
+    public static final String AFTER = "after";
+    public static final String NON = "NO DATA";
 }

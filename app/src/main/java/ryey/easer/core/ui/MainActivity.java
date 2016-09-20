@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -33,8 +33,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import ryey.easer.core.EHService;
 import ryey.easer.R;
+import ryey.easer.core.EHService;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

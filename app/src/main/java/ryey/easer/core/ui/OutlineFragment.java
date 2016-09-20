@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -32,8 +32,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import ryey.easer.core.EHService;
 import ryey.easer.R;
+import ryey.easer.core.EHService;
 
 public class OutlineFragment extends Fragment {
     View mView;

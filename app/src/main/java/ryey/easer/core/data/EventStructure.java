@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -19,40 +19,17 @@
 
 package ryey.easer.core.data;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import ryey.easer.commons.EventData;
 
 public class EventStructure {
-    String name = null;
-    boolean enabled = false;
+    protected String name;
+    protected EventData eventData;
+    protected String profileName;
+    protected String parentName;
 
-    String profile = null;
-
-    Map<String, EventData> data = new HashMap<>();
-
-    public EventStructure() {
-    }
-
+    public EventStructure() {}
     public EventStructure(String name) {
-        this.name = name;
-    }
-
-    public boolean isValid() {
-        if (name == null)
-            return false;
-        for (EventData d : data.values())
-            if (d.isValid())
-                return true;
-        return false;
-    }
-
-    public EventData get(String key) {
-        return data.get(key);
-    }
-    public void set(String key, EventData value) {
-        data.put(key, value);
+        setName(name);
     }
 
     public String getName() {
@@ -63,34 +40,27 @@ public class EventStructure {
         this.name = name;
     }
 
-    public boolean isEnabled() {
-        return enabled;
+    public EventData getEventData() {
+        return eventData;
     }
 
-    public void setEnabled(boolean state) {
-        enabled = state;
+    public void setEventData(EventData eventData) {
+        this.eventData = eventData;
     }
 
-    public String getProfile() {
-        return profile;
+    public String getProfileName() {
+        return profileName;
     }
 
-    public void setProfile(String profile) {
-        this.profile = profile;
+    public void setProfileName(String profileName) {
+        this.profileName = profileName;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof EventStructure)) {
-            return false;
-        }
-        EventStructure ot = (EventStructure) o;
-        if (!getName().equals(ot.getName()))
-            return false;
-        if (!getProfile().equals(ot.getProfile()))
-            return false;
-        if (!data.equals(((EventStructure) o).data))
-            return false;
-        return true;
+    public String getParentName() {
+        return parentName;
+    }
+
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
     }
 }

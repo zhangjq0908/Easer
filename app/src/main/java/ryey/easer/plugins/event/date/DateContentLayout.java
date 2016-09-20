@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -25,10 +25,10 @@ import android.widget.DatePicker;
 import java.util.Calendar;
 
 import ryey.easer.R;
+import ryey.easer.commons.ContentLayout;
 import ryey.easer.commons.StorageData;
-import ryey.easer.commons.SwitchItemLayout;
 
-public class DateContentLayout extends SwitchItemLayout.LabeledContentLayout {
+public class DateContentLayout extends ContentLayout.LabeledContentLayout {
     DatePicker datePicker;
 
     public DateContentLayout(Context context) {

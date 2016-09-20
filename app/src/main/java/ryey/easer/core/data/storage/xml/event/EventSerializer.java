@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -27,28 +27,23 @@ import org.xmlpull.v1.XmlSerializer;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import ryey.easer.commons.C;
-import ryey.easer.plugins.PluginRegistry;
-import ryey.easer.core.data.EventStructure;
 import ryey.easer.commons.EventData;
-import ryey.easer.commons.EventPlugin;
+import ryey.easer.core.data.EventStructure;
 
 public class EventSerializer {
 
     XmlSerializer serializer = Xml.newSerializer();
-    EventStructure mEvent;
     private final String ns = null;
 
     public EventSerializer() {
     }
 
-    public void serialize(OutputStream out, EventStructure event) throws IOException {
-        mEvent = event;
+    public void serialize(OutputStream out, EventStructure eventStructure) throws IOException {
         try {
             Log.d("EventSerializer", "serializing");
             serializer.setOutput(out, "utf-8");
             serializer.startDocument("utf-8", false);
-            writeEvent();
+            writeEvent(eventStructure);
             serializer.flush();
             Log.d("EventSerializer", "serialized");
         } finally {
@@ -56,44 +51,55 @@ public class EventSerializer {
         }
     }
 
-    private void writeEvent() throws IOException {
-        serializer.startTag(ns, ryey.easer.core.data.storage.xml.event.C.EVENT);
-        writeEnabled();
-        writeName();
-        writeProfile();
-        writeTrigger();
-        serializer.endTag(ns, ryey.easer.core.data.storage.xml.event.C.EVENT);
+    private void writeEvent(EventStructure eventStructure) throws IOException {
+        serializer.startTag(ns, C.EVENT);
+//        writeEnabled(); // remove 'enabled' for now //TODO: to be considered
+        writeName(eventStructure.getName());
+        writeProfile(eventStructure.getProfileName());
+        writeTrigger(eventStructure.getEventData(), eventStructure.getParentName());
+        serializer.endTag(ns, C.EVENT);
     }
 
-    private void writeEnabled() throws IOException {
-        serializer.startTag(ns, ryey.easer.core.data.storage.xml.event.C.ENABLED);
-        serializer.text(String.valueOf(mEvent.isEnabled()));
-        serializer.endTag(ns, ryey.easer.core.data.storage.xml.event.C.ENABLED);
-    }
+//    private void writeEnabled() throws IOException {
+//        serializer.startTag(ns, C.ENABLED);
+//        serializer.text(String.valueOf(mEvent.isEnabled()));
+//        serializer.endTag(ns, C.ENABLED);
+//    }
 
-    private void writeName() throws IOException {
+    private void writeName(String name) throws IOException {
         serializer.startTag(ns, C.NAME);
-        serializer.text(mEvent.getName());
+        serializer.text(name);
         serializer.endTag(ns, C.NAME);
     }
 
-    private void writeProfile() throws IOException {
-        serializer.startTag(ns, C.PROFILE);
-        serializer.text(mEvent.getProfile());
-        serializer.endTag(ns, C.PROFILE);
+    private void writeProfile(String profileName) throws IOException {
+        if ((profileName != null) && (!profileName.isEmpty())) {
+            serializer.startTag(ns, C.PROFILE);
+            serializer.text(profileName);
+            serializer.endTag(ns, C.PROFILE);
+        } else {
+            serializer.startTag(ns, C.PROFILE);
+            serializer.text(C.NON);
+            serializer.endTag(ns, C.PROFILE);
+        }
     }
 
-    private void writeTrigger() throws IOException {
-        serializer.startTag(ns, ryey.easer.core.data.storage.xml.event.C.TRIG);
+    private void writeTrigger(EventData eventData, String parentName) throws IOException {
+        serializer.startTag(ns, C.TRIG);
 
-        for (EventPlugin plugin : PluginRegistry.getInstance().getEventPlugins()) {
-            EventData data = mEvent.get(plugin.name());
-            if (data != null && data.isValid()) {
-                plugin.serialize(serializer, data);
-            }
+        if ((parentName != null) && (!parentName.isEmpty())) {
+            serializer.startTag(ns, C.AFTER);
+            serializer.text(parentName);
+            serializer.endTag(ns, C.AFTER);
+        } else {
+            serializer.startTag(ns, C.AFTER);
+            serializer.text(C.NON);
+            serializer.endTag(ns, C.AFTER);
         }
 
-        serializer.endTag(ns, ryey.easer.core.data.storage.xml.event.C.TRIG);
+        eventData.serialize(serializer);
+
+        serializer.endTag(ns, C.TRIG);
     }
 
 }

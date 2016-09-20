@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -28,10 +28,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import ryey.easer.commons.C;
-import ryey.easer.plugins.PluginRegistry;
+import ryey.easer.commons.OperationData;
+import ryey.easer.commons.OperationPlugin;
 import ryey.easer.core.data.ProfileStructure;
-import ryey.easer.commons.ProfileData;
-import ryey.easer.commons.ProfilePlugin;
+import ryey.easer.plugins.PluginRegistry;
 
 public class ProfileSerializer {
     private static final String ns = null;
@@ -67,10 +67,10 @@ public class ProfileSerializer {
     }
 
     private void writeItems() throws IOException {
-        for (ProfilePlugin plugin : PluginRegistry.getInstance().getProfilePlugins()) {
-            ProfileData data = mProfile.get(plugin.name());
+        for (OperationPlugin plugin : PluginRegistry.getInstance().getOperationPlugins()) {
+            OperationData data = mProfile.get(plugin.name());
             if (data != null)
-                plugin.serialize(serializer, data);
+                data.serialize(serializer);
         }
     }
 

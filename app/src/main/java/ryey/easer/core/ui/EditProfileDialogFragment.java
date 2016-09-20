@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -37,15 +37,14 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.R;
-import ryey.easer.core.data.ProfileStructure;
-import ryey.easer.core.data.storage.DataStorage;
-import ryey.easer.core.data.storage.xml.profile.ProfileXmlDataStorage;
-import ryey.easer.commons.ProfileData;
-import ryey.easer.commons.ProfilePlugin;
+import ryey.easer.commons.OperationData;
+import ryey.easer.commons.OperationPlugin;
 import ryey.easer.commons.StorageData;
-import ryey.easer.commons.SwitchItemLayout;
+import ryey.easer.core.data.ProfileStructure;
+import ryey.easer.core.data.storage.ProfileDataStorage;
+import ryey.easer.core.data.storage.xml.profile.XmlProfileDataStorage;
+import ryey.easer.plugins.PluginRegistry;
 
 public class EditProfileDialogFragment extends DialogFragment {
     public enum Purpose {
@@ -53,7 +52,7 @@ public class EditProfileDialogFragment extends DialogFragment {
     }
     public static final String CONTENT_NAME = "ryey.easer.PROFILE.NAME";
 
-    DataStorage<ProfileStructure> storage = null;
+    ProfileDataStorage storage = null;
 
     Purpose purpose;
     String oldName = null;
@@ -76,7 +75,7 @@ public class EditProfileDialogFragment extends DialogFragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            storage = ProfileXmlDataStorage.getInstance(activity);
+            storage = XmlProfileDataStorage.getInstance(activity);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -115,11 +114,11 @@ public class EditProfileDialogFragment extends DialogFragment {
 
         mEditText = (EditText) mView.findViewById(R.id.editText_profile_title);
 
-        for (ProfilePlugin profilePlugin : PluginRegistry.getInstance().getProfilePlugins()) {
-            SwitchItemLayout view = profilePlugin.view(getActivity());
+        for (OperationPlugin operationPlugin : PluginRegistry.getInstance().getOperationPlugins()) {
+            SwitchItemLayout view = new SwitchItemLayout(getActivity(), operationPlugin.view(getActivity()));
             LinearLayout layout = (LinearLayout) mView.findViewById(R.id.layout_profiles);
             layout.addView(view);
-            items.put(profilePlugin.name(), view);
+            items.put(operationPlugin.name(), view);
         }
 
         Bundle bundle = getArguments();
@@ -142,7 +141,7 @@ public class EditProfileDialogFragment extends DialogFragment {
     protected void loadFromProfile(ProfileStructure profile) {
         mEditText.setText(oldName);
 
-        for (ProfilePlugin plugin : PluginRegistry.getInstance().getProfilePlugins()) {
+        for (OperationPlugin plugin : PluginRegistry.getInstance().getOperationPlugins()) {
             SwitchItemLayout item = items.get(plugin.name());
             item.fill(profile.get(plugin.name()));
         }
@@ -151,16 +150,16 @@ public class EditProfileDialogFragment extends DialogFragment {
     protected ProfileStructure saveToProfile() {
         ProfileStructure profile = new ProfileStructure(mEditText.getText().toString());
 
-        for (ProfilePlugin plugin : PluginRegistry.getInstance().getProfilePlugins()) {
+        for (OperationPlugin plugin : PluginRegistry.getInstance().getOperationPlugins()) {
             SwitchItemLayout item = items.get(plugin.name());
             StorageData data = item.getData();
             if (data == null)
                 continue;
-            if (data instanceof ProfileData) {
-                profile.set(plugin.name(), (ProfileData) data);
+            if (data instanceof OperationData) {
+                profile.set(plugin.name(), (OperationData) data);
             } else {
-                Log.wtf(getClass().getSimpleName(), "data of plugin's Layout is not instance of ProfileData");
-                throw new RuntimeException("data of plugin's Layout is not instance of ProfileData");
+                Log.wtf(getClass().getSimpleName(), "data of plugin's Layout is not instance of OperationData");
+                throw new RuntimeException("data of plugin's Layout is not instance of OperationData");
             }
         }
 

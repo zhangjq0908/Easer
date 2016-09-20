@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -28,10 +28,10 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import ryey.easer.R;
+import ryey.easer.commons.ContentLayout;
 import ryey.easer.commons.StorageData;
-import ryey.easer.commons.SwitchItemLayout;
 
-public class CellLocationContentLayout extends SwitchItemLayout.LabeledContentLayout {
+public class CellLocationContentLayout extends ContentLayout.LabeledContentLayout {
     EditText editText;
 
     public CellLocationContentLayout(Context context) {

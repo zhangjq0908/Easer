@@ -27,10 +27,10 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.commons.IllegalXmlException;
+import ryey.easer.core.data.ProfileStructure;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class ProfileTest {
 

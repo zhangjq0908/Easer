@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -50,8 +50,9 @@ public class XmlHelper {
     public static String getText(XmlPullParser parser, String which) throws IOException, XmlPullParserException, IllegalXmlException {
         if (parser.next() == XmlPullParser.TEXT)
             return parser.getText();
-        else
+        else {
             throw new IllegalXmlException(String.format("Illegal Event: %s has No content", which));
+        }
     }
 
     public static String readSingleSituation(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {

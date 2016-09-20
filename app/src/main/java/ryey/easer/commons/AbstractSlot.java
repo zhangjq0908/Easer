@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -35,7 +35,7 @@ public abstract class AbstractSlot {
     protected boolean satisfied;
 
     protected Uri uri = Uri.parse(String.format("slot://%s/%d", getClass().getSimpleName(), hashCode()));
-    protected PendingIntent notifySelfIntent;
+    protected PendingIntent notifySelfIntent; // May be used by some special system-level checking mechanisms (e.g. date / time)
 
     protected PendingIntent notifyLotusIntent = null;
 
@@ -74,21 +74,43 @@ public abstract class AbstractSlot {
 
     public abstract void cancel();
 
-    public void onRegister(PendingIntent notifyLotusIntent) {
+    /*
+     * Check to see if the current slot is satisfied.
+     * Will set `satisfied` internally (by calling `justSatisfied()`)
+     */
+    public abstract void check();
+
+    public void register(PendingIntent notifyLotusIntent) {
         this.notifyLotusIntent = notifyLotusIntent;
+    }
+
+    protected void changeSatisfiedState(boolean newSatisfiedState) {
+        Log.d(getClass().getSimpleName(), String.format("changeSatisfiedState %s", newSatisfiedState));
+        satisfied = newSatisfiedState;
+        if (newSatisfiedState) {
+            try {
+                notifySelfIntent.send();
+            } catch (PendingIntent.CanceledException e) {
+                //TODO: shouldn't happen because this method is only called in subclasses
+                e.printStackTrace();
+                throw new IllegalAccessError();
+            }
+        }
     }
 
     void onSatisfied() {
         Log.d(getClass().getSimpleName(), "onSatisfied");
-        if (notifyLotusIntent == null) {
-            Log.wtf(getClass().getSimpleName(), "slot never registered");
-            throw new RuntimeException("slot never registered");
-        }
         satisfied = true;
-        try {
-            notifyLotusIntent.send();
-        } catch (PendingIntent.CanceledException e) {
-            e.printStackTrace();
+        if (notifyLotusIntent == null) {
+//            Log.wtf(getClass().getSimpleName(), "slot never registered");
+//            throw new RuntimeException("slot never registered");
+            Log.d(getClass().getSimpleName(), "slot not registered. probably because is in the recursive tree");
+        } else {
+            try {
+                notifyLotusIntent.send();
+            } catch (PendingIntent.CanceledException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

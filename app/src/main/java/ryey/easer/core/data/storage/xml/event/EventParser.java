@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -28,13 +28,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import ryey.easer.commons.C;
-import ryey.easer.plugins.PluginRegistry;
-import ryey.easer.core.data.EventStructure;
-import ryey.easer.commons.IllegalXmlException;
-import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.EventData;
 import ryey.easer.commons.EventPlugin;
+import ryey.easer.commons.IllegalXmlException;
+import ryey.easer.commons.XmlHelper;
+import ryey.easer.core.data.EventStructure;
+import ryey.easer.plugins.PluginRegistry;
 
 public class EventParser {
     private static final String ns = null;
@@ -55,22 +54,22 @@ public class EventParser {
     }
 
     private boolean readEvent() throws IOException, XmlPullParserException, IllegalXmlException {
-        parser.require(XmlPullParser.START_TAG, ns, ryey.easer.core.data.storage.xml.event.C.EVENT);
+        parser.require(XmlPullParser.START_TAG, ns, C.EVENT);
         while (parser.next() != XmlPullParser.END_DOCUMENT) {
             if (parser.getEventType() != XmlPullParser.START_TAG) {
                 continue;
             }
             switch (parser.getName()) {
-                case ryey.easer.core.data.storage.xml.event.C.ENABLED:
-                    readEnabled();
-                    break;
+//                case C.ENABLED: //same as in EventSerializer
+//                    readEnabled();
+//                    break;
                 case C.NAME:
                     readName();
                     break;
                 case C.PROFILE:
                     readProfile();
                     break;
-                case ryey.easer.core.data.storage.xml.event.C.TRIG:
+                case C.TRIG:
                     readTrigger();
                     break;
                 default:
@@ -81,43 +80,34 @@ public class EventParser {
         return true;
     }
 
-    private void readEnabled() throws IOException, XmlPullParserException, IllegalXmlException {
-        event.setEnabled(Boolean.parseBoolean(XmlHelper.getText(parser, "Enabled")));
-    }
+//    private void readEnabled() throws IOException, XmlPullParserException, IllegalXmlException {
+//        event.setEnabled(Boolean.parseBoolean(XmlHelper.getText(parser, "Enabled")));
+//    }
 
     private void readName() throws IOException, XmlPullParserException, IllegalXmlException {
         event.setName(XmlHelper.getText(parser, "Name"));
     }
 
     private void readProfile() throws IOException, XmlPullParserException, IllegalXmlException {
-        event.setProfile(XmlHelper.getText(parser, "Profile"));
+        String text = XmlHelper.getText(parser, "Profile");
+        if (!text.equals(C.NON))
+            event.setProfileName(text);
     }
 
     private void readTrigger() throws IOException, XmlPullParserException, IllegalXmlException {
-        int depth = parser.getDepth();
-        int event_type = parser.next();
-        while (parser.getDepth() > depth) {
-            if (event_type == XmlPullParser.START_TAG) {
-                switch (parser.getName()) {
-                    case C.SIT:
-                        readSituation();
-                        break;
-                    case C.LOGIC:
-                        XmlHelper.readLogic(parser);
-                        break;
-                }
-            }
-            event_type = parser.next();
-        }
-    }
-
-    private void readSituation() throws IOException, XmlPullParserException, IllegalXmlException {
+        parser.next(); // C.AFTER
+        String text = XmlHelper.getText(parser, "After");
+        if (!text.equals(C.NON))
+            event.setParentName(text);
+        while (parser.next() != XmlPullParser.START_TAG) ;
+        assert parser.getName().equals(C.SIT);
         String spec = parser.getAttributeValue(ns, C.SPEC);
         List<EventPlugin> plugins = PluginRegistry.getInstance().getEventPlugins();
         for (EventPlugin plugin : plugins) {
             if (spec.equals(plugin.name())) {
-                EventData data = plugin.parse(parser);
-                event.set(plugin.name(), data);
+                EventData data = plugin.data();
+                data.parse(parser);
+                event.setEventData(data);
                 break;
             }
         }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -21,23 +21,20 @@ package ryey.easer.plugins.event.wifi;
 
 import android.content.Context;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlSerializer;
-
-import java.io.IOException;
-
-import ryey.easer.commons.IllegalXmlException;
-import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.AbstractSlot;
+import ryey.easer.commons.ContentLayout;
 import ryey.easer.commons.EventData;
 import ryey.easer.commons.EventPlugin;
-import ryey.easer.commons.SwitchItemLayout;
 
 public class WifiEventPlugin implements EventPlugin {
+
+    static String pname() {
+        return "wifi connection";
+    }
+
     @Override
     public String name() {
-        return "wifi connection";
+        return pname();
     }
 
     @Override
@@ -46,27 +43,8 @@ public class WifiEventPlugin implements EventPlugin {
     }
 
     @Override
-    public EventData parse(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
-        WifiEventData eventData = new WifiEventData();
-
-        String str_data = XmlHelper.readSingleSituation(parser);
-        eventData.set(str_data);
-
-        return eventData;
-    }
-
-    @Override
-    public void serialize(XmlSerializer serializer, EventData data) throws IOException {
-        String wifi = (String) data.get();
-        if (wifi != null) {
-            XmlHelper.writeSingleSituation(serializer, name(), wifi);
-            XmlHelper.writeLogic(serializer);
-        }
-    }
-
-    @Override
-    public SwitchItemLayout view(Context context) {
-        return new SwitchItemLayout(context, new WifiContentLayout(context));
+    public ContentLayout view(Context context) {
+        return new WifiContentLayout(context);
     }
 
     @Override

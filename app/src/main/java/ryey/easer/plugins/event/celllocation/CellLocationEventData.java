@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -19,10 +19,20 @@
 
 package ryey.easer.plugins.event.celllocation;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlSerializer;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import ryey.easer.commons.EventData;
+import ryey.easer.commons.EventPlugin;
+import ryey.easer.commons.IllegalXmlException;
+import ryey.easer.commons.XmlHelper;
+
+import static ryey.easer.plugins.event.celllocation.CellLocationEventPlugin.pname;
 
 public class CellLocationEventData implements EventData {
     protected List<CellLocationSingleData> data;
@@ -67,6 +77,26 @@ public class CellLocationEventData implements EventData {
         if (data.size() == 0)
             return false;
         return true;
+    }
+
+    @Override
+    public Class<? extends EventPlugin> pluginClass() {
+        return CellLocationEventPlugin.class;
+    }
+
+    @Override
+    public void parse(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
+        String str_data = XmlHelper.readSingleSituation(parser);
+        set(str_data);
+    }
+
+    @Override
+    public void serialize(XmlSerializer serializer) throws IOException {
+        String cellLocation = toString();
+        if (cellLocation != null) {
+            XmlHelper.writeSingleSituation(serializer, pname(), cellLocation);
+            XmlHelper.writeLogic(serializer);
+        }
     }
 
     public boolean add(CellLocationSingleData singleData) {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -21,23 +21,19 @@ package ryey.easer.plugins.event.celllocation;
 
 import android.content.Context;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlSerializer;
-
-import java.io.IOException;
-
-import ryey.easer.commons.IllegalXmlException;
-import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.AbstractSlot;
+import ryey.easer.commons.ContentLayout;
 import ryey.easer.commons.EventData;
 import ryey.easer.commons.EventPlugin;
-import ryey.easer.commons.SwitchItemLayout;
 
 public class CellLocationEventPlugin implements EventPlugin {
+    static String pname() {
+        return "cell location";
+    }
+
     @Override
     public String name() {
-        return "cell location";
+        return pname();
     }
 
     @Override
@@ -46,27 +42,8 @@ public class CellLocationEventPlugin implements EventPlugin {
     }
 
     @Override
-    public EventData parse(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
-        CellLocationEventData eventData = new CellLocationEventData();
-
-        String str_data = XmlHelper.readSingleSituation(parser);
-        eventData.set(str_data);
-
-        return eventData;
-    }
-
-    @Override
-    public void serialize(XmlSerializer serializer, EventData data) throws IOException {
-        String cellLocation = data.toString();
-        if (cellLocation != null) {
-            XmlHelper.writeSingleSituation(serializer, name(), cellLocation);
-            XmlHelper.writeLogic(serializer);
-        }
-    }
-
-    @Override
-    public SwitchItemLayout view(Context context) {
-        return new SwitchItemLayout(context, new CellLocationContentLayout(context));
+    public ContentLayout view(Context context) {
+        return new CellLocationContentLayout(context);
     }
 
     @Override

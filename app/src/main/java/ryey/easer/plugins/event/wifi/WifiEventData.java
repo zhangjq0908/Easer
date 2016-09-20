@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -19,7 +19,18 @@
 
 package ryey.easer.plugins.event.wifi;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlSerializer;
+
+import java.io.IOException;
+
 import ryey.easer.commons.EventData;
+import ryey.easer.commons.EventPlugin;
+import ryey.easer.commons.IllegalXmlException;
+import ryey.easer.commons.XmlHelper;
+
+import static ryey.easer.plugins.event.wifi.WifiEventPlugin.pname;
 
 public class WifiEventData implements EventData {
     String ssid = null;
@@ -49,5 +60,25 @@ public class WifiEventData implements EventData {
         if (ssid == null)
             return false;
         return true;
+    }
+
+    @Override
+    public Class<? extends EventPlugin> pluginClass() {
+        return WifiEventPlugin.class;
+    }
+
+    @Override
+    public void parse(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
+        String str_data = XmlHelper.readSingleSituation(parser);
+        set(str_data);
+    }
+
+    @Override
+    public void serialize(XmlSerializer serializer) throws IOException {
+        String wifi = (String) get();
+        if (wifi != null) {
+            XmlHelper.writeSingleSituation(serializer, pname(), wifi);
+            XmlHelper.writeLogic(serializer);
+        }
     }
 }

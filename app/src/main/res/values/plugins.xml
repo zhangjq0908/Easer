@@ -5,8 +5,9 @@
     <string name="event_wificonn">WiFi Connection</string>
     <string name="event_celllocation">Cell Location</string>
 
-    <string name="profile_wifi">WiFi</string>
-    <string name="profile_cellular">Mobile data</string>
-    <string name="profile_bluetooth">Bluetooth</string>
-    <string name="profile_rotation">Auto Rotation</string>
+    <string name="operation_wifi">WiFi</string>
+    <string name="operation_cellular">Mobile data</string>
+    <string name="operation_bluetooth">Bluetooth</string>
+    <string name="operation_rotation">Auto Rotation</string>
+    <string name="operation_broadcast">Send Broadcast</string>
 </resources>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -40,15 +40,15 @@ import android.widget.ListView;
 import java.io.IOException;
 import java.util.List;
 
-import ryey.easer.core.EHService;
 import ryey.easer.R;
-import ryey.easer.core.data.storage.DataStorage;
-import ryey.easer.core.data.storage.xml.event.EventXmlDataStorage;
+import ryey.easer.core.EHService;
+import ryey.easer.core.data.storage.EventDataStorage;
+import ryey.easer.core.data.storage.xml.event.XmlEventDataStorage;
 
 public class EventListFragment extends ListFragment {
     public static final String ACTION_DATA_CHANGED = "ryey.easer.ACTION.EVENT_DATA_CHANGED";
 
-    DataStorage<ryey.easer.core.data.EventStructure> mStorage = null;
+    EventDataStorage mStorage = null;
 
     BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
@@ -82,7 +82,7 @@ public class EventListFragment extends ListFragment {
 
         List<String> items = null;
         try {
-            mStorage = EventXmlDataStorage.getInstance(getActivity());
+            mStorage = XmlEventDataStorage.getInstance(getActivity());
             items = mStorage.list();
             Log.d(getClass().getSimpleName(), "items: " + items);
         } catch (IOException e) {

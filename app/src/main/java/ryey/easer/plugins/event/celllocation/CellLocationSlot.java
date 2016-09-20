@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -19,7 +19,6 @@
 
 package ryey.easer.plugins.event.celllocation;
 
-import android.app.PendingIntent;
 import android.content.Context;
 import android.telephony.CellLocation;
 import android.telephony.PhoneStateListener;
@@ -73,17 +72,21 @@ public class CellLocationSlot extends AbstractSlot {
             telephonyManager.listen(cellLocationListener, PhoneStateListener.LISTEN_NONE);
     }
 
+    @Override
+    public void check() {
+        CellLocationListener chck = new CellLocationListener();
+        chck.onCellLocationChanged(telephonyManager.getCellLocation());
+    }
+
     class CellLocationListener extends PhoneStateListener {
         @Override
         public void onCellLocationChanged(CellLocation location) {
             super.onCellLocationChanged(location);
             curr = CellLocationSingleData.fromCellLocation(location);
             if (target.contains(curr)) {
-                try {
-                    notifySelfIntent.send();
-                } catch (PendingIntent.CanceledException e) {
-                    e.printStackTrace();
-                }
+                changeSatisfiedState(true);
+            } else {
+                changeSatisfiedState(false);
             }
         }
     }

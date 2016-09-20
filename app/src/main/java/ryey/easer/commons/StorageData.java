@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -19,10 +19,20 @@
 
 package ryey.easer.commons;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlSerializer;
+
+import java.io.IOException;
+
 public interface StorageData {
     Object get();
 
     void set(Object obj);
 
     boolean equals(Object o);
+
+    void parse(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException;
+
+    void serialize(XmlSerializer serializer) throws IOException;
 }

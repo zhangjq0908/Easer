@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -25,13 +25,13 @@ import android.util.Log;
 
 import java.io.IOException;
 
-import ryey.easer.plugins.PluginRegistry;
+import ryey.easer.commons.OperationData;
+import ryey.easer.commons.OperationLoader;
+import ryey.easer.commons.OperationPlugin;
 import ryey.easer.core.data.ProfileStructure;
-import ryey.easer.core.data.storage.DataStorage;
-import ryey.easer.core.data.storage.xml.profile.ProfileXmlDataStorage;
-import ryey.easer.commons.ProfileData;
-import ryey.easer.commons.ProfileLoader;
-import ryey.easer.commons.ProfilePlugin;
+import ryey.easer.core.data.storage.ProfileDataStorage;
+import ryey.easer.core.data.storage.xml.profile.XmlProfileDataStorage;
+import ryey.easer.plugins.PluginRegistry;
 
 public class ProfileLoaderIntentService extends IntentService {
     public static final String ACTION_LOAD_PROFILE = "ryey.easer.action.LOAD_PROFILE";
@@ -63,12 +63,12 @@ public class ProfileLoaderIntentService extends IntentService {
     private void handleActionLoadProfile(String name) {
         Log.i(getClass().getSimpleName(), "onHandleActionLoadProfile: " + name);
         try {
-            DataStorage<ProfileStructure> storage = ProfileXmlDataStorage.getInstance(this);
+            ProfileDataStorage storage = XmlProfileDataStorage.getInstance(this);
             ProfileStructure profile = storage.get(name);
 
-            for (ProfilePlugin plugin : PluginRegistry.getInstance().getProfilePlugins()) {
-                ProfileLoader loader = plugin.loader(getApplicationContext());
-                ProfileData data = profile.get(plugin.name());
+            for (OperationPlugin plugin : PluginRegistry.getInstance().getOperationPlugins()) {
+                OperationLoader loader = plugin.loader(getApplicationContext());
+                OperationData data = profile.get(plugin.name());
                 if (data != null) {
                     loader.load(data);
                 }

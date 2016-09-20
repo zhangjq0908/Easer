@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -21,17 +21,9 @@ package ryey.easer.commons;
 
 import android.content.Context;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlSerializer;
-
-import java.io.IOException;
-
 public interface EventPlugin {
     String name();
     EventData data();
-    EventData parse(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException;
-    void serialize(XmlSerializer serializer, EventData data) throws IOException;
-    SwitchItemLayout view(Context context);
+    ContentLayout view(Context context);
     AbstractSlot slot(Context context);
 }

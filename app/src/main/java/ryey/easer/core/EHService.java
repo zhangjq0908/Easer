@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -31,21 +31,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ryey.easer.commons.Lotus;
+import ryey.easer.core.data.EventTree;
+import ryey.easer.core.data.storage.EventDataStorage;
+import ryey.easer.core.data.storage.xml.event.XmlEventDataStorage;
 import ryey.easer.plugins.PluginRegistry;
-import ryey.easer.core.data.EventStructure;
-import ryey.easer.core.data.storage.DataStorage;
-import ryey.easer.core.data.storage.xml.event.EventXmlDataStorage;
-import ryey.easer.commons.AbstractSlot;
-import ryey.easer.commons.EventData;
-import ryey.easer.commons.EventPlugin;
 
 public class EHService extends Service {
     public static final String ACTION_RELOAD = "ryey.easer.action.RELOAD";
 
     public static final String ACTION_STATE_CHANGED = "ryey.easer.action.STATE_CHANGED";
 
-    List<EventStructure> mEvents;
     List<Lotus> mLotus;
 
     BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -88,11 +83,11 @@ public class EHService extends Service {
         Intent intent = new Intent(ACTION_STATE_CHANGED);
         sendBroadcast(intent);
         super.onCreate();
-        reloadTriggers();
         IntentFilter filter = new IntentFilter();
         filter.addAction(ACTION_RELOAD);
         registerReceiver(mReceiver, filter);
         PluginRegistry.init();
+        reloadTriggers();
     }
 
     @Override
@@ -107,9 +102,14 @@ public class EHService extends Service {
 
     private void reloadTriggers() {
         Log.d(getClass().getSimpleName(), "reloadTriggers");
-        mGetEvents();
         mCancelTriggers();
-        mSetTriggers();
+        try {
+            EventDataStorage storage = XmlEventDataStorage.getInstance(this);
+            List<EventTree> events = storage.getEventTrees();
+            mSetTriggers(events);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void mCancelTriggers() {
@@ -119,39 +119,16 @@ public class EHService extends Service {
         mLotus.clear();
     }
 
-    private void mGetEvents() {
-        List<EventStructure> events = new ArrayList<>();
-        DataStorage<EventStructure> storage = null;
-        try {
-            storage = EventXmlDataStorage.getInstance(this);
-            for (String name : storage.list()) {
-                events.add(storage.get(name));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        mEvents = events;
-    }
-
-    private void mSetTriggers() {
+    private void mSetTriggers(List<EventTree> eventTreeList) {
         Log.d(getClass().getSimpleName(), "setting triggers");
-        for (EventStructure event : mEvents) {
+        for (EventTree event : eventTreeList) {
             Log.d(getClass().getSimpleName(), "  setting: " + event.getName());
-            Lotus lotus = new Lotus(this, event.getName(), event.getProfile());
-
-            for (EventPlugin plugin : PluginRegistry.getInstance().getEventPlugins()) {
-                EventData data = event.get(plugin.name());
-                if (data != null && data.isValid()) {
-                    AbstractSlot slot = plugin.slot(this);
-                    slot.set(data);
-                    lotus.register(slot);
-                }
-            }
-
+            Lotus lotus = new Lotus(this, event);
             lotus.apply();
             Log.d(getClass().getSimpleName(), "  " + event.getName() + " is set");
             mLotus.add(lotus);
         }
+        Log.d(getClass().getSimpleName(), "triggers have been set");
     }
 
     @Override

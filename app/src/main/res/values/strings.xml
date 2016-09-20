@@ -19,6 +19,7 @@
     <string name="text_cancel">Cancel</string>
     <string name="text_ok">OK</string>
     <string name="text_title">Title: </string>
+    <string name="text_parent">Parent: </string>
     <string name="text_profile">Profile: </string>
 
     <string name="hint_event_title">event title</string>

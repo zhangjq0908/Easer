@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -19,7 +19,6 @@
 
 package ryey.easer.plugins.event.wifi;
 
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -48,11 +47,9 @@ public class WifiConnSlot extends AbstractSlot {
                     WifiInfo wifiInfo = intent.getParcelableExtra(WifiManager.EXTRA_WIFI_INFO);
                     ssid = wifiInfo.getSSID();
                     if (ssid.equals(target_ssid)) {
-                        try {
-                            notifySelfIntent.send();
-                        } catch (PendingIntent.CanceledException e) {
-                            e.printStackTrace();
-                        }
+                        changeSatisfiedState(true);
+                    } else {
+                        changeSatisfiedState(false);
                     }
                 }
             }
@@ -102,5 +99,17 @@ public class WifiConnSlot extends AbstractSlot {
     @Override
     public void cancel() {
         context.unregisterReceiver(connReceiver);
+    }
+
+    @Override
+    public void check() {
+        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+        ssid = wifiInfo.getSSID();
+        if (ssid.equals(target_ssid)) {
+            changeSatisfiedState(true);
+        } else {
+            changeSatisfiedState(false);
+        }
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -27,10 +27,10 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 
 import ryey.easer.R;
+import ryey.easer.commons.ContentLayout;
 import ryey.easer.commons.StorageData;
-import ryey.easer.commons.SwitchItemLayout;
 
-public class TimeContentLayout extends SwitchItemLayout.LabeledContentLayout {
+public class TimeContentLayout extends ContentLayout.LabeledContentLayout {
     TimePicker timePicker;
 
     public TimeContentLayout(Context context) {
