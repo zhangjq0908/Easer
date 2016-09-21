@@ -48,7 +48,7 @@ public class CellLocationContentLayout extends SwitchItemLayout.LabeledContentLa
                 CellLocationSingleData singleData = CellLocationSingleData.fromCellLocation(telephonyManager.getCellLocation());
                 CellLocationEventData locationData = CellLocationEventData.fromString(editText.getText().toString());
                 if (locationData == null)
-                    return;
+                    locationData = new CellLocationEventData();
                 locationData.add(singleData);
                 editText.setText(locationData.toString());
             }

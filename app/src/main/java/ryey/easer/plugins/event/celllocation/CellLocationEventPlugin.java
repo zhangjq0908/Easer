@@ -57,7 +57,7 @@ public class CellLocationEventPlugin implements EventPlugin {
 
     @Override
     public void serialize(XmlSerializer serializer, EventData data) throws IOException {
-        String cellLocation = (String) data.get();
+        String cellLocation = data.toString();
         if (cellLocation != null) {
             XmlHelper.writeSingleSituation(serializer, name(), cellLocation);
             XmlHelper.writeLogic(serializer);

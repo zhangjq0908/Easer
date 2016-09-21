@@ -50,6 +50,8 @@ public class CellLocationEventData implements EventData {
         if (obj instanceof String) {
             String[] parts = ((String) obj).split(",");
             for (String single : parts) {
+                if (single.trim().isEmpty())
+                    continue;
                 CellLocationSingleData singleData = new CellLocationSingleData();
                 singleData.set(single.trim());
                 if (singleData.isValid())
