@@ -26,10 +26,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import ryey.easer.R;
@@ -39,6 +44,7 @@ public class OutlineFragment extends Fragment {
     View mView;
 
     TextView mIndicator;
+    ImageView mBanner;
 
     BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
@@ -60,6 +66,7 @@ public class OutlineFragment extends Fragment {
         mView = inflater.inflate(R.layout.fragment_outline, container, false);
 
         mIndicator = (TextView) mView.findViewById(R.id.running_ind);
+        mBanner = (ImageView) mView.findViewById(R.id.running_ind_banner);
 
         FloatingActionButton fab = (FloatingActionButton) mView.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +83,12 @@ public class OutlineFragment extends Fragment {
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         refresh();
@@ -87,11 +100,47 @@ public class OutlineFragment extends Fragment {
         getActivity().unregisterReceiver(mReceiver);
     }
 
-    private void refresh() {
-        if (EHService.isRunning()) {
-            mIndicator.setText("Running");
-        } else {
-            mIndicator.setText("Not running");
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.outline, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_about) {
+            Intent intent = new Intent(getActivity(), AboutActivity.class);
+            startActivity(intent);
+            return true;
         }
+
+        if (id == R.id.action_start) {
+            EHService.start(getActivity());
+            return true;
+        }
+        if (id == R.id.action_stop) {
+            EHService.stop(getActivity());
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void refresh() {
+        int color;
+        if (EHService.isRunning()) {
+            mIndicator.setText(getResources().getString(R.string.service_indicator_positive));
+            mBanner.setImageDrawable(getResources().getDrawable(R.drawable.ic_status_positive));
+            color = getResources().getColor(R.color.color_positive);
+        } else {
+            mIndicator.setText(getResources().getString(R.string.service_indicator_negative));
+            mBanner.setImageDrawable(getResources().getDrawable(R.drawable.ic_status_negative));
+            color = getResources().getColor(R.color.color_negative);
+        }
+        mIndicator.setTextColor(color);
+        mBanner.setBackgroundColor(color);
     }
 }

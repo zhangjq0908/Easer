@@ -70,6 +70,11 @@ public class EHService extends Service {
         context.startService(intent);
     }
 
+    public static void stop(Context context) {
+        Intent intent = new Intent(context, EHService.class);
+        context.stopService(intent);
+    }
+
     public static void reload(Context context) {
         Intent intent = new Intent();
         intent.setAction(EHService.ACTION_RELOAD);
