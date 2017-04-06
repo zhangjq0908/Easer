@@ -28,10 +28,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
+import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.plugins.PluginRegistry;
 

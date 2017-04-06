@@ -31,7 +31,7 @@ import ryey.easer.R;
 import ryey.easer.commons.plugindef.ContentLayout;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class CellLocationContentLayout extends ContentLayout.LabeledContentLayout {
+public class CellLocationContentLayout extends ContentLayout {
     EditText editText;
 
     public CellLocationContentLayout(Context context) {

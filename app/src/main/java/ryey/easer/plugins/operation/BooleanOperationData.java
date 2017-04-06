@@ -26,8 +26,8 @@ import org.xmlpull.v1.XmlSerializer;
 import java.io.IOException;
 
 import ryey.easer.commons.IllegalXmlException;
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.XmlHelper;
+import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
 public abstract class BooleanOperationData implements OperationData {
     protected Boolean state = null;

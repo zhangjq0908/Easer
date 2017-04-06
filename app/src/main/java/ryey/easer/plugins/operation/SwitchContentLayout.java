@@ -20,19 +20,18 @@
 package ryey.easer.plugins.operation;
 
 import android.content.Context;
-import android.widget.LinearLayout;
 import android.widget.Switch;
 
 import ryey.easer.commons.plugindef.ContentLayout;
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.StorageData;
+import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
-public abstract class SwitchLabeledContentLayout extends ContentLayout.LabeledContentLayout {
+public abstract class SwitchContentLayout extends ContentLayout {
     Switch aSwitch;
-    public SwitchLabeledContentLayout(Context context) {
+    public SwitchContentLayout(Context context) {
         super(context);
         aSwitch = new Switch(context);
-        aSwitch.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        aSwitch.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
         addView(aSwitch);
     }
 

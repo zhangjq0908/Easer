@@ -42,9 +42,9 @@ import java.util.List;
 import java.util.Map;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
-import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.storage.EventDataStorage;
 import ryey.easer.core.data.storage.xml.event.XmlEventDataStorage;

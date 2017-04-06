@@ -25,10 +25,10 @@ import org.xmlpull.v1.XmlSerializer;
 
 import java.io.IOException;
 
-import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
+import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 
 import static ryey.easer.plugins.event.wifi.WifiEventPlugin.pname;
 

@@ -30,7 +30,7 @@ import ryey.easer.R;
 import ryey.easer.commons.plugindef.ContentLayout;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class TimeContentLayout extends ContentLayout.LabeledContentLayout {
+public class TimeContentLayout extends ContentLayout {
     TimePicker timePicker;
 
     public TimeContentLayout(Context context) {

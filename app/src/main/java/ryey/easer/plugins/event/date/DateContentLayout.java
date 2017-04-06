@@ -28,7 +28,7 @@ import ryey.easer.R;
 import ryey.easer.commons.plugindef.ContentLayout;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class DateContentLayout extends ContentLayout.LabeledContentLayout {
+public class DateContentLayout extends ContentLayout {
     DatePicker datePicker;
 
     public DateContentLayout(Context context) {
