@@ -23,8 +23,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import ryey.easer.commons.OperationData;
-import ryey.easer.commons.OperationLoader;
+import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
 public class BroadcastLoader extends OperationLoader {
     public BroadcastLoader(Context context) {

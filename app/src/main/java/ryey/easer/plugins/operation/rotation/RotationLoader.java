@@ -23,8 +23,8 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.provider.Settings;
 
-import ryey.easer.commons.OperationData;
-import ryey.easer.commons.OperationLoader;
+import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
 public class RotationLoader extends OperationLoader {
     public RotationLoader(Context context) {

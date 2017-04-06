@@ -23,9 +23,9 @@ import android.content.Context;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 
-import ryey.easer.commons.ContentLayout;
-import ryey.easer.commons.OperationData;
-import ryey.easer.commons.StorageData;
+import ryey.easer.commons.plugindef.ContentLayout;
+import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.commons.plugindef.StorageData;
 
 public abstract class SwitchLabeledContentLayout extends ContentLayout.LabeledContentLayout {
     Switch aSwitch;

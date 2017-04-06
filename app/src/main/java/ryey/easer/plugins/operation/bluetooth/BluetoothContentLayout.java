@@ -22,7 +22,7 @@ package ryey.easer.plugins.operation.bluetooth;
 import android.content.Context;
 
 import ryey.easer.R;
-import ryey.easer.commons.StorageData;
+import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.plugins.operation.SwitchLabeledContentLayout;
 
 public class BluetoothContentLayout extends SwitchLabeledContentLayout {

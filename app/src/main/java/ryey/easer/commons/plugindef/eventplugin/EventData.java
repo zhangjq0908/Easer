@@ -17,16 +17,11 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.commons;
+package ryey.easer.commons.plugindef.eventplugin;
 
-import android.content.Context;
+import ryey.easer.commons.plugindef.StorageData;
 
-public abstract class OperationLoader {
-    protected Context context;
-
-    public OperationLoader(Context context) {
-        this.context = context;
-    }
-
-    public abstract boolean load(OperationData data);
+public interface EventData extends StorageData {
+    boolean isValid();
+    Class<? extends EventPlugin> pluginClass();
 }

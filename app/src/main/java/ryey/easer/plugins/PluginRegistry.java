@@ -22,8 +22,8 @@ package ryey.easer.plugins;
 import java.util.ArrayList;
 import java.util.List;
 
-import ryey.easer.commons.EventPlugin;
-import ryey.easer.commons.OperationPlugin;
+import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
+import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.plugins.event.celllocation.CellLocationEventPlugin;
 import ryey.easer.plugins.event.date.DateEventPlugin;
 import ryey.easer.plugins.event.time.TimeEventPlugin;
@@ -34,7 +34,12 @@ import ryey.easer.plugins.operation.cellular.CellularOperationPlugin;
 import ryey.easer.plugins.operation.rotation.RotationOperationPlugin;
 import ryey.easer.plugins.operation.wifi.WifiOperationPlugin;
 
-public class PluginRegistry {
+/*
+ * Used to tell the app what plugins can be used.
+ *
+ * To register a new plugin, simply add a new line in the `init()` method of this class.
+ */
+final public class PluginRegistry {
     private static PluginRegistry instance = new PluginRegistry();
 
     synchronized public static PluginRegistry getInstance() {

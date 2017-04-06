@@ -26,8 +26,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 
-import ryey.easer.commons.ContentLayout;
-import ryey.easer.commons.StorageData;
+import ryey.easer.commons.plugindef.ContentLayout;
+import ryey.easer.commons.plugindef.StorageData;
 
 public class SwitchItemLayout extends LinearLayout {
     boolean outher = false;

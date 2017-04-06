@@ -22,7 +22,7 @@ package ryey.easer.plugins.operation.wifi;
 import android.content.Context;
 
 import ryey.easer.R;
-import ryey.easer.commons.StorageData;
+import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.plugins.operation.SwitchLabeledContentLayout;
 
 public class WifiContentLayout extends SwitchLabeledContentLayout {

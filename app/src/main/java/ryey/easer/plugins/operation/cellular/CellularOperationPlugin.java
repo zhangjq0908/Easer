@@ -21,10 +21,10 @@ package ryey.easer.plugins.operation.cellular;
 
 import android.content.Context;
 
-import ryey.easer.commons.ContentLayout;
-import ryey.easer.commons.OperationData;
-import ryey.easer.commons.OperationLoader;
-import ryey.easer.commons.OperationPlugin;
+import ryey.easer.commons.plugindef.ContentLayout;
+import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
+import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 
 public class CellularOperationPlugin implements OperationPlugin {
     public static String pname() {

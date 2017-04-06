@@ -22,9 +22,12 @@ package ryey.easer.core.data;
 import java.util.LinkedList;
 import java.util.List;
 
-import ryey.easer.commons.EventData;
+import ryey.easer.commons.plugindef.eventplugin.EventData;
 
-public class EventTree {
+/*
+ * Events are linked together as trees. This class represents that structure and relevant methods.
+ */
+final public class EventTree {
     String name;
     EventData event;
     String profile;

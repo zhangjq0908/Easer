@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.commons;
+package ryey.easer.commons.plugindef.eventplugin;
 
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -28,24 +28,47 @@ import android.net.Uri;
 import android.os.PatternMatcher;
 import android.util.Log;
 
+/*
+ * Slots are used to tell the current state of the relevant Event plugin.
+ * Slots also carry the duty to receive the relevant signals (e.g. Intent broadcasts of Android) and notify the holder to proceed to check.
+ *
+ * Slots are used in `Lotus`.
+ */
 public abstract class AbstractSlot {
+    /*
+     * AndroidStudio reminds me that some fields and/or methods can be made private.
+     * I'm not sure if they will be used by the subclasses in the future when extending the `satisfied` field to more status, so they are left as protected.
+     */
+
+    // Fields used in relevant Intent
     protected static final String ACTION_SATISFIED = "ryey.easer.triggerlotus.abstractslot.SATISFIED";
     protected static final String CATEGORY_NOTIFY_SLOT = "ryey.easer.triggetlotus.category.NOTIFY_SLOT";
 
+    /*
+     * Indicator of whether the current slot is satisfied.
+     * Will be extended to more status (maybe by enum) in the future.
+     */
     protected boolean satisfied;
 
+    /*
+     * Mechanisms and fields used to notify the slot itself, and then proceed to `onSatisfied()`.
+     * This is because some system-level checking mechanisms (e.g. data/time) need a PendingIntent.
+     */
     protected Uri uri = Uri.parse(String.format("slot://%s/%d", getClass().getSimpleName(), hashCode()));
-    protected PendingIntent notifySelfIntent; // May be used by some special system-level checking mechanisms (e.g. date / time)
-
-    protected PendingIntent notifyLotusIntent = null;
-
-    BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    protected PendingIntent notifySelfIntent;
+    protected BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(ACTION_SATISFIED))
                 onSatisfied();
         }
     };
+
+    /*
+     * Used to tell the holder Lotus that this Slot is satisfied.
+     * Only the to-level (in the `EventTree`) slot will need this (to tell the Lotus to check the whole tree).
+     */
+    protected PendingIntent notifyLotusIntent = null;
 
     public AbstractSlot(Context context) {
         IntentFilter filter = new IntentFilter();
@@ -62,16 +85,40 @@ public abstract class AbstractSlot {
         notifySelfIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
     }
 
+    /*
+     * Report the current status of this slot.
+     * Status will be extended to more (than boolean), so the return type will change in the future.
+     */
     public boolean isSatisfied() {
         return satisfied;
     }
 
+    /*
+     * Set the trigger to be ready to receive the relevant Event.
+     * The trigger will start functioning after `apply()` is called.
+     */
     public abstract void set(EventData data);
 
+    /*
+     * Not sure if this methods is really needed.
+     * Currently there is nothing using it.
+     */
     public abstract boolean isValid();
 
+    /*
+     * Start functioning as a top-level listener.
+     * When satisfied, notify itself (to proceed to `onSatisfied()`)
+     *
+     * Can be called multiply times (data remain the same).
+     */
     public abstract void apply();
 
+    /*
+     * Stop functioning as a top-level listener.
+     * No longer notify itself even when it is really satisfied.
+     *
+     * This methods doesn't prevent `check()` to set itself satisfied.
+     */
     public abstract void cancel();
 
     /*
@@ -80,6 +127,9 @@ public abstract class AbstractSlot {
      */
     public abstract void check();
 
+    /*
+     * Set where to notify (the holder Lotus).
+     */
     public void register(PendingIntent notifyLotusIntent) {
         this.notifyLotusIntent = notifyLotusIntent;
     }

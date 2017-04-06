@@ -28,8 +28,8 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import ryey.easer.R;
-import ryey.easer.commons.ContentLayout;
-import ryey.easer.commons.StorageData;
+import ryey.easer.commons.plugindef.ContentLayout;
+import ryey.easer.commons.plugindef.StorageData;
 
 public class CellLocationContentLayout extends ContentLayout.LabeledContentLayout {
     EditText editText;

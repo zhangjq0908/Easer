@@ -17,7 +17,20 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.commons;
+package ryey.easer.commons.plugindef.operationplugin;
 
-public interface OperationData extends StorageData {
+import android.content.Context;
+
+/*
+ * Loader of a operation plugin.
+ * Used to perform relevant action given the data (configuration).
+ */
+public abstract class OperationLoader {
+    protected Context context;
+
+    public OperationLoader(Context context) {
+        this.context = context;
+    }
+
+    public abstract boolean load(OperationData data);
 }

@@ -26,7 +26,7 @@ import org.xmlpull.v1.XmlSerializer;
 import java.io.IOException;
 
 import ryey.easer.commons.IllegalXmlException;
-import ryey.easer.commons.OperationData;
+import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.XmlHelper;
 
 public abstract class BooleanOperationData implements OperationData {

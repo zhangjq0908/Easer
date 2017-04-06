@@ -24,8 +24,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import ryey.easer.R;
-import ryey.easer.commons.ContentLayout;
-import ryey.easer.commons.StorageData;
+import ryey.easer.commons.plugindef.ContentLayout;
+import ryey.easer.commons.plugindef.StorageData;
 
 public class BroadcastContentLayout extends ContentLayout.LabeledContentLayout {
     EditText mEditText;

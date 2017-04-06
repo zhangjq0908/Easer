@@ -25,8 +25,8 @@ import android.widget.DatePicker;
 import java.util.Calendar;
 
 import ryey.easer.R;
-import ryey.easer.commons.ContentLayout;
-import ryey.easer.commons.StorageData;
+import ryey.easer.commons.plugindef.ContentLayout;
+import ryey.easer.commons.plugindef.StorageData;
 
 public class DateContentLayout extends ContentLayout.LabeledContentLayout {
     DatePicker datePicker;

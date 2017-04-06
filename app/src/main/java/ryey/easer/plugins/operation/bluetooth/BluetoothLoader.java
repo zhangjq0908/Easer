@@ -25,8 +25,8 @@ import android.content.Context;
 import android.os.Build;
 import android.util.Log;
 
-import ryey.easer.commons.OperationData;
-import ryey.easer.commons.OperationLoader;
+import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
 public class BluetoothLoader extends OperationLoader {
     public BluetoothLoader(Context context) {

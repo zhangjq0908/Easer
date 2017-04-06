@@ -17,13 +17,35 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.commons;
+package ryey.easer.commons.plugindef.operationplugin;
 
 import android.content.Context;
 
+import ryey.easer.commons.plugindef.ContentLayout;
+
+/*
+ * Definition of every Operation plugin.
+ * All Operation plugins should implement this interface and add one line to register in `PluginRegistry`.
+ * The implementation / subclass doesn't need to hold any data (because data will be passed as arguments to the relevant methods).
+ */
 public interface OperationPlugin {
+    /*
+     * Returns the plugin identifier.
+     * Only used internally. Never displayed to user.
+     */
     String name();
+    /*
+     * Returns a dummy (empty) instance of the relevant data structure.
+     */
     OperationData data();
+    /*
+     * Returns the control UI of this plugin.
+     * Used in `EditProfileDialogFragment`.
+     */
     ContentLayout view(Context context);
+    /*
+     * Returns a dummy loader of this plugin.
+     * See `OperationLoader` for more information
+     */
     OperationLoader loader(Context context);
 }

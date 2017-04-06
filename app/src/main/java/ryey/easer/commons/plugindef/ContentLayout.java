@@ -1,4 +1,4 @@
-package ryey.easer.commons;
+package ryey.easer.commons.plugindef;
 
 import android.content.Context;
 import android.view.View;
@@ -6,6 +6,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+/*
+ * Abstract Control UI of both OperationPlugin and EventPlugin
+ * All plugins should implement their special subclasses.
+ */
 public abstract class ContentLayout extends LinearLayout {
     public ContentLayout(Context context) {
         super(context);

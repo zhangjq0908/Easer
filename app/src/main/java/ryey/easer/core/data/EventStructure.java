@@ -19,13 +19,26 @@
 
 package ryey.easer.core.data;
 
-import ryey.easer.commons.EventData;
+import android.support.annotation.Nullable;
 
-public class EventStructure {
+import ryey.easer.commons.plugindef.eventplugin.EventData;
+
+/*
+ * An Event consists of the following data:
+  * its name
+  * the relevant data (event type is embedded in the data)
+  * the profile which will be load when the event happens (nullable)
+  * the parent Event of the current Event (null means no parent)
+ *
+ * This class holds these fields and getters and setters.
+ *
+ * Only `EditEventDialogFragment` and `EventTree` needs to know the actual structure.
+ */
+final public class EventStructure {
     protected String name;
     protected EventData eventData;
-    protected String profileName;
-    protected String parentName;
+    @Nullable protected String profileName;
+    @Nullable protected String parentName;
 
     public EventStructure() {}
     public EventStructure(String name) {

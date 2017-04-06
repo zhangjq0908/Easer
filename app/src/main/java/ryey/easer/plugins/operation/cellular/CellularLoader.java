@@ -25,8 +25,8 @@ import android.telephony.TelephonyManager;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import ryey.easer.commons.OperationData;
-import ryey.easer.commons.OperationLoader;
+import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
 public class CellularLoader extends OperationLoader {
     public CellularLoader(Context context) {

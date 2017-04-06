@@ -25,9 +25,9 @@ import android.util.Log;
 
 import java.io.IOException;
 
-import ryey.easer.commons.OperationData;
-import ryey.easer.commons.OperationLoader;
-import ryey.easer.commons.OperationPlugin;
+import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
+import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.core.data.storage.xml.profile.XmlProfileDataStorage;

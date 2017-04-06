@@ -24,8 +24,8 @@ import android.content.Context;
 
 import java.util.Calendar;
 
-import ryey.easer.commons.AbstractSlot;
-import ryey.easer.commons.EventData;
+import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
+import ryey.easer.commons.plugindef.eventplugin.EventData;
 
 public class TimeSlot extends AbstractSlot {
     static AlarmManager mAlarmManager;

@@ -25,6 +25,9 @@ import org.xmlpull.v1.XmlSerializer;
 
 import java.io.IOException;
 
+/*
+ * Helper functions (to save and load data) when dealing with XML storage
+ */
 public class XmlHelper {
     protected static final String STATE = "state";
     protected static final String OFF = "off";

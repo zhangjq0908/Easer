@@ -28,8 +28,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import ryey.easer.commons.C;
-import ryey.easer.commons.OperationData;
-import ryey.easer.commons.OperationPlugin;
+import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.plugins.PluginRegistry;
 

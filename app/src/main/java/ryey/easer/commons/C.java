@@ -19,6 +19,9 @@
 
 package ryey.easer.commons;
 
+/*
+ * Const values used when handling storage
+ */
 public class C {
     public static final String NAME = "name";
     public static final String PROFILE = "profile";

@@ -24,8 +24,8 @@ import android.telephony.CellLocation;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 
-import ryey.easer.commons.AbstractSlot;
-import ryey.easer.commons.EventData;
+import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
+import ryey.easer.commons.plugindef.eventplugin.EventData;
 
 public class CellLocationSlot extends AbstractSlot {
     static TelephonyManager telephonyManager = null;

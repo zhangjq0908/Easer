@@ -29,8 +29,8 @@ import java.io.InputStream;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalXmlException;
-import ryey.easer.commons.OperationData;
-import ryey.easer.commons.OperationPlugin;
+import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.plugins.PluginRegistry;

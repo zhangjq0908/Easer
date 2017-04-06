@@ -36,12 +36,15 @@ import ryey.easer.core.data.storage.EventDataStorage;
 import ryey.easer.core.data.storage.xml.event.XmlEventDataStorage;
 import ryey.easer.plugins.PluginRegistry;
 
+/*
+ * The background service which maintains several Lotus(es) and send Intent to load Profile(s).
+ */
 public class EHService extends Service {
     public static final String ACTION_RELOAD = "ryey.easer.action.RELOAD";
 
     public static final String ACTION_STATE_CHANGED = "ryey.easer.action.STATE_CHANGED";
 
-    List<Lotus> mLotus;
+    List<Lotus> mLotus = new ArrayList<>();
 
     BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
@@ -56,10 +59,6 @@ public class EHService extends Service {
     };
 
     private static boolean running = false;
-
-    {
-        mLotus = new ArrayList<>();
-    }
 
     public static boolean isRunning() {
         return running;

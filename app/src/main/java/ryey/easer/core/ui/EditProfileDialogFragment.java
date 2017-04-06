@@ -38,9 +38,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import ryey.easer.R;
-import ryey.easer.commons.OperationData;
-import ryey.easer.commons.OperationPlugin;
-import ryey.easer.commons.StorageData;
+import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
+import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.core.data.storage.xml.profile.XmlProfileDataStorage;

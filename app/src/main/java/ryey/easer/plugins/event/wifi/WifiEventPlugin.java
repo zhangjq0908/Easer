@@ -21,10 +21,10 @@ package ryey.easer.plugins.event.wifi;
 
 import android.content.Context;
 
-import ryey.easer.commons.AbstractSlot;
-import ryey.easer.commons.ContentLayout;
-import ryey.easer.commons.EventData;
-import ryey.easer.commons.EventPlugin;
+import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
+import ryey.easer.commons.plugindef.ContentLayout;
+import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 
 public class WifiEventPlugin implements EventPlugin {
 

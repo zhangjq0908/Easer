@@ -17,22 +17,9 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.commons;
+package ryey.easer.commons.plugindef.operationplugin;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlSerializer;
+import ryey.easer.commons.plugindef.StorageData;
 
-import java.io.IOException;
-
-public interface StorageData {
-    Object get();
-
-    void set(Object obj);
-
-    boolean equals(Object o);
-
-    void parse(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException;
-
-    void serialize(XmlSerializer serializer) throws IOException;
+public interface OperationData extends StorageData {
 }

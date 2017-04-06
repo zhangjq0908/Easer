@@ -22,8 +22,8 @@ package ryey.easer.plugins.operation.wifi;
 import android.content.Context;
 import android.net.wifi.WifiManager;
 
-import ryey.easer.commons.OperationData;
-import ryey.easer.commons.OperationLoader;
+import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
 public class WifiLoader extends OperationLoader {
     public WifiLoader(Context context) {

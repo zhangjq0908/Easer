@@ -28,27 +28,36 @@ import android.net.Uri;
 import android.os.PatternMatcher;
 import android.util.Log;
 
-import ryey.easer.commons.AbstractSlot;
-import ryey.easer.commons.EventData;
-import ryey.easer.commons.EventPlugin;
+import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
+import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.core.data.EventTree;
 import ryey.easer.plugins.PluginRegistry;
 
-public class Lotus {
-    static final String ACTION_SLOT_SATISFIED = "ryey.easer.triggerlotus.action.SLOT_SATISFIED";
-    static final String CATEGORY_NOTIFY_LOTUS = "ryey.easer.triggerlotus.category.NOTIFY_LOTUS";
+/*
+ * Each Lotus holds one EventTree.
+ *
+ * The root of that tree will be registered listener.
+ * When the root is satisfied, Lotus will recursively check all children to find which is satisfied.
+ * After finding a satisfied child and the child has a Profile, Lotus will load the Profile.
+ *
+ * Currently, Lotus uses *post* order traversal to find the *first* satisfied child with Profile.
+ */
+final class Lotus {
+    private static final String ACTION_SLOT_SATISFIED = "ryey.easer.triggerlotus.action.SLOT_SATISFIED";
+    private static final String CATEGORY_NOTIFY_LOTUS = "ryey.easer.triggerlotus.category.NOTIFY_LOTUS";
 
-    Context context;
-    final EventTree eventTree;
+    private Context context;
+    private final EventTree eventTree;
 
-    final Uri uri = Uri.parse(String.format("lotus://%d", hashCode()));
-    final PendingIntent notifyLotusIntent;
+    private final Uri uri = Uri.parse(String.format("lotus://%d", hashCode()));
+    private final PendingIntent notifyLotusIntent;
 
-    AbstractSlot mSlot;
+    private AbstractSlot mSlot;
 
-    boolean analyzing = false;
+    private boolean analyzing = false;
 
-    BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(ACTION_SLOT_SATISFIED))
@@ -56,7 +65,7 @@ public class Lotus {
         }
     };
 
-    public Lotus(Context context, EventTree eventTree) {
+    Lotus(Context context, EventTree eventTree) {
         this.context = context;
         this.eventTree = eventTree;
 
@@ -77,7 +86,7 @@ public class Lotus {
         mSlot.register(notifyLotusIntent);
     }
 
-    AbstractSlot dataToSlot(EventData data) {
+    private AbstractSlot dataToSlot(EventData data) {
         AbstractSlot slot;
         for (EventPlugin plugin : PluginRegistry.getInstance().getEventPlugins()) {
             if (data.pluginClass() == plugin.getClass()) {
@@ -89,15 +98,15 @@ public class Lotus {
         throw new IllegalAccessError();
     }
 
-    public void apply() {
+    void apply() {
         mSlot.apply();
     }
 
-    public void cancel() {
+    void cancel() {
         mSlot.cancel();
     }
 
-    synchronized void onSlotSatisfied() {
+    private synchronized void onSlotSatisfied() {
         Log.d(getClass().getSimpleName(), String.format("onSlotSatisfied %s", eventTree.getName()));
         if (!analyzing) {
             analyzing = true;
@@ -110,7 +119,7 @@ public class Lotus {
      * DFS尋找第一個滿足所有條件（通過@AbstractSlot.isSatisfied()）的節點
      * 並在其處（所在的遞歸棧）載入對應Profile
      */
-    boolean findLastAndTrigger(EventTree node, boolean is_sub) {
+    private boolean findLastAndTrigger(EventTree node, boolean is_sub) {
         EventData eventData = node.getEvent();
         AbstractSlot slot = mSlot;
         if (is_sub) {
@@ -131,7 +140,8 @@ public class Lotus {
                     intent.putExtra(ProfileLoaderIntentService.EXTRA_PROFILE_NAME, profileName);
                     context.startService(intent);
                     return true;
-                }
+                } else
+                    return false;
             } else {
                 return true;
             }

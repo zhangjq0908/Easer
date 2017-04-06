@@ -22,10 +22,14 @@ package ryey.easer.core.data;
 import java.util.HashMap;
 import java.util.Map;
 
-import ryey.easer.commons.OperationData;
+import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
-public class ProfileStructure {
-
+/*
+ * A Profile is a bundle of several Operation(s).
+ * Only the `EditProfileDialogFragment` and `ProfileLoaderIntentService` need to know the detailed structure of a Profile,
+ * other classes only need to know the *name* of the Profile.
+ */
+final public class ProfileStructure {
     String name;
 
     Map<String, OperationData> data = new HashMap<>();

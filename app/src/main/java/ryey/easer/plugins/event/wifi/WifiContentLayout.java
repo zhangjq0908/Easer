@@ -23,8 +23,8 @@ import android.content.Context;
 import android.widget.EditText;
 
 import ryey.easer.R;
-import ryey.easer.commons.ContentLayout;
-import ryey.easer.commons.StorageData;
+import ryey.easer.commons.plugindef.ContentLayout;
+import ryey.easer.commons.plugindef.StorageData;
 
 public class WifiContentLayout extends ContentLayout.LabeledContentLayout {
     EditText editText;
