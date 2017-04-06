@@ -23,9 +23,9 @@ import android.content.Context;
 
 import ryey.easer.R;
 import ryey.easer.commons.StorageData;
-import ryey.easer.plugins.operation.SwitchLabeledContentLayout;
+import ryey.easer.plugins.operation.SwitchContentLayout;
 
-public class WifiContentLayout extends SwitchLabeledContentLayout {
+public class WifiContentLayout extends SwitchContentLayout {
 
     public WifiContentLayout(Context context) {
         super(context);

@@ -23,9 +23,9 @@ import android.content.Context;
 
 import ryey.easer.R;
 import ryey.easer.commons.StorageData;
-import ryey.easer.plugins.operation.SwitchLabeledContentLayout;
+import ryey.easer.plugins.operation.SwitchContentLayout;
 
-public class BluetoothContentLayout extends SwitchLabeledContentLayout {
+public class BluetoothContentLayout extends SwitchContentLayout {
     public BluetoothContentLayout(Context context) {
         super(context);
         setDesc(context.getString(R.string.operation_bluetooth));

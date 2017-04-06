@@ -26,7 +26,7 @@ import ryey.easer.R;
 import ryey.easer.commons.ContentLayout;
 import ryey.easer.commons.StorageData;
 
-public class WifiContentLayout extends ContentLayout.LabeledContentLayout {
+public class WifiContentLayout extends ContentLayout {
     EditText editText;
     public WifiContentLayout(Context context) {
         super(context);

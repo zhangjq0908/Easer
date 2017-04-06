@@ -23,9 +23,9 @@ import android.content.Context;
 
 import ryey.easer.R;
 import ryey.easer.commons.StorageData;
-import ryey.easer.plugins.operation.SwitchLabeledContentLayout;
+import ryey.easer.plugins.operation.SwitchContentLayout;
 
-public class RotationContentLayout extends SwitchLabeledContentLayout {
+public class RotationContentLayout extends SwitchContentLayout {
     public RotationContentLayout(Context context) {
         super(context);
         setDesc(context.getString(R.string.operation_rotation));

@@ -114,9 +114,9 @@ public class EditProfileDialogFragment extends DialogFragment {
 
         mEditText = (EditText) mView.findViewById(R.id.editText_profile_title);
 
+        LinearLayout layout = (LinearLayout) mView.findViewById(R.id.layout_profiles);
         for (OperationPlugin operationPlugin : PluginRegistry.getInstance().getOperationPlugins()) {
             SwitchItemLayout view = new SwitchItemLayout(getActivity(), operationPlugin.view(getActivity()));
-            LinearLayout layout = (LinearLayout) mView.findViewById(R.id.layout_profiles);
             layout.addView(view);
             items.put(operationPlugin.name(), view);
         }

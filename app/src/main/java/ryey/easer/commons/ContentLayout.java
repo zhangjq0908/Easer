@@ -4,13 +4,27 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 public abstract class ContentLayout extends LinearLayout {
+    protected String desc = null;
+
     public ContentLayout(Context context) {
         super(context);
         setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
         setOrientation(VERTICAL);
+    }
+
+    public ContentLayout(Context context, String desc) {
+        this(context);
+        this.desc = desc;
+    }
+
+    protected void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public String desc() {
+        return desc;
     }
 
     public abstract void fill(StorageData data);
@@ -35,19 +49,6 @@ public abstract class ContentLayout extends LinearLayout {
                 child = ((ViewGroup) v).getChildAt(i);
                 setEnabled(child, enabled);
             }
-        }
-    }
-
-    public static abstract class LabeledContentLayout extends ContentLayout {
-        TextView textView;
-        public LabeledContentLayout(Context context) {
-            super(context);
-            textView = new TextView(context);
-            addView(textView);
-        }
-
-        protected void setDesc(String description) {
-            textView.setText(description);
         }
     }
 }

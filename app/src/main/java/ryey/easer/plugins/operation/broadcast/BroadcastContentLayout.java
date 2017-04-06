@@ -27,7 +27,7 @@ import ryey.easer.R;
 import ryey.easer.commons.ContentLayout;
 import ryey.easer.commons.StorageData;
 
-public class BroadcastContentLayout extends ContentLayout.LabeledContentLayout {
+public class BroadcastContentLayout extends ContentLayout {
     EditText mEditText;
     public BroadcastContentLayout(Context context) {
         super(context);

@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import ryey.easer.commons.ContentLayout;
 import ryey.easer.commons.StorageData;
@@ -45,8 +46,21 @@ public class SwitchItemLayout extends LinearLayout {
         setOrientation(HORIZONTAL);
         mCheckBox = new CheckBox(context);
         super.addView(mCheckBox);
+
         content = contentLayout;
-        addView(content);
+        String desc = contentLayout.desc();
+        if (desc != null) {
+            LinearLayout rhs = new LinearLayout(context);
+            rhs.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+            rhs.setOrientation(VERTICAL);
+            TextView tv_desc = new TextView(context);
+            tv_desc.setText(contentLayout.desc());
+            rhs.addView(tv_desc);
+            rhs.addView(content);
+            super.addView(rhs);
+        } else {
+            super.addView(content);
+        }
         content.setEnabled(mCheckBox.isChecked());
         mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
