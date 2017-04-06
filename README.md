@@ -24,6 +24,7 @@ See [README.en.md](README.en.md) for the English version of README.
 * 藍牙開關
 * 自動旋轉開關
 * 發送Broadcast
+* 控制亮度
 
 版權協議
 -----

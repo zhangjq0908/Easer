@@ -29,6 +29,7 @@ import ryey.easer.plugins.event.date.DateEventPlugin;
 import ryey.easer.plugins.event.time.TimeEventPlugin;
 import ryey.easer.plugins.event.wifi.WifiEventPlugin;
 import ryey.easer.plugins.operation.bluetooth.BluetoothOperationPlugin;
+import ryey.easer.plugins.operation.brightness.BrightnessOperationPlugin;
 import ryey.easer.plugins.operation.broadcast.BroadcastOperationPlugin;
 import ryey.easer.plugins.operation.cellular.CellularOperationPlugin;
 import ryey.easer.plugins.operation.rotation.RotationOperationPlugin;
@@ -59,6 +60,7 @@ final public class PluginRegistry {
         pluginRegistry.registerOperationPlugin(BluetoothOperationPlugin.class);
         pluginRegistry.registerOperationPlugin(RotationOperationPlugin.class);
         pluginRegistry.registerOperationPlugin(BroadcastOperationPlugin.class);
+        pluginRegistry.registerOperationPlugin(BrightnessOperationPlugin.class);
         //TODO: register plugins
     }
 

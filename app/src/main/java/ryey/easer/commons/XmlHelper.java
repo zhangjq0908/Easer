@@ -127,6 +127,55 @@ public class XmlHelper {
         }
     }
 
+    public static void dealInteger(XmlSerializer serializer, String spec, Integer level) throws IOException {
+        if (level != null) {
+            String ss = level.toString();
+
+            serializer.startTag(ns, C.ITEM);
+
+            serializer.attribute(ns, C.SPEC, spec);
+
+            serializer.startTag(ns, STATE);
+            serializer.text(ss);
+            serializer.endTag(ns, STATE);
+
+            serializer.endTag(ns, C.ITEM);
+        }
+    }
+
+    public static Integer handleInteger(XmlPullParser parser, String spec) throws IOException, XmlPullParserException, IllegalXmlException {
+        int depth = parser.getDepth();
+        int event_type = parser.next();
+        String text = null;
+        while (parser.getDepth() > depth) {
+            if (event_type == XmlPullParser.START_TAG) {
+                switch (parser.getName()) {
+                    case STATE:
+                        if (parser.next() == XmlPullParser.TEXT)
+                            text = parser.getText();
+                        else
+                            throw new IllegalXmlException(String.format("Illegal Item: (%s) State has No Content", spec));
+                        break;
+                    default:
+                        skip(parser);
+                }
+            }
+            event_type = parser.next();
+        }
+        if (text == null)
+            throw new IllegalXmlException(String.format("Illegal Item: (%s) No State", spec));
+
+        Integer level = null;
+
+        try {
+            level = Integer.valueOf(text);
+        } catch (NumberFormatException e) {
+            throw new IllegalXmlException(String.format("Illegal Item: (%s) Unknown or Illegal Number", spec));
+        }
+
+        return level;
+    }
+
     public static void skip(XmlPullParser parser) throws XmlPullParserException, IOException {
         if (parser.getEventType() != XmlPullParser.START_TAG) {
             throw new IllegalStateException();

@@ -9,7 +9,6 @@ TODO
 		* Location setting
 		* Ringtone mode
 		* Ringtone volume
-		* Brightness
 	* UI
 		* Change CheckBox to RadioButton (or swipe-to-change ViewPager) on EditEventDialogFragment
 		* Make EditEventDialogFragment more good-looking

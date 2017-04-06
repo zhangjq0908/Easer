@@ -24,6 +24,7 @@ Functions already supported
 * Bluetooth switch
 * Auto rotation switch
 * Sending Broadcast
+* Screen brightness
 
 Copyright
 ------
