@@ -34,5 +34,31 @@
     <string name="prompt_save_failed">Failed to save</string>
     <string name="prompt_delete">Are you sure to delete: %s</string>
 
-    <string name="about">Thanks for opening this page. <br />This page will be filled up in future versions.</string>
+    <string name="appInformation">Ease your life by automatically performing routine actions / operations on your phone(s).
+
+Chain different events and let their corresponding actions performed. No longer need to keep them in mind!
+
+This app was inspired by CyanogenMod\'s \'profile\' mechanism and IFTTT. The original intuition was to automatically change the profile on certain time or specific WiFi connections, and it was expanded for more general use then.
+
+Reminder: Easer is still in development. It may contain bugs and the UI definitely needs to be improved. Current plans are described in the TODO.en.md (or TODO.md if you can read Chinese) document in the repo. If you are interested, please have a look.</string>
+
+    <string name="liscence_stringa">This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.</string>
+
+    <string name="liscence_stringb">This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.</string>
+
+    <string name="liscence_stringc">You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/</string>
+
+    <string name="myGithub">https://github.com/renyuneyun/Easer</string>
+
+    <string name="myWebsite">http://renyuneyun.is-programmer.com/</string>
+
+    <string name="about">About</string>
 </resources>
+
