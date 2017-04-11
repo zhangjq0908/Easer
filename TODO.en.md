@@ -17,6 +17,8 @@ TODO
 		* Use a tree view in EventListFragment
 		* Add a 'settings'/'preferences' Activity (for managing auto-start or so)
 		* Complement 'AboutActivity'
+			* Add "Contributors" to the page (or sub-page)
+			* If using WebView, remove the "back" FAB; if no longer using WebView, make the "back" FAB go back in the WebView
 	* Change the semantics of Event
 		* Expand the semantics to not only True / False
 		* Make one Event receive one (or more) situations (as above) of another Event
@@ -25,6 +27,8 @@ TODO
 	* All TODO(s) in the code
 	* Test coverage
 	* Find a way to make Plugin(s) seperate apks, rather than narrow them together in the mainframe of Easer
+* Issues around
+	* Better description of Easer
 
 To be considered
 =======

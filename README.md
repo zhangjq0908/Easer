@@ -1,5 +1,9 @@
 Easer
 =======
+[<img src="https://f-droid.org/badge/get-it-on.png"
+      alt="Get it on F-Droid"
+      height="80">](https://f-droid.org/app/ryey.easer)
+
 See [README.en.md](README.en.md) for the English version of README.
 
 簡介
