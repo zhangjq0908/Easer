@@ -24,6 +24,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
@@ -35,8 +36,11 @@ import ryey.easer.plugins.PluginRegistry;
 
 public class ProfileLoaderIntentService extends IntentService {
     public static final String ACTION_LOAD_PROFILE = "ryey.easer.action.LOAD_PROFILE";
+    public static final String ACTION_PROFILE_LOADED = "ryey.easer.action.PROFILE_LOADED";
 
     public static final String EXTRA_PROFILE_NAME = "ryey.easer.extra.PROFILE_NAME";
+    public static final String EXTRA_EVENT_NAME = "ryey.easer.extra.EVENT_NAME";
+    public static final String EXTRA_LOAD_TIME = "ryey.easer.extra.LOAD_TIME";
 
     public ProfileLoaderIntentService() {
         super("ProfileLoaderIntentService");
@@ -55,13 +59,14 @@ public class ProfileLoaderIntentService extends IntentService {
             final String action = intent.getAction();
             if (ACTION_LOAD_PROFILE.equals(action)) {
                 final String name = intent.getStringExtra(EXTRA_PROFILE_NAME);
-                handleActionLoadProfile(name);
+                final String event = intent.getStringExtra(EXTRA_EVENT_NAME);
+                handleActionLoadProfile(name, event);
             }
         }
     }
 
-    private void handleActionLoadProfile(String name) {
-        Log.i(getClass().getSimpleName(), "onHandleActionLoadProfile: " + name);
+    private void handleActionLoadProfile(String name, String event) {
+        Log.i(getClass().getSimpleName(), String.format("onHandleActionLoadProfile: %s by %s", name, event));
         try {
             ProfileDataStorage storage = XmlProfileDataStorage.getInstance(this);
             ProfileStructure profile = storage.get(name);
@@ -70,7 +75,14 @@ public class ProfileLoaderIntentService extends IntentService {
                 OperationLoader loader = plugin.loader(getApplicationContext());
                 OperationData data = profile.get(plugin.name());
                 if (data != null) {
-                    loader.load(data);
+                    if (loader.load(data)) {
+                        Intent intent = new Intent(ACTION_PROFILE_LOADED);
+                        intent.putExtra(EXTRA_EVENT_NAME, event);
+                        intent.putExtra(EXTRA_PROFILE_NAME, name);
+                        Calendar calendar = Calendar.getInstance();
+                        intent.putExtra(EXTRA_LOAD_TIME, calendar.getTimeInMillis());
+                        sendBroadcast(intent);
+                    }
                 }
             }
 

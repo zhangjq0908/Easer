@@ -16,6 +16,9 @@
 
     <string name="service_indicator_positive">Running</string>
     <string name="service_indicator_negative">Not running</string>
+    <string name="profile_indicator_last">Last profile:</string>
+    <string name="profile_indicator_from">From event:</string>
+    <string name="profile_indicator_time">Loaded time:</string>
 
     <string name="null_content">NULL CONTENT</string>
 

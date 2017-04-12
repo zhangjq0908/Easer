@@ -24,6 +24,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -43,6 +44,7 @@ public class EHService extends Service {
     public static final String ACTION_RELOAD = "ryey.easer.action.RELOAD";
 
     public static final String ACTION_STATE_CHANGED = "ryey.easer.action.STATE_CHANGED";
+    public static final String ACTION_PROFILE_UPDATED = "ryey.easer.action.PROFILE_UPDATED";
 
     List<Lotus> mLotus = new ArrayList<>();
 
@@ -54,6 +56,13 @@ public class EHService extends Service {
             switch (action) {
                 case ACTION_RELOAD:
                     reloadTriggers();
+                    break;
+                case ProfileLoaderIntentService.ACTION_PROFILE_LOADED:
+                    recordProfile(intent.getExtras());
+                    Intent intent1 = new Intent();
+                    intent1.setAction(ACTION_PROFILE_UPDATED);
+                    sendBroadcast(intent1);
+                    break;
             }
         }
     };
@@ -80,15 +89,41 @@ public class EHService extends Service {
         context.sendBroadcast(intent);
     }
 
+    private static String lastProfile = null;
+    private static String fromEvent = null;
+    private static long loadTime = -1;
+
+    private static void recordProfile(Bundle bundle) {
+        final String profileName = bundle.getString(ProfileLoaderIntentService.EXTRA_PROFILE_NAME);
+        final String eventName = bundle.getString(ProfileLoaderIntentService.EXTRA_EVENT_NAME);
+        final long time = bundle.getLong(ProfileLoaderIntentService.EXTRA_LOAD_TIME);
+        lastProfile = profileName;
+        fromEvent = eventName;
+        loadTime = time;
+    }
+    public static String getLastProfile() {
+        return lastProfile;
+    }
+    public static String getFromEvent() {
+        return fromEvent;
+    }
+    public static long getLoadTime() {
+        return loadTime;
+    }
+
     @Override
     public void onCreate() {
         Log.d(getClass().getSimpleName(), "onCreate");
         running = true;
         Intent intent = new Intent(ACTION_STATE_CHANGED);
         sendBroadcast(intent);
+        lastProfile = null;
+        fromEvent = null;
+        loadTime = -1;
         super.onCreate();
         IntentFilter filter = new IntentFilter();
         filter.addAction(ACTION_RELOAD);
+        filter.addAction(ProfileLoaderIntentService.ACTION_PROFILE_LOADED);
         registerReceiver(mReceiver, filter);
         PluginRegistry.init();
         reloadTriggers();

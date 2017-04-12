@@ -37,6 +37,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import ryey.easer.R;
 import ryey.easer.core.EHService;
 
@@ -46,11 +50,18 @@ public class OutlineFragment extends Fragment {
     TextView mIndicator;
     ImageView mBanner;
 
+    TextView mLastProfile, mFromEvent, mTimeLoaded;
+
     BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equals(EHService.ACTION_STATE_CHANGED)) {
-                refresh();
+            switch (intent.getAction()) {
+                case EHService.ACTION_STATE_CHANGED:
+                    refresh();
+                    break;
+                case EHService.ACTION_PROFILE_UPDATED:
+                    updateProfileDisplay();
+                    break;
             }
         }
     };
@@ -68,6 +79,10 @@ public class OutlineFragment extends Fragment {
         mIndicator = (TextView) mView.findViewById(R.id.running_ind);
         mBanner = (ImageView) mView.findViewById(R.id.running_ind_banner);
 
+        mLastProfile = (TextView) mView.findViewById(R.id.textView_last_profile);
+        mFromEvent = (TextView) mView.findViewById(R.id.textView_from_event);
+        mTimeLoaded = (TextView) mView.findViewById(R.id.textView_profile_load_time);
+
         FloatingActionButton fab = (FloatingActionButton) mView.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +92,7 @@ public class OutlineFragment extends Fragment {
         });
 
         IntentFilter filter = new IntentFilter(EHService.ACTION_STATE_CHANGED);
+        filter.addAction(EHService.ACTION_PROFILE_UPDATED);
         getActivity().registerReceiver(mReceiver, filter);
 
         return mView;
@@ -142,5 +158,22 @@ public class OutlineFragment extends Fragment {
         }
         mIndicator.setTextColor(color);
         mBanner.setBackgroundColor(color);
+        updateProfileDisplay();
+    }
+
+    private void updateProfileDisplay() {
+        final String profileName = EHService.getLastProfile();
+        final String eventName = EHService.getFromEvent();
+        long loadTime = EHService.getLoadTime();
+        mLastProfile.setText(profileName);
+        mFromEvent.setText(eventName);
+        if (loadTime > 0) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(loadTime);
+            DateFormat df = SimpleDateFormat.getDateTimeInstance();
+            mTimeLoaded.setText(df.format(calendar.getTime()));
+        } else {
+            mTimeLoaded.setText("");
+        }
     }
 }

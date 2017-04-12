@@ -138,6 +138,7 @@ final class Lotus {
                     Intent intent = new Intent(context, ProfileLoaderIntentService.class);
                     intent.setAction(ProfileLoaderIntentService.ACTION_LOAD_PROFILE);
                     intent.putExtra(ProfileLoaderIntentService.EXTRA_PROFILE_NAME, profileName);
+                    intent.putExtra(ProfileLoaderIntentService.EXTRA_EVENT_NAME, node.getName());
                     context.startService(intent);
                     return true;
                 } else
