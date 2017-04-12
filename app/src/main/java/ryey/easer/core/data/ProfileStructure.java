@@ -67,4 +67,10 @@ final public class ProfileStructure {
             return false;
         return true;
     }
+
+    public boolean isValid() {
+        if ((name == null) || (name.isEmpty()))
+            return false;
+        return true;
+    }
 }

@@ -76,4 +76,12 @@ final public class EventStructure {
     public void setParentName(String parentName) {
         this.parentName = parentName;
     }
+
+    public boolean isValid() {
+        if ((name == null) || (name.isEmpty()))
+            return false;
+        if ((eventData == null) || (!eventData.isValid()))
+            return false;
+        return true;
+    }
 }

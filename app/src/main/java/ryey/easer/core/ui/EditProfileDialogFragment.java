@@ -168,6 +168,9 @@ public class EditProfileDialogFragment extends DialogFragment {
 
     protected boolean alterProfile() {
         ProfileStructure newProfile = saveToProfile();
+        if (!newProfile.isValid()) {
+            return false;
+        }
         boolean success;
         switch (purpose) {
             case add:

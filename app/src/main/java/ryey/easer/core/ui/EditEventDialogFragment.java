@@ -239,6 +239,9 @@ public class EditEventDialogFragment extends DialogFragment {
 
     protected boolean saveEvent() {
         EventStructure newEvent = saveToEvent();
+        if (!newEvent.isValid()) {
+            return false;
+        }
         boolean success;
         switch (purpose) {
             case add:
