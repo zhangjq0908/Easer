@@ -82,6 +82,12 @@ public class XmlEventDataStorage implements EventDataStorage {
         try {
             EventSerializer serializer = new EventSerializer();
             File file = new File(dir, fileName(event));
+            if (file.exists()) { // see if the existing one is invalid. If so, remove it in favor of the new one
+                EventStructure existing = get(event.getName());
+                if ((existing == null) || (!existing.isValid())) {
+                    file.delete(); //TODO?: handle return value
+                }
+            }
             if (file.createNewFile()) {
                 FileOutputStream fout = new FileOutputStream(file);
                 serializer.serialize(fout, event);

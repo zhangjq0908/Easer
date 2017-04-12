@@ -79,6 +79,12 @@ public class XmlProfileDataStorage implements ProfileDataStorage {
         try {
             ProfileSerializer serializer = new ProfileSerializer();
             File file = new File(dir, fileName(profile));
+            if (file.exists()) { // see if the existing one is invalid. If so, remove it in favor of the new one
+                ProfileStructure existing = get(profile.getName());
+                if ((existing == null) || (!existing.isValid())) {
+                    file.delete(); //TODO?: handle return value
+                }
+            }
             if (file.createNewFile()) {
                 FileOutputStream fout = new FileOutputStream(file);
                 serializer.serialize(fout, profile);
