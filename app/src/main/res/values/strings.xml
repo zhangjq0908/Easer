@@ -55,9 +55,9 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     <string name="liscence_stringc">You should have received a copy of the GNU General Public License
     along with this program.  If not, see http://www.gnu.org/licenses/</string>
 
-    <string name="myGithub">https://github.com/renyuneyun/Easer</string>
+    <string name="myGithub" translatable="false">https://github.com/renyuneyun/Easer</string>
 
-    <string name="myWebsite">http://renyuneyun.is-programmer.com/</string>
+    <string name="myWebsite" translatable="false">http://renyuneyun.is-programmer.com/</string>
 
     <string name="about">About</string>
 </resources>

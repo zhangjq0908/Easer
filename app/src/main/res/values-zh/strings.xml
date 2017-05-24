@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Easer</string>
+    <string name="about">關於</string>
+    <string name="drawer_tip">Ease your life!</string>
+    <string name="hint_event_title">事件名</string>
+    <string name="menu_start">啓動</string>
+    <string name="menu_stop">停止</string>
+    <string name="prompt_delete">你確定要刪除%s嗎</string>
+    <string name="prompt_save_failed">保存失敗</string>
+    <string name="service_indicator_negative">未運行</string>
+    <string name="service_indicator_positive">運行中</string>
+    <string name="text_cancel">取消</string>
+    <string name="text_ok">確認</string>
+    <string name="text_parent">父:</string>
+    <string name="text_title">名稱</string>
+    <string name="title_about">關於</string>
+    <string name="title_add">增加</string>
+    <string name="title_delete">刪除</string>
+    <string name="title_edit">修改</string>
+    <string name="title_event">事件</string>
+    <string name="title_outline">概覽</string>
+    <string name="profile_indicator_from">源自事件:</string>
+    <string name="profile_indicator_time">載入時間:</string>
+    <string name="appInformation">便易你的生活——讓你的手機自動執行例行動作。\n
+        串起不同事件，然後讓他們自行執行。再也不用費心去記住它們！\n
+        此軟件本是受CyanogenMod的profile機制以及IFTTT啓發，本擬在特定時間或WiFi連接下自動切換profile，但後來擴展爲更通用的形式。\n
+        注意：Easer還在開發中。其可能包含bug，並且界面必然需要改進。當前計劃列在源代碼倉庫的TODO.md文件中，如有興趣可以一看。</string>
+    <string name="hint_profile_title">配置組名</string>
+    <string name="text_profile">配置組</string>
+    <string name="profile_indicator_last">最近配置組：</string>
+    <string name="title_profile">配置組</string>
+
+</resources>

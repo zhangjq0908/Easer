@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>    
+    <string name="event_celllocation">基站位置</string>
+    <string name="event_date">日期</string>
+    <string name="event_time">時間</string>
+    <string name="event_wificonn">WiFi連接</string>
+    
+    <string name="operation_bluetooth">藍牙</string>
+    <string name="operation_brightness">亮度</string>
+    <string name="operation_brightness_desc_autobrightness">自動亮度</string>
+    <string name="operation_broadcast">發送廣播</string>
+    <string name="operation_cellular">移動數據</string>
+    <string name="operation_rotation">自動旋轉</string>
+    <string name="operation_wifi">WiFi</string>
+</resources>
