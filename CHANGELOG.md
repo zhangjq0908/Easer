@@ -1,8 +1,12 @@
 CHANGELOG
 ======
 
+* v0.2.6
+	* Add operation: ringer mode (support to change silent/vibrate/normal)
+
 * v0.2.5.3
 	* Add Japanese translation (thanks to naofum)
+	* Add Chinese UI (not really a "translation" because I'm a native Chinese speaker)
 
 * v0.2.5.2
 	* Remove broken Events / Profiles when adding a new one with the same name
