@@ -60,5 +60,6 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     <string name="myWebsite" translatable="false">http://renyuneyun.is-programmer.com/</string>
 
     <string name="about">About</string>
+    <string name="operation_ringer_mode">Ringer Mode</string>
 </resources>
 

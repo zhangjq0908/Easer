@@ -12,4 +12,10 @@
     <string name="operation_broadcast">Send Broadcast</string>
     <string name="operation_brightness">Brightness</string>
     <string name="operation_brightness_desc_autobrightness">Auto brightness</string>
+
+    <array name="ringer_mode">
+        <item>Silent</item>
+        <item>Vibrate</item>
+        <item>Normal</item>
+    </array>
 </resources>

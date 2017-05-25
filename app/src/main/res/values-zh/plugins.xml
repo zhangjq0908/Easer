@@ -12,4 +12,11 @@
     <string name="operation_cellular">移動數據</string>
     <string name="operation_rotation">自動旋轉</string>
     <string name="operation_wifi">WiFi</string>
+    <string name="operation_ringer_mode">響鈴模式</string>
+
+    <array name="ringer_mode">
+        <item>靜音</item>
+        <item>震動</item>
+        <item>普通</item>
+    </array>
 </resources>
