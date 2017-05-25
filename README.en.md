@@ -11,7 +11,7 @@ Trigger actions or change settings (bundled as *Profile*) in different situation
 
 Events are chained as trees. Easer will perform Post-Order Traversal to load you Profile.
 
-Interested in joining development? See [TODO](TODO.en.md).
+Interested in joining development? Have a look at [HOWTO](HOWTO.en.md) and [TODO](TODO.en.md).
 
 Functions already supported
 --------

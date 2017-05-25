@@ -5,9 +5,9 @@ TODO
 		* GPS位置
 		* 接收特定Broadcast
 		* 電池狀態
+		* 日曆事件
 	* 增加更多Operation（以下建議）
 		* 定位
-		* 聲音模式
 		* 音量
 	* UI方面
 		* 將Event修改界面的複選框改爲單選框/左右滑動切換的ViewPager

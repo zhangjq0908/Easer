@@ -12,7 +12,7 @@ See [README.en.md](README.en.md) for the English version of README.
 
 所有Event以樹狀鏈接，會以後序遍歷選擇Profile載入。
 
-如有興趣參與開發，請看[TODO](TODO)。
+如有興趣參與開發，請看[HOWTO](HOWTO)和[TODO](TODO)。
 
 已支持功能
 ----------

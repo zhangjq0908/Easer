@@ -5,9 +5,9 @@ TODO
 		* GPS position
 		* Receiving specific Broadcast
 		* Battery status
+		* Calendar events
 	* Add more Operation (suggestions below)
 		* Location setting
-		* Ringtone mode
 		* Ringtone volume
 	* UI
 		* Change CheckBox to RadioButton (or swipe-to-change ViewPager) on EditEventDialogFragment
