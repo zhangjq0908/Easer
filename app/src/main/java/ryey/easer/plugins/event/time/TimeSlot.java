@@ -24,13 +24,15 @@ import android.content.Context;
 
 import java.util.Calendar;
 
-import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.commons.plugindef.eventplugin.EventType;
+import ryey.easer.plugins.event.SelfNotifiableSlot;
 
-public class TimeSlot extends AbstractSlot {
+public class TimeSlot extends SelfNotifiableSlot {
     static AlarmManager mAlarmManager;
 
     Calendar calendar = null;
+    EventType type = null;
 
     public TimeSlot(Context context) {
         super(context);
@@ -43,6 +45,7 @@ public class TimeSlot extends AbstractSlot {
     public void set(EventData data) {
         if (data instanceof TimeEventData) {
             setTime((Calendar) data.get());
+            type = data.type();
         } else {
             throw new RuntimeException("illegal data");
         }
@@ -67,7 +70,7 @@ public class TimeSlot extends AbstractSlot {
     }
 
     @Override
-    public void apply() {
+    public void listen() {
         if (calendar != null) {
             mAlarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                     AlarmManager.INTERVAL_DAY, notifySelfIntent);
@@ -88,6 +91,13 @@ public class TimeSlot extends AbstractSlot {
             changeSatisfiedState(true);
         } else {
             changeSatisfiedState(false);
+        }
+    }
+
+    @Override
+    protected void onNotified() {
+        if (type == EventType.after) {
+            changeSatisfiedState(true);
         }
     }
 }

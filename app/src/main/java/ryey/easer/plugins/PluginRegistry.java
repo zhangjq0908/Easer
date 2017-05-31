@@ -19,9 +19,12 @@
 
 package ryey.easer.plugins;
 
+import android.os.ConditionVariable;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.plugins.event.celllocation.CellLocationEventPlugin;
@@ -43,6 +46,7 @@ import ryey.easer.plugins.operation.wifi.WifiOperationPlugin;
  */
 final public class PluginRegistry {
     private static PluginRegistry instance = new PluginRegistry();
+    private ConditionVariable initialised = new ConditionVariable();
 
     synchronized public static PluginRegistry getInstance() {
         return instance;
@@ -64,6 +68,8 @@ final public class PluginRegistry {
         pluginRegistry.registerOperationPlugin(BrightnessOperationPlugin.class);
         pluginRegistry.registerOperationPlugin(RingerModeOperationPlugin.class);
         //TODO: register plugins
+
+        pluginRegistry.initialised.open();
     }
 
     List<Class<? extends EventPlugin>> eventPluginClassList = new ArrayList<>();
@@ -106,19 +112,43 @@ final public class PluginRegistry {
         }
     }
 
-    synchronized public final List<Class<? extends EventPlugin>> getEventPluginClasses() {
+    public final List<Class<? extends EventPlugin>> getEventPluginClasses() {
+        initialised.block();
         return eventPluginClassList;
     }
 
-    synchronized public final List<EventPlugin> getEventPlugins() {
+    public final List<EventPlugin> getEventPlugins() {
+        initialised.block();
         return eventPluginList;
     }
 
-    synchronized public final List<Class<? extends OperationPlugin>> getOperationPluginClasses() {
+    public final List<Class<? extends OperationPlugin>> getOperationPluginClasses() {
+        initialised.block();
         return operationPluginClassList;
     }
 
-    synchronized public final List<OperationPlugin> getOperationPlugins() {
+    public final List<OperationPlugin> getOperationPlugins() {
+        initialised.block();
         return operationPluginList;
+    }
+
+    public EventPlugin findEventPlugin(EventData data) {
+        initialised.block();
+        for (EventPlugin plugin : getEventPlugins()) {
+            if (data.pluginClass() == plugin.getClass()) {
+                return plugin;
+            }
+        }
+        throw new IllegalAccessError();
+    }
+
+    public EventPlugin findEventPlugin(String name) {
+        initialised.block();
+        for (EventPlugin plugin : getEventPlugins()) {
+            if (name.equals(plugin.name())) {
+                return plugin;
+            }
+        }
+        throw new IllegalAccessError();
     }
 }

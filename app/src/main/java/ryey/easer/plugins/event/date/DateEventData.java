@@ -27,15 +27,17 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.EnumSet;
 
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
+import ryey.easer.commons.plugindef.eventplugin.EventType;
+import ryey.easer.plugins.event.TypedEventData;
 
 import static ryey.easer.plugins.event.date.DateEventPlugin.pname;
 
-public class DateEventData implements EventData {
+public class DateEventData extends TypedEventData {
     private static SimpleDateFormat sdf_date = new SimpleDateFormat("yyyy-MM-dd");
 
     private static String DateToText(Calendar calendar) {
@@ -50,10 +52,16 @@ public class DateEventData implements EventData {
 
     Calendar date = null;
 
+    {
+        default_type = EventType.after;
+        availableTypes = EnumSet.of(EventType.after);
+    }
+
     public DateEventData() {}
 
-    public DateEventData(Calendar date) {
+    public DateEventData(Calendar date, EventType type) {
         this.date = date;
+        setType(type);
     }
 
     @Override
@@ -87,6 +95,8 @@ public class DateEventData implements EventData {
         String str_data = XmlHelper.readSingleSituation(parser);
         try {
             set(TextToDate(str_data));
+            EventType type = XmlHelper.readLogic(parser);
+            setType(type);
         } catch (ParseException e) {
             e.printStackTrace();
             throw new IllegalXmlException(String.format("Illegal Event: illegal time format %s", str_data));
@@ -98,7 +108,7 @@ public class DateEventData implements EventData {
         Calendar date = (Calendar) get();
         if (date != null) {
             XmlHelper.writeSingleSituation(serializer, pname(), DateToText(date));
-            XmlHelper.writeLogic(serializer);
+            XmlHelper.writeLogic(serializer, type());
         }
     }
 }

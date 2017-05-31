@@ -14,6 +14,12 @@
     <string name="operation_wifi">WiFi</string>
     <string name="operation_ringer_mode">響鈴模式</string>
 
+    <string-array name="event_type">
+        <item>晚於</item>
+        <item>任一</item>
+        <item>是</item>
+    </string-array>
+
     <array name="ringer_mode">
         <item>靜音</item>
         <item>震動</item>

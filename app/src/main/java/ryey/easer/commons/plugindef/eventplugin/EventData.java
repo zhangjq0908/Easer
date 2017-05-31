@@ -19,9 +19,14 @@
 
 package ryey.easer.commons.plugindef.eventplugin;
 
+import java.util.Set;
+
 import ryey.easer.commons.plugindef.StorageData;
 
 public interface EventData extends StorageData {
-    boolean isValid();
     Class<? extends EventPlugin> pluginClass();
+    void setType(EventType type);
+    EventType type();
+    Set<EventType> availableTypes();
+    boolean isAvailable(EventType type);
 }

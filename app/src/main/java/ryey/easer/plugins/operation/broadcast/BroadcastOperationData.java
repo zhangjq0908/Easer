@@ -98,4 +98,13 @@ public class BroadcastOperationData implements OperationData {
 
         serializer.endTag(ns, C.ITEM);
     }
+
+    @Override
+    public boolean isValid() {
+        if (action == null)
+            return false;
+        if (action.isEmpty())
+            return false;
+        return true;
+    }
 }

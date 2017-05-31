@@ -26,6 +26,7 @@ import android.telephony.TelephonyManager;
 
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 public class CellLocationSlot extends AbstractSlot {
     static TelephonyManager telephonyManager = null;
@@ -33,6 +34,7 @@ public class CellLocationSlot extends AbstractSlot {
     CellLocationListener cellLocationListener = new CellLocationListener();
 
     CellLocationEventData target = null;
+    EventType type = null;
 
     CellLocationSingleData curr = null;
 
@@ -48,6 +50,7 @@ public class CellLocationSlot extends AbstractSlot {
     public void set(EventData data) {
         if (data instanceof CellLocationEventData) {
             target = (CellLocationEventData) data;
+            type = data.type();
         } else {
             throw new RuntimeException("illegal data");
         }
@@ -61,7 +64,7 @@ public class CellLocationSlot extends AbstractSlot {
     }
 
     @Override
-    public void apply() {
+    public void listen() {
         if (telephonyManager != null)
             telephonyManager.listen(cellLocationListener, PhoneStateListener.LISTEN_CELL_LOCATION);
     }
@@ -83,10 +86,12 @@ public class CellLocationSlot extends AbstractSlot {
         public void onCellLocationChanged(CellLocation location) {
             super.onCellLocationChanged(location);
             curr = CellLocationSingleData.fromCellLocation(location);
-            if (target.contains(curr)) {
-                changeSatisfiedState(true);
-            } else {
-                changeSatisfiedState(false);
+            if (type == EventType.any) {
+                if (target.contains(curr)) {
+                    changeSatisfiedState(true);
+                } else {
+                    changeSatisfiedState(false);
+                }
             }
         }
     }

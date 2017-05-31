@@ -25,20 +25,24 @@ import org.xmlpull.v1.XmlSerializer;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
 
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
+import ryey.easer.commons.plugindef.eventplugin.EventType;
+import ryey.easer.plugins.event.TypedEventData;
 
 import static ryey.easer.plugins.event.celllocation.CellLocationEventPlugin.pname;
 
-public class CellLocationEventData implements EventData {
+public class CellLocationEventData extends TypedEventData {
     protected List<CellLocationSingleData> data;
 
     {
         data = new ArrayList<>();
+        default_type = EventType.any;
+        availableTypes = EnumSet.of(EventType.any);
     }
 
     public static CellLocationEventData fromString(String repr) {
@@ -88,6 +92,8 @@ public class CellLocationEventData implements EventData {
     public void parse(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
         String str_data = XmlHelper.readSingleSituation(parser);
         set(str_data);
+        EventType type = XmlHelper.readLogic(parser);
+        setType(type);
     }
 
     @Override
@@ -95,7 +101,7 @@ public class CellLocationEventData implements EventData {
         String cellLocation = toString();
         if (cellLocation != null) {
             XmlHelper.writeSingleSituation(serializer, pname(), cellLocation);
-            XmlHelper.writeLogic(serializer);
+            XmlHelper.writeLogic(serializer, type());
         }
     }
 

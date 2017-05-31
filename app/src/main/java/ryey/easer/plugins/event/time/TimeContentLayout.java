@@ -27,14 +27,16 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.ContentLayout;
 import ryey.easer.commons.plugindef.StorageData;
+import ryey.easer.plugins.event.TypedContentLayout;
 
-public class TimeContentLayout extends ContentLayout {
+public class TimeContentLayout extends TypedContentLayout {
     TimePicker timePicker;
 
     public TimeContentLayout(Context context) {
         super(context);
+        setAvailableTypes(new TimeEventData().availableTypes());
+        setType(new TimeEventData().type());
         setDesc(context.getString(R.string.event_time));
         timePicker = new TimePicker(context);
         addView(timePicker);
@@ -68,9 +70,8 @@ public class TimeContentLayout extends ContentLayout {
     @Override
     public void fill(StorageData data) {
         if (data instanceof TimeEventData) {
+            super.fill(data);
             setTimePicker(timePicker, (Calendar) data.get());
-        } else if (data instanceof Calendar) {
-            setTimePicker(timePicker, (Calendar) data);
         } else {
             Log.wtf(getClass().getSimpleName(), "filling with illegal data");
         }
@@ -78,6 +79,6 @@ public class TimeContentLayout extends ContentLayout {
 
     @Override
     public StorageData getData() {
-        return new TimeEventData(fromTimePicker(timePicker));
+        return new TimeEventData(fromTimePicker(timePicker), selectedType());
     }
 }

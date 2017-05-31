@@ -21,10 +21,6 @@ package ryey.easer.plugins.operation.ringer_mode;
 
 import android.content.Context;
 import android.media.AudioManager;
-import android.telephony.TelephonyManager;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;

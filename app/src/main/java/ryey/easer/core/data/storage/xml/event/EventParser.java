@@ -26,7 +26,6 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
@@ -102,15 +101,10 @@ public class EventParser {
         while (parser.next() != XmlPullParser.START_TAG) ;
         assert parser.getName().equals(C.SIT);
         String spec = parser.getAttributeValue(ns, C.SPEC);
-        List<EventPlugin> plugins = PluginRegistry.getInstance().getEventPlugins();
-        for (EventPlugin plugin : plugins) {
-            if (spec.equals(plugin.name())) {
-                EventData data = plugin.data();
-                data.parse(parser);
-                event.setEventData(data);
-                break;
-            }
-        }
+        EventPlugin plugin = PluginRegistry.getInstance().findEventPlugin(spec);
+        EventData data = plugin.data();
+        data.parse(parser);
+        event.setEventData(data);
     }
 
 }

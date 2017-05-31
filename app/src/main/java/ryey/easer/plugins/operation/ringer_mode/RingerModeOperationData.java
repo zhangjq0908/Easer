@@ -39,6 +39,13 @@ public class RingerModeOperationData extends IntegerOperationData {
     }
 
     @Override
+    public boolean isValid() {
+        lbound = 0;
+        rbound = 3;
+        return super.isValid();
+    }
+
+    @Override
     public void parse(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
         mParse(parser, pname());
     }

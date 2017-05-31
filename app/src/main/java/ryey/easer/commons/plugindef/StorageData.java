@@ -46,4 +46,7 @@ public interface StorageData {
 
     // Dump the data (of the instance) to a destination (currently only XML)
     void serialize(XmlSerializer serializer) throws IOException;
+
+    // Check the data's validity. If not valid, this data won't be loaded and/or saved.
+    boolean isValid();
 }

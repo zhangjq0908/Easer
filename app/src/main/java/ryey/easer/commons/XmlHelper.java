@@ -25,6 +25,8 @@ import org.xmlpull.v1.XmlSerializer;
 
 import java.io.IOException;
 
+import ryey.easer.commons.plugindef.eventplugin.EventType;
+
 /*
  * Helper functions (to save and load data) when dealing with XML storage
  */
@@ -44,9 +46,9 @@ public class XmlHelper {
         serializer.endTag(ns, C.SIT);
     }
 
-    public static void writeLogic(XmlSerializer serializer) throws IOException {
+    public static void writeLogic(XmlSerializer serializer, EventType type) throws IOException {
         serializer.startTag(ns, C.LOGIC);
-        serializer.text("and");
+        serializer.text(type.toString());
         serializer.endTag(ns, C.LOGIC);
     }
 
@@ -70,9 +72,17 @@ public class XmlHelper {
         return str_data;
     }
 
-    public static void readLogic(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
+    public static EventType readLogic(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
+
+        while (parser.next() != XmlPullParser.START_TAG);
         String logic = getText(parser, "Logic");
-        if (!logic.equals("and")) throw new IllegalXmlException("Illegal Event: Logic is Not 'and'");
+        EventType type = null;
+        try {
+            type = EventType.valueOf(logic);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+        return type;
     }
 
     public static void dealBoolean(XmlSerializer serializer, String spec, Boolean state) throws IOException {

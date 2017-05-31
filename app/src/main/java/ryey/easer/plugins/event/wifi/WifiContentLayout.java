@@ -23,13 +23,15 @@ import android.content.Context;
 import android.widget.EditText;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.ContentLayout;
 import ryey.easer.commons.plugindef.StorageData;
+import ryey.easer.plugins.event.TypedContentLayout;
 
-public class WifiContentLayout extends ContentLayout {
+public class WifiContentLayout extends TypedContentLayout {
     EditText editText;
     public WifiContentLayout(Context context) {
         super(context);
+        setAvailableTypes(new WifiEventData().availableTypes());
+        setType(new WifiEventData().type());
         setDesc(context.getString(R.string.event_wificonn));
         editText = new EditText(context);
         addView(editText);
@@ -38,6 +40,7 @@ public class WifiContentLayout extends ContentLayout {
     @Override
     public void fill(StorageData data) {
         if (data instanceof WifiEventData) {
+            super.fill(data);
             editText.setText((String) data.get());
         } else {
             throw new RuntimeException("illegal data");
@@ -46,6 +49,6 @@ public class WifiContentLayout extends ContentLayout {
 
     @Override
     public StorageData getData() {
-        return new WifiEventData(editText.getText().toString());
+        return new WifiEventData(editText.getText().toString(), selectedType());
     }
 }

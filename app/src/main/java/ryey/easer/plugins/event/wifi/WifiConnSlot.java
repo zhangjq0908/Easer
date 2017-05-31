@@ -29,11 +29,11 @@ import android.net.wifi.WifiManager;
 
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 public class WifiConnSlot extends AbstractSlot {
-    Context context;
-
     String target_ssid = null;
+    EventType type = null;
 
     String ssid = null;
 
@@ -45,12 +45,8 @@ public class WifiConnSlot extends AbstractSlot {
                 NetworkInfo networkInfo = intent.getParcelableExtra(WifiManager.EXTRA_NETWORK_INFO);
                 if (networkInfo.getState() == NetworkInfo.State.CONNECTED) {
                     WifiInfo wifiInfo = intent.getParcelableExtra(WifiManager.EXTRA_WIFI_INFO);
-                    ssid = wifiInfo.getSSID();
-                    if (ssid.equals(target_ssid)) {
-                        changeSatisfiedState(true);
-                    } else {
-                        changeSatisfiedState(false);
-                    }
+                    if (type == EventType.is)
+                        changeSatisfiedState(compare(wifiInfo));
                 }
             }
         }
@@ -65,13 +61,13 @@ public class WifiConnSlot extends AbstractSlot {
 
     public WifiConnSlot(Context context) {
         super(context);
-        this.context = context;
     }
 
     @Override
     public void set(EventData data) {
         if (data instanceof WifiEventData) {
             setWifiConn((String) data.get());
+            type = data.type();
         } else {
             throw new RuntimeException("illegal data");
         }
@@ -92,7 +88,7 @@ public class WifiConnSlot extends AbstractSlot {
     }
 
     @Override
-    public void apply() {
+    public void listen() {
         context.registerReceiver(connReceiver, filter);
     }
 
@@ -103,13 +99,15 @@ public class WifiConnSlot extends AbstractSlot {
 
     @Override
     public void check() {
-        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-        ssid = wifiInfo.getSSID();
-        if (ssid.equals(target_ssid)) {
-            changeSatisfiedState(true);
-        } else {
-            changeSatisfiedState(false);
+        WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        if (type == EventType.is) {
+            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+            changeSatisfiedState(compare(wifiInfo));
         }
+    }
+
+    private boolean compare(WifiInfo wifiInfo) {
+        ssid = wifiInfo.getSSID();
+        return ssid.equals(target_ssid);
     }
 }

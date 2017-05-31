@@ -13,6 +13,12 @@
     <string name="operation_brightness">Brightness</string>
     <string name="operation_brightness_desc_autobrightness">Auto brightness</string>
 
+    <string-array name="event_type">
+        <item>After</item>
+        <item>Any</item>
+        <item>Is</item>
+    </string-array>
+
     <array name="ringer_mode">
         <item>Silent</item>
         <item>Vibrate</item>

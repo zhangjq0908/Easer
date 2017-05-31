@@ -43,6 +43,13 @@ public class BrightnessOperationData extends IntegerOperationData {
     }
 
     @Override
+    public boolean isValid() {
+        lbound = -1;
+        rbound = 100;
+        return super.isValid();
+    }
+
+    @Override
     public void parse(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
         mParse(parser, pname());
     }
@@ -53,6 +60,6 @@ public class BrightnessOperationData extends IntegerOperationData {
     }
 
     boolean isAuto() {
-        return level == -1;
+        return get() == Integer.valueOf(-1);
     }
 }

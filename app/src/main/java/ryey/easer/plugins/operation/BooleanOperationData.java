@@ -28,28 +28,14 @@ import java.io.IOException;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.plugins.reusable.BooleanData;
 
-public abstract class BooleanOperationData implements OperationData {
-    protected Boolean state = null;
+public abstract class BooleanOperationData extends BooleanData implements OperationData {
 
-    public BooleanOperationData() {}
+    public BooleanOperationData() {super();}
 
     public BooleanOperationData(Boolean state) {
-        this.state = state;
-    }
-
-    @Override
-    public Object get() {
-        return state;
-    }
-
-    @Override
-    public void set(Object obj) {
-        if (obj instanceof Boolean) {
-            state = (Boolean) obj;
-        } else {
-            throw new RuntimeException("illegal data");
-        }
+        super(state);
     }
 
     protected void mParse(XmlPullParser parser, String name) throws IOException, XmlPullParserException, IllegalXmlException {

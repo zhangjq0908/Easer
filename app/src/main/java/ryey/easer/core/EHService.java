@@ -163,7 +163,7 @@ public class EHService extends Service {
         for (EventTree event : eventTreeList) {
             Log.d(getClass().getSimpleName(), "  setting: " + event.getName());
             Lotus lotus = new Lotus(this, event);
-            lotus.apply();
+            lotus.listen();
             Log.d(getClass().getSimpleName(), "  " + event.getName() + " is set");
             mLotus.add(lotus);
         }

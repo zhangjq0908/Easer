@@ -25,14 +25,16 @@ import android.widget.DatePicker;
 import java.util.Calendar;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.ContentLayout;
 import ryey.easer.commons.plugindef.StorageData;
+import ryey.easer.plugins.event.TypedContentLayout;
 
-public class DateContentLayout extends ContentLayout {
+public class DateContentLayout extends TypedContentLayout {
     DatePicker datePicker;
 
     public DateContentLayout(Context context) {
         super(context);
+        setAvailableTypes(new DateEventData().availableTypes());
+        setType(new DateEventData().type());
         setDesc(context.getString(R.string.event_date));
         datePicker = new DatePicker(context);
         addView(datePicker);
@@ -52,6 +54,7 @@ public class DateContentLayout extends ContentLayout {
     @Override
     public void fill(StorageData data) {
         if (data instanceof DateEventData) {
+            super.fill(data);
             setDatePicker(datePicker, (Calendar) data.get());
         } else {
             throw new RuntimeException("illegal data");
@@ -60,6 +63,6 @@ public class DateContentLayout extends ContentLayout {
 
     @Override
     public StorageData getData() {
-        return new DateEventData(fromDatePicker(datePicker));
+        return new DateEventData(fromDatePicker(datePicker), selectedType());
     }
 }

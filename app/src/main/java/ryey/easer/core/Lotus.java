@@ -88,18 +88,14 @@ final class Lotus {
 
     private AbstractSlot dataToSlot(EventData data) {
         AbstractSlot slot;
-        for (EventPlugin plugin : PluginRegistry.getInstance().getEventPlugins()) {
-            if (data.pluginClass() == plugin.getClass()) {
-                slot = plugin.slot(context);
-                slot.set(data);
-                return slot;
-            }
-        }
-        throw new IllegalAccessError();
+        EventPlugin plugin = PluginRegistry.getInstance().findEventPlugin(data);
+        slot = plugin.slot(context);
+        slot.set(data);
+        return slot;
     }
 
-    void apply() {
-        mSlot.apply();
+    void listen() {
+        mSlot.listen();
     }
 
     void cancel() {

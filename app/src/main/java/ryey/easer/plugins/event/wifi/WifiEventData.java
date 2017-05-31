@@ -24,21 +24,29 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import java.io.IOException;
+import java.util.EnumSet;
 
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
+import ryey.easer.commons.plugindef.eventplugin.EventType;
+import ryey.easer.plugins.event.TypedEventData;
 
 import static ryey.easer.plugins.event.wifi.WifiEventPlugin.pname;
 
-public class WifiEventData implements EventData {
+public class WifiEventData extends TypedEventData {
     String ssid = null;
+
+    {
+        default_type = EventType.is;
+        availableTypes = EnumSet.of(EventType.is);
+    }
 
     public WifiEventData() {}
 
-    public WifiEventData(String ssid) {
+    public WifiEventData(String ssid, EventType type) {
         this.ssid = ssid;
+        setType(type);
     }
 
     @Override
@@ -71,6 +79,8 @@ public class WifiEventData implements EventData {
     public void parse(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
         String str_data = XmlHelper.readSingleSituation(parser);
         set(str_data);
+        EventType type = XmlHelper.readLogic(parser);
+        setType(type);
     }
 
     @Override
@@ -78,7 +88,7 @@ public class WifiEventData implements EventData {
         String wifi = (String) get();
         if (wifi != null) {
             XmlHelper.writeSingleSituation(serializer, pname(), wifi);
-            XmlHelper.writeLogic(serializer);
+            XmlHelper.writeLogic(serializer, type());
         }
     }
 }

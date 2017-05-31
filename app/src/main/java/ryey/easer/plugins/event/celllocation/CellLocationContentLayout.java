@@ -28,14 +28,16 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.ContentLayout;
 import ryey.easer.commons.plugindef.StorageData;
+import ryey.easer.plugins.event.TypedContentLayout;
 
-public class CellLocationContentLayout extends ContentLayout {
+public class CellLocationContentLayout extends TypedContentLayout {
     EditText editText;
 
     public CellLocationContentLayout(Context context) {
         super(context);
+        setAvailableTypes(new CellLocationEventData().availableTypes());
+        setType(new CellLocationEventData().type());
         setDesc(context.getString(R.string.event_celllocation));
         editText = new EditText(context);
         editText.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -64,6 +66,7 @@ public class CellLocationContentLayout extends ContentLayout {
     @Override
     public void fill(StorageData data) {
         if (data instanceof CellLocationEventData) {
+            super.fill(data);
             editText.setText(data.toString());
         } else {
             throw new RuntimeException("illegal data");
@@ -72,6 +75,10 @@ public class CellLocationContentLayout extends ContentLayout {
 
     @Override
     public StorageData getData() {
-        return CellLocationEventData.fromString(editText.getText().toString());
+        CellLocationEventData data = CellLocationEventData.fromString(editText.getText().toString());
+        if (data != null) {
+            data.setType(selectedType());
+        }
+        return data;
     }
 }

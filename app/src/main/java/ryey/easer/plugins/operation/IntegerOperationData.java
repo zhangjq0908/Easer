@@ -28,28 +28,14 @@ import java.io.IOException;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.plugins.reusable.IntegerData;
 
-public abstract class IntegerOperationData implements OperationData {
-    protected Integer level = null;
+public abstract class IntegerOperationData extends IntegerData implements OperationData {
 
-    public IntegerOperationData() {}
+    public IntegerOperationData() {super();}
 
     public IntegerOperationData(Integer level) {
-        this.level = level;
-    }
-
-    @Override
-    public Object get() {
-        return level;
-    }
-
-    @Override
-    public void set(Object obj) {
-        if (obj instanceof Integer) {
-            level = (Integer) obj;
-        } else {
-            throw new RuntimeException("illegal data");
-        }
+        super(level);
     }
 
     protected void mParse(XmlPullParser parser, String name) throws IOException, XmlPullParserException, IllegalXmlException {

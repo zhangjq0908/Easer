@@ -20,12 +20,7 @@
 package ryey.easer.commons.plugindef.eventplugin;
 
 import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.Uri;
-import android.os.PatternMatcher;
 import android.util.Log;
 
 /*
@@ -44,25 +39,13 @@ public abstract class AbstractSlot {
     protected static final String ACTION_SATISFIED = "ryey.easer.triggerlotus.abstractslot.SATISFIED";
     protected static final String CATEGORY_NOTIFY_SLOT = "ryey.easer.triggetlotus.category.NOTIFY_SLOT";
 
+    protected Context context;
+
     /*
      * Indicator of whether the current slot is satisfied.
      * Will be extended to more status (maybe by enum) in the future.
      */
     protected boolean satisfied;
-
-    /*
-     * Mechanisms and fields used to notify the slot itself, and then proceed to `onSatisfied()`.
-     * This is because some system-level checking mechanisms (e.g. data/time) need a PendingIntent.
-     */
-    protected Uri uri = Uri.parse(String.format("slot://%s/%d", getClass().getSimpleName(), hashCode()));
-    protected PendingIntent notifySelfIntent;
-    protected BroadcastReceiver mReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equals(ACTION_SATISFIED))
-                onSatisfied();
-        }
-    };
 
     /*
      * Used to tell the holder Lotus that this Slot is satisfied.
@@ -71,18 +54,7 @@ public abstract class AbstractSlot {
     protected PendingIntent notifyLotusIntent = null;
 
     public AbstractSlot(Context context) {
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(ACTION_SATISFIED);
-        filter.addCategory(CATEGORY_NOTIFY_SLOT);
-        filter.addDataScheme(uri.getScheme());
-        filter.addDataAuthority(uri.getAuthority(), null);
-        filter.addDataPath(uri.getPath(), PatternMatcher.PATTERN_LITERAL);
-        context.registerReceiver(mReceiver, filter);
-
-        Intent intent = new Intent(ACTION_SATISFIED);
-        intent.addCategory(CATEGORY_NOTIFY_SLOT);
-        intent.setData(uri);
-        notifySelfIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        this.context = context;
     }
 
     /*
@@ -95,7 +67,7 @@ public abstract class AbstractSlot {
 
     /*
      * Set the trigger to be ready to receive the relevant Event.
-     * The trigger will start functioning after `apply()` is called.
+     * The trigger will start functioning after `listen()` is called.
      */
     public abstract void set(EventData data);
 
@@ -107,11 +79,11 @@ public abstract class AbstractSlot {
 
     /*
      * Start functioning as a top-level listener.
-     * When satisfied, notify itself (to proceed to `onSatisfied()`)
+     * When (probably satisfying) event happened, notify itself (to proceed to `onNotified()`)
      *
      * Can be called multiply times (data remain the same).
      */
-    public abstract void apply();
+    public abstract void listen();
 
     /*
      * Stop functioning as a top-level listener.
@@ -137,29 +109,17 @@ public abstract class AbstractSlot {
     protected void changeSatisfiedState(boolean newSatisfiedState) {
         Log.d(getClass().getSimpleName(), String.format("changeSatisfiedState %s", newSatisfiedState));
         satisfied = newSatisfiedState;
-        if (newSatisfiedState) {
-            try {
-                notifySelfIntent.send();
-            } catch (PendingIntent.CanceledException e) {
-                //TODO: shouldn't happen because this method is only called in subclasses
-                e.printStackTrace();
-                throw new IllegalAccessError();
-            }
-        }
-    }
-
-    void onSatisfied() {
-        Log.d(getClass().getSimpleName(), "onSatisfied");
-        satisfied = true;
-        if (notifyLotusIntent == null) {
+        if (satisfied) {
+            if (notifyLotusIntent == null) {
 //            Log.wtf(getClass().getSimpleName(), "slot never registered");
 //            throw new RuntimeException("slot never registered");
-            Log.d(getClass().getSimpleName(), "slot not registered. probably because is in the recursive tree");
-        } else {
-            try {
-                notifyLotusIntent.send();
-            } catch (PendingIntent.CanceledException e) {
-                e.printStackTrace();
+                Log.d(getClass().getSimpleName(), "slot not registered. probably because is in the recursive tree");
+            } else {
+                try {
+                    notifyLotusIntent.send();
+                } catch (PendingIntent.CanceledException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

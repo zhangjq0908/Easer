@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.operation;
+package ryey.easer.plugins.reusable;
 
 import android.content.Context;
 import android.widget.Switch;
@@ -52,7 +52,7 @@ public abstract class SwitchContentLayout extends ContentLayout {
     @Override
     public void fill(StorageData data) {
         if (data instanceof OperationData) {
-            Boolean state = (Boolean) ((OperationData) data).get();
+            Boolean state = (Boolean) (data).get();
             setSwitch(aSwitch, state);
         } else {
             throw new RuntimeException("illegal data");
