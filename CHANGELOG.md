@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+* v0.2.7
+	* Add EventType
+	* Assigned a default type to each event (so old data won't be broken)
+	* Will bump to v0.3 after finishing the trigger (Lotus and EHService) part
+
 * v0.2.6
 	* Add operation: ringer mode (support to change silent/vibrate/normal)
 

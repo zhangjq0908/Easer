@@ -29,6 +29,7 @@ See [README.en.md](README.en.md) for the English version of README.
 * 自動旋轉開關
 * 發送Broadcast
 * 控制亮度
+* 控制聲音模式
 
 版權協議
 -----

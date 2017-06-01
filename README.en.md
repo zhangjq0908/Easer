@@ -28,6 +28,7 @@ Functions already supported
 * Auto rotation switch
 * Sending Broadcast
 * Screen brightness
+* Ringer mode
 
 Copyright
 ------
