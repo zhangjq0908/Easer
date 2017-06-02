@@ -33,7 +33,6 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import ryey.easer.R;
-import ryey.easer.core.EHService;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -61,8 +60,6 @@ public class MainActivity extends AppCompatActivity
         navigationView.setCheckedItem(R.id.nav_outline);
         Fragment fragment = new OutlineFragment();
         getFragmentManager().beginTransaction().replace(R.id.content_main, fragment, FRAGMENT_OUTLINE).commit();
-
-        EHService.start(this);
     }
 
     @Override

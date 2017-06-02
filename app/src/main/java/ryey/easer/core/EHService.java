@@ -35,7 +35,6 @@ import java.util.List;
 import ryey.easer.core.data.EventTree;
 import ryey.easer.core.data.storage.EventDataStorage;
 import ryey.easer.core.data.storage.xml.event.XmlEventDataStorage;
-import ryey.easer.plugins.PluginRegistry;
 
 /*
  * The background service which maintains several Lotus(es) and send Intent to load Profile(s).
@@ -125,7 +124,6 @@ public class EHService extends Service {
         filter.addAction(ACTION_RELOAD);
         filter.addAction(ProfileLoaderIntentService.ACTION_PROFILE_LOADED);
         registerReceiver(mReceiver, filter);
-        PluginRegistry.init();
         reloadTriggers();
     }
 

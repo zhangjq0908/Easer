@@ -41,7 +41,7 @@ import ryey.easer.plugins.PluginRegistry;
  * When the root is satisfied, Lotus will recursively check all children to find which is satisfied.
  * After finding a satisfied child and the child has a Profile, Lotus will load the Profile.
  *
- * Currently, Lotus uses *post* order traversal to find the *first* satisfied child with Profile.
+ * Currently, Lotus uses *mid* order traversal to find all satisfied children with Profile.
  */
 final class Lotus {
     private static final String ACTION_SLOT_SATISFIED = "ryey.easer.triggerlotus.action.SLOT_SATISFIED";
@@ -106,16 +106,16 @@ final class Lotus {
         Log.d(getClass().getSimpleName(), String.format("onSlotSatisfied %s", eventTree.getName()));
         if (!analyzing) {
             analyzing = true;
-            findLastAndTrigger(eventTree, false);
+            traverseAndTrigger(eventTree, false);
             analyzing = false;
         }
     }
 
     /*
-     * DFS尋找第一個滿足所有條件（通過@AbstractSlot.isSatisfied()）的節點
+     * 中序遍歷樹並尋找滿足條件（通過@AbstractSlot.isSatisfied()）的所有節點
      * 並在其處（所在的遞歸棧）載入對應Profile
      */
-    private boolean findLastAndTrigger(EventTree node, boolean is_sub) {
+    private void traverseAndTrigger(EventTree node, boolean is_sub) {
         EventData eventData = node.getEvent();
         AbstractSlot slot = mSlot;
         if (is_sub) {
@@ -123,26 +123,19 @@ final class Lotus {
             slot.check();
         }
         if (slot.isSatisfied()) {
-            boolean handled_by_sub = false;
-            for (EventTree sub : node.getSubs()) {
-                handled_by_sub = handled_by_sub || findLastAndTrigger(sub, true);
+            Log.d(getClass().getSimpleName(),
+                    String.format(" traversing and find %s satisfied", node.getName()));
+            String profileName = node.getProfile();
+            if (profileName != null) {
+                Intent intent = new Intent(context, ProfileLoaderIntentService.class);
+                intent.setAction(ProfileLoaderIntentService.ACTION_LOAD_PROFILE);
+                intent.putExtra(ProfileLoaderIntentService.EXTRA_PROFILE_NAME, profileName);
+                intent.putExtra(ProfileLoaderIntentService.EXTRA_EVENT_NAME, node.getName());
+                context.startService(intent);
             }
-            if (!handled_by_sub) {
-                Log.d(getClass().getSimpleName(), " got last satisfied");
-                String profileName = node.getProfile();
-                if (profileName != null) {
-                    Intent intent = new Intent(context, ProfileLoaderIntentService.class);
-                    intent.setAction(ProfileLoaderIntentService.ACTION_LOAD_PROFILE);
-                    intent.putExtra(ProfileLoaderIntentService.EXTRA_PROFILE_NAME, profileName);
-                    intent.putExtra(ProfileLoaderIntentService.EXTRA_EVENT_NAME, node.getName());
-                    context.startService(intent);
-                    return true;
-                } else
-                    return false;
-            } else {
-                return true;
+            for (EventTree sub : node.getSubs()) {
+                traverseAndTrigger(sub, true);
             }
         }
-        return false;
     }
 }

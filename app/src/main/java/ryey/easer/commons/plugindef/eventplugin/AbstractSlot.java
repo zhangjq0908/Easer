@@ -45,7 +45,7 @@ public abstract class AbstractSlot {
      * Indicator of whether the current slot is satisfied.
      * Will be extended to more status (maybe by enum) in the future.
      */
-    protected boolean satisfied;
+    protected boolean satisfied = false;
 
     /*
      * Used to tell the holder Lotus that this Slot is satisfied.
