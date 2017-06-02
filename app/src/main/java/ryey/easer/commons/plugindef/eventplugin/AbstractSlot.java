@@ -51,7 +51,7 @@ public abstract class AbstractSlot {
      * Used to tell the holder Lotus that this Slot is satisfied.
      * Only the to-level (in the `EventTree`) slot will need this (to tell the Lotus to check the whole tree).
      */
-    protected PendingIntent notifyLotusIntent = null;
+    protected PendingIntent notifyLotusIntent = null, notifyLotusUnsatisfiedIntent = null;
 
     public AbstractSlot(Context context) {
         this.context = context;
@@ -100,26 +100,43 @@ public abstract class AbstractSlot {
     public abstract void check();
 
     /*
+     * Whether the Lotus can promote the sub events to a upper one (to listen to events).
+     * Usually:
+     *   for continuous event types, it is the same as isSatistied();
+     *   for temporary event types, it is false.
+     */
+    public boolean canPromoteSub() {
+        return isSatisfied();
+    }
+
+    /*
      * Set where to notify (the holder Lotus).
      */
-    public void register(PendingIntent notifyLotusIntent) {
+    public void register(PendingIntent notifyLotusIntent, PendingIntent notifyLotusUnsatisfiedIntent) {
         this.notifyLotusIntent = notifyLotusIntent;
+        this.notifyLotusUnsatisfiedIntent = notifyLotusUnsatisfiedIntent;
     }
 
     protected void changeSatisfiedState(boolean newSatisfiedState) {
         Log.d(getClass().getSimpleName(), String.format("changeSatisfiedState %s", newSatisfiedState));
+        if (satisfied == newSatisfiedState) {
+            return;
+        }
         satisfied = newSatisfiedState;
+        PendingIntent pendingIntent;
         if (satisfied) {
-            if (notifyLotusIntent == null) {
-//            Log.wtf(getClass().getSimpleName(), "slot never registered");
+            pendingIntent = notifyLotusIntent;
+        } else {
+            pendingIntent = notifyLotusUnsatisfiedIntent;
+        }
+        if (pendingIntent == null) {
+            Log.wtf(getClass().getSimpleName(), "slot not properly registered");
 //            throw new RuntimeException("slot never registered");
-                Log.d(getClass().getSimpleName(), "slot not registered. probably because is in the recursive tree");
-            } else {
-                try {
-                    notifyLotusIntent.send();
-                } catch (PendingIntent.CanceledException e) {
-                    e.printStackTrace();
-                }
+        } else {
+            try {
+                pendingIntent.send();
+            } catch (PendingIntent.CanceledException e) {
+                e.printStackTrace();
             }
         }
     }
