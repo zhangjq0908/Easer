@@ -1,6 +1,13 @@
 CHANGELOG
 ======
 
+* v0.2.8
+	* Move global initialization to Application level
+	* Change the way to search for which event is satisfied
+		* Promote subtree to child slots
+			* add a function: Abstract.canPromoteSub()
+		* Report also unsatisfying
+
 * v0.2.7
 	* Add EventType
 	* Assigned a default type to each event (so old data won't be broken)
