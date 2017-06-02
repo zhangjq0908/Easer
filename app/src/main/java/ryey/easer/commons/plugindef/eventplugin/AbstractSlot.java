@@ -35,10 +35,6 @@ public abstract class AbstractSlot {
      * I'm not sure if they will be used by the subclasses in the future when extending the `satisfied` field to more status, so they are left as protected.
      */
 
-    // Fields used in relevant Intent
-    protected static final String ACTION_SATISFIED = "ryey.easer.triggerlotus.abstractslot.SATISFIED";
-    protected static final String CATEGORY_NOTIFY_SLOT = "ryey.easer.triggetlotus.category.NOTIFY_SLOT";
-
     protected Context context;
 
     /*

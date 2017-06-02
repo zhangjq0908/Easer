@@ -21,6 +21,7 @@ package ryey.easer.plugins.event.time;
 
 import android.app.AlarmManager;
 import android.content.Context;
+import android.os.Build;
 
 import java.util.Calendar;
 
@@ -87,17 +88,53 @@ public class TimeSlot extends SelfNotifiableSlot {
     @Override
     public void check() {
         Calendar cal = Calendar.getInstance();
-        if (cal.after(calendar)) {
-            changeSatisfiedState(true);
-        } else {
-            changeSatisfiedState(false);
+        switch (type) {
+            case after:
+                if (cal.after(calendar)) {
+                    changeSatisfiedState(true);
+                } else {
+                    changeSatisfiedState(false);
+                }
+                break;
+            case is:
+                if ((calendar.get(Calendar.HOUR_OF_DAY) == cal.get(Calendar.HOUR_OF_DAY)) &&
+                        (calendar.get(Calendar.MINUTE) == cal.get(Calendar.MINUTE))) {
+                    changeSatisfiedState(true);
+                } else {
+                    changeSatisfiedState(false);
+                }
+                break;
         }
+    }
+
+    @Override
+    public boolean canPromoteSub() {
+        if (type == EventType.after)
+            return true;
+        if (type == EventType.is)
+            return true;
+        return super.canPromoteSub();
     }
 
     @Override
     protected void onNotified() {
         if (type == EventType.after) {
             changeSatisfiedState(true);
+        }
+        if (type == EventType.is) {
+            changeSatisfiedState(true);
+            if (Build.VERSION.SDK_INT >= 19) {
+                mAlarmManager.setExact(AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis() + 60 * 1000, notifySelfUnsatisfiedIntent);
+            } else {
+                mAlarmManager.set(AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis() + 60 * 1000, notifySelfUnsatisfiedIntent);
+            }
+        }
+    }
+
+    @Override
+    protected void onUnsatisfied() {
+        if (type == EventType.is) {
+            changeSatisfiedState(false);
         }
     }
 }

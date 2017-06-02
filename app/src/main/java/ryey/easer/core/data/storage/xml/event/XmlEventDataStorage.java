@@ -102,9 +102,15 @@ public class XmlEventDataStorage implements EventDataStorage {
 
     @Override
     public boolean delete(String name) {
-        if (eventParentMap().containsKey(name)) { //if is not leaf node
-            //TODO: add alerts or remove the whole subtree
-            return false;
+        return delete(name, true);
+    }
+
+    protected boolean delete(String name, boolean check_is_leaf) {
+        if (check_is_leaf) {
+            if (eventParentMap().containsKey(name)) { //if is not leaf node
+                //TODO: add alerts or remove the whole subtree
+                return false;
+            }
         }
         for (EventStructure event : allEvents()) {
             if (name.equals(event.getName())) {
@@ -131,7 +137,7 @@ public class XmlEventDataStorage implements EventDataStorage {
             }
         }
         EventStructure oldEvent = get(oldName);
-        if (delete(oldName)) {
+        if (delete(oldName, false)) {
             if (add(event))
                 return true;
             else
