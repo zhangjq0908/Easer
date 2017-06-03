@@ -20,7 +20,6 @@ TODO
 			* Add "Contributors" to the page (or sub-page)
 			* If using WebView, remove the "back" FAB; if no longer using WebView, make the "back" FAB go back in the WebView
 	* Change the semantics of Event
-		* Expand the semantics to not only True / False
 		* Make one Event receive one (or more) situations (as above) of another Event
 * Code / Development
 	* Draw / Describe the structure of the app for easier understanding

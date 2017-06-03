@@ -1,6 +1,18 @@
 CHANGELOG
 ======
 
+* v0.3.0: Support event types for all existing events
+	* Add more types
+	* Add more types for all current EventPlugin(s)
+	* Change Chinese UI name for 'Profile'
+	* Update documentation/comments in code
+	* Rename some methods/functions/fields
+
+* v0.2.9
+	* Add "is" type for TimeEventPlugin
+	* Also notify *unsatisfied* in SelfNotifiableSlot
+	* Fix editing of non-leaf events
+
 * v0.2.8
 	* Move global initialization to Application level
 	* Change the way to search for which event is satisfied

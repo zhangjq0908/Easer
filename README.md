@@ -10,9 +10,11 @@ See [README.en.md](README.en.md) for the English version of README.
 -----
 在不同的狀況（Event）下載入指定的情境（Profile）。每個情境（Profile）由多個動作（Operation）組成。
 
-所有Event以樹狀鏈接，會以後序遍歷選擇Profile載入。
+所有Event以樹狀鏈接，會以後續遍歷選擇所有符合條件的Event對應Profile載入。
 
 如有興趣參與開發，請看[HOWTO](HOWTO)和[TODO](TODO)。
+
+另請參見[wiki](https://github.com/renyuneyun/Easer/wiki)，尤其是[須知](https://github.com/renyuneyun/Easer/wiki/%E9%A0%88%E7%9F%A5)。
 
 已支持功能
 ----------
