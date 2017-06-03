@@ -73,68 +73,103 @@ public class TimeSlot extends SelfNotifiableSlot {
     @Override
     public void listen() {
         if (calendar != null) {
-            mAlarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                    AlarmManager.INTERVAL_DAY, notifySelfIntent);
+            switch (type) {
+                case after:
+                case is:
+                    mAlarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                            AlarmManager.INTERVAL_DAY, notifySelfIntent_positive);
+                    break;
+                case is_not:
+                    mAlarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                            AlarmManager.INTERVAL_DAY, notifySelfIntent_negative);
+            }
         }
     }
 
     @Override
     public void cancel() {
         if (calendar != null) {
-            mAlarmManager.cancel(notifySelfIntent);
+            mAlarmManager.cancel(notifySelfIntent_positive);
+            mAlarmManager.cancel(notifySelfIntent_negative);
         }
     }
 
     @Override
     public void check() {
         Calendar cal = Calendar.getInstance();
+        boolean match;
         switch (type) {
             case after:
                 if (cal.after(calendar)) {
-                    changeSatisfiedState(true);
+                    match = true;
                 } else {
-                    changeSatisfiedState(false);
+                    match = false;
+                }
+                break;
+            case before:
+                if (cal.before(calendar)) {
+                    match = true;
+                } else {
+                    match = false;
                 }
                 break;
             case is:
-                if ((calendar.get(Calendar.HOUR_OF_DAY) == cal.get(Calendar.HOUR_OF_DAY)) &&
-                        (calendar.get(Calendar.MINUTE) == cal.get(Calendar.MINUTE))) {
-                    changeSatisfiedState(true);
-                } else {
-                    changeSatisfiedState(false);
+                match = true;
+                for (int field : new int[]{Calendar.HOUR_OF_DAY, Calendar.MINUTE}) {
+                    if (cal.get(field) != calendar.get(field)) {
+                        match = false;
+                        break;
+                    }
                 }
                 break;
+            case is_not:
+                match = false;
+                for (int field : new int[]{Calendar.HOUR_OF_DAY, Calendar.MINUTE}) {
+                    if (cal.get(field) != calendar.get(field)) {
+                        match = true;
+                        break;
+                    }
+                }
+                break;
+            default:
+                match = false;
         }
+        changeSatisfiedState(match);
     }
 
     @Override
-    public boolean canPromoteSub() {
-        if (type == EventType.after)
-            return true;
-        if (type == EventType.is)
-            return true;
-        return super.canPromoteSub();
-    }
-
-    @Override
-    protected void onNotified() {
+    protected void onPositiveNotified() {
         if (type == EventType.after) {
             changeSatisfiedState(true);
         }
         if (type == EventType.is) {
             changeSatisfiedState(true);
             if (Build.VERSION.SDK_INT >= 19) {
-                mAlarmManager.setExact(AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis() + 60 * 1000, notifySelfUnsatisfiedIntent);
+                mAlarmManager.setExact(AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis() + 60 * 1000, notifySelfIntent_negative);
             } else {
-                mAlarmManager.set(AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis() + 60 * 1000, notifySelfUnsatisfiedIntent);
+                mAlarmManager.set(AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis() + 60 * 1000, notifySelfIntent_negative);
             }
+        }
+        if (type == EventType.is_not) {
+            changeSatisfiedState(true);
         }
     }
 
     @Override
-    protected void onUnsatisfied() {
+    protected void onNegativeNotified() {
+        if (type == EventType.before) {
+            changeSatisfiedState(false);
+        }
         if (type == EventType.is) {
             changeSatisfiedState(false);
+        }
+        if (type == EventType.is_not) {
+            changeSatisfiedState(false);
+            if (Build.VERSION.SDK_INT >= 19) {
+                mAlarmManager.setExact(AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis() + 60 * 1000, notifySelfIntent_positive);
+            } else {
+                mAlarmManager.set(AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis() + 60 * 1000, notifySelfIntent_positive);
+            }
         }
     }
 }

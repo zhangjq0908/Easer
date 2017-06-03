@@ -24,9 +24,27 @@ import java.util.Set;
 import ryey.easer.commons.plugindef.StorageData;
 
 public interface EventData extends StorageData {
+    /*
+     * Get the corresponding EventPlugin Class.
+     * FIXME: seems to be somewhat duplicated to EventPlugin.data()
+     */
     Class<? extends EventPlugin> pluginClass();
+
+    /*
+     * EventType related methods
+     */
+
+    // Setter
     void setType(EventType type);
+    // Getter
     EventType type();
+    /*
+     * List all available (i.e. can be handled) types of this plugin
+     */
     Set<EventType> availableTypes();
+    /*
+     * Check to see if such a type is available
+     * FIXME: Designed to be used when dealing with storage
+     */
     boolean isAvailable(EventType type);
 }

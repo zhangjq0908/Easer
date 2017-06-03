@@ -39,7 +39,7 @@ public class WifiEventData extends TypedEventData {
 
     {
         default_type = EventType.is;
-        availableTypes = EnumSet.of(EventType.is);
+        availableTypes = EnumSet.of(EventType.is, EventType.is_not);
     }
 
     public WifiEventData() {}

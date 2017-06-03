@@ -54,7 +54,7 @@ public class DateEventData extends TypedEventData {
 
     {
         default_type = EventType.after;
-        availableTypes = EnumSet.of(EventType.after);
+        availableTypes = EnumSet.of(EventType.after, EventType.before, EventType.is);
     }
 
     public DateEventData() {}

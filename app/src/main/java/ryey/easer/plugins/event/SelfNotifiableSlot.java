@@ -17,19 +17,24 @@ public abstract class SelfNotifiableSlot extends AbstractSlot {
     protected static final String ACTION_UNSATISFIED = "ryey.easer.triggerlotus.abstractslot.UNSATISFIED";
     protected static final String CATEGORY_NOTIFY_SLOT = "ryey.easer.triggetlotus.category.NOTIFY_SLOT";
     /*
-     * Mechanisms and fields used to notify the slot itself, and then proceed to `onNotified()`.
+     * Mechanisms and fields used to notify the slot itself, and then proceed to `onPositiveNotified()`.
      * This is because some system-level checking mechanisms (e.g. data/time) need a PendingIntent.
      */
     protected Uri uri = Uri.parse(String.format("slot://%s/%d", getClass().getSimpleName(), hashCode()));
-    protected PendingIntent notifySelfIntent, notifySelfUnsatisfiedIntent;
+    // After sent, this will trigger onPositiveNotified().
+    // Meant to be used when the event is going to a positive state.
+    protected PendingIntent notifySelfIntent_positive;
+    // After sent, this will trigger onNegativeNotified().
+    // Meant to be used when the event is going to a negative state.
+    protected PendingIntent notifySelfIntent_negative;
     protected BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.d(getClass().getSimpleName(), "self notifying Intent received");
             if (intent.getAction().equals(ACTION_SATISFIED)) {
-                onNotified();
+                onPositiveNotified();
             } else if (intent.getAction().equals(ACTION_UNSATISFIED)) {
-                onUnsatisfied();
+                onNegativeNotified();
             }
         }
     };
@@ -47,18 +52,18 @@ public abstract class SelfNotifiableSlot extends AbstractSlot {
         Intent intent = new Intent(ACTION_SATISFIED);
         intent.addCategory(CATEGORY_NOTIFY_SLOT);
         intent.setData(uri);
-        notifySelfIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        notifySelfIntent_positive = PendingIntent.getBroadcast(context, 0, intent, 0);
         intent.setAction(ACTION_UNSATISFIED);
-        notifySelfUnsatisfiedIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        notifySelfIntent_negative = PendingIntent.getBroadcast(context, 0, intent, 0);
     }
 
-    protected void onNotified() {
-        Log.d(getClass().getSimpleName(), "onNotified");
+    protected void onPositiveNotified() {
+        Log.d(getClass().getSimpleName(), "onPositiveNotified");
         changeSatisfiedState(true);
     }
 
-    protected void onUnsatisfied() {
-        Log.d(getClass().getSimpleName(), "onUnsatisfied");
+    protected void onNegativeNotified() {
+        Log.d(getClass().getSimpleName(), "onNegativeNotified");
         changeSatisfiedState(false);
     }
 }

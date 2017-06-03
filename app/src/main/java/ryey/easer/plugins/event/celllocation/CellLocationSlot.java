@@ -83,15 +83,14 @@ public class CellLocationSlot extends AbstractSlot {
 
     class CellLocationListener extends PhoneStateListener {
         @Override
-        public void onCellLocationChanged(CellLocation location) {
+        synchronized public void onCellLocationChanged(CellLocation location) {
             super.onCellLocationChanged(location);
             curr = CellLocationSingleData.fromCellLocation(location);
             if (type == EventType.any) {
-                if (target.contains(curr)) {
-                    changeSatisfiedState(true);
-                } else {
-                    changeSatisfiedState(false);
-                }
+                changeSatisfiedState(target.contains(curr));
+            }
+            if (type == EventType.none) {
+                changeSatisfiedState(!target.contains(curr));
             }
         }
     }

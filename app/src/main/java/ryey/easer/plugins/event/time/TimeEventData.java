@@ -56,7 +56,7 @@ public class TimeEventData extends TypedEventData {
 
     {
         default_type = EventType.after;
-        availableTypes = EnumSet.of(EventType.after, EventType.is);
+        availableTypes = EnumSet.of(EventType.after, EventType.is, EventType.is_not);
     }
 
     public TimeEventData() {}

@@ -42,7 +42,7 @@ public class CellLocationEventData extends TypedEventData {
     {
         data = new ArrayList<>();
         default_type = EventType.any;
-        availableTypes = EnumSet.of(EventType.any);
+        availableTypes = EnumSet.of(EventType.any, EventType.none);
     }
 
     public static CellLocationEventData fromString(String repr) {

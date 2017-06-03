@@ -28,6 +28,9 @@ import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.SelfNotifiableSlot;
 
+/*
+ * TODO: cancel (or set extra) alarm after being satisfied or unsatisfied (for different event types)
+ */
 public class DateSlot extends SelfNotifiableSlot {
     static AlarmManager mAlarmManager;
 
@@ -71,31 +74,66 @@ public class DateSlot extends SelfNotifiableSlot {
     @Override
     public void listen() {
         if (calendar != null) {
-            mAlarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                    AlarmManager.INTERVAL_DAY, notifySelfIntent);
+            switch (type) {
+                case after:
+                case is:
+                    mAlarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                            AlarmManager.INTERVAL_DAY, notifySelfIntent_positive);
+                    break;
+                case before:
+                    mAlarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                            AlarmManager.INTERVAL_DAY, notifySelfIntent_negative);
+                    break;
+            }
         }
     }
 
     @Override
     public void cancel() {
         if (calendar != null) {
-            mAlarmManager.cancel(notifySelfIntent);
+            mAlarmManager.cancel(notifySelfIntent_positive);
+            mAlarmManager.cancel(notifySelfIntent_negative);
         }
     }
 
     @Override
     public void check() {
         Calendar cal = Calendar.getInstance();
-        if (cal.after(calendar)) {
-            changeSatisfiedState(true);
-        } else {
-            changeSatisfiedState(false);
+        if (type == EventType.after) {
+            if (cal.get(Calendar.DAY_OF_YEAR) >= calendar.get(Calendar.DAY_OF_YEAR)) {
+                changeSatisfiedState(true);
+            } else {
+                changeSatisfiedState(false);
+            }
+        }
+        if (type == EventType.before) {
+            if (cal.get(Calendar.DAY_OF_YEAR) <= calendar.get(Calendar.DAY_OF_YEAR)) {
+                changeSatisfiedState(true);
+            } else {
+                changeSatisfiedState(false);
+            }
+        }
+        if (type == EventType.is) {
+            boolean match = true;
+            for (int field : new int[]{Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH}) {
+                if ((cal.get(field) != calendar.get(field))) {
+                    match = false;
+                    break;
+                }
+            }
+            if (match)
+                changeSatisfiedState(true);
+            else
+                changeSatisfiedState(false);
         }
     }
 
     @Override
-    protected void onNotified() {
+    protected void onPositiveNotified() {
         if (type == EventType.after) {
+            changeSatisfiedState(true);
+        }
+        if (type == EventType.is) {
             changeSatisfiedState(true);
         }
     }

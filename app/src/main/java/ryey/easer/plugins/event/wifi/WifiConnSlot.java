@@ -100,9 +100,12 @@ public class WifiConnSlot extends AbstractSlot {
     @Override
     public void check() {
         WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
         if (type == EventType.is) {
-            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
             changeSatisfiedState(compare(wifiInfo));
+        }
+        if (type == EventType.is_not) {
+            changeSatisfiedState(!compare(wifiInfo));
         }
     }
 

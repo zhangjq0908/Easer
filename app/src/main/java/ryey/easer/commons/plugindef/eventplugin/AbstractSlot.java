@@ -75,7 +75,7 @@ public abstract class AbstractSlot {
 
     /*
      * Start functioning as a top-level listener.
-     * When (probably satisfying) event happened, notify itself (to proceed to `onNotified()`)
+     * When (probably satisfying) event happens, notify itself and finally proceed to `changeSatisfiedState()`
      *
      * Can be called multiply times (data remain the same).
      */
@@ -91,15 +91,15 @@ public abstract class AbstractSlot {
 
     /*
      * Check to see if the current slot is satisfied.
-     * Will set `satisfied` internally (by calling `justSatisfied()`)
+     * Should set `satisfied` and call `changeSatisfiedState()`.
      */
     public abstract void check();
 
     /*
      * Whether the Lotus can promote the sub events to a upper one (to listen to events).
-     * Usually:
+     * Ideally:
      *   for continuous event types, it is the same as isSatistied();
-     *   for temporary event types, it is false.
+     *   for temporary event types, it is always false.
      */
     public boolean canPromoteSub() {
         return isSatisfied();
