@@ -56,10 +56,12 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        navigationView.setCheckedItem(R.id.nav_outline);
-        Fragment fragment = new OutlineFragment();
-        getFragmentManager().beginTransaction().replace(R.id.content_main, fragment, FRAGMENT_OUTLINE).commit();
+  
+        if(savedInstanceState == null){
+          navigationView.setCheckedItem(R.id.nav_outline);
+          Fragment fragment = new OutlineFragment();
+          getFragmentManager().beginTransaction().replace(R.id.content_main, fragment, FRAGMENT_OUTLINE).commit();
+        }
     }
 
     @Override
