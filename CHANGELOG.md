@@ -1,6 +1,16 @@
 CHANGELOG
 ======
 
+* v0.3.1: Add Settings activity and Welcome dialog
+	* Add SettingsActivity
+	* Show Welcome dialog when first start the app
+	* Fix resetting to Outline when rotating screen (thanks to trikaphundo)
+	* Fix deletiong of events and profiles
+	* Fix renaming profiles (also change them in events)
+	* Minor changes of source code:
+		* Remove useless strings
+		* Rename some strings
+
 * v0.3.0: Support event types for all existing events
 	* Add more types
 	* Add more types for all current EventPlugin(s)

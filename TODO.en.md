@@ -6,21 +6,23 @@ TODO
 		* Receiving specific Broadcast
 		* Battery status
 		* Calendar events
+		* Receiving certain Notifications
 	* Add more Operation (suggestions below)
 		* Location setting
 		* Ringtone volume
+		* Send TCP/UDP packets
 	* UI
 		* Change CheckBox to RadioButton (or swipe-to-change ViewPager) on EditEventDialogFragment
 		* Make EditEventDialogFragment more good-looking
 		* Dynamically add Operation(s) to EditProfileDialogFragment
 		* Make OutlineFragment more good-looking
 		* Use a tree view in EventListFragment
-		* Add a 'settings'/'preferences' Activity (for managing auto-start or so)
 		* Complement 'AboutActivity'
 			* Add "Contributors" to the page (or sub-page)
 			* If using WebView, remove the "back" FAB; if no longer using WebView, make the "back" FAB go back in the WebView
-	* Change the semantics of Event
-		* Make one Event receive one (or more) situations (as above) of another Event
+		* Add runtime permission checks
+	* Event
+		* Combine Events of the same type to reduce battery consumption (by reducing monitors/`BroadcastReceiver`s)
 * Code / Development
 	* Draw / Describe the structure of the app for easier understanding
 	* All TODO(s) in the code

@@ -6,21 +6,23 @@ TODO
 		* 接收特定Broadcast
 		* 電池狀態
 		* 日曆事件
+		* 收到特定Notification
 	* 增加更多Operation（以下建議）
 		* 定位
 		* 音量
+		* 發送TCP/UDP包
 	* UI方面
 		* 將Event修改界面的複選框改爲單選框/左右滑動切換的ViewPager
 		* 讓Event修改界面更好看
 		* 動態添加Operation到Profile修改界面
 		* 調整概覽頁面以更好看（使用卡片）
 		* 調整Event頁面，使用樹形顯示
-		* 增加設置頁面以調整自啓動等
 		* 完善*關於*界面
 			* 增加Contributor於其上
 			* 如果使用WebView，將返回的懸浮按鈕改爲WebView的上一頁；如果確定不使用，移除該懸浮按鈕
-	* 調整Event的語義
-		* 使事件接收另一事件的特定（或多個）狀況
+		* 增加運行時權限檢查
+	* Event
+		* 合併同類Event以降低耗電——通過減少監測器/`BroadcastReceiver`的數量
 * 代碼/開發
 	* 繪製/描述軟件結構，便於理解
 	* 代碼中所有TODO
