@@ -12,6 +12,7 @@
     <string name="operation_broadcast">Send Broadcast</string>
     <string name="operation_brightness">Brightness</string>
     <string name="operation_brightness_desc_autobrightness">Auto brightness</string>
+    <string name="operation_ringer_mode">Ringer Mode</string>
 
     <string-array name="event_type">
         <item>After</item>

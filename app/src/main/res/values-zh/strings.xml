@@ -10,8 +10,8 @@
     <string name="prompt_save_failed">保存失敗</string>
     <string name="service_indicator_negative">未運行</string>
     <string name="service_indicator_positive">運行中</string>
-    <string name="text_cancel">取消</string>
-    <string name="text_ok">確認</string>
+    <string name="button_cancel">取消</string>
+    <string name="button_ok">確認</string>
     <string name="text_parent">父:</string>
     <string name="text_title">名稱</string>
     <string name="title_about">關於</string>
@@ -30,5 +30,13 @@
     <string name="text_profile">行爲集</string>
     <string name="profile_indicator_last">最近行爲集:</string>
     <string name="title_profile">行爲集:</string>
+    <string name="pref_autostart_summary">自動啓動Easer後臺服務</string>
+    <string name="pref_autostart_title">開機自啓動</string>
+    <string name="title_setting">設置</string>
+    <string name="pref_welcome_summary">顯示歡迎消息</string>
+    <string name="pref_welcome_title">程序啓動時顯示歡迎消息</string>
+    <string name="title_welcome_message">歡迎</string>
+    <string name="welcome_message">歡迎使用Easer！\n        \n希望你能喜歡這個軟件 :)\n        \n\n請先閱讀以下事項再開始使用：\n\n    1. 請授予Easer適當權限，以便使用相關的功能。\n\n    2. 每個“事件”實際上是單選。在同一個事件中選擇多項並沒有用處。\n        \n\n另請移步項目wiki中的<a href="https://github.com/renyuneyun/Easer/wiki/須知">須知</a>部分。</string>
+    <string name="null_content">空內容</string>
 
 </resources>

@@ -36,4 +36,6 @@ public interface EventDataStorage {
     boolean edit(String oldName, EventStructure event);
 
     List<EventTree> getEventTrees();
+
+    boolean handleProfileRename(String oldName, String newName);
 }

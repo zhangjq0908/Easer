@@ -92,12 +92,12 @@ public class EditProfileDialogFragment extends DialogFragment {
         Log.d(getClass().getSimpleName(), "onCreateDialog. Activity:" + getActivity());
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setNegativeButton(R.string.text_cancel, new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 EditProfileDialogFragment.this.getDialog().cancel();
             }
         })
-                .setPositiveButton(R.string.text_ok, new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         boolean success = alterProfile();
@@ -167,23 +167,24 @@ public class EditProfileDialogFragment extends DialogFragment {
     }
 
     protected boolean alterProfile() {
-        ProfileStructure newProfile = saveToProfile();
-        if (!newProfile.isValid()) {
-            return false;
-        }
         boolean success;
-        switch (purpose) {
-            case add:
-                success = storage.add(newProfile);
-                break;
-            case edit:
-                success = storage.edit(oldName, newProfile);
-                break;
-            case delete:
-                success = storage.delete(oldName);
-                break;
-            default:
-                throw new UnsupportedOperationException("Unknown Purpose");
+        if (purpose == Purpose.delete)
+            success = storage.delete(oldName);
+        else {
+            ProfileStructure newProfile = saveToProfile();
+            if (!newProfile.isValid()) {
+                return false;
+            }
+            switch (purpose) {
+                case add:
+                    success = storage.add(newProfile);
+                    break;
+                case edit:
+                    success = storage.edit(oldName, newProfile);
+                    break;
+                default:
+                    throw new UnsupportedOperationException("Unknown Purpose");
+            }
         }
         if (success) {
             getActivity().sendBroadcast(new Intent(ProfileListFragment.ACTION_DATA_CHANGED));

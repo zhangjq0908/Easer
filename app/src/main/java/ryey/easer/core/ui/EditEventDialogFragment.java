@@ -106,15 +106,15 @@ public class EditEventDialogFragment extends DialogFragment {
         Log.d(getClass().getSimpleName(), "onCreateDialog. Activity:" + getActivity());
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setNegativeButton(R.string.text_cancel, new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 EditEventDialogFragment.this.getDialog().cancel();
             }
         })
-                .setPositiveButton(R.string.text_ok, new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        boolean success = saveEvent();
+                        boolean success = alterEvent();
                         if (success)
                             EditEventDialogFragment.this.getDialog().dismiss();
                         else {
@@ -237,24 +237,24 @@ public class EditEventDialogFragment extends DialogFragment {
         return event;
     }
 
-    protected boolean saveEvent() {
-        EventStructure newEvent = saveToEvent();
-        if (!newEvent.isValid()) {
-            return false;
-        }
+    protected boolean alterEvent() {
         boolean success;
-        switch (purpose) {
-            case add:
-                success = storage.add(newEvent);
-                break;
-            case edit:
-                success = storage.edit(oldName, newEvent);
-                break;
-            case delete:
-                success = storage.delete(oldName);
-                break;
-            default:
-                throw new UnsupportedOperationException("Unknown Purpose");
+        if (purpose == Purpose.delete)
+            success = storage.delete(oldName);
+        else {
+            EventStructure newEvent = saveToEvent();
+            if (!newEvent.isValid())
+                return false;
+            switch (purpose) {
+                case add:
+                    success = storage.add(newEvent);
+                    break;
+                case edit:
+                    success = storage.edit(oldName, newEvent);
+                    break;
+                default:
+                    throw new UnsupportedOperationException("Unknown Purpose");
+            }
         }
         if (success) {
             getActivity().sendBroadcast(new Intent(EventListFragment.ACTION_DATA_CHANGED));

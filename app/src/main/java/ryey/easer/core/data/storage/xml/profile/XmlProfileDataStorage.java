@@ -35,6 +35,7 @@ import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.storage.FileUtils;
 import ryey.easer.core.data.storage.ProfileDataStorage;
+import ryey.easer.core.data.storage.xml.event.XmlEventDataStorage;
 
 public class XmlProfileDataStorage implements ProfileDataStorage {
     protected static XmlProfileDataStorage instance = null;
@@ -112,9 +113,17 @@ public class XmlProfileDataStorage implements ProfileDataStorage {
     public boolean edit(String oldName, ProfileStructure profile) {
         ProfileStructure oldProfile = get(oldName);
         if (delete(oldName)) {
-            if (add(profile))
+            if (add(profile)) {
+                if (!oldName.equals(profile.getName())) {
+                    try {
+                        XmlEventDataStorage eventDataStorage = XmlEventDataStorage.getInstance(s_context);
+                        eventDataStorage.handleProfileRename(oldName, profile.getName());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
                 return true;
-            else
+            } else
                 add(oldProfile);
         }
         return false;

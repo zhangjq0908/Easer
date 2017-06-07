@@ -207,6 +207,17 @@ public class XmlEventDataStorage implements EventDataStorage {
         return eventTreeList;
     }
 
+    @Override
+    public boolean handleProfileRename(String oldName, String newName) {
+        for (EventStructure event : allEvents()) {
+            if (oldName.equals(event.getProfileName())) {
+                event.setProfileName(newName);
+                edit(event.getName(), event);
+            }
+        }
+        return true;
+    }
+
     private static void mapToTreeList(Map<String, List<EventStructure>> eventIntermediateDataMap, EventTree node) {
         List<EventStructure> eventStructureList = eventIntermediateDataMap.get(node.getName());
         if (eventStructureList == null)

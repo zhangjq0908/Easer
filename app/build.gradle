@@ -7,8 +7,8 @@ android {
         applicationId 'ryey.easer'
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 19
-        versionName "0.3.0"
+        versionCode 20
+        versionName "0.3.1"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -31,8 +31,8 @@ dependencies {
     androidTestCompile 'com.android.support.test:runner:0.5'
     // Set this dependency to use JUnit 4 rules
     androidTestCompile 'com.android.support.test:rules:0.5'
-    androidTestCompile 'com.android.support:support-annotations:25.3.0'
-    compile 'com.android.support:appcompat-v7:25.3.0'
-    compile 'com.android.support:design:25.3.0'
-    compile 'com.android.support:support-v4:25.3.0'
+    androidTestCompile 'com.android.support:support-annotations:25.3.1'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:support-v4:25.3.1'
 }

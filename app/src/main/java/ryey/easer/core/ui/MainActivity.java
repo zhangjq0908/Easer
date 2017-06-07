@@ -19,18 +19,24 @@
 
 package ryey.easer.core.ui;
 
+import android.app.AlertDialog;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import ryey.easer.R;
 
@@ -43,6 +49,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -61,6 +69,25 @@ public class MainActivity extends AppCompatActivity
           navigationView.setCheckedItem(R.id.nav_outline);
           Fragment fragment = new OutlineFragment();
           getFragmentManager().beginTransaction().replace(R.id.content_main, fragment, FRAGMENT_OUTLINE).commit();
+        }
+
+        // Show Welcome page at first launch
+        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(getString(R.string.key_pref_welcome), true)) {
+            ((TextView) new AlertDialog.Builder(this)
+                    .setTitle(R.string.title_welcome_message)
+                    .setMessage(R.string.welcome_message)
+                    .setPositiveButton(R.string.button_understand, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            PreferenceManager.getDefaultSharedPreferences(MainActivity.this)
+                                    .edit()
+                                    .putBoolean(getString(R.string.key_pref_welcome), false)
+                                    .apply();
+                        }
+                    })
+                    .setNegativeButton(R.string.button_read_next_time, null)
+                    .show()
+                    .findViewById(android.R.id.message))
+                    .setMovementMethod(LinkMovementMethod.getInstance());
         }
     }
 
@@ -102,8 +129,11 @@ public class MainActivity extends AppCompatActivity
             if (fragment == null)
                 fragment = new EventListFragment();
             manager.beginTransaction().replace(R.id.content_main, fragment, FRAGMENT_EVENT).commit();
-        } else if (id == R.id.nav_settings) {
+        } else if (id == R.id.nav_about) {
             Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_setting) {
+            Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
         }
 

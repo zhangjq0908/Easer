@@ -16,7 +16,10 @@
     <item android:title="@string/title_application">
         <menu>
             <item
-                android:id="@+id/nav_settings"
+                android:id="@+id/nav_setting"
+                android:title="@string/title_setting" />
+            <item
+                android:id="@+id/nav_about"
                 android:title="@string/title_about" />
         </menu>
     </item>
