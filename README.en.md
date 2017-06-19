@@ -23,6 +23,7 @@ Functions already supported
 * Time
 * WiFi connection name (SSID)
 * Location (based on basestations)
+* Battery status
 
 ### Operation
 * WiFi switch

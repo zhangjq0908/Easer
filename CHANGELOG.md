@@ -1,6 +1,12 @@
 CHANGELOG
 ======
 
+* v0.3.2: Make broadcast fully customizable && Add battery event plugin && Fix
+	* Make user able to customize all fields of intent (broadcast)
+	* Add BatteryEventPlugin to listen to battery status
+	* Fix permission issue of bluetooth
+	* Add MODIFY_AUDIO_SETTINGS in case of permission issue
+
 * v0.3.1: Add Settings activity and Welcome dialog
 	* Add SettingsActivity
 	* Show Welcome dialog when first start the app

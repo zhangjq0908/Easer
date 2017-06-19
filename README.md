@@ -23,6 +23,7 @@ See [README.en.md](README.en.md) for the English version of README.
 * 時間
 * WiFi連接名稱
 * 位置（基於基站）
+* 電池狀態
 
 ### Operation
 * WiFi開關
