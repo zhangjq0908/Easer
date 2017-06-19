@@ -27,6 +27,7 @@ import java.util.List;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
+import ryey.easer.plugins.event.battery.BatteryEventPlugin;
 import ryey.easer.plugins.event.celllocation.CellLocationEventPlugin;
 import ryey.easer.plugins.event.date.DateEventPlugin;
 import ryey.easer.plugins.event.time.TimeEventPlugin;
@@ -59,6 +60,7 @@ final public class PluginRegistry {
         pluginRegistry.registerEventPlugin(DateEventPlugin.class);
         pluginRegistry.registerEventPlugin(WifiEventPlugin.class);
         pluginRegistry.registerEventPlugin(CellLocationEventPlugin.class);
+        pluginRegistry.registerEventPlugin(BatteryEventPlugin.class);
 
         pluginRegistry.registerOperationPlugin(WifiOperationPlugin.class);
         pluginRegistry.registerOperationPlugin(CellularOperationPlugin.class);

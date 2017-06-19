@@ -37,6 +37,31 @@ public class XmlHelper {
     protected static final String AT = "at";
     protected static final String ns = null;
 
+    public static String getText(XmlPullParser parser, String which) throws IOException, XmlPullParserException, IllegalXmlException {
+        if (parser.next() == XmlPullParser.TEXT)
+            return parser.getText();
+        else {
+            throw new IllegalXmlException(String.format("Illegal Event: %s has No content", which));
+        }
+    }
+
+    public static void skip(XmlPullParser parser) throws XmlPullParserException, IOException {
+        if (parser.getEventType() != XmlPullParser.START_TAG) {
+            throw new IllegalStateException();
+        }
+        int depth = 1;
+        while (depth != 0) {
+            switch (parser.next()) {
+                case XmlPullParser.END_TAG:
+                    depth--;
+                    break;
+                case XmlPullParser.START_TAG:
+                    depth++;
+                    break;
+            }
+        }
+    }
+
     public static void writeSingleSituation(XmlSerializer serializer, String spec, String at) throws IOException {
         serializer.startTag(ns, C.SIT);
         serializer.attribute(ns, C.SPEC, spec);
@@ -44,20 +69,6 @@ public class XmlHelper {
         serializer.text(at);
         serializer.endTag(ns, AT);
         serializer.endTag(ns, C.SIT);
-    }
-
-    public static void writeLogic(XmlSerializer serializer, EventType type) throws IOException {
-        serializer.startTag(ns, C.LOGIC);
-        serializer.text(type.toString());
-        serializer.endTag(ns, C.LOGIC);
-    }
-
-    public static String getText(XmlPullParser parser, String which) throws IOException, XmlPullParserException, IllegalXmlException {
-        if (parser.next() == XmlPullParser.TEXT)
-            return parser.getText();
-        else {
-            throw new IllegalXmlException(String.format("Illegal Event: %s has No content", which));
-        }
     }
 
     public static String readSingleSituation(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
@@ -72,8 +83,13 @@ public class XmlHelper {
         return str_data;
     }
 
-    public static EventType readLogic(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
+    public static void writeLogic(XmlSerializer serializer, EventType type) throws IOException {
+        serializer.startTag(ns, C.LOGIC);
+        serializer.text(type.toString());
+        serializer.endTag(ns, C.LOGIC);
+    }
 
+    public static EventType readLogic(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
         while (parser.next() != XmlPullParser.START_TAG);
         String logic = getText(parser, "Logic");
         EventType type = null;
@@ -184,22 +200,5 @@ public class XmlHelper {
         }
 
         return level;
-    }
-
-    public static void skip(XmlPullParser parser) throws XmlPullParserException, IOException {
-        if (parser.getEventType() != XmlPullParser.START_TAG) {
-            throw new IllegalStateException();
-        }
-        int depth = 1;
-        while (depth != 0) {
-            switch (parser.next()) {
-                case XmlPullParser.END_TAG:
-                    depth--;
-                    break;
-                case XmlPullParser.START_TAG:
-                    depth++;
-                    break;
-            }
-        }
     }
 }

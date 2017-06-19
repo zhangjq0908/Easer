@@ -4,11 +4,18 @@
     <string name="event_date">日期</string>
     <string name="event_time">時間</string>
     <string name="event_wificonn">WiFi連接</string>
+    <string name="event_battery">電池狀態</string>
     
     <string name="operation_bluetooth">藍牙</string>
     <string name="operation_brightness">亮度</string>
     <string name="operation_brightness_desc_autobrightness">自動亮度</string>
+
     <string name="operation_broadcast">發送廣播</string>
+    <string name="obroadcast_l_action">Action:</string>
+    <string name="obroadcast_l_category">Category:</string>
+    <string name="obroadcast_l_type">Type:</string>
+    <string name="obroadcast_l_data">Data:</string>
+
     <string name="operation_cellular">移動數據</string>
     <string name="operation_rotation">自動旋轉</string>
     <string name="operation_wifi">WiFi</string>
@@ -27,5 +34,10 @@
         <item>靜音</item>
         <item>震動</item>
         <item>普通</item>
+    </array>
+
+    <array name="battery_status">
+        <item>充電中</item>
+        <item>放電中</item>
     </array>
 </resources>

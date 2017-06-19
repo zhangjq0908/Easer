@@ -156,7 +156,8 @@ public class EditProfileDialogFragment extends DialogFragment {
             if (data == null)
                 continue;
             if (data instanceof OperationData) {
-                profile.set(plugin.name(), (OperationData) data);
+                if (data.isValid())
+                    profile.set(plugin.name(), (OperationData) data);
             } else {
                 Log.wtf(getClass().getSimpleName(), "data of plugin's Layout is not instance of OperationData");
                 throw new RuntimeException("data of plugin's Layout is not instance of OperationData");

@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import ryey.easer.Utils;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
@@ -34,13 +35,27 @@ public class BroadcastLoader extends OperationLoader {
     @Override
     public boolean load(OperationData data) {
         Log.d(getClass().getSimpleName(), "load");
-        String action = (String) data.get();
-        if (action != null) {
-            Intent intent = new Intent(action);
-            context.sendBroadcast(intent);
-            Log.d(getClass().getSimpleName(), String.format("broadcast (%s) has been sent", action));
-            return true;
+        IntentData iData = (IntentData) data.get();
+        Intent intent = new Intent();
+        intent.setAction(iData.action);
+        if (iData.category != null)
+            for (String category : iData.category) {
+                intent.addCategory(category);
+            }
+        boolean hasType = false, hasData = false;
+        if (!Utils.isBlank(iData.type))
+            hasType = true;
+        if (iData.data != null && !Utils.isBlank(iData.data.toString()))
+            hasData = true;
+        if (hasType && hasData) {
+            intent.setDataAndType(iData.data, iData.type);
+        } else if (hasType) {
+            intent.setType(iData.type);
+        } else {
+            intent.setData(iData.data);
         }
-        return false;
+        context.sendBroadcast(intent);
+        Log.d(getClass().getSimpleName(), String.format("broadcast (%s) has been sent", iData));
+        return true;
     }
 }

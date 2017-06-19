@@ -19,12 +19,15 @@
 
 package ryey.easer.plugins.operation.broadcast;
 
+import android.net.Uri;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import java.io.IOException;
 
+import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
@@ -36,25 +39,30 @@ public class BroadcastOperationData implements OperationData {
     protected static final String ns = null;
 
     static final String ACTION = "action";
+    static final String CATEGORY = "category";
+    static final String TYPE = "type";
+    static final String DATA = "data";
 
-    protected String action = null;
+    IntentData data = new IntentData();
 
     public BroadcastOperationData() {
     }
 
-    public BroadcastOperationData(String action) {
-        this.action = action;
+    public BroadcastOperationData(IntentData data) {
+        this.data = data;
     }
 
     @Override
     public Object get() {
-        return action;
+        return data;
     }
 
     @Override
     public void set(Object obj) {
         if (obj instanceof String) {
-            action = (String) obj;
+            data.action = (String) obj;
+        } else if (obj instanceof IntentData) {
+            data = (IntentData) obj;
         } else {
             throw new RuntimeException("illegal data");
         }
@@ -64,15 +72,33 @@ public class BroadcastOperationData implements OperationData {
     public void parse(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
         int depth = parser.getDepth();
         int event_type = parser.next();
-        String action = null;
+        IntentData intentData = new IntentData();
         while (parser.getDepth() > depth) {
             if (event_type == XmlPullParser.START_TAG) {
                 switch (parser.getName()) {
                     case ACTION:
                         if (parser.next() == XmlPullParser.TEXT)
-                            action = parser.getText();
+                            intentData.action = parser.getText();
                         else
                             throw new IllegalXmlException(String.format("Illegal Item: (%s) Action has No Content", pname()));
+                        break;
+                    case CATEGORY:
+                        if (parser.next() == XmlPullParser.TEXT)
+                            intentData.category = IntentData.stringToCategory(parser.getText());
+                        else
+                            throw new IllegalXmlException(String.format("Illegal Item: (%s) Category is not valid", pname()));
+                        break;
+                    case TYPE:
+                        if (parser.next() == XmlPullParser.TEXT)
+                            intentData.type = parser.getText();
+                        else
+                            throw new IllegalXmlException(String.format("Illegal Item: (%s) Type is not valid", pname()));
+                        break;
+                    case DATA:
+                        if (parser.next() == XmlPullParser.TEXT)
+                            intentData.data = Uri.parse(parser.getText());
+                        else
+                            throw new IllegalXmlException(String.format("Illegal Item: (%s) Data is not valid", pname()));
                         break;
                     default:
                         XmlHelper.skip(parser);
@@ -80,31 +106,58 @@ public class BroadcastOperationData implements OperationData {
             }
             event_type = parser.next();
         }
-        if (action == null)
+        if (intentData.action == null)
             throw new IllegalXmlException(String.format("Illegal Item: (%s) No Action", pname()));
 
-        set(action);
+        set(intentData);
     }
 
+    /*
+     * `isValid()` needs to be called before calling this function.
+     */
     @Override
     public void serialize(XmlSerializer serializer) throws IOException {
         serializer.startTag(ns, C.ITEM);
 
         serializer.attribute(ns, C.SPEC, pname());
 
-        serializer.startTag(ns, ACTION);
-        serializer.text((String) get());
-        serializer.endTag(ns, ACTION);
+        if (!Utils.isBlank(data.action)) {
+            serializer.startTag(ns, ACTION);
+            serializer.text(data.action.trim());
+            serializer.endTag(ns, ACTION);
+        }
+
+        if (!data.category.isEmpty()) {
+            serializer.startTag(ns, CATEGORY);
+            serializer.text(IntentData.categoryToString(data.category));
+            serializer.endTag(ns, CATEGORY);
+        }
+
+        if (!Utils.isBlank(data.action)) {
+            serializer.startTag(ns, TYPE);
+            serializer.text(data.type.trim());
+            serializer.endTag(ns, TYPE);
+        }
+
+        if (data.data != null && !Utils.isBlank(data.data.toString())) {
+            serializer.startTag(ns, DATA);
+            serializer.text(data.data.toString());
+            serializer.endTag(ns, DATA);
+        }
 
         serializer.endTag(ns, C.ITEM);
     }
 
     @Override
     public boolean isValid() {
-        if (action == null)
-            return false;
-        if (action.isEmpty())
-            return false;
-        return true;
+        if (!Utils.isBlank(data.action))
+            return true;
+        if (data.category != null && !data.category.isEmpty())
+            return true;
+        if (!Utils.isBlank(data.type))
+            return true;
+        if (data.data != null && !Utils.isBlank(data.data.toString()))
+            return true;
+        return false;
     }
 }
