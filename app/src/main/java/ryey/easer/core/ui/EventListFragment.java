@@ -20,7 +20,6 @@
 package ryey.easer.core.ui;
 
 import android.app.Activity;
-import android.app.DialogFragment;
 import android.app.ListFragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -46,32 +45,14 @@ import ryey.easer.core.data.storage.EventDataStorage;
 import ryey.easer.core.data.storage.xml.event.XmlEventDataStorage;
 
 public class EventListFragment extends ListFragment {
-    public static final String ACTION_DATA_CHANGED = "ryey.easer.ACTION.EVENT_DATA_CHANGED";
+    static final int request_code = 10;
 
     EventDataStorage mStorage = null;
-
-    BroadcastReceiver receiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (ACTION_DATA_CHANGED.equals(action)) {
-                reloadList();
-            }
-        }
-    };
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         activity.setTitle(getString(R.string.title_event));
-        IntentFilter filter = new IntentFilter(ACTION_DATA_CHANGED);
-        activity.registerReceiver(receiver, filter);
-    }
-
-    @Override
-    public void onDetach() {
-        getActivity().unregisterReceiver(receiver);
-        super.onDetach();
     }
 
     @Override
@@ -155,16 +136,30 @@ public class EventListFragment extends ListFragment {
     }
 
     private void beginNewEvent() {
-        DialogFragment dialogFragment = EditEventDialogFragment.newInstance(EditEventDialogFragment.Purpose.add, null);
-        dialogFragment.show(getFragmentManager().beginTransaction(), "newEvent");
+        Intent intent = new Intent(getActivity(), EditEventActivity.class);
+        intent.putExtra(EditDataProto.PURPOSE, EditDataProto.Purpose.add);
+        startActivityForResult(intent, request_code);
     }
     private void beginEditEvent(String name) {
-        DialogFragment dialogFragment = EditEventDialogFragment.newInstance(EditEventDialogFragment.Purpose.edit, name);
-        dialogFragment.show(getFragmentManager().beginTransaction(), "editEvent");
+        Intent intent = new Intent(getActivity(), EditEventActivity.class);
+        intent.putExtra(EditDataProto.PURPOSE, EditDataProto.Purpose.edit);
+        intent.putExtra(EditDataProto.CONTENT_NAME, name);
+        startActivityForResult(intent, request_code);
     }
     private void beginDeleteEvent(String name) {
-        DialogFragment dialogFragment = EditEventDialogFragment.newInstance(EditEventDialogFragment.Purpose.delete, name);
-        dialogFragment.show(getFragmentManager().beginTransaction(), "deleteEvent");
+        Intent intent = new Intent(getActivity(), EditEventActivity.class);
+        intent.putExtra(EditDataProto.PURPOSE, EditDataProto.Purpose.delete);
+        intent.putExtra(EditDataProto.CONTENT_NAME, name);
+        startActivityForResult(intent, request_code);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == request_code) {
+            if (resultCode == Activity.RESULT_OK) {
+                reloadList();
+            }
+        }
     }
 }
 

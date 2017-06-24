@@ -40,7 +40,7 @@ public interface OperationPlugin {
     OperationData data();
     /*
      * Returns the control UI of this plugin.
-     * Used in `EditProfileDialogFragment`.
+     * Used in `EditProfileActivity`.
      */
     ContentLayout view(Context context);
     /*

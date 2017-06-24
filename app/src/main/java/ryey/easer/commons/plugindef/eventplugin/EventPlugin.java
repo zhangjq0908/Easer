@@ -40,7 +40,7 @@ public interface EventPlugin {
     EventData data();
     /*
      * Returns the control UI of this plugin.
-     * Used in `EditEventDialogFragment`.
+     * Used in `EditEventActivity`.
      */
     ContentLayout view(Context context);
     /*

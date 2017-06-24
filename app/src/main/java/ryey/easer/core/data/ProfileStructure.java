@@ -26,7 +26,7 @@ import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
 /*
  * A Profile is a bundle of several Operation(s).
- * Only the `EditProfileDialogFragment` and `ProfileLoaderIntentService` need to know the detailed structure of a Profile,
+ * Only the `EditProfileActivity` and `ProfileLoaderIntentService` need to know the detailed structure of a Profile,
  * other classes only need to know the *name* of the Profile.
  */
 final public class ProfileStructure {

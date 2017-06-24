@@ -47,32 +47,14 @@ import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.core.data.storage.xml.profile.XmlProfileDataStorage;
 
 public class ProfileListFragment extends ListFragment {
-    public static final String ACTION_DATA_CHANGED = "ryey.easer.ACTION.PROFILE_DATA_CHANGED";
+    static final int request_code = 10;
 
     ProfileDataStorage mStorage = null;
-
-    BroadcastReceiver receiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (ACTION_DATA_CHANGED.equals(action)) {
-                reloadList();
-            }
-        }
-    };
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         activity.setTitle(getString(R.string.title_profile));
-        IntentFilter filter = new IntentFilter(ACTION_DATA_CHANGED);
-        activity.registerReceiver(receiver, filter);
-    }
-
-    @Override
-    public void onDetach() {
-        getActivity().unregisterReceiver(receiver);
-        super.onDetach();
     }
 
     @Override
@@ -152,16 +134,30 @@ public class ProfileListFragment extends ListFragment {
     }
 
     private void beginNewProfile() {
-        DialogFragment dialogFragment = EditProfileDialogFragment.newInstance(EditProfileDialogFragment.Purpose.add, null);
-        dialogFragment.show(getFragmentManager().beginTransaction(), "newProfile");
+        Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+        intent.putExtra(EditDataProto.PURPOSE, EditDataProto.Purpose.add);
+        startActivityForResult(intent, request_code);
     }
     private void beginEditProfile(String name) {
-        DialogFragment dialogFragment = EditProfileDialogFragment.newInstance(EditProfileDialogFragment.Purpose.edit, name);
-        dialogFragment.show(getFragmentManager().beginTransaction(), "editProfile");
+        Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+        intent.putExtra(EditDataProto.PURPOSE, EditDataProto.Purpose.edit);
+        intent.putExtra(EditDataProto.CONTENT_NAME, name);
+        startActivityForResult(intent, request_code);
     }
     private void begingDeleteProfile(String name) {
-        DialogFragment dialogFragment = EditProfileDialogFragment.newInstance(EditProfileDialogFragment.Purpose.delete, name);
-        dialogFragment.show(getFragmentManager().beginTransaction(), "deleteProfile");
+        Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+        intent.putExtra(EditDataProto.PURPOSE, EditDataProto.Purpose.delete);
+        intent.putExtra(EditDataProto.CONTENT_NAME, name);
+        startActivityForResult(intent, request_code);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == request_code) {
+            if (resultCode == Activity.RESULT_OK) {
+                reloadList();
+            }
+        }
     }
 }
 

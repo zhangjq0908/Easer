@@ -38,5 +38,10 @@
     <string name="title_welcome_message">歡迎</string>
     <string name="welcome_message">歡迎使用Easer！\n        \n希望你能喜歡這個軟件 :)\n        \n\n請先閱讀以下事項再開始使用：\n\n    1. 請授予Easer適當權限，以便使用相關的功能。\n\n    2. 每個“事件”實際上是單選。在同一個事件中選擇多項並沒有用處。\n        \n\n另請移步項目wiki中的<a href="https://github.com/renyuneyun/Easer/wiki/須知">須知</a>部分。</string>
     <string name="null_content">空內容</string>
+    <string name="button_read_next_time">以後再看</string>
+    <string name="button_understand">明白了</string>
+    <string name="menu_action_save">保存</string>
+    <string name="title_edit_event">編輯事件</string>
+    <string name="title_edit_profile">編輯行爲集</string>
 
 </resources>

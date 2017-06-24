@@ -32,7 +32,7 @@ import ryey.easer.commons.plugindef.eventplugin.EventData;
  *
  * This class holds these fields and getters and setters.
  *
- * Only `EditEventDialogFragment` and `EventTree` needs to know the actual structure.
+ * Only `EditEventActivity` and `EventTree` needs to know the actual structure.
  */
 final public class EventStructure {
     protected String name;

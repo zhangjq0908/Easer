@@ -1,33 +1,13 @@
-/*
- * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
- *
- * This file is part of Easer.
- *
- * Easer is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Easer is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 package ryey.easer.core.ui;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -55,17 +35,12 @@ import ryey.easer.plugins.PluginRegistry;
  * TODO: change the layout
  *  TODO: change from checkbox to radiobutton
  */
-public class EditEventDialogFragment extends DialogFragment {
-    public enum Purpose {
-        add, edit, delete;
-    }
-    public static final String CONTENT_NAME = "ryey.easer.EVENT.NAME";
+public class EditEventActivity extends AppCompatActivity {
 
     EventDataStorage storage = null;
 
-    Purpose purpose;
+    EditDataProto.Purpose purpose;
     String oldName = null;
-    View mView = null;
 
     Map<String, SwitchItemLayout> items = new HashMap<>();
 
@@ -76,63 +51,83 @@ public class EditEventDialogFragment extends DialogFragment {
     Spinner mSpinner_profile = null;
     List<String> mProfileList = null;
 
-    public static EditEventDialogFragment newInstance(Purpose purpose, String name) {
-        EditEventDialogFragment dialogFragment = new EditEventDialogFragment();
-        dialogFragment.purpose = purpose;
-        Bundle bundle = new Bundle();
-        bundle.putString(CONTENT_NAME, name);
-        dialogFragment.setArguments(bundle);
-        return dialogFragment;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.edit_data, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_save:
+                alterEvent();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return false;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         try {
-            storage = XmlEventDataStorage.getInstance(activity);
+            storage = XmlEventDataStorage.getInstance(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        storage = null;
-    }
-
-    @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Log.d(getClass().getSimpleName(), "onCreateDialog. Activity:" + getActivity());
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                EditEventDialogFragment.this.getDialog().cancel();
+        purpose = (EditDataProto.Purpose) getIntent().getSerializableExtra(EditDataProto.PURPOSE);
+        if (purpose != EditDataProto.Purpose.add)
+            oldName = getIntent().getStringExtra(EditDataProto.CONTENT_NAME);
+        if (purpose == EditDataProto.Purpose.delete) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    setResult(RESULT_CANCELED);
+                    dialog.cancel();
+                }
+            }).setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    alterEvent();
+                }
+            });
+            builder.setMessage(getString(R.string.prompt_delete, oldName));
+            builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog) {
+                    finish();
+                }
+            });
+            setTheme(R.style.AppTheme_ActivityDialog);
+            builder.show();
+        } else {
+            setContentView(R.layout.activity_edit_event);
+            ActionBar actionbar = getSupportActionBar();
+            actionbar.setHomeAsUpIndicator(R.drawable.ic_close_24dp);
+            actionbar.setDisplayHomeAsUpEnabled(true);
+            setTitle(R.string.title_edit_event);
+            init();
+            if (purpose == EditDataProto.Purpose.edit) {
+                EventStructure event = storage.get(oldName);
+                loadFromEvent(event);
             }
-        })
-                .setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        boolean success = alterEvent();
-                        if (success)
-                            EditEventDialogFragment.this.getDialog().dismiss();
-                        else {
-                            Toast.makeText(getActivity(), getString(R.string.prompt_save_failed), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+        }
+    }
 
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        mView = inflater.inflate(R.layout.alert_dialog_edit_event, null);
+    void init() {
+        mEditText_name = (EditText) findViewById(R.id.editText_event_title);
 
-        mEditText_name = (EditText) mView.findViewById(R.id.editText_event_title);
-
-        mSpinner_parent = (Spinner) mView.findViewById(R.id.spinner_parent);
+        mSpinner_parent = (Spinner) findViewById(R.id.spinner_parent);
         try {
-            mEventList = (XmlEventDataStorage.getInstance(getActivity())).list();
+            mEventList = (XmlEventDataStorage.getInstance(this)).list();
             mEventList.add(0, NON);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_profile, mEventList); //TODO: change layout
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_profile, mEventList); //TODO: change layout
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
             mSpinner_parent.setAdapter(adapter);
         } catch (IOException e) {
@@ -148,11 +143,11 @@ public class EditEventDialogFragment extends DialogFragment {
             }
         });
 
-        mSpinner_profile = (Spinner) mView.findViewById(R.id.spinner_profile);
+        mSpinner_profile = (Spinner) findViewById(R.id.spinner_profile);
         try {
-            mProfileList = (XmlProfileDataStorage.getInstance(getActivity())).list();
+            mProfileList = (XmlProfileDataStorage.getInstance(this)).list();
             mProfileList.add(0, NON);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_profile, mProfileList);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_profile, mProfileList);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
             mSpinner_profile.setAdapter(adapter);
         } catch (IOException e) {
@@ -169,27 +164,17 @@ public class EditEventDialogFragment extends DialogFragment {
         });
 
         for (EventPlugin eventPlugin : PluginRegistry.getInstance().getEventPlugins()) {
-            SwitchItemLayout view = new SwitchItemLayout(getActivity(), eventPlugin.view(getActivity()));
-            LinearLayout layout = (LinearLayout) mView.findViewById(R.id.layout_events);
+            SwitchItemLayout view = new SwitchItemLayout(this, eventPlugin.view(this));
+            LinearLayout layout = (LinearLayout) findViewById(R.id.layout_events);
             layout.addView(view);
             items.put(eventPlugin.name(), view);
         }
+    }
 
-        Bundle bundle = getArguments();
-        if (purpose != Purpose.add) {
-            oldName = bundle.getString(CONTENT_NAME);
-            if (purpose == Purpose.edit) {
-                EventStructure event = storage.get(oldName);
-                loadFromEvent(event);
-            }
-        }
-        if (purpose == Purpose.delete) {
-            builder.setMessage(getString(R.string.prompt_delete, oldName));
-        } else {
-            builder.setView(mView);
-        }
-
-        return builder.create();
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        storage = null;
     }
 
     protected void loadFromEvent(EventStructure event) {
@@ -237,9 +222,10 @@ public class EditEventDialogFragment extends DialogFragment {
         return event;
     }
 
-    protected boolean alterEvent() {
+    boolean alterEvent() {
+        Log.d(getClass().getSimpleName(), "alterEvent()");
         boolean success;
-        if (purpose == Purpose.delete)
+        if (purpose == EditDataProto.Purpose.delete)
             success = storage.delete(oldName);
         else {
             EventStructure newEvent = saveToEvent();
@@ -257,7 +243,10 @@ public class EditEventDialogFragment extends DialogFragment {
             }
         }
         if (success) {
-            getActivity().sendBroadcast(new Intent(EventListFragment.ACTION_DATA_CHANGED));
+            setResult(RESULT_OK);
+            finish();
+        } else {
+            Toast.makeText(this, getString(R.string.prompt_save_failed), Toast.LENGTH_SHORT).show();
         }
         return success;
     }
