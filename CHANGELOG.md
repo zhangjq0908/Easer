@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+* v0.3.3: Add DayOfWeekEventPlugin && (re)add enabling state of events
+	* Add new event: DayOfWeekEventPlugin
+	* Restore the ability to set an event enabled or disabled
+	* Slight UI changes (better appearance)
+
 * v0.3.2: Make broadcast fully customizable && Add battery event plugin && Fix
 	* Make user able to customize all fields of intent (broadcast)
 	* Add BatteryEventPlugin to listen to battery status

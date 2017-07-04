@@ -24,6 +24,7 @@ Functions already supported
 * WiFi connection name (SSID)
 * Location (based on basestations)
 * Battery status
+* Day of week
 
 ### Operation
 * WiFi switch
