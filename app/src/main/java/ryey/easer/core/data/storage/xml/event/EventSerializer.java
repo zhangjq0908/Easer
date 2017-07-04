@@ -53,18 +53,18 @@ public class EventSerializer {
 
     private void writeEvent(EventStructure eventStructure) throws IOException {
         serializer.startTag(ns, C.EVENT);
-//        writeEnabled(); // remove 'enabled' for now //TODO: to be considered
+        writeActiveState(eventStructure.isActive());
         writeName(eventStructure.getName());
         writeProfile(eventStructure.getProfileName());
         writeTrigger(eventStructure.getEventData(), eventStructure.getParentName());
         serializer.endTag(ns, C.EVENT);
     }
 
-//    private void writeEnabled() throws IOException {
-//        serializer.startTag(ns, C.ENABLED);
-//        serializer.text(String.valueOf(mEvent.isEnabled()));
-//        serializer.endTag(ns, C.ENABLED);
-//    }
+    private void writeActiveState(boolean isActive) throws IOException {
+        serializer.startTag(ns, C.ACTIVE);
+        serializer.text(String.valueOf(isActive));
+        serializer.endTag(ns, C.ACTIVE);
+    }
 
     private void writeName(String name) throws IOException {
         serializer.startTag(ns, C.NAME);

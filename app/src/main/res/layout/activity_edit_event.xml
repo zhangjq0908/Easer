@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,15 +12,14 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/LR.Left"
             android:text="@string/text_title" />
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/LR.Right"
             android:id="@+id/editText_event_title"
             android:hint="@string/hint_event_title" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -30,15 +28,12 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/LR.Left"
             android:text="@string/text_parent" />
 
         <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/spinner_parent"
-            android:layout_weight="1" />
+            style="@style/LR.Right"
+            android:id="@+id/spinner_parent" />
     </LinearLayout>
 
     <LinearLayout
@@ -47,15 +42,12 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/LR.Left"
             android:text="@string/text_profile" />
 
         <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/spinner_profile"
-            android:layout_weight="1" />
+            style="@style/LR.Right"
+            android:id="@+id/spinner_profile" />
     </LinearLayout>
 
     <ScrollView

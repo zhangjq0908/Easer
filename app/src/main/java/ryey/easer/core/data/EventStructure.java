@@ -37,6 +37,7 @@ import ryey.easer.commons.plugindef.eventplugin.EventData;
 final public class EventStructure {
     protected String name;
     protected EventData eventData;
+    protected boolean active = true;
     @Nullable protected String profileName;
     @Nullable protected String parentName;
 
@@ -59,6 +60,14 @@ final public class EventStructure {
 
     public void setEventData(EventData eventData) {
         this.eventData = eventData;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public String getProfileName() {

@@ -8,4 +8,9 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="item_margin">4dp</dimen>
     <dimen name="spinner_text_size">8pt</dimen>
+
+    <dimen name="lr_padding_inner">5dp</dimen>
+    <dimen name="lr_padding_outer">10dp</dimen>
+    <integer name="lr_weight_left">1</integer>
+    <integer name="lr_weight_right">5</integer>
 </resources>

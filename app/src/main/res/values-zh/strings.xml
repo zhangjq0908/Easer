@@ -12,7 +12,7 @@
     <string name="service_indicator_positive">運行中</string>
     <string name="button_cancel">取消</string>
     <string name="button_ok">確認</string>
-    <string name="text_parent">父:</string>
+    <string name="text_parent">父事件:</string>
     <string name="text_title">名稱</string>
     <string name="title_about">關於</string>
     <string name="title_add">增加</string>
@@ -43,5 +43,6 @@
     <string name="menu_action_save">保存</string>
     <string name="title_edit_event">編輯事件</string>
     <string name="title_edit_profile">編輯行爲集</string>
+    <string name="toggle_active">啓用</string>
 
 </resources>

@@ -161,7 +161,8 @@ final class Lotus {
                 context.startService(intent);
             }
             for (EventTree sub : node.getSubs()) {
-                traverseAndTrigger(sub, true);
+                if (sub.isActive())
+                    traverseAndTrigger(sub, true);
             }
         }
     }
@@ -179,9 +180,11 @@ final class Lotus {
                 context.startService(intent);
             }
             for (EventTree sub : eventTree.getSubs()) {
-                Lotus subLotus = new Lotus(context, sub);
-                subs.add(subLotus);
-                subLotus.listen();
+                if (sub.isActive()) {
+                    Lotus subLotus = new Lotus(context, sub);
+                    subs.add(subLotus);
+                    subLotus.listen();
+                }
             }
         }
     }

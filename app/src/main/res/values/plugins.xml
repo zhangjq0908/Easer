@@ -5,6 +5,7 @@
     <string name="event_wificonn">WiFi Connection</string>
     <string name="event_celllocation">Cell Location</string>
     <string name="event_battery">Battery Status</string>
+    <string name="event_day_of_week">Day of Week</string>
 
     <string name="operation_wifi">WiFi</string>
     <string name="operation_cellular">Mobile data</string>

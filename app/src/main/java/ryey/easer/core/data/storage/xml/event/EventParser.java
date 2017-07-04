@@ -59,9 +59,9 @@ public class EventParser {
                 continue;
             }
             switch (parser.getName()) {
-//                case C.ENABLED: //same as in EventSerializer
-//                    readEnabled();
-//                    break;
+                case C.ACTIVE: //same as in EventSerializer
+                    readActiveState();
+                    break;
                 case C.NAME:
                     readName();
                     break;
@@ -79,9 +79,9 @@ public class EventParser {
         return true;
     }
 
-//    private void readEnabled() throws IOException, XmlPullParserException, IllegalXmlException {
-//        event.setEnabled(Boolean.parseBoolean(XmlHelper.getText(parser, "Enabled")));
-//    }
+    private void readActiveState() throws IOException, XmlPullParserException, IllegalXmlException {
+        event.setActive(Boolean.parseBoolean(XmlHelper.getText(parser, "Enabled")));
+    }
 
     private void readName() throws IOException, XmlPullParserException, IllegalXmlException {
         event.setName(XmlHelper.getText(parser, "Name"));

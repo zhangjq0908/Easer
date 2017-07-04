@@ -50,10 +50,12 @@ public class EditEventActivity extends AppCompatActivity {
     List<String> mEventList = null;
     Spinner mSpinner_profile = null;
     List<String> mProfileList = null;
+    boolean isActive = true;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.edit_data, menu);
+        getMenuInflater().inflate(R.menu.edit_event, menu);
+        menu.findItem(R.id.action_toggle_active).setChecked(isActive);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -62,6 +64,10 @@ public class EditEventActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_save:
                 alterEvent();
+                break;
+            case R.id.action_toggle_active:
+                isActive = !item.isChecked();
+                item.setChecked(isActive);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -109,8 +115,10 @@ public class EditEventActivity extends AppCompatActivity {
         } else {
             setContentView(R.layout.activity_edit_event);
             ActionBar actionbar = getSupportActionBar();
-            actionbar.setHomeAsUpIndicator(R.drawable.ic_close_24dp);
-            actionbar.setDisplayHomeAsUpEnabled(true);
+            if (actionbar != null) {
+                actionbar.setHomeAsUpIndicator(R.drawable.ic_close_24dp);
+                actionbar.setDisplayHomeAsUpEnabled(true);
+            }
             setTitle(R.string.title_edit_event);
             init();
             if (purpose == EditDataProto.Purpose.edit) {
@@ -187,6 +195,8 @@ public class EditEventActivity extends AppCompatActivity {
         String parent = event.getParentName();
         mSpinner_parent.setSelection(mEventList.indexOf(parent));
 
+        isActive = event.isActive();
+
         for (EventPlugin plugin : PluginRegistry.getInstance().getEventPlugins()) {
             SwitchItemLayout item = items.get(plugin.name());
             if (event.getEventData().pluginClass() == plugin.getClass()) {
@@ -201,6 +211,7 @@ public class EditEventActivity extends AppCompatActivity {
         EventStructure event = new EventStructure(mEditText_name.getText().toString());
         String profile = (String) mSpinner_profile.getSelectedItem();
         event.setProfileName(profile);
+        event.setActive(isActive);
         String parent = (String) mSpinner_parent.getSelectedItem();
         if (!parent.equals(NON))
             event.setParentName(parent);

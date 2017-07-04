@@ -17,39 +17,38 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.data;
+package ryey.easer.plugins.event.dayofweek;
 
-import java.util.LinkedList;
-import java.util.List;
+import android.content.Context;
 
+import ryey.easer.commons.plugindef.ContentLayout;
+import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 
-/*
- * Events are linked together as trees. This class represents that structure and relevant methods.
- */
-final public class EventTree {
-    EventStructure data;
-    List<EventTree> subs;
-    public EventTree(EventStructure eventStructure) {
-        this.data = eventStructure;
-        this.subs = new LinkedList<>();
+public class DayOfWeekEventPlugin implements EventPlugin {
+
+    static String pname() {
+        return "day_of_week";
     }
-    public String getName() {
-        return data.name;
+
+    @Override
+    public String name() {
+        return pname();
     }
-    public EventData getEvent() {
-        return data.eventData;
+
+    @Override
+    public EventData data() {
+        return new DayOfWeekEventData();
     }
-    public void addSub(EventTree sub) {
-        subs.add(sub);
+
+    @Override
+    public ContentLayout view(Context context) {
+        return new DayOfWeekContentLayout(context);
     }
-    public List<EventTree> getSubs() {
-        return subs;
-    }
-    public String getProfile() {
-        return data.profileName;
-    }
-    public boolean isActive() {
-        return data.isActive();
+
+    @Override
+    public AbstractSlot slot(Context context) {
+        return new DayOfWeekSlot(context);
     }
 }

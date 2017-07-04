@@ -198,7 +198,7 @@ public class XmlEventDataStorage implements EventDataStorage {
         List<EventStructure> int_roots = eventIntermediateDataMap.get(null);
         if (int_roots != null) {
             for (EventStructure int_root : int_roots) {
-                EventTree tree = new EventTree(int_root.getName(), int_root.getEventData(), int_root.getProfileName());
+                EventTree tree = new EventTree(int_root);
                 eventTreeList.add(tree);
                 mapToTreeList(eventIntermediateDataMap, tree);
             }
@@ -223,7 +223,7 @@ public class XmlEventDataStorage implements EventDataStorage {
         if (eventStructureList == null)
             return;
         for (EventStructure int_node : eventStructureList) {
-            EventTree sub_node = new EventTree(int_node.getName(), int_node.getEventData(), int_node.getProfileName());
+            EventTree sub_node = new EventTree(int_node);
             node.addSub(sub_node);
             mapToTreeList(eventIntermediateDataMap, sub_node);
         }

@@ -45,7 +45,7 @@ public class EventTest {
         t_event = new EventStructure();
         t_event.setName("123");
         t_event.setParentName("myparent");
-//        t_event.setEnabled(false);
+//        t_event.setActive(false);
         t_event.setProfileName("profile");
 //        t_event.setTime(Utils.TextToTime("13:23"));
     }
@@ -56,7 +56,7 @@ public class EventTest {
         EventParser eventParser = new EventParser();
         EventStructure event = eventParser.parse(byteArrayInputStream);
         assertEquals("123", event.getName());
-//        assertEquals(false, event.isEnabled());
+//        assertEquals(false, event.isActive());
         assertEquals("profile", event.getProfileName());
         assertEquals("myparent", event.getParentName());
 //        assertEquals("13:23", Utils.TimeToText(event.getTime()));

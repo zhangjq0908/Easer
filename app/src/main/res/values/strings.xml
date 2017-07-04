@@ -37,6 +37,8 @@
     <string name="text_parent">Parent: </string>
     <string name="text_profile">Profile: </string>
 
+    <string name="toggle_active">Active</string>
+
     <string name="hint_event_title">event title</string>
     <string name="hint_profile_title">profile title</string>
 
