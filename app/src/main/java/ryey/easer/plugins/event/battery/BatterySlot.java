@@ -22,8 +22,10 @@ public class BatterySlot extends AbstractSlot {
             switch (intent.getAction()) {
                 case Intent.ACTION_POWER_CONNECTED:
                     determineAndNotify(true);
+                    break;
                 case Intent.ACTION_POWER_DISCONNECTED:
                     determineAndNotify(false);
+                    break;
             }
         }
     };
@@ -69,7 +71,7 @@ public class BatterySlot extends AbstractSlot {
         Intent batteryStatus = context.registerReceiver(null, ifilter);
         int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
         boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
-                status == BatteryManager.BATTERY_STATUS_FULL;
+                             status == BatteryManager.BATTERY_STATUS_FULL;
         determineAndNotify(isCharging);
     }
 

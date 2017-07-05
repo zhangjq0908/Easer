@@ -47,7 +47,10 @@ public class WifiConnSlot extends AbstractSlot {
                     WifiInfo wifiInfo = intent.getParcelableExtra(WifiManager.EXTRA_WIFI_INFO);
                     if (type == EventType.is)
                         changeSatisfiedState(compare(wifiInfo));
-                }
+                    else
+                        changeSatisfiedState(false);
+                } else
+                    changeSatisfiedState(false);
             }
         }
     };
@@ -103,14 +106,16 @@ public class WifiConnSlot extends AbstractSlot {
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
         if (type == EventType.is) {
             changeSatisfiedState(compare(wifiInfo));
-        }
-        if (type == EventType.is_not) {
+        } else if (type == EventType.is_not) {
             changeSatisfiedState(!compare(wifiInfo));
         }
     }
 
     private boolean compare(WifiInfo wifiInfo) {
         ssid = wifiInfo.getSSID();
+        if (ssid.startsWith("\"")) {
+            ssid = ssid.substring(1, ssid.length() - 1);
+        }
         return ssid.equals(target_ssid);
     }
 }

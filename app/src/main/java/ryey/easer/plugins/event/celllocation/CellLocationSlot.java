@@ -88,8 +88,7 @@ public class CellLocationSlot extends AbstractSlot {
             curr = CellLocationSingleData.fromCellLocation(location);
             if (type == EventType.any) {
                 changeSatisfiedState(target.contains(curr));
-            }
-            if (type == EventType.none) {
+            } else if (type == EventType.none) {
                 changeSatisfiedState(!target.contains(curr));
             }
         }

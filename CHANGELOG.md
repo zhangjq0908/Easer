@@ -1,6 +1,12 @@
 CHANGELOG
 ======
 
+* v0.3.3.2: Bug fixes && More XMLs
+	* Fix WifiEventPlugin's compariasion of SSIDs
+	* Fix BatteryEventPlugin's monitoring
+	* Use XML in WifiEventPlugin
+	* Slight code changes (with no changing of functions)
+
 * v0.3.3.1: Use layout xmls instead of Java codes for some plugin layouts
 
 * v0.3.3: Add DayOfWeekEventPlugin && (re)add enabling state of events

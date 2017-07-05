@@ -33,8 +33,8 @@ public class WifiContentLayout extends TypedContentLayout {
         setAvailableTypes(new WifiEventData().availableTypes());
         setType(new WifiEventData().type());
         setDesc(context.getString(R.string.event_wificonn));
-        editText = new EditText(context);
-        addView(editText);
+        inflate(context, R.layout.plugin_event__wifi_connection, this);
+        editText = (EditText) findViewById(R.id.wifi_name);
     }
 
     @Override

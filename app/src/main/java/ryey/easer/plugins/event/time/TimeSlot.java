@@ -82,6 +82,7 @@ public class TimeSlot extends SelfNotifiableSlot {
                 case is_not:
                     mAlarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                             AlarmManager.INTERVAL_DAY, notifySelfIntent_negative);
+                    break;
             }
         }
     }
