@@ -13,4 +13,6 @@
     <dimen name="lr_padding_outer">10dp</dimen>
     <integer name="lr_weight_left">1</integer>
     <integer name="lr_weight_right">5</integer>
+    <integer name="lr_input_weight_left">1</integer>
+    <integer name="lr_input_weight_right">4</integer>
 </resources>

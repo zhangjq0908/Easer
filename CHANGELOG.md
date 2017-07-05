@@ -1,6 +1,8 @@
 CHANGELOG
 ======
 
+* v0.3.3.1: Use layout xmls instead of Java codes for some plugin layouts
+
 * v0.3.3: Add DayOfWeekEventPlugin && (re)add enabling state of events
 	* Add new event: DayOfWeekEventPlugin
 	* Restore the ability to set an event enabled or disabled

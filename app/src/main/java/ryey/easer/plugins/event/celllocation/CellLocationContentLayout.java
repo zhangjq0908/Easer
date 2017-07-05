@@ -39,11 +39,9 @@ public class CellLocationContentLayout extends TypedContentLayout {
         setAvailableTypes(new CellLocationEventData().availableTypes());
         setType(new CellLocationEventData().type());
         setDesc(context.getString(R.string.event_celllocation));
-        editText = new EditText(context);
-        editText.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        ImageButton imgButton = new ImageButton(context);
-        imgButton.setImageResource(R.drawable.ic_add_location_black);
-        imgButton.setOnClickListener(new OnClickListener() {
+        inflate(context, R.layout.plugin_event__cell_location, this);
+        editText = (EditText) findViewById(R.id.location_text);
+        findViewById(R.id.location_picker).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 TelephonyManager telephonyManager = (TelephonyManager) getContext().getSystemService(Context.TELEPHONY_SERVICE);
@@ -55,12 +53,6 @@ public class CellLocationContentLayout extends TypedContentLayout {
                 editText.setText(locationData.toString());
             }
         });
-        LinearLayout layout = new LinearLayout(context);
-        layout.setOrientation(LinearLayout.HORIZONTAL);
-        layout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-        layout.addView(imgButton);
-        layout.addView(editText);
-        addView(layout);
     }
 
     @Override

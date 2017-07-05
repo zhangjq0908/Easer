@@ -22,12 +22,10 @@ package ryey.easer.plugins.operation.broadcast;
 import android.content.Context;
 import android.net.Uri;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.ContentLayout;
 import ryey.easer.commons.plugindef.StorageData;
-import ryey.easer.plugins.reusable.LeftNRight;
 
 public class BroadcastContentLayout extends ContentLayout {
     EditText m_text_action;
@@ -36,24 +34,11 @@ public class BroadcastContentLayout extends ContentLayout {
     EditText m_text_data;
     public BroadcastContentLayout(Context context) {
         super(context);
-        LeftNRight lnr;
-        lnr = new LeftNRight(context);
-        lnr.setLeftText(R.string.obroadcast_l_action);
-        addView(lnr);
-        m_text_action = lnr.getEditText();
-        lnr = new LeftNRight(context);
-        lnr.setLeftText(R.string.obroadcast_l_category);
-        addView(lnr);
-        m_text_category = lnr.getEditText();
-        lnr = new LeftNRight(context);
-        lnr.setLeftText(R.string.obroadcast_l_type);
-        addView(lnr);
-        m_text_type = lnr.getEditText();
-        lnr = new LeftNRight(context);
-        lnr.setLeftText(R.string.obroadcast_l_data);
-        addView(lnr);
-        m_text_data = lnr.getEditText();
-        setDesc(context.getString(R.string.operation_broadcast));
+        inflate(context, R.layout.plugin_operation__broadcast, this);
+        m_text_action = (EditText) findViewById(R.id.text_action);
+        m_text_category = (EditText) findViewById(R.id.text_category);
+        m_text_type = (EditText) findViewById(R.id.text_type);
+        m_text_data = (EditText) findViewById(R.id.text_data);
     }
 
     @Override

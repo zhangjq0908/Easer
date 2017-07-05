@@ -20,21 +20,13 @@
 package ryey.easer.plugins.event.dayofweek;
 
 import android.content.Context;
-import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CompoundButton;
-import android.widget.DatePicker;
-import android.widget.HorizontalScrollView;
-import android.widget.LinearLayout;
-import android.widget.RadioGroup;
-import android.widget.ScrollView;
 import android.widget.ToggleButton;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
@@ -50,21 +42,18 @@ public class DayOfWeekContentLayout extends TypedContentLayout {
         setAvailableTypes(new DayOfWeekEventData().availableTypes());
         setType(new DayOfWeekEventData().type());
         setDesc(context.getString(R.string.event_day_of_week));
-        HorizontalScrollView scrollView = new HorizontalScrollView(context);
-        addView(scrollView);
-        LinearLayout days_selector_container = new LinearLayout(context);
-        scrollView.addView(days_selector_container);
+        inflate(context, R.layout.plugin_event__day_of_week, this);
+        ViewGroup vg = (ViewGroup) findViewById(R.id.plugin__day_of_week_container);
         SimpleDateFormat sdf = new SimpleDateFormat("E", Locale.getDefault());
         Calendar cal = Calendar.getInstance();
         for (int i = 0; i < 7; i++) {
-            ToggleButton toggleButton = new ToggleButton(context);
+            ToggleButton toggleButton = (ToggleButton) vg.getChildAt(i);
             day_buttons[i] = toggleButton;
             cal.set(Calendar.DAY_OF_WEEK, i + 1);
             String text = sdf.format(cal.getTime());
             toggleButton.setText(text);
             toggleButton.setTextOn(text);
             toggleButton.setTextOff(text);
-            days_selector_container.addView(toggleButton);
         }
     }
 

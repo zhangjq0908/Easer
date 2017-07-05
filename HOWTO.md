@@ -23,3 +23,4 @@
 `EventPlugin`接口和`OperationPlugin`接口均有詳細註釋。
 
 無論是`EventPlugin`還是`OperationPlugin`均需實現UI部分，均是通過實現一個`ryey.easer.commons.plugindef.ContentLayout`的子類來完成。一些常用的子類已在`ryey.easer.plugins`或子包中寫好，方便使用。
+上面所說的`ryey.easer.commons.plugindef.ContentLayout`繼承自`LinearLayout`，所以添加具體內容時可以自行選擇使用XML資源文件還是手動寫Java代碼。

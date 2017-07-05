@@ -8,13 +8,21 @@ Ease your life by automatically performing routine actions.
 
 Introduction
 -----
-Trigger actions or change settings (bundled as *Profile*) in different situations (Event).
+Make your smart phone smarter: tell it what to do under different situations.
 
-Events are chained as trees. Easer will perform Post-Order Traversal to load you Profile(s).
+You can think Easer as a local version of IFTTT: Trigger actions or change settings (*Operation*s, bundled as *Profile*) in different situations (*Event*).
 
-Interested in joining development? Have a look at [HOWTO](HOWTO.en.md) and [TODO](TODO.en.md).
+You can chain *Event*s (set dependencies) as trees. Easer will perform Post-Order Traversal to load you Profile(s).
+
+Interested in joining development / add more *Event*s or *Operation*s / optimising UI? Have a look at [HOWTO](HOWTO.en.md) and [TODO](TODO.en.md).
 
 Also have a look at [wiki](https://github.com/renyuneyun/Easer/wiki), especially [FAQ](https://github.com/renyuneyun/Easer/wiki/FAQ).
+
+Examples
+------
+* Turn your phone into Silent mode at 2 a.m.
+* Cancel Silent mode at 8 a.m. on weekdays, and at 10 a.m. on weekends
+* Turn WiFi on when approaching your home; turn WiFi off when leaving your home
 
 Functions already supported
 --------

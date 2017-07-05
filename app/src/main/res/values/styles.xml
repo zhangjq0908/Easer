@@ -42,4 +42,17 @@
         <item name="android:paddingRight">@dimen/lr_padding_outer</item>
     </style>
 
+    <style name="LR.Input">
+        <item name="android:layout_gravity">top</item>
+    </style>
+
+    <style name="LR.Input.Left">
+        <item name="android:layout_weight">@integer/lr_input_weight_left</item>
+    </style>
+
+    <style name="LR.Input.Right">
+        <item name="android:layout_weight">@integer/lr_input_weight_right</item>
+        <item name="android:ems">10</item>
+    </style>
+
 </resources>

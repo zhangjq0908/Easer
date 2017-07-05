@@ -23,3 +23,4 @@ I strongly recommend you to follow the way that existing plugins do and put your
 Both `EventPlugin` and `OperationPlugin` are commented in some detail.
 
 Either an `EventPlugin` or `OperationPlugin` will need to implement it relevant UI, by implementing a subclass of `ryey.easer.commons.plugindef.ContentLayout`. Some common subclasses are already in `ryey.easer.plugins` or its sub-package. You can use them as you wish.
+The aforementioned `ryey.easer.commons.plugindef.ContentLayout` is a subclass of `LinearLayout`, so you can freely choose to use XML layout resources or write Java codes to add details.
