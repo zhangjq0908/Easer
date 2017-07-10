@@ -42,6 +42,7 @@ Functions already supported
 * Sending Broadcast
 * Screen brightness
 * Ringer mode
+* Run commands
 
 Copyright
 ------

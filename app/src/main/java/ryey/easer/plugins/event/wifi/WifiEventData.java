@@ -77,9 +77,9 @@ public class WifiEventData extends TypedEventData {
 
     @Override
     public void parse(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
-        String str_data = XmlHelper.readSingleSituation(parser);
+        String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
         set(str_data);
-        EventType type = XmlHelper.readLogic(parser);
+        EventType type = XmlHelper.EventHelper.readLogic(parser);
         setType(type);
     }
 
@@ -87,8 +87,8 @@ public class WifiEventData extends TypedEventData {
     public void serialize(XmlSerializer serializer) throws IOException {
         String wifi = (String) get();
         if (wifi != null) {
-            XmlHelper.writeSingleSituation(serializer, pname(), wifi);
-            XmlHelper.writeLogic(serializer, type());
+            XmlHelper.EventHelper.writeSingleSituation(serializer, pname(), wifi);
+            XmlHelper.EventHelper.writeLogic(serializer, type());
         }
     }
 }

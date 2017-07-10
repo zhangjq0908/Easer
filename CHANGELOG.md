@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+* v0.3.4: Add CommandOperationPlugin && More XMLs && Code rearrangements
+	* Add CommandOperationPlugin: run any commands
+	* Add more XML layout usages
+	* Rearrange some code
+
 * v0.3.3.2: Bug fixes && More XMLs
 	* Fix WifiEventPlugin's compariasion of SSIDs
 	* Fix BatteryEventPlugin's monitoring

@@ -22,10 +22,7 @@ package ryey.easer.plugins.event.celllocation;
 import android.content.Context;
 import android.telephony.TelephonyManager;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.StorageData;

@@ -20,8 +20,10 @@
 package ryey.easer.plugins.reusable;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.widget.Switch;
 
+import ryey.easer.R;
 import ryey.easer.commons.plugindef.ContentLayout;
 import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
@@ -30,23 +32,17 @@ public abstract class SwitchContentLayout extends ContentLayout {
     Switch aSwitch;
     public SwitchContentLayout(Context context) {
         super(context);
-        aSwitch = new Switch(context);
-        aSwitch.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-        addView(aSwitch);
+        inflate(context, R.layout.plugin_reusable__switch, this);
+        aSwitch = (Switch) findViewById(R.id.plugin_reusable__switch);
     }
 
-    protected static void setSwitch(Switch sw, Boolean state) {
-        sw.setChecked(state == true);
+    protected static void setSwitch(@NonNull Switch sw, Boolean state) {
+        sw.setChecked(state);
     }
 
-    protected static Boolean fromSwitch(Switch sw) {
-        Boolean state;
-        if (sw.isChecked()) {
-            state = true;
-        } else {
-            state = false;
-        }
-        return state;
+    @NonNull
+    protected static Boolean fromSwitch(@NonNull Switch sw) {
+        return sw.isChecked();
     }
 
     @Override

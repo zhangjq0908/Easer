@@ -22,9 +22,7 @@ package ryey.easer.plugins.event.dayofweek;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.util.Log;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Set;
 

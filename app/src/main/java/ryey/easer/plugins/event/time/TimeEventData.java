@@ -94,10 +94,10 @@ public class TimeEventData extends TypedEventData {
 
     @Override
     public void parse(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
-        String str_data = XmlHelper.readSingleSituation(parser);
+        String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
         try {
             set(TextToTime(str_data));
-            EventType type = XmlHelper.readLogic(parser);
+            EventType type = XmlHelper.EventHelper.readLogic(parser);
             setType(type);
         } catch (ParseException e) {
             e.printStackTrace();
@@ -109,8 +109,8 @@ public class TimeEventData extends TypedEventData {
     public void serialize(XmlSerializer serializer) throws IOException {
         Calendar time = (Calendar) get();
         if (time != null) {
-            XmlHelper.writeSingleSituation(serializer, pname(), TimeToText(time));
-            XmlHelper.writeLogic(serializer, type());
+            XmlHelper.EventHelper.writeSingleSituation(serializer, pname(), TimeToText(time));
+            XmlHelper.EventHelper.writeLogic(serializer, type());
         }
     }
 }

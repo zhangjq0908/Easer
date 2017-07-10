@@ -37,6 +37,7 @@ import ryey.easer.plugins.operation.bluetooth.BluetoothOperationPlugin;
 import ryey.easer.plugins.operation.brightness.BrightnessOperationPlugin;
 import ryey.easer.plugins.operation.broadcast.BroadcastOperationPlugin;
 import ryey.easer.plugins.operation.cellular.CellularOperationPlugin;
+import ryey.easer.plugins.operation.command.CommandOperationPlugin;
 import ryey.easer.plugins.operation.ringer_mode.RingerModeOperationPlugin;
 import ryey.easer.plugins.operation.rotation.RotationOperationPlugin;
 import ryey.easer.plugins.operation.wifi.WifiOperationPlugin;
@@ -71,6 +72,7 @@ final public class PluginRegistry {
         pluginRegistry.registerOperationPlugin(BroadcastOperationPlugin.class);
         pluginRegistry.registerOperationPlugin(BrightnessOperationPlugin.class);
         pluginRegistry.registerOperationPlugin(RingerModeOperationPlugin.class);
+        pluginRegistry.registerOperationPlugin(CommandOperationPlugin.class);
         //TODO: register plugins
 
         pluginRegistry.initialised.open();

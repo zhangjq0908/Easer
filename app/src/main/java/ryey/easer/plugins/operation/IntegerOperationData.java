@@ -39,10 +39,10 @@ public abstract class IntegerOperationData extends IntegerData implements Operat
     }
 
     protected void mParse(XmlPullParser parser, String name) throws IOException, XmlPullParserException, IllegalXmlException {
-        set(XmlHelper.handleInteger(parser, name));
+        set(XmlHelper.OperationHelper.handleInteger(parser, name));
     }
 
     protected void mSerialize(XmlSerializer serializer, String name) throws IOException {
-        XmlHelper.dealInteger(serializer, name, (Integer) get());
+        XmlHelper.OperationHelper.dealInteger(serializer, name, (Integer) get());
     }
 }

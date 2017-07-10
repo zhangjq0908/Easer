@@ -83,10 +83,10 @@ public class DayOfWeekEventData extends TypedEventData {
 
     @Override
     public void parse(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
-        String str_data = XmlHelper.readSingleSituation(parser);
+        String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
         try {
             set(Utils.str2set(str_data));
-            EventType type = XmlHelper.readLogic(parser);
+            EventType type = XmlHelper.EventHelper.readLogic(parser);
             setType(type);
         } catch (ParseException e) {
             e.printStackTrace();
@@ -97,8 +97,8 @@ public class DayOfWeekEventData extends TypedEventData {
     @Override
     public void serialize(XmlSerializer serializer) throws IOException {
         if (days != null) {
-            XmlHelper.writeSingleSituation(serializer, pname(), Utils.set2str(days));
-            XmlHelper.writeLogic(serializer, type());
+            XmlHelper.EventHelper.writeSingleSituation(serializer, pname(), Utils.set2str(days));
+            XmlHelper.EventHelper.writeLogic(serializer, type());
         }
     }
 }

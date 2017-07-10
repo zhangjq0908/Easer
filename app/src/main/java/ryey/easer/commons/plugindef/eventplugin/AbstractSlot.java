@@ -71,7 +71,9 @@ public abstract class AbstractSlot {
      * Not sure if this methods is really needed.
      * Currently there is nothing using it.
      */
-    public abstract boolean isValid();
+    public boolean isValid() {
+        return true;
+    }
 
     /*
      * Start functioning as a top-level listener.

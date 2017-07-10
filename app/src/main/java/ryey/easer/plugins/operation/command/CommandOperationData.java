@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.operation;
+package ryey.easer.plugins.operation.command;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -26,23 +26,25 @@ import org.xmlpull.v1.XmlSerializer;
 import java.io.IOException;
 
 import ryey.easer.commons.IllegalXmlException;
-import ryey.easer.commons.XmlHelper;
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
-import ryey.easer.plugins.reusable.BooleanData;
+import ryey.easer.plugins.operation.StringOperationData;
 
-public abstract class BooleanOperationData extends BooleanData implements OperationData {
+import static ryey.easer.plugins.operation.wifi.WifiOperationPlugin.pname;
 
-    public BooleanOperationData() {super();}
-
-    public BooleanOperationData(Boolean state) {
-        super(state);
+public class CommandOperationData extends StringOperationData {
+    public CommandOperationData() {
     }
 
-    protected void mParse(XmlPullParser parser, String name) throws IOException, XmlPullParserException, IllegalXmlException {
-        set(XmlHelper.OperationHelper.handleBoolean(parser, name));
+    public CommandOperationData(String command) {
+        super(command);
     }
 
-    protected void mSerialize(XmlSerializer serializer, String name) throws IOException {
-        XmlHelper.OperationHelper.dealBoolean(serializer, name, (Boolean) get());
+    @Override
+    public void parse(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
+        mParse(parser, pname());
+    }
+
+    @Override
+    public void serialize(XmlSerializer serializer) throws IOException {
+        mSerialize(serializer, pname());
     }
 }

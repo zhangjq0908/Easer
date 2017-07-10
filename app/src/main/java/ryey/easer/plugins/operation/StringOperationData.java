@@ -28,21 +28,21 @@ import java.io.IOException;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
-import ryey.easer.plugins.reusable.BooleanData;
+import ryey.easer.plugins.reusable.StringData;
 
-public abstract class BooleanOperationData extends BooleanData implements OperationData {
+public abstract class StringOperationData extends StringData implements OperationData {
 
-    public BooleanOperationData() {super();}
+    public StringOperationData() {super();}
 
-    public BooleanOperationData(Boolean state) {
-        super(state);
+    public StringOperationData(String text) {
+        super(text);
     }
 
     protected void mParse(XmlPullParser parser, String name) throws IOException, XmlPullParserException, IllegalXmlException {
-        set(XmlHelper.OperationHelper.handleBoolean(parser, name));
+        set(XmlHelper.OperationHelper.handleString(parser, name));
     }
 
     protected void mSerialize(XmlSerializer serializer, String name) throws IOException {
-        XmlHelper.OperationHelper.dealBoolean(serializer, name, (Boolean) get());
+        XmlHelper.OperationHelper.dealString(serializer, name, (String) get());
     }
 }

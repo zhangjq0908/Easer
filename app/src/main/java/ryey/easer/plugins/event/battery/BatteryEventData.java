@@ -53,10 +53,10 @@ public class BatteryEventData extends TypedEventData {
 
     @Override
     public void parse(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
-        String str_data = XmlHelper.readSingleSituation(parser);
+        String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
         Integer int_data = Integer.parseInt(str_data);
         set(int_data);
-        EventType type = XmlHelper.readLogic(parser);
+        EventType type = XmlHelper.EventHelper.readLogic(parser);
         setType(type);
     }
 
@@ -65,8 +65,8 @@ public class BatteryEventData extends TypedEventData {
         Integer int_status = (Integer) get();
         if (int_status != null) {
             String status = int_status.toString();
-            XmlHelper.writeSingleSituation(serializer, pname(), status);
-            XmlHelper.writeLogic(serializer, type());
+            XmlHelper.EventHelper.writeSingleSituation(serializer, pname(), status);
+            XmlHelper.EventHelper.writeLogic(serializer, type());
         }
     }
 
