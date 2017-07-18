@@ -6,6 +6,9 @@
     <string name="event_wificonn">WiFi連接</string>
     <string name="event_battery">電池狀態</string>
     <string name="event_day_of_week">星期幾</string>
+    <string name="event_bluetooth_device">連接的藍牙設備</string>
+    <string name="ebtdevice_select_dialog_title">選擇藍牙設備</string>
+    <string name="ebtdevice_unknown_device">未知設備</string>
     
     <string name="operation_bluetooth">藍牙</string>
     <string name="operation_brightness">亮度</string>
