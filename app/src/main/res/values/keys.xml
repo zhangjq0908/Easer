@@ -2,4 +2,6 @@
 <resources>
     <string name="key_pref_autostart" translatable="false">preference_autostart</string>
     <string name="key_pref_welcome" translatable="false">preference_show_welcome</string>
+    <string name="key_pref_export" translatable="false">preference_export</string>
+    <string name="key_pref_import" translatable="false">preference_import</string>
 </resources>

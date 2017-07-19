@@ -33,6 +33,7 @@ Functions already supported
 * Location (based on basestations)
 * Battery status
 * Day of week
+* Bluetooth device connected
 
 ### Operation
 * WiFi switch

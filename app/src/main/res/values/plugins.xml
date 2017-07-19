@@ -24,7 +24,7 @@
     <string name="operation_brightness">Brightness</string>
     <string name="operation_brightness_desc_autobrightness">Auto brightness</string>
     <string name="operation_ringer_mode">Ringer Mode</string>
-    <string name="operation_command">Ringer Mode</string>
+    <string name="operation_command">Run commands</string>
 
     <string-array name="event_type">
         <item>After</item>

@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+* v0.3.5: Add BluetoothDeviceEventPlugin && Add import/export && fixes
+	* Add a new event to listen to the bluetooth device connected
+	* Add the ability to import and export events and profiles
+	* Fix the name of CommandOperationPlugin
+
 * v0.3.4: Add CommandOperationPlugin && More XMLs && Code rearrangements
 	* Add CommandOperationPlugin: run any commands
 	* Add more XML layout usages

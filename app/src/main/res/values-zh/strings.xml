@@ -44,5 +44,10 @@
     <string name="title_edit_event">編輯事件</string>
     <string name="title_edit_profile">編輯行爲集</string>
     <string name="toggle_active">啓用</string>
+    <string name="pref_export_summary">導出所有事件和行爲集。\n文件名將包含當前時間。</string>
+    <string name="pref_export_title">導出</string>
+    <string name="pref_import_summary">從zip文件中導入時間和行爲集。\n已經存在的同名事件和行爲集會被覆蓋。</string>
+    <string name="pref_import_title">導入</string>
+    <string name="template_export">已導出到%s</string>
 
 </resources>

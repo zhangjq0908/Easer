@@ -20,7 +20,6 @@
 package ryey.easer.core.ui;
 
 import android.app.AlertDialog;
-import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.DialogInterface;

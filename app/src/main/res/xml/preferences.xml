@@ -11,4 +11,13 @@
         android:key="@string/key_pref_welcome"
         android:summary="@string/pref_welcome_summary"
         android:title="@string/pref_welcome_title" />
+
+    <Preference
+        android:key="@string/key_pref_export"
+        android:title="@string/pref_export_title"
+        android:summary="@string/pref_export_summary"/>
+    <Preference
+        android:key="@string/key_pref_import"
+        android:title="@string/pref_import_title"
+        android:summary="@string/pref_import_summary"/>
 </PreferenceScreen>

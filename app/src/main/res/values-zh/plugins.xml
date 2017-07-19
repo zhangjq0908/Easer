@@ -24,6 +24,7 @@
     <string name="operation_rotation">自動旋轉</string>
     <string name="operation_wifi">WiFi</string>
     <string name="operation_ringer_mode">響鈴模式</string>
+    <string name="operation_command">執行命令</string>
 
     <string-array name="event_type">
         <item>晚於</item>
