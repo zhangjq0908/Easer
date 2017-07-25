@@ -50,3 +50,11 @@ Copyright
 Copyright (c) 2016 - 2017 Rui Zhao (renyuneyun) <renyuneyun@gmail.com>
 
 Licensed under GPLv3+ (See LICENSE)
+
+### Why GPL?
+
+The expected functions of Easer contain lots of tracks / 
+captures of privacy (e.g. location, calendar), and would be able to access the Internet. We would never want a tool which is expected to better facilitate our lives to become a spying tool, so we must prevent that from happening as we can. The only way is to allow anyone to censor every part of Easer, which means to ensure Easer (and its derivated work, if any) to be opensource.  
+Because as of the design of Easer, each functionality will (in the furutre) become modules / plugins, maicious codes should also be prohibited from these parts, so we hope to rely on the feature of GPL (that derivated work should also be licensed under GPL) to enforce this.
+
+In fact, ensuring derivated work / plugins to be **GPL** is unneeded, because we only need them to be **opensource**. However, GPL is the only license (known by me) which can enforce deriavted work / plugins to be opensource, so it's the only choice.
