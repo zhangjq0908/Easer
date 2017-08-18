@@ -1,6 +1,9 @@
 CHANGELOG
 ======
 
+* v0.3.5.1: No auto-starting of the EHService during application startup
+	* Mainly used for debugging purpose
+
 * v0.3.5: Add BluetoothDeviceEventPlugin && Add import/export && fixes
 	* Add a new event to listen to the bluetooth device connected
 	* Add the ability to import and export events and profiles

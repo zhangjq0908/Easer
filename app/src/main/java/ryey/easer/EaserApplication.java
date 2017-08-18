@@ -10,6 +10,5 @@ public class EaserApplication extends Application {
     public void onCreate() {
         super.onCreate();
         PluginRegistry.init();
-        EHService.start(this);
     }
 }
