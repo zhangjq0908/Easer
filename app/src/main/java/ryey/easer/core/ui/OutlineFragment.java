@@ -149,11 +149,11 @@ public class OutlineFragment extends Fragment {
         int color;
         if (EHService.isRunning()) {
             mIndicator.setText(getResources().getString(R.string.service_indicator_positive));
-            mBanner.setImageDrawable(getResources().getDrawable(R.drawable.ic_status_positive));
+            mBanner.setImageResource(R.drawable.ic_status_positive);
             color = getResources().getColor(R.color.color_positive);
         } else {
             mIndicator.setText(getResources().getString(R.string.service_indicator_negative));
-            mBanner.setImageDrawable(getResources().getDrawable(R.drawable.ic_status_negative));
+            mBanner.setImageResource(R.drawable.ic_status_negative);
             color = getResources().getColor(R.color.color_negative);
         }
         mIndicator.setTextColor(color);

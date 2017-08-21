@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".core.ui.OutlineFragment"
     tools:showIn="@layout/app_bar_main">
 
@@ -17,7 +18,7 @@
             android:id="@+id/running_ind_banner"
             android:contentDescription="status"
             android:background="@color/color_negative"
-            android:src="@drawable/ic_status_negative"/>
+            app:srcCompat="@drawable/ic_status_negative"/>
 
         <RelativeLayout
             android:layout_width="match_parent"

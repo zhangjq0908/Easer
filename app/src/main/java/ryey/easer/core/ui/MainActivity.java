@@ -31,6 +31,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -41,6 +42,10 @@ import ryey.easer.R;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    static {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+    }
+
     private static final String FRAGMENT_OUTLINE = "ryey.easer.FRAGMENT.OUTLINE";
     private static final String FRAGMENT_PROFILE = "ryey.easer.FRAGMENT.PROFILE";
     private static final String FRAGMENT_EVENT = "ryey.easer.FRAGMENT.EVENT";

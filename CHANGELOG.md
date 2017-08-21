@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+* v0.3.5.2: Fix crash on API lower than 21 during startup
+	* Caused by using vector drawable (which was introduced in API 21, and is supported by support library on lower API systems) and the support library doesn't work fully **automagically**.
+		* Two were fixed to correctly use the support library
+		* One (MainActivity) is fixed to handle a place where support library doesn't work **automagically**.
+
 * v0.3.5.1: No auto-starting of the EHService during application startup
 	* Mainly used for debugging purpose
 
