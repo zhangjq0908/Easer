@@ -125,6 +125,9 @@ public class EHService extends Service {
         filter.addAction(ProfileLoaderIntentService.ACTION_PROFILE_LOADED);
         registerReceiver(mReceiver, filter);
         reloadTriggers();
+        for (Lotus lotus : mLotus) {
+            lotus.check();
+        }
     }
 
     @Override

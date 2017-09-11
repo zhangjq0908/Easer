@@ -104,8 +104,11 @@ final class Lotus {
         return slot;
     }
 
-    void listen() {
+    void check() {
         mSlot.check();
+    }
+
+    void listen() {
         mSlot.listen();
     }
 
@@ -184,6 +187,7 @@ final class Lotus {
                     Lotus subLotus = new Lotus(context, sub);
                     subs.add(subLotus);
                     subLotus.listen();
+                    subLotus.check();
                 }
             }
         }

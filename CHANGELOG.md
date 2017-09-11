@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+* v0.3.6: Add HotspotOperationPlugin && Change event check behaviour
+	* Add a new OperationPlugin to control hotspot settings (use reflection, may not work on all devices)
+		* Code inspired by https://stackoverflow.com/questions/25766425/android-programmatically-turn-on-wifi-hotspot
+	* Do not check event status when reloading (e.g. after any event is changed or the reload button is pressed)
+
 * v0.3.5.2: Fix crash on API lower than 21 during startup
 	* Caused by using vector drawable (which was introduced in API 21, and is supported by support library on lower API systems) and the support library doesn't work fully **automagically**.
 		* Two were fixed to correctly use the support library
