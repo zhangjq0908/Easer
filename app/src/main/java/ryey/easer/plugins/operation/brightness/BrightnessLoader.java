@@ -31,7 +31,7 @@ public class BrightnessLoader extends OperationLoader {
     }
 
     @Override
-    public boolean load(OperationData data) {
+    public boolean _load(OperationData data) {
         if (data instanceof BrightnessOperationData)
             return true;
         return loadthis((BrightnessOperationData) data);

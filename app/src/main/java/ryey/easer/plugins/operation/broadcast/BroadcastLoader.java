@@ -33,7 +33,7 @@ public class BroadcastLoader extends OperationLoader {
     }
 
     @Override
-    public boolean load(OperationData data) {
+    public boolean _load(OperationData data) {
         Log.d(getClass().getSimpleName(), "load");
         IntentData iData = (IntentData) data.get();
         Intent intent = new Intent();

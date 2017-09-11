@@ -31,7 +31,7 @@ public class RingerModeLoader extends OperationLoader {
     }
 
     @Override
-    public boolean load(OperationData data) {
+    public boolean _load(OperationData data) {
         Integer mode = (Integer) data.get();
         if (mode == null)
             return true;

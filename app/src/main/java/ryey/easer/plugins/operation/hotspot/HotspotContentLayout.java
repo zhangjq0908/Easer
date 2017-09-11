@@ -17,25 +17,23 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.operation.wifi;
+package ryey.easer.plugins.operation.hotspot;
 
 import android.content.Context;
-import android.net.wifi.WifiManager;
 
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
-import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
+import ryey.easer.R;
+import ryey.easer.commons.plugindef.StorageData;
+import ryey.easer.plugins.reusable.SwitchContentLayout;
 
-public class WifiLoader extends OperationLoader {
-    public WifiLoader(Context context) {
+public class HotspotContentLayout extends SwitchContentLayout {
+
+    public HotspotContentLayout(Context context) {
         super(context);
+        setDesc(context.getString(R.string.operation_hotspot));
     }
 
     @Override
-    public boolean _load(OperationData data) {
-        Boolean state = (Boolean) data.get();
-        if (state == null)
-            return true;
-        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-        return wifiManager.setWifiEnabled(state);
+    public StorageData getData() {
+        return new HotspotOperationData(state());
     }
 }

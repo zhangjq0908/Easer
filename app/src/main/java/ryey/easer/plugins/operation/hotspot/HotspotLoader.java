@@ -17,20 +17,19 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.operation.bluetooth;
+package ryey.easer.plugins.operation.hotspot;
 
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothManager;
 import android.content.Context;
-import android.os.Build;
-import android.util.Log;
 
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
-public class BluetoothLoader extends OperationLoader {
-    public BluetoothLoader(Context context) {
+public class HotspotLoader extends OperationLoader {
+    HotspotHelper helper;
+
+    public HotspotLoader(Context context) {
         super(context);
+        helper = HotspotHelper.getInstance(context);
     }
 
     @Override
@@ -38,18 +37,16 @@ public class BluetoothLoader extends OperationLoader {
         Boolean state = (Boolean) data.get();
         if (state == null)
             return true;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            BluetoothManager bluetoothManager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
-            BluetoothAdapter adapter = bluetoothManager.getAdapter();
-            if (adapter == null)
+        try {
+            if (helper.isApEnabled() == state)
                 return true;
-            if (state) {
-                return adapter.enable();
-            } else {
-                return adapter.disable();
-            }
+            if (state)
+                return helper.enableAp();
+            else
+                return helper.disableAp();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
-        Log.wtf(getClass().getSimpleName(), "System version lower than min requirement");
-        return false;
     }
 }

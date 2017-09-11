@@ -20,6 +20,7 @@
 package ryey.easer.commons.plugindef.operationplugin;
 
 import android.content.Context;
+import android.util.Log;
 
 /*
  * Loader of a operation plugin.
@@ -32,5 +33,12 @@ public abstract class OperationLoader {
         this.context = context;
     }
 
-    public abstract boolean load(OperationData data);
+    public boolean load(OperationData data) {
+        Log.d(getClass().getSimpleName(), String.format("loading data %s", data));
+        boolean ret = _load(data);
+        Log.d(getClass().getSimpleName(), String.format("data %sloaded", ret ? "" : "not "));
+        return ret;
+    }
+
+    protected abstract boolean _load(OperationData data);
 }

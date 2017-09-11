@@ -34,7 +34,7 @@ public class CellularLoader extends OperationLoader {
     }
 
     @Override
-    public boolean load(OperationData data) {
+    public boolean _load(OperationData data) {
         Boolean state = (Boolean) data.get();
         if (state == null)
             return true;

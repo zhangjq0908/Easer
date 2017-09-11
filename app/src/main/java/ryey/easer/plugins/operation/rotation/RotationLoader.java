@@ -32,7 +32,7 @@ public class RotationLoader extends OperationLoader {
     }
 
     @Override
-    public boolean load(OperationData data) {
+    public boolean _load(OperationData data) {
         ContentResolver resolver = context.getContentResolver();
         Boolean state = (Boolean) data.get();
         if (state == null)

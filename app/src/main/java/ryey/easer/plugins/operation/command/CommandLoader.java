@@ -33,7 +33,7 @@ public class CommandLoader extends OperationLoader {
     }
 
     @Override
-    public boolean load(OperationData data) {
+    public boolean _load(OperationData data) {
         String text = (String) data.get();
         String []commands = text.split("\n");
         try {
