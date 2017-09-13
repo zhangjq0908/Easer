@@ -1,6 +1,8 @@
 CHANGELOG
 ======
 
+* v0.3.6.1: Fix autostart on boot
+
 * v0.3.6: Add HotspotOperationPlugin && Change event check behaviour
 	* Add a new OperationPlugin to control hotspot settings (use reflection, may not work on all devices)
 		* Code inspired by https://stackoverflow.com/questions/25766425/android-programmatically-turn-on-wifi-hotspot
