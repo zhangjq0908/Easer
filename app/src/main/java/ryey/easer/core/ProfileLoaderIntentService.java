@@ -21,7 +21,8 @@ package ryey.easer.core;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.util.Log;
+
+import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -48,29 +49,36 @@ public class ProfileLoaderIntentService extends IntentService {
 
     @Override
     public void onCreate() {
-        Log.d(getClass().getSimpleName(), "onCreate");
+        Logger.v("onCreate()");
         super.onCreate();
     }
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        Log.d(getClass().getSimpleName(), "onHandleIntent");
-        if (intent != null) {
-            final String action = intent.getAction();
-            if (ACTION_LOAD_PROFILE.equals(action)) {
-                final String name = intent.getStringExtra(EXTRA_PROFILE_NAME);
-                final String event = intent.getStringExtra(EXTRA_EVENT_NAME);
-                handleActionLoadProfile(name, event);
-            }
+        if (intent == null) {
+            Logger.wtf("Handling null intent");
+            return;
+        }
+        final String action = intent.getAction();
+        Logger.v("Handling intent with action <%s>", action);
+        if (ACTION_LOAD_PROFILE.equals(action)) {
+            final String name = intent.getStringExtra(EXTRA_PROFILE_NAME);
+            final String event = intent.getStringExtra(EXTRA_EVENT_NAME);
+            handleActionLoadProfile(name, event);
         }
     }
 
     private void handleActionLoadProfile(String name, String event) {
-        Log.i(getClass().getSimpleName(), String.format("onHandleActionLoadProfile: %s by %s", name, event));
+        Logger.d("Loading profile <%s> by <%s>", name, event);
+        ProfileStructure profile = null;
         try {
             ProfileDataStorage storage = XmlProfileDataStorage.getInstance(this);
-            ProfileStructure profile = storage.get(name);
-
+            profile = storage.get(name);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Logger.e("Failed to read profile <%s>", name);
+        }
+        if (profile != null) {
             for (OperationPlugin plugin : PluginRegistry.getInstance().getOperationPlugins()) {
                 OperationLoader loader = plugin.loader(getApplicationContext());
                 OperationData data = profile.get(plugin.name());
@@ -85,11 +93,7 @@ public class ProfileLoaderIntentService extends IntentService {
                     }
                 }
             }
-
-            Log.i(getClass().getSimpleName(), "loaded profile: " + name);
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.i(getClass().getSimpleName(), "failed to load profile: " + name);
+            Logger.i("Profile <%s> loaded", name);
         }
     }
 }

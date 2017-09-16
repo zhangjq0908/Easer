@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +14,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -224,7 +225,7 @@ public class EditEventActivity extends AppCompatActivity {
             if (data instanceof EventData) {
                 event.setEventData((EventData) data);
             } else {
-                Log.wtf(getClass().getSimpleName(), "data of plugin's Layout is not instance of EventData");
+                Logger.wtf("data of plugin's Layout is not instance of EventData");
                 throw new RuntimeException("data of plugin's Layout is not instance of EventData");
             }
             break;
@@ -234,7 +235,6 @@ public class EditEventActivity extends AppCompatActivity {
     }
 
     boolean alterEvent() {
-        Log.d(getClass().getSimpleName(), "alterEvent()");
         boolean success;
         if (purpose == EditDataProto.Purpose.delete)
             success = storage.delete(oldName);
@@ -250,13 +250,16 @@ public class EditEventActivity extends AppCompatActivity {
                     success = storage.edit(oldName, newEvent);
                     break;
                 default:
+                    Logger.wtf("Unexpected purpose: %s", purpose);
                     throw new UnsupportedOperationException("Unknown Purpose");
             }
         }
         if (success) {
             setResult(RESULT_OK);
+            Logger.v("Successfully altered event");
             finish();
         } else {
+            Logger.d("Failed to alter event");
             Toast.makeText(this, getString(R.string.prompt_save_failed), Toast.LENGTH_SHORT).show();
         }
         return success;

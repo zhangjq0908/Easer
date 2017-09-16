@@ -19,6 +19,8 @@
 
 package ryey.easer.plugins.event.date;
 
+import com.orhanobut.logger.Logger;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
@@ -98,7 +100,7 @@ public class DateEventData extends TypedEventData {
             EventType type = XmlHelper.EventHelper.readLogic(parser);
             setType(type);
         } catch (ParseException e) {
-            e.printStackTrace();
+            Logger.e(e, "Illegal Event: illegal time format %s", str_data);
             throw new IllegalXmlException(String.format("Illegal Event: illegal time format %s", str_data));
         }
     }

@@ -26,7 +26,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.PatternMatcher;
-import android.util.Log;
+
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +73,16 @@ final class Lotus {
             }
         }
     };
+    private IntentFilter filter;
+
+    {
+        filter = new IntentFilter();
+        filter.addAction(ACTION_SLOT_SATISFIED);
+        filter.addCategory(CATEGORY_NOTIFY_LOTUS);
+        filter.addDataScheme(uri.getScheme());
+        filter.addDataAuthority(uri.getAuthority(), null);
+        filter.addDataPath(uri.getPath(), PatternMatcher.PATTERN_LITERAL);
+    }
 
     Lotus(Context context, EventTree eventTree) {
         this.context = context;
@@ -109,10 +120,12 @@ final class Lotus {
     }
 
     void listen() {
+        context.registerReceiver(mReceiver, filter);
         mSlot.listen();
     }
 
     void cancel() {
+        context.unregisterReceiver(mReceiver);
         mSlot.cancel();
         for (Lotus sub : subs) {
             sub.cancel();
@@ -121,7 +134,7 @@ final class Lotus {
     }
 
     private synchronized void onSlotSatisfied() {
-        Log.d(getClass().getSimpleName(), String.format("onSlotSatisfied %s", eventTree.getName()));
+        Logger.i("event <%s> satisfied", eventTree.getName());
         if (!analyzing) {
             analyzing = true;
             if (mSlot.canPromoteSub()) {
@@ -134,7 +147,7 @@ final class Lotus {
     }
 
     private synchronized void onSlotUnsatisfied() {
-        Log.d(getClass().getSimpleName(), String.format("onSlotUnsatisfied %s", eventTree.getName()));
+        Logger.i("Event %s unsatisfied", eventTree.getName());
         for (Lotus sub : subs) {
             sub.cancel();
         }
@@ -153,8 +166,7 @@ final class Lotus {
             slot.check();
         }
         if (slot.isSatisfied()) {
-            Log.d(getClass().getSimpleName(),
-                    String.format(" traversing and find %s satisfied", node.getName()));
+            Logger.v(" traversing and find %s satisfied", node.getName());
             String profileName = node.getProfile();
             if (profileName != null) {
                 Intent intent = new Intent(context, ProfileLoaderIntentService.class);
@@ -172,8 +184,7 @@ final class Lotus {
 
     private void triggerAndPromote() {
         if (mSlot.isSatisfied()) {
-            Log.d(getClass().getSimpleName(),
-                    String.format(" traversing and find %s satisfied", eventTree.getName()));
+            Logger.v(" traversing and find <%s> satisfied", eventTree.getName());
             String profileName = eventTree.getProfile();
             if (profileName != null) {
                 Intent intent = new Intent(context, ProfileLoaderIntentService.class);

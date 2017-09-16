@@ -13,6 +13,8 @@ import android.preference.PreferenceFragment;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
+import com.orhanobut.logger.Logger;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -66,6 +68,7 @@ public class SettingsActivity extends Activity implements SharedPreferences.OnSh
                         String time_str = sdf.format(calendar.getTime());
                         File sdCard = Environment.getExternalStorageDirectory();
                         File dest = new File(sdCard, String.format("Easer.%s.zip", time_str));
+                        Logger.v("Export destination: %s", dest);
                         Helper.export_data(getActivity(), dest);
                         Toast.makeText(getActivity(),
                                 String.format(getString(R.string.template_export), dest.getName()),

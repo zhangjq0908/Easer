@@ -21,7 +21,8 @@ package ryey.easer.commons.plugindef.eventplugin;
 
 import android.app.PendingIntent;
 import android.content.Context;
-import android.util.Log;
+
+import com.orhanobut.logger.Logger;
 
 /*
  * Slots are used to tell the current state of the relevant Event plugin.
@@ -116,7 +117,7 @@ public abstract class AbstractSlot {
     }
 
     protected void changeSatisfiedState(boolean newSatisfiedState) {
-        Log.d(getClass().getSimpleName(), String.format("changeSatisfiedState %s", newSatisfiedState));
+        Logger.v("changeSatisfiedState to %s", newSatisfiedState);
         if (satisfied == newSatisfiedState) {
             return;
         }
@@ -128,7 +129,7 @@ public abstract class AbstractSlot {
             pendingIntent = notifyLotusUnsatisfiedIntent;
         }
         if (pendingIntent == null) {
-            Log.wtf(getClass().getSimpleName(), "slot not properly registered");
+            Logger.w("slot not properly registered");
 //            throw new RuntimeException("slot never registered");
         } else {
             try {

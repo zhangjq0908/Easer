@@ -21,7 +21,6 @@ package ryey.easer.plugins.event.time;
 
 import android.content.Context;
 import android.os.Build;
-import android.util.Log;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
@@ -73,7 +72,7 @@ public class TimeContentLayout extends TypedContentLayout {
             super.fill(data);
             setTimePicker(timePicker, (Calendar) data.get());
         } else {
-            Log.wtf(getClass().getSimpleName(), "filling with illegal data");
+            throw new RuntimeException("illegal data");
         }
     }
 

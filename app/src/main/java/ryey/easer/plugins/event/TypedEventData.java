@@ -1,6 +1,6 @@
 package ryey.easer.plugins.event;
 
-import android.util.Log;
+import com.orhanobut.logger.Logger;
 
 import java.util.Set;
 
@@ -14,12 +14,11 @@ public abstract class TypedEventData implements EventData {
     @Override
     public void setType(EventType type) {
         if (type == null) {
-            Log.w(getClass().getSimpleName(),
-                    String.format("got invalid type. fallback to the default type: %s",
-                            default_type));
+            Logger.w("got invalid type. fallback to the default type: %s", default_type);
             this.type = default_type;
         } else {
             if (!isAvailable(type)) {
+                Logger.e("Attempt to set improper EventType (available [%s], attempt [%s])", availableTypes(), type);
                 throw new IllegalArgumentException("Improper EventType to set");
             }
             this.type = type;

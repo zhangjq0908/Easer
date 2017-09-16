@@ -19,8 +19,9 @@
 
 package ryey.easer.core.data.storage.xml.profile;
 
-import android.util.Log;
 import android.util.Xml;
+
+import com.orhanobut.logger.Logger;
 
 import org.xmlpull.v1.XmlSerializer;
 
@@ -42,12 +43,12 @@ public class ProfileSerializer {
     public void serialize(OutputStream out, ProfileStructure profile) throws IOException {
         mProfile = profile;
         try {
-            Log.d("ProfileSerializer", "seralizing");
+            Logger.d("serializing %s", profile.getName());
             serializer.setOutput(out, "utf-8");
             serializer.startDocument("utf-8", false);
             writeProfile();
             serializer.flush();
-            Log.d("ProfileSerializer", "seralized");
+            Logger.i("serialized %s", profile.getName());
         } finally {
             out.close();
         }

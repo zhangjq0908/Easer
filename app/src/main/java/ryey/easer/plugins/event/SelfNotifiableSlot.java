@@ -7,7 +7,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.PatternMatcher;
-import android.util.Log;
+
+import com.orhanobut.logger.Logger;
 
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 
@@ -30,7 +31,7 @@ public abstract class SelfNotifiableSlot extends AbstractSlot {
     protected BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.d(getClass().getSimpleName(), "self notifying Intent received");
+            Logger.d("self notifying Intent received. action: %s", intent.getAction());
             if (intent.getAction().equals(ACTION_SATISFIED)) {
                 onPositiveNotified();
             } else if (intent.getAction().equals(ACTION_UNSATISFIED)) {
@@ -58,12 +59,12 @@ public abstract class SelfNotifiableSlot extends AbstractSlot {
     }
 
     protected void onPositiveNotified() {
-        Log.d(getClass().getSimpleName(), "onPositiveNotified");
+        Logger.v("onPositiveNotified");
         changeSatisfiedState(true);
     }
 
     protected void onNegativeNotified() {
-        Log.d(getClass().getSimpleName(), "onNegativeNotified");
+        Logger.v("onNegativeNotified");
         changeSatisfiedState(false);
     }
 }

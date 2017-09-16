@@ -25,7 +25,6 @@ import android.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -35,6 +34,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+
+import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
 import java.util.List;
@@ -63,7 +64,7 @@ public class ProfileListFragment extends ListFragment {
         try {
             mStorage = XmlProfileDataStorage.getInstance(getActivity());
             List<String> items = mStorage.list();
-            Log.d(getClass().getSimpleName(), "items: " + items);
+            Logger.v("All profiles: %s", items);
             ListAdapter adapter = new ProfileListAdapter(getActivity(), items);
             setListAdapter(adapter);
         } catch (IOException e) {
@@ -121,9 +122,9 @@ public class ProfileListFragment extends ListFragment {
     }
 
     private void reloadList() {
-        Log.d(getClass().getSimpleName(), "reloadList");
+        Logger.d("reloadList()");
         List<String> items = mStorage.list();
-        Log.d(getClass().getSimpleName(), "items: " + items);
+        Logger.v("All profiles: %s", items);
         ProfileListAdapter adapter = (ProfileListAdapter) getListAdapter();
         adapter.clear();
         adapter.addAll(items);

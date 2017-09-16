@@ -37,7 +37,7 @@ public class XmlHelper {
         if (parser.next() == XmlPullParser.TEXT)
             return parser.getText();
         else {
-            throw new IllegalXmlException(String.format("Illegal Event: %s has No content", which));
+            throw new IllegalXmlException(String.format("Illegal XML field: %s has no TEXT", which));
         }
     }
 
@@ -139,7 +139,7 @@ public class XmlHelper {
                 event_type = parser.next();
             }
             if (text == null)
-                throw new IllegalXmlException(String.format("Illegal Item: (%s) No State", spec));
+                throw new IllegalXmlException(String.format("Illegal Xml field: (%s) has no STATE", spec));
 
             return text;
         }
@@ -163,7 +163,7 @@ public class XmlHelper {
                 case OFF:
                     return false;
                 default:
-                    throw new IllegalXmlException(String.format("Illegal Item: (%s) Unknown or Illegal State", spec));
+                    throw new IllegalXmlException(String.format("Illegal Xml field: (%s) Unknown or Illegal State", spec));
             }
         }
 
@@ -180,7 +180,7 @@ public class XmlHelper {
             try {
                 level = Integer.valueOf(text);
             } catch (NumberFormatException e) {
-                throw new IllegalXmlException(String.format("Illegal Item: (%s) Unknown or Illegal Number", spec));
+                throw new IllegalXmlException(String.format("Illegal Xml field: (%s) Unknown or Illegal Number", spec));
             }
             return level;
         }

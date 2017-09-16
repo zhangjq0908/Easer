@@ -19,8 +19,9 @@
 
 package ryey.easer.core.data.storage.xml.event;
 
-import android.util.Log;
 import android.util.Xml;
+
+import com.orhanobut.logger.Logger;
 
 import org.xmlpull.v1.XmlSerializer;
 
@@ -40,12 +41,12 @@ public class EventSerializer {
 
     public void serialize(OutputStream out, EventStructure eventStructure) throws IOException {
         try {
-            Log.d("EventSerializer", "serializing");
+            Logger.d("serializing", eventStructure.getName());
             serializer.setOutput(out, "utf-8");
             serializer.startDocument("utf-8", false);
             writeEvent(eventStructure);
             serializer.flush();
-            Log.d("EventSerializer", "serialized");
+            Logger.i("serialized %s", eventStructure.getName());
         } finally {
             out.close();
         }

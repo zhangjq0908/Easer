@@ -26,7 +26,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.util.Log;
+
+import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -45,13 +46,13 @@ public class EHService extends Service {
     public static final String ACTION_STATE_CHANGED = "ryey.easer.action.STATE_CHANGED";
     public static final String ACTION_PROFILE_UPDATED = "ryey.easer.action.PROFILE_UPDATED";
 
-    List<Lotus> mLotus = new ArrayList<>();
+    List<Lotus> mLotusArray = new ArrayList<>();
 
     BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            Log.d(EHService.class.getSimpleName(), "Received broadcast: " + action);
+            Logger.d("Broadcast received :: action: <%s>", action);
             switch (action) {
                 case ACTION_RELOAD:
                     reloadTriggers();
@@ -112,7 +113,7 @@ public class EHService extends Service {
 
     @Override
     public void onCreate() {
-        Log.d(getClass().getSimpleName(), "onCreate");
+        Logger.v("onCreate");
         running = true;
         Intent intent = new Intent(ACTION_STATE_CHANGED);
         sendBroadcast(intent);
@@ -125,14 +126,15 @@ public class EHService extends Service {
         filter.addAction(ProfileLoaderIntentService.ACTION_PROFILE_LOADED);
         registerReceiver(mReceiver, filter);
         reloadTriggers();
-        for (Lotus lotus : mLotus) {
+        for (Lotus lotus : mLotusArray) {
             lotus.check();
         }
+        Logger.i("EHService created");
     }
 
     @Override
     public void onDestroy() {
-        Log.d(getClass().getSimpleName(), "onDestroy");
+        Logger.v("onDestroy");
         super.onDestroy();
         unregisterReceiver(mReceiver);
         running = false;
@@ -141,7 +143,7 @@ public class EHService extends Service {
     }
 
     private void reloadTriggers() {
-        Log.d(getClass().getSimpleName(), "reloadTriggers");
+        Logger.v("reloadTriggers()");
         mCancelTriggers();
         try {
             EventDataStorage storage = XmlEventDataStorage.getInstance(this);
@@ -150,27 +152,28 @@ public class EHService extends Service {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Logger.d("triggers reloaded");
     }
 
     private void mCancelTriggers() {
-        for (Lotus lotus : mLotus) {
+        for (Lotus lotus : mLotusArray) {
             lotus.cancel();
         }
-        mLotus.clear();
+        mLotusArray.clear();
     }
 
     private void mSetTriggers(List<EventTree> eventTreeList) {
-        Log.d(getClass().getSimpleName(), "setting triggers");
+        Logger.v("setting triggers");
         for (EventTree event : eventTreeList) {
-            Log.d(getClass().getSimpleName(), "  setting: " + event.getName());
+            Logger.v("setting trigger for <%s>", event.getName());
             if (event.isActive()) {
                 Lotus lotus = new Lotus(this, event);
                 lotus.listen();
-                Log.d(getClass().getSimpleName(), "  " + event.getName() + " is set");
-                mLotus.add(lotus);
+                Logger.v("trigger for event <%s> is set", event.getName());
+                mLotusArray.add(lotus);
             }
         }
-        Log.d(getClass().getSimpleName(), "triggers have been set");
+        Logger.d("triggers have been set");
     }
 
     @Override

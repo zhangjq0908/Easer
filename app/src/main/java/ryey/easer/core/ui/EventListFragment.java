@@ -24,7 +24,6 @@ import android.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,6 +32,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
 import java.util.List;
@@ -63,7 +64,7 @@ public class EventListFragment extends ListFragment {
         try {
             mStorage = XmlEventDataStorage.getInstance(getActivity());
             items = mStorage.list();
-            Log.d(getClass().getSimpleName(), "items: " + items);
+            Logger.v("All events: %s", items);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -121,9 +122,9 @@ public class EventListFragment extends ListFragment {
     }
 
     private void reloadList() {
-        Log.d("EvetList", "reloadList");
+        Logger.d("reloadList()");
         List<String> items = mStorage.list();
-        Log.d(getClass().getSimpleName(), "items: " + items);
+        Logger.v("All events: %s", items);
         EventListAdapter adapter = (EventListAdapter) getListAdapter();
         adapter.clear();
         adapter.addAll(items);

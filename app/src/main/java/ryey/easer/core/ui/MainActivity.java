@@ -34,9 +34,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import com.orhanobut.logger.Logger;
 
 import ryey.easer.R;
 
@@ -112,7 +113,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        Log.d("NavigationItemSelected", "item:" + item.getTitle());
+        Logger.v("item: " + item.getTitle());
 
         int id = item.getItemId();
         FragmentManager manager = getFragmentManager();

@@ -23,7 +23,8 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.os.Build;
-import android.util.Log;
+
+import com.orhanobut.logger.Logger;
 
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
@@ -49,7 +50,7 @@ public class BluetoothLoader extends OperationLoader {
                 return adapter.disable();
             }
         }
-        Log.wtf(getClass().getSimpleName(), "System version lower than min requirement");
+        Logger.wtf("System version lower than min requirement");
         return false;
     }
 }

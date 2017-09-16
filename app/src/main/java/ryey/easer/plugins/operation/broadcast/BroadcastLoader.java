@@ -21,7 +21,8 @@ package ryey.easer.plugins.operation.broadcast;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
+
+import com.orhanobut.logger.Logger;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
@@ -34,7 +35,6 @@ public class BroadcastLoader extends OperationLoader {
 
     @Override
     public boolean _load(OperationData data) {
-        Log.d(getClass().getSimpleName(), "load");
         IntentData iData = (IntentData) data.get();
         Intent intent = new Intent();
         intent.setAction(iData.action);
@@ -55,7 +55,7 @@ public class BroadcastLoader extends OperationLoader {
             intent.setData(iData.data);
         }
         context.sendBroadcast(intent);
-        Log.d(getClass().getSimpleName(), String.format("broadcast (%s) has been sent", iData));
+        Logger.d("broadcast has been sent [%s]", iData);
         return true;
     }
 }
