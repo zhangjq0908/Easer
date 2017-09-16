@@ -1,5 +1,6 @@
 package ryey.easer.plugins.reusable;
 
+import ryey.easer.commons.IllegalArgumentTypeException;
 import ryey.easer.commons.plugindef.StorageData;
 
 public abstract class BooleanData implements StorageData {
@@ -21,7 +22,7 @@ public abstract class BooleanData implements StorageData {
         if (obj instanceof Boolean) {
             state = (Boolean) obj;
         } else {
-            throw new RuntimeException("illegal data");
+            throw new IllegalArgumentTypeException(obj.getClass(), Boolean.class);
         }
     }
 

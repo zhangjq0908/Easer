@@ -5,12 +5,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.orhanobut.logger.Logger;
+
+import ryey.easer.commons.IllegalArgumentTypeException;
+
 /*
  * Abstract Control UI of both OperationPlugin and EventPlugin
  * All plugins should implement their special subclasses.
+ *
+ * `expectedDataClass` must be assigned to set possible StorageData for the plugin
  */
 public abstract class ContentLayout extends LinearLayout {
     protected String desc = null;
+
+    protected Class<? extends StorageData> expectedDataClass = null;
 
     public ContentLayout(Context context) {
         super(context);
@@ -31,7 +39,24 @@ public abstract class ContentLayout extends LinearLayout {
         return desc;
     }
 
-    public abstract void fill(StorageData data);
+    private void checkDataType(StorageData data) throws IllegalArgumentTypeException {
+        if (expectedDataClass == null)
+            Logger.e("Plugin not properly implemented (detected in %s)", getClass().getSimpleName());
+        if (expectedDataClass.isAssignableFrom(data.getClass()))
+            return;
+        throw new IllegalArgumentTypeException(data.getClass(), expectedDataClass);
+    }
+
+    protected abstract void _fill(StorageData data);
+
+    public void fill(StorageData data) {
+        try {
+            checkDataType(data);
+            _fill(data);
+        } catch (IllegalArgumentTypeException e) {
+            Logger.e(e, "filling with illegal data type");
+        }
+    }
 
     public abstract StorageData getData();
 

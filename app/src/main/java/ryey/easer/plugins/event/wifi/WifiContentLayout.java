@@ -28,6 +28,11 @@ import ryey.easer.plugins.event.TypedContentLayout;
 
 public class WifiContentLayout extends TypedContentLayout {
     EditText editText;
+
+    {
+        expectedDataClass = WifiEventData.class;
+    }
+
     public WifiContentLayout(Context context) {
         super(context);
         setAvailableTypes(new WifiEventData().availableTypes());
@@ -38,12 +43,10 @@ public class WifiContentLayout extends TypedContentLayout {
     }
 
     @Override
-    public void fill(StorageData data) {
+    protected void _fill(StorageData data) {
         if (data instanceof WifiEventData) {
             super.fill(data);
             editText.setText((String) data.get());
-        } else {
-            throw new RuntimeException("illegal data");
         }
     }
 

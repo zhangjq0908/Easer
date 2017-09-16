@@ -27,6 +27,7 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 
+import ryey.easer.commons.IllegalArgumentTypeException;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
@@ -72,7 +73,7 @@ public class WifiConnSlot extends AbstractSlot {
             setWifiConn((String) data.get());
             type = data.type();
         } else {
-            throw new RuntimeException("illegal data");
+            throw new IllegalArgumentTypeException(data.getClass(), WifiEventData.class);
         }
     }
 

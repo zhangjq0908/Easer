@@ -29,6 +29,7 @@ import java.io.IOException;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
+import ryey.easer.commons.IllegalArgumentTypeException;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
@@ -64,7 +65,7 @@ public class BroadcastOperationData implements OperationData {
         } else if (obj instanceof IntentData) {
             data = (IntentData) obj;
         } else {
-            throw new RuntimeException("illegal data");
+            throw new IllegalArgumentTypeException(data.getClass(), new Class[]{String.class, IntentData.class});
         }
     }
 

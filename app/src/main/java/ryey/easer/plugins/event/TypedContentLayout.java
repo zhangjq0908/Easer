@@ -18,6 +18,10 @@ public abstract class TypedContentLayout extends ContentLayout {
     protected List<Integer> radioButtonIds = new ArrayList<>();
     protected List<EventType> availableTypes = new ArrayList<>();
 
+    {
+        expectedDataClass = EventData.class;
+    }
+
     public TypedContentLayout(Context context) {
         super(context);
         type_radioGroup = new RadioGroup(context);
@@ -38,12 +42,10 @@ public abstract class TypedContentLayout extends ContentLayout {
     }
 
     @Override
-    public void fill(StorageData data) {
+    protected void _fill(StorageData data) {
         if (data instanceof EventData) {
             setAvailableTypes(((EventData) data).availableTypes());
             setType(((EventData) data).type());
-        } else {
-            throw new IllegalArgumentException("Improper data. Expected: EventData");
         }
     }
 

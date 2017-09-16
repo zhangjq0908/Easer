@@ -19,6 +19,10 @@ public class BatteryContentLayout extends TypedContentLayout {
 
     int checked_item = -1;
 
+    {
+        expectedDataClass = BatteryEventData.class;
+    }
+
     public BatteryContentLayout(Context context) {
         super(context);
         setAvailableTypes(new BatteryEventData().availableTypes());
@@ -47,7 +51,7 @@ public class BatteryContentLayout extends TypedContentLayout {
     }
 
     @Override
-    public void fill(StorageData data) {
+    protected void _fill(StorageData data) {
         if (data instanceof BatteryEventData) {
             super.fill(data);
             int status = (int) data.get();
@@ -57,8 +61,6 @@ public class BatteryContentLayout extends TypedContentLayout {
                     checked_item = i;
                 }
             }
-        } else {
-            throw new RuntimeException("illegal data");
         }
     }
 

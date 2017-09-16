@@ -31,6 +31,10 @@ import ryey.easer.plugins.event.TypedContentLayout;
 public class DateContentLayout extends TypedContentLayout {
     DatePicker datePicker;
 
+    {
+        expectedDataClass = DateEventData.class;
+    }
+
     public DateContentLayout(Context context) {
         super(context);
         setAvailableTypes(new DateEventData().availableTypes());
@@ -52,12 +56,10 @@ public class DateContentLayout extends TypedContentLayout {
     }
 
     @Override
-    public void fill(StorageData data) {
+    protected void _fill(StorageData data) {
         if (data instanceof DateEventData) {
             super.fill(data);
             setDatePicker(datePicker, (Calendar) data.get());
-        } else {
-            throw new RuntimeException("illegal data");
         }
     }
 

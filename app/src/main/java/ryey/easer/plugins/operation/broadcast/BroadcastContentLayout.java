@@ -32,6 +32,11 @@ public class BroadcastContentLayout extends ContentLayout {
     EditText m_text_category;
     EditText m_text_type;
     EditText m_text_data;
+
+    {
+        expectedDataClass = BroadcastOperationData.class;
+    }
+
     public BroadcastContentLayout(Context context) {
         super(context);
         inflate(context, R.layout.plugin_operation__broadcast, this);
@@ -42,7 +47,7 @@ public class BroadcastContentLayout extends ContentLayout {
     }
 
     @Override
-    public void fill(StorageData data) {
+    protected void _fill(StorageData data) {
         IntentData rdata = (IntentData) data.get();
         m_text_action.setText(rdata.action);
         m_text_category.setText(IntentData.categoryToString(rdata.category));

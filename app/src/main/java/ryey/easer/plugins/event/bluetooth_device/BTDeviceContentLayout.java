@@ -51,6 +51,11 @@ public class BTDeviceContentLayout extends TypedContentLayout {
 
     EditText editText;
     TextView textView;
+
+    {
+        expectedDataClass = BTDeviceEventData.class;
+    }
+
     public BTDeviceContentLayout(final Context context) {
         super(context);
         setAvailableTypes(new BTDeviceEventData().availableTypes());
@@ -107,12 +112,10 @@ public class BTDeviceContentLayout extends TypedContentLayout {
     }
 
     @Override
-    public void fill(StorageData data) {
+    protected void _fill(StorageData data) {
         if (data instanceof BTDeviceEventData) {
             super.fill(data);
             setHardwareAddress((String) data.get());
-        } else {
-            throw new RuntimeException("illegal data");
         }
     }
 

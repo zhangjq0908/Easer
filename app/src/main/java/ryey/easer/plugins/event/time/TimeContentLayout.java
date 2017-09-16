@@ -32,6 +32,10 @@ import ryey.easer.plugins.event.TypedContentLayout;
 public class TimeContentLayout extends TypedContentLayout {
     TimePicker timePicker;
 
+    {
+        expectedDataClass = TimeEventData.class;
+    }
+
     public TimeContentLayout(Context context) {
         super(context);
         setAvailableTypes(new TimeEventData().availableTypes());
@@ -67,12 +71,10 @@ public class TimeContentLayout extends TypedContentLayout {
     }
 
     @Override
-    public void fill(StorageData data) {
+    protected void _fill(StorageData data) {
         if (data instanceof TimeEventData) {
             super.fill(data);
             setTimePicker(timePicker, (Calendar) data.get());
-        } else {
-            throw new RuntimeException("illegal data");
         }
     }
 

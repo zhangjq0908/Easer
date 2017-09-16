@@ -37,6 +37,10 @@ import ryey.easer.plugins.event.TypedContentLayout;
 public class DayOfWeekContentLayout extends TypedContentLayout {
     CompoundButton []day_buttons = new CompoundButton[7];
 
+    {
+        expectedDataClass = DayOfWeekEventData.class;
+    }
+
     public DayOfWeekContentLayout(Context context) {
         super(context);
         setAvailableTypes(new DayOfWeekEventData().availableTypes());
@@ -58,15 +62,13 @@ public class DayOfWeekContentLayout extends TypedContentLayout {
     }
 
     @Override
-    public void fill(StorageData data) {
+    protected void _fill(StorageData data) {
         if (data instanceof DayOfWeekEventData) {
             super.fill(data);
             Set<Integer> days = (Set<Integer>) data.get();
             for (int day : days) {
                 day_buttons[day].setChecked(true);
             }
-        } else {
-            throw new RuntimeException("illegal data");
         }
     }
 

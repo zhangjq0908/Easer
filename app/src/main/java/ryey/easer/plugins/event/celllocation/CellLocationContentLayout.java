@@ -31,6 +31,10 @@ import ryey.easer.plugins.event.TypedContentLayout;
 public class CellLocationContentLayout extends TypedContentLayout {
     EditText editText;
 
+    {
+        expectedDataClass = CellLocationEventData.class;
+    }
+
     public CellLocationContentLayout(Context context) {
         super(context);
         setAvailableTypes(new CellLocationEventData().availableTypes());
@@ -53,12 +57,10 @@ public class CellLocationContentLayout extends TypedContentLayout {
     }
 
     @Override
-    public void fill(StorageData data) {
+    protected void _fill(StorageData data) {
         if (data instanceof CellLocationEventData) {
             super.fill(data);
             editText.setText(data.toString());
-        } else {
-            throw new RuntimeException("illegal data");
         }
     }
 

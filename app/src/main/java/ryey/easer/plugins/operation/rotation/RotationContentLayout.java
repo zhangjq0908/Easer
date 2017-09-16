@@ -23,7 +23,7 @@ import android.content.Context;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.StorageData;
-import ryey.easer.plugins.reusable.SwitchContentLayout;
+import ryey.easer.plugins.operation.SwitchContentLayout;
 
 public class RotationContentLayout extends SwitchContentLayout {
     public RotationContentLayout(Context context) {

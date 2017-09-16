@@ -1,5 +1,6 @@
 package ryey.easer.plugins.reusable;
 
+import ryey.easer.commons.IllegalArgumentTypeException;
 import ryey.easer.commons.plugindef.StorageData;
 
 public abstract class IntegerData implements StorageData {
@@ -23,7 +24,7 @@ public abstract class IntegerData implements StorageData {
         if (obj instanceof Integer) {
             level = (Integer) obj;
         } else {
-            throw new RuntimeException("illegal data");
+            throw new IllegalArgumentTypeException(obj.getClass(), Integer.class);
         }
     }
 

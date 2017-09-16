@@ -34,6 +34,10 @@ public class BrightnessContentLayout extends ContentLayout {
     Switch mIsAuto;
     SeekBar mBrightnessLevel;
 
+    {
+        expectedDataClass = BrightnessOperationData.class;
+    }
+
     public BrightnessContentLayout(Context context) {
         super(context);
         setDesc(context.getString(R.string.operation_brightness));
@@ -64,7 +68,7 @@ public class BrightnessContentLayout extends ContentLayout {
     }
 
     @Override
-    public void fill(StorageData data) {
+    protected void _fill(StorageData data) {
         BrightnessOperationData idata = (BrightnessOperationData) data;
         if (idata.isAuto()) {
             mIsAuto.setChecked(true);

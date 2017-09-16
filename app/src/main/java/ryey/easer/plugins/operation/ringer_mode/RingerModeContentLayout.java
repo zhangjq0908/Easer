@@ -40,6 +40,10 @@ public class RingerModeContentLayout extends ContentLayout {
 
     int checked_item = -1;
 
+    {
+        expectedDataClass = RingerModeOperationData.class;
+    }
+
     public RingerModeContentLayout(Context context) {
         super(context);
         setDesc(context.getString(R.string.operation_ringer_mode));
@@ -66,7 +70,7 @@ public class RingerModeContentLayout extends ContentLayout {
     }
 
     @Override
-    public void fill(StorageData data) {
+    protected void _fill(StorageData data) {
         Integer item = (Integer) data.get();
         for (int i = 0; i < radioButtons.length; i++) {
             if (item == values[i]) {

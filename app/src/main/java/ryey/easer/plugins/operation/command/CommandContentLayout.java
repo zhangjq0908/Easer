@@ -29,6 +29,10 @@ import ryey.easer.commons.plugindef.StorageData;
 public class CommandContentLayout extends ContentLayout {
     EditText editText_command;
 
+    {
+        expectedDataClass = CommandOperationData.class;
+    }
+
     public CommandContentLayout(Context context) {
         super(context);
         setDesc(context.getString(R.string.operation_command));
@@ -37,7 +41,7 @@ public class CommandContentLayout extends ContentLayout {
     }
 
     @Override
-    public void fill(StorageData data) {
+    protected void _fill(StorageData data) {
         String command = (String) data.get();
         editText_command.setText(command);
     }

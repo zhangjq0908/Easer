@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.reusable;
+package ryey.easer.plugins.operation;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -26,10 +26,14 @@ import android.widget.Switch;
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.ContentLayout;
 import ryey.easer.commons.plugindef.StorageData;
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
 public abstract class SwitchContentLayout extends ContentLayout {
     Switch aSwitch;
+
+    {
+        expectedDataClass = BooleanOperationData.class;
+    }
+
     public SwitchContentLayout(Context context) {
         super(context);
         inflate(context, R.layout.plugin_reusable__switch, this);
@@ -46,12 +50,10 @@ public abstract class SwitchContentLayout extends ContentLayout {
     }
 
     @Override
-    public void fill(StorageData data) {
-        if (data instanceof OperationData) {
-            Boolean state = (Boolean) (data).get();
+    protected void _fill(StorageData data) {
+        if (data instanceof BooleanOperationData) {
+            Boolean state = (Boolean) data.get();
             setSwitch(aSwitch, state);
-        } else {
-            throw new RuntimeException("illegal data");
         }
     }
 
