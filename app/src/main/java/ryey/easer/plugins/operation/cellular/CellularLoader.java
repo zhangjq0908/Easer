@@ -22,6 +22,8 @@ package ryey.easer.plugins.operation.cellular;
 import android.content.Context;
 import android.telephony.TelephonyManager;
 
+import com.orhanobut.logger.Logger;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -36,8 +38,6 @@ public class CellularLoader extends OperationLoader {
     @Override
     public boolean _load(OperationData data) {
         Boolean state = (Boolean) data.get();
-        if (state == null)
-            return true;
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         if (state == (telephonyManager.getDataState() == TelephonyManager.DATA_CONNECTED)) {
             return true;
@@ -48,22 +48,26 @@ public class CellularLoader extends OperationLoader {
                 getITelephonyMethod.setAccessible(true);
                 Object ITelephonyStub = getITelephonyMethod.invoke(telephonyManager);
                 Class ITelephonyClass = Class.forName(ITelephonyStub.getClass().getName());
-                Method dataConnSwitchmethod;
+                Method dataConnSwitchMethod;
                 if (state) {
-                    dataConnSwitchmethod = ITelephonyClass.getDeclaredMethod("enableDataConnectivity");
+                    dataConnSwitchMethod = ITelephonyClass.getDeclaredMethod("enableDataConnectivity");
                 } else {
-                    dataConnSwitchmethod = ITelephonyClass.getDeclaredMethod("disableDataConnectivity");
+                    dataConnSwitchMethod = ITelephonyClass.getDeclaredMethod("disableDataConnectivity");
                 }
-                dataConnSwitchmethod.setAccessible(true);
-                dataConnSwitchmethod.invoke(ITelephonyStub);
+                dataConnSwitchMethod.setAccessible(true);
+                dataConnSwitchMethod.invoke(ITelephonyStub);
                 return true;
             } catch (ClassNotFoundException e) {
+                Logger.e(e, null);
                 e.printStackTrace();
             } catch (InvocationTargetException e) {
+                Logger.e(e, null);
                 e.printStackTrace();
             } catch (NoSuchMethodException e) {
+                Logger.e(e, null);
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
+                Logger.e(e, null);
                 e.printStackTrace();
             }
         }

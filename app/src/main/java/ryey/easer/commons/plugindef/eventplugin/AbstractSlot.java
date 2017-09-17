@@ -117,8 +117,8 @@ public abstract class AbstractSlot {
     }
 
     protected void changeSatisfiedState(boolean newSatisfiedState) {
-        Logger.v("changeSatisfiedState to %s", newSatisfiedState);
         if (satisfied == newSatisfiedState) {
+            Logger.v("satisfied state is already %s", newSatisfiedState);
             return;
         }
         satisfied = newSatisfiedState;
@@ -135,8 +135,10 @@ public abstract class AbstractSlot {
             try {
                 pendingIntent.send();
             } catch (PendingIntent.CanceledException e) {
+                Logger.wtf("PendingIntent shouldn't be cancelled");
                 e.printStackTrace();
             }
         }
+        Logger.d("finished changeSatisfiedState to %s", newSatisfiedState);
     }
 }

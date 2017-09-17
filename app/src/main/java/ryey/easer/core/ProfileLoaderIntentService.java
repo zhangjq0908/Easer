@@ -79,21 +79,30 @@ public class ProfileLoaderIntentService extends IntentService {
             Logger.e("Failed to read profile <%s>", name);
         }
         if (profile != null) {
+            boolean loaded = false;
             for (OperationPlugin plugin : PluginRegistry.getInstance().getOperationPlugins()) {
                 OperationLoader loader = plugin.loader(getApplicationContext());
                 OperationData data = profile.get(plugin.name());
                 if (data != null) {
-                    if (loader.load(data)) {
-                        Intent intent = new Intent(ACTION_PROFILE_LOADED);
-                        intent.putExtra(EXTRA_EVENT_NAME, event);
-                        intent.putExtra(EXTRA_PROFILE_NAME, name);
-                        Calendar calendar = Calendar.getInstance();
-                        intent.putExtra(EXTRA_LOAD_TIME, calendar.getTimeInMillis());
-                        sendBroadcast(intent);
+                    try {
+                        if (loader.load(data))
+                            loaded = true;
+                    } catch (RuntimeException e) {
+                        Logger.e(e, "error while loading operation <%s> for profile <%s>", data.getClass().getSimpleName(), profile.getName());
                     }
                 }
             }
-            Logger.i("Profile <%s> loaded", name);
+            if (loaded) {
+                Intent intent = new Intent(ACTION_PROFILE_LOADED);
+                intent.putExtra(EXTRA_EVENT_NAME, event);
+                intent.putExtra(EXTRA_PROFILE_NAME, name);
+                Calendar calendar = Calendar.getInstance();
+                intent.putExtra(EXTRA_LOAD_TIME, calendar.getTimeInMillis());
+                sendBroadcast(intent);
+                Logger.i("Profile <%s> loaded", name);
+            } else {
+                Logger.w("Profile <%s> not loaded (none of the operations successfully loaded", name);
+            }
         }
     }
 }

@@ -54,6 +54,7 @@ public class BroadcastLoader extends OperationLoader {
         } else {
             intent.setData(iData.data);
         }
+        Logger.d(intent);
         context.sendBroadcast(intent);
         Logger.d("broadcast has been sent [%s]", iData);
         return true;

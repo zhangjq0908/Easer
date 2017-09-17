@@ -21,6 +21,8 @@ package ryey.easer.plugins.operation.hotspot;
 
 import android.content.Context;
 
+import com.orhanobut.logger.Logger;
+
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
@@ -45,6 +47,7 @@ public class HotspotLoader extends OperationLoader {
             else
                 return helper.disableAp();
         } catch (Exception e) {
+            Logger.e(e, "error while changing hotspot state");
             e.printStackTrace();
             return false;
         }

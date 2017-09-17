@@ -22,6 +22,8 @@ package ryey.easer.plugins.operation.ringer_mode;
 import android.content.Context;
 import android.media.AudioManager;
 
+import com.orhanobut.logger.Logger;
+
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
@@ -37,6 +39,11 @@ public class RingerModeLoader extends OperationLoader {
             return true;
         AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         audioManager.setRingerMode(mode);
-        return true;
+        if (audioManager.getRingerMode() == mode) {
+            return true;
+        } else {
+            Logger.e("not properly set ringer mode :: expected <%s> got <%s>", mode, audioManager.getRingerMode());
+            return false;
+        }
     }
 }

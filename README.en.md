@@ -58,3 +58,7 @@ captures of privacy (e.g. location, calendar), and would be able to access the I
 Because as of the design of Easer, each functionality will (in the furutre) become modules / plugins, maicious codes should also be prohibited from these parts, so we hope to rely on the feature of GPL (that derivated work should also be licensed under GPL) to enforce this.
 
 In fact, ensuring derivated work / plugins to be **GPL** is unneeded, because we only need them to be **opensource**. However, GPL is the only license (known by me) which can enforce deriavted work / plugins to be opensource, so it's the only choice.
+
+Third-party library
+-----
+[Logger](https://github.com/orhanobut/logger): Apache License v2

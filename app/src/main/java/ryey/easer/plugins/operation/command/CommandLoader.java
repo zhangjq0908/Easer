@@ -21,6 +21,8 @@ package ryey.easer.plugins.operation.command;
 
 import android.content.Context;
 
+import com.orhanobut.logger.Logger;
+
 import java.io.IOException;
 
 import ryey.easer.Utils;
@@ -44,6 +46,7 @@ public class CommandLoader extends OperationLoader {
             }
             return true;
         } catch (IOException e) {
+            Logger.e(e, "error while launching process");
             e.printStackTrace();
         }
         return false;

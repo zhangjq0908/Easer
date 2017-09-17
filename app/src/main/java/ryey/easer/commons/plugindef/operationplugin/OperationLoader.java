@@ -35,7 +35,10 @@ public abstract class OperationLoader {
     }
 
     public boolean load(OperationData data) {
-        Logger.v("loading operation data %s", data);
+        if (!data.isValid()) {
+            Logger.wtf("OperationData <%s> is not valid", data);
+            return false;
+        }
         boolean ret = _load(data);
         Logger.d("operation data %sloaded", ret ? "" : "not ");
         return ret;

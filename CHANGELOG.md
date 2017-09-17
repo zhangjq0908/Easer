@@ -1,6 +1,14 @@
 CHANGELOG
 ======
 
+* v0.3.7: Better debug (logging)
+	* Use [Logger](https://github.com/orhanobut/logger) for better logging
+		* Better output
+		* Log to file (/sdcard/logger/) for better debug
+	* Add more logging points
+	* Check some argument types
+	* Minor changes
+
 * v0.3.6.1: Fix autostart on boot
 
 * v0.3.6: Add HotspotOperationPlugin && Change event check behaviour

@@ -104,7 +104,10 @@ class EventParser {
         EventPlugin plugin = PluginRegistry.getInstance().findEventPlugin(spec);
         EventData data = plugin.data();
         data.parse(parser);
-        event.setEventData(data);
+        if (data.isValid())
+            event.setEventData(data);
+        else
+            throw new IllegalXmlException("data read but is not valid");
     }
 
 }
