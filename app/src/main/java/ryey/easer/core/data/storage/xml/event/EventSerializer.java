@@ -31,7 +31,7 @@ import java.io.OutputStream;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.core.data.EventStructure;
 
-public class EventSerializer {
+class EventSerializer {
 
     XmlSerializer serializer = Xml.newSerializer();
     private final String ns = null;

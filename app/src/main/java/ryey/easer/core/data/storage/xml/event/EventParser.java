@@ -34,12 +34,12 @@ import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.plugins.PluginRegistry;
 
-public class EventParser {
+class EventParser {
     private static final String ns = null;
 
     private XmlPullParser parser = Xml.newPullParser();
 
-    EventStructure event;
+    private EventStructure event;
 
     public EventStructure parse(InputStream in) throws XmlPullParserException, IOException, IllegalXmlException {
         event = new EventStructure();
@@ -98,7 +98,7 @@ public class EventParser {
         String text = XmlHelper.getText(parser, "After");
         if (!text.equals(C.NON))
             event.setParentName(text);
-        while (parser.next() != XmlPullParser.START_TAG) ;
+        while (parser.next() != XmlPullParser.START_TAG);
         assert parser.getName().equals(C.SIT);
         String spec = parser.getAttributeValue(ns, C.SPEC);
         EventPlugin plugin = PluginRegistry.getInstance().findEventPlugin(spec);

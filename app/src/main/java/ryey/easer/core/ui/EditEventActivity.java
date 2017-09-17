@@ -240,8 +240,10 @@ public class EditEventActivity extends AppCompatActivity {
             success = storage.delete(oldName);
         else {
             EventStructure newEvent = saveToEvent();
-            if (!newEvent.isValid())
+            if (!newEvent.isValid()) {
+                Toast.makeText(this, getString(R.string.prompt_data_illegal), Toast.LENGTH_LONG).show();
                 return false;
+            }
             switch (purpose) {
                 case add:
                     success = storage.add(newEvent);
@@ -256,10 +258,10 @@ public class EditEventActivity extends AppCompatActivity {
         }
         if (success) {
             setResult(RESULT_OK);
-            Logger.v("Successfully altered event");
+            Logger.d("Successfully altered event");
             finish();
         } else {
-            Logger.d("Failed to alter event");
+            Logger.e("Failed to alter event");
             Toast.makeText(this, getString(R.string.prompt_save_failed), Toast.LENGTH_SHORT).show();
         }
         return success;

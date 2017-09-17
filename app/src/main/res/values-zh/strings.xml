@@ -49,5 +49,6 @@
     <string name="pref_import_summary">從zip文件中導入時間和行爲集。\n已經存在的同名事件和行爲集會被覆蓋。</string>
     <string name="pref_import_title">導入</string>
     <string name="template_export">已導出到%s</string>
+    <string name="prompt_data_illegal">已阻止嘗試保存無效數據內容。請檢查選項/輸入。</string>
 
 </resources>

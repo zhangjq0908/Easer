@@ -21,6 +21,8 @@ package ryey.easer.core.data.storage.xml.event;
 
 import android.content.Context;
 
+import com.orhanobut.logger.Logger;
+
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.File;
@@ -40,11 +42,11 @@ import ryey.easer.core.data.storage.EventDataStorage;
 import ryey.easer.core.data.storage.FileUtils;
 
 public class XmlEventDataStorage implements EventDataStorage {
-    protected static XmlEventDataStorage instance = null;
+    private static XmlEventDataStorage instance = null;
 
-    protected static Context s_context = null;
+    private static Context s_context = null;
 
-    protected static File dir;
+    private static File dir;
 
     public static XmlEventDataStorage getInstance(Context context) throws IOException {
         if (instance == null) {
@@ -85,7 +87,11 @@ public class XmlEventDataStorage implements EventDataStorage {
             if (file.exists()) { // see if the existing one is invalid. If so, remove it in favor of the new one
                 EventStructure existing = get(event.getName());
                 if ((existing == null) || (!existing.isValid())) {
-                    file.delete(); //TODO?: handle return value
+                    Logger.i("replace an invalid existing event with the same filename <%s>", file.getName());
+                    boolean success = file.delete();
+                    if (!success) {
+                        Logger.e("failed to remove existing file <%s>", file.getName());
+                    }
                 }
             }
             if (file.createNewFile()) {
@@ -95,6 +101,7 @@ public class XmlEventDataStorage implements EventDataStorage {
                 return true;
             }
         } catch (IOException e) {
+            Logger.e(e, "IOException during `XmlEventDataStorage.add()` (not sure the exact location)");
             e.printStackTrace();
         }
         return false;
@@ -102,13 +109,14 @@ public class XmlEventDataStorage implements EventDataStorage {
 
     @Override
     public boolean delete(String name) {
-        return delete(name, true);
+        return _delete(name, true);
     }
 
-    protected boolean delete(String name, boolean check_is_leaf) {
+    private boolean _delete(String name, boolean check_is_leaf) {
         if (check_is_leaf) {
             if (eventParentMap().containsKey(name)) { //if is not leaf node
                 //TODO: add alerts or remove the whole subtree
+                Logger.w("blocked the attempt to remove an event <%s> with subtrees", name);
                 return false;
             }
         }
@@ -137,7 +145,7 @@ public class XmlEventDataStorage implements EventDataStorage {
             }
         }
         EventStructure oldEvent = get(oldName);
-        if (delete(oldName, false)) {
+        if (_delete(oldName, false)) {
             if (add(event))
                 return true;
             else
@@ -160,14 +168,17 @@ public class XmlEventDataStorage implements EventDataStorage {
                     EventStructure event = parser.parse(fin);
                     list.add(event);
                 } catch (FileNotFoundException e) {
+                    Logger.e(e, "event file <%s> exists when listing but disappears when reading", file);
                     e.printStackTrace();
                 } catch (XmlPullParserException e) {
                     e.printStackTrace();
                 } catch (IllegalXmlException e) {
+                    Logger.e(e, "event file <%s> has illegal data", file);
                     e.printStackTrace();
                 }
             }
         } catch (IOException e) {
+            Logger.e(e, "failed to list files in dir <%s> (in app internal storage)", dir);
             e.printStackTrace();
         }
 

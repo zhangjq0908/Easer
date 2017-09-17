@@ -44,6 +44,7 @@
 
     <string name="prompt_save_failed">Failed to save</string>
     <string name="prompt_delete">Are you sure to delete: %s</string>
+    <string name="prompt_data_illegal">Prevented saving data with invalid field(s). Please recheck your choices / inputs.</string>
 
     <string name="appInformation">Ease your life by automatically performing routine actions / operations on your phone(s).\n
 Chain different events and let their corresponding actions performed. No longer need to keep them in mind!\n

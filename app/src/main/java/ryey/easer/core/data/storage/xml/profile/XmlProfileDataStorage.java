@@ -21,6 +21,8 @@ package ryey.easer.core.data.storage.xml.profile;
 
 import android.content.Context;
 
+import com.orhanobut.logger.Logger;
+
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.File;
@@ -38,11 +40,11 @@ import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.core.data.storage.xml.event.XmlEventDataStorage;
 
 public class XmlProfileDataStorage implements ProfileDataStorage {
-    protected static XmlProfileDataStorage instance = null;
+    private static XmlProfileDataStorage instance = null;
 
-    protected static Context s_context = null;
+    private static Context s_context = null;
 
-    protected static File dir;
+    private static File dir;
 
     public static XmlProfileDataStorage getInstance(Context context) throws IOException {
         if (instance == null) {
@@ -54,7 +56,7 @@ public class XmlProfileDataStorage implements ProfileDataStorage {
         return instance;
     }
 
-    XmlProfileDataStorage() {
+    private XmlProfileDataStorage() {
     }
 
     @Override
@@ -83,7 +85,11 @@ public class XmlProfileDataStorage implements ProfileDataStorage {
             if (file.exists()) { // see if the existing one is invalid. If so, remove it in favor of the new one
                 ProfileStructure existing = get(profile.getName());
                 if ((existing == null) || (!existing.isValid())) {
-                    file.delete(); //TODO?: handle return value
+                    Logger.i("replace an invalid existing profile with the same filename <%s>", file.getName());
+                    boolean success = file.delete();
+                    if (!success) {
+                        Logger.e("failed to remove existing file <%s>", file.getName());
+                    }
                 }
             }
             if (file.createNewFile()) {

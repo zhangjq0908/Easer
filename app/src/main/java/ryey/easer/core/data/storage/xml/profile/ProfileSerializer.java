@@ -34,7 +34,7 @@ import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.plugins.PluginRegistry;
 
-public class ProfileSerializer {
+class ProfileSerializer {
     private static final String ns = null;
 
     XmlSerializer serializer = Xml.newSerializer();;

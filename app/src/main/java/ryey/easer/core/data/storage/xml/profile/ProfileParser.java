@@ -35,7 +35,7 @@ import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.plugins.PluginRegistry;
 
-public class ProfileParser {
+class ProfileParser {
     private static final String ns = null;
 
     private XmlPullParser parser = Xml.newPullParser();;

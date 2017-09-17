@@ -19,10 +19,10 @@
 
 package ryey.easer.core.data.storage.xml.event;
 
-public class C extends ryey.easer.commons.C {
-    public static final String EVENT = "event";
-    public static final String ACTIVE = "active";
-    public static final String TRIG = "trigger";
-    public static final String AFTER = "after";
-    public static final String NON = "NO DATA";
+class C extends ryey.easer.commons.C {
+    static final String EVENT = "event";
+    static final String ACTIVE = "active";
+    static final String TRIG = "trigger";
+    static final String AFTER = "after";
+    static final String NON = "NO DATA";
 }
