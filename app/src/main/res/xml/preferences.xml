@@ -25,4 +25,9 @@
         android:key="@string/key_pref_import"
         android:title="@string/pref_import_title"
         android:summary="@string/pref_import_summary"/>
+
+    <Preference
+        android:enabled="false"
+        android:key="@string/key_pref_version"
+        android:title="@string/version" />
 </PreferenceScreen>

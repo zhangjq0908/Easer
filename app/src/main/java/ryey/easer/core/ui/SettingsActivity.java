@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -72,6 +73,16 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
         public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preferences);
+
+            try {
+                PackageInfo pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
+                String version = pInfo.versionName;
+                Preference pref_version = findPreference(getString(R.string.key_pref_version));
+                pref_version.setSummary(version);
+            } catch (PackageManager.NameNotFoundException e) {
+                Logger.e(e, "Unable to get app version");
+            }
+
             Preference pref_export = findPreference(getString(R.string.key_pref_export));
             pref_export.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 public boolean onPreferenceClick(Preference preference) {

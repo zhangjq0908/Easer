@@ -93,5 +93,6 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
         \n\nAlso have a look at <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> in the project wiki.</string>
 
     <string name="template_export">Exported to %s</string>
+    <string name="version">Version</string>
 </resources>
 

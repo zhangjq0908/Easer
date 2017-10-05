@@ -5,4 +5,5 @@
     <string name="key_pref_logging" translatable="false">preference_logging</string>
     <string name="key_pref_export" translatable="false">preference_export</string>
     <string name="key_pref_import" translatable="false">preference_import</string>
+    <string name="key_pref_version" translatable="false">preference_version</string>
 </resources>
