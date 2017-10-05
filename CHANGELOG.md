@@ -1,6 +1,10 @@
 CHANGELOG
 ======
 
+* v0.3.7.2: Bug fix && Use fragment for plugin views
+	* Fix a crash when trying to open the edit screen of existing events (caused by unintentionally recursion)
+	* Use fragment for the display of plugin views (for better expressivity)
+
 * v0.3.7.1: Allow to control external logging
 	* Disable external logging by default
 	* User can control whether to enable external logging (setting will take effect the next time Easer starts)
