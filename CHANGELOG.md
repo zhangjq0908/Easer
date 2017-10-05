@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+* v0.3.7.1: Allow to control external logging
+	* Disable external logging by default
+	* User can control whether to enable external logging (setting will take effect the next time Easer starts)
+	* Show app version in Settings
+
 * v0.3.7: Better debug (logging)
 	* Use [Logger](https://github.com/orhanobut/logger) for better logging
 		* Better output
