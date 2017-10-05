@@ -3,6 +3,7 @@ package ryey.easer.core.ui;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -11,16 +12,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.StorageData;
@@ -42,8 +40,6 @@ public class EditEventActivity extends AppCompatActivity {
 
     EditDataProto.Purpose purpose;
     String oldName = null;
-
-    Map<String, SwitchItemLayout> items = new HashMap<>();
 
     EditText mEditText_name = null;
     private static final String NON = ""; //TODO: more robust
@@ -172,12 +168,12 @@ public class EditEventActivity extends AppCompatActivity {
             }
         });
 
+        FragmentManager fragmentManager = getSupportFragmentManager();
         for (EventPlugin eventPlugin : PluginRegistry.getInstance().getEventPlugins()) {
-            SwitchItemLayout view = new SwitchItemLayout(this, eventPlugin.view(this));
-            LinearLayout layout = (LinearLayout) findViewById(R.id.layout_events);
-            layout.addView(view);
-            items.put(eventPlugin.name(), view);
+            PluginViewFragment fragment = PluginViewFragment.createInstance(eventPlugin.view(this));
+            fragmentManager.beginTransaction().add(R.id.layout_events, fragment, eventPlugin.name()).commit();
         }
+        fragmentManager.executePendingTransactions();
     }
 
     @Override
@@ -198,12 +194,13 @@ public class EditEventActivity extends AppCompatActivity {
 
         isActive = event.isActive();
 
+        FragmentManager fragmentManager = getSupportFragmentManager();
         for (EventPlugin plugin : PluginRegistry.getInstance().getEventPlugins()) {
-            SwitchItemLayout item = items.get(plugin.name());
+            PluginViewFragment fragment = (PluginViewFragment) fragmentManager.findFragmentByTag(plugin.name());
             if (event.getEventData().pluginClass() == plugin.getClass()) {
-                item.fill(event.getEventData());
+                fragment.fill(event.getEventData());
             } else {
-                item.fill(null);
+                fragment.fill(null);
             }
         }
     }
@@ -217,9 +214,10 @@ public class EditEventActivity extends AppCompatActivity {
         if (!parent.equals(NON))
             event.setParentName(parent);
 
+        FragmentManager fragmentManager = getSupportFragmentManager();
         for (EventPlugin plugin : PluginRegistry.getInstance().getEventPlugins()) {
-            SwitchItemLayout item = items.get(plugin.name());
-            StorageData data = item.getData();
+            PluginViewFragment fragment = (PluginViewFragment) fragmentManager.findFragmentByTag(plugin.name());
+            StorageData data = fragment.getData();
             if (data == null)
                 continue;
             if (data instanceof EventData) {

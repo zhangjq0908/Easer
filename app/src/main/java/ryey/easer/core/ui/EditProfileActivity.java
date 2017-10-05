@@ -3,19 +3,17 @@ package ryey.easer.core.ui;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.StorageData;
@@ -36,8 +34,6 @@ public class EditProfileActivity extends AppCompatActivity {
     String oldName = null;
 
     EditText mEditText = null;
-
-    Map<String, SwitchItemLayout> items = new HashMap<>();
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -111,12 +107,12 @@ public class EditProfileActivity extends AppCompatActivity {
     void init() {
         mEditText = (EditText) findViewById(R.id.editText_profile_title);
 
-        LinearLayout layout = (LinearLayout) findViewById(R.id.layout_profiles);
+        FragmentManager fragmentManager = getSupportFragmentManager();
         for (OperationPlugin operationPlugin : PluginRegistry.getInstance().getOperationPlugins()) {
-            SwitchItemLayout view = new SwitchItemLayout(this, operationPlugin.view(this));
-            layout.addView(view);
-            items.put(operationPlugin.name(), view);
+            PluginViewFragment fragment = PluginViewFragment.createInstance(operationPlugin.view(this));
+            fragmentManager.beginTransaction().add(R.id.layout_profiles, fragment, operationPlugin.name()).commit();
         }
+        fragmentManager.executePendingTransactions();
     }
 
     @Override
@@ -128,18 +124,20 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void loadFromProfile(ProfileStructure profile) {
         mEditText.setText(oldName);
 
+        FragmentManager fragmentManager = getSupportFragmentManager();
         for (OperationPlugin plugin : PluginRegistry.getInstance().getOperationPlugins()) {
-            SwitchItemLayout item = items.get(plugin.name());
-            item.fill(profile.get(plugin.name()));
+            PluginViewFragment fragment = (PluginViewFragment) fragmentManager.findFragmentByTag(plugin.name());
+            fragment.fill(profile.get(plugin.name()));
         }
     }
 
     protected ProfileStructure saveToProfile() {
         ProfileStructure profile = new ProfileStructure(mEditText.getText().toString());
 
+        FragmentManager fragmentManager = getSupportFragmentManager();
         for (OperationPlugin plugin : PluginRegistry.getInstance().getOperationPlugins()) {
-            SwitchItemLayout item = items.get(plugin.name());
-            StorageData data = item.getData();
+            PluginViewFragment fragment = (PluginViewFragment) fragmentManager.findFragmentByTag(plugin.name());
+            StorageData data = fragment.getData();
             if (data == null)
                 continue;
             if (data instanceof OperationData) {
