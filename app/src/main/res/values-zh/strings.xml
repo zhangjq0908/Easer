@@ -50,5 +50,8 @@
     <string name="pref_import_title">導入</string>
     <string name="template_export">已導出到%s</string>
     <string name="prompt_data_illegal">已阻止嘗試保存無效數據內容。請檢查選項/輸入。</string>
+    <string name="pref_logging_title">啓用外部日誌</string>
+    <string name="pref_logging_summary">保存日誌到外部存儲（/sdcard/logger）以方便bug報告。\n對該設置的改動將在下次Easer啓動時生效。</string>
+    <string name="prompt_prevented_for_permission">請先授Easer以 &lt;%s&gt; 權限。</string>
 
 </resources>

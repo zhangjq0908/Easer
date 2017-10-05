@@ -46,6 +46,8 @@
     <string name="prompt_delete">Are you sure to delete: %s</string>
     <string name="prompt_data_illegal">Prevented saving data with invalid field(s). Please recheck your choices / inputs.</string>
 
+    <string name="prompt_prevented_for_permission">You must grant Easer the permission &lt;%s&gt; first.</string>
+
     <string name="appInformation">Ease your life by automatically performing routine actions / operations on your phone(s).\n
 Chain different events and let their corresponding actions performed. No longer need to keep them in mind!\n
 This app was inspired by CyanogenMod\'s \'profile\' mechanism and IFTTT. The original intuition was to automatically change the profile on certain time or specific WiFi connections, and it was expanded for more general use then.\n
@@ -73,6 +75,9 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
 
     <string name="pref_welcome_title">Show welcome message</string>
     <string name="pref_welcome_summary">Show welcome message on app startup</string>
+
+    <string name="pref_logging_title">Enable external logging</string>
+    <string name="pref_logging_summary">Save logs to external storage devices (/sdcard/logger) to aid bug reports.\nChange of this setting will take effect from next time Easer starts.</string>
 
     <string name="pref_export_title">Export</string>
     <string name="pref_export_summary">Export all events and profiles to SD Card.\nFile will be named after current time.</string>

@@ -12,6 +12,11 @@
         android:summary="@string/pref_welcome_summary"
         android:title="@string/pref_welcome_title" />
 
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="@string/key_pref_logging"
+        android:summary="@string/pref_logging_summary"
+        android:title="@string/pref_logging_title" />
     <Preference
         android:key="@string/key_pref_export"
         android:title="@string/pref_export_title"
