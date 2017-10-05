@@ -40,11 +40,13 @@ public class BTDeviceContentLayout extends TypedContentLayout {
     final String ACTION_RETURN = "ryey.easer.plugins.event.bluetooth_device.return_from_dialog";
     final String EXTRA_HARDWARE_ADDRESS = "ryey.easer.plugins.event.bluetooth_device.extra.hardware_address";
 
+    IntentFilter mFilter = new IntentFilter(ACTION_RETURN);
     BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(ACTION_RETURN)) {
                 setHardwareAddress(intent.getStringExtra(EXTRA_HARDWARE_ADDRESS));
+                context.unregisterReceiver(mReceiver);
             }
         }
     };
@@ -65,11 +67,10 @@ public class BTDeviceContentLayout extends TypedContentLayout {
         editText = (EditText) findViewById(R.id.hardware_address);
         textView = (TextView) findViewById(R.id.device_name);
 
-        IntentFilter filter = new IntentFilter(ACTION_RETURN);
-        context.registerReceiver(mReceiver, filter);
         findViewById(R.id.connection_picker).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                context.registerReceiver(mReceiver, mFilter);
                 AlertDialog.Builder builderSingle = new AlertDialog.Builder(context);
                 builderSingle.setTitle(R.string.ebtdevice_select_dialog_title);
                 final ArrayAdapter<BTDeviceWrapper> arrayAdapter = new ArrayAdapter<>(context, android.R.layout.select_dialog_singlechoice);
@@ -82,6 +83,7 @@ public class BTDeviceContentLayout extends TypedContentLayout {
                 builderSingle.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        context.unregisterReceiver(mReceiver);
                         dialog.dismiss();
                     }
                 });
