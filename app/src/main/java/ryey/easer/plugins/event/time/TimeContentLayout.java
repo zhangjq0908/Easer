@@ -73,7 +73,6 @@ public class TimeContentLayout extends TypedContentLayout {
     @Override
     protected void _fill(StorageData data) {
         if (data instanceof TimeEventData) {
-            super.fill(data);
             setTimePicker(timePicker, (Calendar) data.get());
         }
     }

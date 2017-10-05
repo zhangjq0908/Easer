@@ -114,7 +114,6 @@ public class BTDeviceContentLayout extends TypedContentLayout {
     @Override
     protected void _fill(StorageData data) {
         if (data instanceof BTDeviceEventData) {
-            super.fill(data);
             setHardwareAddress((String) data.get());
         }
     }

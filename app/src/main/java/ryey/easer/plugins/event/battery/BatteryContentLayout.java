@@ -53,7 +53,6 @@ public class BatteryContentLayout extends TypedContentLayout {
     @Override
     protected void _fill(StorageData data) {
         if (data instanceof BatteryEventData) {
-            super.fill(data);
             int status = (int) data.get();
             for (int i = 0; i < values.length; i++) {
                 if (values[i] == status) {

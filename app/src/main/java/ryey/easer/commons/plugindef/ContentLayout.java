@@ -55,6 +55,7 @@ public abstract class ContentLayout extends LinearLayout {
             _fill(data);
         } catch (IllegalArgumentTypeException e) {
             Logger.e(e, "filling with illegal data type");
+            throw e;
         }
     }
 

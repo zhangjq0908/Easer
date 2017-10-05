@@ -45,7 +45,6 @@ public class WifiContentLayout extends TypedContentLayout {
     @Override
     protected void _fill(StorageData data) {
         if (data instanceof WifiEventData) {
-            super.fill(data);
             editText.setText((String) data.get());
         }
     }

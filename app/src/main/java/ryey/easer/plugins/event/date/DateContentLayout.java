@@ -58,7 +58,6 @@ public class DateContentLayout extends TypedContentLayout {
     @Override
     protected void _fill(StorageData data) {
         if (data instanceof DateEventData) {
-            super.fill(data);
             setDatePicker(datePicker, (Calendar) data.get());
         }
     }

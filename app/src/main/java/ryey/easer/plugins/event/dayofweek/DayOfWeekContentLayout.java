@@ -64,7 +64,6 @@ public class DayOfWeekContentLayout extends TypedContentLayout {
     @Override
     protected void _fill(StorageData data) {
         if (data instanceof DayOfWeekEventData) {
-            super.fill(data);
             Set<Integer> days = (Set<Integer>) data.get();
             for (int day : days) {
                 day_buttons[day].setChecked(true);

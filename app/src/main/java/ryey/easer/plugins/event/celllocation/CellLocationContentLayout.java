@@ -59,7 +59,6 @@ public class CellLocationContentLayout extends TypedContentLayout {
     @Override
     protected void _fill(StorageData data) {
         if (data instanceof CellLocationEventData) {
-            super.fill(data);
             editText.setText(data.toString());
         }
     }

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import ryey.easer.commons.IllegalArgumentTypeException;
 import ryey.easer.commons.plugindef.ContentLayout;
 import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
@@ -42,7 +43,16 @@ public abstract class TypedContentLayout extends ContentLayout {
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    public void fill(StorageData data) {
+        try {
+            super.fill(data);
+            fillType(data);
+        } catch (IllegalArgumentTypeException e) {
+            throw e;
+        }
+    }
+
+    protected void fillType(StorageData data) {
         if (data instanceof EventData) {
             setAvailableTypes(((EventData) data).availableTypes());
             setType(((EventData) data).type());
