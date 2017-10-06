@@ -11,7 +11,6 @@ TODO
 		* Ringtone volume
 		* Send TCP/UDP packets
 	* UI
-		* Change CheckBox to RadioButton (or swipe-to-change ViewPager) on EditEventDialogFragment
 		* Make EditEventDialogFragment more good-looking
 		* Dynamically add Operation(s) to EditProfileDialogFragment
 		* Make OutlineFragment more good-looking

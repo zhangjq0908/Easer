@@ -1,6 +1,14 @@
 CHANGELOG
 ======
 
+* v0.3.8: Use `ViewPager` for views of event plugins
+	* Use `ViewPager` to display the fragment of the view of each event plugin (one at a time)
+		* Add `ScrollView`
+		* Clean up
+	* Split PluginViewFragment to two classes for Event and Profile
+	* Clean up receiver for `BTDeviceContentLayout` (there was a receiver leak previously)
+	* Fix the crash of `BatteryContentLayout` when calling `getData()` with empty selection
+
 * v0.3.7.2: Bug fix && Use fragment for plugin views
 	* Fix a crash when trying to open the edit screen of existing events (caused by unintentionally recursion)
 	* Use fragment for the display of plugin views (for better expressivity)

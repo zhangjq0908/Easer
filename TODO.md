@@ -11,7 +11,6 @@ TODO
 		* 音量
 		* 發送TCP/UDP包
 	* UI方面
-		* 將Event修改界面的複選框改爲單選框/左右滑動切換的ViewPager
 		* 讓Event修改界面更好看
 		* 動態添加Operation到Profile修改界面
 		* 調整概覽頁面以更好看（使用卡片）
