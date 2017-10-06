@@ -53,8 +53,8 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".core.ui.EditEventActivity" />
-        <activity android:name=".core.ui.EditProfileActivity" />
+        <activity android:name=".core.ui.edit.EditEventActivity" />
+        <activity android:name=".core.ui.edit.EditProfileActivity" />
     </application>
 
 </manifest>

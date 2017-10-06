@@ -40,6 +40,8 @@ import android.widget.TextView;
 import com.orhanobut.logger.Logger;
 
 import ryey.easer.R;
+import ryey.easer.core.ui.edit.EventListFragment;
+import ryey.easer.core.ui.edit.ProfileListFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

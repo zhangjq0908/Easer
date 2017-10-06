@@ -1,9 +1,6 @@
-package ryey.easer.core.ui;
-
+package ryey.easer.core.ui.edit;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,20 +15,17 @@ import ryey.easer.commons.plugindef.StorageData;
 import static android.widget.LinearLayout.HORIZONTAL;
 import static android.widget.LinearLayout.VERTICAL;
 
-public class PluginViewFragment extends Fragment {
+public class SelectableNamedPluginViewFragment extends PluginViewFragment {
 
-    private ContentLayout contentLayout;
     private CheckBox mCheckBox;
 
-    private StorageData passed_data = null;
-
-    static PluginViewFragment createInstance(ContentLayout contentLayout) {
-        PluginViewFragment fragment = new PluginViewFragment();
+    static SelectableNamedPluginViewFragment createInstance(ContentLayout contentLayout) {
+        SelectableNamedPluginViewFragment fragment = new SelectableNamedPluginViewFragment();
         fragment.contentLayout = contentLayout;
         return fragment;
     }
 
-    public PluginViewFragment() {
+    public SelectableNamedPluginViewFragment() {
     }
 
     @Override
@@ -69,31 +63,19 @@ public class PluginViewFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        if (passed_data != null) {
-            _fill(passed_data);
-        }
-    }
-
     protected void _fill(StorageData data) {
         if (data == null) {
             mCheckBox.setChecked(false);
         } else {
             mCheckBox.setChecked(true);
-            contentLayout.fill(data);
+            super._fill(data);
         }
     }
 
-    public void fill(StorageData data) {
-        passed_data = data;
-        if (getView() != null) {
-            _fill(data);
-        }
-    }
-
+    @Override
     public StorageData getData() {
         if (mCheckBox.isChecked()) {
-            return contentLayout.getData();
+            return super.getData();
         } else {
             return null;
         }

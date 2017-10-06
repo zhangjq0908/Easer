@@ -1,9 +1,8 @@
-package ryey.easer.core.ui;
+package ryey.easer.core.ui.edit;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -21,14 +20,10 @@ import java.io.IOException;
 import java.util.List;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.StorageData;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.storage.EventDataStorage;
 import ryey.easer.core.data.storage.xml.event.XmlEventDataStorage;
 import ryey.easer.core.data.storage.xml.profile.XmlProfileDataStorage;
-import ryey.easer.plugins.PluginRegistry;
 
 /*
  * TODO: change the layout
@@ -40,6 +35,8 @@ public class EditEventActivity extends AppCompatActivity {
 
     EditDataProto.Purpose purpose;
     String oldName = null;
+
+    EventPluginViewPager mViewPager;
 
     EditText mEditText_name = null;
     private static final String NON = ""; //TODO: more robust
@@ -168,12 +165,8 @@ public class EditEventActivity extends AppCompatActivity {
             }
         });
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        for (EventPlugin eventPlugin : PluginRegistry.getInstance().getEventPlugins()) {
-            PluginViewFragment fragment = PluginViewFragment.createInstance(eventPlugin.view(this));
-            fragmentManager.beginTransaction().add(R.id.layout_events, fragment, eventPlugin.name()).commit();
-        }
-        fragmentManager.executePendingTransactions();
+        mViewPager = (EventPluginViewPager) findViewById(R.id.pager);
+        mViewPager.init(this);
     }
 
     @Override
@@ -194,15 +187,7 @@ public class EditEventActivity extends AppCompatActivity {
 
         isActive = event.isActive();
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        for (EventPlugin plugin : PluginRegistry.getInstance().getEventPlugins()) {
-            PluginViewFragment fragment = (PluginViewFragment) fragmentManager.findFragmentByTag(plugin.name());
-            if (event.getEventData().pluginClass() == plugin.getClass()) {
-                fragment.fill(event.getEventData());
-            } else {
-                fragment.fill(null);
-            }
-        }
+        mViewPager.setEventData(event.getEventData());
     }
 
     protected EventStructure saveToEvent() {
@@ -214,20 +199,7 @@ public class EditEventActivity extends AppCompatActivity {
         if (!parent.equals(NON))
             event.setParentName(parent);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        for (EventPlugin plugin : PluginRegistry.getInstance().getEventPlugins()) {
-            PluginViewFragment fragment = (PluginViewFragment) fragmentManager.findFragmentByTag(plugin.name());
-            StorageData data = fragment.getData();
-            if (data == null)
-                continue;
-            if (data instanceof EventData) {
-                event.setEventData((EventData) data);
-            } else {
-                Logger.wtf("data of plugin's Layout is not instance of EventData");
-                throw new RuntimeException("data of plugin's Layout is not instance of EventData");
-            }
-            break;
-        }
+        event.setEventData(mViewPager.getEventData());
 
         return event;
     }
@@ -264,4 +236,5 @@ public class EditEventActivity extends AppCompatActivity {
         }
         return success;
     }
+
 }

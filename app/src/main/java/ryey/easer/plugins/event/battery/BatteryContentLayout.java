@@ -17,7 +17,7 @@ public class BatteryContentLayout extends TypedContentLayout {
     };
     RadioButton []radioButtons = new RadioButton[values.length];
 
-    int checked_item = -1;
+    Integer checked_item = null;
 
     {
         expectedDataClass = BatteryEventData.class;
@@ -65,6 +65,8 @@ public class BatteryContentLayout extends TypedContentLayout {
 
     @Override
     public StorageData getData() {
+        if (checked_item == null)
+            return null;
         return new BatteryEventData(values[checked_item], selectedType());
     }
 }

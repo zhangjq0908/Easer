@@ -1,4 +1,4 @@
-package ryey.easer.core.ui;
+package ryey.easer.core.ui.edit;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -23,8 +23,6 @@ import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.core.data.storage.xml.profile.XmlProfileDataStorage;
 import ryey.easer.plugins.PluginRegistry;
-
-import static ryey.easer.core.ui.EditDataProto.CONTENT_NAME;
 
 public class EditProfileActivity extends AppCompatActivity {
 
@@ -67,7 +65,7 @@ public class EditProfileActivity extends AppCompatActivity {
         }
         purpose = (EditDataProto.Purpose) getIntent().getSerializableExtra(EditDataProto.PURPOSE);
         if (purpose != EditDataProto.Purpose.add)
-            oldName = getIntent().getStringExtra(CONTENT_NAME);
+            oldName = getIntent().getStringExtra(EditDataProto.CONTENT_NAME);
         if (purpose == EditDataProto.Purpose.delete) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
@@ -109,7 +107,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         for (OperationPlugin operationPlugin : PluginRegistry.getInstance().getOperationPlugins()) {
-            PluginViewFragment fragment = PluginViewFragment.createInstance(operationPlugin.view(this));
+            PluginViewFragment fragment = SelectableNamedPluginViewFragment.createInstance(operationPlugin.view(this));
             fragmentManager.beginTransaction().add(R.id.layout_profiles, fragment, operationPlugin.name()).commit();
         }
         fragmentManager.executePendingTransactions();

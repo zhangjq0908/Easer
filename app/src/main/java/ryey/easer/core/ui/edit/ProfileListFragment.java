@@ -17,7 +17,8 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui;
+package ryey.easer.core.ui.edit;
+
 
 import android.app.Activity;
 import android.app.ListFragment;
@@ -31,6 +32,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.orhanobut.logger.Logger;
@@ -39,19 +41,18 @@ import java.io.IOException;
 import java.util.List;
 
 import ryey.easer.R;
-import ryey.easer.core.EHService;
-import ryey.easer.core.data.storage.EventDataStorage;
-import ryey.easer.core.data.storage.xml.event.XmlEventDataStorage;
+import ryey.easer.core.data.storage.ProfileDataStorage;
+import ryey.easer.core.data.storage.xml.profile.XmlProfileDataStorage;
 
-public class EventListFragment extends ListFragment {
+public class ProfileListFragment extends ListFragment {
     static final int request_code = 10;
 
-    EventDataStorage mStorage = null;
+    ProfileDataStorage mStorage = null;
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        activity.setTitle(getString(R.string.title_event));
+        activity.setTitle(getString(R.string.title_profile));
     }
 
     @Override
@@ -60,16 +61,15 @@ public class EventListFragment extends ListFragment {
         setHasOptionsMenu(true);
         registerForContextMenu(getListView());
 
-        List<String> items = null;
         try {
-            mStorage = XmlEventDataStorage.getInstance(getActivity());
-            items = mStorage.list();
-            Logger.v("All events: %s", items);
+            mStorage = XmlProfileDataStorage.getInstance(getActivity());
+            List<String> items = mStorage.list();
+            Logger.v("All profiles: %s", items);
+            ListAdapter adapter = new ProfileListAdapter(getActivity(), items);
+            setListAdapter(adapter);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        EventListAdapter adapter = new EventListAdapter(getActivity(), items);
-        setListAdapter(adapter);
         reloadList(); //TODO: 尚有重複載入，待改進
     }
 
@@ -77,7 +77,7 @@ public class EventListFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         String name = (String) l.getItemAtPosition(position);
-        beginEditEvent(name);
+        beginEditProfile(name);
     }
 
     @Override
@@ -92,7 +92,7 @@ public class EventListFragment extends ListFragment {
         int id = item.getItemId();
         switch (id) {
             case R.id.action_add:
-                beginNewEvent();
+                beginNewProfile();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -112,10 +112,10 @@ public class EventListFragment extends ListFragment {
         int id = item.getItemId();
         switch (id) {
             case R.id.action_edit:
-                beginEditEvent(name);
+                beginEditProfile(name);
                 return true;
             case R.id.action_delete:
-                beginDeleteEvent(name);
+                begingDeleteProfile(name);
                 return true;
         }
         return super.onContextItemSelected(item);
@@ -124,29 +124,26 @@ public class EventListFragment extends ListFragment {
     private void reloadList() {
         Logger.d("reloadList()");
         List<String> items = mStorage.list();
-        Logger.v("All events: %s", items);
-        EventListAdapter adapter = (EventListAdapter) getListAdapter();
+        Logger.v("All profiles: %s", items);
+        ProfileListAdapter adapter = (ProfileListAdapter) getListAdapter();
         adapter.clear();
         adapter.addAll(items);
         adapter.notifyDataSetChanged();
-        Intent intent = new Intent();
-        intent.setAction(EHService.ACTION_RELOAD);
-        getActivity().sendBroadcast(intent);
     }
 
-    private void beginNewEvent() {
-        Intent intent = new Intent(getActivity(), EditEventActivity.class);
+    private void beginNewProfile() {
+        Intent intent = new Intent(getActivity(), EditProfileActivity.class);
         intent.putExtra(EditDataProto.PURPOSE, EditDataProto.Purpose.add);
         startActivityForResult(intent, request_code);
     }
-    private void beginEditEvent(String name) {
-        Intent intent = new Intent(getActivity(), EditEventActivity.class);
+    private void beginEditProfile(String name) {
+        Intent intent = new Intent(getActivity(), EditProfileActivity.class);
         intent.putExtra(EditDataProto.PURPOSE, EditDataProto.Purpose.edit);
         intent.putExtra(EditDataProto.CONTENT_NAME, name);
         startActivityForResult(intent, request_code);
     }
-    private void beginDeleteEvent(String name) {
-        Intent intent = new Intent(getActivity(), EditEventActivity.class);
+    private void begingDeleteProfile(String name) {
+        Intent intent = new Intent(getActivity(), EditProfileActivity.class);
         intent.putExtra(EditDataProto.PURPOSE, EditDataProto.Purpose.delete);
         intent.putExtra(EditDataProto.CONTENT_NAME, name);
         startActivityForResult(intent, request_code);
@@ -162,8 +159,13 @@ public class EventListFragment extends ListFragment {
     }
 }
 
-class EventListAdapter extends ArrayAdapter<String> {
-    public EventListAdapter(Context context, List<String> data) {
-        super(context, R.layout.item_event, R.id.textView_event_title, data);
+//class ProfileListAdapter extends SimpleAdapter {
+//    public ProfileListAdapter(Context context, List<? extends Map<String, ?>> data, int resource, String[] from, int[] to) {
+//        super(context, data, resource, from, to);
+//    }
+//}
+class ProfileListAdapter extends ArrayAdapter<String> {
+    public ProfileListAdapter(Context context, List<String> data) {
+        super(context, R.layout.item_profile, R.id.textView_profile_title, data);
     }
 }
