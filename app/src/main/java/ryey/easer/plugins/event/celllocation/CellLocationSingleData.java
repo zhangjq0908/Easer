@@ -24,6 +24,7 @@ import android.telephony.cdma.CdmaCellLocation;
 import android.telephony.gsm.GsmCellLocation;
 
 import java.util.List;
+import java.util.Locale;
 
 public class CellLocationSingleData {
     Integer cid = null;
@@ -77,8 +78,10 @@ public class CellLocationSingleData {
 
     public void set(String repr) {
         String[] parts = repr.split("-");
-        cid = Integer.valueOf(parts[0]);
-        lac = Integer.valueOf(parts[1]);
+        if (parts.length != 2)
+            return;
+        cid = Integer.valueOf(parts[0].trim());
+        lac = Integer.valueOf(parts[1].trim());
     }
     
     public boolean isValid() {
@@ -88,7 +91,7 @@ public class CellLocationSingleData {
     }
 
     public String toString() {
-        return String.format("%d-%d", cid, lac);
+        return String.format(Locale.US, "%d-%d", cid, lac);
     }
 
     @Override

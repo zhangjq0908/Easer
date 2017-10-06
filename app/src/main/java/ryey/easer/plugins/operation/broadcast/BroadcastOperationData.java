@@ -70,7 +70,7 @@ public class BroadcastOperationData implements OperationData {
     }
 
     @Override
-    public void parse(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
+    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalXmlException {
         int depth = parser.getDepth();
         int event_type = parser.next();
         IntentData intentData = new IntentData();

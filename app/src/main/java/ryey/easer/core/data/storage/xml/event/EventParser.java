@@ -21,6 +21,8 @@ package ryey.easer.core.data.storage.xml.event;
 
 import android.util.Xml;
 
+import com.orhanobut.logger.Logger;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -39,16 +41,29 @@ class EventParser {
 
     private XmlPullParser parser = Xml.newPullParser();
 
+    private int version = ryey.easer.commons.C.VERSION_DEFAULT;
     private EventStructure event;
 
     public EventStructure parse(InputStream in) throws XmlPullParserException, IOException, IllegalXmlException {
+        boolean no_version = false;
         event = new EventStructure();
         parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
         parser.setInput(in, null);
         parser.nextTag();
-        if (readEvent())
+        parser.require(XmlPullParser.START_TAG, ns, C.EVENT);
+        try {
+            version = Integer.valueOf(parser.getAttributeValue(ns, ryey.easer.commons.C.VERSION_NAME));
+        } catch (NumberFormatException e) {
+            no_version = true;
+        } catch (Exception e) {
+            Logger.e(e, "Unexpected error");
+            throw e;
+        }
+        if (readEvent()) {
+            if (no_version)
+                Logger.d("Event <%s> has no \"version\" attribute. Used fallback version instead.", event.getName());
             return event;
-        else
+        } else
             throw new IllegalXmlException("illegal content");
     }
 
@@ -98,12 +113,14 @@ class EventParser {
         String text = XmlHelper.getText(parser, "After");
         if (!text.equals(C.NON))
             event.setParentName(text);
-        while (parser.next() != XmlPullParser.START_TAG);
-        assert parser.getName().equals(C.SIT);
+        if (parser.getEventType() != XmlPullParser.START_TAG) {
+            while (parser.nextTag() != XmlPullParser.START_TAG);
+        }
+        parser.require(XmlPullParser.START_TAG, ns, C.SIT);
         String spec = parser.getAttributeValue(ns, C.SPEC);
         EventPlugin plugin = PluginRegistry.getInstance().findEventPlugin(spec);
         EventData data = plugin.data();
-        data.parse(parser);
+        data.parse(parser, version);
         if (data.isValid())
             event.setEventData(data);
         else

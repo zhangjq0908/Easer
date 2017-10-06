@@ -77,7 +77,7 @@ public class BTDeviceEventData extends TypedEventData {
     }
 
     @Override
-    public void parse(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
+    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalXmlException {
         String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
         set(str_data);
         EventType type = XmlHelper.EventHelper.readLogic(parser);

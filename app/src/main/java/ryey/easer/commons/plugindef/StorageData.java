@@ -42,7 +42,7 @@ public interface StorageData {
     boolean equals(Object o);
 
     // Read data (to the instance) from a source (currently only XML)
-    void parse(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException;
+    void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalXmlException;
 
     // Dump the data (of the instance) to a destination (currently only XML)
     void serialize(XmlSerializer serializer) throws IOException;

@@ -39,7 +39,7 @@ public class CommandOperationData extends StringOperationData {
     }
 
     @Override
-    public void parse(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
+    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalXmlException {
         mParse(parser, pname());
     }
 

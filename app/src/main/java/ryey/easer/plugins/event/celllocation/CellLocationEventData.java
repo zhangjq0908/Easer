@@ -19,6 +19,8 @@
 
 package ryey.easer.plugins.event.celllocation;
 
+import com.orhanobut.logger.Logger;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
@@ -28,6 +30,7 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
+import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
@@ -62,12 +65,19 @@ public class CellLocationEventData extends TypedEventData {
     @Override
     public void set(Object obj) {
         if (obj instanceof String) {
-            String[] parts = ((String) obj).split(",");
+            String[] parts = ((String) obj).split("\n");
             for (String single : parts) {
-                if (single.trim().isEmpty())
-                    continue;
                 CellLocationSingleData singleData = new CellLocationSingleData();
-                singleData.set(single.trim());
+                singleData.set(single);
+                if (singleData.isValid())
+                    data.add(singleData);
+            }
+        } else if (obj instanceof String[]) {
+            String[] parts = (String[]) obj;
+            Logger.d(parts);
+            for (String single : parts) {
+                CellLocationSingleData singleData = new CellLocationSingleData();
+                singleData.set(single);
                 if (singleData.isValid())
                     data.add(singleData);
             }
@@ -89,20 +99,30 @@ public class CellLocationEventData extends TypedEventData {
     }
 
     @Override
-    public void parse(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
-        String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
-        set(str_data);
+    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalXmlException {
+        if (version == C.VERSION_DEFAULT) {
+            String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
+            String[] parts = str_data.split(",");
+            set(parts);
+        } else {
+            set(XmlHelper.EventHelper.readMultipleSituation(parser));
+        }
         EventType type = XmlHelper.EventHelper.readLogic(parser);
         setType(type);
     }
 
     @Override
     public void serialize(XmlSerializer serializer) throws IOException {
-        String cellLocation = toString();
-        if (cellLocation != null) {
-            XmlHelper.EventHelper.writeSingleSituation(serializer, pname(), cellLocation);
-            XmlHelper.EventHelper.writeLogic(serializer, type());
+        if (data.size() == 0) {
+            Logger.wtf("trying to serialize empty data");
+            return;
         }
+        List<String> list = new ArrayList<>();
+        for (CellLocationSingleData singleData : data) {
+            list.add(singleData.toString());
+        }
+        XmlHelper.EventHelper.writeMultipleSituation(serializer, pname(), list.toArray(new String[0]));
+        XmlHelper.EventHelper.writeLogic(serializer, type());
     }
 
     public boolean add(CellLocationSingleData singleData) {
@@ -118,13 +138,13 @@ public class CellLocationEventData extends TypedEventData {
             str += data.get(0).toString();
             for (int i = 1; i < data.size(); i++) {
                 CellLocationSingleData singleData = data.get(i);
-                str += "," + singleData.toString();
+                str += "\n" + singleData.toString();
             }
         }
         return str;
     }
 
-    public boolean contains(CellLocationSingleData singleData) {
+    boolean contains(CellLocationSingleData singleData) {
         for (CellLocationSingleData singleData1 : data) {
             if (singleData.equals(singleData1))
                 return true;

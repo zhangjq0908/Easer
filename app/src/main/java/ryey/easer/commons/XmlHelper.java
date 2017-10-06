@@ -24,6 +24,8 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
@@ -34,9 +36,11 @@ public class XmlHelper {
     protected static final String ns = null;
 
     public static String getText(XmlPullParser parser, String which) throws IOException, XmlPullParserException, IllegalXmlException {
-        if (parser.next() == XmlPullParser.TEXT)
-            return parser.getText();
-        else {
+        if (parser.next() == XmlPullParser.TEXT) {
+            String text = parser.getText();
+            parser.next(); // Move to END_TAG since there shouldn't be anything else
+            return text;
+        } else {
             throw new IllegalXmlException(String.format("Illegal XML field: %s has no TEXT", which));
         }
     }
@@ -62,11 +66,11 @@ public class XmlHelper {
 
         protected static final String AT = "at";
 
-        public static void writeSingleSituation(XmlSerializer serializer, String spec, String at) throws IOException {
+        public static void writeSingleSituation(XmlSerializer serializer, String spec, String situation) throws IOException {
             serializer.startTag(ns, C.SIT);
             serializer.attribute(ns, C.SPEC, spec);
             serializer.startTag(ns, AT);
-            serializer.text(at);
+            serializer.text(situation);
             serializer.endTag(ns, AT);
             serializer.endTag(ns, C.SIT);
         }
@@ -81,6 +85,31 @@ public class XmlHelper {
                 }
             }
             return str_data;
+        }
+
+        public static void writeMultipleSituation(XmlSerializer serializer, String spec, String[] situations) throws IOException {
+            serializer.startTag(ns, C.SIT);
+            serializer.attribute(ns, C.SPEC, spec);
+            for (String situation : situations) {
+                serializer.startTag(ns, AT);
+                serializer.text(situation);
+                serializer.endTag(ns, AT);
+            }
+            serializer.endTag(ns, C.SIT);
+        }
+
+        public static String[] readMultipleSituation(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
+            List<String> list = new ArrayList<>();
+            while (parser.next() != XmlPullParser.END_TAG) {
+                switch (parser.getName()) {
+                    case AT:
+                        list.add(getText(parser, "At"));
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return list.toArray(new String[0]);
         }
 
         public static void writeLogic(XmlSerializer serializer, EventType type) throws IOException {

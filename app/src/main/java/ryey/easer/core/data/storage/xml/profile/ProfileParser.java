@@ -40,6 +40,7 @@ class ProfileParser {
 
     private XmlPullParser parser = Xml.newPullParser();;
 
+    int version = ryey.easer.commons.C.VERSION_DEFAULT;
     ProfileStructure profile;
 
     public ProfileStructure parse(InputStream in) throws XmlPullParserException, IOException, IllegalXmlException {
@@ -91,7 +92,7 @@ class ProfileParser {
                 for (OperationPlugin plugin : PluginRegistry.getInstance().getOperationPlugins()) {
                     if (spec.equals(plugin.name())) {
                         OperationData data = plugin.data();
-                        data.parse(parser);
+                        data.parse(parser, version);
                         profile.set(plugin.name(), data);
                         break;
                     }
