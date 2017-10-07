@@ -47,4 +47,10 @@ public interface EventData extends StorageData {
      * FIXME: Designed to be used when dealing with storage
      */
     boolean isAvailable(EventType type);
+
+    /*
+     * Test whether the obj matches any of the data
+     * Used when the data could contain multiple choices (e.g. when using type `any`)
+     */
+    boolean match(Object obj);
 }

@@ -32,8 +32,10 @@ import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 public class BTDeviceSlot extends AbstractSlot {
-    String target_hardware_address = null;
-    EventType type = null;
+    private BTDeviceEventData data = null;
+    private EventType type = null;
+
+    private int matched_devices = 0;
 
     BroadcastReceiver connReceiver = new BroadcastReceiver() {
         @Override
@@ -42,12 +44,14 @@ public class BTDeviceSlot extends AbstractSlot {
             if (action.equals(BluetoothDevice.ACTION_ACL_CONNECTED)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 if (is_target(device)) {
-                    changeSatisfiedState(true);
+                    matched_devices++;
+                    determine_satisfied();
                 }
             } else if (action.equals(BluetoothDevice.ACTION_ACL_DISCONNECTED)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 if (is_target(device)) {
-                    changeSatisfiedState(false);
+                    matched_devices--;
+                    determine_satisfied();
                 }
             }
         }
@@ -68,17 +72,11 @@ public class BTDeviceSlot extends AbstractSlot {
     @Override
     public void set(EventData data) {
         if (data instanceof BTDeviceEventData) {
-            setWifiConn((String) data.get());
+            this.data = (BTDeviceEventData) data;
             type = data.type();
         } else {
             throw new RuntimeException("illegal data");
         }
-    }
-
-    public void setWifiConn(String name) {
-        if (name == null || name.isEmpty())
-            return;
-        target_hardware_address = name;
     }
 
     @Override
@@ -98,16 +96,22 @@ public class BTDeviceSlot extends AbstractSlot {
             for (int profile : new int[]{BluetoothProfile.GATT, BluetoothProfile.GATT_SERVER}) {
                 for (BluetoothDevice btDevice : bluetoothManager.getConnectedDevices(profile)) {
                     if (is_target(btDevice)) {
-                        changeSatisfiedState(true);
-                        return;
+                        matched_devices++;
                     }
                 }
             }
         }
-        changeSatisfiedState(false);
+        determine_satisfied();
     }
 
     private boolean is_target(BluetoothDevice device) {
-        return device.getAddress().equals(target_hardware_address);
+        return data.match(device.getAddress());
+    }
+
+    private void determine_satisfied() {
+        if (type == EventType.any)
+            changeSatisfiedState(matched_devices > 0);
+        else
+            changeSatisfiedState(matched_devices == 0);
     }
 }

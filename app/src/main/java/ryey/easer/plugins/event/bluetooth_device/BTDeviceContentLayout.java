@@ -27,12 +27,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import ryey.easer.R;
+import ryey.easer.Utils;
 import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.plugins.event.TypedContentLayout;
 
@@ -45,7 +48,7 @@ public class BTDeviceContentLayout extends TypedContentLayout {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(ACTION_RETURN)) {
-                setHardwareAddress(intent.getStringExtra(EXTRA_HARDWARE_ADDRESS));
+                addHardwareAddress(intent.getStringExtra(EXTRA_HARDWARE_ADDRESS));
                 context.unregisterReceiver(mReceiver);
             }
         }
@@ -66,6 +69,40 @@ public class BTDeviceContentLayout extends TypedContentLayout {
         inflate(context, R.layout.plugin_event__bluetooth_device, this);
         editText = (EditText) findViewById(R.id.hardware_address);
         textView = (TextView) findViewById(R.id.device_name);
+
+        editText.addTextChangedListener(new TextWatcher() {
+            String name_not_found = getResources().getString(R.string.ebtdevice_unknown_device);
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String[] hw_addresses = s.toString().split("\n");
+                String text = "";
+                boolean first_line = true;
+                if (hw_addresses.length > 0) {
+                    for (String hw_address : hw_addresses) {
+                        if (Utils.isBlank(hw_address))
+                            continue;
+                        if (!first_line)
+                            text += "\n";
+                        String name = resolveHWAddress(hw_address);
+                        if (name != null)
+                            text += name;
+                        else
+                            text += name_not_found;
+                        first_line = false;
+                    }
+                }
+                textView.setText(text);
+            }
+        });
 
         findViewById(R.id.connection_picker).setOnClickListener(new OnClickListener() {
             @Override
@@ -101,22 +138,29 @@ public class BTDeviceContentLayout extends TypedContentLayout {
         });
     }
 
-    private void setHardwareAddress(String hardware_address) {
-        editText.setText(hardware_address);
+    private String resolveHWAddress(String hwaddress) {
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        for (BluetoothDevice btDevice : bluetoothAdapter.getBondedDevices()) {
-            if (btDevice.getAddress().equals(hardware_address)) {
-                textView.setText(btDevice.getName());
-                return;
+        if (bluetoothAdapter != null) {
+            for (BluetoothDevice btDevice : bluetoothAdapter.getBondedDevices()) {
+                if (btDevice.getAddress().equals(hwaddress)) {
+                    return btDevice.getName();
+                }
             }
         }
-        textView.setText(R.string.ebtdevice_unknown_device);
+        return null;
+    }
+
+    private void addHardwareAddress(String hardware_address) {
+        Editable text = editText.getText();
+        if (!Utils.isBlank(text.toString()))
+            text.append("\n");
+        text.append(hardware_address);
     }
 
     @Override
     protected void _fill(StorageData data) {
         if (data instanceof BTDeviceEventData) {
-            setHardwareAddress((String) data.get());
+            editText.setText(data.toString());
         }
     }
 

@@ -42,4 +42,9 @@ public abstract class TypedEventData implements EventData {
     public boolean isAvailable(EventType type) {
         return availableTypes().contains(type);
     }
+
+    @Override
+    public boolean match(Object obj) {
+        return equals(obj);
+    }
 }
