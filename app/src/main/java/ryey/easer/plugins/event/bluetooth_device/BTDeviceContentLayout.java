@@ -19,6 +19,7 @@
 
 package ryey.easer.plugins.event.bluetooth_device;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -107,6 +108,8 @@ public class BTDeviceContentLayout extends TypedContentLayout {
         findViewById(R.id.connection_picker).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!Utils.hasPermission(getContext(), Manifest.permission.BLUETOOTH))
+                    return;
                 context.registerReceiver(mReceiver, mFilter);
                 AlertDialog.Builder builderSingle = new AlertDialog.Builder(context);
                 builderSingle.setTitle(R.string.ebtdevice_select_dialog_title);

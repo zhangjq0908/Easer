@@ -19,12 +19,14 @@
 
 package ryey.easer.plugins.event.celllocation;
 
+import android.Manifest;
 import android.content.Context;
 import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.EditText;
 
 import ryey.easer.R;
+import ryey.easer.Utils;
 import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.plugins.event.TypedContentLayout;
 
@@ -35,7 +37,7 @@ public class CellLocationContentLayout extends TypedContentLayout {
         expectedDataClass = CellLocationEventData.class;
     }
 
-    public CellLocationContentLayout(Context context) {
+    public CellLocationContentLayout(final Context context) {
         super(context);
         setAvailableTypes(new CellLocationEventData().availableTypes());
         setType(new CellLocationEventData().type());
@@ -45,6 +47,8 @@ public class CellLocationContentLayout extends TypedContentLayout {
         findViewById(R.id.location_picker).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!Utils.hasPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION))
+                    return;
                 TelephonyManager telephonyManager = (TelephonyManager) getContext().getSystemService(Context.TELEPHONY_SERVICE);
                 CellLocationSingleData singleData = CellLocationSingleData.fromCellLocation(telephonyManager.getCellLocation());
                 CellLocationEventData locationData = CellLocationEventData.fromString(editText.getText().toString());

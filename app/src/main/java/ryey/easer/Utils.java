@@ -1,5 +1,10 @@
 package ryey.easer;
 
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.support.v4.content.ContextCompat;
+import android.widget.Toast;
+
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -42,5 +47,16 @@ public class Utils {
             list.add(num.toString());
         }
         return list;
+    }
+
+    public static boolean hasPermission(Context context, String permission) {
+        if (ContextCompat.checkSelfPermission(context, permission)
+                != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(context, String.format(
+                    context.getString(R.string.prompt_prevented_for_permission), permission),
+                    Toast.LENGTH_LONG).show();
+            return false;
+        } else
+            return true;
     }
 }

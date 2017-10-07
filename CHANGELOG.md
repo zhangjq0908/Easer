@@ -1,6 +1,15 @@
 CHANGELOG
 ======
 
+* v0.3.9: Change cell location data && use multi for data && other change
+	* Add `XmlHelper.EventHelper.readMultipleSituation()` and `XmlHelper.EventHelper.writeMultipleSituation()` to handle events whose data could be multiple section (instead of handling it on each plugin)
+	* Add versioning to storage data (for compatibility between versions)
+	* Change `CellLocationEventData`
+		* Separate with new lines to display
+		* Save with multi situation
+	* Make `BluetoothEventPlugin` and `WifiEventPlugin` multi selectional
+	* Check for permission before using location picker and bluetooth selector (Service side is not handled yet)
+
 * v0.3.8: Use `ViewPager` for views of event plugins
 	* Use `ViewPager` to display the fragment of the view of each event plugin (one at a time)
 		* Add `ScrollView`
