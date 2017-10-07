@@ -28,9 +28,11 @@ import org.xmlpull.v1.XmlSerializer;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.EnumSet;
+import java.util.HashSet;
 import java.util.Set;
 
 import ryey.easer.Utils;
+import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
@@ -41,7 +43,7 @@ import static ryey.easer.plugins.event.dayofweek.DayOfWeekEventPlugin.pname;
 
 public class DayOfWeekEventData extends TypedEventData {
 
-    Set<Integer> days;
+    Set<Integer> days = new HashSet<>(7);
 
     {
         default_type = EventType.any;
@@ -62,8 +64,19 @@ public class DayOfWeekEventData extends TypedEventData {
 
     @Override
     public void set(Object obj) {
-        if (obj instanceof Set) {
-            days = (Set<Integer>) obj;
+        if (obj instanceof String) {
+            set(((String) obj).split("\n"));
+        } else if (obj instanceof String[]) {
+            for (String str : (String[]) obj) {
+                days.add(Integer.parseInt(str.trim()));
+            }
+        } else if (obj instanceof Set) {
+            for (Object o : (Set) obj) {
+                if (o instanceof Integer)
+                    days.add((Integer) o);
+                else
+                    Logger.wtf("Data is Set but element <%s> is not Integer", o);
+            }
         } else {
             throw new RuntimeException("illegal data type");
         }
@@ -85,22 +98,28 @@ public class DayOfWeekEventData extends TypedEventData {
 
     @Override
     public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalXmlException {
-        String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
-        try {
-            set(Utils.str2set(str_data));
-            EventType type = XmlHelper.EventHelper.readLogic(parser);
-            setType(type);
-        } catch (ParseException e) {
-            Logger.e(e, "Illegal Event: illegal time format %s", str_data);
-            throw new IllegalXmlException(String.format("Illegal Event: illegal time format %s", str_data));
+        if (version == C.VERSION_DEFAULT) {
+            String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
+            try {
+                set(Utils.str2set(str_data));
+            } catch (ParseException e) {
+                Logger.e(e, "Illegal Event: illegal time format %s", str_data);
+                throw new IllegalXmlException(String.format("Illegal Event: illegal time format %s", str_data));
+            }
+        } else {
+            set(XmlHelper.EventHelper.readMultipleSituation(parser));
         }
+        EventType type = XmlHelper.EventHelper.readLogic(parser);
+        setType(type);
     }
 
     @Override
     public void serialize(XmlSerializer serializer) throws IOException {
-        if (days != null) {
-            XmlHelper.EventHelper.writeSingleSituation(serializer, pname(), Utils.set2str(days));
-            XmlHelper.EventHelper.writeLogic(serializer, type());
+        if (!isValid()) {
+            Logger.wtf("Invalid DayOfWeekEventData shouldn't be serialized");
         }
+        XmlHelper.EventHelper.writeMultipleSituation(serializer, pname(),
+                Utils.set2strlist(days).toArray(new String[0]));
+        XmlHelper.EventHelper.writeLogic(serializer, type());
     }
 }

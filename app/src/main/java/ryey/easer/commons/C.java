@@ -30,7 +30,8 @@ public class C {
     public static final String SPEC = "spec";
     public static final String ITEM = "item";
 
-    public static final int VERSION_CURRENT = 1;
+    public static final int VERSION_FULL_MULTI = 1;
+    public static final int VERSION_CURRENT = VERSION_FULL_MULTI;
     public static final int VERSION_DEFAULT = 0;
     public static final String VERSION_NAME = "version";
 }

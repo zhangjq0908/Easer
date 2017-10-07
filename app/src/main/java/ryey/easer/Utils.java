@@ -1,7 +1,9 @@
 package ryey.easer;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
@@ -32,5 +34,13 @@ public class Utils {
             str += String.format(Locale.US, "%d\n", day);
         }
         return str;
+    }
+
+    public static <T> List<String> set2strlist(Set<T> set) {
+        List<String> list = new ArrayList<>(set.size());
+        for (T num : set) {
+            list.add(num.toString());
+        }
+        return list;
     }
 }
