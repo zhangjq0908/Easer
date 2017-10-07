@@ -19,13 +19,19 @@
 
 package ryey.easer.plugins.event.wifi;
 
+import com.orhanobut.logger.Logger;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.List;
 
+import ryey.easer.Utils;
+import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
@@ -35,37 +41,55 @@ import ryey.easer.plugins.event.TypedEventData;
 import static ryey.easer.plugins.event.wifi.WifiEventPlugin.pname;
 
 public class WifiEventData extends TypedEventData {
-    String ssid = null;
+    List<String> ssids = new ArrayList<>();
 
     {
-        default_type = EventType.is;
-        availableTypes = EnumSet.of(EventType.is, EventType.is_not);
+        default_type = EventType.any;
+        availableTypes = EnumSet.of(EventType.any, EventType.none);
     }
 
     public WifiEventData() {}
 
     public WifiEventData(String ssid, EventType type) {
-        this.ssid = ssid;
+        set(ssid);
         setType(type);
     }
 
     @Override
     public Object get() {
-        return ssid;
+        return ssids;
     }
 
     @Override
     public void set(Object obj) {
         if (obj instanceof String) {
-            ssid = (String) obj;
+            set(((String) obj).split("\n"));
+        } else if (obj instanceof String[]) {
+            for (String hardware_address : (String[]) obj) {
+                if (!Utils.isBlank(hardware_address))
+                    ssids.add(hardware_address.trim());
+            }
         } else {
             throw new RuntimeException("illegal data");
         }
     }
 
     @Override
+    public String toString() {
+        String text = "";
+        boolean is_first = true;
+        for (String ssid : ssids) {
+            if (!is_first)
+                text += "\n";
+            text += ssid;
+            is_first = false;
+        }
+        return text;
+    }
+
+    @Override
     public boolean isValid() {
-        if (ssid == null)
+        if (ssids.size() == 0)
             return false;
         return true;
     }
@@ -77,18 +101,36 @@ public class WifiEventData extends TypedEventData {
 
     @Override
     public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalXmlException {
-        String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
-        set(str_data);
+        if (version == C.VERSION_DEFAULT) {
+            String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
+            set(str_data);
+        } else {
+            set(XmlHelper.EventHelper.readMultipleSituation(parser));
+        }
         EventType type = XmlHelper.EventHelper.readLogic(parser);
+        if (version == C.VERSION_DEFAULT) {
+            if (type == EventType.is)
+                type = EventType.any;
+            else if (type == EventType.is_not)
+                type = EventType.none;
+        }
         setType(type);
     }
 
     @Override
     public void serialize(XmlSerializer serializer) throws IOException {
-        String wifi = (String) get();
-        if (wifi != null) {
-            XmlHelper.EventHelper.writeSingleSituation(serializer, pname(), wifi);
-            XmlHelper.EventHelper.writeLogic(serializer, type());
+        if (!isValid()) {
+            Logger.wtf("Invalid WifiEventData shouldn't be serialized");
         }
+        XmlHelper.EventHelper.writeMultipleSituation(serializer, pname(), ssids.toArray(new String[0]));
+        XmlHelper.EventHelper.writeLogic(serializer, type());
+    }
+
+    @Override
+    public boolean match(Object obj) {
+        if (obj instanceof String) {
+            return ssids.contains(((String) obj).trim());
+        }
+        return super.match(obj);
     }
 }

@@ -27,16 +27,18 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 
+import com.orhanobut.logger.Logger;
+
 import ryey.easer.commons.IllegalArgumentTypeException;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 public class WifiConnSlot extends AbstractSlot {
-    String target_ssid = null;
-    EventType type = null;
+    private WifiEventData data = null;
+    private EventType type = null;
 
-    String ssid = null;
+    private int matched_networks = 0;
 
     BroadcastReceiver connReceiver = new BroadcastReceiver() {
         @Override
@@ -46,12 +48,13 @@ public class WifiConnSlot extends AbstractSlot {
                 NetworkInfo networkInfo = intent.getParcelableExtra(WifiManager.EXTRA_NETWORK_INFO);
                 if (networkInfo.getState() == NetworkInfo.State.CONNECTED) {
                     WifiInfo wifiInfo = intent.getParcelableExtra(WifiManager.EXTRA_WIFI_INFO);
-                    if (type == EventType.is)
-                        changeSatisfiedState(compare(wifiInfo));
-                    else
-                        changeSatisfiedState(false);
-                } else
-                    changeSatisfiedState(false);
+                    if (compare(wifiInfo))
+                        matched_networks++;
+                    determine_satisfied();
+                } else {
+                    matched_networks = 0;
+                    determine_satisfied();
+                }
             }
         }
     };
@@ -70,25 +73,16 @@ public class WifiConnSlot extends AbstractSlot {
     @Override
     public void set(EventData data) {
         if (data instanceof WifiEventData) {
-            setWifiConn((String) data.get());
+            this.data = (WifiEventData) data;
             type = data.type();
         } else {
             throw new IllegalArgumentTypeException(data.getClass(), WifiEventData.class);
         }
     }
 
-    public void setWifiConn(String name) {
-        if (name == null || name.isEmpty())
-            return;
-        target_ssid = name;
-    }
-
     @Override
     public boolean isValid() {
-        if (target_ssid == null || target_ssid.isEmpty()) {
-            return false;
-        }
-        return true;
+        return data.isValid();
     }
 
     @Override
@@ -105,18 +99,26 @@ public class WifiConnSlot extends AbstractSlot {
     public void check() {
         WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-        if (type == EventType.is) {
-            changeSatisfiedState(compare(wifiInfo));
-        } else if (type == EventType.is_not) {
-            changeSatisfiedState(!compare(wifiInfo));
-        }
+        if (compare(wifiInfo))
+            matched_networks++;
+        determine_satisfied();
     }
 
     private boolean compare(WifiInfo wifiInfo) {
-        ssid = wifiInfo.getSSID();
+        String ssid = wifiInfo.getSSID();
         if (ssid.startsWith("\"")) {
             ssid = ssid.substring(1, ssid.length() - 1);
         }
-        return ssid.equals(target_ssid);
+        return data.match(ssid);
+    }
+
+    private void determine_satisfied() {
+        if (type == EventType.any) {
+            changeSatisfiedState(matched_networks > 0);
+        } else if (type == EventType.none) {
+            changeSatisfiedState(matched_networks == 0);
+        } else {
+            Logger.wtf("Wifi plugin has unrecognized type");
+        }
     }
 }
