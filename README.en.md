@@ -47,6 +47,25 @@ Functions already supported
 * Ringer mode
 * Run commands
 
+Support Easer
+------
+### Raising issues, Comment on issues and Solving issues
+If you encounter problems when using Easer, you could raise an issue. It is better (but not necessary) if you could give more details at first so I can pin it faster.  
+You could also open an issue if you think that some functions may need to be included in Easer.
+
+It is also welcome to comment on existing issues, either you believe you have the same problem (or idea), you could provide more information about it, or you don't agree with that. Discussion is always welcome.
+
+In some situation (if you are a developer), you may possess the knowledge and time to solve some issues. You could fork the repo, do coding, and create pull requests so you code could be merged to the trunk and you get appreciated by others and also listed in the *Contributors* list.  
+It is also very welcome to create pull requests for issues not raised by others, but please first create an issue describing what you want to do (and that you are going to do it).
+
+### Donation
+
+Software development is a continuing process. It is kindly hoped to receive continuing monthly development / maintainance allowance.
+
+If you like Easer and would like to see it developing well, please consider [supporting](https://salt.bountysource.com/teams/easer). Any amout is welcome, and I kindly appreciate your support.
+
+If you believe Easer lacks some functionality you needs and would like to pay for its development, you could consider creating a (Bounty) Issue.
+
 Copyright
 ------
 Copyright (c) 2016 - 2017 Rui Zhao (renyuneyun) <renyuneyun@gmail.com>
