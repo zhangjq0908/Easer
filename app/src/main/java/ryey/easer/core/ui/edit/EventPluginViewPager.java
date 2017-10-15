@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import ryey.easer.commons.plugindef.ContentFragment;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.plugins.PluginRegistry;
@@ -84,7 +85,7 @@ public class EventPluginViewPager extends ViewPager {
         @Override
         public Fragment getItem(int position) {
             PluginViewFragment fragment = PluginViewFragment.createInstance(
-                    PluginRegistry.getInstance().getEventPlugins().get(position).view(context));
+                    ContentFragment.createInstance(PluginRegistry.getInstance().getEventPlugins().get(position).view(context)));
             return fragment;
         }
 

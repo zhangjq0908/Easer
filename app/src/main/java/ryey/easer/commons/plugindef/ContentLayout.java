@@ -26,11 +26,6 @@ public abstract class ContentLayout extends LinearLayout {
         setOrientation(VERTICAL);
     }
 
-    public ContentLayout(Context context, String desc) {
-        this(context);
-        this.desc = desc;
-    }
-
     protected void setDesc(String desc) {
         this.desc = desc;
     }

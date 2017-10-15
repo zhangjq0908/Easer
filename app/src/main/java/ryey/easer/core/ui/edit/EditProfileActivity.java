@@ -16,6 +16,7 @@ import com.orhanobut.logger.Logger;
 import java.io.IOException;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.ContentFragment;
 import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
@@ -107,7 +108,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         for (OperationPlugin operationPlugin : PluginRegistry.getInstance().getOperationPlugins()) {
-            PluginViewFragment fragment = SelectableNamedPluginViewFragment.createInstance(operationPlugin.view(this));
+            PluginViewFragment fragment = SelectableNamedPluginViewFragment.createInstance(ContentFragment.createInstance(operationPlugin.view(this)));
             fragmentManager.beginTransaction().add(R.id.layout_profiles, fragment, operationPlugin.name()).commit();
         }
         fragmentManager.executePendingTransactions();

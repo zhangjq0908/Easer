@@ -6,22 +6,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import ryey.easer.commons.plugindef.ContentLayout;
-import ryey.easer.commons.plugindef.StorageData;
+import com.orhanobut.logger.Logger;
 
-import static android.widget.LinearLayout.HORIZONTAL;
-import static android.widget.LinearLayout.VERTICAL;
+import ryey.easer.R;
+import ryey.easer.commons.plugindef.ContentFragment;
+import ryey.easer.commons.plugindef.StorageData;
 
 public class SelectableNamedPluginViewFragment extends PluginViewFragment {
 
     private CheckBox mCheckBox;
 
-    static SelectableNamedPluginViewFragment createInstance(ContentLayout contentLayout) {
+    static SelectableNamedPluginViewFragment createInstance(ContentFragment contentFragment) {
         SelectableNamedPluginViewFragment fragment = new SelectableNamedPluginViewFragment();
-        fragment.contentLayout = contentLayout;
+        fragment.contentFragment = contentFragment;
         return fragment;
     }
 
@@ -31,35 +30,24 @@ public class SelectableNamedPluginViewFragment extends PluginViewFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        LinearLayout layout = new LinearLayout(getContext());
-        layout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-
-        layout.setOrientation(HORIZONTAL);
-        mCheckBox = new CheckBox(getContext());
-        layout.addView(mCheckBox);
-
-        String desc = contentLayout.desc();
-        if (desc != null) {
-            LinearLayout rhs = new LinearLayout(getContext());
-            rhs.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-            rhs.setOrientation(VERTICAL);
-            TextView tv_desc = new TextView(getContext());
-            tv_desc.setText(contentLayout.desc());
-            rhs.addView(tv_desc);
-            rhs.addView(contentLayout);
-            layout.addView(rhs);
-        } else {
-            layout.addView(contentLayout);
-        }
-        contentLayout.setEnabled(mCheckBox.isChecked());
+        View view = inflater.inflate(R.layout.fragment_pluginview_named_selectable, container, false);
+        mCheckBox = (CheckBox) view.findViewById(R.id.checkbox_pluginview_enabled);
+        contentFragment.setEnabled(false);
         mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                contentLayout.setEnabled(b);
+                contentFragment.setEnabled(b);
             }
         });
+        String desc = contentFragment.desc();
+        if (desc == null)
+            Logger.wtf("desc == null!!!???");
+        ((TextView) view.findViewById(R.id.text_pluginview_desc)).setText(desc);
+        getChildFragmentManager().beginTransaction()
+                .add(R.id.content_pluginview, contentFragment)
+                .commit();
 
-        return layout;
+        return view;
     }
 
     @Override

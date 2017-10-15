@@ -7,20 +7,20 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ScrollView;
 
-import ryey.easer.commons.plugindef.ContentLayout;
+import ryey.easer.R;
+import ryey.easer.commons.plugindef.ContentFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public class PluginViewFragment extends Fragment {
 
-    protected ContentLayout contentLayout;
+    protected ContentFragment contentFragment;
 
     private StorageData passed_data = null;
 
-    static PluginViewFragment createInstance(ContentLayout contentLayout) {
+    static PluginViewFragment createInstance(ContentFragment contentFragment) {
         PluginViewFragment fragment = new PluginViewFragment();
-        fragment.contentLayout = contentLayout;
+        fragment.contentFragment = contentFragment;
         return fragment;
     }
 
@@ -30,10 +30,9 @@ public class PluginViewFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ScrollView scrollView = new ScrollView(getContext());
-        scrollView.setVerticalScrollBarEnabled(true);
-        scrollView.addView(contentLayout);
-        return scrollView;
+        View view = inflater.inflate(R.layout.fragment_pluginview, container, false);
+        getChildFragmentManager().beginTransaction().replace(R.id.content_pluginview, contentFragment).commit();
+        return view;
     }
 
     @Override
@@ -44,7 +43,7 @@ public class PluginViewFragment extends Fragment {
     }
 
     protected void _fill(StorageData data) {
-        contentLayout.fill(data);
+        contentFragment.fill(data);
     }
 
     public void fill(StorageData data) {
@@ -57,6 +56,6 @@ public class PluginViewFragment extends Fragment {
     }
 
     public StorageData getData() {
-        return contentLayout.getData();
+        return contentFragment.getData();
     }
 }
