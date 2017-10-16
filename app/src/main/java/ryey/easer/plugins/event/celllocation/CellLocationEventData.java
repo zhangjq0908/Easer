@@ -48,6 +48,9 @@ public class CellLocationEventData extends TypedEventData {
         availableTypes = EnumSet.of(EventType.any, EventType.none);
     }
 
+    public CellLocationEventData() {
+    }
+
     public static CellLocationEventData fromString(String repr) {
         CellLocationEventData cellLocationEventData = new CellLocationEventData();
         cellLocationEventData.set(repr);

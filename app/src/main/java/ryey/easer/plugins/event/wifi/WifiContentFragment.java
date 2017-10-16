@@ -28,10 +28,10 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.ContentFragment;
 import ryey.easer.commons.plugindef.StorageData;
-import ryey.easer.plugins.event.TypedContentFragment;
 
-public class WifiContentFragment extends TypedContentFragment {
+public class WifiContentFragment extends ContentFragment {
     EditText editText;
 
     {
@@ -41,15 +41,11 @@ public class WifiContentFragment extends TypedContentFragment {
 
     @NonNull
     @Override
-    public ViewGroup onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup view_container = super.onCreateView(inflater, container, savedInstanceState);
-        setAvailableTypes(new WifiEventData().availableTypes());
-        setType(new WifiEventData().type());
-
-        View view = inflater.inflate(R.layout.plugin_event__wifi_connection, view_container);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.plugin_event__wifi_connection, container, false);
         editText = (EditText) view.findViewById(R.id.wifi_name);
 
-        return view_container;
+        return view;
     }
 
     @Override
@@ -61,6 +57,6 @@ public class WifiContentFragment extends TypedContentFragment {
 
     @Override
     public StorageData getData() {
-        return new WifiEventData(editText.getText().toString(), selectedType());
+        return new WifiEventData(editText.getText().toString());
     }
 }

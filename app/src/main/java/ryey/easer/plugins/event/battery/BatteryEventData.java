@@ -27,6 +27,10 @@ public class BatteryEventData extends TypedEventData {
     public BatteryEventData() {
     }
 
+    public BatteryEventData(Integer battery_status) {
+        this.battery_status = battery_status;
+    }
+
     public BatteryEventData(Integer battery_status, EventType type) {
         this.battery_status = battery_status;
         setType(type);

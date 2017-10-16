@@ -107,7 +107,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         for (OperationPlugin operationPlugin : PluginRegistry.getInstance().getOperationPlugins()) {
-            PluginViewFragment fragment = SelectableNamedPluginViewFragment.createInstance(operationPlugin.view());
+            PluginViewFragment fragment = ProfilePluginViewFragment.createInstance(operationPlugin.view());
             fragmentManager.beginTransaction().add(R.id.layout_profiles, fragment, operationPlugin.name()).commit();
         }
         fragmentManager.executePendingTransactions();

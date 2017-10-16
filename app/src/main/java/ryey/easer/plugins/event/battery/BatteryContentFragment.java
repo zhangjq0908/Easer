@@ -10,12 +10,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.ContentFragment;
 import ryey.easer.commons.plugindef.StorageData;
-import ryey.easer.plugins.event.TypedContentFragment;
 
 import static android.widget.LinearLayout.HORIZONTAL;
 
-public class BatteryContentFragment extends TypedContentFragment {
+public class BatteryContentFragment extends ContentFragment {
     String []mode_names;
     int []values = {
             BatteryStatus.charging,
@@ -38,14 +38,9 @@ public class BatteryContentFragment extends TypedContentFragment {
 
     @NonNull
     @Override
-    public ViewGroup onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup view = super.onCreateView(inflater, container, savedInstanceState);
-
-        setAvailableTypes(new BatteryEventData().availableTypes());
-        setType(new BatteryEventData().type());
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         RadioGroup radioGroup = new RadioGroup(getContext());
         radioGroup.setOrientation(HORIZONTAL);
-        view.addView(radioGroup);
         View.OnClickListener radioButtonOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +58,7 @@ public class BatteryContentFragment extends TypedContentFragment {
             radioButtons[i].setOnClickListener(radioButtonOnClickListener);
             radioGroup.addView(radioButtons[i]);
         }
-        return view;
+        return radioGroup;
     }
 
     @Override
@@ -83,6 +78,6 @@ public class BatteryContentFragment extends TypedContentFragment {
     public StorageData getData() {
         if (checked_item == null)
             return null;
-        return new BatteryEventData(values[checked_item], selectedType());
+        return new BatteryEventData(values[checked_item]);
     }
 }

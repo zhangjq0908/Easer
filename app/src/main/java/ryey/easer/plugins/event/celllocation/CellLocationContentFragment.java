@@ -32,10 +32,10 @@ import android.widget.EditText;
 
 import ryey.easer.R;
 import ryey.easer.Utils;
+import ryey.easer.commons.plugindef.ContentFragment;
 import ryey.easer.commons.plugindef.StorageData;
-import ryey.easer.plugins.event.TypedContentFragment;
 
-public class CellLocationContentFragment extends TypedContentFragment {
+public class CellLocationContentFragment extends ContentFragment {
     EditText editText;
 
     {
@@ -45,12 +45,8 @@ public class CellLocationContentFragment extends TypedContentFragment {
 
     @NonNull
     @Override
-    public ViewGroup onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup view_container = super.onCreateView(inflater, container, savedInstanceState);
-        setAvailableTypes(new CellLocationEventData().availableTypes());
-        setType(new CellLocationEventData().type());
-
-        View view = inflater.inflate(R.layout.plugin_event__cell_location, view_container);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.plugin_event__cell_location, container, false);
 
         editText = (EditText) view.findViewById(R.id.location_text);
         view.findViewById(R.id.location_picker).setOnClickListener(new View.OnClickListener() {
@@ -68,7 +64,7 @@ public class CellLocationContentFragment extends TypedContentFragment {
             }
         });
 
-        return view_container;
+        return view;
     }
 
     @Override
@@ -81,9 +77,6 @@ public class CellLocationContentFragment extends TypedContentFragment {
     @Override
     public StorageData getData() {
         CellLocationEventData data = CellLocationEventData.fromString(editText.getText().toString());
-        if (data != null) {
-            data.setType(selectedType());
-        }
         return data;
     }
 }

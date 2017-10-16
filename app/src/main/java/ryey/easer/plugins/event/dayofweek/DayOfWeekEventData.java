@@ -52,6 +52,10 @@ public class DayOfWeekEventData extends TypedEventData {
 
     public DayOfWeekEventData() {}
 
+    public DayOfWeekEventData(Set<Integer> days) {
+        this.days = days;
+    }
+
     public DayOfWeekEventData(Set<Integer> days, EventType type) {
         this.days = days;
         setType(type);

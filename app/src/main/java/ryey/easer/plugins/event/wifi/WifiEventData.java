@@ -50,6 +50,10 @@ public class WifiEventData extends TypedEventData {
 
     public WifiEventData() {}
 
+    public WifiEventData(String ssid) {
+        set(ssid);
+    }
+
     public WifiEventData(String ssid, EventType type) {
         set(ssid);
         setType(type);

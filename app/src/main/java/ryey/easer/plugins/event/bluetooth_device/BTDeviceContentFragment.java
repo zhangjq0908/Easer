@@ -42,10 +42,10 @@ import android.widget.TextView;
 
 import ryey.easer.R;
 import ryey.easer.Utils;
+import ryey.easer.commons.plugindef.ContentFragment;
 import ryey.easer.commons.plugindef.StorageData;
-import ryey.easer.plugins.event.TypedContentFragment;
 
-public class BTDeviceContentFragment extends TypedContentFragment {
+public class BTDeviceContentFragment extends ContentFragment {
     final String ACTION_RETURN = "ryey.easer.plugins.event.bluetooth_device.return_from_dialog";
     final String EXTRA_HARDWARE_ADDRESS = "ryey.easer.plugins.event.bluetooth_device.extra.hardware_address";
 
@@ -70,12 +70,8 @@ public class BTDeviceContentFragment extends TypedContentFragment {
 
     @NonNull
     @Override
-    public ViewGroup onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup view_container = super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.plugin_event__bluetooth_device, view_container);
-
-        setAvailableTypes(new BTDeviceEventData().availableTypes());
-        setType(new BTDeviceEventData().type());
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.plugin_event__bluetooth_device, container, false);
 
         editText = (EditText) view.findViewById(R.id.hardware_address);
         textView = (TextView) view.findViewById(R.id.device_name);
@@ -149,7 +145,7 @@ public class BTDeviceContentFragment extends TypedContentFragment {
             }
         });
 
-        return view_container;
+        return view;
     }
 
     private String resolveHWAddress(String hwaddress) {
@@ -180,7 +176,7 @@ public class BTDeviceContentFragment extends TypedContentFragment {
 
     @Override
     public StorageData getData() {
-        return new BTDeviceEventData(editText.getText().toString(), selectedType());
+        return new BTDeviceEventData(editText.getText().toString());
     }
 
     class BTDeviceWrapper {

@@ -1,6 +1,7 @@
 package ryey.easer.core.ui.edit;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,23 +15,24 @@ import ryey.easer.R;
 import ryey.easer.commons.plugindef.ContentFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class SelectableNamedPluginViewFragment extends PluginViewFragment {
+public class ProfilePluginViewFragment extends PluginViewFragment {
 
     private CheckBox mCheckBox;
 
-    static SelectableNamedPluginViewFragment createInstance(ContentFragment contentFragment) {
-        SelectableNamedPluginViewFragment fragment = new SelectableNamedPluginViewFragment();
+    static ProfilePluginViewFragment createInstance(ContentFragment contentFragment) {
+        ProfilePluginViewFragment fragment = new ProfilePluginViewFragment();
         fragment.contentFragment = contentFragment;
         return fragment;
     }
 
-    public SelectableNamedPluginViewFragment() {
+    public ProfilePluginViewFragment() {
     }
 
+    @NonNull
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_pluginview_named_selectable, container, false);
+        View view = inflater.inflate(R.layout.fragment_pluginview_profile, container, false);
         getChildFragmentManager().beginTransaction()
                 .add(R.id.content_pluginview, contentFragment)
                 .commit();

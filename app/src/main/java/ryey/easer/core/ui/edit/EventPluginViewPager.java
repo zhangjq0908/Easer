@@ -10,6 +10,8 @@ import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.view.ViewGroup;
 
+import com.orhanobut.logger.Logger;
+
 import java.util.List;
 
 import ryey.easer.commons.plugindef.eventplugin.EventData;
@@ -83,8 +85,9 @@ public class EventPluginViewPager extends ViewPager {
 
         @Override
         public Fragment getItem(int position) {
-            PluginViewFragment fragment = PluginViewFragment.createInstance(
+            PluginViewFragment fragment = EventPluginViewFragment.createInstance(
                     PluginRegistry.getInstance().getEventPlugins().get(position).view());
+            Logger.d("got Item PluginViewFragment <%d> <%s> [contains <%s>]", position, fragment, fragment.contentFragment);
             return fragment;
         }
 

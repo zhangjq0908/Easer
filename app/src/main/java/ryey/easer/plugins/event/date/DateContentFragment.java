@@ -29,10 +29,10 @@ import android.widget.DatePicker;
 import java.util.Calendar;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.ContentFragment;
 import ryey.easer.commons.plugindef.StorageData;
-import ryey.easer.plugins.event.TypedContentFragment;
 
-public class DateContentFragment extends TypedContentFragment {
+public class DateContentFragment extends ContentFragment {
     DatePicker datePicker;
 
     {
@@ -43,14 +43,11 @@ public class DateContentFragment extends TypedContentFragment {
     @NonNull
     @Override
     public ViewGroup onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup view_container = super.onCreateView(inflater, container, savedInstanceState);
-        setAvailableTypes(new DateEventData().availableTypes());
-        setType(new DateEventData().type());
-
         datePicker = new DatePicker(getContext());
-        view_container.addView(datePicker);
-
-        return view_container;
+//        view_container.addView(datePicker);
+//
+//        return view_container;
+        return datePicker;
     }
 
     private static Calendar fromDatePicker(DatePicker datePicker) {
@@ -73,6 +70,6 @@ public class DateContentFragment extends TypedContentFragment {
 
     @Override
     public StorageData getData() {
-        return new DateEventData(fromDatePicker(datePicker), selectedType());
+        return new DateEventData(fromDatePicker(datePicker));
     }
 }

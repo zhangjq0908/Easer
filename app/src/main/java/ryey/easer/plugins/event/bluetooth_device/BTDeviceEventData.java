@@ -51,6 +51,10 @@ public class BTDeviceEventData extends TypedEventData {
 
     public BTDeviceEventData() {}
 
+    public BTDeviceEventData(String hardware_address) {
+        set(hardware_address);
+    }
+
     public BTDeviceEventData(String hardware_address, EventType type) {
         set(hardware_address);
         setType(type);

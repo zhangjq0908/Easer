@@ -61,6 +61,10 @@ public class DateEventData extends TypedEventData {
 
     public DateEventData() {}
 
+    public DateEventData(Calendar date) {
+        this.date = date;
+    }
+
     public DateEventData(Calendar date, EventType type) {
         this.date = date;
         setType(type);

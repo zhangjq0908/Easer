@@ -33,6 +33,10 @@ public abstract class ContentFragment extends Fragment {
         setEnabled(view, initial_enabled);
     }
 
+    public Class<? extends StorageData> getExpectedDataClass() {
+        return expectedDataClass;
+    }
+
     private void checkDataType(StorageData data) throws IllegalArgumentTypeException {
         if (expectedDataClass == null)
             Logger.e("Plugin not properly implemented (detected in %s)", getClass().getSimpleName());

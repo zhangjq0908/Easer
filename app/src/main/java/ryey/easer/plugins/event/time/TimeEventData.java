@@ -61,6 +61,10 @@ public class TimeEventData extends TypedEventData {
 
     public TimeEventData() {}
 
+    public TimeEventData(Calendar time) {
+        this.time = time;
+    }
+
     public TimeEventData(Calendar time, EventType type) {
         this.time = time;
         setType(type);

@@ -30,10 +30,10 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.ContentFragment;
 import ryey.easer.commons.plugindef.StorageData;
-import ryey.easer.plugins.event.TypedContentFragment;
 
-public class TimeContentFragment extends TypedContentFragment {
+public class TimeContentFragment extends ContentFragment {
     TimePicker timePicker;
 
     {
@@ -45,14 +45,11 @@ public class TimeContentFragment extends TypedContentFragment {
     @NonNull
     @Override
     public ViewGroup onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup view_container = super.onCreateView(inflater, container, savedInstanceState);
-        setAvailableTypes(new TimeEventData().availableTypes());
-        setType(new TimeEventData().type());
-
         timePicker = new TimePicker(getContext());
-        view_container.addView(timePicker);
-
-        return view_container;
+//        view_container.addView(timePicker);
+//
+//        return view_container;
+        return timePicker;
     }
 
     private static void setTimePicker(TimePicker timePicker, Calendar calendar) {
@@ -89,6 +86,6 @@ public class TimeContentFragment extends TypedContentFragment {
 
     @Override
     public StorageData getData() {
-        return new TimeEventData(fromTimePicker(timePicker), selectedType());
+        return new TimeEventData(fromTimePicker(timePicker));
     }
 }

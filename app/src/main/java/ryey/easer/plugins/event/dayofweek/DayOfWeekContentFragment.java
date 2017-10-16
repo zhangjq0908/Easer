@@ -35,10 +35,10 @@ import java.util.Locale;
 import java.util.Set;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.ContentFragment;
 import ryey.easer.commons.plugindef.StorageData;
-import ryey.easer.plugins.event.TypedContentFragment;
 
-public class DayOfWeekContentFragment extends TypedContentFragment {
+public class DayOfWeekContentFragment extends ContentFragment {
     CompoundButton []day_buttons = new CompoundButton[7];
 
     {
@@ -48,12 +48,8 @@ public class DayOfWeekContentFragment extends TypedContentFragment {
 
     @NonNull
     @Override
-    public ViewGroup onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup view_container = super.onCreateView(inflater, container, savedInstanceState);
-        setAvailableTypes(new DayOfWeekEventData().availableTypes());
-        setType(new DayOfWeekEventData().type());
-
-        View view = inflater.inflate(R.layout.plugin_event__day_of_week, view_container);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.plugin_event__day_of_week, container, false);
         ViewGroup vg = (ViewGroup) view.findViewById(R.id.plugin__day_of_week_container);
         SimpleDateFormat sdf = new SimpleDateFormat("E", Locale.getDefault());
         Calendar cal = Calendar.getInstance();
@@ -67,7 +63,7 @@ public class DayOfWeekContentFragment extends TypedContentFragment {
             toggleButton.setTextOff(text);
         }
 
-        return view_container;
+        return view;
     }
 
     @Override
@@ -87,6 +83,6 @@ public class DayOfWeekContentFragment extends TypedContentFragment {
             if (day_buttons[i].isChecked())
                 days.add(i);
         }
-        return new DayOfWeekEventData(days, selectedType());
+        return new DayOfWeekEventData(days);
     }
 }
