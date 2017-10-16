@@ -1,16 +1,22 @@
 package ryey.easer.plugins.event.battery;
 
-import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.StorageData;
-import ryey.easer.plugins.event.TypedContentLayout;
+import ryey.easer.plugins.event.TypedContentFragment;
 
-public class BatteryContentLayout extends TypedContentLayout {
-    String []mode_names = getResources().getStringArray(R.array.battery_status);
+import static android.widget.LinearLayout.HORIZONTAL;
+
+public class BatteryContentFragment extends TypedContentFragment {
+    String []mode_names;
     int []values = {
             BatteryStatus.charging,
             BatteryStatus.discharging
@@ -21,17 +27,26 @@ public class BatteryContentLayout extends TypedContentLayout {
 
     {
         expectedDataClass = BatteryEventData.class;
+        setDesc(R.string.event_battery);
     }
 
-    public BatteryContentLayout(Context context) {
-        super(context);
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mode_names = getResources().getStringArray(R.array.battery_status);
+    }
+
+    @NonNull
+    @Override
+    public ViewGroup onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        ViewGroup view = super.onCreateView(inflater, container, savedInstanceState);
+
         setAvailableTypes(new BatteryEventData().availableTypes());
         setType(new BatteryEventData().type());
-        setDesc(context.getString(R.string.event_battery));
-        RadioGroup radioGroup = new RadioGroup(context);
+        RadioGroup radioGroup = new RadioGroup(getContext());
         radioGroup.setOrientation(HORIZONTAL);
-        addView(radioGroup);
-        OnClickListener radioButtonOnClickListener = new OnClickListener() {
+        view.addView(radioGroup);
+        View.OnClickListener radioButtonOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 for (int i = 0; i < radioButtons.length; i++) {
@@ -43,11 +58,12 @@ public class BatteryContentLayout extends TypedContentLayout {
             }
         };
         for (int i = 0; i < radioButtons.length; i++) {
-            radioButtons[i] = new RadioButton(context);
+            radioButtons[i] = new RadioButton(getContext());
             radioButtons[i].setText(mode_names[i]);
             radioButtons[i].setOnClickListener(radioButtonOnClickListener);
             radioGroup.addView(radioButtons[i]);
         }
+        return view;
     }
 
     @Override

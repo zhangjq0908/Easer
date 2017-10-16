@@ -1,6 +1,12 @@
 package ryey.easer.plugins.event;
 
-import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -9,25 +15,40 @@ import java.util.List;
 import java.util.Set;
 
 import ryey.easer.commons.IllegalArgumentTypeException;
-import ryey.easer.commons.plugindef.ContentLayout;
+import ryey.easer.commons.plugindef.ContentFragment;
 import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
-public abstract class TypedContentLayout extends ContentLayout {
+import static android.widget.LinearLayout.HORIZONTAL;
+
+public abstract class TypedContentFragment extends ContentFragment {
     protected RadioGroup type_radioGroup;
     protected List<Integer> radioButtonIds = new ArrayList<>();
     protected List<EventType> availableTypes = new ArrayList<>();
 
     {
         expectedDataClass = EventData.class;
+        initial_enabled = true;
     }
 
-    public TypedContentLayout(Context context) {
-        super(context);
-        type_radioGroup = new RadioGroup(context);
+    @NonNull
+    @Override
+    public ViewGroup onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        LinearLayout linearLayout = new LinearLayout(getContext());
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        type_radioGroup = new RadioGroup(getContext());
         type_radioGroup.setOrientation(HORIZONTAL);
-        addView(type_radioGroup);
+        linearLayout.addView(type_radioGroup);
+        return linearLayout;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        if (passed_data != null) {
+            fillType(passed_data);
+        }
     }
 
     protected void setAvailableTypes(Set<EventType> availableTypes) {
@@ -46,7 +67,9 @@ public abstract class TypedContentLayout extends ContentLayout {
     public void fill(StorageData data) {
         try {
             super.fill(data);
-            fillType(data);
+            if (getView() != null) {
+                fillType(data);
+            }
         } catch (IllegalArgumentTypeException e) {
             throw e;
         }

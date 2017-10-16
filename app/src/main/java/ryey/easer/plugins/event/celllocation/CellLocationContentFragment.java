@@ -21,30 +21,39 @@ package ryey.easer.plugins.event.celllocation;
 
 import android.Manifest;
 import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.telephony.TelephonyManager;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 
 import ryey.easer.R;
 import ryey.easer.Utils;
 import ryey.easer.commons.plugindef.StorageData;
-import ryey.easer.plugins.event.TypedContentLayout;
+import ryey.easer.plugins.event.TypedContentFragment;
 
-public class CellLocationContentLayout extends TypedContentLayout {
+public class CellLocationContentFragment extends TypedContentFragment {
     EditText editText;
 
     {
         expectedDataClass = CellLocationEventData.class;
+        setDesc(R.string.event_celllocation);
     }
 
-    public CellLocationContentLayout(final Context context) {
-        super(context);
+    @NonNull
+    @Override
+    public ViewGroup onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        ViewGroup view_container = super.onCreateView(inflater, container, savedInstanceState);
         setAvailableTypes(new CellLocationEventData().availableTypes());
         setType(new CellLocationEventData().type());
-        setDesc(context.getString(R.string.event_celllocation));
-        inflate(context, R.layout.plugin_event__cell_location, this);
-        editText = (EditText) findViewById(R.id.location_text);
-        findViewById(R.id.location_picker).setOnClickListener(new OnClickListener() {
+
+        View view = inflater.inflate(R.layout.plugin_event__cell_location, view_container);
+
+        editText = (EditText) view.findViewById(R.id.location_text);
+        view.findViewById(R.id.location_picker).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!Utils.hasPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION))
@@ -58,6 +67,8 @@ public class CellLocationContentLayout extends TypedContentLayout {
                 editText.setText(locationData.toString());
             }
         });
+
+        return view_container;
     }
 
     @Override

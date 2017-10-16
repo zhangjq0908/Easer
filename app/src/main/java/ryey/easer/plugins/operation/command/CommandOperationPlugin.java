@@ -21,7 +21,7 @@ package ryey.easer.plugins.operation.command;
 
 import android.content.Context;
 
-import ryey.easer.commons.plugindef.ContentLayout;
+import ryey.easer.commons.plugindef.ContentFragment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
@@ -42,8 +42,8 @@ public class CommandOperationPlugin implements OperationPlugin {
     }
 
     @Override
-    public ContentLayout view(Context context) {
-        return new CommandContentLayout(context);
+    public ContentFragment view() {
+        return new CommandContentFragment();
     }
 
     @Override

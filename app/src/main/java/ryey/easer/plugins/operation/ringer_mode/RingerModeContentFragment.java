@@ -19,18 +19,25 @@
 
 package ryey.easer.plugins.operation.ringer_mode;
 
-import android.content.Context;
 import android.media.AudioManager;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.ContentLayout;
+import ryey.easer.commons.plugindef.ContentFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class RingerModeContentLayout extends ContentLayout {
-    String []mode_names = getResources().getStringArray(R.array.ringer_mode);
+import static android.widget.LinearLayout.HORIZONTAL;
+
+public class RingerModeContentFragment extends ContentFragment {
+    String []mode_names;
     int []values = {
             AudioManager.RINGER_MODE_SILENT,
             AudioManager.RINGER_MODE_VIBRATE,
@@ -42,15 +49,24 @@ public class RingerModeContentLayout extends ContentLayout {
 
     {
         expectedDataClass = RingerModeOperationData.class;
+        setDesc(R.string.operation_ringer_mode);
     }
 
-    public RingerModeContentLayout(Context context) {
-        super(context);
-        setDesc(context.getString(R.string.operation_ringer_mode));
-        RadioGroup radioGroup = new RadioGroup(context);
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mode_names = getResources().getStringArray(R.array.ringer_mode);
+    }
+
+    @NonNull
+    @Override
+    public ViewGroup onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        LinearLayout layout = new LinearLayout(getContext());
+
+        RadioGroup radioGroup = new RadioGroup(getContext());
         radioGroup.setOrientation(HORIZONTAL);
-        addView(radioGroup);
-        OnClickListener radioButtonOnClickListener = new OnClickListener() {
+        layout.addView(radioGroup);
+        View.OnClickListener radioButtonOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 for (int i = 0; i < radioButtons.length; i++) {
@@ -62,11 +78,13 @@ public class RingerModeContentLayout extends ContentLayout {
             }
         };
         for (int i = 0; i < radioButtons.length; i++) {
-            radioButtons[i] = new RadioButton(context);
+            radioButtons[i] = new RadioButton(getContext());
             radioButtons[i].setText(mode_names[i]);
             radioButtons[i].setOnClickListener(radioButtonOnClickListener);
             radioGroup.addView(radioButtons[i]);
         }
+
+        return layout;
     }
 
     @Override

@@ -19,7 +19,11 @@
 
 package ryey.easer.plugins.event.dayofweek;
 
-import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
@@ -32,22 +36,25 @@ import java.util.Set;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.StorageData;
-import ryey.easer.plugins.event.TypedContentLayout;
+import ryey.easer.plugins.event.TypedContentFragment;
 
-public class DayOfWeekContentLayout extends TypedContentLayout {
+public class DayOfWeekContentFragment extends TypedContentFragment {
     CompoundButton []day_buttons = new CompoundButton[7];
 
     {
         expectedDataClass = DayOfWeekEventData.class;
+        setDesc(R.string.event_day_of_week);
     }
 
-    public DayOfWeekContentLayout(Context context) {
-        super(context);
+    @NonNull
+    @Override
+    public ViewGroup onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        ViewGroup view_container = super.onCreateView(inflater, container, savedInstanceState);
         setAvailableTypes(new DayOfWeekEventData().availableTypes());
         setType(new DayOfWeekEventData().type());
-        setDesc(context.getString(R.string.event_day_of_week));
-        inflate(context, R.layout.plugin_event__day_of_week, this);
-        ViewGroup vg = (ViewGroup) findViewById(R.id.plugin__day_of_week_container);
+
+        View view = inflater.inflate(R.layout.plugin_event__day_of_week, view_container);
+        ViewGroup vg = (ViewGroup) view.findViewById(R.id.plugin__day_of_week_container);
         SimpleDateFormat sdf = new SimpleDateFormat("E", Locale.getDefault());
         Calendar cal = Calendar.getInstance();
         for (int i = 0; i < 7; i++) {
@@ -59,6 +66,8 @@ public class DayOfWeekContentLayout extends TypedContentLayout {
             toggleButton.setTextOn(text);
             toggleButton.setTextOff(text);
         }
+
+        return view_container;
     }
 
     @Override

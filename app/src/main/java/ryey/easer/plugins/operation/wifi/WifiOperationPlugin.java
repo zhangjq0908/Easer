@@ -21,7 +21,7 @@ package ryey.easer.plugins.operation.wifi;
 
 import android.content.Context;
 
-import ryey.easer.commons.plugindef.ContentLayout;
+import ryey.easer.commons.plugindef.ContentFragment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
@@ -42,8 +42,8 @@ public class WifiOperationPlugin implements OperationPlugin {
     }
 
     @Override
-    public ContentLayout view(Context context) {
-        return new WifiContentLayout(context);
+    public ContentFragment view() {
+        return new WifiContentFragment();
     }
 
     @Override

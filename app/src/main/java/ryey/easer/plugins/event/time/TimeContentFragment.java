@@ -19,30 +19,40 @@
 
 package ryey.easer.plugins.event.time;
 
-import android.content.Context;
 import android.os.Build;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.StorageData;
-import ryey.easer.plugins.event.TypedContentLayout;
+import ryey.easer.plugins.event.TypedContentFragment;
 
-public class TimeContentLayout extends TypedContentLayout {
+public class TimeContentFragment extends TypedContentFragment {
     TimePicker timePicker;
 
     {
         expectedDataClass = TimeEventData.class;
+        setDesc(R.string.event_time);
     }
 
-    public TimeContentLayout(Context context) {
-        super(context);
+
+    @NonNull
+    @Override
+    public ViewGroup onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        ViewGroup view_container = super.onCreateView(inflater, container, savedInstanceState);
         setAvailableTypes(new TimeEventData().availableTypes());
         setType(new TimeEventData().type());
-        setDesc(context.getString(R.string.event_time));
-        timePicker = new TimePicker(context);
-        addView(timePicker);
+
+        timePicker = new TimePicker(getContext());
+        view_container.addView(timePicker);
+
+        return view_container;
     }
 
     private static void setTimePicker(TimePicker timePicker, Calendar calendar) {

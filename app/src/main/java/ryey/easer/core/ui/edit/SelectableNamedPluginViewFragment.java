@@ -31,6 +31,10 @@ public class SelectableNamedPluginViewFragment extends PluginViewFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pluginview_named_selectable, container, false);
+        getChildFragmentManager().beginTransaction()
+                .add(R.id.content_pluginview, contentFragment)
+                .commit();
+        getChildFragmentManager().executePendingTransactions();
         mCheckBox = (CheckBox) view.findViewById(R.id.checkbox_pluginview_enabled);
         contentFragment.setEnabled(false);
         mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -39,13 +43,10 @@ public class SelectableNamedPluginViewFragment extends PluginViewFragment {
                 contentFragment.setEnabled(b);
             }
         });
-        String desc = contentFragment.desc();
+        String desc = contentFragment.desc(getResources());
         if (desc == null)
             Logger.wtf("desc == null!!!???");
         ((TextView) view.findViewById(R.id.text_pluginview_desc)).setText(desc);
-        getChildFragmentManager().beginTransaction()
-                .add(R.id.content_pluginview, contentFragment)
-                .commit();
 
         return view;
     }

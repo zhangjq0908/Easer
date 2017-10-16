@@ -21,7 +21,7 @@ package ryey.easer.plugins.operation.cellular;
 
 import android.content.Context;
 
-import ryey.easer.commons.plugindef.ContentLayout;
+import ryey.easer.commons.plugindef.ContentFragment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
@@ -42,8 +42,8 @@ public class CellularOperationPlugin implements OperationPlugin {
     }
 
     @Override
-    public ContentLayout view(Context context) {
-        return new CellularContentLayout(context);
+    public ContentFragment view() {
+        return new CellularContentFragment();
     }
 
     @Override

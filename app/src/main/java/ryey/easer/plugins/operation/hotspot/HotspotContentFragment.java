@@ -17,22 +17,20 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.operation.rotation;
-
-import android.content.Context;
+package ryey.easer.plugins.operation.hotspot;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.StorageData;
-import ryey.easer.plugins.operation.SwitchContentLayout;
+import ryey.easer.plugins.operation.SwitchContentFragment;
 
-public class RotationContentLayout extends SwitchContentLayout {
-    public RotationContentLayout(Context context) {
-        super(context);
-        setDesc(context.getString(R.string.operation_rotation));
+public class HotspotContentFragment extends SwitchContentFragment {
+
+    {
+        setDesc(R.string.operation_hotspot);
     }
 
     @Override
     public StorageData getData() {
-        return new RotationOperationData(state());
+        return new HotspotOperationData(state());
     }
 }

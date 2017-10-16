@@ -19,27 +19,37 @@
 
 package ryey.easer.plugins.event.wifi;
 
-import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.StorageData;
-import ryey.easer.plugins.event.TypedContentLayout;
+import ryey.easer.plugins.event.TypedContentFragment;
 
-public class WifiContentLayout extends TypedContentLayout {
+public class WifiContentFragment extends TypedContentFragment {
     EditText editText;
 
     {
         expectedDataClass = WifiEventData.class;
+        setDesc(R.string.event_wificonn);
     }
 
-    public WifiContentLayout(Context context) {
-        super(context);
+    @NonNull
+    @Override
+    public ViewGroup onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        ViewGroup view_container = super.onCreateView(inflater, container, savedInstanceState);
         setAvailableTypes(new WifiEventData().availableTypes());
         setType(new WifiEventData().type());
-        setDesc(context.getString(R.string.event_wificonn));
-        inflate(context, R.layout.plugin_event__wifi_connection, this);
-        editText = (EditText) findViewById(R.id.wifi_name);
+
+        View view = inflater.inflate(R.layout.plugin_event__wifi_connection, view_container);
+        editText = (EditText) view.findViewById(R.id.wifi_name);
+
+        return view_container;
     }
 
     @Override

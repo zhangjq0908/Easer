@@ -32,6 +32,8 @@ public class PluginViewFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pluginview, container, false);
         getChildFragmentManager().beginTransaction().replace(R.id.content_pluginview, contentFragment).commit();
+        getChildFragmentManager().executePendingTransactions();
+        contentFragment.setEnabled(true);
         return view;
     }
 

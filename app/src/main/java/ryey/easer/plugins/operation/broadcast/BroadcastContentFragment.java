@@ -19,15 +19,20 @@
 
 package ryey.easer.plugins.operation.broadcast;
 
-import android.content.Context;
 import android.net.Uri;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.ContentLayout;
+import ryey.easer.commons.plugindef.ContentFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class BroadcastContentLayout extends ContentLayout {
+public class BroadcastContentFragment extends ContentFragment {
     EditText m_text_action;
     EditText m_text_category;
     EditText m_text_type;
@@ -35,15 +40,19 @@ public class BroadcastContentLayout extends ContentLayout {
 
     {
         expectedDataClass = BroadcastOperationData.class;
+        setDesc(R.string.operation_broadcast);
     }
 
-    public BroadcastContentLayout(Context context) {
-        super(context);
-        inflate(context, R.layout.plugin_operation__broadcast, this);
-        m_text_action = (EditText) findViewById(R.id.text_action);
-        m_text_category = (EditText) findViewById(R.id.text_category);
-        m_text_type = (EditText) findViewById(R.id.text_type);
-        m_text_data = (EditText) findViewById(R.id.text_data);
+    @NonNull
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.plugin_operation__broadcast, container, false);
+        m_text_action = (EditText) view.findViewById(R.id.text_action);
+        m_text_category = (EditText) view.findViewById(R.id.text_category);
+        m_text_type = (EditText) view.findViewById(R.id.text_type);
+        m_text_data = (EditText) view.findViewById(R.id.text_data);
+
+        return view;
     }
 
     @Override

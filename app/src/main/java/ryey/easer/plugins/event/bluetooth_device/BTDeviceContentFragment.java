@@ -28,9 +28,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -38,9 +43,9 @@ import android.widget.TextView;
 import ryey.easer.R;
 import ryey.easer.Utils;
 import ryey.easer.commons.plugindef.StorageData;
-import ryey.easer.plugins.event.TypedContentLayout;
+import ryey.easer.plugins.event.TypedContentFragment;
 
-public class BTDeviceContentLayout extends TypedContentLayout {
+public class BTDeviceContentFragment extends TypedContentFragment {
     final String ACTION_RETURN = "ryey.easer.plugins.event.bluetooth_device.return_from_dialog";
     final String EXTRA_HARDWARE_ADDRESS = "ryey.easer.plugins.event.bluetooth_device.extra.hardware_address";
 
@@ -60,16 +65,20 @@ public class BTDeviceContentLayout extends TypedContentLayout {
 
     {
         expectedDataClass = BTDeviceEventData.class;
+        setDesc(R.string.event_bluetooth_device);
     }
 
-    public BTDeviceContentLayout(final Context context) {
-        super(context);
+    @NonNull
+    @Override
+    public ViewGroup onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        ViewGroup view_container = super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.plugin_event__bluetooth_device, view_container);
+
         setAvailableTypes(new BTDeviceEventData().availableTypes());
         setType(new BTDeviceEventData().type());
-        setDesc(context.getString(R.string.event_bluetooth_device));
-        inflate(context, R.layout.plugin_event__bluetooth_device, this);
-        editText = (EditText) findViewById(R.id.hardware_address);
-        textView = (TextView) findViewById(R.id.device_name);
+
+        editText = (EditText) view.findViewById(R.id.hardware_address);
+        textView = (TextView) view.findViewById(R.id.device_name);
 
         editText.addTextChangedListener(new TextWatcher() {
             String name_not_found = getResources().getString(R.string.ebtdevice_unknown_device);
@@ -105,15 +114,15 @@ public class BTDeviceContentLayout extends TypedContentLayout {
             }
         });
 
-        findViewById(R.id.connection_picker).setOnClickListener(new OnClickListener() {
+        view.findViewById(R.id.connection_picker).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!Utils.hasPermission(getContext(), Manifest.permission.BLUETOOTH))
                     return;
-                context.registerReceiver(mReceiver, mFilter);
-                AlertDialog.Builder builderSingle = new AlertDialog.Builder(context);
+                getContext().registerReceiver(mReceiver, mFilter);
+                AlertDialog.Builder builderSingle = new AlertDialog.Builder(getContext());
                 builderSingle.setTitle(R.string.ebtdevice_select_dialog_title);
-                final ArrayAdapter<BTDeviceWrapper> arrayAdapter = new ArrayAdapter<>(context, android.R.layout.select_dialog_singlechoice);
+                final ArrayAdapter<BTDeviceWrapper> arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.select_dialog_singlechoice);
                 BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
                 if (bluetoothAdapter != null) {
                     for (BluetoothDevice device : bluetoothAdapter.getBondedDevices()) {
@@ -123,7 +132,7 @@ public class BTDeviceContentLayout extends TypedContentLayout {
                 builderSingle.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        context.unregisterReceiver(mReceiver);
+                        getContext().unregisterReceiver(mReceiver);
                         dialog.dismiss();
                     }
                 });
@@ -139,6 +148,8 @@ public class BTDeviceContentLayout extends TypedContentLayout {
                 builderSingle.show();
             }
         });
+
+        return view_container;
     }
 
     private String resolveHWAddress(String hwaddress) {

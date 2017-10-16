@@ -21,7 +21,7 @@ package ryey.easer.commons.plugindef.operationplugin;
 
 import android.content.Context;
 
-import ryey.easer.commons.plugindef.ContentLayout;
+import ryey.easer.commons.plugindef.ContentFragment;
 
 /*
  * Definition of every Operation plugin.
@@ -42,7 +42,7 @@ public interface OperationPlugin {
      * Returns the control UI of this plugin.
      * Used in `EditProfileActivity`.
      */
-    ContentLayout view(Context context);
+    ContentFragment view();
     /*
      * Returns a dummy loader of this plugin.
      * See `OperationLoader` for more information

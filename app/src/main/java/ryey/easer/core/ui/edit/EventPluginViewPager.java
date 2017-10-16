@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import ryey.easer.commons.plugindef.ContentFragment;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.plugins.PluginRegistry;
@@ -78,14 +77,14 @@ public class EventPluginViewPager extends ViewPager {
             List<EventPlugin> eventPluginList = PluginRegistry.getInstance().getEventPlugins();
             titles = new String[eventPluginList.size()];
             for (int i = 0; i < eventPluginList.size(); i++) {
-                titles[i] = eventPluginList.get(i).view(context).desc();
+                titles[i] = eventPluginList.get(i).view().desc(getResources());
             }
         }
 
         @Override
         public Fragment getItem(int position) {
             PluginViewFragment fragment = PluginViewFragment.createInstance(
-                    ContentFragment.createInstance(PluginRegistry.getInstance().getEventPlugins().get(position).view(context)));
+                    PluginRegistry.getInstance().getEventPlugins().get(position).view());
             return fragment;
         }
 

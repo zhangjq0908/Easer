@@ -21,7 +21,7 @@ package ryey.easer.plugins.event.celllocation;
 
 import android.content.Context;
 
-import ryey.easer.commons.plugindef.ContentLayout;
+import ryey.easer.commons.plugindef.ContentFragment;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
@@ -42,8 +42,8 @@ public class CellLocationEventPlugin implements EventPlugin {
     }
 
     @Override
-    public ContentLayout view(Context context) {
-        return new CellLocationContentLayout(context);
+    public ContentFragment view() {
+        return new CellLocationContentFragment();
     }
 
     @Override

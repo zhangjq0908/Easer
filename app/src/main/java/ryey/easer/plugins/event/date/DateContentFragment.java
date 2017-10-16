@@ -19,29 +19,38 @@
 
 package ryey.easer.plugins.event.date;
 
-import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.widget.DatePicker;
 
 import java.util.Calendar;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.StorageData;
-import ryey.easer.plugins.event.TypedContentLayout;
+import ryey.easer.plugins.event.TypedContentFragment;
 
-public class DateContentLayout extends TypedContentLayout {
+public class DateContentFragment extends TypedContentFragment {
     DatePicker datePicker;
 
     {
         expectedDataClass = DateEventData.class;
+        setDesc(R.string.event_date);
     }
 
-    public DateContentLayout(Context context) {
-        super(context);
+    @NonNull
+    @Override
+    public ViewGroup onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        ViewGroup view_container = super.onCreateView(inflater, container, savedInstanceState);
         setAvailableTypes(new DateEventData().availableTypes());
         setType(new DateEventData().type());
-        setDesc(context.getString(R.string.event_date));
-        datePicker = new DatePicker(context);
-        addView(datePicker);
+
+        datePicker = new DatePicker(getContext());
+        view_container.addView(datePicker);
+
+        return view_container;
     }
 
     private static Calendar fromDatePicker(DatePicker datePicker) {

@@ -21,7 +21,7 @@ package ryey.easer.plugins.operation.rotation;
 
 import android.content.Context;
 
-import ryey.easer.commons.plugindef.ContentLayout;
+import ryey.easer.commons.plugindef.ContentFragment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
@@ -42,8 +42,8 @@ public class RotationOperationPlugin implements OperationPlugin {
     }
 
     @Override
-    public ContentLayout view(Context context) {
-        return new RotationContentLayout(context);
+    public ContentFragment view() {
+        return new RotationContentFragment();
     }
 
     @Override

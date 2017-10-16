@@ -17,23 +17,20 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.operation.wifi;
-
-import android.content.Context;
+package ryey.easer.plugins.operation.bluetooth;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.StorageData;
-import ryey.easer.plugins.operation.SwitchContentLayout;
+import ryey.easer.plugins.operation.SwitchContentFragment;
 
-public class WifiContentLayout extends SwitchContentLayout {
+public class BluetoothContentFragment extends SwitchContentFragment {
 
-    public WifiContentLayout(Context context) {
-        super(context);
-        setDesc(context.getString(R.string.operation_wifi));
+    {
+        setDesc(R.string.operation_bluetooth);
     }
 
     @Override
     public StorageData getData() {
-        return new WifiOperationData(state());
+        return new BluetoothOperationData(state());
     }
 }

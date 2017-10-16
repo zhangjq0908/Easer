@@ -17,22 +17,20 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.operation.bluetooth;
-
-import android.content.Context;
+package ryey.easer.plugins.operation.cellular;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.StorageData;
-import ryey.easer.plugins.operation.SwitchContentLayout;
+import ryey.easer.plugins.operation.SwitchContentFragment;
 
-public class BluetoothContentLayout extends SwitchContentLayout {
-    public BluetoothContentLayout(Context context) {
-        super(context);
-        setDesc(context.getString(R.string.operation_bluetooth));
+public class CellularContentFragment extends SwitchContentFragment {
+
+    {
+        setDesc(R.string.operation_cellular);
     }
 
     @Override
     public StorageData getData() {
-        return new BluetoothOperationData(state());
+        return new CellularOperationData(state());
     }
 }

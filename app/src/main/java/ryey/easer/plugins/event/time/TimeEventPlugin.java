@@ -21,7 +21,7 @@ package ryey.easer.plugins.event.time;
 
 import android.content.Context;
 
-import ryey.easer.commons.plugindef.ContentLayout;
+import ryey.easer.commons.plugindef.ContentFragment;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
@@ -43,8 +43,8 @@ public class TimeEventPlugin implements EventPlugin {
     }
 
     @Override
-    public ContentLayout view(Context context) {
-        return new TimeContentLayout(context);
+    public ContentFragment view() {
+        return new TimeContentFragment();
     }
 
     @Override

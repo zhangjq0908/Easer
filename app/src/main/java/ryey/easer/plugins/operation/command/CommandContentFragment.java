@@ -19,25 +19,32 @@
 
 package ryey.easer.plugins.operation.command;
 
-import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.ContentLayout;
+import ryey.easer.commons.plugindef.ContentFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class CommandContentLayout extends ContentLayout {
+public class CommandContentFragment extends ContentFragment {
     EditText editText_command;
 
     {
         expectedDataClass = CommandOperationData.class;
+        setDesc(R.string.operation_command);
     }
 
-    public CommandContentLayout(Context context) {
-        super(context);
-        setDesc(context.getString(R.string.operation_command));
-        inflate(context, R.layout.plugin_operation__command, this);
-        editText_command = (EditText) findViewById(R.id.command);
+    @NonNull
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.plugin_operation__command, container, false);
+        editText_command = (EditText) view.findViewById(R.id.command);
+        return view;
     }
 
     @Override

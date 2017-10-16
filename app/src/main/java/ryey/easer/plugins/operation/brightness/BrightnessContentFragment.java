@@ -19,7 +19,11 @@
 
 package ryey.easer.plugins.operation.brightness;
 
-import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -27,29 +31,32 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.ContentLayout;
+import ryey.easer.commons.plugindef.ContentFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class BrightnessContentLayout extends ContentLayout {
+public class BrightnessContentFragment extends ContentFragment {
     Switch mIsAuto;
     SeekBar mBrightnessLevel;
 
     {
         expectedDataClass = BrightnessOperationData.class;
+        setDesc(R.string.operation_brightness);
     }
 
-    public BrightnessContentLayout(Context context) {
-        super(context);
-        setDesc(context.getString(R.string.operation_brightness));
+    @NonNull
+    @Override
+    public ViewGroup onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        LinearLayout view = new LinearLayout(getContext());
+        view.setOrientation(LinearLayout.VERTICAL);
 
-        LinearLayout auto_layout = new LinearLayout(context);
-        auto_layout.setOrientation(HORIZONTAL);
-        TextView tv_auto = new TextView(context);
+        LinearLayout auto_layout = new LinearLayout(getContext());
+        auto_layout.setOrientation(LinearLayout.HORIZONTAL);
+        TextView tv_auto = new TextView(getContext());
         tv_auto.setText(getResources().getString(R.string.operation_brightness_desc_autobrightness));
-        mIsAuto = new Switch(context);
-        mIsAuto.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-        mBrightnessLevel = new SeekBar(context);
-        mBrightnessLevel.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+        mIsAuto = new Switch(getContext());
+        mIsAuto.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        mBrightnessLevel = new SeekBar(getContext());
+        mBrightnessLevel.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         mBrightnessLevel.setMax(255);
         mBrightnessLevel.setEnabled(false);
         mIsAuto.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -63,8 +70,11 @@ public class BrightnessContentLayout extends ContentLayout {
         });
         auto_layout.addView(mIsAuto);
         auto_layout.addView(tv_auto);
-        addView(auto_layout);
-        addView(mBrightnessLevel);
+
+        view.addView(auto_layout);
+        view.addView(mBrightnessLevel);
+
+        return view;
     }
 
     @Override
