@@ -6,4 +6,6 @@
 
     <color name="color_positive">#0CF440</color>
     <color name="color_negative">#F22754</color>
+
+    <color name="color_alert">#FE221C</color>
 </resources>

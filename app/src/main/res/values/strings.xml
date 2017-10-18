@@ -33,6 +33,9 @@
     <string name="button_cancel">Cancel</string>
     <string name="button_ok">OK</string>
 
+    <string name="text_lack_permission">Easer does NOT have all permissions it needs.</string>
+    <string name="button_request_permission">Grant permissions</string>
+
     <string name="text_title">Title: </string>
     <string name="text_parent">Parent: </string>
     <string name="text_profile">Profile: </string>

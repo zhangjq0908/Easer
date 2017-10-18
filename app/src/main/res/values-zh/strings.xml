@@ -54,5 +54,7 @@
     <string name="pref_logging_summary">保存日誌到外部存儲（/sdcard/logger）以方便bug報告。\n對該設置的改動將在下次Easer啓動時生效。</string>
     <string name="prompt_prevented_for_permission">Easer需要 &lt;%s&gt; 權限以使用該功能。</string>
     <string name="version">版本</string>
+    <string name="button_request_permission">授予權限</string>
+    <string name="text_lack_permission">Easer尚不具有全部所需權限。</string>
 
 </resources>
