@@ -1,7 +1,7 @@
 HOWTO
 ======
 
-This document will describe how to add new functionality to Easer, especially how to add new *Event*(s) and/or *Operation*(s). It may also say something about the design of the structure of Easer.
+This document will describe how to add new functionality to Easer, especially how to add new *Event*(s) and/or *Operation*(s). It may also say something about the design of the structure of Easer.  
 (**Notice**: *Profile* is merely a collection of *Operation*(s), so if you want to extend the function of *Profile*, you just need to create new *Operation*(s).)
 
 In Easer, all *Event*s and *Operation*s are implemented as plugins, located in the package `ryey.easer.plugins`. More precisely, *Event*s are under `ryey.easer.plugins.event`，*Operation*s are under `ryey.easer.plugins.operation`。
@@ -22,5 +22,6 @@ I strongly recommend you to follow the way that existing plugins do and put your
 
 Both `EventPlugin` and `OperationPlugin` are commented in some detail.
 
-Either an `EventPlugin` or `OperationPlugin` will need to implement it relevant UI, by implementing a subclass of `ryey.easer.commons.plugindef.ContentLayout`. Some common subclasses are already in `ryey.easer.plugins` or its sub-package. You can use them as you wish.
-The aforementioned `ryey.easer.commons.plugindef.ContentLayout` is a subclass of `LinearLayout`, so you can freely choose to use XML layout resources or write Java codes to add details.
+Either an `EventPlugin` or `OperationPlugin` will need to implement it relevant UI, by implementing a subclass of `ryey.easer.commons.plugindef.PluginViewFragment`.
+
+Some common subclasses are already in `ryey.easer.plugins` or its sub-package. You can use them as you wish.
