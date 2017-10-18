@@ -20,9 +20,13 @@
 package ryey.easer.core.data.storage.xml.event;
 
 import android.app.Application;
+import android.content.Context;
+import android.support.test.InstrumentationRegistry;
 import android.test.ApplicationTestCase;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,13 +39,16 @@ import ryey.easer.core.data.storage.EventDataStorage;
 import ryey.easer.core.data.storage.FileUtils;
 import ryey.easer.plugins.event.wifi.WifiEventData;
 
-public class XmlEventDataStorageTest extends ApplicationTestCase<Application> {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
-    public XmlEventDataStorageTest() {
-        super(Application.class);
-    }
+public class XmlEventDataStorageTest {
 
-    void compareEventStructure(EventStructure structure1, EventStructure structure2) {
+    final Context context = InstrumentationRegistry.getTargetContext();
+
+    static void compareEventStructure(EventStructure structure1, EventStructure structure2) {
         assertEquals(structure1.getName(), structure2.getName());
         assertEquals(structure1.getProfileName(), structure2.getProfileName());
         assertEquals(structure1.getParentName(), structure2.getParentName());
@@ -50,7 +57,7 @@ public class XmlEventDataStorageTest extends ApplicationTestCase<Application> {
 
     @Test
     public void testEventXmlDataStorage() throws IOException, ParseException {
-        File dir = FileUtils.getSubDir(getContext().getFilesDir(), "event");
+        File dir = FileUtils.getSubDir(context.getFilesDir(), "event");
         if (dir.exists()) {
             for (String filename : dir.list()) {
                 File file = new File(dir, filename);
@@ -58,7 +65,7 @@ public class XmlEventDataStorageTest extends ApplicationTestCase<Application> {
             }
             assertTrue(dir.delete());
         }
-        EventDataStorage dataStorage = XmlEventDataStorage.getInstance(getContext());
+        EventDataStorage dataStorage = XmlEventDataStorage.getInstance(context);
         assertTrue(dataStorage.list().isEmpty());
         EventData eventData = new WifiEventData("testssid");
         eventData.setType(EventType.any);
