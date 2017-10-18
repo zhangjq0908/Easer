@@ -24,8 +24,10 @@ import android.os.ConditionVariable;
 import java.util.ArrayList;
 import java.util.List;
 
+import ryey.easer.commons.plugindef.PluginDef;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
+import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.plugins.event.battery.BatteryEventPlugin;
 import ryey.easer.plugins.event.bluetooth_device.BTDeviceEventPlugin;
@@ -82,83 +84,91 @@ final public class PluginRegistry {
         pluginRegistry.initialised.open();
     }
 
-    List<Class<? extends EventPlugin>> eventPluginClassList = new ArrayList<>();
-    List<EventPlugin> eventPluginList = new ArrayList<>();
+    class Registry<T extends PluginDef, T_data> {
+        List<Class<? extends T>> pluginClassList = new ArrayList<>();
+        List<T> pluginList = new ArrayList<>();
 
-    List<Class<? extends OperationPlugin>> operationPluginClassList = new ArrayList<>();
-    List<OperationPlugin> operationPluginList = new ArrayList<>();
+        synchronized public void registerPlugin(Class<? extends T> pluginClass) {
+            for (Class<? extends T> klass : pluginClassList) {
+                if (klass == pluginClass)
+                    return;
+            }
+            pluginClassList.add(pluginClass);
+            try {
+                T plugin = pluginClass.newInstance();
+                pluginList.add(plugin);
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public final List<Class<? extends T>> getPluginClasses() {
+            initialised.block();
+            return pluginClassList;
+        }
+
+        public final List<T> getPlugins() {
+            initialised.block();
+            return pluginList;
+        }
+
+        public T findPlugin(T_data data) {
+            initialised.block();
+            for (T plugin : getPlugins()) {
+                if (data.getClass() == plugin.data().getClass()) {
+                    return plugin;
+                }
+            }
+            throw new IllegalAccessError();
+        }
+
+        public T findPlugin(String name) {
+            initialised.block();
+            for (T plugin : getPlugins()) {
+                if (name.equals(plugin.name())) {
+                    return plugin;
+                }
+            }
+            throw new IllegalAccessError();
+        }
+    }
+
+    Registry<EventPlugin, EventData> eventPluginRegistry = new Registry<>();
+    Registry<OperationPlugin, OperationData> operationPluginRegistry = new Registry<>();
 
     private PluginRegistry() {}
 
     synchronized public void registerEventPlugin(Class<? extends EventPlugin> eventPluginClass) {
-        for (Class<? extends EventPlugin> klass : eventPluginClassList) {
-            if (klass == eventPluginClass)
-                return;
-        }
-        eventPluginClassList.add(eventPluginClass);
-        try {
-            EventPlugin plugin = eventPluginClass.newInstance();
-            eventPluginList.add(plugin);
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+        eventPluginRegistry.registerPlugin(eventPluginClass);
     }
 
     synchronized public void registerOperationPlugin(Class<? extends OperationPlugin> operationPluginClass) {
-        for (Class<? extends OperationPlugin> klass : operationPluginClassList) {
-            if (klass == operationPluginClass)
-                return;
-        }
-        operationPluginClassList.add(operationPluginClass);
-        try {
-            OperationPlugin plugin = operationPluginClass.newInstance();
-            operationPluginList.add(plugin);
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+        operationPluginRegistry.registerPlugin(operationPluginClass);
     }
 
     public final List<Class<? extends EventPlugin>> getEventPluginClasses() {
-        initialised.block();
-        return eventPluginClassList;
+        return eventPluginRegistry.getPluginClasses();
     }
 
     public final List<EventPlugin> getEventPlugins() {
-        initialised.block();
-        return eventPluginList;
+        return eventPluginRegistry.getPlugins();
     }
 
     public final List<Class<? extends OperationPlugin>> getOperationPluginClasses() {
-        initialised.block();
-        return operationPluginClassList;
+        return operationPluginRegistry.getPluginClasses();
     }
 
     public final List<OperationPlugin> getOperationPlugins() {
-        initialised.block();
-        return operationPluginList;
+        return operationPluginRegistry.getPlugins();
     }
 
     public EventPlugin findEventPlugin(EventData data) {
-        initialised.block();
-        for (EventPlugin plugin : getEventPlugins()) {
-            if (data.pluginClass() == plugin.getClass()) {
-                return plugin;
-            }
-        }
-        throw new IllegalAccessError();
+        return eventPluginRegistry.findPlugin(data);
     }
 
     public EventPlugin findEventPlugin(String name) {
-        initialised.block();
-        for (EventPlugin plugin : getEventPlugins()) {
-            if (name.equals(plugin.name())) {
-                return plugin;
-            }
-        }
-        throw new IllegalAccessError();
+        return eventPluginRegistry.findPlugin(name);
     }
 }

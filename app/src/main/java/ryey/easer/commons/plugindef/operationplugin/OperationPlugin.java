@@ -21,29 +21,21 @@ package ryey.easer.commons.plugindef.operationplugin;
 
 import android.content.Context;
 
-import ryey.easer.commons.plugindef.PluginViewFragment;
+import ryey.easer.commons.plugindef.PluginDef;
 
 /*
  * Definition of every Operation plugin.
  * All Operation plugins should implement this interface and add one line to register in `PluginRegistry`.
  * The implementation / subclass doesn't need to hold any data (because data will be passed as arguments to the relevant methods).
  */
-public interface OperationPlugin {
-    /*
-     * Returns the plugin identifier.
-     * Only used internally. Never displayed to user.
-     */
-    String name();
-    /*
-     * Returns a dummy (empty) instance of the relevant data structure.
+public interface OperationPlugin extends PluginDef {
+
+    /**
+     * {@inheritDoc}
      */
     OperationData data();
-    /*
-     * Returns the control UI of this plugin.
-     * Used in `EditProfileActivity`.
-     */
-    PluginViewFragment view();
-    /*
+
+    /**
      * Returns a dummy loader of this plugin.
      * See `OperationLoader` for more information
      */

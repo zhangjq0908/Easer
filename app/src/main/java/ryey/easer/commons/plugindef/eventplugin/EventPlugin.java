@@ -21,29 +21,21 @@ package ryey.easer.commons.plugindef.eventplugin;
 
 import android.content.Context;
 
-import ryey.easer.commons.plugindef.PluginViewFragment;
+import ryey.easer.commons.plugindef.PluginDef;
 
 /*
  * Definition of every Event plugin.
  * All Event plugins should implement this interface and add one line to register in `PluginRegistry`.
  * The implementation / subclass doesn't need to hold any data (because data will be passed as arguments to the relevant methods).
  */
-public interface EventPlugin {
-    /*
-     * Returns the plugin identifier.
-     * Only used internally. Never displayed to user.
-     */
-    String name();
-    /*
-     * Returns a dummy (empty) instance of the relevant data structure.
+public interface EventPlugin extends PluginDef {
+
+    /**
+     * {@inheritDoc}
      */
     EventData data();
-    /*
-     * Returns the control UI of this plugin.
-     * Used in `EditEventActivity`.
-     */
-    PluginViewFragment view();
-    /*
+
+    /**
      * Returns a to-be-initialized Slot of this plugin.
      * See `AbstractSlot` for more information
      */

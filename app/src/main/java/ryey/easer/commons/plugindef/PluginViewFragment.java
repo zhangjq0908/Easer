@@ -99,7 +99,7 @@ public abstract class PluginViewFragment extends Fragment {
      */
     private void checkDataType(StorageData data) throws IllegalArgumentTypeException {
         if (expectedDataClass == null)
-            Logger.e("Plugin not properly implemented (detected in %s)", getClass().getSimpleName());
+            Logger.e("PluginDef not properly implemented (detected in %s)", getClass().getSimpleName());
         if (expectedDataClass.isAssignableFrom(data.getClass()))
             return;
         throw new IllegalArgumentTypeException(data.getClass(), expectedDataClass);
@@ -107,7 +107,7 @@ public abstract class PluginViewFragment extends Fragment {
 
     /**
      * The actual method to set the UI according to the data.
-     * Plugin developers is expected to override this method rather than {@link #fill}.
+     * PluginDef developers is expected to override this method rather than {@link #fill}.
      * This methods does NOT care about synchronization or other stuffs.
      */
     protected abstract void _fill(StorageData data);
@@ -115,7 +115,7 @@ public abstract class PluginViewFragment extends Fragment {
     /**
      * Set the UI according to the data.
      * This methods takes care of synchronization (see {@link #passed_data}).
-     * Plugin implementors normally only need to implement {@link #_fill} method.
+     * PluginDef implementors normally only need to implement {@link #_fill} method.
      */
     public void fill(StorageData data) {
         try {
