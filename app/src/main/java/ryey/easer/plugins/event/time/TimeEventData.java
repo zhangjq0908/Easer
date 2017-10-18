@@ -42,7 +42,7 @@ import static ryey.easer.plugins.event.time.TimeEventPlugin.pname;
 public class TimeEventData extends TypedEventData {
     private static SimpleDateFormat sdf_time = new SimpleDateFormat("HH:mm");
 
-    private static String TimeToText(Calendar calendar) {
+    static String TimeToText(Calendar calendar) {
         return sdf_time.format(calendar.getTime());
     }
 

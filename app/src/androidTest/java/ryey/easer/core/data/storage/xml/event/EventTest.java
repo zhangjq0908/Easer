@@ -27,39 +27,49 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Calendar;
 
 import ryey.easer.commons.IllegalXmlException;
+import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.core.data.EventStructure;
+import ryey.easer.plugins.event.time.TimeEventData;
 
 import static org.junit.Assert.assertEquals;
 
 public class EventTest {
 
-    public static String t_xml;
-    public static EventStructure t_event;
+    public static String t_xml_root, t_xml_child;
+    public static EventStructure t_event_child;
 
     @BeforeClass
     public static void setUpAll() throws ParseException {
-        t_xml = "<?xml version='1.0' encoding='utf-8' standalone='no' ?><event><name>123</name><profile>profile</profile><after>myparent</after><trigger><situation spec=\"time\"><at>13:23</at></situation></trigger></event>";
+        t_xml_root = "<?xml version='1.0' encoding='utf-8' standalone='no' ?><event><name>myparent</name><profile>profile1</profile><trigger><after>NO DATA</after><situation spec=\"time\"><at>13:23</at></situation><logic>after</logic></trigger></event>";
+        t_xml_child = "<?xml version='1.0' encoding='utf-8' standalone='no' ?><event version=\"1\"><active>true</active><name>123</name><profile>profile1</profile><trigger><after>myparent</after><situation spec=\"time\"><at>13:23</at></situation><logic>after</logic></trigger></event>";
 
-        t_event = new EventStructure();
-        t_event.setName("123");
-        t_event.setParentName("myparent");
-//        t_event.setActive(false);
-        t_event.setProfileName("profile");
-//        t_event.setTime(Utils.TextToTime("13:23"));
+        t_event_child = new EventStructure();
+        t_event_child.setName("123");
+        t_event_child.setParentName("myparent");
+//        t_event_child.setActive(false);
+        t_event_child.setProfileName("profile1");
+        EventData eventData = new TimeEventData();
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 13);
+        calendar.set(Calendar.MINUTE, 23);
+        eventData.set(calendar);
+        eventData.setType(EventType.after);
+        t_event_child.setEventData(eventData);
     }
 
     @Test
     public void testParse() throws IOException, XmlPullParserException, IllegalXmlException {
-        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(t_xml.getBytes());
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(t_xml_child.getBytes());
         EventParser eventParser = new EventParser();
         EventStructure event = eventParser.parse(byteArrayInputStream);
         assertEquals("123", event.getName());
 //        assertEquals(false, event.isActive());
-        assertEquals("profile", event.getProfileName());
+        assertEquals("profile1", event.getProfileName());
         assertEquals("myparent", event.getParentName());
-//        assertEquals("13:23", Utils.TimeToText(event.getTime()));
         byteArrayInputStream.close();
     }
 
@@ -67,9 +77,9 @@ public class EventTest {
     public void testSerialize() throws IOException {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         EventSerializer eventSerializer = new EventSerializer();
-        eventSerializer.serialize(byteArrayOutputStream, t_event);
+        eventSerializer.serialize(byteArrayOutputStream, t_event_child);
         String xml = byteArrayOutputStream.toString();
-        assertEquals(t_xml, xml);
+        assertEquals(t_xml_child, xml);
         byteArrayOutputStream.close();
     }
 }

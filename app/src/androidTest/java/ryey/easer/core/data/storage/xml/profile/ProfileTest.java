@@ -29,6 +29,10 @@ import java.io.IOException;
 
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.core.data.ProfileStructure;
+import ryey.easer.plugins.operation.bluetooth.BluetoothOperationData;
+import ryey.easer.plugins.operation.bluetooth.BluetoothOperationPlugin;
+import ryey.easer.plugins.operation.cellular.CellularOperationData;
+import ryey.easer.plugins.operation.cellular.CellularOperationPlugin;
 
 import static org.junit.Assert.assertEquals;
 
@@ -43,8 +47,8 @@ public class ProfileTest {
 
         t_profile = new ProfileStructure();
         t_profile.setName("myTest");
-//        t_profile.setBluetooth(true);
-//        t_profile.setMobile_data(false);
+        t_profile.set(CellularOperationPlugin.pname(), new CellularOperationData(false));
+        t_profile.set(BluetoothOperationPlugin.pname(), new BluetoothOperationData(true));
     }
 
     @Test
@@ -53,9 +57,8 @@ public class ProfileTest {
         ProfileParser profileParser = new ProfileParser();
         ProfileStructure profile = profileParser.parse(byteArrayInputStream);
         assertEquals("myTest", profile.getName());
-//        assertEquals(true, profile.getBluetooth());
-//        assertEquals(false, profile.getMobile_data());
-//        assertNull(profile.getWifi());
+        assertEquals(profile.get(CellularOperationPlugin.pname()).get(), false);
+        assertEquals(profile.get(BluetoothOperationPlugin.pname()).get(), true);
         byteArrayInputStream.close();
     }
 

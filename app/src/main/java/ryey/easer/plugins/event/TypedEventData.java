@@ -47,4 +47,16 @@ public abstract class TypedEventData implements EventData {
     public boolean match(Object obj) {
         return equals(obj);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (getClass() != obj.getClass())
+            return false;
+        TypedEventData data = (TypedEventData) obj;
+        if (type() != data.type())
+            return false;
+        if (!get().equals(data.get()))
+            return false;
+        return true;
+    }
 }
