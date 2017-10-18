@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.event.wifi;
+package ryey.easer.plugins.operation;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -25,38 +25,45 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.Switch;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.ContentFragment;
+import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class WifiContentFragment extends ContentFragment {
-    EditText editText;
+public abstract class SwitchPluginViewFragment extends PluginViewFragment {
+    Switch aSwitch;
 
     {
-        expectedDataClass = WifiEventData.class;
-        setDesc(R.string.event_wificonn);
+        expectedDataClass = BooleanOperationData.class;
     }
 
     @NonNull
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_event__wifi_connection, container, false);
-        editText = (EditText) view.findViewById(R.id.wifi_name);
-
+        View view = inflater.inflate(R.layout.plugin_reusable__switch, container, false);
+        aSwitch = (Switch) view.findViewById(R.id.plugin_reusable__switch);
         return view;
+    }
+
+    protected static void setSwitch(@NonNull Switch sw, Boolean state) {
+        sw.setChecked(state);
+    }
+
+    @NonNull
+    protected static Boolean fromSwitch(@NonNull Switch sw) {
+        return sw.isChecked();
     }
 
     @Override
     protected void _fill(StorageData data) {
-        if (data instanceof WifiEventData) {
-            editText.setText(data.toString());
+        if (data instanceof BooleanOperationData) {
+            Boolean state = (Boolean) data.get();
+            setSwitch(aSwitch, state);
         }
     }
 
-    @Override
-    public StorageData getData() {
-        return new WifiEventData(editText.getText().toString());
+    protected Boolean state() {
+        return fromSwitch(aSwitch);
     }
 }

@@ -31,10 +31,10 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.ContentFragment;
+import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class BrightnessContentFragment extends ContentFragment {
+public class BrightnessPluginViewFragment extends PluginViewFragment {
     Switch mIsAuto;
     SeekBar mBrightnessLevel;
 

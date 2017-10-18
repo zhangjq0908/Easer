@@ -14,15 +14,15 @@ import java.util.List;
 import java.util.Set;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.ContentFragment;
+import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
-public class EventPluginViewFragment extends PluginViewFragment {
-    static EventPluginViewFragment createInstance(ContentFragment contentFragment) {
+public class EventPluginViewFragment extends ryey.easer.core.ui.edit.PluginViewFragment {
+    static EventPluginViewFragment createInstance(PluginViewFragment pluginViewFragment) {
         EventPluginViewFragment fragment = new EventPluginViewFragment();
-        fragment.contentFragment = contentFragment;
+        fragment.pluginViewFragment = pluginViewFragment;
         return fragment;
     }
 
@@ -35,12 +35,12 @@ public class EventPluginViewFragment extends PluginViewFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_pluginview_event, container, false);
         type_radioGroup = (RadioGroup) v.findViewById(R.id.radiogroup_eventtype);
-        contentFragment.setEnabled(true);
+        pluginViewFragment.setEnabled(true);
         getChildFragmentManager().beginTransaction()
-                .replace(R.id.content_pluginview, contentFragment)
+                .replace(R.id.content_pluginview, pluginViewFragment)
                 .commit();
         try {
-            EventData dummyData = (EventData) contentFragment.getExpectedDataClass().newInstance();
+            EventData dummyData = (EventData) pluginViewFragment.getExpectedDataClass().newInstance();
             fillType(dummyData);
         } catch (java.lang.InstantiationException e) {
             e.printStackTrace();
@@ -52,7 +52,7 @@ public class EventPluginViewFragment extends PluginViewFragment {
 
     @Override
     protected void _fill(StorageData data) {
-        contentFragment.fill(data);
+        pluginViewFragment.fill(data);
         if (getView() != null) {
             fillType(data);
         }
@@ -60,7 +60,7 @@ public class EventPluginViewFragment extends PluginViewFragment {
 
     @Override
     StorageData getData() {
-        EventData data = (EventData) contentFragment.getData();
+        EventData data = (EventData) pluginViewFragment.getData();
         data.setType(selectedType());
         return data;
     }

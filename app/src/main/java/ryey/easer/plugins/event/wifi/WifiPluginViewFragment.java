@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.operation.command;
+package ryey.easer.plugins.event.wifi;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -28,33 +28,35 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.ContentFragment;
+import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class CommandContentFragment extends ContentFragment {
-    EditText editText_command;
+public class WifiPluginViewFragment extends PluginViewFragment {
+    EditText editText;
 
     {
-        expectedDataClass = CommandOperationData.class;
-        setDesc(R.string.operation_command);
+        expectedDataClass = WifiEventData.class;
+        setDesc(R.string.event_wificonn);
     }
 
     @NonNull
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_operation__command, container, false);
-        editText_command = (EditText) view.findViewById(R.id.command);
+        View view = inflater.inflate(R.layout.plugin_event__wifi_connection, container, false);
+        editText = (EditText) view.findViewById(R.id.wifi_name);
+
         return view;
     }
 
     @Override
     protected void _fill(StorageData data) {
-        String command = (String) data.get();
-        editText_command.setText(command);
+        if (data instanceof WifiEventData) {
+            editText.setText(data.toString());
+        }
     }
 
     @Override
     public StorageData getData() {
-        return new CommandOperationData(editText_command.getText().toString());
+        return new WifiEventData(editText.getText().toString());
     }
 }

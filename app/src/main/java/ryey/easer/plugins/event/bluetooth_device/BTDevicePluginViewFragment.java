@@ -42,10 +42,10 @@ import android.widget.TextView;
 
 import ryey.easer.R;
 import ryey.easer.Utils;
-import ryey.easer.commons.plugindef.ContentFragment;
+import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class BTDeviceContentFragment extends ContentFragment {
+public class BTDevicePluginViewFragment extends PluginViewFragment {
     final String ACTION_RETURN = "ryey.easer.plugins.event.bluetooth_device.return_from_dialog";
     final String EXTRA_HARDWARE_ADDRESS = "ryey.easer.plugins.event.bluetooth_device.extra.hardware_address";
 

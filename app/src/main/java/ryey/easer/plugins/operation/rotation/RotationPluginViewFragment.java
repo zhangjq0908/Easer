@@ -17,20 +17,20 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.operation.bluetooth;
+package ryey.easer.plugins.operation.rotation;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.StorageData;
-import ryey.easer.plugins.operation.SwitchContentFragment;
+import ryey.easer.plugins.operation.SwitchPluginViewFragment;
 
-public class BluetoothContentFragment extends SwitchContentFragment {
+public class RotationPluginViewFragment extends SwitchPluginViewFragment {
 
     {
-        setDesc(R.string.operation_bluetooth);
+        setDesc(R.string.operation_rotation);
     }
 
     @Override
     public StorageData getData() {
-        return new BluetoothOperationData(state());
+        return new RotationOperationData(state());
     }
 }

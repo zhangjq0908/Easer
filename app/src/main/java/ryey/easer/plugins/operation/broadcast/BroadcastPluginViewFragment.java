@@ -29,10 +29,10 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.ContentFragment;
+import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class BroadcastContentFragment extends ContentFragment {
+public class BroadcastPluginViewFragment extends PluginViewFragment {
     EditText m_text_action;
     EditText m_text_category;
     EditText m_text_type;

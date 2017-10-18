@@ -21,9 +21,9 @@ package ryey.easer.plugins.operation.hotspot;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.StorageData;
-import ryey.easer.plugins.operation.SwitchContentFragment;
+import ryey.easer.plugins.operation.SwitchPluginViewFragment;
 
-public class HotspotContentFragment extends SwitchContentFragment {
+public class HotspotPluginViewFragment extends SwitchPluginViewFragment {
 
     {
         setDesc(R.string.operation_hotspot);

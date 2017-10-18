@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.operation;
+package ryey.easer.plugins.operation.command;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -25,45 +25,36 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Switch;
+import android.widget.EditText;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.ContentFragment;
+import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public abstract class SwitchContentFragment extends ContentFragment {
-    Switch aSwitch;
+public class CommandPluginViewFragment extends PluginViewFragment {
+    EditText editText_command;
 
     {
-        expectedDataClass = BooleanOperationData.class;
+        expectedDataClass = CommandOperationData.class;
+        setDesc(R.string.operation_command);
     }
 
     @NonNull
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_reusable__switch, container, false);
-        aSwitch = (Switch) view.findViewById(R.id.plugin_reusable__switch);
+        View view = inflater.inflate(R.layout.plugin_operation__command, container, false);
+        editText_command = (EditText) view.findViewById(R.id.command);
         return view;
-    }
-
-    protected static void setSwitch(@NonNull Switch sw, Boolean state) {
-        sw.setChecked(state);
-    }
-
-    @NonNull
-    protected static Boolean fromSwitch(@NonNull Switch sw) {
-        return sw.isChecked();
     }
 
     @Override
     protected void _fill(StorageData data) {
-        if (data instanceof BooleanOperationData) {
-            Boolean state = (Boolean) data.get();
-            setSwitch(aSwitch, state);
-        }
+        String command = (String) data.get();
+        editText_command.setText(command);
     }
 
-    protected Boolean state() {
-        return fromSwitch(aSwitch);
+    @Override
+    public StorageData getData() {
+        return new CommandOperationData(editText_command.getText().toString());
     }
 }

@@ -21,7 +21,7 @@ package ryey.easer.commons.plugindef.eventplugin;
 
 import android.content.Context;
 
-import ryey.easer.commons.plugindef.ContentFragment;
+import ryey.easer.commons.plugindef.PluginViewFragment;
 
 /*
  * Definition of every Event plugin.
@@ -42,7 +42,7 @@ public interface EventPlugin {
      * Returns the control UI of this plugin.
      * Used in `EditEventActivity`.
      */
-    ContentFragment view();
+    PluginViewFragment view();
     /*
      * Returns a to-be-initialized Slot of this plugin.
      * See `AbstractSlot` for more information

@@ -10,12 +10,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.ContentFragment;
+import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 import static android.widget.LinearLayout.HORIZONTAL;
 
-public class BatteryContentFragment extends ContentFragment {
+public class BatteryPluginViewFragment extends PluginViewFragment {
     String []mode_names;
     int []values = {
             BatteryStatus.charging,

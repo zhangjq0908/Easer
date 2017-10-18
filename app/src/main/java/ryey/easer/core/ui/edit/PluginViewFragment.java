@@ -9,12 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import ryey.easer.commons.plugindef.ContentFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public abstract class PluginViewFragment extends Fragment {
 
-    protected ContentFragment contentFragment = null;
+    protected ryey.easer.commons.plugindef.PluginViewFragment pluginViewFragment = null;
 
     protected StorageData passed_data = null;
 
@@ -33,7 +32,7 @@ public abstract class PluginViewFragment extends Fragment {
     }
 
     protected void _fill(StorageData data) {
-        contentFragment.fill(data);
+        pluginViewFragment.fill(data);
     }
 
     void fill(StorageData data) {
@@ -46,6 +45,6 @@ public abstract class PluginViewFragment extends Fragment {
     }
 
     StorageData getData() {
-        return contentFragment.getData();
+        return pluginViewFragment.getData();
     }
 }

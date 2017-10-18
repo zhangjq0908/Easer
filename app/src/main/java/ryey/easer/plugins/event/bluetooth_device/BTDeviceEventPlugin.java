@@ -21,7 +21,7 @@ package ryey.easer.plugins.event.bluetooth_device;
 
 import android.content.Context;
 
-import ryey.easer.commons.plugindef.ContentFragment;
+import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
@@ -43,8 +43,8 @@ public class BTDeviceEventPlugin implements EventPlugin {
     }
 
     @Override
-    public ContentFragment view() {
-        return new BTDeviceContentFragment();
+    public PluginViewFragment view() {
+        return new BTDevicePluginViewFragment();
     }
 
     @Override

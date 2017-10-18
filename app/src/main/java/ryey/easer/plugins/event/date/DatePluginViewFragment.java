@@ -29,10 +29,10 @@ import android.widget.DatePicker;
 import java.util.Calendar;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.ContentFragment;
+import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class DateContentFragment extends ContentFragment {
+public class DatePluginViewFragment extends PluginViewFragment {
     DatePicker datePicker;
 
     {

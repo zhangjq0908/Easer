@@ -32,10 +32,10 @@ import android.widget.EditText;
 
 import ryey.easer.R;
 import ryey.easer.Utils;
-import ryey.easer.commons.plugindef.ContentFragment;
+import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class CellLocationContentFragment extends ContentFragment {
+public class CellLocationPluginViewFragment extends PluginViewFragment {
     EditText editText;
 
     {

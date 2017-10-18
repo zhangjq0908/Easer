@@ -12,16 +12,16 @@ import android.widget.TextView;
 import com.orhanobut.logger.Logger;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.ContentFragment;
+import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class ProfilePluginViewFragment extends PluginViewFragment {
+public class ProfilePluginViewFragment extends ryey.easer.core.ui.edit.PluginViewFragment {
 
     private CheckBox mCheckBox;
 
-    static ProfilePluginViewFragment createInstance(ContentFragment contentFragment) {
+    static ProfilePluginViewFragment createInstance(PluginViewFragment pluginViewFragment) {
         ProfilePluginViewFragment fragment = new ProfilePluginViewFragment();
-        fragment.contentFragment = contentFragment;
+        fragment.pluginViewFragment = pluginViewFragment;
         return fragment;
     }
 
@@ -34,20 +34,20 @@ public class ProfilePluginViewFragment extends PluginViewFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pluginview_profile, container, false);
         getChildFragmentManager().beginTransaction()
-                .add(R.id.content_pluginview, contentFragment)
+                .add(R.id.content_pluginview, pluginViewFragment)
                 .commit();
         getChildFragmentManager().executePendingTransactions();
         mCheckBox = (CheckBox) view.findViewById(R.id.checkbox_pluginview_enabled);
-        contentFragment.setEnabled(false);
+        pluginViewFragment.setEnabled(false);
         mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                contentFragment.setEnabled(b);
+                pluginViewFragment.setEnabled(b);
             }
         });
-        String desc = contentFragment.desc(getResources());
+        String desc = pluginViewFragment.desc(getResources());
         if (desc == null)
-            Logger.wtf("desc == null!!!???");
+            Logger.wtf("desc == null!!!??? on <%s>", pluginViewFragment);
         ((TextView) view.findViewById(R.id.text_pluginview_desc)).setText(desc);
 
         return view;

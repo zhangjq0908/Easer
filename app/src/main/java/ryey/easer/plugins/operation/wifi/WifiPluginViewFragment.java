@@ -17,20 +17,20 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.operation.cellular;
+package ryey.easer.plugins.operation.wifi;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.StorageData;
-import ryey.easer.plugins.operation.SwitchContentFragment;
+import ryey.easer.plugins.operation.SwitchPluginViewFragment;
 
-public class CellularContentFragment extends SwitchContentFragment {
+public class WifiPluginViewFragment extends SwitchPluginViewFragment {
 
     {
-        setDesc(R.string.operation_cellular);
+        setDesc(R.string.operation_wifi);
     }
 
     @Override
     public StorageData getData() {
-        return new CellularOperationData(state());
+        return new WifiOperationData(state());
     }
 }

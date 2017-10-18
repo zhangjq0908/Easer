@@ -21,7 +21,7 @@ package ryey.easer.plugins.event.date;
 
 import android.content.Context;
 
-import ryey.easer.commons.plugindef.ContentFragment;
+import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
@@ -43,8 +43,8 @@ public class DateEventPlugin implements EventPlugin {
     }
 
     @Override
-    public ContentFragment view() {
-        return new DateContentFragment();
+    public PluginViewFragment view() {
+        return new DatePluginViewFragment();
     }
 
     @Override

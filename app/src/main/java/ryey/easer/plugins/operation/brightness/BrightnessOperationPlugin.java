@@ -21,7 +21,7 @@ package ryey.easer.plugins.operation.brightness;
 
 import android.content.Context;
 
-import ryey.easer.commons.plugindef.ContentFragment;
+import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
@@ -42,8 +42,8 @@ public class BrightnessOperationPlugin implements OperationPlugin {
     }
 
     @Override
-    public ContentFragment view() {
-        return new BrightnessContentFragment();
+    public PluginViewFragment view() {
+        return new BrightnessPluginViewFragment();
     }
 
     @Override

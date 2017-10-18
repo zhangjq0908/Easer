@@ -35,10 +35,10 @@ import java.util.Locale;
 import java.util.Set;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.ContentFragment;
+import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class DayOfWeekContentFragment extends ContentFragment {
+public class DayOfWeekPluginViewFragment extends PluginViewFragment {
     CompoundButton []day_buttons = new CompoundButton[7];
 
     {

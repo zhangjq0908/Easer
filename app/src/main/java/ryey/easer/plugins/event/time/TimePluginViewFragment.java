@@ -30,10 +30,10 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.ContentFragment;
+import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class TimeContentFragment extends ContentFragment {
+public class TimePluginViewFragment extends PluginViewFragment {
     TimePicker timePicker;
 
     {
