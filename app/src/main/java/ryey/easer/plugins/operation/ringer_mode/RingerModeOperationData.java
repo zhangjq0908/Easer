@@ -19,16 +19,7 @@
 
 package ryey.easer.plugins.operation.ringer_mode;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlSerializer;
-
-import java.io.IOException;
-
-import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.plugins.operation.IntegerOperationData;
-
-import static ryey.easer.plugins.operation.ringer_mode.RingerModeOperationPlugin.pname;
 
 public class RingerModeOperationData extends IntegerOperationData {
     public RingerModeOperationData() {
@@ -43,15 +34,5 @@ public class RingerModeOperationData extends IntegerOperationData {
         lbound = 0;
         rbound = 3;
         return super.isValid();
-    }
-
-    @Override
-    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalXmlException {
-        mParse(parser, pname());
-    }
-
-    @Override
-    public void serialize(XmlSerializer serializer) throws IOException {
-        mSerialize(serializer, pname());
     }
 }

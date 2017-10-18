@@ -33,8 +33,9 @@ import ryey.easer.commons.IllegalArgumentTypeException;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.plugins.PluginRegistry;
 
-import static ryey.easer.plugins.operation.broadcast.BroadcastOperationPlugin.pname;
+import static ryey.easer.plugins.PluginRegistry.getInstance;
 
 public class BroadcastOperationData implements OperationData {
     protected static final String ns = null;
@@ -71,6 +72,7 @@ public class BroadcastOperationData implements OperationData {
 
     @Override
     public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalXmlException {
+        String pname = getInstance().operation().findPlugin(this).name();
         int depth = parser.getDepth();
         int event_type = parser.next();
         IntentData intentData = new IntentData();
@@ -81,25 +83,25 @@ public class BroadcastOperationData implements OperationData {
                         if (parser.next() == XmlPullParser.TEXT)
                             intentData.action = parser.getText();
                         else
-                            throw new IllegalXmlException(String.format("Illegal Item: (%s) Action has No Content", pname()));
+                            throw new IllegalXmlException(String.format("Illegal Item: (%s) Action has No Content", pname));
                         break;
                     case CATEGORY:
                         if (parser.next() == XmlPullParser.TEXT)
                             intentData.category = IntentData.stringToCategory(parser.getText());
                         else
-                            throw new IllegalXmlException(String.format("Illegal Item: (%s) Category is not valid", pname()));
+                            throw new IllegalXmlException(String.format("Illegal Item: (%s) Category is not valid", pname));
                         break;
                     case TYPE:
                         if (parser.next() == XmlPullParser.TEXT)
                             intentData.type = parser.getText();
                         else
-                            throw new IllegalXmlException(String.format("Illegal Item: (%s) Type is not valid", pname()));
+                            throw new IllegalXmlException(String.format("Illegal Item: (%s) Type is not valid", pname));
                         break;
                     case DATA:
                         if (parser.next() == XmlPullParser.TEXT)
                             intentData.data = Uri.parse(parser.getText());
                         else
-                            throw new IllegalXmlException(String.format("Illegal Item: (%s) Data is not valid", pname()));
+                            throw new IllegalXmlException(String.format("Illegal Item: (%s) Data is not valid", pname));
                         break;
                     default:
                         XmlHelper.skip(parser);
@@ -108,7 +110,7 @@ public class BroadcastOperationData implements OperationData {
             event_type = parser.next();
         }
         if (intentData.action == null)
-            throw new IllegalXmlException(String.format("Illegal Item: (%s) No Action", pname()));
+            throw new IllegalXmlException(String.format("Illegal Item: (%s) No Action", pname));
 
         set(intentData);
     }
@@ -118,9 +120,11 @@ public class BroadcastOperationData implements OperationData {
      */
     @Override
     public void serialize(XmlSerializer serializer) throws IOException {
+        String pname = getInstance().operation().findPlugin(this).name();
+
         serializer.startTag(ns, C.ITEM);
 
-        serializer.attribute(ns, C.SPEC, pname());
+        serializer.attribute(ns, C.SPEC, pname);
 
         if (!Utils.isBlank(data.action)) {
             serializer.startTag(ns, ACTION);

@@ -27,13 +27,10 @@ import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 
 public class BroadcastOperationPlugin implements OperationPlugin {
-    public static String pname() {
-        return "send_broadcast";
-    }
 
     @Override
     public String name() {
-        return pname();
+        return "send_broadcast";
     }
 
     @Override

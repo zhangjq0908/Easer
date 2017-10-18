@@ -19,16 +19,7 @@
 
 package ryey.easer.plugins.operation.rotation;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlSerializer;
-
-import java.io.IOException;
-
-import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.plugins.operation.BooleanOperationData;
-
-import static ryey.easer.plugins.operation.rotation.RotationOperationPlugin.pname;
 
 public class RotationOperationData extends BooleanOperationData {
     public RotationOperationData() {
@@ -38,13 +29,4 @@ public class RotationOperationData extends BooleanOperationData {
         super(state);
     }
 
-    @Override
-    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalXmlException {
-        mParse(parser, pname());
-    }
-
-    @Override
-    public void serialize(XmlSerializer serializer) throws IOException {
-        mSerialize(serializer, pname());
-    }
 }

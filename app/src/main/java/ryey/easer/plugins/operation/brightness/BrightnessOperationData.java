@@ -19,16 +19,7 @@
 
 package ryey.easer.plugins.operation.brightness;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlSerializer;
-
-import java.io.IOException;
-
-import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.plugins.operation.IntegerOperationData;
-
-import static ryey.easer.plugins.operation.brightness.BrightnessOperationPlugin.pname;
 
 public class BrightnessOperationData extends IntegerOperationData {
     public BrightnessOperationData() {
@@ -47,16 +38,6 @@ public class BrightnessOperationData extends IntegerOperationData {
         lbound = -1;
         rbound = 100;
         return super.isValid();
-    }
-
-    @Override
-    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalXmlException {
-        mParse(parser, pname());
-    }
-
-    @Override
-    public void serialize(XmlSerializer serializer) throws IOException {
-        mSerialize(serializer, pname());
     }
 
     boolean isAuto() {

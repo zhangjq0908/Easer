@@ -27,13 +27,10 @@ import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 
 public class RingerModeOperationPlugin implements OperationPlugin {
-    public static String pname() {
-        return "ringer_mode";
-    }
 
     @Override
     public String name() {
-        return pname();
+        return "ringer_mode";
     }
 
     @Override

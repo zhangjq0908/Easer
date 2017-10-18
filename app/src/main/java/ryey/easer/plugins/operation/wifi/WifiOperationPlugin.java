@@ -27,13 +27,10 @@ import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 
 public class WifiOperationPlugin implements OperationPlugin {
-    public static String pname() {
-        return "wifi";
-    }
 
     @Override
     public String name() {
-        return pname();
+        return "wifi";
     }
 
     @Override

@@ -27,13 +27,10 @@ import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 
 public class CellularOperationPlugin implements OperationPlugin {
-    public static String pname() {
-        return "cellular";
-    }
 
     @Override
     public String name() {
-        return pname();
+        return "cellular";
     }
 
     @Override

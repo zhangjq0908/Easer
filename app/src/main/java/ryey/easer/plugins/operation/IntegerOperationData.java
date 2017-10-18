@@ -28,7 +28,10 @@ import java.io.IOException;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.reusable.IntegerData;
+
+import static ryey.easer.plugins.PluginRegistry.getInstance;
 
 public abstract class IntegerOperationData extends IntegerData implements OperationData {
 
@@ -38,11 +41,13 @@ public abstract class IntegerOperationData extends IntegerData implements Operat
         super(level);
     }
 
-    protected void mParse(XmlPullParser parser, String name) throws IOException, XmlPullParserException, IllegalXmlException {
-        set(XmlHelper.OperationHelper.handleInteger(parser, name));
+    @Override
+    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalXmlException {
+        set(XmlHelper.OperationHelper.handleInteger(parser, getInstance().operation().findPlugin(this).name()));
     }
 
-    protected void mSerialize(XmlSerializer serializer, String name) throws IOException {
-        XmlHelper.OperationHelper.dealInteger(serializer, name, (Integer) get());
+    @Override
+    public void serialize(XmlSerializer serializer) throws IOException {
+        XmlHelper.OperationHelper.dealInteger(serializer, getInstance().operation().findPlugin(this).name(), (Integer) get());
     }
 }

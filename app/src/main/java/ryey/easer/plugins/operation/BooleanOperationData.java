@@ -28,7 +28,10 @@ import java.io.IOException;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.reusable.BooleanData;
+
+import static ryey.easer.plugins.PluginRegistry.getInstance;
 
 public abstract class BooleanOperationData extends BooleanData implements OperationData {
 
@@ -38,11 +41,13 @@ public abstract class BooleanOperationData extends BooleanData implements Operat
         super(state);
     }
 
-    protected void mParse(XmlPullParser parser, String name) throws IOException, XmlPullParserException, IllegalXmlException {
-        set(XmlHelper.OperationHelper.handleBoolean(parser, name));
+    @Override
+    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalXmlException {
+        set(XmlHelper.OperationHelper.handleBoolean(parser, getInstance().operation().findPlugin(this).name()));
     }
 
-    protected void mSerialize(XmlSerializer serializer, String name) throws IOException {
-        XmlHelper.OperationHelper.dealBoolean(serializer, name, (Boolean) get());
+    @Override
+    public void serialize(XmlSerializer serializer) throws IOException {
+        XmlHelper.OperationHelper.dealBoolean(serializer, getInstance().operation().findPlugin(this).name(), (Boolean) get());
     }
 }

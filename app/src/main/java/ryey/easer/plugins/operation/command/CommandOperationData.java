@@ -19,16 +19,7 @@
 
 package ryey.easer.plugins.operation.command;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlSerializer;
-
-import java.io.IOException;
-
-import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.plugins.operation.StringOperationData;
-
-import static ryey.easer.plugins.operation.wifi.WifiOperationPlugin.pname;
 
 public class CommandOperationData extends StringOperationData {
     public CommandOperationData() {
@@ -38,13 +29,4 @@ public class CommandOperationData extends StringOperationData {
         super(command);
     }
 
-    @Override
-    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalXmlException {
-        mParse(parser, pname());
-    }
-
-    @Override
-    public void serialize(XmlSerializer serializer) throws IOException {
-        mSerialize(serializer, pname());
-    }
 }

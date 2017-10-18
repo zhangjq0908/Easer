@@ -27,13 +27,10 @@ import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 
 public class BluetoothOperationPlugin implements OperationPlugin {
-    public static String pname() {
-        return "bluetooth";
-    }
 
     @Override
     public String name() {
-        return pname();
+        return "bluetooth";
     }
 
     @Override

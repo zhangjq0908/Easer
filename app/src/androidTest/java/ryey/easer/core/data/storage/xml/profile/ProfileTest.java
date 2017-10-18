@@ -47,8 +47,8 @@ public class ProfileTest {
 
         t_profile = new ProfileStructure();
         t_profile.setName("myTest");
-        t_profile.set(CellularOperationPlugin.pname(), new CellularOperationData(false));
-        t_profile.set(BluetoothOperationPlugin.pname(), new BluetoothOperationData(true));
+        t_profile.set(new CellularOperationPlugin().name(), new CellularOperationData(false));
+        t_profile.set(new BluetoothOperationPlugin().name(), new BluetoothOperationData(true));
     }
 
     @Test
@@ -57,8 +57,8 @@ public class ProfileTest {
         ProfileParser profileParser = new ProfileParser();
         ProfileStructure profile = profileParser.parse(byteArrayInputStream);
         assertEquals("myTest", profile.getName());
-        assertEquals(profile.get(CellularOperationPlugin.pname()).get(), false);
-        assertEquals(profile.get(BluetoothOperationPlugin.pname()).get(), true);
+        assertEquals(profile.get(new CellularOperationPlugin().name()).get(), false);
+        assertEquals(profile.get(new BluetoothOperationPlugin().name()).get(), true);
         byteArrayInputStream.close();
     }
 

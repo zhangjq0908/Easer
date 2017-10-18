@@ -27,13 +27,10 @@ import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 
 public class RotationOperationPlugin implements OperationPlugin {
-    public static String pname() {
-        return "auto_rotation";
-    }
 
     @Override
     public String name() {
-        return pname();
+        return "auto_rotation";
     }
 
     @Override

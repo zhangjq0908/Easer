@@ -27,13 +27,10 @@ import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 
 public class HotspotOperationPlugin implements OperationPlugin {
-    public static String pname() {
-        return "hotspot";
-    }
 
     @Override
     public String name() {
-        return pname();
+        return "hotspot";
     }
 
     @Override

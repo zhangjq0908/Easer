@@ -28,7 +28,10 @@ import java.io.IOException;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.reusable.StringData;
+
+import static ryey.easer.plugins.PluginRegistry.getInstance;
 
 public abstract class StringOperationData extends StringData implements OperationData {
 
@@ -38,11 +41,13 @@ public abstract class StringOperationData extends StringData implements Operatio
         super(text);
     }
 
-    protected void mParse(XmlPullParser parser, String name) throws IOException, XmlPullParserException, IllegalXmlException {
-        set(XmlHelper.OperationHelper.handleString(parser, name));
+    @Override
+    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalXmlException {
+        set(XmlHelper.OperationHelper.handleString(parser, getInstance().operation().findPlugin(this).name()));
     }
 
-    protected void mSerialize(XmlSerializer serializer, String name) throws IOException {
-        XmlHelper.OperationHelper.dealString(serializer, name, (String) get());
+    @Override
+    public void serialize(XmlSerializer serializer) throws IOException {
+        XmlHelper.OperationHelper.dealString(serializer, getInstance().operation().findPlugin(this).name(), (String) get());
     }
 }
