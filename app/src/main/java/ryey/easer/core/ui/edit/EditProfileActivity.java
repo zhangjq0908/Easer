@@ -106,7 +106,7 @@ public class EditProfileActivity extends AppCompatActivity {
         mEditText = (EditText) findViewById(R.id.editText_profile_title);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        for (OperationPlugin operationPlugin : PluginRegistry.getInstance().getOperationPlugins()) {
+        for (OperationPlugin operationPlugin : PluginRegistry.getInstance().operation().getPlugins()) {
             PluginViewFragment fragment = ProfilePluginViewFragment.createInstance(operationPlugin.view());
             fragmentManager.beginTransaction().add(R.id.layout_profiles, fragment, operationPlugin.name()).commit();
         }
@@ -123,7 +123,7 @@ public class EditProfileActivity extends AppCompatActivity {
         mEditText.setText(oldName);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        for (OperationPlugin plugin : PluginRegistry.getInstance().getOperationPlugins()) {
+        for (OperationPlugin plugin : PluginRegistry.getInstance().operation().getPlugins()) {
             PluginViewFragment fragment = (PluginViewFragment) fragmentManager.findFragmentByTag(plugin.name());
             fragment.fill(profile.get(plugin.name()));
         }
@@ -133,7 +133,7 @@ public class EditProfileActivity extends AppCompatActivity {
         ProfileStructure profile = new ProfileStructure(mEditText.getText().toString());
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        for (OperationPlugin plugin : PluginRegistry.getInstance().getOperationPlugins()) {
+        for (OperationPlugin plugin : PluginRegistry.getInstance().operation().getPlugins()) {
             PluginViewFragment fragment = (PluginViewFragment) fragmentManager.findFragmentByTag(plugin.name());
             StorageData data = fragment.getData();
             if (data == null)

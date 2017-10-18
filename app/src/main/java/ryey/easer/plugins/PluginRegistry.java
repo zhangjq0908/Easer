@@ -19,12 +19,11 @@
 
 package ryey.easer.plugins;
 
-import android.os.ConditionVariable;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import ryey.easer.commons.plugindef.PluginDef;
+import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
@@ -46,49 +45,58 @@ import ryey.easer.plugins.operation.ringer_mode.RingerModeOperationPlugin;
 import ryey.easer.plugins.operation.rotation.RotationOperationPlugin;
 import ryey.easer.plugins.operation.wifi.WifiOperationPlugin;
 
-/*
+/**
  * Used to tell the app what plugins can be used.
  *
- * To register a new plugin, simply add a new line in the `init()` method of this class.
+ * To register a new plugin, simply add a new line in the constructor of this class.
  */
 final public class PluginRegistry {
-    private static PluginRegistry instance = new PluginRegistry();
-    private ConditionVariable initialised = new ConditionVariable();
 
-    synchronized public static PluginRegistry getInstance() {
+    private Registry<EventPlugin, EventData> eventPluginRegistry = new Registry<>();
+    private Registry<OperationPlugin, OperationData> operationPluginRegistry = new Registry<>();
+
+    {
+        event().registerPlugin(TimeEventPlugin.class);
+        event().registerPlugin(DateEventPlugin.class);
+        event().registerPlugin(WifiEventPlugin.class);
+        event().registerPlugin(CellLocationEventPlugin.class);
+        event().registerPlugin(BatteryEventPlugin.class);
+        event().registerPlugin(DayOfWeekEventPlugin.class);
+        event().registerPlugin(BTDeviceEventPlugin.class);
+
+        operation().registerPlugin(WifiOperationPlugin.class);
+        operation().registerPlugin(CellularOperationPlugin.class);
+        operation().registerPlugin(BluetoothOperationPlugin.class);
+        operation().registerPlugin(RotationOperationPlugin.class);
+        operation().registerPlugin(BroadcastOperationPlugin.class);
+        operation().registerPlugin(BrightnessOperationPlugin.class);
+        operation().registerPlugin(RingerModeOperationPlugin.class);
+        operation().registerPlugin(CommandOperationPlugin.class);
+        operation().registerPlugin(HotspotOperationPlugin.class);
+        //TODO: add more plugins
+    }
+
+    private static PluginRegistry instance = new PluginRegistry();
+
+    public static PluginRegistry getInstance() {
         return instance;
     }
 
-    public static void init() {
-        PluginRegistry pluginRegistry = PluginRegistry.getInstance();
+    private PluginRegistry() {}
 
-        pluginRegistry.registerEventPlugin(TimeEventPlugin.class);
-        pluginRegistry.registerEventPlugin(DateEventPlugin.class);
-        pluginRegistry.registerEventPlugin(WifiEventPlugin.class);
-        pluginRegistry.registerEventPlugin(CellLocationEventPlugin.class);
-        pluginRegistry.registerEventPlugin(BatteryEventPlugin.class);
-        pluginRegistry.registerEventPlugin(DayOfWeekEventPlugin.class);
-        pluginRegistry.registerEventPlugin(BTDeviceEventPlugin.class);
-
-        pluginRegistry.registerOperationPlugin(WifiOperationPlugin.class);
-        pluginRegistry.registerOperationPlugin(CellularOperationPlugin.class);
-        pluginRegistry.registerOperationPlugin(BluetoothOperationPlugin.class);
-        pluginRegistry.registerOperationPlugin(RotationOperationPlugin.class);
-        pluginRegistry.registerOperationPlugin(BroadcastOperationPlugin.class);
-        pluginRegistry.registerOperationPlugin(BrightnessOperationPlugin.class);
-        pluginRegistry.registerOperationPlugin(RingerModeOperationPlugin.class);
-        pluginRegistry.registerOperationPlugin(CommandOperationPlugin.class);
-        pluginRegistry.registerOperationPlugin(HotspotOperationPlugin.class);
-        //TODO: register plugins
-
-        pluginRegistry.initialised.open();
+    public Registry<EventPlugin, EventData> event() {
+        return eventPluginRegistry;
     }
 
-    class Registry<T extends PluginDef, T_data> {
+    public Registry<OperationPlugin, OperationData> operation() {
+        return operationPluginRegistry;
+    }
+
+    public static class Registry<T extends PluginDef, T_data extends StorageData> {
         List<Class<? extends T>> pluginClassList = new ArrayList<>();
         List<T> pluginList = new ArrayList<>();
 
-        synchronized public void registerPlugin(Class<? extends T> pluginClass) {
+        synchronized void registerPlugin(Class<? extends T> pluginClass) {
             for (Class<? extends T> klass : pluginClassList) {
                 if (klass == pluginClass)
                     return;
@@ -105,17 +113,14 @@ final public class PluginRegistry {
         }
 
         public final List<Class<? extends T>> getPluginClasses() {
-            initialised.block();
             return pluginClassList;
         }
 
         public final List<T> getPlugins() {
-            initialised.block();
             return pluginList;
         }
 
         public T findPlugin(T_data data) {
-            initialised.block();
             for (T plugin : getPlugins()) {
                 if (data.getClass() == plugin.data().getClass()) {
                     return plugin;
@@ -125,7 +130,6 @@ final public class PluginRegistry {
         }
 
         public T findPlugin(String name) {
-            initialised.block();
             for (T plugin : getPlugins()) {
                 if (name.equals(plugin.name())) {
                     return plugin;
@@ -133,42 +137,5 @@ final public class PluginRegistry {
             }
             throw new IllegalAccessError();
         }
-    }
-
-    Registry<EventPlugin, EventData> eventPluginRegistry = new Registry<>();
-    Registry<OperationPlugin, OperationData> operationPluginRegistry = new Registry<>();
-
-    private PluginRegistry() {}
-
-    synchronized public void registerEventPlugin(Class<? extends EventPlugin> eventPluginClass) {
-        eventPluginRegistry.registerPlugin(eventPluginClass);
-    }
-
-    synchronized public void registerOperationPlugin(Class<? extends OperationPlugin> operationPluginClass) {
-        operationPluginRegistry.registerPlugin(operationPluginClass);
-    }
-
-    public final List<Class<? extends EventPlugin>> getEventPluginClasses() {
-        return eventPluginRegistry.getPluginClasses();
-    }
-
-    public final List<EventPlugin> getEventPlugins() {
-        return eventPluginRegistry.getPlugins();
-    }
-
-    public final List<Class<? extends OperationPlugin>> getOperationPluginClasses() {
-        return operationPluginRegistry.getPluginClasses();
-    }
-
-    public final List<OperationPlugin> getOperationPlugins() {
-        return operationPluginRegistry.getPlugins();
-    }
-
-    public EventPlugin findEventPlugin(EventData data) {
-        return eventPluginRegistry.findPlugin(data);
-    }
-
-    public EventPlugin findEventPlugin(String name) {
-        return eventPluginRegistry.findPlugin(name);
     }
 }

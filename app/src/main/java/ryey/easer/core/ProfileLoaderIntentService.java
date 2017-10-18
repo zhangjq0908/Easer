@@ -80,7 +80,7 @@ public class ProfileLoaderIntentService extends IntentService {
         }
         if (profile != null) {
             boolean loaded = false;
-            for (OperationPlugin plugin : PluginRegistry.getInstance().getOperationPlugins()) {
+            for (OperationPlugin plugin : PluginRegistry.getInstance().operation().getPlugins()) {
                 OperationLoader loader = plugin.loader(getApplicationContext());
                 OperationData data = profile.get(plugin.name());
                 if (data != null) {

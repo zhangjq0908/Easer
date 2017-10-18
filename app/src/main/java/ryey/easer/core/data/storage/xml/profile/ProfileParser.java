@@ -38,7 +38,7 @@ import ryey.easer.plugins.PluginRegistry;
 class ProfileParser {
     private static final String ns = null;
 
-    private XmlPullParser parser = Xml.newPullParser();;
+    private XmlPullParser parser = Xml.newPullParser();
 
     int version = ryey.easer.commons.C.VERSION_DEFAULT;
     ProfileStructure profile;
@@ -89,7 +89,7 @@ class ProfileParser {
         }
         switch (spec) {
             default:
-                for (OperationPlugin plugin : PluginRegistry.getInstance().getOperationPlugins()) {
+                for (OperationPlugin plugin : PluginRegistry.getInstance().operation().getPlugins()) {
                     if (spec.equals(plugin.name())) {
                         OperationData data = plugin.data();
                         data.parse(parser, version);

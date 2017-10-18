@@ -109,7 +109,7 @@ final class Lotus {
 
     private AbstractSlot dataToSlot(EventData data) {
         AbstractSlot slot;
-        EventPlugin plugin = PluginRegistry.getInstance().findEventPlugin(data);
+        EventPlugin plugin = PluginRegistry.getInstance().event().findPlugin(data);
         slot = plugin.slot(context);
         slot.set(data);
         return slot;

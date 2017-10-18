@@ -37,7 +37,7 @@ import ryey.easer.plugins.PluginRegistry;
 class ProfileSerializer {
     private static final String ns = null;
 
-    XmlSerializer serializer = Xml.newSerializer();;
+    XmlSerializer serializer = Xml.newSerializer();
     ProfileStructure mProfile;
 
     public void serialize(OutputStream out, ProfileStructure profile) throws IOException {
@@ -68,7 +68,7 @@ class ProfileSerializer {
     }
 
     private void writeItems() throws IOException {
-        for (OperationPlugin plugin : PluginRegistry.getInstance().getOperationPlugins()) {
+        for (OperationPlugin plugin : PluginRegistry.getInstance().operation().getPlugins()) {
             OperationData data = mProfile.get(plugin.name());
             if (data != null)
                 data.serialize(serializer);

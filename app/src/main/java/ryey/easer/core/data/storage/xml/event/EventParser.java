@@ -118,7 +118,7 @@ class EventParser {
         }
         parser.require(XmlPullParser.START_TAG, ns, C.SIT);
         String spec = parser.getAttributeValue(ns, C.SPEC);
-        EventPlugin plugin = PluginRegistry.getInstance().findEventPlugin(spec);
+        EventPlugin plugin = PluginRegistry.getInstance().event().findPlugin(spec);
         EventData data = plugin.data();
         data.parse(parser, version);
         if (data.isValid())
