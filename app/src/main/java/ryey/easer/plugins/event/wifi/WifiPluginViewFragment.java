@@ -19,24 +19,54 @@
 
 package ryey.easer.plugins.event.wifi;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.wifi.WifiConfiguration;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 
 import ryey.easer.R;
+import ryey.easer.Utils;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public class WifiPluginViewFragment extends PluginViewFragment {
     EditText editText;
+    final String ACTION_RETURN = "ryey.easer.plugins.event.bluetooth_device.return_from_dialog";
+    final String EXTRA_SSID = "ryey.easer.plugins.event.bluetooth_device.extra.hardware_address";
+
+    IntentFilter mFilter = new IntentFilter(ACTION_RETURN);
+    BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(ACTION_RETURN)) {
+                addSSID(intent.getStringExtra(EXTRA_SSID));
+            }
+        }
+    };
 
     {
         expectedDataClass = WifiEventData.class;
         setDesc(R.string.event_wificonn);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        getContext().registerReceiver(mReceiver, mFilter);
     }
 
     @NonNull
@@ -45,7 +75,50 @@ public class WifiPluginViewFragment extends PluginViewFragment {
         View view = inflater.inflate(R.layout.plugin_event__wifi_connection, container, false);
         editText = (EditText) view.findViewById(R.id.wifi_name);
 
+        view.findViewById(R.id.connection_picker).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!Utils.hasPermission(getContext(), Manifest.permission.ACCESS_WIFI_STATE))
+                    return;
+                AlertDialog.Builder builderSingle = new AlertDialog.Builder(getContext());
+                builderSingle.setTitle(R.string.ebtdevice_select_dialog_title);
+                final ArrayAdapter<WifiDeviceWrapper> arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.select_dialog_singlechoice);
+                WifiManager wifiManager = (WifiManager) getContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                if (wifiManager != null) {
+                    for (WifiConfiguration configuration : wifiManager.getConfiguredNetworks()) {
+                        arrayAdapter.add(new WifiDeviceWrapper(configuration));
+                    }
+                }
+                builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String ssid = arrayAdapter.getItem(which).configuration.SSID;
+                        Intent intent = new Intent(ACTION_RETURN);
+                        intent.putExtra(EXTRA_SSID, ssid);
+                        getContext().sendBroadcast(intent);
+                    }
+                });
+                builderSingle.show();
+            }
+        });
+
         return view;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        getContext().unregisterReceiver(mReceiver);
+    }
+
+    private void addSSID(String ssid) {
+        Editable text = editText.getText();
+        if (!Utils.isBlank(text.toString()))
+            text.append("\n");
+        if (ssid.startsWith("\"")) {
+            ssid = ssid.substring(1, ssid.length() - 1);
+        }
+        text.append(ssid);
     }
 
     @Override
@@ -58,5 +131,15 @@ public class WifiPluginViewFragment extends PluginViewFragment {
     @Override
     public StorageData getData() {
         return new WifiEventData(editText.getText().toString());
+    }
+
+    class WifiDeviceWrapper {
+        WifiConfiguration configuration;
+        WifiDeviceWrapper(WifiConfiguration configuration) {
+            this.configuration = configuration;
+        }
+        public String toString() {
+            return configuration.SSID;
+        }
     }
 }
