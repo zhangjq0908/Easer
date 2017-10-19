@@ -1,6 +1,32 @@
 CHANGELOG
 ======
 
+* v0.4.0.1: Use generic on `PluginRegistry` && Remove unneeded codes && class name changes
+	* `PluginRegistry` change
+		* Make the component in `PluginRegistry` generic to ease maintainance
+		* Use query on `PluginRegistry` to get information
+		* Replace all manual check of plugins with methods in `PluginRegistry.Registry`
+			* Remove the need of `EventData.pluginClass()`
+		* Use singleton of `PluginRegistry` instead of manual synchronization
+	* Remove unneeded codes
+		* remove the need of `EventData.pluginClass()`
+		* remove the need of static method `OerationPlugin.pname()` and `EventPlugin.pname()` in the implementation of event plugins (not in the interface)
+	* Rename `ryey.easer.core.ui.edit.PluginViewFragment` to `ryey.easer.core.ui.edit.PluginViewContainerFragment` to avoid name duplication with `ryey.easer.commons.plugindef.PluginViewFragment` (which was introduced in v0.4)
+	* More tests
+
+* v0.4: Change `ContentLayout` to `PluginViewFragment` && add permission notification on Outline && other change
+	* Change `ContentLayout` (subclass of `LinearLayout`) to `PluginViewFragment` (subclass of `Fragment`) for better expressivity
+		* Change classes related to it
+		* Handle `EventType` in `core.ui`
+		* Migrate all existing plugins to `PluginViewFragment`
+		* Handle the unregistration of receiver (of `BluetoothOperationPlugin`'s view) in Fragment's lifecycle
+	* Add a section to show permission issues of Easer to the Outline page
+		* Display only if there isn't enough permission	
+	* plugin's view's changes
+		* Add picker to WifiContentLayout
+		* Do not perform spellcheck for Wifi and Bluetooth
+		* Capitalize Bluetooth
+
 * v0.3.9: Change cell location data && use multi for data && other change
 	* Add `XmlHelper.EventHelper.readMultipleSituation()` and `XmlHelper.EventHelper.writeMultipleSituation()` to handle events whose data could be multiple section (instead of handling it on each plugin)
 	* Add versioning to storage data (for compatibility between versions)
