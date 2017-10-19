@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.orhanobut.logger.Logger;
 
 import ryey.easer.commons.IllegalArgumentTypeException;
+import ryey.easer.core.ui.edit.EventPluginViewContainerFragment;
 
 /**
  * Base Fragment class for plugin's UI.
@@ -87,7 +88,7 @@ public abstract class PluginViewFragment extends Fragment {
     /**
      * Subclasses don't need to override this method.
      * Get the expected data (represented in the form of {@link Class}).
-     * Currently only used in {@link ryey.easer.core.ui.edit.EventPluginViewFragment} when initializing the selection for {@link ryey.easer.commons.plugindef.eventplugin.EventType}.
+     * Currently only used in {@link EventPluginViewContainerFragment} when initializing the selection for {@link ryey.easer.commons.plugindef.eventplugin.EventType}.
      * May be replaced later.
      */
     public Class<? extends StorageData> getExpectedDataClass() {

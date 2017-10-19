@@ -19,9 +19,10 @@ import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
-public class EventPluginViewFragment extends ryey.easer.core.ui.edit.PluginViewFragment {
-    static EventPluginViewFragment createInstance(PluginViewFragment pluginViewFragment) {
-        EventPluginViewFragment fragment = new EventPluginViewFragment();
+public class EventPluginViewContainerFragment extends PluginViewContainerFragment {
+
+    static EventPluginViewContainerFragment createInstance(PluginViewFragment pluginViewFragment) {
+        EventPluginViewContainerFragment fragment = new EventPluginViewContainerFragment();
         fragment.pluginViewFragment = pluginViewFragment;
         return fragment;
     }

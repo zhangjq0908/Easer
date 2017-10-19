@@ -107,7 +107,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         for (OperationPlugin operationPlugin : PluginRegistry.getInstance().operation().getPlugins()) {
-            PluginViewFragment fragment = ProfilePluginViewFragment.createInstance(operationPlugin.view());
+            PluginViewContainerFragment fragment = ProfilePluginViewContainerFragment.createInstance(operationPlugin.view());
             fragmentManager.beginTransaction().add(R.id.layout_profiles, fragment, operationPlugin.name()).commit();
         }
         fragmentManager.executePendingTransactions();
@@ -124,7 +124,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         for (OperationPlugin plugin : PluginRegistry.getInstance().operation().getPlugins()) {
-            PluginViewFragment fragment = (PluginViewFragment) fragmentManager.findFragmentByTag(plugin.name());
+            PluginViewContainerFragment fragment = (PluginViewContainerFragment) fragmentManager.findFragmentByTag(plugin.name());
             fragment.fill(profile.get(plugin.name()));
         }
     }
@@ -134,7 +134,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         for (OperationPlugin plugin : PluginRegistry.getInstance().operation().getPlugins()) {
-            PluginViewFragment fragment = (PluginViewFragment) fragmentManager.findFragmentByTag(plugin.name());
+            PluginViewContainerFragment fragment = (PluginViewContainerFragment) fragmentManager.findFragmentByTag(plugin.name());
             StorageData data = fragment.getData();
             if (data == null)
                 continue;

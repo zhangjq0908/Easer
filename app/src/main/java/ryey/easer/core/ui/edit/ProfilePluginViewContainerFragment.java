@@ -15,17 +15,17 @@ import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class ProfilePluginViewFragment extends ryey.easer.core.ui.edit.PluginViewFragment {
+public class ProfilePluginViewContainerFragment extends PluginViewContainerFragment {
 
-    private CheckBox mCheckBox;
-
-    static ProfilePluginViewFragment createInstance(PluginViewFragment pluginViewFragment) {
-        ProfilePluginViewFragment fragment = new ProfilePluginViewFragment();
+    static ProfilePluginViewContainerFragment createInstance(PluginViewFragment pluginViewFragment) {
+        ProfilePluginViewContainerFragment fragment = new ProfilePluginViewContainerFragment();
         fragment.pluginViewFragment = pluginViewFragment;
         return fragment;
     }
 
-    public ProfilePluginViewFragment() {
+    private CheckBox mCheckBox;
+
+    public ProfilePluginViewContainerFragment() {
     }
 
     @NonNull

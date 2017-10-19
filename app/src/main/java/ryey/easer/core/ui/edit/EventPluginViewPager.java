@@ -42,7 +42,7 @@ public class EventPluginViewPager extends ViewPager {
         initial_position = i;
         if (getCurrentItem() == i) {
             synchronized (this) {
-                PluginViewFragment fragment = mPagerAdapter.getRegisteredFragment(i);
+                PluginViewContainerFragment fragment = mPagerAdapter.getRegisteredFragment(i);
                 if (fragment != null)
                     fragment.fill(initial_event_data);
             }
@@ -61,7 +61,7 @@ public class EventPluginViewPager extends ViewPager {
 
     class MyPagerAdapter extends FragmentStatePagerAdapter {
 
-        SparseArray<PluginViewFragment> registeredFragments = new SparseArray<>();
+        SparseArray<PluginViewContainerFragment> registeredFragments = new SparseArray<>();
 
         private Context context;
         String[] titles;
@@ -78,7 +78,7 @@ public class EventPluginViewPager extends ViewPager {
 
         @Override
         public Fragment getItem(int position) {
-            PluginViewFragment fragment = EventPluginViewFragment.createInstance(
+            PluginViewContainerFragment fragment = EventPluginViewContainerFragment.createInstance(
                     PluginRegistry.getInstance().event().getPlugins().get(position).view());
             return fragment;
         }
@@ -95,7 +95,7 @@ public class EventPluginViewPager extends ViewPager {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            PluginViewFragment fragment = (PluginViewFragment) super.instantiateItem(container, position);
+            PluginViewContainerFragment fragment = (PluginViewContainerFragment) super.instantiateItem(container, position);
             synchronized (EventPluginViewPager.this) {
                 if ((initial_position != null) && (position == initial_position)) {
                     fragment.fill(initial_event_data);
@@ -111,7 +111,7 @@ public class EventPluginViewPager extends ViewPager {
             super.destroyItem(container, position, object);
         }
 
-        public PluginViewFragment getRegisteredFragment(int position) {
+        public PluginViewContainerFragment getRegisteredFragment(int position) {
             return registeredFragments.get(position);
         }
     }

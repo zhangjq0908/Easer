@@ -11,13 +11,13 @@ import android.view.ViewGroup;
 
 import ryey.easer.commons.plugindef.StorageData;
 
-public abstract class PluginViewFragment extends Fragment {
+public abstract class PluginViewContainerFragment extends Fragment {
 
     protected ryey.easer.commons.plugindef.PluginViewFragment pluginViewFragment = null;
 
     protected StorageData passed_data = null;
 
-    public PluginViewFragment() {
+    public PluginViewContainerFragment() {
     }
 
     @NonNull
