@@ -10,9 +10,8 @@ import java.util.EnumSet;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
+import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
-
-import static ryey.easer.plugins.event.battery.BatteryEventPlugin.pname;
 
 public class BatteryEventData extends TypedEventData {
 
@@ -63,7 +62,7 @@ public class BatteryEventData extends TypedEventData {
         Integer int_status = (Integer) get();
         if (int_status != null) {
             String status = int_status.toString();
-            XmlHelper.EventHelper.writeSingleSituation(serializer, pname(), status);
+            XmlHelper.EventHelper.writeSingleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).name(), status);
             XmlHelper.EventHelper.writeLogic(serializer, type());
         }
     }

@@ -8,13 +8,10 @@ import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 
 public class BatteryEventPlugin implements EventPlugin {
-    static String pname() {
-        return "battery";
-    }
 
     @Override
     public String name() {
-        return pname();
+        return "battery";
     }
 
     @Override

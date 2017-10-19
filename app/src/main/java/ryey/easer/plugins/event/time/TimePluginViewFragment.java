@@ -46,9 +46,7 @@ public class TimePluginViewFragment extends PluginViewFragment {
     @Override
     public ViewGroup onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         timePicker = new TimePicker(getContext());
-//        view_container.addView(timePicker);
-//
-//        return view_container;
+
         return timePicker;
     }
 

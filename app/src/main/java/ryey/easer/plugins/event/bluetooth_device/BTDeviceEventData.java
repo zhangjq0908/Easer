@@ -35,9 +35,8 @@ import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
+import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
-
-import static ryey.easer.plugins.event.bluetooth_device.BTDeviceEventPlugin.pname;
 
 
 public class BTDeviceEventData extends TypedEventData {
@@ -121,7 +120,7 @@ public class BTDeviceEventData extends TypedEventData {
         if (!isValid()) {
             Logger.wtf("Invalid data should not be serialized");
         }
-        XmlHelper.EventHelper.writeMultipleSituation(serializer, pname(), hwaddresses.toArray(new String[0]));
+        XmlHelper.EventHelper.writeMultipleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).name(), hwaddresses.toArray(new String[0]));
         XmlHelper.EventHelper.writeLogic(serializer, type());
     }
 

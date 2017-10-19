@@ -28,13 +28,9 @@ import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 
 public class TimeEventPlugin implements EventPlugin {
 
-    static String pname() {
-        return "time";
-    }
-
     @Override
     public String name() {
-        return pname();
+        return "time";
     }
 
     @Override

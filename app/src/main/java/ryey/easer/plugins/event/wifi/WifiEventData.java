@@ -35,9 +35,8 @@ import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
+import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
-
-import static ryey.easer.plugins.event.wifi.WifiEventPlugin.pname;
 
 public class WifiEventData extends TypedEventData {
     List<String> ssids = new ArrayList<>();
@@ -120,7 +119,7 @@ public class WifiEventData extends TypedEventData {
         if (!isValid()) {
             Logger.wtf("Invalid WifiEventData shouldn't be serialized");
         }
-        XmlHelper.EventHelper.writeMultipleSituation(serializer, pname(), ssids.toArray(new String[0]));
+        XmlHelper.EventHelper.writeMultipleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).name(), ssids.toArray(new String[0]));
         XmlHelper.EventHelper.writeLogic(serializer, type());
     }
 

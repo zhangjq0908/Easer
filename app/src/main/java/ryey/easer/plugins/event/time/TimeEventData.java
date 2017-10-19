@@ -34,9 +34,8 @@ import java.util.EnumSet;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
+import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
-
-import static ryey.easer.plugins.event.time.TimeEventPlugin.pname;
 
 public class TimeEventData extends TypedEventData {
     private static SimpleDateFormat sdf_time = new SimpleDateFormat("HH:mm");
@@ -107,7 +106,7 @@ public class TimeEventData extends TypedEventData {
     public void serialize(XmlSerializer serializer) throws IOException {
         Calendar time = (Calendar) get();
         if (time != null) {
-            XmlHelper.EventHelper.writeSingleSituation(serializer, pname(), TimeToText(time));
+            XmlHelper.EventHelper.writeSingleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).name(), TimeToText(time));
             XmlHelper.EventHelper.writeLogic(serializer, type());
         }
     }

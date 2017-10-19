@@ -36,9 +36,8 @@ import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
+import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
-
-import static ryey.easer.plugins.event.dayofweek.DayOfWeekEventPlugin.pname;
 
 public class DayOfWeekEventData extends TypedEventData {
 
@@ -116,7 +115,7 @@ public class DayOfWeekEventData extends TypedEventData {
         if (!isValid()) {
             Logger.wtf("Invalid DayOfWeekEventData shouldn't be serialized");
         }
-        XmlHelper.EventHelper.writeMultipleSituation(serializer, pname(),
+        XmlHelper.EventHelper.writeMultipleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).name(),
                 Utils.set2strlist(days).toArray(new String[0]));
         XmlHelper.EventHelper.writeLogic(serializer, type());
     }

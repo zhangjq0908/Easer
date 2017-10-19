@@ -34,9 +34,8 @@ import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
+import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
-
-import static ryey.easer.plugins.event.celllocation.CellLocationEventPlugin.pname;
 
 public class CellLocationEventData extends TypedEventData {
     protected List<CellLocationSingleData> data;
@@ -118,7 +117,7 @@ public class CellLocationEventData extends TypedEventData {
         for (CellLocationSingleData singleData : data) {
             list.add(singleData.toString());
         }
-        XmlHelper.EventHelper.writeMultipleSituation(serializer, pname(), list.toArray(new String[0]));
+        XmlHelper.EventHelper.writeMultipleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).name(), list.toArray(new String[0]));
         XmlHelper.EventHelper.writeLogic(serializer, type());
     }
 

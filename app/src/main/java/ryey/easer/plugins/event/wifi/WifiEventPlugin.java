@@ -28,13 +28,9 @@ import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 
 public class WifiEventPlugin implements EventPlugin {
 
-    static String pname() {
-        return "wifi connection";
-    }
-
     @Override
     public String name() {
-        return pname();
+        return "wifi connection";
     }
 
     @Override

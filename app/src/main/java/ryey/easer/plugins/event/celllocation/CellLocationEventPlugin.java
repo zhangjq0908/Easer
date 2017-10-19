@@ -27,13 +27,10 @@ import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 
 public class CellLocationEventPlugin implements EventPlugin {
-    static String pname() {
-        return "cell location";
-    }
 
     @Override
     public String name() {
-        return pname();
+        return "cell location";
     }
 
     @Override

@@ -28,13 +28,9 @@ import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 
 public class DayOfWeekEventPlugin implements EventPlugin {
 
-    static String pname() {
-        return "day_of_week";
-    }
-
     @Override
     public String name() {
-        return pname();
+        return "day_of_week";
     }
 
     @Override

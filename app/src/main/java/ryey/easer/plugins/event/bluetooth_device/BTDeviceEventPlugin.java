@@ -28,13 +28,9 @@ import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 
 public class BTDeviceEventPlugin implements EventPlugin {
 
-    static String pname() {
-        return "bluetooth device";
-    }
-
     @Override
     public String name() {
-        return pname();
+        return "bluetooth device";
     }
 
     @Override
