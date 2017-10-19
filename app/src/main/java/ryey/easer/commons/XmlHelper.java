@@ -29,7 +29,7 @@ import java.util.List;
 
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
-/*
+/**
  * Helper functions (to save and load data) when dealing with XML storage
  */
 public class XmlHelper {
@@ -137,7 +137,7 @@ public class XmlHelper {
         protected static final String ON = "on";
         protected static final String STATE = "state";
 
-        public static void dealString(XmlSerializer serializer, String spec, String text) throws IOException {
+        public static void writeString(XmlSerializer serializer, String spec, String text) throws IOException {
             if (text != null) {
                 serializer.startTag(ns, C.ITEM);
 
@@ -151,7 +151,7 @@ public class XmlHelper {
             }
         }
 
-        public static String handleString(XmlPullParser parser, String spec) throws IOException, XmlPullParserException, IllegalXmlException {
+        public static String readString(XmlPullParser parser, String spec) throws IOException, XmlPullParserException, IllegalXmlException {
             int depth = parser.getDepth();
             int event_type = parser.next();
             String text = null;
@@ -173,19 +173,19 @@ public class XmlHelper {
             return text;
         }
 
-        public static void dealBoolean(XmlSerializer serializer, String spec, Boolean state) throws IOException {
+        public static void writeBoolean(XmlSerializer serializer, String spec, Boolean state) throws IOException {
             if (state != null) {
                 String ss;
                 if (state)
                     ss = ON;
                 else
                     ss = OFF;
-                dealString(serializer, spec, ss);
+                writeString(serializer, spec, ss);
             }
         }
 
-        public static Boolean handleBoolean(XmlPullParser parser, String spec) throws IOException, XmlPullParserException, IllegalXmlException {
-            String text = handleString(parser, spec);
+        public static Boolean readBoolean(XmlPullParser parser, String spec) throws IOException, XmlPullParserException, IllegalXmlException {
+            String text = readString(parser, spec);
             switch (text) {
                 case ON:
                     return true;
@@ -196,15 +196,15 @@ public class XmlHelper {
             }
         }
 
-        public static void dealInteger(XmlSerializer serializer, String spec, Integer level) throws IOException {
+        public static void writeInteger(XmlSerializer serializer, String spec, Integer level) throws IOException {
             if (level != null) {
                 String ss = level.toString();
-                dealString(serializer, spec, ss);
+                writeString(serializer, spec, ss);
             }
         }
 
-        public static Integer handleInteger(XmlPullParser parser, String spec) throws IOException, XmlPullParserException, IllegalXmlException {
-            String text = handleString(parser, spec);
+        public static Integer readInteger(XmlPullParser parser, String spec) throws IOException, XmlPullParserException, IllegalXmlException {
+            String text = readString(parser, spec);
             Integer level = null;
             try {
                 level = Integer.valueOf(text);

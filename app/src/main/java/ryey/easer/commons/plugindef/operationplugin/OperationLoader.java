@@ -23,7 +23,7 @@ import android.content.Context;
 
 import com.orhanobut.logger.Logger;
 
-/*
+/**
  * Loader of a operation plugin.
  * Used to perform relevant action given the data (configuration).
  */
@@ -44,5 +44,9 @@ public abstract class OperationLoader {
         return ret;
     }
 
+    /**
+     * Load the operation given its data.
+     * @return whether the load is successful or not.
+     */
     protected abstract boolean _load(OperationData data);
 }

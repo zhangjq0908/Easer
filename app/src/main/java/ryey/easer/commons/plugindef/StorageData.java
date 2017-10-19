@@ -27,26 +27,49 @@ import java.io.IOException;
 
 import ryey.easer.commons.IllegalXmlException;
 
-/*
+/**
  * Common interface used by both EventData and OperationData
  * Defines a series of methods that are needed.
  */
 public interface StorageData {
-    // Return the data that the instance holds.
+    /**
+     * @return The data that the instance holds.
+     */
     Object get();
 
-    // Set the data of the instance.
+    /**
+     * Set the data of the instance.
+     * @param obj Data to-be-set.
+     */
     void set(Object obj);
 
-    // Compare two data instance.
+    /**
+     * Compare two data instance. Two objects hold the same data are considered as equal.
+     * @param o The other object to be compared.
+     * @return Whether the two data instances are the same or not.
+     */
     boolean equals(Object o);
 
-    // Read data (to the instance) from a source (currently only XML)
+    /**
+     * Read data (to the instance) from a source (currently only XML)
+     * @param parser
+     * @param version The version of the to-be-parsed data. (See also {@link ryey.easer.commons.C})
+     * @throws IOException
+     * @throws XmlPullParserException
+     * @throws IllegalXmlException
+     */
     void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalXmlException;
 
-    // Dump the data (of the instance) to a destination (currently only XML)
+    /**
+     * Dump the data (of the instance) to a destination (currently only XML)
+     * @param serializer
+     * @throws IOException
+     */
     void serialize(XmlSerializer serializer) throws IOException;
 
-    // Check the data's validity. If not valid, this data won't be loaded and/or saved.
+    /**
+     * Check the data's validity. If not valid, this data won't be loaded and/or saved.
+     * @return Whether the data is valid or not.
+     */
     boolean isValid();
 }

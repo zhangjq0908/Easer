@@ -23,7 +23,7 @@ import android.content.Context;
 
 import ryey.easer.commons.plugindef.PluginDef;
 
-/*
+/**
  * Definition of every Operation plugin.
  * All Operation plugins should implement this interface and add one line to register in `PluginRegistry`.
  * The implementation / subclass doesn't need to hold any data (because data will be passed as arguments to the relevant methods).

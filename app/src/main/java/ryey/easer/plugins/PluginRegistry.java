@@ -78,7 +78,7 @@ final public class PluginRegistry {
         //TODO: add more plugins
     }
 
-    private static PluginRegistry instance = new PluginRegistry();
+    private static final PluginRegistry instance = new PluginRegistry();
 
     public static PluginRegistry getInstance() {
         return instance;
@@ -94,7 +94,7 @@ final public class PluginRegistry {
         return operationPluginRegistry;
     }
 
-    public static class Registry<T extends PluginDef, T_data extends StorageData> {
+    public static final class Registry<T extends PluginDef, T_data extends StorageData> {
         List<Class<? extends T>> pluginClassList = new ArrayList<>();
         List<T> pluginList = new ArrayList<>();
 

@@ -41,11 +41,11 @@ public abstract class IntegerOperationData extends IntegerData implements Operat
 
     @Override
     public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalXmlException {
-        set(XmlHelper.OperationHelper.handleInteger(parser, PluginRegistry.getInstance().operation().findPlugin(this).name()));
+        set(XmlHelper.OperationHelper.readInteger(parser, PluginRegistry.getInstance().operation().findPlugin(this).name()));
     }
 
     @Override
     public void serialize(XmlSerializer serializer) throws IOException {
-        XmlHelper.OperationHelper.dealInteger(serializer, PluginRegistry.getInstance().operation().findPlugin(this).name(), (Integer) get());
+        XmlHelper.OperationHelper.writeInteger(serializer, PluginRegistry.getInstance().operation().findPlugin(this).name(), (Integer) get());
     }
 }
