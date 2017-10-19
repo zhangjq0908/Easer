@@ -1,6 +1,19 @@
 CHANGELOG
 ======
 
+* v0.4: Change `ContentLayout` to `PluginViewFragment` && add permission notification on Outline && other change
+	* Change `ContentLayout` (subclass of `LinearLayout`) to `PluginViewFragment` (subclass of `Fragment`) for better expressivity
+		* Change classes related to it
+		* Handle `EventType` in `core.ui`
+		* Migrate all existing plugins to `PluginViewFragment`
+		* Handle the unregistration of receiver (of `BluetoothOperationPlugin`'s view) in Fragment's lifecycle
+	* Add a section to show permission issues of Easer to the Outline page
+		* Display only if there isn't enough permission	
+	* plugin's view's changes
+		* Add picker to WifiContentLayout
+		* Do not perform spellcheck for Wifi and Bluetooth
+		* Capitalize Bluetooth
+
 * v0.3.9: Change cell location data && use multi for data && other change
 	* Add `XmlHelper.EventHelper.readMultipleSituation()` and `XmlHelper.EventHelper.writeMultipleSituation()` to handle events whose data could be multiple section (instead of handling it on each plugin)
 	* Add versioning to storage data (for compatibility between versions)
