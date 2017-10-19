@@ -89,14 +89,10 @@ class ProfileParser {
         }
         switch (spec) {
             default:
-                for (OperationPlugin plugin : PluginRegistry.getInstance().operation().getPlugins()) {
-                    if (spec.equals(plugin.name())) {
-                        OperationData data = plugin.data();
-                        data.parse(parser, version);
-                        profile.set(plugin.name(), data);
-                        break;
-                    }
-                }
+                OperationPlugin plugin = PluginRegistry.getInstance().operation().findPlugin(spec);
+                OperationData data = plugin.data();
+                data.parse(parser, version);
+                profile.set(plugin.name(), data);
         }
     }
 

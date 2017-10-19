@@ -38,21 +38,16 @@ public class EventPluginViewPager extends ViewPager {
 
     void setEventData(EventData eventData) {
         initial_event_data = eventData;
-        List<EventPlugin> plugins = PluginRegistry.getInstance().event().getPlugins();
-        for (int i = 0; i < plugins.size(); i++) {
-            if (eventData.pluginClass() == plugins.get(i).getClass()) {
-                initial_position = i;
-                if (getCurrentItem() == i) {
-                    synchronized (this) {
-                        PluginViewFragment fragment = mPagerAdapter.getRegisteredFragment(i);
-                        if (fragment != null)
-                            fragment.fill(initial_event_data);
-                    }
-                } else {
-                    setCurrentItem(i);
-                }
-                break;
+        int i = PluginRegistry.getInstance().event().getPluginIndex(eventData);
+        initial_position = i;
+        if (getCurrentItem() == i) {
+            synchronized (this) {
+                PluginViewFragment fragment = mPagerAdapter.getRegisteredFragment(i);
+                if (fragment != null)
+                    fragment.fill(initial_event_data);
             }
+        } else {
+            setCurrentItem(i);
         }
     }
 

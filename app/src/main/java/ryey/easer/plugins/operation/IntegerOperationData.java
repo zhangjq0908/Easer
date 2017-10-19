@@ -31,8 +31,6 @@ import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.reusable.IntegerData;
 
-import static ryey.easer.plugins.PluginRegistry.getInstance;
-
 public abstract class IntegerOperationData extends IntegerData implements OperationData {
 
     public IntegerOperationData() {super();}
@@ -43,11 +41,11 @@ public abstract class IntegerOperationData extends IntegerData implements Operat
 
     @Override
     public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalXmlException {
-        set(XmlHelper.OperationHelper.handleInteger(parser, getInstance().operation().findPlugin(this).name()));
+        set(XmlHelper.OperationHelper.handleInteger(parser, PluginRegistry.getInstance().operation().findPlugin(this).name()));
     }
 
     @Override
     public void serialize(XmlSerializer serializer) throws IOException {
-        XmlHelper.OperationHelper.dealInteger(serializer, getInstance().operation().findPlugin(this).name(), (Integer) get());
+        XmlHelper.OperationHelper.dealInteger(serializer, PluginRegistry.getInstance().operation().findPlugin(this).name(), (Integer) get());
     }
 }

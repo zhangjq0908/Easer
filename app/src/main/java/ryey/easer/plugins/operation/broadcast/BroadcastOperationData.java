@@ -35,8 +35,6 @@ import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.plugins.PluginRegistry;
 
-import static ryey.easer.plugins.PluginRegistry.getInstance;
-
 public class BroadcastOperationData implements OperationData {
     protected static final String ns = null;
 
@@ -72,7 +70,7 @@ public class BroadcastOperationData implements OperationData {
 
     @Override
     public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalXmlException {
-        String pname = getInstance().operation().findPlugin(this).name();
+        String pname = PluginRegistry.getInstance().operation().findPlugin(this).name();
         int depth = parser.getDepth();
         int event_type = parser.next();
         IntentData intentData = new IntentData();
@@ -120,7 +118,7 @@ public class BroadcastOperationData implements OperationData {
      */
     @Override
     public void serialize(XmlSerializer serializer) throws IOException {
-        String pname = getInstance().operation().findPlugin(this).name();
+        String pname = PluginRegistry.getInstance().operation().findPlugin(this).name();
 
         serializer.startTag(ns, C.ITEM);
 

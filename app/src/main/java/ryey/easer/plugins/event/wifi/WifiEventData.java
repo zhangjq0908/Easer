@@ -34,7 +34,6 @@ import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
-import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.TypedEventData;
 
@@ -96,11 +95,6 @@ public class WifiEventData extends TypedEventData {
         if (ssids.size() == 0)
             return false;
         return true;
-    }
-
-    @Override
-    public Class<? extends EventPlugin> pluginClass() {
-        return WifiEventPlugin.class;
     }
 
     @Override

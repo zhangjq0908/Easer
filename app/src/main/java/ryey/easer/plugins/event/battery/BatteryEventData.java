@@ -9,7 +9,6 @@ import java.util.EnumSet;
 
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
-import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.TypedEventData;
 
@@ -34,11 +33,6 @@ public class BatteryEventData extends TypedEventData {
     public BatteryEventData(Integer battery_status, EventType type) {
         this.battery_status = battery_status;
         setType(type);
-    }
-
-    @Override
-    public Class<? extends EventPlugin> pluginClass() {
-        return BatteryEventPlugin.class;
     }
 
     @Override

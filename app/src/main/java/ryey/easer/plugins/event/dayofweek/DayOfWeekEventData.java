@@ -35,7 +35,6 @@ import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
-import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.TypedEventData;
 
@@ -93,11 +92,6 @@ public class DayOfWeekEventData extends TypedEventData {
         if (days.isEmpty())
             return false;
         return true;
-    }
-
-    @Override
-    public Class<? extends EventPlugin> pluginClass() {
-        return DayOfWeekEventPlugin.class;
     }
 
     @Override

@@ -19,6 +19,8 @@
 
 package ryey.easer.plugins;
 
+import com.orhanobut.logger.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -136,6 +138,19 @@ final public class PluginRegistry {
                 }
             }
             throw new IllegalAccessError();
+        }
+
+        public int getPluginIndex(T plugin) {
+            for (int i = 0; i < getPlugins().size(); i++) {
+                if (plugin.getClass() == getPlugins().get(i).getClass())
+                    return i;
+            }
+            Logger.wtf("Plugin not found in Registry???");
+            return -1;
+        }
+
+        public int getPluginIndex(T_data data) {
+            return getPluginIndex(findPlugin(data));
         }
     }
 }

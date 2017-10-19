@@ -33,7 +33,6 @@ import java.util.EnumSet;
 
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
-import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.TypedEventData;
 
@@ -89,11 +88,6 @@ public class DateEventData extends TypedEventData {
         if (date == null)
             return false;
         return true;
-    }
-
-    @Override
-    public Class<? extends EventPlugin> pluginClass() {
-        return DateEventPlugin.class;
     }
 
     @Override
