@@ -9,6 +9,7 @@
     <string name="event_bluetooth_device">連接的藍牙設備</string>
     <string name="ebtdevice_select_dialog_title">選擇藍牙設備</string>
     <string name="ebtdevice_unknown_device">未知設備</string>
+    <string name="event_connectivity">網絡連接類型</string>
     
     <string name="operation_bluetooth">藍牙</string>
     <string name="operation_brightness">亮度</string>
@@ -45,5 +46,14 @@
     <array name="battery_status">
         <item>充電中</item>
         <item>放電中</item>
+    </array>
+
+    <array name="connectivity_type">
+        <item>未連接</item>
+        <item>WiFi</item>
+        <item>移動網絡</item>
+        <item>以太網</item>
+        <item>藍牙</item>
+        <item>VPN</item>
     </array>
 </resources>
