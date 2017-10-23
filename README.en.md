@@ -10,13 +10,13 @@ Introduction
 -----
 Make your smart phone smarter: tell it what to do under different situations.
 
-Easer is an event-driven Android automation tool. It knows verious (see below) events and you (the user) could tell it what to do on what event (and even combine multiple events). Routine actions no longer need to be manually taken.
+Easer is an event-driven Android automation tool. It knows various (see below) events and you (the user) could tell it what to do on what event (and even combine multiple events). Routine actions no longer need to be manually taken.
 
 You can think Easer as a local version of IFTTT: Trigger actions or change settings (*Operation*s, bundled as *Profile*) in different situations (*Event*).
 
 You can chain *Event*s (set dependencies) as trees. Easer will perform Post-Order Traversal to load you Profile(s).
 
-Interested in joining development / add more *Event*s or *Operation*s / optimising UI? Have a look at [HOWTO](HOWTO.en.md) and [TODO](TODO.en.md).
+Are you a developer? Extending the functionality of Easer (by adding more *Event*s or *Operation*s) is really simple, and the document [HOWTO](HOWTO.en.md) describes the steps. Also, you could have a look at [TODO](TODO.en.md) to see what could be done.
 
 Also have a look at [wiki](https://github.com/renyuneyun/Easer/wiki), especially [FAQ](https://github.com/renyuneyun/Easer/wiki/FAQ).
 
@@ -61,11 +61,7 @@ It is also very welcome to create pull requests for issues not raised by others,
 
 ### Donation
 
-Software development is a continuing process. It is kindly hoped to receive continuing monthly development / maintainance allowance.
-
-If you like Easer and would like to see it developing well, please consider [supporting](https://salt.bountysource.com/teams/easer). Any amout is welcome, and I kindly appreciate your support.
-
-If you believe Easer lacks some functionality you needs and would like to pay for its development, you could consider creating a (Bounty) Issue.
+If you would like to make any amount of donation, please see [DONATE.en.md](DONATE.en.md).
 
 Copyright
 ------

@@ -16,7 +16,7 @@ Easer類似於一個本地版的IFTTT：在不同的狀況（Event）下載入�
 
 Event可設置依賴（前置條件），使得他們以樹狀鏈接。Easer會以後續遍歷選擇所有符合條件的Event對應Profile載入。
 
-如有興趣參與開發/增加Event/增加Operation/優化UI，請看[HOWTO](HOWTO)和[TODO](TODO)。
+（對Android開發者）擴展Easer的功能非常簡單，只需要按照[HOWTO](HOWTO.md)所述添加Event貨Operation即可。另外，也可以參看[TODO](TODO.md)來得到一些啓發。
 
 另請參見[wiki](https://github.com/renyuneyun/Easer/wiki)，尤其是[須知](https://github.com/renyuneyun/Easer/wiki/%E9%A0%88%E7%9F%A5)。
 
@@ -60,11 +60,7 @@ Event可設置依賴（前置條件），使得他們以樹狀鏈接。Easer會�
 同樣歡迎對非現有issue創建pull request，但建議首先創建一個issue來描述你將要進行的工作（使得其他人意識到此事）。
 
 ### 捐助
-軟件開發與維護是一個持續性的過程，我們衷心希望可以每月有持續性的維護額度。
-
-如果你喜歡Easer，有心看到其良好發展，望考慮一下[捐助](https://salt.bountysource.com/teams/easer)。無論額度是多少，我們都衷心表示感謝。
-
-如果你覺得Easer還欠缺某個功能，並且願意支持其優先開發，請考慮增加一個（Bouty） Issue。
+如果您願意給Easer的開發提供任何額度的捐助，請參看[DONATE.md](DONATE.md)。
 
 版權協議
 -----
