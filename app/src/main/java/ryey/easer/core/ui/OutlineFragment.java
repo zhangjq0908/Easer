@@ -20,7 +20,6 @@
 package ryey.easer.core.ui;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -28,6 +27,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -36,10 +36,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 import ryey.easer.R;
 import ryey.easer.core.EHService;
@@ -50,17 +46,12 @@ public class OutlineFragment extends Fragment {
     TextView mIndicator;
     ImageView mBanner;
 
-    TextView mLastProfile, mFromEvent, mTimeLoaded;
-
     BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             switch (intent.getAction()) {
                 case EHService.ACTION_STATE_CHANGED:
                     refresh();
-                    break;
-                case EHService.ACTION_PROFILE_UPDATED:
-                    updateProfileDisplay();
                     break;
             }
         }
@@ -79,9 +70,12 @@ public class OutlineFragment extends Fragment {
         mIndicator = (TextView) mView.findViewById(R.id.running_ind);
         mBanner = (ImageView) mView.findViewById(R.id.running_ind_banner);
 
-        mLastProfile = (TextView) mView.findViewById(R.id.textView_last_profile);
-        mFromEvent = (TextView) mView.findViewById(R.id.textView_from_event);
-        mTimeLoaded = (TextView) mView.findViewById(R.id.textView_profile_load_time);
+        Fragment fragment_permission = new PermissionOutlineFragment();
+        Fragment fragment_history = new LoadedHistoryFragment();
+        getChildFragmentManager().beginTransaction()
+                .replace(R.id.content_fragment_permission_outline, fragment_permission)
+                .replace(R.id.content_fragment_loaded_history, fragment_history)
+                .commit();
 
         FloatingActionButton fab = (FloatingActionButton) mView.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +86,6 @@ public class OutlineFragment extends Fragment {
         });
 
         IntentFilter filter = new IntentFilter(EHService.ACTION_STATE_CHANGED);
-        filter.addAction(EHService.ACTION_PROFILE_UPDATED);
         getActivity().registerReceiver(mReceiver, filter);
 
         return mView;
@@ -158,22 +151,6 @@ public class OutlineFragment extends Fragment {
         }
         mIndicator.setTextColor(color);
         mBanner.setBackgroundColor(color);
-        updateProfileDisplay();
     }
 
-    private void updateProfileDisplay() {
-        final String profileName = EHService.getLastProfile();
-        final String eventName = EHService.getFromEvent();
-        long loadTime = EHService.getLoadTime();
-        mLastProfile.setText(profileName);
-        mFromEvent.setText(eventName);
-        if (loadTime > 0) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(loadTime);
-            DateFormat df = SimpleDateFormat.getDateTimeInstance();
-            mTimeLoaded.setText(df.format(calendar.getTime()));
-        } else {
-            mTimeLoaded.setText("");
-        }
-    }
 }

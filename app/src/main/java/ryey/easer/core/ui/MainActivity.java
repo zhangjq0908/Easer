@@ -20,13 +20,13 @@
 package ryey.easer.core.ui;
 
 import android.app.AlertDialog;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -72,10 +72,10 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
   
-        if(savedInstanceState == null){
-          navigationView.setCheckedItem(R.id.nav_outline);
-          Fragment fragment = new OutlineFragment();
-          getFragmentManager().beginTransaction().replace(R.id.content_main, fragment, FRAGMENT_OUTLINE).commit();
+        if (savedInstanceState == null){
+            navigationView.setCheckedItem(R.id.nav_outline);
+            Fragment fragment = new OutlineFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_main, fragment, FRAGMENT_OUTLINE).commit();
         }
 
         // Show Welcome page at first launch
@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity
         Logger.v("item: " + item.getTitle());
 
         int id = item.getItemId();
-        FragmentManager manager = getFragmentManager();
+        FragmentManager manager = getSupportFragmentManager();
         Fragment fragment;
 
         if (id == R.id.nav_outline) {

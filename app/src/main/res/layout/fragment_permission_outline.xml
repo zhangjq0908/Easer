@@ -20,4 +20,5 @@
         android:layout_below="@id/textView_lack_permission"
         android:layout_centerHorizontal="true"
         android:text="@string/button_request_permission" />
+
 </RelativeLayout>
