@@ -1,6 +1,13 @@
 CHANGELOG
 ======
 
+* v0.4.1: Add `ConnectivityEventPlugin` && Refactor `OutlineFragment`
+	* Add `ConnectivityEventPlugin` for different connectivity status
+	* Refactor `OutlineFragment`
+		* Split the history part to `LoadedHistoryFragment`
+		* Use `ConstraintLayout`
+		* Dynamically load fragments instead of specifying in layout xml file
+
 * v0.4.0.1: Use generic on `PluginRegistry` && Remove unneeded codes && class name changes
 	* `PluginRegistry` change
 		* Make the component in `PluginRegistry` generic to ease maintainance
