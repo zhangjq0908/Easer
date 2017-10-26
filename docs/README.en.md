@@ -16,7 +16,7 @@ You can think Easer as a local version of IFTTT: Trigger actions or change setti
 
 You can chain *Event*s (set dependencies) as trees. Easer will perform Post-Order Traversal to load you Profile(s).
 
-Are you a developer? Extending the functionality of Easer (by adding more *Event*s or *Operation*s) is really simple, and the document [HOWTO](docs/HOWTO.en.md) describes the steps. Also, you could have a look at [TODO](docs/TODO.en.md) to see what could be done.
+Are you a developer? Extending the functionality of Easer (by adding more *Event*s or *Operation*s) is really simple, and the document [HOWTO](HOWTO.en.md) describes the steps. Also, you could have a look at [TODO](TODO.en.md) to see what could be done.
 
 Also have a look at [wiki](https://github.com/renyuneyun/Easer/wiki), especially [FAQ](https://github.com/renyuneyun/Easer/wiki/FAQ).
 
@@ -61,7 +61,7 @@ It is also very welcome to create pull requests for issues not raised by others,
 
 ### Donation
 
-If you would like to make any amount of donation, please see [DONATE.en.md](docs/DONATE.en.md).
+If you would like to make any amount of donation, please see [DONATE.en.md](DONATE.en.md).
 
 Copyright
 ------
