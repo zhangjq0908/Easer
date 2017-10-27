@@ -3,6 +3,7 @@ Easer
 [<img src="https://f-droid.org/badge/get-it-on.png"
       alt="Get it on F-Droid"
       height="80">](https://f-droid.org/app/ryey.easer)
+[![Build Status](https://travis-ci.org/renyuneyun/Easer.svg?branch=master)](https://travis-ci.org/renyuneyun/Easer)
 
 See [README.en.md](README.en.md) for the English version of README.
 
