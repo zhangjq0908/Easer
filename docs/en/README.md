@@ -1,5 +1,3 @@
-Easer
-=======
 [<img src="https://f-droid.org/badge/get-it-on.png"
       alt="Get it on F-Droid"
       height="80">](https://f-droid.org/app/ryey.easer)
@@ -15,8 +13,6 @@ Easer is an event-driven Android automation tool. It knows various (see below) e
 You can think Easer as a local version of IFTTT: Trigger actions or change settings (*Operation*s, bundled as *Profile*) in different situations (*Event*).
 
 You can chain *Event*s (set dependencies) as trees. Easer will perform Post-Order Traversal to load you Profile(s).
-
-Are you a developer? Extending the functionality of Easer (by adding more *Event*s or *Operation*s) is really simple, and the document [HOWTO](HOWTO.md) describes the steps. Also, you could have a look at [TODO](TODO.md) to see what could be done.
 
 Also have a look at [wiki](https://github.com/renyuneyun/Easer/wiki), especially [FAQ](https://github.com/renyuneyun/Easer/wiki/FAQ).
 
@@ -49,6 +45,12 @@ Functions already supported
 * Ringer mode
 * Run commands
 
+Extending Easer
+------
+Extending the functionality of Easer (by adding more *Event*s or *Operation*s) is really simple (and is becoming simpler).
+
+Details are described in [this document](EXTEND.md).
+
 Support Easer
 ------
 ### Raising issues, Comment on issues and Solving issues
@@ -80,5 +82,5 @@ In fact, ensuring derivated work / plugins to be **GPL** is unneeded, because we
 
 Third-party library
 -----
-[Logger](https://github.com/orhanobut/logger): Apache License v2
-[android-flowlayout](https://github.com/ApmeM/android-flowlayout): Apache License v2
+* [Logger](https://github.com/orhanobut/logger): Apache License v2
+* [android-flowlayout](https://github.com/ApmeM/android-flowlayout): Apache License v2

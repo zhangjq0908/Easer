@@ -1,6 +1,19 @@
 CHANGELOG
 ======
 
+* v0.4.3: Introduce new interface for data serializing and parsing && Faster loading speed for data && Add JSON backend for data storage && Refactoring
+	* Introduce new serializing and parsing interface for `StorageData` (which affects all plugins)
+		* The new interface now handles versioning and different backend types (which can be safely ignored if intended)
+		* Serializing always yields the newest version of data format
+		* The old interface is deprecated and will be completely removed in the future
+	* Add JSON as a backend (co-exists with XML)
+		* JSON is now prefered and used by default
+		* Compatibility to old data (XML format) is kept
+			* When saving (editing) from a old data, it will be stored to JSON format
+		* The old XML backend exists and there isn't a current plan to remove it
+	* Handling (saving, editing, listing) of events and profiles should be faster now
+	* Large refactoring (e.g. generify lots of classes) related to the data storage backend
+
 * v0.4.2.1: UI improvements
 	* Better UI of the page for editing events
 		* Text size/spacing (especially for Chinese)

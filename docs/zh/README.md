@@ -1,10 +1,6 @@
-Easer
-=======
-[<img src="https://f-droid.org/badge/get-it-on.png"
-      alt="Get it on F-Droid"
+[<img src="https://f-droid.org/badge/get-it-on-zh-cn.png"
+      alt="在F-Droid下載"
       height="80">](https://f-droid.org/app/ryey.easer)
-
-See [README](en/README.md) for the English version.
 
 簡介
 -----
@@ -15,8 +11,6 @@ Easer是一個事件驅動的Android自動化工具。用戶告訴它在什麼�
 Easer類似於一個本地版的IFTTT：在不同的狀況（Event）下載入指定的情境（Profile）。每個情境（Profile）由多個動作（Operation）組成，包括但不限於調整手機設置（見下）。
 
 Event可設置依賴（前置條件），使得他們以樹狀鏈接。Easer會以後續遍歷選擇所有符合條件的Event對應Profile載入。
-
-（對Android開發者）擴展Easer的功能非常簡單，只需要按照[HOWTO](HOWTO.md)所述添加Event貨Operation即可。另外，也可以參看[TODO](TODO.md)來得到一些啓發。
 
 另請參見[wiki](https://github.com/renyuneyun/Easer/wiki)，尤其是[須知](https://github.com/renyuneyun/Easer/wiki/%E9%A0%88%E7%9F%A5)。
 
@@ -48,6 +42,12 @@ Event可設置依賴（前置條件），使得他們以樹狀鏈接。Easer會�
 * 控制亮度
 * 控制聲音模式
 * 執行命令
+
+擴展Easer
+-----
+擴展Easer的功能非常簡單（並且在持續變得更簡單），只需要添加自己的Event或Operation即可。
+
+詳細請參見[這個頁面](EXTEND.md)。
 
 支持Easer
 -----

@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.1'
+    buildToolsVersion '25.0.2'
     defaultConfig {
         applicationId 'ryey.easer'
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 40
-        versionName "0.4.2.1"
+        versionCode 41
+        versionName "0.4.3"
 
         vectorDrawables.useSupportLibrary = true
 
@@ -31,13 +31,13 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     // Set this dependency to use JUnit 4 rules
     compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.orhanobut:logger:2.1.1'
+    compile 'org.apmem.tools:layouts:1.10@aar'
     testCompile 'junit:junit:4.12'
     androidTestCompile 'com.android.support.test:runner:0.5'
     androidTestCompile 'com.android.support.test:rules:0.5'
     androidTestCompile 'com.android.support:support-annotations:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'org.apmem.tools:layouts:1.10@aar'
 }

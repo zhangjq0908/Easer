@@ -1,9 +1,8 @@
-Easer
+Easer [![Build Status](https://travis-ci.org/renyuneyun/Easer.svg?branch=master)](https://travis-ci.org/renyuneyun/Easer)
 =======
-[<img src="https://f-droid.org/badge/get-it-on.png"
+[<img src="https://f-droid.org/badge/get-it-on-zh-cn.png"
       alt="Get it on F-Droid"
-      height="80">](https://f-droid.org/app/ryey.easer)
-[![Build Status](https://travis-ci.org/renyuneyun/Easer.svg?branch=master)](https://travis-ci.org/renyuneyun/Easer)
+      height="60">](https://f-droid.org/app/ryey.easer)
 
 See [README.en.md](README.en.md) for the English version of README.
 
@@ -16,8 +15,6 @@ Easer是一個事件驅動的Android自動化工具。用戶告訴它在什麼�
 Easer類似於一個本地版的IFTTT：在不同的狀況（Event）下載入指定的情境（Profile）。每個情境（Profile）由多個動作（Operation）組成，包括但不限於調整手機設置（見下）。
 
 Event可設置依賴（前置條件），使得他們以樹狀鏈接。Easer會以後續遍歷選擇所有符合條件的Event對應Profile載入。
-
-（對Android開發者）擴展Easer的功能非常簡單，只需要按照[HOWTO](docs/HOWTO.md)所述添加Event貨Operation即可。另外，也可以參看[TODO](docs/TODO.md)來得到一些啓發。
 
 另請參見[wiki](https://github.com/renyuneyun/Easer/wiki)，尤其是[須知](https://github.com/renyuneyun/Easer/wiki/%E9%A0%88%E7%9F%A5)。
 
@@ -50,6 +47,13 @@ Event可設置依賴（前置條件），使得他們以樹狀鏈接。Easer會�
 * 控制聲音模式
 * 執行命令
 
+擴展Easer
+-----
+擴展Easer的功能非常簡單（並且在持續變得更簡單），只需要添加自己的Event或Operation即可。
+
+詳細請參見[這個頁面](https://renyuneyun.github.io/Easer/zh/EXTEND)。
+
+
 支持Easer
 -----
 ### 提出、評論以及解決issue
@@ -62,7 +66,7 @@ Event可設置依賴（前置條件），使得他們以樹狀鏈接。Easer會�
 同樣歡迎對非現有issue創建pull request，但建議首先創建一個issue來描述你將要進行的工作（使得其他人意識到此事）。
 
 ### 捐助
-如果您願意給Easer的開發提供任何額度的捐助，請參看[DONATE.md](docs/DONATE.md)。
+如果您願意給Easer的開發提供任何額度的捐助，請參看[DONATE.md](https://renyuneyun.github.io/Easer/zh/DONATE)。
 
 版權協議
 -----
@@ -79,5 +83,5 @@ Easer的期望功能中包含大量對隱私信息（比如位置信息、日曆
 
 第三方庫
 -----
-[Logger](https://github.com/orhanobut/logger): Apache License v2
-[android-flowlayout](https://github.com/ApmeM/android-flowlayout): Apache License v2
+* [Logger](https://github.com/orhanobut/logger): Apache License v2
+* [android-flowlayout](https://github.com/ApmeM/android-flowlayout): Apache License v2
