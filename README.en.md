@@ -82,3 +82,4 @@ In fact, ensuring derivated work / plugins to be **GPL** is unneeded, because we
 Third-party library
 -----
 [Logger](https://github.com/orhanobut/logger): Apache License v2
+[android-flowlayout](https://github.com/ApmeM/android-flowlayout): Apache License v2
