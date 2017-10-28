@@ -1,6 +1,14 @@
 CHANGELOG
 ======
 
+* v0.4.2: Add `CalendarEventPlugin` && UI optimization && small changes
+	* Add a new event (`CalendarEventPlugin`) to listen to calendar events
+	* Add FloatingActionButton (as "add") to the pages listing events or profiles
+	* Use [android-flowlayout](https://github.com/ApmeM/android-flowlayout) for day-of-week
+	* Minor changes
+		* Make `AbstractSlot.changeSatisfiedState` `synchronized` in case of concurrent calls
+		* Fix a debug message
+
 * v0.4.1: Add `ConnectivityEventPlugin` && Refactor `OutlineFragment`
 	* Add `ConnectivityEventPlugin` for different connectivity status
 	* Refactor `OutlineFragment`
