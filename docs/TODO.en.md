@@ -4,7 +4,6 @@ TODO
 	* Add more Event (suggestions below)
 		* GPS position
 		* Receiving specific Broadcast
-		* Calendar events
 		* Receiving certain Notifications
 	* Add more Operation (suggestions below)
 		* Location setting

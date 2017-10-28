@@ -37,6 +37,7 @@ Functions already supported
 * Day of week
 * Bluetooth device connected
 * Connectivity status
+* Calendar Event
 
 ### Operation
 * WiFi switch

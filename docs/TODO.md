@@ -4,7 +4,6 @@ TODO
 	* 增加更多Event（以下建議）
 		* GPS位置
 		* 接收特定Broadcast
-		* 日曆事件
 		* 收到特定Notification
 	* 增加更多Operation（以下建議）
 		* 定位

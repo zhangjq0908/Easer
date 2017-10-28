@@ -92,7 +92,7 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
         \nHope you like this app :)
         \n\nPlease read these before starting:\n
     1. Please grant Easer corresponding permissions before using relevant events and profiles.\n
-    2. Each event is actually single selection. Selecting multiple items in the same event will take no effect.
+    2. Connecting events as <a href="https://en.wikipedia.org/wiki/Tree_structure">trees</a> is CURRENTLY the only way to compose events.
         \n\nAlso have a look at <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> in the project wiki.</string>
 
     <string name="template_export">Exported to %s</string>
