@@ -122,7 +122,7 @@ public abstract class AbstractSlot {
      *
      * This method sets the {@link #satisfied} variable.
      */
-    protected final void changeSatisfiedState(boolean newSatisfiedState) {
+    protected final synchronized void changeSatisfiedState(boolean newSatisfiedState) {
         if (satisfied == newSatisfiedState) {
             Logger.v("satisfied state is already %s", newSatisfiedState);
             return;

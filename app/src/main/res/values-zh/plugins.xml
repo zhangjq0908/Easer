@@ -4,14 +4,40 @@
     <string name="event_date">日期</string>
     <string name="event_time">時間</string>
     <string name="event_wificonn">WiFi連接</string>
+
     <string name="event_battery">電池狀態</string>
+    <array name="battery_status">
+        <item>充電中</item>
+        <item>放電中</item>
+    </array>
+
     <string name="event_day_of_week">星期幾</string>
+
     <string name="event_bluetooth_device">連接的藍牙設備</string>
     <string name="ebtdevice_select_dialog_title">選擇藍牙設備</string>
     <string name="ebtdevice_unknown_device">未知設備</string>
+
     <string name="event_connectivity">網絡連接類型</string>
+    <array name="connectivity_type">
+        <item>未連接</item>
+        <item>WiFi</item>
+        <item>移動網絡</item>
+        <item>以太網</item>
+        <item>藍牙</item>
+        <item>VPN</item>
+    </array>
+
+    <string name="event_calendar">日曆事件</string>
+    <string name="ecalendar_select_dialog_title">選擇日曆</string>
+    <string name="text_calendar_name">日曆名</string>
+    <string name="text_calendar">日曆</string>
+    <string name="indicator_when">當...</string>
+    <string name="choice_start_of">開始時</string>
+    <string name="choice_end_of">結束時</string>
+    <string name="choice_any_event">任意事件</string>
     
     <string name="operation_bluetooth">藍牙</string>
+
     <string name="operation_brightness">亮度</string>
     <string name="operation_brightness_desc_autobrightness">自動亮度</string>
 
@@ -24,7 +50,14 @@
     <string name="operation_cellular">移動數據</string>
     <string name="operation_rotation">自動旋轉</string>
     <string name="operation_wifi">WiFi</string>
+
     <string name="operation_ringer_mode">響鈴模式</string>
+    <array name="ringer_mode">
+        <item>靜音</item>
+        <item>震動</item>
+        <item>普通</item>
+    </array>
+
     <string name="operation_command">執行命令</string>
     <string name="operation_hotspot">移動熱點</string>
 
@@ -37,23 +70,4 @@
         <item>均非</item>
     </string-array>
 
-    <array name="ringer_mode">
-        <item>靜音</item>
-        <item>震動</item>
-        <item>普通</item>
-    </array>
-
-    <array name="battery_status">
-        <item>充電中</item>
-        <item>放電中</item>
-    </array>
-
-    <array name="connectivity_type">
-        <item>未連接</item>
-        <item>WiFi</item>
-        <item>移動網絡</item>
-        <item>以太網</item>
-        <item>藍牙</item>
-        <item>VPN</item>
-    </array>
 </resources>

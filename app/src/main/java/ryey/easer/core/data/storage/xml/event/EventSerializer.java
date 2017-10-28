@@ -41,7 +41,7 @@ class EventSerializer {
 
     public void serialize(OutputStream out, EventStructure eventStructure) throws IOException {
         try {
-            Logger.d("serializing", eventStructure.getName());
+            Logger.d("serializing %s", eventStructure.getName());
             serializer.setOutput(out, "utf-8");
             serializer.startDocument("utf-8", false);
             writeEvent(eventStructure);

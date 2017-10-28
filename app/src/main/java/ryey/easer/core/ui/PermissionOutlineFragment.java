@@ -27,6 +27,7 @@ public class PermissionOutlineFragment extends Fragment {
             Manifest.permission.BLUETOOTH,
             Manifest.permission.BLUETOOTH_ADMIN,
             Manifest.permission.MODIFY_AUDIO_SETTINGS,
+            Manifest.permission.READ_CALENDAR,
     };
 
     Button mButton;

@@ -4,12 +4,37 @@
     <string name="event_date">Date</string>
     <string name="event_wificonn">WiFi Connection</string>
     <string name="event_celllocation">Cell Location</string>
+
     <string name="event_battery">Battery Status</string>
+    <array name="battery_status">
+        <item>Charging</item>
+        <item>Discharging</item>
+    </array>
+
     <string name="event_day_of_week">Day of Week</string>
+
     <string name="event_bluetooth_device">Bluetooth Device Connected</string>
     <string name="ebtdevice_select_dialog_title">Select Bluetooth Device</string>
     <string name="ebtdevice_unknown_device">Unknown device</string>
+
     <string name="event_connectivity">Connectivity Type</string>
+    <array name="connectivity_type">
+        <item>Not connected</item>
+        <item>WiFi</item>
+        <item>Mobile</item>
+        <item>Ethernet</item>
+        <item>Bluetooth</item>
+        <item>VPN</item>
+    </array>
+
+    <string name="event_calendar">Calendar Event</string>
+    <string name="ecalendar_select_dialog_title">Select Calendar</string>
+    <string name="text_calendar_name">Calendar name</string>
+    <string name="text_calendar">Calendar</string>
+    <string name="indicator_when">When...</string>
+    <string name="choice_start_of">Start of</string>
+    <string name="choice_end_of">End of</string>
+    <string name="choice_any_event">Any Events</string>
 
     <string name="operation_wifi">WiFi</string>
     <string name="operation_cellular">Mobile data</string>
@@ -24,7 +49,14 @@
 
     <string name="operation_brightness">Brightness</string>
     <string name="operation_brightness_desc_autobrightness">Auto brightness</string>
+
     <string name="operation_ringer_mode">Ringer Mode</string>
+    <array name="ringer_mode">
+        <item>Silent</item>
+        <item>Vibrate</item>
+        <item>Normal</item>
+    </array>
+
     <string name="operation_command">Run commands</string>
     <string name="operation_hotspot">Hotspot</string>
 
@@ -37,23 +69,4 @@
         <item>None</item>
     </string-array>
 
-    <array name="ringer_mode">
-        <item>Silent</item>
-        <item>Vibrate</item>
-        <item>Normal</item>
-    </array>
-
-    <array name="battery_status">
-        <item>Charging</item>
-        <item>Discharging</item>
-    </array>
-
-    <array name="connectivity_type">
-        <item>Not connected</item>
-        <item>WiFi</item>
-        <item>Mobile</item>
-        <item>Ethernet</item>
-        <item>Bluetooth</item>
-        <item>VPN</item>
-    </array>
 </resources>
