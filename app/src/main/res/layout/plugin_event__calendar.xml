@@ -59,12 +59,11 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="350dp"
         android:layout_marginStart="8dp"
         android:text="@string/indicator_when"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        app:layout_constraintTop_toBottomOf="@+id/guideline"
+        android:layout_marginLeft="8dp" />
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -97,7 +96,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout1"
+        android:layout_marginLeft="8dp">
 
         <RadioButton
             android:id="@+id/radioButton"

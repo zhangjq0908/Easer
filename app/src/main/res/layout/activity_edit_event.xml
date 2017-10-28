@@ -1,72 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="ryey.easer.core.ui.edit.EditEventActivity">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <TextView
-            style="@style/LR.Left"
-            android:text="@string/text_title" />
+    <TextView
+        android:id="@+id/textView4"
+        style="@style/LR.Left"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/text_title"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editText_event_title"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <EditText
-            style="@style/LR.Right"
-            android:id="@+id/editText_event_title"
-            android:hint="@string/hint_event_title" />
+    <EditText
+        android:id="@+id/editText_event_title"
+        style="@style/LR.Right"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_event_title"
+        app:layout_constraintBottom_toTopOf="@+id/spinner_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/textView6"
+        style="@style/LR.Left"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="2dp"
+        android:text="@string/text_parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/spinner_parent" />
 
-        <TextView
-            style="@style/LR.Left"
-            android:text="@string/text_parent" />
+    <Spinner
+        android:id="@+id/spinner_parent"
+        style="@style/LR.Right"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/spinner_profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/editText_event_title" />
 
-        <Spinner
-            style="@style/LR.Right"
-            android:id="@+id/spinner_parent" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/textView7"
+        style="@style/LR.Left"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="2dp"
+        android:text="@string/text_profile"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/spinner_profile" />
 
-        <TextView
-            style="@style/LR.Left"
-            android:text="@string/text_profile" />
+    <Spinner
+        android:id="@+id/spinner_profile"
+        style="@style/LR.Right"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/pager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_parent" />
 
-        <Spinner
-            style="@style/LR.Right"
-            android:id="@+id/spinner_profile" />
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="80dp" />
 
-    </LinearLayout>
 
     <ryey.easer.core.ui.edit.EventPluginViewPager
-        style="@style/AppTheme.EventPluginViewPager"
         android:id="@+id/pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        style="@style/AppTheme.EventPluginViewPager"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/spinner_profile"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_profile">
 
         <android.support.v4.view.PagerTitleStrip
             android:id="@+id/pager_title_strip"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="top"
             android:background="@color/colorPrimaryDark"
-            android:textColor="#fff"
+            android:paddingBottom="4dp"
             android:paddingTop="4dp"
-            android:paddingBottom="4dp" />
+            android:textColor="#fff" />
     </ryey.easer.core.ui.edit.EventPluginViewPager>
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

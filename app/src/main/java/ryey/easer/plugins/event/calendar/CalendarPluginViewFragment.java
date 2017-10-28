@@ -23,17 +23,21 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.Loader;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import ryey.easer.R;
@@ -88,21 +92,49 @@ public class CalendarPluginViewFragment extends PluginViewFragment {
                     return;
                 AlertDialog.Builder builderSingle = new AlertDialog.Builder(getContext());
                 builderSingle.setTitle(R.string.ecalendar_select_dialog_title);
-                final ArrayAdapter<CalendarWrapper> arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.select_dialog_singlechoice);
-                for (CalendarWrapper wrapper : CalendarHelper.getCalendars(getContext().getContentResolver())) {
-                    arrayAdapter.add(wrapper);
-                }
-                builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+
+                final CursorLoader cursorLoader = new CursorLoader(getContext(),
+                        CalendarContract.Calendars.CONTENT_URI,
+                        new String[]{
+                                CalendarContract.Calendars._ID,
+                                CalendarContract.Calendars.ACCOUNT_NAME,
+                                CalendarContract.Calendars.CALENDAR_DISPLAY_NAME,
+                        },
+                        null, null, null);
+                final SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(
+                        getContext(), android.R.layout.simple_list_item_2,
+                        cursorLoader.loadInBackground(),
+                        new String[]{
+                                CalendarContract.Calendars.CALENDAR_DISPLAY_NAME,
+                                CalendarContract.Calendars.ACCOUNT_NAME,
+                        },
+                        new int[]{android.R.id.text1, android.R.id.text2}, 0) {
+                    @Override
+                    public void setViewText(TextView v, String text) {
+                        if (v.getId() == android.R.id.text2)
+                            text = "(" + text + ")";
+                        super.setViewText(v, text);
+                    }
+                };
+                cursorLoader.registerListener(0, new Loader.OnLoadCompleteListener<Cursor>() {
+                    @Override
+                    public void onLoadComplete(Loader<Cursor> loader, Cursor data) {
+                        simpleCursorAdapter.swapCursor(data);
+                    }
+                });
+                builderSingle.setAdapter(simpleCursorAdapter, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        long id = arrayAdapter.getItem(which).id;
-                        String name = arrayAdapter.getItem(which).name;
+                        Cursor cursor = (Cursor) simpleCursorAdapter.getItem(which);
+                        long id = cursor.getLong(0);
+                        String name = cursor.getString(2);
                         Intent intent = new Intent(ACTION_RETURN);
                         intent.putExtra(EXTRA_CALENDAR_ID, id);
                         intent.putExtra(EXTRA_CALENDAR_NAME, name);
                         getContext().sendBroadcast(intent);
                     }
                 });
+
                 builderSingle.show();
             }
         });
@@ -138,14 +170,6 @@ public class CalendarPluginViewFragment extends PluginViewFragment {
                     CalendarData.condition_name[i], cb_conditions[i].isChecked());
         }
         return new CalendarEventData(calendarData);
-    }
-
-    static class CalendarWrapper {
-        long id;
-        String name;
-        public String toString() {
-            return name;
-        }
     }
 
 }
