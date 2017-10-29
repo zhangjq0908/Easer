@@ -21,15 +21,20 @@ package ryey.easer.plugins.operation.broadcast;
 
 import android.net.Uri;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalArgumentTypeException;
+import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
@@ -149,6 +154,60 @@ public class BroadcastOperationData implements OperationData {
         }
 
         serializer.endTag(ns, C.ITEM);
+    }
+
+    @Override
+    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+        switch (format) {
+            default:
+                try {
+                    JSONObject jsonObject = new JSONObject(data);
+                    IntentData intentData = new IntentData();
+                    intentData.action = jsonObject.optString(ACTION, null);
+
+                    JSONArray jsonArray = jsonObject.optJSONArray(CATEGORY);
+                    if ((jsonArray != null) && (jsonArray.length() > 0)) {
+                        intentData.category = new ArrayList<>(jsonArray.length());
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            intentData.category.add(jsonArray.getString(i));
+                        }
+                    }
+
+                    intentData.type = jsonObject.optString(TYPE, null);
+                    intentData.data = Uri.parse(jsonObject.optString(DATA, null));
+
+                    this.data = intentData;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    throw new IllegalStorageDataException(e.getMessage());
+                }
+        }
+    }
+
+    @Override
+    public String serialize(C.Format format) {
+        String res = "";
+        switch (format) {
+            default:
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put(ACTION, data.action);
+
+                    JSONArray jsonArray_category = new JSONArray();
+                    for (String category : data.category) {
+                        jsonArray_category.put(category);
+                    }
+                    jsonObject.put(CATEGORY, jsonArray_category);
+
+                    jsonObject.put(TYPE, data.type);
+                    jsonObject.put(DATA, data.data.toString());
+
+                    res = jsonObject.toString();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+        }
+        return res;
     }
 
     @Override

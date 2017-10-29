@@ -22,8 +22,7 @@ import java.util.List;
 import ryey.easer.R;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.storage.EventDataStorage;
-import ryey.easer.core.data.storage.xml.event.XmlEventDataStorage;
-import ryey.easer.core.data.storage.xml.profile.XmlProfileDataStorage;
+import ryey.easer.core.data.storage.ProfileDataStorage;
 
 /*
  * TODO: change the layout
@@ -77,7 +76,7 @@ public class EditEventActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
-            storage = XmlEventDataStorage.getInstance(this);
+            storage = EventDataStorage.getInstance(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -127,7 +126,7 @@ public class EditEventActivity extends AppCompatActivity {
 
         mSpinner_parent = (Spinner) findViewById(R.id.spinner_parent);
         try {
-            mEventList = (XmlEventDataStorage.getInstance(this)).list();
+            mEventList = (EventDataStorage.getInstance(this)).list();
             mEventList.add(0, NON);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_profile, mEventList); //TODO: change layout
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -147,7 +146,7 @@ public class EditEventActivity extends AppCompatActivity {
 
         mSpinner_profile = (Spinner) findViewById(R.id.spinner_profile);
         try {
-            mProfileList = (XmlProfileDataStorage.getInstance(this)).list();
+            mProfileList = (ProfileDataStorage.getInstance(this)).list();
             mProfileList.add(0, NON);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_profile, mProfileList);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);

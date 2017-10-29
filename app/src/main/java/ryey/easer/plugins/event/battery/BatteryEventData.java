@@ -7,6 +7,8 @@ import org.xmlpull.v1.XmlSerializer;
 import java.io.IOException;
 import java.util.EnumSet;
 
+import ryey.easer.commons.C;
+import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
@@ -65,6 +67,26 @@ public class BatteryEventData extends TypedEventData {
             XmlHelper.EventHelper.writeSingleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).name(), status);
             XmlHelper.EventHelper.writeLogic(serializer, type());
         }
+    }
+
+    @Override
+    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+        switch (format) {
+            default:
+                battery_status = Integer.parseInt(data);
+                break;
+        }
+    }
+
+    @Override
+    public String serialize(C.Format format) {
+        String res = "";
+        switch (format) {
+            default:
+                res = String.valueOf(battery_status);
+                break;
+        }
+        return res;
     }
 
     @Override

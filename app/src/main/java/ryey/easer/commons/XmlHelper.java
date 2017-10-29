@@ -133,19 +133,15 @@ public class XmlHelper {
 
     public static class OperationHelper {
 
-        protected static final String OFF = "off";
-        protected static final String ON = "on";
-        protected static final String STATE = "state";
-
         public static void writeString(XmlSerializer serializer, String spec, String text) throws IOException {
             if (text != null) {
                 serializer.startTag(ns, C.ITEM);
 
                 serializer.attribute(ns, C.SPEC, spec);
 
-                serializer.startTag(ns, STATE);
+                serializer.startTag(ns, C.STATE);
                 serializer.text(text);
-                serializer.endTag(ns, STATE);
+                serializer.endTag(ns, C.STATE);
 
                 serializer.endTag(ns, C.ITEM);
             }
@@ -158,7 +154,7 @@ public class XmlHelper {
             while (parser.getDepth() > depth) {
                 if (event_type == XmlPullParser.START_TAG) {
                     switch (parser.getName()) {
-                        case STATE:
+                        case C.STATE:
                             text = getText(parser, spec);
                             break;
                         default:
@@ -177,9 +173,9 @@ public class XmlHelper {
             if (state != null) {
                 String ss;
                 if (state)
-                    ss = ON;
+                    ss = C.ON;
                 else
-                    ss = OFF;
+                    ss = C.OFF;
                 writeString(serializer, spec, ss);
             }
         }
@@ -187,9 +183,9 @@ public class XmlHelper {
         public static Boolean readBoolean(XmlPullParser parser, String spec) throws IOException, XmlPullParserException, IllegalXmlException {
             String text = readString(parser, spec);
             switch (text) {
-                case ON:
+                case C.ON:
                     return true;
-                case OFF:
+                case C.OFF:
                     return false;
                 default:
                     throw new IllegalXmlException(String.format("Illegal Xml field: (%s) Unknown or Illegal State", spec));

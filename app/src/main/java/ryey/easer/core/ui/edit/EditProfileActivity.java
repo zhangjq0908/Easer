@@ -21,7 +21,6 @@ import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.storage.ProfileDataStorage;
-import ryey.easer.core.data.storage.xml.profile.XmlProfileDataStorage;
 import ryey.easer.plugins.PluginRegistry;
 
 public class EditProfileActivity extends AppCompatActivity {
@@ -59,7 +58,7 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
-            storage = XmlProfileDataStorage.getInstance(this);
+            storage = ProfileDataStorage.getInstance(this);
         } catch (IOException e) {
             e.printStackTrace();
         }

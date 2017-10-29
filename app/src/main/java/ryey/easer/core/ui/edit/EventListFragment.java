@@ -43,7 +43,6 @@ import java.util.List;
 import ryey.easer.R;
 import ryey.easer.core.EHService;
 import ryey.easer.core.data.storage.EventDataStorage;
-import ryey.easer.core.data.storage.xml.event.XmlEventDataStorage;
 
 public class EventListFragment extends ListFragment {
     static final int request_code = 10;
@@ -64,7 +63,7 @@ public class EventListFragment extends ListFragment {
 
         List<String> items = null;
         try {
-            mStorage = XmlEventDataStorage.getInstance(getActivity());
+            mStorage = EventDataStorage.getInstance(getActivity());
             items = mStorage.list();
             Logger.v("All events: %s", items);
         } catch (IOException e) {

@@ -26,39 +26,39 @@ import com.orhanobut.logger.Logger;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.EventTree;
-import ryey.easer.core.data.storage.EventDataStorage;
+import ryey.easer.core.data.storage.EventDataStorageBackendInterface;
 import ryey.easer.core.data.storage.FileUtils;
+import ryey.easer.core.data.storage.StorageHelper;
 
-public class XmlEventDataStorage implements EventDataStorage {
-    private static XmlEventDataStorage instance = null;
+public class XmlEventDataStorageBackend implements EventDataStorageBackendInterface {
+    private static XmlEventDataStorageBackend instance = null;
 
     private static Context s_context = null;
 
     private static File dir;
 
-    public static XmlEventDataStorage getInstance(Context context) throws IOException {
+    public static XmlEventDataStorageBackend getInstance(Context context) throws IOException {
         if (instance == null) {
             if (context != null)
                 s_context = context;
             dir = FileUtils.getSubDir(s_context.getFilesDir(), "event");
-            instance = new XmlEventDataStorage();
+            instance = new XmlEventDataStorageBackend();
         }
         return instance;
     }
 
-    private XmlEventDataStorage() {
+    private XmlEventDataStorageBackend() {
     }
 
     @Override
@@ -101,7 +101,7 @@ public class XmlEventDataStorage implements EventDataStorage {
                 return true;
             }
         } catch (IOException e) {
-            Logger.e(e, "IOException during `XmlEventDataStorage.add()` (not sure the exact location)");
+            Logger.e(e, "IOException during `XmlEventDataStorageBackend.add()` (not sure the exact location)");
             e.printStackTrace();
         }
         return false;
@@ -114,7 +114,7 @@ public class XmlEventDataStorage implements EventDataStorage {
 
     private boolean _delete(String name, boolean check_is_leaf) {
         if (check_is_leaf) {
-            if (eventParentMap().containsKey(name)) { //if is not leaf node
+            if (StorageHelper.eventParentMap(allEvents()).containsKey(name)) { //if is not leaf node
                 //TODO: add alerts or remove the whole subtree
                 Logger.w("blocked the attempt to remove an event <%s> with subtrees", name);
                 return false;
@@ -135,7 +135,7 @@ public class XmlEventDataStorage implements EventDataStorage {
         String newName = event.getName();
         if (!oldName.equals(newName)) {
             // alter subnodes to point to the new name
-            List<EventStructure> subs = eventParentMap().get(oldName);
+            List<EventStructure> subs = StorageHelper.eventParentMap(allEvents()).get(oldName);
             if (subs != null) {
                 for (EventStructure sub : subs) {
                     sub.setParentName(newName);
@@ -157,14 +157,24 @@ public class XmlEventDataStorage implements EventDataStorage {
     /*
      * Rescan and reload from the directory everytime
      */
-    private List<EventStructure> allEvents() {
+    public List<EventStructure> allEvents() {
         List<EventStructure> list = new ArrayList<>();
         try {
-            String[] files = dir.list();
+            File[] files = dir.listFiles(new FileFilter() {
+                @Override
+                public boolean accept(File pathname) {
+                    if (pathname.isFile()) {
+                        if (pathname.getName().endsWith(".xml")) {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            });
             EventParser parser = new EventParser();
-            for (String file : files) {
+            for (File file : files) {
                 try {
-                    FileInputStream fin = new FileInputStream(new File(dir, file));
+                    FileInputStream fin = new FileInputStream(file);
                     EventStructure event = parser.parse(fin);
                     list.add(event);
                 } catch (FileNotFoundException e) {
@@ -185,37 +195,12 @@ public class XmlEventDataStorage implements EventDataStorage {
         return list;
     }
 
-    private Map<String, List<EventStructure>> eventParentMap() {
-        Map<String, List<EventStructure>> eventIntermediateDataMap = new HashMap<>();
-        for (EventStructure event : allEvents()) {
-            if (!eventIntermediateDataMap.containsKey(event.getParentName())) {
-                eventIntermediateDataMap.put(event.getParentName(), new ArrayList<EventStructure>());
-            }
-            eventIntermediateDataMap.get(event.getParentName()).add(event);
-        }
-        return eventIntermediateDataMap;
-    }
-
     /*
      * TODO: Combine different trees which have the same parent (probably by comparing their data)
      */
     @Override
     public List<EventTree> getEventTrees() {
-        List<EventTree> eventTreeList = new ArrayList<>();
-        Map<String, List<EventStructure>> eventIntermediateDataMap = eventParentMap();
-
-        // construct the forest from the map
-        // assume no loops
-        List<EventStructure> int_roots = eventIntermediateDataMap.get(null);
-        if (int_roots != null) {
-            for (EventStructure int_root : int_roots) {
-                EventTree tree = new EventTree(int_root);
-                eventTreeList.add(tree);
-                mapToTreeList(eventIntermediateDataMap, tree);
-            }
-        }
-
-        return eventTreeList;
+        return StorageHelper.eventListToTrees(allEvents());
     }
 
     @Override
@@ -227,17 +212,6 @@ public class XmlEventDataStorage implements EventDataStorage {
             }
         }
         return true;
-    }
-
-    private static void mapToTreeList(Map<String, List<EventStructure>> eventIntermediateDataMap, EventTree node) {
-        List<EventStructure> eventStructureList = eventIntermediateDataMap.get(node.getName());
-        if (eventStructureList == null)
-            return;
-        for (EventStructure int_node : eventStructureList) {
-            EventTree sub_node = new EventTree(int_node);
-            node.addSub(sub_node);
-            mapToTreeList(eventIntermediateDataMap, sub_node);
-        }
     }
 
     private static String fileName(EventStructure event) {

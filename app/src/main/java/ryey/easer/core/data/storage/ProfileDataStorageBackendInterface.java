@@ -17,8 +17,20 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.data.storage.xml.event;
+package ryey.easer.core.data.storage;
 
-public class C extends ryey.easer.core.data.storage.C {
-    static final String NON = "NO DATA";
+import java.util.List;
+
+import ryey.easer.core.data.ProfileStructure;
+
+public interface ProfileDataStorageBackendInterface {
+    List<String> list();
+
+    ProfileStructure get(String name);
+
+    boolean add(ProfileStructure profile);
+
+    boolean delete(String name);
+
+    boolean edit(String oldName, ProfileStructure profile);
 }

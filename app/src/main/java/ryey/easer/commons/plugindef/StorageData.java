@@ -25,6 +25,8 @@ import org.xmlpull.v1.XmlSerializer;
 
 import java.io.IOException;
 
+import ryey.easer.commons.C;
+import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.IllegalXmlException;
 
 /**
@@ -66,6 +68,18 @@ public interface StorageData {
      * @throws IOException
      */
     void serialize(XmlSerializer serializer) throws IOException;
+
+    /**
+     * Parse the given {@param data} to the current object.
+     * New interface for parse.
+     * Data format is passed as an argument {@param format}.
+     */
+    void parse(String data, C.Format format, int version) throws IllegalStorageDataException;
+
+    /**
+     * New interface for serializing.
+     */
+    String serialize(C.Format format);
 
     /**
      * Check the data's validity. If not valid, this data won't be loaded and/or saved.

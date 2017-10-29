@@ -31,6 +31,8 @@ import org.xmlpull.v1.XmlSerializer;
 import java.io.IOException;
 import java.util.EnumSet;
 
+import ryey.easer.commons.C;
+import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
@@ -131,5 +133,51 @@ public class CalendarEventData extends TypedEventData {
         }
         XmlHelper.EventHelper.writeSingleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).name(), jsonObject.toString());
         XmlHelper.EventHelper.writeLogic(serializer, type());
+    }
+
+    @Override
+    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+        switch (format) {
+            default:
+                try {
+                    JSONObject jsonObject = new JSONObject(data);
+                    this.data = new CalendarData();
+                    this.data.calendar_id = jsonObject.optLong(T_calendar_id);
+                    JSONArray jsonArray_conditions = jsonObject.optJSONArray(T_condition);
+                    for (int i = 0; i < jsonArray_conditions.length(); i++) {
+                        String condition = jsonArray_conditions.getString(i);
+                        for (int j = 0; j < CalendarData.condition_name.length; j++) {
+                            this.data.conditions.put(condition, true);
+                        }
+                    }
+                } catch (JSONException e) {
+                    Logger.e(e, "Error parsing %s data to JSON", getClass().getSimpleName());
+                    e.printStackTrace();
+                }
+        }
+    }
+
+    @Override
+    public String serialize(C.Format format) {
+        String res = "";
+        switch (format) {
+            default:
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put(T_calendar_id, data.calendar_id);
+                    JSONArray jsonArray_conditions = new JSONArray();
+                    for (String k : data.conditions.keySet()) {
+                        if (data.conditions.get(k)) {
+                            jsonArray_conditions.put(k);
+                        }
+                    }
+                    jsonObject.put(T_condition, jsonArray_conditions);
+                } catch (JSONException e) {
+                    Logger.e(e, "Error putting %s data", getClass().getSimpleName());
+                    e.printStackTrace();
+                }
+                res = jsonObject.toString();
+        }
+        return res;
     }
 }

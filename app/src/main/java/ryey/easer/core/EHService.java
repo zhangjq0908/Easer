@@ -35,7 +35,6 @@ import java.util.List;
 
 import ryey.easer.core.data.EventTree;
 import ryey.easer.core.data.storage.EventDataStorage;
-import ryey.easer.core.data.storage.xml.event.XmlEventDataStorage;
 
 /*
  * The background service which maintains several Lotus(es) and send Intent to load Profile(s).
@@ -146,7 +145,7 @@ public class EHService extends Service {
         Logger.v("reloadTriggers()");
         mCancelTriggers();
         try {
-            EventDataStorage storage = XmlEventDataStorage.getInstance(this);
+            EventDataStorage storage = EventDataStorage.getInstance(this);
             List<EventTree> events = storage.getEventTrees();
             mSetTriggers(events);
         } catch (IOException e) {

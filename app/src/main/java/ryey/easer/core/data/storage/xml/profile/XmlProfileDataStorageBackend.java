@@ -26,6 +26,7 @@ import com.orhanobut.logger.Logger;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -36,27 +37,27 @@ import java.util.List;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.storage.FileUtils;
-import ryey.easer.core.data.storage.ProfileDataStorage;
-import ryey.easer.core.data.storage.xml.event.XmlEventDataStorage;
+import ryey.easer.core.data.storage.ProfileDataStorageBackendInterface;
+import ryey.easer.core.data.storage.xml.event.XmlEventDataStorageBackend;
 
-public class XmlProfileDataStorage implements ProfileDataStorage {
-    private static XmlProfileDataStorage instance = null;
+public class XmlProfileDataStorageBackend implements ProfileDataStorageBackendInterface {
+    private static XmlProfileDataStorageBackend instance = null;
 
     private static Context s_context = null;
 
     private static File dir;
 
-    public static XmlProfileDataStorage getInstance(Context context) throws IOException {
+    public static XmlProfileDataStorageBackend getInstance(Context context) throws IOException {
         if (instance == null) {
             if (context != null)
                 s_context = context;
             dir = FileUtils.getSubDir(s_context.getFilesDir(), "profile");
-            instance = new XmlProfileDataStorage();
+            instance = new XmlProfileDataStorageBackend();
         }
         return instance;
     }
 
-    private XmlProfileDataStorage() {
+    private XmlProfileDataStorageBackend() {
     }
 
     @Override
@@ -122,7 +123,7 @@ public class XmlProfileDataStorage implements ProfileDataStorage {
             if (add(profile)) {
                 if (!oldName.equals(profile.getName())) {
                     try {
-                        XmlEventDataStorage eventDataStorage = XmlEventDataStorage.getInstance(s_context);
+                        XmlEventDataStorageBackend eventDataStorage = XmlEventDataStorageBackend.getInstance(s_context);
                         eventDataStorage.handleProfileRename(oldName, profile.getName());
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -135,14 +136,24 @@ public class XmlProfileDataStorage implements ProfileDataStorage {
         return false;
     }
 
-    List<ProfileStructure> allProfiles() {
+    public List<ProfileStructure> allProfiles() {
         List<ProfileStructure> list = new ArrayList<>();
         try {
-            String[] files = dir.list();
+            File[] files = dir.listFiles(new FileFilter() {
+                @Override
+                public boolean accept(File pathname) {
+                    if (pathname.isFile()) {
+                        if (pathname.getName().endsWith(".xml")) {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            });
             ProfileParser parser = new ProfileParser();
-            for (String file : files) {
+            for (File file : files) {
                 try {
-                    FileInputStream fin = new FileInputStream(new File(dir, file));
+                    FileInputStream fin = new FileInputStream(file);
                     ProfileStructure profile = parser.parse(fin);
                     list.add(profile);
                 } catch (FileNotFoundException e) {

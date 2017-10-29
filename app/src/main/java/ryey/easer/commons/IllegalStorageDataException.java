@@ -17,8 +17,10 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.data.storage.xml.event;
+package ryey.easer.commons;
 
-public class C extends ryey.easer.core.data.storage.C {
-    static final String NON = "NO DATA";
+public class IllegalStorageDataException extends Exception {
+    public IllegalStorageDataException(String detailMessage) {
+        super(detailMessage);
+    }
 }

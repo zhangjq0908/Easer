@@ -19,14 +19,10 @@
 
 package ryey.easer.core.data.storage.xml.event;
 
-import android.app.Application;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
-import android.test.ApplicationTestCase;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,7 +31,7 @@ import java.text.ParseException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.core.data.EventStructure;
-import ryey.easer.core.data.storage.EventDataStorage;
+import ryey.easer.core.data.storage.EventDataStorageBackendInterface;
 import ryey.easer.core.data.storage.FileUtils;
 import ryey.easer.plugins.event.wifi.WifiEventData;
 
@@ -65,7 +61,7 @@ public class XmlEventDataStorageTest {
             }
             assertTrue(dir.delete());
         }
-        EventDataStorage dataStorage = XmlEventDataStorage.getInstance(context);
+        EventDataStorageBackendInterface dataStorage = XmlEventDataStorageBackend.getInstance(context);
         assertTrue(dataStorage.list().isEmpty());
         EventData eventData = new WifiEventData("testssid");
         eventData.setType(EventType.any);

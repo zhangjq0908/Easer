@@ -32,7 +32,6 @@ import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.storage.ProfileDataStorage;
-import ryey.easer.core.data.storage.xml.profile.XmlProfileDataStorage;
 import ryey.easer.plugins.PluginRegistry;
 
 public class ProfileLoaderIntentService extends IntentService {
@@ -72,7 +71,7 @@ public class ProfileLoaderIntentService extends IntentService {
         Logger.d("Loading profile <%s> by <%s>", name, event);
         ProfileStructure profile = null;
         try {
-            ProfileDataStorage storage = XmlProfileDataStorage.getInstance(this);
+            ProfileDataStorage storage = ProfileDataStorage.getInstance(this);
             profile = storage.get(name);
         } catch (IOException e) {
             e.printStackTrace();

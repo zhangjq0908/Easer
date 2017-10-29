@@ -21,6 +21,8 @@ package ryey.easer.plugins.event.wifi;
 
 import com.orhanobut.logger.Logger;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
@@ -32,6 +34,7 @@ import java.util.List;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
+import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
@@ -121,6 +124,37 @@ public class WifiEventData extends TypedEventData {
         }
         XmlHelper.EventHelper.writeMultipleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).name(), ssids.toArray(new String[0]));
         XmlHelper.EventHelper.writeLogic(serializer, type());
+    }
+
+    @Override
+    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+        ssids.clear();
+        switch (format) {
+            default:
+                try {
+                    JSONArray jsonArray = new JSONArray(data);
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        ssids.add(jsonArray.getString(i));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    throw new IllegalStorageDataException(e.getMessage());
+                }
+        }
+    }
+
+    @Override
+    public String serialize(C.Format format) {
+        String res = "";
+        switch (format) {
+            default:
+                JSONArray jsonArray = new JSONArray();
+                for (String ssid : ssids) {
+                    jsonArray.put(ssid);
+                }
+                res = jsonArray.toString();
+        }
+        return res;
     }
 
     @Override

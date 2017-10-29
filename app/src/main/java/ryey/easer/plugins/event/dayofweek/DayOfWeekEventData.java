@@ -21,6 +21,8 @@ package ryey.easer.plugins.event.dayofweek;
 
 import com.orhanobut.logger.Logger;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
@@ -33,6 +35,7 @@ import java.util.Set;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
+import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
@@ -118,5 +121,36 @@ public class DayOfWeekEventData extends TypedEventData {
         XmlHelper.EventHelper.writeMultipleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).name(),
                 Utils.set2strlist(days).toArray(new String[0]));
         XmlHelper.EventHelper.writeLogic(serializer, type());
+    }
+
+    @Override
+    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+        days.clear();
+        switch (format) {
+            default:
+                try {
+                    JSONArray jsonArray = new JSONArray(data);
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        days.add(jsonArray.getInt(i));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    throw new IllegalStorageDataException(e.getMessage());
+                }
+        }
+    }
+
+    @Override
+    public String serialize(C.Format format) {
+        String res = "";
+        switch (format) {
+            default:
+                JSONArray jsonArray = new JSONArray();
+                for (Integer v : days) {
+                    jsonArray.put(v);
+                }
+                res = jsonArray.toString();
+        }
+        return res;
     }
 }

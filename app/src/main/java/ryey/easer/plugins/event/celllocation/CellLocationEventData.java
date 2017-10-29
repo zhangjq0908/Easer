@@ -21,6 +21,8 @@ package ryey.easer.plugins.event.celllocation;
 
 import com.orhanobut.logger.Logger;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
@@ -31,6 +33,7 @@ import java.util.EnumSet;
 import java.util.List;
 
 import ryey.easer.commons.C;
+import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
@@ -119,6 +122,36 @@ public class CellLocationEventData extends TypedEventData {
         }
         XmlHelper.EventHelper.writeMultipleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).name(), list.toArray(new String[0]));
         XmlHelper.EventHelper.writeLogic(serializer, type());
+    }
+
+    @Override
+    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+        try {
+            JSONArray jsonArray = new JSONArray(data);
+            String[] strings = new String[jsonArray.length()];
+            for (int i = 0; i < jsonArray.length(); i++) {
+                strings[i] = jsonArray.getString(i);
+            }
+            set(strings);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            throw new IllegalStorageDataException(e.getMessage());
+        }
+    }
+
+    @Override
+    public String serialize(C.Format format) {
+        String res = "";
+        switch (format) {
+            default:
+                JSONArray jsonArray = new JSONArray();
+                List<String> list = new ArrayList<>();
+                for (CellLocationSingleData singleData : data) {
+                    jsonArray.put(singleData.toString());
+                }
+                res = jsonArray.toString();
+        }
+        return res;
     }
 
     public boolean add(CellLocationSingleData singleData) {

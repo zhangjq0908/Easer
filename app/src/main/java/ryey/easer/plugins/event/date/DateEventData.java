@@ -31,6 +31,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.EnumSet;
 
+import ryey.easer.commons.C;
+import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
@@ -109,5 +111,28 @@ public class DateEventData extends TypedEventData {
             XmlHelper.EventHelper.writeSingleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).name(), DateToText(date));
             XmlHelper.EventHelper.writeLogic(serializer, type());
         }
+    }
+
+    @Override
+    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+        switch (format) {
+            default:
+                try {
+                    set(TextToDate(data));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    throw new IllegalStorageDataException(e.getMessage());
+                }
+        }
+    }
+
+    @Override
+    public String serialize(C.Format format) {
+        String res = "";
+        switch (format) {
+            default:
+                res = DateToText(date);
+        }
+        return res;
     }
 }

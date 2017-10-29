@@ -25,6 +25,8 @@ import org.xmlpull.v1.XmlSerializer;
 
 import java.io.IOException;
 
+import ryey.easer.commons.C;
+import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
@@ -47,5 +49,24 @@ public abstract class IntegerOperationData extends IntegerData implements Operat
     @Override
     public void serialize(XmlSerializer serializer) throws IOException {
         XmlHelper.OperationHelper.writeInteger(serializer, PluginRegistry.getInstance().operation().findPlugin(this).name(), (Integer) get());
+    }
+
+    @Override
+    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+        switch (format) {
+            default:
+                Integer level = Integer.valueOf(data);
+                set(level);
+        }
+    }
+
+    @Override
+    public String serialize(C.Format format) {
+        String res = "";
+        switch (format) {
+            default:
+                res = ((Integer) get()).toString();
+        }
+        return res;
     }
 }

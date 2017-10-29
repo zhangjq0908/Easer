@@ -23,7 +23,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ListFragment;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -44,7 +43,6 @@ import java.util.List;
 
 import ryey.easer.R;
 import ryey.easer.core.data.storage.ProfileDataStorage;
-import ryey.easer.core.data.storage.xml.profile.XmlProfileDataStorage;
 
 public class ProfileListFragment extends ListFragment {
     static final int request_code = 10;
@@ -64,7 +62,7 @@ public class ProfileListFragment extends ListFragment {
         registerForContextMenu(getListView());
 
         try {
-            mStorage = XmlProfileDataStorage.getInstance(getActivity());
+            mStorage = ProfileDataStorage.getInstance(getActivity());
             List<String> items = mStorage.list();
             Logger.v("All profiles: %s", items);
             ListAdapter adapter = new ProfileListAdapter(getActivity(), items);

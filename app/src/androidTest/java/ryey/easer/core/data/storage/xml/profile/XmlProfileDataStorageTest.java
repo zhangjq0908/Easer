@@ -27,7 +27,6 @@ import java.io.IOException;
 
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.storage.FileUtils;
-import ryey.easer.core.data.storage.ProfileDataStorage;
 
 public class XmlProfileDataStorageTest extends ApplicationTestCase<Application> {
     public XmlProfileDataStorageTest() {
@@ -43,7 +42,7 @@ public class XmlProfileDataStorageTest extends ApplicationTestCase<Application> 
             }
             assertTrue(dir.delete());
         }
-        ProfileDataStorage dataStorage = XmlProfileDataStorage.getInstance(getContext());
+        XmlProfileDataStorageBackend dataStorage = XmlProfileDataStorageBackend.getInstance(getContext());
         assertTrue(dataStorage.list().isEmpty());
         ProfileStructure profile1 = new ProfileStructure("profile1");
         ProfileStructure profile2 = new ProfileStructure("profile2");

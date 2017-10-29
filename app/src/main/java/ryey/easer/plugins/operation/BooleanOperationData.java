@@ -25,6 +25,8 @@ import org.xmlpull.v1.XmlSerializer;
 
 import java.io.IOException;
 
+import ryey.easer.commons.C;
+import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
@@ -47,5 +49,36 @@ public abstract class BooleanOperationData extends BooleanData implements Operat
     @Override
     public void serialize(XmlSerializer serializer) throws IOException {
         XmlHelper.OperationHelper.writeBoolean(serializer, PluginRegistry.getInstance().operation().findPlugin(this).name(), (Boolean) get());
+    }
+
+    @Override
+    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+        switch (format) {
+            default:
+                switch (data) {
+                    case C.ON:
+                        set(true);
+                        break;
+                    case C.OFF:
+                        set(false);
+                        break;
+                    default:
+                        throw new IllegalStorageDataException("Unknown data");
+                }
+        }
+    }
+
+    @Override
+    public String serialize(C.Format format) {
+        String res = "";
+        switch (format) {
+            default:
+                Boolean state = (Boolean) get();
+                if (state)
+                    res = C.ON;
+                else
+                    res = C.OFF;
+        }
+        return res;
     }
 }

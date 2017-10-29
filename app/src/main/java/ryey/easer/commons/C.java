@@ -29,9 +29,19 @@ public class C {
     public static final String LOGIC = "logic";
     public static final String SPEC = "spec";
     public static final String ITEM = "item";
+    public static final String OPERATION = "operation";
+    public static final String DATA = "data";
+    public static final String OFF = "off";
+    public static final String ON = "on";
+    public static final String STATE = "state";
 
     public static final int VERSION_FULL_MULTI = 1;
     public static final int VERSION_CURRENT = VERSION_FULL_MULTI;
     public static final int VERSION_DEFAULT = 0;
     public static final String VERSION_NAME = "version";
+
+    public enum Format {
+        XML,
+        JSON,
+    }
 }
