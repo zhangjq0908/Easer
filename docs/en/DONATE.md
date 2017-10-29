@@ -1,6 +1,6 @@
 # Donation
 
-([DONATE.md](DONATE.md)是此文檔的中文版本)
+([DONATE.md](../zh/DONATE.md)是此文檔的中文版本)
 
 Software development is a continuing process. It is kindly hoped to receive continuing monthly development / maintainance allowance.
 
