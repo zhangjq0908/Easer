@@ -25,7 +25,7 @@ class ProfileParser implements Parser<ProfileStructure> {
         try {
             profile = new ProfileStructure();
             JSONObject jsonObject = new JSONObject(IOUtils.inputStreamToString(in));
-            int version = jsonObject.optInt(C.VERSION_NAME);
+            int version = jsonObject.optInt(C.VERSION);
             profile.setName(jsonObject.optString(C.NAME));
             JSONArray jsonArray = jsonObject.optJSONArray(C.OPERATION);
             parseOperations(jsonArray, version);

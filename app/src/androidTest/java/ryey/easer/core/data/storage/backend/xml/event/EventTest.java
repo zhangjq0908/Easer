@@ -46,7 +46,7 @@ public class EventTest {
     @BeforeClass
     public static void setUpAll() throws ParseException {
         t_xml_root = "<?xml version='1.0' encoding='utf-8' standalone='no' ?><event><name>myparent</name><profile>profile1</profile><trigger><after>NO DATA</after><situation spec=\"time\"><at>13:23</at></situation><logic>after</logic></trigger></event>";
-        t_xml_child = "<?xml version='1.0' encoding='utf-8' standalone='no' ?><event version=\"1\"><active>true</active><name>123</name><profile>profile1</profile><trigger><after>myparent</after><situation spec=\"time\"><at>13:23</at></situation><logic>after</logic></trigger></event>";
+        t_xml_child = "<?xml version='1.0' encoding='utf-8' standalone='no' ?><event version=\"2\"><active>true</active><name>123</name><profile>profile1</profile><trigger><after>myparent</after><situation spec=\"time\"><at>13:23</at></situation><logic>after</logic></trigger></event>";
 
         t_event_child = new EventStructure();
         t_event_child.setName("123");

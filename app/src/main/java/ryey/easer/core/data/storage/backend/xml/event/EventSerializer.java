@@ -65,7 +65,7 @@ class EventSerializer implements Serializer<EventStructure> {
 
     private void writeEvent(EventStructure eventStructure) throws IOException {
         serializer.startTag(ns, C.EVENT);
-        serializer.attribute(ns, ryey.easer.commons.C.VERSION_NAME, String.valueOf(ryey.easer.commons.C.VERSION_CURRENT));
+        serializer.attribute(ns, ryey.easer.commons.C.VERSION, String.valueOf(ryey.easer.commons.C.VERSION_CURRENT));
         writeActiveState(eventStructure.isActive());
         writeName(eventStructure.getName());
         writeProfile(eventStructure.getProfileName());

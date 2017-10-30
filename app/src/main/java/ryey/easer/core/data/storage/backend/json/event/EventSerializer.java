@@ -16,7 +16,7 @@ class EventSerializer implements Serializer<EventStructure> {
         try {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put(C.NAME, event.getName());
-            jsonObject.put(C.VERSION_NAME, C.VERSION_CURRENT);
+            jsonObject.put(C.VERSION, C.VERSION_CURRENT);
             jsonObject.put(C.ACTIVE, event.isActive());
             jsonObject.put(C.PROFILE, event.getProfileName());
             jsonObject.put(C.AFTER, event.getParentName());

@@ -18,7 +18,7 @@ public class ProfileSerializer implements Serializer<ProfileStructure> {
         try {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put(C.NAME, profile.getName());
-            jsonObject.put(C.VERSION_NAME, C.VERSION_CURRENT);
+            jsonObject.put(C.VERSION, C.VERSION_CURRENT);
             jsonObject.put(C.OPERATION, serialize_operation(profile));
             return jsonObject.toString();
         } catch (JSONException e) {

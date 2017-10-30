@@ -52,6 +52,10 @@ public interface StorageData {
     boolean equals(Object o);
 
     /**
+     * This is an OLD interface and is kept only for compatibility.
+     * Implementors should not really inherit this method (just leave it empty).
+     * Please use the {@link #parse(String, C.Format, int)} method instead.
+     *
      * Read data (to the instance) from a source (currently only XML)
      * @param parser
      * @param version The version of the to-be-parsed data. (See also {@link ryey.easer.commons.C})
@@ -59,24 +63,33 @@ public interface StorageData {
      * @throws XmlPullParserException
      * @throws IllegalStorageDataException
      */
+    @Deprecated
     void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException;
 
     /**
+     * This is an OLD interface and is kept only for compatibility.
+     * Implementors should not really inherit this method (just leave it empty).
+     * Please use the {@link #serialize(C.Format)} method instead.
+     *
      * Dump the data (of the instance) to a destination (currently only XML)
      * @param serializer
      * @throws IOException
      */
+    @Deprecated
     void serialize(XmlSerializer serializer) throws IOException;
 
     /**
      * Parse the given {@param data} to the current object.
-     * New interface for parse.
-     * Data format is passed as an argument {@param format}.
+     * @param format The format which the data source is in.
+     *               This parameter can be ignored in the same way as in {@link #serialize(C.Format)}.
      */
     void parse(String data, C.Format format, int version) throws IllegalStorageDataException;
 
     /**
-     * New interface for serializing.
+     * Serialize the current data to the given {@param format}.
+     * @param format The format which the data source is in.
+     *               You can ignore this parameter if you don't want to design a "localized" format.
+     * @return The serialized text (which will be used directly in the data field).
      */
     String serialize(C.Format format);
 

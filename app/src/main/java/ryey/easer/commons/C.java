@@ -35,10 +35,11 @@ public class C {
     public static final String ON = "on";
     public static final String STATE = "state";
 
+    public static final String VERSION = "version";
+    public static final int VERSION_ADD_JSON = 2;
     public static final int VERSION_FULL_MULTI = 1;
-    public static final int VERSION_CURRENT = VERSION_FULL_MULTI;
     public static final int VERSION_DEFAULT = 0;
-    public static final String VERSION_NAME = "version";
+    public static final int VERSION_CURRENT = VERSION_ADD_JSON;
 
     public enum Format {
         XML,

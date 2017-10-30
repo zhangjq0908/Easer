@@ -54,7 +54,7 @@ class EventParser implements Parser<EventStructure> {
             parser.nextTag();
             parser.require(XmlPullParser.START_TAG, ns, C.EVENT);
             try {
-                version = Integer.valueOf(parser.getAttributeValue(ns, ryey.easer.commons.C.VERSION_NAME));
+                version = Integer.valueOf(parser.getAttributeValue(ns, ryey.easer.commons.C.VERSION));
             } catch (NumberFormatException e) {
                 no_version = true;
             } catch (Exception e) {

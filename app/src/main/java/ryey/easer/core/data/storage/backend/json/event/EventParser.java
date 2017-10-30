@@ -22,7 +22,7 @@ class EventParser implements Parser<EventStructure> {
         EventStructure eventStructure = new EventStructure();
         try {
             JSONObject jsonObject = new JSONObject(IOUtils.inputStreamToString(in));
-            int version = jsonObject.optInt(C.VERSION_NAME, C.VERSION_CURRENT);
+            int version = jsonObject.optInt(C.VERSION, C.VERSION_CURRENT);
             eventStructure.setName(jsonObject.getString(C.NAME));
             eventStructure.setActive(jsonObject.optBoolean(C.ACTIVE, true));
             eventStructure.setProfileName(jsonObject.optString(C.PROFILE, null));
