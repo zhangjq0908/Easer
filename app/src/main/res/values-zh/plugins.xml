@@ -60,6 +60,7 @@
 
     <string name="operation_command">執行命令</string>
     <string name="operation_hotspot">移動熱點</string>
+    <string name="operation_synchronization">賬戶同步</string>
 
     <string-array name="event_type">
         <item>晚於</item>

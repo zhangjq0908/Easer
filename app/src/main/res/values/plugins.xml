@@ -59,6 +59,7 @@
 
     <string name="operation_command">Run commands</string>
     <string name="operation_hotspot">Hotspot</string>
+    <string name="operation_synchronization">Account synchronization</string>
 
     <string-array name="event_type">
         <item>After</item>
