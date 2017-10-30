@@ -75,11 +75,7 @@ public class EditEventActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        try {
-            storage = EventDataStorage.getInstance(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        storage = EventDataStorage.getInstance(this);
         purpose = (EditDataProto.Purpose) getIntent().getSerializableExtra(EditDataProto.PURPOSE);
         if (purpose != EditDataProto.Purpose.add)
             oldName = getIntent().getStringExtra(EditDataProto.CONTENT_NAME);
@@ -125,15 +121,11 @@ public class EditEventActivity extends AppCompatActivity {
         mEditText_name = (EditText) findViewById(R.id.editText_event_title);
 
         mSpinner_parent = (Spinner) findViewById(R.id.spinner_parent);
-        try {
-            mEventList = (EventDataStorage.getInstance(this)).list();
-            mEventList.add(0, NON);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_profile, mEventList); //TODO: change layout
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-            mSpinner_parent.setAdapter(adapter);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        mEventList = (EventDataStorage.getInstance(this)).list();
+        mEventList.add(0, NON);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_profile, mEventList); //TODO: change layout
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        mSpinner_parent.setAdapter(adapter);
         mSpinner_parent.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -145,15 +137,11 @@ public class EditEventActivity extends AppCompatActivity {
         });
 
         mSpinner_profile = (Spinner) findViewById(R.id.spinner_profile);
-        try {
-            mProfileList = (ProfileDataStorage.getInstance(this)).list();
-            mProfileList.add(0, NON);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_profile, mProfileList);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-            mSpinner_profile.setAdapter(adapter);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        mProfileList = (ProfileDataStorage.getInstance(this)).list();
+        mProfileList.add(0, NON);
+        ArrayAdapter<String> adapter_profile = new ArrayAdapter<String>(this, R.layout.spinner_profile, mProfileList);
+        adapter_profile.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        mSpinner_profile.setAdapter(adapter_profile);
         mSpinner_profile.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

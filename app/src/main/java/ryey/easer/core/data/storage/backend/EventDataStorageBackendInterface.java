@@ -17,12 +17,11 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.data.storage;
+package ryey.easer.core.data.storage.backend;
 
 import java.util.List;
 
 import ryey.easer.core.data.EventStructure;
-import ryey.easer.core.data.EventTree;
 
 public interface EventDataStorageBackendInterface {
     List<String> list();
@@ -33,9 +32,7 @@ public interface EventDataStorageBackendInterface {
 
     boolean delete(String name);
 
-    boolean edit(String oldName, EventStructure event);
+    boolean update(EventStructure eventStructure);
 
-    List<EventTree> getEventTrees();
-
-    boolean handleProfileRename(String oldName, String newName);
+    List<EventStructure> allEvents();
 }

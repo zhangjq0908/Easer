@@ -70,13 +70,8 @@ public class ProfileLoaderIntentService extends IntentService {
     private void handleActionLoadProfile(String name, String event) {
         Logger.d("Loading profile <%s> by <%s>", name, event);
         ProfileStructure profile = null;
-        try {
-            ProfileDataStorage storage = ProfileDataStorage.getInstance(this);
-            profile = storage.get(name);
-        } catch (IOException e) {
-            e.printStackTrace();
-            Logger.e("Failed to read profile <%s>", name);
-        }
+        ProfileDataStorage storage = ProfileDataStorage.getInstance(this);
+        profile = storage.get(name);
         if (profile != null) {
             boolean loaded = false;
             for (OperationPlugin plugin : PluginRegistry.getInstance().operation().getPlugins()) {

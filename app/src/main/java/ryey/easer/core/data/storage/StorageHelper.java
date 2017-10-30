@@ -1,5 +1,8 @@
 package ryey.easer.core.data.storage;
 
+import android.content.Context;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,24 +11,26 @@ import java.util.Map;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.EventTree;
 
-public class StorageHelper {
-    public static boolean isSafeToDeleteProfile(String name) {
+class StorageHelper {
+    static boolean isSafeToDeleteProfile(Context context, String name) {
+        EventDataStorage eventDataStorage = EventDataStorage.getInstance(context);
+        for (EventStructure eventStructure : eventDataStorage.allEvents()) {
+            if (name.equals(eventStructure.getProfileName()))
+                return false;
+        }
         return true;
     }
 
-    public static boolean isSafeToDeleteEvent(String name) {
+    static boolean isSafeToDeleteEvent(Context context, String name) {
+        EventDataStorage eventDataStorage = EventDataStorage.getInstance(context);
+        for (EventStructure eventStructure : eventDataStorage.allEvents()) {
+            if (name.equals(eventStructure.getParentName()))
+                return false;
+        }
         return true;
     }
 
-    public static void updateProfileNameRef(String oldName, String newName) {
-
-    }
-
-    public static void updateEventNameRef(String oldName, String newName) {
-
-    }
-
-    public static List<EventTree> eventListToTrees(List<EventStructure> events) {
+    static List<EventTree> eventListToTrees(List<EventStructure> events) {
         List<EventTree> eventTreeList = new ArrayList<>();
         Map<String, List<EventStructure>> eventIntermediateDataMap = StorageHelper.eventParentMap(events);
 
@@ -43,7 +48,7 @@ public class StorageHelper {
         return eventTreeList;
     }
 
-    public static Map<String, List<EventStructure>> eventParentMap(List<EventStructure> events) {
+    static Map<String, List<EventStructure>> eventParentMap(List<EventStructure> events) {
         Map<String, List<EventStructure>> eventIntermediateDataMap = new HashMap<>();
         for (EventStructure event : events) {
             if (!eventIntermediateDataMap.containsKey(event.getParentName())) {
@@ -54,7 +59,7 @@ public class StorageHelper {
         return eventIntermediateDataMap;
     }
 
-    public static void mapToTreeList(Map<String, List<EventStructure>> eventIntermediateDataMap, EventTree node) {
+    static void mapToTreeList(Map<String, List<EventStructure>> eventIntermediateDataMap, EventTree node) {
         List<EventStructure> eventStructureList = eventIntermediateDataMap.get(node.getName());
         if (eventStructureList == null)
             return;

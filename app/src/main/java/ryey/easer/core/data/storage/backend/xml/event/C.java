@@ -17,25 +17,8 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.data.storage;
+package ryey.easer.core.data.storage.backend.xml.event;
 
-import java.io.File;
-import java.io.IOException;
-
-public class FileUtils {
-
-    public static File getSubDir(File dir, String sub) throws IOException {
-        File subdir;
-        subdir = new File(dir, sub);
-        if (subdir.exists())
-            if (!subdir.isDirectory())
-                throw new IOException("Given path exists and is not a dir:" + sub);
-            else
-                return subdir;
-        else
-            if (!subdir.mkdir())
-                throw new IOException("Unable to create subdir in the given path:" + sub);
-            else
-                return subdir;
-    }
+public class C extends ryey.easer.core.data.storage.C {
+    static final String NON = "NO DATA";
 }

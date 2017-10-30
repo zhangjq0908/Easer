@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.data.storage.xml.event;
+package ryey.easer.core.data.storage.backend.xml.event;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -31,8 +31,8 @@ import java.text.ParseException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.core.data.EventStructure;
-import ryey.easer.core.data.storage.EventDataStorageBackendInterface;
-import ryey.easer.core.data.storage.FileUtils;
+import ryey.easer.core.data.storage.backend.EventDataStorageBackendInterface;
+import ryey.easer.core.data.storage.backend.IOUtils;
 import ryey.easer.plugins.event.wifi.WifiEventData;
 
 import static org.junit.Assert.assertEquals;
@@ -52,8 +52,8 @@ public class XmlEventDataStorageTest {
     }
 
     @Test
-    public void testEventXmlDataStorage() throws IOException, ParseException {
-        File dir = FileUtils.getSubDir(context.getFilesDir(), "event");
+    public void testEventXmlDataStorage() throws ParseException {
+        File dir = IOUtils.mustGetSubDir(context.getFilesDir(), "event");
         if (dir.exists()) {
             for (String filename : dir.list()) {
                 File file = new File(dir, filename);

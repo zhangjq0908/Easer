@@ -57,11 +57,7 @@ public class EditProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        try {
-            storage = ProfileDataStorage.getInstance(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        storage = ProfileDataStorage.getInstance(this);
         purpose = (EditDataProto.Purpose) getIntent().getSerializableExtra(EditDataProto.PURPOSE);
         if (purpose != EditDataProto.Purpose.add)
             oldName = getIntent().getStringExtra(EditDataProto.CONTENT_NAME);

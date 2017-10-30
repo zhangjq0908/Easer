@@ -11,7 +11,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
 import ryey.easer.commons.plugindef.eventplugin.EventType;
-import ryey.easer.core.data.storage.xml.event.C;
+import ryey.easer.core.data.storage.backend.xml.event.C;
 
 import static org.junit.Assert.assertEquals;
 
@@ -51,7 +51,7 @@ public class XmlHelperTest {
         in = new ByteArrayInputStream(data.getBytes());
         parser.setInput(in, null);
         while (parser.next() != XmlPullParser.START_TAG);
-        assertEquals(ryey.easer.core.data.storage.xml.event.C.SIT, parser.getName());
+        assertEquals(ryey.easer.core.data.storage.backend.xml.event.C.SIT, parser.getName());
         assertEquals(spec, parser.getAttributeValue(ns, C.SPEC));
         assertEquals(at, XmlHelper.EventHelper.readSingleSituation(parser));
     }

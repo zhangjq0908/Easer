@@ -144,13 +144,9 @@ public class EHService extends Service {
     private void reloadTriggers() {
         Logger.v("reloadTriggers()");
         mCancelTriggers();
-        try {
-            EventDataStorage storage = EventDataStorage.getInstance(this);
-            List<EventTree> events = storage.getEventTrees();
-            mSetTriggers(events);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        EventDataStorage storage = EventDataStorage.getInstance(this);
+        List<EventTree> events = storage.getEventTrees();
+        mSetTriggers(events);
         Logger.d("triggers reloaded");
     }
 

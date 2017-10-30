@@ -1,4 +1,4 @@
-package ryey.easer.core.data.storage.json.profile;
+package ryey.easer.core.data.storage.backend.json.profile;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -13,7 +13,7 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.core.data.ProfileStructure;
-import ryey.easer.core.data.storage.IOUtils;
+import ryey.easer.core.data.storage.backend.IOUtils;
 import ryey.easer.plugins.PluginRegistry;
 
 class ProfileParser {

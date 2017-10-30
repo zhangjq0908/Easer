@@ -1,4 +1,4 @@
-package ryey.easer.core.data.storage.json.event;
+package ryey.easer.core.data.storage.backend.json.event;
 
 import org.json.JSONException;
 import org.json.JSONObject;

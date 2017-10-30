@@ -1,4 +1,4 @@
-package ryey.easer.core.data.storage.json.profile;
+package ryey.easer.core.data.storage.backend.json.profile;
 
 import org.json.JSONArray;
 import org.json.JSONException;

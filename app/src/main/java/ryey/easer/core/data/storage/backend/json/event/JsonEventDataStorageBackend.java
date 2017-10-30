@@ -1,4 +1,4 @@
-package ryey.easer.core.data.storage.json.event;
+package ryey.easer.core.data.storage.backend.json.event;
 
 import android.content.Context;
 
@@ -15,10 +15,8 @@ import java.util.List;
 
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.core.data.EventStructure;
-import ryey.easer.core.data.EventTree;
-import ryey.easer.core.data.storage.EventDataStorageBackendInterface;
-import ryey.easer.core.data.storage.FileUtils;
-import ryey.easer.core.data.storage.StorageHelper;
+import ryey.easer.core.data.storage.backend.EventDataStorageBackendInterface;
+import ryey.easer.core.data.storage.backend.IOUtils;
 
 public class JsonEventDataStorageBackend implements EventDataStorageBackendInterface {
 
@@ -26,11 +24,11 @@ public class JsonEventDataStorageBackend implements EventDataStorageBackendInter
     private static Context s_context = null;
     private static File dir;
 
-    public static JsonEventDataStorageBackend getInstance(Context context) throws IOException {
+    public static JsonEventDataStorageBackend getInstance(Context context) {
         if (instance == null) {
             if (context != null)
                 s_context = context;
-            dir = FileUtils.getSubDir(s_context.getFilesDir(), "event");
+            dir = IOUtils.mustGetSubDir(s_context.getFilesDir(), "event");
             instance = new JsonEventDataStorageBackend();
         }
         return instance;
@@ -47,7 +45,6 @@ public class JsonEventDataStorageBackend implements EventDataStorageBackendInter
         }
         return list;
     }
-
 
     @Override
     public EventStructure get(String name) {
@@ -93,39 +90,16 @@ public class JsonEventDataStorageBackend implements EventDataStorageBackendInter
 
     @Override
     public boolean delete(String name) {
-        if (!StorageHelper.isSafeToDeleteEvent(name))
-            return false;
         File file = new File(dir, name + ".json");
         return file.delete();
     }
 
     @Override
-    public boolean edit(String oldName, EventStructure event) {
-        File old_file = new File(dir, oldName + ".json");
-        boolean success = false;
-        success = old_file.delete();
-        success = success && add(event);
-        if (success)
-            StorageHelper.updateProfileNameRef(oldName, event.getName());
-        return success;
+    public boolean update(EventStructure event) {
+        return delete(event.getName()) && add(event);
     }
 
     @Override
-    public List<EventTree> getEventTrees() {
-        return StorageHelper.eventListToTrees(allEvents());
-    }
-
-    @Override
-    public boolean handleProfileRename(String oldName, String newName) {
-        for (EventStructure event : allEvents()) {
-            if (oldName.equals(event.getProfileName())) {
-                event.setProfileName(newName);
-                edit(event.getName(), event);
-            }
-        }
-        return true;
-    }
-
     public List<EventStructure> allEvents() {
         List<EventStructure> list = new ArrayList<>();
         File[] files = dir.listFiles(new FileFilter() {

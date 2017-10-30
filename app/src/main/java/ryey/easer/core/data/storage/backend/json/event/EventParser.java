@@ -1,4 +1,4 @@
-package ryey.easer.core.data.storage.json.event;
+package ryey.easer.core.data.storage.backend.json.event;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,7 +12,7 @@ import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.storage.C;
-import ryey.easer.core.data.storage.IOUtils;
+import ryey.easer.core.data.storage.backend.IOUtils;
 import ryey.easer.plugins.PluginRegistry;
 
 class EventParser {

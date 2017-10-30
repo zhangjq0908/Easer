@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.data.storage.xml.profile;
+package ryey.easer.core.data.storage.backend.xml.event;
 
 import android.content.Context;
 
@@ -35,58 +35,57 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ryey.easer.commons.IllegalXmlException;
-import ryey.easer.core.data.ProfileStructure;
-import ryey.easer.core.data.storage.FileUtils;
-import ryey.easer.core.data.storage.ProfileDataStorageBackendInterface;
-import ryey.easer.core.data.storage.xml.event.XmlEventDataStorageBackend;
+import ryey.easer.core.data.EventStructure;
+import ryey.easer.core.data.storage.backend.EventDataStorageBackendInterface;
+import ryey.easer.core.data.storage.backend.IOUtils;
 
-public class XmlProfileDataStorageBackend implements ProfileDataStorageBackendInterface {
-    private static XmlProfileDataStorageBackend instance = null;
+public class XmlEventDataStorageBackend implements EventDataStorageBackendInterface {
+    private static XmlEventDataStorageBackend instance = null;
 
     private static Context s_context = null;
 
     private static File dir;
 
-    public static XmlProfileDataStorageBackend getInstance(Context context) throws IOException {
+    public static XmlEventDataStorageBackend getInstance(Context context) {
         if (instance == null) {
             if (context != null)
                 s_context = context;
-            dir = FileUtils.getSubDir(s_context.getFilesDir(), "profile");
-            instance = new XmlProfileDataStorageBackend();
+            dir = IOUtils.mustGetSubDir(s_context.getFilesDir(), "event");
+            instance = new XmlEventDataStorageBackend();
         }
         return instance;
     }
 
-    private XmlProfileDataStorageBackend() {
+    private XmlEventDataStorageBackend() {
     }
 
     @Override
     public List<String> list() {
-        ArrayList<String> list = new ArrayList<>();
-        for (ProfileStructure profile : allProfiles()) {
-            list.add(profile.getName());
+        List<String> list = new ArrayList<>();
+        for (EventStructure event : allEvents()) {
+            list.add(event.getName());
         }
         return list;
     }
 
     @Override
-    public ProfileStructure get(String name) {
-        for (ProfileStructure profile : allProfiles()) {
-            if (name.equals(profile.getName()))
-                return profile;
+    public EventStructure get(String name) {
+        for (EventStructure event : allEvents()) {
+            if (name.equals(event.getName()))
+                return event;
         }
         return null;
     }
 
     @Override
-    public boolean add(ProfileStructure profile) {
+    public boolean add(EventStructure event) {
         try {
-            ProfileSerializer serializer = new ProfileSerializer();
-            File file = new File(dir, fileName(profile));
+            EventSerializer serializer = new EventSerializer();
+            File file = new File(dir, event.getName() + ".xml");
             if (file.exists()) { // see if the existing one is invalid. If so, remove it in favor of the new one
-                ProfileStructure existing = get(profile.getName());
+                EventStructure existing = get(event.getName());
                 if ((existing == null) || (!existing.isValid())) {
-                    Logger.i("replace an invalid existing profile with the same filename <%s>", file.getName());
+                    Logger.i("replace an invalid existing event with the same filename <%s>", file.getName());
                     boolean success = file.delete();
                     if (!success) {
                         Logger.e("failed to remove existing file <%s>", file.getName());
@@ -95,11 +94,12 @@ public class XmlProfileDataStorageBackend implements ProfileDataStorageBackendIn
             }
             if (file.createNewFile()) {
                 FileOutputStream fout = new FileOutputStream(file);
-                serializer.serialize(fout, profile);
+                serializer.serialize(fout, event);
                 fout.close();
                 return true;
             }
         } catch (IOException e) {
+            Logger.e(e, "IOException during `XmlEventDataStorageBackend.add()` (not sure the exact location)");
             e.printStackTrace();
         }
         return false;
@@ -107,37 +107,21 @@ public class XmlProfileDataStorageBackend implements ProfileDataStorageBackendIn
 
     @Override
     public boolean delete(String name) {
-        for (ProfileStructure profile : allProfiles()) {
-            if (name.equals(profile.getName())) {
-                File file = new File(dir, fileName(profile));
-                return file.delete();
-            }
-        }
-        return false;
+        File file = new File(dir, name + ".xml");
+        return file.delete();
     }
 
     @Override
-    public boolean edit(String oldName, ProfileStructure profile) {
-        ProfileStructure oldProfile = get(oldName);
-        if (delete(oldName)) {
-            if (add(profile)) {
-                if (!oldName.equals(profile.getName())) {
-                    try {
-                        XmlEventDataStorageBackend eventDataStorage = XmlEventDataStorageBackend.getInstance(s_context);
-                        eventDataStorage.handleProfileRename(oldName, profile.getName());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                return true;
-            } else
-                add(oldProfile);
-        }
-        return false;
+    public boolean update(EventStructure event) {
+        return delete(event.getName()) && add(event);
     }
 
-    public List<ProfileStructure> allProfiles() {
-        List<ProfileStructure> list = new ArrayList<>();
+    /*
+     * Rescan and reload from the directory everytime
+     */
+    @Override
+    public List<EventStructure> allEvents() {
+        List<EventStructure> list = new ArrayList<>();
         try {
             File[] files = dir.listFiles(new FileFilter() {
                 @Override
@@ -150,30 +134,28 @@ public class XmlProfileDataStorageBackend implements ProfileDataStorageBackendIn
                     return false;
                 }
             });
-            ProfileParser parser = new ProfileParser();
+            EventParser parser = new EventParser();
             for (File file : files) {
                 try {
                     FileInputStream fin = new FileInputStream(file);
-                    ProfileStructure profile = parser.parse(fin);
-                    list.add(profile);
+                    EventStructure event = parser.parse(fin);
+                    list.add(event);
                 } catch (FileNotFoundException e) {
+                    Logger.e(e, "event file <%s> exists when listing but disappears when reading", file);
                     e.printStackTrace();
                 } catch (XmlPullParserException e) {
                     e.printStackTrace();
                 } catch (IllegalXmlException e) {
+                    Logger.e(e, "event file <%s> has illegal data", file);
                     e.printStackTrace();
                 }
             }
         } catch (IOException e) {
+            Logger.e(e, "failed to list files in dir <%s> (in app internal storage)", dir);
             e.printStackTrace();
         }
+
         return list;
     }
 
-    String fileName(ProfileStructure profile) {
-        String fn = "";
-        fn += profile.getName();
-        fn += ".xml";
-        return fn;
-    }
 }

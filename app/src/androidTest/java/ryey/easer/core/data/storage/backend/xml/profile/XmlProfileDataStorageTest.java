@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.data.storage.xml.profile;
+package ryey.easer.core.data.storage.backend.xml.profile;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
@@ -26,15 +26,15 @@ import java.io.File;
 import java.io.IOException;
 
 import ryey.easer.core.data.ProfileStructure;
-import ryey.easer.core.data.storage.FileUtils;
+import ryey.easer.core.data.storage.backend.IOUtils;
 
 public class XmlProfileDataStorageTest extends ApplicationTestCase<Application> {
     public XmlProfileDataStorageTest() {
         super(Application.class);
     }
 
-    public void testProfileXmlDataStorage() throws IOException {
-        File dir = FileUtils.getSubDir(getContext().getFilesDir(), "profile");
+    public void testProfileXmlDataStorage() {
+        File dir = IOUtils.mustGetSubDir(getContext().getFilesDir(), "profile");
         if (dir.exists()) {
             for (String filename : dir.list()) {
                 File file = new File(dir, filename);

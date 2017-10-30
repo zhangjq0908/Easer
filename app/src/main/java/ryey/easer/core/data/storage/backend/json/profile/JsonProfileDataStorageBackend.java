@@ -1,4 +1,4 @@
-package ryey.easer.core.data.storage.json.profile;
+package ryey.easer.core.data.storage.backend.json.profile;
 
 import android.content.Context;
 
@@ -15,9 +15,8 @@ import java.util.List;
 
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.core.data.ProfileStructure;
-import ryey.easer.core.data.storage.FileUtils;
-import ryey.easer.core.data.storage.ProfileDataStorageBackendInterface;
-import ryey.easer.core.data.storage.StorageHelper;
+import ryey.easer.core.data.storage.backend.IOUtils;
+import ryey.easer.core.data.storage.backend.ProfileDataStorageBackendInterface;
 
 public class JsonProfileDataStorageBackend implements ProfileDataStorageBackendInterface {
 
@@ -25,11 +24,11 @@ public class JsonProfileDataStorageBackend implements ProfileDataStorageBackendI
     private static Context s_context = null;
     private static File dir;
 
-    public static JsonProfileDataStorageBackend getInstance(Context context) throws IOException {
+    public static JsonProfileDataStorageBackend getInstance(Context context) {
         if (instance == null) {
             if (context != null)
                 s_context = context;
-            dir = FileUtils.getSubDir(s_context.getFilesDir(), "profile");
+            dir = IOUtils.mustGetSubDir(s_context.getFilesDir(), "profile");
             instance = new JsonProfileDataStorageBackend();
         }
         return instance;
@@ -41,7 +40,7 @@ public class JsonProfileDataStorageBackend implements ProfileDataStorageBackendI
     @Override
     public List<String> list() {
         ArrayList<String> list = new ArrayList<>();
-        for (ProfileStructure profile : allJsonProfiles()) {
+        for (ProfileStructure profile : allProfiles()) {
             list.add(profile.getName());
         }
         return list;
@@ -87,24 +86,12 @@ public class JsonProfileDataStorageBackend implements ProfileDataStorageBackendI
 
     @Override
     public boolean delete(String name) {
-        if (!StorageHelper.isSafeToDeleteProfile(name))
-            return false;
         File file = new File(dir, name + ".json");
         return file.delete();
     }
 
     @Override
-    public boolean edit(String oldName, ProfileStructure profile) {
-        File old_file = new File(dir, oldName + ".json");
-        boolean success = false;
-        success = old_file.delete();
-        success = success && add(profile);
-        if (success)
-            StorageHelper.updateProfileNameRef(oldName, profile.getName());
-        return success;
-    }
-
-    public List<ProfileStructure> allJsonProfiles() {
+    public List<ProfileStructure> allProfiles() {
         List<ProfileStructure> list = new ArrayList<>();
         try {
             File[] files = dir.listFiles(new FileFilter() {

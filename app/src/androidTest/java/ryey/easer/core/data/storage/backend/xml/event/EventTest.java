@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.data.storage.xml.event;
+package ryey.easer.core.data.storage.backend.xml.event;
 
 import org.junit.BeforeClass;
 import org.junit.Test;

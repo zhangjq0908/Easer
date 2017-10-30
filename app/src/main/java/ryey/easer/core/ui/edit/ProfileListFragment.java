@@ -61,15 +61,11 @@ public class ProfileListFragment extends ListFragment {
         setHasOptionsMenu(true);
         registerForContextMenu(getListView());
 
-        try {
-            mStorage = ProfileDataStorage.getInstance(getActivity());
-            List<String> items = mStorage.list();
-            Logger.v("All profiles: %s", items);
-            ListAdapter adapter = new ProfileListAdapter(getActivity(), items);
-            setListAdapter(adapter);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        mStorage = ProfileDataStorage.getInstance(getActivity());
+        List<String> items = mStorage.list();
+        Logger.v("All profiles: %s", items);
+        ListAdapter adapter = new ProfileListAdapter(getActivity(), items);
+        setListAdapter(adapter);
         reloadList(); //TODO: 尚有重複載入，待改進
     }
 

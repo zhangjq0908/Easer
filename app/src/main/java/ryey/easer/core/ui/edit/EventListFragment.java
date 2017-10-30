@@ -62,13 +62,9 @@ public class EventListFragment extends ListFragment {
         registerForContextMenu(getListView());
 
         List<String> items = null;
-        try {
-            mStorage = EventDataStorage.getInstance(getActivity());
-            items = mStorage.list();
-            Logger.v("All events: %s", items);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        mStorage = EventDataStorage.getInstance(getActivity());
+        items = mStorage.list();
+        Logger.v("All events: %s", items);
         EventListAdapter adapter = new EventListAdapter(getActivity(), items);
         setListAdapter(adapter);
         reloadList(); //TODO: 尚有重複載入，待改進

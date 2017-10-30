@@ -2,26 +2,28 @@ package ryey.easer.core.data.storage;
 
 import android.content.Context;
 
-import java.io.IOException;
 import java.util.List;
 
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.EventTree;
-import ryey.easer.core.data.storage.json.event.JsonEventDataStorageBackend;
-import ryey.easer.core.data.storage.xml.event.XmlEventDataStorageBackend;
+import ryey.easer.core.data.storage.backend.EventDataStorageBackendInterface;
+import ryey.easer.core.data.storage.backend.json.event.JsonEventDataStorageBackend;
+import ryey.easer.core.data.storage.backend.xml.event.XmlEventDataStorageBackend;
 
 public class EventDataStorage {
 
     private static EventDataStorage instance = null;
 
-    JsonEventDataStorageBackend json_storage;
-    XmlEventDataStorageBackend xml_storage;
+    private Context context;
+    private EventDataStorageBackendInterface json_storage;
+    private EventDataStorageBackendInterface xml_storage;
 
-    public static EventDataStorage getInstance(Context context) throws IOException {
+    public static EventDataStorage getInstance(Context context) {
         if (instance == null) {
             instance = new EventDataStorage();
             instance.json_storage = JsonEventDataStorageBackend.getInstance(context);
             instance.xml_storage = XmlEventDataStorageBackend.getInstance(context);
+            instance.context = context;
         }
         return instance;
     }
@@ -48,6 +50,8 @@ public class EventDataStorage {
     }
 
     public boolean delete(String name) {
+        if (!StorageHelper.isSafeToDeleteEvent(context, name))
+            return false;
         if (json_storage.list().contains(name))
             return json_storage.delete(name);
         else if (xml_storage.list().contains(name))
@@ -56,24 +60,81 @@ public class EventDataStorage {
     }
 
     public boolean edit(String oldName, EventStructure event) {
+        if (oldName.equals(event.getName()))
+            return update(event);
         if (!add(event))
             return false;
+        boolean success;
         if (json_storage.list().contains(oldName))
-            return json_storage.delete(oldName);
+            success = json_storage.delete(oldName);
         else if (xml_storage.list().contains(oldName))
-            return xml_storage.delete(oldName);
+            success = xml_storage.delete(oldName);
+        else {
+            throw new IllegalAccessError();
+        }
+        if (success) {
+            if (!oldName.equals(event.getName())) {
+                success = handleEventRename(oldName, event.getName());
+            }
+        }
+        return success;
+    }
+
+    boolean update(EventStructure eventStructure) {
+        String name = eventStructure.getName();
+        boolean success;
+        if (json_storage.list().contains(name))
+            success = json_storage.delete(name);
+        else if (xml_storage.list().contains(name))
+            success = xml_storage.delete(name);
+        else {
+            throw new IllegalAccessError();
+        }
+        if (success)
+            return add(eventStructure);
         return false;
     }
 
     public List<EventTree> getEventTrees() {
-        List<EventStructure> list = json_storage.allEvents();
-        list.addAll(xml_storage.allEvents());
-        return StorageHelper.eventListToTrees(list);
+        return StorageHelper.eventListToTrees(allEvents());
     }
 
-    public boolean handleProfileRename(String oldName, String newName) {
-        boolean success;
-        success = json_storage.handleProfileRename(oldName, newName);
-        return xml_storage.handleProfileRename(oldName, newName) && success;
+    List<EventStructure> allEvents() {
+        List<EventStructure> list = json_storage.allEvents();
+        list.addAll(xml_storage.allEvents());
+        return list;
+    }
+
+    boolean handleProfileRename(String oldName, String newName) {
+        for (EventStructure event : json_storage.allEvents()) {
+            if (oldName.equals(event.getProfileName())) {
+                event.setProfileName(newName);
+                json_storage.update(event);
+            }
+        }
+
+        for (EventStructure event : xml_storage.allEvents()) {
+            if (oldName.equals(event.getProfileName())) {
+                event.setProfileName(newName);
+                xml_storage.update(event);
+            }
+        }
+
+        return true;
+    }
+
+    boolean handleEventRename(String oldName, String newName) {
+        boolean success = true;
+        // alter subnodes to point to the new name
+        List<EventStructure> subs = StorageHelper.eventParentMap(allEvents()).get(oldName);
+        if (subs != null) {
+            for (EventStructure sub : subs) {
+                sub.setParentName(newName);
+                if (!update(sub))
+                    success = false;
+            }
+
+        }
+        return success;
     }
 }
