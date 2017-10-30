@@ -34,7 +34,7 @@ import ryey.easer.commons.plugindef.eventplugin.EventData;
  *
  * Only `EditEventActivity` and `EventTree` needs to know the actual structure.
  */
-final public class EventStructure {
+final public class EventStructure implements Named, Verifiable {
     protected String name;
     protected EventData eventData;
     protected boolean active = true;

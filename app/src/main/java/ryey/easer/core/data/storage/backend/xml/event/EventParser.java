@@ -29,7 +29,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import ryey.easer.commons.IllegalXmlException;
+import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
@@ -44,7 +44,7 @@ class EventParser {
     private int version = ryey.easer.commons.C.VERSION_DEFAULT;
     private EventStructure event;
 
-    public EventStructure parse(InputStream in) throws XmlPullParserException, IOException, IllegalXmlException {
+    public EventStructure parse(InputStream in) throws XmlPullParserException, IOException, IllegalStorageDataException {
         boolean no_version = false;
         event = new EventStructure();
         parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
@@ -64,10 +64,10 @@ class EventParser {
                 Logger.d("Event <%s> has no \"version\" attribute. Used fallback version instead.", event.getName());
             return event;
         } else
-            throw new IllegalXmlException("illegal content");
+            throw new IllegalStorageDataException("illegal content");
     }
 
-    private boolean readEvent() throws IOException, XmlPullParserException, IllegalXmlException {
+    private boolean readEvent() throws IOException, XmlPullParserException, IllegalStorageDataException {
         parser.require(XmlPullParser.START_TAG, ns, C.EVENT);
         while (parser.next() != XmlPullParser.END_DOCUMENT) {
             if (parser.getEventType() != XmlPullParser.START_TAG) {
@@ -94,22 +94,22 @@ class EventParser {
         return true;
     }
 
-    private void readActiveState() throws IOException, XmlPullParserException, IllegalXmlException {
+    private void readActiveState() throws IOException, XmlPullParserException, IllegalStorageDataException {
         event.setActive(Boolean.parseBoolean(XmlHelper.getText(parser, "Enabled")));
     }
 
-    private void readName() throws IOException, XmlPullParserException, IllegalXmlException {
+    private void readName() throws IOException, XmlPullParserException, IllegalStorageDataException {
         event.setName(XmlHelper.getText(parser, "Name"));
     }
 
-    private void readProfile() throws IOException, XmlPullParserException, IllegalXmlException {
+    private void readProfile() throws IOException, XmlPullParserException, IllegalStorageDataException {
         String text = XmlHelper.getText(parser, "Profile");
         if (!text.equals(C.NON))
             event.setProfileName(text);
     }
 
-    private void readTrigger() throws IOException, XmlPullParserException, IllegalXmlException {
-        parser.next(); // C.AFTER
+    private void readTrigger() throws IOException, XmlPullParserException, IllegalStorageDataException {
+        parser.next(); // NC.AFTER
         String text = XmlHelper.getText(parser, "After");
         if (!text.equals(C.NON))
             event.setParentName(text);
@@ -124,7 +124,7 @@ class EventParser {
         if (data.isValid())
             event.setEventData(data);
         else
-            throw new IllegalXmlException("data read but is not valid");
+            throw new IllegalStorageDataException("data read but is not valid");
     }
 
 }

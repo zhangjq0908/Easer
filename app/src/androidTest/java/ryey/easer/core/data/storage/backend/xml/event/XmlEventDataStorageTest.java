@@ -52,7 +52,7 @@ public class XmlEventDataStorageTest {
     }
 
     @Test
-    public void testEventXmlDataStorage() throws ParseException {
+    public void testEventXmlDataStorage() throws ParseException, IOException {
         File dir = IOUtils.mustGetSubDir(context.getFilesDir(), "event");
         if (dir.exists()) {
             for (String filename : dir.list()) {
@@ -71,16 +71,30 @@ public class XmlEventDataStorageTest {
         EventStructure event2 = new EventStructure("event2");
         event2.setProfileName("profile2");
         event2.setEventData(eventData);
-        assertTrue(dataStorage.add(event1));
+        dataStorage.add(event1);
         assertEquals(1, dataStorage.list().size());
-        assertFalse(dataStorage.add(event1));
+        assertTrue(dataStorage.has(event1.getName()));
         assertEquals(1, dataStorage.list().size());
-        assertTrue(dataStorage.add(event2));
+        dataStorage.add(event2);
         assertEquals(2, dataStorage.list().size());
-        compareEventStructure(event1, dataStorage.get("event1"));
-        compareEventStructure(event2, dataStorage.get("event2"));
-        assertTrue(dataStorage.delete("event1"));
+        try {
+            compareEventStructure(event1, dataStorage.get("event1"));
+        } catch (ryey.easer.commons.IllegalStorageDataException e) {
+            e.printStackTrace();
+        }
+        try {
+            compareEventStructure(event2, dataStorage.get("event2"));
+        } catch (ryey.easer.commons.IllegalStorageDataException e) {
+            e.printStackTrace();
+        }
+        assertTrue(dataStorage.has(event1.getName()));
+        dataStorage.delete("event1");
+        assertFalse(dataStorage.has(event1.getName()));
         assertEquals(1, dataStorage.list().size());
-        assertNull(dataStorage.get("event1"));
+        try {
+            assertNull(dataStorage.get("event1"));
+        } catch (ryey.easer.commons.IllegalStorageDataException e) {
+            e.printStackTrace();
+        }
     }
 }

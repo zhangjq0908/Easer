@@ -20,7 +20,20 @@
 package ryey.easer.commons;
 
 public class IllegalStorageDataException extends Exception {
+
     public IllegalStorageDataException(String detailMessage) {
         super(detailMessage);
+    }
+
+    public IllegalStorageDataException(C.Format format) {
+        super(String.format("Illegal %s data", format));
+    }
+
+    public IllegalStorageDataException(C.Format format, String field) {
+        super(String.format("Illegal %s data: invalid field <%s>", format, field));
+    }
+
+    public IllegalStorageDataException(C.Format format, String field, String expected) {
+        super(String.format("Illegal %s data: field <%s> doesn't have %s", format, field, expected));
     }
 }

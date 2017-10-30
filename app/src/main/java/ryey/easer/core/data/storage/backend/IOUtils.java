@@ -30,4 +30,15 @@ public class IOUtils {
             else
                 return subdir;
     }
+
+    public static boolean fileExists(File dir, String name) {
+        File file = new File(dir, name);
+        if (file.exists()) {
+            if (file.isFile())
+                return true;
+            else
+                throw new IllegalStateException("File exists but is not a file");
+        }
+        return false;
+    }
 }

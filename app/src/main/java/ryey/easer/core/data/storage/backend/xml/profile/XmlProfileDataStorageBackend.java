@@ -21,8 +21,6 @@ package ryey.easer.core.data.storage.backend.xml.profile;
 
 import android.content.Context;
 
-import com.orhanobut.logger.Logger;
-
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.File;
@@ -34,10 +32,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ryey.easer.commons.IllegalXmlException;
+import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.storage.backend.IOUtils;
 import ryey.easer.core.data.storage.backend.ProfileDataStorageBackendInterface;
+import ryey.easer.core.data.storage.backend.xml.NC;
 
 public class XmlProfileDataStorageBackend implements ProfileDataStorageBackendInterface {
     private static XmlProfileDataStorageBackend instance = null;
@@ -60,87 +59,78 @@ public class XmlProfileDataStorageBackend implements ProfileDataStorageBackendIn
     }
 
     @Override
+    public boolean has(String name) {
+        return IOUtils.fileExists(dir, name + NC.SUFFIX);
+    }
+
+    @Override
     public List<String> list() {
         ArrayList<String> list = new ArrayList<>();
-        for (ProfileStructure profile : allProfiles()) {
+        for (ProfileStructure profile : all()) {
             list.add(profile.getName());
         }
         return list;
     }
 
     @Override
-    public ProfileStructure get(String name) {
-        for (ProfileStructure profile : allProfiles()) {
-            if (name.equals(profile.getName()))
-                return profile;
-        }
-        return null;
+    public ProfileStructure get(String name) throws IllegalStorageDataException {
+        File file = new File(dir, name + NC.SUFFIX);
+        return get(file);
     }
 
-    @Override
-    public boolean add(ProfileStructure profile) {
+    private ProfileStructure get(File file) throws IllegalStorageDataException {
+        ProfileParser parser = new ProfileParser();
         try {
-            ProfileSerializer serializer = new ProfileSerializer();
-            File file = new File(dir, profile.getName() + ".xml");
-            if (file.exists()) { // see if the existing one is invalid. If so, remove it in favor of the new one
-                ProfileStructure existing = get(profile.getName());
-                if ((existing == null) || (!existing.isValid())) {
-                    Logger.i("replace an invalid existing profile with the same filename <%s>", file.getName());
-                    boolean success = file.delete();
-                    if (!success) {
-                        Logger.e("failed to remove existing file <%s>", file.getName());
-                    }
-                }
-            }
-            if (file.createNewFile()) {
-                FileOutputStream fout = new FileOutputStream(file);
-                serializer.serialize(fout, profile);
-                fout.close();
-                return true;
-            }
+            FileInputStream fin = new FileInputStream(file);
+            ProfileStructure profile = parser.parse(fin);
+            fin.close();
+            return profile;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return false;
+        throw new IllegalAccessError();
     }
 
     @Override
-    public boolean delete(String name) {
-        File file = new File(dir, name + ".xml");
-        return file.delete();
+    public void add(ProfileStructure profile) throws IOException {
+        ProfileSerializer serializer = new ProfileSerializer();
+        File file = new File(dir, profile.getName() + NC.SUFFIX);
+        FileOutputStream fout = new FileOutputStream(file);
+        serializer.serialize(fout, profile);
+        fout.close();
     }
 
     @Override
-    public List<ProfileStructure> allProfiles() {
+    public void delete(String name) {
+        File file = new File(dir, name + NC.SUFFIX);
+        if (!file.delete())
+            throw new IllegalStateException("Unable to delete " + file);
+    }
+
+    @Override
+    public List<ProfileStructure> all() {
         List<ProfileStructure> list = new ArrayList<>();
-        try {
-            File[] files = dir.listFiles(new FileFilter() {
-                @Override
-                public boolean accept(File pathname) {
-                    if (pathname.isFile()) {
-                        if (pathname.getName().endsWith(".xml")) {
-                            return true;
-                        }
+        File[] files = dir.listFiles(new FileFilter() {
+            @Override
+            public boolean accept(File pathname) {
+                if (pathname.isFile()) {
+                    if (pathname.getName().endsWith(NC.SUFFIX)) {
+                        return true;
                     }
-                    return false;
                 }
-            });
-            ProfileParser parser = new ProfileParser();
-            for (File file : files) {
-                try {
-                    FileInputStream fin = new FileInputStream(file);
-                    ProfileStructure profile = parser.parse(fin);
-                    list.add(profile);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (XmlPullParserException e) {
-                    e.printStackTrace();
-                } catch (IllegalXmlException e) {
-                    e.printStackTrace();
-                }
+                return false;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        });
+        for (File file : files) {
+            try {
+                list.add(get(file));
+            } catch (IllegalStorageDataException e) {
+                e.printStackTrace();
+            }
         }
         return list;
     }

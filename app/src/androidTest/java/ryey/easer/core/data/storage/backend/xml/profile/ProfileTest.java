@@ -27,7 +27,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import ryey.easer.commons.IllegalXmlException;
+import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.plugins.operation.bluetooth.BluetoothOperationData;
 import ryey.easer.plugins.operation.bluetooth.BluetoothOperationPlugin;
@@ -52,7 +52,7 @@ public class ProfileTest {
     }
 
     @Test
-    public void testParse() throws IOException, XmlPullParserException, IllegalXmlException {
+    public void testParse() throws IOException, XmlPullParserException, IllegalStorageDataException {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(t_xml.getBytes());;
         ProfileParser profileParser = new ProfileParser();
         ProfileStructure profile = profileParser.parse(byteArrayInputStream);

@@ -19,19 +19,7 @@
 
 package ryey.easer.core.data.storage.backend;
 
-import java.util.List;
-
 import ryey.easer.core.data.ProfileStructure;
 
-public interface ProfileDataStorageBackendInterface {
-    List<String> list();
-
-    ProfileStructure get(String name);
-
-    boolean add(ProfileStructure profile);
-
-    boolean delete(String name);
-
-    List<ProfileStructure> allProfiles();
-
+public interface ProfileDataStorageBackendInterface extends DataStorageCommonInterface<ProfileStructure> {
 }

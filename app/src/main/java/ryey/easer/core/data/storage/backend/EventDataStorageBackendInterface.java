@@ -19,20 +19,10 @@
 
 package ryey.easer.core.data.storage.backend;
 
-import java.util.List;
+import java.io.IOException;
 
 import ryey.easer.core.data.EventStructure;
 
-public interface EventDataStorageBackendInterface {
-    List<String> list();
-
-    EventStructure get(String name);
-
-    boolean add(EventStructure event);
-
-    boolean delete(String name);
-
-    boolean update(EventStructure eventStructure);
-
-    List<EventStructure> allEvents();
+public interface EventDataStorageBackendInterface extends DataStorageCommonInterface<EventStructure> {
+    void update(EventStructure eventStructure) throws IOException;
 }

@@ -29,7 +29,6 @@ import android.os.IBinder;
 
 import com.orhanobut.logger.Logger;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

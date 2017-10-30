@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.Calendar;
 
-import ryey.easer.commons.IllegalXmlException;
+import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.core.data.EventStructure;
@@ -62,7 +62,7 @@ public class EventTest {
     }
 
     @Test
-    public void testParse() throws IOException, XmlPullParserException, IllegalXmlException {
+    public void testParse() throws IOException, XmlPullParserException, IllegalStorageDataException {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(t_xml_child.getBytes());
         EventParser eventParser = new EventParser();
         EventStructure event = eventParser.parse(byteArrayInputStream);

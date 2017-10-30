@@ -2,7 +2,6 @@ package ryey.easer.core.data.storage;
 
 import android.content.Context;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

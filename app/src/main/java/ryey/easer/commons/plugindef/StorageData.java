@@ -27,7 +27,6 @@ import java.io.IOException;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.IllegalXmlException;
 
 /**
  * Common interface used by both EventData and OperationData
@@ -58,9 +57,9 @@ public interface StorageData {
      * @param version The version of the to-be-parsed data. (See also {@link ryey.easer.commons.C})
      * @throws IOException
      * @throws XmlPullParserException
-     * @throws IllegalXmlException
+     * @throws IllegalStorageDataException
      */
-    void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalXmlException;
+    void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException;
 
     /**
      * Dump the data (of the instance) to a destination (currently only XML)

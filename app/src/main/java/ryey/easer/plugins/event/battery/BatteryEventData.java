@@ -9,7 +9,6 @@ import java.util.EnumSet;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.PluginRegistry;
@@ -51,7 +50,7 @@ public class BatteryEventData extends TypedEventData {
     }
 
     @Override
-    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalXmlException {
+    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
         String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
         Integer int_data = Integer.parseInt(str_data);
         set(int_data);

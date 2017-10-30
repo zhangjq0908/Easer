@@ -28,7 +28,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import ryey.easer.commons.C;
-import ryey.easer.commons.IllegalXmlException;
+import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
@@ -43,7 +43,7 @@ class ProfileParser {
     int version = ryey.easer.commons.C.VERSION_DEFAULT;
     ProfileStructure profile;
 
-    public ProfileStructure parse(InputStream in) throws XmlPullParserException, IOException, IllegalXmlException {
+    public ProfileStructure parse(InputStream in) throws XmlPullParserException, IOException, IllegalStorageDataException {
         profile = new ProfileStructure();
         parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
         parser.setInput(in, null);
@@ -51,10 +51,10 @@ class ProfileParser {
         if (readProfile())
             return profile;
         else
-            throw new IllegalXmlException("illegal content");
+            throw new IllegalStorageDataException("illegal content");
     }
 
-    private boolean readProfile() throws XmlPullParserException, IOException, IllegalXmlException {
+    private boolean readProfile() throws XmlPullParserException, IOException, IllegalStorageDataException {
         parser.require(XmlPullParser.START_TAG, ns, C.PROFILE);
         while (parser.next() != XmlPullParser.END_DOCUMENT) {
             if (parser.getEventType() != XmlPullParser.START_TAG) {
@@ -75,17 +75,17 @@ class ProfileParser {
         return true;
     }
 
-    private void readName() throws IOException, XmlPullParserException, IllegalXmlException {
+    private void readName() throws IOException, XmlPullParserException, IllegalStorageDataException {
         if (parser.next() == XmlPullParser.TEXT)
             profile.setName(parser.getText());
         else
-            throw new IllegalXmlException("Illegal Profile: Name has No content");
+            throw new IllegalStorageDataException("Illegal Profile: Name has No content");
     }
 
-    private void readItem() throws IOException, XmlPullParserException, IllegalXmlException {
+    private void readItem() throws IOException, XmlPullParserException, IllegalStorageDataException {
         String spec = parser.getAttributeValue(ns, C.SPEC);
         if (spec == null) {
-            throw new IllegalXmlException("Illegal Item: No Spec");
+            throw new IllegalStorageDataException("Illegal Item: No Spec");
         }
         switch (spec) {
             default:

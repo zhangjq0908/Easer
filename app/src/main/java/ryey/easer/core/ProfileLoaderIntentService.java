@@ -24,7 +24,6 @@ import android.content.Intent;
 
 import com.orhanobut.logger.Logger;
 
-import java.io.IOException;
 import java.util.Calendar;
 
 import ryey.easer.commons.plugindef.operationplugin.OperationData;

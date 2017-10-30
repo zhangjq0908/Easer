@@ -36,7 +36,6 @@ import java.util.Set;
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.PluginRegistry;
@@ -97,14 +96,14 @@ public class DayOfWeekEventData extends TypedEventData {
     }
 
     @Override
-    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalXmlException {
+    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
         if (version == C.VERSION_DEFAULT) {
             String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
             try {
                 set(Utils.str2set(str_data));
             } catch (ParseException e) {
                 Logger.e(e, "Illegal Event: illegal time format %s", str_data);
-                throw new IllegalXmlException(String.format("Illegal Event: illegal time format %s", str_data));
+                throw new IllegalStorageDataException(String.format("Illegal Event: illegal time format %s", str_data));
             }
         } else {
             set(XmlHelper.EventHelper.readMultipleSituation(parser));

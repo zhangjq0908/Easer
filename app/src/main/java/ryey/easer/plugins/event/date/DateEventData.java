@@ -33,7 +33,6 @@ import java.util.EnumSet;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.PluginRegistry;
@@ -92,7 +91,7 @@ public class DateEventData extends TypedEventData {
     }
 
     @Override
-    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalXmlException {
+    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
         String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
         try {
             set(TextToDate(str_data));
@@ -100,7 +99,7 @@ public class DateEventData extends TypedEventData {
             setType(type);
         } catch (ParseException e) {
             Logger.e(e, "Illegal Event: illegal time format %s", str_data);
-            throw new IllegalXmlException(String.format("Illegal Event: illegal time format %s", str_data));
+            throw new IllegalStorageDataException(String.format("Illegal Event: illegal time format %s", str_data));
         }
     }
 

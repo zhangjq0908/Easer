@@ -17,7 +17,6 @@ import java.util.Set;
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.PluginRegistry;
@@ -71,7 +70,7 @@ public class ConnectivityEventData extends TypedEventData {
     }
 
     @Override
-    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalXmlException {
+    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
         set(XmlHelper.EventHelper.readMultipleSituation(parser));
         EventType type = XmlHelper.EventHelper.readLogic(parser);
         setType(type);

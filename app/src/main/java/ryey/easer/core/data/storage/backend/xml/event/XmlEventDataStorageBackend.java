@@ -34,10 +34,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ryey.easer.commons.IllegalXmlException;
+import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.storage.backend.EventDataStorageBackendInterface;
 import ryey.easer.core.data.storage.backend.IOUtils;
+import ryey.easer.core.data.storage.backend.xml.NC;
 
 public class XmlEventDataStorageBackend implements EventDataStorageBackendInterface {
     private static XmlEventDataStorageBackend instance = null;
@@ -60,99 +61,88 @@ public class XmlEventDataStorageBackend implements EventDataStorageBackendInterf
     }
 
     @Override
+    public boolean has(String name) {
+        return IOUtils.fileExists(dir, name + NC.SUFFIX);
+    }
+
+    @Override
     public List<String> list() {
         List<String> list = new ArrayList<>();
-        for (EventStructure event : allEvents()) {
+        for (EventStructure event : all()) {
             list.add(event.getName());
         }
         return list;
     }
 
     @Override
-    public EventStructure get(String name) {
-        for (EventStructure event : allEvents()) {
-            if (name.equals(event.getName()))
-                return event;
-        }
-        return null;
+    public EventStructure get(String name) throws IllegalStorageDataException {
+        File file = new File(dir, name + NC.SUFFIX);
+        return get(file);
     }
 
-    @Override
-    public boolean add(EventStructure event) {
+    private EventStructure get(File file) throws IllegalStorageDataException {
+        EventParser parser = new EventParser();
         try {
-            EventSerializer serializer = new EventSerializer();
-            File file = new File(dir, event.getName() + ".xml");
-            if (file.exists()) { // see if the existing one is invalid. If so, remove it in favor of the new one
-                EventStructure existing = get(event.getName());
-                if ((existing == null) || (!existing.isValid())) {
-                    Logger.i("replace an invalid existing event with the same filename <%s>", file.getName());
-                    boolean success = file.delete();
-                    if (!success) {
-                        Logger.e("failed to remove existing file <%s>", file.getName());
-                    }
-                }
-            }
-            if (file.createNewFile()) {
-                FileOutputStream fout = new FileOutputStream(file);
-                serializer.serialize(fout, event);
-                fout.close();
-                return true;
-            }
+            FileInputStream fin = new FileInputStream(file);
+            EventStructure eventStructure = parser.parse(fin);
+            fin.close();
+            return eventStructure;
+        } catch (FileNotFoundException e) {
+            Logger.e(e, "event file <%s> exists when listing but disappears when reading", file);
+            e.printStackTrace();
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
         } catch (IOException e) {
-            Logger.e(e, "IOException during `XmlEventDataStorageBackend.add()` (not sure the exact location)");
             e.printStackTrace();
         }
-        return false;
+        throw new IllegalAccessError();
     }
 
     @Override
-    public boolean delete(String name) {
-        File file = new File(dir, name + ".xml");
-        return file.delete();
+    public void add(EventStructure event) throws IOException {
+        EventSerializer serializer = new EventSerializer();
+        File file = new File(dir, event.getName() + NC.SUFFIX);
+        FileOutputStream fout = new FileOutputStream(file);
+        serializer.serialize(fout, event);
+        fout.close();
     }
 
     @Override
-    public boolean update(EventStructure event) {
-        return delete(event.getName()) && add(event);
+    public void delete(String name) {
+        File file = new File(dir, name + NC.SUFFIX);
+        if (!file.delete())
+            throw new IllegalStateException("Unable to delete file " + file);
+    }
+
+    @Override
+    public void update(EventStructure event) throws IOException {
+        delete(event.getName());
+        add(event);
     }
 
     /*
      * Rescan and reload from the directory everytime
      */
     @Override
-    public List<EventStructure> allEvents() {
+    public List<EventStructure> all() {
         List<EventStructure> list = new ArrayList<>();
-        try {
-            File[] files = dir.listFiles(new FileFilter() {
-                @Override
-                public boolean accept(File pathname) {
-                    if (pathname.isFile()) {
-                        if (pathname.getName().endsWith(".xml")) {
-                            return true;
-                        }
+        File[] files = dir.listFiles(new FileFilter() {
+            @Override
+            public boolean accept(File pathname) {
+                if (pathname.isFile()) {
+                    if (pathname.getName().endsWith(NC.SUFFIX)) {
+                        return true;
                     }
-                    return false;
                 }
-            });
-            EventParser parser = new EventParser();
-            for (File file : files) {
-                try {
-                    FileInputStream fin = new FileInputStream(file);
-                    EventStructure event = parser.parse(fin);
-                    list.add(event);
-                } catch (FileNotFoundException e) {
-                    Logger.e(e, "event file <%s> exists when listing but disappears when reading", file);
-                    e.printStackTrace();
-                } catch (XmlPullParserException e) {
-                    e.printStackTrace();
-                } catch (IllegalXmlException e) {
-                    Logger.e(e, "event file <%s> has illegal data", file);
-                    e.printStackTrace();
-                }
+                return false;
             }
-        } catch (IOException e) {
-            Logger.e(e, "failed to list files in dir <%s> (in app internal storage)", dir);
-            e.printStackTrace();
+        });
+        for (File file : files) {
+            try {
+                list.add(get(file));
+            } catch (IllegalStorageDataException e) {
+                e.printStackTrace();
+            }
         }
 
         return list;

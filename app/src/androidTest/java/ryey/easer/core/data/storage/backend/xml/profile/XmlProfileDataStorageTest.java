@@ -33,7 +33,7 @@ public class XmlProfileDataStorageTest extends ApplicationTestCase<Application> 
         super(Application.class);
     }
 
-    public void testProfileXmlDataStorage() {
+    public void testProfileXmlDataStorage() throws IOException {
         File dir = IOUtils.mustGetSubDir(getContext().getFilesDir(), "profile");
         if (dir.exists()) {
             for (String filename : dir.list()) {
@@ -46,16 +46,35 @@ public class XmlProfileDataStorageTest extends ApplicationTestCase<Application> 
         assertTrue(dataStorage.list().isEmpty());
         ProfileStructure profile1 = new ProfileStructure("profile1");
         ProfileStructure profile2 = new ProfileStructure("profile2");
-        assertTrue(dataStorage.add(profile1));
+        dataStorage.add(profile1);
+        assertTrue(dataStorage.has(profile1.getName()));
         assertEquals(1, dataStorage.list().size());
-        assertFalse(dataStorage.add(profile1));
+        assertFalse(dataStorage.has(profile1.getName()));
+        dataStorage.add(profile1);
+        assertTrue(dataStorage.has(profile1.getName()));
         assertEquals(1, dataStorage.list().size());
-        assertTrue(dataStorage.add(profile2));
+        assertFalse(dataStorage.has(profile2.getName()));
+        dataStorage.add(profile2);
+        assertTrue(dataStorage.has(profile2.getName()));
         assertEquals(2, dataStorage.list().size());
-        assertEquals(profile1, dataStorage.get("profile1"));
-        assertEquals(profile2, dataStorage.get("profile2"));
-        assertTrue(dataStorage.delete("profile1"));
+        try {
+            assertEquals(profile1, dataStorage.get("profile1"));
+        } catch (ryey.easer.commons.IllegalStorageDataException e) {
+            e.printStackTrace();
+        }
+        try {
+            assertEquals(profile2, dataStorage.get("profile2"));
+        } catch (ryey.easer.commons.IllegalStorageDataException e) {
+            e.printStackTrace();
+        }
+        assertTrue(dataStorage.has("profile1"));
+        dataStorage.delete("profile1");
+        assertFalse(dataStorage.has("profile1"));
         assertEquals(1, dataStorage.list().size());
-        assertNull(dataStorage.get("profile1"));
+        try {
+            assertNull(dataStorage.get("profile1"));
+        } catch (ryey.easer.commons.IllegalStorageDataException e) {
+            e.printStackTrace();
+        }
     }
 }

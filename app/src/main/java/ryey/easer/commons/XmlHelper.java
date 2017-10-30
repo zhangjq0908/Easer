@@ -35,13 +35,13 @@ import ryey.easer.commons.plugindef.eventplugin.EventType;
 public class XmlHelper {
     protected static final String ns = null;
 
-    public static String getText(XmlPullParser parser, String which) throws IOException, XmlPullParserException, IllegalXmlException {
+    public static String getText(XmlPullParser parser, String which) throws IOException, XmlPullParserException, IllegalStorageDataException {
         if (parser.next() == XmlPullParser.TEXT) {
             String text = parser.getText();
             parser.next(); // Move to END_TAG since there shouldn't be anything else
             return text;
         } else {
-            throw new IllegalXmlException(String.format("Illegal XML field: %s has no TEXT", which));
+            throw new IllegalStorageDataException(String.format("Illegal XML field: %s has no TEXT", which));
         }
     }
 
@@ -75,7 +75,7 @@ public class XmlHelper {
             serializer.endTag(ns, C.SIT);
         }
 
-        public static String readSingleSituation(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
+        public static String readSingleSituation(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalStorageDataException {
             String str_data = null;
             if (parser.next() == XmlPullParser.START_TAG) {
                 switch (parser.getName()) {
@@ -98,7 +98,7 @@ public class XmlHelper {
             serializer.endTag(ns, C.SIT);
         }
 
-        public static String[] readMultipleSituation(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
+        public static String[] readMultipleSituation(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalStorageDataException {
             List<String> list = new ArrayList<>();
             while (parser.next() != XmlPullParser.END_TAG) {
                 switch (parser.getName()) {
@@ -118,7 +118,7 @@ public class XmlHelper {
             serializer.endTag(ns, C.LOGIC);
         }
 
-        public static EventType readLogic(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalXmlException {
+        public static EventType readLogic(XmlPullParser parser) throws IOException, XmlPullParserException, IllegalStorageDataException {
             while (parser.next() != XmlPullParser.START_TAG);
             String logic = getText(parser, "Logic");
             EventType type = null;
@@ -147,7 +147,7 @@ public class XmlHelper {
             }
         }
 
-        public static String readString(XmlPullParser parser, String spec) throws IOException, XmlPullParserException, IllegalXmlException {
+        public static String readString(XmlPullParser parser, String spec) throws IOException, XmlPullParserException, IllegalStorageDataException {
             int depth = parser.getDepth();
             int event_type = parser.next();
             String text = null;
@@ -164,7 +164,7 @@ public class XmlHelper {
                 event_type = parser.next();
             }
             if (text == null)
-                throw new IllegalXmlException(String.format("Illegal Xml field: (%s) has no STATE", spec));
+                throw new IllegalStorageDataException(String.format("Illegal Xml field: (%s) has no STATE", spec));
 
             return text;
         }
@@ -180,7 +180,7 @@ public class XmlHelper {
             }
         }
 
-        public static Boolean readBoolean(XmlPullParser parser, String spec) throws IOException, XmlPullParserException, IllegalXmlException {
+        public static Boolean readBoolean(XmlPullParser parser, String spec) throws IOException, XmlPullParserException, IllegalStorageDataException {
             String text = readString(parser, spec);
             switch (text) {
                 case C.ON:
@@ -188,7 +188,7 @@ public class XmlHelper {
                 case C.OFF:
                     return false;
                 default:
-                    throw new IllegalXmlException(String.format("Illegal Xml field: (%s) Unknown or Illegal State", spec));
+                    throw new IllegalStorageDataException(String.format("Illegal Xml field: (%s) Unknown or Illegal State", spec));
             }
         }
 
@@ -199,13 +199,13 @@ public class XmlHelper {
             }
         }
 
-        public static Integer readInteger(XmlPullParser parser, String spec) throws IOException, XmlPullParserException, IllegalXmlException {
+        public static Integer readInteger(XmlPullParser parser, String spec) throws IOException, XmlPullParserException, IllegalStorageDataException {
             String text = readString(parser, spec);
             Integer level = null;
             try {
                 level = Integer.valueOf(text);
             } catch (NumberFormatException e) {
-                throw new IllegalXmlException(String.format("Illegal Xml field: (%s) Unknown or Illegal Number", spec));
+                throw new IllegalStorageDataException(String.format("Illegal Xml field: (%s) Unknown or Illegal Number", spec));
             }
             return level;
         }

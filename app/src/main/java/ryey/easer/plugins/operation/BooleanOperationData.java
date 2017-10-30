@@ -27,7 +27,6 @@ import java.io.IOException;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.plugins.PluginRegistry;
@@ -42,7 +41,7 @@ public abstract class BooleanOperationData extends BooleanData implements Operat
     }
 
     @Override
-    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalXmlException {
+    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
         set(XmlHelper.OperationHelper.readBoolean(parser, PluginRegistry.getInstance().operation().findPlugin(this).name()));
     }
 

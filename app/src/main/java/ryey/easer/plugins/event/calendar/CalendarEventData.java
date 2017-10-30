@@ -33,7 +33,6 @@ import java.util.EnumSet;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.IllegalXmlException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.PluginRegistry;
@@ -90,7 +89,7 @@ public class CalendarEventData extends TypedEventData {
     }
 
     @Override
-    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalXmlException {
+    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
         String res_str = XmlHelper.EventHelper.readSingleSituation(parser);
         try {
             JSONObject jsonObject = new JSONObject(res_str);
@@ -104,7 +103,7 @@ public class CalendarEventData extends TypedEventData {
                 }
             }
         } catch (JSONException e) {
-            Logger.e(e, "Error parsing %s data to JSON", getClass().getSimpleName());
+            Logger.e(e, "Error parsing %s data to SUFFIX", getClass().getSimpleName());
             e.printStackTrace();
         }
 
@@ -151,7 +150,7 @@ public class CalendarEventData extends TypedEventData {
                         }
                     }
                 } catch (JSONException e) {
-                    Logger.e(e, "Error parsing %s data to JSON", getClass().getSimpleName());
+                    Logger.e(e, "Error parsing %s data to SUFFIX", getClass().getSimpleName());
                     e.printStackTrace();
                 }
         }

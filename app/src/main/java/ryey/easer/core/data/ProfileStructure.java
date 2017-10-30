@@ -29,7 +29,7 @@ import ryey.easer.commons.plugindef.operationplugin.OperationData;
  * Only the `EditProfileActivity` and `ProfileLoaderIntentService` need to know the detailed structure of a Profile,
  * other classes only need to know the *name* of the Profile.
  */
-final public class ProfileStructure {
+final public class ProfileStructure implements Named, Verifiable {
     String name;
 
     Map<String, OperationData> data = new HashMap<>();

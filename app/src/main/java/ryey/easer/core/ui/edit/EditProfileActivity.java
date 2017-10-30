@@ -146,34 +146,39 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     protected boolean alterProfile() {
-        boolean success;
-        if (purpose == EditDataProto.Purpose.delete)
-            success = storage.delete(oldName);
-        else {
-            ProfileStructure newProfile = saveToProfile();
-            if (!newProfile.isValid()) {
-                return false;
+        try {
+            boolean success;
+            if (purpose == EditDataProto.Purpose.delete)
+                success = storage.delete(oldName);
+            else {
+                ProfileStructure newProfile = saveToProfile();
+                if (!newProfile.isValid()) {
+                    return false;
+                }
+                switch (purpose) {
+                    case add:
+                        success = storage.add(newProfile);
+                        break;
+                    case edit:
+                        success = storage.edit(oldName, newProfile);
+                        break;
+                    default:
+                        Logger.wtf("Unexpected purpose: %s", purpose);
+                        throw new UnsupportedOperationException("Unknown Purpose");
+                }
             }
-            switch (purpose) {
-                case add:
-                    success = storage.add(newProfile);
-                    break;
-                case edit:
-                    success = storage.edit(oldName, newProfile);
-                    break;
-                default:
-                    Logger.wtf("Unexpected purpose: %s", purpose);
-                    throw new UnsupportedOperationException("Unknown Purpose");
+            if (success) {
+                setResult(RESULT_OK);
+                Logger.v("Successfully altered event");
+                finish();
+            } else {
+                Logger.d("Failed to alter event");
+                Toast.makeText(this, getString(R.string.prompt_save_failed), Toast.LENGTH_SHORT).show();
             }
+            return success;
+        } catch (IOException e) {
+            Logger.e(e, "IOException when altering");
+            return false;
         }
-        if (success) {
-            setResult(RESULT_OK);
-            Logger.v("Successfully altered event");
-            finish();
-        } else {
-            Logger.d("Failed to alter event");
-            Toast.makeText(this, getString(R.string.prompt_save_failed), Toast.LENGTH_SHORT).show();
-        }
-        return success;
     }
 }
