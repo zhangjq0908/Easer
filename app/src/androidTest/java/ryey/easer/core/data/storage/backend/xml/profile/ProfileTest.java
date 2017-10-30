@@ -29,6 +29,7 @@ import java.io.IOException;
 
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.core.data.ProfileStructure;
+import ryey.easer.core.data.storage.backend.UnableToSerializeException;
 import ryey.easer.plugins.operation.bluetooth.BluetoothOperationData;
 import ryey.easer.plugins.operation.bluetooth.BluetoothOperationPlugin;
 import ryey.easer.plugins.operation.cellular.CellularOperationData;
@@ -63,12 +64,9 @@ public class ProfileTest {
     }
 
     @Test
-    public void testSerialize() throws IOException {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+    public void testSerialize() throws IOException, UnableToSerializeException {
         ProfileSerializer profileSerializer = new ProfileSerializer();
-        profileSerializer.serialize(byteArrayOutputStream, t_profile);
-        String xml = byteArrayOutputStream.toString();
+        String xml = profileSerializer.serialize(t_profile);
         assertEquals(t_xml, xml);
-        byteArrayOutputStream.close();
     }
 }

@@ -6,20 +6,26 @@ import org.json.JSONObject;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.storage.C;
+import ryey.easer.core.data.storage.backend.Serializer;
+import ryey.easer.core.data.storage.backend.UnableToSerializeException;
 import ryey.easer.plugins.PluginRegistry;
 
-class EventSerializer {
+class EventSerializer implements Serializer<EventStructure> {
 
-    String serialize(EventStructure event) throws JSONException {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put(C.NAME, event.getName());
-        jsonObject.put(C.VERSION_NAME, C.VERSION_CURRENT);
-        jsonObject.put(C.ACTIVE, event.isActive());
-        jsonObject.put(C.PROFILE, event.getProfileName());
-        jsonObject.put(C.AFTER, event.getParentName());
+    public String serialize(EventStructure event) throws UnableToSerializeException {
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put(C.NAME, event.getName());
+            jsonObject.put(C.VERSION_NAME, C.VERSION_CURRENT);
+            jsonObject.put(C.ACTIVE, event.isActive());
+            jsonObject.put(C.PROFILE, event.getProfileName());
+            jsonObject.put(C.AFTER, event.getParentName());
 
-        jsonObject.put(C.TRIG, serialize_event(event.getEventData()));
-        return jsonObject.toString();
+            jsonObject.put(C.TRIG, serialize_event(event.getEventData()));
+            return jsonObject.toString();
+        } catch (JSONException e) {
+            throw new UnableToSerializeException(e.getMessage());
+        }
     }
 
     JSONObject serialize_event(EventData event) throws JSONException {

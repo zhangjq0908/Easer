@@ -71,11 +71,11 @@ public class XmlEventDataStorageTest {
         EventStructure event2 = new EventStructure("event2");
         event2.setProfileName("profile2");
         event2.setEventData(eventData);
-        dataStorage.add(event1);
+        dataStorage.write(event1);
         assertEquals(1, dataStorage.list().size());
         assertTrue(dataStorage.has(event1.getName()));
         assertEquals(1, dataStorage.list().size());
-        dataStorage.add(event2);
+        dataStorage.write(event2);
         assertEquals(2, dataStorage.list().size());
         try {
             compareEventStructure(event1, dataStorage.get("event1"));
@@ -91,10 +91,6 @@ public class XmlEventDataStorageTest {
         dataStorage.delete("event1");
         assertFalse(dataStorage.has(event1.getName()));
         assertEquals(1, dataStorage.list().size());
-        try {
-            assertNull(dataStorage.get("event1"));
-        } catch (ryey.easer.commons.IllegalStorageDataException e) {
-            e.printStackTrace();
-        }
+        assertFalse(dataStorage.has("event1"));
     }
 }

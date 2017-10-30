@@ -34,9 +34,10 @@ import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.core.data.EventStructure;
+import ryey.easer.core.data.storage.backend.Parser;
 import ryey.easer.plugins.PluginRegistry;
 
-class EventParser {
+class EventParser implements Parser<EventStructure> {
     private static final String ns = null;
 
     private XmlPullParser parser = Xml.newPullParser();
@@ -44,27 +45,31 @@ class EventParser {
     private int version = ryey.easer.commons.C.VERSION_DEFAULT;
     private EventStructure event;
 
-    public EventStructure parse(InputStream in) throws XmlPullParserException, IOException, IllegalStorageDataException {
-        boolean no_version = false;
-        event = new EventStructure();
-        parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-        parser.setInput(in, null);
-        parser.nextTag();
-        parser.require(XmlPullParser.START_TAG, ns, C.EVENT);
+    public EventStructure parse(InputStream in) throws IOException, IllegalStorageDataException {
         try {
-            version = Integer.valueOf(parser.getAttributeValue(ns, ryey.easer.commons.C.VERSION_NAME));
-        } catch (NumberFormatException e) {
-            no_version = true;
-        } catch (Exception e) {
-            Logger.e(e, "Unexpected error");
-            throw e;
+            boolean no_version = false;
+            event = new EventStructure();
+            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+            parser.setInput(in, null);
+            parser.nextTag();
+            parser.require(XmlPullParser.START_TAG, ns, C.EVENT);
+            try {
+                version = Integer.valueOf(parser.getAttributeValue(ns, ryey.easer.commons.C.VERSION_NAME));
+            } catch (NumberFormatException e) {
+                no_version = true;
+            } catch (Exception e) {
+                Logger.e(e, "Unexpected error");
+                throw e;
+            }
+            if (readEvent()) {
+                if (no_version)
+                    Logger.d("Event <%s> has no \"version\" attribute. Used fallback version instead.", event.getName());
+                return event;
+            } else
+                throw new IllegalStorageDataException("illegal content");
+        } catch (XmlPullParserException e) {
+            throw new IllegalStorageDataException(e.getMessage());
         }
-        if (readEvent()) {
-            if (no_version)
-                Logger.d("Event <%s> has no \"version\" attribute. Used fallback version instead.", event.getName());
-            return event;
-        } else
-            throw new IllegalStorageDataException("illegal content");
     }
 
     private boolean readEvent() throws IOException, XmlPullParserException, IllegalStorageDataException {

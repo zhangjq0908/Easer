@@ -52,7 +52,7 @@ import ryey.easer.plugins.operation.wifi.WifiOperationPlugin;
 /**
  * Used to tell the app what plugins can be used.
  *
- * To register a new plugin, simply add a new line in the constructor of this class.
+ * To register a new plugin, simply write a new line in the constructor of this class.
  */
 final public class PluginRegistry {
 
@@ -79,7 +79,7 @@ final public class PluginRegistry {
         operation().registerPlugin(RingerModeOperationPlugin.class);
         operation().registerPlugin(CommandOperationPlugin.class);
         operation().registerPlugin(HotspotOperationPlugin.class);
-        //TODO: add more plugins
+        //TODO: write more plugins
     }
 
     private static final PluginRegistry instance = new PluginRegistry();

@@ -23,6 +23,6 @@ import java.io.IOException;
 
 import ryey.easer.core.data.EventStructure;
 
-public interface EventDataStorageBackendInterface extends DataStorageCommonInterface<EventStructure> {
+public interface EventDataStorageBackendInterface extends DataStorageBackendCommonInterface<EventStructure> {
     void update(EventStructure eventStructure) throws IOException;
 }

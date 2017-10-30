@@ -25,13 +25,15 @@ import com.orhanobut.logger.Logger;
 
 import org.xmlpull.v1.XmlSerializer;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.core.data.EventStructure;
+import ryey.easer.core.data.storage.backend.Serializer;
+import ryey.easer.core.data.storage.backend.UnableToSerializeException;
 
-class EventSerializer {
+class EventSerializer implements Serializer<EventStructure> {
 
     XmlSerializer serializer = Xml.newSerializer();
     private final String ns = null;
@@ -39,7 +41,8 @@ class EventSerializer {
     public EventSerializer() {
     }
 
-    public void serialize(OutputStream out, EventStructure eventStructure) throws IOException {
+    public String serialize(EventStructure eventStructure) throws UnableToSerializeException {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
         try {
             Logger.d("serializing %s", eventStructure.getName());
             serializer.setOutput(out, "utf-8");
@@ -47,8 +50,16 @@ class EventSerializer {
             writeEvent(eventStructure);
             serializer.flush();
             Logger.i("serialized %s", eventStructure.getName());
+            return out.toString();
+        } catch (IOException e) {
+            throw new UnableToSerializeException(e.getMessage());
         } finally {
-            out.close();
+            try {
+                out.close();
+            } catch (IOException e) {
+                Logger.e(e, "Unable to close ByteArrayOutputStream");
+                e.printStackTrace();
+            }
         }
     }
 

@@ -46,15 +46,13 @@ public class XmlProfileDataStorageTest extends ApplicationTestCase<Application> 
         assertTrue(dataStorage.list().isEmpty());
         ProfileStructure profile1 = new ProfileStructure("profile1");
         ProfileStructure profile2 = new ProfileStructure("profile2");
-        dataStorage.add(profile1);
+        dataStorage.write(profile1);
         assertTrue(dataStorage.has(profile1.getName()));
         assertEquals(1, dataStorage.list().size());
-        assertFalse(dataStorage.has(profile1.getName()));
-        dataStorage.add(profile1);
         assertTrue(dataStorage.has(profile1.getName()));
         assertEquals(1, dataStorage.list().size());
         assertFalse(dataStorage.has(profile2.getName()));
-        dataStorage.add(profile2);
+        dataStorage.write(profile2);
         assertTrue(dataStorage.has(profile2.getName()));
         assertEquals(2, dataStorage.list().size());
         try {
@@ -71,10 +69,6 @@ public class XmlProfileDataStorageTest extends ApplicationTestCase<Application> 
         dataStorage.delete("profile1");
         assertFalse(dataStorage.has("profile1"));
         assertEquals(1, dataStorage.list().size());
-        try {
-            assertNull(dataStorage.get("profile1"));
-        } catch (ryey.easer.commons.IllegalStorageDataException e) {
-            e.printStackTrace();
-        }
+        assertFalse(dataStorage.has("profile1"));
     }
 }

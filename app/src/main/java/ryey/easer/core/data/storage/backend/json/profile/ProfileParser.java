@@ -14,20 +14,25 @@ import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.storage.backend.IOUtils;
+import ryey.easer.core.data.storage.backend.Parser;
 import ryey.easer.plugins.PluginRegistry;
 
-class ProfileParser {
+class ProfileParser implements Parser<ProfileStructure> {
 
     ProfileStructure profile = new ProfileStructure();
 
-    public ProfileStructure parse(InputStream in) throws IOException, JSONException, IllegalStorageDataException {
-        profile = new ProfileStructure();
-        JSONObject jsonObject = new JSONObject(IOUtils.inputStreamToString(in));
-        int version = jsonObject.optInt(C.VERSION_NAME);
-        profile.setName(jsonObject.optString(C.NAME));
-        JSONArray jsonArray = jsonObject.optJSONArray(C.OPERATION);
-        parseOperations(jsonArray, version);
-        return profile;
+    public ProfileStructure parse(InputStream in) throws IOException, IllegalStorageDataException {
+        try {
+            profile = new ProfileStructure();
+            JSONObject jsonObject = new JSONObject(IOUtils.inputStreamToString(in));
+            int version = jsonObject.optInt(C.VERSION_NAME);
+            profile.setName(jsonObject.optString(C.NAME));
+            JSONArray jsonArray = jsonObject.optJSONArray(C.OPERATION);
+            parseOperations(jsonArray, version);
+            return profile;
+        } catch (JSONException e) {
+            throw new IllegalStorageDataException(e.getMessage());
+        }
     }
 
     private void parseOperations(JSONArray jsonArray, int version) throws JSONException, IllegalStorageDataException {

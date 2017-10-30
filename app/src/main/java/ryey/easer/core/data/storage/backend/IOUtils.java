@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class IOUtils {
+
     public static String inputStreamToString(InputStream in) throws IOException {
         ByteArrayOutputStream result = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];

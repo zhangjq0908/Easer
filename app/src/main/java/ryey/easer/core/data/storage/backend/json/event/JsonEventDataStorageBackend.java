@@ -2,13 +2,9 @@ package ryey.easer.core.data.storage.backend.json.event;
 
 import android.content.Context;
 
-import org.json.JSONException;
-
 import java.io.File;
 import java.io.FileFilter;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +12,7 @@ import java.util.List;
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.storage.backend.EventDataStorageBackendInterface;
+import ryey.easer.core.data.storage.backend.FileDataStorageBackendHelper;
 import ryey.easer.core.data.storage.backend.IOUtils;
 import ryey.easer.core.data.storage.backend.json.NC;
 
@@ -53,41 +50,21 @@ public class JsonEventDataStorageBackend implements EventDataStorageBackendInter
     }
 
     @Override
-    public EventStructure get(String name) throws IllegalStorageDataException {
+    public EventStructure get(String name) throws FileNotFoundException, IllegalStorageDataException {
         File file = new File(dir, name + NC.SUFFIX);
         return get(file);
     }
 
-    private EventStructure get(File file) throws IllegalStorageDataException {
+    private EventStructure get(File file) throws FileNotFoundException, IllegalStorageDataException {
         EventParser parser = new EventParser();
-        try {
-            FileInputStream fin = new FileInputStream(file);
-            EventStructure eventStructure = parser.parse(fin);
-            fin.close();
-            return eventStructure;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        throw new IllegalAccessError();
+        return FileDataStorageBackendHelper.get(parser, file);
     }
 
     @Override
-    public void add(EventStructure event) throws IOException {
+    public void write(EventStructure event) throws IOException {
         File file = new File(dir, event.getName() + NC.SUFFIX);
-        try {
-            FileOutputStream fout = new FileOutputStream(file);
-            EventSerializer serializer = new EventSerializer();
-            String serialized = serializer.serialize(event);
-            fout.write(serialized.getBytes());
-            fout.close();
-        } catch (JSONException e) {
-            e.printStackTrace();
-            throw new IllegalStateException("Unable to serialize to JSON");
-        }
+        EventSerializer serializer = new EventSerializer();
+        FileDataStorageBackendHelper.write(serializer, file, event);
     }
 
     @Override
@@ -100,7 +77,7 @@ public class JsonEventDataStorageBackend implements EventDataStorageBackendInter
     @Override
     public void update(EventStructure event) throws IOException {
         delete(event.getName());
-        add(event);
+        write(event);
     }
 
     @Override
@@ -124,6 +101,8 @@ public class JsonEventDataStorageBackend implements EventDataStorageBackendInter
                 list.add(event);
             } catch (IllegalStorageDataException e) {
                 e.printStackTrace();
+            } catch (FileNotFoundException e) {
+                throw new IllegalStateException(e.getCause());
             }
         }
         return list;

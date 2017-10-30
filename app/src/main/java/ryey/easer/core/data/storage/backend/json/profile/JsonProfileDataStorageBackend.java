@@ -2,19 +2,16 @@ package ryey.easer.core.data.storage.backend.json.profile;
 
 import android.content.Context;
 
-import org.json.JSONException;
-
 import java.io.File;
 import java.io.FileFilter;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.core.data.ProfileStructure;
+import ryey.easer.core.data.storage.backend.FileDataStorageBackendHelper;
 import ryey.easer.core.data.storage.backend.IOUtils;
 import ryey.easer.core.data.storage.backend.ProfileDataStorageBackendInterface;
 import ryey.easer.core.data.storage.backend.json.NC;
@@ -53,41 +50,21 @@ public class JsonProfileDataStorageBackend implements ProfileDataStorageBackendI
     }
 
     @Override
-    public ProfileStructure get(String name) throws IllegalStorageDataException {
+    public ProfileStructure get(String name) throws FileNotFoundException, IllegalStorageDataException {
         File file = new File(dir, name + NC.SUFFIX);
         return get(file);
     }
 
-    private ProfileStructure get(File file) throws IllegalStorageDataException {
+    private ProfileStructure get(File file) throws FileNotFoundException, IllegalStorageDataException {
         ProfileParser parser = new ProfileParser();
-        try {
-            FileInputStream fin = new FileInputStream(file);
-            ProfileStructure profileStructure = parser.parse(fin);
-            fin.close();
-            return profileStructure;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        throw new IllegalAccessError();
+        return FileDataStorageBackendHelper.get(parser, file);
     }
 
     @Override
-    public void add(ProfileStructure profile) throws IOException {
+    public void write(ProfileStructure profile) throws IOException {
         File file = new File(dir, profile.getName() + NC.SUFFIX);
-        try {
-            FileOutputStream fout = new FileOutputStream(file);
-            ProfileSerializer serializer = new ProfileSerializer();
-            String serialized_str = serializer.serialize(profile);
-            fout.write(serialized_str.getBytes());
-            fout.close();
-        } catch (JSONException e) {
-            e.printStackTrace();
-            throw new IllegalStateException("Unable to serialize to JSON");
-        }
+        ProfileSerializer serializer = new ProfileSerializer();
+        FileDataStorageBackendHelper.write(serializer, file, profile);
     }
 
     @Override
@@ -116,6 +93,8 @@ public class JsonProfileDataStorageBackend implements ProfileDataStorageBackendI
                 list.add(get(file));
             } catch (IllegalStorageDataException e) {
                 e.printStackTrace();
+            } catch (FileNotFoundException e) {
+                throw new IllegalStateException(e.getCause());
             }
         }
         return list;

@@ -2,15 +2,16 @@ package ryey.easer.core.data.storage;
 
 import com.orhanobut.logger.Logger;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.core.data.Named;
 import ryey.easer.core.data.Verifiable;
-import ryey.easer.core.data.storage.backend.DataStorageCommonInterface;
+import ryey.easer.core.data.storage.backend.DataStorageBackendCommonInterface;
 
-abstract class AbstractDataStorage<T extends Named & Verifiable, T_backend extends DataStorageCommonInterface<T>> {
+abstract class AbstractDataStorage<T extends Named & Verifiable, T_backend extends DataStorageBackendCommonInterface<T>> {
     T_backend[] storage_backend_list;
 
     public List<String> list() {
@@ -26,14 +27,16 @@ abstract class AbstractDataStorage<T extends Named & Verifiable, T_backend exten
 
     public T get(String name) {
         for (T_backend backend : storage_backend_list) {
-            T event = null;
             try {
-                event = backend.get(name);
+                T event = backend.get(name);
+                if (event == null || !event.isValid())
+                    return null;
+                return event;
             } catch (ryey.easer.commons.IllegalStorageDataException e) {
                 e.printStackTrace();
+            } catch (FileNotFoundException e) {
+                Logger.v("data not found on backend <%s>", backend.getClass().getSimpleName());
             }
-            if (event != null)
-                return event;
         }
         return null;
     }
@@ -58,7 +61,7 @@ abstract class AbstractDataStorage<T extends Named & Verifiable, T_backend exten
                 break;
             }
         }
-        storage_backend_list[0].add(data);
+        storage_backend_list[0].write(data);
         return true;
     }
 

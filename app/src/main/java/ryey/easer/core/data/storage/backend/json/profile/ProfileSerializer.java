@@ -8,16 +8,22 @@ import ryey.easer.commons.C;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.core.data.ProfileStructure;
+import ryey.easer.core.data.storage.backend.Serializer;
+import ryey.easer.core.data.storage.backend.UnableToSerializeException;
 import ryey.easer.plugins.PluginRegistry;
 
-public class ProfileSerializer {
+public class ProfileSerializer implements Serializer<ProfileStructure> {
 
-    String serialize(ProfileStructure profile) throws JSONException {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put(C.NAME, profile.getName());
-        jsonObject.put(C.VERSION_NAME, C.VERSION_CURRENT);
-        jsonObject.put(C.OPERATION, serialize_operation(profile));
-        return jsonObject.toString();
+    public String serialize(ProfileStructure profile) throws UnableToSerializeException {
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put(C.NAME, profile.getName());
+            jsonObject.put(C.VERSION_NAME, C.VERSION_CURRENT);
+            jsonObject.put(C.OPERATION, serialize_operation(profile));
+            return jsonObject.toString();
+        } catch (JSONException e) {
+            throw new UnableToSerializeException(e.getMessage());
+        }
     }
 
     JSONArray serialize_operation(ProfileStructure profile) throws JSONException {

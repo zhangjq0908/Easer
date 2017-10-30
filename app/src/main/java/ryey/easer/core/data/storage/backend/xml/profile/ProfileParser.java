@@ -33,9 +33,10 @@ import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.core.data.ProfileStructure;
+import ryey.easer.core.data.storage.backend.Parser;
 import ryey.easer.plugins.PluginRegistry;
 
-class ProfileParser {
+class ProfileParser implements Parser<ProfileStructure> {
     private static final String ns = null;
 
     private XmlPullParser parser = Xml.newPullParser();
@@ -43,15 +44,19 @@ class ProfileParser {
     int version = ryey.easer.commons.C.VERSION_DEFAULT;
     ProfileStructure profile;
 
-    public ProfileStructure parse(InputStream in) throws XmlPullParserException, IOException, IllegalStorageDataException {
-        profile = new ProfileStructure();
-        parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-        parser.setInput(in, null);
-        parser.nextTag();
-        if (readProfile())
-            return profile;
-        else
-            throw new IllegalStorageDataException("illegal content");
+    public ProfileStructure parse(InputStream in) throws IOException, IllegalStorageDataException {
+        try {
+            profile = new ProfileStructure();
+            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+            parser.setInput(in, null);
+            parser.nextTag();
+            if (readProfile())
+                return profile;
+            else
+                throw new IllegalStorageDataException("illegal content");
+        } catch (XmlPullParserException e) {
+            throw new IllegalStorageDataException(e.getMessage());
+        }
     }
 
     private boolean readProfile() throws XmlPullParserException, IOException, IllegalStorageDataException {

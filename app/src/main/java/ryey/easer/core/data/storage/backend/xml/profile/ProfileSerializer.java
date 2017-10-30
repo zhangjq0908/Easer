@@ -25,22 +25,25 @@ import com.orhanobut.logger.Logger;
 
 import org.xmlpull.v1.XmlSerializer;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.core.data.ProfileStructure;
+import ryey.easer.core.data.storage.backend.Serializer;
+import ryey.easer.core.data.storage.backend.UnableToSerializeException;
 import ryey.easer.plugins.PluginRegistry;
 
-class ProfileSerializer {
+class ProfileSerializer implements Serializer<ProfileStructure> {
     private static final String ns = null;
 
     XmlSerializer serializer = Xml.newSerializer();
     ProfileStructure mProfile;
 
-    public void serialize(OutputStream out, ProfileStructure profile) throws IOException {
+    public String serialize(ProfileStructure profile) throws UnableToSerializeException {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
         mProfile = profile;
         try {
             Logger.d("serializing %s", profile.getName());
@@ -49,8 +52,16 @@ class ProfileSerializer {
             writeProfile();
             serializer.flush();
             Logger.i("serialized %s", profile.getName());
+            return out.toString();
+        } catch (IOException e) {
+            throw new UnableToSerializeException(e.getMessage());
         } finally {
-            out.close();
+            try {
+                out.close();
+            } catch (IOException e) {
+                Logger.e(e, "Unable to close ByteArrayOutputStream");
+                e.printStackTrace();
+            }
         }
     }
 

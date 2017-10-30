@@ -33,6 +33,7 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.core.data.EventStructure;
+import ryey.easer.core.data.storage.backend.UnableToSerializeException;
 import ryey.easer.plugins.event.time.TimeEventData;
 
 import static org.junit.Assert.assertEquals;
@@ -74,12 +75,9 @@ public class EventTest {
     }
 
     @Test
-    public void testSerialize() throws IOException {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+    public void testSerialize() throws IOException, UnableToSerializeException {
         EventSerializer eventSerializer = new EventSerializer();
-        eventSerializer.serialize(byteArrayOutputStream, t_event_child);
-        String xml = byteArrayOutputStream.toString();
+        String xml = eventSerializer.serialize(t_event_child);
         assertEquals(t_xml_child, xml);
-        byteArrayOutputStream.close();
     }
 }

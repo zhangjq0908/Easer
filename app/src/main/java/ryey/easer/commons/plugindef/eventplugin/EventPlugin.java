@@ -25,7 +25,7 @@ import ryey.easer.commons.plugindef.PluginDef;
 
 /*
  * Definition of every Event plugin.
- * All Event plugins should implement this interface and add one line to register in `PluginRegistry`.
+ * All Event plugins should implement this interface and write one line to register in `PluginRegistry`.
  * The implementation / subclass doesn't need to hold any data (because data will be passed as arguments to the relevant methods).
  */
 public interface EventPlugin extends PluginDef {
