@@ -33,4 +33,15 @@ public abstract class StringData implements StorageData {
             return false;
         return true;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null)
+            return false;
+        if (!getClass().equals(obj.getClass()))
+            return false;
+        if (!isValid() || !((StorageData) obj).isValid())
+            return false;
+        return text.equals(((StringData) obj).text);
+    }
 }

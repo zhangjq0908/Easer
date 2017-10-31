@@ -22,6 +22,12 @@ package ryey.easer.plugins.operation.ringer_mode;
 import ryey.easer.plugins.operation.IntegerOperationData;
 
 public class RingerModeOperationData extends IntegerOperationData {
+
+    {
+        lbound = 0;
+        rbound = 3;
+    }
+
     public RingerModeOperationData() {
     }
 
@@ -31,8 +37,6 @@ public class RingerModeOperationData extends IntegerOperationData {
 
     @Override
     public boolean isValid() {
-        lbound = 0;
-        rbound = 3;
         return super.isValid();
     }
 }

@@ -32,4 +32,15 @@ public abstract class BooleanData implements StorageData {
             return false;
         return true;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null)
+            return false;
+        if (!getClass().equals(obj.getClass()))
+            return false;
+        if (!isValid() || !((StorageData) obj).isValid())
+            return false;
+        return ((BooleanData) obj).state == state.booleanValue();
+    }
 }

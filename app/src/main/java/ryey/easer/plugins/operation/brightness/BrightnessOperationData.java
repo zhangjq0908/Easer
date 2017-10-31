@@ -22,6 +22,12 @@ package ryey.easer.plugins.operation.brightness;
 import ryey.easer.plugins.operation.IntegerOperationData;
 
 public class BrightnessOperationData extends IntegerOperationData {
+
+    {
+        lbound = -1;
+        rbound = 100;
+    }
+
     public BrightnessOperationData() {
     }
 
@@ -35,8 +41,6 @@ public class BrightnessOperationData extends IntegerOperationData {
 
     @Override
     public boolean isValid() {
-        lbound = -1;
-        rbound = 100;
         return super.isValid();
     }
 

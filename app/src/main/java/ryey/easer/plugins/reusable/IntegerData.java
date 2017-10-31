@@ -40,4 +40,21 @@ public abstract class IntegerData implements StorageData {
                 return false;
         return true;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null)
+            return false;
+        if (!getClass().equals(obj.getClass()))
+            return false;
+        if (!isValid() || !((StorageData) obj).isValid())
+            return false;
+        if (((IntegerData) obj).lbound != lbound.intValue())
+            return false;
+        if (((IntegerData) obj).rbound != rbound.intValue())
+            return false;
+        if (((IntegerData) obj).level != level.intValue())
+            return false;
+        return true;
+    }
 }
