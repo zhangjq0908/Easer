@@ -1,6 +1,13 @@
 CHANGELOG
 ======
 
+* v0.4.2.1: UI improvements
+	* Better UI of the page for editing events
+		* Text size/spacing (especially for Chinese)
+		* Use `ConstraintLayout`
+	* Show the "when..." text for `CalendarEventPlugin`
+	* Use `Cursor` and `CursorAdapter` (implies asynchronous) for the picker list of calendars (for `CalendarEventPlugin`)
+
 * v0.4.2: Add `CalendarEventPlugin` && UI optimization && small changes
 	* Add a new event (`CalendarEventPlugin`) to listen to calendar events
 	* Add FloatingActionButton (as "add") to the pages listing events or profiles

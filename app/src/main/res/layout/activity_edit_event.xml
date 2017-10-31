@@ -17,7 +17,8 @@
         android:text="@string/text_title"
         app:layout_constraintBaseline_toBaselineOf="@+id/editText_event_title"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginRight="8dp" />
 
     <EditText
         android:id="@+id/editText_event_title"
@@ -41,7 +42,8 @@
         android:text="@string/text_parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/spinner_parent" />
+        app:layout_constraintTop_toTopOf="@+id/spinner_parent"
+        android:layout_marginRight="8dp" />
 
     <Spinner
         android:id="@+id/spinner_parent"
@@ -64,7 +66,8 @@
         android:text="@string/text_profile"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/spinner_profile" />
+        app:layout_constraintTop_toTopOf="@+id/spinner_profile"
+        android:layout_marginRight="8dp" />
 
     <Spinner
         android:id="@+id/spinner_profile"
