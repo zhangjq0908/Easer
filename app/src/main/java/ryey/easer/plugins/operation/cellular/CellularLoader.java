@@ -24,11 +24,13 @@ import android.telephony.TelephonyManager;
 
 import com.orhanobut.logger.Logger;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
+import ryey.easer.plugins.reusable.PluginHelper;
 
 public class CellularLoader extends OperationLoader {
     public CellularLoader(Context context) {
@@ -42,33 +44,42 @@ public class CellularLoader extends OperationLoader {
         if (state == (telephonyManager.getDataState() == TelephonyManager.DATA_CONNECTED)) {
             return true;
         } else {
-            try {
-                Class telephonyManagerClass = Class.forName(telephonyManager.getClass().getName());
-                Method getITelephonyMethod = telephonyManagerClass.getDeclaredMethod("getITelephony");
-                getITelephonyMethod.setAccessible(true);
-                Object ITelephonyStub = getITelephonyMethod.invoke(telephonyManager);
-                Class ITelephonyClass = Class.forName(ITelephonyStub.getClass().getName());
-                Method dataConnSwitchMethod;
-                if (state) {
-                    dataConnSwitchMethod = ITelephonyClass.getDeclaredMethod("enableDataConnectivity");
-                } else {
-                    dataConnSwitchMethod = ITelephonyClass.getDeclaredMethod("disableDataConnectivity");
+            if (PluginHelper.useRootFeature(context)) {
+                try {
+                    Runtime.getRuntime().exec("su");
+                    String command = "svc data " + (state ? "enable" : "disable");
+                    Runtime.getRuntime().exec(command);
+                } catch (IOException e) {
                 }
-                dataConnSwitchMethod.setAccessible(true);
-                dataConnSwitchMethod.invoke(ITelephonyStub);
-                return true;
-            } catch (ClassNotFoundException e) {
-                Logger.e(e, null);
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                Logger.e(e, null);
-                e.printStackTrace();
-            } catch (NoSuchMethodException e) {
-                Logger.e(e, null);
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                Logger.e(e, null);
-                e.printStackTrace();
+            } else {
+                try {
+                    Class telephonyManagerClass = Class.forName(telephonyManager.getClass().getName());
+                    Method getITelephonyMethod = telephonyManagerClass.getDeclaredMethod("getITelephony");
+                    getITelephonyMethod.setAccessible(true);
+                    Object ITelephonyStub = getITelephonyMethod.invoke(telephonyManager);
+                    Class ITelephonyClass = Class.forName(ITelephonyStub.getClass().getName());
+                    Method dataConnSwitchMethod;
+                    if (state) {
+                        dataConnSwitchMethod = ITelephonyClass.getDeclaredMethod("enableDataConnectivity");
+                    } else {
+                        dataConnSwitchMethod = ITelephonyClass.getDeclaredMethod("disableDataConnectivity");
+                    }
+                    dataConnSwitchMethod.setAccessible(true);
+                    dataConnSwitchMethod.invoke(ITelephonyStub);
+                    return true;
+                } catch (ClassNotFoundException e) {
+                    Logger.e(e, null);
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    Logger.e(e, null);
+                    e.printStackTrace();
+                } catch (NoSuchMethodException e) {
+                    Logger.e(e, null);
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    Logger.e(e, null);
+                    e.printStackTrace();
+                }
             }
         }
         return false;

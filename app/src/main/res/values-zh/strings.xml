@@ -56,5 +56,8 @@
     <string name="version">版本</string>
     <string name="button_request_permission">授予權限</string>
     <string name="text_lack_permission">Easer尚不具有全部所需權限。</string>
+    <string name="pref_use_root_title">使用root權限特性</string>
+    <string name="pref_use_root_summary">對特定功能（插件）啓用root權限，可能有助於解決部分設備兼容性問題。root權限不會被用在其他地方。</string>
+    <string name="title_data_manage">數據管理</string>
 
 </resources>

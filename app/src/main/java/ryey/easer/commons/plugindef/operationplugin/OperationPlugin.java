@@ -31,6 +31,11 @@ import ryey.easer.commons.plugindef.PluginDef;
 public interface OperationPlugin extends PluginDef {
 
     /**
+     * Returns the privilege preference of this plugin.
+     */
+    PrivilegeUsage privilege();
+
+    /**
      * {@inheritDoc}
      */
     OperationData data();

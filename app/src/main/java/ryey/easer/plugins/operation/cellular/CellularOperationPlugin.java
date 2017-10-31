@@ -25,12 +25,18 @@ import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
+import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
 
 public class CellularOperationPlugin implements OperationPlugin {
 
     @Override
     public String name() {
         return "cellular";
+    }
+
+    @Override
+    public PrivilegeUsage privilege() {
+        return PrivilegeUsage.prefer_root;
     }
 
     @Override

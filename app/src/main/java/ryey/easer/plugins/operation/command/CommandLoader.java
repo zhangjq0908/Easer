@@ -28,6 +28,7 @@ import java.io.IOException;
 import ryey.easer.Utils;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
+import ryey.easer.plugins.reusable.PluginHelper;
 
 public class CommandLoader extends OperationLoader {
     public CommandLoader(Context context) {
@@ -41,6 +42,9 @@ public class CommandLoader extends OperationLoader {
         try {
             for (String command : commands) {
                 if (!Utils.isBlank(command)) {
+                    if (PluginHelper.useRootFeature(context)) {
+                        Runtime.getRuntime().exec("su");
+                    }
                     Process process = Runtime.getRuntime().exec(command);
                 }
             }
