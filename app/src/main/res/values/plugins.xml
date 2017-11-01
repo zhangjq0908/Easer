@@ -61,6 +61,14 @@
     <string name="operation_hotspot">Hotspot</string>
     <string name="operation_synchronization">Account synchronization</string>
 
+    <string name="operation_network_transmission">Network transmission</string>
+    <string name="o_nettrans_protocol">Protocol</string>
+    <string name="o_nettrans_tcp">TCP</string>
+    <string name="o_nettrans_udp">UDP</string>
+    <string name="o_nettrans_remote_address">Remote Address</string>
+    <string name="o_nettrans_remote_port">Remote Port</string>
+    <string name="o_nettrans_data">Data</string>
+
     <string-array name="event_type">
         <item>After</item>
         <item>Any</item>

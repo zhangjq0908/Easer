@@ -62,6 +62,14 @@
     <string name="operation_hotspot">移動熱點</string>
     <string name="operation_synchronization">賬戶同步</string>
 
+    <string name="operation_network_transmission">網絡傳輸</string>
+    <string name="o_nettrans_protocol">協議</string>
+    <string name="o_nettrans_tcp">TCP</string>
+    <string name="o_nettrans_udp">UDP</string>
+    <string name="o_nettrans_remote_address">遠程地址</string>
+    <string name="o_nettrans_remote_port">遠程端口</string>
+    <string name="o_nettrans_data">數據</string>
+
     <string-array name="event_type">
         <item>晚於</item>
         <item>任一</item>
