@@ -35,7 +35,6 @@ public class CommandPluginViewFragment extends PluginViewFragment {
     EditText editText_command;
 
     {
-        expectedDataClass = CommandOperationData.class;
         setDesc(R.string.operation_command);
     }
 

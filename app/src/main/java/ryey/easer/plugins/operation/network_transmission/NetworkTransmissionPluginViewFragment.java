@@ -39,7 +39,6 @@ public class NetworkTransmissionPluginViewFragment extends PluginViewFragment {
     EditText editText_data;
 
     {
-        expectedDataClass = NetworkTransmissionOperationData.class;
         setDesc(R.string.operation_network_transmission);
     }
 

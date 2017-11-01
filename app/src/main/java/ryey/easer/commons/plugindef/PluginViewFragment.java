@@ -13,11 +13,10 @@ import android.view.ViewGroup;
 import com.orhanobut.logger.Logger;
 
 import ryey.easer.commons.IllegalArgumentTypeException;
-import ryey.easer.core.ui.edit.EventPluginViewContainerFragment;
+import ryey.easer.plugins.PluginRegistry;
 
 /**
  * Base Fragment class for plugin's UI.
- * All subclasses should provide the correct {@link #expectedDataClass} during construction.
  * Normally, they should also provide the correct description string resource ID (see {@link #desc} {@link #setDesc(int)} {@link #desc(Resources)}).
  */
 public abstract class PluginViewFragment extends Fragment {
@@ -25,15 +24,6 @@ public abstract class PluginViewFragment extends Fragment {
      * Description resource (string) ID
      */
     protected @StringRes int desc = -1;
-
-    /**
-     * The expected data class.
-     * Each subclass should pass the correct value during construction.
-     *
-     * Functions around this look like generic, but Java mechanism prevents me from using that way.
-     * As a result, I have to use this dumb way.
-     */
-    protected Class<? extends StorageData> expectedDataClass = null;
 
     /**
      * Controls whether the content (view) is enabled/interactive or not in the beginning.
@@ -86,24 +76,13 @@ public abstract class PluginViewFragment extends Fragment {
     }
 
     /**
-     * Subclasses don't need to override this method.
-     * Get the expected data (represented in the form of {@link Class}).
-     * Currently only used in {@link EventPluginViewContainerFragment} when initializing the selection for {@link ryey.easer.commons.plugindef.eventplugin.EventType}.
-     * May be replaced later.
-     */
-    public Class<? extends StorageData> getExpectedDataClass() {
-        return expectedDataClass;
-    }
-
-    /**
      * Check whether the to-be-filled data is of the correct type.
      */
     private void checkDataType(StorageData data) throws IllegalArgumentTypeException {
-        if (expectedDataClass == null)
-            Logger.e("PluginDef not properly implemented (detected in %s)", getClass().getSimpleName());
-        if (expectedDataClass.isAssignableFrom(data.getClass()))
+        StorageData dummyExpectedData = PluginRegistry.getInstance().all().findPlugin(this).data();
+        if (data.getClass().equals(dummyExpectedData.getClass()))
             return;
-        throw new IllegalArgumentTypeException(data.getClass(), expectedDataClass);
+        throw new IllegalArgumentTypeException(data.getClass(), dummyExpectedData.getClass());
     }
 
     /**

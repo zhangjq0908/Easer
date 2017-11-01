@@ -48,7 +48,6 @@ public class RingerModePluginViewFragment extends PluginViewFragment {
     int checked_item = -1;
 
     {
-        expectedDataClass = RingerModeOperationData.class;
         setDesc(R.string.operation_ringer_mode);
     }
 

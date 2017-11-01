@@ -42,7 +42,6 @@ public class DayOfWeekPluginViewFragment extends PluginViewFragment {
     CompoundButton []day_buttons = new CompoundButton[7];
 
     {
-        expectedDataClass = DayOfWeekEventData.class;
         setDesc(R.string.event_day_of_week);
     }
 

@@ -59,7 +59,6 @@ public class WifiPluginViewFragment extends PluginViewFragment {
     };
 
     {
-        expectedDataClass = WifiEventData.class;
         setDesc(R.string.event_wificonn);
     }
 

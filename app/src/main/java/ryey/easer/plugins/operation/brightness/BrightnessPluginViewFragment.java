@@ -39,7 +39,6 @@ public class BrightnessPluginViewFragment extends PluginViewFragment {
     SeekBar mBrightnessLevel;
 
     {
-        expectedDataClass = BrightnessOperationData.class;
         setDesc(R.string.operation_brightness);
     }
 

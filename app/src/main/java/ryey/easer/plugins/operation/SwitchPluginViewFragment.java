@@ -35,7 +35,6 @@ public abstract class SwitchPluginViewFragment extends PluginViewFragment {
     Switch aSwitch;
 
     {
-        expectedDataClass = BooleanOperationData.class;
     }
 
     @NonNull

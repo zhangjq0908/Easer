@@ -29,7 +29,6 @@ public class ConnectivityPluginViewFragment extends PluginViewFragment {
     CheckBox[] checkBoxes = new CheckBox[values.length];
 
     {
-        expectedDataClass = ConnectivityEventData.class;
         setDesc(R.string.event_connectivity);
     }
 

@@ -37,7 +37,6 @@ public class TimePluginViewFragment extends PluginViewFragment {
     TimePicker timePicker;
 
     {
-        expectedDataClass = TimeEventData.class;
         setDesc(R.string.event_time);
     }
 

@@ -67,7 +67,6 @@ public class CalendarPluginViewFragment extends PluginViewFragment {
     };
 
     {
-        expectedDataClass = CalendarEventData.class;
         setDesc(R.string.event_calendar);
     }
 

@@ -64,7 +64,6 @@ public class BTDevicePluginViewFragment extends PluginViewFragment {
     TextView textView;
 
     {
-        expectedDataClass = BTDeviceEventData.class;
         setDesc(R.string.event_bluetooth_device);
     }
 

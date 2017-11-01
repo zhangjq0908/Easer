@@ -26,7 +26,6 @@ import ryey.easer.plugins.operation.SwitchPluginViewFragment;
 public class SynchronizationPluginViewFragment extends SwitchPluginViewFragment {
 
     {
-        expectedDataClass = SynchronizationOperationData.class;
         setDesc(R.string.operation_synchronization);
     }
 

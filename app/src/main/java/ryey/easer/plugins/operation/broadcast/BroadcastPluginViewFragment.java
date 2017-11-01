@@ -39,7 +39,6 @@ public class BroadcastPluginViewFragment extends PluginViewFragment {
     EditText m_text_data;
 
     {
-        expectedDataClass = BroadcastOperationData.class;
         setDesc(R.string.operation_broadcast);
     }
 

@@ -18,6 +18,7 @@ import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
+import ryey.easer.plugins.PluginRegistry;
 
 public class EventPluginViewContainerFragment extends PluginViewContainerFragment {
 
@@ -40,14 +41,8 @@ public class EventPluginViewContainerFragment extends PluginViewContainerFragmen
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.content_pluginview, pluginViewFragment)
                 .commit();
-        try {
-            EventData dummyData = (EventData) pluginViewFragment.getExpectedDataClass().newInstance();
-            fillType(dummyData);
-        } catch (java.lang.InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+        EventData dummyData = PluginRegistry.getInstance().event().findPlugin(pluginViewFragment).data();
+        fillType(dummyData);
         return v;
     }
 

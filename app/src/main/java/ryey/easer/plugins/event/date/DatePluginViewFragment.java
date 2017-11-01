@@ -36,7 +36,6 @@ public class DatePluginViewFragment extends PluginViewFragment {
     DatePicker datePicker;
 
     {
-        expectedDataClass = DateEventData.class;
         setDesc(R.string.event_date);
     }
 

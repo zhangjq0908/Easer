@@ -39,7 +39,6 @@ public class CellLocationPluginViewFragment extends PluginViewFragment {
     EditText editText;
 
     {
-        expectedDataClass = CellLocationEventData.class;
         setDesc(R.string.event_celllocation);
     }
 

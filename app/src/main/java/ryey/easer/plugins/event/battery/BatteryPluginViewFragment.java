@@ -26,7 +26,6 @@ public class BatteryPluginViewFragment extends PluginViewFragment {
     Integer checked_item = null;
 
     {
-        expectedDataClass = BatteryEventData.class;
         setDesc(R.string.event_battery);
     }
 

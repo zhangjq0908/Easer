@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ryey.easer.commons.plugindef.PluginDef;
+import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
@@ -60,6 +61,9 @@ final public class PluginRegistry {
 
     private Registry<EventPlugin, EventData> eventPluginRegistry = new Registry<>();
     private Registry<OperationPlugin, OperationData> operationPluginRegistry = new Registry<>();
+    private OverallRegistry overallRegistry = new OverallRegistry(new PluginLookuper[] {
+            eventPluginRegistry, operationPluginRegistry,
+    });
 
     {
         event().registerPlugin(TimeEventPlugin.class);
@@ -102,7 +106,18 @@ final public class PluginRegistry {
         return operationPluginRegistry;
     }
 
-    public static final class Registry<T extends PluginDef, T_data extends StorageData> {
+    public PluginLookuper all() {
+        return overallRegistry;
+    }
+
+    public interface PluginLookuper<T extends PluginDef, T_data extends StorageData> {
+        List<T> getPlugins();
+        T findPlugin(T_data data);
+        T findPlugin(String name);
+        T findPlugin(PluginViewFragment view);
+    }
+
+    public static class Registry<T extends PluginDef, T_data extends StorageData> implements PluginLookuper<T, T_data> {
         List<Class<? extends T>> pluginClassList = new ArrayList<>();
         List<T> pluginList = new ArrayList<>();
 
@@ -148,6 +163,15 @@ final public class PluginRegistry {
             throw new IllegalAccessError();
         }
 
+        @Override
+        public T findPlugin(PluginViewFragment view) {
+            for (T plugin : getPlugins()) {
+                if (view.getClass().equals(plugin.view().getClass()))
+                    return plugin;
+            }
+            throw new IllegalAccessError();
+        }
+
         public int getPluginIndex(T plugin) {
             for (int i = 0; i < getPlugins().size(); i++) {
                 if (plugin.getClass() == getPlugins().get(i).getClass())
@@ -159,6 +183,50 @@ final public class PluginRegistry {
 
         public int getPluginIndex(T_data data) {
             return getPluginIndex(findPlugin(data));
+        }
+    }
+
+    public static class OverallRegistry implements PluginLookuper {
+
+        PluginLookuper<? extends PluginDef, ? extends StorageData>[] lookupers;
+
+        OverallRegistry(PluginLookuper<? extends PluginDef, ? extends StorageData>[] lookupers) {
+            this.lookupers = lookupers;
+        }
+
+        public final List<? extends PluginDef> getPlugins() {
+            List<PluginDef> list = new ArrayList<>();
+            for (PluginLookuper<? extends PluginDef, ? extends StorageData> lookuper : lookupers) {
+                list.addAll(lookuper.getPlugins());
+            }
+            return list;
+        }
+
+        @Override
+        public PluginDef findPlugin(StorageData storageData) {
+            for (PluginDef plugin : getPlugins()) {
+                if (storageData.getClass().equals(plugin.data().getClass()))
+                    return plugin;
+            }
+            throw new IllegalAccessError();
+        }
+
+        @Override
+        public PluginDef findPlugin(String name) {
+            for (PluginDef plugin : getPlugins()) {
+                if (name.equals(plugin.name()))
+                    return plugin;
+            }
+            throw new IllegalAccessError();
+        }
+
+        @Override
+        public PluginDef findPlugin(PluginViewFragment view) {
+            for (PluginDef plugin : getPlugins()) {
+                if (view.getClass().equals(plugin.view().getClass()))
+                    return plugin;
+            }
+            throw new IllegalAccessError();
         }
     }
 }
