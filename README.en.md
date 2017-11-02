@@ -24,28 +24,11 @@ Examples
 * Cancel Silent mode at 8 a.m. on weekdays, and at 10 a.m. on weekends
 * Turn WiFi on when approaching your home; turn WiFi off when leaving your home
 
-Functions already supported
+Supported functions
 --------
-### Event
-* Date
-* Time
-* WiFi connection name (SSID)
-* Location (based on basestations)
-* Battery status
-* Day of week
-* Bluetooth device connected
-* Connectivity status
-* Calendar Event
+Easer supports listening to many Android events (e.g. date/time, system status) and more (e.g. calendar); the supported operations include but not limited to changing Android settings, sending messages, executing commands.
 
-### Operation
-* WiFi switch
-* Cellular network switch
-* Bluetooth switch
-* Auto rotation switch
-* Sending Broadcast
-* Screen brightness
-* Ringer mode
-* Run commands
+For a list of the features already supported, see [this page](https://renyuneyun.github.io/Easer/en/FEATURES).
 
 Extending Easer
 ------

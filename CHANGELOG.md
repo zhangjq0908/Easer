@@ -1,6 +1,18 @@
 CHANGELOG
 ======
 
+* v0.4.4: Introduce `SynchronizationOperationPlugin` and `NetworkTransmissionOperationPlugin` && Add *root features* && Bug fixes && Deveopment changes
+	* Introduce `SynchronizationOperationPlugin` to control the *account synchronization* setting
+	* Introduce `NetworkTransmissionOperationPlugin` to send network packets
+	* Introduce the ability to use rooted-only features
+		* Some functions don't have exposed APIs so using reflections is the way to implement them previously. However such reflection is not guarenteed to work on all devices so these functions are not reliable. Using root permission could help to solve (at least part of) this problem by using root-only actions (e.g. executing special commands).
+		* Add a section in the settings page to control the enabling state
+		* Introduce a way to mark each plugin's needs of using root permission (to use in the future)
+		* Adopt rooted features to `CellularOperationPlugin` (to turn mobile data on and off)
+	* Fix the `equals()` method in some data (this bug has no affection of daily usage)
+	* More tests
+	* Remove the need of manually injecting `PluginViewFragment.expectedDataClass` in favor of `PluginRegistry`'s ability to lookup (this introduces slight performance degrading which will be optimized later)
+
 * v0.4.3: Introduce new interface for data serializing and parsing && Faster loading speed for data && Add JSON backend for data storage && Refactoring
 	* Introduce new serializing and parsing interface for `StorageData` (which affects all plugins)
 		* The new interface now handles versioning and different backend types (which can be safely ignored if intended)
