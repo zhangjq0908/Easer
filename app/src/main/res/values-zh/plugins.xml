@@ -35,6 +35,10 @@
     <string name="choice_start_of">開始時</string>
     <string name="choice_end_of">結束時</string>
     <string name="choice_any_event">任意事件</string>
+
+    <string name="event_broadcast">收到廣播</string>
+    <string name="text_action">Action</string>
+    <string name="text_category">Category</string>
     
     <string name="operation_bluetooth">藍牙</string>
 

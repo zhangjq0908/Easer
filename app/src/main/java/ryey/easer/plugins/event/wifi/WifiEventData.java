@@ -119,7 +119,7 @@ public class WifiEventData extends TypedEventData {
     @Override
     public void serialize(XmlSerializer serializer) throws IOException {
         if (!isValid()) {
-            Logger.wtf("Invalid WifiEventData shouldn't be serialized");
+            Logger.wtf("Invalid BroadcastEventData shouldn't be serialized");
         }
         XmlHelper.EventHelper.writeMultipleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).name(), ssids.toArray(new String[0]));
         XmlHelper.EventHelper.writeLogic(serializer, type());

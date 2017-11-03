@@ -45,6 +45,13 @@ public abstract class AbstractSlot {
     protected boolean satisfied = false;
 
     /**
+     * Controls whether the current slot could be re-triggered if it is already in a satisfied state.
+     * Default is *NOT* re-triggerable
+     * This value should be be set by the {@link #setRetriggerable(boolean)} method.
+     */
+    private boolean retriggerable = false;
+
+    /**
      * Used to tell the holder Lotus that this Slot is satisfied.
      * Only the to-level (in the {@link ryey.easer.core.data.EventTree}) slot will need this (to tell the {@link ryey.easer.core.Lotus} to check the whole tree).
      */
@@ -116,16 +123,22 @@ public abstract class AbstractSlot {
         this.notifyLotusUnsatisfiedIntent = notifyLotusUnsatisfiedIntent;
     }
 
+    protected void setRetriggerable(boolean retriggerable) {
+        this.retriggerable = retriggerable;
+    }
+
     /**
      * Change the satisfaction state of the current slot.
      * It will emit {@link #notifyLotusIntent} or {@link #notifyLotusUnsatisfiedIntent} iif the satisfaction state is changed.
      *
      * This method sets the {@link #satisfied} variable.
      */
-    protected final synchronized void changeSatisfiedState(boolean newSatisfiedState) {
-        if (satisfied == newSatisfiedState) {
-            Logger.v("satisfied state is already %s", newSatisfiedState);
-            return;
+    protected synchronized void changeSatisfiedState(boolean newSatisfiedState) {
+        if (!retriggerable) {
+            if (satisfied == newSatisfiedState) {
+                Logger.v("satisfied state is already %s", newSatisfiedState);
+                return;
+            }
         }
         satisfied = newSatisfiedState;
         PendingIntent pendingIntent;

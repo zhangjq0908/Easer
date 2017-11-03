@@ -39,6 +39,10 @@
     <string name="choice_end_of">End of</string>
     <string name="choice_any_event">Any Events</string>
 
+    <string name="event_broadcast">Receive Broadcast</string>
+    <string name="text_action">Action</string>
+    <string name="text_category">Category</string>
+
     <string name="operation_wifi">WiFi</string>
     <string name="operation_cellular">Mobile data</string>
     <string name="operation_bluetooth">Bluetooth</string>

@@ -49,6 +49,28 @@ public class Utils {
         return list;
     }
 
+    public static String StringListToString(List<String> category) {
+        String text = "";
+        if (category != null) {
+            for (String line : category) {
+                String trimmed = line.trim();
+                if (!trimmed.isEmpty())
+                    text += trimmed + '\n';
+            }
+        }
+        return text;
+    }
+
+    public static List<String> stringToStringList(String text) {
+        List<String> list = new ArrayList<>();
+        for (String str : text.split("\n")) {
+            String trimmed = str.trim();
+            if (!trimmed.isEmpty())
+                list.add(trimmed);
+        }
+        return list;
+    }
+
     public static boolean hasPermission(Context context, String permission) {
         if (ContextCompat.checkSelfPermission(context, permission)
                 != PackageManager.PERMISSION_GRANTED) {

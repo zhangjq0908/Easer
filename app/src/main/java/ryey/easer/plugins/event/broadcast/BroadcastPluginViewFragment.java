@@ -17,9 +17,8 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.operation.broadcast;
+package ryey.easer.plugins.event.broadcast;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -34,45 +33,36 @@ import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public class BroadcastPluginViewFragment extends PluginViewFragment {
-    EditText m_text_action;
-    EditText m_text_category;
-    EditText m_text_type;
-    EditText m_text_data;
+    EditText editText_action, editText_category;
 
     {
-        setDesc(R.string.operation_broadcast);
+        setDesc(R.string.event_broadcast);
     }
 
     @NonNull
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_operation__broadcast, container, false);
-        m_text_action = (EditText) view.findViewById(R.id.text_action);
-        m_text_category = (EditText) view.findViewById(R.id.text_category);
-        m_text_type = (EditText) view.findViewById(R.id.text_type);
-        m_text_data = (EditText) view.findViewById(R.id.text_data);
+        View view = inflater.inflate(R.layout.plugin_event__broadcast, container, false);
+        editText_action = (EditText) view.findViewById(R.id.editText_action);
+        editText_category = (EditText) view.findViewById(R.id.editText_category);
 
         return view;
     }
 
     @Override
     protected void _fill(StorageData data) {
-        IntentData rdata = (IntentData) data.get();
-        m_text_action.setText(rdata.action);
-        m_text_category.setText(Utils.StringListToString(rdata.category));
-        m_text_type.setText(rdata.type);
-        if (rdata.data != null)
-            m_text_data.setText(rdata.data.toString());
+        if (data instanceof BroadcastEventData) {
+            ReceiverSideIntentData intentData = (ReceiverSideIntentData) data.get();
+            editText_action.setText(Utils.StringListToString(intentData.action));
+            editText_category.setText(Utils.StringListToString(intentData.category));
+        }
     }
 
     @Override
     public StorageData getData() {
-        IntentData data = new IntentData();
-        data.action = m_text_action.getText().toString();
-        data.category = Utils.stringToStringList(m_text_category.getText().toString());
-        data.type = m_text_type.getText().toString();
-        data.data = Uri.parse(m_text_data.getText().toString());
-        BroadcastOperationData broadcastOperationData = new BroadcastOperationData(data);
-        return broadcastOperationData;
+        ReceiverSideIntentData intentData = new ReceiverSideIntentData();
+        intentData.action = Utils.stringToStringList(editText_action.getText().toString());
+        intentData.category = Utils.stringToStringList(editText_category.getText().toString());
+        return new BroadcastEventData(intentData);
     }
 }

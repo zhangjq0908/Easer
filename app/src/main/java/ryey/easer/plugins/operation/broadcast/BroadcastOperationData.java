@@ -89,7 +89,7 @@ public class BroadcastOperationData implements OperationData {
                         break;
                     case CATEGORY:
                         if (parser.next() == XmlPullParser.TEXT)
-                            intentData.category = IntentData.stringToCategory(parser.getText());
+                            intentData.category = Utils.stringToStringList(parser.getText());
                         else
                             throw new IllegalStorageDataException(String.format("Illegal Item: (%s) Category is not valid", pname));
                         break;
@@ -136,7 +136,7 @@ public class BroadcastOperationData implements OperationData {
 
         if (!data.category.isEmpty()) {
             serializer.startTag(ns, CATEGORY);
-            serializer.text(IntentData.categoryToString(data.category));
+            serializer.text(Utils.StringListToString(data.category));
             serializer.endTag(ns, CATEGORY);
         }
 
