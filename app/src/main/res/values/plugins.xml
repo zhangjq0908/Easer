@@ -2,7 +2,10 @@
 <resources>
     <string name="event_time">Time</string>
     <string name="event_date">Date</string>
+
     <string name="event_wificonn">WiFi Connection</string>
+    <string name="wificonn_select_dialog_title">Select WiFi AP</string>
+
     <string name="event_celllocation">Cell Location</string>
 
     <string name="event_battery">Battery Status</string>
