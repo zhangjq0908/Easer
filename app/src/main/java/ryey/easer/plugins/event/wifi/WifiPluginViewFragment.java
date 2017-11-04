@@ -80,7 +80,7 @@ public class WifiPluginViewFragment extends PluginViewFragment {
                 if (!Utils.hasPermission(getContext(), Manifest.permission.ACCESS_WIFI_STATE))
                     return;
                 AlertDialog.Builder builderSingle = new AlertDialog.Builder(getContext());
-                builderSingle.setTitle(R.string.ebtdevice_select_dialog_title);
+                builderSingle.setTitle(R.string.wificonn_select_dialog_title);
                 final ArrayAdapter<WifiDeviceWrapper> arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.select_dialog_singlechoice);
                 WifiManager wifiManager = (WifiManager) getContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
                 if (wifiManager != null) {
