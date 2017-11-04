@@ -53,6 +53,14 @@
     <string name="obroadcast_l_category">Category:</string>
     <string name="obroadcast_l_type">Type:</string>
     <string name="obroadcast_l_data">Data:</string>
+    <string name="text_extras">Extras</string>
+    <string name="text_key">Key</string>
+    <string name="text_value">Value</string>
+    <string name="text_type">Type</string>
+    <array name="extra_type" translatable="false">
+        <item>string</item>
+        <item>int</item>
+    </array>
 
     <string name="operation_brightness">Brightness</string>
     <string name="operation_brightness_desc_autobrightness">Auto brightness</string>

@@ -46,6 +46,10 @@ public class BroadcastOperationData implements OperationData {
     static final String CATEGORY = "category";
     static final String TYPE = "type";
     static final String DATA = "data";
+    static final String EXTRAS = "extras";
+    static final String KEY = "key";
+    static final String VALUE = "value";
+    static final String V_TYPE = "type";
 
     IntentData data = new IntentData();
 
@@ -134,13 +138,13 @@ public class BroadcastOperationData implements OperationData {
             serializer.endTag(ns, ACTION);
         }
 
-        if (!data.category.isEmpty()) {
+        if (data.category != null && !data.category.isEmpty()) {
             serializer.startTag(ns, CATEGORY);
             serializer.text(Utils.StringListToString(data.category));
             serializer.endTag(ns, CATEGORY);
         }
 
-        if (!Utils.isBlank(data.action)) {
+        if (!Utils.isBlank(data.type)) {
             serializer.startTag(ns, TYPE);
             serializer.text(data.type.trim());
             serializer.endTag(ns, TYPE);
@@ -175,6 +179,19 @@ public class BroadcastOperationData implements OperationData {
                     intentData.type = jsonObject.optString(TYPE, null);
                     intentData.data = Uri.parse(jsonObject.optString(DATA, null));
 
+                    JSONArray jsonArray_extras = jsonObject.optJSONArray(EXTRAS);
+                    if (jsonArray_extras != null) {
+                        intentData.extras = new ArrayList<>(jsonArray_extras.length());
+                        for (int i = 0; i < jsonArray_extras.length(); i++) {
+                            JSONObject jsonObject_extra = jsonArray_extras.getJSONObject(i);
+                            IntentData.ExtraItem item = new IntentData.ExtraItem();
+                            item.key = jsonObject_extra.getString(KEY);
+                            item.value = jsonObject_extra.getString(VALUE);
+                            item.type = jsonObject_extra.getString(TYPE);
+                            intentData.extras.add(item);
+                        }
+                    }
+
                     this.data = intentData;
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -200,6 +217,16 @@ public class BroadcastOperationData implements OperationData {
 
                     jsonObject.put(TYPE, data.type);
                     jsonObject.put(DATA, data.data.toString());
+
+                    JSONArray jsonArray_extras = new JSONArray();
+                    for (IntentData.ExtraItem item : data.extras) {
+                        JSONObject jsonObject_extra = new JSONObject();
+                        jsonObject_extra.put(KEY, item.key);
+                        jsonObject_extra.put(VALUE, item.value);
+                        jsonObject_extra.put(TYPE, item.type);
+                        jsonArray_extras.put(jsonObject_extra);
+                    }
+                    jsonObject.put(EXTRAS, jsonArray_extras);
 
                     res = jsonObject.toString();
                 } catch (JSONException e) {

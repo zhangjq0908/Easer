@@ -9,9 +9,14 @@ public class IntentData {
     List<String> category;
     String type;
     Uri data;
+    List<ExtraItem> extras;
 
     @Override
     public String toString() {
         return String.format("action:%s category:%s type:%s data:%s", action, category, type, data);
+    }
+
+    static class ExtraItem {
+        String key, value, type;
     }
 }

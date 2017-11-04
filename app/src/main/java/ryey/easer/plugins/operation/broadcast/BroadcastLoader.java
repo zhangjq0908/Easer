@@ -21,6 +21,7 @@ package ryey.easer.plugins.operation.broadcast;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 
 import com.orhanobut.logger.Logger;
 
@@ -53,6 +54,20 @@ public class BroadcastLoader extends OperationLoader {
             intent.setType(iData.type);
         } else {
             intent.setData(iData.data);
+        }
+        if (iData.extras != null) {
+            Bundle extras = new Bundle();
+            for (IntentData.ExtraItem item : iData.extras) {
+                switch (item.type) {
+                    case "string":
+                        extras.putString(item.key, item.value);
+                        break;
+                    case "int":
+                        extras.putInt(item.key, Integer.parseInt(item.value));
+                        break;
+                }
+            }
+            intent.putExtras(extras);
         }
         Logger.d(intent);
         context.sendBroadcast(intent);
