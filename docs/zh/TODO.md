@@ -3,13 +3,18 @@ TODO
 * 功能/使用
 	* 增加更多Event（以下建議）
 		* GPS位置
-		* 接收特定Broadcast
 		* 收到特定Notification
+		* 接收短信
+		* 收到來電
 	* 增加更多Operation（以下建議）
 		* 定位
 		* 音量
-		* 發送TCP/UDP包
+		* 飛行模式
+		* 發送短信
+		* 撥打電話
 	* UI方面
+		* 允許選擇一些預定的broadcast，甚或動態加載/尋找
+		* 增加對Plugin對權限（root）需求的顯示/提示
 		* 讓Event修改界面更好看
 		* 動態添加Operation到Profile修改界面
 		* 調整概覽頁面以更好看（使用卡片）
@@ -27,6 +32,7 @@ TODO
 	* 尋找方法將Plugin改爲單獨的apk，而非集成在Easer主體中
 * 週遭
 	* 更詳細的介紹
+	* 更詳細的文檔
 
 待定
 =======

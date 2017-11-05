@@ -10,6 +10,7 @@ Supported Features
 * Bluetooth device connected
 * Connectivity status
 * Calendar Event
+* Any Broadcast/Intent
 
 ### Operation
 * WiFi switch
@@ -22,4 +23,5 @@ Supported Features
 * Execute commands
 * Enable or disable *account synchronization*
 * Send network messages
+* Control media player
 

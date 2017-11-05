@@ -3,15 +3,20 @@ TODO
 * Function / User experience
 	* Add more Event (suggestions below)
 		* GPS position
-		* Receiving specific Broadcast
 		* Receiving certain Notifications
+		* Receiving messages (SMS)
+		* Receiving phone calls
 	* Add more Operation (suggestions below)
 		* Location setting
 		* Ringtone volume
-		* Send TCP/UDP packets
+		* Airplane mode
+		* Send message (SMS)
+		* Perform phone call
 	* UI
-		* Make EditEventDialogFragment more good-looking
-		* Dynamically add Operation(s) to EditProfileDialogFragment
+		* Allow to pick some pre-defined broadcasts or even dynamically search
+		* Add the display/notification of Plugin's privilege (root or not)
+		* Make EditEventActivity more good-looking
+		* Dynamically add Operation(s) to EditProfileActivity
 		* Make OutlineFragment more good-looking
 		* Use a tree view in EventListFragment
 		* Complement 'AboutActivity'
@@ -27,6 +32,7 @@ TODO
 	* Find a way to make Plugin(s) seperate apks, rather than narrow them together in the mainframe of Easer
 * Issues around
 	* Better description of Easer
+	* Better documents
 
 To be considered
 =======

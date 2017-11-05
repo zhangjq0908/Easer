@@ -1,6 +1,12 @@
 CHANGELOG
 ======
 
+* v0.4.5: Add `BroadcastEventPlugin` and `MediaControlOperationPlugin` && Fix and update `BroadcastOperationPlugin` && Fix the selector title of `WifiOperationPlugin`'s view'
+	* Add `BroadcastEventPlugin` to listen to system broadcasts
+	* Add `MediaControlOperationPlugin` to control media player behavior ([#31](https://github.com/renyuneyun/Easer/issues/31))
+	* Fix a data bug in `BroadcastOperationPlugin` and allow to add extras (see [#31](https://github.com/renyuneyun/Easer/issues/31))
+	* Fix the selector title of `WifiOperationPlugin` (thanks to Sohalt [#41](https://github.com/renyuneyun/Easer/pull/41))
+
 * v0.4.4: Introduce `SynchronizationOperationPlugin` and `NetworkTransmissionOperationPlugin` && Add *root features* && Bug fixes && Deveopment changes
 	* Introduce `SynchronizationOperationPlugin` to control the *account synchronization* setting
 	* Introduce `NetworkTransmissionOperationPlugin` to send network packets
