@@ -84,6 +84,13 @@
     <string name="o_nettrans_remote_port">Remote Port</string>
     <string name="o_nettrans_data">Data</string>
 
+    <string name="operation_media_control">Media Control</string>
+    <string name="text_play_pause">Toogle Play/Pause</string>
+    <string name="text_play">Play</string>
+    <string name="text_pause">Pause</string>
+    <string name="text_previous">Previous</string>
+    <string name="text_next">Next</string>
+
     <string-array name="event_type">
         <item>After</item>
         <item>Any</item>

@@ -74,6 +74,13 @@
     <string name="o_nettrans_remote_port">遠程端口</string>
     <string name="o_nettrans_data">數據</string>
 
+    <string name="operation_media_control">媒體控制</string>
+    <string name="text_play_pause">切換播放/暫停</string>
+    <string name="text_play">播放</string>
+    <string name="text_pause">暫停</string>
+    <string name="text_previous">上一首</string>
+    <string name="text_next">下一首</string>
+
     <string-array name="event_type">
         <item>晚於</item>
         <item>任一</item>
