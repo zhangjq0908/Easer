@@ -3,17 +3,20 @@ package ryey.easer.core.ui.edit;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.StorageData;
@@ -23,14 +26,17 @@ import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.plugins.PluginRegistry;
 
-public class EditProfileActivity extends AppCompatActivity {
+public class EditProfileActivity extends AppCompatActivity implements OperationSelectorFragment.SelectedListener {
 
     ProfileDataStorage storage = null;
 
     EditDataProto.Purpose purpose;
     String oldName = null;
 
-    EditText mEditText = null;
+    EditText editText_profile_name = null;
+
+    OperationSelectorFragment operationSelectorFragment;
+    List<PluginViewContainerFragment> operationViewList = new ArrayList<>();
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -89,23 +95,20 @@ public class EditProfileActivity extends AppCompatActivity {
             actionbar.setHomeAsUpIndicator(R.drawable.ic_close_24dp);
             actionbar.setDisplayHomeAsUpEnabled(true);
             setTitle(R.string.title_edit_profile);
-            init();
+            editText_profile_name = (EditText) findViewById(R.id.editText_profile_title);
+            operationSelectorFragment = new OperationSelectorFragment();
+            operationSelectorFragment.setSelectedListener(this);
+            findViewById(R.id.button_add_operation).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    operationSelectorFragment.show(getSupportFragmentManager(), "add_op");
+                }
+            });
             if (purpose == EditDataProto.Purpose.edit) {
                 ProfileStructure profile = storage.get(oldName);
                 loadFromProfile(profile);
             }
         }
-    }
-
-    void init() {
-        mEditText = (EditText) findViewById(R.id.editText_profile_title);
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        for (OperationPlugin operationPlugin : PluginRegistry.getInstance().operation().getPlugins()) {
-            PluginViewContainerFragment fragment = ProfilePluginViewContainerFragment.createInstance(operationPlugin.view());
-            fragmentManager.beginTransaction().add(R.id.layout_profiles, fragment, operationPlugin.name()).commit();
-        }
-        fragmentManager.executePendingTransactions();
     }
 
     @Override
@@ -115,30 +118,32 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     protected void loadFromProfile(ProfileStructure profile) {
-        mEditText.setText(oldName);
+        editText_profile_name.setText(oldName);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        for (OperationPlugin plugin : PluginRegistry.getInstance().operation().getPlugins()) {
-            PluginViewContainerFragment fragment = (PluginViewContainerFragment) fragmentManager.findFragmentByTag(plugin.name());
-            fragment.fill(profile.get(plugin.name()));
+        clearPluginView();
+        List<OperationPlugin> plugins = PluginRegistry.getInstance().operation().getPlugins();
+        for (int i = 0; i < plugins.size(); i++) {
+            OperationData operationData = profile.get(plugins.get(i).name());
+            if (operationData != null) {
+                PluginViewContainerFragment fragment = addPluginView(new OperationPlugin[]{plugins.get(i)})[0];
+                fragment.fill(operationData);
+            }
         }
     }
 
     protected ProfileStructure saveToProfile() {
-        ProfileStructure profile = new ProfileStructure(mEditText.getText().toString());
+        ProfileStructure profile = new ProfileStructure(editText_profile_name.getText().toString());
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        for (OperationPlugin plugin : PluginRegistry.getInstance().operation().getPlugins()) {
-            PluginViewContainerFragment fragment = (PluginViewContainerFragment) fragmentManager.findFragmentByTag(plugin.name());
+        for (PluginViewContainerFragment fragment : operationViewList) {
             StorageData data = fragment.getData();
             if (data == null)
                 continue;
             if (data instanceof OperationData) {
                 if (data.isValid())
-                    profile.set(plugin.name(), (OperationData) data);
+                    profile.set(PluginRegistry.getInstance().operation().findPlugin((OperationData) data).name(), (OperationData) data);
             } else {
                 Logger.wtf("data of plugin's Layout is not instance of OperationData");
-                throw new RuntimeException("data of plugin's Layout is not instance of OperationData");
+                throw new IllegalStateException("data of plugin's Layout is not instance of OperationData");
             }
         }
 
@@ -180,5 +185,34 @@ public class EditProfileActivity extends AppCompatActivity {
             Logger.e(e, "IOException when altering");
             return false;
         }
+    }
+
+    synchronized void clearPluginView() {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        for (PluginViewContainerFragment fragment : operationViewList) {
+            transaction.remove(fragment);
+        }
+        operationViewList.clear();
+        transaction.commit();
+    }
+
+    synchronized PluginViewContainerFragment[] addPluginView(OperationPlugin[] plugins) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        PluginViewContainerFragment[] fragments = new PluginViewContainerFragment[plugins.length];
+        for (int i = 0; i < plugins.length; i++) {
+            OperationPlugin plugin = plugins[i];
+            PluginViewContainerFragment fragment = ProfilePluginViewContainerFragment.createInstance(plugin.view());
+            transaction.add(R.id.layout_profiles, fragment, plugin.name());
+            fragments[i] = fragment;
+            operationViewList.add(fragment);
+            operationSelectorFragment.addSelectedPlugin(plugin);
+        }
+        transaction.commit();
+        return fragments;
+    }
+
+    @Override
+    public void onSelected(OperationPlugin plugin) {
+        addPluginView(new OperationPlugin[]{plugin});
     }
 }

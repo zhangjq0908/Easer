@@ -62,4 +62,19 @@
         <item name="android:ems">10</item>
     </style>
 
+    <style name="AppTheme.Dialog" parent="AppTheme" />
+
+    <style name="AppTheme.Dialog.Title" parent="TextAppearance.AppCompat.Title">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textColor">@color/colorDialogTitle</item>
+    </style>
+
+    <style name="ListItem" parent="AppTheme" />
+
+    <style name="ListItem.OperationSelection">
+        <item name="android:padding">@dimen/list_item_operation_selection_margin</item>
+        <item name="android:textSize">@dimen/list_item_operation_selection_text_size</item>
+    </style>
+
 </resources>
