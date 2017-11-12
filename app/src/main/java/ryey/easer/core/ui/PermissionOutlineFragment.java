@@ -28,6 +28,9 @@ public class PermissionOutlineFragment extends Fragment {
             Manifest.permission.BLUETOOTH_ADMIN,
             Manifest.permission.MODIFY_AUDIO_SETTINGS,
             Manifest.permission.READ_CALENDAR,
+            Manifest.permission.READ_SMS,
+            Manifest.permission.RECEIVE_SMS,
+            Manifest.permission.SEND_SMS,
             Manifest.permission.WRITE_SYNC_SETTINGS,
     };
 

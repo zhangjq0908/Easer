@@ -34,7 +34,7 @@
     <string name="ecalendar_select_dialog_title">Select Calendar</string>
     <string name="text_calendar_name">Calendar name</string>
     <string name="text_calendar">Calendar</string>
-    <string name="indicator_when">When...</string>
+    <string name="indicator_when">When…</string>
     <string name="choice_start_of">Start of</string>
     <string name="choice_end_of">End of</string>
     <string name="choice_any_event">Any Events</string>
@@ -42,6 +42,10 @@
     <string name="event_broadcast">Receive Broadcast</string>
     <string name="text_action">Action</string>
     <string name="text_category">Category</string>
+
+    <string name="event_sms">Receive Sms</string>
+    <string name="sender">Sender</string>
+    <string name="content_contains">Content (contains…)</string>
 
     <string name="operation_wifi">WiFi</string>
     <string name="operation_cellular">Mobile data</string>
