@@ -97,6 +97,10 @@
 
     <string name="operation_airplane_mode">Airplane Mode</string>
 
+    <string name="operation_send_sms">Send SMS</string>
+    <string name="destination">Destination</string>
+    <string name="content">Content</string>
+
     <string-array name="event_type">
         <item>After</item>
         <item>Any</item>

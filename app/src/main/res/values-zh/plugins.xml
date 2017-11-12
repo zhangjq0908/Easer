@@ -87,6 +87,10 @@
 
     <string name="operation_airplane_mode">飛行模式</string>
 
+    <string name="operation_send_sms">發送短信</string>
+    <string name="destination">收信人</string>
+    <string name="content">內容</string>
+
     <string-array name="event_type">
         <item>晚於</item>
         <item>任一</item>

@@ -53,6 +53,7 @@ import ryey.easer.plugins.operation.media_control.MediaControlOperationPlugin;
 import ryey.easer.plugins.operation.network_transmission.NetworkTransmissionOperationPlugin;
 import ryey.easer.plugins.operation.ringer_mode.RingerModeOperationPlugin;
 import ryey.easer.plugins.operation.rotation.RotationOperationPlugin;
+import ryey.easer.plugins.operation.send_sms.SendSmsOperationPlugin;
 import ryey.easer.plugins.operation.synchronization.SynchronizationOperationPlugin;
 import ryey.easer.plugins.operation.wifi.WifiOperationPlugin;
 
@@ -95,6 +96,7 @@ final public class PluginRegistry {
         operation().registerPlugin(NetworkTransmissionOperationPlugin.class);
         operation().registerPlugin(MediaControlOperationPlugin.class);
         operation().registerPlugin(AirplaneModeOperationPlugin.class);
+        operation().registerPlugin(SendSmsOperationPlugin.class);
         //TODO: write more plugins
     }
 
