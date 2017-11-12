@@ -22,14 +22,8 @@ package ryey.easer.plugins.operation.send_sms;
 import android.content.Context;
 import android.telephony.SmsManager;
 
-import com.orhanobut.logger.Logger;
-
-import java.io.IOException;
-
-import ryey.easer.Utils;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
-import ryey.easer.plugins.reusable.PluginHelper;
 
 public class SmsLoader extends OperationLoader {
     public SmsLoader(Context context) {

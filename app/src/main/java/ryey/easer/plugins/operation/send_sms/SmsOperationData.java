@@ -35,7 +35,6 @@ import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
-import ryey.easer.plugins.operation.StringOperationData;
 
 public class SmsOperationData implements OperationData {
     private static final String K_DEST = "destination";

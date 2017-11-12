@@ -80,7 +80,11 @@ public class NetworkTransmissionPluginViewFragment extends PluginViewFragment {
         else if (rb_udp.isChecked())
             tdata.protocol = TransmissionData.Protocol.udp;
         tdata.remote_address = editText_remote_address.getText().toString();
-        tdata.remote_port = Integer.valueOf(editText_remote_port.getText().toString().trim());
+        try {
+            tdata.remote_port = Integer.valueOf(editText_remote_port.getText().toString().trim());
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
         tdata.data = editText_data.getText().toString();
         return new NetworkTransmissionOperationData(tdata);
     }

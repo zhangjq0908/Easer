@@ -139,8 +139,13 @@ public class EditProfileActivity extends AppCompatActivity implements OperationS
             if (data == null)
                 continue;
             if (data instanceof OperationData) {
-                if (data.isValid())
+                if (data.isValid()) {
+                    fragment.setHighlight(false);
                     profile.set(PluginRegistry.getInstance().operation().findPlugin((OperationData) data).name(), (OperationData) data);
+                } else {
+                    fragment.setHighlight(true);
+                    return null;
+                }
             } else {
                 Logger.wtf("data of plugin's Layout is not instance of OperationData");
                 throw new IllegalStateException("data of plugin's Layout is not instance of OperationData");
@@ -157,7 +162,8 @@ public class EditProfileActivity extends AppCompatActivity implements OperationS
                 success = storage.delete(oldName);
             else {
                 ProfileStructure newProfile = saveToProfile();
-                if (!newProfile.isValid()) {
+                if (newProfile == null || !newProfile.isValid()) {
+                    Toast.makeText(this, getString(R.string.prompt_data_illegal), Toast.LENGTH_LONG).show();
                     return false;
                 }
                 switch (purpose) {
