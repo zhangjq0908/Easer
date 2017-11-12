@@ -81,6 +81,8 @@
     <string name="text_previous">上一首</string>
     <string name="text_next">下一首</string>
 
+    <string name="operation_airplane_mode">飛行模式</string>
+
     <string-array name="event_type">
         <item>晚於</item>
         <item>任一</item>
