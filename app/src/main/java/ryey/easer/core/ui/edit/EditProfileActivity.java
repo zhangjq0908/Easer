@@ -16,6 +16,7 @@ import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import ryey.easer.R;
@@ -123,10 +124,12 @@ public class EditProfileActivity extends AppCompatActivity implements OperationS
         clearPluginView();
         List<OperationPlugin> plugins = PluginRegistry.getInstance().operation().getPlugins();
         for (int i = 0; i < plugins.size(); i++) {
-            OperationData operationData = profile.get(plugins.get(i).name());
-            if (operationData != null) {
-                PluginViewContainerFragment fragment = addPluginView(new OperationPlugin[]{plugins.get(i)})[0];
-                fragment.fill(operationData);
+            Collection<OperationData> possibleOperationData = profile.get(plugins.get(i).name());
+            if (possibleOperationData != null) {
+                for (OperationData operationData : possibleOperationData) {
+                    PluginViewContainerFragment fragment = addPluginView(new OperationPlugin[]{plugins.get(i)})[0];
+                    fragment.fill(operationData);
+                }
             }
         }
     }

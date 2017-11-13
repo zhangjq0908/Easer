@@ -20,7 +20,9 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-rules-guava.pro',
+                    'proguard-rules.pro'
         }
     }
     productFlavors {
@@ -34,6 +36,7 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.google.guava:guava:23.4-android'
     compile 'com.orhanobut:logger:2.1.1'
     compile 'org.apmem.tools:layouts:1.10@aar'
     testCompile 'junit:junit:4.12'

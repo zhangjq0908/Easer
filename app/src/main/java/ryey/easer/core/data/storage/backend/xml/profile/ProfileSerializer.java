@@ -27,6 +27,7 @@ import org.xmlpull.v1.XmlSerializer;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Collection;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
@@ -80,9 +81,10 @@ class ProfileSerializer implements Serializer<ProfileStructure> {
 
     private void writeItems() throws IOException {
         for (OperationPlugin plugin : PluginRegistry.getInstance().operation().getPlugins()) {
-            OperationData data = mProfile.get(plugin.name());
-            if (data != null)
-                data.serialize(serializer);
+            Collection<OperationData> possibleData = mProfile.get(plugin.name());
+            if (possibleData != null)
+                for (OperationData data : possibleData)
+                    data.serialize(serializer);
         }
     }
 
