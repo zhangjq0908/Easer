@@ -36,6 +36,11 @@ public interface OperationPlugin extends PluginDef {
     PrivilegeUsage privilege();
 
     /**
+     * Returns the max number of concurrent existence of this plugin in a profile
+     */
+    int maxExistence();
+
+    /**
      * {@inheritDoc}
      */
     OperationData data();

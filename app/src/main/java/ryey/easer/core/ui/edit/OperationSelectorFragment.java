@@ -33,8 +33,12 @@ public class OperationSelectorFragment extends DialogFragment {
         List<OperationPlugin> operationPluginList = PluginRegistry.getInstance().operation().getPlugins();
         List<PluginItemWrapper> descList = new ArrayList<>(operationPluginList.size());
         for (OperationPlugin operationPlugin : operationPluginList) {
-            if (addedPlugins.containsKey(operationPlugin.getClass()))
-                continue; //TODO: add "max number" in the future
+            if (addedPlugins.containsKey(operationPlugin.getClass())) {
+                if (operationPlugin.maxExistence() > 0) {
+                    if (addedPlugins.get(operationPlugin.getClass()) >= operationPlugin.maxExistence())
+                        continue;
+                }
+            }
             descList.add(new PluginItemWrapper(operationPlugin.view().desc(getResources()), operationPlugin));
         }
         ArrayAdapter<PluginItemWrapper> adapter = new ArrayAdapter<>(getContext(), R.layout.item_operation, R.id.tv_operation_name, descList);
