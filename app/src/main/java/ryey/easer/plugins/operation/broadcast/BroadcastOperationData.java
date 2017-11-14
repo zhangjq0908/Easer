@@ -209,24 +209,30 @@ public class BroadcastOperationData implements OperationData {
                 try {
                     jsonObject.put(ACTION, data.action);
 
-                    JSONArray jsonArray_category = new JSONArray();
-                    for (String category : data.category) {
-                        jsonArray_category.put(category);
+                    if (data.category != null && data.category.size() > 0) {
+                        JSONArray jsonArray_category = new JSONArray();
+                        for (String category : data.category) {
+                            jsonArray_category.put(category);
+                        }
+                        jsonObject.put(CATEGORY, jsonArray_category);
                     }
-                    jsonObject.put(CATEGORY, jsonArray_category);
 
-                    jsonObject.put(TYPE, data.type);
-                    jsonObject.put(DATA, data.data.toString());
+                    if (!Utils.isBlank(data.type))
+                        jsonObject.put(TYPE, data.type);
+                    if (data.data != null)
+                        jsonObject.put(DATA, data.data.toString());
 
-                    JSONArray jsonArray_extras = new JSONArray();
-                    for (IntentData.ExtraItem item : data.extras) {
-                        JSONObject jsonObject_extra = new JSONObject();
-                        jsonObject_extra.put(KEY, item.key);
-                        jsonObject_extra.put(VALUE, item.value);
-                        jsonObject_extra.put(TYPE, item.type);
-                        jsonArray_extras.put(jsonObject_extra);
+                    if (data.extras != null && data.extras.size() > 0) {
+                        JSONArray jsonArray_extras = new JSONArray();
+                        for (IntentData.ExtraItem item : data.extras) {
+                            JSONObject jsonObject_extra = new JSONObject();
+                            jsonObject_extra.put(KEY, item.key);
+                            jsonObject_extra.put(VALUE, item.value);
+                            jsonObject_extra.put(TYPE, item.type);
+                            jsonArray_extras.put(jsonObject_extra);
+                        }
+                        jsonObject.put(EXTRAS, jsonArray_extras);
                     }
-                    jsonObject.put(EXTRAS, jsonArray_extras);
 
                     res = jsonObject.toString();
                 } catch (JSONException e) {
