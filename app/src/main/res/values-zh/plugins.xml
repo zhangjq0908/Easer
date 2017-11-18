@@ -31,7 +31,7 @@
     <string name="ecalendar_select_dialog_title">選擇日曆</string>
     <string name="text_calendar_name">日曆名</string>
     <string name="text_calendar">日曆</string>
-    <string name="indicator_when">當...</string>
+    <string name="indicator_when">當…</string>
     <string name="choice_start_of">開始時</string>
     <string name="choice_end_of">結束時</string>
     <string name="choice_any_event">任意事件</string>
@@ -39,6 +39,10 @@
     <string name="event_broadcast">收到廣播</string>
     <string name="text_action">Action</string>
     <string name="text_category">Category</string>
+
+    <string name="event_sms">收到短信</string>
+    <string name="sender">發送人</string>
+    <string name="content_contains">內容 (包含…)</string>
     
     <string name="operation_bluetooth">藍牙</string>
 
@@ -80,6 +84,12 @@
     <string name="text_pause">暫停</string>
     <string name="text_previous">上一首</string>
     <string name="text_next">下一首</string>
+
+    <string name="operation_airplane_mode">飛行模式</string>
+
+    <string name="operation_send_sms">發送短信</string>
+    <string name="destination">收信人</string>
+    <string name="content">內容</string>
 
     <string-array name="event_type">
         <item>晚於</item>

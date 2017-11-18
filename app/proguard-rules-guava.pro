@@ -1,0 +1,7 @@
+-dontwarn com.google.common.base.**
+-keep class com.google.common.base.** {*;}
+-dontwarn com.google.errorprone.annotations.**
+-keep class com.google.errorprone.annotations.** {*;}
+-dontwarn java.lang.ClassValue
+-keep class java.lang.ClassValue { *; }
+-dontwarn sun.misc.Unsafe

@@ -39,8 +39,10 @@ import ryey.easer.plugins.event.celllocation.CellLocationEventPlugin;
 import ryey.easer.plugins.event.connectivity.ConnectivityEventPlugin;
 import ryey.easer.plugins.event.date.DateEventPlugin;
 import ryey.easer.plugins.event.dayofweek.DayOfWeekEventPlugin;
+import ryey.easer.plugins.event.sms.SmsEventPlugin;
 import ryey.easer.plugins.event.time.TimeEventPlugin;
 import ryey.easer.plugins.event.wifi.WifiEventPlugin;
+import ryey.easer.plugins.operation.airplane_mode.AirplaneModeOperationPlugin;
 import ryey.easer.plugins.operation.bluetooth.BluetoothOperationPlugin;
 import ryey.easer.plugins.operation.brightness.BrightnessOperationPlugin;
 import ryey.easer.plugins.operation.broadcast.BroadcastOperationPlugin;
@@ -51,6 +53,7 @@ import ryey.easer.plugins.operation.media_control.MediaControlOperationPlugin;
 import ryey.easer.plugins.operation.network_transmission.NetworkTransmissionOperationPlugin;
 import ryey.easer.plugins.operation.ringer_mode.RingerModeOperationPlugin;
 import ryey.easer.plugins.operation.rotation.RotationOperationPlugin;
+import ryey.easer.plugins.operation.send_sms.SendSmsOperationPlugin;
 import ryey.easer.plugins.operation.synchronization.SynchronizationOperationPlugin;
 import ryey.easer.plugins.operation.wifi.WifiOperationPlugin;
 
@@ -78,6 +81,7 @@ final public class PluginRegistry {
         event().registerPlugin(ConnectivityEventPlugin.class);
         event().registerPlugin(CalendarEventPlugin.class);
         event().registerPlugin(BroadcastEventPlugin.class);
+        event().registerPlugin(SmsEventPlugin.class);
 
         operation().registerPlugin(WifiOperationPlugin.class);
         operation().registerPlugin(CellularOperationPlugin.class);
@@ -91,6 +95,8 @@ final public class PluginRegistry {
         operation().registerPlugin(SynchronizationOperationPlugin.class);
         operation().registerPlugin(NetworkTransmissionOperationPlugin.class);
         operation().registerPlugin(MediaControlOperationPlugin.class);
+        operation().registerPlugin(AirplaneModeOperationPlugin.class);
+        operation().registerPlugin(SendSmsOperationPlugin.class);
         //TODO: write more plugins
     }
 

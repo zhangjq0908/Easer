@@ -25,7 +25,7 @@ public class BrightnessOperationData extends IntegerOperationData {
 
     {
         lbound = -1;
-        rbound = 100;
+        rbound = 255;
     }
 
     public BrightnessOperationData() {

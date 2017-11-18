@@ -25,6 +25,7 @@ import android.content.Intent;
 import com.orhanobut.logger.Logger;
 
 import java.util.Calendar;
+import java.util.Collection;
 
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
@@ -75,13 +76,15 @@ public class ProfileLoaderIntentService extends IntentService {
             boolean loaded = false;
             for (OperationPlugin plugin : PluginRegistry.getInstance().operation().getPlugins()) {
                 OperationLoader loader = plugin.loader(getApplicationContext());
-                OperationData data = profile.get(plugin.name());
-                if (data != null) {
-                    try {
-                        if (loader.load(data))
-                            loaded = true;
-                    } catch (RuntimeException e) {
-                        Logger.e(e, "error while loading operation <%s> for profile <%s>", data.getClass().getSimpleName(), profile.getName());
+                Collection<OperationData> possibleData = profile.get(plugin.name());
+                if (possibleData != null) {
+                    for (OperationData data : possibleData) {
+                        try {
+                            if (loader.load(data))
+                                loaded = true;
+                        } catch (RuntimeException e) {
+                            Logger.e(e, "error while loading operation <%s> for profile <%s>", data.getClass().getSimpleName(), profile.getName());
+                        }
                     }
                 }
             }

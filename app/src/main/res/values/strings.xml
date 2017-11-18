@@ -12,6 +12,7 @@
     <string name="title_delete">Delete</string>
     <string name="title_edit_event">Edit Event</string>
     <string name="title_edit_profile">Edit Profile</string>
+    <string name="title_select_operation">Select an Operation</string>
 
     <string name="menu_start">Start</string>
     <string name="menu_stop">Stop</string>

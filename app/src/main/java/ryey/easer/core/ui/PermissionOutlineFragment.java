@@ -28,8 +28,13 @@ public class PermissionOutlineFragment extends Fragment {
             Manifest.permission.BLUETOOTH_ADMIN,
             Manifest.permission.MODIFY_AUDIO_SETTINGS,
             Manifest.permission.READ_CALENDAR,
+            Manifest.permission.READ_SMS,
+            Manifest.permission.RECEIVE_SMS,
+            Manifest.permission.SEND_SMS,
             Manifest.permission.WRITE_SYNC_SETTINGS,
     };
+
+    private static int REQCODE_BIND_NOTIFICATION_LISTENER_SERVICE = 100;
 
     Button mButton;
 
@@ -92,7 +97,7 @@ public class PermissionOutlineFragment extends Fragment {
             if (ActivityCompat.checkSelfPermission(getActivity(), permission)
                     != PackageManager.PERMISSION_GRANTED)
                 ActivityCompat.requestPermissions(getActivity(),
-                        new String[]{normal_permissions[i]}, i);
+                        new String[]{permission}, i);
         }
         requestSpecialPermissions();
     }
@@ -107,11 +112,36 @@ public class PermissionOutlineFragment extends Fragment {
         startActivity(new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS));
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    boolean canBindNotificationListenerService() {
+        String permission = Manifest.permission.BIND_NOTIFICATION_LISTENER_SERVICE;
+        return ContextCompat.checkSelfPermission(getActivity(), permission)
+                != PackageManager.PERMISSION_GRANTED;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    void requestBindNotificationListenerService() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
+        } else {
+            String permission = Manifest.permission.BIND_NOTIFICATION_LISTENER_SERVICE;
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{permission}, REQCODE_BIND_NOTIFICATION_LISTENER_SERVICE);
+        }
+    }
+
     boolean hasSpecialPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!canWriteSettings()) {
                 Logger.d("Special Permission <%s> not satisfied",
                         Manifest.permission.WRITE_SETTINGS);
+                return false;
+            }
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (!canBindNotificationListenerService()) {
+                Logger.d("Special Permission <%s> not satisfied",
+                        Manifest.permission.BIND_NOTIFICATION_LISTENER_SERVICE);
                 return false;
             }
         }
@@ -122,6 +152,11 @@ public class PermissionOutlineFragment extends Fragment {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!canWriteSettings()) {
                 requestWriteSettings();
+            }
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (!canBindNotificationListenerService()) {
+                requestBindNotificationListenerService();
             }
         }
     }

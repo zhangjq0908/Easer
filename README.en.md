@@ -69,3 +69,4 @@ Third-party library
 -----
 * [Logger](https://github.com/orhanobut/logger): Apache License v2
 * [android-flowlayout](https://github.com/ApmeM/android-flowlayout): Apache License v2
+* [Guava](https://github.com/google/guava): Apache License v2

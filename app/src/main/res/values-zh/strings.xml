@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Easer</string>
-    <string name="about">關於</string>
     <string name="drawer_tip">Ease your life!</string>
     <string name="hint_event_title">事件名</string>
     <string name="menu_start">啓動</string>
@@ -59,5 +58,7 @@
     <string name="pref_use_root_title">使用root權限特性</string>
     <string name="pref_use_root_summary">對特定功能（插件）啓用root權限，可能有助於解決部分設備兼容性問題。root權限不會被用在其他地方。</string>
     <string name="title_data_manage">數據管理</string>
+    <string name="title_select_operation">選擇一個動作</string>
+    <string name="wificonn_select_dialog_title">選擇WiFi網絡名</string>
 
 </resources>

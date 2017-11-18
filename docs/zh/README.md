@@ -61,5 +61,6 @@ Easer的期望功能中包含大量對隱私信息（比如位置信息、日曆
 
 第三方庫
 -----
-[Logger](https://github.com/orhanobut/logger): Apache License v2
-[android-flowlayout](https://github.com/ApmeM/android-flowlayout): Apache License v2
+* [Logger](https://github.com/orhanobut/logger): Apache License v2
+* [android-flowlayout](https://github.com/ApmeM/android-flowlayout): Apache License v2
+* [Guava](https://github.com/google/guava): Apache License v2

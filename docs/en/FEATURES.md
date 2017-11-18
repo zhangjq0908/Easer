@@ -11,6 +11,7 @@ Supported Features
 * Connectivity status
 * Calendar Event
 * Any Broadcast/Intent
+* Designated SMSs
 
 ### Operation
 * WiFi switch
@@ -24,4 +25,6 @@ Supported Features
 * Enable or disable *account synchronization*
 * Send network messages
 * Control media player
+* Toogle airplane mode
+* Send SMS
 

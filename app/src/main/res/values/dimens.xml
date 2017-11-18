@@ -18,4 +18,7 @@
     <integer name="lr_weight_right">5</integer>
     <integer name="lr_input_weight_left">1</integer>
     <integer name="lr_input_weight_right">4</integer>
+
+    <dimen name="list_item_operation_selection_margin">4dp</dimen>
+    <dimen name="list_item_operation_selection_text_size">12pt</dimen>
 </resources>

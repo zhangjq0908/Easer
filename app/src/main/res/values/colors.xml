@@ -4,9 +4,13 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="colorDialogTitle">#99A9EE</color>
+
     <color name="color_positive">#0CF440</color>
     <color name="color_negative">#F22754</color>
 
     <color name="color_alert">#FE221C</color>
     <color name="color_surrounding">#CAD0E2</color>
+
+    <color name="transparent">#00000000</color>
 </resources>

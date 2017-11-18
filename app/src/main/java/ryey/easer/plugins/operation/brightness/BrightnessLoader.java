@@ -56,6 +56,9 @@ public class BrightnessLoader extends OperationLoader {
                     Settings.System.SCREEN_BRIGHTNESS,
                     level);
         }
+
+        DumbSettingBrightnessActivity.applyBrightness(context, ((float) level) / 255);
+
         return true;
     }
 }

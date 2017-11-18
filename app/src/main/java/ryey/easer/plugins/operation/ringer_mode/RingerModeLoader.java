@@ -19,8 +19,14 @@
 
 package ryey.easer.plugins.operation.ringer_mode;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.media.AudioManager;
+import android.os.Build;
+import android.os.ConditionVariable;
+import android.os.IBinder;
 
 import com.orhanobut.logger.Logger;
 
@@ -38,12 +44,39 @@ public class RingerModeLoader extends OperationLoader {
         if (mode == null)
             return true;
         AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-        audioManager.setRingerMode(mode);
-        if (audioManager.getRingerMode() == mode) {
-            return true;
+        if (mode == AudioManager.RINGER_MODE_SILENT && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            audioManager.setRingerMode(mode);
+            return setSilentForLollipop();
         } else {
-            Logger.e("not properly set ringer mode :: expected <%s> got <%s>", mode, audioManager.getRingerMode());
-            return false;
+            audioManager.setRingerMode(mode);
+            if (audioManager.getRingerMode() == mode) {
+                return true;
+            } else {
+                Logger.e("not properly set ringer mode :: expected <%s> got <%s>", mode, audioManager.getRingerMode());
+                return false;
+            }
         }
+    }
+
+    private boolean setSilentForLollipop() {
+        Intent intent = new Intent(context, DumbNotificationListenerService.class);
+        final ConditionVariable cv = new ConditionVariable();
+        ServiceConnection connection = new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+                ((DumbNotificationListenerService.DumbBinder) service).setSilent();
+                cv.open();
+            }
+
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+            }
+        };
+        if (context.bindService(intent, connection, Context.BIND_AUTO_CREATE)) {
+            cv.block();
+            context.unbindService(connection);
+            return true;
+        } else
+            return false;
     }
 }

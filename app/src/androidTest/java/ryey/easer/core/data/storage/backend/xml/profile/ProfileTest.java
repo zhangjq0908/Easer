@@ -26,8 +26,10 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Collection;
 
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.storage.backend.UnableToSerializeException;
 import ryey.easer.plugins.operation.bluetooth.BluetoothOperationData;
@@ -58,8 +60,13 @@ public class ProfileTest {
         ProfileParser profileParser = new ProfileParser();
         ProfileStructure profile = profileParser.parse(byteArrayInputStream);
         assertEquals("myTest", profile.getName());
-        assertEquals(profile.get(new CellularOperationPlugin().name()).get(), false);
-        assertEquals(profile.get(new BluetoothOperationPlugin().name()).get(), true);
+        Collection<OperationData> operationDataCollection;
+        operationDataCollection = profile.get(new CellularOperationPlugin().name());
+        assertEquals(operationDataCollection.size(), 1);
+        assertEquals(operationDataCollection.iterator().next().get(), false);
+        operationDataCollection = profile.get(new BluetoothOperationPlugin().name());
+        assertEquals(operationDataCollection.size(), 1);
+        assertEquals(operationDataCollection.iterator().next().get(), true);
         byteArrayInputStream.close();
     }
 

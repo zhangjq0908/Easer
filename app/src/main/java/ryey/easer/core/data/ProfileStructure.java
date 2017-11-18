@@ -19,8 +19,10 @@
 
 package ryey.easer.core.data;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.google.common.collect.LinkedListMultimap;
+import com.google.common.collect.Multimap;
+
+import java.util.Collection;
 
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
@@ -32,7 +34,7 @@ import ryey.easer.commons.plugindef.operationplugin.OperationData;
 final public class ProfileStructure implements Named, Verifiable {
     String name;
 
-    Map<String, OperationData> data = new HashMap<>();
+    Multimap<String, OperationData> data = LinkedListMultimap.create();
 
     public ProfileStructure() {
     }
@@ -49,7 +51,7 @@ final public class ProfileStructure implements Named, Verifiable {
         this.name = name;
     }
 
-    public OperationData get(String key) {
+    public Collection<OperationData> get(String key) {
         return data.get(key);
     }
     public void set(String key, OperationData value) {

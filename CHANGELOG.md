@@ -1,6 +1,19 @@
 CHANGELOG
 ======
 
+* v0.4.6: Use *selection* instead of *directly listing* for *Operation*s && Add operations: airplane mode & send sms && Add event: receive sms && several bug fixes
+	* When editing a *Profile*, *Operation*s are not listed directly but should be **added** from a list
+		* One *Operation* could be chosen multiple times (if it allows)
+		* Introduce dependency of Guava
+	* Add `AirplaneModeOperationPlugin` to toggle the airplane mode (root only)
+	* Add `SendSmsOperationPlugin` to send SMS
+	* Add `SmsEventPlugin` to listen to incoming SMSs
+	* Bug fix:
+		* legal broadcast may be treated as illegal
+		* change to silent mode not work on Android 5+ ([#32](https://github.com/renyuneyun/Easer/issues/32))
+		* change brightness not functioning ([#32](https://github.com/renyuneyun/Easer/issues/32))
+		* translation fix
+
 * v0.4.5: Add `BroadcastEventPlugin` and `MediaControlOperationPlugin` && Fix and update `BroadcastOperationPlugin` && Fix the selector title of `WifiOperationPlugin`'s view'
 	* Add `BroadcastEventPlugin` to listen to system broadcasts
 	* Add `MediaControlOperationPlugin` to control media player behavior ([#31](https://github.com/renyuneyun/Easer/issues/31))
