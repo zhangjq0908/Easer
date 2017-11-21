@@ -37,22 +37,25 @@ public class CommandLoader extends OperationLoader {
 
     @Override
     public boolean _load(OperationData data) {
+        boolean success = true;
         String text = (String) data.get();
         String []commands = text.split("\n");
-        try {
-            for (String command : commands) {
-                if (!Utils.isBlank(command)) {
+        for (String command : commands) {
+            if (!Utils.isBlank(command)) {
+                Process process;
+                try {
                     if (PluginHelper.useRootFeature(context)) {
-                        Runtime.getRuntime().exec("su");
+                        process =PluginHelper.executeCommandAsRoot(context, command);
+                    } else {
+                        process = Runtime.getRuntime().exec(command);
                     }
-                    Process process = Runtime.getRuntime().exec(command);
+                } catch (IOException e) {
+                    Logger.e(e, "error while launching process");
+                    e.printStackTrace();
+                    success = false;
                 }
             }
-            return true;
-        } catch (IOException e) {
-            Logger.e(e, "error while launching process");
-            e.printStackTrace();
         }
-        return false;
+        return success;
     }
 }

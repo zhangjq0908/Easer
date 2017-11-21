@@ -37,7 +37,7 @@ public class CommandOperationPlugin implements OperationPlugin {
 
     @Override
     public PrivilegeUsage privilege() {
-        return PrivilegeUsage.no_root;
+        return PrivilegeUsage.prefer_root;
     }
 
     @Override

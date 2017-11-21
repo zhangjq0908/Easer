@@ -20,13 +20,8 @@ public class PluginHelper {
                 context.getString(R.string.key_pref_use_root), false);
     }
 
-    public static void executeCommand(Context context, String command) {
-        try {
-            Runtime.getRuntime().exec("su");
-            Runtime.getRuntime().exec(command);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public static Process executeCommandAsRoot(Context context, String command) throws IOException {
+        return Runtime.getRuntime().exec(new String[] { "su", "-c", command});
     }
 
     public static boolean checkPermission(Context context, String... permissions) {
