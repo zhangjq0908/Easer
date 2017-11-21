@@ -19,7 +19,11 @@
 
 package ryey.easer.plugins.operation.rotation;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
+import android.provider.Settings;
 
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
@@ -42,6 +46,22 @@ public class RotationOperationPlugin implements OperationPlugin {
     @Override
     public int maxExistence() {
         return 1;
+    }
+
+    @Override
+    public boolean checkPermissions(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            return Settings.System.canWrite(context);
+        } else {
+            return true;
+        }
+    }
+
+    @Override
+    public void requestPermissions(Activity activity, int requestCode) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            activity.startActivity(new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS));
+        }
     }
 
     @Override

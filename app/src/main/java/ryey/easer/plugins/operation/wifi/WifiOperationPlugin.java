@@ -19,6 +19,8 @@
 
 package ryey.easer.plugins.operation.wifi;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 
 import ryey.easer.commons.plugindef.PluginViewFragment;
@@ -26,6 +28,7 @@ import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
+import ryey.easer.plugins.reusable.PluginHelper;
 
 public class WifiOperationPlugin implements OperationPlugin {
 
@@ -42,6 +45,20 @@ public class WifiOperationPlugin implements OperationPlugin {
     @Override
     public int maxExistence() {
         return 1;
+    }
+
+    @Override
+    public boolean checkPermissions(Context context) {
+        return PluginHelper.checkPermission(context,
+                Manifest.permission.ACCESS_WIFI_STATE,
+                Manifest.permission.CHANGE_WIFI_STATE);
+    }
+
+    @Override
+    public void requestPermissions(Activity activity, int requestCode) {
+        PluginHelper.requestPermission(activity, requestCode,
+                Manifest.permission.ACCESS_WIFI_STATE,
+                Manifest.permission.CHANGE_WIFI_STATE);
     }
 
     @Override

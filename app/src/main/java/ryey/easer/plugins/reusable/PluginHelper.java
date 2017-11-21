@@ -1,8 +1,12 @@
 package ryey.easer.plugins.reusable;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 
 import java.io.IOException;
 
@@ -24,4 +28,24 @@ public class PluginHelper {
             e.printStackTrace();
         }
     }
+
+    public static boolean checkPermission(Context context, String... permissions) {
+        for (String permission : permissions) {
+            if (ContextCompat.checkSelfPermission(context, permission)
+                    != PackageManager.PERMISSION_GRANTED) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void requestPermission(Activity activity, int requestCode, String... permissions) {
+//        for (int i = 0; i < permissions.length; i++) {
+//            final String permission = permissions[i];
+//                ActivityCompat.requestPermissions(activity,
+//                        new String[]{permission}, i);
+//        }
+        ActivityCompat.requestPermissions(activity, permissions, requestCode);
+    }
+
 }

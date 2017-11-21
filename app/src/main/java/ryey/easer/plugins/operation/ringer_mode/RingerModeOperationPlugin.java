@@ -19,13 +19,19 @@
 
 package ryey.easer.plugins.operation.ringer_mode;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
+import android.provider.Settings;
 
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
+import ryey.easer.plugins.reusable.PluginHelper;
 
 public class RingerModeOperationPlugin implements OperationPlugin {
 
@@ -42,6 +48,28 @@ public class RingerModeOperationPlugin implements OperationPlugin {
     @Override
     public int maxExistence() {
         return 1;
+    }
+
+    @Override
+    public boolean checkPermissions(Context context) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            return PluginHelper.checkPermission(context, Manifest.permission.MODIFY_AUDIO_SETTINGS);
+        } else {
+            return PluginHelper.checkPermission(context,
+                    Manifest.permission.MODIFY_AUDIO_SETTINGS,
+                    Manifest.permission.BIND_NOTIFICATION_LISTENER_SERVICE);
+        }
+    }
+
+    @Override
+    public void requestPermissions(Activity activity, int requestCode) {
+        PluginHelper.requestPermission(activity, requestCode, Manifest.permission.MODIFY_AUDIO_SETTINGS);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            activity.startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            PluginHelper.requestPermission(activity, requestCode,
+                    Manifest.permission.BIND_NOTIFICATION_LISTENER_SERVICE);
+        }
     }
 
     @Override

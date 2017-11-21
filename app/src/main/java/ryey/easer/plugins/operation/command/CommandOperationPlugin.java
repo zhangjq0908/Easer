@@ -19,6 +19,7 @@
 
 package ryey.easer.plugins.operation.command;
 
+import android.app.Activity;
 import android.content.Context;
 
 import ryey.easer.commons.plugindef.PluginViewFragment;
@@ -42,6 +43,16 @@ public class CommandOperationPlugin implements OperationPlugin {
     @Override
     public int maxExistence() {
         return -1;
+    }
+
+    @Override
+    public boolean checkPermissions(Context context) {
+        return true;
+    }
+
+    @Override
+    public void requestPermissions(Activity activity, int requestCode) {
+
     }
 
     @Override
