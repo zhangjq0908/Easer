@@ -1,5 +1,6 @@
 package ryey.easer.core.ui.edit;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,6 +18,7 @@ import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.PluginRegistry;
 
@@ -44,6 +46,28 @@ public class EventPluginViewContainerFragment extends PluginViewContainerFragmen
         EventData dummyData = PluginRegistry.getInstance().event().findPlugin(pluginViewFragment).data();
         fillType(dummyData);
         return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        EventPlugin plugin = PluginRegistry.getInstance().event().findPlugin(pluginViewFragment);
+        if (!plugin.checkPermissions(getContext())) {
+            pluginViewFragment.setEnabled(false);
+            plugin.requestPermissions(getActivity(), 1);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == 1) {
+            for (int i = 0; i < grantResults.length; i++) {
+                if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+            }
+            pluginViewFragment.setEnabled(true);
+        }
     }
 
     @Override

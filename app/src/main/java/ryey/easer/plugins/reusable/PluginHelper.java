@@ -40,11 +40,6 @@ public class PluginHelper {
     }
 
     public static void requestPermission(Activity activity, int requestCode, String... permissions) {
-//        for (int i = 0; i < permissions.length; i++) {
-//            final String permission = permissions[i];
-//                ActivityCompat.requestPermissions(activity,
-//                        new String[]{permission}, i);
-//        }
         ActivityCompat.requestPermissions(activity, permissions, requestCode);
     }
 

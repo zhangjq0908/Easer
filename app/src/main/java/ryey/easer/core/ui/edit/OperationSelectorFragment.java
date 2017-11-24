@@ -46,8 +46,13 @@ public class OperationSelectorFragment extends DialogFragment {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedListener.onSelected(((PluginItemWrapper) parent.getItemAtPosition(position)).plugin);
-                dismiss();
+                OperationPlugin plugin = ((PluginItemWrapper) parent.getItemAtPosition(position)).plugin;
+                if (plugin.checkPermissions(getContext())) {
+                    selectedListener.onSelected(plugin);
+                    dismiss();
+                } else {
+                    plugin.requestPermissions(getActivity(), 0);
+                }
             }
         });
         return view;
