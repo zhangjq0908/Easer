@@ -1,6 +1,13 @@
 CHANGELOG
 ======
 
+* v0.4.7: Require permissions during runtime && fix several bugs
+	* Add permission checking and requesting codes for each plugin
+	* When loading the plugin's view, its permission is checked and requested (if necessary)
+	* Request root permission when enabling "root features"
+	* Fix incorrect root usages for `{AirplaneMode,Cellular,Command}Operationplugin`
+	* Fix "root preference" of `CommandOperationPlugin`
+
 * v0.4.6.1: Fix start-on-boot && remove an unneeded class
 
 * v0.4.6: Use *selection* instead of *directly listing* for *Operation*s && Add operations: airplane mode & send sms && Add event: receive sms && several bug fixes

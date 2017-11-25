@@ -196,7 +196,7 @@ final public class PluginRegistry {
         }
     }
 
-    public static class OverallRegistry implements PluginLookuper {
+    public static class OverallRegistry implements PluginLookuper<PluginDef, StorageData> {
 
         PluginLookuper<? extends PluginDef, ? extends StorageData>[] lookupers;
 
@@ -204,7 +204,7 @@ final public class PluginRegistry {
             this.lookupers = lookupers;
         }
 
-        public final List<? extends PluginDef> getPlugins() {
+        public List<PluginDef> getPlugins() {
             List<PluginDef> list = new ArrayList<>();
             for (PluginLookuper<? extends PluginDef, ? extends StorageData> lookuper : lookupers) {
                 list.addAll(lookuper.getPlugins());

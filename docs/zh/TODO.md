@@ -4,17 +4,13 @@ TODO
 	* 增加更多Event（以下建議）
 		* GPS位置
 		* 收到特定Notification
-		* 接收短信
 		* 收到來電
 	* 增加更多Operation（以下建議）
 		* 定位
 		* 音量
-		* 飛行模式
-		* 發送短信
 		* 撥打電話
 	* UI方面
 		* 允許選擇一些預定的broadcast，甚或動態加載/尋找
-		* 增加對Plugin對權限（root）需求的顯示/提示
 		* 讓Event修改界面更好看
 		* 動態添加Operation到Profile修改界面
 		* 調整概覽頁面以更好看（使用卡片）
@@ -22,7 +18,6 @@ TODO
 		* 完善*關於*界面
 			* 增加Contributor於其上
 			* 如果使用WebView，將返回的懸浮按鈕改爲WebView的上一頁；如果確定不使用，移除該懸浮按鈕
-		* 增加運行時權限檢查
 	* Event
 		* 合併同類Event以降低耗電——通過減少監測器/`BroadcastReceiver`的數量
 * 代碼/開發

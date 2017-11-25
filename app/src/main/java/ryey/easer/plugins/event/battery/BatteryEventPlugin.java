@@ -1,5 +1,6 @@
 package ryey.easer.plugins.event.battery;
 
+import android.app.Activity;
 import android.content.Context;
 
 import ryey.easer.commons.plugindef.PluginViewFragment;
@@ -12,6 +13,16 @@ public class BatteryEventPlugin implements EventPlugin {
     @Override
     public String name() {
         return "battery";
+    }
+
+    @Override
+    public boolean checkPermissions(Context context) {
+        return true;
+    }
+
+    @Override
+    public void requestPermissions(Activity activity, int requestCode) {
+
     }
 
     @Override

@@ -19,6 +19,7 @@
 
 package ryey.easer.plugins.event.dayofweek;
 
+import android.app.Activity;
 import android.content.Context;
 
 import ryey.easer.commons.plugindef.PluginViewFragment;
@@ -31,6 +32,16 @@ public class DayOfWeekEventPlugin implements EventPlugin {
     @Override
     public String name() {
         return "day_of_week";
+    }
+
+    @Override
+    public boolean checkPermissions(Context context) {
+        return true;
+    }
+
+    @Override
+    public void requestPermissions(Activity activity, int requestCode) {
+
     }
 
     @Override

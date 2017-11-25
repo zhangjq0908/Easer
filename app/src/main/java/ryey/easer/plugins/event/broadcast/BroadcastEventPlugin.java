@@ -19,6 +19,7 @@
 
 package ryey.easer.plugins.event.broadcast;
 
+import android.app.Activity;
 import android.content.Context;
 
 import ryey.easer.commons.plugindef.PluginViewFragment;
@@ -31,6 +32,16 @@ public class BroadcastEventPlugin implements EventPlugin {
     @Override
     public String name() {
         return "broadcast";
+    }
+
+    @Override
+    public boolean checkPermissions(Context context) {
+        return true;
+    }
+
+    @Override
+    public void requestPermissions(Activity activity, int requestCode) {
+
     }
 
     @Override

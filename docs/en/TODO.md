@@ -4,17 +4,13 @@ TODO
 	* Add more Event (suggestions below)
 		* GPS position
 		* Receiving certain Notifications
-		* Receiving messages (SMS)
 		* Receiving phone calls
 	* Add more Operation (suggestions below)
 		* Location setting
 		* Ringtone volume
-		* Airplane mode
-		* Send message (SMS)
 		* Perform phone call
 	* UI
 		* Allow to pick some pre-defined broadcasts or even dynamically search
-		* Add the display/notification of Plugin's privilege (root or not)
 		* Make EditEventActivity more good-looking
 		* Dynamically add Operation(s) to EditProfileActivity
 		* Make OutlineFragment more good-looking
@@ -22,7 +18,6 @@ TODO
 		* Complement 'AboutActivity'
 			* Add "Contributors" to the page (or sub-page)
 			* If using WebView, remove the "back" FAB; if no longer using WebView, make the "back" FAB go back in the WebView
-		* Add runtime permission checks
 	* Event
 		* Combine Events of the same type to reduce battery consumption (by reducing monitors/`BroadcastReceiver`s)
 * Code / Development

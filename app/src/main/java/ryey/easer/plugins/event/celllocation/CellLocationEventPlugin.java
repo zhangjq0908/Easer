@@ -19,18 +19,31 @@
 
 package ryey.easer.plugins.event.celllocation;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
+import ryey.easer.plugins.reusable.PluginHelper;
 
 public class CellLocationEventPlugin implements EventPlugin {
 
     @Override
     public String name() {
         return "cell location";
+    }
+
+    @Override
+    public boolean checkPermissions(Context context) {
+        return PluginHelper.checkPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION);
+    }
+
+    @Override
+    public void requestPermissions(Activity activity, int requestCode) {
+        PluginHelper.requestPermission(activity, requestCode, Manifest.permission.ACCESS_COARSE_LOCATION);
     }
 
     @Override

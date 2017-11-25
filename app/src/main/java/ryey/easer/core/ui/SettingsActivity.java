@@ -42,11 +42,6 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-
-    }
-
-    @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(getString(R.string.key_pref_autostart))) {
             ComponentName componentName = new ComponentName(this, BootupReceiver.class);
@@ -59,6 +54,15 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                 pm.setComponentEnabledSetting(componentName,
                         PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                         PackageManager.DONT_KILL_APP);
+            }
+        } else if (key.equals(getString(R.string.key_pref_use_root))) {
+            if (sharedPreferences.getBoolean(key, false)) {
+                try {
+                    Process p = Runtime.getRuntime().exec("su");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    sharedPreferences.edit().putBoolean(key, false).apply();
+                }
             }
         }
     }

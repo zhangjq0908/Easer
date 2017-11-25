@@ -24,6 +24,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.provider.Settings;
 
+import java.io.IOException;
+
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.plugins.reusable.PluginHelper;
@@ -75,12 +77,17 @@ public class AirplaneModeLoader extends OperationLoader {
         final String COMMAND_FLIGHT_MODE_1 = "settings put global airplane_mode_on";
         final String COMMAND_FLIGHT_MODE_2 = "am broadcast -a android.intent.action.AIRPLANE_MODE --ez state";
         if (PluginHelper.useRootFeature(context)) {
-            int enabled = newState ? 1 : 0;
-            String command = COMMAND_FLIGHT_MODE_1 + " " + enabled;
-            PluginHelper.executeCommand(context, command);
-            command = COMMAND_FLIGHT_MODE_2 + " " + enabled;
-            PluginHelper.executeCommand(context, command);
-            return true;
+            try {
+                int enabled = newState ? 1 : 0;
+                String command = COMMAND_FLIGHT_MODE_1 + " " + enabled;
+                PluginHelper.executeCommandAsRoot(context, command);
+                command = COMMAND_FLIGHT_MODE_2 + " " + enabled;
+                PluginHelper.executeCommandAsRoot(context, command);
+                return true;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return false;
+            }
         }
         return false;
     }

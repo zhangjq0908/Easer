@@ -46,10 +46,12 @@ public class CellularLoader extends OperationLoader {
         } else {
             if (PluginHelper.useRootFeature(context)) {
                 try {
-                    Runtime.getRuntime().exec("su");
                     String command = "svc data " + (state ? "enable" : "disable");
-                    Runtime.getRuntime().exec(command);
+                    PluginHelper.executeCommandAsRoot(context, command);
+                    return true;
                 } catch (IOException e) {
+                    e.printStackTrace();
+                    return false;
                 }
             } else {
                 try {
