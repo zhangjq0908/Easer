@@ -95,8 +95,6 @@ public class OutlineFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
-
-        new XmlTest(getContext());
     }
 
     @Override
