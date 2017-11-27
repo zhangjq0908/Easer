@@ -19,6 +19,9 @@
 
 package ryey.easer.plugins.operation.network_transmission;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
@@ -114,10 +117,42 @@ public class NetworkTransmissionOperationData implements OperationData {
             return false;
         if (Utils.isBlank(data.remote_address))
             return false;
-        if (data.remote_port == null)
-            return false;
         if (data.remote_port <= 0)
             return false;
         return true;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (!(obj instanceof NetworkTransmissionOperationData))
+            return false;
+        return data.equals(((NetworkTransmissionOperationData) obj).data);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(data, 0);
+    }
+
+    public static final Parcelable.Creator<NetworkTransmissionOperationData> CREATOR
+            = new Parcelable.Creator<NetworkTransmissionOperationData>() {
+        public NetworkTransmissionOperationData createFromParcel(Parcel in) {
+            return new NetworkTransmissionOperationData(in);
+        }
+
+        public NetworkTransmissionOperationData[] newArray(int size) {
+            return new NetworkTransmissionOperationData[size];
+        }
+    };
+
+    private NetworkTransmissionOperationData(Parcel in) {
+        data = in.readParcelable(TransmissionData.class.getClassLoader());
     }
 }

@@ -1,5 +1,8 @@
 package ryey.easer.plugins.event.battery;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
@@ -94,4 +97,30 @@ public class BatteryEventData extends TypedEventData {
             return true;
         return false;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(battery_status);
+    }
+
+    public static final Parcelable.Creator<BatteryEventData> CREATOR
+            = new Parcelable.Creator<BatteryEventData>() {
+        public BatteryEventData createFromParcel(Parcel in) {
+            return new BatteryEventData(in);
+        }
+
+        public BatteryEventData[] newArray(int size) {
+            return new BatteryEventData[size];
+        }
+    };
+
+    private BatteryEventData(Parcel in) {
+        battery_status = in.readInt();
+    }
+
 }

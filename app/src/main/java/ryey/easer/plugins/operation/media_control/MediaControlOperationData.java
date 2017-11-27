@@ -19,6 +19,9 @@
 
 package ryey.easer.plugins.operation.media_control;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
@@ -101,4 +104,38 @@ public class MediaControlOperationData implements OperationData {
         return true;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (!(obj instanceof MediaControlOperationData))
+            return false;
+        return choice == ((MediaControlOperationData) obj).choice;
+    }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeSerializable(choice);
+    }
+
+    public static final Parcelable.Creator<MediaControlOperationData> CREATOR
+            = new Parcelable.Creator<MediaControlOperationData>() {
+        public MediaControlOperationData createFromParcel(Parcel in) {
+            return new MediaControlOperationData(in);
+        }
+
+        public MediaControlOperationData[] newArray(int size) {
+            return new MediaControlOperationData[size];
+        }
+    };
+
+    private MediaControlOperationData(Parcel in) {
+        choice = (ControlChoice) in.readSerializable();
+    }
 }

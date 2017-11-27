@@ -20,6 +20,8 @@
 package ryey.easer.plugins.operation.broadcast;
 
 import android.net.Uri;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -253,5 +255,39 @@ public class BroadcastOperationData implements OperationData {
         if (data.data != null && !Utils.isBlank(data.data.toString()))
             return true;
         return false;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (!(obj instanceof BroadcastOperationData))
+            return false;
+        return data.equals(((BroadcastOperationData) obj).data);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(data, 0);
+    }
+
+    public static final Parcelable.Creator<BroadcastOperationData> CREATOR
+            = new Parcelable.Creator<BroadcastOperationData>() {
+        public BroadcastOperationData createFromParcel(Parcel in) {
+            return new BroadcastOperationData(in);
+        }
+
+        public BroadcastOperationData[] newArray(int size) {
+            return new BroadcastOperationData[size];
+        }
+    };
+
+    private BroadcastOperationData(Parcel in) {
+        data = in.readParcelable(IntentData.class.getClassLoader());
     }
 }

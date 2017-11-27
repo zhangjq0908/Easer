@@ -19,6 +19,9 @@
 
 package ryey.easer.plugins.event.date;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.orhanobut.logger.Logger;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -134,4 +137,31 @@ public class DateEventData extends TypedEventData {
         }
         return res;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(date.getTimeInMillis());
+    }
+
+    public static final Parcelable.Creator<DateEventData> CREATOR
+            = new Parcelable.Creator<DateEventData>() {
+        public DateEventData createFromParcel(Parcel in) {
+            return new DateEventData(in);
+        }
+
+        public DateEventData[] newArray(int size) {
+            return new DateEventData[size];
+        }
+    };
+
+    private DateEventData(Parcel in) {
+        date = Calendar.getInstance();
+        date.setTimeInMillis(in.readLong());
+    }
+
 }

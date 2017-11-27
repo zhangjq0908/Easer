@@ -19,6 +19,8 @@
 
 package ryey.easer.plugins.event.celllocation;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.telephony.CellLocation;
 import android.telephony.cdma.CdmaCellLocation;
 import android.telephony.gsm.GsmCellLocation;
@@ -26,7 +28,7 @@ import android.telephony.gsm.GsmCellLocation;
 import java.util.List;
 import java.util.Locale;
 
-public class CellLocationSingleData {
+public class CellLocationSingleData implements Parcelable {
     Integer cid = null;
     Integer lac = null;
 
@@ -112,4 +114,32 @@ public class CellLocationSingleData {
         result = 31 * result + (lac != null ? lac.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(cid);
+        dest.writeInt(lac);
+    }
+
+    public static final Parcelable.Creator<CellLocationSingleData> CREATOR
+            = new Parcelable.Creator<CellLocationSingleData>() {
+        public CellLocationSingleData createFromParcel(Parcel in) {
+            return new CellLocationSingleData(in);
+        }
+
+        public CellLocationSingleData[] newArray(int size) {
+            return new CellLocationSingleData[size];
+        }
+    };
+
+    private CellLocationSingleData(Parcel in) {
+        cid = in.readInt();
+        lac = in.readInt();
+    }
+
 }

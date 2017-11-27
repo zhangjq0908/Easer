@@ -19,6 +19,8 @@
 
 package ryey.easer.plugins.operation.send_sms;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.telephony.PhoneNumberUtils;
 
 import com.orhanobut.logger.Logger;
@@ -113,5 +115,39 @@ public class SmsOperationData implements OperationData {
         if (Utils.isBlank(sms.content))
             return false;
         return true;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (!(obj instanceof SmsOperationData))
+            return false;
+        return sms.equals(((SmsOperationData) obj).sms);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(sms, 0);
+    }
+
+    public static final Parcelable.Creator<SmsOperationData> CREATOR
+            = new Parcelable.Creator<SmsOperationData>() {
+        public SmsOperationData createFromParcel(Parcel in) {
+            return new SmsOperationData(in);
+        }
+
+        public SmsOperationData[] newArray(int size) {
+            return new SmsOperationData[size];
+        }
+    };
+
+    private SmsOperationData(Parcel in) {
+        sms = in.readParcelable(Sms.class.getClassLoader());
     }
 }

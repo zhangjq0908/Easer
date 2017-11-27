@@ -19,6 +19,8 @@
 
 package ryey.easer.plugins.operation;
 
+import android.os.Parcel;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
@@ -79,5 +81,19 @@ public abstract class BooleanOperationData extends BooleanData implements Operat
                     res = C.OFF;
         }
         return res;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeByte((byte) (state ? 1 : 0));
+    }
+
+    protected BooleanOperationData(Parcel in) {
+        state = in.readByte() != 0;
     }
 }

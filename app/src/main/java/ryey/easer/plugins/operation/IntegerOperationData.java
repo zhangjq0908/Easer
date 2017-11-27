@@ -19,6 +19,8 @@
 
 package ryey.easer.plugins.operation;
 
+import android.os.Parcel;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
@@ -67,5 +69,19 @@ public abstract class IntegerOperationData extends IntegerData implements Operat
                 res = ((Integer) get()).toString();
         }
         return res;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(level);
+    }
+
+    protected IntegerOperationData(Parcel in) {
+        level = in.readInt();
     }
 }

@@ -19,6 +19,9 @@
 
 package ryey.easer.plugins.event.calendar;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.orhanobut.logger.Logger;
 
 import org.json.JSONArray;
@@ -178,5 +181,46 @@ public class CalendarEventData extends TypedEventData {
                 res = jsonObject.toString();
         }
         return res;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (!(obj instanceof CalendarEventData))
+            return false;
+        if (data.calendar_id != ((CalendarEventData) obj).data.calendar_id)
+            return false;
+        if (!data.conditions.equals(((CalendarEventData) obj).data.conditions))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(data.calendar_id);
+        dest.writeMap(data.conditions);
+    }
+
+    public static final Parcelable.Creator<CalendarEventData> CREATOR
+            = new Parcelable.Creator<CalendarEventData>() {
+        public CalendarEventData createFromParcel(Parcel in) {
+            return new CalendarEventData(in);
+        }
+
+        public CalendarEventData[] newArray(int size) {
+            return new CalendarEventData[size];
+        }
+    };
+
+    private CalendarEventData(Parcel in) {
+        data = new CalendarData();
+        data.calendar_id = in.readLong();
+        in.readMap(data.conditions, data.conditions.getClass().getClassLoader());
     }
 }

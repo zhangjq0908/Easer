@@ -19,6 +19,9 @@
 
 package ryey.easer.plugins.event.wifi;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.orhanobut.logger.Logger;
 
 import org.json.JSONArray;
@@ -162,5 +165,30 @@ public class WifiEventData extends TypedEventData {
             return ssids.contains(((String) obj).trim());
         }
         return super.match(obj);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeStringList(ssids);
+    }
+
+    public static final Parcelable.Creator<WifiEventData> CREATOR
+            = new Parcelable.Creator<WifiEventData>() {
+        public WifiEventData createFromParcel(Parcel in) {
+            return new WifiEventData(in);
+        }
+
+        public WifiEventData[] newArray(int size) {
+            return new WifiEventData[size];
+        }
+    };
+
+    private WifiEventData(Parcel in) {
+        in.readStringList(ssids);
     }
 }

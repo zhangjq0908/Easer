@@ -19,6 +19,9 @@
 
 package ryey.easer.plugins.operation.bluetooth;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import ryey.easer.plugins.operation.BooleanOperationData;
 
 public class BluetoothOperationData extends BooleanOperationData {
@@ -27,6 +30,21 @@ public class BluetoothOperationData extends BooleanOperationData {
 
     public BluetoothOperationData(Boolean state) {
         super(state);
+    }
+
+    public static final Parcelable.Creator<BluetoothOperationData> CREATOR
+            = new Parcelable.Creator<BluetoothOperationData>() {
+        public BluetoothOperationData createFromParcel(Parcel in) {
+            return new BluetoothOperationData(in);
+        }
+
+        public BluetoothOperationData[] newArray(int size) {
+            return new BluetoothOperationData[size];
+        }
+    };
+
+    private BluetoothOperationData(Parcel in) {
+        super(in);
     }
 
 }

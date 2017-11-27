@@ -19,6 +19,8 @@
 
 package ryey.easer.commons.plugindef;
 
+import android.os.Parcelable;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
@@ -32,7 +34,7 @@ import ryey.easer.commons.IllegalStorageDataException;
  * Common interface used by both EventData and OperationData
  * Defines a series of methods that are needed.
  */
-public interface StorageData {
+public interface StorageData extends Parcelable {
     /**
      * @return The data that the instance holds.
      */

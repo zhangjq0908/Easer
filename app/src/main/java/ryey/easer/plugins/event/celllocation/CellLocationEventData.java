@@ -19,6 +19,9 @@
 
 package ryey.easer.plugins.event.celllocation;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.orhanobut.logger.Logger;
 
 import org.json.JSONArray;
@@ -40,10 +43,9 @@ import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
 
 public class CellLocationEventData extends TypedEventData {
-    protected List<CellLocationSingleData> data;
+    protected List<CellLocationSingleData> data = new ArrayList<>();
 
     {
-        data = new ArrayList<>();
         default_type = EventType.any;
         availableTypes = EnumSet.of(EventType.any, EventType.none);
     }
@@ -178,5 +180,30 @@ public class CellLocationEventData extends TypedEventData {
                 return true;
         }
         return false;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeList(data);
+    }
+
+    public static final Parcelable.Creator<CellLocationEventData> CREATOR
+            = new Parcelable.Creator<CellLocationEventData>() {
+        public CellLocationEventData createFromParcel(Parcel in) {
+            return new CellLocationEventData(in);
+        }
+
+        public CellLocationEventData[] newArray(int size) {
+            return new CellLocationEventData[size];
+        }
+    };
+
+    private CellLocationEventData(Parcel in) {
+        in.readList(data, CellLocationSingleData.class.getClassLoader());
     }
 }

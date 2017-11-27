@@ -19,6 +19,9 @@
 
 package ryey.easer.plugins.operation.command;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import ryey.easer.plugins.operation.StringOperationData;
 
 public class CommandOperationData extends StringOperationData {
@@ -27,6 +30,21 @@ public class CommandOperationData extends StringOperationData {
 
     public CommandOperationData(String command) {
         super(command);
+    }
+
+    public static final Parcelable.Creator<CommandOperationData> CREATOR
+            = new Parcelable.Creator<CommandOperationData>() {
+        public CommandOperationData createFromParcel(Parcel in) {
+            return new CommandOperationData(in);
+        }
+
+        public CommandOperationData[] newArray(int size) {
+            return new CommandOperationData[size];
+        }
+    };
+
+    private CommandOperationData(Parcel in) {
+        super(in);
     }
 
 }

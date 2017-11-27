@@ -19,6 +19,10 @@
 
 package ryey.easer.plugins.event.dayofweek;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.support.v4.util.ArraySet;
+
 import com.orhanobut.logger.Logger;
 
 import org.json.JSONArray;
@@ -29,8 +33,8 @@ import org.xmlpull.v1.XmlSerializer;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.EnumSet;
-import java.util.HashSet;
 import java.util.Set;
 
 import ryey.easer.Utils;
@@ -43,7 +47,7 @@ import ryey.easer.plugins.event.TypedEventData;
 
 public class DayOfWeekEventData extends TypedEventData {
 
-    Set<Integer> days = new HashSet<>(7);
+    Set<Integer> days = new ArraySet<>(7);
 
     {
         default_type = EventType.any;
@@ -151,5 +155,32 @@ public class DayOfWeekEventData extends TypedEventData {
                 res = jsonArray.toString();
         }
         return res;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeList(new ArrayList<>(days));
+    }
+
+    public static final Parcelable.Creator<DayOfWeekEventData> CREATOR
+            = new Parcelable.Creator<DayOfWeekEventData>() {
+        public DayOfWeekEventData createFromParcel(Parcel in) {
+            return new DayOfWeekEventData(in);
+        }
+
+        public DayOfWeekEventData[] newArray(int size) {
+            return new DayOfWeekEventData[size];
+        }
+    };
+
+    private DayOfWeekEventData(Parcel in) {
+        ArrayList<Integer> list = new ArrayList<>();
+        in.readList(list, null);
+        days = new ArraySet<>(list);
     }
 }

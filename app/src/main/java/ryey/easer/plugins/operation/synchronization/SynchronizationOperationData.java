@@ -19,6 +19,9 @@
 
 package ryey.easer.plugins.operation.synchronization;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import ryey.easer.plugins.operation.BooleanOperationData;
 
 public class SynchronizationOperationData extends BooleanOperationData {
@@ -27,6 +30,21 @@ public class SynchronizationOperationData extends BooleanOperationData {
 
     public SynchronizationOperationData(Boolean state) {
         super(state);
+    }
+
+    public static final Parcelable.Creator<SynchronizationOperationData> CREATOR
+            = new Parcelable.Creator<SynchronizationOperationData>() {
+        public SynchronizationOperationData createFromParcel(Parcel in) {
+            return new SynchronizationOperationData(in);
+        }
+
+        public SynchronizationOperationData[] newArray(int size) {
+            return new SynchronizationOperationData[size];
+        }
+    };
+
+    private SynchronizationOperationData(Parcel in) {
+        super(in);
     }
 
 }

@@ -19,6 +19,9 @@
 
 package ryey.easer.plugins.operation.rotation;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import ryey.easer.plugins.operation.BooleanOperationData;
 
 public class RotationOperationData extends BooleanOperationData {
@@ -27,6 +30,21 @@ public class RotationOperationData extends BooleanOperationData {
 
     public RotationOperationData(Boolean state) {
         super(state);
+    }
+
+    public static final Parcelable.Creator<RotationOperationData> CREATOR
+            = new Parcelable.Creator<RotationOperationData>() {
+        public RotationOperationData createFromParcel(Parcel in) {
+            return new RotationOperationData(in);
+        }
+
+        public RotationOperationData[] newArray(int size) {
+            return new RotationOperationData[size];
+        }
+    };
+
+    private RotationOperationData(Parcel in) {
+        super(in);
     }
 
 }

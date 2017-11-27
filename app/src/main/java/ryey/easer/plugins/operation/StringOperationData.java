@@ -19,6 +19,8 @@
 
 package ryey.easer.plugins.operation;
 
+import android.os.Parcel;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
@@ -66,5 +68,19 @@ public abstract class StringOperationData extends StringData implements Operatio
                 res = (String) get();
         }
         return res;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(text);
+    }
+
+    protected StringOperationData(Parcel in) {
+        text = in.readString();
     }
 }

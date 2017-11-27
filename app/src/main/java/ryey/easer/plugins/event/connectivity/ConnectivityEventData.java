@@ -1,5 +1,7 @@
 package ryey.easer.plugins.event.connectivity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.v4.util.ArraySet;
 
 import com.orhanobut.logger.Logger;
@@ -11,6 +13,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.Set;
 
@@ -123,5 +126,32 @@ public class ConnectivityEventData extends TypedEventData {
         if (connectivity_type.size() > 0)
             return true;
         return false;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeList(new ArrayList<>(connectivity_type));
+    }
+
+    public static final Parcelable.Creator<ConnectivityEventData> CREATOR
+            = new Parcelable.Creator<ConnectivityEventData>() {
+        public ConnectivityEventData createFromParcel(Parcel in) {
+            return new ConnectivityEventData(in);
+        }
+
+        public ConnectivityEventData[] newArray(int size) {
+            return new ConnectivityEventData[size];
+        }
+    };
+
+    private ConnectivityEventData(Parcel in) {
+        ArrayList<Integer> list = new ArrayList<>();
+        in.readList(list, null);
+        connectivity_type = new ArraySet<>(list);
     }
 }

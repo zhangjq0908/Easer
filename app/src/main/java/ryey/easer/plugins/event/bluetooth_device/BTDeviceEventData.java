@@ -19,6 +19,9 @@
 
 package ryey.easer.plugins.event.bluetooth_device;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.orhanobut.logger.Logger;
 
 import org.json.JSONArray;
@@ -164,5 +167,30 @@ public class BTDeviceEventData extends TypedEventData {
             return hwaddresses.contains(((String) obj).trim());
         }
         return super.match(obj);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeStringList(hwaddresses);
+    }
+
+    public static final Parcelable.Creator<BTDeviceEventData> CREATOR
+            = new Parcelable.Creator<BTDeviceEventData>() {
+        public BTDeviceEventData createFromParcel(Parcel in) {
+            return new BTDeviceEventData(in);
+        }
+
+        public BTDeviceEventData[] newArray(int size) {
+            return new BTDeviceEventData[size];
+        }
+    };
+
+    private BTDeviceEventData(Parcel in) {
+        in.readStringList(hwaddresses);
     }
 }

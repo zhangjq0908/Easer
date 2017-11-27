@@ -23,6 +23,14 @@ public class Utils {
         return false;
     }
 
+    public static boolean nullableEqual(Object obj1, Object obj2) {
+        if (obj1 == null && obj2 == null)
+            return true;
+        if (obj1 == null || obj2 == null)
+            return false;
+        return obj1.equals(obj2);
+    }
+
     public static Set<Integer> str2set(String text) throws ParseException {
         Set<Integer> days = new HashSet<>();
         for (String str : text.split("\n")) {
