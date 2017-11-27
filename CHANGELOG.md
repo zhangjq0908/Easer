@@ -1,6 +1,8 @@
 CHANGELOG
 ======
 
+* v0.4.6.1: Fix start-on-boot && remove an unneeded class
+
 * v0.4.6: Use *selection* instead of *directly listing* for *Operation*s && Add operations: airplane mode & send sms && Add event: receive sms && several bug fixes
 	* When editing a *Profile*, *Operation*s are not listed directly but should be **added** from a list
 		* One *Operation* could be chosen multiple times (if it allows)
