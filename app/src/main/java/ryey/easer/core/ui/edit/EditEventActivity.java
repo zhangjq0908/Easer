@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.util.List;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.storage.EventDataStorage;
 import ryey.easer.core.data.storage.ProfileDataStorage;
@@ -177,7 +178,7 @@ public class EditEventActivity extends AppCompatActivity {
         mViewPager.setEventData(event.getEventData());
     }
 
-    protected EventStructure saveToEvent() {
+    protected EventStructure saveToEvent() throws InvalidDataInputException {
         EventStructure event = new EventStructure(mEditText_name.getText().toString());
         String profile = (String) mSpinner_profile.getSelectedItem();
         event.setProfileName(profile);
@@ -185,9 +186,7 @@ public class EditEventActivity extends AppCompatActivity {
         String parent = (String) mSpinner_parent.getSelectedItem();
         if (!parent.equals(NON))
             event.setParentName(parent);
-
         event.setEventData(mViewPager.getEventData());
-
         return event;
     }
 
@@ -197,21 +196,26 @@ public class EditEventActivity extends AppCompatActivity {
             if (purpose == EditDataProto.Purpose.delete)
                 success = storage.delete(oldName);
             else {
-                EventStructure newEvent = saveToEvent();
-                if (!newEvent.isValid()) {
+                try {
+                    EventStructure newEvent = saveToEvent();
+                    if (!newEvent.isValid()) {
+                        Toast.makeText(this, getString(R.string.prompt_data_illegal), Toast.LENGTH_LONG).show();
+                        return false;
+                    }
+                    switch (purpose) {
+                        case add:
+                            success = storage.add(newEvent);
+                            break;
+                        case edit:
+                            success = storage.edit(oldName, newEvent);
+                            break;
+                        default:
+                            Logger.wtf("Unexpected purpose: %s", purpose);
+                            throw new UnsupportedOperationException("Unknown Purpose");
+                    }
+                } catch (InvalidDataInputException e) {
                     Toast.makeText(this, getString(R.string.prompt_data_illegal), Toast.LENGTH_LONG).show();
                     return false;
-                }
-                switch (purpose) {
-                    case add:
-                        success = storage.add(newEvent);
-                        break;
-                    case edit:
-                        success = storage.edit(oldName, newEvent);
-                        break;
-                    default:
-                        Logger.wtf("Unexpected purpose: %s", purpose);
-                        throw new UnsupportedOperationException("Unknown Purpose");
                 }
             }
             if (success) {

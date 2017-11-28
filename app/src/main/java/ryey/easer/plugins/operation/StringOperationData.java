@@ -39,7 +39,7 @@ public abstract class StringOperationData extends StringData implements Operatio
 
     public StringOperationData() {super();}
 
-    public StringOperationData(String text) {
+    public StringOperationData(@NonNull String text) {
         super(text);
     }
 
@@ -78,11 +78,11 @@ public abstract class StringOperationData extends StringData implements Operatio
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeString(text);
     }
 
-    protected StringOperationData(Parcel in) {
+    protected StringOperationData(@NonNull Parcel in) {
         text = in.readString();
     }
 }

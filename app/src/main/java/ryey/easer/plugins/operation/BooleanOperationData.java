@@ -39,7 +39,7 @@ public abstract class BooleanOperationData extends BooleanData implements Operat
 
     public BooleanOperationData() {super();}
 
-    public BooleanOperationData(Boolean state) {
+    public BooleanOperationData(@NonNull Boolean state) {
         super(state);
     }
 
@@ -91,11 +91,11 @@ public abstract class BooleanOperationData extends BooleanData implements Operat
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeByte((byte) (state ? 1 : 0));
     }
 
-    protected BooleanOperationData(Parcel in) {
+    protected BooleanOperationData(@NonNull Parcel in) {
         state = in.readByte() != 0;
     }
 }

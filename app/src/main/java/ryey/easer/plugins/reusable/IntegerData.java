@@ -1,6 +1,7 @@
 package ryey.easer.plugins.reusable;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import ryey.easer.commons.IllegalArgumentTypeException;
 import ryey.easer.commons.plugindef.StorageData;
@@ -12,7 +13,7 @@ public abstract class IntegerData implements StorageData {
 
     public IntegerData() {}
 
-    public IntegerData(Integer level) {
+    public IntegerData(@NonNull Integer level) {
         this.level = level;
     }
 
@@ -45,7 +46,7 @@ public abstract class IntegerData implements StorageData {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(@Nullable Object obj) {
         if (obj == null)
             return false;
         if (!getClass().equals(obj.getClass()))

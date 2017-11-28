@@ -29,6 +29,7 @@ import android.widget.DatePicker;
 import java.util.Calendar;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
@@ -43,9 +44,6 @@ public class DatePluginViewFragment extends PluginViewFragment {
     @Override
     public ViewGroup onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         datePicker = new DatePicker(getContext());
-//        view_container.addView(datePicker);
-//
-//        return view_container;
         return datePicker;
     }
 
@@ -67,8 +65,9 @@ public class DatePluginViewFragment extends PluginViewFragment {
         }
     }
 
+    @NonNull
     @Override
-    public StorageData getData() {
+    public StorageData getData() throws InvalidDataInputException {
         return new DateEventData(fromDatePicker(datePicker));
     }
 }

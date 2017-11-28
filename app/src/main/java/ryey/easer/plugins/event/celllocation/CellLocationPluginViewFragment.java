@@ -33,6 +33,7 @@ import android.widget.EditText;
 
 import ryey.easer.R;
 import ryey.easer.Utils;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
@@ -74,8 +75,9 @@ public class CellLocationPluginViewFragment extends PluginViewFragment {
         }
     }
 
+    @NonNull
     @Override
-    public StorageData getData() {
+    public StorageData getData() throws InvalidDataInputException {
         CellLocationEventData data = CellLocationEventData.fromString(editText.getText().toString());
         return data;
     }

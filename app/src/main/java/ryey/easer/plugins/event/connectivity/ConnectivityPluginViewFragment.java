@@ -12,7 +12,10 @@ import android.widget.LinearLayout;
 
 import java.util.Set;
 
+import javax.crypto.spec.IvParameterSpec;
+
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
@@ -66,8 +69,9 @@ public class ConnectivityPluginViewFragment extends PluginViewFragment {
         }
     }
 
+    @NonNull
     @Override
-    public StorageData getData() {
+    public StorageData getData() throws InvalidDataInputException {
         Set<Integer> checked = new ArraySet<>();
         for (int i = 0; i < checkBoxes.length; i++) {
             if (checkBoxes[i].isChecked()) {
@@ -75,7 +79,7 @@ public class ConnectivityPluginViewFragment extends PluginViewFragment {
             }
         }
         if (checked.size() == 0)
-            return null;
+            throw new InvalidDataInputException();
         return new ConnectivityEventData(checked);
     }
 }

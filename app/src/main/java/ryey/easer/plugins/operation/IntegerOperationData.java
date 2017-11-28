@@ -39,7 +39,7 @@ public abstract class IntegerOperationData extends IntegerData implements Operat
 
     public IntegerOperationData() {super();}
 
-    public IntegerOperationData(Integer level) {
+    public IntegerOperationData(@NonNull Integer level) {
         super(level);
     }
 
@@ -79,11 +79,11 @@ public abstract class IntegerOperationData extends IntegerData implements Operat
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(level);
     }
 
-    protected IntegerOperationData(Parcel in) {
+    protected IntegerOperationData(@NonNull Parcel in) {
         level = in.readInt();
     }
 }

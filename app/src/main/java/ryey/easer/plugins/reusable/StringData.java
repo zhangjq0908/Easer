@@ -1,6 +1,7 @@
 package ryey.easer.plugins.reusable;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.IllegalArgumentTypeException;
@@ -11,7 +12,7 @@ public abstract class StringData implements StorageData {
 
     public StringData() {}
 
-    public StringData(String text) {
+    public StringData(@NonNull String text) {
         this.text = text;
     }
 
@@ -38,7 +39,7 @@ public abstract class StringData implements StorageData {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(@Nullable Object obj) {
         if (obj == null)
             return false;
         if (!getClass().equals(obj.getClass()))

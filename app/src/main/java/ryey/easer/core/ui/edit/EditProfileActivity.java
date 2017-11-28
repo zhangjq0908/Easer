@@ -20,6 +20,7 @@ import java.util.Collection;
 import java.util.List;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
@@ -37,7 +38,7 @@ public class EditProfileActivity extends AppCompatActivity implements OperationS
     EditText editText_profile_name = null;
 
     OperationSelectorFragment operationSelectorFragment;
-    List<PluginViewContainerFragment> operationViewList = new ArrayList<>();
+    List<ProfilePluginViewContainerFragment> operationViewList = new ArrayList<>();
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -137,21 +138,25 @@ public class EditProfileActivity extends AppCompatActivity implements OperationS
     protected ProfileStructure saveToProfile() {
         ProfileStructure profile = new ProfileStructure(editText_profile_name.getText().toString());
 
-        for (PluginViewContainerFragment fragment : operationViewList) {
-            StorageData data = fragment.getData();
-            if (data == null)
+        for (ProfilePluginViewContainerFragment fragment : operationViewList) {
+            if (!fragment.isEnabled())
                 continue;
-            if (data instanceof OperationData) {
-                if (data.isValid()) {
-                    fragment.setHighlight(false);
-                    profile.set(PluginRegistry.getInstance().operation().findPlugin((OperationData) data).name(), (OperationData) data);
+            try {
+                StorageData data = fragment.getData();
+                if (data instanceof OperationData) {
+                    if (data.isValid()) {
+                        fragment.setHighlight(false);
+                        profile.set(PluginRegistry.getInstance().operation().findPlugin((OperationData) data).name(), (OperationData) data);
+                    } else {
+                        fragment.setHighlight(true);
+                        return null;
+                    }
                 } else {
-                    fragment.setHighlight(true);
-                    return null;
+                    Logger.wtf("data of plugin's Layout is not instance of OperationData");
+                    throw new IllegalStateException("data of plugin's Layout is not instance of OperationData");
                 }
-            } else {
-                Logger.wtf("data of plugin's Layout is not instance of OperationData");
-                throw new IllegalStateException("data of plugin's Layout is not instance of OperationData");
+            } catch (InvalidDataInputException e) {
+
             }
         }
 
@@ -210,7 +215,7 @@ public class EditProfileActivity extends AppCompatActivity implements OperationS
         PluginViewContainerFragment[] fragments = new PluginViewContainerFragment[plugins.length];
         for (int i = 0; i < plugins.length; i++) {
             OperationPlugin plugin = plugins[i];
-            PluginViewContainerFragment fragment = ProfilePluginViewContainerFragment.createInstance(plugin.view());
+            ProfilePluginViewContainerFragment fragment = ProfilePluginViewContainerFragment.createInstance(plugin.view());
             transaction.add(R.id.layout_profiles, fragment, plugin.name());
             fragments[i] = fragment;
             operationViewList.add(fragment);

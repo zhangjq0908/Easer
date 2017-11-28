@@ -42,7 +42,7 @@ public abstract class SwitchPluginViewFragment extends PluginViewFragment {
         return view;
     }
 
-    protected static void setSwitch(@NonNull Switch sw, Boolean state) {
+    protected static void setSwitch(@NonNull Switch sw, boolean state) {
         sw.setChecked(state);
     }
 

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
@@ -14,7 +15,7 @@ import ryey.easer.R;
 
 public class PluginHelper {
 
-    public static boolean useRootFeature(Context context) {
+    public static boolean useRootFeature(@NonNull Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return sharedPreferences.getBoolean(
                 context.getString(R.string.key_pref_use_root), false);

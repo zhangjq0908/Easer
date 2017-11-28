@@ -28,6 +28,7 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
@@ -78,8 +79,9 @@ public class MediaControlPluginViewFragment extends PluginViewFragment {
         }
     }
 
+    @NonNull
     @Override
-    public StorageData getData() {
+    public StorageData getData() throws InvalidDataInputException {
         MediaControlOperationData.ControlChoice choice = null;
         if (radioButton_play_pause.isChecked()) {
             choice = MediaControlOperationData.ControlChoice.play_pause;
@@ -93,7 +95,7 @@ public class MediaControlPluginViewFragment extends PluginViewFragment {
             choice = MediaControlOperationData.ControlChoice.next;
         }
         if (choice == null)
-            return null;
+            throw new InvalidDataInputException();
         return new MediaControlOperationData(choice);
     }
 }

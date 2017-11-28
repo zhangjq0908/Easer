@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.plugins.PluginRegistry;
@@ -52,11 +53,11 @@ public class EventPluginViewPager extends ViewPager {
         }
     }
 
-    EventData getEventData() {
+    EventData getEventData() throws InvalidDataInputException {
         return getEventData(getCurrentItem());
     }
 
-    EventData getEventData(int position) {
+    EventData getEventData(int position) throws InvalidDataInputException {
         return (EventData) mPagerAdapter.getRegisteredFragment(position).getData();
     }
 

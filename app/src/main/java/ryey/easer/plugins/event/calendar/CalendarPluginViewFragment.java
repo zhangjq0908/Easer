@@ -42,6 +42,7 @@ import android.widget.TextView;
 
 import ryey.easer.R;
 import ryey.easer.Utils;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
@@ -160,8 +161,9 @@ public class CalendarPluginViewFragment extends PluginViewFragment {
         }
     }
 
+    @NonNull
     @Override
-    public StorageData getData() {
+    public StorageData getData() throws InvalidDataInputException {
         CalendarData calendarData = new CalendarData();
         calendarData.calendar_id = calendar_id;
         for (int i = 0; i < cb_conditions.length; i++) {

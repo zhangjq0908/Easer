@@ -28,6 +28,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
@@ -57,8 +58,9 @@ public class SmsPluginViewFragment extends PluginViewFragment {
         }
     }
 
+    @NonNull
     @Override
-    public StorageData getData() {
+    public StorageData getData() throws InvalidDataInputException {
         SmsInnerData intentData = new SmsInnerData();
         intentData.sender = editText_sender.getText().toString();
         intentData.content = editText_content.getText().toString();

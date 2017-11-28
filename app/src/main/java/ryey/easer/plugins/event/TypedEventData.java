@@ -16,16 +16,11 @@ public abstract class TypedEventData implements EventData {
 
     @Override
     public void setType(@NonNull EventType type) {
-        if (type == null) {
-            Logger.w("got invalid type. fallback to the default type: %s", default_type);
-            this.type = default_type;
-        } else {
-            if (!isAvailable(type)) {
-                Logger.e("Attempt to set improper EventType (available [%s], attempt [%s])", availableTypes(), type);
-                throw new IllegalArgumentException("Improper EventType to set");
-            }
-            this.type = type;
+        if (!isAvailable(type)) {
+            Logger.e("Attempt to set improper EventType (available [%s], attempt [%s])", availableTypes(), type);
+            throw new IllegalArgumentException("Improper EventType to set");
         }
+        this.type = type;
     }
 
     @NonNull

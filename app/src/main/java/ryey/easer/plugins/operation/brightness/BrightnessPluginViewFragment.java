@@ -31,6 +31,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
@@ -87,8 +88,9 @@ public class BrightnessPluginViewFragment extends PluginViewFragment {
         }
     }
 
+    @NonNull
     @Override
-    public StorageData getData() {
+    public StorageData getData() throws InvalidDataInputException {
         if (mIsAuto.isChecked())
             return new BrightnessOperationData(true);
         else {

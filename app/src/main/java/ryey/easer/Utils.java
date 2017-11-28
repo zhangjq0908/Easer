@@ -2,6 +2,7 @@ package ryey.easer;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 
@@ -13,7 +14,7 @@ import java.util.Locale;
 import java.util.Set;
 
 public class Utils {
-    public static boolean isBlank(String str) {
+    public static boolean isBlank(@Nullable String str) {
         if (str == null)
             return true;
         if (str.isEmpty())
@@ -23,7 +24,7 @@ public class Utils {
         return false;
     }
 
-    public static boolean nullableEqual(Object obj1, Object obj2) {
+    public static boolean nullableEqual(@Nullable Object obj1, @Nullable Object obj2) {
         if (obj1 == null && obj2 == null)
             return true;
         if (obj1 == null || obj2 == null)

@@ -113,8 +113,9 @@ public abstract class PluginViewFragment extends Fragment {
 
     /**
      * Construct the correct {@link StorageData} (subclass) containing the data in the UI.
+     * @throws InvalidDataInputException If the data inputted by the user is invalid
      */
-    public abstract @Nullable StorageData getData();
+    public abstract @NonNull StorageData getData() throws InvalidDataInputException;
 
     /**
      * Change the interactive state of the UI components.

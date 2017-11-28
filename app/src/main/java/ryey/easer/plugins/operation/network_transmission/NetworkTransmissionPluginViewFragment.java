@@ -29,6 +29,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
@@ -72,8 +73,9 @@ public class NetworkTransmissionPluginViewFragment extends PluginViewFragment {
         editText_data.setText(tdata.data);
     }
 
+    @NonNull
     @Override
-    public StorageData getData() {
+    public StorageData getData() throws InvalidDataInputException {
         TransmissionData tdata = new TransmissionData();
         if (rb_tcp.isChecked())
             tdata.protocol = TransmissionData.Protocol.tcp;

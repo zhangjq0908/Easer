@@ -35,6 +35,7 @@ import java.util.Locale;
 import java.util.Set;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
@@ -75,8 +76,9 @@ public class DayOfWeekPluginViewFragment extends PluginViewFragment {
         }
     }
 
+    @NonNull
     @Override
-    public StorageData getData() {
+    public StorageData getData() throws InvalidDataInputException {
         Set<Integer> days = new HashSet<>();
         for (int i = 0; i < 7; i++) {
             if (day_buttons[i].isChecked())
