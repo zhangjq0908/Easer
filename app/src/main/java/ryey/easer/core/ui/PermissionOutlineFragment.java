@@ -42,7 +42,7 @@ public class PermissionOutlineFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        mButton = (Button) view.findViewById(R.id.button_more);
+        mButton = view.findViewById(R.id.button_more);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -96,7 +96,7 @@ public class EditProfileActivity extends AppCompatActivity implements OperationS
             actionbar.setHomeAsUpIndicator(R.drawable.ic_close_24dp);
             actionbar.setDisplayHomeAsUpEnabled(true);
             setTitle(R.string.title_edit_profile);
-            editText_profile_name = (EditText) findViewById(R.id.editText_profile_title);
+            editText_profile_name = findViewById(R.id.editText_profile_title);
             operationSelectorFragment = new OperationSelectorFragment();
             operationSelectorFragment.setSelectedListener(this);
             findViewById(R.id.button_add_operation).setOnClickListener(new View.OnClickListener() {

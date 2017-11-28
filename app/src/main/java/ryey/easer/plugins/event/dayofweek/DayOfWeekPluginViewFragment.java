@@ -49,7 +49,7 @@ public class DayOfWeekPluginViewFragment extends PluginViewFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_event__day_of_week, container, false);
-        ViewGroup vg = (ViewGroup) view.findViewById(R.id.plugin__day_of_week_container);
+        ViewGroup vg = view.findViewById(R.id.plugin__day_of_week_container);
         SimpleDateFormat sdf = new SimpleDateFormat("E", Locale.getDefault());
         Calendar cal = Calendar.getInstance();
         for (int i = 0; i < 7; i++) {

@@ -48,7 +48,7 @@ public class CellLocationPluginViewFragment extends PluginViewFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_event__cell_location, container, false);
 
-        editText = (EditText) view.findViewById(R.id.location_text);
+        editText = view.findViewById(R.id.location_text);
         view.findViewById(R.id.location_picker).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

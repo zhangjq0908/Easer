@@ -42,8 +42,8 @@ public class SmsPluginViewFragment extends PluginViewFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_operation__send_sms, container, false);
-        et_destination = (EditText) view.findViewById(R.id.editText_destination);
-        et_content = (EditText) view.findViewById(R.id.editText_content);
+        et_destination = view.findViewById(R.id.editText_destination);
+        et_content = view.findViewById(R.id.editText_content);
         return view;
     }
 

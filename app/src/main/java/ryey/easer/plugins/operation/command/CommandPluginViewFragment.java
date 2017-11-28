@@ -42,7 +42,7 @@ public class CommandPluginViewFragment extends PluginViewFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_operation__command, container, false);
-        editText_command = (EditText) view.findViewById(R.id.command);
+        editText_command = view.findViewById(R.id.command);
         return view;
     }
 

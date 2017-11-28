@@ -69,8 +69,8 @@ public class OutlineFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_outline, container, false);
 
-        mIndicator = (TextView) mView.findViewById(R.id.running_ind);
-        mBanner = (ImageView) mView.findViewById(R.id.running_ind_banner);
+        mIndicator = mView.findViewById(R.id.running_ind);
+        mBanner = mView.findViewById(R.id.running_ind_banner);
 
         Fragment fragment_permission = new PermissionOutlineFragment();
         Fragment fragment_history = new LoadedHistoryFragment();
@@ -79,7 +79,7 @@ public class OutlineFragment extends Fragment {
                 .replace(R.id.content_fragment_loaded_history, fragment_history)
                 .commit();
 
-        FloatingActionButton fab = (FloatingActionButton) mView.findViewById(R.id.fab);
+        FloatingActionButton fab = mView.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -72,7 +72,7 @@ public class WifiPluginViewFragment extends PluginViewFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_event__wifi_connection, container, false);
-        editText = (EditText) view.findViewById(R.id.wifi_name);
+        editText = view.findViewById(R.id.wifi_name);
 
         view.findViewById(R.id.connection_picker).setOnClickListener(new View.OnClickListener() {
             @Override

@@ -38,7 +38,7 @@ public class EventPluginViewContainerFragment extends PluginViewContainerFragmen
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_pluginview_event, container, false);
-        type_radioGroup = (RadioGroup) v.findViewById(R.id.radiogroup_eventtype);
+        type_radioGroup = v.findViewById(R.id.radiogroup_eventtype);
         pluginViewFragment.setEnabled(true);
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.content_pluginview, pluginViewFragment)

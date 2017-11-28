@@ -72,8 +72,8 @@ public class BTDevicePluginViewFragment extends PluginViewFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_event__bluetooth_device, container, false);
 
-        editText = (EditText) view.findViewById(R.id.hardware_address);
-        textView = (TextView) view.findViewById(R.id.device_name);
+        editText = view.findViewById(R.id.hardware_address);
+        textView = view.findViewById(R.id.device_name);
 
         editText.addTextChangedListener(new TextWatcher() {
             final String name_not_found = getResources().getString(R.string.ebtdevice_unknown_device);

@@ -80,9 +80,9 @@ public class CalendarPluginViewFragment extends PluginViewFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_event__calendar, container, false);
-        tv_calendar_name = (TextView) view.findViewById(R.id.text_calendar_name);
-        cb_conditions[0] = (CheckBox) view.findViewById(R.id.checkBox_start);
-        cb_conditions[1] = (CheckBox) view.findViewById(R.id.checkBox_end);
+        tv_calendar_name = view.findViewById(R.id.text_calendar_name);
+        cb_conditions[0] = view.findViewById(R.id.checkBox_start);
+        cb_conditions[1] = view.findViewById(R.id.checkBox_end);
 
         view.findViewById(R.id.calendar_picker).setOnClickListener(new View.OnClickListener() {
             @Override

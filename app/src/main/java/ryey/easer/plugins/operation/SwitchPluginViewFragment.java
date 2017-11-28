@@ -38,7 +38,7 @@ public abstract class SwitchPluginViewFragment extends PluginViewFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_reusable__switch, container, false);
-        aSwitch = (Switch) view.findViewById(R.id.plugin_reusable__switch);
+        aSwitch = view.findViewById(R.id.plugin_reusable__switch);
         return view;
     }
 

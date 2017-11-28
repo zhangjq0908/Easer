@@ -118,9 +118,9 @@ public class EditEventActivity extends AppCompatActivity {
     }
 
     void init() {
-        mEditText_name = (EditText) findViewById(R.id.editText_event_title);
+        mEditText_name = findViewById(R.id.editText_event_title);
 
-        mSpinner_parent = (Spinner) findViewById(R.id.spinner_parent);
+        mSpinner_parent = findViewById(R.id.spinner_parent);
         mEventList = (EventDataStorage.getInstance(this)).list();
         mEventList.add(0, NON);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_profile, mEventList); //TODO: change layout
@@ -136,7 +136,7 @@ public class EditEventActivity extends AppCompatActivity {
             }
         });
 
-        mSpinner_profile = (Spinner) findViewById(R.id.spinner_profile);
+        mSpinner_profile = findViewById(R.id.spinner_profile);
         mProfileList = (ProfileDataStorage.getInstance(this)).list();
         mProfileList.add(0, NON);
         ArrayAdapter<String> adapter_profile = new ArrayAdapter<>(this, R.layout.spinner_profile, mProfileList);
@@ -152,7 +152,7 @@ public class EditEventActivity extends AppCompatActivity {
             }
         });
 
-        mViewPager = (EventPluginViewPager) findViewById(R.id.pager);
+        mViewPager = findViewById(R.id.pager);
         mViewPager.init(this);
     }
 

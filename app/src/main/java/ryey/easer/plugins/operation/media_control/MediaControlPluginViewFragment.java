@@ -43,11 +43,11 @@ public class MediaControlPluginViewFragment extends PluginViewFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_operation__media_control, container, false);
-        radioButton_play_pause = (RadioButton) view.findViewById(R.id.radioButton_play_pause);
-        radioButton_play = (RadioButton) view.findViewById(R.id.radioButton_play);
-        radioButton_pause = (RadioButton) view.findViewById(R.id.radioButton_pause);
-        radioButton_previous = (RadioButton) view.findViewById(R.id.radioButton_previous);
-        radioButton_next = (RadioButton) view.findViewById(R.id.radioButton_next);
+        radioButton_play_pause = view.findViewById(R.id.radioButton_play_pause);
+        radioButton_play = view.findViewById(R.id.radioButton_play);
+        radioButton_pause = view.findViewById(R.id.radioButton_pause);
+        radioButton_previous = view.findViewById(R.id.radioButton_previous);
+        radioButton_next = view.findViewById(R.id.radioButton_next);
 
         return view;
     }

@@ -37,7 +37,7 @@ public class ProfilePluginViewContainerFragment extends PluginViewContainerFragm
                 .add(R.id.content_pluginview, pluginViewFragment)
                 .commit();
         getChildFragmentManager().executePendingTransactions();
-        mCheckBox = (CheckBox) view.findViewById(R.id.checkbox_pluginview_enabled);
+        mCheckBox = view.findViewById(R.id.checkbox_pluginview_enabled);
         pluginViewFragment.setEnabled(false);
         mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

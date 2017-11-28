@@ -42,8 +42,8 @@ public class SmsPluginViewFragment extends PluginViewFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_event__sms, container, false);
-        editText_sender = (EditText) view.findViewById(R.id.editText_sender);
-        editText_content = (EditText) view.findViewById(R.id.editText_content);
+        editText_sender = view.findViewById(R.id.editText_sender);
+        editText_content = view.findViewById(R.id.editText_content);
 
         return view;
     }

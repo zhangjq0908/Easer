@@ -54,10 +54,10 @@ public class BroadcastPluginViewFragment extends PluginViewFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_operation__broadcast, container, false);
-        m_text_action = (EditText) view.findViewById(R.id.text_action);
-        m_text_category = (EditText) view.findViewById(R.id.text_category);
-        m_text_type = (EditText) view.findViewById(R.id.text_type);
-        m_text_data = (EditText) view.findViewById(R.id.text_data);
+        m_text_action = view.findViewById(R.id.text_action);
+        m_text_category = view.findViewById(R.id.text_category);
+        m_text_type = view.findViewById(R.id.text_type);
+        m_text_data = view.findViewById(R.id.text_data);
         view.findViewById(R.id.button_add_extra).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,9 +133,9 @@ public class BroadcastPluginViewFragment extends PluginViewFragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.plugin_operation__broadcast_fragment_extra_item, container, false);
-            editText_key = (EditText) view.findViewById(R.id.editText_key);
-            editText_value = (EditText) view.findViewById(R.id.editText_value);
-            spinner_type = (Spinner) view.findViewById(R.id.spinner_type);
+            editText_key = view.findViewById(R.id.editText_key);
+            editText_value = view.findViewById(R.id.editText_value);
+            spinner_type = view.findViewById(R.id.spinner_type);
 
             if (item != null) {
                 editText_key.setText(item.key);

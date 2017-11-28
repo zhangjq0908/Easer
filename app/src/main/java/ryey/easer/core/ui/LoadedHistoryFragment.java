@@ -40,9 +40,9 @@ public class LoadedHistoryFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_loaded_history, container, false);
 
-        mLastProfile = (TextView) view.findViewById(R.id.textView_last_profile);
-        mFromEvent = (TextView) view.findViewById(R.id.textView_from_event);
-        mTimeLoaded = (TextView) view.findViewById(R.id.textView_profile_load_time);
+        mLastProfile = view.findViewById(R.id.textView_last_profile);
+        mFromEvent = view.findViewById(R.id.textView_from_event);
+        mTimeLoaded = view.findViewById(R.id.textView_profile_load_time);
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(EHService.ACTION_PROFILE_UPDATED);

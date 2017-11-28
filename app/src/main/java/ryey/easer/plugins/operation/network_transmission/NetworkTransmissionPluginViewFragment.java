@@ -46,11 +46,11 @@ public class NetworkTransmissionPluginViewFragment extends PluginViewFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_operation__network_transmission, container, false);
-        rb_tcp = (RadioButton) view.findViewById(R.id.radioButton_tcp);
-        rb_udp = (RadioButton) view.findViewById(R.id.radioButton_udp);
-        editText_remote_address = (EditText) view.findViewById(R.id.editText_remote_address);
-        editText_remote_port = (EditText) view.findViewById(R.id.editText_port);
-        editText_data = (EditText) view.findViewById(R.id.editText_data);
+        rb_tcp = view.findViewById(R.id.radioButton_tcp);
+        rb_udp = view.findViewById(R.id.radioButton_udp);
+        editText_remote_address = view.findViewById(R.id.editText_remote_address);
+        editText_remote_port = view.findViewById(R.id.editText_port);
+        editText_data = view.findViewById(R.id.editText_data);
         return view;
     }
 
