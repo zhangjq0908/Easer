@@ -19,6 +19,7 @@
 
 package ryey.easer.plugins.event.celllocation;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.telephony.CellLocation;
 import android.telephony.PhoneStateListener;
@@ -75,6 +76,7 @@ public class CellLocationSlot extends AbstractSlot {
             telephonyManager.listen(cellLocationListener, PhoneStateListener.LISTEN_NONE);
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public void check() {
         CellLocationListener chck = new CellLocationListener();

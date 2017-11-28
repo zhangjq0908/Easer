@@ -20,6 +20,7 @@
 package ryey.easer.plugins.event.celllocation;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -54,7 +55,7 @@ public class CellLocationPluginViewFragment extends PluginViewFragment {
                 if (!Utils.hasPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION))
                     return;
                 TelephonyManager telephonyManager = (TelephonyManager) getContext().getSystemService(Context.TELEPHONY_SERVICE);
-                CellLocationSingleData singleData = CellLocationSingleData.fromCellLocation(telephonyManager.getCellLocation());
+                @SuppressLint("MissingPermission") CellLocationSingleData singleData = CellLocationSingleData.fromCellLocation(telephonyManager.getCellLocation());
                 CellLocationEventData locationData = CellLocationEventData.fromString(editText.getText().toString());
                 if (locationData == null)
                     locationData = new CellLocationEventData();
