@@ -27,8 +27,8 @@ import com.orhanobut.logger.Logger;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
-public class HotspotLoader extends OperationLoader {
-    final HotspotHelper helper;
+class HotspotLoader extends OperationLoader {
+    private final HotspotHelper helper;
 
     public HotspotLoader(Context context) {
         super(context);

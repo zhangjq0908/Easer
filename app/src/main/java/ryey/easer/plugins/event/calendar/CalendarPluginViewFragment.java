@@ -48,16 +48,16 @@ import ryey.easer.commons.plugindef.StorageData;
 
 public class CalendarPluginViewFragment extends PluginViewFragment {
 
-    final static String ACTION_RETURN = "ryey.easer.plugins.event.bluetooth_device.return_from_dialog";
-    final static String EXTRA_CALENDAR_ID = "ryey.easer.plugins.event.calendar.extra.calendar_id";
-    final static String EXTRA_CALENDAR_NAME = "ryey.easer.plugins.event.calendar.extra.calendar_name";
+    private final static String ACTION_RETURN = "ryey.easer.plugins.event.bluetooth_device.return_from_dialog";
+    private final static String EXTRA_CALENDAR_ID = "ryey.easer.plugins.event.calendar.extra.calendar_id";
+    private final static String EXTRA_CALENDAR_NAME = "ryey.easer.plugins.event.calendar.extra.calendar_name";
 
-    long calendar_id = -1;
-    TextView tv_calendar_name;
-    final CheckBox[] cb_conditions = new CheckBox[CalendarData.condition_name.length]; // The same order as `CalendarData.condition_name`
+    private long calendar_id = -1;
+    private TextView tv_calendar_name;
+    private final CheckBox[] cb_conditions = new CheckBox[CalendarData.condition_name.length]; // The same order as `CalendarData.condition_name`
 
-    final IntentFilter mFilter = new IntentFilter(ACTION_RETURN);
-    final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    private final IntentFilter mFilter = new IntentFilter(ACTION_RETURN);
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(ACTION_RETURN)) {

@@ -46,7 +46,7 @@ public class RingerModePluginViewFragment extends PluginViewFragment {
     };
     final RadioButton []radioButtons = new RadioButton[values.length];
 
-    int checked_item = -1;
+    private int checked_item = -1;
 
     {
         setDesc(R.string.operation_ringer_mode);

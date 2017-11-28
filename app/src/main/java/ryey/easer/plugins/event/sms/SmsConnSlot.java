@@ -42,7 +42,7 @@ public class SmsConnSlot extends AbstractSlot {
     private SmsInnerData smsInnerData = null;
     private EventType type = null;
 
-    final BroadcastReceiver connReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver connReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(Telephony.Sms.Intents.SMS_RECEIVED_ACTION)) {
@@ -75,7 +75,7 @@ public class SmsConnSlot extends AbstractSlot {
         }
     };
 
-    IntentFilter filter;
+    private IntentFilter filter;
 
     {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {

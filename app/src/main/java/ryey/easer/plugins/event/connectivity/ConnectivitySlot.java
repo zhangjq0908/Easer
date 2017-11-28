@@ -21,12 +21,12 @@ import static ryey.easer.plugins.event.connectivity.ConnectivityType.TYPE_NOT_CO
 import static ryey.easer.plugins.event.connectivity.ConnectivityType.TYPE_VPN;
 import static ryey.easer.plugins.event.connectivity.ConnectivityType.TYPE_WIFI;
 
-public class ConnectivitySlot extends AbstractSlot {
+class ConnectivitySlot extends AbstractSlot {
 
-    Set<Integer> connectivity_types;
-    EventType type;
+    private Set<Integer> connectivity_types;
+    private EventType type;
 
-    final BroadcastReceiver receiver = new BroadcastReceiver() {
+    private final BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             switch (intent.getAction()) {
@@ -36,7 +36,7 @@ public class ConnectivitySlot extends AbstractSlot {
             }
         }
     };
-    final IntentFilter filter;
+    private final IntentFilter filter;
 
     {
         filter = new IntentFilter();
@@ -76,7 +76,7 @@ public class ConnectivitySlot extends AbstractSlot {
         determineAndNotify(convertType(activeNetworkInfo));
     }
 
-    int convertType(NetworkInfo activeNetworkInfo) {
+    private int convertType(NetworkInfo activeNetworkInfo) {
         if (activeNetworkInfo == null) {
             return TYPE_NOT_CONNECTED;
         }
@@ -95,7 +95,7 @@ public class ConnectivitySlot extends AbstractSlot {
         return -1;
     }
 
-    void determineAndNotify(int networkType) {
+    private void determineAndNotify(int networkType) {
         if (type == EventType.any) {
             if (connectivity_types.contains(networkType))
                 changeSatisfiedState(true);

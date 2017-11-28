@@ -43,7 +43,7 @@ public class MediaControlOperationData implements OperationData {
         next,
     }
 
-    ControlChoice choice = null;
+    private ControlChoice choice = null;
 
     public MediaControlOperationData() {
     }

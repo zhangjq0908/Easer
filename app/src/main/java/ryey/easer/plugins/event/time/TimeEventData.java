@@ -46,7 +46,7 @@ import ryey.easer.plugins.event.TypedEventData;
 public class TimeEventData extends TypedEventData {
     private static final SimpleDateFormat sdf_time = new SimpleDateFormat("HH:mm", Locale.US);
 
-    static String TimeToText(Calendar calendar) {
+    private static String TimeToText(Calendar calendar) {
         return sdf_time.format(calendar.getTime());
     }
 
@@ -56,7 +56,7 @@ public class TimeEventData extends TypedEventData {
         return calendar;
     }
 
-    Calendar time = null;
+    private Calendar time = null;
 
     {
         default_type = EventType.after;
@@ -67,11 +67,6 @@ public class TimeEventData extends TypedEventData {
 
     public TimeEventData(Calendar time) {
         this.time = time;
-    }
-
-    public TimeEventData(Calendar time, EventType type) {
-        this.time = time;
-        setType(type);
     }
 
     @NonNull

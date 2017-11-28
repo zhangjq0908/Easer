@@ -33,14 +33,14 @@ import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 public class CellLocationSlot extends AbstractSlot {
-    static TelephonyManager telephonyManager = null;
+    private static TelephonyManager telephonyManager = null;
 
-    CellLocationListener cellLocationListener = new CellLocationListener();
+    private CellLocationListener cellLocationListener = new CellLocationListener();
 
-    CellLocationEventData target = null;
-    EventType type = null;
+    private CellLocationEventData target = null;
+    private EventType type = null;
 
-    CellLocationSingleData curr = null;
+    private CellLocationSingleData curr = null;
 
     public CellLocationSlot(Context context) {
         super(context);

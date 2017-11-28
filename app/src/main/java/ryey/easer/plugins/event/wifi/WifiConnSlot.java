@@ -41,7 +41,7 @@ public class WifiConnSlot extends AbstractSlot {
 
     private int matched_networks = 0;
 
-    final BroadcastReceiver connReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver connReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
@@ -60,7 +60,7 @@ public class WifiConnSlot extends AbstractSlot {
         }
     };
 
-    final IntentFilter filter;
+    private final IntentFilter filter;
 
     {
         filter = new IntentFilter();

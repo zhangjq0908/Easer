@@ -43,7 +43,7 @@ public abstract class SelfNotifiableSlot extends AbstractSlot {
         }
     };
 
-    public SelfNotifiableSlot(@NonNull Context context) {
+    protected SelfNotifiableSlot(@NonNull Context context) {
         super(context);
         IntentFilter filter = new IntentFilter();
         filter.addAction(ACTION_SATISFIED);

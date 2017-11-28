@@ -11,9 +11,9 @@ public abstract class IntegerData implements StorageData {
     protected Integer lbound = null;
     protected Integer rbound = null;
 
-    public IntegerData() {}
+    protected IntegerData() {}
 
-    public IntegerData(@NonNull Integer level) {
+    protected IntegerData(@NonNull Integer level) {
         this.level = level;
     }
 

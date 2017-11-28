@@ -30,7 +30,7 @@ import ryey.easer.plugins.event.SelfNotifiableSlot;
 
 public class CalendarSlot extends SelfNotifiableSlot {
 
-    static AlarmManager mAlarmManager = null;
+    private static AlarmManager mAlarmManager = null;
 
     private CalendarEventData data = null;
     private EventType type = null;

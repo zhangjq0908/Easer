@@ -25,10 +25,10 @@ import android.os.Parcelable;
 import ryey.easer.plugins.operation.BooleanOperationData;
 
 public class SynchronizationOperationData extends BooleanOperationData {
-    public SynchronizationOperationData() {
+    SynchronizationOperationData() {
     }
 
-    public SynchronizationOperationData(Boolean state) {
+    SynchronizationOperationData(Boolean state) {
         super(state);
     }
 

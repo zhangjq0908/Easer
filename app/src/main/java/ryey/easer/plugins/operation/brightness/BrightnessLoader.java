@@ -41,10 +41,8 @@ public class BrightnessLoader extends OperationLoader {
         }
     }
 
-    public boolean loadthis(BrightnessOperationData data) {
+    private boolean loadthis(BrightnessOperationData data) {
         Integer level = (Integer) data.get();
-        if (level == null)
-            return true;
         if (data.isAuto())
             Settings.System.putInt(context.getContentResolver(),
                     Settings.System.SCREEN_BRIGHTNESS_MODE,

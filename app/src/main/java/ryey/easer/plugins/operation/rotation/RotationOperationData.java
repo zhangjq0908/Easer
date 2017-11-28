@@ -25,10 +25,10 @@ import android.os.Parcelable;
 import ryey.easer.plugins.operation.BooleanOperationData;
 
 public class RotationOperationData extends BooleanOperationData {
-    public RotationOperationData() {
+    RotationOperationData() {
     }
 
-    public RotationOperationData(Boolean state) {
+    RotationOperationData(Boolean state) {
         super(state);
     }
 

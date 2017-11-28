@@ -13,10 +13,10 @@ import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 public class BatterySlot extends AbstractSlot {
 
-    int status;
-    EventType type;
+    private int status;
+    private EventType type;
 
-    final BroadcastReceiver receiver = new BroadcastReceiver() {
+    private final BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             switch (intent.getAction()) {
@@ -29,7 +29,7 @@ public class BatterySlot extends AbstractSlot {
             }
         }
     };
-    IntentFilter filter;
+    private IntentFilter filter;
 
     {
         filter = new IntentFilter();
@@ -75,7 +75,7 @@ public class BatterySlot extends AbstractSlot {
         determineAndNotify(isCharging);
     }
 
-    void determineAndNotify(boolean isCharging) {
+    private void determineAndNotify(boolean isCharging) {
         if ((status == BatteryStatus.charging) == isCharging) {
             changeSatisfiedState(type == EventType.is);
         } else {

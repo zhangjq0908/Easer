@@ -32,7 +32,7 @@ import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public abstract class SwitchPluginViewFragment extends PluginViewFragment {
-    Switch aSwitch;
+    private Switch aSwitch;
 
     @NonNull
     @Override
@@ -42,12 +42,11 @@ public abstract class SwitchPluginViewFragment extends PluginViewFragment {
         return view;
     }
 
-    protected static void setSwitch(@NonNull Switch sw, boolean state) {
+    private static void setSwitch(@NonNull Switch sw, boolean state) {
         sw.setChecked(state);
     }
 
-    @NonNull
-    protected static Boolean fromSwitch(@NonNull Switch sw) {
+    private static boolean fromSwitch(@NonNull Switch sw) {
         return sw.isChecked();
     }
 

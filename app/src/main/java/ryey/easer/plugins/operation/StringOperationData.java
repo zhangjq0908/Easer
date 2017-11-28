@@ -37,9 +37,9 @@ import ryey.easer.plugins.reusable.StringData;
 
 public abstract class StringOperationData extends StringData implements OperationData {
 
-    public StringOperationData() {super();}
+    protected StringOperationData() {super();}
 
-    public StringOperationData(@NonNull String text) {
+    protected StringOperationData(@NonNull String text) {
         super(text);
     }
 

@@ -47,11 +47,11 @@ import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public class BTDevicePluginViewFragment extends PluginViewFragment {
-    final String ACTION_RETURN = "ryey.easer.plugins.event.bluetooth_device.return_from_dialog";
-    final String EXTRA_HARDWARE_ADDRESS = "ryey.easer.plugins.event.bluetooth_device.extra.hardware_address";
+    private final String ACTION_RETURN = "ryey.easer.plugins.event.bluetooth_device.return_from_dialog";
+    private final String EXTRA_HARDWARE_ADDRESS = "ryey.easer.plugins.event.bluetooth_device.extra.hardware_address";
 
-    final IntentFilter mFilter = new IntentFilter(ACTION_RETURN);
-    final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    private final IntentFilter mFilter = new IntentFilter(ACTION_RETURN);
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(ACTION_RETURN)) {
@@ -61,8 +61,8 @@ public class BTDevicePluginViewFragment extends PluginViewFragment {
         }
     };
 
-    EditText editText;
-    TextView textView;
+    private EditText editText;
+    private TextView textView;
 
     {
         setDesc(R.string.event_bluetooth_device);

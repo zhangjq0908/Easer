@@ -43,12 +43,12 @@ public class SmsOperationData implements OperationData {
     private static final String K_DEST = "destination";
     private static final String K_CONTENT = "content";
 
-    Sms sms;
+    private Sms sms;
 
-    public SmsOperationData() {
+    SmsOperationData() {
     }
 
-    public SmsOperationData(Sms sms) {
+    SmsOperationData(Sms sms) {
         this.sms = sms;
     }
 

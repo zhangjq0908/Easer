@@ -36,8 +36,8 @@ import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public class BrightnessPluginViewFragment extends PluginViewFragment {
-    Switch mIsAuto;
-    SeekBar mBrightnessLevel;
+    private Switch mIsAuto;
+    private SeekBar mBrightnessLevel;
 
     {
         setDesc(R.string.operation_brightness);

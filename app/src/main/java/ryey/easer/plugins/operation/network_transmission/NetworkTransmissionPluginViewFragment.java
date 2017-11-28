@@ -35,9 +35,11 @@ import ryey.easer.commons.plugindef.StorageData;
 
 public class NetworkTransmissionPluginViewFragment extends PluginViewFragment {
 
-    RadioButton rb_tcp, rb_udp;
-    EditText editText_remote_address, editText_remote_port;
-    EditText editText_data;
+    private RadioButton rb_tcp;
+    private RadioButton rb_udp;
+    private EditText editText_remote_address;
+    private EditText editText_remote_port;
+    private EditText editText_data;
 
     {
         setDesc(R.string.operation_network_transmission);

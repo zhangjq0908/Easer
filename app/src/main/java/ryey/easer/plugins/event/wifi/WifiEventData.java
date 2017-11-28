@@ -45,7 +45,7 @@ import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
 
 public class WifiEventData extends TypedEventData {
-    List<String> ssids = new ArrayList<>();
+    private List<String> ssids = new ArrayList<>();
 
     {
         default_type = EventType.any;

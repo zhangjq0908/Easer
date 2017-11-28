@@ -25,10 +25,10 @@ import android.os.Parcelable;
 import ryey.easer.plugins.operation.BooleanOperationData;
 
 public class WifiOperationData extends BooleanOperationData {
-    public WifiOperationData() {
+    WifiOperationData() {
     }
 
-    public WifiOperationData(Boolean state) {
+    WifiOperationData(Boolean state) {
         super(state);
     }
 

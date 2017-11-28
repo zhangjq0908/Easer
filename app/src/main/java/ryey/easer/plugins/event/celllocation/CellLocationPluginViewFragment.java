@@ -38,7 +38,7 @@ import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public class CellLocationPluginViewFragment extends PluginViewFragment {
-    EditText editText;
+    private EditText editText;
 
     {
         setDesc(R.string.event_celllocation);

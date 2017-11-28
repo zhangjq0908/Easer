@@ -9,9 +9,9 @@ import ryey.easer.commons.plugindef.StorageData;
 public abstract class BooleanData implements StorageData {
     protected Boolean state = null;
 
-    public BooleanData() {}
+    protected BooleanData() {}
 
-    public BooleanData(@NonNull Boolean state) {
+    protected BooleanData(@NonNull Boolean state) {
         this.state = state;
     }
 

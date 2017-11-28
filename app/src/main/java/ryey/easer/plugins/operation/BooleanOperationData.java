@@ -37,9 +37,9 @@ import ryey.easer.plugins.reusable.BooleanData;
 
 public abstract class BooleanOperationData extends BooleanData implements OperationData {
 
-    public BooleanOperationData() {super();}
+    protected BooleanOperationData() {super();}
 
-    public BooleanOperationData(@NonNull Boolean state) {
+    protected BooleanOperationData(@NonNull Boolean state) {
         super(state);
     }
 

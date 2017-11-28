@@ -33,7 +33,7 @@ import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public class CommandPluginViewFragment extends PluginViewFragment {
-    EditText editText_command;
+    private EditText editText_command;
 
     {
         setDesc(R.string.operation_command);

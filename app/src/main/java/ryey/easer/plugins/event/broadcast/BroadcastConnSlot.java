@@ -34,14 +34,14 @@ public class BroadcastConnSlot extends AbstractSlot {
     private ReceiverSideIntentData intentData = null;
     private EventType type = null;
 
-    final BroadcastReceiver connReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver connReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             changeSatisfiedState(true);
         }
     };
 
-    IntentFilter filter;
+    private IntentFilter filter;
 
     {
         filter = new IntentFilter();

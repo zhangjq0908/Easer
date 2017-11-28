@@ -41,8 +41,8 @@ import ryey.easer.plugins.event.TypedEventData;
 
 public class BroadcastEventData extends TypedEventData {
 
-    static final String K_ACTION = "action";
-    static final String K_CATEGORY = "category";
+    private static final String K_ACTION = "action";
+    private static final String K_CATEGORY = "category";
 
     ReceiverSideIntentData intentData;
 

@@ -43,18 +43,18 @@ import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.plugins.PluginRegistry;
 
 public class BroadcastOperationData implements OperationData {
-    protected static final String ns = null;
+    private static final String ns = null;
 
-    static final String ACTION = "action";
-    static final String CATEGORY = "category";
-    static final String TYPE = "type";
-    static final String DATA = "data";
-    static final String EXTRAS = "extras";
-    static final String KEY = "key";
-    static final String VALUE = "value";
-    static final String V_TYPE = "type";
+    private static final String ACTION = "action";
+    private static final String CATEGORY = "category";
+    private static final String TYPE = "type";
+    private static final String DATA = "data";
+    private static final String EXTRAS = "extras";
+    private static final String KEY = "key";
+    private static final String VALUE = "value";
+    private static final String V_TYPE = "type";
 
-    IntentData data = new IntentData();
+    private IntentData data = new IntentData();
 
     public BroadcastOperationData() {
     }

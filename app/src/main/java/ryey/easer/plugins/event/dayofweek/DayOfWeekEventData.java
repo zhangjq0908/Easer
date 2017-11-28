@@ -48,7 +48,7 @@ import ryey.easer.plugins.event.TypedEventData;
 
 public class DayOfWeekEventData extends TypedEventData {
 
-    Set<Integer> days = new ArraySet<>(7);
+    private Set<Integer> days = new ArraySet<>(7);
 
     {
         default_type = EventType.any;

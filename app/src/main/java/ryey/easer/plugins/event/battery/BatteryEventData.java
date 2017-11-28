@@ -20,7 +20,7 @@ import ryey.easer.plugins.event.TypedEventData;
 
 public class BatteryEventData extends TypedEventData {
 
-    protected Integer battery_status = null;
+    private Integer battery_status = null;
 
     {
         default_type = EventType.is;

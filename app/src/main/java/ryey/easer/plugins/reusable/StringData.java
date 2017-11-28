@@ -10,9 +10,9 @@ import ryey.easer.commons.plugindef.StorageData;
 public abstract class StringData implements StorageData {
     protected String text = null;
 
-    public StringData() {}
+    protected StringData() {}
 
-    public StringData(@NonNull String text) {
+    protected StringData(@NonNull String text) {
         this.text = text;
     }
 

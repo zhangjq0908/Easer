@@ -31,11 +31,11 @@ import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.SelfNotifiableSlot;
 
-public class DayOfWeekSlot extends SelfNotifiableSlot {
-    static AlarmManager mAlarmManager;
+class DayOfWeekSlot extends SelfNotifiableSlot {
+    private static AlarmManager mAlarmManager;
 
-    Set<Integer> days;
-    EventType type = null;
+    private Set<Integer> days;
+    private EventType type = null;
 
     public DayOfWeekSlot(Context context) {
         super(context);
@@ -54,7 +54,7 @@ public class DayOfWeekSlot extends SelfNotifiableSlot {
         }
     }
 
-    void setDate(Set<Integer> days) {
+    private void setDate(Set<Integer> days) {
         if (days == null)
             return;
         this.days = days;

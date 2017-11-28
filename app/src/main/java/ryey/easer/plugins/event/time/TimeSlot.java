@@ -31,10 +31,10 @@ import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.SelfNotifiableSlot;
 
 public class TimeSlot extends SelfNotifiableSlot {
-    static AlarmManager mAlarmManager;
+    private static AlarmManager mAlarmManager;
 
-    Calendar calendar = null;
-    EventType type = null;
+    private Calendar calendar = null;
+    private EventType type = null;
 
     public TimeSlot(Context context) {
         super(context);
@@ -53,9 +53,7 @@ public class TimeSlot extends SelfNotifiableSlot {
         }
     }
 
-    public void setTime(Calendar time) {
-        if (time == null)
-            return;
+    private void setTime(@NonNull Calendar time) {
         if (calendar == null) {
             calendar = Calendar.getInstance();
             calendar.setTimeInMillis(System.currentTimeMillis());

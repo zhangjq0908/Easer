@@ -44,7 +44,7 @@ import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
 
 public class CellLocationEventData extends TypedEventData {
-    protected List<CellLocationSingleData> data = new ArrayList<>();
+    private List<CellLocationSingleData> data = new ArrayList<>();
 
     {
         default_type = EventType.any;

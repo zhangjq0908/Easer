@@ -28,7 +28,7 @@ import ryey.easer.plugins.event.TypedEventData;
 
 public class ConnectivityEventData extends TypedEventData {
 
-    protected Set<Integer> connectivity_type = new ArraySet<>();
+    private Set<Integer> connectivity_type = new ArraySet<>();
 
     {
         default_type = EventType.any;

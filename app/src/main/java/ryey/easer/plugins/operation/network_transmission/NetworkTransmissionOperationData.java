@@ -38,12 +38,12 @@ import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
 public class NetworkTransmissionOperationData implements OperationData {
 
-    static final String K_PROTOCOL = "protocol";
-    static final String K_REMOTE_ADDRESS = "remote_address";
-    static final String K_REMOTE_PORT = "remote_port";
-    static final String K_DATA = "data";
+    private static final String K_PROTOCOL = "protocol";
+    private static final String K_REMOTE_ADDRESS = "remote_address";
+    private static final String K_REMOTE_PORT = "remote_port";
+    private static final String K_DATA = "data";
 
-    TransmissionData data = null;
+    private TransmissionData data = null;
 
     public NetworkTransmissionOperationData() {
     }

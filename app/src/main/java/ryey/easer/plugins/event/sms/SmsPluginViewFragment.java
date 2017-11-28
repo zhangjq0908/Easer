@@ -33,7 +33,8 @@ import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public class SmsPluginViewFragment extends PluginViewFragment {
-    EditText editText_sender, editText_content;
+    private EditText editText_sender;
+    private EditText editText_content;
 
     {
         setDesc(R.string.event_sms);

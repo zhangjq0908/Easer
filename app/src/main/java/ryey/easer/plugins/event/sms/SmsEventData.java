@@ -42,8 +42,8 @@ import ryey.easer.plugins.event.TypedEventData;
 
 public class SmsEventData extends TypedEventData {
 
-    static final String K_SENDER = "sender";
-    static final String K_CONTENT = "content";
+    private static final String K_SENDER = "sender";
+    private static final String K_CONTENT = "content";
 
     SmsInnerData innerData;
 

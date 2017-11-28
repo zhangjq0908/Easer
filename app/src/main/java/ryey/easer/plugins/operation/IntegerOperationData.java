@@ -37,9 +37,9 @@ import ryey.easer.plugins.reusable.IntegerData;
 
 public abstract class IntegerOperationData extends IntegerData implements OperationData {
 
-    public IntegerOperationData() {super();}
+    protected IntegerOperationData() {super();}
 
-    public IntegerOperationData(@NonNull Integer level) {
+    protected IntegerOperationData(@NonNull Integer level) {
         super(level);
     }
 

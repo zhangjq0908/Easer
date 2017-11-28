@@ -35,7 +35,7 @@ import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public class TimePluginViewFragment extends PluginViewFragment {
-    TimePicker timePicker;
+    private TimePicker timePicker;
 
     {
         setDesc(R.string.event_time);

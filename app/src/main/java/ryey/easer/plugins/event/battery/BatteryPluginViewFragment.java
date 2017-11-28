@@ -24,7 +24,7 @@ public class BatteryPluginViewFragment extends PluginViewFragment {
     };
     final RadioButton []radioButtons = new RadioButton[values.length];
 
-    Integer checked_item = null;
+    private Integer checked_item = null;
 
     {
         setDesc(R.string.event_battery);

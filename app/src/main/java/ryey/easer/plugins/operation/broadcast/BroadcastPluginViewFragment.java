@@ -41,11 +41,11 @@ import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public class BroadcastPluginViewFragment extends PluginViewFragment {
-    EditText m_text_action;
-    EditText m_text_category;
-    EditText m_text_type;
-    EditText m_text_data;
-    List<ExtraItemFragment> m_fragment_extra = new ArrayList<>();
+    private EditText m_text_action;
+    private EditText m_text_category;
+    private EditText m_text_type;
+    private EditText m_text_data;
+    private List<ExtraItemFragment> m_fragment_extra = new ArrayList<>();
 
     {
         setDesc(R.string.operation_broadcast);

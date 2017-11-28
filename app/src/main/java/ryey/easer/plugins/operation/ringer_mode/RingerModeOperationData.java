@@ -31,10 +31,10 @@ public class RingerModeOperationData extends IntegerOperationData {
         rbound = 3;
     }
 
-    public RingerModeOperationData() {
+    RingerModeOperationData() {
     }
 
-    public RingerModeOperationData(Integer state) {
+    RingerModeOperationData(Integer state) {
         super(state);
     }
 

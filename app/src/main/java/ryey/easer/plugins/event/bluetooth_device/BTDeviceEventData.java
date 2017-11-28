@@ -46,7 +46,7 @@ import ryey.easer.plugins.event.TypedEventData;
 
 
 public class BTDeviceEventData extends TypedEventData {
-    List<String> hwaddresses = new ArrayList<>();
+    private List<String> hwaddresses = new ArrayList<>();
 
     {
         default_type = EventType.any;

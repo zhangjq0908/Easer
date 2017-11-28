@@ -34,7 +34,11 @@ import ryey.easer.commons.plugindef.StorageData;
 
 public class MediaControlPluginViewFragment extends PluginViewFragment {
 
-    RadioButton radioButton_play_pause, radioButton_play, radioButton_pause, radioButton_previous, radioButton_next;
+    private RadioButton radioButton_play_pause;
+    private RadioButton radioButton_play;
+    private RadioButton radioButton_pause;
+    private RadioButton radioButton_previous;
+    private RadioButton radioButton_next;
 
     {
         setDesc(R.string.operation_media_control);

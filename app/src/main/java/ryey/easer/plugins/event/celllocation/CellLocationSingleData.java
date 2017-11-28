@@ -29,8 +29,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class CellLocationSingleData implements Parcelable {
-    Integer cid = null;
-    Integer lac = null;
+    private Integer cid = null;
+    private Integer lac = null;
 
     static CellLocationSingleData fromCellLocation(CellLocation location) {
         int cid, lac;
@@ -72,14 +72,14 @@ public class CellLocationSingleData implements Parcelable {
         }
     }
 
-    public void set(List<Integer> obj) {
+    private void set(List<Integer> obj) {
         if (obj.size() != 2)
             throw new RuntimeException("illegal data");
         cid = obj.get(0);
         lac = obj.get(1);
     }
 
-    public void set(String repr) {
+    private void set(String repr) {
         String[] parts = repr.split("-");
         if (parts.length != 2)
             return;

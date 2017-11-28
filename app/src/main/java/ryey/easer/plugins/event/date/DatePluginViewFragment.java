@@ -34,7 +34,7 @@ import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public class DatePluginViewFragment extends PluginViewFragment {
-    DatePicker datePicker;
+    private DatePicker datePicker;
 
     {
         setDesc(R.string.event_date);

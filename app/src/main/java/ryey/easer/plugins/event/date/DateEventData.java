@@ -56,7 +56,7 @@ public class DateEventData extends TypedEventData {
         return calendar;
     }
 
-    Calendar date = null;
+    private Calendar date = null;
 
     {
         default_type = EventType.after;
