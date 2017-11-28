@@ -22,6 +22,7 @@ package ryey.easer.plugins.operation.synchronization;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
@@ -32,11 +33,13 @@ import ryey.easer.plugins.reusable.PluginHelper;
 
 public class SynchronizationOperationPlugin implements OperationPlugin {
 
+    @NonNull
     @Override
     public String name() {
         return "synchronization";
     }
 
+    @NonNull
     @Override
     public PrivilegeUsage privilege() {
         return PrivilegeUsage.no_root;
@@ -48,27 +51,30 @@ public class SynchronizationOperationPlugin implements OperationPlugin {
     }
 
     @Override
-    public boolean checkPermissions(Context context) {
+    public boolean checkPermissions(@NonNull Context context) {
         return PluginHelper.checkPermission(context, Manifest.permission.WRITE_SYNC_SETTINGS);
     }
 
     @Override
-    public void requestPermissions(Activity activity, int requestCode) {
+    public void requestPermissions(@NonNull Activity activity, int requestCode) {
         PluginHelper.requestPermission(activity, requestCode, Manifest.permission.WRITE_SYNC_SETTINGS);
     }
 
+    @NonNull
     @Override
     public OperationData data() {
         return new SynchronizationOperationData();
     }
 
+    @NonNull
     @Override
     public PluginViewFragment view() {
         return new SynchronizationPluginViewFragment();
     }
 
+    @NonNull
     @Override
-    public OperationLoader loader(Context context) {
+    public OperationLoader loader(@NonNull Context context) {
         return new SynchronizationLoader(context);
     }
 }

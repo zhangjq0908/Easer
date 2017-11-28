@@ -22,6 +22,7 @@ package ryey.easer.plugins.event.dayofweek;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import java.util.Calendar;
 import java.util.Set;
@@ -44,7 +45,7 @@ public class DayOfWeekSlot extends SelfNotifiableSlot {
     }
 
     @Override
-    public void set(EventData data) {
+    public void set(@NonNull EventData data) {
         if (data instanceof DayOfWeekEventData) {
             setDate((Set<Integer>) data.get());
             type = data.type();

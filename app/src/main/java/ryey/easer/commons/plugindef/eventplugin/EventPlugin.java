@@ -20,6 +20,7 @@
 package ryey.easer.commons.plugindef.eventplugin;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import ryey.easer.commons.plugindef.PluginDef;
 
@@ -33,6 +34,7 @@ public interface EventPlugin extends PluginDef {
     /**
      * {@inheritDoc}
      */
+    @NonNull
     EventData data();
 
     /**

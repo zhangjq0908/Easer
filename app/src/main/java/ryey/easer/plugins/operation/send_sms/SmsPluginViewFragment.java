@@ -40,7 +40,7 @@ public class SmsPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_operation__send_sms, container, false);
         et_destination = view.findViewById(R.id.editText_destination);
         et_content = view.findViewById(R.id.editText_content);
@@ -48,7 +48,7 @@ public class SmsPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         Sms sms = (Sms) data.get();
         et_destination.setText(sms.destination);
         et_content.setText(sms.content);

@@ -21,6 +21,7 @@ package ryey.easer.plugins.operation.airplane_mode;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
@@ -30,11 +31,13 @@ import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
 
 public class AirplaneModeOperationPlugin implements OperationPlugin {
 
+    @NonNull
     @Override
     public String name() {
         return "airplane_mode";
     }
 
+    @NonNull
     @Override
     public PrivilegeUsage privilege() {
         return PrivilegeUsage.prefer_root;
@@ -46,27 +49,30 @@ public class AirplaneModeOperationPlugin implements OperationPlugin {
     }
 
     @Override
-    public boolean checkPermissions(Context context) {
+    public boolean checkPermissions(@NonNull Context context) {
         return true;
     }
 
     @Override
-    public void requestPermissions(Activity activity, int requestCode) {
+    public void requestPermissions(@NonNull Activity activity, int requestCode) {
 
     }
 
+    @NonNull
     @Override
     public OperationData data() {
         return new AirplaneModeOperationData();
     }
 
+    @NonNull
     @Override
     public PluginViewFragment view() {
         return new AirplaneModePluginViewFragment();
     }
 
+    @NonNull
     @Override
-    public OperationLoader loader(Context context) {
+    public OperationLoader loader(@NonNull Context context) {
         return new AirplaneModeLoader(context);
     }
 }

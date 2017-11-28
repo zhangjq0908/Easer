@@ -21,6 +21,7 @@ package ryey.easer.plugins.operation.brightness;
 
 import android.content.Context;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 
 import ryey.easer.commons.IllegalArgumentTypeException;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
@@ -32,7 +33,7 @@ public class BrightnessLoader extends OperationLoader {
     }
 
     @Override
-    public boolean _load(OperationData data) {
+    public boolean _load(@NonNull OperationData data) {
         if (data instanceof BrightnessOperationData)
             return loadthis((BrightnessOperationData) data);
         else {

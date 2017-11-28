@@ -21,6 +21,7 @@ package ryey.easer.plugins.event.dayofweek;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.v4.util.ArraySet;
 
 import com.orhanobut.logger.Logger;
@@ -60,13 +61,14 @@ public class DayOfWeekEventData extends TypedEventData {
         this.days = days;
     }
 
+    @NonNull
     @Override
     public Object get() {
         return days;
     }
 
     @Override
-    public void set(Object obj) {
+    public void set(@NonNull Object obj) {
         if (obj instanceof String) {
             set(((String) obj).split("\n"));
         } else if (obj instanceof String[]) {
@@ -122,7 +124,7 @@ public class DayOfWeekEventData extends TypedEventData {
     }
 
     @Override
-    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         days.clear();
         switch (format) {
             default:
@@ -138,8 +140,9 @@ public class DayOfWeekEventData extends TypedEventData {
         }
     }
 
+    @NonNull
     @Override
-    public String serialize(C.Format format) {
+    public String serialize(@NonNull C.Format format) {
         String res;
         switch (format) {
             default:

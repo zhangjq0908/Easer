@@ -42,4 +42,5 @@ dependencies {
     androidTestCompile 'com.android.support.test:runner:1.0.1'
     androidTestCompile 'com.android.support.test:rules:1.0.1'
     androidTestCompile 'com.android.support:support-annotations:27.0.1'
+    implementation 'com.android.support:support-annotations:27.0.1'
 }

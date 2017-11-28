@@ -20,6 +20,7 @@
 package ryey.easer.commons.plugindef.operationplugin;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 
@@ -30,11 +31,11 @@ import com.orhanobut.logger.Logger;
 public abstract class OperationLoader {
     protected final Context context;
 
-    public OperationLoader(Context context) {
+    public OperationLoader(@NonNull Context context) {
         this.context = context;
     }
 
-    public boolean load(OperationData data) {
+    public boolean load(@NonNull OperationData data) {
         if (!data.isValid()) {
             Logger.wtf("OperationData <%s> is not valid", data);
             return false;
@@ -48,5 +49,5 @@ public abstract class OperationLoader {
      * Load the operation given its data.
      * @return whether the load is successful or not.
      */
-    protected abstract boolean _load(OperationData data);
+    protected abstract boolean _load(@NonNull OperationData data);
 }

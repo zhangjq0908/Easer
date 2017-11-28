@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.PatternMatcher;
+import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 
@@ -42,7 +43,7 @@ public abstract class SelfNotifiableSlot extends AbstractSlot {
         }
     };
 
-    public SelfNotifiableSlot(Context context) {
+    public SelfNotifiableSlot(@NonNull Context context) {
         super(context);
         IntentFilter filter = new IntentFilter();
         filter.addAction(ACTION_SATISFIED);

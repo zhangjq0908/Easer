@@ -41,7 +41,7 @@ public class BroadcastPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_event__broadcast, container, false);
         editText_action = view.findViewById(R.id.editText_action);
         editText_category = view.findViewById(R.id.editText_category);
@@ -50,7 +50,7 @@ public class BroadcastPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         if (data instanceof BroadcastEventData) {
             ReceiverSideIntentData intentData = (ReceiverSideIntentData) data.get();
             editText_action.setText(Utils.StringListToString(intentData.action));

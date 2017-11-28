@@ -21,6 +21,7 @@ package ryey.easer.plugins.event.calendar;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.v4.util.ArraySet;
 
 import com.orhanobut.logger.Logger;
@@ -61,13 +62,14 @@ public class CalendarEventData extends TypedEventData {
         set(data);
     }
 
+    @NonNull
     @Override
     public Object get() {
         return data;
     }
 
     @Override
-    public void set(Object obj) {
+    public void set(@NonNull Object obj) {
         if (obj instanceof CalendarData) {
             this.data = (CalendarData) obj;
         } else {
@@ -134,7 +136,7 @@ public class CalendarEventData extends TypedEventData {
     }
 
     @Override
-    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 try {
@@ -155,8 +157,9 @@ public class CalendarEventData extends TypedEventData {
         }
     }
 
+    @NonNull
     @Override
-    public String serialize(C.Format format) {
+    public String serialize(@NonNull C.Format format) {
         String res;
         switch (format) {
             default:

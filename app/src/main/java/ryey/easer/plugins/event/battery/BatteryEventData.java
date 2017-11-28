@@ -2,6 +2,7 @@ package ryey.easer.plugins.event.battery;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -33,13 +34,14 @@ public class BatteryEventData extends TypedEventData {
         this.battery_status = battery_status;
     }
 
+    @NonNull
     @Override
     public Object get() {
         return battery_status;
     }
 
     @Override
-    public void set(Object obj) {
+    public void set(@NonNull Object obj) {
         if (obj instanceof Integer) {
             battery_status = (Integer) obj;
         } else {
@@ -67,7 +69,7 @@ public class BatteryEventData extends TypedEventData {
     }
 
     @Override
-    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 battery_status = Integer.parseInt(data);
@@ -75,8 +77,9 @@ public class BatteryEventData extends TypedEventData {
         }
     }
 
+    @NonNull
     @Override
-    public String serialize(C.Format format) {
+    public String serialize(@NonNull C.Format format) {
         String res;
         switch (format) {
             default:

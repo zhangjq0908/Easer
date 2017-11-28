@@ -26,6 +26,7 @@ import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Telephony;
+import android.support.annotation.NonNull;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsMessage;
 
@@ -90,7 +91,7 @@ public class SmsConnSlot extends AbstractSlot {
     }
 
     @Override
-    public void set(EventData data) {
+    public void set(@NonNull EventData data) {
         if (data instanceof SmsEventData) {
             smsInnerData = ((SmsEventData) data).innerData;
             type = data.type();

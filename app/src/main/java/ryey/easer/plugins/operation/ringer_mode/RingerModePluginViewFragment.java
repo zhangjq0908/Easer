@@ -59,7 +59,7 @@ public class RingerModePluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public ViewGroup onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public ViewGroup onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         LinearLayout layout = new LinearLayout(getContext());
 
         RadioGroup radioGroup = new RadioGroup(getContext());
@@ -87,7 +87,7 @@ public class RingerModePluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         Integer item = (Integer) data.get();
         for (int i = 0; i < radioButtons.length; i++) {
             if (item == values[i]) {

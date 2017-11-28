@@ -20,6 +20,7 @@
 package ryey.easer.plugins.operation.command;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 
@@ -36,7 +37,7 @@ public class CommandLoader extends OperationLoader {
     }
 
     @Override
-    public boolean _load(OperationData data) {
+    public boolean _load(@NonNull OperationData data) {
         boolean success = true;
         String text = (String) data.get();
         String []commands = text.split("\n");

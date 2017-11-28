@@ -41,7 +41,7 @@ public class DatePluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public ViewGroup onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public ViewGroup onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         datePicker = new DatePicker(getContext());
 //        view_container.addView(datePicker);
 //
@@ -61,7 +61,7 @@ public class DatePluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         if (data instanceof DateEventData) {
             setDatePicker(datePicker, (Calendar) data.get());
         }

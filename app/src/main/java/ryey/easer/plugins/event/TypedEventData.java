@@ -1,5 +1,7 @@
 package ryey.easer.plugins.event;
 
+import android.support.annotation.NonNull;
+
 import com.orhanobut.logger.Logger;
 
 import java.util.Set;
@@ -13,7 +15,7 @@ public abstract class TypedEventData implements EventData {
     protected EventType type = null;
 
     @Override
-    public void setType(EventType type) {
+    public void setType(@NonNull EventType type) {
         if (type == null) {
             Logger.w("got invalid type. fallback to the default type: %s", default_type);
             this.type = default_type;
@@ -26,6 +28,7 @@ public abstract class TypedEventData implements EventData {
         }
     }
 
+    @NonNull
     @Override
     public EventType type() {
         if (type != null)
@@ -34,18 +37,19 @@ public abstract class TypedEventData implements EventData {
             return default_type;
     }
 
+    @NonNull
     @Override
     public Set<EventType> availableTypes() {
         return availableTypes;
     }
 
     @Override
-    public boolean isAvailable(EventType type) {
+    public boolean isAvailable(@NonNull EventType type) {
         return availableTypes().contains(type);
     }
 
     @Override
-    public boolean match(Object obj) {
+    public boolean match(@NonNull Object obj) {
         return equals(obj);
     }
 

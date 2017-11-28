@@ -1,6 +1,7 @@
 package ryey.easer.commons.plugindef.eventplugin;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import ryey.easer.R;
 
@@ -12,7 +13,7 @@ public enum EventType {
     is_not,
     none,
     ;
-    public String desc(Context context) {
+    public @NonNull String desc(@NonNull Context context) {
         String []types = context.getResources().getStringArray(R.array.event_type);
         return types[ordinal()];
     }

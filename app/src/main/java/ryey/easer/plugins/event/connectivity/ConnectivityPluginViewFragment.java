@@ -40,7 +40,7 @@ public class ConnectivityPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         for (int i = 0; i < checkBoxes.length; i++) {
@@ -52,7 +52,7 @@ public class ConnectivityPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         if (data instanceof ConnectivityEventData) {
             Set<Integer> checked_values = (Set<Integer>) data.get();
             for (int checked_value : checked_values) {

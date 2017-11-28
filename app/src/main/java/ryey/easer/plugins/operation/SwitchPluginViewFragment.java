@@ -36,7 +36,7 @@ public abstract class SwitchPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_reusable__switch, container, false);
         aSwitch = view.findViewById(R.id.plugin_reusable__switch);
         return view;
@@ -52,13 +52,14 @@ public abstract class SwitchPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         if (data instanceof BooleanOperationData) {
             Boolean state = (Boolean) data.get();
             setSwitch(aSwitch, state);
         }
     }
 
+    @NonNull
     protected Boolean state() {
         return fromSwitch(aSwitch);
     }

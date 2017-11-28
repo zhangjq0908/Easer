@@ -26,6 +26,7 @@ import android.content.IntentFilter;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 
@@ -71,7 +72,7 @@ public class WifiConnSlot extends AbstractSlot {
     }
 
     @Override
-    public void set(EventData data) {
+    public void set(@NonNull EventData data) {
         if (data instanceof WifiEventData) {
             this.data = (WifiEventData) data;
             type = data.type();

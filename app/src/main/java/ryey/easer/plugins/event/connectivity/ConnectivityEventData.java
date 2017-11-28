@@ -2,6 +2,7 @@ package ryey.easer.plugins.event.connectivity;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.v4.util.ArraySet;
 
 import com.orhanobut.logger.Logger;
@@ -41,13 +42,14 @@ public class ConnectivityEventData extends TypedEventData {
         this.connectivity_type = connectivity_type;
     }
 
+    @NonNull
     @Override
     public Object get() {
         return connectivity_type;
     }
 
     @Override
-    public void set(Object obj) {
+    public void set(@NonNull Object obj) {
         connectivity_type.clear();
         if (obj instanceof String[]) {
             Set<Integer> selected_types = new ArraySet<>(((String[]) obj).length);
@@ -86,7 +88,7 @@ public class ConnectivityEventData extends TypedEventData {
     }
 
     @Override
-    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         connectivity_type.clear();
         switch (format) {
             default:
@@ -102,8 +104,9 @@ public class ConnectivityEventData extends TypedEventData {
         }
     }
 
+    @NonNull
     @Override
-    public String serialize(C.Format format) {
+    public String serialize(@NonNull C.Format format) {
         String res;
         switch (format) {
             default:

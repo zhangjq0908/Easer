@@ -22,6 +22,7 @@ package ryey.easer.plugins.event.time;
 import android.app.AlarmManager;
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.NonNull;
 
 import java.util.Calendar;
 
@@ -43,7 +44,7 @@ public class TimeSlot extends SelfNotifiableSlot {
     }
 
     @Override
-    public void set(EventData data) {
+    public void set(@NonNull EventData data) {
         if (data instanceof TimeEventData) {
             setTime((Calendar) data.get());
             type = data.type();

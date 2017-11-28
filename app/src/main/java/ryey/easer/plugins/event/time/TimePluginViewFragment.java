@@ -43,7 +43,7 @@ public class TimePluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public ViewGroup onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public ViewGroup onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         timePicker = new TimePicker(getContext());
 
         return timePicker;
@@ -75,7 +75,7 @@ public class TimePluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         if (data instanceof TimeEventData) {
             setTimePicker(timePicker, (Calendar) data.get());
         }

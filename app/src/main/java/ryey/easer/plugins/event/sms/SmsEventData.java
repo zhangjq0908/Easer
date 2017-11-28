@@ -21,6 +21,7 @@ package ryey.easer.plugins.event.sms;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 
@@ -57,13 +58,14 @@ public class SmsEventData extends TypedEventData {
         set(innerData);
     }
 
+    @NonNull
     @Override
     public Object get() {
         return innerData;
     }
 
     @Override
-    public void set(Object obj) {
+    public void set(@NonNull Object obj) {
         if (obj instanceof SmsInnerData) {
             innerData = (SmsInnerData) obj;
         } else {
@@ -89,7 +91,7 @@ public class SmsEventData extends TypedEventData {
     }
 
     @Override
-    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         innerData = new SmsInnerData();
         switch (format) {
             default:
@@ -104,8 +106,9 @@ public class SmsEventData extends TypedEventData {
         }
     }
 
+    @NonNull
     @Override
-    public String serialize(C.Format format) {
+    public String serialize(@NonNull C.Format format) {
         String res;
         switch (format) {
             default:

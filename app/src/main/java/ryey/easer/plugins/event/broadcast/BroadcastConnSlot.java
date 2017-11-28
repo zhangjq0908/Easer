@@ -23,6 +23,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.support.annotation.NonNull;
 
 import ryey.easer.commons.IllegalArgumentTypeException;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
@@ -52,7 +53,7 @@ public class BroadcastConnSlot extends AbstractSlot {
     }
 
     @Override
-    public void set(EventData data) {
+    public void set(@NonNull EventData data) {
         if (data instanceof BroadcastEventData) {
             intentData = ((BroadcastEventData) data).intentData;
             type = data.type();

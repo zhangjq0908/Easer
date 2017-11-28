@@ -21,6 +21,7 @@ package ryey.easer.plugins.event.celllocation;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 
@@ -62,13 +63,14 @@ public class CellLocationEventData extends TypedEventData {
             return null;
     }
 
+    @NonNull
     @Override
     public Object get() {
         return data;
     }
 
     @Override
-    public void set(Object obj) {
+    public void set(@NonNull Object obj) {
         if (obj instanceof String) {
             String[] parts = ((String) obj).split("\n");
             for (String single : parts) {
@@ -126,7 +128,7 @@ public class CellLocationEventData extends TypedEventData {
     }
 
     @Override
-    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         try {
             JSONArray jsonArray = new JSONArray(data);
             String[] strings = new String[jsonArray.length()];
@@ -140,8 +142,9 @@ public class CellLocationEventData extends TypedEventData {
         }
     }
 
+    @NonNull
     @Override
-    public String serialize(C.Format format) {
+    public String serialize(@NonNull C.Format format) {
         String res;
         switch (format) {
             default:

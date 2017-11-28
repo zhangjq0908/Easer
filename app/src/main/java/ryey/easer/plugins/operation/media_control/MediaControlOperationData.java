@@ -21,6 +21,7 @@ package ryey.easer.plugins.operation.media_control;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -51,13 +52,14 @@ public class MediaControlOperationData implements OperationData {
         set(choice);
     }
 
+    @NonNull
     @Override
     public Object get() {
         return choice;
     }
 
     @Override
-    public void set(Object obj) {
+    public void set(@NonNull Object obj) {
         if (obj instanceof ControlChoice) {
             choice = (ControlChoice) obj;
         } else {
@@ -76,7 +78,7 @@ public class MediaControlOperationData implements OperationData {
     }
 
     @Override
-    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 try {
@@ -87,8 +89,9 @@ public class MediaControlOperationData implements OperationData {
         }
     }
 
+    @NonNull
     @Override
-    public String serialize(C.Format format) {
+    public String serialize(@NonNull C.Format format) {
         String res;
         switch (format) {
             default:

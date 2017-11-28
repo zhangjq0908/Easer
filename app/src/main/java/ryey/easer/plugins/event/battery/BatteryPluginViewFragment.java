@@ -37,7 +37,7 @@ public class BatteryPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         RadioGroup radioGroup = new RadioGroup(getContext());
         radioGroup.setOrientation(HORIZONTAL);
         View.OnClickListener radioButtonOnClickListener = new View.OnClickListener() {
@@ -61,7 +61,7 @@ public class BatteryPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         if (data instanceof BatteryEventData) {
             int status = (int) data.get();
             for (int i = 0; i < values.length; i++) {

@@ -21,6 +21,7 @@ package ryey.easer.plugins.operation.network_transmission;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,13 +52,14 @@ public class NetworkTransmissionOperationData implements OperationData {
         data = tdata;
     }
 
+    @NonNull
     @Override
     public Object get() {
         return data;
     }
 
     @Override
-    public void set(Object obj) {
+    public void set(@NonNull Object obj) {
         this.data = (TransmissionData) obj;
     }
 
@@ -72,7 +74,7 @@ public class NetworkTransmissionOperationData implements OperationData {
     }
 
     @Override
-    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         this.data = new TransmissionData();
         switch (format) {
             default:
@@ -89,8 +91,9 @@ public class NetworkTransmissionOperationData implements OperationData {
         }
     }
 
+    @NonNull
     @Override
-    public String serialize(C.Format format) {
+    public String serialize(@NonNull C.Format format) {
         String res;
         switch (format) {
             default:

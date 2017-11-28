@@ -78,7 +78,7 @@ public class CalendarPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_event__calendar, container, false);
         tv_calendar_name = view.findViewById(R.id.text_calendar_name);
         cb_conditions[0] = view.findViewById(R.id.checkBox_start);
@@ -148,7 +148,7 @@ public class CalendarPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         if (data instanceof CalendarEventData) {
             CalendarData calendarData = (CalendarData) data.get();
             calendar_id = calendarData.calendar_id;

@@ -44,7 +44,7 @@ public class NetworkTransmissionPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_operation__network_transmission, container, false);
         rb_tcp = view.findViewById(R.id.radioButton_tcp);
         rb_udp = view.findViewById(R.id.radioButton_udp);
@@ -55,7 +55,7 @@ public class NetworkTransmissionPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         TransmissionData tdata = (TransmissionData) data.get();
         switch (tdata.protocol) {
             case tcp:

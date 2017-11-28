@@ -40,7 +40,7 @@ public class SmsPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_event__sms, container, false);
         editText_sender = view.findViewById(R.id.editText_sender);
         editText_content = view.findViewById(R.id.editText_content);
@@ -49,7 +49,7 @@ public class SmsPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         if (data instanceof SmsEventData) {
             SmsInnerData intentData = (SmsInnerData) data.get();
             editText_sender.setText(intentData.sender);

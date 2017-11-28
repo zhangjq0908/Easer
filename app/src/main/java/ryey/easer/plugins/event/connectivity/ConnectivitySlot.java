@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.annotation.NonNull;
 
 import java.util.Set;
 
@@ -47,7 +48,7 @@ public class ConnectivitySlot extends AbstractSlot {
     }
 
     @Override
-    public void set(EventData data) {
+    public void set(@NonNull EventData data) {
         connectivity_types = (Set<Integer>) data.get();
         type = data.type();
     }

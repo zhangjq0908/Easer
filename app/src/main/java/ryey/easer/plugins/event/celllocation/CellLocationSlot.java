@@ -22,6 +22,7 @@ package ryey.easer.plugins.event.celllocation;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.telephony.CellLocation;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
@@ -50,7 +51,7 @@ public class CellLocationSlot extends AbstractSlot {
     }
 
     @Override
-    public void set(EventData data) {
+    public void set(@NonNull EventData data) {
         if (data instanceof CellLocationEventData) {
             target = (CellLocationEventData) data;
             type = data.type();

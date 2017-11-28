@@ -20,6 +20,7 @@
 package ryey.easer.commons.plugindef;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -38,13 +39,14 @@ public interface StorageData extends Parcelable {
     /**
      * @return The data that the instance holds.
      */
+    @NonNull
     Object get();
 
     /**
      * Set the data of the instance.
      * @param obj Data to-be-set.
      */
-    void set(Object obj);
+    void set(@NonNull Object obj);
 
     /**
      * Compare two data instance. Two objects hold the same data are considered as equal.
@@ -85,7 +87,7 @@ public interface StorageData extends Parcelable {
      * @param format The format which the data source is in.
      *               This parameter can be ignored in the same way as in {@link #serialize(C.Format)}.
      */
-    void parse(String data, C.Format format, int version) throws IllegalStorageDataException;
+    void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException;
 
     /**
      * Serialize the current data to the given {@param format}.
@@ -93,7 +95,8 @@ public interface StorageData extends Parcelable {
      *               You can ignore this parameter if you don't want to design a "localized" format.
      * @return The serialized text (which will be used directly in the data field).
      */
-    String serialize(C.Format format);
+    @NonNull
+    String serialize(@NonNull C.Format format);
 
     /**
      * Check the data's validity. If not valid, this data won't be loaded and/or saved.

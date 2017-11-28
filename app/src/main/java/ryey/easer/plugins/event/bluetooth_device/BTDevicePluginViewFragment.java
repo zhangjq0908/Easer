@@ -69,7 +69,7 @@ public class BTDevicePluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_event__bluetooth_device, container, false);
 
         editText = view.findViewById(R.id.hardware_address);
@@ -167,7 +167,7 @@ public class BTDevicePluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         if (data instanceof BTDeviceEventData) {
             editText.setText(data.toString());
         }

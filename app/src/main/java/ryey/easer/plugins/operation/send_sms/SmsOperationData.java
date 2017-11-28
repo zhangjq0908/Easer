@@ -21,6 +21,7 @@ package ryey.easer.plugins.operation.send_sms;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.telephony.PhoneNumberUtils;
 
 import com.orhanobut.logger.Logger;
@@ -51,13 +52,14 @@ public class SmsOperationData implements OperationData {
         this.sms = sms;
     }
 
+    @NonNull
     @Override
     public Object get() {
         return sms;
     }
 
     @Override
-    public void set(Object obj) {
+    public void set(@NonNull Object obj) {
         if (obj instanceof Sms) {
             this.sms = (Sms) obj;
         } else {
@@ -76,7 +78,7 @@ public class SmsOperationData implements OperationData {
     }
 
     @Override
-    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         sms = new Sms();
         try {
             JSONObject jsonObject = new JSONObject(data);
@@ -88,8 +90,9 @@ public class SmsOperationData implements OperationData {
         }
     }
 
+    @NonNull
     @Override
-    public String serialize(C.Format format) {
+    public String serialize(@NonNull C.Format format) {
         String res;
         switch (format) {
             default:

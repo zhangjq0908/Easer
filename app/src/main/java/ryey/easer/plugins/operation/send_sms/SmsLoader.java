@@ -20,6 +20,7 @@
 package ryey.easer.plugins.operation.send_sms;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.telephony.SmsManager;
 
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
@@ -31,7 +32,7 @@ public class SmsLoader extends OperationLoader {
     }
 
     @Override
-    public boolean _load(OperationData data) {
+    public boolean _load(@NonNull OperationData data) {
         Sms sms = (Sms) data.get();
         SmsManager smsManager = SmsManager.getDefault();
         smsManager.sendTextMessage(sms.destination, null, sms.content, null, null);

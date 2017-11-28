@@ -22,6 +22,7 @@ package ryey.easer.plugins.operation.broadcast;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -62,13 +63,14 @@ public class BroadcastOperationData implements OperationData {
         this.data = data;
     }
 
+    @NonNull
     @Override
     public Object get() {
         return data;
     }
 
     @Override
-    public void set(Object obj) {
+    public void set(@NonNull Object obj) {
         if (obj instanceof String) {
             data.action = (String) obj;
         } else if (obj instanceof IntentData) {
@@ -162,7 +164,7 @@ public class BroadcastOperationData implements OperationData {
     }
 
     @Override
-    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 try {
@@ -202,8 +204,9 @@ public class BroadcastOperationData implements OperationData {
         }
     }
 
+    @NonNull
     @Override
-    public String serialize(C.Format format) {
+    public String serialize(@NonNull C.Format format) {
         String res = "";
         switch (format) {
             default:

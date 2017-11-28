@@ -1,5 +1,7 @@
 package ryey.easer.plugins.reusable;
 
+import android.support.annotation.NonNull;
+
 import ryey.easer.Utils;
 import ryey.easer.commons.IllegalArgumentTypeException;
 import ryey.easer.commons.plugindef.StorageData;
@@ -13,13 +15,14 @@ public abstract class StringData implements StorageData {
         this.text = text;
     }
 
+    @NonNull
     @Override
     public Object get() {
         return text;
     }
 
     @Override
-    public void set(Object obj) {
+    public void set(@NonNull Object obj) {
         if (obj instanceof String) {
             text = (String) obj;
         } else {

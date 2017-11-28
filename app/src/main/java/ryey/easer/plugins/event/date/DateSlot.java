@@ -21,6 +21,7 @@ package ryey.easer.plugins.event.date;
 
 import android.app.AlarmManager;
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import java.util.Calendar;
 
@@ -45,7 +46,7 @@ public class DateSlot extends SelfNotifiableSlot {
     }
 
     @Override
-    public void set(EventData data) {
+    public void set(@NonNull EventData data) {
         if (data instanceof DateEventData) {
             setDate((Calendar) data.get());
             type = data.type();

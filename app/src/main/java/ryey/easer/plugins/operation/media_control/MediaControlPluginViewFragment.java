@@ -41,7 +41,7 @@ public class MediaControlPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_operation__media_control, container, false);
         radioButton_play_pause = view.findViewById(R.id.radioButton_play_pause);
         radioButton_play = view.findViewById(R.id.radioButton_play);
@@ -53,7 +53,7 @@ public class MediaControlPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         if (data instanceof MediaControlOperationData) {
             MediaControlOperationData.ControlChoice choice = (MediaControlOperationData.ControlChoice) data.get();
             switch (choice) {
