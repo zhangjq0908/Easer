@@ -63,10 +63,10 @@ public abstract class IntegerOperationData extends IntegerData implements Operat
 
     @Override
     public String serialize(C.Format format) {
-        String res = "";
+        String res;
         switch (format) {
             default:
-                res = ((Integer) get()).toString();
+                res = get().toString();
         }
         return res;
     }

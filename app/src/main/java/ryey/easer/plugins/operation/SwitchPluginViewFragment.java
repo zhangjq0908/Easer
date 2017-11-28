@@ -34,9 +34,6 @@ import ryey.easer.commons.plugindef.StorageData;
 public abstract class SwitchPluginViewFragment extends PluginViewFragment {
     Switch aSwitch;
 
-    {
-    }
-
     @NonNull
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

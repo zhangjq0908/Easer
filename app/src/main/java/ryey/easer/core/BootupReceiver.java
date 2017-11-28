@@ -8,6 +8,7 @@ public class BootupReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        EHService.start(context);
+        if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction()))
+            EHService.start(context);
     }
 }

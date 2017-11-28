@@ -5,6 +5,6 @@ final class EditDataProto {
     static final String PURPOSE = "ryey.easer.PURPOSE";
 
     enum Purpose {
-        add, edit, delete;
+        add, edit, delete
     }
 }

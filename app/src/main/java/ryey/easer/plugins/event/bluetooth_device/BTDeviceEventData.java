@@ -58,11 +58,6 @@ public class BTDeviceEventData extends TypedEventData {
         set(hardware_address);
     }
 
-    public BTDeviceEventData(String hardware_address, EventType type) {
-        set(hardware_address);
-        setType(type);
-    }
-
     @Override
     public Object get() {
         return hwaddresses;
@@ -84,15 +79,15 @@ public class BTDeviceEventData extends TypedEventData {
 
     @Override
     public String toString() {
-        String text = "";
+        StringBuilder text = new StringBuilder();
         boolean is_first = true;
         for (String hwaddress : hwaddresses) {
             if (!is_first)
-                text += "\n";
-            text += hwaddress;
+                text.append("\n");
+            text.append(hwaddress);
             is_first = false;
         }
-        return text;
+        return text.toString();
     }
 
     @Override
@@ -149,7 +144,7 @@ public class BTDeviceEventData extends TypedEventData {
 
     @Override
     public String serialize(C.Format format) {
-        String res = "";
+        String res;
         switch (format) {
             default:
                 JSONArray jsonArray = new JSONArray();

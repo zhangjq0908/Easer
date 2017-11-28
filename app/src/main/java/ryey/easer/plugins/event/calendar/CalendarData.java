@@ -11,7 +11,7 @@ class CalendarData {
     };
 
     long calendar_id;
-    Map<String, Boolean> conditions = new ArrayMap<>(condition_name.length);
+    Map<String, Boolean> conditions = new ArrayMap<>(condition_name.length); //FIXME: change to Set
 
     {
         for (String key : condition_name) {

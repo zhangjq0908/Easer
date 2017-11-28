@@ -83,15 +83,15 @@ public class WifiEventData extends TypedEventData {
 
     @Override
     public String toString() {
-        String text = "";
+        StringBuilder text = new StringBuilder();
         boolean is_first = true;
         for (String ssid : ssids) {
             if (!is_first)
-                text += "\n";
-            text += ssid;
+                text.append("\n");
+            text.append(ssid);
             is_first = false;
         }
-        return text;
+        return text.toString();
     }
 
     @Override
@@ -147,7 +147,7 @@ public class WifiEventData extends TypedEventData {
 
     @Override
     public String serialize(C.Format format) {
-        String res = "";
+        String res;
         switch (format) {
             default:
                 JSONArray jsonArray = new JSONArray();

@@ -71,7 +71,7 @@ public abstract class BooleanOperationData extends BooleanData implements Operat
 
     @Override
     public String serialize(C.Format format) {
-        String res = "";
+        String res;
         switch (format) {
             default:
                 Boolean state = (Boolean) get();

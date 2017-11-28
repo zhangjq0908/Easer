@@ -189,7 +189,7 @@ public class BroadcastOperationData implements OperationData {
                             IntentData.ExtraItem item = new IntentData.ExtraItem();
                             item.key = jsonObject_extra.getString(KEY);
                             item.value = jsonObject_extra.getString(VALUE);
-                            item.type = jsonObject_extra.getString(TYPE);
+                            item.type = jsonObject_extra.getString(V_TYPE);
                             intentData.extras.add(item);
                         }
                     }
@@ -230,7 +230,7 @@ public class BroadcastOperationData implements OperationData {
                             JSONObject jsonObject_extra = new JSONObject();
                             jsonObject_extra.put(KEY, item.key);
                             jsonObject_extra.put(VALUE, item.value);
-                            jsonObject_extra.put(TYPE, item.type);
+                            jsonObject_extra.put(V_TYPE, item.type);
                             jsonArray_extras.put(jsonObject_extra);
                         }
                         jsonObject.put(EXTRAS, jsonArray_extras);

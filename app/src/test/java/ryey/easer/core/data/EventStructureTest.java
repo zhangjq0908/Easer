@@ -15,9 +15,9 @@ import static org.junit.Assert.assertTrue;
 public class EventStructureTest {
 
     EventStructure eventStructure, eventStructure2;
-    static String name = "name to test";
-    static String parentName = "parent name";
-    static String profileName = "profile name";
+    static final String name = "name to test";
+    static final String parentName = "parent name";
+    static final String profileName = "profile name";
     static EventData eventData;
 
     @BeforeClass

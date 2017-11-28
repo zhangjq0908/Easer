@@ -24,10 +24,13 @@ class CalendarHelper {
         Cursor cur = contentResolver.query(uri, PROJECTION, SELECTION, ARGS, null);
         if (cur == null)
             return null;
+        String res;
         if (cur.moveToNext())
-            return cur.getString(1);
+            res = cur.getString(1);
         else
-            return null;
+            res = null;
+        cur.close();
+        return res;
     }
 
     static Long nextEvent_start(ContentResolver contentResolver, long calendar_id) {
@@ -51,10 +54,13 @@ class CalendarHelper {
                 CalendarContract.Events.DTSTART + " ASC");
         if (cur == null)
             return null;
+        Long res;
         if (cur.moveToNext())
-            return cur.getLong(1);
+            res = cur.getLong(1);
         else
-            return null;
+            res = null;
+        cur.close();
+        return res;
     }
 
     static Long nextEvent_end(ContentResolver contentResolver, long calendar_id) {
@@ -78,9 +84,12 @@ class CalendarHelper {
                 CalendarContract.Events.DTEND + " ASC");
         if (cur == null)
             return null;
+        Long res;
         if (cur.moveToNext())
-            return cur.getLong(2);
+            res = cur.getLong(2);
         else
-            return null;
+            res = null;
+        cur.close();
+        return res;
     }
 }

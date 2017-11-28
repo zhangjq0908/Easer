@@ -89,7 +89,7 @@ public class MediaControlOperationData implements OperationData {
 
     @Override
     public String serialize(C.Format format) {
-        String res = "";
+        String res;
         switch (format) {
             default:
                 res = choice.toString();

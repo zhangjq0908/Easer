@@ -34,7 +34,7 @@ import ryey.easer.commons.plugindef.operationplugin.OperationData;
 final public class ProfileStructure implements Named, Verifiable {
     String name;
 
-    Multimap<String, OperationData> data = LinkedListMultimap.create();
+    final Multimap<String, OperationData> data = LinkedListMultimap.create();
 
     public ProfileStructure() {
     }

@@ -18,7 +18,7 @@ import ryey.easer.commons.plugindef.StorageData;
 
 public class ConnectivityPluginViewFragment extends PluginViewFragment {
     String []mode_names;
-    int []values = {
+    final int []values = {
             ConnectivityType.TYPE_NOT_CONNECTED,
             ConnectivityType.TYPE_WIFI,
             ConnectivityType.TYPE_MOBILE,
@@ -26,7 +26,7 @@ public class ConnectivityPluginViewFragment extends PluginViewFragment {
             ConnectivityType.TYPE_BLUETOOTH,
             ConnectivityType.TYPE_VPN,
     };
-    CheckBox[] checkBoxes = new CheckBox[values.length];
+    final CheckBox[] checkBoxes = new CheckBox[values.length];
 
     {
         setDesc(R.string.event_connectivity);

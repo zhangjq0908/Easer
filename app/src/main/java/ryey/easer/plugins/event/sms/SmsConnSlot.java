@@ -41,7 +41,7 @@ public class SmsConnSlot extends AbstractSlot {
     private SmsInnerData smsInnerData = null;
     private EventType type = null;
 
-    BroadcastReceiver connReceiver = new BroadcastReceiver() {
+    final BroadcastReceiver connReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(Telephony.Sms.Intents.SMS_RECEIVED_ACTION)) {

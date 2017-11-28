@@ -62,7 +62,7 @@ public abstract class StringOperationData extends StringData implements Operatio
 
     @Override
     public String serialize(C.Format format) {
-        String res = "";
+        String res;
         switch (format) {
             default:
                 res = (String) get();

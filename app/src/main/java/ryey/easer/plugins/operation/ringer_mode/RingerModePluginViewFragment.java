@@ -38,12 +38,12 @@ import static android.widget.LinearLayout.HORIZONTAL;
 
 public class RingerModePluginViewFragment extends PluginViewFragment {
     String []mode_names;
-    int []values = {
+    final int []values = {
             AudioManager.RINGER_MODE_SILENT,
             AudioManager.RINGER_MODE_VIBRATE,
             AudioManager.RINGER_MODE_NORMAL
     };
-    RadioButton []radioButtons = new RadioButton[values.length];
+    final RadioButton []radioButtons = new RadioButton[values.length];
 
     int checked_item = -1;
 

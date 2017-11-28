@@ -9,7 +9,8 @@ import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 public abstract class TypedEventData implements EventData {
     protected Set<EventType> availableTypes;
-    protected EventType type = null, default_type = null;
+    protected EventType default_type;
+    protected EventType type = null;
 
     @Override
     public void setType(EventType type) {

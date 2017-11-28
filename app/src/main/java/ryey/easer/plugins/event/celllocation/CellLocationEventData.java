@@ -142,11 +142,10 @@ public class CellLocationEventData extends TypedEventData {
 
     @Override
     public String serialize(C.Format format) {
-        String res = "";
+        String res;
         switch (format) {
             default:
                 JSONArray jsonArray = new JSONArray();
-                List<String> list = new ArrayList<>();
                 for (CellLocationSingleData singleData : data) {
                     jsonArray.put(singleData.toString());
                 }
@@ -163,15 +162,15 @@ public class CellLocationEventData extends TypedEventData {
     }
 
     public String toString() {
-        String str = "";
+        StringBuilder str = new StringBuilder();
         if (data.size() > 0) {
-            str += data.get(0).toString();
+            str.append(data.get(0).toString());
             for (int i = 1; i < data.size(); i++) {
                 CellLocationSingleData singleData = data.get(i);
-                str += "\n" + singleData.toString();
+                str.append("\n").append(singleData.toString());
             }
         }
-        return str;
+        return str.toString();
     }
 
     boolean contains(CellLocationSingleData singleData) {

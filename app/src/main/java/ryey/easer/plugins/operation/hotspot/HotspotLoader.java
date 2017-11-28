@@ -27,7 +27,7 @@ import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
 public class HotspotLoader extends OperationLoader {
-    HotspotHelper helper;
+    final HotspotHelper helper;
 
     public HotspotLoader(Context context) {
         super(context);

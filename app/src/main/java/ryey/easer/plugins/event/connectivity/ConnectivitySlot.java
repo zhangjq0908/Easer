@@ -25,7 +25,7 @@ public class ConnectivitySlot extends AbstractSlot {
     Set<Integer> connectivity_types;
     EventType type;
 
-    BroadcastReceiver receiver = new BroadcastReceiver() {
+    final BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             switch (intent.getAction()) {
@@ -35,7 +35,7 @@ public class ConnectivitySlot extends AbstractSlot {
             }
         }
     };
-    IntentFilter filter;
+    final IntentFilter filter;
 
     {
         filter = new IntentFilter();

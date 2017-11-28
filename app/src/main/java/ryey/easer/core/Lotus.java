@@ -31,6 +31,7 @@ import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
@@ -55,7 +56,7 @@ final class Lotus {
     private Context context;
     private final EventTree eventTree;
 
-    private final Uri uri = Uri.parse(String.format("lotus://%d", hashCode()));
+    private final Uri uri = Uri.parse(String.format(Locale.US, "lotus://%d", hashCode()));
     private final PendingIntent notifyLotusIntent, notifyLotusUnsatisfiedIntent;
 
     private AbstractSlot mSlot;
@@ -63,7 +64,7 @@ final class Lotus {
 
     private boolean analyzing = false;
 
-    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(ACTION_SLOT_SATISFIED)) {
@@ -73,7 +74,7 @@ final class Lotus {
             }
         }
     };
-    private IntentFilter filter;
+    private final IntentFilter filter;
 
     {
         filter = new IntentFilter();

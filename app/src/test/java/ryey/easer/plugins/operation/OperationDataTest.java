@@ -3,14 +3,9 @@ package ryey.easer.plugins.operation;
 import org.junit.Test;
 
 import ryey.easer.commons.C;
-import ryey.easer.commons.plugindef.PluginDef;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
-import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
-import ryey.easer.plugins.PluginRegistry;
-import ryey.easer.plugins.operation.bluetooth.BluetoothOperationData;
-import ryey.easer.plugins.reusable.BooleanData;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class OperationDataTest {
 

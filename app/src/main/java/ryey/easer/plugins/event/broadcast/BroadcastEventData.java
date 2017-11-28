@@ -111,7 +111,7 @@ public class BroadcastEventData extends TypedEventData {
 
     @Override
     public String serialize(C.Format format) {
-        String res = "";
+        String res;
         switch (format) {
             default:
                 try {

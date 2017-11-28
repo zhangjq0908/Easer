@@ -33,6 +33,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.EnumSet;
+import java.util.Locale;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
@@ -42,7 +43,7 @@ import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
 
 public class DateEventData extends TypedEventData {
-    private static SimpleDateFormat sdf_date = new SimpleDateFormat("yyyy-MM-dd");
+    private static final SimpleDateFormat sdf_date = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
     private static String DateToText(Calendar calendar) {
         return sdf_date.format(calendar.getTime());
@@ -65,11 +66,6 @@ public class DateEventData extends TypedEventData {
 
     public DateEventData(Calendar date) {
         this.date = date;
-    }
-
-    public DateEventData(Calendar date, EventType type) {
-        this.date = date;
-        setType(type);
     }
 
     @Override
@@ -130,7 +126,7 @@ public class DateEventData extends TypedEventData {
 
     @Override
     public String serialize(C.Format format) {
-        String res = "";
+        String res;
         switch (format) {
             default:
                 res = DateToText(date);

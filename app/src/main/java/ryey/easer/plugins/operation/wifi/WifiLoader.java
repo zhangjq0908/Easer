@@ -33,7 +33,7 @@ public class WifiLoader extends OperationLoader {
     @Override
     public boolean _load(OperationData data) {
         Boolean state = (Boolean) data.get();
-        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         return wifiManager.setWifiEnabled(state);
     }
 }

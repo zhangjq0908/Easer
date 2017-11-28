@@ -53,10 +53,10 @@ public class CalendarPluginViewFragment extends PluginViewFragment {
 
     long calendar_id = -1;
     TextView tv_calendar_name;
-    CheckBox[] cb_conditions = new CheckBox[CalendarData.condition_name.length]; // The same order as `CalendarData.condition_name`
+    final CheckBox[] cb_conditions = new CheckBox[CalendarData.condition_name.length]; // The same order as `CalendarData.condition_name`
 
-    IntentFilter mFilter = new IntentFilter(ACTION_RETURN);
-    BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    final IntentFilter mFilter = new IntentFilter(ACTION_RETURN);
+    final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(ACTION_RETURN)) {

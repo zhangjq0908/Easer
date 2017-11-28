@@ -36,7 +36,7 @@ public abstract class AbstractSlot {
      * I'm not sure if they will be used by the subclasses in the future when extending the `satisfied` field to more status, so they are left as protected.
      */
 
-    protected Context context;
+    protected final Context context;
 
     /**
      * Indicator of whether the current slot is satisfied.

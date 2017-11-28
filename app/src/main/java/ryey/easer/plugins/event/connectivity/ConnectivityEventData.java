@@ -41,11 +41,6 @@ public class ConnectivityEventData extends TypedEventData {
         this.connectivity_type = connectivity_type;
     }
 
-    public ConnectivityEventData(Set<Integer> connectivity_type, EventType type) {
-        this.connectivity_type = connectivity_type;
-        setType(type);
-    }
-
     @Override
     public Object get() {
         return connectivity_type;
@@ -109,7 +104,7 @@ public class ConnectivityEventData extends TypedEventData {
 
     @Override
     public String serialize(C.Format format) {
-        String res = "";
+        String res;
         switch (format) {
             default:
                 JSONArray jsonArray = new JSONArray();

@@ -95,7 +95,7 @@ public class JsonEventDataStorageBackend implements EventDataStorageBackendInter
             }
         });
         for (File file : files) {
-            EventStructure event = null;
+            EventStructure event;
             try {
                 event = get(file);
                 list.add(event);

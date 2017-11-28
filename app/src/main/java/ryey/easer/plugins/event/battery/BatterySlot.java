@@ -15,7 +15,7 @@ public class BatterySlot extends AbstractSlot {
     int status;
     EventType type;
 
-    BroadcastReceiver receiver = new BroadcastReceiver() {
+    final BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             switch (intent.getAction()) {

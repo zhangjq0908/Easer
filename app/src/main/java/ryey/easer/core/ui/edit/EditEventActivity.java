@@ -123,7 +123,7 @@ public class EditEventActivity extends AppCompatActivity {
         mSpinner_parent = (Spinner) findViewById(R.id.spinner_parent);
         mEventList = (EventDataStorage.getInstance(this)).list();
         mEventList.add(0, NON);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_profile, mEventList); //TODO: change layout
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_profile, mEventList); //TODO: change layout
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         mSpinner_parent.setAdapter(adapter);
         mSpinner_parent.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -139,7 +139,7 @@ public class EditEventActivity extends AppCompatActivity {
         mSpinner_profile = (Spinner) findViewById(R.id.spinner_profile);
         mProfileList = (ProfileDataStorage.getInstance(this)).list();
         mProfileList.add(0, NON);
-        ArrayAdapter<String> adapter_profile = new ArrayAdapter<String>(this, R.layout.spinner_profile, mProfileList);
+        ArrayAdapter<String> adapter_profile = new ArrayAdapter<>(this, R.layout.spinner_profile, mProfileList);
         adapter_profile.setDropDownViewResource(android.R.layout.simple_spinner_item);
         mSpinner_profile.setAdapter(adapter_profile);
         mSpinner_profile.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

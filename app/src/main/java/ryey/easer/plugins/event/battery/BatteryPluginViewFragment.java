@@ -17,11 +17,11 @@ import static android.widget.LinearLayout.HORIZONTAL;
 
 public class BatteryPluginViewFragment extends PluginViewFragment {
     String []mode_names;
-    int []values = {
+    final int []values = {
             BatteryStatus.charging,
             BatteryStatus.discharging
     };
-    RadioButton []radioButtons = new RadioButton[values.length];
+    final RadioButton []radioButtons = new RadioButton[values.length];
 
     Integer checked_item = null;
 

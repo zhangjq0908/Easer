@@ -60,11 +60,6 @@ public class DayOfWeekEventData extends TypedEventData {
         this.days = days;
     }
 
-    public DayOfWeekEventData(Set<Integer> days, EventType type) {
-        this.days = days;
-        setType(type);
-    }
-
     @Override
     public Object get() {
         return days;
@@ -145,7 +140,7 @@ public class DayOfWeekEventData extends TypedEventData {
 
     @Override
     public String serialize(C.Format format) {
-        String res = "";
+        String res;
         switch (format) {
             default:
                 JSONArray jsonArray = new JSONArray();

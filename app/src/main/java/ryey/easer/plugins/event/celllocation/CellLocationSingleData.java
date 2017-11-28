@@ -63,6 +63,7 @@ public class CellLocationSingleData implements Parcelable {
                 if (!(d instanceof Integer))
                     throw new RuntimeException("illegal data");
             }
+            //noinspection unchecked (it is actually checked!)
             set((List<Integer>) obj);
         } else if (obj instanceof String) {
             set((String) obj);

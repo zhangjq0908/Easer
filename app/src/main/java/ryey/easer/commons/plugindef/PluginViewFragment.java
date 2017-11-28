@@ -43,7 +43,7 @@ public abstract class PluginViewFragment extends Fragment {
      */
     @NonNull
     @Override
-    public abstract View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState);
+    public abstract View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState);
 
     /**
      * @see #passed_data
@@ -51,7 +51,7 @@ public abstract class PluginViewFragment extends Fragment {
      * If overridden, call back-through is needed.
      */
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         if (passed_data != null) {
             _fill(passed_data);
         }

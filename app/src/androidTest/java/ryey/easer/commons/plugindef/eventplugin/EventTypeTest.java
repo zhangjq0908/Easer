@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 
 public class EventTypeTest {
 
-    Context context = InstrumentationRegistry.getTargetContext();
+    final Context context = InstrumentationRegistry.getTargetContext();
 
     @Test
     public void desc() throws Exception {

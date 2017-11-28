@@ -48,8 +48,8 @@ public class WifiPluginViewFragment extends PluginViewFragment {
     final String ACTION_RETURN = "ryey.easer.plugins.event.bluetooth_device.return_from_dialog";
     final String EXTRA_SSID = "ryey.easer.plugins.event.bluetooth_device.extra.hardware_address";
 
-    IntentFilter mFilter = new IntentFilter(ACTION_RETURN);
-    BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    final IntentFilter mFilter = new IntentFilter(ACTION_RETURN);
+    final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(ACTION_RETURN)) {
@@ -133,7 +133,7 @@ public class WifiPluginViewFragment extends PluginViewFragment {
     }
 
     class WifiDeviceWrapper {
-        WifiConfiguration configuration;
+        final WifiConfiguration configuration;
         WifiDeviceWrapper(WifiConfiguration configuration) {
             this.configuration = configuration;
         }

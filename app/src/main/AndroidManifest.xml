@@ -63,10 +63,11 @@
         <activity android:name=".core.ui.edit.EditEventActivity" />
         <activity android:name=".core.ui.edit.EditProfileActivity" />
 
-        <activity android:name="ryey.easer.plugins.operation.brightness.DumbSettingBrightnessActivity"
+        <activity
+            android:name="ryey.easer.plugins.operation.brightness.DumbSettingBrightnessActivity"
             android:taskAffinity="com.antonc.phone_schedule.Dummy"
             android:excludeFromRecents="true"
-            android:theme="@style/EmptyActivity"></activity>
+            android:theme="@style/EmptyActivity" />
 
         <service
             android:name=".plugins.operation.ringer_mode.DumbNotificationListenerService"

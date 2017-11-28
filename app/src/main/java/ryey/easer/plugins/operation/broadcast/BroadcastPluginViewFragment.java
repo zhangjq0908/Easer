@@ -131,7 +131,7 @@ public class BroadcastPluginViewFragment extends PluginViewFragment {
 
         @Nullable
         @Override
-        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.plugin_operation__broadcast_fragment_extra_item, container, false);
             editText_key = (EditText) view.findViewById(R.id.editText_key);
             editText_value = (EditText) view.findViewById(R.id.editText_value);

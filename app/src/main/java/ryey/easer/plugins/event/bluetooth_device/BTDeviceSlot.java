@@ -37,7 +37,7 @@ public class BTDeviceSlot extends AbstractSlot {
 
     private int matched_devices = 0;
 
-    BroadcastReceiver connReceiver = new BroadcastReceiver() {
+    final BroadcastReceiver connReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
@@ -57,7 +57,7 @@ public class BTDeviceSlot extends AbstractSlot {
         }
     };
 
-    IntentFilter filter;
+    final IntentFilter filter;
 
     {
         filter = new IntentFilter();

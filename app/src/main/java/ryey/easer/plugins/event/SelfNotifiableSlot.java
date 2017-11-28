@@ -10,25 +10,27 @@ import android.os.PatternMatcher;
 
 import com.orhanobut.logger.Logger;
 
+import java.util.Locale;
+
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 
 public abstract class SelfNotifiableSlot extends AbstractSlot {
     // Fields used in relevant Intent
-    protected static final String ACTION_SATISFIED = "ryey.easer.triggerlotus.abstractslot.SATISFIED";
-    protected static final String ACTION_UNSATISFIED = "ryey.easer.triggerlotus.abstractslot.UNSATISFIED";
-    protected static final String CATEGORY_NOTIFY_SLOT = "ryey.easer.triggetlotus.category.NOTIFY_SLOT";
+    private static final String ACTION_SATISFIED = "ryey.easer.triggerlotus.abstractslot.SATISFIED";
+    private static final String ACTION_UNSATISFIED = "ryey.easer.triggerlotus.abstractslot.UNSATISFIED";
+    private static final String CATEGORY_NOTIFY_SLOT = "ryey.easer.triggetlotus.category.NOTIFY_SLOT";
     /*
      * Mechanisms and fields used to notify the slot itself, and then proceed to `onPositiveNotified()`.
      * This is because some system-level checking mechanisms (e.g. data/time) need a PendingIntent.
      */
-    protected Uri uri = Uri.parse(String.format("slot://%s/%d", getClass().getSimpleName(), hashCode()));
+    protected final Uri uri = Uri.parse(String.format(Locale.US, "slot://%s/%d", getClass().getSimpleName(), hashCode()));
     // After sent, this will trigger onPositiveNotified().
     // Meant to be used when the event is going to a positive state.
-    protected PendingIntent notifySelfIntent_positive;
+    protected final PendingIntent notifySelfIntent_positive;
     // After sent, this will trigger onNegativeNotified().
     // Meant to be used when the event is going to a negative state.
-    protected PendingIntent notifySelfIntent_negative;
-    protected BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    protected final PendingIntent notifySelfIntent_negative;
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             Logger.d("self notifying Intent received. action: %s", intent.getAction());

@@ -6,7 +6,9 @@ import ryey.easer.plugins.operation.BooleanOperationData;
 import ryey.easer.plugins.operation.IntegerOperationData;
 import ryey.easer.plugins.operation.StringOperationData;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class ReusableDataTest {
 

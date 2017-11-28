@@ -70,7 +70,7 @@ abstract class AbstractDataStorage<T extends Named & Verifiable, T_backend exten
     /**
      * Delete an existing {@link T} with name {@param name}.
      * This method checks whether the data is used by others or not.
-     * @param name
+     * @param name Name of the data
      * @return {@code true} if {@param name} is safely deleted, {@code false} if it is used by other events.
      */
     public boolean delete(String name) {
@@ -90,7 +90,7 @@ abstract class AbstractDataStorage<T extends Named & Verifiable, T_backend exten
      * @param oldName The name of the data before editing.
      * @param data The {@link T} of the new data (whose name may be different with {@param oldName} because of user's change).
      * @return {@code true} if no name conflict; {@code false} otherwise.
-     * @throws IOException
+     * @throws IOException See {@link #add(Named)}
      */
     public boolean edit(String oldName, T data) throws IOException {
         if (oldName.equals(data.getName())) {
@@ -110,8 +110,8 @@ abstract class AbstractDataStorage<T extends Named & Verifiable, T_backend exten
 
     /**
      * Update an existing {@link T} with the new {@param data} without changing the name.
-     * @param data
-     * @throws IOException
+     * @param data The new data which is going to replace the old data
+     * @throws IOException See {@link #add(Named)}
      */
     void update(T data) throws IOException {
         String name = data.getName();

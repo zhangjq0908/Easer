@@ -23,28 +23,34 @@ public class DumbSettingBrightnessActivity extends Activity {
         context.startActivity(intent);
     }
 
-    private static final int DELAYED_MESSAGE = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Handler handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                if (msg.what == DELAYED_MESSAGE) {
-                    DumbSettingBrightnessActivity.this.finish();
-                }
-                super.handleMessage(msg);
-            }
-        };
+        Handler handler = new StopHandler(this);
         Intent intent = this.getIntent();
         float brightness = intent.getFloatExtra(EXTRA_BRIGHTNESS, 0);
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.screenBrightness = brightness;
         getWindow().setAttributes(params);
 
-        Message message = handler.obtainMessage(DELAYED_MESSAGE);
+        Message message = handler.obtainMessage(StopHandler.DELAYED_MESSAGE);
         handler.sendMessageDelayed(message,1000);
+    }
+
+    private static class StopHandler extends Handler {
+        static final int DELAYED_MESSAGE = 1;
+
+        Activity activity;
+        StopHandler(Activity activity) {
+            this.activity = activity;
+        }
+        @Override
+        public void handleMessage(Message msg) {
+            if (msg.what == DELAYED_MESSAGE) {
+                activity.finish();
+            }
+            super.handleMessage(msg);
+        }
     }
 
 }

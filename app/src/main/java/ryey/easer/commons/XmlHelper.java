@@ -201,7 +201,7 @@ public class XmlHelper {
 
         public static Integer readInteger(XmlPullParser parser, String spec) throws IOException, XmlPullParserException, IllegalStorageDataException {
             String text = readString(parser, spec);
-            Integer level = null;
+            Integer level;
             try {
                 level = Integer.valueOf(text);
             } catch (NumberFormatException e) {

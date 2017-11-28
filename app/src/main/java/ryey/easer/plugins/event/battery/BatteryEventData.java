@@ -33,11 +33,6 @@ public class BatteryEventData extends TypedEventData {
         this.battery_status = battery_status;
     }
 
-    public BatteryEventData(Integer battery_status, EventType type) {
-        this.battery_status = battery_status;
-        setType(type);
-    }
-
     @Override
     public Object get() {
         return battery_status;
@@ -82,7 +77,7 @@ public class BatteryEventData extends TypedEventData {
 
     @Override
     public String serialize(C.Format format) {
-        String res = "";
+        String res;
         switch (format) {
             default:
                 res = String.valueOf(battery_status);

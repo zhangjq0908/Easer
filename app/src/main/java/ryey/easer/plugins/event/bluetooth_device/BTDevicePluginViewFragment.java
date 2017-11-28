@@ -49,8 +49,8 @@ public class BTDevicePluginViewFragment extends PluginViewFragment {
     final String ACTION_RETURN = "ryey.easer.plugins.event.bluetooth_device.return_from_dialog";
     final String EXTRA_HARDWARE_ADDRESS = "ryey.easer.plugins.event.bluetooth_device.extra.hardware_address";
 
-    IntentFilter mFilter = new IntentFilter(ACTION_RETURN);
-    BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    final IntentFilter mFilter = new IntentFilter(ACTION_RETURN);
+    final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(ACTION_RETURN)) {
@@ -76,7 +76,7 @@ public class BTDevicePluginViewFragment extends PluginViewFragment {
         textView = (TextView) view.findViewById(R.id.device_name);
 
         editText.addTextChangedListener(new TextWatcher() {
-            String name_not_found = getResources().getString(R.string.ebtdevice_unknown_device);
+            final String name_not_found = getResources().getString(R.string.ebtdevice_unknown_device);
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -89,23 +89,23 @@ public class BTDevicePluginViewFragment extends PluginViewFragment {
             @Override
             public void afterTextChanged(Editable s) {
                 String[] hw_addresses = s.toString().split("\n");
-                String text = "";
+                StringBuilder text = new StringBuilder();
                 boolean first_line = true;
                 if (hw_addresses.length > 0) {
                     for (String hw_address : hw_addresses) {
                         if (Utils.isBlank(hw_address))
                             continue;
                         if (!first_line)
-                            text += "\n";
+                            text.append("\n");
                         String name = resolveHWAddress(hw_address);
                         if (name != null)
-                            text += name;
+                            text.append(name);
                         else
-                            text += name_not_found;
+                            text.append(name_not_found);
                         first_line = false;
                     }
                 }
-                textView.setText(text);
+                textView.setText(text.toString());
             }
         });
 
@@ -179,7 +179,7 @@ public class BTDevicePluginViewFragment extends PluginViewFragment {
     }
 
     class BTDeviceWrapper {
-        BluetoothDevice device;
+        final BluetoothDevice device;
         BTDeviceWrapper(BluetoothDevice device) {
             this.device = device;
         }

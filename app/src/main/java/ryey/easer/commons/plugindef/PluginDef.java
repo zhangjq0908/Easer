@@ -12,15 +12,15 @@ public interface PluginDef {
 
     /**
      * Checks all permission(s) used by this plugin
-     * @param context
+     * @param context Context object used to check permission
      * @return whether all permissions are satisfied (or not)
      */
     boolean checkPermissions(Context context);
 
     /**
      * Request for all permissions used by this plugin
-     * @param activity
-     * @param requestCode
+     * @param activity Activity used to request permissions
+     * @param requestCode Request code used to request permissions
      */
     void requestPermissions(Activity activity, int requestCode);
 

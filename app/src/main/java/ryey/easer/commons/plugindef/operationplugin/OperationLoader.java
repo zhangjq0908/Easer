@@ -28,7 +28,7 @@ import com.orhanobut.logger.Logger;
  * Used to perform relevant action given the data (configuration).
  */
 public abstract class OperationLoader {
-    protected Context context;
+    protected final Context context;
 
     public OperationLoader(Context context) {
         this.context = context;

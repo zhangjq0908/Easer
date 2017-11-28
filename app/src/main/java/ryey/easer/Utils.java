@@ -42,11 +42,11 @@ public class Utils {
     }
 
     public static String set2str(Set<Integer> days) {
-        String str = "";
+        StringBuilder str = new StringBuilder();
         for (int day : days) {
-            str += String.format(Locale.US, "%d\n", day);
+            str.append(String.format(Locale.US, "%d\n", day));
         }
-        return str;
+        return str.toString();
     }
 
     public static <T> List<String> set2strlist(Set<T> set) {
@@ -58,15 +58,15 @@ public class Utils {
     }
 
     public static String StringListToString(List<String> category) {
-        String text = "";
+        StringBuilder text = new StringBuilder();
         if (category != null) {
             for (String line : category) {
                 String trimmed = line.trim();
                 if (!trimmed.isEmpty())
-                    text += trimmed + '\n';
+                    text.append(trimmed).append('\n');
             }
         }
-        return text;
+        return text.toString();
     }
 
     public static List<String> stringToStringList(String text) {

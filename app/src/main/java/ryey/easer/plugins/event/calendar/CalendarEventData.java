@@ -161,7 +161,7 @@ public class CalendarEventData extends TypedEventData {
 
     @Override
     public String serialize(C.Format format) {
-        String res = "";
+        String res;
         switch (format) {
             default:
                 JSONObject jsonObject = new JSONObject();

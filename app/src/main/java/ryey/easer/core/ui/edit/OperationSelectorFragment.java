@@ -27,7 +27,7 @@ public class OperationSelectorFragment extends DialogFragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dialog_select_operation_plugin, container, false);
         ListView list = (ListView) view.findViewById(android.R.id.list);
         List<OperationPlugin> operationPluginList = PluginRegistry.getInstance().operation().getPlugins();
@@ -76,8 +76,8 @@ public class OperationSelectorFragment extends DialogFragment {
     }
 
     protected static class PluginItemWrapper {
-        String name;
-        OperationPlugin plugin;
+        final String name;
+        final OperationPlugin plugin;
         PluginItemWrapper(String name, OperationPlugin plugin) {
             this.name = name;
             this.plugin = plugin;

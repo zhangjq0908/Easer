@@ -33,9 +33,7 @@ public class BroadcastConnSlot extends AbstractSlot {
     private ReceiverSideIntentData intentData = null;
     private EventType type = null;
 
-    private int matched_networks = 0;
-
-    BroadcastReceiver connReceiver = new BroadcastReceiver() {
+    final BroadcastReceiver connReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             changeSatisfiedState(true);
