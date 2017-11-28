@@ -15,7 +15,9 @@ public class CalendarEventDataTest {
         CalendarData calendarData = new CalendarData();
         calendarData.calendar_id = 20;
         for (int i = 0; i < CalendarData.condition_name.length; i++) {
-            calendarData.conditions.put(CalendarData.condition_name[i], i % 2 == 0);
+            if (i % 2 == 0) {
+                calendarData.conditions.add(CalendarData.condition_name[i]);
+            }
         }
         dummyData.set(calendarData);
         return dummyData;

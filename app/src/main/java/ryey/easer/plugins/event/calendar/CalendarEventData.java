@@ -21,6 +21,7 @@ package ryey.easer.plugins.event.calendar;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.v4.util.ArraySet;
 
 import com.orhanobut.logger.Logger;
 
@@ -32,6 +33,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.EnumSet;
 
 import ryey.easer.commons.C;
@@ -79,14 +81,7 @@ public class CalendarEventData extends TypedEventData {
             return false;
         if (data.calendar_id == -1)
             return false;
-        boolean any_true = false;
-        for (Boolean v : data.conditions.values()) {
-            if (v) {
-                any_true = true;
-                break;
-            }
-        }
-        if (!any_true)
+        if (data.conditions.size() == 0)
             return false;
         return true;
     }
@@ -102,7 +97,10 @@ public class CalendarEventData extends TypedEventData {
             for (int i = 0; i < jsonArray_conditions.length(); i++) {
                 String condition = jsonArray_conditions.getString(i);
                 for (int j = 0; j < CalendarData.condition_name.length; j++) {
-                    this.data.conditions.put(condition, true);
+                    if (condition.equals(CalendarData.condition_name[j])) {
+                        this.data.conditions.add(condition);
+                        break;
+                    }
                 }
             }
         } catch (JSONException e) {
@@ -123,10 +121,8 @@ public class CalendarEventData extends TypedEventData {
         try {
             jsonObject.put(T_calendar_id, data.calendar_id);
             JSONArray jsonArray_conditions = new JSONArray();
-            for (String k : data.conditions.keySet()) {
-                if (data.conditions.get(k)) {
-                    jsonArray_conditions.put(k);
-                }
+            for (String k : data.conditions) {
+                jsonArray_conditions.put(k);
             }
             jsonObject.put(T_condition, jsonArray_conditions);
         } catch (JSONException e) {
@@ -149,7 +145,7 @@ public class CalendarEventData extends TypedEventData {
                     for (int i = 0; i < jsonArray_conditions.length(); i++) {
                         String condition = jsonArray_conditions.getString(i);
                         for (int j = 0; j < CalendarData.condition_name.length; j++) {
-                            this.data.conditions.put(condition, true);
+                            this.data.conditions.add(condition);
                         }
                     }
                 } catch (JSONException e) {
@@ -168,10 +164,8 @@ public class CalendarEventData extends TypedEventData {
                 try {
                     jsonObject.put(T_calendar_id, data.calendar_id);
                     JSONArray jsonArray_conditions = new JSONArray();
-                    for (String k : data.conditions.keySet()) {
-                        if (data.conditions.get(k)) {
-                            jsonArray_conditions.put(k);
-                        }
+                    for (String k : data.conditions) {
+                        jsonArray_conditions.put(k);
                     }
                     jsonObject.put(T_condition, jsonArray_conditions);
                 } catch (JSONException e) {
@@ -204,7 +198,7 @@ public class CalendarEventData extends TypedEventData {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeLong(data.calendar_id);
-        dest.writeMap(data.conditions);
+        dest.writeList(new ArrayList<>(data.conditions));
     }
 
     public static final Parcelable.Creator<CalendarEventData> CREATOR
@@ -221,6 +215,8 @@ public class CalendarEventData extends TypedEventData {
     private CalendarEventData(Parcel in) {
         data = new CalendarData();
         data.calendar_id = in.readLong();
-        in.readMap(data.conditions, data.conditions.getClass().getClassLoader());
+        ArrayList<String> list = new ArrayList<>();
+        in.readList(list, null);
+        data.conditions = new ArraySet<>(list);
     }
 }

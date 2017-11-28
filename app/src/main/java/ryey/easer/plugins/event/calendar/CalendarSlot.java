@@ -56,14 +56,14 @@ public class CalendarSlot extends SelfNotifiableSlot {
 
     @Override
     public void listen() {
-        if (data.data.conditions.get(CalendarData.condition_name[0])) {
+        if (data.data.conditions.contains(CalendarData.condition_name[0])) {
             Long time_next_event = CalendarHelper.nextEvent_start(context.getContentResolver(), data.data.calendar_id);
             if (time_next_event != null) {
                 mAlarmManager.set(AlarmManager.RTC_WAKEUP, time_next_event,
                         notifySelfIntent_positive);
             }
         }
-        if (data.data.conditions.get(CalendarData.condition_name[1])) {
+        if (data.data.conditions.contains(CalendarData.condition_name[1])) {
             Long time_next_event = CalendarHelper.nextEvent_end(context.getContentResolver(), data.data.calendar_id);
             if (time_next_event != null) {
                 mAlarmManager.set(AlarmManager.RTC_WAKEUP, time_next_event,

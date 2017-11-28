@@ -155,7 +155,7 @@ public class CalendarPluginViewFragment extends PluginViewFragment {
             tv_calendar_name.setText(CalendarHelper.getCalendarName(
                     getContext().getContentResolver(), calendar_id));
             for (int i = 0; i < CalendarData.condition_name.length; i++) {
-                cb_conditions[i].setChecked(calendarData.conditions.get(CalendarData.condition_name[i]));
+                cb_conditions[i].setChecked(calendarData.conditions.contains(CalendarData.condition_name[i]));
             }
         }
     }
@@ -165,8 +165,8 @@ public class CalendarPluginViewFragment extends PluginViewFragment {
         CalendarData calendarData = new CalendarData();
         calendarData.calendar_id = calendar_id;
         for (int i = 0; i < cb_conditions.length; i++) {
-            calendarData.conditions.put(
-                    CalendarData.condition_name[i], cb_conditions[i].isChecked());
+            if (cb_conditions[i].isChecked())
+                calendarData.conditions.add(CalendarData.condition_name[i]);
         }
         return new CalendarEventData(calendarData);
     }
