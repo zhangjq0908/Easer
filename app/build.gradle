@@ -24,6 +24,9 @@ android {
                     'proguard-rules-guava.pro',
                     'proguard-rules.pro'
         }
+        debug {
+            testCoverageEnabled true
+        }
     }
     productFlavors {
     }
