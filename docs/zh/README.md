@@ -1,6 +1,6 @@
 [<img src="https://f-droid.org/badge/get-it-on-zh-cn.png"
       alt="在F-Droid下載"
-      height="80">](https://f-droid.org/app/ryey.easer)
+      height="80">](https://f-droid.org/app/ryey.easer)<img align="right" src='https://github.com/renyuneyun/Easer/raw/master/app/src/main/ic_launcher-web.png' width='128' height='128'/>
 
 簡介
 -----

@@ -1,6 +1,6 @@
 [<img src="https://f-droid.org/badge/get-it-on.png"
       alt="Get it on F-Droid"
-      height="80">](https://f-droid.org/app/ryey.easer)
+      height="80">](https://f-droid.org/app/ryey.easer)<img align="right" src='https://github.com/renyuneyun/Easer/raw/master/app/src/main/ic_launcher-web.png' width='128' height='128'/>
 
 Ease your life by automatically performing routine actions.
 

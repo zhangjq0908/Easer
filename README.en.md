@@ -1,8 +1,9 @@
-Easer [![Build Status](https://travis-ci.org/renyuneyun/Easer.svg?branch=master)](https://travis-ci.org/renyuneyun/Easer)
+Easer [![Build Status](https://travis-ci.org/renyuneyun/Easer.svg?branch=master)](https://travis-ci.org/renyuneyun/Easer) [![codecov](https://codecov.io/gh/renyuneyun/Easer/branch/master/graph/badge.svg)](https://codecov.io/gh/renyuneyun/Easer)
 =======
 [<img src="https://f-droid.org/badge/get-it-on.png"
       alt="Get it on F-Droid"
       height="60">](https://f-droid.org/app/ryey.easer)
+<img align="right" src='./app/src/main/ic_launcher-web.png' width='128' height='128'/>
 
 Ease your life by automatically performing routine actions.
 
