@@ -64,9 +64,9 @@ import ryey.easer.plugins.operation.wifi.WifiOperationPlugin;
  */
 final public class PluginRegistry {
 
-    private Registry<EventPlugin, EventData> eventPluginRegistry = new Registry<>();
-    private Registry<OperationPlugin, OperationData> operationPluginRegistry = new Registry<>();
-    private OverallRegistry overallRegistry = new OverallRegistry(new PluginLookuper[] {
+    private final Registry<EventPlugin, EventData> eventPluginRegistry = new Registry<>();
+    private final Registry<OperationPlugin, OperationData> operationPluginRegistry = new Registry<>();
+    private final OverallRegistry overallRegistry = new OverallRegistry(new PluginLookuper[] {
             eventPluginRegistry, operationPluginRegistry,
     });
 
@@ -128,8 +128,8 @@ final public class PluginRegistry {
     }
 
     public static class Registry<T extends PluginDef, T_data extends StorageData> implements PluginLookuper<T, T_data> {
-        List<Class<? extends T>> pluginClassList = new ArrayList<>();
-        List<T> pluginList = new ArrayList<>();
+        final List<Class<? extends T>> pluginClassList = new ArrayList<>();
+        final List<T> pluginList = new ArrayList<>();
 
         synchronized void registerPlugin(Class<? extends T> pluginClass) {
             for (Class<? extends T> klass : pluginClassList) {
@@ -198,7 +198,7 @@ final public class PluginRegistry {
 
     public static class OverallRegistry implements PluginLookuper<PluginDef, StorageData> {
 
-        PluginLookuper<? extends PluginDef, ? extends StorageData>[] lookupers;
+        final PluginLookuper<? extends PluginDef, ? extends StorageData>[] lookupers;
 
         OverallRegistry(PluginLookuper<? extends PluginDef, ? extends StorageData>[] lookupers) {
             this.lookupers = lookupers;

@@ -20,6 +20,7 @@
 package ryey.easer.plugins.operation.cellular;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.telephony.TelephonyManager;
 
 import com.orhanobut.logger.Logger;
@@ -38,7 +39,7 @@ public class CellularLoader extends OperationLoader {
     }
 
     @Override
-    public boolean _load(OperationData data) {
+    public boolean _load(@NonNull OperationData data) {
         Boolean state = (Boolean) data.get();
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         if (state == (telephonyManager.getDataState() == TelephonyManager.DATA_CONNECTED)) {

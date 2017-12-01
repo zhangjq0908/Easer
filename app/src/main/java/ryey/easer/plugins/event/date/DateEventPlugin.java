@@ -21,6 +21,7 @@ package ryey.easer.plugins.event.date;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
@@ -29,26 +30,29 @@ import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 
 public class DateEventPlugin implements EventPlugin {
 
+    @NonNull
     @Override
     public String name() {
         return "date";
     }
 
     @Override
-    public boolean checkPermissions(Context context) {
+    public boolean checkPermissions(@NonNull Context context) {
         return true;
     }
 
     @Override
-    public void requestPermissions(Activity activity, int requestCode) {
+    public void requestPermissions(@NonNull Activity activity, int requestCode) {
 
     }
 
+    @NonNull
     @Override
     public EventData data() {
         return new DateEventData();
     }
 
+    @NonNull
     @Override
     public PluginViewFragment view() {
         return new DatePluginViewFragment();

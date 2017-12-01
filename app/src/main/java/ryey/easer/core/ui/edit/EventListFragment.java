@@ -23,6 +23,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ListFragment;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -49,9 +50,10 @@ public class EventListFragment extends ListFragment {
     EventDataStorage mStorage = null;
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        activity.setTitle(getString(R.string.title_event));
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof Activity)
+            ((Activity) context).setTitle(getString(R.string.title_event));
     }
 
     @Override
@@ -60,9 +62,8 @@ public class EventListFragment extends ListFragment {
         setHasOptionsMenu(true);
         registerForContextMenu(getListView());
 
-        List<String> items = null;
         mStorage = EventDataStorage.getInstance(getActivity());
-        items = mStorage.list();
+        List<String> items = mStorage.list();
         Logger.v("All events: %s", items);
         EventListAdapter adapter = new EventListAdapter(getActivity(), items);
         setListAdapter(adapter);
@@ -75,7 +76,7 @@ public class EventListFragment extends ListFragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         view.findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
             @Override

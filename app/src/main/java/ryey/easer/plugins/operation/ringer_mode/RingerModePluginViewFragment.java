@@ -31,6 +31,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
@@ -38,14 +39,14 @@ import static android.widget.LinearLayout.HORIZONTAL;
 
 public class RingerModePluginViewFragment extends PluginViewFragment {
     String []mode_names;
-    int []values = {
+    final int []values = {
             AudioManager.RINGER_MODE_SILENT,
             AudioManager.RINGER_MODE_VIBRATE,
             AudioManager.RINGER_MODE_NORMAL
     };
-    RadioButton []radioButtons = new RadioButton[values.length];
+    final RadioButton []radioButtons = new RadioButton[values.length];
 
-    int checked_item = -1;
+    private int checked_item = -1;
 
     {
         setDesc(R.string.operation_ringer_mode);
@@ -59,7 +60,7 @@ public class RingerModePluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public ViewGroup onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public ViewGroup onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         LinearLayout layout = new LinearLayout(getContext());
 
         RadioGroup radioGroup = new RadioGroup(getContext());
@@ -87,7 +88,7 @@ public class RingerModePluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         Integer item = (Integer) data.get();
         for (int i = 0; i < radioButtons.length; i++) {
             if (item == values[i]) {
@@ -97,8 +98,9 @@ public class RingerModePluginViewFragment extends PluginViewFragment {
         }
     }
 
+    @NonNull
     @Override
-    public StorageData getData() {
+    public StorageData getData() throws InvalidDataInputException {
         return new RingerModeOperationData(checked_item);
     }
 }

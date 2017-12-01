@@ -22,6 +22,7 @@ package ryey.easer.plugins.operation.wifi;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
@@ -32,11 +33,13 @@ import ryey.easer.plugins.reusable.PluginHelper;
 
 public class WifiOperationPlugin implements OperationPlugin {
 
+    @NonNull
     @Override
     public String name() {
         return "wifi";
     }
 
+    @NonNull
     @Override
     public PrivilegeUsage privilege() {
         return PrivilegeUsage.no_root;
@@ -48,31 +51,34 @@ public class WifiOperationPlugin implements OperationPlugin {
     }
 
     @Override
-    public boolean checkPermissions(Context context) {
+    public boolean checkPermissions(@NonNull Context context) {
         return PluginHelper.checkPermission(context,
                 Manifest.permission.ACCESS_WIFI_STATE,
                 Manifest.permission.CHANGE_WIFI_STATE);
     }
 
     @Override
-    public void requestPermissions(Activity activity, int requestCode) {
+    public void requestPermissions(@NonNull Activity activity, int requestCode) {
         PluginHelper.requestPermission(activity, requestCode,
                 Manifest.permission.ACCESS_WIFI_STATE,
                 Manifest.permission.CHANGE_WIFI_STATE);
     }
 
+    @NonNull
     @Override
     public OperationData data() {
         return new WifiOperationData();
     }
 
+    @NonNull
     @Override
     public PluginViewFragment view() {
         return new WifiPluginViewFragment();
     }
 
+    @NonNull
     @Override
-    public OperationLoader loader(Context context) {
+    public OperationLoader loader(@NonNull Context context) {
         return new WifiLoader(context);
     }
 }

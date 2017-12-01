@@ -27,6 +27,7 @@ import android.media.AudioManager;
 import android.os.Build;
 import android.os.ConditionVariable;
 import android.os.IBinder;
+import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 
@@ -39,7 +40,7 @@ public class RingerModeLoader extends OperationLoader {
     }
 
     @Override
-    public boolean _load(OperationData data) {
+    public boolean _load(@NonNull OperationData data) {
         Integer mode = (Integer) data.get();
         if (mode == null)
             return true;

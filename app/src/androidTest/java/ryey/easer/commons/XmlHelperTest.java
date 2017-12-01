@@ -16,7 +16,7 @@ import ryey.easer.core.data.storage.backend.xml.event.C;
 import static org.junit.Assert.assertEquals;
 
 public class XmlHelperTest {
-    String ns = null;
+    final String ns = null;
 
     XmlPullParser parser = Xml.newPullParser();
     XmlSerializer serializer = Xml.newSerializer();

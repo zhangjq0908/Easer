@@ -19,7 +19,10 @@
 
 package ryey.easer.plugins.operation.synchronization;
 
+import android.support.annotation.NonNull;
+
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.plugins.operation.SwitchPluginViewFragment;
 
@@ -29,8 +32,9 @@ public class SynchronizationPluginViewFragment extends SwitchPluginViewFragment 
         setDesc(R.string.operation_synchronization);
     }
 
+    @NonNull
     @Override
-    public StorageData getData() {
+    public StorageData getData() throws InvalidDataInputException {
         return new SynchronizationOperationData(state());
     }
 }

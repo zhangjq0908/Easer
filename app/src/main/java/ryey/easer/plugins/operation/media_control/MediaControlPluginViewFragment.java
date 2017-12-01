@@ -28,12 +28,17 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public class MediaControlPluginViewFragment extends PluginViewFragment {
 
-    RadioButton radioButton_play_pause, radioButton_play, radioButton_pause, radioButton_previous, radioButton_next;
+    private RadioButton radioButton_play_pause;
+    private RadioButton radioButton_play;
+    private RadioButton radioButton_pause;
+    private RadioButton radioButton_previous;
+    private RadioButton radioButton_next;
 
     {
         setDesc(R.string.operation_media_control);
@@ -41,19 +46,19 @@ public class MediaControlPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_operation__media_control, container, false);
-        radioButton_play_pause = (RadioButton) view.findViewById(R.id.radioButton_play_pause);
-        radioButton_play = (RadioButton) view.findViewById(R.id.radioButton_play);
-        radioButton_pause = (RadioButton) view.findViewById(R.id.radioButton_pause);
-        radioButton_previous = (RadioButton) view.findViewById(R.id.radioButton_previous);
-        radioButton_next = (RadioButton) view.findViewById(R.id.radioButton_next);
+        radioButton_play_pause = view.findViewById(R.id.radioButton_play_pause);
+        radioButton_play = view.findViewById(R.id.radioButton_play);
+        radioButton_pause = view.findViewById(R.id.radioButton_pause);
+        radioButton_previous = view.findViewById(R.id.radioButton_previous);
+        radioButton_next = view.findViewById(R.id.radioButton_next);
 
         return view;
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         if (data instanceof MediaControlOperationData) {
             MediaControlOperationData.ControlChoice choice = (MediaControlOperationData.ControlChoice) data.get();
             switch (choice) {
@@ -78,8 +83,9 @@ public class MediaControlPluginViewFragment extends PluginViewFragment {
         }
     }
 
+    @NonNull
     @Override
-    public StorageData getData() {
+    public StorageData getData() throws InvalidDataInputException {
         MediaControlOperationData.ControlChoice choice = null;
         if (radioButton_play_pause.isChecked()) {
             choice = MediaControlOperationData.ControlChoice.play_pause;
@@ -93,7 +99,7 @@ public class MediaControlPluginViewFragment extends PluginViewFragment {
             choice = MediaControlOperationData.ControlChoice.next;
         }
         if (choice == null)
-            return null;
+            throw new InvalidDataInputException();
         return new MediaControlOperationData(choice);
     }
 }

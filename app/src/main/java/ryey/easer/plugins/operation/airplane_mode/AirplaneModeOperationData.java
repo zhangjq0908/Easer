@@ -19,6 +19,9 @@
 
 package ryey.easer.plugins.operation.airplane_mode;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import ryey.easer.plugins.operation.BooleanOperationData;
 
 public class AirplaneModeOperationData extends BooleanOperationData {
@@ -27,6 +30,21 @@ public class AirplaneModeOperationData extends BooleanOperationData {
 
     public AirplaneModeOperationData(Boolean state) {
         super(state);
+    }
+
+    public static final Parcelable.Creator<AirplaneModeOperationData> CREATOR
+            = new Parcelable.Creator<AirplaneModeOperationData>() {
+        public AirplaneModeOperationData createFromParcel(Parcel in) {
+            return new AirplaneModeOperationData(in);
+        }
+
+        public AirplaneModeOperationData[] newArray(int size) {
+            return new AirplaneModeOperationData[size];
+        }
+    };
+
+    private AirplaneModeOperationData(Parcel in) {
+        super(in);
     }
 
 }

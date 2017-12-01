@@ -19,6 +19,10 @@
 
 package ryey.easer.plugins.event.celllocation;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.support.annotation.NonNull;
+
 import com.orhanobut.logger.Logger;
 
 import org.json.JSONArray;
@@ -40,10 +44,9 @@ import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
 
 public class CellLocationEventData extends TypedEventData {
-    protected List<CellLocationSingleData> data;
+    private List<CellLocationSingleData> data = new ArrayList<>();
 
     {
-        data = new ArrayList<>();
         default_type = EventType.any;
         availableTypes = EnumSet.of(EventType.any, EventType.none);
     }
@@ -60,13 +63,14 @@ public class CellLocationEventData extends TypedEventData {
             return null;
     }
 
+    @NonNull
     @Override
     public Object get() {
         return data;
     }
 
     @Override
-    public void set(Object obj) {
+    public void set(@NonNull Object obj) {
         if (obj instanceof String) {
             String[] parts = ((String) obj).split("\n");
             for (String single : parts) {
@@ -124,7 +128,7 @@ public class CellLocationEventData extends TypedEventData {
     }
 
     @Override
-    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         try {
             JSONArray jsonArray = new JSONArray(data);
             String[] strings = new String[jsonArray.length()];
@@ -138,13 +142,13 @@ public class CellLocationEventData extends TypedEventData {
         }
     }
 
+    @NonNull
     @Override
-    public String serialize(C.Format format) {
-        String res = "";
+    public String serialize(@NonNull C.Format format) {
+        String res;
         switch (format) {
             default:
                 JSONArray jsonArray = new JSONArray();
-                List<String> list = new ArrayList<>();
                 for (CellLocationSingleData singleData : data) {
                     jsonArray.put(singleData.toString());
                 }
@@ -161,15 +165,15 @@ public class CellLocationEventData extends TypedEventData {
     }
 
     public String toString() {
-        String str = "";
+        StringBuilder str = new StringBuilder();
         if (data.size() > 0) {
-            str += data.get(0).toString();
+            str.append(data.get(0).toString());
             for (int i = 1; i < data.size(); i++) {
                 CellLocationSingleData singleData = data.get(i);
-                str += "\n" + singleData.toString();
+                str.append("\n").append(singleData.toString());
             }
         }
-        return str;
+        return str.toString();
     }
 
     boolean contains(CellLocationSingleData singleData) {
@@ -178,5 +182,30 @@ public class CellLocationEventData extends TypedEventData {
                 return true;
         }
         return false;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeList(data);
+    }
+
+    public static final Parcelable.Creator<CellLocationEventData> CREATOR
+            = new Parcelable.Creator<CellLocationEventData>() {
+        public CellLocationEventData createFromParcel(Parcel in) {
+            return new CellLocationEventData(in);
+        }
+
+        public CellLocationEventData[] newArray(int size) {
+            return new CellLocationEventData[size];
+        }
+    };
+
+    private CellLocationEventData(Parcel in) {
+        in.readList(data, CellLocationSingleData.class.getClassLoader());
     }
 }

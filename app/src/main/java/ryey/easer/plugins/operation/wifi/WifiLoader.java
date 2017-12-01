@@ -21,6 +21,7 @@ package ryey.easer.plugins.operation.wifi;
 
 import android.content.Context;
 import android.net.wifi.WifiManager;
+import android.support.annotation.NonNull;
 
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
@@ -31,9 +32,9 @@ public class WifiLoader extends OperationLoader {
     }
 
     @Override
-    public boolean _load(OperationData data) {
+    public boolean _load(@NonNull OperationData data) {
         Boolean state = (Boolean) data.get();
-        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         return wifiManager.setWifiEnabled(state);
     }
 }

@@ -20,6 +20,7 @@
 package ryey.easer.commons.plugindef.operationplugin;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import ryey.easer.commons.plugindef.PluginDef;
 
@@ -33,6 +34,7 @@ public interface OperationPlugin extends PluginDef {
     /**
      * Returns the privilege preference of this plugin.
      */
+    @NonNull
     PrivilegeUsage privilege();
 
     /**
@@ -43,11 +45,13 @@ public interface OperationPlugin extends PluginDef {
     /**
      * {@inheritDoc}
      */
+    @NonNull
     OperationData data();
 
     /**
      * Returns a dummy loader of this plugin.
      * See `OperationLoader` for more information
      */
-    OperationLoader loader(Context context);
+    @NonNull
+    OperationLoader loader(@NonNull Context context);
 }

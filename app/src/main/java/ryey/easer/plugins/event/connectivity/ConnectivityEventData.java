@@ -1,5 +1,8 @@
 package ryey.easer.plugins.event.connectivity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.v4.util.ArraySet;
 
 import com.orhanobut.logger.Logger;
@@ -11,6 +14,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.Set;
 
@@ -24,7 +28,7 @@ import ryey.easer.plugins.event.TypedEventData;
 
 public class ConnectivityEventData extends TypedEventData {
 
-    protected Set<Integer> connectivity_type = new ArraySet<>();
+    private Set<Integer> connectivity_type = new ArraySet<>();
 
     {
         default_type = EventType.any;
@@ -38,18 +42,14 @@ public class ConnectivityEventData extends TypedEventData {
         this.connectivity_type = connectivity_type;
     }
 
-    public ConnectivityEventData(Set<Integer> connectivity_type, EventType type) {
-        this.connectivity_type = connectivity_type;
-        setType(type);
-    }
-
+    @NonNull
     @Override
     public Object get() {
         return connectivity_type;
     }
 
     @Override
-    public void set(Object obj) {
+    public void set(@NonNull Object obj) {
         connectivity_type.clear();
         if (obj instanceof String[]) {
             Set<Integer> selected_types = new ArraySet<>(((String[]) obj).length);
@@ -88,7 +88,7 @@ public class ConnectivityEventData extends TypedEventData {
     }
 
     @Override
-    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         connectivity_type.clear();
         switch (format) {
             default:
@@ -104,9 +104,10 @@ public class ConnectivityEventData extends TypedEventData {
         }
     }
 
+    @NonNull
     @Override
-    public String serialize(C.Format format) {
-        String res = "";
+    public String serialize(@NonNull C.Format format) {
+        String res;
         switch (format) {
             default:
                 JSONArray jsonArray = new JSONArray();
@@ -123,5 +124,32 @@ public class ConnectivityEventData extends TypedEventData {
         if (connectivity_type.size() > 0)
             return true;
         return false;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeList(new ArrayList<>(connectivity_type));
+    }
+
+    public static final Parcelable.Creator<ConnectivityEventData> CREATOR
+            = new Parcelable.Creator<ConnectivityEventData>() {
+        public ConnectivityEventData createFromParcel(Parcel in) {
+            return new ConnectivityEventData(in);
+        }
+
+        public ConnectivityEventData[] newArray(int size) {
+            return new ConnectivityEventData[size];
+        }
+    };
+
+    private ConnectivityEventData(Parcel in) {
+        ArrayList<Integer> list = new ArrayList<>();
+        in.readList(list, null);
+        connectivity_type = new ArraySet<>(list);
     }
 }

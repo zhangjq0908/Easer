@@ -19,6 +19,10 @@
 
 package ryey.easer.plugins.event.wifi;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.support.annotation.NonNull;
+
 import com.orhanobut.logger.Logger;
 
 import org.json.JSONArray;
@@ -41,7 +45,7 @@ import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
 
 public class WifiEventData extends TypedEventData {
-    List<String> ssids = new ArrayList<>();
+    private List<String> ssids = new ArrayList<>();
 
     {
         default_type = EventType.any;
@@ -59,13 +63,14 @@ public class WifiEventData extends TypedEventData {
         setType(type);
     }
 
+    @NonNull
     @Override
     public Object get() {
         return ssids;
     }
 
     @Override
-    public void set(Object obj) {
+    public void set(@NonNull Object obj) {
         if (obj instanceof String) {
             set(((String) obj).split("\n"));
         } else if (obj instanceof String[]) {
@@ -80,15 +85,15 @@ public class WifiEventData extends TypedEventData {
 
     @Override
     public String toString() {
-        String text = "";
+        StringBuilder text = new StringBuilder();
         boolean is_first = true;
         for (String ssid : ssids) {
             if (!is_first)
-                text += "\n";
-            text += ssid;
+                text.append("\n");
+            text.append(ssid);
             is_first = false;
         }
-        return text;
+        return text.toString();
     }
 
     @Override
@@ -126,7 +131,7 @@ public class WifiEventData extends TypedEventData {
     }
 
     @Override
-    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         ssids.clear();
         switch (format) {
             default:
@@ -142,9 +147,10 @@ public class WifiEventData extends TypedEventData {
         }
     }
 
+    @NonNull
     @Override
-    public String serialize(C.Format format) {
-        String res = "";
+    public String serialize(@NonNull C.Format format) {
+        String res;
         switch (format) {
             default:
                 JSONArray jsonArray = new JSONArray();
@@ -157,10 +163,35 @@ public class WifiEventData extends TypedEventData {
     }
 
     @Override
-    public boolean match(Object obj) {
+    public boolean match(@NonNull Object obj) {
         if (obj instanceof String) {
             return ssids.contains(((String) obj).trim());
         }
         return super.match(obj);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeStringList(ssids);
+    }
+
+    public static final Parcelable.Creator<WifiEventData> CREATOR
+            = new Parcelable.Creator<WifiEventData>() {
+        public WifiEventData createFromParcel(Parcel in) {
+            return new WifiEventData(in);
+        }
+
+        public WifiEventData[] newArray(int size) {
+            return new WifiEventData[size];
+        }
+    };
+
+    private WifiEventData(Parcel in) {
+        in.readStringList(ssids);
     }
 }

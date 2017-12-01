@@ -21,6 +21,7 @@ package ryey.easer.plugins.operation.synchronization;
 
 import android.content.ContentResolver;
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
@@ -31,7 +32,7 @@ public class SynchronizationLoader extends OperationLoader {
     }
 
     @Override
-    public boolean _load(OperationData data) {
+    public boolean _load(@NonNull OperationData data) {
         Boolean state = (Boolean) data.get();
         ContentResolver.setMasterSyncAutomatically(state);
         return true;

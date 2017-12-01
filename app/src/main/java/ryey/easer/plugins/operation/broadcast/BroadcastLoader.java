@@ -22,6 +22,7 @@ package ryey.easer.plugins.operation.broadcast;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 
@@ -35,7 +36,7 @@ public class BroadcastLoader extends OperationLoader {
     }
 
     @Override
-    public boolean _load(OperationData data) {
+    public boolean _load(@NonNull OperationData data) {
         IntentData iData = (IntentData) data.get();
         Intent intent = new Intent();
         intent.setAction(iData.action);

@@ -69,7 +69,7 @@ public class ProfileLoaderIntentService extends IntentService {
 
     private void handleActionLoadProfile(String name, String event) {
         Logger.d("Loading profile <%s> by <%s>", name, event);
-        ProfileStructure profile = null;
+        ProfileStructure profile;
         ProfileDataStorage storage = ProfileDataStorage.getInstance(this);
         profile = storage.get(name);
         if (profile != null) {

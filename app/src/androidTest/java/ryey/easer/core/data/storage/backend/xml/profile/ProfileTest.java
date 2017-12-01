@@ -56,7 +56,7 @@ public class ProfileTest {
 
     @Test
     public void testParse() throws IOException, XmlPullParserException, IllegalStorageDataException {
-        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(t_xml.getBytes());;
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(t_xml.getBytes());
         ProfileParser profileParser = new ProfileParser();
         ProfileStructure profile = profileParser.parse(byteArrayInputStream);
         assertEquals("myTest", profile.getName());

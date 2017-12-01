@@ -26,6 +26,7 @@ import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Telephony;
+import android.support.annotation.NonNull;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsMessage;
 
@@ -41,7 +42,7 @@ public class SmsConnSlot extends AbstractSlot {
     private SmsInnerData smsInnerData = null;
     private EventType type = null;
 
-    BroadcastReceiver connReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver connReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(Telephony.Sms.Intents.SMS_RECEIVED_ACTION)) {
@@ -74,7 +75,7 @@ public class SmsConnSlot extends AbstractSlot {
         }
     };
 
-    IntentFilter filter;
+    private IntentFilter filter;
 
     {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
@@ -90,7 +91,7 @@ public class SmsConnSlot extends AbstractSlot {
     }
 
     @Override
-    public void set(EventData data) {
+    public void set(@NonNull EventData data) {
         if (data instanceof SmsEventData) {
             smsInnerData = ((SmsEventData) data).innerData;
             type = data.type();

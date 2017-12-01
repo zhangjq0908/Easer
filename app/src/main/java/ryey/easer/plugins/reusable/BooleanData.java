@@ -1,24 +1,28 @@
 package ryey.easer.plugins.reusable;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import ryey.easer.commons.IllegalArgumentTypeException;
 import ryey.easer.commons.plugindef.StorageData;
 
 public abstract class BooleanData implements StorageData {
     protected Boolean state = null;
 
-    public BooleanData() {}
+    protected BooleanData() {}
 
-    public BooleanData(Boolean state) {
+    protected BooleanData(@NonNull Boolean state) {
         this.state = state;
     }
 
+    @NonNull
     @Override
     public Object get() {
         return state;
     }
 
     @Override
-    public void set(Object obj) {
+    public void set(@NonNull Object obj) {
         if (obj instanceof Boolean) {
             state = (Boolean) obj;
         } else {
@@ -34,7 +38,7 @@ public abstract class BooleanData implements StorageData {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(@Nullable Object obj) {
         if (obj == null)
             return false;
         if (!getClass().equals(obj.getClass()))

@@ -10,6 +10,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
@@ -17,13 +18,13 @@ import static android.widget.LinearLayout.HORIZONTAL;
 
 public class BatteryPluginViewFragment extends PluginViewFragment {
     String []mode_names;
-    int []values = {
+    final int []values = {
             BatteryStatus.charging,
             BatteryStatus.discharging
     };
-    RadioButton []radioButtons = new RadioButton[values.length];
+    final RadioButton []radioButtons = new RadioButton[values.length];
 
-    Integer checked_item = null;
+    private Integer checked_item = null;
 
     {
         setDesc(R.string.event_battery);
@@ -37,7 +38,7 @@ public class BatteryPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         RadioGroup radioGroup = new RadioGroup(getContext());
         radioGroup.setOrientation(HORIZONTAL);
         View.OnClickListener radioButtonOnClickListener = new View.OnClickListener() {
@@ -61,7 +62,7 @@ public class BatteryPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         if (data instanceof BatteryEventData) {
             int status = (int) data.get();
             for (int i = 0; i < values.length; i++) {
@@ -73,10 +74,11 @@ public class BatteryPluginViewFragment extends PluginViewFragment {
         }
     }
 
+    @NonNull
     @Override
-    public StorageData getData() {
+    public StorageData getData() throws InvalidDataInputException {
         if (checked_item == null)
-            return null;
+            throw new InvalidDataInputException();
         return new BatteryEventData(values[checked_item]);
     }
 }

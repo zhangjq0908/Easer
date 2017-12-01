@@ -19,6 +19,10 @@
 
 package ryey.easer.plugins.operation.network_transmission;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.support.annotation.NonNull;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
@@ -34,12 +38,12 @@ import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
 public class NetworkTransmissionOperationData implements OperationData {
 
-    static final String K_PROTOCOL = "protocol";
-    static final String K_REMOTE_ADDRESS = "remote_address";
-    static final String K_REMOTE_PORT = "remote_port";
-    static final String K_DATA = "data";
+    private static final String K_PROTOCOL = "protocol";
+    private static final String K_REMOTE_ADDRESS = "remote_address";
+    private static final String K_REMOTE_PORT = "remote_port";
+    private static final String K_DATA = "data";
 
-    TransmissionData data = null;
+    private TransmissionData data = null;
 
     public NetworkTransmissionOperationData() {
     }
@@ -48,13 +52,14 @@ public class NetworkTransmissionOperationData implements OperationData {
         data = tdata;
     }
 
+    @NonNull
     @Override
     public Object get() {
         return data;
     }
 
     @Override
-    public void set(Object obj) {
+    public void set(@NonNull Object obj) {
         this.data = (TransmissionData) obj;
     }
 
@@ -69,7 +74,7 @@ public class NetworkTransmissionOperationData implements OperationData {
     }
 
     @Override
-    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         this.data = new TransmissionData();
         switch (format) {
             default:
@@ -86,9 +91,10 @@ public class NetworkTransmissionOperationData implements OperationData {
         }
     }
 
+    @NonNull
     @Override
-    public String serialize(C.Format format) {
-        String res = "";
+    public String serialize(@NonNull C.Format format) {
+        String res;
         switch (format) {
             default:
                 JSONObject jsonObject = new JSONObject();
@@ -114,10 +120,42 @@ public class NetworkTransmissionOperationData implements OperationData {
             return false;
         if (Utils.isBlank(data.remote_address))
             return false;
-        if (data.remote_port == null)
-            return false;
         if (data.remote_port <= 0)
             return false;
         return true;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (!(obj instanceof NetworkTransmissionOperationData))
+            return false;
+        return data.equals(((NetworkTransmissionOperationData) obj).data);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(data, 0);
+    }
+
+    public static final Parcelable.Creator<NetworkTransmissionOperationData> CREATOR
+            = new Parcelable.Creator<NetworkTransmissionOperationData>() {
+        public NetworkTransmissionOperationData createFromParcel(Parcel in) {
+            return new NetworkTransmissionOperationData(in);
+        }
+
+        public NetworkTransmissionOperationData[] newArray(int size) {
+            return new NetworkTransmissionOperationData[size];
+        }
+    };
+
+    private NetworkTransmissionOperationData(Parcel in) {
+        data = in.readParcelable(TransmissionData.class.getClassLoader());
     }
 }

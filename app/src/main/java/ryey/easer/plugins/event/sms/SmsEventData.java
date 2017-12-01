@@ -19,6 +19,10 @@
 
 package ryey.easer.plugins.event.sms;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.support.annotation.NonNull;
+
 import com.orhanobut.logger.Logger;
 
 import org.json.JSONException;
@@ -38,8 +42,8 @@ import ryey.easer.plugins.event.TypedEventData;
 
 public class SmsEventData extends TypedEventData {
 
-    static final String K_SENDER = "sender";
-    static final String K_CONTENT = "content";
+    private static final String K_SENDER = "sender";
+    private static final String K_CONTENT = "content";
 
     SmsInnerData innerData;
 
@@ -54,13 +58,14 @@ public class SmsEventData extends TypedEventData {
         set(innerData);
     }
 
+    @NonNull
     @Override
     public Object get() {
         return innerData;
     }
 
     @Override
-    public void set(Object obj) {
+    public void set(@NonNull Object obj) {
         if (obj instanceof SmsInnerData) {
             innerData = (SmsInnerData) obj;
         } else {
@@ -86,7 +91,7 @@ public class SmsEventData extends TypedEventData {
     }
 
     @Override
-    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         innerData = new SmsInnerData();
         switch (format) {
             default:
@@ -101,9 +106,10 @@ public class SmsEventData extends TypedEventData {
         }
     }
 
+    @NonNull
     @Override
-    public String serialize(C.Format format) {
-        String res = "";
+    public String serialize(@NonNull C.Format format) {
+        String res;
         switch (format) {
             default:
                 try {
@@ -121,4 +127,37 @@ public class SmsEventData extends TypedEventData {
         return res;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (!(obj instanceof SmsEventData))
+            return false;
+        return innerData.equals(((SmsEventData) obj).innerData);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(innerData, flags);
+    }
+
+    public static final Parcelable.Creator<SmsEventData> CREATOR
+            = new Parcelable.Creator<SmsEventData>() {
+        public SmsEventData createFromParcel(Parcel in) {
+            return new SmsEventData(in);
+        }
+
+        public SmsEventData[] newArray(int size) {
+            return new SmsEventData[size];
+        }
+    };
+
+    private SmsEventData(Parcel in) {
+        innerData = in.readParcelable(SmsInnerData.class.getClassLoader());
+    }
 }

@@ -25,6 +25,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -46,7 +47,7 @@ public class OutlineFragment extends Fragment {
     TextView mIndicator;
     ImageView mBanner;
 
-    BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             switch (intent.getAction()) {
@@ -58,17 +59,18 @@ public class OutlineFragment extends Fragment {
     };
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        activity.setTitle(getString(R.string.title_outline));
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof Activity)
+            ((Activity) context).setTitle(getString(R.string.title_outline));
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_outline, container, false);
 
-        mIndicator = (TextView) mView.findViewById(R.id.running_ind);
-        mBanner = (ImageView) mView.findViewById(R.id.running_ind_banner);
+        mIndicator = mView.findViewById(R.id.running_ind);
+        mBanner = mView.findViewById(R.id.running_ind_banner);
 
         Fragment fragment_permission = new PermissionOutlineFragment();
         Fragment fragment_history = new LoadedHistoryFragment();
@@ -77,7 +79,7 @@ public class OutlineFragment extends Fragment {
                 .replace(R.id.content_fragment_loaded_history, fragment_history)
                 .commit();
 
-        FloatingActionButton fab = (FloatingActionButton) mView.findViewById(R.id.fab);
+        FloatingActionButton fab = mView.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

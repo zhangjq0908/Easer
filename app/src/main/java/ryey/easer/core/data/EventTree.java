@@ -28,8 +28,8 @@ import ryey.easer.commons.plugindef.eventplugin.EventData;
  * Events are linked together as trees. This class represents that structure and relevant methods.
  */
 final public class EventTree {
-    EventStructure data;
-    List<EventTree> subs;
+    final EventStructure data;
+    final List<EventTree> subs;
     public EventTree(EventStructure eventStructure) {
         this.data = eventStructure;
         this.subs = new LinkedList<>();

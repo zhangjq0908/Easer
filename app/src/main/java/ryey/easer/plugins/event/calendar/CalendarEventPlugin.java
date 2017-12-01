@@ -22,6 +22,7 @@ package ryey.easer.plugins.event.calendar;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
@@ -31,26 +32,29 @@ import ryey.easer.plugins.reusable.PluginHelper;
 
 public class CalendarEventPlugin implements EventPlugin {
 
+    @NonNull
     @Override
     public String name() {
         return "calendar";
     }
 
     @Override
-    public boolean checkPermissions(Context context) {
+    public boolean checkPermissions(@NonNull Context context) {
         return PluginHelper.checkPermission(context, Manifest.permission.READ_CALENDAR);
     }
 
     @Override
-    public void requestPermissions(Activity activity, int requestCode) {
+    public void requestPermissions(@NonNull Activity activity, int requestCode) {
         PluginHelper.requestPermission(activity, requestCode, Manifest.permission.READ_CALENDAR);
     }
 
+    @NonNull
     @Override
     public EventData data() {
         return new CalendarEventData();
     }
 
+    @NonNull
     @Override
     public PluginViewFragment view() {
         return new CalendarPluginViewFragment();

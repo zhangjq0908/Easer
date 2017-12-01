@@ -19,6 +19,8 @@
 
 package ryey.easer.plugins.event.celllocation;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.telephony.CellLocation;
 import android.telephony.cdma.CdmaCellLocation;
 import android.telephony.gsm.GsmCellLocation;
@@ -26,9 +28,9 @@ import android.telephony.gsm.GsmCellLocation;
 import java.util.List;
 import java.util.Locale;
 
-public class CellLocationSingleData {
-    Integer cid = null;
-    Integer lac = null;
+public class CellLocationSingleData implements Parcelable {
+    private Integer cid = null;
+    private Integer lac = null;
 
     static CellLocationSingleData fromCellLocation(CellLocation location) {
         int cid, lac;
@@ -61,6 +63,7 @@ public class CellLocationSingleData {
                 if (!(d instanceof Integer))
                     throw new RuntimeException("illegal data");
             }
+            //noinspection unchecked (it is actually checked!)
             set((List<Integer>) obj);
         } else if (obj instanceof String) {
             set((String) obj);
@@ -69,14 +72,14 @@ public class CellLocationSingleData {
         }
     }
 
-    public void set(List<Integer> obj) {
+    private void set(List<Integer> obj) {
         if (obj.size() != 2)
             throw new RuntimeException("illegal data");
         cid = obj.get(0);
         lac = obj.get(1);
     }
 
-    public void set(String repr) {
+    private void set(String repr) {
         String[] parts = repr.split("-");
         if (parts.length != 2)
             return;
@@ -112,4 +115,32 @@ public class CellLocationSingleData {
         result = 31 * result + (lac != null ? lac.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(cid);
+        dest.writeInt(lac);
+    }
+
+    public static final Parcelable.Creator<CellLocationSingleData> CREATOR
+            = new Parcelable.Creator<CellLocationSingleData>() {
+        public CellLocationSingleData createFromParcel(Parcel in) {
+            return new CellLocationSingleData(in);
+        }
+
+        public CellLocationSingleData[] newArray(int size) {
+            return new CellLocationSingleData[size];
+        }
+    };
+
+    private CellLocationSingleData(Parcel in) {
+        cid = in.readInt();
+        lac = in.readInt();
+    }
+
 }

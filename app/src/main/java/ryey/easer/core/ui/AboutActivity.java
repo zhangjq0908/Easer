@@ -35,7 +35,7 @@ public class AboutActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-        FloatingActionButton fabGit = (FloatingActionButton) findViewById(R.id.fabGithub);
+        FloatingActionButton fabGit = findViewById(R.id.fabGithub);
         fabGit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,7 +45,7 @@ public class AboutActivity extends Activity {
             }
         });
 
-        FloatingActionButton fabWord = (FloatingActionButton) findViewById(R.id.fabWord);
+        FloatingActionButton fabWord = findViewById(R.id.fabWord);
         fabWord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,7 +55,7 @@ public class AboutActivity extends Activity {
             }
         });
 
-        FloatingActionButton fabBack = (FloatingActionButton) findViewById(R.id.fabReturn);
+        FloatingActionButton fabBack = findViewById(R.id.fabReturn);
         fabBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -22,6 +22,7 @@ package ryey.easer.plugins.event.wifi;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
@@ -31,26 +32,29 @@ import ryey.easer.plugins.reusable.PluginHelper;
 
 public class WifiEventPlugin implements EventPlugin {
 
+    @NonNull
     @Override
     public String name() {
         return "wifi connection";
     }
 
     @Override
-    public boolean checkPermissions(Context context) {
+    public boolean checkPermissions(@NonNull Context context) {
         return PluginHelper.checkPermission(context, Manifest.permission.ACCESS_WIFI_STATE);
     }
 
     @Override
-    public void requestPermissions(Activity activity, int requestCode) {
+    public void requestPermissions(@NonNull Activity activity, int requestCode) {
         PluginHelper.requestPermission(activity, requestCode, Manifest.permission.ACCESS_WIFI_STATE);
     }
 
+    @NonNull
     @Override
     public EventData data() {
         return new WifiEventData();
     }
 
+    @NonNull
     @Override
     public PluginViewFragment view() {
         return new WifiPluginViewFragment();

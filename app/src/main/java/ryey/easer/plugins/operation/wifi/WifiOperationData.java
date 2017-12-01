@@ -19,14 +19,32 @@
 
 package ryey.easer.plugins.operation.wifi;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import ryey.easer.plugins.operation.BooleanOperationData;
 
 public class WifiOperationData extends BooleanOperationData {
-    public WifiOperationData() {
+    WifiOperationData() {
     }
 
-    public WifiOperationData(Boolean state) {
+    WifiOperationData(Boolean state) {
         super(state);
+    }
+
+    public static final Parcelable.Creator<WifiOperationData> CREATOR
+            = new Parcelable.Creator<WifiOperationData>() {
+        public WifiOperationData createFromParcel(Parcel in) {
+            return new WifiOperationData(in);
+        }
+
+        public WifiOperationData[] newArray(int size) {
+            return new WifiOperationData[size];
+        }
+    };
+
+    private WifiOperationData(Parcel in) {
+        super(in);
     }
 
 }

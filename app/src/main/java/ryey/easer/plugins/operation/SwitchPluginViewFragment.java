@@ -32,36 +32,33 @@ import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public abstract class SwitchPluginViewFragment extends PluginViewFragment {
-    Switch aSwitch;
-
-    {
-    }
+    private Switch aSwitch;
 
     @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_reusable__switch, container, false);
-        aSwitch = (Switch) view.findViewById(R.id.plugin_reusable__switch);
+        aSwitch = view.findViewById(R.id.plugin_reusable__switch);
         return view;
     }
 
-    protected static void setSwitch(@NonNull Switch sw, Boolean state) {
+    private static void setSwitch(@NonNull Switch sw, boolean state) {
         sw.setChecked(state);
     }
 
-    @NonNull
-    protected static Boolean fromSwitch(@NonNull Switch sw) {
+    private static boolean fromSwitch(@NonNull Switch sw) {
         return sw.isChecked();
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         if (data instanceof BooleanOperationData) {
             Boolean state = (Boolean) data.get();
             setSwitch(aSwitch, state);
         }
     }
 
+    @NonNull
     protected Boolean state() {
         return fromSwitch(aSwitch);
     }

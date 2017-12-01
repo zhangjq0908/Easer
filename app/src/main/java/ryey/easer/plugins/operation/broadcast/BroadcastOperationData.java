@@ -20,6 +20,9 @@
 package ryey.easer.plugins.operation.broadcast;
 
 import android.net.Uri;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,18 +43,18 @@ import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.plugins.PluginRegistry;
 
 public class BroadcastOperationData implements OperationData {
-    protected static final String ns = null;
+    private static final String ns = null;
 
-    static final String ACTION = "action";
-    static final String CATEGORY = "category";
-    static final String TYPE = "type";
-    static final String DATA = "data";
-    static final String EXTRAS = "extras";
-    static final String KEY = "key";
-    static final String VALUE = "value";
-    static final String V_TYPE = "type";
+    private static final String ACTION = "action";
+    private static final String CATEGORY = "category";
+    private static final String TYPE = "type";
+    private static final String DATA = "data";
+    private static final String EXTRAS = "extras";
+    private static final String KEY = "key";
+    private static final String VALUE = "value";
+    private static final String V_TYPE = "type";
 
-    IntentData data = new IntentData();
+    private IntentData data = new IntentData();
 
     public BroadcastOperationData() {
     }
@@ -60,13 +63,14 @@ public class BroadcastOperationData implements OperationData {
         this.data = data;
     }
 
+    @NonNull
     @Override
     public Object get() {
         return data;
     }
 
     @Override
-    public void set(Object obj) {
+    public void set(@NonNull Object obj) {
         if (obj instanceof String) {
             data.action = (String) obj;
         } else if (obj instanceof IntentData) {
@@ -160,7 +164,7 @@ public class BroadcastOperationData implements OperationData {
     }
 
     @Override
-    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 try {
@@ -187,7 +191,7 @@ public class BroadcastOperationData implements OperationData {
                             IntentData.ExtraItem item = new IntentData.ExtraItem();
                             item.key = jsonObject_extra.getString(KEY);
                             item.value = jsonObject_extra.getString(VALUE);
-                            item.type = jsonObject_extra.getString(TYPE);
+                            item.type = jsonObject_extra.getString(V_TYPE);
                             intentData.extras.add(item);
                         }
                     }
@@ -200,8 +204,9 @@ public class BroadcastOperationData implements OperationData {
         }
     }
 
+    @NonNull
     @Override
-    public String serialize(C.Format format) {
+    public String serialize(@NonNull C.Format format) {
         String res = "";
         switch (format) {
             default:
@@ -228,7 +233,7 @@ public class BroadcastOperationData implements OperationData {
                             JSONObject jsonObject_extra = new JSONObject();
                             jsonObject_extra.put(KEY, item.key);
                             jsonObject_extra.put(VALUE, item.value);
-                            jsonObject_extra.put(TYPE, item.type);
+                            jsonObject_extra.put(V_TYPE, item.type);
                             jsonArray_extras.put(jsonObject_extra);
                         }
                         jsonObject.put(EXTRAS, jsonArray_extras);
@@ -253,5 +258,39 @@ public class BroadcastOperationData implements OperationData {
         if (data.data != null && !Utils.isBlank(data.data.toString()))
             return true;
         return false;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (!(obj instanceof BroadcastOperationData))
+            return false;
+        return data.equals(((BroadcastOperationData) obj).data);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(data, 0);
+    }
+
+    public static final Parcelable.Creator<BroadcastOperationData> CREATOR
+            = new Parcelable.Creator<BroadcastOperationData>() {
+        public BroadcastOperationData createFromParcel(Parcel in) {
+            return new BroadcastOperationData(in);
+        }
+
+        public BroadcastOperationData[] newArray(int size) {
+            return new BroadcastOperationData[size];
+        }
+    };
+
+    private BroadcastOperationData(Parcel in) {
+        data = in.readParcelable(IntentData.class.getClassLoader());
     }
 }

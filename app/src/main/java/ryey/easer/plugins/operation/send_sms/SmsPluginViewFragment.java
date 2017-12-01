@@ -28,11 +28,13 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public class SmsPluginViewFragment extends PluginViewFragment {
-    EditText et_destination, et_content;
+    private EditText et_destination;
+    private EditText et_content;
 
     {
         setDesc(R.string.operation_send_sms);
@@ -40,22 +42,23 @@ public class SmsPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_operation__send_sms, container, false);
-        et_destination = (EditText) view.findViewById(R.id.editText_destination);
-        et_content = (EditText) view.findViewById(R.id.editText_content);
+        et_destination = view.findViewById(R.id.editText_destination);
+        et_content = view.findViewById(R.id.editText_content);
         return view;
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         Sms sms = (Sms) data.get();
         et_destination.setText(sms.destination);
         et_content.setText(sms.content);
     }
 
+    @NonNull
     @Override
-    public StorageData getData() {
+    public StorageData getData() throws InvalidDataInputException {
         Sms sms = new Sms();
         sms.destination = et_destination.getText().toString();
         sms.content = et_content.getText().toString();

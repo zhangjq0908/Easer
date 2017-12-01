@@ -19,6 +19,9 @@
 
 package ryey.easer.plugins.operation.hotspot;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import ryey.easer.plugins.operation.BooleanOperationData;
 
 public class HotspotOperationData extends BooleanOperationData {
@@ -27,6 +30,21 @@ public class HotspotOperationData extends BooleanOperationData {
 
     public HotspotOperationData(Boolean state) {
         super(state);
+    }
+
+    public static final Parcelable.Creator<HotspotOperationData> CREATOR
+            = new Parcelable.Creator<HotspotOperationData>() {
+        public HotspotOperationData createFromParcel(Parcel in) {
+            return new HotspotOperationData(in);
+        }
+
+        public HotspotOperationData[] newArray(int size) {
+            return new HotspotOperationData[size];
+        }
+    };
+
+    private HotspotOperationData(Parcel in) {
+        super(in);
     }
 
 }

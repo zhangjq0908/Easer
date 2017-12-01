@@ -40,16 +40,17 @@ import android.widget.EditText;
 
 import ryey.easer.R;
 import ryey.easer.Utils;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public class WifiPluginViewFragment extends PluginViewFragment {
-    EditText editText;
-    final String ACTION_RETURN = "ryey.easer.plugins.event.bluetooth_device.return_from_dialog";
-    final String EXTRA_SSID = "ryey.easer.plugins.event.bluetooth_device.extra.hardware_address";
+    private EditText editText;
+    private final String ACTION_RETURN = "ryey.easer.plugins.event.bluetooth_device.return_from_dialog";
+    private final String EXTRA_SSID = "ryey.easer.plugins.event.bluetooth_device.extra.hardware_address";
 
-    IntentFilter mFilter = new IntentFilter(ACTION_RETURN);
-    BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    private final IntentFilter mFilter = new IntentFilter(ACTION_RETURN);
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(ACTION_RETURN)) {
@@ -70,9 +71,9 @@ public class WifiPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_event__wifi_connection, container, false);
-        editText = (EditText) view.findViewById(R.id.wifi_name);
+        editText = view.findViewById(R.id.wifi_name);
 
         view.findViewById(R.id.connection_picker).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,19 +122,20 @@ public class WifiPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         if (data instanceof WifiEventData) {
             editText.setText(data.toString());
         }
     }
 
+    @NonNull
     @Override
-    public StorageData getData() {
+    public StorageData getData() throws InvalidDataInputException {
         return new WifiEventData(editText.getText().toString());
     }
 
     class WifiDeviceWrapper {
-        WifiConfiguration configuration;
+        final WifiConfiguration configuration;
         WifiDeviceWrapper(WifiConfiguration configuration) {
             this.configuration = configuration;
         }

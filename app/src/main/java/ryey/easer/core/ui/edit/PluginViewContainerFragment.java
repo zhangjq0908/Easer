@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.StorageData;
 
 public abstract class PluginViewContainerFragment extends Fragment {
@@ -26,17 +27,17 @@ public abstract class PluginViewContainerFragment extends Fragment {
 
     @NonNull
     @Override
-    public abstract View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState);
+    public abstract View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState);
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         initial_background = view.getBackground();
         if (passed_data != null) {
             _fill(passed_data);
         }
     }
 
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         pluginViewFragment.fill(data);
     }
 
@@ -49,7 +50,8 @@ public abstract class PluginViewContainerFragment extends Fragment {
         }
     }
 
-    StorageData getData() {
+    @NonNull
+    StorageData getData() throws InvalidDataInputException {
         return pluginViewFragment.getData();
     }
 

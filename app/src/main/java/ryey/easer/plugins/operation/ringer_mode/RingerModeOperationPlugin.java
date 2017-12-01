@@ -25,6 +25,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
@@ -35,11 +36,13 @@ import ryey.easer.plugins.reusable.PluginHelper;
 
 public class RingerModeOperationPlugin implements OperationPlugin {
 
+    @NonNull
     @Override
     public String name() {
         return "ringer_mode";
     }
 
+    @NonNull
     @Override
     public PrivilegeUsage privilege() {
         return PrivilegeUsage.no_root;
@@ -51,7 +54,7 @@ public class RingerModeOperationPlugin implements OperationPlugin {
     }
 
     @Override
-    public boolean checkPermissions(Context context) {
+    public boolean checkPermissions(@NonNull Context context) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             return PluginHelper.checkPermission(context, Manifest.permission.MODIFY_AUDIO_SETTINGS);
         } else {
@@ -62,7 +65,7 @@ public class RingerModeOperationPlugin implements OperationPlugin {
     }
 
     @Override
-    public void requestPermissions(Activity activity, int requestCode) {
+    public void requestPermissions(@NonNull Activity activity, int requestCode) {
         PluginHelper.requestPermission(activity, requestCode, Manifest.permission.MODIFY_AUDIO_SETTINGS);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
             activity.startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
@@ -72,18 +75,21 @@ public class RingerModeOperationPlugin implements OperationPlugin {
         }
     }
 
+    @NonNull
     @Override
     public OperationData data() {
         return new RingerModeOperationData();
     }
 
+    @NonNull
     @Override
     public PluginViewFragment view() {
         return new RingerModePluginViewFragment();
     }
 
+    @NonNull
     @Override
-    public OperationLoader loader(Context context) {
+    public OperationLoader loader(@NonNull Context context) {
         return new RingerModeLoader(context);
     }
 }

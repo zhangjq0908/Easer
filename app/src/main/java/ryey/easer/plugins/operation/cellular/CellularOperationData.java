@@ -19,6 +19,9 @@
 
 package ryey.easer.plugins.operation.cellular;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import ryey.easer.plugins.operation.BooleanOperationData;
 
 public class CellularOperationData extends BooleanOperationData {
@@ -27,6 +30,21 @@ public class CellularOperationData extends BooleanOperationData {
 
     public CellularOperationData(Boolean state) {
         super(state);
+    }
+
+    public static final Parcelable.Creator<CellularOperationData> CREATOR
+            = new Parcelable.Creator<CellularOperationData>() {
+        public CellularOperationData createFromParcel(Parcel in) {
+            return new CellularOperationData(in);
+        }
+
+        public CellularOperationData[] newArray(int size) {
+            return new CellularOperationData[size];
+        }
+    };
+
+    private CellularOperationData(Parcel in) {
+        super(in);
     }
 
 }

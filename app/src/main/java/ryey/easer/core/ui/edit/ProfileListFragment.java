@@ -23,6 +23,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ListFragment;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -49,9 +50,10 @@ public class ProfileListFragment extends ListFragment {
     ProfileDataStorage mStorage = null;
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        activity.setTitle(getString(R.string.title_profile));
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof Activity)
+            ((Activity) context).setTitle(getString(R.string.title_profile));
     }
 
     @Override
@@ -74,7 +76,7 @@ public class ProfileListFragment extends ListFragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         view.findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
             @Override

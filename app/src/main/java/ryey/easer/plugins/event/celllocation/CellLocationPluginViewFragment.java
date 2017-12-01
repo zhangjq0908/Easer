@@ -33,11 +33,12 @@ import android.widget.EditText;
 
 import ryey.easer.R;
 import ryey.easer.Utils;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public class CellLocationPluginViewFragment extends PluginViewFragment {
-    EditText editText;
+    private EditText editText;
 
     {
         setDesc(R.string.event_celllocation);
@@ -45,10 +46,10 @@ public class CellLocationPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_event__cell_location, container, false);
 
-        editText = (EditText) view.findViewById(R.id.location_text);
+        editText = view.findViewById(R.id.location_text);
         view.findViewById(R.id.location_picker).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,14 +69,15 @@ public class CellLocationPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         if (data instanceof CellLocationEventData) {
             editText.setText(data.toString());
         }
     }
 
+    @NonNull
     @Override
-    public StorageData getData() {
+    public StorageData getData() throws InvalidDataInputException {
         CellLocationEventData data = CellLocationEventData.fromString(editText.getText().toString());
         return data;
     }

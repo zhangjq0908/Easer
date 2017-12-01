@@ -12,13 +12,16 @@ import android.widget.LinearLayout;
 
 import java.util.Set;
 
+import javax.crypto.spec.IvParameterSpec;
+
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public class ConnectivityPluginViewFragment extends PluginViewFragment {
     String []mode_names;
-    int []values = {
+    final int []values = {
             ConnectivityType.TYPE_NOT_CONNECTED,
             ConnectivityType.TYPE_WIFI,
             ConnectivityType.TYPE_MOBILE,
@@ -26,7 +29,7 @@ public class ConnectivityPluginViewFragment extends PluginViewFragment {
             ConnectivityType.TYPE_BLUETOOTH,
             ConnectivityType.TYPE_VPN,
     };
-    CheckBox[] checkBoxes = new CheckBox[values.length];
+    final CheckBox[] checkBoxes = new CheckBox[values.length];
 
     {
         setDesc(R.string.event_connectivity);
@@ -40,7 +43,7 @@ public class ConnectivityPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         for (int i = 0; i < checkBoxes.length; i++) {
@@ -52,7 +55,7 @@ public class ConnectivityPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         if (data instanceof ConnectivityEventData) {
             Set<Integer> checked_values = (Set<Integer>) data.get();
             for (int checked_value : checked_values) {
@@ -66,8 +69,9 @@ public class ConnectivityPluginViewFragment extends PluginViewFragment {
         }
     }
 
+    @NonNull
     @Override
-    public StorageData getData() {
+    public StorageData getData() throws InvalidDataInputException {
         Set<Integer> checked = new ArraySet<>();
         for (int i = 0; i < checkBoxes.length; i++) {
             if (checkBoxes[i].isChecked()) {
@@ -75,7 +79,7 @@ public class ConnectivityPluginViewFragment extends PluginViewFragment {
             }
         }
         if (checked.size() == 0)
-            return null;
+            throw new InvalidDataInputException();
         return new ConnectivityEventData(checked);
     }
 }

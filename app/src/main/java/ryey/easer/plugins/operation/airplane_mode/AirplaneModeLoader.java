@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 
 import java.io.IOException;
 
@@ -36,7 +37,7 @@ public class AirplaneModeLoader extends OperationLoader {
     }
 
     @Override
-    public boolean _load(OperationData data) {
+    public boolean _load(@NonNull OperationData data) {
         Boolean state = (Boolean) data.get();
         if (state == airplaneModeIsOn())
             return true;

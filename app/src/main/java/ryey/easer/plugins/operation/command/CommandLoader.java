@@ -20,12 +20,12 @@
 package ryey.easer.plugins.operation.command;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
 
-import ryey.easer.Utils;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.plugins.reusable.PluginHelper;
@@ -36,25 +36,21 @@ public class CommandLoader extends OperationLoader {
     }
 
     @Override
-    public boolean _load(OperationData data) {
+    public boolean _load(@NonNull OperationData data) {
         boolean success = true;
         String text = (String) data.get();
         String []commands = text.split("\n");
-        for (String command : commands) {
-            if (!Utils.isBlank(command)) {
-                Process process;
-                try {
-                    if (PluginHelper.useRootFeature(context)) {
-                        process =PluginHelper.executeCommandAsRoot(context, command);
-                    } else {
-                        process = Runtime.getRuntime().exec(command);
-                    }
-                } catch (IOException e) {
-                    Logger.e(e, "error while launching process");
-                    e.printStackTrace();
-                    success = false;
-                }
+        Process process;
+        try {
+            if (PluginHelper.useRootFeature(context)) {
+                process = PluginHelper.executeCommandsAsRoot(commands);
+            } else {
+                process = PluginHelper.executeCommandsContinuously(commands);
             }
+        } catch (IOException e) {
+            Logger.e(e, "error while launching process");
+            e.printStackTrace();
+            success = false;
         }
         return success;
     }

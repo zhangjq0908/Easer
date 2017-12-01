@@ -19,6 +19,9 @@
 
 package ryey.easer.plugins.operation;
 
+import android.os.Parcel;
+import android.support.annotation.NonNull;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
@@ -34,9 +37,9 @@ import ryey.easer.plugins.reusable.IntegerData;
 
 public abstract class IntegerOperationData extends IntegerData implements OperationData {
 
-    public IntegerOperationData() {super();}
+    protected IntegerOperationData() {super();}
 
-    public IntegerOperationData(Integer level) {
+    protected IntegerOperationData(@NonNull Integer level) {
         super(level);
     }
 
@@ -51,7 +54,7 @@ public abstract class IntegerOperationData extends IntegerData implements Operat
     }
 
     @Override
-    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 Integer level = Integer.valueOf(data);
@@ -59,13 +62,28 @@ public abstract class IntegerOperationData extends IntegerData implements Operat
         }
     }
 
+    @NonNull
     @Override
-    public String serialize(C.Format format) {
-        String res = "";
+    public String serialize(@NonNull C.Format format) {
+        String res;
         switch (format) {
             default:
-                res = ((Integer) get()).toString();
+                res = get().toString();
         }
         return res;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeInt(level);
+    }
+
+    protected IntegerOperationData(@NonNull Parcel in) {
+        level = in.readInt();
     }
 }

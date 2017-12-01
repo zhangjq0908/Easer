@@ -1,6 +1,7 @@
 package ryey.easer.core.ui.edit;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.plugins.PluginRegistry;
@@ -51,11 +53,11 @@ public class EventPluginViewPager extends ViewPager {
         }
     }
 
-    EventData getEventData() {
+    EventData getEventData() throws InvalidDataInputException {
         return getEventData(getCurrentItem());
     }
 
-    EventData getEventData(int position) {
+    EventData getEventData(int position) throws InvalidDataInputException {
         return (EventData) mPagerAdapter.getRegisteredFragment(position).getData();
     }
 
@@ -63,8 +65,8 @@ public class EventPluginViewPager extends ViewPager {
 
         SparseArray<PluginViewContainerFragment> registeredFragments = new SparseArray<>();
 
-        private Context context;
-        String[] titles;
+        private final Context context;
+        final String[] titles;
 
         public MyPagerAdapter(FragmentManager fm, Context context) {
             super(fm);
@@ -93,6 +95,7 @@ public class EventPluginViewPager extends ViewPager {
             return titles[position];
         }
 
+        @NonNull
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             PluginViewContainerFragment fragment = (PluginViewContainerFragment) super.instantiateItem(container, position);

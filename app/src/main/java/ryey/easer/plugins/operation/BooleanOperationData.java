@@ -19,6 +19,9 @@
 
 package ryey.easer.plugins.operation;
 
+import android.os.Parcel;
+import android.support.annotation.NonNull;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
@@ -34,9 +37,9 @@ import ryey.easer.plugins.reusable.BooleanData;
 
 public abstract class BooleanOperationData extends BooleanData implements OperationData {
 
-    public BooleanOperationData() {super();}
+    protected BooleanOperationData() {super();}
 
-    public BooleanOperationData(Boolean state) {
+    protected BooleanOperationData(@NonNull Boolean state) {
         super(state);
     }
 
@@ -51,7 +54,7 @@ public abstract class BooleanOperationData extends BooleanData implements Operat
     }
 
     @Override
-    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 switch (data) {
@@ -67,9 +70,10 @@ public abstract class BooleanOperationData extends BooleanData implements Operat
         }
     }
 
+    @NonNull
     @Override
-    public String serialize(C.Format format) {
-        String res = "";
+    public String serialize(@NonNull C.Format format) {
+        String res;
         switch (format) {
             default:
                 Boolean state = (Boolean) get();
@@ -79,5 +83,19 @@ public abstract class BooleanOperationData extends BooleanData implements Operat
                     res = C.OFF;
         }
         return res;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeByte((byte) (state ? 1 : 0));
+    }
+
+    protected BooleanOperationData(@NonNull Parcel in) {
+        state = in.readByte() != 0;
     }
 }

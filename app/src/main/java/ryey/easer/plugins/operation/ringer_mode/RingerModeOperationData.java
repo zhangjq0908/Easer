@@ -19,6 +19,9 @@
 
 package ryey.easer.plugins.operation.ringer_mode;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import ryey.easer.plugins.operation.IntegerOperationData;
 
 public class RingerModeOperationData extends IntegerOperationData {
@@ -28,15 +31,30 @@ public class RingerModeOperationData extends IntegerOperationData {
         rbound = 3;
     }
 
-    public RingerModeOperationData() {
+    RingerModeOperationData() {
     }
 
-    public RingerModeOperationData(Integer state) {
+    RingerModeOperationData(Integer state) {
         super(state);
     }
 
     @Override
     public boolean isValid() {
         return super.isValid();
+    }
+
+    public static final Parcelable.Creator<RingerModeOperationData> CREATOR
+            = new Parcelable.Creator<RingerModeOperationData>() {
+        public RingerModeOperationData createFromParcel(Parcel in) {
+            return new RingerModeOperationData(in);
+        }
+
+        public RingerModeOperationData[] newArray(int size) {
+            return new RingerModeOperationData[size];
+        }
+    };
+
+    private RingerModeOperationData(Parcel in) {
+        super(in);
     }
 }

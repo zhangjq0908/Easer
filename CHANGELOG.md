@@ -1,6 +1,26 @@
 CHANGELOG
 ======
 
+* v0.4.8: Run multiple commands in one process && multiple developer changes
+	* `CommandOperationPlugin` now runs multiple commands in one process, which allows inputting data into an interactive shell
+	* Developer changes
+		* Make `StorageData` `Parcelable`
+			*  Implement that in all subclasses
+			*  Add tests for them
+		*  Change `Map` to `Set` in `CalendarEventData` (for the condition) (as well as in the test)
+		*  Add many *nullality* annotations to plugins (including data and views)
+		*  Use exception instead of `null` for data retrival (this seems to be more natural in Java)
+		*  Resolve some lint warnings
+			*  Make the `Handler` in `ryey.easer.plugins.operation.brightness.DumbSettingBrightnessActivity` `static`
+			*  Add some `final`s
+			*  Use `StringBuilder` in some places (instead of raw `String` manipulation)
+			*  Fix a few javaDoc
+			*  Use explicit locales
+			*  Use new API instead of old API (`Fragment.onAttach()`)
+			*  Remove casts of `findViewById()` (because from API 26 that cast is no longer required)
+			*  Better access modifiers
+			*  Minor fixes and clean-ups
+
 * v0.4.7: Require permissions during runtime && fix several bugs
 	* Add permission checking and requesting codes for each plugin
 	* When loading the plugin's view, its permission is checked and requested (if necessary)

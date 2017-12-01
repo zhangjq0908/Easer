@@ -26,6 +26,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.support.annotation.NonNull;
 
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
@@ -37,7 +38,7 @@ public class BTDeviceSlot extends AbstractSlot {
 
     private int matched_devices = 0;
 
-    BroadcastReceiver connReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver connReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
@@ -57,7 +58,7 @@ public class BTDeviceSlot extends AbstractSlot {
         }
     };
 
-    IntentFilter filter;
+    private final IntentFilter filter;
 
     {
         filter = new IntentFilter();
@@ -70,7 +71,7 @@ public class BTDeviceSlot extends AbstractSlot {
     }
 
     @Override
-    public void set(EventData data) {
+    public void set(@NonNull EventData data) {
         if (data instanceof BTDeviceEventData) {
             this.data = (BTDeviceEventData) data;
             type = data.type();

@@ -28,11 +28,12 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public class CommandPluginViewFragment extends PluginViewFragment {
-    EditText editText_command;
+    private EditText editText_command;
 
     {
         setDesc(R.string.operation_command);
@@ -40,20 +41,21 @@ public class CommandPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_operation__command, container, false);
-        editText_command = (EditText) view.findViewById(R.id.command);
+        editText_command = view.findViewById(R.id.command);
         return view;
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         String command = (String) data.get();
         editText_command.setText(command);
     }
 
+    @NonNull
     @Override
-    public StorageData getData() {
+    public StorageData getData() throws InvalidDataInputException {
         return new CommandOperationData(editText_command.getText().toString());
     }
 }

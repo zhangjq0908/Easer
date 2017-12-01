@@ -46,7 +46,7 @@ public class EHService extends Service {
 
     List<Lotus> mLotusArray = new ArrayList<>();
 
-    BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();

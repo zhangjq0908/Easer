@@ -42,15 +42,16 @@ import android.widget.TextView;
 
 import ryey.easer.R;
 import ryey.easer.Utils;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public class BTDevicePluginViewFragment extends PluginViewFragment {
-    final String ACTION_RETURN = "ryey.easer.plugins.event.bluetooth_device.return_from_dialog";
-    final String EXTRA_HARDWARE_ADDRESS = "ryey.easer.plugins.event.bluetooth_device.extra.hardware_address";
+    private final String ACTION_RETURN = "ryey.easer.plugins.event.bluetooth_device.return_from_dialog";
+    private final String EXTRA_HARDWARE_ADDRESS = "ryey.easer.plugins.event.bluetooth_device.extra.hardware_address";
 
-    IntentFilter mFilter = new IntentFilter(ACTION_RETURN);
-    BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    private final IntentFilter mFilter = new IntentFilter(ACTION_RETURN);
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(ACTION_RETURN)) {
@@ -60,8 +61,8 @@ public class BTDevicePluginViewFragment extends PluginViewFragment {
         }
     };
 
-    EditText editText;
-    TextView textView;
+    private EditText editText;
+    private TextView textView;
 
     {
         setDesc(R.string.event_bluetooth_device);
@@ -69,14 +70,14 @@ public class BTDevicePluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_event__bluetooth_device, container, false);
 
-        editText = (EditText) view.findViewById(R.id.hardware_address);
-        textView = (TextView) view.findViewById(R.id.device_name);
+        editText = view.findViewById(R.id.hardware_address);
+        textView = view.findViewById(R.id.device_name);
 
         editText.addTextChangedListener(new TextWatcher() {
-            String name_not_found = getResources().getString(R.string.ebtdevice_unknown_device);
+            final String name_not_found = getResources().getString(R.string.ebtdevice_unknown_device);
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -89,23 +90,23 @@ public class BTDevicePluginViewFragment extends PluginViewFragment {
             @Override
             public void afterTextChanged(Editable s) {
                 String[] hw_addresses = s.toString().split("\n");
-                String text = "";
+                StringBuilder text = new StringBuilder();
                 boolean first_line = true;
                 if (hw_addresses.length > 0) {
                     for (String hw_address : hw_addresses) {
                         if (Utils.isBlank(hw_address))
                             continue;
                         if (!first_line)
-                            text += "\n";
+                            text.append("\n");
                         String name = resolveHWAddress(hw_address);
                         if (name != null)
-                            text += name;
+                            text.append(name);
                         else
-                            text += name_not_found;
+                            text.append(name_not_found);
                         first_line = false;
                     }
                 }
-                textView.setText(text);
+                textView.setText(text.toString());
             }
         });
 
@@ -167,19 +168,20 @@ public class BTDevicePluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         if (data instanceof BTDeviceEventData) {
             editText.setText(data.toString());
         }
     }
 
+    @NonNull
     @Override
-    public StorageData getData() {
+    public StorageData getData() throws InvalidDataInputException {
         return new BTDeviceEventData(editText.getText().toString());
     }
 
     class BTDeviceWrapper {
-        BluetoothDevice device;
+        final BluetoothDevice device;
         BTDeviceWrapper(BluetoothDevice device) {
             this.device = device;
         }

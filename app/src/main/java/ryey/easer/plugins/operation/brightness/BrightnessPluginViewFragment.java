@@ -31,12 +31,13 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public class BrightnessPluginViewFragment extends PluginViewFragment {
-    Switch mIsAuto;
-    SeekBar mBrightnessLevel;
+    private Switch mIsAuto;
+    private SeekBar mBrightnessLevel;
 
     {
         setDesc(R.string.operation_brightness);
@@ -44,7 +45,7 @@ public class BrightnessPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public ViewGroup onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public ViewGroup onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         LinearLayout view = new LinearLayout(getContext());
         view.setOrientation(LinearLayout.VERTICAL);
 
@@ -77,7 +78,7 @@ public class BrightnessPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         BrightnessOperationData idata = (BrightnessOperationData) data;
         if (idata.isAuto()) {
             mIsAuto.setChecked(true);
@@ -87,8 +88,9 @@ public class BrightnessPluginViewFragment extends PluginViewFragment {
         }
     }
 
+    @NonNull
     @Override
-    public StorageData getData() {
+    public StorageData getData() throws InvalidDataInputException {
         if (mIsAuto.isChecked())
             return new BrightnessOperationData(true);
         else {

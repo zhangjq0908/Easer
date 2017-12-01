@@ -19,25 +19,28 @@
 
 package ryey.easer.plugins.event.celllocation;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.telephony.CellLocation;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 
+import ryey.easer.Utils;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 public class CellLocationSlot extends AbstractSlot {
-    static TelephonyManager telephonyManager = null;
+    private static TelephonyManager telephonyManager = null;
 
-    CellLocationListener cellLocationListener = new CellLocationListener();
+    private CellLocationListener cellLocationListener = new CellLocationListener();
 
-    CellLocationEventData target = null;
-    EventType type = null;
+    private CellLocationEventData target = null;
+    private EventType type = null;
 
-    CellLocationSingleData curr = null;
+    private CellLocationSingleData curr = null;
 
     public CellLocationSlot(Context context) {
         super(context);
@@ -48,7 +51,7 @@ public class CellLocationSlot extends AbstractSlot {
     }
 
     @Override
-    public void set(EventData data) {
+    public void set(@NonNull EventData data) {
         if (data instanceof CellLocationEventData) {
             target = (CellLocationEventData) data;
             type = data.type();
@@ -79,6 +82,8 @@ public class CellLocationSlot extends AbstractSlot {
     @SuppressLint("MissingPermission")
     @Override
     public void check() {
+        if (!Utils.hasPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION))
+            return;
         CellLocationListener chck = new CellLocationListener();
         chck.onCellLocationChanged(telephonyManager.getCellLocation());
     }

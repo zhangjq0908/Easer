@@ -20,6 +20,7 @@
 package ryey.easer.plugins.operation.network_transmission;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -39,7 +40,7 @@ public class NetworkTransmissionLoader extends OperationLoader {
     }
 
     @Override
-    public boolean _load(OperationData data) {
+    public boolean _load(@NonNull OperationData data) {
         TransmissionData tdata = (TransmissionData) data.get();
         try {
             InetAddress remote_address = InetAddress.getByName(tdata.remote_address);

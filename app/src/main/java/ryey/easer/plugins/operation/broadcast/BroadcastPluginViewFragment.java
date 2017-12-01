@@ -36,15 +36,16 @@ import java.util.List;
 
 import ryey.easer.R;
 import ryey.easer.Utils;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public class BroadcastPluginViewFragment extends PluginViewFragment {
-    EditText m_text_action;
-    EditText m_text_category;
-    EditText m_text_type;
-    EditText m_text_data;
-    List<ExtraItemFragment> m_fragment_extra = new ArrayList<>();
+    private EditText m_text_action;
+    private EditText m_text_category;
+    private EditText m_text_type;
+    private EditText m_text_data;
+    private List<ExtraItemFragment> m_fragment_extra = new ArrayList<>();
 
     {
         setDesc(R.string.operation_broadcast);
@@ -52,12 +53,12 @@ public class BroadcastPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_operation__broadcast, container, false);
-        m_text_action = (EditText) view.findViewById(R.id.text_action);
-        m_text_category = (EditText) view.findViewById(R.id.text_category);
-        m_text_type = (EditText) view.findViewById(R.id.text_type);
-        m_text_data = (EditText) view.findViewById(R.id.text_data);
+        m_text_action = view.findViewById(R.id.text_action);
+        m_text_category = view.findViewById(R.id.text_category);
+        m_text_type = view.findViewById(R.id.text_type);
+        m_text_data = view.findViewById(R.id.text_data);
         view.findViewById(R.id.button_add_extra).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,7 +74,7 @@ public class BroadcastPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         IntentData rdata = (IntentData) data.get();
         m_text_action.setText(rdata.action);
         m_text_category.setText(Utils.StringListToString(rdata.category));
@@ -98,8 +99,9 @@ public class BroadcastPluginViewFragment extends PluginViewFragment {
         }
     }
 
+    @NonNull
     @Override
-    public StorageData getData() {
+    public StorageData getData() throws InvalidDataInputException {
         IntentData data = new IntentData();
         data.action = m_text_action.getText().toString();
         data.category = Utils.stringToStringList(m_text_category.getText().toString());
@@ -131,11 +133,11 @@ public class BroadcastPluginViewFragment extends PluginViewFragment {
 
         @Nullable
         @Override
-        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.plugin_operation__broadcast_fragment_extra_item, container, false);
-            editText_key = (EditText) view.findViewById(R.id.editText_key);
-            editText_value = (EditText) view.findViewById(R.id.editText_value);
-            spinner_type = (Spinner) view.findViewById(R.id.spinner_type);
+            editText_key = view.findViewById(R.id.editText_key);
+            editText_value = view.findViewById(R.id.editText_value);
+            spinner_type = view.findViewById(R.id.spinner_type);
 
             if (item != null) {
                 editText_key.setText(item.key);

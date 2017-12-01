@@ -21,6 +21,7 @@ package ryey.easer.commons.plugindef.eventplugin;
 
 import android.app.PendingIntent;
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 
@@ -36,7 +37,7 @@ public abstract class AbstractSlot {
      * I'm not sure if they will be used by the subclasses in the future when extending the `satisfied` field to more status, so they are left as protected.
      */
 
-    protected Context context;
+    protected final Context context;
 
     /**
      * Indicator of whether the current slot is satisfied.
@@ -57,7 +58,7 @@ public abstract class AbstractSlot {
      */
     protected PendingIntent notifyLotusIntent = null, notifyLotusUnsatisfiedIntent = null;
 
-    public AbstractSlot(Context context) {
+    public AbstractSlot(@NonNull Context context) {
         this.context = context;
     }
 
@@ -73,7 +74,7 @@ public abstract class AbstractSlot {
      * Set the trigger to be ready to receive the relevant Event.
      * The trigger will start functioning after {@link #listen()} is called.
      */
-    public abstract void set(EventData data);
+    public abstract void set(@NonNull EventData data);
 
     /**
      * FIXME: Not sure if this methods is really needed.
@@ -118,7 +119,7 @@ public abstract class AbstractSlot {
     /**
      * Set where to notify (the holder {@link ryey.easer.core.Lotus}).
      */
-    public void register(PendingIntent notifyLotusIntent, PendingIntent notifyLotusUnsatisfiedIntent) {
+    public void register(@NonNull PendingIntent notifyLotusIntent, @NonNull PendingIntent notifyLotusUnsatisfiedIntent) {
         this.notifyLotusIntent = notifyLotusIntent;
         this.notifyLotusUnsatisfiedIntent = notifyLotusUnsatisfiedIntent;
     }

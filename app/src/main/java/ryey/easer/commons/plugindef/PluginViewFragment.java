@@ -43,7 +43,7 @@ public abstract class PluginViewFragment extends Fragment {
      */
     @NonNull
     @Override
-    public abstract View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState);
+    public abstract View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState);
 
     /**
      * @see #passed_data
@@ -51,7 +51,7 @@ public abstract class PluginViewFragment extends Fragment {
      * If overridden, call back-through is needed.
      */
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         if (passed_data != null) {
             _fill(passed_data);
         }
@@ -71,14 +71,15 @@ public abstract class PluginViewFragment extends Fragment {
      * Get the description text from resources.
      * Could be overridden in subclasses if needed for customized text.
      */
-    public String desc(Resources res) {
+    @NonNull
+    public String desc(@NonNull Resources res) {
         return res.getString(desc);
     }
 
     /**
      * Check whether the to-be-filled data is of the correct type.
      */
-    private void checkDataType(StorageData data) throws IllegalArgumentTypeException {
+    private void checkDataType(@NonNull StorageData data) throws IllegalArgumentTypeException {
         StorageData dummyExpectedData = PluginRegistry.getInstance().all().findPlugin(this).data();
         if (data.getClass().equals(dummyExpectedData.getClass()))
             return;
@@ -90,14 +91,14 @@ public abstract class PluginViewFragment extends Fragment {
      * PluginDef developers is expected to override this method rather than {@link #fill}.
      * This methods does NOT care about synchronization or other stuffs.
      */
-    protected abstract void _fill(StorageData data);
+    protected abstract void _fill(@NonNull StorageData data);
 
     /**
      * Set the UI according to the data.
      * This methods takes care of synchronization (see {@link #passed_data}).
      * PluginDef implementors normally only need to implement {@link #_fill} method.
      */
-    public void fill(StorageData data) {
+    public void fill(@NonNull StorageData data) {
         try {
             checkDataType(data);
             passed_data = data;
@@ -112,8 +113,9 @@ public abstract class PluginViewFragment extends Fragment {
 
     /**
      * Construct the correct {@link StorageData} (subclass) containing the data in the UI.
+     * @throws InvalidDataInputException If the data inputted by the user is invalid
      */
-    public abstract StorageData getData();
+    public abstract @NonNull StorageData getData() throws InvalidDataInputException;
 
     /**
      * Change the interactive state of the UI components.
@@ -132,7 +134,7 @@ public abstract class PluginViewFragment extends Fragment {
     /**
      * Recursively change the interactive state of the UI components.
      */
-    protected static void setEnabled(View v, boolean enabled) {
+    protected static void setEnabled(@NonNull View v, boolean enabled) {
         v.setEnabled(enabled);
         if (v instanceof ViewGroup) {
             View child;

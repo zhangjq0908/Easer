@@ -42,21 +42,22 @@ import android.widget.TextView;
 
 import ryey.easer.R;
 import ryey.easer.Utils;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public class CalendarPluginViewFragment extends PluginViewFragment {
 
-    final static String ACTION_RETURN = "ryey.easer.plugins.event.bluetooth_device.return_from_dialog";
-    final static String EXTRA_CALENDAR_ID = "ryey.easer.plugins.event.calendar.extra.calendar_id";
-    final static String EXTRA_CALENDAR_NAME = "ryey.easer.plugins.event.calendar.extra.calendar_name";
+    private final static String ACTION_RETURN = "ryey.easer.plugins.event.bluetooth_device.return_from_dialog";
+    private final static String EXTRA_CALENDAR_ID = "ryey.easer.plugins.event.calendar.extra.calendar_id";
+    private final static String EXTRA_CALENDAR_NAME = "ryey.easer.plugins.event.calendar.extra.calendar_name";
 
-    long calendar_id = -1;
-    TextView tv_calendar_name;
-    CheckBox[] cb_conditions = new CheckBox[CalendarData.condition_name.length]; // The same order as `CalendarData.condition_name`
+    private long calendar_id = -1;
+    private TextView tv_calendar_name;
+    private final CheckBox[] cb_conditions = new CheckBox[CalendarData.condition_name.length]; // The same order as `CalendarData.condition_name`
 
-    IntentFilter mFilter = new IntentFilter(ACTION_RETURN);
-    BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    private final IntentFilter mFilter = new IntentFilter(ACTION_RETURN);
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(ACTION_RETURN)) {
@@ -78,11 +79,11 @@ public class CalendarPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_event__calendar, container, false);
-        tv_calendar_name = (TextView) view.findViewById(R.id.text_calendar_name);
-        cb_conditions[0] = (CheckBox) view.findViewById(R.id.checkBox_start);
-        cb_conditions[1] = (CheckBox) view.findViewById(R.id.checkBox_end);
+        tv_calendar_name = view.findViewById(R.id.text_calendar_name);
+        cb_conditions[0] = view.findViewById(R.id.checkBox_start);
+        cb_conditions[1] = view.findViewById(R.id.checkBox_end);
 
         view.findViewById(R.id.calendar_picker).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,25 +149,26 @@ public class CalendarPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         if (data instanceof CalendarEventData) {
             CalendarData calendarData = (CalendarData) data.get();
             calendar_id = calendarData.calendar_id;
             tv_calendar_name.setText(CalendarHelper.getCalendarName(
                     getContext().getContentResolver(), calendar_id));
             for (int i = 0; i < CalendarData.condition_name.length; i++) {
-                cb_conditions[i].setChecked(calendarData.conditions.get(CalendarData.condition_name[i]));
+                cb_conditions[i].setChecked(calendarData.conditions.contains(CalendarData.condition_name[i]));
             }
         }
     }
 
+    @NonNull
     @Override
-    public StorageData getData() {
+    public StorageData getData() throws InvalidDataInputException {
         CalendarData calendarData = new CalendarData();
         calendarData.calendar_id = calendar_id;
         for (int i = 0; i < cb_conditions.length; i++) {
-            calendarData.conditions.put(
-                    CalendarData.condition_name[i], cb_conditions[i].isChecked());
+            if (cb_conditions[i].isChecked())
+                calendarData.conditions.add(CalendarData.condition_name[i]);
         }
         return new CalendarEventData(calendarData);
     }

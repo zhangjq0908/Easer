@@ -29,11 +29,13 @@ import android.widget.EditText;
 
 import ryey.easer.R;
 import ryey.easer.Utils;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public class BroadcastPluginViewFragment extends PluginViewFragment {
-    EditText editText_action, editText_category;
+    private EditText editText_action;
+    private EditText editText_category;
 
     {
         setDesc(R.string.event_broadcast);
@@ -41,16 +43,16 @@ public class BroadcastPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_event__broadcast, container, false);
-        editText_action = (EditText) view.findViewById(R.id.editText_action);
-        editText_category = (EditText) view.findViewById(R.id.editText_category);
+        editText_action = view.findViewById(R.id.editText_action);
+        editText_category = view.findViewById(R.id.editText_category);
 
         return view;
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         if (data instanceof BroadcastEventData) {
             ReceiverSideIntentData intentData = (ReceiverSideIntentData) data.get();
             editText_action.setText(Utils.StringListToString(intentData.action));
@@ -58,8 +60,9 @@ public class BroadcastPluginViewFragment extends PluginViewFragment {
         }
     }
 
+    @NonNull
     @Override
-    public StorageData getData() {
+    public StorageData getData() throws InvalidDataInputException {
         ReceiverSideIntentData intentData = new ReceiverSideIntentData();
         intentData.action = Utils.stringToStringList(editText_action.getText().toString());
         intentData.category = Utils.stringToStringList(editText_category.getText().toString());

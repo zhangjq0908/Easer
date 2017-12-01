@@ -22,6 +22,7 @@ package ryey.easer.plugins.operation.rotation;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
@@ -32,7 +33,7 @@ public class RotationLoader extends OperationLoader {
     }
 
     @Override
-    public boolean _load(OperationData data) {
+    public boolean _load(@NonNull OperationData data) {
         ContentResolver resolver = context.getContentResolver();
         Boolean state = (Boolean) data.get();
         return Settings.System.putInt(resolver, Settings.System.ACCELEROMETER_ROTATION, state ? 1 : 0);

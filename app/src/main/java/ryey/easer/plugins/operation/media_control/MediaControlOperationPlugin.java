@@ -21,6 +21,7 @@ package ryey.easer.plugins.operation.media_control;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
@@ -30,11 +31,13 @@ import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
 
 public class MediaControlOperationPlugin implements OperationPlugin {
 
+    @NonNull
     @Override
     public String name() {
         return "media_control";
     }
 
+    @NonNull
     @Override
     public PrivilegeUsage privilege() {
         return PrivilegeUsage.no_root;
@@ -46,27 +49,30 @@ public class MediaControlOperationPlugin implements OperationPlugin {
     }
 
     @Override
-    public boolean checkPermissions(Context context) {
+    public boolean checkPermissions(@NonNull Context context) {
         return true;
     }
 
     @Override
-    public void requestPermissions(Activity activity, int requestCode) {
+    public void requestPermissions(@NonNull Activity activity, int requestCode) {
 
     }
 
+    @NonNull
     @Override
     public OperationData data() {
         return new MediaControlOperationData();
     }
 
+    @NonNull
     @Override
     public PluginViewFragment view() {
         return new MediaControlPluginViewFragment();
     }
 
+    @NonNull
     @Override
-    public OperationLoader loader(Context context) {
+    public OperationLoader loader(@NonNull Context context) {
         return new MediaControlLoader(context);
     }
 }

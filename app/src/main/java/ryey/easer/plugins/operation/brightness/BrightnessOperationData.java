@@ -19,6 +19,9 @@
 
 package ryey.easer.plugins.operation.brightness;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import ryey.easer.plugins.operation.IntegerOperationData;
 
 public class BrightnessOperationData extends IntegerOperationData {
@@ -46,5 +49,20 @@ public class BrightnessOperationData extends IntegerOperationData {
 
     boolean isAuto() {
         return get() == Integer.valueOf(-1);
+    }
+
+    public static final Parcelable.Creator<BrightnessOperationData> CREATOR
+            = new Parcelable.Creator<BrightnessOperationData>() {
+        public BrightnessOperationData createFromParcel(Parcel in) {
+            return new BrightnessOperationData(in);
+        }
+
+        public BrightnessOperationData[] newArray(int size) {
+            return new BrightnessOperationData[size];
+        }
+    };
+
+    private BrightnessOperationData(Parcel in) {
+        super(in);
     }
 }

@@ -35,7 +35,9 @@ public class Helper {
         for (ZipEntry entry = zip.getNextEntry(); entry != null; entry = zip.getNextEntry()) {
             String filename = entry.getName();
             File newFile = new File(output_dir, filename);
-            new File(newFile.getParent()).mkdirs();
+            if (!new File(newFile.getParent()).mkdirs()) {
+                throw new IOException(String.format("failed to create parent dird for <%s>", newFile.toString()));
+            }
             FileOutputStream fos = new FileOutputStream(newFile);
             int len;
             while ((len = zip.read(buffer)) > 0) {

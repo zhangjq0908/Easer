@@ -19,6 +19,10 @@
 
 package ryey.easer.plugins.operation.media_control;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.support.annotation.NonNull;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
@@ -39,7 +43,7 @@ public class MediaControlOperationData implements OperationData {
         next,
     }
 
-    ControlChoice choice = null;
+    private ControlChoice choice = null;
 
     public MediaControlOperationData() {
     }
@@ -48,13 +52,14 @@ public class MediaControlOperationData implements OperationData {
         set(choice);
     }
 
+    @NonNull
     @Override
     public Object get() {
         return choice;
     }
 
     @Override
-    public void set(Object obj) {
+    public void set(@NonNull Object obj) {
         if (obj instanceof ControlChoice) {
             choice = (ControlChoice) obj;
         } else {
@@ -73,7 +78,7 @@ public class MediaControlOperationData implements OperationData {
     }
 
     @Override
-    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 try {
@@ -84,9 +89,10 @@ public class MediaControlOperationData implements OperationData {
         }
     }
 
+    @NonNull
     @Override
-    public String serialize(C.Format format) {
-        String res = "";
+    public String serialize(@NonNull C.Format format) {
+        String res;
         switch (format) {
             default:
                 res = choice.toString();
@@ -101,4 +107,38 @@ public class MediaControlOperationData implements OperationData {
         return true;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (!(obj instanceof MediaControlOperationData))
+            return false;
+        return choice == ((MediaControlOperationData) obj).choice;
+    }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeSerializable(choice);
+    }
+
+    public static final Parcelable.Creator<MediaControlOperationData> CREATOR
+            = new Parcelable.Creator<MediaControlOperationData>() {
+        public MediaControlOperationData createFromParcel(Parcel in) {
+            return new MediaControlOperationData(in);
+        }
+
+        public MediaControlOperationData[] newArray(int size) {
+            return new MediaControlOperationData[size];
+        }
+    };
+
+    private MediaControlOperationData(Parcel in) {
+        choice = (ControlChoice) in.readSerializable();
+    }
 }

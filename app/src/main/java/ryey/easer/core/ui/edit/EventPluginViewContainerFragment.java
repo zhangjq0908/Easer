@@ -36,9 +36,9 @@ public class EventPluginViewContainerFragment extends PluginViewContainerFragmen
 
     @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_pluginview_event, container, false);
-        type_radioGroup = (RadioGroup) v.findViewById(R.id.radiogroup_eventtype);
+        type_radioGroup = v.findViewById(R.id.radiogroup_eventtype);
         pluginViewFragment.setEnabled(true);
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.content_pluginview, pluginViewFragment)
@@ -71,16 +71,22 @@ public class EventPluginViewContainerFragment extends PluginViewContainerFragmen
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         pluginViewFragment.fill(data);
         if (getView() != null) {
             fillType(data);
         }
     }
 
+    @NonNull
     @Override
     StorageData getData() {
-        EventData data = (EventData) pluginViewFragment.getData();
+        EventData data = null;
+        try {
+            data = (EventData) pluginViewFragment.getData();
+        } catch (ryey.easer.commons.plugindef.InvalidDataInputException e) {
+            e.printStackTrace();
+        }
         data.setType(selectedType());
         return data;
     }

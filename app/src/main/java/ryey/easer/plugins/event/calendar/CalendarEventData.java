@@ -19,6 +19,11 @@
 
 package ryey.easer.plugins.event.calendar;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.support.annotation.NonNull;
+import android.support.v4.util.ArraySet;
+
 import com.orhanobut.logger.Logger;
 
 import org.json.JSONArray;
@@ -29,6 +34,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.EnumSet;
 
 import ryey.easer.commons.C;
@@ -56,13 +62,14 @@ public class CalendarEventData extends TypedEventData {
         set(data);
     }
 
+    @NonNull
     @Override
     public Object get() {
         return data;
     }
 
     @Override
-    public void set(Object obj) {
+    public void set(@NonNull Object obj) {
         if (obj instanceof CalendarData) {
             this.data = (CalendarData) obj;
         } else {
@@ -76,14 +83,7 @@ public class CalendarEventData extends TypedEventData {
             return false;
         if (data.calendar_id == -1)
             return false;
-        boolean any_true = false;
-        for (Boolean v : data.conditions.values()) {
-            if (v) {
-                any_true = true;
-                break;
-            }
-        }
-        if (!any_true)
+        if (data.conditions.size() == 0)
             return false;
         return true;
     }
@@ -99,7 +99,10 @@ public class CalendarEventData extends TypedEventData {
             for (int i = 0; i < jsonArray_conditions.length(); i++) {
                 String condition = jsonArray_conditions.getString(i);
                 for (int j = 0; j < CalendarData.condition_name.length; j++) {
-                    this.data.conditions.put(condition, true);
+                    if (condition.equals(CalendarData.condition_name[j])) {
+                        this.data.conditions.add(condition);
+                        break;
+                    }
                 }
             }
         } catch (JSONException e) {
@@ -120,10 +123,8 @@ public class CalendarEventData extends TypedEventData {
         try {
             jsonObject.put(T_calendar_id, data.calendar_id);
             JSONArray jsonArray_conditions = new JSONArray();
-            for (String k : data.conditions.keySet()) {
-                if (data.conditions.get(k)) {
-                    jsonArray_conditions.put(k);
-                }
+            for (String k : data.conditions) {
+                jsonArray_conditions.put(k);
             }
             jsonObject.put(T_condition, jsonArray_conditions);
         } catch (JSONException e) {
@@ -135,7 +136,7 @@ public class CalendarEventData extends TypedEventData {
     }
 
     @Override
-    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 try {
@@ -146,7 +147,7 @@ public class CalendarEventData extends TypedEventData {
                     for (int i = 0; i < jsonArray_conditions.length(); i++) {
                         String condition = jsonArray_conditions.getString(i);
                         for (int j = 0; j < CalendarData.condition_name.length; j++) {
-                            this.data.conditions.put(condition, true);
+                            this.data.conditions.add(condition);
                         }
                     }
                 } catch (JSONException e) {
@@ -156,19 +157,18 @@ public class CalendarEventData extends TypedEventData {
         }
     }
 
+    @NonNull
     @Override
-    public String serialize(C.Format format) {
-        String res = "";
+    public String serialize(@NonNull C.Format format) {
+        String res;
         switch (format) {
             default:
                 JSONObject jsonObject = new JSONObject();
                 try {
                     jsonObject.put(T_calendar_id, data.calendar_id);
                     JSONArray jsonArray_conditions = new JSONArray();
-                    for (String k : data.conditions.keySet()) {
-                        if (data.conditions.get(k)) {
-                            jsonArray_conditions.put(k);
-                        }
+                    for (String k : data.conditions) {
+                        jsonArray_conditions.put(k);
                     }
                     jsonObject.put(T_condition, jsonArray_conditions);
                 } catch (JSONException e) {
@@ -178,5 +178,48 @@ public class CalendarEventData extends TypedEventData {
                 res = jsonObject.toString();
         }
         return res;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (!(obj instanceof CalendarEventData))
+            return false;
+        if (data.calendar_id != ((CalendarEventData) obj).data.calendar_id)
+            return false;
+        if (!data.conditions.equals(((CalendarEventData) obj).data.conditions))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(data.calendar_id);
+        dest.writeList(new ArrayList<>(data.conditions));
+    }
+
+    public static final Parcelable.Creator<CalendarEventData> CREATOR
+            = new Parcelable.Creator<CalendarEventData>() {
+        public CalendarEventData createFromParcel(Parcel in) {
+            return new CalendarEventData(in);
+        }
+
+        public CalendarEventData[] newArray(int size) {
+            return new CalendarEventData[size];
+        }
+    };
+
+    private CalendarEventData(Parcel in) {
+        data = new CalendarData();
+        data.calendar_id = in.readLong();
+        ArrayList<String> list = new ArrayList<>();
+        in.readList(list, null);
+        data.conditions = new ArraySet<>(list);
     }
 }

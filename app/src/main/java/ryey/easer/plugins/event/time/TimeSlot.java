@@ -22,6 +22,7 @@ package ryey.easer.plugins.event.time;
 import android.app.AlarmManager;
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.NonNull;
 
 import java.util.Calendar;
 
@@ -30,10 +31,10 @@ import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.SelfNotifiableSlot;
 
 public class TimeSlot extends SelfNotifiableSlot {
-    static AlarmManager mAlarmManager;
+    private static AlarmManager mAlarmManager;
 
-    Calendar calendar = null;
-    EventType type = null;
+    private Calendar calendar = null;
+    private EventType type = null;
 
     public TimeSlot(Context context) {
         super(context);
@@ -43,7 +44,7 @@ public class TimeSlot extends SelfNotifiableSlot {
     }
 
     @Override
-    public void set(EventData data) {
+    public void set(@NonNull EventData data) {
         if (data instanceof TimeEventData) {
             setTime((Calendar) data.get());
             type = data.type();
@@ -52,9 +53,7 @@ public class TimeSlot extends SelfNotifiableSlot {
         }
     }
 
-    public void setTime(Calendar time) {
-        if (time == null)
-            return;
+    private void setTime(@NonNull Calendar time) {
         if (calendar == null) {
             calendar = Calendar.getInstance();
             calendar.setTimeInMillis(System.currentTimeMillis());

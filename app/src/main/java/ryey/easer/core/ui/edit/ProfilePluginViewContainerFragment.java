@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.orhanobut.logger.Logger;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
@@ -30,14 +31,14 @@ public class ProfilePluginViewContainerFragment extends PluginViewContainerFragm
 
     @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pluginview_profile, container, false);
         getChildFragmentManager().beginTransaction()
                 .add(R.id.content_pluginview, pluginViewFragment)
                 .commit();
         getChildFragmentManager().executePendingTransactions();
-        mCheckBox = (CheckBox) view.findViewById(R.id.checkbox_pluginview_enabled);
+        mCheckBox = view.findViewById(R.id.checkbox_pluginview_enabled);
         pluginViewFragment.setEnabled(false);
         mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -54,7 +55,7 @@ public class ProfilePluginViewContainerFragment extends PluginViewContainerFragm
     }
 
     @Override
-    protected void _fill(StorageData data) {
+    protected void _fill(@NonNull StorageData data) {
         if (data == null) {
             mCheckBox.setChecked(false);
         } else {
@@ -63,12 +64,17 @@ public class ProfilePluginViewContainerFragment extends PluginViewContainerFragm
         }
     }
 
+    @NonNull
     @Override
-    public StorageData getData() {
+    public StorageData getData() throws InvalidDataInputException {
         if (mCheckBox.isChecked()) {
             return super.getData();
         } else {
-            return null;
+            throw new IllegalStateException("The view should be checked as \"enabled\" before getting its data");
         }
+    }
+
+    boolean isEnabled() {
+        return mCheckBox.isChecked();
     }
 }

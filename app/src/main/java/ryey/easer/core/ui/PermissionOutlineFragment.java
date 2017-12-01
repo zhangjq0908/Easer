@@ -35,14 +35,14 @@ public class PermissionOutlineFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_permission_outline, container, false);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        mButton = (Button) view.findViewById(R.id.button_more);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        mButton = view.findViewById(R.id.button_more);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

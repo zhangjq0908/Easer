@@ -1,5 +1,9 @@
 package ryey.easer.plugins.event.battery;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.support.annotation.NonNull;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
@@ -16,7 +20,7 @@ import ryey.easer.plugins.event.TypedEventData;
 
 public class BatteryEventData extends TypedEventData {
 
-    protected Integer battery_status = null;
+    private Integer battery_status = null;
 
     {
         default_type = EventType.is;
@@ -30,18 +34,14 @@ public class BatteryEventData extends TypedEventData {
         this.battery_status = battery_status;
     }
 
-    public BatteryEventData(Integer battery_status, EventType type) {
-        this.battery_status = battery_status;
-        setType(type);
-    }
-
+    @NonNull
     @Override
     public Object get() {
         return battery_status;
     }
 
     @Override
-    public void set(Object obj) {
+    public void set(@NonNull Object obj) {
         if (obj instanceof Integer) {
             battery_status = (Integer) obj;
         } else {
@@ -69,7 +69,7 @@ public class BatteryEventData extends TypedEventData {
     }
 
     @Override
-    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 battery_status = Integer.parseInt(data);
@@ -77,9 +77,10 @@ public class BatteryEventData extends TypedEventData {
         }
     }
 
+    @NonNull
     @Override
-    public String serialize(C.Format format) {
-        String res = "";
+    public String serialize(@NonNull C.Format format) {
+        String res;
         switch (format) {
             default:
                 res = String.valueOf(battery_status);
@@ -94,4 +95,30 @@ public class BatteryEventData extends TypedEventData {
             return true;
         return false;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(battery_status);
+    }
+
+    public static final Parcelable.Creator<BatteryEventData> CREATOR
+            = new Parcelable.Creator<BatteryEventData>() {
+        public BatteryEventData createFromParcel(Parcel in) {
+            return new BatteryEventData(in);
+        }
+
+        public BatteryEventData[] newArray(int size) {
+            return new BatteryEventData[size];
+        }
+    };
+
+    private BatteryEventData(Parcel in) {
+        battery_status = in.readInt();
+    }
+
 }

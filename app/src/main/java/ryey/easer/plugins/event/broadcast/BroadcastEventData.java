@@ -19,6 +19,10 @@
 
 package ryey.easer.plugins.event.broadcast;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.support.annotation.NonNull;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,6 +33,7 @@ import org.xmlpull.v1.XmlSerializer;
 import java.io.IOException;
 import java.util.EnumSet;
 
+import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
@@ -36,8 +41,8 @@ import ryey.easer.plugins.event.TypedEventData;
 
 public class BroadcastEventData extends TypedEventData {
 
-    static final String K_ACTION = "action";
-    static final String K_CATEGORY = "category";
+    private static final String K_ACTION = "action";
+    private static final String K_CATEGORY = "category";
 
     ReceiverSideIntentData intentData;
 
@@ -52,13 +57,14 @@ public class BroadcastEventData extends TypedEventData {
         set(intentData);
     }
 
+    @NonNull
     @Override
     public Object get() {
         return intentData;
     }
 
     @Override
-    public void set(Object obj) {
+    public void set(@NonNull Object obj) {
         if (obj instanceof ReceiverSideIntentData) {
             intentData = (ReceiverSideIntentData) obj;
         } else {
@@ -84,7 +90,7 @@ public class BroadcastEventData extends TypedEventData {
     }
 
     @Override
-    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         intentData = new ReceiverSideIntentData();
         switch (format) {
             default:
@@ -105,9 +111,10 @@ public class BroadcastEventData extends TypedEventData {
         }
     }
 
+    @NonNull
     @Override
-    public String serialize(C.Format format) {
-        String res = "";
+    public String serialize(@NonNull C.Format format) {
+        String res;
         switch (format) {
             default:
                 try {
@@ -135,4 +142,44 @@ public class BroadcastEventData extends TypedEventData {
         return res;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (!(obj instanceof BroadcastEventData))
+            return false;
+        if (!Utils.nullableEqual(intentData.action, ((BroadcastEventData) obj).intentData.action))
+            return false;
+        if (!Utils.nullableEqual(intentData.category, ((BroadcastEventData) obj).intentData.category))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeStringList(intentData.action);
+        dest.writeStringList(intentData.category);
+    }
+
+    public static final Parcelable.Creator<BroadcastEventData> CREATOR
+            = new Parcelable.Creator<BroadcastEventData>() {
+        public BroadcastEventData createFromParcel(Parcel in) {
+            return new BroadcastEventData(in);
+        }
+
+        public BroadcastEventData[] newArray(int size) {
+            return new BroadcastEventData[size];
+        }
+    };
+
+    private BroadcastEventData(Parcel in) {
+        intentData = new ReceiverSideIntentData();
+        in.readStringList(intentData.action);
+        in.readStringList(intentData.category);
+    }
 }

@@ -21,6 +21,7 @@ package ryey.easer.plugins.event.date;
 
 import android.app.AlarmManager;
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import java.util.Calendar;
 
@@ -32,10 +33,10 @@ import ryey.easer.plugins.event.SelfNotifiableSlot;
  * TODO: cancel (or set extra) alarm after being satisfied or unsatisfied (for different event types)
  */
 public class DateSlot extends SelfNotifiableSlot {
-    static AlarmManager mAlarmManager;
+    private static AlarmManager mAlarmManager;
 
-    Calendar calendar = null;
-    EventType type = null;
+    private Calendar calendar = null;
+    private EventType type = null;
 
     public DateSlot(Context context) {
         super(context);
@@ -45,7 +46,7 @@ public class DateSlot extends SelfNotifiableSlot {
     }
 
     @Override
-    public void set(EventData data) {
+    public void set(@NonNull EventData data) {
         if (data instanceof DateEventData) {
             setDate((Calendar) data.get());
             type = data.type();
@@ -54,7 +55,7 @@ public class DateSlot extends SelfNotifiableSlot {
         }
     }
 
-    public void setDate(Calendar date) {
+    private void setDate(Calendar date) {
         if (date == null)
             return;
         if (calendar == null) {

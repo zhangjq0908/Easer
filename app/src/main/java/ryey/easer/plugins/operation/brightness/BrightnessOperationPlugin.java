@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
@@ -33,11 +34,13 @@ import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
 
 public class BrightnessOperationPlugin implements OperationPlugin {
 
+    @NonNull
     @Override
     public String name() {
         return "brightness";
     }
 
+    @NonNull
     @Override
     public PrivilegeUsage privilege() {
         return PrivilegeUsage.no_root;
@@ -49,7 +52,7 @@ public class BrightnessOperationPlugin implements OperationPlugin {
     }
 
     @Override
-    public boolean checkPermissions(Context context) {
+    public boolean checkPermissions(@NonNull Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return Settings.System.canWrite(context);
         } else {
@@ -58,24 +61,27 @@ public class BrightnessOperationPlugin implements OperationPlugin {
     }
 
     @Override
-    public void requestPermissions(Activity activity, int requestCode) {
+    public void requestPermissions(@NonNull Activity activity, int requestCode) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             activity.startActivity(new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS));
         }
     }
 
+    @NonNull
     @Override
     public OperationData data() {
         return new BrightnessOperationData();
     }
 
+    @NonNull
     @Override
     public PluginViewFragment view() {
         return new BrightnessPluginViewFragment();
     }
 
+    @NonNull
     @Override
-    public OperationLoader loader(Context context) {
+    public OperationLoader loader(@NonNull Context context) {
         return new BrightnessLoader(context);
     }
 }

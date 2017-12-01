@@ -19,6 +19,10 @@
 
 package ryey.easer.plugins.event.time;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.support.annotation.NonNull;
+
 import com.orhanobut.logger.Logger;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -30,6 +34,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.EnumSet;
+import java.util.Locale;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
@@ -39,9 +44,9 @@ import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
 
 public class TimeEventData extends TypedEventData {
-    private static SimpleDateFormat sdf_time = new SimpleDateFormat("HH:mm");
+    private static final SimpleDateFormat sdf_time = new SimpleDateFormat("HH:mm", Locale.US);
 
-    static String TimeToText(Calendar calendar) {
+    private static String TimeToText(Calendar calendar) {
         return sdf_time.format(calendar.getTime());
     }
 
@@ -51,7 +56,7 @@ public class TimeEventData extends TypedEventData {
         return calendar;
     }
 
-    Calendar time = null;
+    private Calendar time = null;
 
     {
         default_type = EventType.after;
@@ -64,18 +69,14 @@ public class TimeEventData extends TypedEventData {
         this.time = time;
     }
 
-    public TimeEventData(Calendar time, EventType type) {
-        this.time = time;
-        setType(type);
-    }
-
+    @NonNull
     @Override
     public Object get() {
         return time;
     }
 
     @Override
-    public void set(Object obj) {
+    public void set(@NonNull Object obj) {
         if (obj instanceof Calendar)
             time = (Calendar) obj;
         else {
@@ -113,7 +114,7 @@ public class TimeEventData extends TypedEventData {
     }
 
     @Override
-    public void parse(String data, C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 try {
@@ -125,13 +126,40 @@ public class TimeEventData extends TypedEventData {
         }
     }
 
+    @NonNull
     @Override
-    public String serialize(C.Format format) {
-        String res = "";
+    public String serialize(@NonNull C.Format format) {
+        String res;
         switch (format) {
             default:
                 res = TimeToText(time);
         }
         return res;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(time.getTimeInMillis());
+    }
+
+    public static final Parcelable.Creator<TimeEventData> CREATOR
+            = new Parcelable.Creator<TimeEventData>() {
+        public TimeEventData createFromParcel(Parcel in) {
+            return new TimeEventData(in);
+        }
+
+        public TimeEventData[] newArray(int size) {
+            return new TimeEventData[size];
+        }
+    };
+
+    private TimeEventData(Parcel in) {
+        time = Calendar.getInstance();
+        time.setTimeInMillis(in.readLong());
     }
 }

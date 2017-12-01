@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.util.List;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.storage.EventDataStorage;
 import ryey.easer.core.data.storage.ProfileDataStorage;
@@ -118,12 +119,12 @@ public class EditEventActivity extends AppCompatActivity {
     }
 
     void init() {
-        mEditText_name = (EditText) findViewById(R.id.editText_event_title);
+        mEditText_name = findViewById(R.id.editText_event_title);
 
-        mSpinner_parent = (Spinner) findViewById(R.id.spinner_parent);
+        mSpinner_parent = findViewById(R.id.spinner_parent);
         mEventList = (EventDataStorage.getInstance(this)).list();
         mEventList.add(0, NON);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_profile, mEventList); //TODO: change layout
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_profile, mEventList); //TODO: change layout
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         mSpinner_parent.setAdapter(adapter);
         mSpinner_parent.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -136,10 +137,10 @@ public class EditEventActivity extends AppCompatActivity {
             }
         });
 
-        mSpinner_profile = (Spinner) findViewById(R.id.spinner_profile);
+        mSpinner_profile = findViewById(R.id.spinner_profile);
         mProfileList = (ProfileDataStorage.getInstance(this)).list();
         mProfileList.add(0, NON);
-        ArrayAdapter<String> adapter_profile = new ArrayAdapter<String>(this, R.layout.spinner_profile, mProfileList);
+        ArrayAdapter<String> adapter_profile = new ArrayAdapter<>(this, R.layout.spinner_profile, mProfileList);
         adapter_profile.setDropDownViewResource(android.R.layout.simple_spinner_item);
         mSpinner_profile.setAdapter(adapter_profile);
         mSpinner_profile.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -152,7 +153,7 @@ public class EditEventActivity extends AppCompatActivity {
             }
         });
 
-        mViewPager = (EventPluginViewPager) findViewById(R.id.pager);
+        mViewPager = findViewById(R.id.pager);
         mViewPager.init(this);
     }
 
@@ -177,7 +178,7 @@ public class EditEventActivity extends AppCompatActivity {
         mViewPager.setEventData(event.getEventData());
     }
 
-    protected EventStructure saveToEvent() {
+    protected EventStructure saveToEvent() throws InvalidDataInputException {
         EventStructure event = new EventStructure(mEditText_name.getText().toString());
         String profile = (String) mSpinner_profile.getSelectedItem();
         event.setProfileName(profile);
@@ -185,9 +186,7 @@ public class EditEventActivity extends AppCompatActivity {
         String parent = (String) mSpinner_parent.getSelectedItem();
         if (!parent.equals(NON))
             event.setParentName(parent);
-
         event.setEventData(mViewPager.getEventData());
-
         return event;
     }
 
@@ -197,21 +196,26 @@ public class EditEventActivity extends AppCompatActivity {
             if (purpose == EditDataProto.Purpose.delete)
                 success = storage.delete(oldName);
             else {
-                EventStructure newEvent = saveToEvent();
-                if (!newEvent.isValid()) {
+                try {
+                    EventStructure newEvent = saveToEvent();
+                    if (!newEvent.isValid()) {
+                        Toast.makeText(this, getString(R.string.prompt_data_illegal), Toast.LENGTH_LONG).show();
+                        return false;
+                    }
+                    switch (purpose) {
+                        case add:
+                            success = storage.add(newEvent);
+                            break;
+                        case edit:
+                            success = storage.edit(oldName, newEvent);
+                            break;
+                        default:
+                            Logger.wtf("Unexpected purpose: %s", purpose);
+                            throw new UnsupportedOperationException("Unknown Purpose");
+                    }
+                } catch (InvalidDataInputException e) {
                     Toast.makeText(this, getString(R.string.prompt_data_illegal), Toast.LENGTH_LONG).show();
                     return false;
-                }
-                switch (purpose) {
-                    case add:
-                        success = storage.add(newEvent);
-                        break;
-                    case edit:
-                        success = storage.edit(oldName, newEvent);
-                        break;
-                    default:
-                        Logger.wtf("Unexpected purpose: %s", purpose);
-                        throw new UnsupportedOperationException("Unknown Purpose");
                 }
             }
             if (success) {

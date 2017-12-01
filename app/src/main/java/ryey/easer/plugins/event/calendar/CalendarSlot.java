@@ -21,6 +21,7 @@ package ryey.easer.plugins.event.calendar;
 
 import android.app.AlarmManager;
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import ryey.easer.commons.IllegalArgumentTypeException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
@@ -29,7 +30,7 @@ import ryey.easer.plugins.event.SelfNotifiableSlot;
 
 public class CalendarSlot extends SelfNotifiableSlot {
 
-    static AlarmManager mAlarmManager = null;
+    private static AlarmManager mAlarmManager = null;
 
     private CalendarEventData data = null;
     private EventType type = null;
@@ -40,7 +41,7 @@ public class CalendarSlot extends SelfNotifiableSlot {
     }
 
     @Override
-    public void set(EventData data) {
+    public void set(@NonNull EventData data) {
         if (data instanceof CalendarEventData) {
             this.data = (CalendarEventData) data;
             type = data.type();
@@ -56,14 +57,14 @@ public class CalendarSlot extends SelfNotifiableSlot {
 
     @Override
     public void listen() {
-        if (data.data.conditions.get(CalendarData.condition_name[0])) {
+        if (data.data.conditions.contains(CalendarData.condition_name[0])) {
             Long time_next_event = CalendarHelper.nextEvent_start(context.getContentResolver(), data.data.calendar_id);
             if (time_next_event != null) {
                 mAlarmManager.set(AlarmManager.RTC_WAKEUP, time_next_event,
                         notifySelfIntent_positive);
             }
         }
-        if (data.data.conditions.get(CalendarData.condition_name[1])) {
+        if (data.data.conditions.contains(CalendarData.condition_name[1])) {
             Long time_next_event = CalendarHelper.nextEvent_end(context.getContentResolver(), data.data.calendar_id);
             if (time_next_event != null) {
                 mAlarmManager.set(AlarmManager.RTC_WAKEUP, time_next_event,

@@ -2,6 +2,7 @@ package ryey.easer;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 
@@ -13,7 +14,7 @@ import java.util.Locale;
 import java.util.Set;
 
 public class Utils {
-    public static boolean isBlank(String str) {
+    public static boolean isBlank(@Nullable String str) {
         if (str == null)
             return true;
         if (str.isEmpty())
@@ -21,6 +22,14 @@ public class Utils {
         if (str.trim().isEmpty())
             return true;
         return false;
+    }
+
+    public static boolean nullableEqual(@Nullable Object obj1, @Nullable Object obj2) {
+        if (obj1 == null && obj2 == null)
+            return true;
+        if (obj1 == null || obj2 == null)
+            return false;
+        return obj1.equals(obj2);
     }
 
     public static Set<Integer> str2set(String text) throws ParseException {
@@ -34,11 +43,11 @@ public class Utils {
     }
 
     public static String set2str(Set<Integer> days) {
-        String str = "";
+        StringBuilder str = new StringBuilder();
         for (int day : days) {
-            str += String.format(Locale.US, "%d\n", day);
+            str.append(String.format(Locale.US, "%d\n", day));
         }
-        return str;
+        return str.toString();
     }
 
     public static <T> List<String> set2strlist(Set<T> set) {
@@ -50,15 +59,15 @@ public class Utils {
     }
 
     public static String StringListToString(List<String> category) {
-        String text = "";
+        StringBuilder text = new StringBuilder();
         if (category != null) {
             for (String line : category) {
                 String trimmed = line.trim();
                 if (!trimmed.isEmpty())
-                    text += trimmed + '\n';
+                    text.append(trimmed).append('\n');
             }
         }
-        return text;
+        return text.toString();
     }
 
     public static List<String> stringToStringList(String text) {
