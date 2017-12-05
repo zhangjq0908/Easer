@@ -21,16 +21,11 @@ package ryey.easer.plugins.operation.rotation;
 
 import android.support.annotation.NonNull;
 
-import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.plugins.operation.SwitchPluginViewFragment;
 
 public class RotationPluginViewFragment extends SwitchPluginViewFragment {
-
-    {
-        setDesc(R.string.operation_rotation);
-    }
 
     @NonNull
     @Override

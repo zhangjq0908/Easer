@@ -82,7 +82,7 @@ public class BroadcastOperationData implements OperationData {
 
     @Override
     public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
-        String pname = PluginRegistry.getInstance().operation().findPlugin(this).name();
+        String pname = PluginRegistry.getInstance().operation().findPlugin(this).id();
         int depth = parser.getDepth();
         int event_type = parser.next();
         IntentData intentData = new IntentData();
@@ -130,7 +130,7 @@ public class BroadcastOperationData implements OperationData {
      */
     @Override
     public void serialize(XmlSerializer serializer) throws IOException {
-        String pname = PluginRegistry.getInstance().operation().findPlugin(this).name();
+        String pname = PluginRegistry.getInstance().operation().findPlugin(this).id();
 
         serializer.startTag(ns, C.ITEM);
 

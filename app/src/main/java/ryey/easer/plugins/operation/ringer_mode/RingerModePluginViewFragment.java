@@ -48,10 +48,6 @@ public class RingerModePluginViewFragment extends PluginViewFragment {
 
     private int checked_item = -1;
 
-    {
-        setDesc(R.string.operation_ringer_mode);
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

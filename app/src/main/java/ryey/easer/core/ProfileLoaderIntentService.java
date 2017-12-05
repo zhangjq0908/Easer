@@ -76,7 +76,7 @@ public class ProfileLoaderIntentService extends IntentService {
             boolean loaded = false;
             for (OperationPlugin plugin : PluginRegistry.getInstance().operation().getEnabledPlugins(this)) {
                 OperationLoader loader = plugin.loader(getApplicationContext());
-                Collection<OperationData> possibleData = profile.get(plugin.name());
+                Collection<OperationData> possibleData = profile.get(plugin.id());
                 if (possibleData != null) {
                     for (OperationData data : possibleData) {
                         try {

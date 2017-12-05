@@ -192,7 +192,7 @@ final public class PluginRegistry {
 
         public T findPlugin(String name) {
             for (T plugin : getAllPlugins()) {
-                if (name.equals(plugin.name())) {
+                if (name.equals(plugin.id())) {
                     return plugin;
                 }
             }
@@ -247,7 +247,7 @@ final public class PluginRegistry {
         @Override
         public PluginDef findPlugin(String name) {
             for (PluginDef plugin : getAllPlugins()) {
-                if (name.equals(plugin.name()))
+                if (name.equals(plugin.id()))
                     return plugin;
             }
             throw new IllegalAccessError();

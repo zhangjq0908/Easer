@@ -64,10 +64,6 @@ public class BTDevicePluginViewFragment extends PluginViewFragment {
     private EditText editText;
     private TextView textView;
 
-    {
-        setDesc(R.string.event_bluetooth_device);
-    }
-
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

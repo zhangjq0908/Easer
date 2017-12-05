@@ -26,6 +26,7 @@ import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 
+import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
@@ -36,8 +37,13 @@ public class BrightnessOperationPlugin implements OperationPlugin {
 
     @NonNull
     @Override
-    public String name() {
+    public String id() {
         return "brightness";
+    }
+
+    @Override
+    public int name() {
+        return R.string.operation_brightness;
     }
 
     @NonNull

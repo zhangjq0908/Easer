@@ -36,10 +36,6 @@ public class SmsPluginViewFragment extends PluginViewFragment {
     private EditText et_destination;
     private EditText et_content;
 
-    {
-        setDesc(R.string.operation_send_sms);
-    }
-
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

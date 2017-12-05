@@ -26,10 +26,6 @@ public class BatteryPluginViewFragment extends PluginViewFragment {
 
     private Integer checked_item = null;
 
-    {
-        setDesc(R.string.event_battery);
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

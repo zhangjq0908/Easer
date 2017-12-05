@@ -29,10 +29,6 @@ public class ConnectivityPluginViewFragment extends PluginViewFragment {
     };
     final CheckBox[] checkBoxes = new CheckBox[values.length];
 
-    {
-        setDesc(R.string.event_connectivity);
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

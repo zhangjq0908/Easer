@@ -45,12 +45,12 @@ public abstract class BooleanOperationData extends BooleanData implements Operat
 
     @Override
     public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
-        set(XmlHelper.OperationHelper.readBoolean(parser, PluginRegistry.getInstance().operation().findPlugin(this).name()));
+        set(XmlHelper.OperationHelper.readBoolean(parser, PluginRegistry.getInstance().operation().findPlugin(this).id()));
     }
 
     @Override
     public void serialize(XmlSerializer serializer) throws IOException {
-        XmlHelper.OperationHelper.writeBoolean(serializer, PluginRegistry.getInstance().operation().findPlugin(this).name(), (Boolean) get());
+        XmlHelper.OperationHelper.writeBoolean(serializer, PluginRegistry.getInstance().operation().findPlugin(this).id(), (Boolean) get());
     }
 
     @Override

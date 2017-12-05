@@ -63,7 +63,7 @@ public class BatteryEventData extends TypedEventData {
         Integer int_status = (Integer) get();
         if (int_status != null) {
             String status = int_status.toString();
-            XmlHelper.EventHelper.writeSingleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).name(), status);
+            XmlHelper.EventHelper.writeSingleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).id(), status);
             XmlHelper.EventHelper.writeLogic(serializer, type());
         }
     }

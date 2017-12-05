@@ -125,7 +125,7 @@ public class EditProfileActivity extends AppCompatActivity implements OperationS
         clearPluginView();
         List<OperationPlugin> plugins = PluginRegistry.getInstance().operation().getEnabledPlugins(this);
         for (int i = 0; i < plugins.size(); i++) {
-            Collection<OperationData> possibleOperationData = profile.get(plugins.get(i).name());
+            Collection<OperationData> possibleOperationData = profile.get(plugins.get(i).id());
             if (possibleOperationData != null) {
                 for (OperationData operationData : possibleOperationData) {
                     PluginViewContainerFragment fragment = addPluginView(new OperationPlugin[]{plugins.get(i)})[0];
@@ -146,7 +146,7 @@ public class EditProfileActivity extends AppCompatActivity implements OperationS
                 if (data instanceof OperationData) {
                     if (data.isValid()) {
                         fragment.setHighlight(false);
-                        profile.set(PluginRegistry.getInstance().operation().findPlugin((OperationData) data).name(), (OperationData) data);
+                        profile.set(PluginRegistry.getInstance().operation().findPlugin((OperationData) data).id(), (OperationData) data);
                     } else {
                         fragment.setHighlight(true);
                         return null;
@@ -216,7 +216,7 @@ public class EditProfileActivity extends AppCompatActivity implements OperationS
         for (int i = 0; i < plugins.length; i++) {
             OperationPlugin plugin = plugins[i];
             ProfilePluginViewContainerFragment fragment = ProfilePluginViewContainerFragment.createInstance(plugin.view());
-            transaction.add(R.id.layout_profiles, fragment, plugin.name());
+            transaction.add(R.id.layout_profiles, fragment, plugin.id());
             fragments[i] = fragment;
             operationViewList.add(fragment);
             operationSelectorFragment.addSelectedPlugin(plugin);

@@ -65,7 +65,7 @@ public class PermissionOutlineFragment extends Fragment {
         for (Object obj_plugin : PluginRegistry.getInstance().all().getEnabledPlugins(getContext())) {
             PluginDef plugin = (PluginDef) obj_plugin;
             if (!plugin.checkPermissions(getContext())) {
-                Logger.d("Permission for plugin <%s> not satisfied", plugin.name());
+                Logger.d("Permission for plugin <%s> not satisfied", plugin.id());
                 return false;
             }
         }

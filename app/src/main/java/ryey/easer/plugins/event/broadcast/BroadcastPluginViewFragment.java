@@ -37,10 +37,6 @@ public class BroadcastPluginViewFragment extends PluginViewFragment {
     private EditText editText_action;
     private EditText editText_category;
 
-    {
-        setDesc(R.string.event_broadcast);
-    }
-
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

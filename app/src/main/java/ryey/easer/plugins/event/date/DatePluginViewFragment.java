@@ -28,17 +28,12 @@ import android.widget.DatePicker;
 
 import java.util.Calendar;
 
-import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public class DatePluginViewFragment extends PluginViewFragment {
     private DatePicker datePicker;
-
-    {
-        setDesc(R.string.event_date);
-    }
 
     @NonNull
     @Override

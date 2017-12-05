@@ -59,10 +59,6 @@ public class WifiPluginViewFragment extends PluginViewFragment {
         }
     };
 
-    {
-        setDesc(R.string.event_wificonn);
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
