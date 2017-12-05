@@ -43,6 +43,11 @@ public class CellularOperationPlugin implements OperationPlugin {
         return R.string.operation_cellular;
     }
 
+    @Override
+    public boolean isCompatible() {
+        return true;
+    }
+
     @NonNull
     @Override
     public PrivilegeUsage privilege() {

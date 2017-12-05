@@ -43,6 +43,11 @@ public class DateEventPlugin implements EventPlugin {
     }
 
     @Override
+    public boolean isCompatible() {
+        return true;
+    }
+
+    @Override
     public boolean checkPermissions(@NonNull Context context) {
         return true;
     }

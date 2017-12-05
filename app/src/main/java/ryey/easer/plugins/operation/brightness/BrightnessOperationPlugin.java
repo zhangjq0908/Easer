@@ -46,6 +46,11 @@ public class BrightnessOperationPlugin implements OperationPlugin {
         return R.string.operation_brightness;
     }
 
+    @Override
+    public boolean isCompatible() {
+        return true;
+    }
+
     @NonNull
     @Override
     public PrivilegeUsage privilege() {

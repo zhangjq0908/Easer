@@ -45,6 +45,11 @@ public class NetworkTransmissionOperationPlugin implements OperationPlugin {
         return R.string.operation_network_transmission;
     }
 
+    @Override
+    public boolean isCompatible() {
+        return true;
+    }
+
     @NonNull
     @Override
     public PrivilegeUsage privilege() {

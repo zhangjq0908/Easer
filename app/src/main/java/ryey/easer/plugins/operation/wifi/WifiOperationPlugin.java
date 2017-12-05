@@ -45,6 +45,11 @@ public class WifiOperationPlugin implements OperationPlugin {
         return R.string.operation_wifi;
     }
 
+    @Override
+    public boolean isCompatible() {
+        return true;
+    }
+
     @NonNull
     @Override
     public PrivilegeUsage privilege() {

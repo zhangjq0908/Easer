@@ -20,6 +20,12 @@ public interface PluginDef {
     int name();
 
     /**
+     * Check whether this plugin is compatible to the current device.
+     * @return Whether the plugin is compatible or not
+     */
+    boolean isCompatible();
+
+    /**
      * Checks all permission(s) used by this plugin
      * @param context Context object used to check permission
      * @return whether all permissions are satisfied (or not)

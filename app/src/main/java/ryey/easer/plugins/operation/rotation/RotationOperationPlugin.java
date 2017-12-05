@@ -46,6 +46,11 @@ public class RotationOperationPlugin implements OperationPlugin {
         return R.string.operation_rotation;
     }
 
+    @Override
+    public boolean isCompatible() {
+        return true;
+    }
+
     @NonNull
     @Override
     public PrivilegeUsage privilege() {

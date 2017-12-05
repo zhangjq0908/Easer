@@ -45,6 +45,11 @@ public class SynchronizationOperationPlugin implements OperationPlugin {
         return R.string.operation_synchronization;
     }
 
+    @Override
+    public boolean isCompatible() {
+        return true;
+    }
+
     @NonNull
     @Override
     public PrivilegeUsage privilege() {

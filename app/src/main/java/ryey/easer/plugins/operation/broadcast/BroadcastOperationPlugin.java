@@ -43,6 +43,11 @@ public class BroadcastOperationPlugin implements OperationPlugin {
         return R.string.operation_broadcast;
     }
 
+    @Override
+    public boolean isCompatible() {
+        return true;
+    }
+
     @NonNull
     @Override
     public PrivilegeUsage privilege() {

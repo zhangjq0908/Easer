@@ -45,6 +45,11 @@ public class WifiEventPlugin implements EventPlugin {
     }
 
     @Override
+    public boolean isCompatible() {
+        return true;
+    }
+
+    @Override
     public boolean checkPermissions(@NonNull Context context) {
         return PluginHelper.checkPermission(context, Manifest.permission.ACCESS_WIFI_STATE);
     }

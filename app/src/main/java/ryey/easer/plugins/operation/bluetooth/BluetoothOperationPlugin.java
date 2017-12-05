@@ -21,6 +21,7 @@ package ryey.easer.plugins.operation.bluetooth;
 
 import android.Manifest;
 import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
@@ -43,6 +44,12 @@ public class BluetoothOperationPlugin implements OperationPlugin {
     @Override
     public int name() {
         return R.string.operation_bluetooth;
+    }
+
+    @Override
+    public boolean isCompatible() {
+        BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
+        return adapter != null;
     }
 
     @NonNull

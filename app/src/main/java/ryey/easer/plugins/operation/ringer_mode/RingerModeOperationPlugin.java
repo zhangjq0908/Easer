@@ -48,6 +48,11 @@ public class RingerModeOperationPlugin implements OperationPlugin {
         return R.string.operation_ringer_mode;
     }
 
+    @Override
+    public boolean isCompatible() {
+        return true;
+    }
+
     @NonNull
     @Override
     public PrivilegeUsage privilege() {

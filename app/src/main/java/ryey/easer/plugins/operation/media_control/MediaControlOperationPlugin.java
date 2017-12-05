@@ -43,6 +43,11 @@ public class MediaControlOperationPlugin implements OperationPlugin {
         return R.string.operation_media_control;
     }
 
+    @Override
+    public boolean isCompatible() {
+        return true;
+    }
+
     @NonNull
     @Override
     public PrivilegeUsage privilege() {

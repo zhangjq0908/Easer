@@ -45,6 +45,11 @@ public class SendSmsOperationPlugin implements OperationPlugin {
         return R.string.operation_send_sms;
     }
 
+    @Override
+    public boolean isCompatible() {
+        return true;
+    }
+
     @NonNull
     @Override
     public PrivilegeUsage privilege() {
