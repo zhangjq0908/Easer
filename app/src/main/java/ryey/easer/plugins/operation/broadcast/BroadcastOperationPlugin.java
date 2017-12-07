@@ -56,7 +56,7 @@ public class BroadcastOperationPlugin implements OperationPlugin {
 
     @Override
     public int maxExistence() {
-        return -1;
+        return 0;
     }
 
     @Override
