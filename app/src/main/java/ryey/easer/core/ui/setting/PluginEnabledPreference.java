@@ -3,33 +3,23 @@ package ryey.easer.core.ui.setting;
 import android.content.Context;
 import android.preference.CheckBoxPreference;
 
-import java.util.Locale;
-
+import ryey.easer.R;
+import ryey.easer.commons.CommonHelper;
 import ryey.easer.commons.plugindef.PluginDef;
-import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
-import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 
-public class PluginEnabledPreference extends CheckBoxPreference {
-    static PluginEnabledPreference createInstance(Context context, PluginDef plugin) {
-        PluginEnabledPreference preference = new PluginEnabledPreference(context);
-        preference.setKey(enabledKey(plugin));
-        preference.setTitle(plugin.name());
-        return preference;
-    }
+class PluginEnabledPreference extends CheckBoxPreference {
 
-    public static String enabledKey(PluginDef plugin) {
-        String type_name;
-        if (plugin instanceof OperationPlugin)
-            type_name = "operation";
-        else if (plugin instanceof EventPlugin)
-            type_name = "event";
-        else
-            throw new IllegalAccessError();
-        return String.format(Locale.US, "%s_plugin_enabled_%s", type_name, plugin.name());
-    }
-
-    public PluginEnabledPreference(Context context) {
+    PluginEnabledPreference(Context context, PluginDef plugin) {
         super(context);
-        setDefaultValue(true);
+        setKey(CommonHelper.pluginEnabledKey(plugin));
+        setTitle(plugin.name());
+        boolean isCompatible = plugin.isCompatible();
+        if (isCompatible) {
+            setDefaultValue(true);
+        } else {
+            setDefaultValue(false);
+            setEnabled(false);
+            setSummary(R.string.message_plugin_not_compatible);
+        }
     }
 }

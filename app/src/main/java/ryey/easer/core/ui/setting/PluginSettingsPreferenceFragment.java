@@ -17,13 +17,13 @@ public class PluginSettingsPreferenceFragment extends PreferenceFragment {
         PreferenceCategory preferenceCategory;
         preferenceCategory = (PreferenceCategory) getPreferenceScreen().findPreference(getString(R.string.key_pref_enabled_operation_plugins));
         for (PluginDef plugin : PluginRegistry.getInstance().operation().getAllPlugins()) {
-            PluginEnabledPreference preference = PluginEnabledPreference.createInstance(getActivity(), plugin);
+            PluginEnabledPreference preference = new PluginEnabledPreference(getActivity(), plugin);
             preferenceCategory.addPreference(preference);
         }
 
         preferenceCategory = (PreferenceCategory) getPreferenceScreen().findPreference(getString(R.string.key_pref_enabled_event_plugins));
         for (PluginDef plugin : PluginRegistry.getInstance().event().getAllPlugins()) {
-            PluginEnabledPreference preference = PluginEnabledPreference.createInstance(getActivity(), plugin);
+            PluginEnabledPreference preference = new PluginEnabledPreference(getActivity(), plugin);
             preferenceCategory.addPreference(preference);
         }
     }

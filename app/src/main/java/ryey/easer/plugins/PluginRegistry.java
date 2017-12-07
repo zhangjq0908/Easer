@@ -27,6 +27,7 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import ryey.easer.commons.CommonHelper;
 import ryey.easer.commons.plugindef.PluginDef;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
@@ -34,7 +35,6 @@ import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
-import ryey.easer.core.ui.setting.PluginEnabledPreference;
 import ryey.easer.plugins.event.battery.BatteryEventPlugin;
 import ryey.easer.plugins.event.bluetooth_device.BTDeviceEventPlugin;
 import ryey.easer.plugins.event.broadcast.BroadcastEventPlugin;
@@ -169,7 +169,8 @@ final public class PluginRegistry {
             SharedPreferences settingsPreference =
                     PreferenceManager.getDefaultSharedPreferences(context);
             for (T plugin : pluginList) {
-                if (settingsPreference.getBoolean(PluginEnabledPreference.enabledKey(plugin), true)) {
+                if (settingsPreference.getBoolean(CommonHelper.pluginEnabledKey(plugin), true)
+                        && plugin.isCompatible()) {
                     enabledPlugins.add(plugin);
                 }
             }
