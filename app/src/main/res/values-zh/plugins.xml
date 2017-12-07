@@ -91,6 +91,9 @@
     <string name="destination">收信人</string>
     <string name="content">內容</string>
 
+    <string name="operation_send_notification">發送通知</string>
+    <string name="title">題目</string>
+
     <string-array name="event_type">
         <item>晚於</item>
         <item>任一</item>

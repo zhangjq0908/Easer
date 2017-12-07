@@ -101,6 +101,9 @@
     <string name="destination">Destination</string>
     <string name="content">Content</string>
 
+    <string name="operation_send_notification">Send Notification</string>
+    <string name="title">Title</string>
+
     <string-array name="event_type">
         <item>After</item>
         <item>Any</item>
