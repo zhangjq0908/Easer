@@ -43,6 +43,7 @@ import ryey.easer.plugins.event.celllocation.CellLocationEventPlugin;
 import ryey.easer.plugins.event.connectivity.ConnectivityEventPlugin;
 import ryey.easer.plugins.event.date.DateEventPlugin;
 import ryey.easer.plugins.event.dayofweek.DayOfWeekEventPlugin;
+import ryey.easer.plugins.event.notification.NotificationEventPlugin;
 import ryey.easer.plugins.event.sms.SmsEventPlugin;
 import ryey.easer.plugins.event.time.TimeEventPlugin;
 import ryey.easer.plugins.event.wifi.WifiEventPlugin;
@@ -90,6 +91,7 @@ final public class PluginRegistry {
         event().registerPlugin(CalendarEventPlugin.class);
         event().registerPlugin(BroadcastEventPlugin.class);
         event().registerPlugin(SmsEventPlugin.class);
+        event().registerPlugin(NotificationEventPlugin.class);
 
         operation().registerPlugin(WifiOperationPlugin.class);
         operation().registerPlugin(CellularOperationPlugin.class);

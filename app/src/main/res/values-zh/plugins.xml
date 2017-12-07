@@ -43,6 +43,13 @@
     <string name="event_sms">收到短信</string>
     <string name="sender">發送人</string>
     <string name="content_contains">內容 (包含…)</string>
+
+    <string name="event_notification">收到通知</string>
+    <string name="event_notification__app">App</string>
+    <string name="event_notification__app_hint">軟件的完整包名</string>
+    <string name="event_notification__title">題目（包含…）</string>
+    <string name="event_notification__content">內容（包含…）</string>
+    <string name="label_event_notification_listener_service">Easer (通知事件監聽)</string>
     
     <string name="operation_bluetooth">藍牙</string>
 

@@ -47,6 +47,13 @@
     <string name="sender">Sender</string>
     <string name="content_contains">Content (contains…)</string>
 
+    <string name="event_notification">Notification received</string>
+    <string name="event_notification__app">App</string>
+    <string name="event_notification__app_hint">Fully qualified package name of the app</string>
+    <string name="event_notification__title">Title (contains…)</string>
+    <string name="event_notification__content">Content (contains…)</string>
+    <string name="label_event_notification_listener_service">Easer (Notification Event Listener)</string>
+
     <string name="operation_wifi">WiFi</string>
     <string name="operation_cellular">Mobile data</string>
     <string name="operation_bluetooth">Bluetooth</string>
