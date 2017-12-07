@@ -43,6 +43,7 @@ import com.orhanobut.logger.Logger;
 import ryey.easer.R;
 import ryey.easer.core.ui.edit.EventListFragment;
 import ryey.easer.core.ui.edit.ProfileListFragment;
+import ryey.easer.core.ui.setting.SettingsActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

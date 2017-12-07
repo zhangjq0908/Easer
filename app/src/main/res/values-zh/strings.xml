@@ -60,5 +60,8 @@
     <string name="title_data_manage">數據管理</string>
     <string name="title_select_operation">選擇一個動作</string>
     <string name="wificonn_select_dialog_title">選擇WiFi網絡名</string>
+    <string name="pref_enabled_plugins_title">啓用組件</string>
+    <string name="pref_enabled_plugins_summary">啓用或禁用任意組件</string>
+    <string name="title_operation">操作</string>
 
 </resources>

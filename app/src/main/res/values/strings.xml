@@ -2,6 +2,7 @@
     <string name="app_name">Easer</string>
     <string name="drawer_tip">Ease your life!</string>
     <string name="title_outline">Outline</string>
+    <string name="title_operation">Operation</string>
     <string name="title_profile">Profile</string>
     <string name="title_event">Event</string>
     <string name="title_application">App</string>
@@ -85,6 +86,9 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
 
     <string name="pref_use_root_title">Use root features</string>
     <string name="pref_use_root_summary">Use root permission for specific functions (plugins), which may help resolve compatibility issue on some devices. Root permission won\'t be used elsewhere.</string>
+
+    <string name="pref_enabled_plugins_title">Enabled plugins</string>
+    <string name="pref_enabled_plugins_summary">Enable or disable certain plugins</string>
 
     <string name="pref_export_title">Export</string>
     <string name="pref_export_summary">Export all events and profiles to SD Card.\nFile will be named after current time.</string>

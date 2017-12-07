@@ -123,7 +123,7 @@ public class EditProfileActivity extends AppCompatActivity implements OperationS
         editText_profile_name.setText(oldName);
 
         clearPluginView();
-        List<OperationPlugin> plugins = PluginRegistry.getInstance().operation().getPlugins();
+        List<OperationPlugin> plugins = PluginRegistry.getInstance().operation().getEnabledPlugins(this);
         for (int i = 0; i < plugins.size(); i++) {
             Collection<OperationData> possibleOperationData = profile.get(plugins.get(i).name());
             if (possibleOperationData != null) {

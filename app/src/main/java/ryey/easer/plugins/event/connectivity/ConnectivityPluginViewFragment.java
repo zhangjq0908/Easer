@@ -12,8 +12,6 @@ import android.widget.LinearLayout;
 
 import java.util.Set;
 
-import javax.crypto.spec.IvParameterSpec;
-
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;

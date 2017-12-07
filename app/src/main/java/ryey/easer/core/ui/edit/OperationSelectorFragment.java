@@ -30,7 +30,7 @@ public class OperationSelectorFragment extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dialog_select_operation_plugin, container, false);
         ListView list = view.findViewById(android.R.id.list);
-        List<OperationPlugin> operationPluginList = PluginRegistry.getInstance().operation().getPlugins();
+        List<OperationPlugin> operationPluginList = PluginRegistry.getInstance().operation().getEnabledPlugins(getContext());
         List<PluginItemWrapper> descList = new ArrayList<>(operationPluginList.size());
         for (OperationPlugin operationPlugin : operationPluginList) {
             if (addedPlugins.containsKey(operationPlugin.getClass())) {

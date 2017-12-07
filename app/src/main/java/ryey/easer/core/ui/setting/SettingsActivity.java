@@ -1,4 +1,4 @@
-package ryey.easer.core.ui;
+package ryey.easer.core.ui.setting;
 
 import android.Manifest;
 import android.content.ComponentName;
@@ -32,6 +32,8 @@ import ryey.easer.core.EHService;
 import ryey.easer.core.data.Helper;
 
 public class SettingsActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+
+    private static final String BS_NAME_PLUGIN_ENABLED = "bs_plugin_enabled";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
     }
 
     public static class SettingsFragment extends PreferenceFragment {
+
         final int REQ_CODE = 10;
         final static int REQCODE_PERM_STORAGE = 1;
 
@@ -141,6 +144,20 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                     return true;
                 }
             });
+
+            findPreference(getString(R.string.key_pref_plugins))
+                    .setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    PluginSettingsPreferenceFragment fragment = new PluginSettingsPreferenceFragment();
+                    getFragmentManager().beginTransaction()
+                            .replace(android.R.id.content, fragment)
+                            .addToBackStack(BS_NAME_PLUGIN_ENABLED)
+                            .commit();
+                    return true;
+                }
+            });
+
         }
 
         @Override

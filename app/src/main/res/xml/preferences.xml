@@ -24,6 +24,11 @@
         android:summary="@string/pref_use_root_summary"
         android:title="@string/pref_use_root_title" />
 
+    <Preference
+        android:key="@string/key_pref_plugins"
+        android:title="@string/pref_enabled_plugins_title"
+        android:summary="@string/pref_enabled_plugins_summary" />
+
     <PreferenceCategory android:title="@string/title_data_manage">
 
         <Preference

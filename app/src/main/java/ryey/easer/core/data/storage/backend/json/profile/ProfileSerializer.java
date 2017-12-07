@@ -30,7 +30,7 @@ public class ProfileSerializer implements Serializer<ProfileStructure> {
 
     JSONArray serialize_operation(ProfileStructure profile) throws JSONException {
         JSONArray json_operations = new JSONArray();
-        for (OperationPlugin plugin : PluginRegistry.getInstance().operation().getPlugins()) {
+        for (OperationPlugin plugin : PluginRegistry.getInstance().operation().getAllPlugins()) {
             Collection<OperationData> possibleData = profile.get(plugin.name());
             if (possibleData != null) {
                 for (OperationData data : possibleData) {
