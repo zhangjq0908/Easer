@@ -72,9 +72,19 @@ public class BluetoothOperationPlugin implements OperationPlugin {
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        PluginHelper.requestPermission(activity, requestCode,
-                Manifest.permission.BLUETOOTH,
-                Manifest.permission.BLUETOOTH_ADMIN);
+        boolean can_access_bluetooth = PluginHelper.checkPermission(activity, Manifest.permission.BLUETOOTH);
+        boolean can_bluetooth_admin = PluginHelper.checkPermission(activity, Manifest.permission.BLUETOOTH_ADMIN);
+        if (!can_access_bluetooth && !can_bluetooth_admin) {
+            PluginHelper.requestPermission(activity, requestCode,
+                    Manifest.permission.BLUETOOTH,
+                    Manifest.permission.BLUETOOTH_ADMIN);
+        } else if (!can_access_bluetooth) {
+            PluginHelper.requestPermission(activity, requestCode,
+                    Manifest.permission.BLUETOOTH);
+        } else {
+            PluginHelper.requestPermission(activity, requestCode,
+                    Manifest.permission.BLUETOOTH_ADMIN);
+        }
     }
 
     @NonNull

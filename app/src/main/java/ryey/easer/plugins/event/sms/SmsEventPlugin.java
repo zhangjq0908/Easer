@@ -58,9 +58,17 @@ public class SmsEventPlugin implements EventPlugin {
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        PluginHelper.requestPermission(activity, requestCode,
-                Manifest.permission.READ_SMS,
-                Manifest.permission.RECEIVE_SMS);
+        boolean can_read_sms = PluginHelper.checkPermission(activity, Manifest.permission.READ_SMS);
+        boolean can_receive_sms = PluginHelper.checkPermission(activity, Manifest.permission.RECEIVE_SMS);
+        if (!can_read_sms && !can_receive_sms) {
+            PluginHelper.requestPermission(activity, requestCode,
+                    Manifest.permission.READ_SMS,
+                    Manifest.permission.RECEIVE_SMS);
+        } else if (!can_read_sms) {
+            PluginHelper.requestPermission(activity, requestCode, Manifest.permission.READ_SMS);
+        } else {
+            PluginHelper.requestPermission(activity, requestCode, Manifest.permission.RECEIVE_SMS);
+        }
     }
 
     @NonNull

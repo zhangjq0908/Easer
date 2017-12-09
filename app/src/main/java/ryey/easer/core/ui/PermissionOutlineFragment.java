@@ -76,7 +76,8 @@ public class PermissionOutlineFragment extends Fragment {
         List plugins = PluginRegistry.getInstance().all().getEnabledPlugins(getContext());
         for (int i = 0; i < plugins.size(); i++) {
             PluginDef plugin = (PluginDef) plugins.get(i);
-            plugin.requestPermissions(getActivity(), i);
+            if (!plugin.checkPermissions(getContext()))
+                plugin.requestPermissions(getActivity(), i);
         }
     }
 }

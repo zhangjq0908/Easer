@@ -70,9 +70,19 @@ public class HotspotOperationPlugin implements OperationPlugin {
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        PluginHelper.requestPermission(activity, requestCode,
-                Manifest.permission.ACCESS_WIFI_STATE,
-                Manifest.permission.CHANGE_WIFI_STATE);
+        boolean can_access_wifi = PluginHelper.checkPermission(activity, Manifest.permission.ACCESS_WIFI_STATE);
+        boolean can_change_wifi = PluginHelper.checkPermission(activity, Manifest.permission.CHANGE_WIFI_STATE);
+        if (!can_access_wifi && !can_change_wifi) {
+            PluginHelper.requestPermission(activity, requestCode,
+                    Manifest.permission.ACCESS_WIFI_STATE,
+                    Manifest.permission.CHANGE_WIFI_STATE);
+        } else if (!can_access_wifi) {
+            PluginHelper.requestPermission(activity, requestCode,
+                    Manifest.permission.ACCESS_WIFI_STATE);
+        } else {
+            PluginHelper.requestPermission(activity, requestCode,
+                    Manifest.permission.CHANGE_WIFI_STATE);
+        }
     }
 
     @NonNull

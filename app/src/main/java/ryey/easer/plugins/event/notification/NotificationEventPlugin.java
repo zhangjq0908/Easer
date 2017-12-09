@@ -20,9 +20,12 @@
 package ryey.easer.plugins.event.notification;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
@@ -48,14 +51,22 @@ public class NotificationEventPlugin implements EventPlugin {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public boolean checkPermissions(@NonNull Context context) {
-        return true;
+        return NotificationEventListenerService.isRunning();
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
+        PackageManager pm = activity.getPackageManager();
+        ComponentName componentName = new ComponentName(activity, NotificationEventListenerService.class);
 
+        pm.setComponentEnabledSetting(componentName,
+                PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+
+        pm.setComponentEnabledSetting(componentName,
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
     }
 
     @NonNull
