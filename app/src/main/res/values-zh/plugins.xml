@@ -72,6 +72,7 @@
         <item>震動</item>
         <item>普通</item>
     </array>
+    <string name="label_operation_ringer_mode_notification_listener_service">Easer (切換靜音模式)</string>
 
     <string name="operation_command">執行命令</string>
     <string name="operation_hotspot">移動熱點</string>

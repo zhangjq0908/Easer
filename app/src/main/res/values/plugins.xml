@@ -82,6 +82,7 @@
         <item>Vibrate</item>
         <item>Normal</item>
     </array>
+    <string name="label_operation_ringer_mode_notification_listener_service">Easer (Silent Mode Switcher)</string>
 
     <string name="operation_command">Run commands</string>
     <string name="operation_hotspot">Hotspot</string>
