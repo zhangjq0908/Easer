@@ -15,3 +15,7 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+# ProGuard warns, but don't know why
+-keep class ryey.easer.commons.plugindef.eventplugin.EventData {*;}
+-keep class ryey.easer.commons.plugindef.eventplugin.EventType {*;}
