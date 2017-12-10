@@ -2,6 +2,7 @@
     <string name="app_name">Easer</string>
     <string name="drawer_tip">Ease your life!</string>
     <string name="title_outline">Outline</string>
+    <string name="title_operation">Operation</string>
     <string name="title_profile">Profile</string>
     <string name="title_event">Event</string>
     <string name="title_application">App</string>
@@ -74,6 +75,9 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
 
     <string name="myWebsite" translatable="false">http://renyuneyun.is-programmer.com/</string>
 
+    <string name="pref_category_functionality">Functionality</string>
+    <string name="pref_category_data_manage">Data manage</string>
+
     <string name="pref_autostart_title">Autostart on boot</string>
     <string name="pref_autostart_summary">Start Easer background service automatically</string>
 
@@ -86,10 +90,20 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     <string name="pref_use_root_title">Use root features</string>
     <string name="pref_use_root_summary">Use root permission for specific functions (plugins), which may help resolve compatibility issue on some devices. Root permission won\'t be used elsewhere.</string>
 
+    <string name="pref_enabled_plugins_title">Enabled plugins</string>
+    <string name="pref_enabled_plugins_summary">Enable or disable certain plugins</string>
+
     <string name="pref_export_title">Export</string>
     <string name="pref_export_summary">Export all events and profiles to SD Card.\nFile will be named after current time.</string>
     <string name="pref_import_title">Import</string>
     <string name="pref_import_summary">Import all events and profiles in a zip file.\nExisting events and profiles with same name will be replaced.</string>
+
+    <string name="message_plugin_not_compatible">This plugin is not compatible with this device.</string>
+
+    <string name="message_convert_data_start">Converting data.</string>
+    <string name="message_convert_data_finish">Converted data.</string>
+    <string name="message_convert_data_abort">Convert data aborted.</string>
+    <string name="message_convert_data_error">Error occurred when converting data. Please see the log for details.</string>
 
     <string name="title_welcome_message">Welcome</string>
     <string name="welcome_message">Welcome to use Easer!
@@ -99,8 +113,12 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     2. Connecting events as <a href="https://en.wikipedia.org/wiki/Tree_structure">trees</a> is CURRENTLY the only way to compose events.
         \n\nAlso have a look at <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> in the project wiki.</string>
 
+    <string name="alert_future_version_change_title">Changes in future versions</string>
+    <string name="alert_future_version_change">The data storage format is going to be changed (as early as v0.5), and old format will be dropped.
+        \n\nEaser has detected that your data contain such old format. Please use the \"convert\" function in Settings to convert old formats to new formats, or they will become unavailable in the future.
+        \n\nThis message won\'t show again after the conversion.</string>
+
     <string name="template_export">Exported to %s</string>
     <string name="version">Version</string>
-    <string name="title_data_manage">Data manage</string>
 </resources>
 

@@ -4,7 +4,6 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,13 +16,8 @@ import ryey.easer.plugins.PluginRegistry;
 
 /**
  * Base Fragment class for plugin's UI.
- * Normally, they should also provide the correct description string resource ID (see {@link #desc} {@link #setDesc(int)} {@link #desc(Resources)}).
  */
 public abstract class PluginViewFragment extends Fragment {
-    /**
-     * Description resource (string) ID
-     */
-    protected @StringRes int desc = -1;
 
     /**
      * Controls whether the content (view) is enabled/interactive or not in the beginning.
@@ -59,21 +53,12 @@ public abstract class PluginViewFragment extends Fragment {
     }
 
     /**
-     * Set the description text (shown in the UI).
-     * Usually needs to be called in the constructor of the subclass.
-     * @see #desc
-     */
-    protected void setDesc(int desc_resource) {
-        this.desc = desc_resource;
-    }
-
-    /**
      * Get the description text from resources.
      * Could be overridden in subclasses if needed for customized text.
      */
     @NonNull
     public String desc(@NonNull Resources res) {
-        return res.getString(desc);
+        return res.getString(PluginRegistry.getInstance().all().findPlugin(this).name());
     }
 
     /**

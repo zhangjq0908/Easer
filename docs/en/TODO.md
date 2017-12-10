@@ -3,7 +3,6 @@ TODO
 * Function / User experience
 	* Add more Event (suggestions below)
 		* GPS position
-		* Receiving certain Notifications
 		* Receiving phone calls
 	* Add more Operation (suggestions below)
 		* Location setting

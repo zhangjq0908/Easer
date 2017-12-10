@@ -12,6 +12,7 @@ Supported Features
 * Calendar Event
 * Any Broadcast/Intent
 * Designated SMSs
+* Incoming Notifications
 
 ### Operation
 * WiFi switch
@@ -27,4 +28,5 @@ Supported Features
 * Control media player
 * Toogle airplane mode
 * Send SMS
+* Post Notifications
 

@@ -126,7 +126,7 @@ public class WifiEventData extends TypedEventData {
         if (!isValid()) {
             Logger.wtf("Invalid SmsEventData shouldn't be serialized");
         }
-        XmlHelper.EventHelper.writeMultipleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).name(), ssids.toArray(new String[0]));
+        XmlHelper.EventHelper.writeMultipleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).id(), ssids.toArray(new String[0]));
         XmlHelper.EventHelper.writeLogic(serializer, type());
     }
 

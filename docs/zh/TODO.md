@@ -3,7 +3,6 @@ TODO
 * 功能/使用
 	* 增加更多Event（以下建議）
 		* GPS位置
-		* 收到特定Notification
 		* 收到來電
 	* 增加更多Operation（以下建議）
 		* 定位

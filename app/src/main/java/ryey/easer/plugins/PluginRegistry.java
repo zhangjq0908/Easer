@@ -19,11 +19,15 @@
 
 package ryey.easer.plugins;
 
-import com.orhanobut.logger.Logger;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import ryey.easer.commons.CommonHelper;
 import ryey.easer.commons.plugindef.PluginDef;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
@@ -39,6 +43,7 @@ import ryey.easer.plugins.event.celllocation.CellLocationEventPlugin;
 import ryey.easer.plugins.event.connectivity.ConnectivityEventPlugin;
 import ryey.easer.plugins.event.date.DateEventPlugin;
 import ryey.easer.plugins.event.dayofweek.DayOfWeekEventPlugin;
+import ryey.easer.plugins.event.notification.NotificationEventPlugin;
 import ryey.easer.plugins.event.sms.SmsEventPlugin;
 import ryey.easer.plugins.event.time.TimeEventPlugin;
 import ryey.easer.plugins.event.wifi.WifiEventPlugin;
@@ -53,6 +58,7 @@ import ryey.easer.plugins.operation.media_control.MediaControlOperationPlugin;
 import ryey.easer.plugins.operation.network_transmission.NetworkTransmissionOperationPlugin;
 import ryey.easer.plugins.operation.ringer_mode.RingerModeOperationPlugin;
 import ryey.easer.plugins.operation.rotation.RotationOperationPlugin;
+import ryey.easer.plugins.operation.send_notification.SendNotificationOperationPlugin;
 import ryey.easer.plugins.operation.send_sms.SendSmsOperationPlugin;
 import ryey.easer.plugins.operation.synchronization.SynchronizationOperationPlugin;
 import ryey.easer.plugins.operation.wifi.WifiOperationPlugin;
@@ -64,8 +70,11 @@ import ryey.easer.plugins.operation.wifi.WifiOperationPlugin;
  */
 final public class PluginRegistry {
 
-    private final Registry<EventPlugin, EventData> eventPluginRegistry = new Registry<>();
-    private final Registry<OperationPlugin, OperationData> operationPluginRegistry = new Registry<>();
+    private static final int TYPE_OPERATION = 0;
+    private static final int TYPE_EVENT = 1;
+
+    private final Registry<EventPlugin, EventData> eventPluginRegistry = new Registry<>(TYPE_EVENT);
+    private final Registry<OperationPlugin, OperationData> operationPluginRegistry = new Registry<>(TYPE_OPERATION);
     private final OverallRegistry overallRegistry = new OverallRegistry(new PluginLookuper[] {
             eventPluginRegistry, operationPluginRegistry,
     });
@@ -82,6 +91,7 @@ final public class PluginRegistry {
         event().registerPlugin(CalendarEventPlugin.class);
         event().registerPlugin(BroadcastEventPlugin.class);
         event().registerPlugin(SmsEventPlugin.class);
+        event().registerPlugin(NotificationEventPlugin.class);
 
         operation().registerPlugin(WifiOperationPlugin.class);
         operation().registerPlugin(CellularOperationPlugin.class);
@@ -97,6 +107,7 @@ final public class PluginRegistry {
         operation().registerPlugin(MediaControlOperationPlugin.class);
         operation().registerPlugin(AirplaneModeOperationPlugin.class);
         operation().registerPlugin(SendSmsOperationPlugin.class);
+        operation().registerPlugin(SendNotificationOperationPlugin.class);
         //TODO: write more plugins
     }
 
@@ -116,20 +127,26 @@ final public class PluginRegistry {
         return operationPluginRegistry;
     }
 
-    public PluginLookuper all() {
+    public PluginLookuper<PluginDef, StorageData> all() {
         return overallRegistry;
     }
 
     public interface PluginLookuper<T extends PluginDef, T_data extends StorageData> {
-        List<T> getPlugins();
+        List<T> getEnabledPlugins(@NonNull Context context);
+        List<T> getAllPlugins();
         T findPlugin(T_data data);
         T findPlugin(String name);
         T findPlugin(PluginViewFragment view);
     }
 
     public static class Registry<T extends PluginDef, T_data extends StorageData> implements PluginLookuper<T, T_data> {
+        final int type;
         final List<Class<? extends T>> pluginClassList = new ArrayList<>();
         final List<T> pluginList = new ArrayList<>();
+
+        private Registry(int type) {
+            this.type = type;
+        }
 
         synchronized void registerPlugin(Class<? extends T> pluginClass) {
             for (Class<? extends T> klass : pluginClassList) {
@@ -147,16 +164,30 @@ final public class PluginRegistry {
             }
         }
 
-        public final List<Class<? extends T>> getPluginClasses() {
+        public List<Class<? extends T>> getPluginClasses() {
             return pluginClassList;
         }
 
-        public final List<T> getPlugins() {
+        public List<T> getEnabledPlugins(@NonNull Context context) {
+            List<T> enabledPlugins = new ArrayList<>(pluginList.size());
+            SharedPreferences settingsPreference =
+                    PreferenceManager.getDefaultSharedPreferences(context);
+            for (T plugin : pluginList) {
+                if (settingsPreference.getBoolean(CommonHelper.pluginEnabledKey(plugin), true)
+                        && plugin.isCompatible()) {
+                    enabledPlugins.add(plugin);
+                }
+            }
+            return enabledPlugins;
+        }
+
+        @Override
+        public List<T> getAllPlugins() {
             return pluginList;
         }
 
         public T findPlugin(T_data data) {
-            for (T plugin : getPlugins()) {
+            for (T plugin : getAllPlugins()) {
                 if (data.getClass() == plugin.data().getClass()) {
                     return plugin;
                 }
@@ -165,8 +196,8 @@ final public class PluginRegistry {
         }
 
         public T findPlugin(String name) {
-            for (T plugin : getPlugins()) {
-                if (name.equals(plugin.name())) {
+            for (T plugin : getAllPlugins()) {
+                if (name.equals(plugin.id())) {
                     return plugin;
                 }
             }
@@ -175,25 +206,13 @@ final public class PluginRegistry {
 
         @Override
         public T findPlugin(PluginViewFragment view) {
-            for (T plugin : getPlugins()) {
+            for (T plugin : getAllPlugins()) {
                 if (view.getClass().equals(plugin.view().getClass()))
                     return plugin;
             }
             throw new IllegalAccessError();
         }
 
-        public int getPluginIndex(T plugin) {
-            for (int i = 0; i < getPlugins().size(); i++) {
-                if (plugin.getClass() == getPlugins().get(i).getClass())
-                    return i;
-            }
-            Logger.wtf("Plugin not found in Registry???");
-            return -1;
-        }
-
-        public int getPluginIndex(T_data data) {
-            return getPluginIndex(findPlugin(data));
-        }
     }
 
     public static class OverallRegistry implements PluginLookuper<PluginDef, StorageData> {
@@ -204,17 +223,26 @@ final public class PluginRegistry {
             this.lookupers = lookupers;
         }
 
-        public List<PluginDef> getPlugins() {
+        public List<PluginDef> getEnabledPlugins(@NonNull Context context) {
             List<PluginDef> list = new ArrayList<>();
             for (PluginLookuper<? extends PluginDef, ? extends StorageData> lookuper : lookupers) {
-                list.addAll(lookuper.getPlugins());
+                list.addAll(lookuper.getEnabledPlugins(context));
+            }
+            return list;
+        }
+
+        @Override
+        public List<PluginDef> getAllPlugins() {
+            List<PluginDef> list = new ArrayList<>();
+            for (PluginLookuper<? extends PluginDef, ? extends StorageData> lookuper : lookupers) {
+                list.addAll(lookuper.getAllPlugins());
             }
             return list;
         }
 
         @Override
         public PluginDef findPlugin(StorageData storageData) {
-            for (PluginDef plugin : getPlugins()) {
+            for (PluginDef plugin : getAllPlugins()) {
                 if (storageData.getClass().equals(plugin.data().getClass()))
                     return plugin;
             }
@@ -223,8 +251,8 @@ final public class PluginRegistry {
 
         @Override
         public PluginDef findPlugin(String name) {
-            for (PluginDef plugin : getPlugins()) {
-                if (name.equals(plugin.name()))
+            for (PluginDef plugin : getAllPlugins()) {
+                if (name.equals(plugin.id()))
                     return plugin;
             }
             throw new IllegalAccessError();
@@ -232,7 +260,7 @@ final public class PluginRegistry {
 
         @Override
         public PluginDef findPlugin(PluginViewFragment view) {
-            for (PluginDef plugin : getPlugins()) {
+            for (PluginDef plugin : getAllPlugins()) {
                 if (view.getClass().equals(plugin.view().getClass()))
                     return plugin;
             }

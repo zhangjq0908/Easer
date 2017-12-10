@@ -23,6 +23,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
@@ -32,8 +33,18 @@ public class BroadcastEventPlugin implements EventPlugin {
 
     @NonNull
     @Override
-    public String name() {
+    public String id() {
         return "broadcast";
+    }
+
+    @Override
+    public int name() {
+        return R.string.event_broadcast;
+    }
+
+    @Override
+    public boolean isCompatible() {
+        return true;
     }
 
     @Override

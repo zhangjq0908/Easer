@@ -82,7 +82,7 @@ public class ConnectivityEventData extends TypedEventData {
             Logger.wtf("Invalid ConnectivityEventData shouldn't be serialized");
         }
         Set<Integer> selected_types = (Set<Integer>) get();
-        XmlHelper.EventHelper.writeMultipleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).name(),
+        XmlHelper.EventHelper.writeMultipleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).id(),
                 Utils.set2strlist(selected_types).toArray(new String[0]));
         XmlHelper.EventHelper.writeLogic(serializer, type());
     }

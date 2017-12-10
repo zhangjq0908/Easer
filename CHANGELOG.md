@@ -1,6 +1,17 @@
 CHANGELOG
 ======
 
+* v0.4.9: Add Event for listening to notifications and Operation for sending notifications && Add a setting entry for enabling / disabling plugins && Add compatibility checking for plugins && Inform future changes && Bug fixes
+	* Add `NotificationEventPlugin` to listen to notifications and `SendNotificationOperationPlugin` to post notifications
+	* Add a setting entry to enable or disable plugins
+	* Add `PluginDef.isCompatible()` to check for the compatibility of plugins before using them
+	* Add a prompt screen to inform the user about possible future changes and actions to take
+		* Currently, v0.5 (or later) will drop the support for old data formats, so users should convert the old formats to new formats (by using the conversion provided in the setting screen).
+	* (Lollipop+ / SDK 21+) Fix the function of `RingerModeOperationPlugin` to set to silent mode
+	* Fix the problem of re-requesting permissions
+	* (*dev*) Explicitly fix `0` as `infinity` for `OperationPlugin.maxExistence()`
+	* (*dev*) Remove the ordering of plugins from `PluginRegistry` (moved that to where it is needed)
+
 * v0.4.8: Run multiple commands in one process && multiple developer changes
 	* `CommandOperationPlugin` now runs multiple commands in one process, which allows inputting data into an interactive shell
 	* Developer changes

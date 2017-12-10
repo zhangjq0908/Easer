@@ -24,6 +24,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
@@ -35,8 +36,18 @@ public class WifiOperationPlugin implements OperationPlugin {
 
     @NonNull
     @Override
-    public String name() {
+    public String id() {
         return "wifi";
+    }
+
+    @Override
+    public int name() {
+        return R.string.operation_wifi;
+    }
+
+    @Override
+    public boolean isCompatible() {
+        return true;
     }
 
     @NonNull
@@ -59,9 +70,19 @@ public class WifiOperationPlugin implements OperationPlugin {
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        PluginHelper.requestPermission(activity, requestCode,
-                Manifest.permission.ACCESS_WIFI_STATE,
-                Manifest.permission.CHANGE_WIFI_STATE);
+        boolean can_access_wifi = PluginHelper.checkPermission(activity, Manifest.permission.ACCESS_WIFI_STATE);
+        boolean can_change_wifi = PluginHelper.checkPermission(activity, Manifest.permission.CHANGE_WIFI_STATE);
+        if (!can_access_wifi && !can_change_wifi) {
+            PluginHelper.requestPermission(activity, requestCode,
+                    Manifest.permission.ACCESS_WIFI_STATE,
+                    Manifest.permission.CHANGE_WIFI_STATE);
+        } else if (!can_access_wifi) {
+            PluginHelper.requestPermission(activity, requestCode,
+                    Manifest.permission.ACCESS_WIFI_STATE);
+        } else {
+            PluginHelper.requestPermission(activity, requestCode,
+                    Manifest.permission.CHANGE_WIFI_STATE);
+        }
     }
 
     @NonNull

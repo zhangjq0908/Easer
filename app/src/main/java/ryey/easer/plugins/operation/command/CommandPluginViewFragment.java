@@ -35,10 +35,6 @@ import ryey.easer.commons.plugindef.StorageData;
 public class CommandPluginViewFragment extends PluginViewFragment {
     private EditText editText_command;
 
-    {
-        setDesc(R.string.operation_command);
-    }
-
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

@@ -47,10 +47,6 @@ public class BroadcastPluginViewFragment extends PluginViewFragment {
     private EditText m_text_data;
     private List<ExtraItemFragment> m_fragment_extra = new ArrayList<>();
 
-    {
-        setDesc(R.string.operation_broadcast);
-    }
-
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

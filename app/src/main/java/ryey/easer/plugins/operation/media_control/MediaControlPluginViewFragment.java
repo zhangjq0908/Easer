@@ -40,10 +40,6 @@ public class MediaControlPluginViewFragment extends PluginViewFragment {
     private RadioButton radioButton_previous;
     private RadioButton radioButton_next;
 
-    {
-        setDesc(R.string.operation_media_control);
-    }
-
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

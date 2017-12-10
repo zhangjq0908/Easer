@@ -21,16 +21,11 @@ package ryey.easer.plugins.operation.airplane_mode;
 
 import android.support.annotation.NonNull;
 
-import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.plugins.operation.SwitchPluginViewFragment;
 
 public class AirplaneModePluginViewFragment extends SwitchPluginViewFragment {
-
-    {
-        setDesc(R.string.operation_airplane_mode);
-    }
 
     @NonNull
     @Override

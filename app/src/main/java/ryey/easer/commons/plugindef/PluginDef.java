@@ -3,6 +3,7 @@ package ryey.easer.commons.plugindef;
 import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 
 public interface PluginDef {
     /**
@@ -10,7 +11,19 @@ public interface PluginDef {
      * Only used internally. Never displayed to user.
      */
     @NonNull
-    String name();
+    String id();
+
+    /**
+     * @return The string resource id of the name (of this plugin)
+     */
+    @StringRes
+    int name();
+
+    /**
+     * Check whether this plugin is compatible to the current device.
+     * @return Whether the plugin is compatible or not
+     */
+    boolean isCompatible();
 
     /**
      * Checks all permission(s) used by this plugin

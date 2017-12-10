@@ -39,10 +39,6 @@ public class BrightnessPluginViewFragment extends PluginViewFragment {
     private Switch mIsAuto;
     private SeekBar mBrightnessLevel;
 
-    {
-        setDesc(R.string.operation_brightness);
-    }
-
     @NonNull
     @Override
     public ViewGroup onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

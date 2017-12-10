@@ -21,12 +21,16 @@ package ryey.easer.plugins.operation.ringer_mode;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 
+import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
@@ -38,8 +42,18 @@ public class RingerModeOperationPlugin implements OperationPlugin {
 
     @NonNull
     @Override
-    public String name() {
+    public String id() {
         return "ringer_mode";
+    }
+
+    @Override
+    public int name() {
+        return R.string.operation_ringer_mode;
+    }
+
+    @Override
+    public boolean isCompatible() {
+        return true;
     }
 
     @NonNull
@@ -58,21 +72,39 @@ public class RingerModeOperationPlugin implements OperationPlugin {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             return PluginHelper.checkPermission(context, Manifest.permission.MODIFY_AUDIO_SETTINGS);
         } else {
-            return PluginHelper.checkPermission(context,
-                    Manifest.permission.MODIFY_AUDIO_SETTINGS,
-                    Manifest.permission.BIND_NOTIFICATION_LISTENER_SERVICE);
+            return PluginHelper.checkPermission(context, Manifest.permission.MODIFY_AUDIO_SETTINGS)
+                    && InterruptionFilterSwitcherService.isRunning();
         }
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        PluginHelper.requestPermission(activity, requestCode, Manifest.permission.MODIFY_AUDIO_SETTINGS);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
-            activity.startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            PluginHelper.requestPermission(activity, requestCode,
-                    Manifest.permission.BIND_NOTIFICATION_LISTENER_SERVICE);
+        if (!PluginHelper.checkPermission(activity, Manifest.permission.MODIFY_AUDIO_SETTINGS))
+            PluginHelper.requestPermission(activity, requestCode, Manifest.permission.MODIFY_AUDIO_SETTINGS);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (!InterruptionFilterSwitcherService.isRunning()) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+                    activity.startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    PluginHelper.requestPermission(activity, requestCode,
+                            Manifest.permission.BIND_NOTIFICATION_LISTENER_SERVICE);
+                }
+                toggleNotificationListenerService(activity);
+            }
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private static void toggleNotificationListenerService(Context context) {
+        PackageManager pm = context.getPackageManager();
+        ComponentName componentName = new ComponentName(context, InterruptionFilterSwitcherService.class);
+
+        pm.setComponentEnabledSetting(componentName,
+                PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+
+        pm.setComponentEnabledSetting(componentName,
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+
     }
 
     @NonNull

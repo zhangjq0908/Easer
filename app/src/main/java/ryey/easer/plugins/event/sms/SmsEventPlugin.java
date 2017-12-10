@@ -24,6 +24,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
@@ -34,8 +35,18 @@ public class SmsEventPlugin implements EventPlugin {
 
     @NonNull
     @Override
-    public String name() {
+    public String id() {
         return "sms";
+    }
+
+    @Override
+    public int name() {
+        return R.string.event_sms;
+    }
+
+    @Override
+    public boolean isCompatible() {
+        return true;
     }
 
     @Override
@@ -47,9 +58,17 @@ public class SmsEventPlugin implements EventPlugin {
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        PluginHelper.requestPermission(activity, requestCode,
-                Manifest.permission.READ_SMS,
-                Manifest.permission.RECEIVE_SMS);
+        boolean can_read_sms = PluginHelper.checkPermission(activity, Manifest.permission.READ_SMS);
+        boolean can_receive_sms = PluginHelper.checkPermission(activity, Manifest.permission.RECEIVE_SMS);
+        if (!can_read_sms && !can_receive_sms) {
+            PluginHelper.requestPermission(activity, requestCode,
+                    Manifest.permission.READ_SMS,
+                    Manifest.permission.RECEIVE_SMS);
+        } else if (!can_read_sms) {
+            PluginHelper.requestPermission(activity, requestCode, Manifest.permission.READ_SMS);
+        } else {
+            PluginHelper.requestPermission(activity, requestCode, Manifest.permission.RECEIVE_SMS);
+        }
     }
 
     @NonNull

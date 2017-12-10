@@ -42,10 +42,6 @@ import ryey.easer.commons.plugindef.StorageData;
 public class DayOfWeekPluginViewFragment extends PluginViewFragment {
     private final CompoundButton []day_buttons = new CompoundButton[7];
 
-    {
-        setDesc(R.string.event_day_of_week);
-    }
-
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

@@ -118,7 +118,7 @@ public class DayOfWeekEventData extends TypedEventData {
         if (!isValid()) {
             Logger.wtf("Invalid DayOfWeekEventData shouldn't be serialized");
         }
-        XmlHelper.EventHelper.writeMultipleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).name(),
+        XmlHelper.EventHelper.writeMultipleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).id(),
                 Utils.set2strlist(days).toArray(new String[0]));
         XmlHelper.EventHelper.writeLogic(serializer, type());
     }

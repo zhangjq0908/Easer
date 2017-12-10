@@ -1,4 +1,4 @@
-package ryey.easer.core.ui;
+package ryey.easer.core.ui.setting;
 
 import android.Manifest;
 import android.content.ComponentName;
@@ -30,8 +30,12 @@ import ryey.easer.R;
 import ryey.easer.core.BootupReceiver;
 import ryey.easer.core.EHService;
 import ryey.easer.core.data.Helper;
+import ryey.easer.core.data.storage.EventDataStorage;
+import ryey.easer.core.data.storage.ProfileDataStorage;
 
 public class SettingsActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+
+    private static final String BS_NAME_PLUGIN_ENABLED = "bs_plugin_enabled";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +72,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
     }
 
     public static class SettingsFragment extends PreferenceFragment {
+
         final int REQ_CODE = 10;
         final static int REQCODE_PERM_STORAGE = 1;
 
@@ -141,6 +146,52 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                     return true;
                 }
             });
+
+            findPreference(getString(R.string.key_pref_plugins))
+                    .setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    PluginSettingsPreferenceFragment fragment = new PluginSettingsPreferenceFragment();
+                    getFragmentManager().beginTransaction()
+                            .replace(android.R.id.content, fragment)
+                            .addToBackStack(BS_NAME_PLUGIN_ENABLED)
+                            .commit();
+                    return true;
+                }
+            });
+
+            findPreference(getString(R.string.key_pref_convert_data))
+                    .setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Toast.makeText(getActivity(), R.string.message_convert_data_start, Toast.LENGTH_SHORT).show();
+                    ProfileDataStorage profileDataStorage = ProfileDataStorage.getInstance(getActivity());
+                    for (String name : profileDataStorage.list()) {
+                        try {
+                            profileDataStorage.edit(name, profileDataStorage.get(name));
+                        } catch (IOException e) {
+                            Logger.e("Failed to convert Profile <%s> to new format.");
+                            Toast.makeText(getActivity(), R.string.message_convert_data_abort, Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), R.string.message_convert_data_error, Toast.LENGTH_LONG).show();
+                            return true;
+                        }
+                    }
+                    EventDataStorage eventDataStorage = EventDataStorage.getInstance(getActivity());
+                    for (String name : eventDataStorage.list()) {
+                        try {
+                            eventDataStorage.edit(name, eventDataStorage.get(name));
+                        } catch (IOException e) {
+                            Logger.e("Failed to convert Event <%s> to new format.");
+                            Toast.makeText(getActivity(), R.string.message_convert_data_abort, Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), R.string.message_convert_data_error, Toast.LENGTH_LONG).show();
+                            return true;
+                        }
+                    }
+                    Toast.makeText(getActivity(), R.string.message_convert_data_finish, Toast.LENGTH_LONG).show();
+                    return true;
+                }
+            });
+
         }
 
         @Override

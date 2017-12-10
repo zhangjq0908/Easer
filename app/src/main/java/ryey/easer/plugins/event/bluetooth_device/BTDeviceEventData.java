@@ -122,7 +122,7 @@ public class BTDeviceEventData extends TypedEventData {
         if (!isValid()) {
             Logger.wtf("Invalid data should not be serialized");
         }
-        XmlHelper.EventHelper.writeMultipleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).name(), hwaddresses.toArray(new String[0]));
+        XmlHelper.EventHelper.writeMultipleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).id(), hwaddresses.toArray(new String[0]));
         XmlHelper.EventHelper.writeLogic(serializer, type());
     }
 

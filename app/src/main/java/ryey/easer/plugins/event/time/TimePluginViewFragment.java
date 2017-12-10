@@ -29,18 +29,12 @@ import android.widget.TimePicker;
 
 import java.util.Calendar;
 
-import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public class TimePluginViewFragment extends PluginViewFragment {
     private TimePicker timePicker;
-
-    {
-        setDesc(R.string.event_time);
-    }
-
 
     @NonNull
     @Override

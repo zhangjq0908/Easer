@@ -24,7 +24,6 @@ import org.junit.Test;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Collection;
 
@@ -50,8 +49,8 @@ public class ProfileTest {
 
         t_profile = new ProfileStructure();
         t_profile.setName("myTest");
-        t_profile.set(new CellularOperationPlugin().name(), new CellularOperationData(false));
-        t_profile.set(new BluetoothOperationPlugin().name(), new BluetoothOperationData(true));
+        t_profile.set(new CellularOperationPlugin().id(), new CellularOperationData(false));
+        t_profile.set(new BluetoothOperationPlugin().id(), new BluetoothOperationData(true));
     }
 
     @Test
@@ -61,10 +60,10 @@ public class ProfileTest {
         ProfileStructure profile = profileParser.parse(byteArrayInputStream);
         assertEquals("myTest", profile.getName());
         Collection<OperationData> operationDataCollection;
-        operationDataCollection = profile.get(new CellularOperationPlugin().name());
+        operationDataCollection = profile.get(new CellularOperationPlugin().id());
         assertEquals(operationDataCollection.size(), 1);
         assertEquals(operationDataCollection.iterator().next().get(), false);
-        operationDataCollection = profile.get(new BluetoothOperationPlugin().name());
+        operationDataCollection = profile.get(new BluetoothOperationPlugin().id());
         assertEquals(operationDataCollection.size(), 1);
         assertEquals(operationDataCollection.iterator().next().get(), true);
         byteArrayInputStream.close();

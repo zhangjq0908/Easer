@@ -131,7 +131,7 @@ public class CalendarEventData extends TypedEventData {
             Logger.e(e, "Error putting %s data", getClass().getSimpleName());
             e.printStackTrace();
         }
-        XmlHelper.EventHelper.writeSingleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).name(), jsonObject.toString());
+        XmlHelper.EventHelper.writeSingleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).id(), jsonObject.toString());
         XmlHelper.EventHelper.writeLogic(serializer, type());
     }
 

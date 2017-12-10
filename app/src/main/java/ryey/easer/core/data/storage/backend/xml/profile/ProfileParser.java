@@ -97,7 +97,7 @@ class ProfileParser implements Parser<ProfileStructure> {
                 OperationPlugin plugin = PluginRegistry.getInstance().operation().findPlugin(spec);
                 OperationData data = plugin.data();
                 data.parse(parser, version);
-                profile.set(plugin.name(), data);
+                profile.set(plugin.id(), data);
         }
     }
 

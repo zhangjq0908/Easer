@@ -11,6 +11,7 @@ import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ryey.easer.commons.plugindef.InvalidDataInputException;
@@ -21,6 +22,8 @@ import ryey.easer.plugins.PluginRegistry;
 public class EventPluginViewPager extends ViewPager {
 
     MyPagerAdapter mPagerAdapter;
+
+    final List<EventPlugin> eventPluginList = new ArrayList<>();
 
     Integer initial_position = null;
     EventData initial_event_data = null;
@@ -34,13 +37,15 @@ public class EventPluginViewPager extends ViewPager {
     }
 
     void init(AppCompatActivity activity) {
+        eventPluginList.clear();
+        eventPluginList.addAll(PluginRegistry.getInstance().event().getEnabledPlugins(activity));
         mPagerAdapter = new MyPagerAdapter(activity.getSupportFragmentManager(), getContext());
         setAdapter(mPagerAdapter);
     }
 
     void setEventData(EventData eventData) {
         initial_event_data = eventData;
-        int i = PluginRegistry.getInstance().event().getPluginIndex(eventData);
+        int i = getPluginIndex(eventData);
         initial_position = i;
         if (getCurrentItem() == i) {
             synchronized (this) {
@@ -61,6 +66,14 @@ public class EventPluginViewPager extends ViewPager {
         return (EventData) mPagerAdapter.getRegisteredFragment(position).getData();
     }
 
+    private int getPluginIndex(EventData eventData) {
+        for (int i = 0; i < eventPluginList.size(); i++) {
+            if (eventData.getClass() == eventPluginList.get(i).data().getClass())
+                return i;
+        }
+        throw new IllegalAccessError("Plugin not found???");
+    }
+
     class MyPagerAdapter extends FragmentStatePagerAdapter {
 
         SparseArray<PluginViewContainerFragment> registeredFragments = new SparseArray<>();
@@ -71,7 +84,7 @@ public class EventPluginViewPager extends ViewPager {
         public MyPagerAdapter(FragmentManager fm, Context context) {
             super(fm);
             this.context = context;
-            List<EventPlugin> eventPluginList = PluginRegistry.getInstance().event().getPlugins();
+            List<EventPlugin> eventPluginList = PluginRegistry.getInstance().event().getEnabledPlugins(context);
             titles = new String[eventPluginList.size()];
             for (int i = 0; i < eventPluginList.size(); i++) {
                 titles[i] = eventPluginList.get(i).view().desc(getResources());
@@ -81,7 +94,7 @@ public class EventPluginViewPager extends ViewPager {
         @Override
         public Fragment getItem(int position) {
             PluginViewContainerFragment fragment = EventPluginViewContainerFragment.createInstance(
-                    PluginRegistry.getInstance().event().getPlugins().get(position).view());
+                    PluginRegistry.getInstance().event().getEnabledPlugins(context).get(position).view());
             return fragment;
         }
 

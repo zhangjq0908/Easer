@@ -57,8 +57,21 @@
     <string name="text_lack_permission">Easer尚不具有全部所需權限。</string>
     <string name="pref_use_root_title">使用root權限特性</string>
     <string name="pref_use_root_summary">對特定功能（插件）啓用root權限，可能有助於解決部分設備兼容性問題。root權限不會被用在其他地方。</string>
-    <string name="title_data_manage">數據管理</string>
+    <string name="pref_category_data_manage">數據管理</string>
     <string name="title_select_operation">選擇一個動作</string>
     <string name="wificonn_select_dialog_title">選擇WiFi網絡名</string>
+    <string name="pref_enabled_plugins_title">啓用組件</string>
+    <string name="pref_enabled_plugins_summary">啓用或禁用任意組件</string>
+    <string name="title_operation">操作</string>
+    <string name="message_plugin_not_compatible">該組件和此設備不兼容</string>
+    <string name="pref_category_functionality">功能</string>
+    <string name="message_convert_data_start">正在轉換</string>
+    <string name="message_convert_data_finish">轉換完成</string>
+    <string name="message_convert_data_abort">轉換中止</string>
+    <string name="message_convert_data_error">轉換數據類型時遇到問題。獲取詳情請查看日誌。</string>
+    <string name="alert_future_version_change_title">未來版本中的變化</string>
+    <string name="alert_future_version_change">在未來版本中（最早於v0.5中），Easer將正式改變對數據格式的處理，拋棄對舊數據存儲方式的支持。
+        \n\nEaser檢測到你的數據（Event或Profile）中包含舊式的格式，它們將在未來不可用。請使用設置頁面的“轉換”功能將舊格式轉換爲新格式。
+        \n\n在轉換後，本消息將不會再次出現。</string>
 
 </resources>

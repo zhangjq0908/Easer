@@ -20,6 +20,7 @@
 package ryey.easer.commons.plugindef.operationplugin;
 
 import android.content.Context;
+import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 
 import ryey.easer.commons.plugindef.PluginDef;
@@ -39,7 +40,9 @@ public interface OperationPlugin extends PluginDef {
 
     /**
      * Returns the max number of concurrent existence of this plugin in a profile
+     * 0 means infinite
      */
+    @IntRange(from = 0)
     int maxExistence();
 
     /**

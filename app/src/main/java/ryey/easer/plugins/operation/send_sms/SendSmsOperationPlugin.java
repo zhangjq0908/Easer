@@ -24,6 +24,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
@@ -35,8 +36,18 @@ public class SendSmsOperationPlugin implements OperationPlugin {
 
     @NonNull
     @Override
-    public String name() {
+    public String id() {
         return "send_sms";
+    }
+
+    @Override
+    public int name() {
+        return R.string.operation_send_sms;
+    }
+
+    @Override
+    public boolean isCompatible() {
+        return true;
     }
 
     @NonNull
@@ -47,7 +58,7 @@ public class SendSmsOperationPlugin implements OperationPlugin {
 
     @Override
     public int maxExistence() {
-        return -1;
+        return 0;
     }
 
     @Override

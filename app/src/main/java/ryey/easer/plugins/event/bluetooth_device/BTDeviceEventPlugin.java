@@ -21,9 +21,11 @@ package ryey.easer.plugins.event.bluetooth_device;
 
 import android.Manifest;
 import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
@@ -34,8 +36,19 @@ public class BTDeviceEventPlugin implements EventPlugin {
 
     @NonNull
     @Override
-    public String name() {
+    public String id() {
         return "bluetooth device";
+    }
+
+    @Override
+    public int name() {
+        return R.string.event_bluetooth_device;
+    }
+
+    @Override
+    public boolean isCompatible() {
+        BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
+        return adapter != null;
     }
 
     @Override

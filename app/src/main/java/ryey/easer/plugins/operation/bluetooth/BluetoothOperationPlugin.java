@@ -21,9 +21,11 @@ package ryey.easer.plugins.operation.bluetooth;
 
 import android.Manifest;
 import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
@@ -35,8 +37,19 @@ public class BluetoothOperationPlugin implements OperationPlugin {
 
     @NonNull
     @Override
-    public String name() {
+    public String id() {
         return "bluetooth";
+    }
+
+    @Override
+    public int name() {
+        return R.string.operation_bluetooth;
+    }
+
+    @Override
+    public boolean isCompatible() {
+        BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
+        return adapter != null;
     }
 
     @NonNull
@@ -59,9 +72,19 @@ public class BluetoothOperationPlugin implements OperationPlugin {
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        PluginHelper.requestPermission(activity, requestCode,
-                Manifest.permission.BLUETOOTH,
-                Manifest.permission.BLUETOOTH_ADMIN);
+        boolean can_access_bluetooth = PluginHelper.checkPermission(activity, Manifest.permission.BLUETOOTH);
+        boolean can_bluetooth_admin = PluginHelper.checkPermission(activity, Manifest.permission.BLUETOOTH_ADMIN);
+        if (!can_access_bluetooth && !can_bluetooth_admin) {
+            PluginHelper.requestPermission(activity, requestCode,
+                    Manifest.permission.BLUETOOTH,
+                    Manifest.permission.BLUETOOTH_ADMIN);
+        } else if (!can_access_bluetooth) {
+            PluginHelper.requestPermission(activity, requestCode,
+                    Manifest.permission.BLUETOOTH);
+        } else {
+            PluginHelper.requestPermission(activity, requestCode,
+                    Manifest.permission.BLUETOOTH_ADMIN);
+        }
     }
 
     @NonNull

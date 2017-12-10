@@ -67,10 +67,6 @@ public class CalendarPluginViewFragment extends PluginViewFragment {
         }
     };
 
-    {
-        setDesc(R.string.event_calendar);
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

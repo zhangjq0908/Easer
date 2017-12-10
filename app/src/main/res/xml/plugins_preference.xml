@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:key="@string/key_pref_enabled_operation_plugins"
+        android:title="@string/title_operation">
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="@string/key_pref_enabled_event_plugins"
+        android:title="@string/title_event">
+
+    </PreferenceCategory>
+</PreferenceScreen>

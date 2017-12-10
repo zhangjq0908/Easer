@@ -38,7 +38,7 @@ class EventSerializer implements Serializer<EventStructure> {
 
     JSONObject serialize_situation(EventData event) throws JSONException {
         JSONObject json_situation = new JSONObject();
-        json_situation.put(C.SPEC, PluginRegistry.getInstance().event().findPlugin(event).name());
+        json_situation.put(C.SPEC, PluginRegistry.getInstance().event().findPlugin(event).id());
         json_situation.put(C.DATA, event.serialize(C.Format.JSON));
         return json_situation;
     }

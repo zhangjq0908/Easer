@@ -45,12 +45,12 @@ public abstract class StringOperationData extends StringData implements Operatio
 
     @Override
     public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
-        set(XmlHelper.OperationHelper.readString(parser, PluginRegistry.getInstance().operation().findPlugin(this).name()));
+        set(XmlHelper.OperationHelper.readString(parser, PluginRegistry.getInstance().operation().findPlugin(this).id()));
     }
 
     @Override
     public void serialize(XmlSerializer serializer) throws IOException {
-        XmlHelper.OperationHelper.writeString(serializer, PluginRegistry.getInstance().operation().findPlugin(this).name(), (String) get());
+        XmlHelper.OperationHelper.writeString(serializer, PluginRegistry.getInstance().operation().findPlugin(this).id(), (String) get());
     }
 
     @Override

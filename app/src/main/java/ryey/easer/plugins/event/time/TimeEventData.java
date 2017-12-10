@@ -108,7 +108,7 @@ public class TimeEventData extends TypedEventData {
     public void serialize(XmlSerializer serializer) throws IOException {
         Calendar time = (Calendar) get();
         if (time != null) {
-            XmlHelper.EventHelper.writeSingleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).name(), TimeToText(time));
+            XmlHelper.EventHelper.writeSingleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).id(), TimeToText(time));
             XmlHelper.EventHelper.writeLogic(serializer, type());
         }
     }

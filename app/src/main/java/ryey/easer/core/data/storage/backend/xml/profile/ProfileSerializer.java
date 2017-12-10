@@ -80,8 +80,8 @@ class ProfileSerializer implements Serializer<ProfileStructure> {
     }
 
     private void writeItems() throws IOException {
-        for (OperationPlugin plugin : PluginRegistry.getInstance().operation().getPlugins()) {
-            Collection<OperationData> possibleData = mProfile.get(plugin.name());
+        for (OperationPlugin plugin : PluginRegistry.getInstance().operation().getAllPlugins()) {
+            Collection<OperationData> possibleData = mProfile.get(plugin.id());
             if (possibleData != null)
                 for (OperationData data : possibleData)
                     data.serialize(serializer);

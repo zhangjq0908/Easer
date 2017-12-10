@@ -47,6 +47,13 @@
     <string name="sender">Sender</string>
     <string name="content_contains">Content (contains…)</string>
 
+    <string name="event_notification">Notification received</string>
+    <string name="event_notification__app">App</string>
+    <string name="event_notification__app_hint">Fully qualified package name of the app</string>
+    <string name="event_notification__title">Title (contains…)</string>
+    <string name="event_notification__content">Content (contains…)</string>
+    <string name="label_event_notification_listener_service">Easer (Notification Event Listener)</string>
+
     <string name="operation_wifi">WiFi</string>
     <string name="operation_cellular">Mobile data</string>
     <string name="operation_bluetooth">Bluetooth</string>
@@ -75,6 +82,7 @@
         <item>Vibrate</item>
         <item>Normal</item>
     </array>
+    <string name="label_operation_ringer_mode_notification_listener_service">Easer (Silent Mode Switcher)</string>
 
     <string name="operation_command">Run commands</string>
     <string name="operation_hotspot">Hotspot</string>
@@ -100,6 +108,9 @@
     <string name="operation_send_sms">Send SMS</string>
     <string name="destination">Destination</string>
     <string name="content">Content</string>
+
+    <string name="operation_send_notification">Send Notification</string>
+    <string name="title">Title</string>
 
     <string-array name="event_type">
         <item>After</item>

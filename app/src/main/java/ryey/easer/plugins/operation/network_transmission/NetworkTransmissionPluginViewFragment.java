@@ -41,10 +41,6 @@ public class NetworkTransmissionPluginViewFragment extends PluginViewFragment {
     private EditText editText_remote_port;
     private EditText editText_data;
 
-    {
-        setDesc(R.string.operation_network_transmission);
-    }
-
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

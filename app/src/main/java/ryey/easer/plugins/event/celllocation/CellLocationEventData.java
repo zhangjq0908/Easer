@@ -123,7 +123,7 @@ public class CellLocationEventData extends TypedEventData {
         for (CellLocationSingleData singleData : data) {
             list.add(singleData.toString());
         }
-        XmlHelper.EventHelper.writeMultipleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).name(), list.toArray(new String[0]));
+        XmlHelper.EventHelper.writeMultipleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).id(), list.toArray(new String[0]));
         XmlHelper.EventHelper.writeLogic(serializer, type());
     }
 

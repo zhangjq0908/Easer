@@ -12,8 +12,6 @@ import android.widget.LinearLayout;
 
 import java.util.Set;
 
-import javax.crypto.spec.IvParameterSpec;
-
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
@@ -30,10 +28,6 @@ public class ConnectivityPluginViewFragment extends PluginViewFragment {
             ConnectivityType.TYPE_VPN,
     };
     final CheckBox[] checkBoxes = new CheckBox[values.length];
-
-    {
-        setDesc(R.string.event_connectivity);
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
