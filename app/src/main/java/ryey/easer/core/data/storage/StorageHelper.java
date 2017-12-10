@@ -1,16 +1,29 @@
 package ryey.easer.core.data.storage;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.EventTree;
 
-class StorageHelper {
+public class StorageHelper {
+
+    public static boolean hasDeprecatedFormattedData(@NonNull Context context) {
+        EventDataStorage eventDataStorage = EventDataStorage.getInstance(context);
+        if (eventDataStorage.storage_backend_list[1].list().size() > 0)
+            return true;
+        ProfileDataStorage profileDataStorage = ProfileDataStorage.getInstance(context);
+        if (profileDataStorage.storage_backend_list[1].list().size() > 0)
+            return true;
+        return false;
+    }
+
     static boolean isSafeToDeleteProfile(Context context, String name) {
         EventDataStorage eventDataStorage = EventDataStorage.getInstance(context);
         for (EventStructure eventStructure : eventDataStorage.allEvents()) {

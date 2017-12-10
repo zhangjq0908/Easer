@@ -41,6 +41,7 @@ import android.widget.TextView;
 import com.orhanobut.logger.Logger;
 
 import ryey.easer.R;
+import ryey.easer.core.data.storage.StorageHelper;
 import ryey.easer.core.ui.edit.EventListFragment;
 import ryey.easer.core.ui.edit.ProfileListFragment;
 import ryey.easer.core.ui.setting.SettingsActivity;
@@ -97,6 +98,19 @@ public class MainActivity extends AppCompatActivity
                     .show()
                     .findViewById(android.R.id.message))
                     .setMovementMethod(LinkMovementMethod.getInstance());
+        }
+
+        if (StorageHelper.hasDeprecatedFormattedData(this)) {
+            new AlertDialog.Builder(this)
+                    .setTitle(R.string.alert_future_version_change_title)
+                    .setMessage(R.string.alert_future_version_change)
+                    .setPositiveButton(R.string.button_understand, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    })
+                    .show();
         }
     }
 

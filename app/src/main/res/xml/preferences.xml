@@ -18,18 +18,20 @@
         android:summary="@string/pref_logging_summary"
         android:title="@string/pref_logging_title" />
 
-    <CheckBoxPreference
-        android:defaultValue="false"
-        android:key="@string/key_pref_use_root"
-        android:summary="@string/pref_use_root_summary"
-        android:title="@string/pref_use_root_title" />
+    <PreferenceCategory android:title="@string/pref_category_functionality">
 
-    <Preference
-        android:key="@string/key_pref_plugins"
-        android:title="@string/pref_enabled_plugins_title"
-        android:summary="@string/pref_enabled_plugins_summary" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/key_pref_use_root"
+            android:summary="@string/pref_use_root_summary"
+            android:title="@string/pref_use_root_title" />
+        <Preference
+            android:key="@string/key_pref_plugins"
+            android:summary="@string/pref_enabled_plugins_summary"
+            android:title="@string/pref_enabled_plugins_title" />
+    </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/title_data_manage">
+    <PreferenceCategory android:title="@string/pref_category_data_manage">
 
         <Preference
             android:key="@string/key_pref_export"
@@ -39,7 +41,13 @@
             android:key="@string/key_pref_import"
             android:summary="@string/pref_import_summary"
             android:title="@string/pref_import_title" />
+
+        <Preference
+            android:key="@string/key_pref_convert_data"
+            android:title="Convert data"
+            android:summary="Convert all data to the recommended format" />
     </PreferenceCategory>
+
     <Preference
         android:enabled="false"
         android:key="@string/key_pref_version"
