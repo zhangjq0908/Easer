@@ -54,6 +54,15 @@
     <string name="event_notification__content">Content (contains…)</string>
     <string name="label_event_notification_listener_service">Easer (Notification Event Listener)</string>
 
+    <string name="event_timer">Timer</string>
+    <string name="exact_timer">Exact timer?</string>
+    <string name="exact">Exact</string>
+    <string name="inexact">Inexact</string>
+    <string name="repeative_timer">Repetive timer?</string>
+    <string name="repeat">Repeat</string>
+    <string name="one_time">One time</string>
+    <string name="minutes">Minutes</string>
+
     <string name="operation_wifi">WiFi</string>
     <string name="operation_cellular">Mobile data</string>
     <string name="operation_bluetooth">Bluetooth</string>

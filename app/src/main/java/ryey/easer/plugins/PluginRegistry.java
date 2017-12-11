@@ -46,6 +46,7 @@ import ryey.easer.plugins.event.dayofweek.DayOfWeekEventPlugin;
 import ryey.easer.plugins.event.notification.NotificationEventPlugin;
 import ryey.easer.plugins.event.sms.SmsEventPlugin;
 import ryey.easer.plugins.event.time.TimeEventPlugin;
+import ryey.easer.plugins.event.timer.TimerEventPlugin;
 import ryey.easer.plugins.event.wifi.WifiEventPlugin;
 import ryey.easer.plugins.operation.airplane_mode.AirplaneModeOperationPlugin;
 import ryey.easer.plugins.operation.bluetooth.BluetoothOperationPlugin;
@@ -92,6 +93,7 @@ final public class PluginRegistry {
         event().registerPlugin(BroadcastEventPlugin.class);
         event().registerPlugin(SmsEventPlugin.class);
         event().registerPlugin(NotificationEventPlugin.class);
+        event().registerPlugin(TimerEventPlugin.class);
 
         operation().registerPlugin(WifiOperationPlugin.class);
         operation().registerPlugin(CellularOperationPlugin.class);

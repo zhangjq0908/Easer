@@ -50,6 +50,15 @@
     <string name="event_notification__title">題目（包含…）</string>
     <string name="event_notification__content">內容（包含…）</string>
     <string name="label_event_notification_listener_service">Easer (通知事件監聽)</string>
+
+    <string name="event_timer">定時器</string>
+    <string name="exact_timer">精確定時？</string>
+    <string name="exact">精確</string>
+    <string name="inexact">不精確</string>
+    <string name="repeative_timer">重複觸發？</string>
+    <string name="repeat">重複</string>
+    <string name="one_time">僅一次</string>
+    <string name="minutes">分鐘</string>
     
     <string name="operation_bluetooth">藍牙</string>
 
