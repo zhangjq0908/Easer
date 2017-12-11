@@ -79,6 +79,7 @@ final class Lotus {
     {
         filter = new IntentFilter();
         filter.addAction(ACTION_SLOT_SATISFIED);
+        filter.addAction(ACTION_SLOT_UNSATISFIED);
         filter.addCategory(CATEGORY_NOTIFY_LOTUS);
         filter.addDataScheme(uri.getScheme());
         filter.addDataAuthority(uri.getAuthority(), null);
@@ -95,14 +96,6 @@ final class Lotus {
         notifyLotusIntent = PendingIntent.getBroadcast(context, 0, intent1, 0);
         intent1.setAction(ACTION_SLOT_UNSATISFIED);
         notifyLotusUnsatisfiedIntent = PendingIntent.getBroadcast(context, 0, intent1, 0);
-
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(ACTION_SLOT_SATISFIED);
-        filter.addCategory(CATEGORY_NOTIFY_LOTUS);
-        filter.addDataScheme(uri.getScheme());
-        filter.addDataAuthority(uri.getAuthority(), null);
-        filter.addDataPath(uri.getPath(), PatternMatcher.PATTERN_LITERAL);
-        context.registerReceiver(mReceiver, filter);
 
         mSlot = dataToSlot(eventTree.getEvent());
         mSlot.register(notifyLotusIntent, notifyLotusUnsatisfiedIntent);

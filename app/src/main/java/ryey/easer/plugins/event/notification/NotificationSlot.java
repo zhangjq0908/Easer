@@ -24,11 +24,11 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 
+import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
-import ryey.easer.plugins.event.SelfNotifiableSlot;
 
-public class NotificationSlot extends SelfNotifiableSlot {
+public class NotificationSlot extends AbstractSlot {
     private NotificationEventData eventData;
     private EventType type = null;
 
@@ -63,13 +63,13 @@ public class NotificationSlot extends SelfNotifiableSlot {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void listen() {
-        NotificationEventListenerService.listen(context, eventData, notifySelfIntent_positive, notifySelfIntent_negative);
+        NotificationEventListenerService.listen(context, eventData, notifyLotusIntent, notifyLotusUnsatisfiedIntent);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void cancel() {
-        NotificationEventListenerService.cancel(context, eventData, notifySelfIntent_positive, notifySelfIntent_negative);
+        NotificationEventListenerService.cancel(context, eventData, notifyLotusIntent, notifyLotusUnsatisfiedIntent);
     }
 
     @Override

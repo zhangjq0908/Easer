@@ -71,6 +71,7 @@ public class TimeSlot extends SelfNotifiableSlot {
 
     @Override
     public void listen() {
+        super.listen();
         if (calendar != null) {
             switch (type) {
                 case after:
@@ -88,6 +89,7 @@ public class TimeSlot extends SelfNotifiableSlot {
 
     @Override
     public void cancel() {
+        super.cancel();
         if (calendar != null) {
             mAlarmManager.cancel(notifySelfIntent_positive);
             mAlarmManager.cancel(notifySelfIntent_negative);

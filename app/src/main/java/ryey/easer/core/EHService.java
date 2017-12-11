@@ -134,6 +134,7 @@ public class EHService extends Service {
     public void onDestroy() {
         Logger.v("onDestroy");
         super.onDestroy();
+        mCancelTriggers();
         unregisterReceiver(mReceiver);
         running = false;
         Intent intent = new Intent(ACTION_STATE_CHANGED);
