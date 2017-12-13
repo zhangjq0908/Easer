@@ -98,6 +98,9 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     <string name="pref_import_title">Import</string>
     <string name="pref_import_summary">Import all events and profiles in a zip file.\nExisting events and profiles with same name will be replaced.</string>
 
+    <string name="pref_convert_data_title">Convert data</string>
+    <string name="pref_convert_data_summary">Convert all data to the recommended format</string>
+
     <string name="message_plugin_not_compatible">This plugin is not compatible with this device.</string>
 
     <string name="message_convert_data_start">Converting data.</string>

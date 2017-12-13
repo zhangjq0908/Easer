@@ -44,8 +44,8 @@
 
         <Preference
             android:key="@string/key_pref_convert_data"
-            android:title="Convert data"
-            android:summary="Convert all data to the recommended format" />
+            android:title="@string/pref_convert_data_title"
+            android:summary="@string/pref_convert_data_summary" />
     </PreferenceCategory>
 
     <Preference

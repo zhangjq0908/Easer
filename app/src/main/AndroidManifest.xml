@@ -49,8 +49,11 @@
             android:name=".core.ProfileLoaderIntentService"
             android:exported="false" />
 
-        <activity android:name=".core.ui.AboutActivity" />
-        <activity android:name=".core.ui.setting.SettingsActivity" />
+        <activity android:name=".core.ui.AboutActivity"
+            android:label="@string/title_about" />
+
+        <activity android:name=".core.ui.setting.SettingsActivity"
+            android:label="@string/title_setting" />
 
         <receiver
             android:name=".core.BootupReceiver"

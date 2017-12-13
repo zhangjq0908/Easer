@@ -49,6 +49,7 @@ import ryey.easer.plugins.event.time.TimeEventPlugin;
 import ryey.easer.plugins.event.timer.TimerEventPlugin;
 import ryey.easer.plugins.event.wifi.WifiEventPlugin;
 import ryey.easer.plugins.operation.airplane_mode.AirplaneModeOperationPlugin;
+import ryey.easer.plugins.operation.alarm.AlarmOperationPlugin;
 import ryey.easer.plugins.operation.bluetooth.BluetoothOperationPlugin;
 import ryey.easer.plugins.operation.brightness.BrightnessOperationPlugin;
 import ryey.easer.plugins.operation.broadcast.BroadcastOperationPlugin;
@@ -61,7 +62,6 @@ import ryey.easer.plugins.operation.ringer_mode.RingerModeOperationPlugin;
 import ryey.easer.plugins.operation.rotation.RotationOperationPlugin;
 import ryey.easer.plugins.operation.send_notification.SendNotificationOperationPlugin;
 import ryey.easer.plugins.operation.send_sms.SendSmsOperationPlugin;
-import ryey.easer.plugins.operation.alarm.AlarmOperationPlugin;
 import ryey.easer.plugins.operation.synchronization.SynchronizationOperationPlugin;
 import ryey.easer.plugins.operation.wifi.WifiOperationPlugin;
 
