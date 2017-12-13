@@ -61,6 +61,7 @@ import ryey.easer.plugins.operation.ringer_mode.RingerModeOperationPlugin;
 import ryey.easer.plugins.operation.rotation.RotationOperationPlugin;
 import ryey.easer.plugins.operation.send_notification.SendNotificationOperationPlugin;
 import ryey.easer.plugins.operation.send_sms.SendSmsOperationPlugin;
+import ryey.easer.plugins.operation.alarm.AlarmOperationPlugin;
 import ryey.easer.plugins.operation.synchronization.SynchronizationOperationPlugin;
 import ryey.easer.plugins.operation.wifi.WifiOperationPlugin;
 
@@ -110,6 +111,7 @@ final public class PluginRegistry {
         operation().registerPlugin(AirplaneModeOperationPlugin.class);
         operation().registerPlugin(SendSmsOperationPlugin.class);
         operation().registerPlugin(SendNotificationOperationPlugin.class);
+        operation().registerPlugin(AlarmOperationPlugin.class);
         //TODO: write more plugins
     }
 

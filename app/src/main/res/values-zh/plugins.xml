@@ -111,6 +111,12 @@
     <string name="operation_send_notification">發送通知</string>
     <string name="title">題目</string>
 
+    <string name="operation_alarm">設置鬧鈴</string>
+    <string name="operation_alarm__absolute">絕對時間</string>
+    <string name="operation_alarm__relative">相對時間</string>
+    <string name="operation_alarm__time">時間</string>
+    <string name="operation_alarm__message">消息</string>
+
     <string-array name="event_type">
         <item>晚於</item>
         <item>任一</item>

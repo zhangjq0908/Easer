@@ -121,6 +121,12 @@
     <string name="operation_send_notification">Send Notification</string>
     <string name="title">Title</string>
 
+    <string name="operation_alarm">Set Alarm</string>
+    <string name="operation_alarm__absolute">Absolute</string>
+    <string name="operation_alarm__relative">Relative</string>
+    <string name="operation_alarm__time">Time</string>
+    <string name="operation_alarm__message">Message</string>
+
     <string-array name="event_type">
         <item>After</item>
         <item>Any</item>
