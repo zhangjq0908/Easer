@@ -7,6 +7,8 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory android:layout="@layout/pref_divider" />
+
     <PreferenceCategory
         android:key="@string/key_pref_enabled_event_plugins"
         android:title="@string/title_event">

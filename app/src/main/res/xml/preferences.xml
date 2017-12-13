@@ -18,6 +18,8 @@
         android:summary="@string/pref_logging_summary"
         android:title="@string/pref_logging_title" />
 
+    <PreferenceCategory android:layout="@layout/pref_divider" />
+
     <PreferenceCategory android:title="@string/pref_category_functionality">
 
         <CheckBoxPreference
@@ -30,6 +32,8 @@
             android:summary="@string/pref_enabled_plugins_summary"
             android:title="@string/pref_enabled_plugins_title" />
     </PreferenceCategory>
+
+    <PreferenceCategory android:layout="@layout/pref_divider" />
 
     <PreferenceCategory android:title="@string/pref_category_data_manage">
 
@@ -47,6 +51,8 @@
             android:title="@string/pref_convert_data_title"
             android:summary="@string/pref_convert_data_summary" />
     </PreferenceCategory>
+
+    <PreferenceCategory android:layout="@layout/pref_divider" />
 
     <Preference
         android:enabled="false"
