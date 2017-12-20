@@ -67,6 +67,7 @@ class DayOfWeekSlot extends SelfNotifiableSlot {
 
     @Override
     public void listen() {
+        super.listen();
         switch (type) {
             case any:
                 scheduleAlarms(notifySelfIntent_positive);
@@ -95,6 +96,7 @@ class DayOfWeekSlot extends SelfNotifiableSlot {
 
     @Override
     public void cancel() {
+        super.cancel();
         mAlarmManager.cancel(notifySelfIntent_positive);
         mAlarmManager.cancel(notifySelfIntent_negative);
     }

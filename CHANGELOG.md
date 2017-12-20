@@ -1,6 +1,18 @@
 CHANGELOG
 ======
 
+* v0.5: Add Timer and NFC Event & Set alarm Operation && Fix leaked BroadcastListener && Fix "unsatisfied" not triggered && Better UI for settings page
+	* Add `TimerEventPlugin` to set a timer which allows delaying for a few time
+	* Add `NfcTagEventPlugin` to listen to NFC tag being scanned
+	* Add `AlarmOperationPlugin` to set alarm
+	* Fix leaked BroadcastListener in two classes (should benefit battery consumption)
+	* Fix "unsatisfied" not trigger (fix part of the desired function)
+	* Better UI for settings page
+		* Add spaces between each categories
+		* Fix translation
+		* Add "back" to the UI
+	* Fix title for "settings" and "about"
+
 * v0.4.9: Add Event for listening to notifications and Operation for sending notifications && Add a setting entry for enabling / disabling plugins && Add compatibility checking for plugins && Inform future changes && Bug fixes
 	* Add `NotificationEventPlugin` to listen to notifications and `SendNotificationOperationPlugin` to post notifications
 	* Add a setting entry to enable or disable plugins

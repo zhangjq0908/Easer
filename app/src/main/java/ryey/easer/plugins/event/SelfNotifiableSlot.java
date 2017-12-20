@@ -31,6 +31,7 @@ public abstract class SelfNotifiableSlot extends AbstractSlot {
     // After sent, this will trigger onNegativeNotified().
     // Meant to be used when the event is going to a negative state.
     protected final PendingIntent notifySelfIntent_negative;
+    private final IntentFilter filter;
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -45,13 +46,13 @@ public abstract class SelfNotifiableSlot extends AbstractSlot {
 
     protected SelfNotifiableSlot(@NonNull Context context) {
         super(context);
-        IntentFilter filter = new IntentFilter();
+        filter = new IntentFilter();
         filter.addAction(ACTION_SATISFIED);
+        filter.addAction(ACTION_UNSATISFIED);
         filter.addCategory(CATEGORY_NOTIFY_SLOT);
         filter.addDataScheme(uri.getScheme());
         filter.addDataAuthority(uri.getAuthority(), null);
         filter.addDataPath(uri.getPath(), PatternMatcher.PATTERN_LITERAL);
-        context.registerReceiver(mReceiver, filter);
 
         Intent intent = new Intent(ACTION_SATISFIED);
         intent.addCategory(CATEGORY_NOTIFY_SLOT);
@@ -59,6 +60,16 @@ public abstract class SelfNotifiableSlot extends AbstractSlot {
         notifySelfIntent_positive = PendingIntent.getBroadcast(context, 0, intent, 0);
         intent.setAction(ACTION_UNSATISFIED);
         notifySelfIntent_negative = PendingIntent.getBroadcast(context, 0, intent, 0);
+    }
+
+    @Override
+    public void listen() {
+        context.registerReceiver(mReceiver, filter);
+    }
+
+    @Override
+    public void cancel() {
+        context.unregisterReceiver(mReceiver);
     }
 
     protected void onPositiveNotified() {

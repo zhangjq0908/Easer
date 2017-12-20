@@ -73,5 +73,7 @@
     <string name="alert_future_version_change">在未來版本中（最早於v0.5中），Easer將正式改變對數據格式的處理，拋棄對舊數據存儲方式的支持。
         \n\nEaser檢測到你的數據（Event或Profile）中包含舊式的格式，它們將在未來不可用。請使用設置頁面的“轉換”功能將舊格式轉換爲新格式。
         \n\n在轉換後，本消息將不會再次出現。</string>
+    <string name="pref_convert_data_title">轉換數據</string>
+    <string name="pref_convert_data_summary">轉換所有數據至推薦格式</string>
 
 </resources>

@@ -47,7 +47,7 @@ public class NotificationEventPlugin implements EventPlugin {
     }
 
     @Override
-    public boolean isCompatible() {
+    public boolean isCompatible(@NonNull final Context context) {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2;
     }
 

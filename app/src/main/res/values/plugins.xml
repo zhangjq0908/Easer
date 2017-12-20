@@ -54,6 +54,20 @@
     <string name="event_notification__content">Content (contains…)</string>
     <string name="label_event_notification_listener_service">Easer (Notification Event Listener)</string>
 
+    <string name="event_timer">Timer</string>
+    <string name="exact_timer">Exact timer?</string>
+    <string name="exact">Exact</string>
+    <string name="inexact">Inexact</string>
+    <string name="repeative_timer">Repetive timer?</string>
+    <string name="repeat">Repeat</string>
+    <string name="one_time">One time</string>
+    <string name="minutes">Minutes</string>
+
+    <string name="event_nfc_tag">NFC Tag</string>
+    <string name="event_nfc_tag__button_detect">Detect Tag</string>
+    <string name="event_nfc_tag__prompt_enable_nfc_first">You need to enable NFC first</string>
+    <string name="event_nfc_tag__prompt_wait_for_tag">Waiting for tag to be scanned…</string>
+
     <string name="operation_wifi">WiFi</string>
     <string name="operation_cellular">Mobile data</string>
     <string name="operation_bluetooth">Bluetooth</string>
@@ -111,6 +125,12 @@
 
     <string name="operation_send_notification">Send Notification</string>
     <string name="title">Title</string>
+
+    <string name="operation_alarm">Set Alarm</string>
+    <string name="operation_alarm__absolute">Absolute</string>
+    <string name="operation_alarm__relative">Relative</string>
+    <string name="operation_alarm__time">Time</string>
+    <string name="operation_alarm__message">Message</string>
 
     <string-array name="event_type">
         <item>After</item>

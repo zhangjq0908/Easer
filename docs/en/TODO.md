@@ -11,7 +11,6 @@ TODO
 	* UI
 		* Allow to pick some pre-defined broadcasts or even dynamically search
 		* Make EditEventActivity more good-looking
-		* Dynamically add Operation(s) to EditProfileActivity
 		* Make OutlineFragment more good-looking
 		* Use a tree view in EventListFragment
 		* Complement 'AboutActivity'

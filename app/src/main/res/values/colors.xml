@@ -12,5 +12,5 @@
     <color name="color_alert">#FE221C</color>
     <color name="color_surrounding">#CAD0E2</color>
 
-    <color name="transparent">#00000000</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>

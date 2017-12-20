@@ -13,6 +13,8 @@ Supported Features
 * Any Broadcast/Intent
 * Designated SMSs
 * Incoming Notifications
+* Timer (Delay a while)
+* NFC tag scanned
 
 ### Operation
 * WiFi switch
@@ -29,4 +31,5 @@ Supported Features
 * Toogle airplane mode
 * Send SMS
 * Post Notifications
+* Set alarm
 

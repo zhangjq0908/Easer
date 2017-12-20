@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.NFC" />
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -21,6 +22,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
     <application
         android:name=".EaserApplication"
@@ -48,8 +50,12 @@
             android:name=".core.ProfileLoaderIntentService"
             android:exported="false" />
 
-        <activity android:name=".core.ui.AboutActivity" />
-        <activity android:name=".core.ui.setting.SettingsActivity" />
+        <activity
+            android:name=".core.ui.AboutActivity"
+            android:label="@string/title_about" />
+        <activity
+            android:name=".core.ui.setting.SettingsActivity"
+            android:label="@string/title_setting" />
 
         <receiver
             android:name=".core.BootupReceiver"
@@ -62,11 +68,10 @@
 
         <activity android:name=".core.ui.edit.EditEventActivity" />
         <activity android:name=".core.ui.edit.EditProfileActivity" />
-
         <activity
-            android:name="ryey.easer.plugins.operation.brightness.DumbSettingBrightnessActivity"
-            android:taskAffinity="com.antonc.phone_schedule.Dummy"
+            android:name=".plugins.operation.brightness.DumbSettingBrightnessActivity"
             android:excludeFromRecents="true"
+            android:taskAffinity="com.antonc.phone_schedule.Dummy"
             android:theme="@style/EmptyActivity" />
 
         <service
@@ -77,7 +82,6 @@
                 <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
         </service>
-
         <service
             android:name=".plugins.event.notification.NotificationEventListenerService"
             android:label="@string/label_event_notification_listener_service"
@@ -86,6 +90,14 @@
                 <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
         </service>
+
+        <activity android:name=".plugins.event.nfc_tag.WaitForNfcActivity"
+            android:theme="@style/AppTheme.ActivityDialog">
+            <intent-filter>
+                <action android:name="android.nfc.action.TAG_DISCOVERED"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

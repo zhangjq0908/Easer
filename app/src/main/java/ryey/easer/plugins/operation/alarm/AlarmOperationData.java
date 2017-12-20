@@ -1,0 +1,212 @@
+/*
+ * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
+ *
+ * This file is part of Easer.
+ *
+ * Easer is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Easer is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+package ryey.easer.plugins.operation.alarm;
+
+import android.os.Parcel;
+import android.support.annotation.NonNull;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlSerializer;
+
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
+import ryey.easer.Utils;
+import ryey.easer.commons.C;
+import ryey.easer.commons.IllegalArgumentTypeException;
+import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.plugindef.operationplugin.OperationData;
+
+public class AlarmOperationData implements OperationData {
+    private static final String K_TIME = "time";
+    private static final String K_MESSAGE = "message";
+    private static final String K_ABSOLUTE_BOOL = "absolute?";
+
+    private static final int[] TIME_FIELDS = new int[]{Calendar.HOUR_OF_DAY, Calendar.MINUTE};
+
+    private static final SimpleDateFormat sdf_time = new SimpleDateFormat("HH:mm", Locale.US);
+
+    static String TimeToText(Calendar calendar) {
+        return sdf_time.format(calendar.getTime());
+    }
+
+    static Calendar TextToTime(String text) throws ParseException {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(sdf_time.parse(text));
+        return calendar;
+    }
+
+    private AlarmData data = new AlarmData();
+
+    public AlarmOperationData() {
+    }
+
+    public AlarmOperationData(AlarmData data) {
+        this.data = data;
+    }
+
+    @NonNull
+    @Override
+    public Object get() {
+        return data;
+    }
+
+    @Override
+    public void set(@NonNull Object obj) {
+        if (obj instanceof AlarmData) {
+            data = (AlarmData) obj;
+        } else {
+            throw new IllegalArgumentTypeException(data.getClass(), new Class[]{String.class, AlarmData.class});
+        }
+    }
+
+    @Override
+    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
+        throw new IllegalAccessError();
+    }
+
+    @Override
+    public void serialize(XmlSerializer serializer) throws IOException {
+        throw new IllegalAccessError();
+    }
+
+    @Override
+    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        switch (format) {
+            default:
+                try {
+                    JSONObject jsonObject = new JSONObject(data);
+                    AlarmData alarmData = new AlarmData();
+                    try {
+                        alarmData.time = TextToTime(jsonObject.getString(K_TIME));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                        throw new IllegalStorageDataException(e.getMessage());
+                    }
+                    alarmData.message = jsonObject.optString(K_MESSAGE, null);
+                    alarmData.absolute = jsonObject.optBoolean(K_ABSOLUTE_BOOL, true);
+                    this.data = alarmData;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    throw new IllegalStorageDataException(e.getMessage());
+                }
+        }
+    }
+
+    @NonNull
+    @Override
+    public String serialize(@NonNull C.Format format) {
+        String res = "";
+        switch (format) {
+            default:
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put(K_TIME, TimeToText(data.time));
+                    jsonObject.put(K_MESSAGE, data.message);
+                    jsonObject.put(K_ABSOLUTE_BOOL, data.absolute);
+                    res = jsonObject.toString();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+        }
+        return res;
+    }
+
+    @Override
+    public boolean isValid() {
+        if (data == null)
+            return false;
+        if (data.time == null)
+            return false;
+        return true;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (!(obj instanceof AlarmOperationData))
+            return false;
+        return data.equals(((AlarmOperationData) obj).data);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        for (int field : TIME_FIELDS) {
+            dest.writeInt(data.time.get(field));
+        }
+        dest.writeString(data.message);
+        dest.writeByte((byte) (data.absolute ? 1 : 0));
+    }
+
+    public static final Creator<AlarmOperationData> CREATOR
+            = new Creator<AlarmOperationData>() {
+        public AlarmOperationData createFromParcel(Parcel in) {
+            return new AlarmOperationData(in);
+        }
+
+        public AlarmOperationData[] newArray(int size) {
+            return new AlarmOperationData[size];
+        }
+    };
+
+    private AlarmOperationData(Parcel in) {
+        data = new AlarmData();
+        data.time = Calendar.getInstance();
+        for (int field : TIME_FIELDS) {
+            data.time.set(field, in.readInt());
+        }
+        data.message = in.readString();
+        data.absolute = in.readByte() != 0;
+    }
+
+    static class AlarmData {
+        Calendar time;
+        String message;
+        boolean absolute = true;
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == this)
+                return true;
+            if (!(obj instanceof AlarmData))
+                return false;
+            if (!Utils.nullableEqual(message, ((AlarmData) obj).message))
+                return false;
+            for (int field : TIME_FIELDS)
+                if (time.get(field) != ((AlarmData) obj).time.get(field))
+                    return false;
+            if (absolute != ((AlarmData) obj).absolute)
+                return false;
+            return true;
+        }
+    }
+}

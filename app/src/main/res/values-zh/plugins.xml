@@ -50,6 +50,20 @@
     <string name="event_notification__title">題目（包含…）</string>
     <string name="event_notification__content">內容（包含…）</string>
     <string name="label_event_notification_listener_service">Easer (通知事件監聽)</string>
+
+    <string name="event_timer">定時器</string>
+    <string name="exact_timer">精確定時？</string>
+    <string name="exact">精確</string>
+    <string name="inexact">不精確</string>
+    <string name="repeative_timer">重複觸發？</string>
+    <string name="repeat">重複</string>
+    <string name="one_time">僅一次</string>
+    <string name="minutes">分鐘</string>
+
+    <string name="event_nfc_tag">NFC標籤</string>
+    <string name="event_nfc_tag__button_detect">檢測標籤</string>
+    <string name="event_nfc_tag__prompt_enable_nfc_first">你需要先打開NFC</string>
+    <string name="event_nfc_tag__prompt_wait_for_tag">等待標籤被掃描中…</string>
     
     <string name="operation_bluetooth">藍牙</string>
 
@@ -101,6 +115,12 @@
 
     <string name="operation_send_notification">發送通知</string>
     <string name="title">題目</string>
+
+    <string name="operation_alarm">設置鬧鈴</string>
+    <string name="operation_alarm__absolute">絕對時間</string>
+    <string name="operation_alarm__relative">相對時間</string>
+    <string name="operation_alarm__time">時間</string>
+    <string name="operation_alarm__message">消息</string>
 
     <string-array name="event_type">
         <item>晚於</item>

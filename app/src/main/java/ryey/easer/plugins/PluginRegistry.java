@@ -43,11 +43,14 @@ import ryey.easer.plugins.event.celllocation.CellLocationEventPlugin;
 import ryey.easer.plugins.event.connectivity.ConnectivityEventPlugin;
 import ryey.easer.plugins.event.date.DateEventPlugin;
 import ryey.easer.plugins.event.dayofweek.DayOfWeekEventPlugin;
+import ryey.easer.plugins.event.nfc_tag.NfcTagEventPlugin;
 import ryey.easer.plugins.event.notification.NotificationEventPlugin;
 import ryey.easer.plugins.event.sms.SmsEventPlugin;
 import ryey.easer.plugins.event.time.TimeEventPlugin;
+import ryey.easer.plugins.event.timer.TimerEventPlugin;
 import ryey.easer.plugins.event.wifi.WifiEventPlugin;
 import ryey.easer.plugins.operation.airplane_mode.AirplaneModeOperationPlugin;
+import ryey.easer.plugins.operation.alarm.AlarmOperationPlugin;
 import ryey.easer.plugins.operation.bluetooth.BluetoothOperationPlugin;
 import ryey.easer.plugins.operation.brightness.BrightnessOperationPlugin;
 import ryey.easer.plugins.operation.broadcast.BroadcastOperationPlugin;
@@ -92,6 +95,8 @@ final public class PluginRegistry {
         event().registerPlugin(BroadcastEventPlugin.class);
         event().registerPlugin(SmsEventPlugin.class);
         event().registerPlugin(NotificationEventPlugin.class);
+        event().registerPlugin(TimerEventPlugin.class);
+        event().registerPlugin(NfcTagEventPlugin.class);
 
         operation().registerPlugin(WifiOperationPlugin.class);
         operation().registerPlugin(CellularOperationPlugin.class);
@@ -108,6 +113,7 @@ final public class PluginRegistry {
         operation().registerPlugin(AirplaneModeOperationPlugin.class);
         operation().registerPlugin(SendSmsOperationPlugin.class);
         operation().registerPlugin(SendNotificationOperationPlugin.class);
+        operation().registerPlugin(AlarmOperationPlugin.class);
         //TODO: write more plugins
     }
 
@@ -174,7 +180,7 @@ final public class PluginRegistry {
                     PreferenceManager.getDefaultSharedPreferences(context);
             for (T plugin : pluginList) {
                 if (settingsPreference.getBoolean(CommonHelper.pluginEnabledKey(plugin), true)
-                        && plugin.isCompatible()) {
+                        && plugin.isCompatible(context)) {
                     enabledPlugins.add(plugin);
                 }
             }
