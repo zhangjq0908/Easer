@@ -46,7 +46,7 @@ public class WifiOperationPlugin implements OperationPlugin {
     }
 
     @Override
-    public boolean isCompatible() {
+    public boolean isCompatible(@NonNull final Context context) {
         return true;
     }
 

@@ -59,6 +59,11 @@
     <string name="repeat">重複</string>
     <string name="one_time">僅一次</string>
     <string name="minutes">分鐘</string>
+
+    <string name="event_nfc_tag">NFC標籤</string>
+    <string name="event_nfc_tag__button_detect">檢測標籤</string>
+    <string name="event_nfc_tag__prompt_enable_nfc_first">你需要先打開NFC</string>
+    <string name="event_nfc_tag__prompt_wait_for_tag">等待標籤被掃描中…</string>
     
     <string name="operation_bluetooth">藍牙</string>
 

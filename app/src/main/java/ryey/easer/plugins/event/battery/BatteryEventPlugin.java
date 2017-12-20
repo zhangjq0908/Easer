@@ -24,7 +24,7 @@ public class BatteryEventPlugin implements EventPlugin {
     }
 
     @Override
-    public boolean isCompatible() {
+    public boolean isCompatible(@NonNull final Context context) {
         return true;
     }
 

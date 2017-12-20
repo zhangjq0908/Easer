@@ -21,9 +21,10 @@ public interface PluginDef {
 
     /**
      * Check whether this plugin is compatible to the current device.
+     * @param context Easer's context
      * @return Whether the plugin is compatible or not
      */
-    boolean isCompatible();
+    boolean isCompatible(@NonNull final Context context);
 
     /**
      * Checks all permission(s) used by this plugin

@@ -17,11 +17,12 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.event.sms;
+package ryey.easer.plugins.event.nfc_tag;
 
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.nfc.NfcAdapter;
 import android.support.annotation.NonNull;
 
 import ryey.easer.R;
@@ -31,60 +32,50 @@ import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.plugins.reusable.PluginHelper;
 
-public class SmsEventPlugin implements EventPlugin {
+public class NfcTagEventPlugin implements EventPlugin {
 
     @NonNull
     @Override
     public String id() {
-        return "sms";
+        return "nfc_tag";
     }
 
     @Override
     public int name() {
-        return R.string.event_sms;
+        return R.string.event_nfc_tag;
     }
 
     @Override
     public boolean isCompatible(@NonNull final Context context) {
-        return true;
+        NfcAdapter adapter = NfcAdapter.getDefaultAdapter(context);
+        return adapter != null;
     }
 
     @Override
     public boolean checkPermissions(@NonNull Context context) {
         return PluginHelper.checkPermission(context,
-                Manifest.permission.READ_SMS,
-                Manifest.permission.RECEIVE_SMS);
+                Manifest.permission.NFC);
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        boolean can_read_sms = PluginHelper.checkPermission(activity, Manifest.permission.READ_SMS);
-        boolean can_receive_sms = PluginHelper.checkPermission(activity, Manifest.permission.RECEIVE_SMS);
-        if (!can_read_sms && !can_receive_sms) {
-            PluginHelper.requestPermission(activity, requestCode,
-                    Manifest.permission.READ_SMS,
-                    Manifest.permission.RECEIVE_SMS);
-        } else if (!can_read_sms) {
-            PluginHelper.requestPermission(activity, requestCode, Manifest.permission.READ_SMS);
-        } else {
-            PluginHelper.requestPermission(activity, requestCode, Manifest.permission.RECEIVE_SMS);
-        }
+        PluginHelper.requestPermission(activity, requestCode, Manifest.permission.NFC);
     }
 
     @NonNull
     @Override
     public EventData data() {
-        return new SmsEventData();
+        return new NfcTagEventData();
     }
 
     @NonNull
     @Override
     public PluginViewFragment view() {
-        return new SmsPluginViewFragment();
+        return new NfcTagPluginViewFragment();
     }
 
     @Override
     public AbstractSlot slot(Context context) {
-        return new SmsConnSlot(context);
+        return new NfcTagSlot(context);
     }
 }

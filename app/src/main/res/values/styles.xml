@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -17,11 +17,21 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="AppTheme.ActivityDialog">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <style name="AppTheme.ActivityDialog" parent="android:Theme.DeviceDefault.Light.Dialog.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="AppTheme.ActivityDialog.TextPrompt" parent="TextAppearance.AppCompat.Headline">
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginLeft">32dp</item>
+        <item name="android:layout_marginRight">32dp</item>
+        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">32dp</item>
+        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">32dp</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="AppTheme.EventPluginViewPager">

@@ -47,7 +47,7 @@ public class BluetoothOperationPlugin implements OperationPlugin {
     }
 
     @Override
-    public boolean isCompatible() {
+    public boolean isCompatible(@NonNull final Context context) {
         BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
         return adapter != null;
     }

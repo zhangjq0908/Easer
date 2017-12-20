@@ -63,6 +63,11 @@
     <string name="one_time">One time</string>
     <string name="minutes">Minutes</string>
 
+    <string name="event_nfc_tag">NFC Tag</string>
+    <string name="event_nfc_tag__button_detect">Detect Tag</string>
+    <string name="event_nfc_tag__prompt_enable_nfc_first">You need to enable NFC first</string>
+    <string name="event_nfc_tag__prompt_wait_for_tag">Waiting for tag to be scanned…</string>
+
     <string name="operation_wifi">WiFi</string>
     <string name="operation_cellular">Mobile data</string>
     <string name="operation_bluetooth">Bluetooth</string>

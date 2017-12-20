@@ -13,7 +13,7 @@ class PluginEnabledPreference extends CheckBoxPreference {
         super(context);
         setKey(CommonHelper.pluginEnabledKey(plugin));
         setTitle(plugin.name());
-        boolean isCompatible = plugin.isCompatible();
+        boolean isCompatible = plugin.isCompatible(context);
         if (isCompatible) {
             setDefaultValue(true);
         } else {
