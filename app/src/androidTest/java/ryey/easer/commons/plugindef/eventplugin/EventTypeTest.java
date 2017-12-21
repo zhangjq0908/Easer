@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import ryey.easer.R;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class EventTypeTest {
 

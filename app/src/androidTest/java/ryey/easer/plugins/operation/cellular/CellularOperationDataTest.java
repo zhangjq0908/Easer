@@ -6,19 +6,13 @@ import org.junit.Test;
 
 import ryey.easer.plugins.operation.TestHelper;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class CellularOperationDataTest {
 
-    public static CellularOperationData createDummyData() {
-        CellularOperationData dummyData = new CellularOperationData();
-        dummyData.set(true);
-        return dummyData;
-    }
-
     @Test
     public void testParcel() {
-        CellularOperationData dummyData = createDummyData();
+        CellularOperationData dummyData = (CellularOperationData) new CellularOperationDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         CellularOperationData parceledData = CellularOperationData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

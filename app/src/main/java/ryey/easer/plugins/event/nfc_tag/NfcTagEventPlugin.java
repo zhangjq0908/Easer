@@ -26,11 +26,8 @@ import android.nfc.NfcAdapter;
 import android.support.annotation.NonNull;
 
 import ryey.easer.R;
-import ryey.easer.commons.C;
-import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.plugins.reusable.PluginHelper;
@@ -68,25 +65,7 @@ public class NfcTagEventPlugin implements EventPlugin {
     @NonNull
     @Override
     public EventDataFactory dataFactory() {
-        return new EventDataFactory() {
-            @NonNull
-            @Override
-            public Class<? extends EventData> dataClass() {
-                return NfcTagEventData.class;
-            }
-
-            @NonNull
-            @Override
-            public EventData emptyData() {
-                return new NfcTagEventData();
-            }
-
-            @NonNull
-            @Override
-            public EventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
-                return new NfcTagEventData(data, format, version);
-            }
-        };
+        return new NfcTagEventDataFactory();
 
     }
 
@@ -100,4 +79,5 @@ public class NfcTagEventPlugin implements EventPlugin {
     public AbstractSlot slot(Context context) {
         return new NfcTagSlot(context);
     }
+
 }

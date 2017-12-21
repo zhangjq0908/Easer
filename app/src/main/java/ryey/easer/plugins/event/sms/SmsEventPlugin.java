@@ -25,11 +25,8 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import ryey.easer.R;
-import ryey.easer.commons.C;
-import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.plugins.reusable.PluginHelper;
@@ -77,25 +74,7 @@ public class SmsEventPlugin implements EventPlugin {
     @NonNull
     @Override
     public EventDataFactory dataFactory() {
-        return new EventDataFactory() {
-            @NonNull
-            @Override
-            public Class<? extends EventData> dataClass() {
-                return SmsEventData.class;
-            }
-
-            @NonNull
-            @Override
-            public EventData emptyData() {
-                return new SmsEventData();
-            }
-
-            @NonNull
-            @Override
-            public EventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
-                return new SmsEventData(data, format, version);
-            }
-        };
+        return new SmsEventDataFactory();
 
     }
 
@@ -109,4 +88,5 @@ public class SmsEventPlugin implements EventPlugin {
     public AbstractSlot slot(Context context) {
         return new SmsConnSlot(context);
     }
+
 }

@@ -20,6 +20,14 @@ public interface DataFactory {
     StorageData emptyData();
 
     /**
+     * Get a valid but dummy data.
+     * Mainly for testing.
+     * @return dummy data
+     */
+    @NonNull
+    StorageData dummyData();
+
+    /**
      * Parse data from the given input to reconstruct the saved data
      * @param data The data to be parsed
      * @param format The format of the underlying storage (e.g. JSON)

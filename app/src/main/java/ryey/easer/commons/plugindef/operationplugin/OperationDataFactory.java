@@ -15,5 +15,8 @@ public interface OperationDataFactory extends DataFactory {
     OperationData emptyData();
 
     @NonNull
+    OperationData dummyData();
+
+    @NonNull
     OperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException;
 }

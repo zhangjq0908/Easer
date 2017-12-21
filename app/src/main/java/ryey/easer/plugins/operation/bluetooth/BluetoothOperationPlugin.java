@@ -26,10 +26,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import ryey.easer.R;
-import ryey.easer.commons.C;
-import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
@@ -93,25 +90,7 @@ public class BluetoothOperationPlugin implements OperationPlugin {
     @NonNull
     @Override
     public OperationDataFactory dataFactory() {
-        return new OperationDataFactory() {
-            @NonNull
-            @Override
-            public Class<? extends OperationData> dataClass() {
-                return BluetoothOperationData.class;
-            }
-
-            @NonNull
-            @Override
-            public OperationData emptyData() {
-                return new BluetoothOperationData();
-            }
-
-            @NonNull
-            @Override
-            public OperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
-                return new BluetoothOperationData(data, format, version);
-            }
-        };
+        return new BluetoothOperationDataFactory();
 
     }
 
@@ -126,4 +105,5 @@ public class BluetoothOperationPlugin implements OperationPlugin {
     public OperationLoader loader(@NonNull Context context) {
         return new BluetoothLoader(context);
     }
+
 }

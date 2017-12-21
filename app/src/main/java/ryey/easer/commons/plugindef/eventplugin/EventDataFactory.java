@@ -15,5 +15,8 @@ public interface EventDataFactory extends DataFactory {
     EventData emptyData();
 
     @NonNull
+    EventData dummyData();
+
+    @NonNull
     EventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException;
 }

@@ -24,11 +24,8 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import ryey.easer.R;
-import ryey.easer.commons.C;
-import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 
@@ -63,25 +60,7 @@ public class DateEventPlugin implements EventPlugin {
     @NonNull
     @Override
     public EventDataFactory dataFactory() {
-        return new EventDataFactory() {
-            @NonNull
-            @Override
-            public Class<? extends EventData> dataClass() {
-                return DateEventData.class;
-            }
-
-            @NonNull
-            @Override
-            public EventData emptyData() {
-                return new DateEventData();
-            }
-
-            @NonNull
-            @Override
-            public EventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
-                return new DateEventData(data, format, version);
-            }
-        };
+        return new DateEventDataFactory();
     }
 
     @NonNull
@@ -94,4 +73,5 @@ public class DateEventPlugin implements EventPlugin {
     public AbstractSlot slot(Context context) {
         return new DateSlot(context);
     }
+
 }

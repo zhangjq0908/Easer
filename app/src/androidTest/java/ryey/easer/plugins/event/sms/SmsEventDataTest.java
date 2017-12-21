@@ -6,22 +6,13 @@ import org.junit.Test;
 
 import ryey.easer.plugins.operation.TestHelper;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class SmsEventDataTest {
 
-    public static SmsEventData createDummyData() {
-        SmsEventData dummyData = new SmsEventData();
-        SmsInnerData innerData = new SmsInnerData();
-        innerData.sender = "15077707777";
-        innerData.content = "aaa";
-        dummyData.set(innerData);
-        return dummyData;
-    }
-
     @Test
     public void testParcel() {
-        SmsEventData dummyData = createDummyData();
+        SmsEventData dummyData = (SmsEventData) new SmsEventDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         SmsEventData parceledData = SmsEventData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

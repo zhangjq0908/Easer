@@ -6,19 +6,13 @@ import org.junit.Test;
 
 import ryey.easer.plugins.operation.TestHelper;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class ConnectivityEventDataTest {
 
-    public static ConnectivityEventData createDummyData() {
-        ConnectivityEventData dummyData = new ConnectivityEventData();
-        dummyData.set(new String[]{"1", "2"});
-        return dummyData;
-    }
-
     @Test
     public void testParcel() {
-        ConnectivityEventData dummyData = createDummyData();
+        ConnectivityEventData dummyData = (ConnectivityEventData) new ConnectivityEventDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         ConnectivityEventData parceledData = ConnectivityEventData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

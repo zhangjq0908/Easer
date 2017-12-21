@@ -6,18 +6,13 @@ import org.junit.Test;
 
 import ryey.easer.plugins.operation.TestHelper;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class AirplaneModeOperationDataTest {
-    public static AirplaneModeOperationData createDummyData() {
-        AirplaneModeOperationData dummyData = new AirplaneModeOperationData();
-        dummyData.set(true);
-        return dummyData;
-    }
 
     @Test
     public void testParcel() {
-        AirplaneModeOperationData dummyData = createDummyData();
+        AirplaneModeOperationData dummyData = (AirplaneModeOperationData) new AirplaneModeOperationDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         AirplaneModeOperationData parceledData = AirplaneModeOperationData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

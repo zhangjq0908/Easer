@@ -25,10 +25,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import ryey.easer.R;
-import ryey.easer.commons.C;
-import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
@@ -77,25 +74,7 @@ public class SynchronizationOperationPlugin implements OperationPlugin {
     @NonNull
     @Override
     public OperationDataFactory dataFactory() {
-        return new OperationDataFactory() {
-            @NonNull
-            @Override
-            public Class<? extends OperationData> dataClass() {
-                return SynchronizationOperationData.class;
-            }
-
-            @NonNull
-            @Override
-            public OperationData emptyData() {
-                return new SynchronizationOperationData();
-            }
-
-            @NonNull
-            @Override
-            public OperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
-                return new SynchronizationOperationData(data, format, version);
-            }
-        };
+        return new SynchronizationOperationDataFactory();
 
     }
 
@@ -110,4 +89,5 @@ public class SynchronizationOperationPlugin implements OperationPlugin {
     public OperationLoader loader(@NonNull Context context) {
         return new SynchronizationLoader(context);
     }
+
 }

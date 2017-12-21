@@ -28,11 +28,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 
 import ryey.easer.R;
-import ryey.easer.commons.C;
-import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 
@@ -75,25 +72,7 @@ public class NotificationEventPlugin implements EventPlugin {
     @NonNull
     @Override
     public EventDataFactory dataFactory() {
-        return new EventDataFactory() {
-            @NonNull
-            @Override
-            public Class<? extends EventData> dataClass() {
-                return NotificationEventData.class;
-            }
-
-            @NonNull
-            @Override
-            public EventData emptyData() {
-                return new NotificationEventData();
-            }
-
-            @NonNull
-            @Override
-            public EventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
-                return new NotificationEventData(data, format, version);
-            }
-        };
+        return new NotificationEventDataFactory();
 
     }
 
@@ -107,4 +86,5 @@ public class NotificationEventPlugin implements EventPlugin {
     public AbstractSlot slot(Context context) {
         return new NotificationSlot(context);
     }
+
 }
