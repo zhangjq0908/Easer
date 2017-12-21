@@ -63,6 +63,10 @@ public class BroadcastOperationData implements OperationData {
         this.data = data;
     }
 
+    BroadcastOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
+    }
+
     @NonNull
     @Override
     public Object get() {

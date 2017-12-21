@@ -61,6 +61,10 @@ public class DayOfWeekEventData extends TypedEventData {
         this.days = days;
     }
 
+    DayOfWeekEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
+    }
+
     @NonNull
     @Override
     public Object get() {

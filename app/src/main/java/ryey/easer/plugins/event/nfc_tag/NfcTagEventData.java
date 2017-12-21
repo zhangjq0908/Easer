@@ -75,6 +75,10 @@ public class NfcTagEventData extends TypedEventData {
         set(id_str);
     }
 
+    NfcTagEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
+    }
+
     @NonNull
     @Override
     public Object get() {

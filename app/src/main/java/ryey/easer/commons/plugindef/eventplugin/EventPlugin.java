@@ -31,11 +31,8 @@ import ryey.easer.commons.plugindef.PluginDef;
  */
 public interface EventPlugin extends PluginDef {
 
-    /**
-     * {@inheritDoc}
-     */
     @NonNull
-    EventData data();
+    EventDataFactory dataFactory();
 
     /**
      * Returns a to-be-initialized Slot of this plugin.

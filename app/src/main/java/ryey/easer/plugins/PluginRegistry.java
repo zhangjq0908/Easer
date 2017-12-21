@@ -194,7 +194,7 @@ final public class PluginRegistry {
 
         public T findPlugin(T_data data) {
             for (T plugin : getAllPlugins()) {
-                if (data.getClass() == plugin.data().getClass()) {
+                if (data.getClass() == plugin.dataFactory().dataClass()) {
                     return plugin;
                 }
             }
@@ -249,7 +249,7 @@ final public class PluginRegistry {
         @Override
         public PluginDef findPlugin(StorageData storageData) {
             for (PluginDef plugin : getAllPlugins()) {
-                if (storageData.getClass().equals(plugin.data().getClass()))
+                if (storageData.getClass().equals(plugin.dataFactory().dataClass()))
                     return plugin;
             }
             throw new IllegalAccessError();

@@ -69,6 +69,10 @@ public class DateEventData extends TypedEventData {
         this.date = date;
     }
 
+    DateEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
+    }
+
     @NonNull
     @Override
     public Object get() {

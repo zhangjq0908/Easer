@@ -55,6 +55,10 @@ public class TimerEventData extends TypedEventData {
         this.timer = timer;
     }
 
+    TimerEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
+    }
+
     @NonNull
     @Override
     public Object get() {

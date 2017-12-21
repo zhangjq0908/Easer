@@ -21,7 +21,10 @@ package ryey.easer.plugins.operation.hotspot;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
+import ryey.easer.commons.C;
+import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.plugins.operation.BooleanOperationData;
 
 public class HotspotOperationData extends BooleanOperationData {
@@ -30,6 +33,10 @@ public class HotspotOperationData extends BooleanOperationData {
 
     public HotspotOperationData(Boolean state) {
         super(state);
+    }
+
+    HotspotOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        super(data, format, version);
     }
 
     public static final Parcelable.Creator<HotspotOperationData> CREATOR

@@ -52,6 +52,10 @@ public class MediaControlOperationData implements OperationData {
         set(choice);
     }
 
+    MediaControlOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
+    }
+
     @NonNull
     @Override
     public Object get() {

@@ -25,8 +25,11 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import ryey.easer.R;
+import ryey.easer.commons.C;
+import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
@@ -87,8 +90,27 @@ public class HotspotOperationPlugin implements OperationPlugin {
 
     @NonNull
     @Override
-    public OperationData data() {
-        return new HotspotOperationData();
+    public OperationDataFactory dataFactory() {
+        return new OperationDataFactory() {
+            @NonNull
+            @Override
+            public Class<? extends OperationData> dataClass() {
+                return HotspotOperationData.class;
+            }
+
+            @NonNull
+            @Override
+            public OperationData emptyData() {
+                return new HotspotOperationData();
+            }
+
+            @NonNull
+            @Override
+            public OperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+                return new HotspotOperationData(data, format, version);
+            }
+        };
+
     }
 
     @NonNull

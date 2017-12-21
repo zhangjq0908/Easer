@@ -59,6 +59,10 @@ public class BTDeviceEventData extends TypedEventData {
         set(hardware_address);
     }
 
+    BTDeviceEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
+    }
+
     @NonNull
     @Override
     public Object get() {

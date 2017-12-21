@@ -26,9 +26,12 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import ryey.easer.R;
+import ryey.easer.commons.C;
+import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.plugins.reusable.PluginHelper;
 
@@ -64,8 +67,26 @@ public class BTDeviceEventPlugin implements EventPlugin {
 
     @NonNull
     @Override
-    public EventData data() {
-        return new BTDeviceEventData();
+    public EventDataFactory dataFactory() {
+        return new EventDataFactory() {
+            @NonNull
+            @Override
+            public Class<? extends EventData> dataClass() {
+                return BTDeviceEventData.class;
+            }
+
+            @NonNull
+            @Override
+            public EventData emptyData() {
+                return new BTDeviceEventData();
+            }
+
+            @NonNull
+            @Override
+            public EventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+                return new BTDeviceEventData(data, format, version);
+            }
+        };
     }
 
     @NonNull

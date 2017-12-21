@@ -124,7 +124,7 @@ class EventParser implements Parser<EventStructure> {
         parser.require(XmlPullParser.START_TAG, ns, C.SIT);
         String spec = parser.getAttributeValue(ns, C.SPEC);
         EventPlugin plugin = PluginRegistry.getInstance().event().findPlugin(spec);
-        EventData data = plugin.data();
+        EventData data = plugin.dataFactory().emptyData();
         data.parse(parser, version);
         if (data.isValid())
             event.setEventData(data);

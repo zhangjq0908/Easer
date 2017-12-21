@@ -42,6 +42,10 @@ public class ConnectivityEventData extends TypedEventData {
         this.connectivity_type = connectivity_type;
     }
 
+    ConnectivityEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
+    }
+
     @NonNull
     @Override
     public Object get() {

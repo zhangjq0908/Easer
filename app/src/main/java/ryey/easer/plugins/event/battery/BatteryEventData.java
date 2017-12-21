@@ -34,6 +34,10 @@ public class BatteryEventData extends TypedEventData {
         this.battery_status = battery_status;
     }
 
+    BatteryEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
+    }
+
     @NonNull
     @Override
     public Object get() {

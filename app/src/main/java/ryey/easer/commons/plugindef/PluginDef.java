@@ -41,10 +41,10 @@ public interface PluginDef {
     void requestPermissions(@NonNull Activity activity, int requestCode);
 
     /**
-     * Returns a dummy (empty) instance of the relevant data structure.
+     * Returns a factory to construct the relevant data structure.
      */
     @NonNull
-    StorageData data();
+    DataFactory dataFactory();
 
     /**
      * Returns the control UI of this plugin.

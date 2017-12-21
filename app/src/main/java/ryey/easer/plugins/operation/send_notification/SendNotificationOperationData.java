@@ -48,6 +48,10 @@ public class SendNotificationOperationData implements OperationData {
     SendNotificationOperationData(NotificationContent content) {
         notificationContent = content;
     }
+    
+    SendNotificationOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
+    }
 
     @NonNull
     @Override

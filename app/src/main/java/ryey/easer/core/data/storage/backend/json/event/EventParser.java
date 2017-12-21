@@ -42,9 +42,10 @@ class EventParser implements Parser<EventStructure> {
             EventType logic = EventType.valueOf(jsonObject_trigger.getString(C.LOGIC));
             JSONObject jsonObject_situation = jsonObject_trigger.getJSONObject(C.SIT);
             String spec = jsonObject_situation.getString(C.SPEC);
-            EventData eventData = PluginRegistry.getInstance().event().findPlugin(spec).data();
+            EventData eventData = PluginRegistry.getInstance().event().findPlugin(spec)
+                    .dataFactory()
+                    .parse(jsonObject_situation.getString(C.DATA), C.Format.JSON, version);
             eventData.setType(logic);
-            eventData.parse(jsonObject_situation.getString(C.DATA), C.Format.JSON, version);
             return eventData;
         } catch (JSONException e) {
             throw new IllegalStorageDataException(e.getMessage());

@@ -57,6 +57,10 @@ public class BroadcastEventData extends TypedEventData {
         set(intentData);
     }
 
+    BroadcastEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
+    }
+
     @NonNull
     @Override
     public Object get() {

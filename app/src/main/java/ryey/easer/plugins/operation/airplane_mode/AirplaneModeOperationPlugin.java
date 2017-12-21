@@ -24,8 +24,11 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import ryey.easer.R;
+import ryey.easer.commons.C;
+import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
@@ -71,8 +74,27 @@ public class AirplaneModeOperationPlugin implements OperationPlugin {
 
     @NonNull
     @Override
-    public OperationData data() {
-        return new AirplaneModeOperationData();
+    public OperationDataFactory dataFactory() {
+        return new OperationDataFactory() {
+            @NonNull
+            @Override
+            public Class<? extends OperationData> dataClass() {
+                return AirplaneModeOperationData.class;
+            }
+
+            @NonNull
+            @Override
+            public OperationData emptyData() {
+                return new AirplaneModeOperationData();
+            }
+
+            @NonNull
+            @Override
+            public OperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+                return new AirplaneModeOperationData(data, format, version);
+            }
+        };
+
     }
 
     @NonNull

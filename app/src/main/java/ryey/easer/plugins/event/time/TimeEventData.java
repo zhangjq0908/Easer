@@ -69,6 +69,10 @@ public class TimeEventData extends TypedEventData {
         this.time = time;
     }
 
+    TimeEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
+    }
+
     @NonNull
     @Override
     public Object get() {

@@ -25,9 +25,12 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import ryey.easer.R;
+import ryey.easer.commons.C;
+import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.plugins.reusable.PluginHelper;
 
@@ -61,8 +64,26 @@ public class CalendarEventPlugin implements EventPlugin {
 
     @NonNull
     @Override
-    public EventData data() {
-        return new CalendarEventData();
+    public EventDataFactory dataFactory() {
+        return new EventDataFactory() {
+            @NonNull
+            @Override
+            public Class<? extends EventData> dataClass() {
+                return CalendarEventData.class;
+            }
+
+            @NonNull
+            @Override
+            public EventData emptyData() {
+                return new CalendarEventData();
+            }
+
+            @NonNull
+            @Override
+            public EventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+                return new CalendarEventData(data, format, version);
+            }
+        };
     }
 
     @NonNull

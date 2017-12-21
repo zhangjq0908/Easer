@@ -43,6 +43,10 @@ public abstract class IntegerOperationData extends IntegerData implements Operat
         super(level);
     }
 
+    public IntegerOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
+    }
+
     @Override
     public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
         set(XmlHelper.OperationHelper.readInteger(parser, PluginRegistry.getInstance().operation().findPlugin(this).id()));

@@ -52,6 +52,10 @@ public class NetworkTransmissionOperationData implements OperationData {
         data = tdata;
     }
 
+    NetworkTransmissionOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
+    }
+
     @NonNull
     @Override
     public Object get() {

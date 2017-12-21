@@ -68,6 +68,10 @@ public class AlarmOperationData implements OperationData {
         this.data = data;
     }
 
+    AlarmOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
+    }
+
     @NonNull
     @Override
     public Object get() {

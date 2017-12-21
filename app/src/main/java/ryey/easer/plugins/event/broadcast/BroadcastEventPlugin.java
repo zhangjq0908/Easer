@@ -24,9 +24,12 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import ryey.easer.R;
+import ryey.easer.commons.C;
+import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 
 public class BroadcastEventPlugin implements EventPlugin {
@@ -59,8 +62,26 @@ public class BroadcastEventPlugin implements EventPlugin {
 
     @NonNull
     @Override
-    public EventData data() {
-        return new BroadcastEventData();
+    public EventDataFactory dataFactory() {
+        return new EventDataFactory() {
+            @NonNull
+            @Override
+            public Class<? extends EventData> dataClass() {
+                return BroadcastEventData.class;
+            }
+
+            @NonNull
+            @Override
+            public EventData emptyData() {
+                return new BroadcastEventData();
+            }
+
+            @NonNull
+            @Override
+            public EventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+                return new BroadcastEventData(data, format, version);
+            }
+        };
     }
 
     @NonNull

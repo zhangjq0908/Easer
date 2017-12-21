@@ -63,6 +63,10 @@ public class CellLocationEventData extends TypedEventData {
             return null;
     }
 
+    CellLocationEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
+    }
+
     @NonNull
     @Override
     public Object get() {

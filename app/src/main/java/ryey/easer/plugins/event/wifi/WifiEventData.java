@@ -63,6 +63,10 @@ public class WifiEventData extends TypedEventData {
         setType(type);
     }
 
+    WifiEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
+    }
+
     @NonNull
     @Override
     public Object get() {

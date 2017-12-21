@@ -55,6 +55,10 @@ public class NotificationEventData extends TypedEventData {
         this.selection = selection;
     }
 
+    NotificationEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
+    }
+
     @NonNull
     @Override
     public Object get() {

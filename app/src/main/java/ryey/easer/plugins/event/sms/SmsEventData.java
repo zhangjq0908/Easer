@@ -58,6 +58,10 @@ public class SmsEventData extends TypedEventData {
         set(innerData);
     }
 
+    SmsEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
+    }
+
     @NonNull
     @Override
     public Object get() {
