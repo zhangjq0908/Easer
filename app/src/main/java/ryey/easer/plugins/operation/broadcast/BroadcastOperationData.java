@@ -185,7 +185,10 @@ public class BroadcastOperationData implements OperationData {
                     }
 
                     intentData.type = jsonObject.optString(TYPE, null);
-                    intentData.data = Uri.parse(jsonObject.optString(DATA, null));
+
+                    String uri = jsonObject.optString(DATA, null);
+                    if (uri != null)
+                        intentData.data = Uri.parse(uri);
 
                     JSONArray jsonArray_extras = jsonObject.optJSONArray(EXTRAS);
                     if (jsonArray_extras != null) {
