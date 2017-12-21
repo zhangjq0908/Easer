@@ -37,6 +37,7 @@ import java.util.EnumSet;
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.TypedEventData;
 
@@ -136,6 +137,8 @@ public class SmsEventData extends TypedEventData {
         if (obj == this)
             return true;
         if (!(obj instanceof SmsEventData))
+            return false;
+        if (!Utils.eEquals(this, (EventData) obj))
             return false;
         return innerData.equals(((SmsEventData) obj).innerData);
     }

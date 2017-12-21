@@ -40,6 +40,7 @@ import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.XmlHelper;
+import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
@@ -103,6 +104,17 @@ public class WifiEventData extends TypedEventData {
     @Override
     public boolean isValid() {
         if (ssids.size() == 0)
+            return false;
+        return true;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof WifiEventData))
+            return false;
+        if (!Utils.eEquals(this, (EventData) obj))
+            return false;
+        if (!ssids.equals(((WifiEventData) obj).ssids))
             return false;
         return true;
     }

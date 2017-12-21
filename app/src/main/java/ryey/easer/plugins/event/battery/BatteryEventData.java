@@ -11,9 +11,11 @@ import org.xmlpull.v1.XmlSerializer;
 import java.io.IOException;
 import java.util.EnumSet;
 
+import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.XmlHelper;
+import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
@@ -101,6 +103,17 @@ public class BatteryEventData extends TypedEventData {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof BatteryEventData))
+            return false;
+        if (!Utils.eEquals(this, (EventData) obj))
+            return false;
+        if (!battery_status.equals(((BatteryEventData) obj).battery_status))
+            return false;
+        return true;
+    }
+
+    @Override
     public int describeContents() {
         return 0;
     }
@@ -124,5 +137,4 @@ public class BatteryEventData extends TypedEventData {
     private BatteryEventData(Parcel in) {
         battery_status = in.readInt();
     }
-
 }

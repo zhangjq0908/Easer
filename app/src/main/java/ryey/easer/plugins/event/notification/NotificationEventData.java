@@ -34,6 +34,7 @@ import java.util.EnumSet;
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.TypedEventData;
 
@@ -88,6 +89,8 @@ public class NotificationEventData extends TypedEventData {
         if (!(obj instanceof NotificationEventData))
             return false;
         if (!((NotificationEventData) obj).isValid())
+            return false;
+        if (!Utils.eEquals(this, (EventData) obj))
             return false;
         if (!Utils.nullableEqual(selection.app, ((NotificationEventData) obj).selection.app))
             return false;

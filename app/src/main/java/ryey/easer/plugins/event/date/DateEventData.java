@@ -36,9 +36,11 @@ import java.util.Calendar;
 import java.util.EnumSet;
 import java.util.Locale;
 
+import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.XmlHelper;
+import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
@@ -91,6 +93,17 @@ public class DateEventData extends TypedEventData {
     @Override
     public boolean isValid() {
         if (date == null)
+            return false;
+        return true;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof DateEventData))
+            return false;
+        if (!Utils.eEquals(this, (EventData) obj))
+            return false;
+        if (!DateToText(date).equals(DateToText(((DateEventData) obj).date)))
             return false;
         return true;
     }

@@ -22,6 +22,7 @@ import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.XmlHelper;
+import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
@@ -128,6 +129,17 @@ public class ConnectivityEventData extends TypedEventData {
         if (connectivity_type.size() > 0)
             return true;
         return false;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof ConnectivityEventData))
+            return false;
+        if (!Utils.eEquals(this, (EventData) obj))
+            return false;
+        if (!connectivity_type.equals(((ConnectivityEventData) obj).connectivity_type))
+            return false;
+        return true;
     }
 
     @Override
