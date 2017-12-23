@@ -24,7 +24,7 @@ class BatteryEventDataFactory implements EventDataFactory {
     @Override
     public EventData dummyData() {
         BatteryEventData dummyData = new BatteryEventData();
-        dummyData.set(1);
+        dummyData.battery_status = 1;
         return dummyData;
     }
 

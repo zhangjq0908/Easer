@@ -47,7 +47,7 @@ class DayOfWeekSlot extends SelfNotifiableSlot {
     @Override
     public void set(@NonNull EventData data) {
         if (data instanceof DayOfWeekEventData) {
-            setDate((Set<Integer>) data.get());
+            setDate(((DayOfWeekEventData) data).days);
             type = data.type();
         } else {
             throw new RuntimeException("illegal data");

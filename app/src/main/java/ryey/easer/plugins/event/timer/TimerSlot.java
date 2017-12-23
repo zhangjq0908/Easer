@@ -47,7 +47,7 @@ public class TimerSlot extends SelfNotifiableSlot {
     @Override
     public void set(@NonNull EventData data) {
         if (data instanceof TimerEventData) {
-            timer = (TimerEventData.Timer) data.get();
+            timer = ((TimerEventData) data).timer;
             type = data.type();
             if (timer.repeat) {
                 setRetriggerable(true);

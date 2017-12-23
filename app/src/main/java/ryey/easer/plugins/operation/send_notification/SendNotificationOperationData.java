@@ -32,7 +32,6 @@ import java.io.IOException;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
-import ryey.easer.commons.IllegalArgumentTypeException;
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
@@ -40,7 +39,7 @@ public class SendNotificationOperationData implements OperationData {
     private static final String K_TITLE = "title";
     private static final String K_CONTENT = "content";
 
-    private NotificationContent notificationContent;
+    NotificationContent notificationContent;
 
     SendNotificationOperationData() {
     }
@@ -51,21 +50,6 @@ public class SendNotificationOperationData implements OperationData {
     
     SendNotificationOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
-    }
-
-    @NonNull
-    @Override
-    public Object get() {
-        return notificationContent;
-    }
-
-    @Override
-    public void set(@NonNull Object obj) {
-        if (obj instanceof NotificationContent) {
-            notificationContent = (NotificationContent) obj;
-        } else {
-            throw new IllegalArgumentTypeException(obj.getClass(), NotificationContent.class);
-        }
     }
 
     @Override

@@ -25,10 +25,9 @@ class DateEventDataFactory implements EventDataFactory {
     @NonNull
     @Override
     public EventData dummyData() {
-        DateEventData dummyData = new DateEventData();
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.DAY_OF_MONTH, 2);
-        dummyData.set(calendar);
+        DateEventData dummyData = new DateEventData(calendar);
         return dummyData;
     }
 

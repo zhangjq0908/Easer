@@ -55,26 +55,11 @@ public class BroadcastEventData extends TypedEventData {
     public BroadcastEventData() {}
 
     public BroadcastEventData(ReceiverSideIntentData intentData) {
-        set(intentData);
+        this.intentData = intentData;
     }
 
     BroadcastEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
-    }
-
-    @NonNull
-    @Override
-    public Object get() {
-        return intentData;
-    }
-
-    @Override
-    public void set(@NonNull Object obj) {
-        if (obj instanceof ReceiverSideIntentData) {
-            intentData = (ReceiverSideIntentData) obj;
-        } else {
-            throw new RuntimeException("illegal data");
-        }
     }
 
     @Override

@@ -49,7 +49,7 @@ class ConnectivitySlot extends AbstractSlot {
 
     @Override
     public void set(@NonNull EventData data) {
-        connectivity_types = (Set<Integer>) data.get();
+        connectivity_types = ((ConnectivityEventData) data).connectivity_type;
         type = data.type();
     }
 

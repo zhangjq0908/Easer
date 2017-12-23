@@ -47,7 +47,7 @@ public class SmsPluginViewFragment extends PluginViewFragment {
 
     @Override
     protected void _fill(@NonNull StorageData data) {
-        Sms sms = (Sms) data.get();
+        Sms sms = ((SmsOperationData) data).sms;
         et_destination.setText(sms.destination);
         et_content.setText(sms.content);
     }

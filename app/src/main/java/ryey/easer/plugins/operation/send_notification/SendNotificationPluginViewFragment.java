@@ -48,7 +48,7 @@ public class SendNotificationPluginViewFragment extends PluginViewFragment {
     @Override
     protected void _fill(@NonNull StorageData data) {
         if (data instanceof SendNotificationOperationData) {
-            NotificationContent notificationContent = (NotificationContent) data.get();
+            NotificationContent notificationContent = ((SendNotificationOperationData) data).notificationContent;
             editText_title.setText(notificationContent.title);
             editText_content.setText(notificationContent.content);
         } else {

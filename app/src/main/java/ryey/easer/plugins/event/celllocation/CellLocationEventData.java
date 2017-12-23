@@ -56,9 +56,12 @@ public class CellLocationEventData extends TypedEventData {
     public CellLocationEventData() {
     }
 
+    CellLocationEventData(String[] locations) {
+        setFromMultiple(locations);
+    }
+
     public static CellLocationEventData fromString(String repr) {
-        CellLocationEventData cellLocationEventData = new CellLocationEventData();
-        cellLocationEventData.set(repr);
+        CellLocationEventData cellLocationEventData = new CellLocationEventData(repr.split("\n"));
         if (cellLocationEventData.isValid())
             return cellLocationEventData;
         else
@@ -69,33 +72,13 @@ public class CellLocationEventData extends TypedEventData {
         parse(data, format, version);
     }
 
-    @NonNull
-    @Override
-    public Object get() {
-        return data;
-    }
-
-    @Override
-    public void set(@NonNull Object obj) {
-        if (obj instanceof String) {
-            String[] parts = ((String) obj).split("\n");
-            for (String single : parts) {
-                CellLocationSingleData singleData = new CellLocationSingleData();
-                singleData.set(single);
-                if (singleData.isValid())
-                    data.add(singleData);
-            }
-        } else if (obj instanceof String[]) {
-            String[] parts = (String[]) obj;
-            Logger.d(parts);
-            for (String single : parts) {
-                CellLocationSingleData singleData = new CellLocationSingleData();
-                singleData.set(single);
-                if (singleData.isValid())
-                    data.add(singleData);
-            }
-        } else {
-            throw new RuntimeException("illegal data");
+    private void setFromMultiple(String[] locations) {
+        data.clear();
+        for (String location : locations) {
+            CellLocationSingleData singleData = new CellLocationSingleData();
+            singleData.set(location);
+            if (singleData.isValid())
+                data.add(singleData);
         }
     }
 
@@ -122,9 +105,9 @@ public class CellLocationEventData extends TypedEventData {
         if (version == C.VERSION_DEFAULT) {
             String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
             String[] parts = str_data.split(",");
-            set(parts);
+            setFromMultiple(parts);
         } else {
-            set(XmlHelper.EventHelper.readMultipleSituation(parser));
+            setFromMultiple(XmlHelper.EventHelper.readMultipleSituation(parser));
         }
         EventType type = XmlHelper.EventHelper.readLogic(parser);
         setType(type);
@@ -152,7 +135,7 @@ public class CellLocationEventData extends TypedEventData {
             for (int i = 0; i < jsonArray.length(); i++) {
                 strings[i] = jsonArray.getString(i);
             }
-            set(strings);
+            setFromMultiple(strings);
         } catch (JSONException e) {
             e.printStackTrace();
             throw new IllegalStorageDataException(e.getMessage());

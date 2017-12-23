@@ -43,7 +43,7 @@ public class SmsOperationData implements OperationData {
     private static final String K_DEST = "destination";
     private static final String K_CONTENT = "content";
 
-    private Sms sms;
+    Sms sms;
 
     SmsOperationData() {
     }
@@ -54,21 +54,6 @@ public class SmsOperationData implements OperationData {
 
     SmsOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
-    }
-
-    @NonNull
-    @Override
-    public Object get() {
-        return sms;
-    }
-
-    @Override
-    public void set(@NonNull Object obj) {
-        if (obj instanceof Sms) {
-            this.sms = (Sms) obj;
-        } else {
-            throw new IllegalArgumentException("wrong argument type " + obj.getClass().getSimpleName());
-        }
     }
 
     @Override

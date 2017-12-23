@@ -85,7 +85,7 @@ public class RingerModePluginViewFragment extends PluginViewFragment {
 
     @Override
     protected void _fill(@NonNull StorageData data) {
-        Integer item = (Integer) data.get();
+        Integer item = ((RingerModeOperationData) data).get();
         for (int i = 0; i < radioButtons.length; i++) {
             if (item == values[i]) {
                 radioButtons[i].setChecked(true);

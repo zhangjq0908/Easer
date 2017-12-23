@@ -29,7 +29,7 @@ import ryey.easer.plugins.event.TypedEventData;
 
 public class ConnectivityEventData extends TypedEventData {
 
-    private Set<Integer> connectivity_type = new ArraySet<>();
+    Set<Integer> connectivity_type = new ArraySet<>();
 
     {
         default_type = EventType.any;
@@ -47,36 +47,13 @@ public class ConnectivityEventData extends TypedEventData {
         parse(data, format, version);
     }
 
-    @NonNull
-    @Override
-    public Object get() {
-        return connectivity_type;
-    }
-
-    @Override
-    public void set(@NonNull Object obj) {
-        connectivity_type.clear();
-        if (obj instanceof String[]) {
-            Set<Integer> selected_types = new ArraySet<>(((String[]) obj).length);
-            for (String str : (String []) obj) {
-                selected_types.add(Integer.parseInt(str.trim()));
-            }
-            set(selected_types);
-        } else if (obj instanceof Set) {
-            for (Object o : (Set) obj) {
-                if (o instanceof Integer)
-                    connectivity_type.add((Integer) o);
-                else
-                    Logger.wtf("Data is Set but element <%s> is not Integer", o);
-            }
-        } else {
-            throw new RuntimeException("illegal data");
-        }
-    }
-
     @Override
     public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
-        set(XmlHelper.EventHelper.readMultipleSituation(parser));
+        String[] str_data = XmlHelper.EventHelper.readMultipleSituation(parser);
+        connectivity_type = new ArraySet<>(str_data.length);
+        for (String str : str_data) {
+            connectivity_type.add(Integer.parseInt(str.trim()));
+        }
         EventType type = XmlHelper.EventHelper.readLogic(parser);
         setType(type);
     }
@@ -86,7 +63,7 @@ public class ConnectivityEventData extends TypedEventData {
         if (!isValid()) {
             Logger.wtf("Invalid ConnectivityEventData shouldn't be serialized");
         }
-        Set<Integer> selected_types = (Set<Integer>) get();
+        Set<Integer> selected_types = connectivity_type;
         XmlHelper.EventHelper.writeMultipleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).id(),
                 Utils.set2strlist(selected_types).toArray(new String[0]));
         XmlHelper.EventHelper.writeLogic(serializer, type());

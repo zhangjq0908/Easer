@@ -24,7 +24,8 @@ class WifiEventDataFactory implements EventDataFactory {
     @Override
     public EventData dummyData() {
         WifiEventData dummyData = new WifiEventData();
-        dummyData.set(new String[]{"wifi_device1", "wifi_dev2"});
+        dummyData.ssids.add("wifi_device1");
+        dummyData.ssids.add("wifi_dev2");
         return dummyData;
     }
 

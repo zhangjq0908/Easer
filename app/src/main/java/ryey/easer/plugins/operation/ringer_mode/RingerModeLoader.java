@@ -37,7 +37,7 @@ public class RingerModeLoader extends OperationLoader {
 
     @Override
     public boolean _load(@NonNull OperationData data) {
-        Integer mode = (Integer) data.get();
+        Integer mode = ((RingerModeOperationData) data).get();
         if (mode == null)
             return true;
         AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);

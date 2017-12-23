@@ -23,13 +23,12 @@ class BroadcastEventDataFactory implements EventDataFactory {
     @NonNull
     @Override
     public EventData dummyData() {
-        BroadcastEventData dummyData = new BroadcastEventData();
         ReceiverSideIntentData intentData = new ReceiverSideIntentData();
         intentData.action.add("action1");
         intentData.action.add("action2");
         intentData.category.add("category1");
         intentData.category.add("category2");
-        dummyData.set(intentData);
+        BroadcastEventData dummyData = new BroadcastEventData(intentData);
         return dummyData;
     }
 

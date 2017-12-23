@@ -27,8 +27,9 @@ class TimeEventDataFactory implements EventDataFactory {
     public EventData dummyData() {
         TimeEventData dummyData = new TimeEventData();
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.MONTH, 3);
-        dummyData.set(calendar);
+        calendar.set(Calendar.HOUR_OF_DAY, 13);
+        calendar.set(Calendar.MINUTE, 23);
+        dummyData.time = calendar;
         return dummyData;
     }
 

@@ -37,9 +37,7 @@ class HotspotLoader extends OperationLoader {
 
     @Override
     public boolean _load(@NonNull OperationData data) {
-        Boolean state = (Boolean) data.get();
-        if (state == null)
-            return true;
+        Boolean state = ((HotspotOperationData) data).get();
         try {
             if (helper.isApEnabled() == state)
                 return true;

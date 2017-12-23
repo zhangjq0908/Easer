@@ -51,7 +51,7 @@ public class ConnectivityPluginViewFragment extends PluginViewFragment {
     @Override
     protected void _fill(@NonNull StorageData data) {
         if (data instanceof ConnectivityEventData) {
-            Set<Integer> checked_values = (Set<Integer>) data.get();
+            Set<Integer> checked_values = ((ConnectivityEventData) data).connectivity_type;
             for (int checked_value : checked_values) {
                 for (int i = 0; i < values.length; i++) {
                     if (values[i] == checked_value) {

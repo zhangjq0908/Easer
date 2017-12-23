@@ -43,32 +43,17 @@ public class MediaControlOperationData implements OperationData {
         next,
     }
 
-    private ControlChoice choice = null;
+    ControlChoice choice = null;
 
     public MediaControlOperationData() {
     }
 
     public MediaControlOperationData(ControlChoice choice) {
-        set(choice);
+        this.choice = choice;
     }
 
     MediaControlOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
-    }
-
-    @NonNull
-    @Override
-    public Object get() {
-        return choice;
-    }
-
-    @Override
-    public void set(@NonNull Object obj) {
-        if (obj instanceof ControlChoice) {
-            choice = (ControlChoice) obj;
-        } else {
-            throw new IllegalArgumentException();
-        }
     }
 
     @Override

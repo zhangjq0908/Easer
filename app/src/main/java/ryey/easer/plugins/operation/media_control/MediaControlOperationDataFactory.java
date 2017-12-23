@@ -23,8 +23,7 @@ class MediaControlOperationDataFactory implements OperationDataFactory {
     @NonNull
     @Override
     public OperationData dummyData() {
-        MediaControlOperationData dummyData = new MediaControlOperationData();
-        dummyData.set(MediaControlOperationData.ControlChoice.next);
+        MediaControlOperationData dummyData = new MediaControlOperationData(MediaControlOperationData.ControlChoice.next);
         return dummyData;
     }
 

@@ -147,7 +147,7 @@ public class CalendarPluginViewFragment extends PluginViewFragment {
     @Override
     protected void _fill(@NonNull StorageData data) {
         if (data instanceof CalendarEventData) {
-            CalendarData calendarData = (CalendarData) data.get();
+            CalendarData calendarData = ((CalendarEventData) data).data;
             calendar_id = calendarData.calendar_id;
             tv_calendar_name.setText(CalendarHelper.getCalendarName(
                     getContext().getContentResolver(), calendar_id));

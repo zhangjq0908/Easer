@@ -43,7 +43,7 @@ public class NotificationEventData extends TypedEventData {
     private static final String K_TITLE = "title";
     private static final String K_CONTENT = "content";
 
-    private NotificationSelection selection;
+    NotificationSelection selection;
 
     {
         default_type = EventType.after;
@@ -58,21 +58,6 @@ public class NotificationEventData extends TypedEventData {
 
     NotificationEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
-    }
-
-    @NonNull
-    @Override
-    public Object get() {
-        return selection;
-    }
-
-    @Override
-    public void set(@NonNull Object obj) {
-        if (obj instanceof NotificationSelection)
-            selection = (NotificationSelection) obj;
-        else {
-            throw new RuntimeException("illegal data type");
-        }
     }
 
     @Override

@@ -23,7 +23,6 @@ class CalendarEventDataFactory implements EventDataFactory {
     @NonNull
     @Override
     public EventData dummyData() {
-        CalendarEventData dummyData = new CalendarEventData();
         CalendarData calendarData = new CalendarData();
         calendarData.calendar_id = 20;
         for (int i = 0; i < CalendarData.condition_name.length; i++) {
@@ -31,7 +30,7 @@ class CalendarEventDataFactory implements EventDataFactory {
                 calendarData.conditions.add(CalendarData.condition_name[i]);
             }
         }
-        dummyData.set(calendarData);
+        CalendarEventData dummyData = new CalendarEventData(calendarData);
         return dummyData;
     }
 

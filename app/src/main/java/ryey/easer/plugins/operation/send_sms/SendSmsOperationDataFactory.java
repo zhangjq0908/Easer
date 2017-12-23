@@ -23,11 +23,10 @@ class SendSmsOperationDataFactory implements OperationDataFactory {
     @NonNull
     @Override
     public OperationData dummyData() {
-        SmsOperationData dummyData = new SmsOperationData();
         Sms sms = new Sms();
         sms.destination = "15077707777";
         sms.content = "mysmscontent";
-        dummyData.set(sms);
+        SmsOperationData dummyData = new SmsOperationData(sms);
         return dummyData;
     }
 

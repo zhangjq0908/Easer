@@ -56,26 +56,11 @@ public class SmsEventData extends TypedEventData {
     public SmsEventData() {}
 
     public SmsEventData(SmsInnerData innerData) {
-        set(innerData);
+        this.innerData = innerData;
     }
 
     SmsEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
-    }
-
-    @NonNull
-    @Override
-    public Object get() {
-        return innerData;
-    }
-
-    @Override
-    public void set(@NonNull Object obj) {
-        if (obj instanceof SmsInnerData) {
-            innerData = (SmsInnerData) obj;
-        } else {
-            throw new RuntimeException("illegal data");
-        }
     }
 
     @Override

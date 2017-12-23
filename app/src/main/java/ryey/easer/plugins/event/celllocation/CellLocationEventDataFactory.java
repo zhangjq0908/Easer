@@ -23,8 +23,7 @@ class CellLocationEventDataFactory implements EventDataFactory {
     @NonNull
     @Override
     public EventData dummyData() {
-        CellLocationEventData dummyData = new CellLocationEventData();
-        dummyData.set(new String[]{"1-2", "2-3"});
+        CellLocationEventData dummyData = new CellLocationEventData(new String[]{"1-2", "2-3"});
         return dummyData;
     }
 

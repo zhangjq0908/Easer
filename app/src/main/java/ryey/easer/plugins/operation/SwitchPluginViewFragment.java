@@ -53,7 +53,7 @@ public abstract class SwitchPluginViewFragment extends PluginViewFragment {
     @Override
     protected void _fill(@NonNull StorageData data) {
         if (data instanceof BooleanOperationData) {
-            Boolean state = (Boolean) data.get();
+            Boolean state = ((BooleanOperationData) data).get();
             setSwitch(aSwitch, state);
         }
     }

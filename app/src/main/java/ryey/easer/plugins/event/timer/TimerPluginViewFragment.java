@@ -54,7 +54,7 @@ public class TimerPluginViewFragment extends PluginViewFragment {
     @Override
     protected void _fill(@NonNull StorageData data) {
         if (data instanceof TimerEventData) {
-            TimerEventData.Timer timer = (TimerEventData.Timer) data.get();
+            TimerEventData.Timer timer = ((TimerEventData) data).timer;
             editText_minute.setText(String.valueOf(timer.minutes));
             if (timer.exact)
                 radioButton_exact.setChecked(true);

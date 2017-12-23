@@ -60,7 +60,7 @@ public class BatteryPluginViewFragment extends PluginViewFragment {
     @Override
     protected void _fill(@NonNull StorageData data) {
         if (data instanceof BatteryEventData) {
-            int status = (int) data.get();
+            int status = ((BatteryEventData) data).battery_status;
             for (int i = 0; i < values.length; i++) {
                 if (values[i] == status) {
                     radioButtons[i].setChecked(true);

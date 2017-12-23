@@ -103,7 +103,7 @@ public class NotificationEventListenerService extends NotificationListenerServic
     public void onNotificationPosted(StatusBarNotification sbn) {
         for (CompoundData compoundData : dataList) {
             NotificationEventData eventData = compoundData.notificationEventData;
-            if (match(sbn, (NotificationSelection) eventData.get())) {
+            if (match(sbn, eventData.selection)) {
                 try {
                     compoundData.positive.send();
                 } catch (PendingIntent.CanceledException e) {

@@ -38,7 +38,7 @@ public class CommandLoader extends OperationLoader {
     @Override
     public boolean _load(@NonNull OperationData data) {
         boolean success = true;
-        String text = (String) data.get();
+        String text = ((CommandOperationData) data).get();
         String []commands = text.split("\n");
         Process process;
         try {

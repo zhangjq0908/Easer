@@ -22,7 +22,7 @@ import ryey.easer.plugins.event.TypedEventData;
 
 public class BatteryEventData extends TypedEventData {
 
-    private Integer battery_status = null;
+    Integer battery_status = null;
 
     {
         default_type = EventType.is;
@@ -40,33 +40,18 @@ public class BatteryEventData extends TypedEventData {
         parse(data, format, version);
     }
 
-    @NonNull
-    @Override
-    public Object get() {
-        return battery_status;
-    }
-
-    @Override
-    public void set(@NonNull Object obj) {
-        if (obj instanceof Integer) {
-            battery_status = (Integer) obj;
-        } else {
-            throw new RuntimeException("illegal data");
-        }
-    }
-
     @Override
     public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
         String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
         Integer int_data = Integer.parseInt(str_data);
-        set(int_data);
+        battery_status = int_data;
         EventType type = XmlHelper.EventHelper.readLogic(parser);
         setType(type);
     }
 
     @Override
     public void serialize(XmlSerializer serializer) throws IOException {
-        Integer int_status = (Integer) get();
+        Integer int_status = battery_status;
         if (int_status != null) {
             String status = int_status.toString();
             XmlHelper.EventHelper.writeSingleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).id(), status);

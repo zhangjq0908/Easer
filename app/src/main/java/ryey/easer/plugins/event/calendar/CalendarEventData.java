@@ -61,26 +61,11 @@ public class CalendarEventData extends TypedEventData {
     public CalendarEventData() {}
 
     public CalendarEventData(CalendarData data) {
-        set(data);
+        this.data = data;
     }
 
     CalendarEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
-    }
-
-    @NonNull
-    @Override
-    public Object get() {
-        return data;
-    }
-
-    @Override
-    public void set(@NonNull Object obj) {
-        if (obj instanceof CalendarData) {
-            this.data = (CalendarData) obj;
-        } else {
-            throw new RuntimeException("illegal data");
-        }
     }
 
     @Override

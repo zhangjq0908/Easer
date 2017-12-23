@@ -28,7 +28,7 @@ class TimerEventDataFactory implements EventDataFactory {
         timer.exact = true;
         timer.repeat = true;
         timer.minutes = 102;
-        dummyData.set(timer);
+        dummyData.timer = timer;
         return dummyData;
     }
 

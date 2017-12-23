@@ -50,12 +50,9 @@ public abstract class TypedEventData implements EventData {
 
     @Override
     public boolean equals(Object obj) {
-        if (getClass() != obj.getClass())
+        if (obj == null || !(obj instanceof TypedEventData))
             return false;
-        TypedEventData data = (TypedEventData) obj;
-        if (type() != data.type())
-            return false;
-        if (!get().equals(data.get()))
+        if (type() != ((TypedEventData) obj).type())
             return false;
         return true;
     }

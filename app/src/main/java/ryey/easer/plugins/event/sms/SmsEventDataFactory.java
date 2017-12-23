@@ -27,7 +27,7 @@ class SmsEventDataFactory implements EventDataFactory {
         SmsInnerData innerData = new SmsInnerData();
         innerData.sender = "15077707777";
         innerData.content = "aaa";
-        dummyData.set(innerData);
+        dummyData.innerData = innerData;
         return dummyData;
     }
 

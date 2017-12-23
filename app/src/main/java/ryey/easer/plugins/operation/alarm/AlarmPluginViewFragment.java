@@ -55,7 +55,7 @@ public class AlarmPluginViewFragment extends PluginViewFragment {
 
     @Override
     protected void _fill(@NonNull StorageData data) {
-        AlarmOperationData.AlarmData alarm_data = (AlarmOperationData.AlarmData) data.get();
+        AlarmOperationData.AlarmData alarm_data = ((AlarmOperationData) data).data;
         editText_time.setText(AlarmOperationData.TimeToText(alarm_data.time));
         editText_message.setText(alarm_data.message);
         if (alarm_data.absolute)

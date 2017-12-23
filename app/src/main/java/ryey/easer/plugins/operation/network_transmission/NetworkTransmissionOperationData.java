@@ -43,7 +43,7 @@ public class NetworkTransmissionOperationData implements OperationData {
     private static final String K_REMOTE_PORT = "remote_port";
     private static final String K_DATA = "data";
 
-    private TransmissionData data = null;
+    TransmissionData data = null;
 
     public NetworkTransmissionOperationData() {
     }
@@ -54,17 +54,6 @@ public class NetworkTransmissionOperationData implements OperationData {
 
     NetworkTransmissionOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
-    }
-
-    @NonNull
-    @Override
-    public Object get() {
-        return data;
-    }
-
-    @Override
-    public void set(@NonNull Object obj) {
-        this.data = (TransmissionData) obj;
     }
 
     @Override

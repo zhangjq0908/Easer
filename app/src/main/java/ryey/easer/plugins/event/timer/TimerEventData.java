@@ -44,7 +44,7 @@ public class TimerEventData extends TypedEventData {
     private static final String K_EXACT_BOOL = "exact?";
     private static final String K_REPEAT_BOOL = "repeat?";
 
-    private Timer timer;
+    Timer timer;
 
     {
         default_type = EventType.after;
@@ -59,21 +59,6 @@ public class TimerEventData extends TypedEventData {
 
     TimerEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
-    }
-
-    @NonNull
-    @Override
-    public Object get() {
-        return timer;
-    }
-
-    @Override
-    public void set(@NonNull Object obj) {
-        if (obj instanceof Timer)
-            timer = (Timer) obj;
-        else {
-            throw new RuntimeException("illegal data type");
-        }
     }
 
     @Override

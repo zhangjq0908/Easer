@@ -44,7 +44,7 @@ public class NfcTagEventData extends TypedEventData {
 
     private static final String K_ID = "id";
 
-    private byte[] id;
+    byte[] id;
 
     {
         default_type = EventType.is;
@@ -74,28 +74,11 @@ public class NfcTagEventData extends TypedEventData {
     public NfcTagEventData() {}
 
     public NfcTagEventData(String id_str) {
-        set(id_str);
+        id = hexString2byteArray(id_str);
     }
 
     NfcTagEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
-    }
-
-    @NonNull
-    @Override
-    public Object get() {
-        return id;
-    }
-
-    @Override
-    public void set(@NonNull Object obj) {
-        if (obj instanceof String) {
-            set(hexString2byteArray((String) obj));
-        } else if (obj instanceof byte[]) {
-            id = (byte[]) obj;
-        } else {
-            throw new RuntimeException("illegal data");
-        }
     }
 
     @Override

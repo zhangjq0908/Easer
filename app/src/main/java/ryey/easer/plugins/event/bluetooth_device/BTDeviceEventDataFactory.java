@@ -23,8 +23,7 @@ class BTDeviceEventDataFactory implements EventDataFactory {
     @NonNull
     @Override
     public EventData dummyData() {
-        BTDeviceEventData dummyData = new BTDeviceEventData();
-        dummyData.set(new String[]{"device1", "dev2"});
+        BTDeviceEventData dummyData = new BTDeviceEventData(new String[]{"device1", "dev2"});
         return dummyData;
     }
 

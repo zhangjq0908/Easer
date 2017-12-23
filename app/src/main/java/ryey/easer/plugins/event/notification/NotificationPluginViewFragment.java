@@ -52,7 +52,7 @@ public class NotificationPluginViewFragment extends PluginViewFragment {
     @Override
     protected void _fill(@NonNull StorageData data) {
         if (data instanceof NotificationEventData) {
-            NotificationSelection notificationSelection = (NotificationSelection) data.get();
+            NotificationSelection notificationSelection = ((NotificationEventData) data).selection;
             editText_app.setText(notificationSelection.app);
             editText_title.setText(notificationSelection.title);
             editText_content.setText(notificationSelection.content);

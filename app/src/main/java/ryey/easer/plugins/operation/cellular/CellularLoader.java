@@ -40,7 +40,7 @@ public class CellularLoader extends OperationLoader {
 
     @Override
     public boolean _load(@NonNull OperationData data) {
-        Boolean state = (Boolean) data.get();
+        Boolean state = ((CellularOperationData) data).get();
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         if (state == (telephonyManager.getDataState() == TelephonyManager.DATA_CONNECTED)) {
             return true;

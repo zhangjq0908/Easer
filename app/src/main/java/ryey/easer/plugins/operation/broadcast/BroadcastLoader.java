@@ -37,7 +37,7 @@ public class BroadcastLoader extends OperationLoader {
 
     @Override
     public boolean _load(@NonNull OperationData data) {
-        IntentData iData = (IntentData) data.get();
+        IntentData iData = ((BroadcastOperationData) data).data;
         Intent intent = new Intent();
         intent.setAction(iData.action);
         if (iData.category != null)

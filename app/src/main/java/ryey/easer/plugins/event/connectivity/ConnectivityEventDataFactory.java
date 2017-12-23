@@ -1,6 +1,9 @@
 package ryey.easer.plugins.event.connectivity;
 
 import android.support.annotation.NonNull;
+import android.support.v4.util.ArraySet;
+
+import java.util.Set;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
@@ -23,8 +26,10 @@ class ConnectivityEventDataFactory implements EventDataFactory {
     @NonNull
     @Override
     public EventData dummyData() {
-        ConnectivityEventData dummyData = new ConnectivityEventData();
-        dummyData.set(new String[]{"1", "2"});
+        Set<Integer> data = new ArraySet<>();
+        data.add(1);
+        data.add(2);
+        ConnectivityEventData dummyData = new ConnectivityEventData(data);
         return dummyData;
     }
 

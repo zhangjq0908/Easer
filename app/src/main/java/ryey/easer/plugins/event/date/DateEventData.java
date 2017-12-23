@@ -58,7 +58,7 @@ public class DateEventData extends TypedEventData {
         return calendar;
     }
 
-    private Calendar date = null;
+    Calendar date = null;
 
     {
         default_type = EventType.after;
@@ -73,21 +73,6 @@ public class DateEventData extends TypedEventData {
 
     DateEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
-    }
-
-    @NonNull
-    @Override
-    public Object get() {
-        return date;
-    }
-
-    @Override
-    public void set(@NonNull Object obj) {
-        if (obj instanceof Calendar) {
-            date = (Calendar) obj;
-        } else {
-            throw new RuntimeException("illegal data type");
-        }
     }
 
     @Override
@@ -112,7 +97,7 @@ public class DateEventData extends TypedEventData {
     public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
         String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
         try {
-            set(TextToDate(str_data));
+            this.date = TextToDate(str_data);
             EventType type = XmlHelper.EventHelper.readLogic(parser);
             setType(type);
         } catch (ParseException e) {
@@ -123,7 +108,6 @@ public class DateEventData extends TypedEventData {
 
     @Override
     public void serialize(XmlSerializer serializer) throws IOException {
-        Calendar date = (Calendar) get();
         if (date != null) {
             XmlHelper.EventHelper.writeSingleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).id(), DateToText(date));
             XmlHelper.EventHelper.writeLogic(serializer, type());
@@ -135,7 +119,7 @@ public class DateEventData extends TypedEventData {
         switch (format) {
             default:
                 try {
-                    set(TextToDate(data));
+                    this.date = TextToDate(data);
                 } catch (ParseException e) {
                     e.printStackTrace();
                     throw new IllegalStorageDataException(e.getMessage());

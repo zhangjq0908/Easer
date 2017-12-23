@@ -36,24 +36,6 @@ import ryey.easer.commons.IllegalStorageDataException;
  * Defines a series of methods that are needed.
  */
 public interface StorageData extends Parcelable {
-    /**
-     * @return The data that the instance holds.
-     */
-    @NonNull
-    Object get();
-
-    /**
-     * Set the data of the instance.
-     * @param obj Data to-be-set.
-     */
-    void set(@NonNull Object obj);
-
-    /**
-     * Compare two data instance. Two objects hold the same data are considered as equal.
-     * @param o The other object to be compared.
-     * @return Whether the two data instances are the same or not.
-     */
-    boolean equals(Object o);
 
     /**
      * This is an OLD interface and is kept only for compatibility.
@@ -103,4 +85,11 @@ public interface StorageData extends Parcelable {
      * @return Whether the data is valid or not.
      */
     boolean isValid();
+
+    /**
+     * Compare two data instance. Two objects hold the same data are considered as equal.
+     * @param o The other object to be compared.
+     * @return Whether the two data instances are the same or not.
+     */
+    boolean equals(Object o);
 }

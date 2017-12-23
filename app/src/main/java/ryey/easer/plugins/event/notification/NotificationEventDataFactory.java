@@ -28,7 +28,7 @@ class NotificationEventDataFactory implements EventDataFactory {
         notificationSelection.app = "example.app";
         notificationSelection.title = "title example";
         notificationSelection.content = "content example";
-        dummyData.set(notificationSelection);
+        dummyData.selection = notificationSelection;
         return dummyData;
     }
 

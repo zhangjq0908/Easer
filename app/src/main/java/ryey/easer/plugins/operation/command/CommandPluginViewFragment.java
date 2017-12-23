@@ -45,7 +45,7 @@ public class CommandPluginViewFragment extends PluginViewFragment {
 
     @Override
     protected void _fill(@NonNull StorageData data) {
-        String command = (String) data.get();
+        String command = ((CommandOperationData) data).get();
         editText_command.setText(command);
     }
 

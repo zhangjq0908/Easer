@@ -37,7 +37,7 @@ public class BluetoothLoader extends OperationLoader {
 
     @Override
     public boolean _load(@NonNull OperationData data) {
-        Boolean state = (Boolean) data.get();
+        Boolean state = ((BluetoothOperationData) data).get();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             BluetoothManager bluetoothManager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
             BluetoothAdapter adapter = bluetoothManager.getAdapter();

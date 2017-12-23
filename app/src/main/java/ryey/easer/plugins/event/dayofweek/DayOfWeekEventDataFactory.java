@@ -24,7 +24,9 @@ class DayOfWeekEventDataFactory implements EventDataFactory {
     @Override
     public EventData dummyData() {
         DayOfWeekEventData dummyData = new DayOfWeekEventData();
-        dummyData.set(new String[]{"2", "4", "5"});
+        dummyData.days.add(2);
+        dummyData.days.add(4);
+        dummyData.days.add(5);
         return dummyData;
     }
 

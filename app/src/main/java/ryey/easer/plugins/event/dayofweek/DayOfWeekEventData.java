@@ -49,7 +49,7 @@ import ryey.easer.plugins.event.TypedEventData;
 
 public class DayOfWeekEventData extends TypedEventData {
 
-    private Set<Integer> days = new ArraySet<>(7);
+    Set<Integer> days = new ArraySet<>(7);
 
     {
         default_type = EventType.any;
@@ -64,32 +64,6 @@ public class DayOfWeekEventData extends TypedEventData {
 
     DayOfWeekEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
-    }
-
-    @NonNull
-    @Override
-    public Object get() {
-        return days;
-    }
-
-    @Override
-    public void set(@NonNull Object obj) {
-        if (obj instanceof String) {
-            set(((String) obj).split("\n"));
-        } else if (obj instanceof String[]) {
-            for (String str : (String[]) obj) {
-                days.add(Integer.parseInt(str.trim()));
-            }
-        } else if (obj instanceof Set) {
-            for (Object o : (Set) obj) {
-                if (o instanceof Integer)
-                    days.add((Integer) o);
-                else
-                    Logger.wtf("Data is Set but element <%s> is not Integer", o);
-            }
-        } else {
-            throw new RuntimeException("illegal data type");
-        }
     }
 
     @Override
@@ -117,13 +91,15 @@ public class DayOfWeekEventData extends TypedEventData {
         if (version == C.VERSION_DEFAULT) {
             String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
             try {
-                set(Utils.str2set(str_data));
+                days = Utils.str2set(str_data);
             } catch (ParseException e) {
                 Logger.e(e, "Illegal Event: illegal time format %s", str_data);
                 throw new IllegalStorageDataException(String.format("Illegal Event: illegal time format %s", str_data));
             }
         } else {
-            set(XmlHelper.EventHelper.readMultipleSituation(parser));
+            for (String str : XmlHelper.EventHelper.readMultipleSituation(parser)) {
+                days.add(Integer.parseInt(str.trim()));
+            }
         }
         EventType type = XmlHelper.EventHelper.readLogic(parser);
         setType(type);

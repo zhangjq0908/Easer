@@ -49,7 +49,7 @@ public class SmsPluginViewFragment extends PluginViewFragment {
     @Override
     protected void _fill(@NonNull StorageData data) {
         if (data instanceof SmsEventData) {
-            SmsInnerData intentData = (SmsInnerData) data.get();
+            SmsInnerData intentData = ((SmsEventData) data).innerData;
             editText_sender.setText(intentData.sender);
             editText_content.setText(intentData.content);
         }

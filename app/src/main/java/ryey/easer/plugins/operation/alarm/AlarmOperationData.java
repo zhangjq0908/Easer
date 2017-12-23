@@ -36,7 +36,6 @@ import java.util.Locale;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
-import ryey.easer.commons.IllegalArgumentTypeException;
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
@@ -59,7 +58,7 @@ public class AlarmOperationData implements OperationData {
         return calendar;
     }
 
-    private AlarmData data = new AlarmData();
+    AlarmData data = new AlarmData();
 
     public AlarmOperationData() {
     }
@@ -70,21 +69,6 @@ public class AlarmOperationData implements OperationData {
 
     AlarmOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
-    }
-
-    @NonNull
-    @Override
-    public Object get() {
-        return data;
-    }
-
-    @Override
-    public void set(@NonNull Object obj) {
-        if (obj instanceof AlarmData) {
-            data = (AlarmData) obj;
-        } else {
-            throw new IllegalArgumentTypeException(data.getClass(), new Class[]{String.class, AlarmData.class});
-        }
     }
 
     @Override

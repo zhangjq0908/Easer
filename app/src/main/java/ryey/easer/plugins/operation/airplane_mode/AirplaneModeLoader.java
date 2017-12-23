@@ -38,7 +38,7 @@ public class AirplaneModeLoader extends OperationLoader {
 
     @Override
     public boolean _load(@NonNull OperationData data) {
-        Boolean state = (Boolean) data.get();
+        Boolean state = ((AirplaneModeOperationData) data).get();
         if (state == airplaneModeIsOn())
             return true;
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN) {
