@@ -33,7 +33,7 @@ import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
 import ryey.easer.plugins.reusable.PluginHelper;
 
-public class BluetoothOperationPlugin implements OperationPlugin {
+public class BluetoothOperationPlugin implements OperationPlugin<BluetoothOperationData> {
 
     @NonNull
     @Override
@@ -89,20 +89,20 @@ public class BluetoothOperationPlugin implements OperationPlugin {
 
     @NonNull
     @Override
-    public OperationDataFactory dataFactory() {
+    public OperationDataFactory<BluetoothOperationData> dataFactory() {
         return new BluetoothOperationDataFactory();
 
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<BluetoothOperationData> view() {
         return new BluetoothPluginViewFragment();
     }
 
     @NonNull
     @Override
-    public OperationLoader loader(@NonNull Context context) {
+    public OperationLoader<BluetoothOperationData> loader(@NonNull Context context) {
         return new BluetoothLoader(context);
     }
 

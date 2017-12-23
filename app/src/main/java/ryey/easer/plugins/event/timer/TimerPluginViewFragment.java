@@ -33,7 +33,7 @@ import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class TimerPluginViewFragment extends PluginViewFragment {
+public class TimerPluginViewFragment extends PluginViewFragment<TimerEventData> {
     private EditText editText_minute;
 
     private RadioButton radioButton_exact, radioButton_inexact;
@@ -52,7 +52,7 @@ public class TimerPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(@NonNull StorageData data) {
+    protected void _fill(@NonNull TimerEventData data) {
         if (data instanceof TimerEventData) {
             TimerEventData.Timer timer = ((TimerEventData) data).timer;
             editText_minute.setText(String.valueOf(timer.minutes));
@@ -69,7 +69,7 @@ public class TimerPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public StorageData getData() throws InvalidDataInputException {
+    public TimerEventData getData() throws InvalidDataInputException {
         TimerEventData.Timer timer = new TimerEventData.Timer();
         try {
             timer.minutes = Integer.parseInt(editText_minute.getText().toString());

@@ -25,11 +25,11 @@ import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.plugins.operation.SwitchPluginViewFragment;
 
-public class HotspotPluginViewFragment extends SwitchPluginViewFragment {
+public class HotspotPluginViewFragment extends SwitchPluginViewFragment<HotspotOperationData> {
 
     @NonNull
     @Override
-    public StorageData getData() throws InvalidDataInputException {
+    public HotspotOperationData getData() throws InvalidDataInputException {
         return new HotspotOperationData(state());
     }
 }

@@ -28,14 +28,14 @@ import com.orhanobut.logger.Logger;
  * Loader of a operation plugin.
  * Used to perform relevant action given the data (configuration).
  */
-public abstract class OperationLoader {
+public abstract class OperationLoader<T extends OperationData> {
     protected final Context context;
 
     public OperationLoader(@NonNull Context context) {
         this.context = context;
     }
 
-    public boolean load(@NonNull OperationData data) {
+    public boolean load(@NonNull T data) {
         if (!data.isValid()) {
             Logger.wtf("OperationData <%s> is not valid", data);
             return false;
@@ -49,5 +49,5 @@ public abstract class OperationLoader {
      * Load the operation given its data.
      * @return whether the load is successful or not.
      */
-    protected abstract boolean _load(@NonNull OperationData data);
+    protected abstract boolean _load(@NonNull T data);
 }

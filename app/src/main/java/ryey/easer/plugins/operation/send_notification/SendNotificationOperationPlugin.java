@@ -30,7 +30,7 @@ import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
 
-public class SendNotificationOperationPlugin implements OperationPlugin {
+public class SendNotificationOperationPlugin implements OperationPlugin<SendNotificationOperationData> {
 
     @NonNull
     @Override
@@ -70,20 +70,20 @@ public class SendNotificationOperationPlugin implements OperationPlugin {
 
     @NonNull
     @Override
-    public OperationDataFactory dataFactory() {
+    public OperationDataFactory<SendNotificationOperationData> dataFactory() {
         return new SendNotificationOperationDataFactory();
 
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<SendNotificationOperationData> view() {
         return new SendNotificationPluginViewFragment();
     }
 
     @NonNull
     @Override
-    public OperationLoader loader(@NonNull Context context) {
+    public OperationLoader<SendNotificationOperationData> loader(@NonNull Context context) {
         return new SendNotificationLoader(context);
     }
 

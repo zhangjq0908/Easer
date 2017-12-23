@@ -7,29 +7,29 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 
-class MediaControlOperationDataFactory implements OperationDataFactory {
+class MediaControlOperationDataFactory implements OperationDataFactory<MediaControlOperationData> {
     @NonNull
     @Override
-    public Class<? extends OperationData> dataClass() {
+    public Class<MediaControlOperationData> dataClass() {
         return MediaControlOperationData.class;
     }
 
     @NonNull
     @Override
-    public OperationData emptyData() {
+    public MediaControlOperationData emptyData() {
         return new MediaControlOperationData();
     }
 
     @NonNull
     @Override
-    public OperationData dummyData() {
+    public MediaControlOperationData dummyData() {
         MediaControlOperationData dummyData = new MediaControlOperationData(MediaControlOperationData.ControlChoice.next);
         return dummyData;
     }
 
     @NonNull
     @Override
-    public OperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public MediaControlOperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         return new MediaControlOperationData(data, format, version);
     }
 }

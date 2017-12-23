@@ -27,7 +27,7 @@ import com.orhanobut.logger.Logger;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
-class HotspotLoader extends OperationLoader {
+class HotspotLoader extends OperationLoader<HotspotOperationData> {
     private final HotspotHelper helper;
 
     public HotspotLoader(Context context) {
@@ -36,7 +36,7 @@ class HotspotLoader extends OperationLoader {
     }
 
     @Override
-    public boolean _load(@NonNull OperationData data) {
+    public boolean _load(@NonNull HotspotOperationData data) {
         Boolean state = ((HotspotOperationData) data).get();
         try {
             if (helper.isApEnabled() == state)

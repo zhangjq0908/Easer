@@ -25,11 +25,11 @@ import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.plugins.operation.SwitchPluginViewFragment;
 
-public class SynchronizationPluginViewFragment extends SwitchPluginViewFragment {
+public class SynchronizationPluginViewFragment extends SwitchPluginViewFragment<SynchronizationOperationData> {
 
     @NonNull
     @Override
-    public StorageData getData() throws InvalidDataInputException {
+    public SynchronizationOperationData getData() throws InvalidDataInputException {
         return new SynchronizationOperationData(state());
     }
 }

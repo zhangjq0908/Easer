@@ -31,7 +31,7 @@ import ryey.easer.R;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
-public class SendNotificationLoader extends OperationLoader {
+public class SendNotificationLoader extends OperationLoader<SendNotificationOperationData> {
     private static int NOTIFICATION_ID = 0;
 
     {
@@ -45,7 +45,7 @@ public class SendNotificationLoader extends OperationLoader {
     }
 
     @Override
-    public boolean _load(@NonNull OperationData data) {
+    public boolean _load(@NonNull SendNotificationOperationData data) {
         NotificationContent content = ((SendNotificationOperationData) data).notificationContent;
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 

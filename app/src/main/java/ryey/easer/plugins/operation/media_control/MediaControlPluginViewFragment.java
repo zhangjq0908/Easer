@@ -32,7 +32,7 @@ import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class MediaControlPluginViewFragment extends PluginViewFragment {
+public class MediaControlPluginViewFragment extends PluginViewFragment<MediaControlOperationData> {
 
     private RadioButton radioButton_play_pause;
     private RadioButton radioButton_play;
@@ -54,7 +54,7 @@ public class MediaControlPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(@NonNull StorageData data) {
+    protected void _fill(@NonNull MediaControlOperationData data) {
         if (data instanceof MediaControlOperationData) {
             MediaControlOperationData.ControlChoice choice = ((MediaControlOperationData) data).choice;
             switch (choice) {
@@ -81,7 +81,7 @@ public class MediaControlPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public StorageData getData() throws InvalidDataInputException {
+    public MediaControlOperationData getData() throws InvalidDataInputException {
         MediaControlOperationData.ControlChoice choice = null;
         if (radioButton_play_pause.isChecked()) {
             choice = MediaControlOperationData.ControlChoice.play_pause;

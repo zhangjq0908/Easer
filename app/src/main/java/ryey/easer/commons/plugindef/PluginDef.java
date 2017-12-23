@@ -5,7 +5,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 
-public interface PluginDef {
+public interface PluginDef<T extends StorageData> {
     /**
      * Returns the plugin identifier.
      * Only used internally. Never displayed to user.
@@ -44,12 +44,12 @@ public interface PluginDef {
      * Returns a factory to construct the relevant data structure.
      */
     @NonNull
-    DataFactory dataFactory();
+    DataFactory<T> dataFactory();
 
     /**
      * Returns the control UI of this plugin.
      * Used in relevant UI.
      */
     @NonNull
-    PluginViewFragment view();
+    PluginViewFragment<T> view();
 }

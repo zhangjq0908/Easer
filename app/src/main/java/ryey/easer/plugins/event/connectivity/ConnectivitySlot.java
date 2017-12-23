@@ -21,7 +21,7 @@ import static ryey.easer.plugins.event.connectivity.ConnectivityType.TYPE_NOT_CO
 import static ryey.easer.plugins.event.connectivity.ConnectivityType.TYPE_VPN;
 import static ryey.easer.plugins.event.connectivity.ConnectivityType.TYPE_WIFI;
 
-class ConnectivitySlot extends AbstractSlot {
+class ConnectivitySlot extends AbstractSlot<ConnectivityEventData> {
 
     private Set<Integer> connectivity_types;
     private EventType type;
@@ -48,7 +48,7 @@ class ConnectivitySlot extends AbstractSlot {
     }
 
     @Override
-    public void set(@NonNull EventData data) {
+    public void set(@NonNull ConnectivityEventData data) {
         connectivity_types = ((ConnectivityEventData) data).connectivity_type;
         type = data.type();
     }

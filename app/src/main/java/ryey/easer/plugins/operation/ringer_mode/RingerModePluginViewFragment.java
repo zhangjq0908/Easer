@@ -37,7 +37,7 @@ import ryey.easer.commons.plugindef.StorageData;
 
 import static android.widget.LinearLayout.HORIZONTAL;
 
-public class RingerModePluginViewFragment extends PluginViewFragment {
+public class RingerModePluginViewFragment extends PluginViewFragment<RingerModeOperationData> {
     String []mode_names;
     final int []values = {
             AudioManager.RINGER_MODE_SILENT,
@@ -84,7 +84,7 @@ public class RingerModePluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(@NonNull StorageData data) {
+    protected void _fill(@NonNull RingerModeOperationData data) {
         Integer item = ((RingerModeOperationData) data).get();
         for (int i = 0; i < radioButtons.length; i++) {
             if (item == values[i]) {
@@ -96,7 +96,7 @@ public class RingerModePluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public StorageData getData() throws InvalidDataInputException {
+    public RingerModeOperationData getData() throws InvalidDataInputException {
         return new RingerModeOperationData(checked_item);
     }
 }

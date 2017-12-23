@@ -32,7 +32,7 @@ import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class NotificationPluginViewFragment extends PluginViewFragment {
+public class NotificationPluginViewFragment extends PluginViewFragment<NotificationEventData> {
     private EditText editText_app;
     private EditText editText_title;
     private EditText editText_content;
@@ -50,7 +50,7 @@ public class NotificationPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(@NonNull StorageData data) {
+    protected void _fill(@NonNull NotificationEventData data) {
         if (data instanceof NotificationEventData) {
             NotificationSelection notificationSelection = ((NotificationEventData) data).selection;
             editText_app.setText(notificationSelection.app);
@@ -63,7 +63,7 @@ public class NotificationPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public StorageData getData() throws InvalidDataInputException {
+    public NotificationEventData getData() throws InvalidDataInputException {
         NotificationSelection notificationSelection = new NotificationSelection();
         notificationSelection.app = textOf(editText_app);
         notificationSelection.title = textOf(editText_title);

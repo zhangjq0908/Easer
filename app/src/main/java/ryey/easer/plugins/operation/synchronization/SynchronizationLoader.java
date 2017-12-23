@@ -26,13 +26,13 @@ import android.support.annotation.NonNull;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
-public class SynchronizationLoader extends OperationLoader {
+public class SynchronizationLoader extends OperationLoader<SynchronizationOperationData> {
     public SynchronizationLoader(Context context) {
         super(context);
     }
 
     @Override
-    public boolean _load(@NonNull OperationData data) {
+    public boolean _load(@NonNull SynchronizationOperationData data) {
         Boolean state = ((SynchronizationOperationData) data).get();
         ContentResolver.setMasterSyncAutomatically(state);
         return true;

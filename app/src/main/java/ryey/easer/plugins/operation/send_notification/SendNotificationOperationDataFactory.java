@@ -7,22 +7,22 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 
-class SendNotificationOperationDataFactory implements OperationDataFactory {
+class SendNotificationOperationDataFactory implements OperationDataFactory<SendNotificationOperationData> {
     @NonNull
     @Override
-    public Class<? extends OperationData> dataClass() {
+    public Class<SendNotificationOperationData> dataClass() {
         return SendNotificationOperationData.class;
     }
 
     @NonNull
     @Override
-    public OperationData emptyData() {
+    public SendNotificationOperationData emptyData() {
         return new SendNotificationOperationData();
     }
 
     @NonNull
     @Override
-    public OperationData dummyData() {
+    public SendNotificationOperationData dummyData() {
         NotificationContent notificationContent = new NotificationContent();
         notificationContent.title = "my test title";
         notificationContent.content = "my test content";
@@ -32,7 +32,7 @@ class SendNotificationOperationDataFactory implements OperationDataFactory {
 
     @NonNull
     @Override
-    public OperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public SendNotificationOperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         return new SendNotificationOperationData(data, format, version);
     }
 }

@@ -32,7 +32,7 @@ import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class SmsPluginViewFragment extends PluginViewFragment {
+public class SmsPluginViewFragment extends PluginViewFragment<SmsEventData> {
     private EditText editText_sender;
     private EditText editText_content;
 
@@ -47,7 +47,7 @@ public class SmsPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(@NonNull StorageData data) {
+    protected void _fill(@NonNull SmsEventData data) {
         if (data instanceof SmsEventData) {
             SmsInnerData intentData = ((SmsEventData) data).innerData;
             editText_sender.setText(intentData.sender);
@@ -57,7 +57,7 @@ public class SmsPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public StorageData getData() throws InvalidDataInputException {
+    public SmsEventData getData() throws InvalidDataInputException {
         SmsInnerData intentData = new SmsInnerData();
         intentData.sender = editText_sender.getText().toString();
         intentData.content = editText_content.getText().toString();

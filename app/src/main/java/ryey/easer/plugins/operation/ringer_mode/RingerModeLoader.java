@@ -30,13 +30,13 @@ import com.orhanobut.logger.Logger;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
-public class RingerModeLoader extends OperationLoader {
+public class RingerModeLoader extends OperationLoader<RingerModeOperationData> {
     public RingerModeLoader(Context context) {
         super(context);
     }
 
     @Override
-    public boolean _load(@NonNull OperationData data) {
+    public boolean _load(@NonNull RingerModeOperationData data) {
         Integer mode = ((RingerModeOperationData) data).get();
         if (mode == null)
             return true;

@@ -32,7 +32,7 @@ import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class CommandPluginViewFragment extends PluginViewFragment {
+public class CommandPluginViewFragment extends PluginViewFragment<CommandOperationData> {
     private EditText editText_command;
 
     @NonNull
@@ -44,14 +44,14 @@ public class CommandPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(@NonNull StorageData data) {
+    protected void _fill(@NonNull CommandOperationData data) {
         String command = ((CommandOperationData) data).get();
         editText_command.setText(command);
     }
 
     @NonNull
     @Override
-    public StorageData getData() throws InvalidDataInputException {
+    public CommandOperationData getData() throws InvalidDataInputException {
         return new CommandOperationData(editText_command.getText().toString());
     }
 }

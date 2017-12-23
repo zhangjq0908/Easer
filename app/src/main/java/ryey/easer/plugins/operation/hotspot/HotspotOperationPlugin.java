@@ -32,7 +32,7 @@ import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
 import ryey.easer.plugins.reusable.PluginHelper;
 
-public class HotspotOperationPlugin implements OperationPlugin {
+public class HotspotOperationPlugin implements OperationPlugin<HotspotOperationData> {
 
     @NonNull
     @Override
@@ -87,20 +87,20 @@ public class HotspotOperationPlugin implements OperationPlugin {
 
     @NonNull
     @Override
-    public OperationDataFactory dataFactory() {
+    public OperationDataFactory<HotspotOperationData> dataFactory() {
         return new HotspotOperationDataFactory();
 
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<HotspotOperationData> view() {
         return new HotspotPluginViewFragment();
     }
 
     @NonNull
     @Override
-    public OperationLoader loader(@NonNull Context context) {
+    public OperationLoader<HotspotOperationData> loader(@NonNull Context context) {
         return new HotspotLoader(context);
     }
 

@@ -32,7 +32,7 @@ import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
 import ryey.easer.plugins.reusable.PluginHelper;
 
-public class NetworkTransmissionOperationPlugin implements OperationPlugin {
+public class NetworkTransmissionOperationPlugin implements OperationPlugin<NetworkTransmissionOperationData> {
 
     @NonNull
     @Override
@@ -73,20 +73,20 @@ public class NetworkTransmissionOperationPlugin implements OperationPlugin {
 
     @NonNull
     @Override
-    public OperationDataFactory dataFactory() {
+    public OperationDataFactory<NetworkTransmissionOperationData> dataFactory() {
         return new NetworkTransmissionOperationDataFactory();
 
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<NetworkTransmissionOperationData> view() {
         return new NetworkTransmissionPluginViewFragment();
     }
 
     @NonNull
     @Override
-    public OperationLoader loader(@NonNull Context context) {
+    public OperationLoader<NetworkTransmissionOperationData> loader(@NonNull Context context) {
         return new NetworkTransmissionLoader(context);
     }
 

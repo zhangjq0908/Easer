@@ -32,7 +32,7 @@ import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
-public class CellLocationSlot extends AbstractSlot {
+public class CellLocationSlot extends AbstractSlot<CellLocationEventData> {
     private static TelephonyManager telephonyManager = null;
 
     private CellLocationListener cellLocationListener = new CellLocationListener();
@@ -51,7 +51,7 @@ public class CellLocationSlot extends AbstractSlot {
     }
 
     @Override
-    public void set(@NonNull EventData data) {
+    public void set(@NonNull CellLocationEventData data) {
         if (data instanceof CellLocationEventData) {
             target = (CellLocationEventData) data;
             type = data.type();

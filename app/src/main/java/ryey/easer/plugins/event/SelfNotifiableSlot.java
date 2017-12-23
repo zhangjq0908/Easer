@@ -14,8 +14,9 @@ import com.orhanobut.logger.Logger;
 import java.util.Locale;
 
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
+import ryey.easer.commons.plugindef.eventplugin.EventData;
 
-public abstract class SelfNotifiableSlot extends AbstractSlot {
+public abstract class SelfNotifiableSlot<T extends EventData> extends AbstractSlot<T> {
     // Fields used in relevant Intent
     private static final String ACTION_SATISFIED = "ryey.easer.triggerlotus.abstractslot.SATISFIED";
     private static final String ACTION_UNSATISFIED = "ryey.easer.triggerlotus.abstractslot.UNSATISFIED";

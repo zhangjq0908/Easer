@@ -25,11 +25,11 @@ import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.plugins.operation.SwitchPluginViewFragment;
 
-public class WifiPluginViewFragment extends SwitchPluginViewFragment {
+public class WifiPluginViewFragment extends SwitchPluginViewFragment<WifiOperationData> {
 
     @NonNull
     @Override
-    public StorageData getData() throws InvalidDataInputException {
+    public WifiOperationData getData() throws InvalidDataInputException {
         return new WifiOperationData(state());
     }
 }

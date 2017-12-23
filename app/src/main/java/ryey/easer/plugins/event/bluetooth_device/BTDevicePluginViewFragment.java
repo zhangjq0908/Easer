@@ -46,7 +46,7 @@ import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class BTDevicePluginViewFragment extends PluginViewFragment {
+public class BTDevicePluginViewFragment extends PluginViewFragment<BTDeviceEventData> {
     private final String ACTION_RETURN = "ryey.easer.plugins.event.bluetooth_device.return_from_dialog";
     private final String EXTRA_HARDWARE_ADDRESS = "ryey.easer.plugins.event.bluetooth_device.extra.hardware_address";
 
@@ -164,7 +164,7 @@ public class BTDevicePluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(@NonNull StorageData data) {
+    protected void _fill(@NonNull BTDeviceEventData data) {
         if (data instanceof BTDeviceEventData) {
             editText.setText(data.toString());
         }
@@ -172,7 +172,7 @@ public class BTDevicePluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public StorageData getData() throws InvalidDataInputException {
+    public BTDeviceEventData getData() throws InvalidDataInputException {
         return new BTDeviceEventData(editText.getText().toString().split("\n"));
     }
 

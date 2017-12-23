@@ -32,7 +32,7 @@ import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
 import ryey.easer.plugins.reusable.PluginHelper;
 
-public class AlarmOperationPlugin implements OperationPlugin {
+public class AlarmOperationPlugin implements OperationPlugin<AlarmOperationData> {
 
     @NonNull
     @Override
@@ -73,20 +73,20 @@ public class AlarmOperationPlugin implements OperationPlugin {
 
     @NonNull
     @Override
-    public OperationDataFactory dataFactory() {
+    public OperationDataFactory<AlarmOperationData> dataFactory() {
         return new AlarmOperationDataFactory();
 
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<AlarmOperationData> view() {
         return new AlarmPluginViewFragment();
     }
 
     @NonNull
     @Override
-    public OperationLoader loader(@NonNull Context context) {
+    public OperationLoader<AlarmOperationData> loader(@NonNull Context context) {
         return new AlarmLoader(context);
     }
 

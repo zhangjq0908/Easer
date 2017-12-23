@@ -7,22 +7,22 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 
-class TimerEventDataFactory implements EventDataFactory {
+class TimerEventDataFactory implements EventDataFactory<TimerEventData> {
     @NonNull
     @Override
-    public Class<? extends EventData> dataClass() {
+    public Class<TimerEventData> dataClass() {
         return TimerEventData.class;
     }
 
     @NonNull
     @Override
-    public EventData emptyData() {
+    public TimerEventData emptyData() {
         return new TimerEventData();
     }
 
     @NonNull
     @Override
-    public EventData dummyData() {
+    public TimerEventData dummyData() {
         TimerEventData dummyData = new TimerEventData();
         TimerEventData.Timer timer = new TimerEventData.Timer();
         timer.exact = true;
@@ -34,7 +34,7 @@ class TimerEventDataFactory implements EventDataFactory {
 
     @NonNull
     @Override
-    public EventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public TimerEventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         return new TimerEventData(data, format, version);
     }
 }

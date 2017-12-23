@@ -10,7 +10,7 @@ import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 
-public class BatteryEventPlugin implements EventPlugin {
+public class BatteryEventPlugin implements EventPlugin<BatteryEventData> {
 
     @NonNull
     @Override
@@ -40,18 +40,18 @@ public class BatteryEventPlugin implements EventPlugin {
 
     @NonNull
     @Override
-    public EventDataFactory dataFactory() {
+    public EventDataFactory<BatteryEventData> dataFactory() {
         return new BatteryEventDataFactory();
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<BatteryEventData> view() {
         return new BatteryPluginViewFragment();
     }
 
     @Override
-    public AbstractSlot slot(Context context) {
+    public AbstractSlot<BatteryEventData> slot(Context context) {
         return new BatterySlot(context);
     }
 

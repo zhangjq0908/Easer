@@ -32,7 +32,7 @@ import ryey.easer.plugins.event.SelfNotifiableSlot;
 /*
  * TODO: cancel (or set extra) alarm after being satisfied or unsatisfied (for different event types)
  */
-public class DateSlot extends SelfNotifiableSlot {
+public class DateSlot extends SelfNotifiableSlot<DateEventData> {
     private static AlarmManager mAlarmManager;
 
     private Calendar calendar = null;
@@ -46,7 +46,7 @@ public class DateSlot extends SelfNotifiableSlot {
     }
 
     @Override
-    public void set(@NonNull EventData data) {
+    public void set(@NonNull DateEventData data) {
         if (data instanceof DateEventData) {
             setDate(((DateEventData) data).date);
             type = data.type();

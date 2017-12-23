@@ -46,7 +46,7 @@ import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class CalendarPluginViewFragment extends PluginViewFragment {
+public class CalendarPluginViewFragment extends PluginViewFragment<CalendarEventData> {
 
     private final static String ACTION_RETURN = "ryey.easer.plugins.event.bluetooth_device.return_from_dialog";
     private final static String EXTRA_CALENDAR_ID = "ryey.easer.plugins.event.calendar.extra.calendar_id";
@@ -145,7 +145,7 @@ public class CalendarPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(@NonNull StorageData data) {
+    protected void _fill(@NonNull CalendarEventData data) {
         if (data instanceof CalendarEventData) {
             CalendarData calendarData = ((CalendarEventData) data).data;
             calendar_id = calendarData.calendar_id;
@@ -159,7 +159,7 @@ public class CalendarPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public StorageData getData() throws InvalidDataInputException {
+    public CalendarEventData getData() throws InvalidDataInputException {
         CalendarData calendarData = new CalendarData();
         calendarData.calendar_id = calendar_id;
         for (int i = 0; i < cb_conditions.length; i++) {

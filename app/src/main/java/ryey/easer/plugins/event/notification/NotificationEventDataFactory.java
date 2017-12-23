@@ -7,22 +7,22 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 
-class NotificationEventDataFactory implements EventDataFactory {
+class NotificationEventDataFactory implements EventDataFactory<NotificationEventData> {
     @NonNull
     @Override
-    public Class<? extends EventData> dataClass() {
+    public Class<NotificationEventData> dataClass() {
         return NotificationEventData.class;
     }
 
     @NonNull
     @Override
-    public EventData emptyData() {
+    public NotificationEventData emptyData() {
         return new NotificationEventData();
     }
 
     @NonNull
     @Override
-    public EventData dummyData() {
+    public NotificationEventData dummyData() {
         NotificationEventData dummyData = new NotificationEventData();
         NotificationSelection notificationSelection = new NotificationSelection();
         notificationSelection.app = "example.app";
@@ -34,7 +34,7 @@ class NotificationEventDataFactory implements EventDataFactory {
 
     @NonNull
     @Override
-    public EventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public NotificationEventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         return new NotificationEventData(data, format, version);
     }
 }

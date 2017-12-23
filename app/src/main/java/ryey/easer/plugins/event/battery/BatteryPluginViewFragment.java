@@ -16,7 +16,7 @@ import ryey.easer.commons.plugindef.StorageData;
 
 import static android.widget.LinearLayout.HORIZONTAL;
 
-public class BatteryPluginViewFragment extends PluginViewFragment {
+public class BatteryPluginViewFragment extends PluginViewFragment<BatteryEventData> {
     String []mode_names;
     final int []values = {
             BatteryStatus.charging,
@@ -58,21 +58,19 @@ public class BatteryPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(@NonNull StorageData data) {
-        if (data instanceof BatteryEventData) {
-            int status = ((BatteryEventData) data).battery_status;
-            for (int i = 0; i < values.length; i++) {
-                if (values[i] == status) {
-                    radioButtons[i].setChecked(true);
-                    checked_item = i;
-                }
+    protected void _fill(@NonNull BatteryEventData data) {
+        int status = ((BatteryEventData) data).battery_status;
+        for (int i = 0; i < values.length; i++) {
+            if (values[i] == status) {
+                radioButtons[i].setChecked(true);
+                checked_item = i;
             }
         }
     }
 
     @NonNull
     @Override
-    public StorageData getData() throws InvalidDataInputException {
+    public BatteryEventData getData() throws InvalidDataInputException {
         if (checked_item == null)
             throw new InvalidDataInputException();
         return new BatteryEventData(values[checked_item]);

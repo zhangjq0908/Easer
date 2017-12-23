@@ -31,7 +31,7 @@ import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.plugins.reusable.PluginHelper;
 
-public class CalendarEventPlugin implements EventPlugin {
+public class CalendarEventPlugin implements EventPlugin<CalendarEventData> {
 
     @NonNull
     @Override
@@ -61,18 +61,18 @@ public class CalendarEventPlugin implements EventPlugin {
 
     @NonNull
     @Override
-    public EventDataFactory dataFactory() {
+    public EventDataFactory<CalendarEventData> dataFactory() {
         return new CalendarEventDataFactory();
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<CalendarEventData> view() {
         return new CalendarPluginViewFragment();
     }
 
     @Override
-    public AbstractSlot slot(Context context) {
+    public AbstractSlot<CalendarEventData> slot(Context context) {
         return new CalendarSlot(context);
     }
 

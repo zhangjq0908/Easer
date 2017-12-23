@@ -31,7 +31,7 @@ import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.plugins.reusable.PluginHelper;
 
-public class CellLocationEventPlugin implements EventPlugin {
+public class CellLocationEventPlugin implements EventPlugin<CellLocationEventData> {
 
     @NonNull
     @Override
@@ -61,18 +61,18 @@ public class CellLocationEventPlugin implements EventPlugin {
 
     @NonNull
     @Override
-    public EventDataFactory dataFactory() {
+    public EventDataFactory<CellLocationEventData> dataFactory() {
         return new CellLocationEventDataFactory();
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<CellLocationEventData> view() {
         return new CellLocationPluginViewFragment();
     }
 
     @Override
-    public AbstractSlot slot(Context context) {
+    public AbstractSlot<CellLocationEventData> slot(Context context) {
         return new CellLocationSlot(context);
     }
 

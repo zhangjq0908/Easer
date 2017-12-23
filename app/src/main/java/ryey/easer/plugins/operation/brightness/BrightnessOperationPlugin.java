@@ -33,7 +33,7 @@ import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
 
-public class BrightnessOperationPlugin implements OperationPlugin {
+public class BrightnessOperationPlugin implements OperationPlugin<BrightnessOperationData> {
 
     @NonNull
     @Override
@@ -80,20 +80,20 @@ public class BrightnessOperationPlugin implements OperationPlugin {
 
     @NonNull
     @Override
-    public OperationDataFactory dataFactory() {
+    public OperationDataFactory<BrightnessOperationData> dataFactory() {
         return new BrightnessOperationDataFactory();
 
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<BrightnessOperationData> view() {
         return new BrightnessPluginViewFragment();
     }
 
     @NonNull
     @Override
-    public OperationLoader loader(@NonNull Context context) {
+    public OperationLoader<BrightnessOperationData> loader(@NonNull Context context) {
         return new BrightnessLoader(context);
     }
 

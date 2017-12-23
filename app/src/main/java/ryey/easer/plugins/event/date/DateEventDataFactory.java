@@ -9,22 +9,22 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 
-class DateEventDataFactory implements EventDataFactory {
+class DateEventDataFactory implements EventDataFactory<DateEventData> {
     @NonNull
     @Override
-    public Class<? extends EventData> dataClass() {
+    public Class<DateEventData> dataClass() {
         return DateEventData.class;
     }
 
     @NonNull
     @Override
-    public EventData emptyData() {
+    public DateEventData emptyData() {
         return new DateEventData();
     }
 
     @NonNull
     @Override
-    public EventData dummyData() {
+    public DateEventData dummyData() {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.DAY_OF_MONTH, 2);
         DateEventData dummyData = new DateEventData(calendar);
@@ -33,7 +33,7 @@ class DateEventDataFactory implements EventDataFactory {
 
     @NonNull
     @Override
-    public EventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public DateEventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         return new DateEventData(data, format, version);
     }
 }

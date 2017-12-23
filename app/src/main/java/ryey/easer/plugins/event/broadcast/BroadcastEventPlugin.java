@@ -29,7 +29,7 @@ import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 
-public class BroadcastEventPlugin implements EventPlugin {
+public class BroadcastEventPlugin implements EventPlugin<BroadcastEventData> {
 
     @NonNull
     @Override
@@ -59,18 +59,18 @@ public class BroadcastEventPlugin implements EventPlugin {
 
     @NonNull
     @Override
-    public EventDataFactory dataFactory() {
+    public EventDataFactory<BroadcastEventData> dataFactory() {
         return new BroadcastEventDataFactory();
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<BroadcastEventData> view() {
         return new BroadcastPluginViewFragment();
     }
 
     @Override
-    public AbstractSlot slot(Context context) {
+    public AbstractSlot<BroadcastEventData> slot(Context context) {
         return new BroadcastConnSlot(context);
     }
 

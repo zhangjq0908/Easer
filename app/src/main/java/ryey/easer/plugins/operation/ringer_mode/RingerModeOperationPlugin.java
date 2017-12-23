@@ -38,7 +38,7 @@ import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
 import ryey.easer.plugins.reusable.PluginHelper;
 
-public class RingerModeOperationPlugin implements OperationPlugin {
+public class RingerModeOperationPlugin implements OperationPlugin<RingerModeOperationData> {
 
     @NonNull
     @Override
@@ -109,20 +109,20 @@ public class RingerModeOperationPlugin implements OperationPlugin {
 
     @NonNull
     @Override
-    public OperationDataFactory dataFactory() {
+    public OperationDataFactory<RingerModeOperationData> dataFactory() {
         return new RingerModeOperationDataFactory();
 
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<RingerModeOperationData> view() {
         return new RingerModePluginViewFragment();
     }
 
     @NonNull
     @Override
-    public OperationLoader loader(@NonNull Context context) {
+    public OperationLoader<RingerModeOperationData> loader(@NonNull Context context) {
         return new RingerModeLoader(context);
     }
 

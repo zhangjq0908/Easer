@@ -9,22 +9,22 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 
-class AlarmOperationDataFactory implements OperationDataFactory {
+class AlarmOperationDataFactory implements OperationDataFactory<AlarmOperationData> {
     @NonNull
     @Override
-    public Class<? extends OperationData> dataClass() {
+    public Class<AlarmOperationData> dataClass() {
         return AlarmOperationData.class;
     }
 
     @NonNull
     @Override
-    public OperationData emptyData() {
+    public AlarmOperationData emptyData() {
         return new AlarmOperationData();
     }
 
     @NonNull
     @Override
-    public OperationData dummyData() {
+    public AlarmOperationData dummyData() {
         AlarmOperationData.AlarmData alarmData = new AlarmOperationData.AlarmData();
         alarmData.time = Calendar.getInstance();
         alarmData.message = "my message";
@@ -35,7 +35,7 @@ class AlarmOperationDataFactory implements OperationDataFactory {
 
     @NonNull
     @Override
-    public OperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public AlarmOperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         return new AlarmOperationData(data, format, version);
     }
 }

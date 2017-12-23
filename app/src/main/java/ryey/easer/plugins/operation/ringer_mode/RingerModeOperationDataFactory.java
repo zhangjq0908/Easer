@@ -7,22 +7,22 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 
-class RingerModeOperationDataFactory implements OperationDataFactory {
+class RingerModeOperationDataFactory implements OperationDataFactory<RingerModeOperationData> {
     @NonNull
     @Override
-    public Class<? extends OperationData> dataClass() {
+    public Class<RingerModeOperationData> dataClass() {
         return RingerModeOperationData.class;
     }
 
     @NonNull
     @Override
-    public OperationData emptyData() {
+    public RingerModeOperationData emptyData() {
         return new RingerModeOperationData();
     }
 
     @NonNull
     @Override
-    public OperationData dummyData() {
+    public RingerModeOperationData dummyData() {
         RingerModeOperationData dummyData = new RingerModeOperationData();
         dummyData.set(1);
         return dummyData;
@@ -30,7 +30,7 @@ class RingerModeOperationDataFactory implements OperationDataFactory {
 
     @NonNull
     @Override
-    public OperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public RingerModeOperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         return new RingerModeOperationData(data, format, version);
     }
 }

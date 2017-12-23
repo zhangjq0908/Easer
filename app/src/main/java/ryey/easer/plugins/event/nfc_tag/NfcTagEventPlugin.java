@@ -32,7 +32,7 @@ import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.plugins.reusable.PluginHelper;
 
-public class NfcTagEventPlugin implements EventPlugin {
+public class NfcTagEventPlugin implements EventPlugin<NfcTagEventData> {
 
     @NonNull
     @Override
@@ -64,19 +64,19 @@ public class NfcTagEventPlugin implements EventPlugin {
 
     @NonNull
     @Override
-    public EventDataFactory dataFactory() {
+    public EventDataFactory<NfcTagEventData> dataFactory() {
         return new NfcTagEventDataFactory();
 
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<NfcTagEventData> view() {
         return new NfcTagPluginViewFragment();
     }
 
     @Override
-    public AbstractSlot slot(Context context) {
+    public AbstractSlot<NfcTagEventData> slot(Context context) {
         return new NfcTagSlot(context);
     }
 

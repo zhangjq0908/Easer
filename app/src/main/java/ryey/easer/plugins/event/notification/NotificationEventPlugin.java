@@ -33,7 +33,7 @@ import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 
-public class NotificationEventPlugin implements EventPlugin {
+public class NotificationEventPlugin implements EventPlugin<NotificationEventData> {
 
     @NonNull
     @Override
@@ -71,19 +71,19 @@ public class NotificationEventPlugin implements EventPlugin {
 
     @NonNull
     @Override
-    public EventDataFactory dataFactory() {
+    public EventDataFactory<NotificationEventData> dataFactory() {
         return new NotificationEventDataFactory();
 
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<NotificationEventData> view() {
         return new NotificationPluginViewFragment();
     }
 
     @Override
-    public AbstractSlot slot(Context context) {
+    public AbstractSlot<NotificationEventData> slot(Context context) {
         return new NotificationSlot(context);
     }
 

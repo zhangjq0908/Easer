@@ -29,7 +29,7 @@ import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 
-public class TimeEventPlugin implements EventPlugin {
+public class TimeEventPlugin implements EventPlugin<TimeEventData> {
 
     @NonNull
     @Override
@@ -59,19 +59,19 @@ public class TimeEventPlugin implements EventPlugin {
 
     @NonNull
     @Override
-    public EventDataFactory dataFactory() {
+    public EventDataFactory<TimeEventData> dataFactory() {
         return new TimeEventDataFactory();
 
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<TimeEventData> view() {
         return new TimePluginViewFragment();
     }
 
     @Override
-    public AbstractSlot slot(Context context) {
+    public AbstractSlot<TimeEventData> slot(Context context) {
         return new TimeSlot(context);
     }
 

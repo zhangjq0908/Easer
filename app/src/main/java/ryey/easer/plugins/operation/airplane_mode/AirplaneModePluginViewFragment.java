@@ -25,11 +25,11 @@ import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.plugins.operation.SwitchPluginViewFragment;
 
-public class AirplaneModePluginViewFragment extends SwitchPluginViewFragment {
+public class AirplaneModePluginViewFragment extends SwitchPluginViewFragment<AirplaneModeOperationData> {
 
     @NonNull
     @Override
-    public StorageData getData() throws InvalidDataInputException {
+    public AirplaneModeOperationData getData() throws InvalidDataInputException {
         return new AirplaneModeOperationData(state());
     }
 }

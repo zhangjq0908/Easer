@@ -25,11 +25,11 @@ import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.plugins.operation.SwitchPluginViewFragment;
 
-public class RotationPluginViewFragment extends SwitchPluginViewFragment {
+public class RotationPluginViewFragment extends SwitchPluginViewFragment<RotationOperationData> {
 
     @NonNull
     @Override
-    public StorageData getData() throws InvalidDataInputException {
+    public RotationOperationData getData() throws InvalidDataInputException {
         return new RotationOperationData(state());
     }
 }

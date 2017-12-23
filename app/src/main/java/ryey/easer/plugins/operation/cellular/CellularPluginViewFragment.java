@@ -25,11 +25,11 @@ import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.plugins.operation.SwitchPluginViewFragment;
 
-public class CellularPluginViewFragment extends SwitchPluginViewFragment {
+public class CellularPluginViewFragment extends SwitchPluginViewFragment<CellularOperationData> {
 
     @NonNull
     @Override
-    public StorageData getData() throws InvalidDataInputException {
+    public CellularOperationData getData() throws InvalidDataInputException {
         return new CellularOperationData(state());
     }
 }

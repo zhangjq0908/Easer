@@ -32,7 +32,7 @@ import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.plugins.reusable.PluginHelper;
 
-public class BTDeviceEventPlugin implements EventPlugin {
+public class BTDeviceEventPlugin implements EventPlugin<BTDeviceEventData> {
 
     @NonNull
     @Override
@@ -64,18 +64,18 @@ public class BTDeviceEventPlugin implements EventPlugin {
 
     @NonNull
     @Override
-    public EventDataFactory dataFactory() {
+    public EventDataFactory<BTDeviceEventData> dataFactory() {
         return new BTDeviceEventDataFactory();
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<BTDeviceEventData> view() {
         return new BTDevicePluginViewFragment();
     }
 
     @Override
-    public AbstractSlot slot(Context context) {
+    public AbstractSlot<BTDeviceEventData> slot(Context context) {
         return new BTDeviceSlot(context);
     }
 

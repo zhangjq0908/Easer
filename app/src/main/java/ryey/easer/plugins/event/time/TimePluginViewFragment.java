@@ -33,7 +33,7 @@ import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class TimePluginViewFragment extends PluginViewFragment {
+public class TimePluginViewFragment extends PluginViewFragment<TimeEventData> {
     private TimePicker timePicker;
 
     @NonNull
@@ -70,7 +70,7 @@ public class TimePluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(@NonNull StorageData data) {
+    protected void _fill(@NonNull TimeEventData data) {
         if (data instanceof TimeEventData) {
             setTimePicker(timePicker, ((TimeEventData) data).time);
         }
@@ -78,7 +78,7 @@ public class TimePluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public StorageData getData() throws InvalidDataInputException {
+    public TimeEventData getData() throws InvalidDataInputException {
         return new TimeEventData(fromTimePicker(timePicker));
     }
 }

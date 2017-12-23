@@ -32,7 +32,7 @@ import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
 import ryey.easer.plugins.reusable.PluginHelper;
 
-public class SynchronizationOperationPlugin implements OperationPlugin {
+public class SynchronizationOperationPlugin implements OperationPlugin<SynchronizationOperationData> {
 
     @NonNull
     @Override
@@ -73,20 +73,20 @@ public class SynchronizationOperationPlugin implements OperationPlugin {
 
     @NonNull
     @Override
-    public OperationDataFactory dataFactory() {
+    public OperationDataFactory<SynchronizationOperationData> dataFactory() {
         return new SynchronizationOperationDataFactory();
 
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<SynchronizationOperationData> view() {
         return new SynchronizationPluginViewFragment();
     }
 
     @NonNull
     @Override
-    public OperationLoader loader(@NonNull Context context) {
+    public OperationLoader<SynchronizationOperationData> loader(@NonNull Context context) {
         return new SynchronizationLoader(context);
     }
 

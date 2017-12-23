@@ -30,7 +30,7 @@ import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
 
-public class MediaControlOperationPlugin implements OperationPlugin {
+public class MediaControlOperationPlugin implements OperationPlugin<MediaControlOperationData> {
 
     @NonNull
     @Override
@@ -71,20 +71,20 @@ public class MediaControlOperationPlugin implements OperationPlugin {
 
     @NonNull
     @Override
-    public OperationDataFactory dataFactory() {
+    public OperationDataFactory<MediaControlOperationData> dataFactory() {
         return new MediaControlOperationDataFactory();
 
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<MediaControlOperationData> view() {
         return new MediaControlPluginViewFragment();
     }
 
     @NonNull
     @Override
-    public OperationLoader loader(@NonNull Context context) {
+    public OperationLoader<MediaControlOperationData> loader(@NonNull Context context) {
         return new MediaControlLoader(context);
     }
 

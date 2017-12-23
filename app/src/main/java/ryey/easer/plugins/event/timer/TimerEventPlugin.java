@@ -29,7 +29,7 @@ import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 
-public class TimerEventPlugin implements EventPlugin {
+public class TimerEventPlugin implements EventPlugin<TimerEventData> {
 
     @NonNull
     @Override
@@ -59,19 +59,19 @@ public class TimerEventPlugin implements EventPlugin {
 
     @NonNull
     @Override
-    public EventDataFactory dataFactory() {
+    public EventDataFactory<TimerEventData> dataFactory() {
         return new TimerEventDataFactory();
 
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<TimerEventData> view() {
         return new TimerPluginViewFragment();
     }
 
     @Override
-    public AbstractSlot slot(Context context) {
+    public AbstractSlot<TimerEventData> slot(Context context) {
         return new TimerSlot(context);
     }
 

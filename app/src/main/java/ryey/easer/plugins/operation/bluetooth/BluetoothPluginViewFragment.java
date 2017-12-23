@@ -25,11 +25,11 @@ import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.plugins.operation.SwitchPluginViewFragment;
 
-public class BluetoothPluginViewFragment extends SwitchPluginViewFragment {
+public class BluetoothPluginViewFragment extends SwitchPluginViewFragment<BluetoothOperationData> {
 
     @NonNull
     @Override
-    public StorageData getData() throws InvalidDataInputException {
+    public BluetoothOperationData getData() throws InvalidDataInputException {
         return new BluetoothOperationData(state());
     }
 }

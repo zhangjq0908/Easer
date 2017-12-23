@@ -5,19 +5,19 @@ import android.support.annotation.NonNull;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
 
-public interface DataFactory {
+public interface DataFactory<T extends StorageData> {
     /**
      * @return The class of the expected data
      */
     @NonNull
-    Class<? extends StorageData> dataClass();
+    Class<T> dataClass();
 
     /**
      * Get an empty data
      * @return empty data
      */
     @NonNull
-    StorageData emptyData();
+    T emptyData();
 
     /**
      * Get a valid but dummy data.
@@ -25,7 +25,7 @@ public interface DataFactory {
      * @return dummy data
      */
     @NonNull
-    StorageData dummyData();
+    T dummyData();
 
     /**
      * Parse data from the given input to reconstruct the saved data
@@ -36,5 +36,5 @@ public interface DataFactory {
      * @throws IllegalStorageDataException If the {@param data} contains error or can't be recognized
      */
     @NonNull
-    StorageData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException;
+    T parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException;
 }

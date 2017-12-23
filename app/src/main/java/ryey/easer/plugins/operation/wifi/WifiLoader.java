@@ -26,13 +26,13 @@ import android.support.annotation.NonNull;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
-public class WifiLoader extends OperationLoader {
+public class WifiLoader extends OperationLoader<WifiOperationData> {
     public WifiLoader(Context context) {
         super(context);
     }
 
     @Override
-    public boolean _load(@NonNull OperationData data) {
+    public boolean _load(@NonNull WifiOperationData data) {
         Boolean state = ((WifiOperationData) data).get();
         WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         return wifiManager.setWifiEnabled(state);

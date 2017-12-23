@@ -10,22 +10,22 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 
-class ConnectivityEventDataFactory implements EventDataFactory {
+class ConnectivityEventDataFactory implements EventDataFactory<ConnectivityEventData> {
     @NonNull
     @Override
-    public Class<? extends EventData> dataClass() {
+    public Class<ConnectivityEventData> dataClass() {
         return ConnectivityEventData.class;
     }
 
     @NonNull
     @Override
-    public EventData emptyData() {
+    public ConnectivityEventData emptyData() {
         return new ConnectivityEventData();
     }
 
     @NonNull
     @Override
-    public EventData dummyData() {
+    public ConnectivityEventData dummyData() {
         Set<Integer> data = new ArraySet<>();
         data.add(1);
         data.add(2);
@@ -35,7 +35,7 @@ class ConnectivityEventDataFactory implements EventDataFactory {
 
     @NonNull
     @Override
-    public EventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public ConnectivityEventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         return new ConnectivityEventData(data, format, version);
     }
 }
