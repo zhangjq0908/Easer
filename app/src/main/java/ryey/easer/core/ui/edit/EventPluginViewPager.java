@@ -43,15 +43,17 @@ public class EventPluginViewPager extends ViewPager {
         setAdapter(mPagerAdapter);
     }
 
-    void setEventData(EventData eventData) {
+    <T extends EventData> void setEventData(T eventData) {
         initial_event_data = eventData;
         int i = getPluginIndex(eventData);
         initial_position = i;
         if (getCurrentItem() == i) {
             synchronized (this) {
-                PluginViewContainerFragment fragment = mPagerAdapter.getRegisteredFragment(i);
+                //noinspection unchecked
+                EventPluginViewContainerFragment<T> fragment = mPagerAdapter.getRegisteredFragment(i);
                 if (fragment != null)
-                    fragment.fill(initial_event_data);
+                    //noinspection unchecked
+                    fragment.fill((T) initial_event_data);
             }
         } else {
             setCurrentItem(i);
@@ -76,7 +78,7 @@ public class EventPluginViewPager extends ViewPager {
 
     class MyPagerAdapter extends FragmentStatePagerAdapter {
 
-        SparseArray<PluginViewContainerFragment> registeredFragments = new SparseArray<>();
+        SparseArray<EventPluginViewContainerFragment> registeredFragments = new SparseArray<>();
 
         private final Context context;
         final String[] titles;
@@ -111,9 +113,10 @@ public class EventPluginViewPager extends ViewPager {
         @NonNull
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            PluginViewContainerFragment fragment = (PluginViewContainerFragment) super.instantiateItem(container, position);
+            EventPluginViewContainerFragment fragment = (EventPluginViewContainerFragment) super.instantiateItem(container, position);
             synchronized (EventPluginViewPager.this) {
                 if ((initial_position != null) && (position == initial_position)) {
+                    //noinspection unchecked
                     fragment.fill(initial_event_data);
                 }
             }
@@ -127,7 +130,7 @@ public class EventPluginViewPager extends ViewPager {
             super.destroyItem(container, position, object);
         }
 
-        public PluginViewContainerFragment getRegisteredFragment(int position) {
+        public EventPluginViewContainerFragment getRegisteredFragment(int position) {
             return registeredFragments.get(position);
         }
     }

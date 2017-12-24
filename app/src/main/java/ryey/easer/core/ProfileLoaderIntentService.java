@@ -80,6 +80,7 @@ public class ProfileLoaderIntentService extends IntentService {
                 if (possibleData != null) {
                     for (OperationData data : possibleData) {
                         try {
+                            //noinspection unchecked
                             if (loader.load(data))
                                 loaded = true;
                         } catch (RuntimeException e) {

@@ -55,7 +55,7 @@ public class BrightnessOperationData extends IntegerOperationData {
     }
 
     boolean isAuto() {
-        return get() == Integer.valueOf(-1);
+        return get().equals(-1);
     }
 
     public static final Parcelable.Creator<BrightnessOperationData> CREATOR

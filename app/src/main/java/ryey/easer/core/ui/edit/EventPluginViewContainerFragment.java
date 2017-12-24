@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Set;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
@@ -82,13 +83,8 @@ public class EventPluginViewContainerFragment<T extends EventData> extends Plugi
 
     @NonNull
     @Override
-    T getData() {
-        T data = null;
-        try {
-            data = pluginViewFragment.getData();
-        } catch (ryey.easer.commons.plugindef.InvalidDataInputException e) {
-            e.printStackTrace();
-        }
+    T getData() throws InvalidDataInputException {
+        T data = pluginViewFragment.getData();
         data.setType(selectedType());
         return data;
     }

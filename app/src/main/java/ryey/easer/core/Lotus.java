@@ -103,6 +103,7 @@ final class Lotus {
 
     private <T extends EventData> AbstractSlot<T> dataToSlot(T data) {
         AbstractSlot<T> slot;
+        //noinspection unchecked
         EventPlugin<T> plugin = PluginRegistry.getInstance().event().findPlugin(data);
         slot = plugin.slot(context);
         slot.set(data);
