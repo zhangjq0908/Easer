@@ -15,12 +15,12 @@ import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.StorageData;
 
-public abstract class PluginViewContainerFragment extends Fragment {
+public abstract class PluginViewContainerFragment<T extends StorageData> extends Fragment {
 
-    protected ryey.easer.commons.plugindef.PluginViewFragment pluginViewFragment = null;
+    protected ryey.easer.commons.plugindef.PluginViewFragment<T> pluginViewFragment = null;
     private Drawable initial_background;
 
-    protected StorageData passed_data = null;
+    protected T passed_data = null;
 
     public PluginViewContainerFragment() {
     }
@@ -37,11 +37,11 @@ public abstract class PluginViewContainerFragment extends Fragment {
         }
     }
 
-    protected void _fill(@NonNull StorageData data) {
+    protected void _fill(@NonNull T data) {
         pluginViewFragment.fill(data);
     }
 
-    void fill(StorageData data) {
+    void fill(T data) {
         if (data != null) {
             passed_data = data;
             if (getView() != null) {
@@ -51,7 +51,7 @@ public abstract class PluginViewContainerFragment extends Fragment {
     }
 
     @NonNull
-    StorageData getData() throws InvalidDataInputException {
+    T getData() throws InvalidDataInputException {
         return pluginViewFragment.getData();
     }
 

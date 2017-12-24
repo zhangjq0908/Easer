@@ -22,10 +22,10 @@ import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.PluginRegistry;
 
-public class EventPluginViewContainerFragment extends PluginViewContainerFragment {
+public class EventPluginViewContainerFragment<T extends EventData> extends PluginViewContainerFragment<T> {
 
-    static EventPluginViewContainerFragment createInstance(PluginViewFragment pluginViewFragment) {
-        EventPluginViewContainerFragment fragment = new EventPluginViewContainerFragment();
+    static <T extends EventData> EventPluginViewContainerFragment<T> createInstance(PluginViewFragment<T> pluginViewFragment) {
+        EventPluginViewContainerFragment<T> fragment = new EventPluginViewContainerFragment<>();
         fragment.pluginViewFragment = pluginViewFragment;
         return fragment;
     }
@@ -73,7 +73,7 @@ public class EventPluginViewContainerFragment extends PluginViewContainerFragmen
     }
 
     @Override
-    protected void _fill(@NonNull StorageData data) {
+    protected void _fill(@NonNull T data) {
         pluginViewFragment.fill(data);
         if (getView() != null) {
             fillType(data);
@@ -82,10 +82,10 @@ public class EventPluginViewContainerFragment extends PluginViewContainerFragmen
 
     @NonNull
     @Override
-    StorageData getData() {
-        EventData data = null;
+    T getData() {
+        T data = null;
         try {
-            data = (EventData) pluginViewFragment.getData();
+            data = pluginViewFragment.getData();
         } catch (ryey.easer.commons.plugindef.InvalidDataInputException e) {
             e.printStackTrace();
         }
@@ -93,7 +93,7 @@ public class EventPluginViewContainerFragment extends PluginViewContainerFragmen
         return data;
     }
 
-    protected void fillType(StorageData data) {
+    protected void fillType(EventData data) {
         if (data instanceof EventData) {
             setAvailableTypes(((EventData) data).availableTypes());
             setType(((EventData) data).type());
