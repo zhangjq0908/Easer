@@ -98,6 +98,7 @@ public class SmsOperationData implements OperationData {
         return res;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
         if (Utils.isBlank(sms.destination))
@@ -109,6 +110,7 @@ public class SmsOperationData implements OperationData {
         return true;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(Object obj) {
         if (obj == this)

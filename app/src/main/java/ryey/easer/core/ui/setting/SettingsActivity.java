@@ -139,7 +139,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
             pref_logging.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    if ((Boolean) newValue == true) {
+                    if ((Boolean) newValue) {
                         if (ContextCompat.checkSelfPermission(getActivity(),
                                 Manifest.permission.WRITE_EXTERNAL_STORAGE)
                                 != PackageManager.PERMISSION_GRANTED) {

@@ -75,6 +75,7 @@ public class TimeEventData extends TypedEventData {
         parse(data, format, version);
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
         if (time == null)
@@ -82,6 +83,7 @@ public class TimeEventData extends TypedEventData {
         return true;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof TimeEventData))

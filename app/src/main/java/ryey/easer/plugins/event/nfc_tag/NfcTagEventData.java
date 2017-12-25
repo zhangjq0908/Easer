@@ -86,6 +86,7 @@ public class NfcTagEventData extends TypedEventData {
         return byteArray2hexString(id);
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
         if (id == null)
@@ -93,6 +94,7 @@ public class NfcTagEventData extends TypedEventData {
         return true;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof NfcTagEventData))

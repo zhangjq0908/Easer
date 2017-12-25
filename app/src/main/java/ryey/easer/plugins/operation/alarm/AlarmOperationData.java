@@ -123,6 +123,7 @@ public class AlarmOperationData implements OperationData {
         return res;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
         if (data == null)
@@ -132,6 +133,7 @@ public class AlarmOperationData implements OperationData {
         return true;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(Object obj) {
         if (obj == this)

@@ -88,11 +88,9 @@ public class EventPluginViewContainerFragment<T extends EventData> extends Plugi
         return data;
     }
 
-    protected void fillType(EventData data) {
-        if (data instanceof EventData) {
-            setAvailableTypes(data.availableTypes());
-            setType(data.type());
-        }
+    protected void fillType(@NonNull EventData data) {
+        setAvailableTypes(data.availableTypes());
+        setType(data.type());
     }
 
     protected void setAvailableTypes(Set<EventType> availableTypes) {

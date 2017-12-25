@@ -80,6 +80,7 @@ public class BatteryEventData extends TypedEventData {
         return res;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
         if ((battery_status == BatteryStatus.charging) || (battery_status == BatteryStatus.discharging))
@@ -87,6 +88,7 @@ public class BatteryEventData extends TypedEventData {
         return false;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof BatteryEventData))

@@ -33,7 +33,7 @@ import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 public class SendNotificationLoader extends OperationLoader<SendNotificationOperationData> {
     private static int NOTIFICATION_ID = 0;
 
-    {
+    static {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             NOTIFICATION_ID = ThreadLocalRandom.current().nextInt();
         }

@@ -89,6 +89,7 @@ public class MediaControlOperationData implements OperationData {
         return res;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
         if (choice == null)
@@ -96,6 +97,7 @@ public class MediaControlOperationData implements OperationData {
         return true;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(Object obj) {
         if (obj == this)

@@ -63,6 +63,7 @@ public class SmsEventData extends TypedEventData {
         parse(data, format, version);
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
         if (innerData == null)
@@ -117,6 +118,7 @@ public class SmsEventData extends TypedEventData {
         return res;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(Object obj) {
         if (obj == this)

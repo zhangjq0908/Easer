@@ -82,6 +82,7 @@ public class CellLocationEventData extends TypedEventData {
         }
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
         if (data.size() == 0)
@@ -89,6 +90,7 @@ public class CellLocationEventData extends TypedEventData {
         return true;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof CellLocationEventData))
