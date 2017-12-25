@@ -29,6 +29,7 @@ import android.support.annotation.NonNull;
 
 import java.util.Arrays;
 
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
@@ -71,7 +72,7 @@ public class NfcTagSlot extends AbstractSlot<NfcTagEventData> {
     }
 
     @Override
-    public void set(@NonNull NfcTagEventData data) {
+    public void set(@ValidData @NonNull NfcTagEventData data) {
         this.data = data;
         type = data.type();
     }

@@ -6,6 +6,7 @@ import java.util.Calendar;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 
 class AlarmOperationDataFactory implements OperationDataFactory<AlarmOperationData> {
@@ -21,6 +22,7 @@ class AlarmOperationDataFactory implements OperationDataFactory<AlarmOperationDa
         return new AlarmOperationData();
     }
 
+    @ValidData
     @NonNull
     @Override
     public AlarmOperationData dummyData() {
@@ -32,6 +34,7 @@ class AlarmOperationDataFactory implements OperationDataFactory<AlarmOperationDa
         return dummyData;
     }
 
+    @ValidData
     @NonNull
     @Override
     public AlarmOperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {

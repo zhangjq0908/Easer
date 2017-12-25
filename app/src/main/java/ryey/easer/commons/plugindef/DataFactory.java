@@ -24,6 +24,7 @@ public interface DataFactory<T extends StorageData> {
      * Mainly for testing.
      * @return dummy data
      */
+    @ValidData
     @NonNull
     T dummyData();
 
@@ -35,6 +36,7 @@ public interface DataFactory<T extends StorageData> {
      * @return The reconstructed data
      * @throws IllegalStorageDataException If the {@param data} contains error or can't be recognized
      */
+    @ValidData
     @NonNull
     T parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException;
 }

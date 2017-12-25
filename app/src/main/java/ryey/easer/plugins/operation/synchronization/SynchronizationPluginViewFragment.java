@@ -22,10 +22,12 @@ package ryey.easer.plugins.operation.synchronization;
 import android.support.annotation.NonNull;
 
 import ryey.easer.commons.plugindef.InvalidDataInputException;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.plugins.operation.SwitchPluginViewFragment;
 
 public class SynchronizationPluginViewFragment extends SwitchPluginViewFragment<SynchronizationOperationData> {
 
+    @ValidData
     @NonNull
     @Override
     public SynchronizationOperationData getData() throws InvalidDataInputException {

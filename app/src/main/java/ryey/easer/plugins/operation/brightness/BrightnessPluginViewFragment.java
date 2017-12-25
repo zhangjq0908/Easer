@@ -33,6 +33,7 @@ import android.widget.TextView;
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
+import ryey.easer.commons.plugindef.ValidData;
 
 public class BrightnessPluginViewFragment extends PluginViewFragment<BrightnessOperationData> {
     private Switch mIsAuto;
@@ -73,7 +74,7 @@ public class BrightnessPluginViewFragment extends PluginViewFragment<BrightnessO
     }
 
     @Override
-    protected void _fill(@NonNull BrightnessOperationData data) {
+    protected void _fill(@ValidData @NonNull BrightnessOperationData data) {
         BrightnessOperationData idata = data;
         if (idata.isAuto()) {
             mIsAuto.setChecked(true);
@@ -83,6 +84,7 @@ public class BrightnessPluginViewFragment extends PluginViewFragment<BrightnessO
         }
     }
 
+    @ValidData
     @NonNull
     @Override
     public BrightnessOperationData getData() throws InvalidDataInputException {

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 
 class BroadcastOperationDataFactory implements OperationDataFactory<BroadcastOperationData> {
@@ -22,6 +23,7 @@ class BroadcastOperationDataFactory implements OperationDataFactory<BroadcastOpe
         return new BroadcastOperationData();
     }
 
+    @ValidData
     @NonNull
     @Override
     public BroadcastOperationData dummyData() {
@@ -41,6 +43,7 @@ class BroadcastOperationDataFactory implements OperationDataFactory<BroadcastOpe
         return dummyData;
     }
 
+    @ValidData
     @NonNull
     @Override
     public BroadcastOperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {

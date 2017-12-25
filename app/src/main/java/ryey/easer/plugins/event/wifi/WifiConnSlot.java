@@ -31,6 +31,7 @@ import android.support.annotation.NonNull;
 import com.orhanobut.logger.Logger;
 
 import ryey.easer.commons.IllegalArgumentTypeException;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
@@ -71,7 +72,7 @@ public class WifiConnSlot extends AbstractSlot<WifiEventData> {
     }
 
     @Override
-    public void set(@NonNull WifiEventData data) {
+    public void set(@ValidData @NonNull WifiEventData data) {
         this.data = data;
         type = data.type();
     }

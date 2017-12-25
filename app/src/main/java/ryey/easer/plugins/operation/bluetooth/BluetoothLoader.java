@@ -27,6 +27,7 @@ import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
 public class BluetoothLoader extends OperationLoader<BluetoothOperationData> {
@@ -35,7 +36,7 @@ public class BluetoothLoader extends OperationLoader<BluetoothOperationData> {
     }
 
     @Override
-    public boolean _load(@NonNull BluetoothOperationData data) {
+    public boolean load(@ValidData @NonNull BluetoothOperationData data) {
         Boolean state = data.get();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             BluetoothManager bluetoothManager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);

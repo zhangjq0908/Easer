@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
+import ryey.easer.commons.plugindef.ValidData;
 
 import static android.widget.LinearLayout.HORIZONTAL;
 
@@ -57,7 +58,7 @@ public class BatteryPluginViewFragment extends PluginViewFragment<BatteryEventDa
     }
 
     @Override
-    protected void _fill(@NonNull BatteryEventData data) {
+    protected void _fill(@ValidData @NonNull BatteryEventData data) {
         int status = data.battery_status;
         for (int i = 0; i < values.length; i++) {
             if (values[i] == status) {
@@ -67,6 +68,7 @@ public class BatteryPluginViewFragment extends PluginViewFragment<BatteryEventDa
         }
     }
 
+    @ValidData
     @NonNull
     @Override
     public BatteryEventData getData() throws InvalidDataInputException {

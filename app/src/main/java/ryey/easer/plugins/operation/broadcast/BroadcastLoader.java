@@ -27,6 +27,7 @@ import android.support.annotation.NonNull;
 import com.orhanobut.logger.Logger;
 
 import ryey.easer.Utils;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
 public class BroadcastLoader extends OperationLoader<BroadcastOperationData> {
@@ -35,7 +36,7 @@ public class BroadcastLoader extends OperationLoader<BroadcastOperationData> {
     }
 
     @Override
-    public boolean _load(@NonNull BroadcastOperationData data) {
+    public boolean load(@ValidData @NonNull BroadcastOperationData data) {
         IntentData iData = data.data;
         Intent intent = new Intent();
         intent.setAction(iData.action);

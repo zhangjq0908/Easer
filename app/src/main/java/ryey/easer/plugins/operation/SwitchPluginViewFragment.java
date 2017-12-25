@@ -29,6 +29,7 @@ import android.widget.Switch;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
 public abstract class SwitchPluginViewFragment<T extends OperationData> extends PluginViewFragment<T> {
@@ -51,7 +52,7 @@ public abstract class SwitchPluginViewFragment<T extends OperationData> extends 
     }
 
     @Override
-    protected void _fill(@NonNull T data) {
+    protected void _fill(@ValidData @NonNull T data) {
         if (data instanceof BooleanOperationData) {
             Boolean state = ((BooleanOperationData) data).get();
             setSwitch(aSwitch, state);

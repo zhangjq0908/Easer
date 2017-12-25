@@ -24,6 +24,7 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
@@ -36,7 +37,7 @@ public class NotificationSlot extends AbstractSlot<NotificationEventData> {
     }
 
     @Override
-    public void set(@NonNull NotificationEventData data) {
+    public void set(@ValidData @NonNull NotificationEventData data) {
         eventData = data;
         type = data.type();
         if (type == EventType.after) {

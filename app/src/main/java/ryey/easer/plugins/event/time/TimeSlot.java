@@ -26,6 +26,7 @@ import android.support.annotation.NonNull;
 
 import java.util.Calendar;
 
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.SelfNotifiableSlot;
 
@@ -43,7 +44,7 @@ public class TimeSlot extends SelfNotifiableSlot<TimeEventData> {
     }
 
     @Override
-    public void set(@NonNull TimeEventData data) {
+    public void set(@ValidData @NonNull TimeEventData data) {
         setTime(data.time);
         type = data.type();
     }

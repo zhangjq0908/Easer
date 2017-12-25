@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 
 class NfcTagEventDataFactory implements EventDataFactory<NfcTagEventData> {
@@ -19,6 +20,7 @@ class NfcTagEventDataFactory implements EventDataFactory<NfcTagEventData> {
         return new NfcTagEventData();
     }
 
+    @ValidData
     @NonNull
     @Override
     public NfcTagEventData dummyData() {
@@ -27,6 +29,7 @@ class NfcTagEventDataFactory implements EventDataFactory<NfcTagEventData> {
         return dummyData;
     }
 
+    @ValidData
     @NonNull
     @Override
     public NfcTagEventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {

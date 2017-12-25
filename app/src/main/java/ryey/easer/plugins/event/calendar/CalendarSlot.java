@@ -24,6 +24,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import ryey.easer.commons.IllegalArgumentTypeException;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.SelfNotifiableSlot;
 
@@ -40,7 +41,7 @@ public class CalendarSlot extends SelfNotifiableSlot<CalendarEventData> {
     }
 
     @Override
-    public void set(@NonNull CalendarEventData data) {
+    public void set(@ValidData @NonNull CalendarEventData data) {
         this.data = data;
         type = data.type();
     }

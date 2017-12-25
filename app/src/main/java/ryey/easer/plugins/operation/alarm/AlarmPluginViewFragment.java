@@ -33,6 +33,7 @@ import java.text.ParseException;
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
+import ryey.easer.commons.plugindef.ValidData;
 
 public class AlarmPluginViewFragment extends PluginViewFragment<AlarmOperationData> {
     private EditText editText_time;
@@ -53,7 +54,7 @@ public class AlarmPluginViewFragment extends PluginViewFragment<AlarmOperationDa
     }
 
     @Override
-    protected void _fill(@NonNull AlarmOperationData data) {
+    protected void _fill(@ValidData @NonNull AlarmOperationData data) {
         AlarmOperationData.AlarmData alarm_data = data.data;
         editText_time.setText(AlarmOperationData.TimeToText(alarm_data.time));
         editText_message.setText(alarm_data.message);
@@ -63,6 +64,7 @@ public class AlarmPluginViewFragment extends PluginViewFragment<AlarmOperationDa
             radioButton_relative.setChecked(true);
     }
 
+    @ValidData
     @NonNull
     @Override
     public AlarmOperationData getData() throws InvalidDataInputException {

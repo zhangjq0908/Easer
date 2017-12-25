@@ -30,6 +30,7 @@ import android.widget.EditText;
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
+import ryey.easer.commons.plugindef.ValidData;
 
 public class NotificationPluginViewFragment extends PluginViewFragment<NotificationEventData> {
     private EditText editText_app;
@@ -49,13 +50,14 @@ public class NotificationPluginViewFragment extends PluginViewFragment<Notificat
     }
 
     @Override
-    protected void _fill(@NonNull NotificationEventData data) {
+    protected void _fill(@ValidData @NonNull NotificationEventData data) {
         NotificationSelection notificationSelection = data.selection;
         editText_app.setText(notificationSelection.app);
         editText_title.setText(notificationSelection.title);
         editText_content.setText(notificationSelection.content);
     }
 
+    @ValidData
     @NonNull
     @Override
     public NotificationEventData getData() throws InvalidDataInputException {

@@ -6,6 +6,7 @@ import java.util.Calendar;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 
 class TimeEventDataFactory implements EventDataFactory<TimeEventData> {
@@ -21,6 +22,7 @@ class TimeEventDataFactory implements EventDataFactory<TimeEventData> {
         return new TimeEventData();
     }
 
+    @ValidData
     @NonNull
     @Override
     public TimeEventData dummyData() {
@@ -32,6 +34,7 @@ class TimeEventDataFactory implements EventDataFactory<TimeEventData> {
         return dummyData;
     }
 
+    @ValidData
     @NonNull
     @Override
     public TimeEventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {

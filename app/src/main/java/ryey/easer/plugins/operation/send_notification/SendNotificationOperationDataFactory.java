@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 
 class SendNotificationOperationDataFactory implements OperationDataFactory<SendNotificationOperationData> {
@@ -19,6 +20,7 @@ class SendNotificationOperationDataFactory implements OperationDataFactory<SendN
         return new SendNotificationOperationData();
     }
 
+    @ValidData
     @NonNull
     @Override
     public SendNotificationOperationData dummyData() {
@@ -29,6 +31,7 @@ class SendNotificationOperationDataFactory implements OperationDataFactory<SendN
         return dummyData;
     }
 
+    @ValidData
     @NonNull
     @Override
     public SendNotificationOperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {

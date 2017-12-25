@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 
 import java.util.Set;
 
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
@@ -47,7 +48,7 @@ class ConnectivitySlot extends AbstractSlot<ConnectivityEventData> {
     }
 
     @Override
-    public void set(@NonNull ConnectivityEventData data) {
+    public void set(@ValidData @NonNull ConnectivityEventData data) {
         connectivity_types = data.connectivity_type;
         type = data.type();
     }

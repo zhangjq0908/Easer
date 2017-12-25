@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 
 class MediaControlOperationDataFactory implements OperationDataFactory<MediaControlOperationData> {
@@ -19,6 +20,7 @@ class MediaControlOperationDataFactory implements OperationDataFactory<MediaCont
         return new MediaControlOperationData();
     }
 
+    @ValidData
     @NonNull
     @Override
     public MediaControlOperationData dummyData() {
@@ -26,6 +28,7 @@ class MediaControlOperationDataFactory implements OperationDataFactory<MediaCont
         return dummyData;
     }
 
+    @ValidData
     @NonNull
     @Override
     public MediaControlOperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {

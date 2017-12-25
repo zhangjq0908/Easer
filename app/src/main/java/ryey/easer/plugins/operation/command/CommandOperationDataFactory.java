@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 
 class CommandOperationDataFactory implements OperationDataFactory<CommandOperationData> {
@@ -19,6 +20,7 @@ class CommandOperationDataFactory implements OperationDataFactory<CommandOperati
         return new CommandOperationData();
     }
 
+    @ValidData
     @NonNull
     @Override
     public CommandOperationData dummyData() {
@@ -27,6 +29,7 @@ class CommandOperationDataFactory implements OperationDataFactory<CommandOperati
         return dummyData;
     }
 
+    @ValidData
     @NonNull
     @Override
     public CommandOperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {

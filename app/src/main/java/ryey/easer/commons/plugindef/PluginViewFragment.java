@@ -64,7 +64,7 @@ public abstract class PluginViewFragment<T extends StorageData> extends Fragment
     /**
      * Check whether the to-be-filled data is of the correct type.
      */
-    private void checkDataType(@NonNull T data) throws IllegalArgumentTypeException {
+    private void checkDataType(@ValidData @NonNull T data) throws IllegalArgumentTypeException {
         Class expectedDataClass = PluginRegistry.getInstance()
                 .all().findPlugin(this)
                 .dataFactory()
@@ -79,14 +79,14 @@ public abstract class PluginViewFragment<T extends StorageData> extends Fragment
      * PluginDef developers is expected to override this method rather than {@link #fill}.
      * This methods does NOT care about synchronization or other stuffs.
      */
-    protected abstract void _fill(@NonNull T data);
+    protected abstract void _fill(@ValidData @NonNull T data);
 
     /**
      * Set the UI according to the data.
      * This methods takes care of synchronization (see {@link #passed_data}).
      * PluginDef implementors normally only need to implement {@link #_fill} method.
      */
-    public void fill(@NonNull T data) {
+    public void fill(@ValidData @NonNull T data) {
         try {
             checkDataType(data);
             passed_data = data;
@@ -103,7 +103,9 @@ public abstract class PluginViewFragment<T extends StorageData> extends Fragment
      * Construct the correct {@link StorageData} (subclass) containing the data in the UI.
      * @throws InvalidDataInputException If the data inputted by the user is invalid
      */
-    public abstract @NonNull T getData() throws InvalidDataInputException;
+    @ValidData
+    @NonNull
+    public abstract T getData() throws InvalidDataInputException;
 
     /**
      * Change the interactive state of the UI components.

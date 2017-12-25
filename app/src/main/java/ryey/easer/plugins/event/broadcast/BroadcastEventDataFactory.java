@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 
 class BroadcastEventDataFactory implements EventDataFactory<BroadcastEventData> {
@@ -19,6 +20,7 @@ class BroadcastEventDataFactory implements EventDataFactory<BroadcastEventData> 
         return new BroadcastEventData();
     }
 
+    @ValidData
     @NonNull
     @Override
     public BroadcastEventData dummyData() {
@@ -31,6 +33,7 @@ class BroadcastEventDataFactory implements EventDataFactory<BroadcastEventData> 
         return dummyData;
     }
 
+    @ValidData
     @NonNull
     @Override
     public BroadcastEventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {

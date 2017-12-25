@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 
 class BrightnessOperationDataFactory implements OperationDataFactory<BrightnessOperationData> {
@@ -19,6 +20,7 @@ class BrightnessOperationDataFactory implements OperationDataFactory<BrightnessO
         return new BrightnessOperationData();
     }
 
+    @ValidData
     @NonNull
     @Override
     public BrightnessOperationData dummyData() {
@@ -27,6 +29,7 @@ class BrightnessOperationDataFactory implements OperationDataFactory<BrightnessO
         return dummyData;
     }
 
+    @ValidData
     @NonNull
     @Override
     public BrightnessOperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {

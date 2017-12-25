@@ -26,6 +26,7 @@ import android.content.IntentFilter;
 import android.support.annotation.NonNull;
 
 import ryey.easer.commons.IllegalArgumentTypeException;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
@@ -52,7 +53,7 @@ public class BroadcastConnSlot extends AbstractSlot<BroadcastEventData> {
     }
 
     @Override
-    public void set(@NonNull BroadcastEventData data) {
+    public void set(@ValidData @NonNull BroadcastEventData data) {
         intentData = data.intentData;
         type = data.type();
         filter = new IntentFilter();

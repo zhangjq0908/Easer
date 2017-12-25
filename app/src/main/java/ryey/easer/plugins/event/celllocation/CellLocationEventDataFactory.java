@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 
 class CellLocationEventDataFactory implements EventDataFactory<CellLocationEventData> {
@@ -19,6 +20,7 @@ class CellLocationEventDataFactory implements EventDataFactory<CellLocationEvent
         return new CellLocationEventData();
     }
 
+    @ValidData
     @NonNull
     @Override
     public CellLocationEventData dummyData() {
@@ -26,6 +28,7 @@ class CellLocationEventDataFactory implements EventDataFactory<CellLocationEvent
         return dummyData;
     }
 
+    @ValidData
     @NonNull
     @Override
     public CellLocationEventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {

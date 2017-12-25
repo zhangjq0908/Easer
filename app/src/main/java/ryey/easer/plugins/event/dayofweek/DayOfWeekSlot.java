@@ -27,6 +27,7 @@ import android.support.annotation.NonNull;
 import java.util.Calendar;
 import java.util.Set;
 
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.SelfNotifiableSlot;
 
@@ -44,7 +45,7 @@ class DayOfWeekSlot extends SelfNotifiableSlot<DayOfWeekEventData> {
     }
 
     @Override
-    public void set(@NonNull DayOfWeekEventData data) {
+    public void set(@ValidData @NonNull DayOfWeekEventData data) {
         setDate(data.days);
         type = data.type();
     }
