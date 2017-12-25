@@ -12,7 +12,7 @@ public class BatteryEventDataTest {
 
     @Test
     public void testParcel() {
-        BatteryEventData dummyData = (BatteryEventData) new BatteryEventDataFactory().dummyData();
+        BatteryEventData dummyData = new BatteryEventDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         BatteryEventData parceledData = BatteryEventData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

@@ -31,7 +31,6 @@ import android.widget.RadioButton;
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.StorageData;
 
 public class TimerPluginViewFragment extends PluginViewFragment<TimerEventData> {
     private EditText editText_minute;
@@ -53,18 +52,16 @@ public class TimerPluginViewFragment extends PluginViewFragment<TimerEventData> 
 
     @Override
     protected void _fill(@NonNull TimerEventData data) {
-        if (data instanceof TimerEventData) {
-            TimerEventData.Timer timer = ((TimerEventData) data).timer;
-            editText_minute.setText(String.valueOf(timer.minutes));
-            if (timer.exact)
-                radioButton_exact.setChecked(true);
-            else
-                radioButton_inexact.setChecked(true);
-            if (timer.repeat)
-                radioButton_repeat.setChecked(true);
-            else
-                radioButton_one_time.setChecked(true);
-        }
+        TimerEventData.Timer timer = data.timer;
+        editText_minute.setText(String.valueOf(timer.minutes));
+        if (timer.exact)
+            radioButton_exact.setChecked(true);
+        else
+            radioButton_inexact.setChecked(true);
+        if (timer.repeat)
+            radioButton_repeat.setChecked(true);
+        else
+            radioButton_one_time.setChecked(true);
     }
 
     @NonNull

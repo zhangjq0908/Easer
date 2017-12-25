@@ -30,7 +30,6 @@ import java.util.Calendar;
 
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.StorageData;
 
 public class DatePluginViewFragment extends PluginViewFragment<DateEventData> {
     private DatePicker datePicker;
@@ -55,9 +54,7 @@ public class DatePluginViewFragment extends PluginViewFragment<DateEventData> {
 
     @Override
     protected void _fill(@NonNull DateEventData data) {
-        if (data instanceof DateEventData) {
-            setDatePicker(datePicker, ((DateEventData) data).date);
-        }
+        setDatePicker(datePicker, data.date);
     }
 
     @NonNull

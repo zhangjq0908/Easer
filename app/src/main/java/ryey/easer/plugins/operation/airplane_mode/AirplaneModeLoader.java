@@ -27,7 +27,6 @@ import android.support.annotation.NonNull;
 
 import java.io.IOException;
 
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.plugins.reusable.PluginHelper;
 
@@ -38,7 +37,7 @@ public class AirplaneModeLoader extends OperationLoader<AirplaneModeOperationDat
 
     @Override
     public boolean _load(@NonNull AirplaneModeOperationData data) {
-        Boolean state = ((AirplaneModeOperationData) data).get();
+        Boolean state = data.get();
         if (state == airplaneModeIsOn())
             return true;
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN) {

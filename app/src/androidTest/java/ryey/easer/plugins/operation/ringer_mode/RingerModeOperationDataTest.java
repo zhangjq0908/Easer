@@ -12,7 +12,7 @@ public class RingerModeOperationDataTest {
 
     @Test
     public void testParcel() {
-        RingerModeOperationData dummyData = (RingerModeOperationData) new RingerModeOperationDataFactory().dummyData();
+        RingerModeOperationData dummyData = new RingerModeOperationDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         RingerModeOperationData parceledData = RingerModeOperationData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

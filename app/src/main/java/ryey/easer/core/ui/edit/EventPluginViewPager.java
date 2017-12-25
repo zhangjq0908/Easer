@@ -65,7 +65,7 @@ public class EventPluginViewPager extends ViewPager {
     }
 
     EventData getEventData(int position) throws InvalidDataInputException {
-        return (EventData) mPagerAdapter.getRegisteredFragment(position).getData();
+        return mPagerAdapter.getRegisteredFragment(position).getData();
     }
 
     private int getPluginIndex(EventData eventData) {

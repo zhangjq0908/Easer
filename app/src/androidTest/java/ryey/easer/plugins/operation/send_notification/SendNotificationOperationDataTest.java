@@ -12,7 +12,7 @@ public class SendNotificationOperationDataTest {
 
     @Test
     public void testParcel() {
-        SendNotificationOperationData dummyData = (SendNotificationOperationData) new SendNotificationOperationDataFactory().dummyData();
+        SendNotificationOperationData dummyData = new SendNotificationOperationDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         SendNotificationOperationData parceledData = SendNotificationOperationData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

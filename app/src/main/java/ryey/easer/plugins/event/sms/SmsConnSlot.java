@@ -35,7 +35,6 @@ import com.orhanobut.logger.Logger;
 import ryey.easer.Utils;
 import ryey.easer.commons.IllegalArgumentTypeException;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 public class SmsConnSlot extends AbstractSlot<SmsEventData> {
@@ -92,12 +91,8 @@ public class SmsConnSlot extends AbstractSlot<SmsEventData> {
 
     @Override
     public void set(@NonNull SmsEventData data) {
-        if (data instanceof SmsEventData) {
-            smsInnerData = ((SmsEventData) data).innerData;
-            type = data.type();
-        } else {
-            throw new IllegalArgumentTypeException(data.getClass(), SmsEventData.class);
-        }
+        smsInnerData = data.innerData;
+        type = data.type();
     }
 
     @Override

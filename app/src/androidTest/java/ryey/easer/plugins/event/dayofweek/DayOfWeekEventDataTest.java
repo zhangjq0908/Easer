@@ -12,7 +12,7 @@ public class DayOfWeekEventDataTest {
 
     @Test
     public void testParcel() {
-        DayOfWeekEventData dummyData = (DayOfWeekEventData) new DayOfWeekEventDataFactory().dummyData();
+        DayOfWeekEventData dummyData = new DayOfWeekEventDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         DayOfWeekEventData parceledData = DayOfWeekEventData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

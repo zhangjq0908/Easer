@@ -14,7 +14,6 @@ import com.orhanobut.logger.Logger;
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
 public class ProfilePluginViewContainerFragment<T extends OperationData> extends PluginViewContainerFragment<T> {
@@ -48,8 +47,6 @@ public class ProfilePluginViewContainerFragment<T extends OperationData> extends
             }
         });
         String desc = pluginViewFragment.desc(getResources());
-        if (desc == null)
-            Logger.wtf("desc == null!!!??? on <%s>", pluginViewFragment);
         ((TextView) view.findViewById(R.id.text_pluginview_desc)).setText(desc);
 
         return view;
@@ -57,12 +54,8 @@ public class ProfilePluginViewContainerFragment<T extends OperationData> extends
 
     @Override
     protected void _fill(@NonNull T data) {
-        if (data == null) {
-            mCheckBox.setChecked(false);
-        } else {
-            mCheckBox.setChecked(true);
-            super._fill(data);
-        }
+        mCheckBox.setChecked(true);
+        super._fill(data);
     }
 
     @NonNull

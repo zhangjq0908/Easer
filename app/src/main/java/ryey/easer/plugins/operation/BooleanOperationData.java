@@ -54,7 +54,7 @@ public abstract class BooleanOperationData extends BooleanData implements Operat
 
     @Override
     public void serialize(XmlSerializer serializer) throws IOException {
-        XmlHelper.OperationHelper.writeBoolean(serializer, PluginRegistry.getInstance().operation().findPlugin(this).id(), (Boolean) get());
+        XmlHelper.OperationHelper.writeBoolean(serializer, PluginRegistry.getInstance().operation().findPlugin(this).id(), get());
     }
 
     @Override
@@ -80,7 +80,7 @@ public abstract class BooleanOperationData extends BooleanData implements Operat
         String res;
         switch (format) {
             default:
-                Boolean state = (Boolean) get();
+                Boolean state = get();
                 if (state)
                     res = C.ON;
                 else

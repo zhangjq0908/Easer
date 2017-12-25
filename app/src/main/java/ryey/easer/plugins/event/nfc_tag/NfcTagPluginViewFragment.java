@@ -34,7 +34,6 @@ import com.orhanobut.logger.Logger;
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.StorageData;
 
 public class NfcTagPluginViewFragment extends PluginViewFragment<NfcTagEventData> {
 
@@ -70,9 +69,7 @@ public class NfcTagPluginViewFragment extends PluginViewFragment<NfcTagEventData
 
     @Override
     protected void _fill(@NonNull NfcTagEventData data) {
-        if (data instanceof NfcTagEventData) {
-            editText.setText(data.toString());
-        }
+        editText.setText(data.toString());
     }
 
     @NonNull

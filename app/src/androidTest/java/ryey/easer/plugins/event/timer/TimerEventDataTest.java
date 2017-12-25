@@ -12,7 +12,7 @@ public class TimerEventDataTest {
 
     @Test
     public void testParcel() {
-        TimerEventData dummyData = (TimerEventData) new TimerEventDataFactory().dummyData();
+        TimerEventData dummyData = new TimerEventDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         TimerEventData parceledData = TimerEventData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

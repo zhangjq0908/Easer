@@ -24,7 +24,6 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 
 import ryey.easer.commons.IllegalArgumentTypeException;
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
 public class BrightnessLoader extends OperationLoader<BrightnessOperationData> {
@@ -34,15 +33,11 @@ public class BrightnessLoader extends OperationLoader<BrightnessOperationData> {
 
     @Override
     public boolean _load(@NonNull BrightnessOperationData data) {
-        if (data instanceof BrightnessOperationData)
-            return loadthis((BrightnessOperationData) data);
-        else {
-            throw new IllegalArgumentTypeException(data.getClass(), BrightnessOperationData.class);
-        }
+        return loadthis(data);
     }
 
     private boolean loadthis(BrightnessOperationData data) {
-        Integer level = (Integer) data.get();
+        Integer level = data.get();
         if (data.isAuto())
             Settings.System.putInt(context.getContentResolver(),
                     Settings.System.SCREEN_BRIGHTNESS_MODE,

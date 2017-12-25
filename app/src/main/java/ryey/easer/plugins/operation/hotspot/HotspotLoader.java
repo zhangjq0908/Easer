@@ -24,7 +24,6 @@ import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
 class HotspotLoader extends OperationLoader<HotspotOperationData> {
@@ -37,7 +36,7 @@ class HotspotLoader extends OperationLoader<HotspotOperationData> {
 
     @Override
     public boolean _load(@NonNull HotspotOperationData data) {
-        Boolean state = ((HotspotOperationData) data).get();
+        Boolean state = data.get();
         try {
             if (helper.isApEnabled() == state)
                 return true;

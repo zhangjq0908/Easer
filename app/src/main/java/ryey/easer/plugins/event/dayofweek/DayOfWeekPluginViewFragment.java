@@ -37,7 +37,6 @@ import java.util.Set;
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.StorageData;
 
 public class DayOfWeekPluginViewFragment extends PluginViewFragment<DayOfWeekEventData> {
     private final CompoundButton []day_buttons = new CompoundButton[7];
@@ -64,11 +63,9 @@ public class DayOfWeekPluginViewFragment extends PluginViewFragment<DayOfWeekEve
 
     @Override
     protected void _fill(@NonNull DayOfWeekEventData data) {
-        if (data instanceof DayOfWeekEventData) {
-            Set<Integer> days = ((DayOfWeekEventData) data).days;
-            for (int day : days) {
-                day_buttons[day].setChecked(true);
-            }
+        Set<Integer> days = data.days;
+        for (int day : days) {
+            day_buttons[day].setChecked(true);
         }
     }
 

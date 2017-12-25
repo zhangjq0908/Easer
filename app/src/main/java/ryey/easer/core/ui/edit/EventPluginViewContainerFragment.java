@@ -17,7 +17,6 @@ import java.util.Set;
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
@@ -91,8 +90,8 @@ public class EventPluginViewContainerFragment<T extends EventData> extends Plugi
 
     protected void fillType(EventData data) {
         if (data instanceof EventData) {
-            setAvailableTypes(((EventData) data).availableTypes());
-            setType(((EventData) data).type());
+            setAvailableTypes(data.availableTypes());
+            setType(data.type());
         }
     }
 

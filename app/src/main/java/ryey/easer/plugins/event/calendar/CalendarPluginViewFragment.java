@@ -44,7 +44,6 @@ import ryey.easer.R;
 import ryey.easer.Utils;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.StorageData;
 
 public class CalendarPluginViewFragment extends PluginViewFragment<CalendarEventData> {
 
@@ -146,14 +145,12 @@ public class CalendarPluginViewFragment extends PluginViewFragment<CalendarEvent
 
     @Override
     protected void _fill(@NonNull CalendarEventData data) {
-        if (data instanceof CalendarEventData) {
-            CalendarData calendarData = ((CalendarEventData) data).data;
-            calendar_id = calendarData.calendar_id;
-            tv_calendar_name.setText(CalendarHelper.getCalendarName(
-                    getContext().getContentResolver(), calendar_id));
-            for (int i = 0; i < CalendarData.condition_name.length; i++) {
-                cb_conditions[i].setChecked(calendarData.conditions.contains(CalendarData.condition_name[i]));
-            }
+        CalendarData calendarData = data.data;
+        calendar_id = calendarData.calendar_id;
+        tv_calendar_name.setText(CalendarHelper.getCalendarName(
+                getContext().getContentResolver(), calendar_id));
+        for (int i = 0; i < CalendarData.condition_name.length; i++) {
+            cb_conditions[i].setChecked(calendarData.conditions.contains(CalendarData.condition_name[i]));
         }
     }
 

@@ -8,7 +8,6 @@ import android.os.BatteryManager;
 import android.support.annotation.NonNull;
 
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 public class BatterySlot extends AbstractSlot<BatteryEventData> {
@@ -46,7 +45,7 @@ public class BatterySlot extends AbstractSlot<BatteryEventData> {
 
     @Override
     public void set(@NonNull BatteryEventData data) {
-        status = ((BatteryEventData) data).battery_status;
+        status = data.battery_status;
         type = data.type();
     }
 

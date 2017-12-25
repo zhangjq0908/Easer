@@ -25,7 +25,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 public class NotificationSlot extends AbstractSlot<NotificationEventData> {
@@ -38,18 +37,14 @@ public class NotificationSlot extends AbstractSlot<NotificationEventData> {
 
     @Override
     public void set(@NonNull NotificationEventData data) {
-        if (data instanceof NotificationEventData) {
-            eventData = (NotificationEventData) data;
-            type = data.type();
-            if (type == EventType.after) {
-                setRetriggerable(false);
-            } else if (type == EventType.is) {
-                setRetriggerable(true);
-            } else {
-                throw new IllegalAccessError();
-            }
+        eventData = data;
+        type = data.type();
+        if (type == EventType.after) {
+            setRetriggerable(false);
+        } else if (type == EventType.is) {
+            setRetriggerable(true);
         } else {
-            throw new RuntimeException("illegal data");
+            throw new IllegalAccessError();
         }
     }
 

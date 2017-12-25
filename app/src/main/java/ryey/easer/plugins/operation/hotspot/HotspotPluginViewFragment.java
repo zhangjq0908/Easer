@@ -22,7 +22,6 @@ package ryey.easer.plugins.operation.hotspot;
 import android.support.annotation.NonNull;
 
 import ryey.easer.commons.plugindef.InvalidDataInputException;
-import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.plugins.operation.SwitchPluginViewFragment;
 
 public class HotspotPluginViewFragment extends SwitchPluginViewFragment<HotspotOperationData> {

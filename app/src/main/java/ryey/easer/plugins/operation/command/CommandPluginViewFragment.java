@@ -30,7 +30,6 @@ import android.widget.EditText;
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.StorageData;
 
 public class CommandPluginViewFragment extends PluginViewFragment<CommandOperationData> {
     private EditText editText_command;
@@ -45,7 +44,7 @@ public class CommandPluginViewFragment extends PluginViewFragment<CommandOperati
 
     @Override
     protected void _fill(@NonNull CommandOperationData data) {
-        String command = ((CommandOperationData) data).get();
+        String command = data.get();
         editText_command.setText(command);
     }
 

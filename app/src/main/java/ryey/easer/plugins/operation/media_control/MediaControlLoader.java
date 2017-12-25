@@ -24,7 +24,6 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.KeyEvent;
 
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
 public class MediaControlLoader extends OperationLoader<MediaControlOperationData> {
@@ -34,7 +33,7 @@ public class MediaControlLoader extends OperationLoader<MediaControlOperationDat
 
     @Override
     public boolean _load(@NonNull MediaControlOperationData data) {
-        MediaControlOperationData.ControlChoice choice = ((MediaControlOperationData) data).choice;
+        MediaControlOperationData.ControlChoice choice = data.choice;
         switch (choice) {
             case play_pause:
                 emitMediaButton(KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE);

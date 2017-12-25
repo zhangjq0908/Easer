@@ -31,7 +31,6 @@ import java.util.Calendar;
 
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.StorageData;
 
 public class TimePluginViewFragment extends PluginViewFragment<TimeEventData> {
     private TimePicker timePicker;
@@ -71,9 +70,7 @@ public class TimePluginViewFragment extends PluginViewFragment<TimeEventData> {
 
     @Override
     protected void _fill(@NonNull TimeEventData data) {
-        if (data instanceof TimeEventData) {
-            setTimePicker(timePicker, ((TimeEventData) data).time);
-        }
+        setTimePicker(timePicker, data.time);
     }
 
     @NonNull

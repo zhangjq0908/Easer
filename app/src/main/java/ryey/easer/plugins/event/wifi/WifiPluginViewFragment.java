@@ -42,7 +42,6 @@ import ryey.easer.R;
 import ryey.easer.Utils;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.StorageData;
 
 public class WifiPluginViewFragment extends PluginViewFragment<WifiEventData> {
     private EditText editText;
@@ -119,9 +118,7 @@ public class WifiPluginViewFragment extends PluginViewFragment<WifiEventData> {
 
     @Override
     protected void _fill(@NonNull WifiEventData data) {
-        if (data instanceof WifiEventData) {
-            editText.setText(data.toString());
-        }
+        editText.setText(data.toString());
     }
 
     @NonNull

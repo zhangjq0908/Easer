@@ -25,7 +25,6 @@ import android.support.annotation.NonNull;
 
 import java.util.Calendar;
 
-import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.SelfNotifiableSlot;
 
@@ -47,12 +46,8 @@ public class DateSlot extends SelfNotifiableSlot<DateEventData> {
 
     @Override
     public void set(@NonNull DateEventData data) {
-        if (data instanceof DateEventData) {
-            setDate(((DateEventData) data).date);
-            type = data.type();
-        } else {
-            throw new RuntimeException("illegal data");
-        }
+        setDate(data.date);
+        type = data.type();
     }
 
     private void setDate(Calendar date) {

@@ -12,7 +12,7 @@ public class NetworkTransmissionOperationDataTest {
 
     @Test
     public void testParcel() {
-        NetworkTransmissionOperationData dummyData = (NetworkTransmissionOperationData) new NetworkTransmissionOperationDataFactory().dummyData();
+        NetworkTransmissionOperationData dummyData = new NetworkTransmissionOperationDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         NetworkTransmissionOperationData parceledData = NetworkTransmissionOperationData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

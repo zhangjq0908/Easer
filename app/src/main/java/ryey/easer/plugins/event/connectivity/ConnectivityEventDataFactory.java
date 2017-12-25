@@ -7,7 +7,6 @@ import java.util.Set;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 
 class ConnectivityEventDataFactory implements EventDataFactory<ConnectivityEventData> {

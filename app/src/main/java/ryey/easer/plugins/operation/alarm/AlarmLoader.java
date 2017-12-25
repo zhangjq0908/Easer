@@ -27,7 +27,6 @@ import android.support.annotation.NonNull;
 
 import java.util.Calendar;
 
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
 public class AlarmLoader extends OperationLoader<AlarmOperationData> {
@@ -37,7 +36,7 @@ public class AlarmLoader extends OperationLoader<AlarmOperationData> {
 
     @Override
     public boolean _load(@NonNull AlarmOperationData data) {
-        AlarmOperationData.AlarmData iData = ((AlarmOperationData) data).data;
+        AlarmOperationData.AlarmData iData = data.data;
         Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
         int hour = iData.time.get(Calendar.HOUR_OF_DAY);
         int minute = iData.time.get(Calendar.MINUTE);

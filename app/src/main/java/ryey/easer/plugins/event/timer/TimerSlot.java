@@ -25,7 +25,6 @@ import android.support.annotation.NonNull;
 
 import java.util.Calendar;
 
-import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.SelfNotifiableSlot;
 
@@ -46,16 +45,12 @@ public class TimerSlot extends SelfNotifiableSlot<TimerEventData> {
 
     @Override
     public void set(@NonNull TimerEventData data) {
-        if (data instanceof TimerEventData) {
-            timer = ((TimerEventData) data).timer;
-            type = data.type();
-            if (timer.repeat) {
-                setRetriggerable(true);
-            } else {
-                setRetriggerable(false);
-            }
+        timer = data.timer;
+        type = data.type();
+        if (timer.repeat) {
+            setRetriggerable(true);
         } else {
-            throw new RuntimeException("illegal data");
+            setRetriggerable(false);
         }
     }
 

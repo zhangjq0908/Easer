@@ -11,7 +11,6 @@ import android.support.annotation.NonNull;
 import java.util.Set;
 
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 import static ryey.easer.plugins.event.connectivity.ConnectivityType.TYPE_BLUETOOTH;
@@ -49,7 +48,7 @@ class ConnectivitySlot extends AbstractSlot<ConnectivityEventData> {
 
     @Override
     public void set(@NonNull ConnectivityEventData data) {
-        connectivity_types = ((ConnectivityEventData) data).connectivity_type;
+        connectivity_types = data.connectivity_type;
         type = data.type();
     }
 

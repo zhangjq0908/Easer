@@ -38,7 +38,6 @@ import ryey.easer.R;
 import ryey.easer.Utils;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.StorageData;
 
 public class BroadcastPluginViewFragment extends PluginViewFragment<BroadcastOperationData> {
     private EditText m_text_action;
@@ -71,7 +70,7 @@ public class BroadcastPluginViewFragment extends PluginViewFragment<BroadcastOpe
 
     @Override
     protected void _fill(@NonNull BroadcastOperationData data) {
-        IntentData rdata = ((BroadcastOperationData) data).data;
+        IntentData rdata = data.data;
         m_text_action.setText(rdata.action);
         m_text_category.setText(Utils.StringListToString(rdata.category));
         m_text_type.setText(rdata.type);

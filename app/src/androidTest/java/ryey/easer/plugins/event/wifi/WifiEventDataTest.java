@@ -12,7 +12,7 @@ public class WifiEventDataTest {
 
     @Test
     public void testParcel() {
-        WifiEventData dummyData = (WifiEventData) new WifiEventDataFactory().dummyData();
+        WifiEventData dummyData = new WifiEventDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         WifiEventData parceledData = WifiEventData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

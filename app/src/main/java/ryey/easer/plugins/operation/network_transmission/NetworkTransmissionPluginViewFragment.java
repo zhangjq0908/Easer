@@ -31,7 +31,6 @@ import android.widget.RadioButton;
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.StorageData;
 
 public class NetworkTransmissionPluginViewFragment extends PluginViewFragment<NetworkTransmissionOperationData> {
 
@@ -55,7 +54,7 @@ public class NetworkTransmissionPluginViewFragment extends PluginViewFragment<Ne
 
     @Override
     protected void _fill(@NonNull NetworkTransmissionOperationData data) {
-        TransmissionData tdata = ((NetworkTransmissionOperationData) data).data;
+        TransmissionData tdata = data.data;
         switch (tdata.protocol) {
             case tcp:
                 rb_tcp.setChecked(true);

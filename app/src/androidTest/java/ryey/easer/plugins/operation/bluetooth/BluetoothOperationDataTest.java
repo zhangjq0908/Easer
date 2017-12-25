@@ -12,7 +12,7 @@ public class BluetoothOperationDataTest {
 
     @Test
     public void testParcel() {
-        BluetoothOperationData dummyData = (BluetoothOperationData) new BluetoothOperationDataFactory().dummyData();
+        BluetoothOperationData dummyData = new BluetoothOperationDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         BluetoothOperationData parceledData = BluetoothOperationData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

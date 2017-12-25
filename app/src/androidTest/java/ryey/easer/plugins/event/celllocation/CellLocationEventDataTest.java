@@ -12,7 +12,7 @@ public class CellLocationEventDataTest {
 
     @Test
     public void testParcel() {
-        CellLocationEventData dummyData = (CellLocationEventData) new CellLocationEventDataFactory().dummyData();
+        CellLocationEventData dummyData = new CellLocationEventDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         CellLocationEventData parceledData = CellLocationEventData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

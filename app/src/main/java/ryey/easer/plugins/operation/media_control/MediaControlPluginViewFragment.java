@@ -30,7 +30,6 @@ import android.widget.RadioButton;
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.StorageData;
 
 public class MediaControlPluginViewFragment extends PluginViewFragment<MediaControlOperationData> {
 
@@ -55,27 +54,23 @@ public class MediaControlPluginViewFragment extends PluginViewFragment<MediaCont
 
     @Override
     protected void _fill(@NonNull MediaControlOperationData data) {
-        if (data instanceof MediaControlOperationData) {
-            MediaControlOperationData.ControlChoice choice = ((MediaControlOperationData) data).choice;
-            switch (choice) {
-                case play_pause:
-                    radioButton_play_pause.setChecked(true);
-                    break;
-                case play:
-                    radioButton_play.setChecked(true);
-                    break;
-                case pause:
-                    radioButton_pause.setChecked(true);
-                    break;
-                case previous:
-                    radioButton_previous.setChecked(true);
-                    break;
-                case next:
-                    radioButton_next.setChecked(true);
-                    break;
-            }
-        } else {
-            throw new IllegalArgumentException();
+        MediaControlOperationData.ControlChoice choice = data.choice;
+        switch (choice) {
+            case play_pause:
+                radioButton_play_pause.setChecked(true);
+                break;
+            case play:
+                radioButton_play.setChecked(true);
+                break;
+            case pause:
+                radioButton_pause.setChecked(true);
+                break;
+            case previous:
+                radioButton_previous.setChecked(true);
+                break;
+            case next:
+                radioButton_next.setChecked(true);
+                break;
         }
     }
 

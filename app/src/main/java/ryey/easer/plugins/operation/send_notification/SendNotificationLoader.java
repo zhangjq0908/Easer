@@ -28,7 +28,6 @@ import android.support.v4.app.NotificationCompat;
 import java.util.concurrent.ThreadLocalRandom;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
 public class SendNotificationLoader extends OperationLoader<SendNotificationOperationData> {
@@ -46,7 +45,7 @@ public class SendNotificationLoader extends OperationLoader<SendNotificationOper
 
     @Override
     public boolean _load(@NonNull SendNotificationOperationData data) {
-        NotificationContent content = ((SendNotificationOperationData) data).notificationContent;
+        NotificationContent content = data.notificationContent;
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);

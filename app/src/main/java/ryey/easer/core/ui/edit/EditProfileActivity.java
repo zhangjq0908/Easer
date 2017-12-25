@@ -21,7 +21,6 @@ import java.util.List;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
-import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.core.data.ProfileStructure;
@@ -145,7 +144,7 @@ public class EditProfileActivity extends AppCompatActivity implements OperationS
                 if (!data.isValid())
                     throw new InvalidDataInputException();
                 fragment.setHighlight(false);
-                profile.set(PluginRegistry.getInstance().operation().findPlugin((OperationData) data).id(), (OperationData) data);
+                profile.set(PluginRegistry.getInstance().operation().findPlugin(data).id(), data);
             } catch (InvalidDataInputException e) {
                 fragment.setHighlight(true);
                 return null;

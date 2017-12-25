@@ -29,7 +29,6 @@ import android.telephony.TelephonyManager;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 public class CellLocationSlot extends AbstractSlot<CellLocationEventData> {
@@ -52,12 +51,8 @@ public class CellLocationSlot extends AbstractSlot<CellLocationEventData> {
 
     @Override
     public void set(@NonNull CellLocationEventData data) {
-        if (data instanceof CellLocationEventData) {
-            target = (CellLocationEventData) data;
-            type = data.type();
-        } else {
-            throw new RuntimeException("illegal data");
-        }
+        target = data;
+        type = data.type();
     }
 
     @Override
