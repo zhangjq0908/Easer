@@ -35,7 +35,7 @@ import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 import static ryey.easer.commons.plugindef.eventplugin.EventType.is;
 
-public class NfcTagSlot extends AbstractSlot {
+public class NfcTagSlot extends AbstractSlot<NfcTagEventData> {
     private NfcTagEventData data = null;
     private EventType type = null;
 
@@ -72,7 +72,7 @@ public class NfcTagSlot extends AbstractSlot {
     }
 
     @Override
-    public void set(@NonNull EventData data) {
+    public void set(@NonNull NfcTagEventData data) {
         if (data instanceof NfcTagEventData) {
             this.data = (NfcTagEventData) data;
             type = data.type();

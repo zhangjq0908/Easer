@@ -31,13 +31,13 @@ import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.plugins.reusable.PluginHelper;
 
-public class AirplaneModeLoader extends OperationLoader {
+public class AirplaneModeLoader extends OperationLoader<AirplaneModeOperationData> {
     public AirplaneModeLoader(Context context) {
         super(context);
     }
 
     @Override
-    public boolean _load(@NonNull OperationData data) {
+    public boolean _load(@NonNull AirplaneModeOperationData data) {
         Boolean state = ((AirplaneModeOperationData) data).get();
         if (state == airplaneModeIsOn())
             return true;

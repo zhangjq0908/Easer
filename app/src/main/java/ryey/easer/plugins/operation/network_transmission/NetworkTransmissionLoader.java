@@ -34,13 +34,13 @@ import java.net.UnknownHostException;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
-public class NetworkTransmissionLoader extends OperationLoader {
+public class NetworkTransmissionLoader extends OperationLoader<NetworkTransmissionOperationData> {
     public NetworkTransmissionLoader(Context context) {
         super(context);
     }
 
     @Override
-    public boolean _load(@NonNull OperationData data) {
+    public boolean _load(@NonNull NetworkTransmissionOperationData data) {
         TransmissionData tdata = ((NetworkTransmissionOperationData) data).data;
         try {
             InetAddress remote_address = InetAddress.getByName(tdata.remote_address);

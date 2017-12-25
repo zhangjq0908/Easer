@@ -7,22 +7,22 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 
-class HotspotOperationDataFactory implements OperationDataFactory {
+class HotspotOperationDataFactory implements OperationDataFactory<HotspotOperationData> {
     @NonNull
     @Override
-    public Class<? extends OperationData> dataClass() {
+    public Class<HotspotOperationData> dataClass() {
         return HotspotOperationData.class;
     }
 
     @NonNull
     @Override
-    public OperationData emptyData() {
+    public HotspotOperationData emptyData() {
         return new HotspotOperationData();
     }
 
     @NonNull
     @Override
-    public OperationData dummyData() {
+    public HotspotOperationData dummyData() {
         HotspotOperationData dummyData = new HotspotOperationData();
         dummyData.set(true);
         return dummyData;
@@ -30,7 +30,7 @@ class HotspotOperationDataFactory implements OperationDataFactory {
 
     @NonNull
     @Override
-    public OperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public HotspotOperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         return new HotspotOperationData(data, format, version);
     }
 }

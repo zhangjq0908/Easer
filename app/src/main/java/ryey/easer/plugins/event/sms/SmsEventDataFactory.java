@@ -7,22 +7,22 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 
-class SmsEventDataFactory implements EventDataFactory {
+class SmsEventDataFactory implements EventDataFactory<SmsEventData> {
     @NonNull
     @Override
-    public Class<? extends EventData> dataClass() {
+    public Class<SmsEventData> dataClass() {
         return SmsEventData.class;
     }
 
     @NonNull
     @Override
-    public EventData emptyData() {
+    public SmsEventData emptyData() {
         return new SmsEventData();
     }
 
     @NonNull
     @Override
-    public EventData dummyData() {
+    public SmsEventData dummyData() {
         SmsEventData dummyData = new SmsEventData();
         SmsInnerData innerData = new SmsInnerData();
         innerData.sender = "15077707777";
@@ -33,7 +33,7 @@ class SmsEventDataFactory implements EventDataFactory {
 
     @NonNull
     @Override
-    public EventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public SmsEventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         return new SmsEventData(data, format, version);
     }
 }

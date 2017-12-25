@@ -17,7 +17,7 @@ import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class ConnectivityPluginViewFragment extends PluginViewFragment {
+public class ConnectivityPluginViewFragment extends PluginViewFragment<ConnectivityEventData> {
     String []mode_names;
     final int []values = {
             ConnectivityType.TYPE_NOT_CONNECTED,
@@ -49,7 +49,7 @@ public class ConnectivityPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(@NonNull StorageData data) {
+    protected void _fill(@NonNull ConnectivityEventData data) {
         if (data instanceof ConnectivityEventData) {
             Set<Integer> checked_values = ((ConnectivityEventData) data).connectivity_type;
             for (int checked_value : checked_values) {
@@ -65,7 +65,7 @@ public class ConnectivityPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public StorageData getData() throws InvalidDataInputException {
+    public ConnectivityEventData getData() throws InvalidDataInputException {
         Set<Integer> checked = new ArraySet<>();
         for (int i = 0; i < checkBoxes.length; i++) {
             if (checkBoxes[i].isChecked()) {

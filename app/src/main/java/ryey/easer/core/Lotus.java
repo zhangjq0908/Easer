@@ -101,9 +101,9 @@ final class Lotus {
         mSlot.register(notifyLotusIntent, notifyLotusUnsatisfiedIntent);
     }
 
-    private AbstractSlot dataToSlot(EventData data) {
-        AbstractSlot slot;
-        EventPlugin plugin = PluginRegistry.getInstance().event().findPlugin(data);
+    private <T extends EventData> AbstractSlot<T> dataToSlot(T data) {
+        AbstractSlot<T> slot;
+        EventPlugin<T> plugin = PluginRegistry.getInstance().event().findPlugin(data);
         slot = plugin.slot(context);
         slot.set(data);
         return slot;

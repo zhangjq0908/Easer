@@ -31,7 +31,7 @@ import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.plugins.reusable.PluginHelper;
 
-public class WifiEventPlugin implements EventPlugin {
+public class WifiEventPlugin implements EventPlugin<WifiEventData> {
 
     @NonNull
     @Override
@@ -61,19 +61,19 @@ public class WifiEventPlugin implements EventPlugin {
 
     @NonNull
     @Override
-    public EventDataFactory dataFactory() {
+    public EventDataFactory<WifiEventData> dataFactory() {
         return new WifiEventDataFactory();
 
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<WifiEventData> view() {
         return new WifiPluginViewFragment();
     }
 
     @Override
-    public AbstractSlot slot(Context context) {
+    public AbstractSlot<WifiEventData> slot(Context context) {
         return new WifiConnSlot(context);
     }
 

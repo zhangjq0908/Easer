@@ -38,7 +38,7 @@ import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
-public class SmsConnSlot extends AbstractSlot {
+public class SmsConnSlot extends AbstractSlot<SmsEventData> {
     private SmsInnerData smsInnerData = null;
     private EventType type = null;
 
@@ -91,7 +91,7 @@ public class SmsConnSlot extends AbstractSlot {
     }
 
     @Override
-    public void set(@NonNull EventData data) {
+    public void set(@NonNull SmsEventData data) {
         if (data instanceof SmsEventData) {
             smsInnerData = ((SmsEventData) data).innerData;
             type = data.type();

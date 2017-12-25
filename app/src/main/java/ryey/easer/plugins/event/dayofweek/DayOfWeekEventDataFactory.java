@@ -7,22 +7,22 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 
-class DayOfWeekEventDataFactory implements EventDataFactory {
+class DayOfWeekEventDataFactory implements EventDataFactory<DayOfWeekEventData> {
     @NonNull
     @Override
-    public Class<? extends EventData> dataClass() {
+    public Class<DayOfWeekEventData> dataClass() {
         return DayOfWeekEventData.class;
     }
 
     @NonNull
     @Override
-    public EventData emptyData() {
+    public DayOfWeekEventData emptyData() {
         return new DayOfWeekEventData();
     }
 
     @NonNull
     @Override
-    public EventData dummyData() {
+    public DayOfWeekEventData dummyData() {
         DayOfWeekEventData dummyData = new DayOfWeekEventData();
         dummyData.days.add(2);
         dummyData.days.add(4);
@@ -32,7 +32,7 @@ class DayOfWeekEventDataFactory implements EventDataFactory {
 
     @NonNull
     @Override
-    public EventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public DayOfWeekEventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         return new DayOfWeekEventData(data, format, version);
     }
 }

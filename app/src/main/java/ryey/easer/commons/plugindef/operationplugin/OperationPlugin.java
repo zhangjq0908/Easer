@@ -30,7 +30,7 @@ import ryey.easer.commons.plugindef.PluginDef;
  * All Operation plugins should implement this interface and write one line to register in `PluginRegistry`.
  * The implementation / subclass doesn't need to hold any data (because data will be passed as arguments to the relevant methods).
  */
-public interface OperationPlugin extends PluginDef {
+public interface OperationPlugin<T extends OperationData> extends PluginDef<T> {
 
     /**
      * Returns the privilege preference of this plugin.
@@ -46,12 +46,12 @@ public interface OperationPlugin extends PluginDef {
     int maxExistence();
 
     @NonNull
-    OperationDataFactory dataFactory();
+    OperationDataFactory<T> dataFactory();
 
     /**
      * Returns a dummy loader of this plugin.
      * See `OperationLoader` for more information
      */
     @NonNull
-    OperationLoader loader(@NonNull Context context);
+    OperationLoader<T> loader(@NonNull Context context);
 }

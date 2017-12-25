@@ -33,7 +33,7 @@ import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class NetworkTransmissionPluginViewFragment extends PluginViewFragment {
+public class NetworkTransmissionPluginViewFragment extends PluginViewFragment<NetworkTransmissionOperationData> {
 
     private RadioButton rb_tcp;
     private RadioButton rb_udp;
@@ -54,7 +54,7 @@ public class NetworkTransmissionPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(@NonNull StorageData data) {
+    protected void _fill(@NonNull NetworkTransmissionOperationData data) {
         TransmissionData tdata = ((NetworkTransmissionOperationData) data).data;
         switch (tdata.protocol) {
             case tcp:
@@ -73,7 +73,7 @@ public class NetworkTransmissionPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public StorageData getData() throws InvalidDataInputException {
+    public NetworkTransmissionOperationData getData() throws InvalidDataInputException {
         TransmissionData tdata = new TransmissionData();
         if (rb_tcp.isChecked())
             tdata.protocol = TransmissionData.Protocol.tcp;

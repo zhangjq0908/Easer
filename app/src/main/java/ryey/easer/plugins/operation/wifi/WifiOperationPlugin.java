@@ -32,7 +32,7 @@ import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
 import ryey.easer.plugins.reusable.PluginHelper;
 
-public class WifiOperationPlugin implements OperationPlugin {
+public class WifiOperationPlugin implements OperationPlugin<WifiOperationData> {
 
     @NonNull
     @Override
@@ -87,20 +87,20 @@ public class WifiOperationPlugin implements OperationPlugin {
 
     @NonNull
     @Override
-    public OperationDataFactory dataFactory() {
+    public OperationDataFactory<WifiOperationData> dataFactory() {
         return new WifiOperationDataFactory();
 
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<WifiOperationData> view() {
         return new WifiPluginViewFragment();
     }
 
     @NonNull
     @Override
-    public OperationLoader loader(@NonNull Context context) {
+    public OperationLoader<WifiOperationData> loader(@NonNull Context context) {
         return new WifiLoader(context);
     }
 

@@ -35,7 +35,7 @@ import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
-public class WifiConnSlot extends AbstractSlot {
+public class WifiConnSlot extends AbstractSlot<WifiEventData> {
     private WifiEventData data = null;
     private EventType type = null;
 
@@ -72,7 +72,7 @@ public class WifiConnSlot extends AbstractSlot {
     }
 
     @Override
-    public void set(@NonNull EventData data) {
+    public void set(@NonNull WifiEventData data) {
         if (data instanceof WifiEventData) {
             this.data = (WifiEventData) data;
             type = data.type();

@@ -28,7 +28,7 @@ import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
-public class NotificationSlot extends AbstractSlot {
+public class NotificationSlot extends AbstractSlot<NotificationEventData> {
     private NotificationEventData eventData;
     private EventType type = null;
 
@@ -37,7 +37,7 @@ public class NotificationSlot extends AbstractSlot {
     }
 
     @Override
-    public void set(@NonNull EventData data) {
+    public void set(@NonNull NotificationEventData data) {
         if (data instanceof NotificationEventData) {
             eventData = (NotificationEventData) data;
             type = data.type();

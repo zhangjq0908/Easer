@@ -31,7 +31,7 @@ import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.plugins.reusable.PluginHelper;
 
-public class SmsEventPlugin implements EventPlugin {
+public class SmsEventPlugin implements EventPlugin<SmsEventData> {
 
     @NonNull
     @Override
@@ -73,19 +73,19 @@ public class SmsEventPlugin implements EventPlugin {
 
     @NonNull
     @Override
-    public EventDataFactory dataFactory() {
+    public EventDataFactory<SmsEventData> dataFactory() {
         return new SmsEventDataFactory();
 
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<SmsEventData> view() {
         return new SmsPluginViewFragment();
     }
 
     @Override
-    public AbstractSlot slot(Context context) {
+    public AbstractSlot<SmsEventData> slot(Context context) {
         return new SmsConnSlot(context);
     }
 

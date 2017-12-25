@@ -30,7 +30,7 @@ import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
-public class BroadcastConnSlot extends AbstractSlot {
+public class BroadcastConnSlot extends AbstractSlot<BroadcastEventData> {
     private ReceiverSideIntentData intentData = null;
     private EventType type = null;
 
@@ -53,7 +53,7 @@ public class BroadcastConnSlot extends AbstractSlot {
     }
 
     @Override
-    public void set(@NonNull EventData data) {
+    public void set(@NonNull BroadcastEventData data) {
         if (data instanceof BroadcastEventData) {
             intentData = ((BroadcastEventData) data).intentData;
             type = data.type();

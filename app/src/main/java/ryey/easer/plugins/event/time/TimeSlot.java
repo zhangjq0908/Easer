@@ -30,7 +30,7 @@ import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.SelfNotifiableSlot;
 
-public class TimeSlot extends SelfNotifiableSlot {
+public class TimeSlot extends SelfNotifiableSlot<TimeEventData> {
     private static AlarmManager mAlarmManager;
 
     private Calendar calendar = null;
@@ -44,7 +44,7 @@ public class TimeSlot extends SelfNotifiableSlot {
     }
 
     @Override
-    public void set(@NonNull EventData data) {
+    public void set(@NonNull TimeEventData data) {
         if (data instanceof TimeEventData) {
             setTime(((TimeEventData) data).time);
             type = data.type();

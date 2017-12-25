@@ -7,22 +7,22 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 
-class WifiOperationDataFactory implements OperationDataFactory {
+class WifiOperationDataFactory implements OperationDataFactory<WifiOperationData> {
     @NonNull
     @Override
-    public Class<? extends OperationData> dataClass() {
+    public Class<WifiOperationData> dataClass() {
         return WifiOperationData.class;
     }
 
     @NonNull
     @Override
-    public OperationData emptyData() {
+    public WifiOperationData emptyData() {
         return new WifiOperationData();
     }
 
     @NonNull
     @Override
-    public OperationData dummyData() {
+    public WifiOperationData dummyData() {
         WifiOperationData dummyData = new WifiOperationData();
         dummyData.set(true);
         return dummyData;
@@ -30,7 +30,7 @@ class WifiOperationDataFactory implements OperationDataFactory {
 
     @NonNull
     @Override
-    public OperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public WifiOperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         return new WifiOperationData(data, format, version);
     }
 }

@@ -29,14 +29,14 @@ import ryey.easer.commons.plugindef.PluginDef;
  * All Event plugins should implement this interface and write one line to register in `PluginRegistry`.
  * The implementation / subclass doesn't need to hold any data (because data will be passed as arguments to the relevant methods).
  */
-public interface EventPlugin extends PluginDef {
+public interface EventPlugin<T extends EventData> extends PluginDef<T> {
 
     @NonNull
-    EventDataFactory dataFactory();
+    EventDataFactory<T> dataFactory();
 
     /**
      * Returns a to-be-initialized Slot of this plugin.
      * See `AbstractSlot` for more information
      */
-    AbstractSlot slot(Context context);
+    AbstractSlot<T> slot(Context context);
 }

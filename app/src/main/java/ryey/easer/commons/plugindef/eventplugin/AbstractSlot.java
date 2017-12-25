@@ -31,7 +31,7 @@ import com.orhanobut.logger.Logger;
  *
  * Slots are used in {@link ryey.easer.core.Lotus}.
  */
-public abstract class AbstractSlot {
+public abstract class AbstractSlot<T extends EventData> {
     /**
      * AndroidStudio reminds me that some fields and/or methods can be made private.
      * I'm not sure if they will be used by the subclasses in the future when extending the `satisfied` field to more status, so they are left as protected.
@@ -74,7 +74,7 @@ public abstract class AbstractSlot {
      * Set the trigger to be ready to receive the relevant Event.
      * The trigger will start functioning after {@link #listen()} is called.
      */
-    public abstract void set(@NonNull EventData data);
+    public abstract void set(@NonNull T data);
 
     /**
      * FIXME: Not sure if this methods is really needed.

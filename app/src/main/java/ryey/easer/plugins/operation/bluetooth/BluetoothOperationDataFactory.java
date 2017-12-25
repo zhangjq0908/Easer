@@ -7,22 +7,22 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 
-class BluetoothOperationDataFactory implements OperationDataFactory {
+class BluetoothOperationDataFactory implements OperationDataFactory<BluetoothOperationData> {
     @NonNull
     @Override
-    public Class<? extends OperationData> dataClass() {
+    public Class<BluetoothOperationData> dataClass() {
         return BluetoothOperationData.class;
     }
 
     @NonNull
     @Override
-    public OperationData emptyData() {
+    public BluetoothOperationData emptyData() {
         return new BluetoothOperationData();
     }
 
     @NonNull
     @Override
-    public OperationData dummyData() {
+    public BluetoothOperationData dummyData() {
         BluetoothOperationData dummyData = new BluetoothOperationData();
         dummyData.set(true);
         return dummyData;
@@ -30,7 +30,7 @@ class BluetoothOperationDataFactory implements OperationDataFactory {
 
     @NonNull
     @Override
-    public OperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public BluetoothOperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         return new BluetoothOperationData(data, format, version);
     }
 }

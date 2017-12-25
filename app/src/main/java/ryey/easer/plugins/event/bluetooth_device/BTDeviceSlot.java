@@ -32,7 +32,7 @@ import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
-public class BTDeviceSlot extends AbstractSlot {
+public class BTDeviceSlot extends AbstractSlot<BTDeviceEventData> {
     private BTDeviceEventData data = null;
     private EventType type = null;
 
@@ -71,13 +71,9 @@ public class BTDeviceSlot extends AbstractSlot {
     }
 
     @Override
-    public void set(@NonNull EventData data) {
-        if (data instanceof BTDeviceEventData) {
-            this.data = (BTDeviceEventData) data;
-            type = data.type();
-        } else {
-            throw new RuntimeException("illegal data");
-        }
+    public void set(@NonNull BTDeviceEventData data) {
+        this.data = (BTDeviceEventData) data;
+        type = data.type();
     }
 
     @Override

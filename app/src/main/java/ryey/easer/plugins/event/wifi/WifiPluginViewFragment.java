@@ -44,7 +44,7 @@ import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class WifiPluginViewFragment extends PluginViewFragment {
+public class WifiPluginViewFragment extends PluginViewFragment<WifiEventData> {
     private EditText editText;
     private final String ACTION_RETURN = "ryey.easer.plugins.event.bluetooth_device.return_from_dialog";
     private final String EXTRA_SSID = "ryey.easer.plugins.event.bluetooth_device.extra.hardware_address";
@@ -118,7 +118,7 @@ public class WifiPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(@NonNull StorageData data) {
+    protected void _fill(@NonNull WifiEventData data) {
         if (data instanceof WifiEventData) {
             editText.setText(data.toString());
         }
@@ -126,7 +126,7 @@ public class WifiPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public StorageData getData() throws InvalidDataInputException {
+    public WifiEventData getData() throws InvalidDataInputException {
         return new WifiEventData(editText.getText().toString());
     }
 

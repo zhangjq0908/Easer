@@ -12,7 +12,7 @@ import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.plugins.reusable.PluginHelper;
 
-public class ConnectivityEventPlugin implements EventPlugin {
+public class ConnectivityEventPlugin implements EventPlugin<ConnectivityEventData> {
 
     @NonNull
     @Override
@@ -42,18 +42,18 @@ public class ConnectivityEventPlugin implements EventPlugin {
 
     @NonNull
     @Override
-    public EventDataFactory dataFactory() {
+    public EventDataFactory<ConnectivityEventData> dataFactory() {
         return new ConnectivityEventDataFactory();
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<ConnectivityEventData> view() {
         return new ConnectivityPluginViewFragment();
     }
 
     @Override
-    public AbstractSlot slot(Context context) {
+    public AbstractSlot<ConnectivityEventData> slot(Context context) {
         return new ConnectivitySlot(context);
     }
 

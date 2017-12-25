@@ -33,7 +33,7 @@ import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class BroadcastPluginViewFragment extends PluginViewFragment {
+public class BroadcastPluginViewFragment extends PluginViewFragment<BroadcastEventData> {
     private EditText editText_action;
     private EditText editText_category;
 
@@ -48,7 +48,7 @@ public class BroadcastPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(@NonNull StorageData data) {
+    protected void _fill(@NonNull BroadcastEventData data) {
         if (data instanceof BroadcastEventData) {
             ReceiverSideIntentData intentData = ((BroadcastEventData) data).intentData;
             editText_action.setText(Utils.StringListToString(intentData.action));
@@ -58,7 +58,7 @@ public class BroadcastPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public StorageData getData() throws InvalidDataInputException {
+    public BroadcastEventData getData() throws InvalidDataInputException {
         ReceiverSideIntentData intentData = new ReceiverSideIntentData();
         intentData.action = Utils.stringToStringList(editText_action.getText().toString());
         intentData.category = Utils.stringToStringList(editText_category.getText().toString());

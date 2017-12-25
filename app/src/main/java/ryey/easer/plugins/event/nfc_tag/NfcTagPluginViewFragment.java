@@ -36,7 +36,7 @@ import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class NfcTagPluginViewFragment extends PluginViewFragment {
+public class NfcTagPluginViewFragment extends PluginViewFragment<NfcTagEventData> {
 
     private static final int REQCODE_WAIT_FOR_TAG = 120;
 
@@ -69,7 +69,7 @@ public class NfcTagPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(@NonNull StorageData data) {
+    protected void _fill(@NonNull NfcTagEventData data) {
         if (data instanceof NfcTagEventData) {
             editText.setText(data.toString());
         }
@@ -77,7 +77,7 @@ public class NfcTagPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public StorageData getData() throws InvalidDataInputException {
+    public NfcTagEventData getData() throws InvalidDataInputException {
         return new NfcTagEventData(editText.getText().toString());
     }
 }

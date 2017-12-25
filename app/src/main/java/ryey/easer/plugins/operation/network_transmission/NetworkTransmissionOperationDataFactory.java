@@ -7,22 +7,22 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 
-class NetworkTransmissionOperationDataFactory implements OperationDataFactory {
+class NetworkTransmissionOperationDataFactory implements OperationDataFactory<NetworkTransmissionOperationData> {
     @NonNull
     @Override
-    public Class<? extends OperationData> dataClass() {
+    public Class<NetworkTransmissionOperationData> dataClass() {
         return NetworkTransmissionOperationData.class;
     }
 
     @NonNull
     @Override
-    public OperationData emptyData() {
+    public NetworkTransmissionOperationData emptyData() {
         return new NetworkTransmissionOperationData();
     }
 
     @NonNull
     @Override
-    public OperationData dummyData() {
+    public NetworkTransmissionOperationData dummyData() {
         TransmissionData transmissionData = new TransmissionData();
         transmissionData.protocol = TransmissionData.Protocol.tcp;
         transmissionData.remote_port = 146;
@@ -34,7 +34,7 @@ class NetworkTransmissionOperationDataFactory implements OperationDataFactory {
 
     @NonNull
     @Override
-    public OperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public NetworkTransmissionOperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         return new NetworkTransmissionOperationData(data, format, version);
     }
 }

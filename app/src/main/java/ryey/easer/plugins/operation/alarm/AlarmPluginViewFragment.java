@@ -35,7 +35,7 @@ import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class AlarmPluginViewFragment extends PluginViewFragment {
+public class AlarmPluginViewFragment extends PluginViewFragment<AlarmOperationData> {
     private EditText editText_time;
     private EditText editText_message;
     private RadioButton radioButton_absolute, radioButton_relative;
@@ -54,7 +54,7 @@ public class AlarmPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(@NonNull StorageData data) {
+    protected void _fill(@NonNull AlarmOperationData data) {
         AlarmOperationData.AlarmData alarm_data = ((AlarmOperationData) data).data;
         editText_time.setText(AlarmOperationData.TimeToText(alarm_data.time));
         editText_message.setText(alarm_data.message);
@@ -66,7 +66,7 @@ public class AlarmPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public StorageData getData() throws InvalidDataInputException {
+    public AlarmOperationData getData() throws InvalidDataInputException {
         AlarmOperationData.AlarmData data = new AlarmOperationData.AlarmData();
         try {
             data.time = AlarmOperationData.TextToTime(editText_time.getText().toString());

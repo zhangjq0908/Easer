@@ -35,7 +35,7 @@ import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class BrightnessPluginViewFragment extends PluginViewFragment {
+public class BrightnessPluginViewFragment extends PluginViewFragment<BrightnessOperationData> {
     private Switch mIsAuto;
     private SeekBar mBrightnessLevel;
 
@@ -74,7 +74,7 @@ public class BrightnessPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(@NonNull StorageData data) {
+    protected void _fill(@NonNull BrightnessOperationData data) {
         BrightnessOperationData idata = (BrightnessOperationData) data;
         if (idata.isAuto()) {
             mIsAuto.setChecked(true);
@@ -86,7 +86,7 @@ public class BrightnessPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public StorageData getData() throws InvalidDataInputException {
+    public BrightnessOperationData getData() throws InvalidDataInputException {
         if (mIsAuto.isChecked())
             return new BrightnessOperationData(true);
         else {

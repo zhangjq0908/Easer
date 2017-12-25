@@ -32,7 +32,7 @@ import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
 import ryey.easer.plugins.reusable.PluginHelper;
 
-public class SendSmsOperationPlugin implements OperationPlugin {
+public class SendSmsOperationPlugin implements OperationPlugin<SmsOperationData> {
 
     @NonNull
     @Override
@@ -73,20 +73,20 @@ public class SendSmsOperationPlugin implements OperationPlugin {
 
     @NonNull
     @Override
-    public OperationDataFactory dataFactory() {
+    public OperationDataFactory<SmsOperationData> dataFactory() {
         return new SendSmsOperationDataFactory();
 
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<SmsOperationData> view() {
         return new SmsPluginViewFragment();
     }
 
     @NonNull
     @Override
-    public OperationLoader loader(@NonNull Context context) {
+    public OperationLoader<SmsOperationData> loader(@NonNull Context context) {
         return new SmsLoader(context);
     }
 

@@ -7,22 +7,22 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 
-class WifiEventDataFactory implements EventDataFactory {
+class WifiEventDataFactory implements EventDataFactory<WifiEventData> {
     @NonNull
     @Override
-    public Class<? extends EventData> dataClass() {
+    public Class<WifiEventData> dataClass() {
         return WifiEventData.class;
     }
 
     @NonNull
     @Override
-    public EventData emptyData() {
+    public WifiEventData emptyData() {
         return new WifiEventData();
     }
 
     @NonNull
     @Override
-    public EventData dummyData() {
+    public WifiEventData dummyData() {
         WifiEventData dummyData = new WifiEventData();
         dummyData.ssids.add("wifi_device1");
         dummyData.ssids.add("wifi_dev2");
@@ -31,7 +31,7 @@ class WifiEventDataFactory implements EventDataFactory {
 
     @NonNull
     @Override
-    public EventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public WifiEventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         return new WifiEventData(data, format, version);
     }
 }

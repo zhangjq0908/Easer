@@ -26,13 +26,13 @@ import android.telephony.SmsManager;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
-public class SmsLoader extends OperationLoader {
+public class SmsLoader extends OperationLoader<SmsOperationData> {
     public SmsLoader(Context context) {
         super(context);
     }
 
     @Override
-    public boolean _load(@NonNull OperationData data) {
+    public boolean _load(@NonNull SmsOperationData data) {
         Sms sms = ((SmsOperationData) data).sms;
         SmsManager smsManager = SmsManager.getDefault();
         smsManager.sendTextMessage(sms.destination, null, sms.content, null, null);

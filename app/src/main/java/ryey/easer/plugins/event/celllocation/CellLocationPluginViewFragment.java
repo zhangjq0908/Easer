@@ -37,7 +37,7 @@ import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
 
-public class CellLocationPluginViewFragment extends PluginViewFragment {
+public class CellLocationPluginViewFragment extends PluginViewFragment<CellLocationEventData> {
     private EditText editText;
 
     @NonNull
@@ -65,7 +65,7 @@ public class CellLocationPluginViewFragment extends PluginViewFragment {
     }
 
     @Override
-    protected void _fill(@NonNull StorageData data) {
+    protected void _fill(@NonNull CellLocationEventData data) {
         if (data instanceof CellLocationEventData) {
             editText.setText(data.toString());
         }
@@ -73,7 +73,7 @@ public class CellLocationPluginViewFragment extends PluginViewFragment {
 
     @NonNull
     @Override
-    public StorageData getData() throws InvalidDataInputException {
+    public CellLocationEventData getData() throws InvalidDataInputException {
         CellLocationEventData data = CellLocationEventData.fromString(editText.getText().toString());
         return data;
     }

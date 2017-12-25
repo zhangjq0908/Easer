@@ -30,13 +30,13 @@ import ryey.easer.Utils;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
-public class BroadcastLoader extends OperationLoader {
+public class BroadcastLoader extends OperationLoader<BroadcastOperationData> {
     public BroadcastLoader(Context context) {
         super(context);
     }
 
     @Override
-    public boolean _load(@NonNull OperationData data) {
+    public boolean _load(@NonNull BroadcastOperationData data) {
         IntentData iData = ((BroadcastOperationData) data).data;
         Intent intent = new Intent();
         intent.setAction(iData.action);

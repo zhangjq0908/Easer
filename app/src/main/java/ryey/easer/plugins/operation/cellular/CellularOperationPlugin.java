@@ -30,7 +30,7 @@ import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
 
-public class CellularOperationPlugin implements OperationPlugin {
+public class CellularOperationPlugin implements OperationPlugin<CellularOperationData> {
 
     @NonNull
     @Override
@@ -71,20 +71,20 @@ public class CellularOperationPlugin implements OperationPlugin {
 
     @NonNull
     @Override
-    public OperationDataFactory dataFactory() {
+    public OperationDataFactory<CellularOperationData> dataFactory() {
         return new CellularOperationDataFactory();
 
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<CellularOperationData> view() {
         return new CellularPluginViewFragment();
     }
 
     @NonNull
     @Override
-    public OperationLoader loader(@NonNull Context context) {
+    public OperationLoader<CellularOperationData> loader(@NonNull Context context) {
         return new CellularLoader(context);
     }
 

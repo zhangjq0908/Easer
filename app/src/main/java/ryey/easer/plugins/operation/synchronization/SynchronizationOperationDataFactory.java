@@ -7,22 +7,22 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 
-class SynchronizationOperationDataFactory implements OperationDataFactory {
+class SynchronizationOperationDataFactory implements OperationDataFactory<SynchronizationOperationData> {
     @NonNull
     @Override
-    public Class<? extends OperationData> dataClass() {
+    public Class<SynchronizationOperationData> dataClass() {
         return SynchronizationOperationData.class;
     }
 
     @NonNull
     @Override
-    public OperationData emptyData() {
+    public SynchronizationOperationData emptyData() {
         return new SynchronizationOperationData();
     }
 
     @NonNull
     @Override
-    public OperationData dummyData() {
+    public SynchronizationOperationData dummyData() {
         SynchronizationOperationData dummyData = new SynchronizationOperationData();
         dummyData.set(true);
         return dummyData;
@@ -30,7 +30,7 @@ class SynchronizationOperationDataFactory implements OperationDataFactory {
 
     @NonNull
     @Override
-    public OperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public SynchronizationOperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         return new SynchronizationOperationData(data, format, version);
     }
 }

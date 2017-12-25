@@ -7,22 +7,22 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 
-class CellularOperationDataFactory implements OperationDataFactory {
+class CellularOperationDataFactory implements OperationDataFactory<CellularOperationData> {
     @NonNull
     @Override
-    public Class<? extends OperationData> dataClass() {
+    public Class<CellularOperationData> dataClass() {
         return CellularOperationData.class;
     }
 
     @NonNull
     @Override
-    public OperationData emptyData() {
+    public CellularOperationData emptyData() {
         return new CellularOperationData();
     }
 
     @NonNull
     @Override
-    public OperationData dummyData() {
+    public CellularOperationData dummyData() {
         CellularOperationData dummyData = new CellularOperationData();
         dummyData.set(true);
         return dummyData;
@@ -30,7 +30,7 @@ class CellularOperationDataFactory implements OperationDataFactory {
 
     @NonNull
     @Override
-    public OperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public CellularOperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         return new CellularOperationData(data, format, version);
     }
 }

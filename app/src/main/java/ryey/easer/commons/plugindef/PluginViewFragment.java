@@ -17,7 +17,7 @@ import ryey.easer.plugins.PluginRegistry;
 /**
  * Base Fragment class for plugin's UI.
  */
-public abstract class PluginViewFragment extends Fragment {
+public abstract class PluginViewFragment<T extends StorageData> extends Fragment {
 
     /**
      * Controls whether the content (view) is enabled/interactive or not in the beginning.
@@ -29,7 +29,7 @@ public abstract class PluginViewFragment extends Fragment {
      * Used in case {@link #onCreateView} is called after {@link #fill}`.
      * TODO: replace with an entrance-once method / class.
      */
-    protected StorageData passed_data = null;
+    protected T passed_data = null;
 
     /**
      * Normal {@link Fragment} method. Subclasses must override this method to provide the UI.
@@ -64,8 +64,8 @@ public abstract class PluginViewFragment extends Fragment {
     /**
      * Check whether the to-be-filled data is of the correct type.
      */
-    private void checkDataType(@NonNull StorageData data) throws IllegalArgumentTypeException {
-        Class<? extends StorageData> expectedDataClass = PluginRegistry.getInstance()
+    private void checkDataType(@NonNull T data) throws IllegalArgumentTypeException {
+        Class expectedDataClass = PluginRegistry.getInstance()
                 .all().findPlugin(this)
                 .dataFactory()
                 .dataClass();
@@ -79,14 +79,14 @@ public abstract class PluginViewFragment extends Fragment {
      * PluginDef developers is expected to override this method rather than {@link #fill}.
      * This methods does NOT care about synchronization or other stuffs.
      */
-    protected abstract void _fill(@NonNull StorageData data);
+    protected abstract void _fill(@NonNull T data);
 
     /**
      * Set the UI according to the data.
      * This methods takes care of synchronization (see {@link #passed_data}).
      * PluginDef implementors normally only need to implement {@link #_fill} method.
      */
-    public void fill(@NonNull StorageData data) {
+    public void fill(@NonNull T data) {
         try {
             checkDataType(data);
             passed_data = data;
@@ -103,7 +103,7 @@ public abstract class PluginViewFragment extends Fragment {
      * Construct the correct {@link StorageData} (subclass) containing the data in the UI.
      * @throws InvalidDataInputException If the data inputted by the user is invalid
      */
-    public abstract @NonNull StorageData getData() throws InvalidDataInputException;
+    public abstract @NonNull T getData() throws InvalidDataInputException;
 
     /**
      * Change the interactive state of the UI components.

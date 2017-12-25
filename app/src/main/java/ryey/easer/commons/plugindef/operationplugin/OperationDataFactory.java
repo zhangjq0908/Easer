@@ -7,16 +7,16 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.DataFactory;
 
 
-public interface OperationDataFactory extends DataFactory {
+public interface OperationDataFactory<T extends OperationData> extends DataFactory<T> {
     @NonNull
-    Class<? extends OperationData> dataClass();
+    Class<T> dataClass();
 
     @NonNull
-    OperationData emptyData();
+    T emptyData();
 
     @NonNull
-    OperationData dummyData();
+    T dummyData();
 
     @NonNull
-    OperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException;
+    T parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException;
 }

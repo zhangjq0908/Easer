@@ -27,13 +27,13 @@ import android.view.KeyEvent;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
-public class MediaControlLoader extends OperationLoader {
+public class MediaControlLoader extends OperationLoader<MediaControlOperationData> {
     public MediaControlLoader(Context context) {
         super(context);
     }
 
     @Override
-    public boolean _load(@NonNull OperationData data) {
+    public boolean _load(@NonNull MediaControlOperationData data) {
         MediaControlOperationData.ControlChoice choice = ((MediaControlOperationData) data).choice;
         switch (choice) {
             case play_pause:

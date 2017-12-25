@@ -10,22 +10,22 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 
-class BroadcastOperationDataFactory implements OperationDataFactory {
+class BroadcastOperationDataFactory implements OperationDataFactory<BroadcastOperationData> {
     @NonNull
     @Override
-    public Class<? extends OperationData> dataClass() {
+    public Class<BroadcastOperationData> dataClass() {
         return BroadcastOperationData.class;
     }
 
     @NonNull
     @Override
-    public OperationData emptyData() {
+    public BroadcastOperationData emptyData() {
         return new BroadcastOperationData();
     }
 
     @NonNull
     @Override
-    public OperationData dummyData() {
+    public BroadcastOperationData dummyData() {
         BroadcastOperationData dummyData = new BroadcastOperationData();
         IntentData intentData = new IntentData();
         intentData.action = "testAction";
@@ -44,7 +44,7 @@ class BroadcastOperationDataFactory implements OperationDataFactory {
 
     @NonNull
     @Override
-    public OperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public BroadcastOperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         return new BroadcastOperationData(data, format, version);
     }
 }

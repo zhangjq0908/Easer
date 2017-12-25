@@ -27,13 +27,13 @@ import ryey.easer.commons.IllegalArgumentTypeException;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
-public class BrightnessLoader extends OperationLoader {
+public class BrightnessLoader extends OperationLoader<BrightnessOperationData> {
     public BrightnessLoader(Context context) {
         super(context);
     }
 
     @Override
-    public boolean _load(@NonNull OperationData data) {
+    public boolean _load(@NonNull BrightnessOperationData data) {
         if (data instanceof BrightnessOperationData)
             return loadthis((BrightnessOperationData) data);
         else {

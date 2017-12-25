@@ -7,22 +7,22 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 
-class BroadcastEventDataFactory implements EventDataFactory {
+class BroadcastEventDataFactory implements EventDataFactory<BroadcastEventData> {
     @NonNull
     @Override
-    public Class<? extends EventData> dataClass() {
+    public Class<BroadcastEventData> dataClass() {
         return BroadcastEventData.class;
     }
 
     @NonNull
     @Override
-    public EventData emptyData() {
+    public BroadcastEventData emptyData() {
         return new BroadcastEventData();
     }
 
     @NonNull
     @Override
-    public EventData dummyData() {
+    public BroadcastEventData dummyData() {
         ReceiverSideIntentData intentData = new ReceiverSideIntentData();
         intentData.action.add("action1");
         intentData.action.add("action2");
@@ -34,7 +34,7 @@ class BroadcastEventDataFactory implements EventDataFactory {
 
     @NonNull
     @Override
-    public EventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public BroadcastEventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         return new BroadcastEventData(data, format, version);
     }
 }

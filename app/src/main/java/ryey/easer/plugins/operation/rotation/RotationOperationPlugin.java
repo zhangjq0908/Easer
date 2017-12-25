@@ -33,7 +33,7 @@ import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
 
-public class RotationOperationPlugin implements OperationPlugin {
+public class RotationOperationPlugin implements OperationPlugin<RotationOperationData> {
 
     @NonNull
     @Override
@@ -80,20 +80,20 @@ public class RotationOperationPlugin implements OperationPlugin {
 
     @NonNull
     @Override
-    public OperationDataFactory dataFactory() {
+    public OperationDataFactory<RotationOperationData> dataFactory() {
         return new RotationOperationDataFactory();
 
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<RotationOperationData> view() {
         return new RotationPluginViewFragment();
     }
 
     @NonNull
     @Override
-    public OperationLoader loader(@NonNull Context context) {
+    public OperationLoader<RotationOperationData> loader(@NonNull Context context) {
         return new RotationLoader(context);
     }
 

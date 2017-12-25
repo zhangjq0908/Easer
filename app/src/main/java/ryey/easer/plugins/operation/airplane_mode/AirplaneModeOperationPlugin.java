@@ -30,7 +30,7 @@ import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
 
-public class AirplaneModeOperationPlugin implements OperationPlugin {
+public class AirplaneModeOperationPlugin implements OperationPlugin<AirplaneModeOperationData> {
 
     @NonNull
     @Override
@@ -71,20 +71,20 @@ public class AirplaneModeOperationPlugin implements OperationPlugin {
 
     @NonNull
     @Override
-    public OperationDataFactory dataFactory() {
+    public OperationDataFactory<AirplaneModeOperationData> dataFactory() {
         return new AirplaneModeOperationDataFactory();
 
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<AirplaneModeOperationData> view() {
         return new AirplaneModePluginViewFragment();
     }
 
     @NonNull
     @Override
-    public OperationLoader loader(@NonNull Context context) {
+    public OperationLoader<AirplaneModeOperationData> loader(@NonNull Context context) {
         return new AirplaneModeLoader(context);
     }
 

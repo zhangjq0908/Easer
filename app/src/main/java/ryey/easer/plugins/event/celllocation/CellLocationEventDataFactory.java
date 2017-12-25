@@ -7,29 +7,29 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 
-class CellLocationEventDataFactory implements EventDataFactory {
+class CellLocationEventDataFactory implements EventDataFactory<CellLocationEventData> {
     @NonNull
     @Override
-    public Class<? extends EventData> dataClass() {
+    public Class<CellLocationEventData> dataClass() {
         return CellLocationEventData.class;
     }
 
     @NonNull
     @Override
-    public EventData emptyData() {
+    public CellLocationEventData emptyData() {
         return new CellLocationEventData();
     }
 
     @NonNull
     @Override
-    public EventData dummyData() {
+    public CellLocationEventData dummyData() {
         CellLocationEventData dummyData = new CellLocationEventData(new String[]{"1-2", "2-3"});
         return dummyData;
     }
 
     @NonNull
     @Override
-    public EventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public CellLocationEventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         return new CellLocationEventData(data, format, version);
     }
 }

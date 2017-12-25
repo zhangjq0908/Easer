@@ -4,25 +4,24 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 
-class BatteryEventDataFactory implements EventDataFactory {
+class BatteryEventDataFactory implements EventDataFactory<BatteryEventData> {
     @NonNull
     @Override
-    public Class<? extends EventData> dataClass() {
+    public Class<BatteryEventData> dataClass() {
         return BatteryEventData.class;
     }
 
     @NonNull
     @Override
-    public EventData emptyData() {
+    public BatteryEventData emptyData() {
         return new BatteryEventData();
     }
 
     @NonNull
     @Override
-    public EventData dummyData() {
+    public BatteryEventData dummyData() {
         BatteryEventData dummyData = new BatteryEventData();
         dummyData.battery_status = 1;
         return dummyData;
@@ -30,7 +29,7 @@ class BatteryEventDataFactory implements EventDataFactory {
 
     @NonNull
     @Override
-    public EventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public BatteryEventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         return new BatteryEventData(data, format, version);
     }
 }

@@ -11,7 +11,7 @@ import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
-public class BatterySlot extends AbstractSlot {
+public class BatterySlot extends AbstractSlot<BatteryEventData> {
 
     private int status;
     private EventType type;
@@ -45,7 +45,7 @@ public class BatterySlot extends AbstractSlot {
     }
 
     @Override
-    public void set(@NonNull EventData data) {
+    public void set(@NonNull BatteryEventData data) {
         status = ((BatteryEventData) data).battery_status;
         type = data.type();
     }

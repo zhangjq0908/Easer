@@ -29,7 +29,7 @@ import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 
-public class DateEventPlugin implements EventPlugin {
+public class DateEventPlugin implements EventPlugin<DateEventData> {
 
     @NonNull
     @Override
@@ -59,18 +59,18 @@ public class DateEventPlugin implements EventPlugin {
 
     @NonNull
     @Override
-    public EventDataFactory dataFactory() {
+    public EventDataFactory<DateEventData> dataFactory() {
         return new DateEventDataFactory();
     }
 
     @NonNull
     @Override
-    public PluginViewFragment view() {
+    public PluginViewFragment<DateEventData> view() {
         return new DatePluginViewFragment();
     }
 
     @Override
-    public AbstractSlot slot(Context context) {
+    public AbstractSlot<DateEventData> slot(Context context) {
         return new DateSlot(context);
     }
 

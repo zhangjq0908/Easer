@@ -30,13 +30,13 @@ import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.plugins.reusable.PluginHelper;
 
-public class CommandLoader extends OperationLoader {
+public class CommandLoader extends OperationLoader<CommandOperationData> {
     public CommandLoader(Context context) {
         super(context);
     }
 
     @Override
-    public boolean _load(@NonNull OperationData data) {
+    public boolean _load(@NonNull CommandOperationData data) {
         boolean success = true;
         String text = ((CommandOperationData) data).get();
         String []commands = text.split("\n");

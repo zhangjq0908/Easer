@@ -15,11 +15,12 @@ import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
+import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
-public class ProfilePluginViewContainerFragment extends PluginViewContainerFragment {
+public class ProfilePluginViewContainerFragment<T extends OperationData> extends PluginViewContainerFragment<T> {
 
-    static ProfilePluginViewContainerFragment createInstance(PluginViewFragment pluginViewFragment) {
-        ProfilePluginViewContainerFragment fragment = new ProfilePluginViewContainerFragment();
+    static <T extends OperationData> ProfilePluginViewContainerFragment<T> createInstance(PluginViewFragment<T> pluginViewFragment) {
+        ProfilePluginViewContainerFragment<T> fragment = new ProfilePluginViewContainerFragment<>();
         fragment.pluginViewFragment = pluginViewFragment;
         return fragment;
     }
@@ -55,7 +56,7 @@ public class ProfilePluginViewContainerFragment extends PluginViewContainerFragm
     }
 
     @Override
-    protected void _fill(@NonNull StorageData data) {
+    protected void _fill(@NonNull T data) {
         if (data == null) {
             mCheckBox.setChecked(false);
         } else {
@@ -66,7 +67,7 @@ public class ProfilePluginViewContainerFragment extends PluginViewContainerFragm
 
     @NonNull
     @Override
-    public StorageData getData() throws InvalidDataInputException {
+    public T getData() throws InvalidDataInputException {
         if (mCheckBox.isChecked()) {
             return super.getData();
         } else {
