@@ -2,6 +2,7 @@ package ryey.easer;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
@@ -13,6 +14,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import ryey.easer.commons.plugindef.eventplugin.EventData;
+
 public class Utils {
     public static boolean isBlank(@Nullable String str) {
         if (str == null)
@@ -22,6 +25,10 @@ public class Utils {
         if (str.trim().isEmpty())
             return true;
         return false;
+    }
+
+    public static <T extends EventData> boolean eEquals(@NonNull T obj1, @NonNull T obj2) {
+        return obj1.type() == obj2.type();
     }
 
     public static boolean nullableEqual(@Nullable Object obj1, @Nullable Object obj2) {

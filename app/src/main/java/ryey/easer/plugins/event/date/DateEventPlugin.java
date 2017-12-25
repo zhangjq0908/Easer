@@ -26,7 +26,7 @@ import android.support.annotation.NonNull;
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 
 public class DateEventPlugin implements EventPlugin {
@@ -59,8 +59,8 @@ public class DateEventPlugin implements EventPlugin {
 
     @NonNull
     @Override
-    public EventData data() {
-        return new DateEventData();
+    public EventDataFactory dataFactory() {
+        return new DateEventDataFactory();
     }
 
     @NonNull
@@ -73,4 +73,5 @@ public class DateEventPlugin implements EventPlugin {
     public AbstractSlot slot(Context context) {
         return new DateSlot(context);
     }
+
 }

@@ -36,6 +36,7 @@ import java.util.EnumSet;
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.TypedEventData;
 
@@ -54,22 +55,11 @@ public class BroadcastEventData extends TypedEventData {
     public BroadcastEventData() {}
 
     public BroadcastEventData(ReceiverSideIntentData intentData) {
-        set(intentData);
+        this.intentData = intentData;
     }
 
-    @NonNull
-    @Override
-    public Object get() {
-        return intentData;
-    }
-
-    @Override
-    public void set(@NonNull Object obj) {
-        if (obj instanceof ReceiverSideIntentData) {
-            intentData = (ReceiverSideIntentData) obj;
-        } else {
-            throw new RuntimeException("illegal data");
-        }
+    BroadcastEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
     }
 
     @Override
@@ -147,6 +137,8 @@ public class BroadcastEventData extends TypedEventData {
         if (obj == this)
             return true;
         if (!(obj instanceof BroadcastEventData))
+            return false;
+        if (!Utils.eEquals(this, (EventData) obj))
             return false;
         if (!Utils.nullableEqual(intentData.action, ((BroadcastEventData) obj).intentData.action))
             return false;

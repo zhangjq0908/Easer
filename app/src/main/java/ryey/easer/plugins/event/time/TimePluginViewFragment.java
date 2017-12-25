@@ -72,7 +72,7 @@ public class TimePluginViewFragment extends PluginViewFragment {
     @Override
     protected void _fill(@NonNull StorageData data) {
         if (data instanceof TimeEventData) {
-            setTimePicker(timePicker, (Calendar) data.get());
+            setTimePicker(timePicker, ((TimeEventData) data).time);
         }
     }
 

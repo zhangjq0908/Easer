@@ -11,16 +11,18 @@ import org.xmlpull.v1.XmlSerializer;
 import java.io.IOException;
 import java.util.EnumSet;
 
+import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.XmlHelper;
+import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
 
 public class BatteryEventData extends TypedEventData {
 
-    private Integer battery_status = null;
+    Integer battery_status = null;
 
     {
         default_type = EventType.is;
@@ -34,33 +36,22 @@ public class BatteryEventData extends TypedEventData {
         this.battery_status = battery_status;
     }
 
-    @NonNull
-    @Override
-    public Object get() {
-        return battery_status;
-    }
-
-    @Override
-    public void set(@NonNull Object obj) {
-        if (obj instanceof Integer) {
-            battery_status = (Integer) obj;
-        } else {
-            throw new RuntimeException("illegal data");
-        }
+    BatteryEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
     }
 
     @Override
     public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
         String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
         Integer int_data = Integer.parseInt(str_data);
-        set(int_data);
+        battery_status = int_data;
         EventType type = XmlHelper.EventHelper.readLogic(parser);
         setType(type);
     }
 
     @Override
     public void serialize(XmlSerializer serializer) throws IOException {
-        Integer int_status = (Integer) get();
+        Integer int_status = battery_status;
         if (int_status != null) {
             String status = int_status.toString();
             XmlHelper.EventHelper.writeSingleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).id(), status);
@@ -97,6 +88,17 @@ public class BatteryEventData extends TypedEventData {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof BatteryEventData))
+            return false;
+        if (!Utils.eEquals(this, (EventData) obj))
+            return false;
+        if (!battery_status.equals(((BatteryEventData) obj).battery_status))
+            return false;
+        return true;
+    }
+
+    @Override
     public int describeContents() {
         return 0;
     }
@@ -120,5 +122,4 @@ public class BatteryEventData extends TypedEventData {
     private BatteryEventData(Parcel in) {
         battery_status = in.readInt();
     }
-
 }

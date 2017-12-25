@@ -34,6 +34,7 @@ import java.util.EnumSet;
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.TypedEventData;
 
@@ -42,7 +43,7 @@ public class NotificationEventData extends TypedEventData {
     private static final String K_TITLE = "title";
     private static final String K_CONTENT = "content";
 
-    private NotificationSelection selection;
+    NotificationSelection selection;
 
     {
         default_type = EventType.after;
@@ -55,19 +56,8 @@ public class NotificationEventData extends TypedEventData {
         this.selection = selection;
     }
 
-    @NonNull
-    @Override
-    public Object get() {
-        return selection;
-    }
-
-    @Override
-    public void set(@NonNull Object obj) {
-        if (obj instanceof NotificationSelection)
-            selection = (NotificationSelection) obj;
-        else {
-            throw new RuntimeException("illegal data type");
-        }
+    NotificationEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
     }
 
     @Override
@@ -84,6 +74,8 @@ public class NotificationEventData extends TypedEventData {
         if (!(obj instanceof NotificationEventData))
             return false;
         if (!((NotificationEventData) obj).isValid())
+            return false;
+        if (!Utils.eEquals(this, (EventData) obj))
             return false;
         if (!Utils.nullableEqual(selection.app, ((NotificationEventData) obj).selection.app))
             return false;

@@ -43,6 +43,10 @@ public abstract class StringOperationData extends StringData implements Operatio
         super(text);
     }
 
+    public StringOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
+    }
+
     @Override
     public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
         set(XmlHelper.OperationHelper.readString(parser, PluginRegistry.getInstance().operation().findPlugin(this).id()));

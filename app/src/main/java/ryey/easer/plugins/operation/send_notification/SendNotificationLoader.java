@@ -46,7 +46,7 @@ public class SendNotificationLoader extends OperationLoader {
 
     @Override
     public boolean _load(@NonNull OperationData data) {
-        NotificationContent content = (NotificationContent) data.get();
+        NotificationContent content = ((SendNotificationOperationData) data).notificationContent;
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);

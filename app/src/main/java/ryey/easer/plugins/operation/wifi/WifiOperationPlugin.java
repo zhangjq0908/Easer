@@ -26,7 +26,7 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
@@ -87,8 +87,9 @@ public class WifiOperationPlugin implements OperationPlugin {
 
     @NonNull
     @Override
-    public OperationData data() {
-        return new WifiOperationData();
+    public OperationDataFactory dataFactory() {
+        return new WifiOperationDataFactory();
+
     }
 
     @NonNull
@@ -102,4 +103,5 @@ public class WifiOperationPlugin implements OperationPlugin {
     public OperationLoader loader(@NonNull Context context) {
         return new WifiLoader(context);
     }
+
 }

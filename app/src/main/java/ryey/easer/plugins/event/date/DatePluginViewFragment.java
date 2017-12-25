@@ -56,7 +56,7 @@ public class DatePluginViewFragment extends PluginViewFragment {
     @Override
     protected void _fill(@NonNull StorageData data) {
         if (data instanceof DateEventData) {
-            setDatePicker(datePicker, (Calendar) data.get());
+            setDatePicker(datePicker, ((DateEventData) data).date);
         }
     }
 

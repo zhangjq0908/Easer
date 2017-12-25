@@ -48,7 +48,7 @@ public class DateSlot extends SelfNotifiableSlot {
     @Override
     public void set(@NonNull EventData data) {
         if (data instanceof DateEventData) {
-            setDate((Calendar) data.get());
+            setDate(((DateEventData) data).date);
             type = data.type();
         } else {
             throw new RuntimeException("illegal data");

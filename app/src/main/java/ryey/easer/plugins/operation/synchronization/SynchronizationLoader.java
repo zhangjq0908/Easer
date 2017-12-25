@@ -33,7 +33,7 @@ public class SynchronizationLoader extends OperationLoader {
 
     @Override
     public boolean _load(@NonNull OperationData data) {
-        Boolean state = (Boolean) data.get();
+        Boolean state = ((SynchronizationOperationData) data).get();
         ContentResolver.setMasterSyncAutomatically(state);
         return true;
     }

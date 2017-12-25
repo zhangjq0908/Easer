@@ -55,7 +55,7 @@ public class NetworkTransmissionPluginViewFragment extends PluginViewFragment {
 
     @Override
     protected void _fill(@NonNull StorageData data) {
-        TransmissionData tdata = (TransmissionData) data.get();
+        TransmissionData tdata = ((NetworkTransmissionOperationData) data).data;
         switch (tdata.protocol) {
             case tcp:
                 rb_tcp.setChecked(true);

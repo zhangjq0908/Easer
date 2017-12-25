@@ -24,7 +24,6 @@ import org.junit.Test;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Calendar;
@@ -35,6 +34,7 @@ import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.storage.backend.UnableToSerializeException;
 import ryey.easer.plugins.event.time.TimeEventData;
+import ryey.easer.plugins.event.time.TimeEventPlugin;
 
 import static org.junit.Assert.assertEquals;
 
@@ -53,12 +53,7 @@ public class EventTest {
         t_event_child.setParentName("myparent");
 //        t_event_child.setActive(false);
         t_event_child.setProfileName("profile1");
-        EventData eventData = new TimeEventData();
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 13);
-        calendar.set(Calendar.MINUTE, 23);
-        eventData.set(calendar);
-        eventData.setType(EventType.after);
+        EventData eventData = new TimeEventPlugin().dataFactory().dummyData();
         t_event_child.setEventData(eventData);
     }
 

@@ -40,12 +40,13 @@ import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.XmlHelper;
+import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
 
 public class WifiEventData extends TypedEventData {
-    private List<String> ssids = new ArrayList<>();
+    List<String> ssids = new ArrayList<>();
 
     {
         default_type = EventType.any;
@@ -55,31 +56,18 @@ public class WifiEventData extends TypedEventData {
     public WifiEventData() {}
 
     public WifiEventData(String ssid) {
-        set(ssid);
+        setFromMultiple(ssid.split("\n"));
     }
 
-    public WifiEventData(String ssid, EventType type) {
-        set(ssid);
-        setType(type);
+    WifiEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
     }
 
-    @NonNull
-    @Override
-    public Object get() {
-        return ssids;
-    }
-
-    @Override
-    public void set(@NonNull Object obj) {
-        if (obj instanceof String) {
-            set(((String) obj).split("\n"));
-        } else if (obj instanceof String[]) {
-            for (String hardware_address : (String[]) obj) {
-                if (!Utils.isBlank(hardware_address))
-                    ssids.add(hardware_address.trim());
-            }
-        } else {
-            throw new RuntimeException("illegal data");
+    private void setFromMultiple(String[] ssids) {
+        this.ssids = new ArrayList<>();
+        for (String hardware_address : ssids) {
+            if (!Utils.isBlank(hardware_address))
+                this.ssids.add(hardware_address.trim());
         }
     }
 
@@ -104,12 +92,23 @@ public class WifiEventData extends TypedEventData {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof WifiEventData))
+            return false;
+        if (!Utils.eEquals(this, (EventData) obj))
+            return false;
+        if (!ssids.equals(((WifiEventData) obj).ssids))
+            return false;
+        return true;
+    }
+
+    @Override
     public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
         if (version == C.VERSION_DEFAULT) {
             String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
-            set(str_data);
+            setFromMultiple(str_data.split("\n"));
         } else {
-            set(XmlHelper.EventHelper.readMultipleSituation(parser));
+            setFromMultiple(XmlHelper.EventHelper.readMultipleSituation(parser));
         }
         EventType type = XmlHelper.EventHelper.readLogic(parser);
         if (version == C.VERSION_DEFAULT) {

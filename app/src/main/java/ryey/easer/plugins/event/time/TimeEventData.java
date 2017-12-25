@@ -36,9 +36,11 @@ import java.util.Calendar;
 import java.util.EnumSet;
 import java.util.Locale;
 
+import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.XmlHelper;
+import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
@@ -56,7 +58,7 @@ public class TimeEventData extends TypedEventData {
         return calendar;
     }
 
-    private Calendar time = null;
+    Calendar time = null;
 
     {
         default_type = EventType.after;
@@ -69,19 +71,8 @@ public class TimeEventData extends TypedEventData {
         this.time = time;
     }
 
-    @NonNull
-    @Override
-    public Object get() {
-        return time;
-    }
-
-    @Override
-    public void set(@NonNull Object obj) {
-        if (obj instanceof Calendar)
-            time = (Calendar) obj;
-        else {
-            throw new RuntimeException("illegal data type");
-        }
+    TimeEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
     }
 
     @Override
@@ -92,10 +83,21 @@ public class TimeEventData extends TypedEventData {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof TimeEventData))
+            return false;
+        if (!Utils.eEquals(this, (EventData) obj))
+            return false;
+        if (!TimeToText(time).equals(TimeToText(((TimeEventData) obj).time)))
+            return false;
+        return true;
+    }
+
+    @Override
     public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
         String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
         try {
-            set(TextToTime(str_data));
+            time = TextToTime(str_data);
             EventType type = XmlHelper.EventHelper.readLogic(parser);
             setType(type);
         } catch (ParseException e) {
@@ -106,7 +108,6 @@ public class TimeEventData extends TypedEventData {
 
     @Override
     public void serialize(XmlSerializer serializer) throws IOException {
-        Calendar time = (Calendar) get();
         if (time != null) {
             XmlHelper.EventHelper.writeSingleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).id(), TimeToText(time));
             XmlHelper.EventHelper.writeLogic(serializer, type());
@@ -118,7 +119,7 @@ public class TimeEventData extends TypedEventData {
         switch (format) {
             default:
                 try {
-                    set(TextToTime(data));
+                    time = TextToTime(data);
                 } catch (ParseException e) {
                     e.printStackTrace();
                     throw new IllegalStorageDataException(e.getMessage());

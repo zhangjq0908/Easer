@@ -40,6 +40,7 @@ import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.XmlHelper;
+import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
@@ -55,27 +56,18 @@ public class BTDeviceEventData extends TypedEventData {
 
     public BTDeviceEventData() {}
 
-    public BTDeviceEventData(String hardware_address) {
-        set(hardware_address);
+    BTDeviceEventData(String[] hardware_addresses) {
+        setMultiple(hardware_addresses);
     }
 
-    @NonNull
-    @Override
-    public Object get() {
-        return hwaddresses;
+    BTDeviceEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
     }
 
-    @Override
-    public void set(@NonNull Object obj) {
-        if (obj instanceof String) {
-            set(((String) obj).split("\n"));
-        } else if (obj instanceof String[]) {
-            for (String hardware_address : (String[]) obj) {
-                if (!Utils.isBlank(hardware_address))
-                    hwaddresses.add(hardware_address.trim());
-            }
-        } else {
-            throw new RuntimeException("illegal data");
+    private void setMultiple(String[] hardware_addresses) {
+        for (String hardware_address : hardware_addresses) {
+            if (!Utils.isBlank(hardware_address))
+                this.hwaddresses.add(hardware_address.trim());
         }
     }
 
@@ -100,12 +92,23 @@ public class BTDeviceEventData extends TypedEventData {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof BTDeviceEventData))
+            return false;
+        if (!Utils.eEquals(this, (EventData) obj))
+            return false;
+        if (!hwaddresses.equals(((BTDeviceEventData) obj).hwaddresses))
+            return false;
+        return true;
+    }
+
+    @Override
     public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
         if (version == C.VERSION_DEFAULT) {
             String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
-            set(str_data);
+            setMultiple(str_data.split("\n"));
         } else {
-            set(XmlHelper.EventHelper.readMultipleSituation(parser));
+            setMultiple(XmlHelper.EventHelper.readMultipleSituation(parser));
         }
         EventType type = XmlHelper.EventHelper.readLogic(parser);
         if (version == C.VERSION_DEFAULT) {

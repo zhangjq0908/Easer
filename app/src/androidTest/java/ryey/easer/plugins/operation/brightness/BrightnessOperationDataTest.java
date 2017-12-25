@@ -6,19 +6,13 @@ import org.junit.Test;
 
 import ryey.easer.plugins.operation.TestHelper;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class BrightnessOperationDataTest {
 
-    public static BrightnessOperationData createDummyData() {
-        BrightnessOperationData dummyData = new BrightnessOperationData();
-        dummyData.set(3);
-        return dummyData;
-    }
-
     @Test
     public void testParcel() {
-        BrightnessOperationData dummyData = createDummyData();
+        BrightnessOperationData dummyData = (BrightnessOperationData) new BrightnessOperationDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         BrightnessOperationData parceledData = BrightnessOperationData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

@@ -21,7 +21,10 @@ package ryey.easer.plugins.operation.ringer_mode;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
+import ryey.easer.commons.C;
+import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.plugins.operation.IntegerOperationData;
 
 public class RingerModeOperationData extends IntegerOperationData {
@@ -36,6 +39,10 @@ public class RingerModeOperationData extends IntegerOperationData {
 
     RingerModeOperationData(Integer state) {
         super(state);
+    }
+
+    RingerModeOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        super(data, format, version);
     }
 
     @Override

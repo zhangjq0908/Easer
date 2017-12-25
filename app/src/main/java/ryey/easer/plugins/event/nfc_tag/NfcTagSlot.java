@@ -46,7 +46,7 @@ public class NfcTagSlot extends AbstractSlot {
             if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)) {
                 Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
                 byte[] tag_id = tag.getId();
-                if (Arrays.equals(tag_id, (byte[]) data.get())) {
+                if (Arrays.equals(tag_id, data.id)) {
                     if (type == is)
                         changeSatisfiedState(true);
                     else

@@ -68,7 +68,7 @@ public class EventPluginViewPager extends ViewPager {
 
     private int getPluginIndex(EventData eventData) {
         for (int i = 0; i < eventPluginList.size(); i++) {
-            if (eventData.getClass() == eventPluginList.get(i).data().getClass())
+            if (eventData.getClass() == eventPluginList.get(i).dataFactory().dataClass())
                 return i;
         }
         throw new IllegalAccessError("Plugin not found???");

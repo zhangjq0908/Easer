@@ -18,14 +18,14 @@ public class ReusableDataTest {
             class IBooleanOperationData extends BooleanOperationData {}
             BooleanOperationData data0 = new IBooleanOperationData();
             data0.set(state);
-            assertEquals(data0.get(), state);
+            assertEquals(data0.state, state);
         }
 
         for (int level : new int[]{-100, 10, 101}) {
             class IIntegerOperationData extends IntegerOperationData {}
             IntegerOperationData data0 = new IIntegerOperationData();
             data0.set(level);
-            assertEquals(data0.get(), level);
+            assertEquals((int) data0.get(), level);
         }
 
         for (String str : new String[]{"mystr1", "mystr2"}) {

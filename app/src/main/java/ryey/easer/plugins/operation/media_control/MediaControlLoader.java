@@ -34,7 +34,7 @@ public class MediaControlLoader extends OperationLoader {
 
     @Override
     public boolean _load(@NonNull OperationData data) {
-        MediaControlOperationData.ControlChoice choice = (MediaControlOperationData.ControlChoice) data.get();
+        MediaControlOperationData.ControlChoice choice = ((MediaControlOperationData) data).choice;
         switch (choice) {
             case play_pause:
                 emitMediaButton(KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE);

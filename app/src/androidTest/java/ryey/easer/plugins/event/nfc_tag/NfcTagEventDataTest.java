@@ -10,15 +10,9 @@ import static org.junit.Assert.assertEquals;
 
 public class NfcTagEventDataTest {
 
-    public static NfcTagEventData createDummyData() {
-        NfcTagEventData dummyData = new NfcTagEventData();
-        dummyData.set("01479362");
-        return dummyData;
-    }
-
     @Test
     public void testParcel() {
-        NfcTagEventData dummyData = createDummyData();
+        NfcTagEventData dummyData = (NfcTagEventData) new NfcTagEventDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         NfcTagEventData parceledData = NfcTagEventData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

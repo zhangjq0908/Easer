@@ -65,10 +65,13 @@ public abstract class PluginViewFragment extends Fragment {
      * Check whether the to-be-filled data is of the correct type.
      */
     private void checkDataType(@NonNull StorageData data) throws IllegalArgumentTypeException {
-        StorageData dummyExpectedData = PluginRegistry.getInstance().all().findPlugin(this).data();
-        if (data.getClass().equals(dummyExpectedData.getClass()))
+        Class<? extends StorageData> expectedDataClass = PluginRegistry.getInstance()
+                .all().findPlugin(this)
+                .dataFactory()
+                .dataClass();
+        if (data.getClass().equals(expectedDataClass))
             return;
-        throw new IllegalArgumentTypeException(data.getClass(), dummyExpectedData.getClass());
+        throw new IllegalArgumentTypeException(data.getClass(), expectedDataClass);
     }
 
     /**

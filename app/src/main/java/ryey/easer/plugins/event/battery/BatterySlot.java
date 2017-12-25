@@ -46,7 +46,7 @@ public class BatterySlot extends AbstractSlot {
 
     @Override
     public void set(@NonNull EventData data) {
-        status = (int) data.get();
+        status = ((BatteryEventData) data).battery_status;
         type = data.type();
     }
 

@@ -173,7 +173,7 @@ public class BTDevicePluginViewFragment extends PluginViewFragment {
     @NonNull
     @Override
     public StorageData getData() throws InvalidDataInputException {
-        return new BTDeviceEventData(editText.getText().toString());
+        return new BTDeviceEventData(editText.getText().toString().split("\n"));
     }
 
     class BTDeviceWrapper {

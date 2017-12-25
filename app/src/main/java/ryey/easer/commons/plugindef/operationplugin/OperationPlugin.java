@@ -45,11 +45,8 @@ public interface OperationPlugin extends PluginDef {
     @IntRange(from = 0)
     int maxExistence();
 
-    /**
-     * {@inheritDoc}
-     */
     @NonNull
-    OperationData data();
+    OperationDataFactory dataFactory();
 
     /**
      * Returns a dummy loader of this plugin.

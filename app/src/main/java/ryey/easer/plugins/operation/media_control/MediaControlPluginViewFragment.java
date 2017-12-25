@@ -56,7 +56,7 @@ public class MediaControlPluginViewFragment extends PluginViewFragment {
     @Override
     protected void _fill(@NonNull StorageData data) {
         if (data instanceof MediaControlOperationData) {
-            MediaControlOperationData.ControlChoice choice = (MediaControlOperationData.ControlChoice) data.get();
+            MediaControlOperationData.ControlChoice choice = ((MediaControlOperationData) data).choice;
             switch (choice) {
                 case play_pause:
                     radioButton_play_pause.setChecked(true);

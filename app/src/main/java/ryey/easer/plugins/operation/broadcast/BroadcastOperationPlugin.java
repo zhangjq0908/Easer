@@ -25,7 +25,7 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
@@ -71,8 +71,9 @@ public class BroadcastOperationPlugin implements OperationPlugin {
 
     @NonNull
     @Override
-    public OperationData data() {
-        return new BroadcastOperationData();
+    public OperationDataFactory dataFactory() {
+        return new BroadcastOperationDataFactory();
+
     }
 
     @NonNull
@@ -86,4 +87,5 @@ public class BroadcastOperationPlugin implements OperationPlugin {
     public OperationLoader loader(@NonNull Context context) {
         return new BroadcastLoader(context);
     }
+
 }

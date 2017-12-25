@@ -6,19 +6,13 @@ import org.junit.Test;
 
 import ryey.easer.plugins.operation.TestHelper;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class BTDeviceEventDataTest {
 
-    public static BTDeviceEventData createDummyData() {
-        BTDeviceEventData dummyData = new BTDeviceEventData();
-        dummyData.set(new String[]{"device1", "dev2"});
-        return dummyData;
-    }
-
     @Test
     public void testParcel() {
-        BTDeviceEventData dummyData = createDummyData();
+        BTDeviceEventData dummyData = (BTDeviceEventData) new BTDeviceEventDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         BTDeviceEventData parceledData = BTDeviceEventData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

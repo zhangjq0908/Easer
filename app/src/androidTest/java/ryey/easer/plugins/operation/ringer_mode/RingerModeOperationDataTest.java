@@ -6,19 +6,13 @@ import org.junit.Test;
 
 import ryey.easer.plugins.operation.TestHelper;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class RingerModeOperationDataTest {
 
-    public static RingerModeOperationData createDummyData() {
-        RingerModeOperationData dummyData = new RingerModeOperationData();
-        dummyData.set(1);
-        return dummyData;
-    }
-
     @Test
     public void testParcel() {
-        RingerModeOperationData dummyData = createDummyData();
+        RingerModeOperationData dummyData = (RingerModeOperationData) new RingerModeOperationDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         RingerModeOperationData parceledData = RingerModeOperationData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

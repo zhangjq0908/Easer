@@ -50,7 +50,7 @@ public class BroadcastPluginViewFragment extends PluginViewFragment {
     @Override
     protected void _fill(@NonNull StorageData data) {
         if (data instanceof BroadcastEventData) {
-            ReceiverSideIntentData intentData = (ReceiverSideIntentData) data.get();
+            ReceiverSideIntentData intentData = ((BroadcastEventData) data).intentData;
             editText_action.setText(Utils.StringListToString(intentData.action));
             editText_category.setText(Utils.StringListToString(intentData.category));
         }

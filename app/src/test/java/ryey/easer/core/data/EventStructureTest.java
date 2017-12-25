@@ -7,6 +7,7 @@ import org.junit.Test;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.wifi.WifiEventData;
+import ryey.easer.plugins.event.wifi.WifiEventPlugin;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -22,9 +23,7 @@ public class EventStructureTest {
 
     @BeforeClass
     public static void setUpAll() {
-        eventData = new WifiEventData();
-        eventData.set("wifiname");
-        eventData.setType(EventType.any);
+        eventData = new WifiEventPlugin().dataFactory().dummyData();
     }
 
     @Before

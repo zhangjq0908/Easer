@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 
 public class BatteryEventPlugin implements EventPlugin {
@@ -40,8 +40,8 @@ public class BatteryEventPlugin implements EventPlugin {
 
     @NonNull
     @Override
-    public EventData data() {
-        return new BatteryEventData();
+    public EventDataFactory dataFactory() {
+        return new BatteryEventDataFactory();
     }
 
     @NonNull
@@ -54,4 +54,5 @@ public class BatteryEventPlugin implements EventPlugin {
     public AbstractSlot slot(Context context) {
         return new BatterySlot(context);
     }
+
 }

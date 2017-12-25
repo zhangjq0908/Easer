@@ -25,7 +25,9 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
@@ -43,14 +45,23 @@ public class ProfileTest {
     public static String t_xml;
     public static ProfileStructure t_profile;
 
+    private static List<String> t_name = new ArrayList<>();
+    private static List<OperationData> t_data = new ArrayList<>();
+
     @BeforeClass
     public static void setUpAll() {
         t_xml = "<?xml version='1.0' encoding='utf-8' standalone='no' ?><profile><name>myTest</name><item spec=\"cellular\"><state>off</state></item><item spec=\"bluetooth\"><state>on</state></item></profile>";
 
+        t_name.add(new CellularOperationPlugin().id());
+        t_data.add(new CellularOperationData(false));
+                t_name.add(new BluetoothOperationPlugin().id());
+        t_data.add(new BluetoothOperationData(true));
+
         t_profile = new ProfileStructure();
         t_profile.setName("myTest");
-        t_profile.set(new CellularOperationPlugin().id(), new CellularOperationData(false));
-        t_profile.set(new BluetoothOperationPlugin().id(), new BluetoothOperationData(true));
+        for (int i = 0; i < t_name.size(); i++) {
+            t_profile.set(t_name.get(i), t_data.get(i));
+        }
     }
 
     @Test
@@ -62,10 +73,10 @@ public class ProfileTest {
         Collection<OperationData> operationDataCollection;
         operationDataCollection = profile.get(new CellularOperationPlugin().id());
         assertEquals(operationDataCollection.size(), 1);
-        assertEquals(operationDataCollection.iterator().next().get(), false);
+        assertEquals(operationDataCollection.iterator().next(), t_data.get(0));
         operationDataCollection = profile.get(new BluetoothOperationPlugin().id());
         assertEquals(operationDataCollection.size(), 1);
-        assertEquals(operationDataCollection.iterator().next().get(), true);
+        assertEquals(operationDataCollection.iterator().next(), t_data.get(1));
         byteArrayInputStream.close();
     }
 

@@ -43,7 +43,9 @@ public class EventPluginViewContainerFragment extends PluginViewContainerFragmen
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.content_pluginview, pluginViewFragment)
                 .commit();
-        EventData dummyData = PluginRegistry.getInstance().event().findPlugin(pluginViewFragment).data();
+        EventData dummyData = PluginRegistry.getInstance().event().findPlugin(pluginViewFragment)
+                .dataFactory()
+                .emptyData();
         fillType(dummyData);
         return v;
     }

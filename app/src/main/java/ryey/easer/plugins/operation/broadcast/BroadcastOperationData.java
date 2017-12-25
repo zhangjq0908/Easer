@@ -36,7 +36,6 @@ import java.util.ArrayList;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
-import ryey.easer.commons.IllegalArgumentTypeException;
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
@@ -54,7 +53,7 @@ public class BroadcastOperationData implements OperationData {
     private static final String VALUE = "value";
     private static final String V_TYPE = "type";
 
-    private IntentData data = new IntentData();
+    IntentData data = new IntentData();
 
     public BroadcastOperationData() {
     }
@@ -63,21 +62,8 @@ public class BroadcastOperationData implements OperationData {
         this.data = data;
     }
 
-    @NonNull
-    @Override
-    public Object get() {
-        return data;
-    }
-
-    @Override
-    public void set(@NonNull Object obj) {
-        if (obj instanceof String) {
-            data.action = (String) obj;
-        } else if (obj instanceof IntentData) {
-            data = (IntentData) obj;
-        } else {
-            throw new IllegalArgumentTypeException(data.getClass(), new Class[]{String.class, IntentData.class});
-        }
+    BroadcastOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
     }
 
     @Override
@@ -122,7 +108,7 @@ public class BroadcastOperationData implements OperationData {
         if (intentData.action == null)
             throw new IllegalStorageDataException(String.format("Illegal Item: (%s) No Action", pname));
 
-        set(intentData);
+        this.data = intentData;
     }
 
     /*
@@ -181,7 +167,10 @@ public class BroadcastOperationData implements OperationData {
                     }
 
                     intentData.type = jsonObject.optString(TYPE, null);
-                    intentData.data = Uri.parse(jsonObject.optString(DATA, null));
+
+                    String uri = jsonObject.optString(DATA, null);
+                    if (uri != null)
+                        intentData.data = Uri.parse(uri);
 
                     JSONArray jsonArray_extras = jsonObject.optJSONArray(EXTRAS);
                     if (jsonArray_extras != null) {

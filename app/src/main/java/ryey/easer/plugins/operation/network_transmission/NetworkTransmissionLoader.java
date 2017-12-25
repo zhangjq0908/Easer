@@ -41,7 +41,7 @@ public class NetworkTransmissionLoader extends OperationLoader {
 
     @Override
     public boolean _load(@NonNull OperationData data) {
-        TransmissionData tdata = (TransmissionData) data.get();
+        TransmissionData tdata = ((NetworkTransmissionOperationData) data).data;
         try {
             InetAddress remote_address = InetAddress.getByName(tdata.remote_address);
             switch (tdata.protocol) {

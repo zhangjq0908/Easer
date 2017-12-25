@@ -65,7 +65,7 @@ public class DayOfWeekPluginViewFragment extends PluginViewFragment {
     @Override
     protected void _fill(@NonNull StorageData data) {
         if (data instanceof DayOfWeekEventData) {
-            Set<Integer> days = (Set<Integer>) data.get();
+            Set<Integer> days = ((DayOfWeekEventData) data).days;
             for (int day : days) {
                 day_buttons[day].setChecked(true);
             }

@@ -32,8 +32,10 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.EnumSet;
 
+import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.TypedEventData;
 
@@ -42,7 +44,7 @@ public class NfcTagEventData extends TypedEventData {
 
     private static final String K_ID = "id";
 
-    private byte[] id;
+    byte[] id;
 
     {
         default_type = EventType.is;
@@ -72,24 +74,11 @@ public class NfcTagEventData extends TypedEventData {
     public NfcTagEventData() {}
 
     public NfcTagEventData(String id_str) {
-        set(id_str);
+        id = hexString2byteArray(id_str);
     }
 
-    @NonNull
-    @Override
-    public Object get() {
-        return id;
-    }
-
-    @Override
-    public void set(@NonNull Object obj) {
-        if (obj instanceof String) {
-            set(hexString2byteArray((String) obj));
-        } else if (obj instanceof byte[]) {
-            id = (byte[]) obj;
-        } else {
-            throw new RuntimeException("illegal data");
-        }
+    NfcTagEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        parse(data, format, version);
     }
 
     @Override
@@ -107,6 +96,8 @@ public class NfcTagEventData extends TypedEventData {
     @Override
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof NfcTagEventData))
+            return false;
+        if (!Utils.eEquals(this, (EventData) obj))
             return false;
         return Arrays.equals(id, ((NfcTagEventData) obj).id);
     }
