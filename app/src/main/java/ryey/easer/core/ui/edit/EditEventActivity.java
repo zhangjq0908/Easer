@@ -27,7 +27,6 @@ import ryey.easer.core.data.storage.ProfileDataStorage;
 
 /*
  * TODO: change the layout
- *  TODO: change from checkbox to radiobutton
  */
 public class EditEventActivity extends AppCompatActivity {
 

@@ -31,7 +31,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
 public class NetworkTransmissionLoader extends OperationLoader<NetworkTransmissionOperationData> {
@@ -40,8 +40,8 @@ public class NetworkTransmissionLoader extends OperationLoader<NetworkTransmissi
     }
 
     @Override
-    public boolean _load(@NonNull NetworkTransmissionOperationData data) {
-        TransmissionData tdata = ((NetworkTransmissionOperationData) data).data;
+    public boolean load(@ValidData @NonNull NetworkTransmissionOperationData data) {
+        TransmissionData tdata = data.data;
         try {
             InetAddress remote_address = InetAddress.getByName(tdata.remote_address);
             switch (tdata.protocol) {

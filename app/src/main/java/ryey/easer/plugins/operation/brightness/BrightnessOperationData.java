@@ -49,13 +49,14 @@ public class BrightnessOperationData extends IntegerOperationData {
         super(data, format, version);
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
         return super.isValid();
     }
 
     boolean isAuto() {
-        return get() == Integer.valueOf(-1);
+        return get().equals(-1);
     }
 
     public static final Parcelable.Creator<BrightnessOperationData> CREATOR

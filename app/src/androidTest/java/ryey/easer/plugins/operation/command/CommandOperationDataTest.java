@@ -12,7 +12,7 @@ public class CommandOperationDataTest {
 
     @Test
     public void testParcel() {
-        CommandOperationData dummyData = (CommandOperationData) new CommandOperationDataFactory().dummyData();
+        CommandOperationData dummyData = new CommandOperationDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         CommandOperationData parceledData = CommandOperationData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

@@ -23,6 +23,7 @@ public abstract class BooleanData implements StorageData {
         state = obj;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
         if (state == null)
@@ -30,6 +31,7 @@ public abstract class BooleanData implements StorageData {
         return true;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(@Nullable Object obj) {
         if (obj == null)

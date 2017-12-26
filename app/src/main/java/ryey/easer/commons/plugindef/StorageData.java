@@ -84,6 +84,7 @@ public interface StorageData extends Parcelable {
      * Check the data's validity. If not valid, this data won't be loaded and/or saved.
      * @return Whether the data is valid or not.
      */
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     boolean isValid();
 
     /**
@@ -91,5 +92,6 @@ public interface StorageData extends Parcelable {
      * @param o The other object to be compared.
      * @return Whether the two data instances are the same or not.
      */
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     boolean equals(Object o);
 }

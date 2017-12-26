@@ -12,7 +12,7 @@ public class AlarmOperationDataTest {
 
     @Test
     public void testParcel() {
-        AlarmOperationData dummyData = (AlarmOperationData) new AlarmOperationDataFactory().dummyData();
+        AlarmOperationData dummyData = new AlarmOperationDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         AlarmOperationData parceledData = AlarmOperationData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

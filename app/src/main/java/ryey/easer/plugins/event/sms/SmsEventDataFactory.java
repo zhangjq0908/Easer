@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 
 class SmsEventDataFactory implements EventDataFactory<SmsEventData> {
@@ -20,6 +20,7 @@ class SmsEventDataFactory implements EventDataFactory<SmsEventData> {
         return new SmsEventData();
     }
 
+    @ValidData
     @NonNull
     @Override
     public SmsEventData dummyData() {
@@ -31,6 +32,7 @@ class SmsEventDataFactory implements EventDataFactory<SmsEventData> {
         return dummyData;
     }
 
+    @ValidData
     @NonNull
     @Override
     public SmsEventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {

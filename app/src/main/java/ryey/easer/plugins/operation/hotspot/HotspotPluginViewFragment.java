@@ -22,11 +22,12 @@ package ryey.easer.plugins.operation.hotspot;
 import android.support.annotation.NonNull;
 
 import ryey.easer.commons.plugindef.InvalidDataInputException;
-import ryey.easer.commons.plugindef.StorageData;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.plugins.operation.SwitchPluginViewFragment;
 
 public class HotspotPluginViewFragment extends SwitchPluginViewFragment<HotspotOperationData> {
 
+    @ValidData
     @NonNull
     @Override
     public HotspotOperationData getData() throws InvalidDataInputException {

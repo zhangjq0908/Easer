@@ -25,6 +25,7 @@ public abstract class IntegerData implements StorageData {
         this.level = level;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
         if (level == null)
@@ -38,6 +39,7 @@ public abstract class IntegerData implements StorageData {
         return true;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(@Nullable Object obj) {
         if (obj == null)

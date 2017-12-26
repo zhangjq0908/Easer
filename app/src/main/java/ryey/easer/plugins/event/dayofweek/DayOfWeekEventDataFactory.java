@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 
 class DayOfWeekEventDataFactory implements EventDataFactory<DayOfWeekEventData> {
@@ -20,6 +20,7 @@ class DayOfWeekEventDataFactory implements EventDataFactory<DayOfWeekEventData> 
         return new DayOfWeekEventData();
     }
 
+    @ValidData
     @NonNull
     @Override
     public DayOfWeekEventData dummyData() {
@@ -30,6 +31,7 @@ class DayOfWeekEventDataFactory implements EventDataFactory<DayOfWeekEventData> 
         return dummyData;
     }
 
+    @ValidData
     @NonNull
     @Override
     public DayOfWeekEventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {

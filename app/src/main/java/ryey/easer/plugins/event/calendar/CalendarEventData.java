@@ -68,6 +68,7 @@ public class CalendarEventData extends TypedEventData {
         parse(data, format, version);
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
         if (data == null)
@@ -171,6 +172,7 @@ public class CalendarEventData extends TypedEventData {
         return res;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(Object obj) {
         if (obj == this)

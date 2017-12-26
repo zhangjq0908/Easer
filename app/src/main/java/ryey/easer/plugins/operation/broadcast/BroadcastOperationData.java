@@ -236,6 +236,7 @@ public class BroadcastOperationData implements OperationData {
         return res;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
         if (!Utils.isBlank(data.action))
@@ -249,6 +250,7 @@ public class BroadcastOperationData implements OperationData {
         return false;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(Object obj) {
         if (obj == this)

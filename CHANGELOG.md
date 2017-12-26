@@ -1,6 +1,14 @@
 CHANGELOG
 ======
 
+* v0.5.1: Change a bit of plugins' definition (mainly generify and remove unneeded methods) && Add `HeadsetEventPlugin` && Code clean up
+	* Add `DataFactory` (and subclasses) to be used as a wrapper of `StorageData` (and subclasses)
+	* Generify `PluginDef`, `PluginViewFragment`, `DataFactory` (and subclasses) to use their related `StorageData` as the type parameter (so that there is no need to do lots of manual type casting and checking)
+		* Fix classes using them to satisfy generics
+	* Add `HeadsetEventPlugin` to listen to headset plug in and plug out
+	* Remove redundant wrapper (`OperationLoader.load()`)
+	* Add `ValidData` annotation to describe that the data is "valid"
+
 * v0.5: Add Timer and NFC Event & Set alarm Operation && Fix leaked BroadcastListener && Fix "unsatisfied" not triggered && Better UI for settings page
 	* Add `TimerEventPlugin` to set a timer which allows delaying for a few time
 	* Add `NfcTagEventPlugin` to listen to NFC tag being scanned

@@ -12,7 +12,7 @@ public class SynchronizationOperationDataTest {
 
     @Test
     public void testParcel() {
-        SynchronizationOperationData dummyData = (SynchronizationOperationData) new SynchronizationOperationDataFactory().dummyData();
+        SynchronizationOperationData dummyData = new SynchronizationOperationDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         SynchronizationOperationData parceledData = SynchronizationOperationData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

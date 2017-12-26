@@ -12,7 +12,7 @@ public class DateEventDataTest {
 
     @Test
     public void testParcel() {
-        DateEventData dummyData = (DateEventData) new DateEventDataFactory().dummyData();
+        DateEventData dummyData = new DateEventDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         DateEventData parceledData = DateEventData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

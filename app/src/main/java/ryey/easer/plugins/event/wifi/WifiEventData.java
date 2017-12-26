@@ -84,6 +84,7 @@ public class WifiEventData extends TypedEventData {
         return text.toString();
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
         if (ssids.size() == 0)
@@ -91,6 +92,7 @@ public class WifiEventData extends TypedEventData {
         return true;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof WifiEventData))

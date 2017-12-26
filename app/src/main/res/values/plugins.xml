@@ -68,6 +68,16 @@
     <string name="event_nfc_tag__prompt_enable_nfc_first">You need to enable NFC first</string>
     <string name="event_nfc_tag__prompt_wait_for_tag">Waiting for tag to be scanned…</string>
 
+    <string name="event_headset">Headset</string>
+    <string name="event_headset__headset_action">Headset Action</string>
+    <string name="event_headset__plug_in">Plug in</string>
+    <string name="event_headset__plug_out">Plug out</string>
+    <string name="event_headset__plug_any">Any</string>
+    <string name="event_headset__with_microphone">With microphone?</string>
+    <string name="event_headset__microphone_true">Yes</string>
+    <string name="event_headset__microphone_false">No</string>
+    <string name="event_headset__microphone_any">Any</string>
+
     <string name="operation_wifi">WiFi</string>
     <string name="operation_cellular">Mobile data</string>
     <string name="operation_bluetooth">Bluetooth</string>

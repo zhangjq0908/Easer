@@ -24,6 +24,7 @@ public abstract class StringData implements StorageData {
         this.text = text;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
         if (Utils.isBlank(text))
@@ -31,6 +32,7 @@ public abstract class StringData implements StorageData {
         return true;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(@Nullable Object obj) {
         if (obj == null)

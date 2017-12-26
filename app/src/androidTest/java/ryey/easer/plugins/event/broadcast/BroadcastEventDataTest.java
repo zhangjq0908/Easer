@@ -12,7 +12,7 @@ public class BroadcastEventDataTest {
 
     @Test
     public void testParcel() {
-        BroadcastEventData dummyData = (BroadcastEventData) new BroadcastEventDataFactory().dummyData();
+        BroadcastEventData dummyData = new BroadcastEventDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         BroadcastEventData parceledData = BroadcastEventData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

@@ -54,7 +54,7 @@ public abstract class IntegerOperationData extends IntegerData implements Operat
 
     @Override
     public void serialize(XmlSerializer serializer) throws IOException {
-        XmlHelper.OperationHelper.writeInteger(serializer, PluginRegistry.getInstance().operation().findPlugin(this).id(), (Integer) get());
+        XmlHelper.OperationHelper.writeInteger(serializer, PluginRegistry.getInstance().operation().findPlugin(this).id(), get());
     }
 
     @Override

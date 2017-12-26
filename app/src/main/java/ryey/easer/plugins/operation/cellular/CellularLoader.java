@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.plugins.reusable.PluginHelper;
 
@@ -39,8 +39,8 @@ public class CellularLoader extends OperationLoader<CellularOperationData> {
     }
 
     @Override
-    public boolean _load(@NonNull CellularOperationData data) {
-        Boolean state = ((CellularOperationData) data).get();
+    public boolean load(@ValidData @NonNull CellularOperationData data) {
+        Boolean state = data.get();
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         if (state == (telephonyManager.getDataState() == TelephonyManager.DATA_CONNECTED)) {
             return true;

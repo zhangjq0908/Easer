@@ -26,8 +26,8 @@ import android.content.IntentFilter;
 import android.support.annotation.NonNull;
 
 import ryey.easer.commons.IllegalArgumentTypeException;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 public class BroadcastConnSlot extends AbstractSlot<BroadcastEventData> {
@@ -53,23 +53,19 @@ public class BroadcastConnSlot extends AbstractSlot<BroadcastEventData> {
     }
 
     @Override
-    public void set(@NonNull BroadcastEventData data) {
-        if (data instanceof BroadcastEventData) {
-            intentData = ((BroadcastEventData) data).intentData;
-            type = data.type();
-            filter = new IntentFilter();
-            if (intentData.action != null) {
-                for (String action : intentData.action) {
-                    filter.addAction(action);
-                }
+    public void set(@ValidData @NonNull BroadcastEventData data) {
+        intentData = data.intentData;
+        type = data.type();
+        filter = new IntentFilter();
+        if (intentData.action != null) {
+            for (String action : intentData.action) {
+                filter.addAction(action);
             }
-            if (intentData.category != null) {
-                for (String category : intentData.category) {
-                    filter.addCategory(category);
-                }
+        }
+        if (intentData.category != null) {
+            for (String category : intentData.category) {
+                filter.addCategory(category);
             }
-        } else {
-            throw new IllegalArgumentTypeException(data.getClass(), BroadcastEventData.class);
         }
     }
 

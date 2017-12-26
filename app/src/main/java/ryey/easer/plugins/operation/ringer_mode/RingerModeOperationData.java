@@ -45,6 +45,7 @@ public class RingerModeOperationData extends IntegerOperationData {
         super(data, format, version);
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
         return super.isValid();

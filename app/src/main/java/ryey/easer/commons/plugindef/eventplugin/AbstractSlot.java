@@ -25,6 +25,8 @@ import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 
+import ryey.easer.commons.plugindef.ValidData;
+
 /**
  * Slots are used to tell the current state of the relevant Event plugin.
  * Slots also carry the duty to receive the relevant signals (e.g. Intent broadcasts of Android) and notify the holder to proceed to check.
@@ -74,7 +76,7 @@ public abstract class AbstractSlot<T extends EventData> {
      * Set the trigger to be ready to receive the relevant Event.
      * The trigger will start functioning after {@link #listen()} is called.
      */
-    public abstract void set(@NonNull T data);
+    public abstract void set(@ValidData @NonNull T data);
 
     /**
      * FIXME: Not sure if this methods is really needed.

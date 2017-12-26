@@ -12,7 +12,7 @@ public class SmsEventDataTest {
 
     @Test
     public void testParcel() {
-        SmsEventData dummyData = (SmsEventData) new SmsEventDataFactory().dummyData();
+        SmsEventData dummyData = new SmsEventDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         SmsEventData parceledData = SmsEventData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

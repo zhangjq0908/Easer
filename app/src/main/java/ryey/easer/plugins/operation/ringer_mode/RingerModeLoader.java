@@ -27,7 +27,7 @@ import android.support.annotation.RequiresApi;
 
 import com.orhanobut.logger.Logger;
 
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
 public class RingerModeLoader extends OperationLoader<RingerModeOperationData> {
@@ -36,10 +36,8 @@ public class RingerModeLoader extends OperationLoader<RingerModeOperationData> {
     }
 
     @Override
-    public boolean _load(@NonNull RingerModeOperationData data) {
-        Integer mode = ((RingerModeOperationData) data).get();
-        if (mode == null)
-            return true;
+    public boolean load(@ValidData @NonNull RingerModeOperationData data) {
+        Integer mode = data.get();
         AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         if (mode == AudioManager.RINGER_MODE_SILENT && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             audioManager.setRingerMode(mode);

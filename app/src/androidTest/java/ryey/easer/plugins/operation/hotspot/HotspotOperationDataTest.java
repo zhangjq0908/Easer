@@ -12,7 +12,7 @@ public class HotspotOperationDataTest {
 
     @Test
     public void testParcel() {
-        HotspotOperationData dummyData = (HotspotOperationData) new HotspotOperationDataFactory().dummyData();
+        HotspotOperationData dummyData = new HotspotOperationDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         HotspotOperationData parceledData = HotspotOperationData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

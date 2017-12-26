@@ -12,7 +12,7 @@ public class NfcTagEventDataTest {
 
     @Test
     public void testParcel() {
-        NfcTagEventData dummyData = (NfcTagEventData) new NfcTagEventDataFactory().dummyData();
+        NfcTagEventData dummyData = new NfcTagEventDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         NfcTagEventData parceledData = NfcTagEventData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

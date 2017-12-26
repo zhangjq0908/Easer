@@ -62,6 +62,7 @@ public class BroadcastEventData extends TypedEventData {
         parse(data, format, version);
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
         if (intentData.action != null && intentData.category != null)
@@ -132,6 +133,7 @@ public class BroadcastEventData extends TypedEventData {
         return res;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(Object obj) {
         if (obj == this)

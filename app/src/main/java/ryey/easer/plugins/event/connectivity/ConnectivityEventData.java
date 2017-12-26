@@ -101,6 +101,7 @@ public class ConnectivityEventData extends TypedEventData {
         return res;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
         if (connectivity_type.size() > 0)
@@ -108,6 +109,7 @@ public class ConnectivityEventData extends TypedEventData {
         return false;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof ConnectivityEventData))

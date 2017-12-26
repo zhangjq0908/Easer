@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 
 class HotspotOperationDataFactory implements OperationDataFactory<HotspotOperationData> {
@@ -20,6 +20,7 @@ class HotspotOperationDataFactory implements OperationDataFactory<HotspotOperati
         return new HotspotOperationData();
     }
 
+    @ValidData
     @NonNull
     @Override
     public HotspotOperationData dummyData() {
@@ -28,6 +29,7 @@ class HotspotOperationDataFactory implements OperationDataFactory<HotspotOperati
         return dummyData;
     }
 
+    @ValidData
     @NonNull
     @Override
     public HotspotOperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {

@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 
 class NetworkTransmissionOperationDataFactory implements OperationDataFactory<NetworkTransmissionOperationData> {
@@ -20,6 +20,7 @@ class NetworkTransmissionOperationDataFactory implements OperationDataFactory<Ne
         return new NetworkTransmissionOperationData();
     }
 
+    @ValidData
     @NonNull
     @Override
     public NetworkTransmissionOperationData dummyData() {
@@ -32,6 +33,7 @@ class NetworkTransmissionOperationDataFactory implements OperationDataFactory<Ne
         return dummyData;
     }
 
+    @ValidData
     @NonNull
     @Override
     public NetworkTransmissionOperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {

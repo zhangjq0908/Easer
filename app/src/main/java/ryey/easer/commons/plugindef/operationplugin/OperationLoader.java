@@ -24,6 +24,8 @@ import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 
+import ryey.easer.commons.plugindef.ValidData;
+
 /**
  * Loader of a operation plugin.
  * Used to perform relevant action given the data (configuration).
@@ -35,19 +37,9 @@ public abstract class OperationLoader<T extends OperationData> {
         this.context = context;
     }
 
-    public boolean load(@NonNull T data) {
-        if (!data.isValid()) {
-            Logger.wtf("OperationData <%s> is not valid", data);
-            return false;
-        }
-        boolean ret = _load(data);
-        Logger.d("operation data %sloaded", ret ? "" : "not ");
-        return ret;
-    }
-
     /**
      * Load the operation given its data.
      * @return whether the load is successful or not.
      */
-    protected abstract boolean _load(@NonNull T data);
+    public abstract boolean load(@ValidData @NonNull T data);
 }

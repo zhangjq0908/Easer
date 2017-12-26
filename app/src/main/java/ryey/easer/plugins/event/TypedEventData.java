@@ -48,6 +48,7 @@ public abstract class TypedEventData implements EventData {
         return equals(obj);
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof TypedEventData))

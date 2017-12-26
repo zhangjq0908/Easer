@@ -33,7 +33,7 @@ import android.widget.RadioGroup;
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.StorageData;
+import ryey.easer.commons.plugindef.ValidData;
 
 import static android.widget.LinearLayout.HORIZONTAL;
 
@@ -84,8 +84,8 @@ public class RingerModePluginViewFragment extends PluginViewFragment<RingerModeO
     }
 
     @Override
-    protected void _fill(@NonNull RingerModeOperationData data) {
-        Integer item = ((RingerModeOperationData) data).get();
+    protected void _fill(@ValidData @NonNull RingerModeOperationData data) {
+        Integer item = data.get();
         for (int i = 0; i < radioButtons.length; i++) {
             if (item == values[i]) {
                 radioButtons[i].setChecked(true);
@@ -94,6 +94,7 @@ public class RingerModePluginViewFragment extends PluginViewFragment<RingerModeO
         }
     }
 
+    @ValidData
     @NonNull
     @Override
     public RingerModeOperationData getData() throws InvalidDataInputException {

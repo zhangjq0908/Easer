@@ -54,7 +54,7 @@ public abstract class StringOperationData extends StringData implements Operatio
 
     @Override
     public void serialize(XmlSerializer serializer) throws IOException {
-        XmlHelper.OperationHelper.writeString(serializer, PluginRegistry.getInstance().operation().findPlugin(this).id(), (String) get());
+        XmlHelper.OperationHelper.writeString(serializer, PluginRegistry.getInstance().operation().findPlugin(this).id(), get());
     }
 
     @Override
@@ -71,7 +71,7 @@ public abstract class StringOperationData extends StringData implements Operatio
         String res;
         switch (format) {
             default:
-                res = (String) get();
+                res = get();
         }
         return res;
     }

@@ -29,8 +29,8 @@ import android.support.annotation.NonNull;
 
 import java.util.Arrays;
 
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 import static ryey.easer.commons.plugindef.eventplugin.EventType.is;
@@ -72,13 +72,9 @@ public class NfcTagSlot extends AbstractSlot<NfcTagEventData> {
     }
 
     @Override
-    public void set(@NonNull NfcTagEventData data) {
-        if (data instanceof NfcTagEventData) {
-            this.data = (NfcTagEventData) data;
-            type = data.type();
-        } else {
-            throw new RuntimeException("illegal data");
-        }
+    public void set(@ValidData @NonNull NfcTagEventData data) {
+        this.data = data;
+        type = data.type();
     }
 
     @Override

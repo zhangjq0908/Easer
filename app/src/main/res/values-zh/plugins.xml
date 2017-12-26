@@ -64,6 +64,16 @@
     <string name="event_nfc_tag__button_detect">檢測標籤</string>
     <string name="event_nfc_tag__prompt_enable_nfc_first">你需要先打開NFC</string>
     <string name="event_nfc_tag__prompt_wait_for_tag">等待標籤被掃描中…</string>
+
+    <string name="event_headset">耳機</string>
+    <string name="event_headset__headset_action">設備事件</string>
+    <string name="event_headset__plug_in">插入</string>
+    <string name="event_headset__plug_out">拔出</string>
+    <string name="event_headset__plug_any">任意</string>
+    <string name="event_headset__with_microphone">帶有麥克風？</string>
+    <string name="event_headset__microphone_true">帶有</string>
+    <string name="event_headset__microphone_false">不帶有</string>
+    <string name="event_headset__microphone_any">均可</string>
     
     <string name="operation_bluetooth">藍牙</string>
 

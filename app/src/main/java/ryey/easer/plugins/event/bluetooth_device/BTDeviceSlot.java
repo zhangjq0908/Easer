@@ -28,8 +28,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.annotation.NonNull;
 
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 public class BTDeviceSlot extends AbstractSlot<BTDeviceEventData> {
@@ -71,8 +71,8 @@ public class BTDeviceSlot extends AbstractSlot<BTDeviceEventData> {
     }
 
     @Override
-    public void set(@NonNull BTDeviceEventData data) {
-        this.data = (BTDeviceEventData) data;
+    public void set(@ValidData @NonNull BTDeviceEventData data) {
+        this.data = data;
         type = data.type();
     }
 

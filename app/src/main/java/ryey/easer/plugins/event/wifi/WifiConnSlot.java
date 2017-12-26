@@ -31,8 +31,8 @@ import android.support.annotation.NonNull;
 import com.orhanobut.logger.Logger;
 
 import ryey.easer.commons.IllegalArgumentTypeException;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 public class WifiConnSlot extends AbstractSlot<WifiEventData> {
@@ -72,13 +72,9 @@ public class WifiConnSlot extends AbstractSlot<WifiEventData> {
     }
 
     @Override
-    public void set(@NonNull WifiEventData data) {
-        if (data instanceof WifiEventData) {
-            this.data = (WifiEventData) data;
-            type = data.type();
-        } else {
-            throw new IllegalArgumentTypeException(data.getClass(), WifiEventData.class);
-        }
+    public void set(@ValidData @NonNull WifiEventData data) {
+        this.data = data;
+        type = data.type();
     }
 
     @Override

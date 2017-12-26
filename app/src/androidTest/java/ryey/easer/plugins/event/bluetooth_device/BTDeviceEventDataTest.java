@@ -12,7 +12,7 @@ public class BTDeviceEventDataTest {
 
     @Test
     public void testParcel() {
-        BTDeviceEventData dummyData = (BTDeviceEventData) new BTDeviceEventDataFactory().dummyData();
+        BTDeviceEventData dummyData = new BTDeviceEventDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         BTDeviceEventData parceledData = BTDeviceEventData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

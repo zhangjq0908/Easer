@@ -12,7 +12,7 @@ public class WifiOperationDataTest {
 
     @Test
     public void testParcel() {
-        WifiOperationData dummyData = (WifiOperationData) new WifiOperationDataFactory().dummyData();
+        WifiOperationData dummyData = new WifiOperationDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         WifiOperationData parceledData = WifiOperationData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

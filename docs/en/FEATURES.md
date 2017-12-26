@@ -15,6 +15,7 @@ Supported Features
 * Incoming Notifications
 * Timer (Delay a while)
 * NFC tag scanned
+* Headset plug in/out
 
 ### Operation
 * WiFi switch

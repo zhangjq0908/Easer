@@ -95,6 +95,7 @@ public class SendNotificationOperationData implements OperationData {
         return res;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
         if (notificationContent == null)
@@ -106,6 +107,7 @@ public class SendNotificationOperationData implements OperationData {
         return true;
     }
 
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(Object obj) {
         if (obj == null)

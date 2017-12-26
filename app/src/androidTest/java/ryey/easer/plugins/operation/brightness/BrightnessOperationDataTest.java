@@ -12,7 +12,7 @@ public class BrightnessOperationDataTest {
 
     @Test
     public void testParcel() {
-        BrightnessOperationData dummyData = (BrightnessOperationData) new BrightnessOperationDataFactory().dummyData();
+        BrightnessOperationData dummyData = new BrightnessOperationDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         BrightnessOperationData parceledData = BrightnessOperationData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

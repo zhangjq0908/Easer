@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import java.text.ParseException;
@@ -96,5 +97,13 @@ public class Utils {
             return false;
         } else
             return true;
+    }
+
+    public static int checkedIndexFirst(CompoundButton[] buttons) {
+        for (int i = 0; i < buttons.length; i++) {
+            if (buttons[i].isChecked())
+                return i;
+        }
+        throw new IllegalStateException("At least one button should be checked");
     }
 }

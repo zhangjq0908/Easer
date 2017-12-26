@@ -21,7 +21,6 @@ import java.util.List;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
-import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.core.data.ProfileStructure;
@@ -128,8 +127,7 @@ public class EditProfileActivity extends AppCompatActivity implements OperationS
             Collection<OperationData> possibleOperationData = profile.get(plugins.get(i).id());
             if (possibleOperationData != null) {
                 for (OperationData operationData : possibleOperationData) {
-                    PluginViewContainerFragment fragment = addPluginView(new OperationPlugin[]{plugins.get(i)})[0];
-                    fragment.fill(operationData);
+                    addAndFillPluginView(plugins.get(i), operationData);
                 }
             }
         }
@@ -142,21 +140,14 @@ public class EditProfileActivity extends AppCompatActivity implements OperationS
             if (!fragment.isEnabled())
                 continue;
             try {
-                StorageData data = fragment.getData();
-                if (data instanceof OperationData) {
-                    if (data.isValid()) {
-                        fragment.setHighlight(false);
-                        profile.set(PluginRegistry.getInstance().operation().findPlugin((OperationData) data).id(), (OperationData) data);
-                    } else {
-                        fragment.setHighlight(true);
-                        return null;
-                    }
-                } else {
-                    Logger.wtf("data of plugin's Layout is not instance of OperationData");
-                    throw new IllegalStateException("data of plugin's Layout is not instance of OperationData");
-                }
+                OperationData data = fragment.getData();
+                if (!data.isValid())
+                    throw new InvalidDataInputException();
+                fragment.setHighlight(false);
+                profile.set(PluginRegistry.getInstance().operation().findPlugin(data).id(), data);
             } catch (InvalidDataInputException e) {
-
+                fragment.setHighlight(true);
+                return null;
             }
         }
 
@@ -208,6 +199,16 @@ public class EditProfileActivity extends AppCompatActivity implements OperationS
         }
         operationViewList.clear();
         transaction.commit();
+    }
+
+    synchronized <T extends OperationData> void addAndFillPluginView(OperationPlugin<T> plugin, T data) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        ProfilePluginViewContainerFragment<T> fragment = ProfilePluginViewContainerFragment.createInstance(plugin.view());
+        transaction.add(R.id.layout_profiles, fragment, plugin.id());
+        operationViewList.add(fragment);
+        operationSelectorFragment.addSelectedPlugin(plugin);
+        transaction.commit();
+        fragment.fill(data);
     }
 
     synchronized PluginViewContainerFragment[] addPluginView(OperationPlugin[] plugins) {

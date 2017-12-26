@@ -12,7 +12,7 @@ public class NotificationEventDataTest {
 
     @Test
     public void testParcel() {
-        NotificationEventData dummyData = (NotificationEventData) new NotificationEventDataFactory().dummyData();
+        NotificationEventData dummyData = new NotificationEventDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         NotificationEventData parceledData = NotificationEventData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

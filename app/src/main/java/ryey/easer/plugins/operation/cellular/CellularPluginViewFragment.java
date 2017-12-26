@@ -22,11 +22,12 @@ package ryey.easer.plugins.operation.cellular;
 import android.support.annotation.NonNull;
 
 import ryey.easer.commons.plugindef.InvalidDataInputException;
-import ryey.easer.commons.plugindef.StorageData;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.plugins.operation.SwitchPluginViewFragment;
 
 public class CellularPluginViewFragment extends SwitchPluginViewFragment<CellularOperationData> {
 
+    @ValidData
     @NonNull
     @Override
     public CellularOperationData getData() throws InvalidDataInputException {

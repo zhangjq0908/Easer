@@ -12,7 +12,7 @@ public class AirplaneModeOperationDataTest {
 
     @Test
     public void testParcel() {
-        AirplaneModeOperationData dummyData = (AirplaneModeOperationData) new AirplaneModeOperationDataFactory().dummyData();
+        AirplaneModeOperationData dummyData = new AirplaneModeOperationDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         AirplaneModeOperationData parceledData = AirplaneModeOperationData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);

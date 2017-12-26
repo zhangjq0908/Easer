@@ -12,7 +12,7 @@ public class CellularOperationDataTest {
 
     @Test
     public void testParcel() {
-        CellularOperationData dummyData = (CellularOperationData) new CellularOperationDataFactory().dummyData();
+        CellularOperationData dummyData = new CellularOperationDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         CellularOperationData parceledData = CellularOperationData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);
