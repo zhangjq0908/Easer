@@ -20,7 +20,9 @@
 package ryey.easer.plugins.event.nfc_tag;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -60,6 +62,7 @@ public class NfcTagPluginViewFragment extends PluginViewFragment<NfcTagEventData
         view.findViewById(R.id.button_wait_for_device).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                enableWaiterActivity();
                 Intent intent = new Intent(getActivity(), WaitForNfcActivity.class);
                 startActivityForResult(intent, REQCODE_WAIT_FOR_TAG);
             }
@@ -78,5 +81,12 @@ public class NfcTagPluginViewFragment extends PluginViewFragment<NfcTagEventData
     @Override
     public NfcTagEventData getData() throws InvalidDataInputException {
         return new NfcTagEventData(editText.getText().toString());
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    private void enableWaiterActivity() {
+        PackageManager pm = getContext().getPackageManager();
+        pm.setComponentEnabledSetting(new ComponentName(getContext(), WaitForNfcActivity.class),
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
     }
 }

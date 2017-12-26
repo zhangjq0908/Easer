@@ -3,8 +3,10 @@ package ryey.easer.plugins.event.nfc_tag;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.os.Bundle;
@@ -56,6 +58,19 @@ public class WaitForNfcActivity extends Activity {
         if (mAdapter != null) {
             mAdapter.disableForegroundDispatch(this);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        disableWaiterActivity();
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    private void disableWaiterActivity() {
+        PackageManager pm = getPackageManager();
+        pm.setComponentEnabledSetting(new ComponentName(this, WaitForNfcActivity.class),
+                PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
     }
 
     @Override

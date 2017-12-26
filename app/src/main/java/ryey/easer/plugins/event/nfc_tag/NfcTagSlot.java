@@ -19,12 +19,12 @@
 
 package ryey.easer.plugins.event.nfc_tag;
 
-import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.nfc.NfcAdapter;
+import android.content.ServiceConnection;
 import android.nfc.Tag;
+import android.os.IBinder;
 import android.support.annotation.NonNull;
 
 import java.util.Arrays;
@@ -39,29 +39,22 @@ public class NfcTagSlot extends AbstractSlot<NfcTagEventData> {
     private NfcTagEventData data = null;
     private EventType type = null;
 
-    private final BroadcastReceiver connReceiver = new BroadcastReceiver() {
+    private NfcListenerService.NLSBinder sBinder;
+
+    private final Intent sIntent = new Intent(context, NfcListenerService.class);
+    private final ServiceConnection mConnection = new ServiceConnection() {
         @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)) {
-                Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
-                byte[] tag_id = tag.getId();
-                if (Arrays.equals(tag_id, data.id)) {
-                    if (type == is)
-                        changeSatisfiedState(true);
-                    else
-                        changeSatisfiedState(false);
-                } else {
-                    if (type == is)
-                        changeSatisfiedState(false);
-                    else
-                        changeSatisfiedState(true);
-                }
-            }
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            sBinder = (NfcListenerService.NLSBinder) iBinder;
+            sBinder.registerSlot(NfcTagSlot.this);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+            sBinder.unregisterSlot(NfcTagSlot.this);
+            sBinder = null;
         }
     };
-
-    private final IntentFilter filter = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED);
 
     {
         setRetriggerable(true);
@@ -79,15 +72,30 @@ public class NfcTagSlot extends AbstractSlot<NfcTagEventData> {
 
     @Override
     public void listen() {
-        context.registerReceiver(connReceiver, filter);
+        context.bindService(sIntent, mConnection, Context.BIND_AUTO_CREATE);
     }
 
     @Override
     public void cancel() {
-        context.unregisterReceiver(connReceiver);
+        context.unbindService(mConnection);
     }
 
     @Override
     public void check() {
+    }
+
+    void checkAndTrigger(final Tag tag) {
+        byte[] tag_id = tag.getId();
+        if (Arrays.equals(tag_id, data.id)) {
+            if (type == is)
+                changeSatisfiedState(true);
+            else
+                changeSatisfiedState(false);
+        } else {
+            if (type == is)
+                changeSatisfiedState(false);
+            else
+                changeSatisfiedState(true);
+        }
     }
 }

@@ -91,13 +91,32 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".plugins.event.nfc_tag.WaitForNfcActivity"
-            android:theme="@style/AppTheme.ActivityDialog">
+        <activity
+            android:name=".plugins.event.nfc_tag.WaitForNfcActivity"
+            android:theme="@style/AppTheme.ActivityDialog"
+            android:enabled="false">
             <intent-filter>
-                <action android:name="android.nfc.action.TAG_DISCOVERED"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.nfc.action.TAG_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".plugins.event.nfc_tag.NfcListenerActivity">
+            <intent-filter>
+                <action android:name="android.nfc.action.TAG_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".plugins.event.nfc_tag.NfcListenerService"
+            android:enabled="true"
+            android:exported="false">
+
+        </service>
     </application>
 
 </manifest>
