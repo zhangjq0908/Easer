@@ -43,6 +43,7 @@ import ryey.easer.plugins.event.celllocation.CellLocationEventPlugin;
 import ryey.easer.plugins.event.connectivity.ConnectivityEventPlugin;
 import ryey.easer.plugins.event.date.DateEventPlugin;
 import ryey.easer.plugins.event.dayofweek.DayOfWeekEventPlugin;
+import ryey.easer.plugins.event.headset.HeadsetEventPlugin;
 import ryey.easer.plugins.event.nfc_tag.NfcTagEventPlugin;
 import ryey.easer.plugins.event.notification.NotificationEventPlugin;
 import ryey.easer.plugins.event.sms.SmsEventPlugin;
@@ -97,6 +98,7 @@ final public class PluginRegistry {
         event().registerPlugin(NotificationEventPlugin.class);
         event().registerPlugin(TimerEventPlugin.class);
         event().registerPlugin(NfcTagEventPlugin.class);
+        event().registerPlugin(HeadsetEventPlugin.class);
 
         operation().registerPlugin(WifiOperationPlugin.class);
         operation().registerPlugin(CellularOperationPlugin.class);
