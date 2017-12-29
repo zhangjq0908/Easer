@@ -10,7 +10,9 @@ import android.widget.Toast;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -64,6 +66,24 @@ public class Utils {
             list.add(num.toString());
         }
         return list;
+    }
+
+    public static String StringCollectionToString(@NonNull Collection<String> collection, boolean trailing) {
+        StringBuilder text = new StringBuilder();
+        boolean is_first = true;
+        Iterator<String> iter = collection.iterator();
+        for (; iter.hasNext();) {
+            String trimmed = iter.next().trim();
+            if (!trimmed.isEmpty()) {
+                if (!is_first)
+                    text.append("\n");
+                text.append(trimmed);
+                is_first = false;
+            }
+        }
+        if (trailing)
+            text.append("\n");
+        return text.toString();
     }
 
     public static String StringListToString(List<String> category) {

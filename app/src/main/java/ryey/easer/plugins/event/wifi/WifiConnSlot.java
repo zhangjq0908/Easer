@@ -30,7 +30,6 @@ import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 
-import ryey.easer.commons.IllegalArgumentTypeException;
 import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
@@ -102,9 +101,14 @@ public class WifiConnSlot extends AbstractSlot<WifiEventData> {
     }
 
     private boolean compare(WifiInfo wifiInfo) {
-        String ssid = wifiInfo.getSSID();
-        if (ssid.startsWith("\"")) {
-            ssid = ssid.substring(1, ssid.length() - 1);
+        String ssid;
+        if (data.mode_essid) {
+            ssid = wifiInfo.getSSID();
+            if (ssid.startsWith("\"")) {
+                ssid = ssid.substring(1, ssid.length() - 1);
+            }
+        } else {
+            ssid = wifiInfo.getBSSID();
         }
         return data.match(ssid);
     }
