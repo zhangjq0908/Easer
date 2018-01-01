@@ -71,9 +71,8 @@ public class Utils {
     public static String StringCollectionToString(@NonNull Collection<String> collection, boolean trailing) {
         StringBuilder text = new StringBuilder();
         boolean is_first = true;
-        Iterator<String> iter = collection.iterator();
-        for (; iter.hasNext();) {
-            String trimmed = iter.next().trim();
+        for (String line : collection) {
+            String trimmed = line.trim();
             if (!trimmed.isEmpty()) {
                 if (!is_first)
                     text.append("\n");
@@ -81,20 +80,8 @@ public class Utils {
                 is_first = false;
             }
         }
-        if (trailing)
+        if (!is_first && trailing)
             text.append("\n");
-        return text.toString();
-    }
-
-    public static String StringListToString(List<String> category) {
-        StringBuilder text = new StringBuilder();
-        if (category != null) {
-            for (String line : category) {
-                String trimmed = line.trim();
-                if (!trimmed.isEmpty())
-                    text.append(trimmed).append('\n');
-            }
-        }
         return text.toString();
     }
 

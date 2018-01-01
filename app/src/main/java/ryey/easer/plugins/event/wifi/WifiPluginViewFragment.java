@@ -131,7 +131,7 @@ public class WifiPluginViewFragment extends PluginViewFragment<WifiEventData> {
     @Override
     protected void _fill(@ValidData @NonNull WifiEventData data) {
         rb_match_essid.setChecked(data.mode_essid);
-        editText_ssid.setText(Utils.StringCollectionToString(new ArrayList<>(data.ssids), false));
+        editText_ssid.setText(Utils.StringCollectionToString(data.ssids, false));
     }
 
     @ValidData

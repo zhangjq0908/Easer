@@ -130,7 +130,7 @@ public class BroadcastOperationData implements OperationData {
 
         if (data.category != null && !data.category.isEmpty()) {
             serializer.startTag(ns, CATEGORY);
-            serializer.text(Utils.StringListToString(data.category));
+            serializer.text(Utils.StringCollectionToString(data.category, false));
             serializer.endTag(ns, CATEGORY);
         }
 
