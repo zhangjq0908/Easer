@@ -30,6 +30,7 @@ import android.os.PatternMatcher;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -62,7 +63,8 @@ final class Lotus {
     private AbstractSlot mSlot;
     private List<Lotus> subs = new ArrayList<>();
 
-    private boolean analyzing = false;
+    private final long cooldownInMillisecond;
+    private Calendar lastSatisfied;
 
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
@@ -99,6 +101,8 @@ final class Lotus {
 
         mSlot = dataToSlot(eventTree.getEvent());
         mSlot.register(notifyLotusIntent, notifyLotusUnsatisfiedIntent);
+
+        cooldownInMillisecond = SettingsHelper.coolDownInterval(context);
     }
 
     private <T extends EventData> AbstractSlot<T> dataToSlot(T data) {
@@ -130,14 +134,21 @@ final class Lotus {
 
     private synchronized void onSlotSatisfied() {
         Logger.i("event <%s> satisfied", eventTree.getName());
-        if (!analyzing) {
-            analyzing = true;
-            if (mSlot.canPromoteSub()) {
-                triggerAndPromote();
-            } else {
-                traverseAndTrigger(eventTree, false);
+        if (cooldownInMillisecond > 0) {
+            Calendar now = Calendar.getInstance();
+            if (lastSatisfied != null) {
+                if (now.getTimeInMillis() - lastSatisfied.getTimeInMillis() < cooldownInMillisecond) {
+                    Logger.d("event <%s> is within cooldown time");
+                    return;
+                }
             }
-            analyzing = false;
+            Logger.d("event <%s> is not within cooldown time");
+            lastSatisfied = now;
+        }
+        if (mSlot.canPromoteSub()) {
+            triggerAndPromote();
+        } else {
+            traverseAndTrigger(eventTree, false);
         }
     }
 

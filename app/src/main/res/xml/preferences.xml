@@ -27,6 +27,14 @@
             android:key="@string/key_pref_use_root"
             android:summary="@string/pref_use_root_summary"
             android:title="@string/pref_use_root_title" />
+        <EditTextPreference
+            android:defaultValue="3"
+            android:inputType="number"
+            android:key="@string/key_pref_cooldown"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:summary="@string/pref_cooldown_summary"
+            android:title="@string/pref_cooldown_title" />
         <Preference
             android:key="@string/key_pref_plugins"
             android:summary="@string/pref_enabled_plugins_summary"

@@ -7,6 +7,7 @@
     <string name="key_pref_import" translatable="false">preference_import</string>
     <string name="key_pref_version" translatable="false">preference_version</string>
     <string name="key_pref_use_root" translatable="false">preference_use_root</string>
+    <string name="key_pref_cooldown" translatable="false">preference_cool_down_time</string>
     <string name="key_pref_plugins" translatable="false">preference_plugins</string>
     <string name="key_pref_enabled_operation_plugins" translatable="false">preference_enabled_operation_plugins</string>
     <string name="key_pref_enabled_event_plugins" translatable="false">preference_enabled_event_plugins</string>
