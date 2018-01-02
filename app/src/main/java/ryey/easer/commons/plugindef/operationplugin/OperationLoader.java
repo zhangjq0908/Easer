@@ -22,8 +22,6 @@ package ryey.easer.commons.plugindef.operationplugin;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.orhanobut.logger.Logger;
-
 import ryey.easer.commons.plugindef.ValidData;
 
 /**

@@ -23,7 +23,6 @@ import android.app.AlarmManager;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.IllegalArgumentTypeException;
 import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.SelfNotifiableSlot;

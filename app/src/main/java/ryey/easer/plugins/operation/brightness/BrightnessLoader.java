@@ -23,7 +23,6 @@ import android.content.Context;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.IllegalArgumentTypeException;
 import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 
