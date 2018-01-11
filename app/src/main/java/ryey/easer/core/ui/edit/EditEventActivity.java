@@ -21,6 +21,7 @@ import java.util.List;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
+import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.storage.EventDataStorage;
 import ryey.easer.core.data.storage.ProfileDataStorage;
@@ -174,7 +175,8 @@ public class EditEventActivity extends AppCompatActivity {
 
         isActive = event.isActive();
 
-        mViewPager.setEventData(event.getEventData());
+        EventData eventData = event.getScenario().getEventData();
+        mViewPager.setEventData(eventData);
     }
 
     protected EventStructure saveToEvent() throws InvalidDataInputException {

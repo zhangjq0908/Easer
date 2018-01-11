@@ -15,21 +15,22 @@ public class EventDataStorage extends AbstractDataStorage<EventStructure, EventD
 
     private static EventDataStorage instance = null;
 
-    Context context;
+    private final Context context;
 
     public static EventDataStorage getInstance(Context context) {
         if (instance == null) {
-            instance = new EventDataStorage();
+            instance = new EventDataStorage(context);
             instance.storage_backend_list = new EventDataStorageBackendInterface[] {
                     JsonEventDataStorageBackend.getInstance(context),
                     XmlEventDataStorageBackend.getInstance(context),
             };
-            instance.context = context;
         }
         return instance;
     }
 
-    private EventDataStorage() {}
+    private EventDataStorage(Context context) {
+        this.context = context;
+    }
 
     @Override
     boolean isSafeToDelete(String name) {
@@ -41,7 +42,8 @@ public class EventDataStorage extends AbstractDataStorage<EventStructure, EventD
      * {@inheritDoc}
      */
     public boolean edit(String oldName, EventStructure event) throws IOException {
-        boolean success = super.edit(oldName, event);
+        boolean success;
+        success = super.edit(oldName, event);
         if (success) {
             if (!oldName.equals(event.getName())) {
                 handleEventRename(oldName, event.getName());

@@ -19,11 +19,15 @@ public class EventStructureTest {
     static final String name = "name to test";
     static final String parentName = "parent name";
     static final String profileName = "profile name";
+    static ScenarioStructure scenario;
     static EventData eventData;
 
     @BeforeClass
     public static void setUpAll() {
         eventData = new WifiEventPlugin().dataFactory().dummyData();
+        scenario = new ScenarioStructure();
+        scenario.setName("myScenario");
+        scenario.setEventData(eventData);
     }
 
     @Before
@@ -38,7 +42,7 @@ public class EventStructureTest {
         EventStructure structure2 = new EventStructure(name);
         assertEquals(structure1.getName(), null);
         assertEquals(structure2.getName(), name);
-        assertEquals(structure1.getEventData(), structure2.getEventData());
+        assertEquals(structure1.getScenario(), structure2.getScenario());
         assertEquals(structure1.getParentName(), structure2.getParentName());
         assertEquals(structure1.getProfileName(), structure2.getProfileName());
     }
@@ -66,10 +70,10 @@ public class EventStructureTest {
     }
 
     @Test
-    public void getAndSetEventData() throws Exception {
-        assertEquals(eventStructure.getEventData(), null);
-        eventStructure.setEventData(eventData);
-        assertEquals(eventStructure.getEventData(), eventData);
+    public void getAndSetScenario() throws Exception {
+        assertEquals(eventStructure.getScenario(), null);
+        eventStructure.setScenario(scenario);
+        assertEquals(eventStructure.getScenario(), scenario);
     }
 
     @Test
@@ -87,11 +91,11 @@ public class EventStructureTest {
         assertFalse(eventStructure.isValid());
         eventStructure.setName(name);
         assertFalse(eventStructure.isValid());
-        eventStructure.setEventData(eventData);
+        eventStructure.setScenario(scenario);
         assertTrue(eventStructure.isActive());
 
         assertFalse(eventStructure2.isValid());
-        eventStructure2.setEventData(eventData);
+        eventStructure2.setScenario(scenario);
         assertFalse(eventStructure2.isValid());
         eventStructure2.setName(name);
         assertTrue(eventStructure2.isActive());

@@ -37,8 +37,8 @@ final public class EventTree {
     public String getName() {
         return data.name;
     }
-    public EventData getEvent() {
-        return data.eventData;
+    public EventData getEventData() {
+        return data.getScenario().getEventData();
     }
     public void addSub(EventTree sub) {
         subs.add(sub);

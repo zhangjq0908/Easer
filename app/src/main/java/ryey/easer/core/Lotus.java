@@ -99,7 +99,7 @@ final class Lotus {
         intent1.setAction(ACTION_SLOT_UNSATISFIED);
         notifyLotusUnsatisfiedIntent = PendingIntent.getBroadcast(context, 0, intent1, 0);
 
-        mSlot = dataToSlot(eventTree.getEvent());
+        mSlot = dataToSlot(eventTree.getEventData());
         mSlot.register(notifyLotusIntent, notifyLotusUnsatisfiedIntent);
 
         cooldownInMillisecond = SettingsHelper.coolDownInterval(context);
@@ -165,7 +165,7 @@ final class Lotus {
      * 並在其處（所在的遞歸棧）載入對應Profile
      */
     private void traverseAndTrigger(EventTree node, boolean is_sub) {
-        EventData eventData = node.getEvent();
+        EventData eventData = node.getEventData();
         AbstractSlot slot = mSlot;
         if (is_sub) {
             slot = dataToSlot(eventData);

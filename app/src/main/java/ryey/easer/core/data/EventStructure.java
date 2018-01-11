@@ -22,6 +22,7 @@ package ryey.easer.core.data;
 import android.support.annotation.Nullable;
 
 import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.core.data.storage.ScenarioDataStorage;
 
 /*
  * An Event consists of the following data:
@@ -36,7 +37,7 @@ import ryey.easer.commons.plugindef.eventplugin.EventData;
  */
 final public class EventStructure implements Named, Verifiable {
     protected String name;
-    protected EventData eventData;
+    private ScenarioStructure scenario;
     protected boolean active = true;
     @Nullable protected String profileName;
     @Nullable protected String parentName;
@@ -54,12 +55,26 @@ final public class EventStructure implements Named, Verifiable {
         this.name = name;
     }
 
-    public EventData getEventData() {
-        return eventData;
+    public ScenarioStructure getScenario() {
+        return scenario;
     }
 
+    public void setScenario(ScenarioStructure scenario) {
+        this.scenario = scenario;
+    }
+
+    @Deprecated
+    public EventData getEventData() {
+        return scenario.getEventData();
+    }
+
+    @Deprecated
     public void setEventData(EventData eventData) {
-        this.eventData = eventData;
+        ScenarioStructure scenarioStructure = new ScenarioStructure();
+        scenarioStructure.setName(ScenarioDataStorage.tmpScenarioName(name));
+        scenarioStructure.setEventData(eventData);
+        ScenarioDataStorage.recordTmp(scenarioStructure);
+        this.scenario = scenarioStructure;
     }
 
     public boolean isActive() {
@@ -89,7 +104,7 @@ final public class EventStructure implements Named, Verifiable {
     public boolean isValid() {
         if ((name == null) || (name.isEmpty()))
             return false;
-        if ((eventData == null) || (!eventData.isValid()))
+        if (scenario == null)
             return false;
         return true;
     }

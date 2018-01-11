@@ -41,7 +41,7 @@ class ProfileParser implements Parser<ProfileStructure> {
 
     private XmlPullParser parser = Xml.newPullParser();
 
-    int version = ryey.easer.commons.C.VERSION_DEFAULT;
+    int version = C.VERSION_FALLBACK;
     ProfileStructure profile;
 
     public ProfileStructure parse(InputStream in) throws IOException, IllegalStorageDataException {

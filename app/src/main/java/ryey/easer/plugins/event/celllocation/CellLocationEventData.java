@@ -104,7 +104,7 @@ public class CellLocationEventData extends TypedEventData {
 
     @Override
     public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
-        if (version == C.VERSION_DEFAULT) {
+        if (version == C.VERSION_FALLBACK) {
             String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
             String[] parts = str_data.split(",");
             setFromMultiple(parts);
