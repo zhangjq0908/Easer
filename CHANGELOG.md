@@ -1,6 +1,15 @@
 CHANGELOG
 ======
 
+* v0.5.2: Add "cool down" (seconds) && Allow to match BSSID for WiFi Event && Check permissions before enabling plugins && fixes & improvements
+	* Add "cool down" time (in seconds) for the re-activation of the same event
+	* `WifiEventPlugin` can now handle BSSIDs
+		* If you need to match BSSID and ESSID, you will need two chained events
+	* Check (and require) permissions before enabling plugins in Settings
+	* Fix `NfcEventPlugin` (which wasn't really working previously)
+	* Code improvements
+		* See 00fa3a6
+
 * v0.5.1: Change a bit of plugins' definition (mainly generify and remove unneeded methods) && Add `HeadsetEventPlugin` && Code clean up
 	* Add `DataFactory` (and subclasses) to be used as a wrapper of `StorageData` (and subclasses)
 	* Generify `PluginDef`, `PluginViewFragment`, `DataFactory` (and subclasses) to use their related `StorageData` as the type parameter (so that there is no need to do lots of manual type casting and checking)

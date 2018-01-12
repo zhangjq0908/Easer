@@ -73,7 +73,7 @@ public class BroadcastPluginViewFragment extends PluginViewFragment<BroadcastOpe
     protected void _fill(@ValidData @NonNull BroadcastOperationData data) {
         IntentData rdata = data.data;
         m_text_action.setText(rdata.action);
-        m_text_category.setText(Utils.StringListToString(rdata.category));
+        m_text_category.setText(Utils.StringCollectionToString(rdata.category, false));
         m_text_type.setText(rdata.type);
         if (rdata.data != null)
             m_text_data.setText(rdata.data.toString());

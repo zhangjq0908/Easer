@@ -43,6 +43,8 @@ captures/
 out
 gen
 
+release/
+
 *.bak
 *~
 *.swp

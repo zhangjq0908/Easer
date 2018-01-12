@@ -3,7 +3,9 @@
     <string name="event_celllocation">基站位置</string>
     <string name="event_date">日期</string>
     <string name="event_time">時間</string>
+
     <string name="event_wificonn">WiFi連接</string>
+    <string name="wificonn_select_dialog_title">選擇WiFi網絡</string>
 
     <string name="event_battery">電池狀態</string>
     <array name="battery_status">

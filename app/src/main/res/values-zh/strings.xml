@@ -59,7 +59,6 @@
     <string name="pref_use_root_summary">對特定功能（插件）啓用root權限，可能有助於解決部分設備兼容性問題。root權限不會被用在其他地方。</string>
     <string name="pref_category_data_manage">數據管理</string>
     <string name="title_select_operation">選擇一個動作</string>
-    <string name="wificonn_select_dialog_title">選擇WiFi網絡名</string>
     <string name="pref_enabled_plugins_title">啓用組件</string>
     <string name="pref_enabled_plugins_summary">啓用或禁用任意組件</string>
     <string name="title_operation">操作</string>
@@ -75,5 +74,8 @@
         \n\n在轉換後，本消息將不會再次出現。</string>
     <string name="pref_convert_data_title">轉換數據</string>
     <string name="pref_convert_data_summary">轉換所有數據至推薦格式</string>
+    <string name="pref_cooldown_title">冷卻時間</string>
+    <string name="pref_cooldown_summary">重複觸發同一事件的最短間隔</string>
+    <string name="cooldown_time_illformed">該數字必須不小於0，且不能過大（超過integer的範圍）</string>
 
 </resources>

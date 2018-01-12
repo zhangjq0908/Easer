@@ -22,11 +22,13 @@ package ryey.easer.plugins.event.wifi;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.v4.util.ArraySet;
 
 import com.orhanobut.logger.Logger;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
@@ -35,6 +37,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Set;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
@@ -46,17 +49,26 @@ import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
 
 public class WifiEventData extends TypedEventData {
-    List<String> ssids = new ArrayList<>();
+    private static final String K_ESSID = "essid";
+    private static final String K_BSSID = "bssid";
+
+    boolean mode_essid = true;
+    Set<String> ssids = new ArraySet<>();
 
     {
         default_type = EventType.any;
         availableTypes = EnumSet.of(EventType.any, EventType.none);
     }
 
-    public WifiEventData() {}
+    WifiEventData() {}
 
     public WifiEventData(String ssid) {
-        setFromMultiple(ssid.split("\n"));
+        ssids.add(ssid);
+    }
+
+    WifiEventData(String ssids, boolean mode_essid) {
+        this.mode_essid = mode_essid;
+        setFromMultiple(ssids.split("\n"));
     }
 
     WifiEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
@@ -64,24 +76,11 @@ public class WifiEventData extends TypedEventData {
     }
 
     private void setFromMultiple(String[] ssids) {
-        this.ssids = new ArrayList<>();
-        for (String hardware_address : ssids) {
-            if (!Utils.isBlank(hardware_address))
-                this.ssids.add(hardware_address.trim());
-        }
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder text = new StringBuilder();
-        boolean is_first = true;
+        this.ssids.clear();
         for (String ssid : ssids) {
-            if (!is_first)
-                text.append("\n");
-            text.append(ssid);
-            is_first = false;
+            if (!Utils.isBlank(ssid))
+                this.ssids.add(ssid.trim());
         }
-        return text.toString();
     }
 
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
@@ -98,6 +97,8 @@ public class WifiEventData extends TypedEventData {
         if (obj == null || !(obj instanceof WifiEventData))
             return false;
         if (!Utils.eEquals(this, (EventData) obj))
+            return false;
+        if (mode_essid != ((WifiEventData) obj).mode_essid)
             return false;
         if (!ssids.equals(((WifiEventData) obj).ssids))
             return false;
@@ -137,14 +138,29 @@ public class WifiEventData extends TypedEventData {
         switch (format) {
             default:
                 try {
-                    JSONArray jsonArray = new JSONArray(data);
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        ssids.add(jsonArray.getString(i));
+                    if (version < C.VERSION_WIFI_ADD_BSSID) {
+                        JSONArray jsonArray = new JSONArray(data);
+                        readFromJsonArray(jsonArray);
+                    } else {
+                        JSONObject jsonObject = new JSONObject(data);
+                        if (jsonObject.has(K_ESSID)) {
+                            mode_essid = true;
+                            readFromJsonArray(jsonObject.getJSONArray(K_ESSID));
+                        } else {
+                            mode_essid = false;
+                            readFromJsonArray(jsonObject.getJSONArray(K_BSSID));
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                     throw new IllegalStorageDataException(e.getMessage());
                 }
+        }
+    }
+
+    private void readFromJsonArray(JSONArray jsonArray) throws JSONException {
+        for (int i = 0; i < jsonArray.length(); i++) {
+            ssids.add(jsonArray.getString(i));
         }
     }
 
@@ -154,11 +170,21 @@ public class WifiEventData extends TypedEventData {
         String res;
         switch (format) {
             default:
-                JSONArray jsonArray = new JSONArray();
-                for (String ssid : ssids) {
-                    jsonArray.put(ssid);
+                try {
+                    JSONObject jsonObject = new JSONObject();
+                    JSONArray jsonArray = new JSONArray();
+                    for (String ssid : ssids) {
+                        jsonArray.put(ssid);
+                    }
+                    if (mode_essid)
+                        jsonObject.put(K_ESSID, jsonArray);
+                    else
+                        jsonObject.put(K_BSSID, jsonArray);
+                    res = jsonObject.toString();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    throw new IllegalStateException();
                 }
-                res = jsonArray.toString();
         }
         return res;
     }
@@ -178,7 +204,8 @@ public class WifiEventData extends TypedEventData {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeStringList(ssids);
+        dest.writeByte((byte) (mode_essid ? 1 : 0));
+        dest.writeStringList(new ArrayList<>(ssids));
     }
 
     public static final Parcelable.Creator<WifiEventData> CREATOR
@@ -193,6 +220,9 @@ public class WifiEventData extends TypedEventData {
     };
 
     private WifiEventData(Parcel in) {
-        in.readStringList(ssids);
+        mode_essid = in.readByte() > 0;
+        List<String> list = new ArrayList<>();
+        in.readStringList(list);
+        ssids.addAll(list);
     }
 }

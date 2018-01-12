@@ -27,6 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import ryey.easer.BuildConfig;
 import ryey.easer.R;
 import ryey.easer.core.BootupReceiver;
 import ryey.easer.core.EHService;
@@ -159,6 +160,27 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                     return true;
                 }
             });
+
+            findPreference(getString(R.string.key_pref_cooldown))
+                    .setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                        @Override
+                        public boolean onPreferenceChange(Preference preference, Object newValue) {
+                            if (BuildConfig.DEBUG && !(newValue instanceof String))
+                                throw new AssertionError();
+                            String interval_str = (String) newValue;
+                            try {
+                                int interval = Integer.parseInt(interval_str);
+                                if (interval < 0)
+                                    throw new NumberFormatException();
+                                return true;
+                            } catch (NumberFormatException e) {
+                                Toast.makeText(getActivity(),
+                                        R.string.cooldown_time_illformed, Toast.LENGTH_SHORT)
+                                        .show();
+                                return false;
+                            }
+                        }
+                    });
 
             findPreference(getString(R.string.key_pref_plugins))
                     .setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {

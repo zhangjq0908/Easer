@@ -50,8 +50,8 @@ public class BroadcastPluginViewFragment extends PluginViewFragment<BroadcastEve
     @Override
     protected void _fill(@ValidData @NonNull BroadcastEventData data) {
         ReceiverSideIntentData intentData = data.intentData;
-        editText_action.setText(Utils.StringListToString(intentData.action));
-        editText_category.setText(Utils.StringListToString(intentData.category));
+        editText_action.setText(Utils.StringCollectionToString(intentData.action, false));
+        editText_category.setText(Utils.StringCollectionToString(intentData.category, false));
     }
 
     @ValidData
