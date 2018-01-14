@@ -93,17 +93,15 @@
 
         <activity
             android:name=".plugins.event.nfc_tag.WaitForNfcActivity"
-            android:theme="@style/AppTheme.ActivityDialog"
-            android:enabled="false">
+            android:enabled="false"
+            android:theme="@style/AppTheme.ActivityDialog">
             <intent-filter>
                 <action android:name="android.nfc.action.TAG_DISCOVERED" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".plugins.event.nfc_tag.NfcListenerActivity">
+        <activity android:name=".plugins.event.nfc_tag.NfcListenerActivity">
             <intent-filter>
                 <action android:name="android.nfc.action.TAG_DISCOVERED" />
 
@@ -114,9 +112,9 @@
         <service
             android:name=".plugins.event.nfc_tag.NfcListenerService"
             android:enabled="true"
-            android:exported="false">
+            android:exported="false"></service>
 
-        </service>
+        <activity android:name=".core.ui.edit.EditScenarioActivity"></activity>
     </application>
 
 </manifest>

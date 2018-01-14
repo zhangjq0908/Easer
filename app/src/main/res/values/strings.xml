@@ -5,6 +5,7 @@
     <string name="title_operation">Operation</string>
     <string name="title_profile">Profile</string>
     <string name="title_event">Event</string>
+    <string name="title_scenario">Scenario</string>
     <string name="title_application">App</string>
     <string name="title_about">About</string>
     <string name="title_setting">Settings</string>
@@ -41,11 +42,13 @@
     <string name="text_title">Title: </string>
     <string name="text_parent">Parent: </string>
     <string name="text_profile">Profile: </string>
+    <string name="text_use_scenario">Use Scenario</string>
 
     <string name="toggle_active">Active</string>
 
     <string name="hint_event_title">event title</string>
     <string name="hint_profile_title">profile title</string>
+    <string name="hint_scenario_title">scenario title</string>
 
     <string name="prompt_save_failed">Failed to save</string>
     <string name="prompt_delete">Are you sure to delete: %s</string>

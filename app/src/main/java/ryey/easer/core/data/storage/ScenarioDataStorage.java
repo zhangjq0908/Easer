@@ -3,10 +3,13 @@ package ryey.easer.core.data.storage;
 import android.content.Context;
 import android.support.v4.util.ArrayMap;
 
+import java.io.IOException;
 import java.util.Map;
 
 import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.ScenarioStructure;
+import ryey.easer.core.data.storage.backend.EventDataStorageBackendInterface;
 import ryey.easer.core.data.storage.backend.ScenarioDataStorageBackendInterface;
 import ryey.easer.core.data.storage.backend.json.scenario.JsonScenarioDataStorageBackend;
 
@@ -44,6 +47,27 @@ public class ScenarioDataStorage extends AbstractDataStorage<ScenarioStructure, 
     @Override
     public boolean delete(String name) {
         return super.delete(name);
+    }
+
+    @Override
+    public boolean edit(String oldName, ScenarioStructure scenario) throws IOException {
+        if (super.edit(oldName, scenario)) {
+            if (!oldName.equals(scenario.getName())) {
+                handleRename(oldName, scenario);
+            }
+            return true;
+        } else
+            return false;
+    }
+
+    private void handleRename(String oldName, ScenarioStructure newScenario) throws IOException {
+        EventDataStorage eventDataStorage = EventDataStorage.getInstance(context);
+        for (EventStructure eventStructure : eventDataStorage.allEvents()) {
+            if (oldName.equals(eventStructure.getScenario().getName())) {
+                eventStructure.setScenario(newScenario);
+                eventDataStorage.update(eventStructure);
+            }
+        }
     }
 
     public static ScenarioStructure generateAndRecordTmpScenario(String eventName, EventData eventData) {

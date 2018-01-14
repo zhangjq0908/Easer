@@ -77,5 +77,8 @@
     <string name="pref_cooldown_title">冷卻時間</string>
     <string name="pref_cooldown_summary">重複觸發同一事件的最短間隔</string>
     <string name="cooldown_time_illformed">該數字必須不小於0，且不能過大（超過integer的範圍）</string>
+    <string name="title_scenario">情境</string>
+    <string name="hint_scenario_title">情境名</string>
+    <string name="text_use_scenario">使用情境</string>
 
 </resources>

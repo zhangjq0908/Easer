@@ -112,9 +112,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Use Existing Scenario"
+        android:text="@string/text_use_scenario"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_profile" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_profile"
+        android:layout_marginLeft="8dp" />
 
     <Spinner
         android:id="@+id/spinner_scenario"
