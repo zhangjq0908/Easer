@@ -70,11 +70,7 @@ final public class EventStructure implements Named, Verifiable {
 
     @Deprecated
     public void setEventData(EventData eventData) {
-        ScenarioStructure scenarioStructure = new ScenarioStructure();
-        scenarioStructure.setName(ScenarioDataStorage.tmpScenarioName(name));
-        scenarioStructure.setEventData(eventData);
-        ScenarioDataStorage.recordTmp(scenarioStructure);
-        this.scenario = scenarioStructure;
+        this.scenario = ScenarioDataStorage.generateAndRecordTmpScenario(name, eventData);
     }
 
     public boolean isActive() {

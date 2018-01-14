@@ -5,6 +5,7 @@ import android.support.v4.util.ArrayMap;
 
 import java.util.Map;
 
+import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.core.data.ScenarioStructure;
 import ryey.easer.core.data.storage.backend.ScenarioDataStorageBackendInterface;
 import ryey.easer.core.data.storage.backend.json.scenario.JsonScenarioDataStorageBackend;
@@ -43,6 +44,14 @@ public class ScenarioDataStorage extends AbstractDataStorage<ScenarioStructure, 
     @Override
     public boolean delete(String name) {
         return super.delete(name);
+    }
+
+    public static ScenarioStructure generateAndRecordTmpScenario(String eventName, EventData eventData) {
+        ScenarioStructure scenarioStructure = new ScenarioStructure();
+        scenarioStructure.setName(tmpScenarioName(eventName));
+        scenarioStructure.setEventData(eventData);
+        recordTmp(scenarioStructure);
+        return scenarioStructure;
     }
 
     public static void recordTmp(ScenarioStructure scenario) {

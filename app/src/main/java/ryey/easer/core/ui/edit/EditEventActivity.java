@@ -10,8 +10,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.orhanobut.logger.Logger;
@@ -23,8 +25,10 @@ import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.core.data.EventStructure;
+import ryey.easer.core.data.ScenarioStructure;
 import ryey.easer.core.data.storage.EventDataStorage;
 import ryey.easer.core.data.storage.ProfileDataStorage;
+import ryey.easer.core.data.storage.ScenarioDataStorage;
 
 /*
  * TODO: change the layout
@@ -45,6 +49,9 @@ public class EditEventActivity extends AppCompatActivity {
     Spinner mSpinner_profile = null;
     List<String> mProfileList = null;
     boolean isActive = true;
+    Switch mSwitch_use_scenario;
+    Spinner mSpinner_scenario;
+    List<String> mScenarioList;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -124,7 +131,7 @@ public class EditEventActivity extends AppCompatActivity {
         mSpinner_parent = findViewById(R.id.spinner_parent);
         mEventList = (EventDataStorage.getInstance(this)).list();
         mEventList.add(0, NON);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_profile, mEventList); //TODO: change layout
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_simple, mEventList); //TODO: change layout
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         mSpinner_parent.setAdapter(adapter);
         mSpinner_parent.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -140,7 +147,7 @@ public class EditEventActivity extends AppCompatActivity {
         mSpinner_profile = findViewById(R.id.spinner_profile);
         mProfileList = (ProfileDataStorage.getInstance(this)).list();
         mProfileList.add(0, NON);
-        ArrayAdapter<String> adapter_profile = new ArrayAdapter<>(this, R.layout.spinner_profile, mProfileList);
+        ArrayAdapter<String> adapter_profile = new ArrayAdapter<>(this, R.layout.spinner_simple, mProfileList);
         adapter_profile.setDropDownViewResource(android.R.layout.simple_spinner_item);
         mSpinner_profile.setAdapter(adapter_profile);
         mSpinner_profile.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -153,8 +160,36 @@ public class EditEventActivity extends AppCompatActivity {
             }
         });
 
+        mSwitch_use_scenario = findViewById(R.id.switch_use_scenario);
+        mSwitch_use_scenario.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
+                findViewById(R.id.spinner_scenario).setEnabled(checked);
+                findViewById(R.id.pager).setEnabled(!checked);
+            }
+        });
+        mSpinner_scenario = findViewById(R.id.spinner_scenario);
+        mScenarioList = ScenarioDataStorage.getInstance(this).list();
+        ArrayAdapter<String> adapter_scenario = new ArrayAdapter<>(this, R.layout.spinner_simple, mScenarioList);
+        adapter_scenario.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        mSpinner_scenario.setAdapter(adapter_scenario);
+        mSpinner_scenario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                adapterView.setSelection(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         mViewPager = findViewById(R.id.pager);
         mViewPager.init(this);
+
+        mSwitch_use_scenario.setChecked(true);
+        mSwitch_use_scenario.setChecked(false);
     }
 
     @Override
@@ -173,10 +208,17 @@ public class EditEventActivity extends AppCompatActivity {
         String parent = event.getParentName();
         mSpinner_parent.setSelection(mEventList.indexOf(parent));
 
-        isActive = event.isActive();
+        ScenarioStructure scenario = event.getScenario();
+        if (ScenarioDataStorage.hasTmp(scenario.getName())) {
+            mSwitch_use_scenario.setChecked(false);
+            EventData eventData = scenario.getEventData();
+            mViewPager.setEventData(eventData);
+        } else {
+            mSwitch_use_scenario.setChecked(true);
+            mSpinner_scenario.setSelection(mScenarioList.indexOf(scenario.getName()));
+        }
 
-        EventData eventData = event.getScenario().getEventData();
-        mViewPager.setEventData(eventData);
+        isActive = event.isActive();
     }
 
     protected EventStructure saveToEvent() throws InvalidDataInputException {
@@ -187,7 +229,14 @@ public class EditEventActivity extends AppCompatActivity {
         String parent = (String) mSpinner_parent.getSelectedItem();
         if (!parent.equals(NON))
             event.setParentName(parent);
-        event.setEventData(mViewPager.getEventData());
+
+        ScenarioDataStorage scenarioDataStorage = ScenarioDataStorage.getInstance(this);
+        if (mSwitch_use_scenario.isChecked()) {
+            String scenario_name = (String) mSpinner_scenario.getSelectedItem();
+            event.setScenario(scenarioDataStorage.get(scenario_name));
+        } else {
+            event.setEventData(mViewPager.getEventData());
+        }
         return event;
     }
 

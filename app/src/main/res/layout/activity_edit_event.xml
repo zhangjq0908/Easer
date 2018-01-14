@@ -74,7 +74,6 @@
         style="@style/LR.Right"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/pager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/spinner_parent" />
@@ -92,9 +91,10 @@
         style="@style/AppTheme.EventPluginViewPager"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/spinner_profile"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_profile">
+        app:layout_constraintTop_toBottomOf="@+id/switch_use_scenario">
 
         <android.support.v4.view.PagerTitleStrip
             android:id="@+id/pager_title_strip"
@@ -105,5 +105,24 @@
             android:paddingTop="4dp"
             android:textColor="#fff" />
     </ryey.easer.core.ui.edit.EventPluginViewPager>
+
+    <Switch
+        android:id="@+id/switch_use_scenario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Use Existing Scenario"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_profile" />
+
+    <Spinner
+        android:id="@+id/spinner_scenario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/switch_use_scenario"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/switch_use_scenario"
+        app:layout_constraintTop_toTopOf="@+id/switch_use_scenario" />
 
 </android.support.constraint.ConstraintLayout>

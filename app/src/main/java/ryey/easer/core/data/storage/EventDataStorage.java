@@ -7,6 +7,7 @@ import java.util.List;
 
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.EventTree;
+import ryey.easer.core.data.ScenarioStructure;
 import ryey.easer.core.data.storage.backend.EventDataStorageBackendInterface;
 import ryey.easer.core.data.storage.backend.json.event.JsonEventDataStorageBackend;
 import ryey.easer.core.data.storage.backend.xml.event.XmlEventDataStorageBackend;
@@ -43,6 +44,13 @@ public class EventDataStorage extends AbstractDataStorage<EventStructure, EventD
      */
     public boolean edit(String oldName, EventStructure event) throws IOException {
         boolean success;
+        {
+            ScenarioStructure oldScenario = get(oldName).getScenario();
+            if (oldScenario.isTmpScenario()) {
+                // If moving from a tmp scenario to a solid scenario, just remove the tmp scenario
+                ScenarioDataStorage.removeTmp(oldScenario.getName());
+            } // else do nothing since there is nothing to do with an old existing scenario
+        }
         success = super.edit(oldName, event);
         if (success) {
             if (!oldName.equals(event.getName())) {
