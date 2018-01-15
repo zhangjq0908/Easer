@@ -3,6 +3,8 @@ package ryey.easer.core.data;
 import android.content.Context;
 import android.net.Uri;
 
+import com.orhanobut.logger.Logger;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -35,8 +37,23 @@ public class Helper {
         for (ZipEntry entry = zip.getNextEntry(); entry != null; entry = zip.getNextEntry()) {
             String filename = entry.getName();
             File newFile = new File(output_dir, filename);
-            if (!new File(newFile.getParent()).mkdirs()) {
-                throw new IOException(String.format("failed to create parent dird for <%s>", newFile.toString()));
+            File parentDir = newFile.getParentFile();
+            if (!parentDir.exists()) {
+                if (!parentDir.mkdirs() && !parentDir.exists()) {
+                    String error_msg = String.format("failed to create full parent dirs for <%s>", newFile.toString());
+                    Logger.e(error_msg);
+                    throw new IOException(error_msg);
+                } else {
+                    Logger.d("successfully created parent dir for <%s>", newFile.toString());
+                }
+            } else {
+                if (!(parentDir.canRead() && parentDir.canWrite() && parentDir.canExecute())) {
+                    String error_msg = String.format("parent dir for <%s> exists but not with proper permissions", newFile.toString());
+                    Logger.e(error_msg);
+                    throw new IOException(error_msg);
+                } else {
+                    Logger.v("parent dir for <%s> exists with proper permissions", newFile.toString());
+                }
             }
             FileOutputStream fos = new FileOutputStream(newFile);
             int len;
