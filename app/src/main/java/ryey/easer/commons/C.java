@@ -25,7 +25,6 @@ package ryey.easer.commons;
 public class C {
     public static final String NAME = "name";
     public static final String PROFILE = "profile";
-    public static final String SCENARIO = "scenario";
     public static final String SIT = "situation";
     public static final String LOGIC = "logic";
     public static final String SPEC = "spec";

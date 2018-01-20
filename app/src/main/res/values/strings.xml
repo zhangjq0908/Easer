@@ -43,6 +43,11 @@
     <string name="text_parent">Parent: </string>
     <string name="text_profile">Profile: </string>
     <string name="text_use_scenario">Use Scenario</string>
+    <string name="text_inline_scenario">Inline Scenario</string>
+    <string name="text_repeatable_desc">Repeatable when satisfied</string>
+    <string name="text_reverse_desc">Reverse Scenario</string>
+    <string name="text_volatile">Volatile</string>
+    <string name="text_persistent">Persistent</string>
 
     <string name="toggle_active">Active</string>
 

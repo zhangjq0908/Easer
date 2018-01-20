@@ -80,5 +80,10 @@
     <string name="title_scenario">情境</string>
     <string name="hint_scenario_title">情境名</string>
     <string name="text_use_scenario">使用情境</string>
+    <string name="text_inline_scenario">內嵌情境</string>
+    <string name="text_repeatable_desc">滿足後可重複觸發</string>
+    <string name="text_reverse_desc">反轉情境</string>
+    <string name="text_persistent">固定滿足態</string>
+    <string name="text_volatile">不固定滿足態</string>
 
 </resources>

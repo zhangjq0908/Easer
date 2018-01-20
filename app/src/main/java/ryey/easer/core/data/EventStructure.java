@@ -39,6 +39,9 @@ final public class EventStructure implements Named, Verifiable {
     protected String name;
     private ScenarioStructure scenario;
     protected boolean active = true;
+    private boolean reverse = false;
+    private boolean repeatable = true;
+    private boolean persistent = false;
     @Nullable protected String profileName;
     @Nullable protected String parentName;
 
@@ -103,5 +106,29 @@ final public class EventStructure implements Named, Verifiable {
         if (scenario == null)
             return false;
         return true;
+    }
+
+    public boolean isRepeatable() {
+        return repeatable;
+    }
+
+    public void setRepeatable(boolean repeatable) {
+        this.repeatable = repeatable;
+    }
+
+    public boolean isPersistent() {
+        return persistent;
+    }
+
+    public void setPersistent(boolean persistent) {
+        this.persistent = persistent;
+    }
+
+    public boolean isReverse() {
+        return reverse;
+    }
+
+    public void setReverse(boolean reverse) {
+        this.reverse = reverse;
     }
 }

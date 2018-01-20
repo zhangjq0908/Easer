@@ -9,7 +9,6 @@ import java.util.Map;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.ScenarioStructure;
-import ryey.easer.core.data.storage.backend.EventDataStorageBackendInterface;
 import ryey.easer.core.data.storage.backend.ScenarioDataStorageBackendInterface;
 import ryey.easer.core.data.storage.backend.json.scenario.JsonScenarioDataStorageBackend;
 

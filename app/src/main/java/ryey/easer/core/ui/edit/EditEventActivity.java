@@ -1,5 +1,6 @@
 package ryey.easer.core.ui.edit;
 
+import android.support.constraint.ConstraintLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -8,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Switch;
 
 import java.util.List;
 
@@ -39,9 +39,15 @@ public class EditEventActivity extends AbstractEditDataActivity<EventStructure, 
     Spinner mSpinner_profile = null;
     List<String> mProfileList = null;
     boolean isActive = true;
-    Switch mSwitch_use_scenario;
+    CompoundButton mSwitch_use_scenario;
+
     Spinner mSpinner_scenario;
     List<String> mScenarioList;
+    CompoundButton mSwitch_reverse;
+    CompoundButton mSwitch_repeatable;
+    CompoundButton mSwitch_persistent;
+
+    ConstraintLayout layout_use_scenario;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -115,8 +121,8 @@ public class EditEventActivity extends AbstractEditDataActivity<EventStructure, 
         mSwitch_use_scenario.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
-                findViewById(R.id.spinner_scenario).setEnabled(checked);
-                findViewById(R.id.pager).setEnabled(!checked);
+                layout_use_scenario.setVisibility(checked ? View.VISIBLE : View.GONE);
+                mViewPager.setVisibility(!checked ? View.VISIBLE : View.GONE);
             }
         });
         mSpinner_scenario = findViewById(R.id.spinner_scenario);
@@ -138,6 +144,11 @@ public class EditEventActivity extends AbstractEditDataActivity<EventStructure, 
 
         mViewPager = findViewById(R.id.pager);
         mViewPager.init(this);
+
+        layout_use_scenario = findViewById(R.id.layout_use_scenario);
+        mSwitch_reverse = findViewById(R.id.switch_reverse);
+        mSwitch_repeatable = findViewById(R.id.switch_repeatable);
+        mSwitch_persistent = findViewById(R.id.switch_persistent);
 
         mSwitch_use_scenario.setChecked(true);
         mSwitch_use_scenario.setChecked(false);
@@ -162,6 +173,9 @@ public class EditEventActivity extends AbstractEditDataActivity<EventStructure, 
         } else {
             mSwitch_use_scenario.setChecked(true);
             mSpinner_scenario.setSelection(mScenarioList.indexOf(scenario.getName()));
+            mSwitch_reverse.setChecked(event.isReverse());
+            mSwitch_repeatable.setChecked(event.isRepeatable());
+            mSwitch_persistent.setChecked(event.isPersistent());
         }
 
         isActive = event.isActive();
@@ -181,6 +195,9 @@ public class EditEventActivity extends AbstractEditDataActivity<EventStructure, 
         if (mSwitch_use_scenario.isChecked()) {
             String scenario_name = (String) mSpinner_scenario.getSelectedItem();
             event.setScenario(scenarioDataStorage.get(scenario_name));
+            event.setReverse(mSwitch_reverse.isChecked());
+            event.setRepeatable(mSwitch_repeatable.isChecked());
+            event.setPersistent(mSwitch_persistent.isChecked());
         } else {
             event.setEventData(mViewPager.getEventData());
         }

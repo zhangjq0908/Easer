@@ -44,6 +44,9 @@ class EventParser implements Parser<EventStructure> {
                 eventStructure.setEventData(eventData);
             } else {
                 parseAndSet_trigger(jsonObject.getJSONObject(C.TRIG), version);
+                eventStructure.setReverse(jsonObject.getBoolean(C.REVERSE));
+                eventStructure.setRepeatable(jsonObject.getBoolean(C.REPEATABLE));
+                eventStructure.setPersistent(jsonObject.getBoolean(C.PERSISTENT));
             }
             return eventStructure;
         } catch (JSONException e) {
