@@ -36,11 +36,12 @@ public class C {
     public static final String STATE = "state";
 
     public static final String VERSION = "version";
+    public static final int VERSION_USE_SCENARIO = 4;
     public static final int VERSION_WIFI_ADD_BSSID = 3;
     public static final int VERSION_ADD_JSON = 2;
     public static final int VERSION_FULL_MULTI = 1;
-    public static final int VERSION_DEFAULT = 0;
-    public static final int VERSION_CURRENT = VERSION_WIFI_ADD_BSSID;
+    public static final int VERSION_FALLBACK = 0;
+    public static final int VERSION_CURRENT = VERSION_USE_SCENARIO;
 
     public enum Format {
         XML,

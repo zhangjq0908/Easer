@@ -106,14 +106,14 @@ public class BTDeviceEventData extends TypedEventData {
 
     @Override
     public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
-        if (version == C.VERSION_DEFAULT) {
+        if (version == C.VERSION_FALLBACK) {
             String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
             setMultiple(str_data.split("\n"));
         } else {
             setMultiple(XmlHelper.EventHelper.readMultipleSituation(parser));
         }
         EventType type = XmlHelper.EventHelper.readLogic(parser);
-        if (version == C.VERSION_DEFAULT) {
+        if (version == C.VERSION_FALLBACK) {
             if (type == EventType.is)
                 type = EventType.any;
             else if (type == EventType.is_not)

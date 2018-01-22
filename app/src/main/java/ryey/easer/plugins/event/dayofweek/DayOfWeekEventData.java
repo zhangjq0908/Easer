@@ -90,7 +90,7 @@ public class DayOfWeekEventData extends TypedEventData {
 
     @Override
     public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
-        if (version == C.VERSION_DEFAULT) {
+        if (version == C.VERSION_FALLBACK) {
             String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
             try {
                 days = Utils.str2set(str_data);

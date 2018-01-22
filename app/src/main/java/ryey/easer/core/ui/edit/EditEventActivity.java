@@ -1,39 +1,34 @@
 package ryey.easer.core.ui.edit;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import android.support.constraint.ConstraintLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.orhanobut.logger.Logger;
-
-import java.io.IOException;
 import java.util.List;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
+import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.core.data.EventStructure;
+import ryey.easer.core.data.ScenarioStructure;
 import ryey.easer.core.data.storage.EventDataStorage;
 import ryey.easer.core.data.storage.ProfileDataStorage;
+import ryey.easer.core.data.storage.ScenarioDataStorage;
 
 /*
  * TODO: change the layout
  */
-public class EditEventActivity extends AppCompatActivity {
+public class EditEventActivity extends AbstractEditDataActivity<EventStructure, EventDataStorage> {
 
-    EventDataStorage storage = null;
-
-    EditDataProto.Purpose purpose;
-    String oldName = null;
+    static {
+        TAG_DATA_TYPE = "event";
+    }
 
     EventPluginViewPager mViewPager;
 
@@ -44,77 +39,47 @@ public class EditEventActivity extends AppCompatActivity {
     Spinner mSpinner_profile = null;
     List<String> mProfileList = null;
     boolean isActive = true;
+    CompoundButton mSwitch_use_scenario;
+
+    Spinner mSpinner_scenario;
+    List<String> mScenarioList;
+    CompoundButton mSwitch_reverse;
+    CompoundButton mSwitch_repeatable;
+    CompoundButton mSwitch_persistent;
+
+    ConstraintLayout layout_use_scenario;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.edit_event, menu);
         menu.findItem(R.id.action_toggle_active).setChecked(isActive);
-        return super.onCreateOptionsMenu(menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_save:
-                alterEvent();
-                break;
             case R.id.action_toggle_active:
                 isActive = !item.isChecked();
                 item.setChecked(isActive);
-                break;
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
-    public boolean onSupportNavigateUp() {
-        finish();
-        return false;
+    protected EventDataStorage retDataStorage() {
+        return EventDataStorage.getInstance(this);
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        storage = EventDataStorage.getInstance(this);
-        purpose = (EditDataProto.Purpose) getIntent().getSerializableExtra(EditDataProto.PURPOSE);
-        if (purpose != EditDataProto.Purpose.add)
-            oldName = getIntent().getStringExtra(EditDataProto.CONTENT_NAME);
-        if (purpose == EditDataProto.Purpose.delete) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    setResult(RESULT_CANCELED);
-                    dialog.cancel();
-                }
-            }).setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    alterEvent();
-                }
-            });
-            builder.setMessage(getString(R.string.prompt_delete, oldName));
-            builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                @Override
-                public void onCancel(DialogInterface dialog) {
-                    finish();
-                }
-            });
-            setTheme(R.style.AppTheme_ActivityDialog);
-            builder.show();
-        } else {
-            setContentView(R.layout.activity_edit_event);
-            ActionBar actionbar = getSupportActionBar();
-            if (actionbar != null) {
-                actionbar.setHomeAsUpIndicator(R.drawable.ic_close_24dp);
-                actionbar.setDisplayHomeAsUpEnabled(true);
-            }
-            setTitle(R.string.title_edit_event);
-            init();
-            if (purpose == EditDataProto.Purpose.edit) {
-                EventStructure event = storage.get(oldName);
-                loadFromEvent(event);
-            }
-        }
+    protected String title() {
+        return getString(R.string.title_event);
+    }
+
+    @Override
+    protected int contentViewRes() {
+        return R.layout.activity_edit_event;
     }
 
     void init() {
@@ -123,7 +88,7 @@ public class EditEventActivity extends AppCompatActivity {
         mSpinner_parent = findViewById(R.id.spinner_parent);
         mEventList = (EventDataStorage.getInstance(this)).list();
         mEventList.add(0, NON);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_profile, mEventList); //TODO: change layout
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_simple, mEventList); //TODO: change layout
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         mSpinner_parent.setAdapter(adapter);
         mSpinner_parent.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -139,7 +104,7 @@ public class EditEventActivity extends AppCompatActivity {
         mSpinner_profile = findViewById(R.id.spinner_profile);
         mProfileList = (ProfileDataStorage.getInstance(this)).list();
         mProfileList.add(0, NON);
-        ArrayAdapter<String> adapter_profile = new ArrayAdapter<>(this, R.layout.spinner_profile, mProfileList);
+        ArrayAdapter<String> adapter_profile = new ArrayAdapter<>(this, R.layout.spinner_simple, mProfileList);
         adapter_profile.setDropDownViewResource(android.R.layout.simple_spinner_item);
         mSpinner_profile.setAdapter(adapter_profile);
         mSpinner_profile.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -152,17 +117,45 @@ public class EditEventActivity extends AppCompatActivity {
             }
         });
 
+        mSwitch_use_scenario = findViewById(R.id.switch_use_scenario);
+        mSwitch_use_scenario.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
+                layout_use_scenario.setVisibility(checked ? View.VISIBLE : View.GONE);
+                mViewPager.setVisibility(!checked ? View.VISIBLE : View.GONE);
+            }
+        });
+        mSpinner_scenario = findViewById(R.id.spinner_scenario);
+        mScenarioList = ScenarioDataStorage.getInstance(this).list();
+        ArrayAdapter<String> adapter_scenario = new ArrayAdapter<>(this, R.layout.spinner_simple, mScenarioList);
+        adapter_scenario.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        mSpinner_scenario.setAdapter(adapter_scenario);
+        mSpinner_scenario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                adapterView.setSelection(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         mViewPager = findViewById(R.id.pager);
         mViewPager.init(this);
+
+        layout_use_scenario = findViewById(R.id.layout_use_scenario);
+        mSwitch_reverse = findViewById(R.id.switch_reverse);
+        mSwitch_repeatable = findViewById(R.id.switch_repeatable);
+        mSwitch_persistent = findViewById(R.id.switch_persistent);
+
+        mSwitch_use_scenario.setChecked(true);
+        mSwitch_use_scenario.setChecked(false);
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        storage = null;
-    }
-
-    protected void loadFromEvent(EventStructure event) {
+    protected void loadFromData(EventStructure event) {
         oldName = event.getName();
         mEditText_name.setText(oldName);
         String profile = event.getProfileName();
@@ -172,12 +165,24 @@ public class EditEventActivity extends AppCompatActivity {
         String parent = event.getParentName();
         mSpinner_parent.setSelection(mEventList.indexOf(parent));
 
-        isActive = event.isActive();
+        ScenarioStructure scenario = event.getScenario();
+        if (ScenarioDataStorage.hasTmp(scenario.getName())) {
+            mSwitch_use_scenario.setChecked(false);
+            EventData eventData = scenario.getEventData();
+            mViewPager.setEventData(eventData);
+        } else {
+            mSwitch_use_scenario.setChecked(true);
+            mSpinner_scenario.setSelection(mScenarioList.indexOf(scenario.getName()));
+            mSwitch_reverse.setChecked(event.isReverse());
+            mSwitch_repeatable.setChecked(event.isRepeatable());
+            mSwitch_persistent.setChecked(event.isPersistent());
+        }
 
-        mViewPager.setEventData(event.getEventData());
+        isActive = event.isActive();
     }
 
-    protected EventStructure saveToEvent() throws InvalidDataInputException {
+    @Override
+    protected EventStructure saveToData() throws InvalidDataInputException {
         EventStructure event = new EventStructure(mEditText_name.getText().toString());
         String profile = (String) mSpinner_profile.getSelectedItem();
         event.setProfileName(profile);
@@ -185,51 +190,18 @@ public class EditEventActivity extends AppCompatActivity {
         String parent = (String) mSpinner_parent.getSelectedItem();
         if (!parent.equals(NON))
             event.setParentName(parent);
-        event.setEventData(mViewPager.getEventData());
-        return event;
-    }
 
-    boolean alterEvent() {
-        try {
-            boolean success;
-            if (purpose == EditDataProto.Purpose.delete)
-                success = storage.delete(oldName);
-            else {
-                try {
-                    EventStructure newEvent = saveToEvent();
-                    if (!newEvent.isValid()) {
-                        Toast.makeText(this, getString(R.string.prompt_data_illegal), Toast.LENGTH_LONG).show();
-                        return false;
-                    }
-                    switch (purpose) {
-                        case add:
-                            success = storage.add(newEvent);
-                            break;
-                        case edit:
-                            success = storage.edit(oldName, newEvent);
-                            break;
-                        default:
-                            Logger.wtf("Unexpected purpose: %s", purpose);
-                            throw new UnsupportedOperationException("Unknown Purpose");
-                    }
-                } catch (InvalidDataInputException e) {
-                    Toast.makeText(this, getString(R.string.prompt_data_illegal), Toast.LENGTH_LONG).show();
-                    return false;
-                }
-            }
-            if (success) {
-                setResult(RESULT_OK);
-                Logger.d("Successfully altered event");
-                finish();
-            } else {
-                Logger.e("Failed to alter event");
-                Toast.makeText(this, getString(R.string.prompt_save_failed), Toast.LENGTH_SHORT).show();
-            }
-            return success;
-        } catch (IOException e) {
-            Logger.e(e, "IOException encountered when %s", purpose);
-            return false;
+        ScenarioDataStorage scenarioDataStorage = ScenarioDataStorage.getInstance(this);
+        if (mSwitch_use_scenario.isChecked()) {
+            String scenario_name = (String) mSpinner_scenario.getSelectedItem();
+            event.setScenario(scenarioDataStorage.get(scenario_name));
+            event.setReverse(mSwitch_reverse.isChecked());
+            event.setRepeatable(mSwitch_repeatable.isChecked());
+            event.setPersistent(mSwitch_persistent.isChecked());
+        } else {
+            event.setEventData(mViewPager.getEventData());
         }
+        return event;
     }
 
 }

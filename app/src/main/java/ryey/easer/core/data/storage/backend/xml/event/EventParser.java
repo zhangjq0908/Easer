@@ -42,7 +42,7 @@ class EventParser implements Parser<EventStructure> {
 
     private XmlPullParser parser = Xml.newPullParser();
 
-    private int version = ryey.easer.commons.C.VERSION_DEFAULT;
+    private int version = ryey.easer.commons.C.VERSION_FALLBACK;
     private EventStructure event;
 
     public EventStructure parse(InputStream in) throws IOException, IllegalStorageDataException {

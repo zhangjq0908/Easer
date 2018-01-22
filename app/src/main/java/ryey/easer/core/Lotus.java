@@ -66,6 +66,10 @@ final class Lotus {
     private final long cooldownInMillisecond;
     private Calendar lastSatisfied;
 
+    private final boolean repeatable;
+    private final boolean persistent;
+    private boolean satisfied = false;
+
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -99,8 +103,14 @@ final class Lotus {
         intent1.setAction(ACTION_SLOT_UNSATISFIED);
         notifyLotusUnsatisfiedIntent = PendingIntent.getBroadcast(context, 0, intent1, 0);
 
-        mSlot = dataToSlot(eventTree.getEvent());
-        mSlot.register(notifyLotusIntent, notifyLotusUnsatisfiedIntent);
+        mSlot = dataToSlot(eventTree.getEventData());
+        if (eventTree.isRevert()) {
+            mSlot.register(notifyLotusUnsatisfiedIntent, notifyLotusIntent);
+        } else {
+            mSlot.register(notifyLotusIntent, notifyLotusUnsatisfiedIntent);
+        }
+        repeatable = eventTree.isRepeatable();
+        persistent = eventTree.isPersistent();
 
         cooldownInMillisecond = SettingsHelper.coolDownInterval(context);
     }
@@ -133,7 +143,10 @@ final class Lotus {
     }
 
     private synchronized void onSlotSatisfied() {
+        if (!repeatable && satisfied)
+            return;
         Logger.i("event <%s> satisfied", eventTree.getName());
+        satisfied = true;
         if (cooldownInMillisecond > 0) {
             Calendar now = Calendar.getInstance();
             if (lastSatisfied != null) {
@@ -153,7 +166,10 @@ final class Lotus {
     }
 
     private synchronized void onSlotUnsatisfied() {
+        if (persistent && satisfied)
+            return;
         Logger.i("Event %s unsatisfied", eventTree.getName());
+        satisfied = false;
         for (Lotus sub : subs) {
             sub.cancel();
         }
@@ -165,7 +181,7 @@ final class Lotus {
      * 並在其處（所在的遞歸棧）載入對應Profile
      */
     private void traverseAndTrigger(EventTree node, boolean is_sub) {
-        EventData eventData = node.getEvent();
+        EventData eventData = node.getEventData();
         AbstractSlot slot = mSlot;
         if (is_sub) {
             slot = dataToSlot(eventData);

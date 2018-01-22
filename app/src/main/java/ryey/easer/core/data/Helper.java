@@ -22,6 +22,7 @@ public class Helper {
         File parent_dir = context.getFilesDir();
 
         addDirToZip(zip, parent_dir, "event");
+        addDirToZip(zip, parent_dir, "scenario");
         addDirToZip(zip, parent_dir, "profile");
 
         zip.close();

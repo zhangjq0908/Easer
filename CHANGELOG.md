@@ -1,6 +1,14 @@
 CHANGELOG
 ======
 
+* v0.5.3: Add `Scenario` to allow reuse of event data && Add more configurations to events && Fix import not working correctly && Code refactor
+	* Add `Scenario` as an abstraction of EventData and allow EventStructure to link to it
+	* Add *reverse* to directly reverse the Scenario
+	* Add *repeatable*, *persistent* as more granulated configuration to events
+	* Fix importing not working correctly due to filesystem handling
+	* Code factor
+		* Extract more abstract classes and generics
+
 * v0.5.2: Add "cool down" (seconds) && Allow to match BSSID for WiFi Event && Check permissions before enabling plugins && fixes & improvements
 	* Add "cool down" time (in seconds) for the re-activation of the same event
 	* `WifiEventPlugin` can now handle BSSIDs

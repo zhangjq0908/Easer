@@ -37,8 +37,17 @@ final public class EventTree {
     public String getName() {
         return data.name;
     }
-    public EventData getEvent() {
-        return data.eventData;
+    public EventData getEventData() {
+        return data.getScenario().getEventData();
+    }
+    public boolean isRevert() {
+        return data.isReverse();
+    }
+    public boolean isRepeatable() {
+        return data.isRepeatable();
+    }
+    public boolean isPersistent() {
+        return data.isPersistent();
     }
     public void addSub(EventTree sub) {
         subs.add(sub);

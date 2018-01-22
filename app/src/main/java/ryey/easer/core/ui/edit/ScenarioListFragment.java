@@ -4,17 +4,17 @@ import android.content.Intent;
 
 import ryey.easer.R;
 import ryey.easer.core.EHService;
-import ryey.easer.core.data.storage.EventDataStorage;
+import ryey.easer.core.data.storage.ScenarioDataStorage;
 
-public class EventListFragment extends AbstractDataListFragment<EventDataStorage> {
+public class ScenarioListFragment extends AbstractDataListFragment<ScenarioDataStorage> {
     @Override
     protected String title() {
-        return getString(R.string.title_event);
+        return getString(R.string.title_scenario);
     }
 
     @Override
-    protected EventDataStorage retmStorage() {
-        return EventDataStorage.getInstance(getContext());
+    protected ScenarioDataStorage retmStorage() {
+        return ScenarioDataStorage.getInstance(getContext());
     }
 
     @Override
@@ -25,6 +25,6 @@ public class EventListFragment extends AbstractDataListFragment<EventDataStorage
 
     @Override
     protected Intent intentForEditDataActivity() {
-        return new Intent(getActivity(), EditEventActivity.class);
+        return new Intent(getContext(), EditScenarioActivity.class);
     }
 }
