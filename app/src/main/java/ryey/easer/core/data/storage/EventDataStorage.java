@@ -46,10 +46,11 @@ public class EventDataStorage extends AbstractDataStorage<EventStructure, EventD
         boolean success;
         {
             ScenarioStructure oldScenario = get(oldName).getScenario();
-            if (oldScenario.isTmpScenario()) {
+            ScenarioStructure newScenario = event.getScenario();
+            if (oldScenario.isTmpScenario() && !newScenario.isTmpScenario()) {
                 // If moving from a tmp scenario to a solid scenario, just remove the tmp scenario
                 ScenarioDataStorage.removeTmp(oldScenario.getName());
-            } // else do nothing since there is nothing to do with an old existing scenario
+            } // else do nothing since there is nothing to do with an old existing scenario or a new tmp scenario
         }
         success = super.edit(oldName, event);
         if (success) {
