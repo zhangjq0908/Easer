@@ -24,13 +24,13 @@ public abstract class PluginViewFragment<T extends StorageData> extends Fragment
     /**
      * Used in case {@link #onCreateView} is called after {@link #fill}`.
      */
-    private FillDataJob jobFillData = new FillDataJob();
+    private FillDataJob jobFillData = new FillDataJob("FillDataJob");
 
     /**
      * Controls whether the content (view) is enabled/interactive or not in the beginning.
      * Works similar to {@link #jobFillData}.
      */
-    private SetEnabledJob jobSetEnabled = new SetEnabledJob();
+    private SetEnabledJob jobSetEnabled = new SetEnabledJob("FillDataJob");
 
     /**
      * Normal {@link Fragment} method. Subclasses must override this method to provide the UI.
@@ -48,8 +48,8 @@ public abstract class PluginViewFragment<T extends StorageData> extends Fragment
     @CallSuper
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        jobFillData.tick();
-        jobSetEnabled.tick();
+        jobFillData.tick(0);
+        jobSetEnabled.tick(0);
     }
 
     /**
@@ -90,7 +90,7 @@ public abstract class PluginViewFragment<T extends StorageData> extends Fragment
         try {
             checkDataType(data);
             jobFillData.passed_data = data;
-            jobFillData.tick();
+            jobFillData.tick(1);
         } catch (IllegalArgumentTypeException e) {
             Logger.e(e, "filling with illegal data type");
             throw e;
@@ -110,8 +110,8 @@ public abstract class PluginViewFragment<T extends StorageData> extends Fragment
      * Override this method only if the UI has other controls of the enabled state.
      */
     public void setEnabled(boolean enabled) {
-        jobSetEnabled.initially_enabled = enabled;
-        jobSetEnabled.tick();
+        jobSetEnabled.enabled = enabled;
+        jobSetEnabled.tick(1);
     }
 
     /**
@@ -131,8 +131,8 @@ public abstract class PluginViewFragment<T extends StorageData> extends Fragment
     private class FillDataJob extends DelayedJob {
         private T passed_data = null;
 
-        FillDataJob() {
-            super(2);
+        FillDataJob(String tag) {
+            super(2, tag);
         }
 
         @Override
@@ -144,16 +144,16 @@ public abstract class PluginViewFragment<T extends StorageData> extends Fragment
     }
 
     private class SetEnabledJob extends DelayedJob {
-        private boolean initially_enabled = true;
+        private boolean enabled = true;
 
-        SetEnabledJob() {
-            super(2);
+        SetEnabledJob(String tag) {
+            super(2, tag);
         }
 
         @Override
         public void exec() {
             //noinspection ConstantConditions
-            setEnabled(getView(), initially_enabled);
+            setEnabled(getView(), enabled);
         }
     }
 }
