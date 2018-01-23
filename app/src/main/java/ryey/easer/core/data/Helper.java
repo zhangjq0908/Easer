@@ -36,32 +36,35 @@ public class Helper {
         byte[] buffer = new byte[1024];
 
         for (ZipEntry entry = zip.getNextEntry(); entry != null; entry = zip.getNextEntry()) {
-            String filename = entry.getName();
-            File newFile = new File(output_dir, filename);
-            File parentDir = newFile.getParentFile();
-            if (!parentDir.exists()) {
-                if (!parentDir.mkdirs() && !parentDir.exists()) {
-                    String error_msg = String.format("failed to create full parent dirs for <%s>", newFile.toString());
-                    Logger.e(error_msg);
-                    throw new IOException(error_msg);
+            if (entry.isDirectory()) {
+                File dir = new File(output_dir, entry.getName());
+                if (!dir.exists()) {
+                    if (!dir.mkdir()) {
+                        String error_msg = String.format("failed to create dir <%s>", dir.toString());
+                        Logger.e(error_msg);
+                        throw new IOException(error_msg);
+                    } else {
+                        Logger.d("successfully created dir <%s>", dir.toString());
+                    }
                 } else {
-                    Logger.d("successfully created parent dir for <%s>", newFile.toString());
+                    if (!dir.isDirectory()) {
+                        String error_msg = String.format("<%s> exists but is not a directory", dir.toString());
+                        Logger.e(error_msg);
+                        throw new IOException(error_msg);
+                    } else {
+                        Logger.v("dir <%s> exists", dir.toString());
+                    }
                 }
             } else {
-                if (!(parentDir.canRead() && parentDir.canWrite() && parentDir.canExecute())) {
-                    String error_msg = String.format("parent dir for <%s> exists but not with proper permissions", newFile.toString());
-                    Logger.e(error_msg);
-                    throw new IOException(error_msg);
-                } else {
-                    Logger.v("parent dir for <%s> exists with proper permissions", newFile.toString());
+                String filename = entry.getName();
+                File newFile = new File(output_dir, filename);
+                FileOutputStream fos = new FileOutputStream(newFile);
+                int len;
+                while ((len = zip.read(buffer)) > 0) {
+                    fos.write(buffer, 0, len);
                 }
+                fos.close();
             }
-            FileOutputStream fos = new FileOutputStream(newFile);
-            int len;
-            while ((len = zip.read(buffer)) > 0) {
-                fos.write(buffer, 0, len);
-            }
-            fos.close();
         }
         zip.closeEntry();
         zip.close();
