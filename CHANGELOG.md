@@ -1,6 +1,14 @@
 CHANGELOG
 ======
 
+* v0.5.3.1: Various fixes to v0.5.3
+	* Fix "import" not working correctly
+		* due to the wrong handling of directory entry in zip)
+	* Fix crash when trying to open an existing Profile
+		* due to the wrong design of `DelayedJob`
+	* Fix incorrect convertion of data formats
+		* Inline `Scenario`s should be kept when editing an `EventStructure`
+
 * v0.5.3: Add `Scenario` to allow reuse of event data && Add more configurations to events && Fix import not working correctly && Code refactor
 	* Add `Scenario` as an abstraction of EventData and allow EventStructure to link to it
 	* Add *reverse* to directly reverse the Scenario
