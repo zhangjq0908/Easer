@@ -26,6 +26,7 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
@@ -63,7 +64,6 @@ public class WifiEventPlugin implements EventPlugin<WifiEventData> {
     @Override
     public EventDataFactory<WifiEventData> dataFactory() {
         return new WifiEventDataFactory();
-
     }
 
     @NonNull
@@ -73,8 +73,8 @@ public class WifiEventPlugin implements EventPlugin<WifiEventData> {
     }
 
     @Override
-    public AbstractSlot<WifiEventData> slot(Context context) {
-        return new WifiConnSlot(context);
+    public AbstractSlot<WifiEventData> slot(@NonNull Context context, @ValidData @NonNull WifiEventData data) {
+        return new WifiConnSlot(context, data);
     }
 
 }

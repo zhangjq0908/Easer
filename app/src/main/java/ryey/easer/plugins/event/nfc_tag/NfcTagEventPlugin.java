@@ -27,6 +27,7 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
@@ -76,8 +77,8 @@ public class NfcTagEventPlugin implements EventPlugin<NfcTagEventData> {
     }
 
     @Override
-    public AbstractSlot<NfcTagEventData> slot(Context context) {
-        return new NfcTagSlot(context);
+    public AbstractSlot<NfcTagEventData> slot(@NonNull Context context, @ValidData @NonNull NfcTagEventData data) {
+        return new NfcTagSlot(context, data);
     }
 
 }

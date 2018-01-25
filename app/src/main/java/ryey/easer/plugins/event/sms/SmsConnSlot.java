@@ -26,14 +26,12 @@ import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Telephony;
-import android.support.annotation.NonNull;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsMessage;
 
 import com.orhanobut.logger.Logger;
 
 import ryey.easer.Utils;
-import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
@@ -85,12 +83,8 @@ public class SmsConnSlot extends AbstractSlot<SmsEventData> {
         setRetriggerable(true);
     }
 
-    public SmsConnSlot(Context context) {
-        super(context);
-    }
-
-    @Override
-    public void set(@ValidData @NonNull SmsEventData data) {
+    public SmsConnSlot(Context context, SmsEventData data) {
+        super(context, data);
         smsInnerData = data.innerData;
         type = data.type();
     }

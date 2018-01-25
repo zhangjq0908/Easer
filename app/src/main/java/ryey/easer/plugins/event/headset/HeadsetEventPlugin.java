@@ -25,6 +25,7 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
@@ -71,8 +72,8 @@ public class HeadsetEventPlugin implements EventPlugin<HeadsetEventData> {
     }
 
     @Override
-    public AbstractSlot<HeadsetEventData> slot(Context context) {
-        return new HeadsetSlot(context);
+    public AbstractSlot<HeadsetEventData> slot(@NonNull Context context, @ValidData @NonNull HeadsetEventData data) {
+        return new HeadsetSlot(context, data);
     }
 
 }

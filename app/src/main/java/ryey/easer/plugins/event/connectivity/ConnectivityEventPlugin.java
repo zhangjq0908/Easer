@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
@@ -53,8 +54,8 @@ public class ConnectivityEventPlugin implements EventPlugin<ConnectivityEventDat
     }
 
     @Override
-    public AbstractSlot<ConnectivityEventData> slot(Context context) {
-        return new ConnectivitySlot(context);
+    public AbstractSlot<ConnectivityEventData> slot(@NonNull Context context, @ValidData @NonNull ConnectivityEventData data) {
+        return new ConnectivitySlot(context, data);
     }
 
 }

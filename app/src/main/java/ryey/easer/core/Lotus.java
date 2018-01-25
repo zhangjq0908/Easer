@@ -119,8 +119,7 @@ final class Lotus {
         AbstractSlot<T> slot;
         //noinspection unchecked
         EventPlugin<T> plugin = PluginRegistry.getInstance().event().findPlugin(data);
-        slot = plugin.slot(context);
-        slot.set(data);
+        slot = plugin.slot(context, data);
         return slot;
     }
 

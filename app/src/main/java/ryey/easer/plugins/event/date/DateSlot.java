@@ -21,11 +21,9 @@ package ryey.easer.plugins.event.date;
 
 import android.app.AlarmManager;
 import android.content.Context;
-import android.support.annotation.NonNull;
 
 import java.util.Calendar;
 
-import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.SelfNotifiableSlot;
 
@@ -38,17 +36,13 @@ public class DateSlot extends SelfNotifiableSlot<DateEventData> {
     private Calendar calendar = null;
     private EventType type = null;
 
-    public DateSlot(Context context) {
-        super(context);
+    public DateSlot(Context context, DateEventData data) {
+        super(context, data);
+        setDate(data.date);
+        type = data.type();
 
         if (mAlarmManager == null)
             mAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-    }
-
-    @Override
-    public void set(@ValidData @NonNull DateEventData data) {
-        setDate(data.date);
-        type = data.type();
     }
 
     private void setDate(Calendar date) {

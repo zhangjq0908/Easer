@@ -41,6 +41,8 @@ public abstract class AbstractSlot<T extends EventData> {
 
     protected final Context context;
 
+    protected final T eventData;
+
     /**
      * Indicator of whether the current slot is satisfied.
      * Will be extended to more status (maybe by enum) in the future.
@@ -60,8 +62,9 @@ public abstract class AbstractSlot<T extends EventData> {
      */
     protected PendingIntent notifyLotusIntent = null, notifyLotusUnsatisfiedIntent = null;
 
-    public AbstractSlot(@NonNull Context context) {
+    public AbstractSlot(@NonNull Context context, @ValidData @NonNull T data) {
         this.context = context;
+        this.eventData = data;
     }
 
     /**
@@ -71,12 +74,6 @@ public abstract class AbstractSlot<T extends EventData> {
     public boolean isSatisfied() {
         return satisfied;
     }
-
-    /**
-     * Set the trigger to be ready to receive the relevant Event.
-     * The trigger will start functioning after {@link #listen()} is called.
-     */
-    public abstract void set(@ValidData @NonNull T data);
 
     /**
      * FIXME: Not sure if this methods is really needed.

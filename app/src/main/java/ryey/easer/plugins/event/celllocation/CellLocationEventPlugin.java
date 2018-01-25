@@ -26,6 +26,7 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
@@ -72,8 +73,8 @@ public class CellLocationEventPlugin implements EventPlugin<CellLocationEventDat
     }
 
     @Override
-    public AbstractSlot<CellLocationEventData> slot(Context context) {
-        return new CellLocationSlot(context);
+    public AbstractSlot<CellLocationEventData> slot(@NonNull Context context, @ValidData @NonNull CellLocationEventData data) {
+        return new CellLocationSlot(context, data);
     }
 
 }

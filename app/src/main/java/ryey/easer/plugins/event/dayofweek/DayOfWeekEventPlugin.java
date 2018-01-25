@@ -25,6 +25,7 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
@@ -71,8 +72,8 @@ public class DayOfWeekEventPlugin implements EventPlugin<DayOfWeekEventData> {
     }
 
     @Override
-    public AbstractSlot<DayOfWeekEventData> slot(Context context) {
-        return new DayOfWeekSlot(context);
+    public AbstractSlot<DayOfWeekEventData> slot(@NonNull Context context, @ValidData @NonNull DayOfWeekEventData data) {
+        return new DayOfWeekSlot(context, data);
     }
 
 }

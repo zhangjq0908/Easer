@@ -25,6 +25,7 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
@@ -70,8 +71,8 @@ public class BroadcastEventPlugin implements EventPlugin<BroadcastEventData> {
     }
 
     @Override
-    public AbstractSlot<BroadcastEventData> slot(Context context) {
-        return new BroadcastConnSlot(context);
+    public AbstractSlot<BroadcastEventData> slot(@NonNull Context context, @ValidData @NonNull BroadcastEventData data) {
+        return new BroadcastConnSlot(context, data);
     }
 
 }

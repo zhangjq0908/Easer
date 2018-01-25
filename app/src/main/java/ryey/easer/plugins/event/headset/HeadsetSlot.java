@@ -26,9 +26,7 @@ import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 
-import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
@@ -42,8 +40,6 @@ public class HeadsetSlot extends AbstractSlot<HeadsetEventData> {
             expected_action = AudioManager.ACTION_HEADSET_PLUG;
         }
     }
-
-    private HeadsetEventData eventData;
 
     private final IntentFilter mFilter = new IntentFilter(expected_action);
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -63,13 +59,8 @@ public class HeadsetSlot extends AbstractSlot<HeadsetEventData> {
         }
     };
 
-    HeadsetSlot(Context context) {
-        super(context);
-    }
-
-    @Override
-    public void set(@ValidData @NonNull HeadsetEventData data) {
-        eventData = data;
+    HeadsetSlot(Context context, HeadsetEventData data) {
+        super(context, data);
         if (eventData.type() == EventType.is || eventData.type() == EventType.is_not)
             setRetriggerable(true);
     }

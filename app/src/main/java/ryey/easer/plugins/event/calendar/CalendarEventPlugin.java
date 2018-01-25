@@ -26,6 +26,7 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
@@ -72,8 +73,8 @@ public class CalendarEventPlugin implements EventPlugin<CalendarEventData> {
     }
 
     @Override
-    public AbstractSlot<CalendarEventData> slot(Context context) {
-        return new CalendarSlot(context);
+    public AbstractSlot<CalendarEventData> slot(@NonNull Context context, @ValidData @NonNull CalendarEventData data) {
+        return new CalendarSlot(context, data);
     }
 
 }

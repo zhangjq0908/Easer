@@ -22,13 +22,11 @@ package ryey.easer.plugins.event.celllocation;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.telephony.CellLocation;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 
 import ryey.easer.Utils;
-import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
@@ -37,13 +35,13 @@ public class CellLocationSlot extends AbstractSlot<CellLocationEventData> {
 
     private CellLocationListener cellLocationListener = new CellLocationListener();
 
-    private CellLocationEventData target = null;
     private EventType type = null;
 
     private CellLocationSingleData curr = null;
 
-    public CellLocationSlot(Context context) {
-        super(context);
+    public CellLocationSlot(Context context, CellLocationEventData data) {
+        super(context, data);
+        type = data.type();
 
         if (telephonyManager == null) {
             telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
@@ -51,14 +49,8 @@ public class CellLocationSlot extends AbstractSlot<CellLocationEventData> {
     }
 
     @Override
-    public void set(@ValidData @NonNull CellLocationEventData data) {
-        target = data;
-        type = data.type();
-    }
-
-    @Override
     public boolean isValid() {
-        if (!target.isValid())
+        if (!eventData.isValid())
             return false;
         return true;
     }
@@ -90,9 +82,9 @@ public class CellLocationSlot extends AbstractSlot<CellLocationEventData> {
             super.onCellLocationChanged(location);
             curr = CellLocationSingleData.fromCellLocation(location);
             if (type == EventType.any) {
-                changeSatisfiedState(target.contains(curr));
+                changeSatisfiedState(eventData.contains(curr));
             } else if (type == EventType.none) {
-                changeSatisfiedState(!target.contains(curr));
+                changeSatisfiedState(!eventData.contains(curr));
             }
         }
     }

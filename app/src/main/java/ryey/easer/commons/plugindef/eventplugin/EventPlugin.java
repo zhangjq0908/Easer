@@ -23,6 +23,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import ryey.easer.commons.plugindef.PluginDef;
+import ryey.easer.commons.plugindef.ValidData;
 
 /*
  * Definition of every Event plugin.
@@ -38,5 +39,5 @@ public interface EventPlugin<T extends EventData> extends PluginDef<T> {
      * Returns a to-be-initialized Slot of this plugin.
      * See `AbstractSlot` for more information
      */
-    AbstractSlot<T> slot(Context context);
+    AbstractSlot<T> slot(@NonNull Context context, @ValidData @NonNull T data);
 }
