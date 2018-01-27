@@ -35,7 +35,7 @@ import ryey.easer.core.data.storage.ScenarioDataStorage;
  *
  * Only `EditEventActivity` and `EventTree` needs to know the actual structure.
  */
-final public class EventStructure implements Named, Verifiable {
+final public class EventStructure implements Renameable, Verifiable {
     protected String name;
     private ScenarioStructure scenario;
     protected boolean active = true;

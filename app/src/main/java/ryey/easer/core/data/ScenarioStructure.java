@@ -1,22 +1,25 @@
 package ryey.easer.core.data;
 
+import android.support.annotation.NonNull;
+
 import ryey.easer.Utils;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.core.data.storage.ScenarioDataStorage;
 
 public class ScenarioStructure implements Named, Verifiable {
 
-    private String name;
+    private final String name;
     private EventData eventData;
+
+    public ScenarioStructure(@NonNull String name, @ValidData EventData eventData) {
+        this.name = name;
+        this.eventData = eventData;
+    }
 
     @Override
     public String getName() {
         return name;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
     }
 
     public EventData getEventData() {

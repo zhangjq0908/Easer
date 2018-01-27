@@ -70,9 +70,7 @@ public class ScenarioDataStorage extends AbstractDataStorage<ScenarioStructure, 
     }
 
     public static ScenarioStructure generateAndRecordTmpScenario(String eventName, EventData eventData) {
-        ScenarioStructure scenarioStructure = new ScenarioStructure();
-        scenarioStructure.setName(tmpScenarioName(eventName));
-        scenarioStructure.setEventData(eventData);
+        ScenarioStructure scenarioStructure = new ScenarioStructure(tmpScenarioName(eventName), eventData);
         recordTmp(scenarioStructure);
         return scenarioStructure;
     }

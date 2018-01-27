@@ -45,9 +45,6 @@ public class EditScenarioActivity extends AbstractEditDataActivity<ScenarioStruc
     @Override
     protected ScenarioStructure saveToData() throws InvalidDataInputException {
         EventData eventData = mViewPager.getEventData();
-        ScenarioStructure scenario = new ScenarioStructure();
-        scenario.setName(mEditText_name.getText().toString());
-        scenario.setEventData(eventData);
-        return scenario;
+        return new ScenarioStructure(mEditText_name.getText().toString(), eventData);
     }
 }

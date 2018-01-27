@@ -25,9 +25,7 @@ public class EventStructureTest {
     @BeforeClass
     public static void setUpAll() {
         eventData = new WifiEventPlugin().dataFactory().dummyData();
-        scenario = new ScenarioStructure();
-        scenario.setName("myScenario");
-        scenario.setEventData(eventData);
+        scenario = new ScenarioStructure("myScenario", eventData);
     }
 
     @Before
