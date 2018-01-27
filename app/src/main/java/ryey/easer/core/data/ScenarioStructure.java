@@ -5,12 +5,20 @@ import android.support.annotation.NonNull;
 import ryey.easer.Utils;
 import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.core.data.storage.ScenarioDataStorage;
 
 public class ScenarioStructure implements Named, Verifiable {
 
     private final String name;
     private EventData eventData;
+
+    public static ScenarioStructure createTmpScenario(@ValidData EventData eventData) {
+        return new ScenarioStructure(eventData);
+    }
+
+    private ScenarioStructure(@ValidData EventData eventData) {
+        name = null;
+        this.eventData = eventData;
+    }
 
     public ScenarioStructure(@NonNull String name, @ValidData EventData eventData) {
         this.name = name;
@@ -31,12 +39,12 @@ public class ScenarioStructure implements Named, Verifiable {
     }
 
     public boolean isTmpScenario() {
-        return ScenarioDataStorage.hasTmp(name);
+        return name == null;
     }
 
     @Override
     public boolean isValid() {
-        if ((name == null) || (name.isEmpty()))
+        if ((name != null) && (name.isEmpty()))
             return false;
         if ((eventData == null) || (!eventData.isValid()))
             return false;

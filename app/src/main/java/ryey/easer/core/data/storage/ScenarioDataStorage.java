@@ -1,12 +1,9 @@
 package ryey.easer.core.data.storage;
 
 import android.content.Context;
-import android.support.v4.util.ArrayMap;
 
 import java.io.IOException;
-import java.util.Map;
 
-import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.ScenarioStructure;
 import ryey.easer.core.data.storage.backend.ScenarioDataStorageBackendInterface;
@@ -18,7 +15,6 @@ public class ScenarioDataStorage extends AbstractDataStorage<ScenarioStructure, 
     private static ScenarioDataStorage instance = null;
 
     Context context;
-    private static Map<String, ScenarioStructure> tmpScenarios = new ArrayMap<>();
 
     public static ScenarioDataStorage getInstance(Context context) {
         if (instance == null) {
@@ -33,8 +29,6 @@ public class ScenarioDataStorage extends AbstractDataStorage<ScenarioStructure, 
 
     @Override
     public ScenarioStructure get(String name) {
-        if (tmpScenarios.containsKey(name))
-            return tmpScenarios.get(name);
         return super.get(name);
     }
 
@@ -67,27 +61,5 @@ public class ScenarioDataStorage extends AbstractDataStorage<ScenarioStructure, 
                 eventDataStorage.update(eventStructure);
             }
         }
-    }
-
-    public static ScenarioStructure generateAndRecordTmpScenario(String eventName, EventData eventData) {
-        ScenarioStructure scenarioStructure = new ScenarioStructure(tmpScenarioName(eventName), eventData);
-        recordTmp(scenarioStructure);
-        return scenarioStructure;
-    }
-
-    public static void recordTmp(ScenarioStructure scenario) {
-        tmpScenarios.put(scenario.getName(), scenario);
-    }
-
-    public static boolean hasTmp(String name) {
-        return tmpScenarios.containsKey(name);
-    }
-
-    public static void removeTmp(String name) {
-        tmpScenarios.remove(name);
-    }
-
-    public static String tmpScenarioName(String eventName) {
-        return  "tmpScenario___" + eventName;
     }
 }
