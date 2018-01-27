@@ -45,16 +45,19 @@ public abstract class AbstractSlot<T extends EventData> {
 
     /**
      * Indicator of whether the current slot is satisfied.
-     * Will be extended to more status (maybe by enum) in the future.
+     * May be extended to more status (maybe by enum) in the future.
      */
     protected boolean satisfied = false;
 
     /**
      * Controls whether the current slot could be re-triggered if it is already in a satisfied state.
-     * Default is *NOT* re-triggerable
-     * This value should be be set by the {@link #setRetriggerable(boolean)} method.
+     * If uncertain, make it re-triggerable
      */
-    private boolean retriggerable = false;
+    protected final boolean retriggerable;
+    protected final boolean persistent;
+
+    protected static final boolean RETRIGGERABLE_DEFAULT = true;
+    protected static final boolean PERSISTEN_DEFAULT = false;
 
     /**
      * Used to tell the holder Lotus that this Slot is satisfied.
@@ -62,9 +65,11 @@ public abstract class AbstractSlot<T extends EventData> {
      */
     protected PendingIntent notifyLotusIntent = null, notifyLotusUnsatisfiedIntent = null;
 
-    public AbstractSlot(@NonNull Context context, @ValidData @NonNull T data) {
+    public AbstractSlot(@NonNull Context context, @ValidData @NonNull T data, boolean retriggerable, boolean persistent) {
         this.context = context;
         this.eventData = data;
+        this.retriggerable = retriggerable;
+        this.persistent = persistent;
     }
 
     /**
@@ -123,10 +128,6 @@ public abstract class AbstractSlot<T extends EventData> {
         this.notifyLotusUnsatisfiedIntent = notifyLotusUnsatisfiedIntent;
     }
 
-    protected void setRetriggerable(boolean retriggerable) {
-        this.retriggerable = retriggerable;
-    }
-
     /**
      * Change the satisfaction state of the current slot.
      * It will emit {@link #notifyLotusIntent} or {@link #notifyLotusUnsatisfiedIntent} iif the satisfaction state is changed.
@@ -134,6 +135,10 @@ public abstract class AbstractSlot<T extends EventData> {
      * This method sets the {@link #satisfied} variable.
      */
     protected synchronized void changeSatisfiedState(boolean newSatisfiedState) {
+        if (persistent && !newSatisfiedState) {
+            Logger.v("prevent from resetting a persistent slot back to unsatisfied");
+            return;
+        }
         if (!retriggerable) {
             if (satisfied == newSatisfiedState) {
                 Logger.v("satisfied state is already %s", newSatisfiedState);

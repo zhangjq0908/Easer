@@ -76,4 +76,9 @@ public class DayOfWeekEventPlugin implements EventPlugin<DayOfWeekEventData> {
         return new DayOfWeekSlot(context, data);
     }
 
+    @Override
+    public AbstractSlot<DayOfWeekEventData> slot(@NonNull Context context, @NonNull DayOfWeekEventData data, boolean retriggerable, boolean persistent) {
+        return new DayOfWeekSlot(context, data, retriggerable, persistent);
+    }
+
 }

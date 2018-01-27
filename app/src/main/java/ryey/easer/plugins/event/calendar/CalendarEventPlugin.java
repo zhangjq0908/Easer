@@ -77,4 +77,9 @@ public class CalendarEventPlugin implements EventPlugin<CalendarEventData> {
         return new CalendarSlot(context, data);
     }
 
+    @Override
+    public AbstractSlot<CalendarEventData> slot(@NonNull Context context, @NonNull CalendarEventData data, boolean retriggerable, boolean persistent) {
+        return new CalendarSlot(context, data, retriggerable, persistent);
+    }
+
 }

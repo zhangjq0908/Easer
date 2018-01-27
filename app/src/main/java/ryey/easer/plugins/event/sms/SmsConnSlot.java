@@ -80,11 +80,14 @@ public class SmsConnSlot extends AbstractSlot<SmsEventData> {
         } else {
             filter = new IntentFilter(Telephony.Sms.Intents.SMS_RECEIVED_ACTION);
         }
-        setRetriggerable(true);
     }
 
     public SmsConnSlot(Context context, SmsEventData data) {
-        super(context, data);
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
+    }
+
+    SmsConnSlot(Context context, SmsEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
         smsInnerData = data.innerData;
         type = data.type();
     }

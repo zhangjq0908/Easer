@@ -37,7 +37,11 @@ public class DateSlot extends SelfNotifiableSlot<DateEventData> {
     private EventType type = null;
 
     public DateSlot(Context context, DateEventData data) {
-        super(context, data);
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
+    }
+
+    DateSlot(Context context, DateEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
         setDate(data.date);
         type = data.type();
 

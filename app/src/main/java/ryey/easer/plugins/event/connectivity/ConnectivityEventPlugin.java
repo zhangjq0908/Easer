@@ -58,4 +58,9 @@ public class ConnectivityEventPlugin implements EventPlugin<ConnectivityEventDat
         return new ConnectivitySlot(context, data);
     }
 
+    @Override
+    public AbstractSlot<ConnectivityEventData> slot(@NonNull Context context, @NonNull ConnectivityEventData data, boolean retriggerable, boolean persistent) {
+        return new ConnectivitySlot(context, data, retriggerable, persistent);
+    }
+
 }

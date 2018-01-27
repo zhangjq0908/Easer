@@ -36,8 +36,15 @@ public interface EventPlugin<T extends EventData> extends PluginDef<T> {
     EventDataFactory<T> dataFactory();
 
     /**
-     * Returns a to-be-initialized Slot of this plugin.
-     * See `AbstractSlot` for more information
+     * Returns a Slot (reflecting a inline Scenario) of this plugin.
+     * See {@link AbstractSlot} for more information
      */
     AbstractSlot<T> slot(@NonNull Context context, @ValidData @NonNull T data);
+
+    /**
+     * Returns a Slot (reflecting an existing Scenario) of this plugin.
+     * See {@link AbstractSlot} for more information
+     */
+    AbstractSlot<T> slot(@NonNull Context context, @ValidData @NonNull T data,
+                         boolean retriggerable, boolean persistent);
 }

@@ -80,4 +80,9 @@ public class BTDeviceEventPlugin implements EventPlugin<BTDeviceEventData> {
         return new BTDeviceSlot(context, data);
     }
 
+    @Override
+    public AbstractSlot<BTDeviceEventData> slot(@NonNull Context context, @NonNull BTDeviceEventData data, boolean retriggerable, boolean persistent) {
+        return new BTDeviceSlot(context, data, retriggerable, persistent);
+    }
+
 }

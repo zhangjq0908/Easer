@@ -76,4 +76,9 @@ public class TimeEventPlugin implements EventPlugin<TimeEventData> {
         return new TimeSlot(context, data);
     }
 
+    @Override
+    public AbstractSlot<TimeEventData> slot(@NonNull Context context, @NonNull TimeEventData data, boolean retriggerable, boolean persistent) {
+        return new TimeSlot(context, data, retriggerable, persistent);
+    }
+
 }

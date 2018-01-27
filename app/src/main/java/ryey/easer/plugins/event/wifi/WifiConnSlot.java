@@ -64,7 +64,11 @@ public class WifiConnSlot extends AbstractSlot<WifiEventData> {
     }
 
     public WifiConnSlot(Context context, WifiEventData data) {
-        super(context, data);
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
+    }
+
+    WifiConnSlot(Context context, WifiEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
         type = data.type();
     }
 

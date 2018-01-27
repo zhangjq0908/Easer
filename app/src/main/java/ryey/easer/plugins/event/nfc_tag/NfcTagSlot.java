@@ -53,12 +53,12 @@ public class NfcTagSlot extends AbstractSlot<NfcTagEventData> {
         }
     };
 
-    {
-        setRetriggerable(true);
+    public NfcTagSlot(Context context, NfcTagEventData data) {
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
     }
 
-    public NfcTagSlot(Context context, NfcTagEventData data) {
-        super(context, data);
+    NfcTagSlot(Context context, NfcTagEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
         type = data.type();
     }
 

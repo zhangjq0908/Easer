@@ -64,7 +64,11 @@ public class BTDeviceSlot extends AbstractSlot<BTDeviceEventData> {
     }
 
     public BTDeviceSlot(Context context, BTDeviceEventData data) {
-        super(context, data);
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
+    }
+
+    BTDeviceSlot(Context context, BTDeviceEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
         type = data.type();
     }
 

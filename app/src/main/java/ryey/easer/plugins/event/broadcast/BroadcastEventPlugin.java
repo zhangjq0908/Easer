@@ -75,4 +75,9 @@ public class BroadcastEventPlugin implements EventPlugin<BroadcastEventData> {
         return new BroadcastConnSlot(context, data);
     }
 
+    @Override
+    public AbstractSlot<BroadcastEventData> slot(@NonNull Context context, @NonNull BroadcastEventData data, boolean retriggerable, boolean persistent) {
+        return new BroadcastConnSlot(context, data, retriggerable, persistent);
+    }
+
 }

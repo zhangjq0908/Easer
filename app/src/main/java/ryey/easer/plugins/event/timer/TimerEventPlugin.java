@@ -76,4 +76,9 @@ public class TimerEventPlugin implements EventPlugin<TimerEventData> {
         return new TimerSlot(context, data);
     }
 
+    @Override
+    public AbstractSlot<TimerEventData> slot(@NonNull Context context, @NonNull TimerEventData data, boolean retriggerable, boolean persistent) {
+        return new TimerSlot(context, data, retriggerable, persistent);
+    }
+
 }

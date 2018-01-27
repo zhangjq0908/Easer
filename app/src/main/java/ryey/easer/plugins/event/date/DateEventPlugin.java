@@ -75,4 +75,9 @@ public class DateEventPlugin implements EventPlugin<DateEventData> {
         return new DateSlot(context, data);
     }
 
+    @Override
+    public AbstractSlot<DateEventData> slot(@NonNull Context context, @NonNull DateEventData data, boolean retriggerable, boolean persistent) {
+        return new DateSlot(context, data, retriggerable, persistent);
+    }
+
 }

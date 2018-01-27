@@ -60,9 +60,11 @@ public class HeadsetSlot extends AbstractSlot<HeadsetEventData> {
     };
 
     HeadsetSlot(Context context, HeadsetEventData data) {
-        super(context, data);
-        if (eventData.type() == EventType.is || eventData.type() == EventType.is_not)
-            setRetriggerable(true);
+        this(context, data, (data.type() == EventType.is || data.type() == EventType.is_not), PERSISTEN_DEFAULT);
+    }
+
+    HeadsetSlot(Context context, HeadsetEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
     }
 
     @Override

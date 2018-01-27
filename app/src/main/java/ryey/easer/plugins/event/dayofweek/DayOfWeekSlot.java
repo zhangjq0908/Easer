@@ -36,7 +36,11 @@ class DayOfWeekSlot extends SelfNotifiableSlot<DayOfWeekEventData> {
     private EventType type = null;
 
     public DayOfWeekSlot(Context context, DayOfWeekEventData data) {
-        super(context, data);
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
+    }
+
+    DayOfWeekSlot(Context context, DayOfWeekEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
         setDate(data.days);
         type = data.type();
 

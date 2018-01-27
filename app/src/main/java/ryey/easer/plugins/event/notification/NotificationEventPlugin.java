@@ -88,4 +88,9 @@ public class NotificationEventPlugin implements EventPlugin<NotificationEventDat
         return new NotificationSlot(context, data);
     }
 
+    @Override
+    public AbstractSlot<NotificationEventData> slot(@NonNull Context context, @NonNull NotificationEventData data, boolean retriggerable, boolean persistent) {
+        return new NotificationSlot(context, data, retriggerable, persistent);
+    }
+
 }

@@ -36,7 +36,11 @@ public class TimeSlot extends SelfNotifiableSlot<TimeEventData> {
     private EventType type = null;
 
     public TimeSlot(Context context, TimeEventData data) {
-        super(context, data);
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
+    }
+
+    TimeSlot(Context context, TimeEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
         setTime(data.time);
         type = data.type();
 

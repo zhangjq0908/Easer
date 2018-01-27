@@ -30,12 +30,20 @@ public class NotificationSlot extends AbstractSlot<NotificationEventData> {
     private EventType type = null;
 
     public NotificationSlot(Context context, NotificationEventData data) {
-        super(context, data);
+        this(context, data, isRetriggerable(data), PERSISTEN_DEFAULT);
+    }
+
+    NotificationSlot(Context context, NotificationEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
         type = data.type();
+    }
+
+    private static boolean isRetriggerable(NotificationEventData data) {
+        EventType type = data.type();
         if (type == EventType.after) {
-            setRetriggerable(false);
+            return false;
         } else if (type == EventType.is) {
-            setRetriggerable(true);
+            return true;
         } else {
             throw new IllegalAccessError();
         }

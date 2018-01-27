@@ -39,7 +39,11 @@ public class BatterySlot extends AbstractSlot<BatteryEventData> {
     }
 
     public BatterySlot(Context context, BatteryEventData data) {
-        super(context, data);
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
+    }
+
+    BatterySlot(Context context, BatteryEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
         status = data.battery_status;
         type = data.type();
     }

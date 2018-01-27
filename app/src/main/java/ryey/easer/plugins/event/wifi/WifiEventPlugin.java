@@ -77,4 +77,9 @@ public class WifiEventPlugin implements EventPlugin<WifiEventData> {
         return new WifiConnSlot(context, data);
     }
 
+    @Override
+    public AbstractSlot<WifiEventData> slot(@NonNull Context context, @NonNull WifiEventData data, boolean retriggerable, boolean persistent) {
+        return new WifiConnSlot(context, data, retriggerable, persistent);
+    }
+
 }

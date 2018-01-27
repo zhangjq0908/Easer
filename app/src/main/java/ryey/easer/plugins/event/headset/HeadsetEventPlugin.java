@@ -76,4 +76,9 @@ public class HeadsetEventPlugin implements EventPlugin<HeadsetEventData> {
         return new HeadsetSlot(context, data);
     }
 
+    @Override
+    public AbstractSlot<HeadsetEventData> slot(@NonNull Context context, @NonNull HeadsetEventData data, boolean retriggerable, boolean persistent) {
+        return new HeadsetSlot(context, data, retriggerable, persistent);
+    }
+
 }

@@ -32,7 +32,11 @@ public class CalendarSlot extends SelfNotifiableSlot<CalendarEventData> {
     private EventType type = null;
 
     public CalendarSlot(Context context, CalendarEventData data) {
-        super(context, data);
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
+    }
+
+    CalendarSlot(Context context, CalendarEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
         type = data.type();
         mAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
     }

@@ -56,4 +56,9 @@ public class BatteryEventPlugin implements EventPlugin<BatteryEventData> {
         return new BatterySlot(context, data);
     }
 
+    @Override
+    public AbstractSlot<BatteryEventData> slot(@NonNull Context context, @NonNull BatteryEventData data, boolean retriggerable, boolean persistent) {
+        return new BatterySlot(context, data, retriggerable, persistent);
+    }
+
 }

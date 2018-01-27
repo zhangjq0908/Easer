@@ -36,17 +36,25 @@ public class TimerSlot extends SelfNotifiableSlot<TimerEventData> {
     private EventType type = null;
 
     public TimerSlot(Context context, TimerEventData data) {
-        super(context, data);
+        this(context, data, isRetriggerable(data), PERSISTEN_DEFAULT);
+    }
+
+    TimerSlot(Context context, TimerEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
         timer = data.timer;
         type = data.type();
-        if (timer.repeat) {
-            setRetriggerable(true);
-        } else {
-            setRetriggerable(false);
-        }
 
         if (mAlarmManager == null)
             mAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+    }
+
+    private static boolean isRetriggerable(TimerEventData data) {
+        TimerEventData.Timer timer = data.timer;
+        if (timer.repeat) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

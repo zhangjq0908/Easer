@@ -42,11 +42,14 @@ public class BroadcastConnSlot extends AbstractSlot<BroadcastEventData> {
 
     {
         filter = new IntentFilter();
-        setRetriggerable(true);
     }
 
     public BroadcastConnSlot(Context context, BroadcastEventData data) {
-        super(context, data);
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
+    }
+
+    BroadcastConnSlot(Context context, BroadcastEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
         intentData = data.intentData;
         type = data.type();
         filter = new IntentFilter();

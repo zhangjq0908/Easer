@@ -40,7 +40,11 @@ public class CellLocationSlot extends AbstractSlot<CellLocationEventData> {
     private CellLocationSingleData curr = null;
 
     public CellLocationSlot(Context context, CellLocationEventData data) {
-        super(context, data);
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
+    }
+
+    CellLocationSlot(Context context, CellLocationEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
         type = data.type();
 
         if (telephonyManager == null) {

@@ -38,6 +38,7 @@ import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.core.data.EventTree;
+import ryey.easer.core.data.ScenarioStructure;
 import ryey.easer.plugins.PluginRegistry;
 
 /*
@@ -103,7 +104,7 @@ final class Lotus {
         intent1.setAction(ACTION_SLOT_UNSATISFIED);
         notifyLotusUnsatisfiedIntent = PendingIntent.getBroadcast(context, 0, intent1, 0);
 
-        mSlot = dataToSlot(eventTree.getEventData());
+        mSlot = nodeToSlot(eventTree);
         if (eventTree.isRevert()) {
             mSlot.register(notifyLotusUnsatisfiedIntent, notifyLotusIntent);
         } else {
@@ -115,11 +116,18 @@ final class Lotus {
         cooldownInMillisecond = SettingsHelper.coolDownInterval(context);
     }
 
-    private <T extends EventData> AbstractSlot<T> dataToSlot(T data) {
+    private <T extends EventData> AbstractSlot<T> nodeToSlot(EventTree node) {
+        ScenarioStructure scenario = node.getScenario();
         AbstractSlot<T> slot;
         //noinspection unchecked
+        T data = (T) scenario.getEventData();
+        //noinspection unchecked
         EventPlugin<T> plugin = PluginRegistry.getInstance().event().findPlugin(data);
-        slot = plugin.slot(context, data);
+        if (scenario.isTmpScenario()) {
+            slot = plugin.slot(context, data);
+        } else {
+            slot = plugin.slot(context, data, repeatable, persistent);
+        }
         return slot;
     }
 
@@ -180,10 +188,9 @@ final class Lotus {
      * 並在其處（所在的遞歸棧）載入對應Profile
      */
     private void traverseAndTrigger(EventTree node, boolean is_sub) {
-        EventData eventData = node.getEventData();
         AbstractSlot slot = mSlot;
         if (is_sub) {
-            slot = dataToSlot(eventData);
+            slot = nodeToSlot(node);
             slot.check();
         }
         if (slot.isSatisfied()) {

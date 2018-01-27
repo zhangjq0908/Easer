@@ -81,4 +81,9 @@ public class NfcTagEventPlugin implements EventPlugin<NfcTagEventData> {
         return new NfcTagSlot(context, data);
     }
 
+    @Override
+    public AbstractSlot<NfcTagEventData> slot(@NonNull Context context, @NonNull NfcTagEventData data, boolean retriggerable, boolean persistent) {
+        return new NfcTagSlot(context, data, retriggerable, persistent);
+    }
+
 }

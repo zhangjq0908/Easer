@@ -90,4 +90,9 @@ public class SmsEventPlugin implements EventPlugin<SmsEventData> {
         return new SmsConnSlot(context, data);
     }
 
+    @Override
+    public AbstractSlot<SmsEventData> slot(@NonNull Context context, @NonNull SmsEventData data, boolean retriggerable, boolean persistent) {
+        return new SmsConnSlot(context, data, retriggerable, persistent);
+    }
+
 }

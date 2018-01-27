@@ -77,4 +77,9 @@ public class CellLocationEventPlugin implements EventPlugin<CellLocationEventDat
         return new CellLocationSlot(context, data);
     }
 
+    @Override
+    public AbstractSlot<CellLocationEventData> slot(@NonNull Context context, @NonNull CellLocationEventData data, boolean retriggerable, boolean persistent) {
+        return new CellLocationSlot(context, data, retriggerable, persistent);
+    }
+
 }

@@ -42,7 +42,11 @@ class ConnectivitySlot extends AbstractSlot<ConnectivityEventData> {
     }
 
     public ConnectivitySlot(Context context, ConnectivityEventData data) {
-        super(context, data);
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
+    }
+
+    ConnectivitySlot(Context context, ConnectivityEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
         connectivity_types = data.connectivity_type;
         type = data.type();
     }
