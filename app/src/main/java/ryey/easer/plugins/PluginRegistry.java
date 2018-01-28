@@ -47,6 +47,7 @@ import ryey.easer.plugins.event.headset.HeadsetEventPlugin;
 import ryey.easer.plugins.event.nfc_tag.NfcTagEventPlugin;
 import ryey.easer.plugins.event.notification.NotificationEventPlugin;
 import ryey.easer.plugins.event.sms.SmsEventPlugin;
+import ryey.easer.plugins.event.tcp_trip.TcpTripEventPlugin;
 import ryey.easer.plugins.event.time.TimeEventPlugin;
 import ryey.easer.plugins.event.timer.TimerEventPlugin;
 import ryey.easer.plugins.event.wifi.WifiEventPlugin;
@@ -99,6 +100,7 @@ final public class PluginRegistry {
         event().registerPlugin(TimerEventPlugin.class);
         event().registerPlugin(NfcTagEventPlugin.class);
         event().registerPlugin(HeadsetEventPlugin.class);
+        event().registerPlugin(TcpTripEventPlugin.class);
 
         operation().registerPlugin(WifiOperationPlugin.class);
         operation().registerPlugin(CellularOperationPlugin.class);

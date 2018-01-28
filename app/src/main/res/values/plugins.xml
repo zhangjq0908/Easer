@@ -78,6 +78,12 @@
     <string name="event_headset__microphone_false">No</string>
     <string name="event_headset__microphone_any">Any</string>
 
+    <string name="event_tcp_trip">TCP Trip</string>
+    <string name="remote_host">Remote host</string>
+    <string name="send_data">Send data</string>
+    <string name="check_reply">Check reply</string>
+    <string name="reply_data">Reply data</string>
+
     <string name="operation_wifi">WiFi</string>
     <string name="operation_cellular">Mobile data</string>
     <string name="operation_bluetooth">Bluetooth</string>
