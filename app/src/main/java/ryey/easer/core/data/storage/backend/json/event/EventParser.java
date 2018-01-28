@@ -50,7 +50,7 @@ class EventParser implements Parser<EventStructure> {
             }
             return eventStructure;
         } catch (JSONException e) {
-            throw new IllegalStorageDataException(e.getMessage());
+            throw new IllegalStorageDataException(e);
         }
     }
 
@@ -72,7 +72,7 @@ class EventParser implements Parser<EventStructure> {
             }
         } catch (JSONException e) {
             e.printStackTrace();
-            throw new IllegalStorageDataException(e.getMessage());
+            throw new IllegalStorageDataException(e);
         }
     }
 
@@ -90,7 +90,7 @@ class EventParser implements Parser<EventStructure> {
             eventData.setType(logic);
             return eventData;
         } catch (JSONException e) {
-            throw new IllegalStorageDataException(e.getMessage());
+            throw new IllegalStorageDataException(e);
         }
     }
 }

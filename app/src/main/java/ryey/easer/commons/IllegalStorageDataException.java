@@ -25,6 +25,10 @@ public class IllegalStorageDataException extends Exception {
         super(detailMessage);
     }
 
+    public IllegalStorageDataException(Exception e) {
+        this(e.getMessage());
+    }
+
     public IllegalStorageDataException(C.Format format) {
         super(String.format("Illegal %s data", format));
     }

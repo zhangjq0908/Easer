@@ -32,7 +32,7 @@ public class ScenarioParser implements Parser<ScenarioStructure> {
             eventData.setType(logic);
             return new ScenarioStructure(name, eventData);
         } catch (JSONException e) {
-            throw new IllegalStorageDataException(e.getMessage());
+            throw new IllegalStorageDataException(e);
         }
     }
 }

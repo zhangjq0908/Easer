@@ -73,7 +73,7 @@ public class MediaControlOperationData implements OperationData {
                 try {
                     this.choice = ControlChoice.valueOf(data);
                 } catch (Exception e) {
-                    throw new IllegalStorageDataException(e.getMessage());
+                    throw new IllegalStorageDataException(e);
                 }
         }
     }

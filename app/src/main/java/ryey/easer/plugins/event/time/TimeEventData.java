@@ -124,7 +124,7 @@ public class TimeEventData extends TypedEventData {
                     time = TextToTime(data);
                 } catch (ParseException e) {
                     e.printStackTrace();
-                    throw new IllegalStorageDataException(e.getMessage());
+                    throw new IllegalStorageDataException(e);
                 }
         }
     }

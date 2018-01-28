@@ -123,7 +123,7 @@ public class HeadsetEventData extends TypedEventData {
                     if (name != null)
                         hs_type = HeadsetType.valueOf(name);
                 } catch (JSONException e) {
-                    throw new IllegalStorageDataException(e.getMessage());
+                    throw new IllegalStorageDataException(e);
                 }
         }
     }

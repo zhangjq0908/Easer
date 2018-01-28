@@ -92,7 +92,7 @@ public class SmsEventData extends TypedEventData {
                     innerData.content = jsonObject.optString(K_CONTENT, null);
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    throw new IllegalStorageDataException(e.getMessage());
+                    throw new IllegalStorageDataException(e);
                 }
         }
     }

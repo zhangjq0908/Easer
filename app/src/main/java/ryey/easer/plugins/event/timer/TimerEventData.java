@@ -108,7 +108,7 @@ public class TimerEventData extends TypedEventData {
                     timer.exact = jsonObject.getBoolean(K_EXACT_BOOL);
                     timer.repeat = jsonObject.getBoolean(K_REPEAT_BOOL);
                 } catch (JSONException e) {
-                    throw new IllegalStorageDataException(e.getMessage());
+                    throw new IllegalStorageDataException(e);
                 }
         }
     }

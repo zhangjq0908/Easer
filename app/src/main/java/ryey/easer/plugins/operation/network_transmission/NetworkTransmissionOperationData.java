@@ -79,7 +79,7 @@ public class NetworkTransmissionOperationData implements OperationData {
                     this.data.data = jsonObject.getString(K_DATA);
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    throw new IllegalStorageDataException(e.getMessage());
+                    throw new IllegalStorageDataException(e);
                 }
         }
     }

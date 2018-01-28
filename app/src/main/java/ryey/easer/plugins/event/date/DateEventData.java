@@ -124,7 +124,7 @@ public class DateEventData extends TypedEventData {
                     this.date = TextToDate(data);
                 } catch (ParseException e) {
                     e.printStackTrace();
-                    throw new IllegalStorageDataException(e.getMessage());
+                    throw new IllegalStorageDataException(e);
                 }
         }
     }

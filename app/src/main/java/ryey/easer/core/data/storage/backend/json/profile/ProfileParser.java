@@ -31,7 +31,7 @@ class ProfileParser implements Parser<ProfileStructure> {
             parseOperations(jsonArray, version);
             return profile;
         } catch (JSONException e) {
-            throw new IllegalStorageDataException(e.getMessage());
+            throw new IllegalStorageDataException(e);
         }
     }
 

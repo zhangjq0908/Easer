@@ -140,7 +140,7 @@ public class CellLocationEventData extends TypedEventData {
             setFromMultiple(strings);
         } catch (JSONException e) {
             e.printStackTrace();
-            throw new IllegalStorageDataException(e.getMessage());
+            throw new IllegalStorageDataException(e);
         }
     }
 

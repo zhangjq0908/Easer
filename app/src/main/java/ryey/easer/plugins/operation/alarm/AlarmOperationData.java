@@ -92,14 +92,14 @@ public class AlarmOperationData implements OperationData {
                         alarmData.time = TextToTime(jsonObject.getString(K_TIME));
                     } catch (ParseException e) {
                         e.printStackTrace();
-                        throw new IllegalStorageDataException(e.getMessage());
+                        throw new IllegalStorageDataException(e);
                     }
                     alarmData.message = jsonObject.optString(K_MESSAGE, null);
                     alarmData.absolute = jsonObject.optBoolean(K_ABSOLUTE_BOOL, true);
                     this.data = alarmData;
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    throw new IllegalStorageDataException(e.getMessage());
+                    throw new IllegalStorageDataException(e);
                 }
         }
     }
