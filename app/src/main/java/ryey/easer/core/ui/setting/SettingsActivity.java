@@ -129,7 +129,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                    intent.setType("file/*");
+                    intent.setType("application/zip");
                     startActivityForResult(intent, REQ_CODE);
                     return true;
                 }

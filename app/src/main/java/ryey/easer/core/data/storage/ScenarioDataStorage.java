@@ -34,7 +34,7 @@ public class ScenarioDataStorage extends AbstractDataStorage<ScenarioStructure, 
 
     @Override
     boolean isSafeToDelete(String name) {
-        return true;
+        return StorageHelper.isSafeToDeleteScenario(context, name);
     }
 
     @Override

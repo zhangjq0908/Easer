@@ -1,6 +1,12 @@
 CHANGELOG
 ======
 
+* v0.5.3.2: Non-crucial bug fixes
+	* Fix "import" using wrong MIME type
+		* This bug caused the default file picker not able to pick the backup file
+	* Fix wrong check when deleting a Scenario
+		* Prevents an "in-use" Scenario from being deleted
+
 * v0.5.3.1: Various fixes to v0.5.3
 	* Fix "import" not working correctly
 		* due to the wrong handling of directory entry in zip)
