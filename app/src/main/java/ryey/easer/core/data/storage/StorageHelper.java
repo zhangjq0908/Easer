@@ -41,6 +41,15 @@ public class StorageHelper {
         return true;
     }
 
+    static boolean isSafeToDeleteScenario(Context context, String name) {
+        EventDataStorage eventDataStorage = EventDataStorage.getInstance(context);
+        for (EventStructure eventStructure : eventDataStorage.allEvents()) {
+            if (name.equals(eventStructure.getScenario().getName()))
+                return false;
+        }
+        return true;
+    }
+
     static List<EventTree> eventListToTrees(List<EventStructure> events) {
         List<EventTree> eventTreeList = new ArrayList<>();
         Map<String, List<EventStructure>> eventIntermediateDataMap = StorageHelper.eventParentMap(events);
