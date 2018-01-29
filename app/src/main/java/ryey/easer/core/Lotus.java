@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
 
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
@@ -57,6 +58,7 @@ final class Lotus {
 
     private Context context;
     private final EventTree eventTree;
+    private final ExecutorService executorService;
 
     private final Uri uri = Uri.parse(String.format(Locale.US, "lotus://%d", hashCode()));
     private final PendingIntent notifyLotusIntent, notifyLotusUnsatisfiedIntent;
@@ -93,9 +95,10 @@ final class Lotus {
         filter.addDataPath(uri.getPath(), PatternMatcher.PATTERN_LITERAL);
     }
 
-    Lotus(Context context, EventTree eventTree) {
+    Lotus(Context context, EventTree eventTree, ExecutorService executorService) {
         this.context = context;
         this.eventTree = eventTree;
+        this.executorService = executorService;
 
         Intent intent1 = new Intent(ACTION_SLOT_SATISFIED);
         intent1.addCategory(CATEGORY_NOTIFY_LOTUS);
@@ -131,22 +134,37 @@ final class Lotus {
         return slot;
     }
 
-    void check() {
-        mSlot.check();
+    synchronized void check() {
+        executorService.submit(new Runnable() {
+            @Override
+            public void run() {
+                mSlot.check();
+            }
+        });
     }
 
-    void listen() {
+    synchronized void listen() {
         context.registerReceiver(mReceiver, filter);
-        mSlot.listen();
+        executorService.submit(new Runnable() {
+            @Override
+            public void run() {
+                mSlot.listen();
+            }
+        });
     }
 
-    void cancel() {
+    synchronized void cancel() {
         context.unregisterReceiver(mReceiver);
-        mSlot.cancel();
-        for (Lotus sub : subs) {
-            sub.cancel();
-        }
-        subs.clear();
+        executorService.submit(new Runnable() {
+            @Override
+            public void run() {
+                mSlot.cancel();
+                for (Lotus sub : subs) {
+                    sub.cancel();
+                }
+                subs.clear();
+            }
+        });
     }
 
     private synchronized void onSlotSatisfied() {
@@ -223,7 +241,7 @@ final class Lotus {
             }
             for (EventTree sub : eventTree.getSubs()) {
                 if (sub.isActive()) {
-                    Lotus subLotus = new Lotus(context, sub);
+                    Lotus subLotus = new Lotus(context, sub, executorService);
                     subs.add(subLotus);
                     subLotus.listen();
                     subLotus.check();
