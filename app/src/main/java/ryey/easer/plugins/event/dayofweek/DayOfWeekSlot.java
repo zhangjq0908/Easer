@@ -22,12 +22,10 @@ package ryey.easer.plugins.event.dayofweek;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.support.annotation.NonNull;
 
 import java.util.Calendar;
 import java.util.Set;
 
-import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.SelfNotifiableSlot;
 
@@ -37,17 +35,17 @@ class DayOfWeekSlot extends SelfNotifiableSlot<DayOfWeekEventData> {
     private Set<Integer> days;
     private EventType type = null;
 
-    public DayOfWeekSlot(Context context) {
-        super(context);
+    public DayOfWeekSlot(Context context, DayOfWeekEventData data) {
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
+    }
+
+    DayOfWeekSlot(Context context, DayOfWeekEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
+        setDate(data.days);
+        type = data.type();
 
         if (mAlarmManager == null)
             mAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-    }
-
-    @Override
-    public void set(@ValidData @NonNull DayOfWeekEventData data) {
-        setDate(data.days);
-        type = data.type();
     }
 
     private void setDate(Set<Integer> days) {

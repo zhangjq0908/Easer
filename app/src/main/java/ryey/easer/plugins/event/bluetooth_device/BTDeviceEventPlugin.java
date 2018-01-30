@@ -27,6 +27,7 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
@@ -75,8 +76,13 @@ public class BTDeviceEventPlugin implements EventPlugin<BTDeviceEventData> {
     }
 
     @Override
-    public AbstractSlot<BTDeviceEventData> slot(Context context) {
-        return new BTDeviceSlot(context);
+    public AbstractSlot<BTDeviceEventData> slot(@NonNull Context context, @ValidData @NonNull BTDeviceEventData data) {
+        return new BTDeviceSlot(context, data);
+    }
+
+    @Override
+    public AbstractSlot<BTDeviceEventData> slot(@NonNull Context context, @NonNull BTDeviceEventData data, boolean retriggerable, boolean persistent) {
+        return new BTDeviceSlot(context, data, retriggerable, persistent);
     }
 
 }

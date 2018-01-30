@@ -2,6 +2,30 @@ Currently, all data of Easer are stored as files. JSON is the current recommende
 
 This document describes the format of the file content, to use as a reference.
 
+## Version 5
+This version slightly modified version 4.
+
+The only affected thing is *Events using inline Scenario*, and we are listing it here only.
+
+### Event with inline Scenario
+```JSON
+{
+	"name":NAME,
+	"version":VERSION OF DATA,
+	"active":true or false,
+	"profile":PROFILE NAME,
+	"after":PARENT EVENT NAME,
+	"trigger":{
+		"type":"raw_event",
+		"logic":"after" or "any" or "before" or "is" or "is_not" or "none",
+		"situation":{
+			"spec":ID OF THE CORRESPONDING EventPlugin,
+			"data":DATA FROM THE CORRESPONDING EventPlugin
+		}
+	}
+}
+```
+
 ## Version 4
 This version introduces *Scenario* for the first time.  
 The earlier *Event*s are now treated as "Events using inline Scenario".

@@ -2,14 +2,21 @@ package ryey.easer.core.data.storage;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.widget.Toast;
 
+import com.orhanobut.logger.Logger;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ryey.easer.R;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.EventTree;
+import ryey.easer.core.data.Named;
+import ryey.easer.core.data.storage.backend.DataStorageBackendCommonInterface;
 
 public class StorageHelper {
 
@@ -21,6 +28,44 @@ public class StorageHelper {
         if (profileDataStorage.storage_backend_list[1].list().size() > 0)
             return true;
         return false;
+    }
+    
+    public static boolean convertToNewFormat(Context context) {
+        Toast.makeText(context, R.string.message_convert_data_start, Toast.LENGTH_SHORT).show();
+        ProfileDataStorage profileDataStorage = ProfileDataStorage.getInstance(context);
+        try {
+            convert(profileDataStorage.storage_backend_list);
+        } catch (ConvertFailedException e) {
+            Logger.e("Failed to convert Profile <%s> to new format.", e.name);
+            Toast.makeText(context, R.string.message_convert_data_abort, Toast.LENGTH_LONG).show();
+            return false;
+        }
+        EventDataStorage eventDataStorage = EventDataStorage.getInstance(context);
+        try {
+            convert(eventDataStorage.storage_backend_list);
+        } catch (ConvertFailedException e) {
+            Logger.e("Failed to convert Event <%s> to new format.", e.name);
+            Toast.makeText(context, R.string.message_convert_data_abort, Toast.LENGTH_LONG).show();
+            return false;
+        }
+        Toast.makeText(context, R.string.message_convert_data_finish, Toast.LENGTH_LONG).show();
+        return true;
+    }
+
+    private static <T extends Named> void convert(DataStorageBackendCommonInterface<T>[] backends) throws ConvertFailedException {
+        DataStorageBackendCommonInterface<T> prefered = backends[0];
+        for (int i = 1; i < backends.length; i++) {
+            DataStorageBackendCommonInterface<T> backend = backends[i];
+            for (T data : backend.all()) {
+                try {
+                    prefered.write(data);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    throw new ConvertFailedException(e, data.getName());
+                }
+                backend.delete(data.getName());
+            }
+        }
     }
 
     static boolean isSafeToDeleteProfile(Context context, String name) {
@@ -87,6 +132,14 @@ public class StorageHelper {
             EventTree sub_node = new EventTree(int_node);
             node.addSub(sub_node);
             mapToTreeList(eventIntermediateDataMap, sub_node);
+        }
+    }
+
+    private static class ConvertFailedException extends IOException {
+        private final String name;
+        private ConvertFailedException(IOException e, String name) {
+            super(e);
+            this.name = name;
         }
     }
 }

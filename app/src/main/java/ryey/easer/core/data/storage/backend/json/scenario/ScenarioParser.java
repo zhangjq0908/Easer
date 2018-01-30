@@ -17,15 +17,12 @@ import ryey.easer.plugins.PluginRegistry;
 
 public class ScenarioParser implements Parser<ScenarioStructure> {
 
-    ScenarioStructure scenario;
-    
     @Override
     public ScenarioStructure parse(InputStream in) throws IOException, IllegalStorageDataException {
-        scenario = new ScenarioStructure();
         try {
             JSONObject jsonObject = new JSONObject(IOUtils.inputStreamToString(in));
             int version = jsonObject.optInt(C.VERSION, C.VERSION_USE_SCENARIO);
-            scenario.setName(jsonObject.getString(C.NAME));
+            final String name = jsonObject.getString(C.NAME);
             EventType logic = EventType.valueOf(jsonObject.getString(C.LOGIC));
             JSONObject jsonObject_situation = jsonObject.getJSONObject(C.SIT);
             String spec = jsonObject_situation.getString(C.SPEC);
@@ -33,10 +30,9 @@ public class ScenarioParser implements Parser<ScenarioStructure> {
                     .dataFactory()
                     .parse(jsonObject_situation.getString(C.DATA), C.Format.JSON, version);
             eventData.setType(logic);
-            scenario.setEventData(eventData);
-            return scenario;
+            return new ScenarioStructure(name, eventData);
         } catch (JSONException e) {
-            throw new IllegalStorageDataException(e.getMessage());
+            throw new IllegalStorageDataException(e);
         }
     }
 }

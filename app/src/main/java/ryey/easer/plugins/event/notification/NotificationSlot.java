@@ -21,29 +21,29 @@ package ryey.easer.plugins.event.notification;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 
-import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 public class NotificationSlot extends AbstractSlot<NotificationEventData> {
-    private NotificationEventData eventData;
     private EventType type = null;
 
-    public NotificationSlot(Context context) {
-        super(context);
+    public NotificationSlot(Context context, NotificationEventData data) {
+        this(context, data, isRetriggerable(data), PERSISTEN_DEFAULT);
     }
 
-    @Override
-    public void set(@ValidData @NonNull NotificationEventData data) {
-        eventData = data;
+    NotificationSlot(Context context, NotificationEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
         type = data.type();
+    }
+
+    private static boolean isRetriggerable(NotificationEventData data) {
+        EventType type = data.type();
         if (type == EventType.after) {
-            setRetriggerable(false);
+            return false;
         } else if (type == EventType.is) {
-            setRetriggerable(true);
+            return true;
         } else {
             throw new IllegalAccessError();
         }

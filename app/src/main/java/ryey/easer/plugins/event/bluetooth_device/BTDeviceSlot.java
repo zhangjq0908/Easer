@@ -26,14 +26,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.support.annotation.NonNull;
 
-import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 public class BTDeviceSlot extends AbstractSlot<BTDeviceEventData> {
-    private BTDeviceEventData data = null;
     private EventType type = null;
 
     private int matched_devices = 0;
@@ -66,13 +63,12 @@ public class BTDeviceSlot extends AbstractSlot<BTDeviceEventData> {
         filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
     }
 
-    public BTDeviceSlot(Context context) {
-        super(context);
+    public BTDeviceSlot(Context context, BTDeviceEventData data) {
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
     }
 
-    @Override
-    public void set(@ValidData @NonNull BTDeviceEventData data) {
-        this.data = data;
+    BTDeviceSlot(Context context, BTDeviceEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
         type = data.type();
     }
 
@@ -102,7 +98,7 @@ public class BTDeviceSlot extends AbstractSlot<BTDeviceEventData> {
     }
 
     private boolean is_target(BluetoothDevice device) {
-        return data.match(device.getAddress());
+        return eventData.match(device.getAddress());
     }
 
     private void determine_satisfied() {

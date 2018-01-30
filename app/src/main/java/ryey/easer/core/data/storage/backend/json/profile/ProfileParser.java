@@ -25,13 +25,13 @@ class ProfileParser implements Parser<ProfileStructure> {
         try {
             profile = new ProfileStructure();
             JSONObject jsonObject = new JSONObject(IOUtils.inputStreamToString(in));
-            int version = jsonObject.optInt(C.VERSION);
+            int version = jsonObject.optInt(C.VERSION, C.VERSION_ADD_JSON);
             profile.setName(jsonObject.optString(C.NAME));
             JSONArray jsonArray = jsonObject.optJSONArray(C.OPERATION);
             parseOperations(jsonArray, version);
             return profile;
         } catch (JSONException e) {
-            throw new IllegalStorageDataException(e.getMessage());
+            throw new IllegalStorageDataException(e);
         }
     }
 

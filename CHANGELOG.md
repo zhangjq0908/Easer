@@ -1,6 +1,20 @@
 CHANGELOG
 ======
 
+* v0.5.4: Restore the old definitions for inline Scenarios && Add `TcpTripEventPlugin` && Various changes
+	* Restore the old definitions of "repeatable" and "persistent" when using inline Scenarios
+		* They were overridden previously when introducing Scenario
+		* The ability to do advanced customization (e.g. "repeatable" and "persistent") is now only available to explicit Scenarios
+	* Add `TcpTripEventPlugin` to perform TCP communication and check its success and reply data
+		* When not checking reply data, if the packet is successfully sent, it is considered as "true"
+		* When checking reply data, only when the actual reply data "startswith" the designated data, it is considered as "true"
+	* Make some methods in `AbstractSlot` (e.g. `listen()`) run in separate threads
+		* This shall make `EHService` run slightly faster
+		* Does not affect the implementation of subclasses of `AbstractSlot`
+	* Remove useless section in the data of Events with inline Scenario
+	* Developer changes
+		* See git's log
+
 * v0.5.3.2: Non-crucial bug fixes
 	* Fix "import" using wrong MIME type
 		* This bug caused the default file picker not able to pick the backup file

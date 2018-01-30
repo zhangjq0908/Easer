@@ -166,7 +166,7 @@ public class EditEventActivity extends AbstractEditDataActivity<EventStructure, 
         mSpinner_parent.setSelection(mEventList.indexOf(parent));
 
         ScenarioStructure scenario = event.getScenario();
-        if (ScenarioDataStorage.hasTmp(scenario.getName())) {
+        if (scenario.isTmpScenario()) {
             mSwitch_use_scenario.setChecked(false);
             EventData eventData = scenario.getEventData();
             mViewPager.setEventData(eventData);

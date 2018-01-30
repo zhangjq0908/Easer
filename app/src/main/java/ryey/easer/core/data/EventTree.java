@@ -37,6 +37,9 @@ final public class EventTree {
     public String getName() {
         return data.name;
     }
+    public ScenarioStructure getScenario() {
+        return data.getScenario();
+    }
     public EventData getEventData() {
         return data.getScenario().getEventData();
     }

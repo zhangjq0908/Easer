@@ -13,6 +13,7 @@ import com.orhanobut.logger.Logger;
 
 import java.util.Locale;
 
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 
@@ -45,8 +46,7 @@ public abstract class SelfNotifiableSlot<T extends EventData> extends AbstractSl
         }
     };
 
-    protected SelfNotifiableSlot(@NonNull Context context) {
-        super(context);
+    {
         filter = new IntentFilter();
         filter.addAction(ACTION_SATISFIED);
         filter.addAction(ACTION_UNSATISFIED);
@@ -61,6 +61,10 @@ public abstract class SelfNotifiableSlot<T extends EventData> extends AbstractSl
         notifySelfIntent_positive = PendingIntent.getBroadcast(context, 0, intent, 0);
         intent.setAction(ACTION_UNSATISFIED);
         notifySelfIntent_negative = PendingIntent.getBroadcast(context, 0, intent, 0);
+    }
+
+    protected SelfNotifiableSlot(@NonNull Context context, @ValidData @NonNull T data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
     }
 
     @Override

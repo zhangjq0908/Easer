@@ -21,9 +21,7 @@ package ryey.easer.plugins.event.calendar;
 
 import android.app.AlarmManager;
 import android.content.Context;
-import android.support.annotation.NonNull;
 
-import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.SelfNotifiableSlot;
 
@@ -31,37 +29,35 @@ public class CalendarSlot extends SelfNotifiableSlot<CalendarEventData> {
 
     private static AlarmManager mAlarmManager = null;
 
-    private CalendarEventData data = null;
     private EventType type = null;
 
-    public CalendarSlot(Context context) {
-        super(context);
+    public CalendarSlot(Context context, CalendarEventData data) {
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
+    }
+
+    CalendarSlot(Context context, CalendarEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
+        type = data.type();
         mAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
     }
 
     @Override
-    public void set(@ValidData @NonNull CalendarEventData data) {
-        this.data = data;
-        type = data.type();
-    }
-
-    @Override
     public boolean isValid() {
-        return data.isValid();
+        return eventData.isValid();
     }
 
     @Override
     public void listen() {
         super.listen();
-        if (data.data.conditions.contains(CalendarData.condition_name[0])) {
-            Long time_next_event = CalendarHelper.nextEvent_start(context.getContentResolver(), data.data.calendar_id);
+        if (eventData.data.conditions.contains(CalendarData.condition_name[0])) {
+            Long time_next_event = CalendarHelper.nextEvent_start(context.getContentResolver(), eventData.data.calendar_id);
             if (time_next_event != null) {
                 mAlarmManager.set(AlarmManager.RTC_WAKEUP, time_next_event,
                         notifySelfIntent_positive);
             }
         }
-        if (data.data.conditions.contains(CalendarData.condition_name[1])) {
-            Long time_next_event = CalendarHelper.nextEvent_end(context.getContentResolver(), data.data.calendar_id);
+        if (eventData.data.conditions.contains(CalendarData.condition_name[1])) {
+            Long time_next_event = CalendarHelper.nextEvent_end(context.getContentResolver(), eventData.data.calendar_id);
             if (time_next_event != null) {
                 mAlarmManager.set(AlarmManager.RTC_WAKEUP, time_next_event,
                         notifySelfIntent_positive);

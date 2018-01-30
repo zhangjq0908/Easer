@@ -76,6 +76,12 @@
     <string name="event_headset__microphone_true">帶有</string>
     <string name="event_headset__microphone_false">不帶有</string>
     <string name="event_headset__microphone_any">均可</string>
+
+    <string name="event_tcp_trip">TCP往復</string>
+    <string name="remote_host">遠程主機</string>
+    <string name="send_data">發送數據</string>
+    <string name="check_reply">檢查傳回數據</string>
+    <string name="reply_data">傳回數據</string>
     
     <string name="operation_bluetooth">藍牙</string>
 

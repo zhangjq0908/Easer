@@ -72,7 +72,7 @@ public class SendNotificationOperationData implements OperationData {
                     notificationContent.title = jsonObject.getString(K_TITLE);
                     notificationContent.content = jsonObject.getString(K_CONTENT);
                 } catch (JSONException e) {
-                    throw new IllegalStorageDataException(e.getMessage());
+                    throw new IllegalStorageDataException(e);
                 }
         }
     }

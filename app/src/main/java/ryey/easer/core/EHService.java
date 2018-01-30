@@ -31,6 +31,8 @@ import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import ryey.easer.core.data.EventTree;
 import ryey.easer.core.data.storage.EventDataStorage;
@@ -45,6 +47,7 @@ public class EHService extends Service {
     public static final String ACTION_PROFILE_UPDATED = "ryey.easer.action.PROFILE_UPDATED";
 
     List<Lotus> mLotusArray = new ArrayList<>();
+    private ExecutorService executorService = Executors.newFixedThreadPool(4);
 
     final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
@@ -162,7 +165,7 @@ public class EHService extends Service {
         for (EventTree event : eventTreeList) {
             Logger.v("setting trigger for <%s>", event.getName());
             if (event.isActive()) {
-                Lotus lotus = new Lotus(this, event);
+                Lotus lotus = new Lotus(this, event, executorService);
                 lotus.listen();
                 Logger.v("trigger for event <%s> is set", event.getName());
                 mLotusArray.add(lotus);

@@ -17,9 +17,8 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.event.sms;
+package ryey.easer.plugins.event.tcp_trip;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -30,19 +29,18 @@ import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
-import ryey.easer.plugins.reusable.PluginHelper;
 
-public class SmsEventPlugin implements EventPlugin<SmsEventData> {
+public class TcpTripEventPlugin implements EventPlugin<TcpTripEventData> {
 
     @NonNull
     @Override
     public String id() {
-        return "sms";
+        return "tcp trip";
     }
 
     @Override
     public int name() {
-        return R.string.event_sms;
+        return R.string.event_tcp_trip;
     }
 
     @Override
@@ -52,47 +50,35 @@ public class SmsEventPlugin implements EventPlugin<SmsEventData> {
 
     @Override
     public boolean checkPermissions(@NonNull Context context) {
-        return PluginHelper.checkPermission(context,
-                Manifest.permission.READ_SMS,
-                Manifest.permission.RECEIVE_SMS);
+        return true;
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        boolean can_read_sms = PluginHelper.checkPermission(activity, Manifest.permission.READ_SMS);
-        boolean can_receive_sms = PluginHelper.checkPermission(activity, Manifest.permission.RECEIVE_SMS);
-        if (!can_read_sms && !can_receive_sms) {
-            PluginHelper.requestPermission(activity, requestCode,
-                    Manifest.permission.READ_SMS,
-                    Manifest.permission.RECEIVE_SMS);
-        } else if (!can_read_sms) {
-            PluginHelper.requestPermission(activity, requestCode, Manifest.permission.READ_SMS);
-        } else {
-            PluginHelper.requestPermission(activity, requestCode, Manifest.permission.RECEIVE_SMS);
-        }
-    }
-
-    @NonNull
-    @Override
-    public EventDataFactory<SmsEventData> dataFactory() {
-        return new SmsEventDataFactory();
 
     }
 
     @NonNull
     @Override
-    public PluginViewFragment<SmsEventData> view() {
-        return new SmsPluginViewFragment();
+    public EventDataFactory<TcpTripEventData> dataFactory() {
+        return new TcpTripEventDataFactory();
+
+    }
+
+    @NonNull
+    @Override
+    public PluginViewFragment<TcpTripEventData> view() {
+        return new TcpTripPluginViewFragment();
     }
 
     @Override
-    public AbstractSlot<SmsEventData> slot(@NonNull Context context, @ValidData @NonNull SmsEventData data) {
-        return new SmsConnSlot(context, data);
+    public AbstractSlot<TcpTripEventData> slot(@NonNull Context context, @ValidData @NonNull TcpTripEventData data) {
+        return new TcpTripSlot(context, data);
     }
 
     @Override
-    public AbstractSlot<SmsEventData> slot(@NonNull Context context, @NonNull SmsEventData data, boolean retriggerable, boolean persistent) {
-        return new SmsConnSlot(context, data, retriggerable, persistent);
+    public AbstractSlot<TcpTripEventData> slot(@NonNull Context context, @NonNull TcpTripEventData data, boolean retriggerable, boolean persistent) {
+        return new TcpTripSlot(context, data, retriggerable, persistent);
     }
 
 }

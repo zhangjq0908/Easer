@@ -6,11 +6,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.annotation.NonNull;
 
 import java.util.Set;
 
-import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
@@ -43,12 +41,12 @@ class ConnectivitySlot extends AbstractSlot<ConnectivityEventData> {
         filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
     }
 
-    public ConnectivitySlot(Context context) {
-        super(context);
+    public ConnectivitySlot(Context context, ConnectivityEventData data) {
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
     }
 
-    @Override
-    public void set(@ValidData @NonNull ConnectivityEventData data) {
+    ConnectivitySlot(Context context, ConnectivityEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
         connectivity_types = data.connectivity_type;
         type = data.type();
     }

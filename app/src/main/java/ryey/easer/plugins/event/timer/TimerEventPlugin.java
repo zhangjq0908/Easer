@@ -25,6 +25,7 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
@@ -71,8 +72,13 @@ public class TimerEventPlugin implements EventPlugin<TimerEventData> {
     }
 
     @Override
-    public AbstractSlot<TimerEventData> slot(Context context) {
-        return new TimerSlot(context);
+    public AbstractSlot<TimerEventData> slot(@NonNull Context context, @ValidData @NonNull TimerEventData data) {
+        return new TimerSlot(context, data);
+    }
+
+    @Override
+    public AbstractSlot<TimerEventData> slot(@NonNull Context context, @NonNull TimerEventData data, boolean retriggerable, boolean persistent) {
+        return new TimerSlot(context, data, retriggerable, persistent);
     }
 
 }

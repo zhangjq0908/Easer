@@ -26,7 +26,6 @@ import android.support.annotation.NonNull;
 
 import java.util.Calendar;
 
-import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.SelfNotifiableSlot;
 
@@ -36,17 +35,17 @@ public class TimeSlot extends SelfNotifiableSlot<TimeEventData> {
     private Calendar calendar = null;
     private EventType type = null;
 
-    public TimeSlot(Context context) {
-        super(context);
+    public TimeSlot(Context context, TimeEventData data) {
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
+    }
+
+    TimeSlot(Context context, TimeEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
+        setTime(data.time);
+        type = data.type();
 
         if (mAlarmManager == null)
             mAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-    }
-
-    @Override
-    public void set(@ValidData @NonNull TimeEventData data) {
-        setTime(data.time);
-        type = data.type();
     }
 
     private void setTime(@NonNull Calendar time) {

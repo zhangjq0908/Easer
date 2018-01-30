@@ -23,9 +23,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.support.annotation.NonNull;
 
-import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
@@ -44,15 +42,14 @@ public class BroadcastConnSlot extends AbstractSlot<BroadcastEventData> {
 
     {
         filter = new IntentFilter();
-        setRetriggerable(true);
     }
 
-    public BroadcastConnSlot(Context context) {
-        super(context);
+    public BroadcastConnSlot(Context context, BroadcastEventData data) {
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
     }
 
-    @Override
-    public void set(@ValidData @NonNull BroadcastEventData data) {
+    BroadcastConnSlot(Context context, BroadcastEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
         intentData = data.intentData;
         type = data.type();
         filter = new IntentFilter();

@@ -26,16 +26,13 @@ import android.content.IntentFilter;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 
-import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 public class WifiConnSlot extends AbstractSlot<WifiEventData> {
-    private WifiEventData data = null;
     private EventType type = null;
 
     private int matched_networks = 0;
@@ -66,19 +63,18 @@ public class WifiConnSlot extends AbstractSlot<WifiEventData> {
         filter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
     }
 
-    public WifiConnSlot(Context context) {
-        super(context);
+    public WifiConnSlot(Context context, WifiEventData data) {
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
     }
 
-    @Override
-    public void set(@ValidData @NonNull WifiEventData data) {
-        this.data = data;
+    WifiConnSlot(Context context, WifiEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
         type = data.type();
     }
 
     @Override
     public boolean isValid() {
-        return data.isValid();
+        return eventData.isValid();
     }
 
     @Override
@@ -102,7 +98,7 @@ public class WifiConnSlot extends AbstractSlot<WifiEventData> {
 
     private boolean compare(WifiInfo wifiInfo) {
         String ssid;
-        if (data.mode_essid) {
+        if (eventData.mode_essid) {
             ssid = wifiInfo.getSSID();
             if (ssid.startsWith("\"")) {
                 ssid = ssid.substring(1, ssid.length() - 1);
@@ -110,7 +106,7 @@ public class WifiConnSlot extends AbstractSlot<WifiEventData> {
         } else {
             ssid = wifiInfo.getBSSID();
         }
-        return data.match(ssid);
+        return eventData.match(ssid);
     }
 
     private void determine_satisfied() {

@@ -33,11 +33,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
 
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.core.data.EventTree;
+import ryey.easer.core.data.ScenarioStructure;
 import ryey.easer.plugins.PluginRegistry;
 
 /*
@@ -56,6 +58,7 @@ final class Lotus {
 
     private Context context;
     private final EventTree eventTree;
+    private final ExecutorService executorService;
 
     private final Uri uri = Uri.parse(String.format(Locale.US, "lotus://%d", hashCode()));
     private final PendingIntent notifyLotusIntent, notifyLotusUnsatisfiedIntent;
@@ -92,9 +95,10 @@ final class Lotus {
         filter.addDataPath(uri.getPath(), PatternMatcher.PATTERN_LITERAL);
     }
 
-    Lotus(Context context, EventTree eventTree) {
+    Lotus(Context context, EventTree eventTree, ExecutorService executorService) {
         this.context = context;
         this.eventTree = eventTree;
+        this.executorService = executorService;
 
         Intent intent1 = new Intent(ACTION_SLOT_SATISFIED);
         intent1.addCategory(CATEGORY_NOTIFY_LOTUS);
@@ -103,7 +107,7 @@ final class Lotus {
         intent1.setAction(ACTION_SLOT_UNSATISFIED);
         notifyLotusUnsatisfiedIntent = PendingIntent.getBroadcast(context, 0, intent1, 0);
 
-        mSlot = dataToSlot(eventTree.getEventData());
+        mSlot = nodeToSlot(eventTree);
         if (eventTree.isRevert()) {
             mSlot.register(notifyLotusUnsatisfiedIntent, notifyLotusIntent);
         } else {
@@ -115,31 +119,52 @@ final class Lotus {
         cooldownInMillisecond = SettingsHelper.coolDownInterval(context);
     }
 
-    private <T extends EventData> AbstractSlot<T> dataToSlot(T data) {
+    private <T extends EventData> AbstractSlot<T> nodeToSlot(EventTree node) {
+        ScenarioStructure scenario = node.getScenario();
         AbstractSlot<T> slot;
         //noinspection unchecked
+        T data = (T) scenario.getEventData();
+        //noinspection unchecked
         EventPlugin<T> plugin = PluginRegistry.getInstance().event().findPlugin(data);
-        slot = plugin.slot(context);
-        slot.set(data);
+        if (scenario.isTmpScenario()) {
+            slot = plugin.slot(context, data);
+        } else {
+            slot = plugin.slot(context, data, repeatable, persistent);
+        }
         return slot;
     }
 
-    void check() {
-        mSlot.check();
+    synchronized void check() {
+        executorService.submit(new Runnable() {
+            @Override
+            public void run() {
+                mSlot.check();
+            }
+        });
     }
 
-    void listen() {
+    synchronized void listen() {
         context.registerReceiver(mReceiver, filter);
-        mSlot.listen();
+        executorService.submit(new Runnable() {
+            @Override
+            public void run() {
+                mSlot.listen();
+            }
+        });
     }
 
-    void cancel() {
+    synchronized void cancel() {
         context.unregisterReceiver(mReceiver);
-        mSlot.cancel();
-        for (Lotus sub : subs) {
-            sub.cancel();
-        }
-        subs.clear();
+        executorService.submit(new Runnable() {
+            @Override
+            public void run() {
+                mSlot.cancel();
+                for (Lotus sub : subs) {
+                    sub.cancel();
+                }
+                subs.clear();
+            }
+        });
     }
 
     private synchronized void onSlotSatisfied() {
@@ -181,10 +206,9 @@ final class Lotus {
      * 並在其處（所在的遞歸棧）載入對應Profile
      */
     private void traverseAndTrigger(EventTree node, boolean is_sub) {
-        EventData eventData = node.getEventData();
         AbstractSlot slot = mSlot;
         if (is_sub) {
-            slot = dataToSlot(eventData);
+            slot = nodeToSlot(node);
             slot.check();
         }
         if (slot.isSatisfied()) {
@@ -217,7 +241,7 @@ final class Lotus {
             }
             for (EventTree sub : eventTree.getSubs()) {
                 if (sub.isActive()) {
-                    Lotus subLotus = new Lotus(context, sub);
+                    Lotus subLotus = new Lotus(context, sub, executorService);
                     subs.add(subLotus);
                     subLotus.listen();
                     subLotus.check();

@@ -55,7 +55,7 @@ class ProfileParser implements Parser<ProfileStructure> {
             else
                 throw new IllegalStorageDataException("illegal content");
         } catch (XmlPullParserException e) {
-            throw new IllegalStorageDataException(e.getMessage());
+            throw new IllegalStorageDataException(e);
         }
     }
 

@@ -25,18 +25,15 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.nfc.Tag;
 import android.os.IBinder;
-import android.support.annotation.NonNull;
 
 import java.util.Arrays;
 
-import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 import static ryey.easer.commons.plugindef.eventplugin.EventType.is;
 
 public class NfcTagSlot extends AbstractSlot<NfcTagEventData> {
-    private NfcTagEventData data = null;
     private EventType type = null;
 
     private NfcListenerService.NLSBinder sBinder;
@@ -56,17 +53,12 @@ public class NfcTagSlot extends AbstractSlot<NfcTagEventData> {
         }
     };
 
-    {
-        setRetriggerable(true);
+    public NfcTagSlot(Context context, NfcTagEventData data) {
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
     }
 
-    public NfcTagSlot(Context context) {
-        super(context);
-    }
-
-    @Override
-    public void set(@ValidData @NonNull NfcTagEventData data) {
-        this.data = data;
+    NfcTagSlot(Context context, NfcTagEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
         type = data.type();
     }
 
@@ -86,7 +78,7 @@ public class NfcTagSlot extends AbstractSlot<NfcTagEventData> {
 
     void checkAndTrigger(final Tag tag) {
         byte[] tag_id = tag.getId();
-        if (Arrays.equals(tag_id, data.id)) {
+        if (Arrays.equals(tag_id, eventData.id)) {
             if (type == is)
                 changeSatisfiedState(true);
             else

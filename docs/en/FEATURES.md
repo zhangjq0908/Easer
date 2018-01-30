@@ -16,6 +16,7 @@ Supported Features
 * Timer (Delay a while)
 * NFC tag scanned
 * Headset plug in/out
+* TCP communication (one round trip)
 
 ### Operation
 * WiFi switch

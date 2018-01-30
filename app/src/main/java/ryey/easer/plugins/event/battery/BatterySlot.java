@@ -5,9 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
-import android.support.annotation.NonNull;
 
-import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
@@ -40,12 +38,12 @@ public class BatterySlot extends AbstractSlot<BatteryEventData> {
         filter.addAction(Intent.ACTION_POWER_DISCONNECTED);
     }
 
-    public BatterySlot(Context context) {
-        super(context);
+    public BatterySlot(Context context, BatteryEventData data) {
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
     }
 
-    @Override
-    public void set(@ValidData @NonNull BatteryEventData data) {
+    BatterySlot(Context context, BatteryEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
         status = data.battery_status;
         type = data.type();
     }

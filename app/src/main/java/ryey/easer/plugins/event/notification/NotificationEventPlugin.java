@@ -29,6 +29,7 @@ import android.support.annotation.RequiresApi;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
+import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
@@ -83,8 +84,13 @@ public class NotificationEventPlugin implements EventPlugin<NotificationEventDat
     }
 
     @Override
-    public AbstractSlot<NotificationEventData> slot(Context context) {
-        return new NotificationSlot(context);
+    public AbstractSlot<NotificationEventData> slot(@NonNull Context context, @ValidData @NonNull NotificationEventData data) {
+        return new NotificationSlot(context, data);
+    }
+
+    @Override
+    public AbstractSlot<NotificationEventData> slot(@NonNull Context context, @NonNull NotificationEventData data, boolean retriggerable, boolean persistent) {
+        return new NotificationSlot(context, data, retriggerable, persistent);
     }
 
 }

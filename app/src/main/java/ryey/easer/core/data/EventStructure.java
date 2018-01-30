@@ -22,7 +22,6 @@ package ryey.easer.core.data;
 import android.support.annotation.Nullable;
 
 import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.core.data.storage.ScenarioDataStorage;
 
 /*
  * An Event consists of the following data:
@@ -35,7 +34,7 @@ import ryey.easer.core.data.storage.ScenarioDataStorage;
  *
  * Only `EditEventActivity` and `EventTree` needs to know the actual structure.
  */
-final public class EventStructure implements Named, Verifiable {
+final public class EventStructure implements Renameable, Verifiable {
     protected String name;
     private ScenarioStructure scenario;
     protected boolean active = true;
@@ -73,7 +72,7 @@ final public class EventStructure implements Named, Verifiable {
 
     @Deprecated
     public void setEventData(EventData eventData) {
-        this.scenario = ScenarioDataStorage.generateAndRecordTmpScenario(name, eventData);
+        this.scenario = ScenarioStructure.createTmpScenario(eventData);
     }
 
     public boolean isActive() {

@@ -21,11 +21,9 @@ package ryey.easer.plugins.event.timer;
 
 import android.app.AlarmManager;
 import android.content.Context;
-import android.support.annotation.NonNull;
 
 import java.util.Calendar;
 
-import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.SelfNotifiableSlot;
 
@@ -37,21 +35,25 @@ public class TimerSlot extends SelfNotifiableSlot<TimerEventData> {
     private TimerEventData.Timer timer;
     private EventType type = null;
 
-    public TimerSlot(Context context) {
-        super(context);
+    public TimerSlot(Context context, TimerEventData data) {
+        this(context, data, isRetriggerable(data), PERSISTEN_DEFAULT);
+    }
+
+    TimerSlot(Context context, TimerEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
+        timer = data.timer;
+        type = data.type();
 
         if (mAlarmManager == null)
             mAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
     }
 
-    @Override
-    public void set(@ValidData @NonNull TimerEventData data) {
-        timer = data.timer;
-        type = data.type();
+    private static boolean isRetriggerable(TimerEventData data) {
+        TimerEventData.Timer timer = data.timer;
         if (timer.repeat) {
-            setRetriggerable(true);
+            return true;
         } else {
-            setRetriggerable(false);
+            return false;
         }
     }
 
