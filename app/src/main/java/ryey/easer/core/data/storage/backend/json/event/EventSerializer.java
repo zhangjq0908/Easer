@@ -29,9 +29,11 @@ class EventSerializer implements Serializer<EventStructure> {
             JSONObject trigger = serialize_trigger(event.getScenario());
             jsonObject.put(C.TRIG, trigger);
 
-            jsonObject.put(C.REVERSE, event.isReverse());
-            jsonObject.put(C.REPEATABLE, event.isRepeatable());
-            jsonObject.put(C.PERSISTENT, event.isPersistent());
+            if (!event.getScenario().isTmpScenario()) {
+                jsonObject.put(C.REVERSE, event.isReverse());
+                jsonObject.put(C.REPEATABLE, event.isRepeatable());
+                jsonObject.put(C.PERSISTENT, event.isPersistent());
+            }
 
             return jsonObject.toString();
         } catch (JSONException e) {

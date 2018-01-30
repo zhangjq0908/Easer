@@ -34,7 +34,7 @@ class EventParser implements Parser<EventStructure> {
         eventStructure = new EventStructure();
         try {
             JSONObject jsonObject = new JSONObject(IOUtils.inputStreamToString(in));
-            int version = jsonObject.optInt(C.VERSION, C.VERSION_CURRENT);
+            int version = jsonObject.optInt(C.VERSION, C.VERSION_ADD_JSON);
             eventStructure.setName(jsonObject.getString(C.NAME));
             eventStructure.setActive(jsonObject.optBoolean(C.ACTIVE, true));
             eventStructure.setProfileName(jsonObject.optString(C.PROFILE, null));
@@ -44,9 +44,11 @@ class EventParser implements Parser<EventStructure> {
                 eventStructure.setEventData(eventData);
             } else {
                 parseAndSet_trigger(jsonObject.getJSONObject(C.TRIG), version);
-                eventStructure.setReverse(jsonObject.getBoolean(C.REVERSE));
-                eventStructure.setRepeatable(jsonObject.getBoolean(C.REPEATABLE));
-                eventStructure.setPersistent(jsonObject.getBoolean(C.PERSISTENT));
+                if (!eventStructure.getScenario().isTmpScenario()) {
+                    eventStructure.setReverse(jsonObject.getBoolean(C.REVERSE));
+                    eventStructure.setRepeatable(jsonObject.getBoolean(C.REPEATABLE));
+                    eventStructure.setPersistent(jsonObject.getBoolean(C.PERSISTENT));
+                }
             }
             return eventStructure;
         } catch (JSONException e) {
