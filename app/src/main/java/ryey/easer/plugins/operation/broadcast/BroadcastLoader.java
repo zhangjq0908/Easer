@@ -21,10 +21,13 @@ package ryey.easer.plugins.operation.broadcast;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
+
+import java.util.ArrayList;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.plugindef.ValidData;
@@ -37,7 +40,7 @@ public class BroadcastLoader extends OperationLoader<BroadcastOperationData> {
 
     @Override
     public boolean load(@ValidData @NonNull BroadcastOperationData data) {
-        IntentData iData = data.data;
+        IntentData iData = preprocess(data.data);
         Intent intent = new Intent();
         intent.setAction(iData.action);
         if (iData.category != null)
@@ -70,9 +73,30 @@ public class BroadcastLoader extends OperationLoader<BroadcastOperationData> {
             }
             intent.putExtras(extras);
         }
-        Logger.d(intent);
         context.sendBroadcast(intent);
-        Logger.d("broadcast has been sent [%s]", iData);
         return true;
+    }
+
+    private static IntentData preprocess(IntentData data) {
+        IntentData res = new IntentData();
+        res.action = Utils.format(data.action);
+        if (data.category != null) {
+            res.category = new ArrayList<>(data.category.size());
+            for (String c : data.category) {
+                res.category.add(Utils.format(c));
+            }
+        }
+        res.type = Utils.format(data.type);
+        res.data = Uri.parse(Utils.format(data.data.getPath()));
+        if (data.extras != null) {
+            res.extras = new ArrayList<>(data.extras.size());
+            for (IntentData.ExtraItem extra : data.extras) {
+                IntentData.ExtraItem p_extra = new IntentData.ExtraItem();
+                p_extra.key = Utils.format(extra.key);
+                p_extra.value = Utils.format(extra.value);
+                res.extras.add(p_extra);
+            }
+        }
+        return res;
     }
 }

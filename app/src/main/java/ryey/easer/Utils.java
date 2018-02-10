@@ -9,8 +9,11 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -111,5 +114,21 @@ public class Utils {
                 return i;
         }
         throw new IllegalStateException("At least one button should be checked");
+    }
+
+    private static final String F_DATE = "%DATE%";
+    private static final String F_TIME = "%TIME%";
+
+    private static final SimpleDateFormat sdf_date = new SimpleDateFormat("yyyy-MM-DD", Locale.US);
+    private static final SimpleDateFormat sdf_time = new SimpleDateFormat("HH-mm-ss", Locale.US);
+
+    public static String format(String format_string) {
+        if (format_string == null)
+            return null;
+        Date now = Calendar.getInstance().getTime();
+        String res = format_string;
+        res = res.replaceAll(F_DATE, sdf_date.format(now));
+        res = res.replaceAll(F_TIME, sdf_time.format(now));
+        return res;
     }
 }
