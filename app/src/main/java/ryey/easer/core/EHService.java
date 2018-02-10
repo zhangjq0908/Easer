@@ -24,6 +24,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
 
@@ -176,7 +177,36 @@ public class EHService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
-        throw new UnsupportedOperationException("Not yet implemented");
+        return new EHBinder();
+    }
+
+    public class EHBinder extends Binder {
+        /**
+         * Change the status of an event (by operating on its Lotus).
+         * The change is guaranteed to be success if the Lotus exists.
+         * @param eventName
+         * @param status currently {@code false} only
+         * @return {@code true} if this event is listening; {@code false} otherwise
+         */
+        public boolean setLotusStatus(String eventName, boolean status) {
+            for (Lotus lotus : mLotusArray) {
+                if (setLotusStatus_real(lotus, eventName, status))
+                    return true;
+            }
+            return false;
+        }
+
+        private boolean setLotusStatus_real(Lotus lotus, String eventName, boolean status) {
+            if (lotus.eventTree.getName().equals(eventName)) {
+                lotus.setStatus(status);
+                return true;
+            } else {
+                for (Lotus sub : lotus.subs) {
+                    if (setLotusStatus_real(sub, eventName, status))
+                        return true;
+                }
+            }
+            return false;
+        }
     }
 }

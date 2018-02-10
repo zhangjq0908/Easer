@@ -148,6 +148,10 @@
     <string name="operation_alarm__time">Time</string>
     <string name="operation_alarm__message">Message</string>
 
+    <string name="operation_event_control">Control Event Status</string>
+    <string name="change_status_to">Change status to…</string>
+    <string name="unsatisfied">Unsatisfied</string>
+
     <string-array name="event_type">
         <item>After</item>
         <item>Any</item>

@@ -57,14 +57,14 @@ final class Lotus {
     private static final String CATEGORY_NOTIFY_LOTUS = "ryey.easer.triggerlotus.category.NOTIFY_LOTUS";
 
     private Context context;
-    private final EventTree eventTree;
+    final EventTree eventTree;
     private final ExecutorService executorService;
 
     private final Uri uri = Uri.parse(String.format(Locale.US, "lotus://%d", hashCode()));
     private final PendingIntent notifyLotusIntent, notifyLotusUnsatisfiedIntent;
 
     private AbstractSlot mSlot;
-    private List<Lotus> subs = new ArrayList<>();
+    List<Lotus> subs = new ArrayList<>();
 
     private final long cooldownInMillisecond;
     private Calendar lastSatisfied;
@@ -165,6 +165,14 @@ final class Lotus {
                 subs.clear();
             }
         });
+    }
+
+    synchronized void setStatus(boolean status) {
+        if (status) {
+            onSlotSatisfied();
+        } else {
+            onSlotUnsatisfied();
+        }
     }
 
     private synchronized void onSlotSatisfied() {
