@@ -37,11 +37,10 @@ public class AlarmLoader extends OperationLoader<AlarmOperationData> {
 
     @Override
     public boolean load(@ValidData @NonNull AlarmOperationData data) {
-        AlarmOperationData.AlarmData iData = data.data;
         Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
-        int hour = iData.time.get(Calendar.HOUR_OF_DAY);
-        int minute = iData.time.get(Calendar.MINUTE);
-        if (!iData.absolute) {
+        int hour = data.time.get(Calendar.HOUR_OF_DAY);
+        int minute = data.time.get(Calendar.MINUTE);
+        if (!data.absolute) {
             Calendar calendar = Calendar.getInstance();
             minute += calendar.get(Calendar.MINUTE);
             if (minute >= 60) {
@@ -55,7 +54,7 @@ public class AlarmLoader extends OperationLoader<AlarmOperationData> {
         }
         intent.putExtra(AlarmClock.EXTRA_HOUR, hour);
         intent.putExtra(AlarmClock.EXTRA_MINUTES, minute);
-        intent.putExtra(AlarmClock.EXTRA_MESSAGE, iData.message);
+        intent.putExtra(AlarmClock.EXTRA_MESSAGE, data.message);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             intent.putExtra(AlarmClock.EXTRA_VIBRATE, true);
         }

@@ -29,6 +29,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 
 import java.text.ParseException;
+import java.util.Calendar;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
@@ -55,10 +56,9 @@ public class AlarmPluginViewFragment extends PluginViewFragment<AlarmOperationDa
 
     @Override
     protected void _fill(@ValidData @NonNull AlarmOperationData data) {
-        AlarmOperationData.AlarmData alarm_data = data.data;
-        editText_time.setText(AlarmOperationData.TimeToText(alarm_data.time));
-        editText_message.setText(alarm_data.message);
-        if (alarm_data.absolute)
+        editText_time.setText(AlarmOperationData.TimeToText(data.time));
+        editText_message.setText(data.message);
+        if (data.absolute)
             radioButton_absolute.setChecked(true);
         else
             radioButton_relative.setChecked(true);
@@ -68,16 +68,16 @@ public class AlarmPluginViewFragment extends PluginViewFragment<AlarmOperationDa
     @NonNull
     @Override
     public AlarmOperationData getData() throws InvalidDataInputException {
-        AlarmOperationData.AlarmData data = new AlarmOperationData.AlarmData();
+        Calendar time;
         try {
-            data.time = AlarmOperationData.TextToTime(editText_time.getText().toString());
+            time = AlarmOperationData.TextToTime(editText_time.getText().toString());
         } catch (ParseException e) {
             e.printStackTrace();
             throw new InvalidDataInputException(e.getMessage());
         }
-        data.message = editText_message.getText().toString();
-        data.absolute = radioButton_absolute.isChecked();
-        return new AlarmOperationData(data);
+        String message = editText_message.getText().toString();
+        boolean absolute = radioButton_absolute.isChecked();
+        return new AlarmOperationData(time, message, absolute);
     }
 
 }

@@ -26,12 +26,10 @@ class AlarmOperationDataFactory implements OperationDataFactory<AlarmOperationDa
     @NonNull
     @Override
     public AlarmOperationData dummyData() {
-        AlarmOperationData.AlarmData alarmData = new AlarmOperationData.AlarmData();
-        alarmData.time = Calendar.getInstance();
-        alarmData.message = "my message";
-        alarmData.absolute = false;
-        AlarmOperationData dummyData = new AlarmOperationData(alarmData);
-        return dummyData;
+        Calendar time = Calendar.getInstance();
+        String message = "my message";
+        boolean absolute = false;
+        return new AlarmOperationData(time, message, absolute);
     }
 
     @ValidData

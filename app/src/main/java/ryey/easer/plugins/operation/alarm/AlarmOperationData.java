@@ -58,13 +58,17 @@ public class AlarmOperationData implements OperationData {
         return calendar;
     }
 
-    AlarmData data = new AlarmData();
+    Calendar time;
+    String message;
+    boolean absolute = true;
 
     public AlarmOperationData() {
     }
 
-    public AlarmOperationData(AlarmData data) {
-        this.data = data;
+    AlarmOperationData(Calendar time, String message, boolean absolute) {
+        this.time = time;
+        this.message = message;
+        this.absolute = absolute;
     }
 
     AlarmOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
@@ -87,16 +91,14 @@ public class AlarmOperationData implements OperationData {
             default:
                 try {
                     JSONObject jsonObject = new JSONObject(data);
-                    AlarmData alarmData = new AlarmData();
                     try {
-                        alarmData.time = TextToTime(jsonObject.getString(K_TIME));
+                        time = TextToTime(jsonObject.getString(K_TIME));
                     } catch (ParseException e) {
                         e.printStackTrace();
                         throw new IllegalStorageDataException(e);
                     }
-                    alarmData.message = jsonObject.optString(K_MESSAGE, null);
-                    alarmData.absolute = jsonObject.optBoolean(K_ABSOLUTE_BOOL, true);
-                    this.data = alarmData;
+                    message = jsonObject.optString(K_MESSAGE, null);
+                    absolute = jsonObject.optBoolean(K_ABSOLUTE_BOOL, true);
                 } catch (JSONException e) {
                     e.printStackTrace();
                     throw new IllegalStorageDataException(e);
@@ -112,9 +114,9 @@ public class AlarmOperationData implements OperationData {
             default:
                 JSONObject jsonObject = new JSONObject();
                 try {
-                    jsonObject.put(K_TIME, TimeToText(data.time));
-                    jsonObject.put(K_MESSAGE, data.message);
-                    jsonObject.put(K_ABSOLUTE_BOOL, data.absolute);
+                    jsonObject.put(K_TIME, TimeToText(time));
+                    jsonObject.put(K_MESSAGE, message);
+                    jsonObject.put(K_ABSOLUTE_BOOL, absolute);
                     res = jsonObject.toString();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -126,9 +128,7 @@ public class AlarmOperationData implements OperationData {
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
-        if (data == null)
-            return false;
-        if (data.time == null)
+        if (time == null)
             return false;
         return true;
     }
@@ -140,7 +140,14 @@ public class AlarmOperationData implements OperationData {
             return true;
         if (!(obj instanceof AlarmOperationData))
             return false;
-        return data.equals(((AlarmOperationData) obj).data);
+        if (!Utils.nullableEqual(message, ((AlarmOperationData) obj).message))
+            return false;
+        for (int field : TIME_FIELDS)
+            if (time.get(field) != ((AlarmOperationData) obj).time.get(field))
+                return false;
+        if (absolute != ((AlarmOperationData) obj).absolute)
+            return false;
+        return true;
     }
 
     @Override
@@ -151,10 +158,10 @@ public class AlarmOperationData implements OperationData {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         for (int field : TIME_FIELDS) {
-            dest.writeInt(data.time.get(field));
+            dest.writeInt(time.get(field));
         }
-        dest.writeString(data.message);
-        dest.writeByte((byte) (data.absolute ? 1 : 0));
+        dest.writeString(message);
+        dest.writeByte((byte) (absolute ? 1 : 0));
     }
 
     public static final Creator<AlarmOperationData> CREATOR
@@ -169,34 +176,11 @@ public class AlarmOperationData implements OperationData {
     };
 
     private AlarmOperationData(Parcel in) {
-        data = new AlarmData();
-        data.time = Calendar.getInstance();
+        time = Calendar.getInstance();
         for (int field : TIME_FIELDS) {
-            data.time.set(field, in.readInt());
+            time.set(field, in.readInt());
         }
-        data.message = in.readString();
-        data.absolute = in.readByte() != 0;
-    }
-
-    static class AlarmData {
-        Calendar time;
-        String message;
-        boolean absolute = true;
-
-        @Override
-        public boolean equals(Object obj) {
-            if (obj == this)
-                return true;
-            if (!(obj instanceof AlarmData))
-                return false;
-            if (!Utils.nullableEqual(message, ((AlarmData) obj).message))
-                return false;
-            for (int field : TIME_FIELDS)
-                if (time.get(field) != ((AlarmData) obj).time.get(field))
-                    return false;
-            if (absolute != ((AlarmData) obj).absolute)
-                return false;
-            return true;
-        }
+        message = in.readString();
+        absolute = in.readByte() != 0;
     }
 }
