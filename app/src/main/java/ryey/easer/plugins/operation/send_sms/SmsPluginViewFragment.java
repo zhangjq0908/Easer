@@ -47,18 +47,16 @@ public class SmsPluginViewFragment extends PluginViewFragment<SmsOperationData> 
 
     @Override
     protected void _fill(@ValidData @NonNull SmsOperationData data) {
-        Sms sms = data.sms;
-        et_destination.setText(sms.destination);
-        et_content.setText(sms.content);
+        et_destination.setText(data.destination);
+        et_content.setText(data.content);
     }
 
     @ValidData
     @NonNull
     @Override
     public SmsOperationData getData() throws InvalidDataInputException {
-        Sms sms = new Sms();
-        sms.destination = et_destination.getText().toString();
-        sms.content = et_content.getText().toString();
-        return new SmsOperationData(sms);
+        String destination = et_destination.getText().toString();
+        String content = et_content.getText().toString();
+        return new SmsOperationData(destination, content);
     }
 }

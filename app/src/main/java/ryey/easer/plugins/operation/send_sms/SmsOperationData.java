@@ -43,13 +43,15 @@ public class SmsOperationData implements OperationData {
     private static final String K_DEST = "destination";
     private static final String K_CONTENT = "content";
 
-    Sms sms;
+    String destination;
+    String content;
 
     SmsOperationData() {
     }
 
-    SmsOperationData(Sms sms) {
-        this.sms = sms;
+    SmsOperationData(String destination, String content) {
+        this.destination = destination;
+        this.content = content;
     }
 
     SmsOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
@@ -68,11 +70,10 @@ public class SmsOperationData implements OperationData {
 
     @Override
     public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
-        sms = new Sms();
         try {
             JSONObject jsonObject = new JSONObject(data);
-            sms.destination = jsonObject.getString(K_DEST);
-            sms.content = jsonObject.getString(K_CONTENT);
+            destination = jsonObject.getString(K_DEST);
+            content = jsonObject.getString(K_CONTENT);
         } catch (JSONException e) {
             Logger.e(e, "error");
             throw new IllegalStateException(e);
@@ -87,8 +88,8 @@ public class SmsOperationData implements OperationData {
             default:
                 try {
                     JSONObject jsonObject = new JSONObject();
-                    jsonObject.put(K_DEST, sms.destination);
-                    jsonObject.put(K_CONTENT, sms.content);
+                    jsonObject.put(K_DEST, destination);
+                    jsonObject.put(K_CONTENT, content);
                     res = jsonObject.toString();
                 } catch (JSONException e) {
                     Logger.e(e, "error");
@@ -101,11 +102,11 @@ public class SmsOperationData implements OperationData {
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
-        if (Utils.isBlank(sms.destination))
+        if (Utils.isBlank(destination))
             return false;
-        if (!PhoneNumberUtils.isWellFormedSmsAddress(sms.destination))
+        if (!PhoneNumberUtils.isWellFormedSmsAddress(destination))
             return false;
-        if (Utils.isBlank(sms.content))
+        if (Utils.isBlank(content))
             return false;
         return true;
     }
@@ -117,7 +118,11 @@ public class SmsOperationData implements OperationData {
             return true;
         if (!(obj instanceof SmsOperationData))
             return false;
-        return sms.equals(((SmsOperationData) obj).sms);
+        if (!destination.equals(((SmsOperationData) obj).destination))
+            return false;
+        if (!Utils.nullableEqual(content, ((SmsOperationData) obj).content))
+            return false;
+        return true;
     }
 
     @Override
@@ -127,7 +132,8 @@ public class SmsOperationData implements OperationData {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeParcelable(sms, 0);
+        dest.writeString(destination);
+        dest.writeString(content);
     }
 
     public static final Parcelable.Creator<SmsOperationData> CREATOR
@@ -142,6 +148,7 @@ public class SmsOperationData implements OperationData {
     };
 
     private SmsOperationData(Parcel in) {
-        sms = in.readParcelable(Sms.class.getClassLoader());
+        destination = in.readString();
+        content = in.readString();
     }
 }

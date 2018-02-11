@@ -33,9 +33,8 @@ public class SmsLoader extends OperationLoader<SmsOperationData> {
 
     @Override
     public boolean load(@ValidData @NonNull SmsOperationData data) {
-        Sms sms = data.sms;
         SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage(sms.destination, null, sms.content, null, null);
+        smsManager.sendTextMessage(data.destination, null, data.content, null, null);
         return true;
     }
 }
