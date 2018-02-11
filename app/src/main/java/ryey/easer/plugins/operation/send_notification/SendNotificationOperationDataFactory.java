@@ -24,11 +24,9 @@ class SendNotificationOperationDataFactory implements OperationDataFactory<SendN
     @NonNull
     @Override
     public SendNotificationOperationData dummyData() {
-        NotificationContent notificationContent = new NotificationContent();
-        notificationContent.title = "my test title";
-        notificationContent.content = "my test content";
-        SendNotificationOperationData dummyData = new SendNotificationOperationData(notificationContent);
-        return dummyData;
+        String title = "my test title";
+        String content = "my test content";
+        return new SendNotificationOperationData(title, content);
     }
 
     @ValidData

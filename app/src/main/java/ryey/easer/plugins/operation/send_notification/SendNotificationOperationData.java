@@ -39,15 +39,17 @@ public class SendNotificationOperationData implements OperationData {
     private static final String K_TITLE = "title";
     private static final String K_CONTENT = "content";
 
-    NotificationContent notificationContent;
+    String title;
+    String content;
 
     SendNotificationOperationData() {
     }
 
-    SendNotificationOperationData(NotificationContent content) {
-        notificationContent = content;
+    SendNotificationOperationData(String title, String content) {
+        this.title = title;
+        this.content = content;
     }
-    
+
     SendNotificationOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
     }
@@ -64,13 +66,12 @@ public class SendNotificationOperationData implements OperationData {
 
     @Override
     public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
-        notificationContent = new NotificationContent();
         switch (format) {
             default:
                 try {
                     JSONObject jsonObject = new JSONObject(data);
-                    notificationContent.title = jsonObject.getString(K_TITLE);
-                    notificationContent.content = jsonObject.getString(K_CONTENT);
+                    title = jsonObject.getString(K_TITLE);
+                    content = jsonObject.getString(K_CONTENT);
                 } catch (JSONException e) {
                     throw new IllegalStorageDataException(e);
                 }
@@ -85,8 +86,8 @@ public class SendNotificationOperationData implements OperationData {
             default:
                 JSONObject jsonObject = new JSONObject();
                 try {
-                    jsonObject.put(K_TITLE, notificationContent.title);
-                    jsonObject.put(K_CONTENT, notificationContent.content);
+                    jsonObject.put(K_TITLE, title);
+                    jsonObject.put(K_CONTENT, content);
                 } catch (JSONException e) {
                     throw new IllegalStateException(e);
                 }
@@ -98,11 +99,9 @@ public class SendNotificationOperationData implements OperationData {
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
-        if (notificationContent == null)
+        if (title == null)
             return false;
-        if (notificationContent.title == null)
-            return false;
-        if (notificationContent.content == null)
+        if (content == null)
             return false;
         return true;
     }
@@ -116,11 +115,11 @@ public class SendNotificationOperationData implements OperationData {
             return false;
         if (!((SendNotificationOperationData) obj).isValid())
             return false;
-        if (!Utils.nullableEqual(notificationContent.title,
-                ((SendNotificationOperationData) obj).notificationContent.title))
+        if (!Utils.nullableEqual(title,
+                ((SendNotificationOperationData) obj).title))
             return false;
-        if (!Utils.nullableEqual(notificationContent.content,
-                ((SendNotificationOperationData) obj).notificationContent.content))
+        if (!Utils.nullableEqual(content,
+                ((SendNotificationOperationData) obj).content))
             return false;
         return true;
     }
@@ -132,8 +131,8 @@ public class SendNotificationOperationData implements OperationData {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(notificationContent.title);
-        parcel.writeString(notificationContent.content);
+        parcel.writeString(title);
+        parcel.writeString(content);
     }
 
     public static final Creator<SendNotificationOperationData> CREATOR
@@ -148,9 +147,8 @@ public class SendNotificationOperationData implements OperationData {
     };
 
     private SendNotificationOperationData(Parcel in) {
-        notificationContent = new NotificationContent();
-        notificationContent.title = in.readString();
-        notificationContent.content = in.readString();
+        title = in.readString();
+        content = in.readString();
     }
 
 }

@@ -46,13 +46,12 @@ public class SendNotificationLoader extends OperationLoader<SendNotificationOper
 
     @Override
     public boolean load(@ValidData @NonNull SendNotificationOperationData data) {
-        NotificationContent content = data.notificationContent;
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
         builder.setSmallIcon(R.mipmap.ic_launcher);
-        builder.setContentTitle(content.title);
-        builder.setContentText(content.content);
+        builder.setContentTitle(data.title);
+        builder.setContentText(data.content);
 
         notificationManager.notify(NOTIFICATION_ID, builder.build());
         NOTIFICATION_ID++;

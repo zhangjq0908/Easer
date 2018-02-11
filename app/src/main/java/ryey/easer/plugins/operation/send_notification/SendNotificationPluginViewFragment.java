@@ -47,18 +47,16 @@ public class SendNotificationPluginViewFragment extends PluginViewFragment<SendN
 
     @Override
     protected void _fill(@ValidData @NonNull SendNotificationOperationData data) {
-        NotificationContent notificationContent = data.notificationContent;
-        editText_title.setText(notificationContent.title);
-        editText_content.setText(notificationContent.content);
+        editText_title.setText(data.title);
+        editText_content.setText(data.content);
     }
 
     @ValidData
     @NonNull
     @Override
     public SendNotificationOperationData getData() throws InvalidDataInputException {
-        NotificationContent notificationContent = new NotificationContent();
-        notificationContent.title = editText_title.getText().toString();
-        notificationContent.content = editText_content.getText().toString();
-        return new SendNotificationOperationData(notificationContent);
+        String title = editText_title.getText().toString();
+        String content = editText_content.getText().toString();
+        return new SendNotificationOperationData(title, content);
     }
 }
