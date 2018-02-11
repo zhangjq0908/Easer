@@ -41,16 +41,15 @@ public class NetworkTransmissionLoader extends OperationLoader<NetworkTransmissi
 
     @Override
     public boolean load(@ValidData @NonNull NetworkTransmissionOperationData data) {
-        TransmissionData tdata = data.data;
         try {
-            InetAddress remote_address = InetAddress.getByName(tdata.remote_address);
-            switch (tdata.protocol) {
+            InetAddress remote_address = InetAddress.getByName(data.remote_address);
+            switch (data.protocol) {
                 case tcp:
                     try {
-                        Socket socket = new Socket(remote_address, tdata.remote_port);
+                        Socket socket = new Socket(remote_address, data.remote_port);
                         OutputStream outputStream = socket.getOutputStream();
                         DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
-                        dataOutputStream.writeBytes(tdata.data);
+                        dataOutputStream.writeBytes(data.data);
                         socket.close();
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -58,7 +57,7 @@ public class NetworkTransmissionLoader extends OperationLoader<NetworkTransmissi
                     }
                     break;
                 case udp:
-                    DatagramPacket datagramPacket = new DatagramPacket(tdata.data.getBytes(), tdata.data.length(), remote_address, tdata.remote_port);
+                    DatagramPacket datagramPacket = new DatagramPacket(data.data.getBytes(), data.data.length(), remote_address, data.remote_port);
                     try {
                         DatagramSocket socket = new DatagramSocket();
                         socket.send(datagramPacket);

@@ -43,13 +43,24 @@ public class NetworkTransmissionOperationData implements OperationData {
     private static final String K_REMOTE_PORT = "remote_port";
     private static final String K_DATA = "data";
 
-    TransmissionData data = null;
+    enum Protocol {
+        tcp,
+        udp,
+    }
+
+    Protocol protocol;
+    String remote_address;
+    int remote_port;
+    String data; //TODO: change to byte array to support arbitrary data
 
     public NetworkTransmissionOperationData() {
     }
 
-    NetworkTransmissionOperationData(TransmissionData tdata) {
-        data = tdata;
+    NetworkTransmissionOperationData(Protocol protocol, String remote_address, int remote_port, String data) {
+        this.protocol = protocol;
+        this.remote_address = remote_address;
+        this.remote_port = remote_port;
+        this.data = data;
     }
 
     NetworkTransmissionOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
@@ -68,15 +79,14 @@ public class NetworkTransmissionOperationData implements OperationData {
 
     @Override
     public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
-        this.data = new TransmissionData();
         switch (format) {
             default:
                 try {
                     JSONObject jsonObject = new JSONObject(data);
-                    this.data.protocol = TransmissionData.Protocol.valueOf(jsonObject.getString(K_PROTOCOL));
-                    this.data.remote_address = jsonObject.getString(K_REMOTE_ADDRESS);
-                    this.data.remote_port = jsonObject.getInt(K_REMOTE_PORT);
-                    this.data.data = jsonObject.getString(K_DATA);
+                    protocol = Protocol.valueOf(jsonObject.getString(K_PROTOCOL));
+                    remote_address = jsonObject.getString(K_REMOTE_ADDRESS);
+                    remote_port = jsonObject.getInt(K_REMOTE_PORT);
+                    this.data = jsonObject.getString(K_DATA);
                 } catch (JSONException e) {
                     e.printStackTrace();
                     throw new IllegalStorageDataException(e);
@@ -92,10 +102,10 @@ public class NetworkTransmissionOperationData implements OperationData {
             default:
                 JSONObject jsonObject = new JSONObject();
                 try {
-                    jsonObject.put(K_PROTOCOL, data.protocol.toString());
-                    jsonObject.put(K_REMOTE_ADDRESS, data.remote_address);
-                    jsonObject.put(K_REMOTE_PORT, data.remote_port);
-                    jsonObject.put(K_DATA, data.data);
+                    jsonObject.put(K_PROTOCOL, protocol.toString());
+                    jsonObject.put(K_REMOTE_ADDRESS, remote_address);
+                    jsonObject.put(K_REMOTE_PORT, remote_port);
+                    jsonObject.put(K_DATA, data);
                     res = jsonObject.toString();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -108,13 +118,11 @@ public class NetworkTransmissionOperationData implements OperationData {
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
-        if (data == null)
+        if (protocol == null)
             return false;
-        if (data.protocol == null)
+        if (Utils.isBlank(remote_address))
             return false;
-        if (Utils.isBlank(data.remote_address))
-            return false;
-        if (data.remote_port <= 0)
+        if (remote_port <= 0)
             return false;
         return true;
     }
@@ -126,7 +134,15 @@ public class NetworkTransmissionOperationData implements OperationData {
             return true;
         if (!(obj instanceof NetworkTransmissionOperationData))
             return false;
-        return data.equals(((NetworkTransmissionOperationData) obj).data);
+        if (protocol != ((NetworkTransmissionOperationData) obj).protocol)
+            return false;
+        if (!remote_address.equals(((NetworkTransmissionOperationData) obj).remote_address))
+            return false;
+        if (remote_port != ((NetworkTransmissionOperationData) obj).remote_port)
+            return false;
+        if (!Utils.nullableEqual(data, ((NetworkTransmissionOperationData) obj).data))
+            return false;
+        return true;
     }
 
     @Override
@@ -136,7 +152,10 @@ public class NetworkTransmissionOperationData implements OperationData {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeParcelable(data, 0);
+        dest.writeSerializable(protocol);
+        dest.writeString(remote_address);
+        dest.writeInt(remote_port);
+        dest.writeString(data);
     }
 
     public static final Parcelable.Creator<NetworkTransmissionOperationData> CREATOR
@@ -151,6 +170,9 @@ public class NetworkTransmissionOperationData implements OperationData {
     };
 
     private NetworkTransmissionOperationData(Parcel in) {
-        data = in.readParcelable(TransmissionData.class.getClassLoader());
+        protocol = (Protocol) in.readSerializable();
+        remote_address = in.readString();
+        remote_port = in.readInt();
+        data = in.readString();
     }
 }

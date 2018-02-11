@@ -55,8 +55,7 @@ public class NetworkTransmissionPluginViewFragment extends PluginViewFragment<Ne
 
     @Override
     protected void _fill(@ValidData @NonNull NetworkTransmissionOperationData data) {
-        TransmissionData tdata = data.data;
-        switch (tdata.protocol) {
+        switch (data.protocol) {
             case tcp:
                 rb_tcp.setChecked(true);
                 break;
@@ -66,27 +65,31 @@ public class NetworkTransmissionPluginViewFragment extends PluginViewFragment<Ne
             default:
                 throw new IllegalAccessError();
         }
-        editText_remote_address.setText(tdata.remote_address);
-        editText_remote_port.setText(String.valueOf(tdata.remote_port));
-        editText_data.setText(tdata.data);
+        editText_remote_address.setText(data.remote_address);
+        editText_remote_port.setText(String.valueOf(data.remote_port));
+        editText_data.setText(data.data);
     }
 
     @ValidData
     @NonNull
     @Override
     public NetworkTransmissionOperationData getData() throws InvalidDataInputException {
-        TransmissionData tdata = new TransmissionData();
+        NetworkTransmissionOperationData.Protocol protocol;
         if (rb_tcp.isChecked())
-            tdata.protocol = TransmissionData.Protocol.tcp;
+            protocol = NetworkTransmissionOperationData.Protocol.tcp;
         else if (rb_udp.isChecked())
-            tdata.protocol = TransmissionData.Protocol.udp;
-        tdata.remote_address = editText_remote_address.getText().toString();
+            protocol = NetworkTransmissionOperationData.Protocol.udp;
+        else
+            throw new IllegalStateException("This line ought to be unreachable");
+        String remote_address = editText_remote_address.getText().toString();
+        int remote_port;
         try {
-            tdata.remote_port = Integer.valueOf(editText_remote_port.getText().toString().trim());
+            remote_port = Integer.valueOf(editText_remote_port.getText().toString().trim());
         } catch (NumberFormatException e) {
             e.printStackTrace();
+            throw new InvalidDataInputException("Invalid port");
         }
-        tdata.data = editText_data.getText().toString();
-        return new NetworkTransmissionOperationData(tdata);
+        String data = editText_data.getText().toString();
+        return new NetworkTransmissionOperationData(protocol, remote_address, remote_port, data);
     }
 }

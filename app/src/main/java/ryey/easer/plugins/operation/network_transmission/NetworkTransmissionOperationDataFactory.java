@@ -24,13 +24,11 @@ class NetworkTransmissionOperationDataFactory implements OperationDataFactory<Ne
     @NonNull
     @Override
     public NetworkTransmissionOperationData dummyData() {
-        TransmissionData transmissionData = new TransmissionData();
-        transmissionData.protocol = TransmissionData.Protocol.tcp;
-        transmissionData.remote_port = 146;
-        transmissionData.remote_address = "192.168.0.143";
-        transmissionData.data = "aaaData";
-        NetworkTransmissionOperationData dummyData = new NetworkTransmissionOperationData(transmissionData);
-        return dummyData;
+        NetworkTransmissionOperationData.Protocol protocol = NetworkTransmissionOperationData.Protocol.tcp;
+        int remote_port = 146;
+        String remote_address = "192.168.0.143";
+        String data = "aaaData";
+        return new NetworkTransmissionOperationData(protocol, remote_address, remote_port, data);
     }
 
     @ValidData
