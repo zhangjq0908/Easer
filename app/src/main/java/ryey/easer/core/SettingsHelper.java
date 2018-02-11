@@ -13,4 +13,9 @@ public class SettingsHelper {
         return Integer.parseInt(interval_pref);
     }
 
+    public static boolean passiveMode(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(R.string.key_pref_passive_mode), true);
+    }
+
 }
