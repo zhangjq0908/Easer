@@ -34,4 +34,9 @@ Supported Features
 * Send SMS
 * Post Notifications
 * Set alarm
+* Change Event status
 
+### Misc
+* Formatting expression (supported in the fields of many Events/Operations)
+	* `%DATE%` - current date (`yyyy-MM-DD`)
+	* `%TIME%` - current time (`HH-mm-ss`)

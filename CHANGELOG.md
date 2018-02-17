@@ -1,6 +1,17 @@
 CHANGELOG
 ======
 
+* v0.5.5: Add `EventControlOperationPlugin` && Introduce format expression && Add 'passive mode' setting && Fix UI problem when requesting permission && Dev changes
+	* Add `EventControlOperationPlugin` to be able to change Events' status
+	* Introduce format expression for many user-input fields
+		* Current supported expressions are:
+			* `%DATE%` for current date (`yyyy-MM-DD`)
+			* `%TIME%` for current time (`HH-mm-ss`)
+	* Add 'passive mode' setting
+		* When setting to passive mode, Easer won't check the initial status, but would only listen to new events thereafter
+	* Fix unable to set enabled/disabled state for plugin views after requesting permission
+	* Dev change: simplify several plugins
+
 * v0.5.4: Restore the old definitions for inline Scenarios && Add `TcpTripEventPlugin` && Various changes
 	* Restore the old definitions of "repeatable" and "persistent" when using inline Scenarios
 		* They were overridden previously when introducing Scenario
