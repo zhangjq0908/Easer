@@ -252,7 +252,9 @@ final class Lotus {
                     Lotus subLotus = new Lotus(context, sub, executorService);
                     subs.add(subLotus);
                     subLotus.listen();
-                    subLotus.check();
+                    if (SettingsHelper.passiveMode(context)) {
+                        subLotus.check();
+                    }
                 }
             }
         }

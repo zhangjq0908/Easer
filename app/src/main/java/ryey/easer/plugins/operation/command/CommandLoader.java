@@ -26,6 +26,7 @@ import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
 
+import ryey.easer.Utils;
 import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.plugins.reusable.PluginHelper;
@@ -38,7 +39,7 @@ public class CommandLoader extends OperationLoader<CommandOperationData> {
     @Override
     public boolean load(@ValidData @NonNull CommandOperationData data) {
         boolean success = true;
-        String text = data.get();
+        String text = Utils.format(data.get());
         String []commands = text.split("\n");
         Process process;
         try {

@@ -128,8 +128,10 @@ public class EHService extends Service {
         filter.addAction(ProfileLoaderIntentService.ACTION_PROFILE_LOADED);
         registerReceiver(mReceiver, filter);
         reloadTriggers();
-        for (Lotus lotus : mLotusArray) {
-            lotus.check();
+        if (SettingsHelper.passiveMode(this)) {
+            for (Lotus lotus : mLotusArray) {
+                lotus.check();
+            }
         }
         Logger.i("EHService created");
     }

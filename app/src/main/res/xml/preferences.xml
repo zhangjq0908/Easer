@@ -35,6 +35,12 @@
             android:singleLine="true"
             android:summary="@string/pref_cooldown_summary"
             android:title="@string/pref_cooldown_title" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/key_pref_passive_mode"
+            android:summaryOn="@string/pref_passive_mode_summary_on"
+            android:summaryOff="@string/pref_passive_mode_summary_off"
+            android:title="@string/pref_passive_mode_title" />
         <Preference
             android:key="@string/key_pref_plugins"
             android:summary="@string/pref_enabled_plugins_summary"
