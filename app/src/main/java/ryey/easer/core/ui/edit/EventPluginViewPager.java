@@ -86,7 +86,6 @@ public class EventPluginViewPager extends ViewPager {
         public MyPagerAdapter(FragmentManager fm, Context context) {
             super(fm);
             this.context = context;
-            List<EventPlugin> eventPluginList = PluginRegistry.getInstance().event().getEnabledPlugins(context);
             titles = new String[eventPluginList.size()];
             for (int i = 0; i < eventPluginList.size(); i++) {
                 titles[i] = eventPluginList.get(i).view().desc(getResources());
@@ -96,7 +95,7 @@ public class EventPluginViewPager extends ViewPager {
         @Override
         public Fragment getItem(int position) {
             PluginViewContainerFragment fragment = EventPluginViewContainerFragment.createInstance(
-                    PluginRegistry.getInstance().event().getEnabledPlugins(context).get(position).view());
+                    eventPluginList.get(position).view());
             return fragment;
         }
 

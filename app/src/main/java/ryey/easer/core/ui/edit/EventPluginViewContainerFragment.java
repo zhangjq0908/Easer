@@ -39,7 +39,6 @@ public class EventPluginViewContainerFragment<T extends EventData> extends Plugi
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_pluginview_event, container, false);
         type_radioGroup = v.findViewById(R.id.radiogroup_eventtype);
-        pluginViewFragment.setEnabled(true);
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.content_pluginview, pluginViewFragment)
                 .commit();
@@ -51,11 +50,13 @@ public class EventPluginViewContainerFragment<T extends EventData> extends Plugi
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onStart() {
+        super.onStart();
         EventPlugin plugin = PluginRegistry.getInstance().event().findPlugin(pluginViewFragment);
+        //noinspection ConstantConditions
         if (!plugin.checkPermissions(getContext())) {
-            pluginViewFragment.setEnabled(false);
+            setEnabled(false);
+            //noinspection ConstantConditions
             plugin.requestPermissions(getActivity(), 1);
         }
     }
@@ -68,7 +69,7 @@ public class EventPluginViewContainerFragment<T extends EventData> extends Plugi
                     return;
                 }
             }
-            pluginViewFragment.setEnabled(true);
+            setEnabled(true);
         }
     }
 
@@ -86,6 +87,13 @@ public class EventPluginViewContainerFragment<T extends EventData> extends Plugi
         T data = pluginViewFragment.getData();
         data.setType(selectedType());
         return data;
+    }
+
+    private void setEnabled(boolean enabled) {
+        pluginViewFragment.setEnabled(enabled);
+        for (int id : radioButtonIds) {
+            type_radioGroup.findViewById(id).setEnabled(enabled);
+        }
     }
 
     protected void fillType(@NonNull EventData data) {
