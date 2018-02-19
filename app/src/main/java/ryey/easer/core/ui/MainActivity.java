@@ -38,8 +38,6 @@ import android.text.method.LinkMovementMethod;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.orhanobut.logger.Logger;
-
 import ryey.easer.R;
 import ryey.easer.core.data.storage.StorageHelper;
 import ryey.easer.core.ui.edit.EventListFragment;
@@ -133,8 +131,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        Logger.v("item: " + item.getTitle());
-
         int id = item.getItemId();
         FragmentManager manager = getSupportFragmentManager();
         Fragment fragment;

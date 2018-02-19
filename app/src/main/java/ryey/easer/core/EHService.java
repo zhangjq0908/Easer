@@ -115,7 +115,7 @@ public class EHService extends Service {
 
     @Override
     public void onCreate() {
-        Logger.v("onCreate");
+        Logger.v("EHService onCreate()");
         running = true;
         Intent intent = new Intent(ACTION_STATE_CHANGED);
         sendBroadcast(intent);

@@ -48,22 +48,23 @@ public class ProfileLoaderIntentService extends IntentService {
 
     @Override
     public void onCreate() {
-        Logger.v("onCreate()");
+        Logger.v("ProfileLoaderIntentService onCreate()");
         super.onCreate();
     }
 
     @Override
     protected void onHandleIntent(Intent intent) {
         if (intent == null) {
-            Logger.wtf("Handling null intent");
+            Logger.wtf("ProfileLoaderIntentService got null Intent to handle");
             return;
         }
         final String action = intent.getAction();
-        Logger.v("Handling intent with action <%s>", action);
         if (ACTION_LOAD_PROFILE.equals(action)) {
             final String name = intent.getStringExtra(EXTRA_PROFILE_NAME);
             final String event = intent.getStringExtra(EXTRA_EVENT_NAME);
             handleActionLoadProfile(name, event);
+        } else {
+            Logger.wtf("ProfileLoaderIntentService got unknown Intent action <%s>", action);
         }
     }
 

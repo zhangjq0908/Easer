@@ -178,17 +178,18 @@ final class Lotus {
     private synchronized void onSlotSatisfied() {
         if (!repeatable && satisfied)
             return;
-        Logger.i("event <%s> satisfied", eventTree.getName());
+        final String eventName = eventTree.getName();
+        Logger.i("event <%s> satisfied", eventName);
         satisfied = true;
         if (cooldownInMillisecond > 0) {
             Calendar now = Calendar.getInstance();
             if (lastSatisfied != null) {
                 if (now.getTimeInMillis() - lastSatisfied.getTimeInMillis() < cooldownInMillisecond) {
-                    Logger.d("event <%s> is within cooldown time");
+                    Logger.d("event <%s> is within cooldown time", eventName);
                     return;
                 }
             }
-            Logger.d("event <%s> is not within cooldown time");
+            Logger.d("event <%s> is not within cooldown time", eventName);
             lastSatisfied = now;
         }
         if (mSlot.canPromoteSub()) {

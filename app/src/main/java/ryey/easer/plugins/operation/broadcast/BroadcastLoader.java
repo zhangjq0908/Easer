@@ -25,8 +25,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
-import com.orhanobut.logger.Logger;
-
 import java.util.ArrayList;
 
 import ryey.easer.Utils;
