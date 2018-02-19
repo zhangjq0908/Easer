@@ -24,13 +24,10 @@ class NotificationEventDataFactory implements EventDataFactory<NotificationEvent
     @NonNull
     @Override
     public NotificationEventData dummyData() {
-        NotificationEventData dummyData = new NotificationEventData();
-        NotificationSelection notificationSelection = new NotificationSelection();
-        notificationSelection.app = "example.app";
-        notificationSelection.title = "title example";
-        notificationSelection.content = "content example";
-        dummyData.selection = notificationSelection;
-        return dummyData;
+        String app = "example.app";
+        String title = "title example";
+        String content = "content example";
+        return new NotificationEventData(app, title, content);
     }
 
     @ValidData

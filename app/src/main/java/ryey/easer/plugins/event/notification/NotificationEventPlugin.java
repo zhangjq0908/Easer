@@ -49,7 +49,8 @@ public class NotificationEventPlugin implements EventPlugin<NotificationEventDat
 
     @Override
     public boolean isCompatible(@NonNull final Context context) {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2;
+        //TODO support Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)

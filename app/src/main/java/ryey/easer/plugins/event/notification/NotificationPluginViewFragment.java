@@ -51,21 +51,19 @@ public class NotificationPluginViewFragment extends PluginViewFragment<Notificat
 
     @Override
     protected void _fill(@ValidData @NonNull NotificationEventData data) {
-        NotificationSelection notificationSelection = data.selection;
-        editText_app.setText(notificationSelection.app);
-        editText_title.setText(notificationSelection.title);
-        editText_content.setText(notificationSelection.content);
+        editText_app.setText(data.app);
+        editText_title.setText(data.title);
+        editText_content.setText(data.content);
     }
 
     @ValidData
     @NonNull
     @Override
     public NotificationEventData getData() throws InvalidDataInputException {
-        NotificationSelection notificationSelection = new NotificationSelection();
-        notificationSelection.app = textOf(editText_app);
-        notificationSelection.title = textOf(editText_title);
-        notificationSelection.content = textOf(editText_content);
-        return new NotificationEventData(notificationSelection);
+        String app = textOf(editText_app);
+        String title = textOf(editText_title);
+        String content = textOf(editText_content);
+        return new NotificationEventData(app, title, content);
     }
 
     @Nullable

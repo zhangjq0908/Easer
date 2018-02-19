@@ -79,21 +79,21 @@ public class NotificationEventListenerService extends NotificationListenerServic
         return is_running;
     }
 
-    private static boolean match(StatusBarNotification sbn, NotificationSelection selection) {
-        Logger.d("app: <%s> <%s>", selection.app, sbn.getPackageName());
-        if (selection.app != null) {
-            if (!selection.app.equals(sbn.getPackageName()))
+    private static boolean match(StatusBarNotification sbn, String t_app, String t_title, String t_content) {
+        Logger.d("app: <%s> <%s>", t_app, sbn.getPackageName());
+        if (t_app != null) {
+            if (!t_app.equals(sbn.getPackageName()))
                 return false;
         }
         Bundle extras = sbn.getNotification().extras;
         String title = extras.getString(Notification.EXTRA_TITLE);
         String contentText = extras.getString(Notification.EXTRA_TEXT);
-        if (selection.title != null) {
-            if (title == null || !title.contains(selection.title))
+        if (t_title != null) {
+            if (title == null || !title.contains(t_title))
                 return false;
         }
-        if (selection.content != null) {
-            if (contentText == null || !contentText.contains(selection.content))
+        if (t_content != null) {
+            if (contentText == null || !contentText.contains(t_content))
                 return false;
         }
         return true;
@@ -103,7 +103,7 @@ public class NotificationEventListenerService extends NotificationListenerServic
     public void onNotificationPosted(StatusBarNotification sbn) {
         for (CompoundData compoundData : dataList) {
             NotificationEventData eventData = compoundData.notificationEventData;
-            if (match(sbn, eventData.selection)) {
+            if (match(sbn, eventData.app, eventData.title, eventData.content)) {
                 try {
                     compoundData.positive.send();
                 } catch (PendingIntent.CanceledException e) {
