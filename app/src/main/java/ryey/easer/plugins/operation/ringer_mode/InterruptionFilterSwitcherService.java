@@ -11,6 +11,8 @@ import android.service.notification.NotificationListenerService;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.LocalBroadcastManager;
 
+import com.orhanobut.logger.Logger;
+
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class InterruptionFilterSwitcherService extends NotificationListenerService {
     private static final String ACTION_CHANGE = "ryey.easer.plugins.operation.ringer_mode.action.CHANGE";
@@ -54,24 +56,28 @@ public class InterruptionFilterSwitcherService extends NotificationListenerServi
 
     @Override
     public IBinder onBind(Intent intent) {
+        Logger.i("InterruptionFilterSwitcherService onBind()");
         is_running = true;
         return super.onBind(intent);
     }
 
     @Override
     public boolean onUnbind(Intent intent) {
+        Logger.i("InterruptionFilterSwitcherService onUnbind()");
         is_running = false;
         return super.onUnbind(intent);
     }
 
     @Override
     public void onCreate() {
+        Logger.i("InterruptionFilterSwitcherService onCreate()");
         super.onCreate();
         LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(mReceiver, mFilter);
     }
 
     @Override
     public void onDestroy() {
+        Logger.i("InterruptionFilterSwitcherService onDestroy()");
         super.onDestroy();
         LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(mReceiver);
     }

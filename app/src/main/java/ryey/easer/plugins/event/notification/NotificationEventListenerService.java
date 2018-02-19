@@ -127,18 +127,21 @@ public class NotificationEventListenerService extends NotificationListenerServic
 
     @Override
     public IBinder onBind(Intent intent) {
+        Logger.d("NotificationEventListenerService onBind()");
         is_running = true;
         return super.onBind(intent);
     }
 
     @Override
     public boolean onUnbind(Intent intent) {
+        Logger.d("NotificationEventListenerService onUnbind()");
         is_running = false;
         return super.onUnbind(intent);
     }
 
     @Override
     public void onCreate() {
+        Logger.i("NotificationEventListenerService onCreate()");
         super.onCreate();
         IntentFilter filter = new IntentFilter();
         filter.addAction(ACTION_LISTEN);
@@ -148,6 +151,7 @@ public class NotificationEventListenerService extends NotificationListenerServic
 
     @Override
     public void onDestroy() {
+        Logger.i("NotificationEventListenerService onDestroy()");
         super.onDestroy();
         LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(mReceiver);
         if (dataList.size() > 0) {
