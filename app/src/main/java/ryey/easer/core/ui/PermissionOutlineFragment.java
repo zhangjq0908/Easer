@@ -14,6 +14,7 @@ import com.orhanobut.logger.Logger;
 import java.util.List;
 
 import ryey.easer.R;
+import ryey.easer.SettingsHelper;
 import ryey.easer.commons.plugindef.PluginDef;
 import ryey.easer.plugins.PluginRegistry;
 
@@ -62,14 +63,18 @@ public class PermissionOutlineFragment extends Fragment {
     }
 
     boolean hasAllRequiredPermissions() {
+        final boolean logging = SettingsHelper.logging(getContext());
+        boolean satisfied = true;
         for (Object obj_plugin : PluginRegistry.getInstance().all().getEnabledPlugins(getContext())) {
             PluginDef plugin = (PluginDef) obj_plugin;
             if (!plugin.checkPermissions(getContext())) {
                 Logger.d("Permission for plugin <%s> not satisfied", plugin.id());
-                return false;
+                if (!logging)
+                    return false;
+                satisfied = false;
             }
         }
-        return true;
+        return satisfied;
     }
 
     void requestAllPermissions() {
