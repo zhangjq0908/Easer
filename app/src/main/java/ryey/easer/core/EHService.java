@@ -35,6 +35,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import ryey.easer.SettingsHelper;
 import ryey.easer.core.data.EventTree;
 import ryey.easer.core.data.storage.EventDataStorage;
 

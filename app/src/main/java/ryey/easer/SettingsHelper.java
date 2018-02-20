@@ -1,4 +1,4 @@
-package ryey.easer.core;
+package ryey.easer;
 
 import android.content.Context;
 import android.preference.PreferenceManager;
@@ -16,6 +16,11 @@ public class SettingsHelper {
     public static boolean passiveMode(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(context.getString(R.string.key_pref_passive_mode), true);
+    }
+
+    public static boolean logging(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).
+                getBoolean(context.getString(R.string.key_pref_logging), false);
     }
 
 }

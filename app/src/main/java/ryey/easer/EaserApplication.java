@@ -17,8 +17,7 @@ public class EaserApplication extends Application {
 
         Logger.addLogAdapter(new AndroidLogAdapter());
 
-        if (PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).
-                getBoolean(getString(R.string.key_pref_logging), false)) {
+        if (SettingsHelper.logging(this)) {
             if (ContextCompat.checkSelfPermission(getApplicationContext(),
                     Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                 Logger.addLogAdapter(new DiskLogAdapter());
