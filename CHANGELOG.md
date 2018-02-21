@@ -1,6 +1,22 @@
 CHANGELOG
 ======
 
+* v0.5.5.1: Better looking when editing Events with larger fonts && Correct `NotificationEventPlugin`'s compatibility check && Check all plugins' permissions when logging is enabled && Developer/Debug changes
+	* Use `GridLayout` for the top few elements on `EditEventActivity`
+		* Let some UI elements adjust themselves on `EditEventActivity`
+		* Looks better on larger fonts
+	* Check all plugins' permissions when logging enabled
+		* This will log all (enabled) plugins with insufficient permission
+		* When logging is disabled, the performance is not affected
+	* Correct `NotificationEventPlugin`'s compatibility check
+		* It's only valid on KitKat+
+		* It could support JellyBean in principle, and this may be implemented in the future
+			* Or, it may also be implemented together with the support of older devices
+	* Dev/Debug changes:
+		* Simplify `NotificationEventPlugin`'s definition
+		* Move `SettingsHelper` to outer package && Move one function to it
+		* Better debugging messages
+
 * v0.5.5: Add `EventControlOperationPlugin` && Introduce format expression && Add 'passive mode' setting && Fix UI problem when requesting permission && Dev changes
 	* Add `EventControlOperationPlugin` to be able to change Events' status
 	* Introduce format expression for many user-input fields
