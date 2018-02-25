@@ -43,7 +43,7 @@ final public class EventTree {
     public EventData getEventData() {
         return data.getScenario().getEventData();
     }
-    public boolean isRevert() {
+    public boolean isReversed() {
         return data.isReverse();
     }
     public boolean isRepeatable() {

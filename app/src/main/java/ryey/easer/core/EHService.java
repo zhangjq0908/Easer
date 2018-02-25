@@ -129,7 +129,7 @@ public class EHService extends Service {
         filter.addAction(ProfileLoaderIntentService.ACTION_PROFILE_LOADED);
         registerReceiver(mReceiver, filter);
         reloadTriggers();
-        if (SettingsHelper.passiveMode(this)) {
+        if (!SettingsHelper.passiveMode(this)) {
             for (Lotus lotus : mLotusArray) {
                 lotus.check();
             }

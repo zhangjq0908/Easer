@@ -3,8 +3,6 @@ package ryey.easer;
 import android.content.Context;
 import android.preference.PreferenceManager;
 
-import ryey.easer.R;
-
 public class SettingsHelper {
 
     public static int coolDownInterval(Context context) {

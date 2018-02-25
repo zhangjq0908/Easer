@@ -62,7 +62,7 @@ final class Lotus {
     private final ExecutorService executorService;
 
     private final Uri uri = Uri.parse(String.format(Locale.US, "lotus://%d", hashCode()));
-    private final PendingIntent notifyLotusIntent, notifyLotusUnsatisfiedIntent;
+    private final PendingIntent notifyLotusIntent_positive, notifyLotusIntent_negative;
 
     private AbstractSlot mSlot;
     List<Lotus> subs = new ArrayList<>();
@@ -104,15 +104,15 @@ final class Lotus {
         Intent intent1 = new Intent(ACTION_SLOT_SATISFIED);
         intent1.addCategory(CATEGORY_NOTIFY_LOTUS);
         intent1.setData(uri);
-        notifyLotusIntent = PendingIntent.getBroadcast(context, 0, intent1, 0);
+        notifyLotusIntent_positive = PendingIntent.getBroadcast(context, 0, intent1, 0);
         intent1.setAction(ACTION_SLOT_UNSATISFIED);
-        notifyLotusUnsatisfiedIntent = PendingIntent.getBroadcast(context, 0, intent1, 0);
+        notifyLotusIntent_negative = PendingIntent.getBroadcast(context, 0, intent1, 0);
 
         mSlot = nodeToSlot(eventTree);
-        if (eventTree.isRevert()) {
-            mSlot.register(notifyLotusUnsatisfiedIntent, notifyLotusIntent);
+        if (eventTree.isReversed()) {
+            mSlot.register(notifyLotusIntent_negative, notifyLotusIntent_positive);
         } else {
-            mSlot.register(notifyLotusIntent, notifyLotusUnsatisfiedIntent);
+            mSlot.register(notifyLotusIntent_positive, notifyLotusIntent_negative);
         }
         repeatable = eventTree.isRepeatable();
         persistent = eventTree.isPersistent();
@@ -193,11 +193,7 @@ final class Lotus {
             Logger.d("event <%s> is not within cooldown time", eventName);
             lastSatisfied = now;
         }
-        if (mSlot.canPromoteSub()) {
-            triggerAndPromote();
-        } else {
-            traverseAndTrigger(eventTree, false);
-        }
+        triggerAndPromote();
     }
 
     private synchronized void onSlotUnsatisfied() {
@@ -211,52 +207,23 @@ final class Lotus {
         subs.clear();
     }
 
-    /*
-     * 中序遍歷樹並尋找滿足條件（通過@AbstractSlot.isSatisfied()）的所有節點
-     * 並在其處（所在的遞歸棧）載入對應Profile
-     */
-    private void traverseAndTrigger(EventTree node, boolean is_sub) {
-        AbstractSlot slot = mSlot;
-        if (is_sub) {
-            slot = nodeToSlot(node);
-            slot.check();
-        }
-        if (slot.isSatisfied()) {
-            Logger.v(" traversing and find %s satisfied", node.getName());
-            String profileName = node.getProfile();
-            if (profileName != null) {
-                Intent intent = new Intent(context, ProfileLoaderIntentService.class);
-                intent.setAction(ProfileLoaderIntentService.ACTION_LOAD_PROFILE);
-                intent.putExtra(ProfileLoaderIntentService.EXTRA_PROFILE_NAME, profileName);
-                intent.putExtra(ProfileLoaderIntentService.EXTRA_EVENT_NAME, node.getName());
-                context.startService(intent);
-            }
-            for (EventTree sub : node.getSubs()) {
-                if (sub.isActive())
-                    traverseAndTrigger(sub, true);
-            }
-        }
-    }
-
     private void triggerAndPromote() {
-        if (mSlot.isSatisfied()) {
-            Logger.v(" traversing and find <%s> satisfied", eventTree.getName());
-            String profileName = eventTree.getProfile();
-            if (profileName != null) {
-                Intent intent = new Intent(context, ProfileLoaderIntentService.class);
-                intent.setAction(ProfileLoaderIntentService.ACTION_LOAD_PROFILE);
-                intent.putExtra(ProfileLoaderIntentService.EXTRA_PROFILE_NAME, profileName);
-                intent.putExtra(ProfileLoaderIntentService.EXTRA_EVENT_NAME, eventTree.getName());
-                context.startService(intent);
-            }
-            for (EventTree sub : eventTree.getSubs()) {
-                if (sub.isActive()) {
-                    Lotus subLotus = new Lotus(context, sub, executorService);
-                    subs.add(subLotus);
-                    subLotus.listen();
-                    if (SettingsHelper.passiveMode(context)) {
-                        subLotus.check();
-                    }
+        Logger.v(" traversing and find <%s> satisfied", eventTree.getName());
+        String profileName = eventTree.getProfile();
+        if (profileName != null) {
+            Intent intent = new Intent(context, ProfileLoaderIntentService.class);
+            intent.setAction(ProfileLoaderIntentService.ACTION_LOAD_PROFILE);
+            intent.putExtra(ProfileLoaderIntentService.EXTRA_PROFILE_NAME, profileName);
+            intent.putExtra(ProfileLoaderIntentService.EXTRA_EVENT_NAME, eventTree.getName());
+            context.startService(intent);
+        }
+        for (EventTree sub : eventTree.getSubs()) {
+            if (sub.isActive()) {
+                Lotus subLotus = new Lotus(context, sub, executorService);
+                subs.add(subLotus);
+                subLotus.listen();
+                if (!SettingsHelper.passiveMode(context)) {
+                    subLotus.check();
                 }
             }
         }
