@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+* v0.5.5.2: Fix "reversed" & "passive mode" && Better handling of `WifiConnSlot`
+	* Fix "reversed" not working
+	* Fix reversed "passive mode" (correct the semantics of "passive mode")
+	* Do not check unneeded conditions for `WifiConnSlot`
+
 * v0.5.5.1: Better looking when editing Events with larger fonts && Correct `NotificationEventPlugin`'s compatibility check && Check all plugins' permissions when logging is enabled && Developer/Debug changes
 	* Use `GridLayout` for the top few elements on `EditEventActivity`
 		* Let some UI elements adjust themselves on `EditEventActivity`
