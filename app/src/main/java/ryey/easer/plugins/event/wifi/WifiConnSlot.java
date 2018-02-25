@@ -33,7 +33,7 @@ import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 public class WifiConnSlot extends AbstractSlot<WifiEventData> {
-    private EventType type = null;
+    private final EventType type;
 
     private int matched_networks = 0;
 
@@ -48,7 +48,7 @@ public class WifiConnSlot extends AbstractSlot<WifiEventData> {
                     if (compare(wifiInfo))
                         matched_networks++;
                     determine_satisfied();
-                } else {
+                } else if (networkInfo.getState() == NetworkInfo.State.DISCONNECTED) {
                     matched_networks = 0;
                     determine_satisfied();
                 }
@@ -63,7 +63,7 @@ public class WifiConnSlot extends AbstractSlot<WifiEventData> {
         filter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
     }
 
-    public WifiConnSlot(Context context, WifiEventData data) {
+    WifiConnSlot(Context context, WifiEventData data) {
         this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
     }
 
