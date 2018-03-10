@@ -1,6 +1,15 @@
 CHANGELOG
 ======
 
+* v0.5.5.3: Widen "cooldown" && Alert for the change in v0.5.7 && Developer changes
+	* Widen the range of "cooldown": when setting "satisfied" and "unsatisfied", they both check cooldown
+	* Alert for the drop of Event Type in v0.5.7
+		* Also pin the removal of old (XML) data format in v0.5.7
+	* Developer changes:
+		* Remove several no longer needed / unneeded methods
+		* Better advanced Scenario condition checks
+			* Check "satisfied" when checking "persistent" in slots
+
 * v0.5.5.2: Fix "reversed" & "passive mode" && Better handling of `WifiConnSlot`
 	* Fix "reversed" not working
 	* Fix reversed "passive mode" (correct the semantics of "passive mode")
