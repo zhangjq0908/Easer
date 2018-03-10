@@ -64,17 +64,12 @@ public class WifiConnSlot extends AbstractSlot<WifiEventData> {
     }
 
     WifiConnSlot(Context context, WifiEventData data) {
-        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTENT_DEFAULT);
     }
 
     WifiConnSlot(Context context, WifiEventData data, boolean retriggerable, boolean persistent) {
         super(context, data, retriggerable, persistent);
         type = data.type();
-    }
-
-    @Override
-    public boolean isValid() {
-        return eventData.isValid();
     }
 
     @Override

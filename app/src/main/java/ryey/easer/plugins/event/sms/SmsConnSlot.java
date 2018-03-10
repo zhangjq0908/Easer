@@ -83,7 +83,7 @@ public class SmsConnSlot extends AbstractSlot<SmsEventData> {
     }
 
     public SmsConnSlot(Context context, SmsEventData data) {
-        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTENT_DEFAULT);
     }
 
     SmsConnSlot(Context context, SmsEventData data, boolean retriggerable, boolean persistent) {
@@ -105,16 +105,6 @@ public class SmsConnSlot extends AbstractSlot<SmsEventData> {
     @Override
     public void check() {
         // Empty method as expected
-    }
-
-    @Override
-    public boolean canPromoteSub() {
-        if (type == EventType.is) {
-            return false;
-        } else if (type == EventType.after) {
-            return true;
-        }
-        throw new IllegalAccessError();
     }
 
 }

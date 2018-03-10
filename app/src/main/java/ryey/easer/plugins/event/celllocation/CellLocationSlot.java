@@ -40,7 +40,7 @@ public class CellLocationSlot extends AbstractSlot<CellLocationEventData> {
     private CellLocationSingleData curr = null;
 
     public CellLocationSlot(Context context, CellLocationEventData data) {
-        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTENT_DEFAULT);
     }
 
     CellLocationSlot(Context context, CellLocationEventData data, boolean retriggerable, boolean persistent) {
@@ -50,13 +50,6 @@ public class CellLocationSlot extends AbstractSlot<CellLocationEventData> {
         if (telephonyManager == null) {
             telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         }
-    }
-
-    @Override
-    public boolean isValid() {
-        if (!eventData.isValid())
-            return false;
-        return true;
     }
 
     @Override

@@ -57,7 +57,7 @@ public abstract class AbstractSlot<T extends EventData> {
     protected final boolean persistent;
 
     protected static final boolean RETRIGGERABLE_DEFAULT = true;
-    protected static final boolean PERSISTEN_DEFAULT = false;
+    protected static final boolean PERSISTENT_DEFAULT = false;
 
     /**
      * Used to tell the holder Lotus that this Slot is satisfied.
@@ -70,22 +70,6 @@ public abstract class AbstractSlot<T extends EventData> {
         this.eventData = data;
         this.retriggerable = retriggerable;
         this.persistent = persistent;
-    }
-
-    /**
-     * Report the current status of this slot.
-     * Status will be extended to more (than boolean), so the return type will change in the future.
-     */
-    public boolean isSatisfied() {
-        return satisfied;
-    }
-
-    /**
-     * FIXME: Not sure if this methods is really needed.
-     * Currently there is nothing using it.
-     */
-    public boolean isValid() {
-        return true;
     }
 
     /**
@@ -109,16 +93,6 @@ public abstract class AbstractSlot<T extends EventData> {
      * Should set {@link #satisfied} by calling {@link #changeSatisfiedState(boolean)}.
      */
     public abstract void check();
-
-    /**
-     * Whether the {@link ryey.easer.core.Lotus} can promote the sub events to a upper one (to listen to events).
-     * Ideally:
-     *   for continuous event types, it is the same as {@link #isSatisfied()};
-     *   for temporary event types, it is always false.
-     */
-    public boolean canPromoteSub() {
-        return isSatisfied();
-    }
 
     /**
      * Set where to notify (the holder {@link ryey.easer.core.Lotus}).

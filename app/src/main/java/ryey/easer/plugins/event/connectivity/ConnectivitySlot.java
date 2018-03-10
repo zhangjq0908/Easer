@@ -42,18 +42,13 @@ class ConnectivitySlot extends AbstractSlot<ConnectivityEventData> {
     }
 
     public ConnectivitySlot(Context context, ConnectivityEventData data) {
-        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTENT_DEFAULT);
     }
 
     ConnectivitySlot(Context context, ConnectivityEventData data, boolean retriggerable, boolean persistent) {
         super(context, data, retriggerable, persistent);
         connectivity_types = data.connectivity_type;
         type = data.type();
-    }
-
-    @Override
-    public boolean isValid() {
-        return true;
     }
 
     @Override

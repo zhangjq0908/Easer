@@ -36,7 +36,7 @@ public class TimeSlot extends SelfNotifiableSlot<TimeEventData> {
     private EventType type = null;
 
     public TimeSlot(Context context, TimeEventData data) {
-        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTENT_DEFAULT);
     }
 
     TimeSlot(Context context, TimeEventData data, boolean retriggerable, boolean persistent) {
@@ -55,13 +55,6 @@ public class TimeSlot extends SelfNotifiableSlot<TimeEventData> {
         }
         calendar.set(Calendar.HOUR_OF_DAY, time.get(Calendar.HOUR_OF_DAY));
         calendar.set(Calendar.MINUTE, time.get(Calendar.MINUTE));
-    }
-
-    @Override
-    public boolean isValid() {
-        if (calendar == null)
-            return false;
-        return true;
     }
 
     @Override

@@ -36,7 +36,7 @@ class DayOfWeekSlot extends SelfNotifiableSlot<DayOfWeekEventData> {
     private EventType type = null;
 
     public DayOfWeekSlot(Context context, DayOfWeekEventData data) {
-        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTENT_DEFAULT);
     }
 
     DayOfWeekSlot(Context context, DayOfWeekEventData data, boolean retriggerable, boolean persistent) {
@@ -52,11 +52,6 @@ class DayOfWeekSlot extends SelfNotifiableSlot<DayOfWeekEventData> {
         if (days == null)
             return;
         this.days = days;
-    }
-
-    @Override
-    public boolean isValid() {
-        return true;
     }
 
     @Override

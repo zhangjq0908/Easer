@@ -60,7 +60,7 @@ public class HeadsetSlot extends AbstractSlot<HeadsetEventData> {
     };
 
     HeadsetSlot(Context context, HeadsetEventData data) {
-        this(context, data, (data.type() == EventType.is || data.type() == EventType.is_not), PERSISTEN_DEFAULT);
+        this(context, data, (data.type() == EventType.is || data.type() == EventType.is_not), PERSISTENT_DEFAULT);
     }
 
     HeadsetSlot(Context context, HeadsetEventData data, boolean retriggerable, boolean persistent) {

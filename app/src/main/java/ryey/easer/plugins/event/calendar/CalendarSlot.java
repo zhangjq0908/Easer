@@ -32,18 +32,13 @@ public class CalendarSlot extends SelfNotifiableSlot<CalendarEventData> {
     private EventType type = null;
 
     public CalendarSlot(Context context, CalendarEventData data) {
-        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTENT_DEFAULT);
     }
 
     CalendarSlot(Context context, CalendarEventData data, boolean retriggerable, boolean persistent) {
         super(context, data, retriggerable, persistent);
         type = data.type();
         mAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-    }
-
-    @Override
-    public boolean isValid() {
-        return eventData.isValid();
     }
 
     @Override
@@ -74,11 +69,6 @@ public class CalendarSlot extends SelfNotifiableSlot<CalendarEventData> {
     @Override
     public void check() {
         // Does nothing for semantics
-    }
-
-    @Override
-    public boolean canPromoteSub() {
-        return false;
     }
 
     @Override

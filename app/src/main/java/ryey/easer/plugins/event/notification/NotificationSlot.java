@@ -30,7 +30,7 @@ public class NotificationSlot extends AbstractSlot<NotificationEventData> {
     private EventType type = null;
 
     public NotificationSlot(Context context, NotificationEventData data) {
-        this(context, data, isRetriggerable(data), PERSISTEN_DEFAULT);
+        this(context, data, isRetriggerable(data), PERSISTENT_DEFAULT);
     }
 
     NotificationSlot(Context context, NotificationEventData data, boolean retriggerable, boolean persistent) {
@@ -49,13 +49,6 @@ public class NotificationSlot extends AbstractSlot<NotificationEventData> {
         }
     }
 
-    @Override
-    public boolean isValid() {
-        if (!eventData.isValid())
-            return false;
-        return true;
-    }
-
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void listen() {
@@ -72,13 +65,4 @@ public class NotificationSlot extends AbstractSlot<NotificationEventData> {
     public void check() {
     }
 
-    @Override
-    public boolean canPromoteSub() {
-        if (type == EventType.after)
-            return true;
-        else if (type == EventType.is)
-            return false;
-        else
-            throw new IllegalAccessError();
-    }
 }

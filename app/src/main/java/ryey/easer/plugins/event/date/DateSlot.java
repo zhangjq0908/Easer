@@ -37,7 +37,7 @@ public class DateSlot extends SelfNotifiableSlot<DateEventData> {
     private EventType type = null;
 
     public DateSlot(Context context, DateEventData data) {
-        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTENT_DEFAULT);
     }
 
     DateSlot(Context context, DateEventData data, boolean retriggerable, boolean persistent) {
@@ -57,13 +57,6 @@ public class DateSlot extends SelfNotifiableSlot<DateEventData> {
             calendar.setTimeInMillis(0);
         }
         calendar.setTime(date.getTime());
-    }
-
-    @Override
-    public boolean isValid() {
-        if (calendar == null)
-            return false;
-        return true;
     }
 
     @Override

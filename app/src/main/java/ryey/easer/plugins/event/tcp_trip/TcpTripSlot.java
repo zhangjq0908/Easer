@@ -40,16 +40,11 @@ public class TcpTripSlot extends AbstractSlot<TcpTripEventData> {
     private Thread waiter;
 
     TcpTripSlot(Context context, TcpTripEventData data) {
-        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTENT_DEFAULT);
     }
 
     TcpTripSlot(Context context, TcpTripEventData data, boolean retriggerable, boolean persistent) {
         super(context, data, retriggerable, persistent);
-    }
-
-    @Override
-    public boolean isValid() {
-        return true;
     }
 
     @Override

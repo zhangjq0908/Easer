@@ -45,7 +45,7 @@ public class BroadcastConnSlot extends AbstractSlot<BroadcastEventData> {
     }
 
     public BroadcastConnSlot(Context context, BroadcastEventData data) {
-        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTEN_DEFAULT);
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTENT_DEFAULT);
     }
 
     BroadcastConnSlot(Context context, BroadcastEventData data, boolean retriggerable, boolean persistent) {
@@ -78,16 +78,6 @@ public class BroadcastConnSlot extends AbstractSlot<BroadcastEventData> {
     @Override
     public void check() {
         // Empty method as expected
-    }
-
-    @Override
-    public boolean canPromoteSub() {
-        if (type == EventType.is) {
-            return false;
-        } else if (type == EventType.after) {
-            return true;
-        }
-        throw new IllegalAccessError();
     }
 
 }

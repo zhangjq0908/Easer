@@ -36,7 +36,7 @@ public class TimerSlot extends SelfNotifiableSlot<TimerEventData> {
     private EventType type = null;
 
     public TimerSlot(Context context, TimerEventData data) {
-        this(context, data, isRetriggerable(data), PERSISTEN_DEFAULT);
+        this(context, data, isRetriggerable(data), PERSISTENT_DEFAULT);
     }
 
     TimerSlot(Context context, TimerEventData data, boolean retriggerable, boolean persistent) {
@@ -55,13 +55,6 @@ public class TimerSlot extends SelfNotifiableSlot<TimerEventData> {
         } else {
             return false;
         }
-    }
-
-    @Override
-    public boolean isValid() {
-        if (timer == null)
-            return false;
-        return true;
     }
 
     @Override
