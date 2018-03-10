@@ -168,6 +168,11 @@ final class Lotus {
         });
     }
 
+    /**
+     * Dirty hack for {@link ryey.easer.plugins.operation.event_control.EventControlOperationPlugin}
+     * TODO: cleaner solution
+     * @param status new status for the top level slot of this lotus
+     */
     synchronized void setStatus(boolean status) {
         if (status) {
             onSlotSatisfied();
@@ -176,35 +181,43 @@ final class Lotus {
         }
     }
 
-    private synchronized void onSlotSatisfied() {
-        if (!repeatable && satisfied)
-            return;
-        final String eventName = eventTree.getName();
-        Logger.i("event <%s> satisfied", eventName);
-        satisfied = true;
+    private boolean checkAndSetCooldown(String eventName) {
         if (cooldownInMillisecond > 0) {
             Calendar now = Calendar.getInstance();
             if (lastSatisfied != null) {
                 if (now.getTimeInMillis() - lastSatisfied.getTimeInMillis() < cooldownInMillisecond) {
                     Logger.d("event <%s> is within cooldown time", eventName);
-                    return;
+                    return false;
                 }
             }
             Logger.d("event <%s> is not within cooldown time", eventName);
             lastSatisfied = now;
+            return true;
         }
-        triggerAndPromote();
+        return true;
+    }
+
+    private synchronized void onSlotSatisfied() {
+        if (!repeatable && satisfied)
+            return;
+        if (checkAndSetCooldown(eventTree.getName())) {
+            Logger.i("event <%s> satisfied", eventTree.getName());
+            satisfied = true;
+            triggerAndPromote();
+        }
     }
 
     private synchronized void onSlotUnsatisfied() {
         if (persistent && satisfied)
             return;
-        Logger.i("Event %s unsatisfied", eventTree.getName());
-        satisfied = false;
-        for (Lotus sub : subs) {
-            sub.cancel();
+        if (checkAndSetCooldown(eventTree.getName())) {
+            Logger.i("Event %s unsatisfied", eventTree.getName());
+            satisfied = false;
+            for (Lotus sub : subs) {
+                sub.cancel();
+            }
+            subs.clear();
         }
-        subs.clear();
     }
 
     private void triggerAndPromote() {

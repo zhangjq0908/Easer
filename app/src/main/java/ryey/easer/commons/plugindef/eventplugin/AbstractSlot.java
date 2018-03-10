@@ -135,15 +135,13 @@ public abstract class AbstractSlot<T extends EventData> {
      * This method sets the {@link #satisfied} variable.
      */
     protected synchronized void changeSatisfiedState(boolean newSatisfiedState) {
-        if (persistent && !newSatisfiedState) {
+        if (persistent && satisfied && !newSatisfiedState) {
             Logger.v("prevent from resetting a persistent slot back to unsatisfied");
             return;
         }
-        if (!retriggerable) {
-            if (satisfied == newSatisfiedState) {
-                Logger.v("satisfied state is already %s", newSatisfiedState);
-                return;
-            }
+        if (!retriggerable && (satisfied == newSatisfiedState)) {
+            Logger.v("satisfied state is already %s", newSatisfiedState);
+            return;
         }
         satisfied = newSatisfiedState;
         PendingIntent pendingIntent;
