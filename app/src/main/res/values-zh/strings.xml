@@ -68,10 +68,15 @@
     <string name="message_convert_data_finish">轉換完成</string>
     <string name="message_convert_data_abort">轉換中止</string>
     <string name="message_convert_data_error">轉換數據類型時遇到問題。獲取詳情請查看日誌。</string>
-    <string name="alert_future_version_change_title">未來版本中的變化</string>
-    <string name="alert_future_version_change">在未來版本中（最早於v0.5中），Easer將正式改變對數據格式的處理，拋棄對舊數據存儲方式的支持。
+    <string name="alert_change_data_storage_title">未來版本中的變化</string>
+    <string name="alert_change_data_storage">在未來版本中（不晚於v0.5.7），Easer將正式改變對數據格式的處理，拋棄對舊數據存儲方式的支持。
         \n\nEaser檢測到你的數據（Event或Profile）中包含舊式的格式，它們將在未來不可用。請使用設置頁面的“轉換”功能將舊格式轉換爲新格式。
         \n\n在轉換後，本消息將不會再次出現。</string>
+    <string name="alert_change_drop_event_type_title">棄用Event Type（事件類型）</string>
+    <string name="alert_change_drop_event_type">Event Type將在v0.5.7被棄用。在新建Event（事件）或Scenario（情境）時，請不要使用is或any外的其他Event Type。
+        \n\n如果你以前曾經使用過is（“當”）或any（“任一”）外的其他Event Type，請<a href="https://github.com/renyuneyun/Easer/wiki/Replace-Event-Types-with-advanced-Scenario-conditions">使用情境的高級規則來取代它們</a>。
+        \n\n在該過程中，你或許需要獨立地創建情境。未來版本將允許“內嵌情境”使用高級情境規則，但當前版本暫不支持。
+        \n\n本消息將於v0.5.7版本被刪除。請暫時忍耐一下 :)</string>
     <string name="pref_convert_data_title">轉換數據</string>
     <string name="pref_convert_data_summary">轉換所有數據至推薦格式</string>
     <string name="pref_cooldown_title">冷卻時間</string>

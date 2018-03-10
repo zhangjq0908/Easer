@@ -102,8 +102,8 @@ public class MainActivity extends AppCompatActivity
 
         if (StorageHelper.hasDeprecatedFormattedData(this)) {
             new AlertDialog.Builder(this)
-                    .setTitle(R.string.alert_future_version_change_title)
-                    .setMessage(R.string.alert_future_version_change)
+                    .setTitle(R.string.alert_change_data_storage_title)
+                    .setMessage(R.string.alert_change_data_storage)
                     .setPositiveButton(R.string.button_understand, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -112,6 +112,17 @@ public class MainActivity extends AppCompatActivity
                     })
                     .show();
         }
+
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.alert_change_drop_event_type_title)
+                .setMessage(R.string.alert_change_drop_event_type)
+                .setPositiveButton(R.string.button_understand, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .show();
     }
 
     @Override
