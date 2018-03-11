@@ -52,12 +52,16 @@ public class WifiEventPlugin implements EventPlugin<WifiEventData> {
 
     @Override
     public boolean checkPermissions(@NonNull Context context) {
-        return PluginHelper.checkPermission(context, Manifest.permission.ACCESS_WIFI_STATE);
+        return PluginHelper.checkPermission(context,
+                Manifest.permission.ACCESS_WIFI_STATE,
+                Manifest.permission.CHANGE_WIFI_STATE);
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        PluginHelper.requestPermission(activity, requestCode, Manifest.permission.ACCESS_WIFI_STATE);
+        PluginHelper.requestPermission(activity, requestCode,
+                Manifest.permission.ACCESS_WIFI_STATE,
+                Manifest.permission.CHANGE_WIFI_STATE);
     }
 
     @NonNull

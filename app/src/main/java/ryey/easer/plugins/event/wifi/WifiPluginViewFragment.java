@@ -21,8 +21,12 @@ package ryey.easer.plugins.event.wifi;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -40,6 +44,7 @@ import android.widget.RadioButton;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 import ryey.easer.R;
 import ryey.easer.Utils;
@@ -52,6 +57,26 @@ public class WifiPluginViewFragment extends PluginViewFragment<WifiEventData> {
 
     private RadioButton rb_match_essid;
     private RadioButton rb_match_bssid;
+
+    private WifiManager wifiManager;
+    private boolean waiting_for_result;
+    private ReentrantLock wait_lock = new ReentrantLock();
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (WifiManager.SCAN_RESULTS_AVAILABLE_ACTION.equals(intent.getAction())) {
+                onResultsAvailable();
+            }
+        }
+    };
+    ProgressDialog progressDialog;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        context.registerReceiver(mReceiver, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
+    }
 
     @NonNull
     @Override
@@ -67,31 +92,60 @@ public class WifiPluginViewFragment extends PluginViewFragment<WifiEventData> {
             public void onClick(View v) {
                 if (!Utils.hasPermission(getContext(), Manifest.permission.ACCESS_WIFI_STATE))
                     return;
-                AlertDialog.Builder builderSingle = new AlertDialog.Builder(getContext());
-                builderSingle.setTitle(R.string.wificonn_select_dialog_title);
-                //noinspection ConstantConditions
-                final ArrayAdapter<WifiConfigurationWrapper> arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.select_dialog_singlechoice);
-                for (WifiConfigurationWrapper wrapper : listWifi()) {
-                    arrayAdapter.add(wrapper);
+                wait_lock.lock();
+                try {
+                    waiting_for_result = true;
+                } finally {
+                    wait_lock.unlock();
                 }
-                builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
-                    @SuppressWarnings("ConstantConditions")
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        onWifiSelected(arrayAdapter.getItem(which));
-                    }
-                });
-                builderSingle.show();
+                wifiManager.startScan();
+                progressDialog = new ProgressDialog(getContext());
+                progressDialog.setTitle(R.string.wificonn_wait_for_result);
+                progressDialog.setIndeterminate(true);
+                progressDialog.show();
             }
         });
 
         return view;
     }
 
-    private List<WifiConfigurationWrapper> listWifi() {
-        List<WifiConfigurationWrapper> list = new ArrayList<>();
+    @Override
+    public void onDetach() {
         //noinspection ConstantConditions
-        WifiManager wifiManager = (WifiManager) getContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        @NonNull Context context = getContext();
+        wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        context.unregisterReceiver(mReceiver);
+        super.onDetach();
+    }
+
+    private void onResultsAvailable() {
+        wait_lock.lock();
+        try {
+            if (!waiting_for_result)
+                return;
+            waiting_for_result = false;
+        } finally {
+            wait_lock.unlock();
+        }
+        final ArrayAdapter<WifiConfigurationWrapper> arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.select_dialog_singlechoice);
+        for (WifiConfigurationWrapper wrapper : obtainWifiList()) {
+            arrayAdapter.add(wrapper);
+        }
+        AlertDialog.Builder builderSingle = new AlertDialog.Builder(getContext());
+        builderSingle.setTitle(R.string.wificonn_select_dialog_title);
+        builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+            @SuppressWarnings("ConstantConditions")
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                onWifiSelected(arrayAdapter.getItem(which));
+            }
+        });
+        builderSingle.show();
+        progressDialog.dismiss();
+    }
+
+    private List<WifiConfigurationWrapper> obtainWifiList() {
+        List<WifiConfigurationWrapper> list = new ArrayList<>();
         if (wifiManager != null) {
             List<ScanResult> scanResults = wifiManager.getScanResults();
             for (ScanResult result : scanResults) {

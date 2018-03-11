@@ -5,6 +5,7 @@
 
     <string name="event_wificonn">WiFi Connection</string>
     <string name="wificonn_select_dialog_title">Select WiFi AP</string>
+    <string name="wificonn_wait_for_result">Waiting for WiFi scan result</string>
 
     <string name="event_celllocation">Cell Location</string>
 
