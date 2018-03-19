@@ -1,4 +1,4 @@
-package ryey.easer.plugins.operation;
+package ryey.easer.plugins;
 
 import android.os.Parcel;
 import android.os.Parcelable;

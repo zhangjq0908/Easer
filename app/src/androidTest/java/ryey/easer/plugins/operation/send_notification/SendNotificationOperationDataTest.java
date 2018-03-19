@@ -4,7 +4,7 @@ import android.os.Parcel;
 
 import org.junit.Test;
 
-import ryey.easer.plugins.operation.TestHelper;
+import ryey.easer.plugins.TestHelper;
 
 import static org.junit.Assert.assertEquals;
 
