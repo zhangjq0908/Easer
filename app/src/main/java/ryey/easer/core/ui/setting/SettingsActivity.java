@@ -148,16 +148,9 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     if ((Boolean) newValue) {
-                        if (ContextCompat.checkSelfPermission(getActivity(),
-                                Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                                != PackageManager.PERMISSION_GRANTED) {
+                        if (!Utils.hasPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                             Logger.i("Permission <%s> not granted. Requesting...",
                                     Manifest.permission.WRITE_EXTERNAL_STORAGE);
-                            Toast.makeText(getActivity(),
-                                    String.format(getString(R.string.prompt_prevented_for_permission),
-                                            Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                                    Toast.LENGTH_LONG)
-                                    .show();
                             ActivityCompat.requestPermissions(getActivity(),
                                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                                     REQCODE_PERM_STORAGE);
