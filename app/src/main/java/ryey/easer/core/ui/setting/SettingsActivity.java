@@ -2,11 +2,13 @@ package ryey.easer.core.ui.setting;
 
 import android.Manifest;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.Preference;
@@ -29,6 +31,7 @@ import java.util.Locale;
 
 import ryey.easer.BuildConfig;
 import ryey.easer.R;
+import ryey.easer.Utils;
 import ryey.easer.core.BootupReceiver;
 import ryey.easer.core.EHService;
 import ryey.easer.core.data.Helper;
@@ -87,7 +90,9 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
 
     public static class SettingsFragment extends PreferenceFragment {
 
-        final int REQ_CODE = 10;
+        final static int REQCODE_PICK_FILE = 10;
+        final static int REQCODE_PERM_EXPORT = 11;
+        final static int REQCODE_PERM_IMPORT = 12;
         final static int REQCODE_PERM_STORAGE = 1;
 
         @Override
@@ -107,19 +112,12 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
             Preference pref_export = findPreference(getString(R.string.key_pref_export));
             pref_export.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 public boolean onPreferenceClick(Preference preference) {
-                    try {
-                        Calendar calendar = Calendar.getInstance();
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd.hh:mm:ss", Locale.US);
-                        String time_str = sdf.format(calendar.getTime());
-                        File sdCard = Environment.getExternalStorageDirectory();
-                        File dest = new File(sdCard, String.format("Easer.%s.zip", time_str));
-                        Logger.v("Export destination: %s", dest);
-                        Helper.export_data(getActivity(), dest);
-                        Toast.makeText(getActivity(),
-                                String.format(getString(R.string.template_export), dest.getName()),
-                                Toast.LENGTH_SHORT).show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    if (!Utils.hasPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                        ActivityCompat.requestPermissions(getActivity(),
+                                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                REQCODE_PERM_EXPORT);
+                    } else {
+                        export_data(getActivity());
                     }
                     return true;
                 }
@@ -129,9 +127,18 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
             pref_import.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                    intent.setType("application/zip");
-                    startActivityForResult(intent, REQ_CODE);
+                    if (!Utils.hasPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                            ActivityCompat.requestPermissions(getActivity(),
+                                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                                    REQCODE_PERM_IMPORT);
+                            return false;
+                        }
+                    } else {
+                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                        intent.setType("application/zip");
+                        startActivityForResult(intent, REQCODE_PICK_FILE);
+                    }
                     return true;
                 }
             });
@@ -224,7 +231,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
 
         @Override
         public void onActivityResult(int requestCode, int resultCode, Intent data) {
-            if (requestCode == REQ_CODE) {
+            if (requestCode == REQCODE_PICK_FILE) {
                 if (resultCode == RESULT_OK) {
                     Uri uri = data.getData();
                     try {
@@ -248,6 +255,8 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
         public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
             switch (requestCode) {
                 case REQCODE_PERM_STORAGE:
+                case REQCODE_PERM_EXPORT:
+                case REQCODE_PERM_IMPORT:
                     if (grantResults.length == 0) {
                         Logger.wtf("Request permission result with ZERO length!!!");
                         return;
@@ -257,6 +266,24 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                     } else {
                         Logger.i("Request for permission <%s> denied", permissions[0]);
                     }
+                    break;
+            }
+        }
+
+        private static void export_data(Context context) {
+            try {
+                Calendar calendar = Calendar.getInstance();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd.hh:mm:ss", Locale.US);
+                String time_str = sdf.format(calendar.getTime());
+                File sdCard = Environment.getExternalStorageDirectory();
+                File dest = new File(sdCard, String.format("Easer.%s.zip", time_str));
+                Logger.v("Export destination: %s", dest);
+                Helper.export_data(context, dest);
+                Toast.makeText(context,
+                        String.format(context.getString(R.string.template_export), dest.getName()),
+                        Toast.LENGTH_SHORT).show();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
