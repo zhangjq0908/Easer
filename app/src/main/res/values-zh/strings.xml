@@ -93,5 +93,6 @@
     <string name="pref_passive_mode_title">被動模式</string>
     <string name="pref_passive_mode_summary_off">當激活事件時，檢查當前狀態</string>
     <string name="pref_passive_mode_summary_on">僅監聽事件；事件激活時不檢查</string>
+    <string name="message_importing_invalid_data">這似乎是無效的文件。請僅導入一個之前由Easer導出的文件。</string>
 
 </resources>

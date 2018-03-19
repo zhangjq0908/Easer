@@ -32,6 +32,7 @@ import ryey.easer.R;
 import ryey.easer.core.BootupReceiver;
 import ryey.easer.core.EHService;
 import ryey.easer.core.data.Helper;
+import ryey.easer.core.data.InvalidExportedDataException;
 import ryey.easer.core.data.storage.StorageHelper;
 
 public class SettingsActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -228,10 +229,17 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                     Uri uri = data.getData();
                     try {
                         Helper.import_data(getActivity(), uri);
+                        EHService.reload(getActivity());
                     } catch (IOException e) {
+                        Logger.e(e, "IOException caught when importing data");
+                        e.printStackTrace();
+                    } catch (InvalidExportedDataException e) {
+                        Toast.makeText(getActivity(),
+                                R.string.message_importing_invalid_data,
+                                Toast.LENGTH_LONG)
+                                .show();
                         e.printStackTrace();
                     }
-                    EHService.reload(getActivity());
                 }
             }
         }

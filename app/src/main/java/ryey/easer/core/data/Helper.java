@@ -28,7 +28,35 @@ public class Helper {
         zip.close();
     }
 
-    public static void import_data(Context context, Uri uri) throws IOException {
+    private static boolean is_valid_easer_export_data(Context context, Uri uri) throws IOException {
+        final String re_top_level = "^[^/]+$";
+        final String re_any_of_three_any = "^(?:(?:event)|(?:profile)|(?:scenario))(?:/.*)?$";
+
+        InputStream inputStream = context.getContentResolver().openInputStream(uri);
+        ZipInputStream zip = new ZipInputStream(inputStream);
+        try {
+            for (ZipEntry entry = zip.getNextEntry(); entry != null; entry = zip.getNextEntry()) {
+                String name = entry.getName();
+                if (!name.matches(re_any_of_three_any)) {
+                    return false;
+                }
+                if (name.matches(re_top_level)) {
+                    if (!entry.isDirectory())
+                        return false;
+                }
+            }
+        } finally {
+            zip.closeEntry();
+            zip.close();
+        }
+        return true;
+    }
+
+    public static void import_data(Context context, Uri uri) throws IOException, InvalidExportedDataException {
+        if (!is_valid_easer_export_data(context, uri)) {
+            throw new InvalidExportedDataException("exported data is not valid");
+        }
+
         File output_dir = context.getFilesDir();
 
         InputStream inputStream = context.getContentResolver().openInputStream(uri);
