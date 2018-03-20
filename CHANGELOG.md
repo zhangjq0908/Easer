@@ -1,6 +1,13 @@
 CHANGELOG
 ======
 
+* v0.5.5.4: Use the newest WiFi scan result && Validate data before importing && Check permission before importing and exporting && Danish translation && Minor changes
+	* Request to scan for WiFi APs when obtaining WiFi list
+	* Validate data before actually importing
+		* Prevents from importing if the data is invalid
+	* Request for relevant permissions before importing and exporting data
+	* Add Danish translation (thanks twikedk)
+
 * v0.5.5.3: Widen "cooldown" && Alert for the change in v0.5.7 && Developer changes
 	* Widen the range of "cooldown": when setting "satisfied" and "unsatisfied", they both check cooldown
 	* Alert for the drop of Event Type in v0.5.7
