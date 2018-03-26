@@ -24,9 +24,7 @@ class RingerModeOperationDataFactory implements OperationDataFactory<RingerModeO
     @NonNull
     @Override
     public RingerModeOperationData dummyData() {
-        RingerModeOperationData dummyData = new RingerModeOperationData();
-        dummyData.set(1);
-        return dummyData;
+        return new RingerModeOperationData(RingerMode.vibrate);
     }
 
     @ValidData

@@ -108,11 +108,15 @@
     <string name="operation_brightness_desc_autobrightness">Auto brightness</string>
 
     <string name="operation_ringer_mode">Ringer Mode</string>
-    <array name="ringer_mode">
-        <item>Silent</item>
-        <item>Vibrate</item>
-        <item>Normal</item>
-    </array>
+    <string name="ringer_mode_normal">Normal</string>
+    <string name="ringer_mode_vibrate">Vibrate</string>
+    <string name="ringer_mode_silent">Silent</string>
+    <string name="ringer_mode_dnd">Do not Disturb</string>
+    <string name="ringer_mode_dnd_all">All</string>
+    <string name="ringer_mode_dnd_priority">Priority</string>
+    <string name="ringer_mode_dnd_none">None</string>
+    <string name="ringer_mode_dnd_alarms">Alarms</string>
+    <string name="ringing_items_in_do_not_disturb_mode">Ringing items in Do not Disturb mode</string>
     <string name="label_operation_ringer_mode_notification_listener_service">Easer (Silent Mode Switcher)</string>
 
     <string name="operation_command">Run commands</string>

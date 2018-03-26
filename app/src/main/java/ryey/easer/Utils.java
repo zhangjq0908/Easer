@@ -8,6 +8,8 @@ import android.support.v4.content.ContextCompat;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 
+import com.orhanobut.logger.Logger;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,6 +24,12 @@ import java.util.Set;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 
 public class Utils {
+
+    public static void panic(String message, Object... objs) {
+        Logger.e(message, objs);
+        throw new IllegalStateException(String.format(message, objs));
+    }
+
     public static boolean isBlank(@Nullable String str) {
         if (str == null)
             return true;

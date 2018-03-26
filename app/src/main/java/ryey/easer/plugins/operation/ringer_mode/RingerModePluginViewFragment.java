@@ -19,78 +19,75 @@
 
 package ryey.easer.plugins.operation.ringer_mode;
 
-import android.media.AudioManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 import ryey.easer.R;
+import ryey.easer.Utils;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.ValidData;
 
-import static android.widget.LinearLayout.HORIZONTAL;
-
 public class RingerModePluginViewFragment extends PluginViewFragment<RingerModeOperationData> {
-    String []mode_names;
-    final int []values = {
-            AudioManager.RINGER_MODE_SILENT,
-            AudioManager.RINGER_MODE_VIBRATE,
-            AudioManager.RINGER_MODE_NORMAL
-    };
-    final RadioButton []radioButtons = new RadioButton[values.length];
 
-    private int checked_item = -1;
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mode_names = getResources().getStringArray(R.array.ringer_mode);
-    }
+    RadioButton rb_normal, rb_vibrate, rb_silent_dnd;
+    ViewGroup container_dnd;
+    RadioButton rb_dnd_all, rb_dnd_priority, rb_dnd_none, rb_dnd_alarms;
 
     @NonNull
     @Override
-    public ViewGroup onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        LinearLayout layout = new LinearLayout(getContext());
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.plugin_operation__ringer_mode, container, false);
 
-        RadioGroup radioGroup = new RadioGroup(getContext());
-        radioGroup.setOrientation(HORIZONTAL);
-        layout.addView(radioGroup);
-        View.OnClickListener radioButtonOnClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for (int i = 0; i < radioButtons.length; i++) {
-                    if (v == radioButtons[i]) {
-                        checked_item = i;
-                        break;
-                    }
+        rb_normal = view.findViewById(R.id.radioButton_normal);
+        rb_vibrate = view.findViewById(R.id.radioButton_vibrate);
+        rb_silent_dnd = view.findViewById(R.id.radioButton_silent_dnd);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            container_dnd = view.findViewById(R.id.container_dnd);
+            rb_silent_dnd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    container_dnd.setVisibility(b ? View.VISIBLE : View.GONE);
                 }
+            });
+            rb_dnd_all = view.findViewById(R.id.radioButton_dnd_all);
+            rb_dnd_priority = view.findViewById(R.id.radioButton_dnd_priority);
+            rb_dnd_none = view.findViewById(R.id.radioButton_dnd_none);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                rb_dnd_alarms = view.findViewById(R.id.radioButton_dnd_alarms);
             }
-        };
-        for (int i = 0; i < radioButtons.length; i++) {
-            radioButtons[i] = new RadioButton(getContext());
-            radioButtons[i].setText(mode_names[i]);
-            radioButtons[i].setOnClickListener(radioButtonOnClickListener);
-            radioGroup.addView(radioButtons[i]);
         }
 
-        return layout;
+        return view;
     }
 
     @Override
     protected void _fill(@ValidData @NonNull RingerModeOperationData data) {
-        Integer item = data.get();
-        for (int i = 0; i < radioButtons.length; i++) {
-            if (item == values[i]) {
-                radioButtons[i].setChecked(true);
-                break;
-            }
+        RingerMode mode = RingerMode.compatible(data.ringerMode);
+        if (mode == RingerMode.normal)
+            rb_normal.setChecked(true);
+        else if (mode == RingerMode.vibrate)
+            rb_vibrate.setChecked(true);
+        else if (mode == RingerMode.silent)
+            rb_silent_dnd.setChecked(true);
+        else {
+            rb_silent_dnd.setChecked(true);
+            if (mode == RingerMode.dnd_all)
+                rb_dnd_all.setChecked(true);
+            else if (mode == RingerMode.dnd_priority)
+                rb_dnd_priority.setChecked(true);
+            else if (mode == RingerMode.dnd_none)
+                rb_dnd_none.setChecked(true);
+            else
+                rb_dnd_alarms.setChecked(true);
         }
     }
 
@@ -98,6 +95,29 @@ public class RingerModePluginViewFragment extends PluginViewFragment<RingerModeO
     @NonNull
     @Override
     public RingerModeOperationData getData() throws InvalidDataInputException {
-        return new RingerModeOperationData(checked_item);
+        RingerMode mode = null;
+        if (rb_normal.isChecked())
+            mode = RingerMode.normal;
+        else if (rb_vibrate.isChecked())
+            mode = RingerMode.vibrate;
+        else if (rb_silent_dnd.isChecked()) {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
+                mode = RingerMode.silent;
+            else {
+                if (rb_dnd_all.isChecked())
+                    mode = RingerMode.dnd_all;
+                else if (rb_dnd_priority.isChecked())
+                    mode = RingerMode.dnd_priority;
+                else if (rb_dnd_none.isChecked())
+                    mode = RingerMode.dnd_none;
+                else if (rb_dnd_alarms.isChecked())
+                    mode = RingerMode.dnd_alarms;
+                else
+                    Utils.panic("Select RingerMode run out of cases");
+            }
+        } else
+            Utils.panic("Select RingerMode run out of cases");
+        return new RingerModeOperationData(mode);
     }
+
 }

@@ -19,36 +19,103 @@
 
 package ryey.easer.plugins.operation.ringer_mode;
 
+import android.media.AudioManager;
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlSerializer;
+
+import java.io.IOException;
+
+import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.plugins.operation.IntegerOperationData;
+import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
-public class RingerModeOperationData extends IntegerOperationData {
+public class RingerModeOperationData implements OperationData {
 
-    {
-        lbound = 0;
-        rbound = 3;
-    }
+    RingerMode ringerMode;
 
     RingerModeOperationData() {
     }
 
-    RingerModeOperationData(Integer state) {
-        super(state);
+    RingerModeOperationData(RingerMode ringerMode) {
+        this.ringerMode = ringerMode;
     }
 
     RingerModeOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
-        super(data, format, version);
+        parse(data, format, version);
+    }
+
+    @Override
+    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
+        throw new IllegalAccessError();
+    }
+
+    @Override
+    public void serialize(XmlSerializer serializer) throws IOException {
+        throw new IllegalAccessError();
+    }
+
+    @Override
+    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        switch (format) {
+            default:
+                if (version < C.VERSION_GRANULAR_RINGER_MODE) {
+                    // backward compatible
+                    // was IntegerOperationData, [0, 2]
+                    Integer level = Integer.valueOf(data);
+                    switch (level) {
+                        case AudioManager.RINGER_MODE_SILENT:
+                            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
+                                ringerMode = RingerMode.silent;
+                            else
+                                ringerMode = RingerMode.dnd_none;
+                            break;
+                        case AudioManager.RINGER_MODE_VIBRATE:
+                            ringerMode = RingerMode.vibrate;
+                            break;
+                        case AudioManager.RINGER_MODE_NORMAL:
+                            ringerMode = RingerMode.normal;
+                            break;
+                        default:
+                            throw new IllegalStateException("Compatibility for RingerMode shouldn't run out of cases");
+                    }
+                } else {
+                    ringerMode = RingerMode.valueOf(data);
+                }
+        }
+    }
+
+    @NonNull
+    @Override
+    public String serialize(@NonNull C.Format format) {
+        String res = "";
+        switch (format) {
+            default:
+                res = RingerMode.compatible(ringerMode).name();
+        }
+        return res;
+    }
+
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (!(obj instanceof RingerModeOperationData))
+            return false;
+        return Utils.nullableEqual(ringerMode, ((RingerModeOperationData) obj).ringerMode);
     }
 
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
-        return super.isValid();
+        return ringerMode != null;
     }
 
     public static final Parcelable.Creator<RingerModeOperationData> CREATOR
@@ -63,6 +130,16 @@ public class RingerModeOperationData extends IntegerOperationData {
     };
 
     private RingerModeOperationData(Parcel in) {
-        super(in);
+        ringerMode = (RingerMode) in.readSerializable();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeSerializable(ringerMode);
     }
 }

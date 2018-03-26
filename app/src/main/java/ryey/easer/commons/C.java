@@ -36,13 +36,14 @@ public class C {
     public static final String STATE = "state";
 
     public static final String VERSION = "version";
+    public static final int VERSION_GRANULAR_RINGER_MODE = 6;
     public static final int VERSION_CLEANER_SCENARIO = 5;
     public static final int VERSION_USE_SCENARIO = 4;
     public static final int VERSION_WIFI_ADD_BSSID = 3;
     public static final int VERSION_ADD_JSON = 2;
     public static final int VERSION_FULL_MULTI = 1;
     public static final int VERSION_FALLBACK = 0;
-    public static final int VERSION_CURRENT = VERSION_CLEANER_SCENARIO;
+    public static final int VERSION_CURRENT = VERSION_GRANULAR_RINGER_MODE;
 
     public enum Format {
         XML,

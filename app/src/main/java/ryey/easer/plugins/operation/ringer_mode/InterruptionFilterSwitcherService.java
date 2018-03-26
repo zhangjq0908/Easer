@@ -35,10 +35,6 @@ public class InterruptionFilterSwitcherService extends NotificationListenerServi
         }
     };
 
-    static void setSilentMode(Context context) {
-        setInterruptionFilter(context, INTERRUPTION_FILTER_NONE);
-    }
-
     static void setInterruptionFilter(Context context, int mode) {
         Intent intent = new Intent(ACTION_CHANGE);
         intent.putExtra(EXTRA_MODE, mode);

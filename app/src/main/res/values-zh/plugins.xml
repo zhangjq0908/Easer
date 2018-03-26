@@ -100,11 +100,15 @@
     <string name="operation_wifi">WiFi</string>
 
     <string name="operation_ringer_mode">響鈴模式</string>
-    <array name="ringer_mode">
-        <item>靜音</item>
-        <item>震動</item>
-        <item>普通</item>
-    </array>
+    <string name="ringer_mode_normal">普通</string>
+    <string name="ringer_mode_vibrate">震動</string>
+    <string name="ringer_mode_silent">靜音</string>
+    <string name="ringer_mode_dnd">勿擾</string>
+    <string name="ringer_mode_dnd_all">所有</string>
+    <string name="ringer_mode_dnd_priority">僅優先通知</string>
+    <string name="ringer_mode_dnd_none">全不</string>
+    <string name="ringer_mode_dnd_alarms">鬧鈴</string>
+    <string name="ringing_items_in_do_not_disturb_mode">勿擾模式響鈴項</string>
     <string name="label_operation_ringer_mode_notification_listener_service">Easer (切換靜音模式)</string>
 
     <string name="operation_command">執行命令</string>
