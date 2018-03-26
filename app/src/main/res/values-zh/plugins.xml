@@ -145,6 +145,12 @@
     <string name="change_status_to">將狀態調整爲…</string>
     <string name="unsatisfied">未滿足</string>
 
+    <string name="operation_volume">調整音量</string>
+    <string name="o_volume_ring">響鈴</string>
+    <string name="o_volume_media">媒體/音樂</string>
+    <string name="o_volume_alarm">鬧鈴</string>
+    <string name="o_volume_notification">通知</string>
+
     <string-array name="event_type">
         <item>晚於</item>
         <item>任一</item>
