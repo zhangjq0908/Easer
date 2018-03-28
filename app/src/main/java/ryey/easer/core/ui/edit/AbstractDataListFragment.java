@@ -8,7 +8,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ListFragment;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -43,7 +42,6 @@ abstract class AbstractDataListFragment<T extends AbstractDataStorage> extends L
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        setHasOptionsMenu(true);
         registerForContextMenu(getListView());
 
 //        mStorage = ProfileDataStorage.getInstance(getActivity());
@@ -78,24 +76,6 @@ abstract class AbstractDataListFragment<T extends AbstractDataStorage> extends L
         super.onListItemClick(l, v, position, id);
         String name = (String) l.getItemAtPosition(position);
         beginEditData(name);
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        menu.clear();
-        inflater.inflate(R.menu.list_options, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        switch (id) {
-            case R.id.action_add:
-                beginNewData();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override

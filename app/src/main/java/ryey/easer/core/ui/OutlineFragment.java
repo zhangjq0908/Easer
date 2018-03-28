@@ -122,12 +122,6 @@ public class OutlineFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_about) {
-            Intent intent = new Intent(getActivity(), AboutActivity.class);
-            startActivity(intent);
-            return true;
-        }
-
         if (id == R.id.action_start) {
             EHService.start(getActivity());
             return true;
