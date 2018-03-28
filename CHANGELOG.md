@@ -1,6 +1,16 @@
 CHANGELOG
 ======
 
+* v0.5.6: Add the ability to control volume && Allow to customize Do Not Disturb mode (Ringer Mode) && Drop unneeded menus
+	* Add `VolumeOperationPlugin` to control volume
+	* Allow to customize Do Not Disturb mode in `RingerModeOperationPlugin`
+	* Drop unneeded menus / menu items (because their usage is already in somewhere else)
+		* Drop the menu (which contains only "Add") in the list of Profile / Event / Scenario
+		* Drop menu item "About" in Outline
+	* Dev changes
+		* Add forgotten tests
+		* Move a class to the correct package
+
 * v0.5.5.4: Use the newest WiFi scan result && Validate data before importing && Check permission before importing and exporting && Danish translation && Minor changes
 	* Request to scan for WiFi APs when obtaining WiFi list
 	* Validate data before actually importing

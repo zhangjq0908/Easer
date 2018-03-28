@@ -35,6 +35,7 @@ Supported Features
 * Post Notifications
 * Set alarm
 * Change Event status
+* Control volume
 
 ### Misc
 * Formatting expression (supported in the fields of many Events/Operations)
