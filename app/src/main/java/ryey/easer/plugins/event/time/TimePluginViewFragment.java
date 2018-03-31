@@ -30,6 +30,7 @@ import android.widget.TimePicker;
 
 import java.util.Calendar;
 
+import ryey.easer.SettingsHelper;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.ValidData;
@@ -41,6 +42,7 @@ public class TimePluginViewFragment extends PluginViewFragment<TimeEventData> {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         timePicker = new TimePicker(getContext());
+        timePicker.setIs24HourView(!SettingsHelper.use12HourClock(getContext()));
 
         return timePicker;
     }

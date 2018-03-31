@@ -49,6 +49,15 @@
 
     <PreferenceCategory android:layout="@layout/pref_divider" />
 
+    <PreferenceCategory android:title="@string/pref_category_personalise">
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/key_pref_use_12_hour_clock"
+            android:title="@string/pref_use_12_hour_clock_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:layout="@layout/pref_divider" />
+
     <PreferenceCategory android:title="@string/pref_category_data_manage">
 
         <Preference
