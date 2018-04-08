@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.support.annotation.RequiresApi;
@@ -26,8 +25,6 @@ public class NotificationEventListenerService extends NotificationListenerServic
     private static final String EXTRA_DATA = "ryey.easer.plugins.event.notification.extra.DATA";
     private static final String EXTRA_POSITIVE = "ryey.easer.plugins.event.notification.extra.POSITIVE";
     private static final String EXTRA_NEGATIVE = "ryey.easer.plugins.event.notification.extra.NEGATIVE";
-
-    private static boolean is_running = false;
 
     List<CompoundData> dataList = new ArrayList<>();
 
@@ -75,10 +72,6 @@ public class NotificationEventListenerService extends NotificationListenerServic
         LocalBroadcastManager.getInstance(context.getApplicationContext()).sendBroadcast(intent);
     }
 
-    static boolean isRunning() {
-        return is_running;
-    }
-
     private static boolean match(StatusBarNotification sbn, String t_app, String t_title, String t_content) {
         Logger.d("app: <%s> <%s>", t_app, sbn.getPackageName());
         if (t_app != null) {
@@ -117,26 +110,6 @@ public class NotificationEventListenerService extends NotificationListenerServic
     @Override
     public void onNotificationRemoved(StatusBarNotification sbn) {
         super.onNotificationRemoved(sbn);
-    }
-
-    @Override
-    public void onListenerConnected() {
-        super.onListenerConnected();
-        Logger.d("onListenerConnected");
-    }
-
-    @Override
-    public IBinder onBind(Intent intent) {
-        Logger.d("NotificationEventListenerService onBind()");
-        is_running = true;
-        return super.onBind(intent);
-    }
-
-    @Override
-    public boolean onUnbind(Intent intent) {
-        Logger.d("NotificationEventListenerService onUnbind()");
-        is_running = false;
-        return super.onUnbind(intent);
     }
 
     @Override

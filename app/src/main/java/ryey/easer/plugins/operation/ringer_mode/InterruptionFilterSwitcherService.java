@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.ConditionVariable;
-import android.os.IBinder;
 import android.service.notification.NotificationListenerService;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.LocalBroadcastManager;
@@ -17,8 +16,6 @@ import com.orhanobut.logger.Logger;
 public class InterruptionFilterSwitcherService extends NotificationListenerService {
     private static final String ACTION_CHANGE = "ryey.easer.plugins.operation.ringer_mode.action.CHANGE";
     private static final String EXTRA_MODE = "ryey.easer.plugins.operation.ringer_mode.extra.MODE";
-
-    private static boolean is_running = false;
 
     private ConditionVariable cv = new ConditionVariable();
 
@@ -41,27 +38,9 @@ public class InterruptionFilterSwitcherService extends NotificationListenerServi
         LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
     }
 
-    static boolean isRunning() {
-        return is_running;
-    }
-
     @Override
     public void onListenerConnected() {
         cv.open();
-    }
-
-    @Override
-    public IBinder onBind(Intent intent) {
-        Logger.i("InterruptionFilterSwitcherService onBind()");
-        is_running = true;
-        return super.onBind(intent);
-    }
-
-    @Override
-    public boolean onUnbind(Intent intent) {
-        Logger.i("InterruptionFilterSwitcherService onUnbind()");
-        is_running = false;
-        return super.onUnbind(intent);
     }
 
     @Override

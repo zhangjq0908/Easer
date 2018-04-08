@@ -73,7 +73,7 @@ public class RingerModeOperationPlugin implements OperationPlugin<RingerModeOper
             return PluginHelper.checkPermission(context, Manifest.permission.MODIFY_AUDIO_SETTINGS);
         } else {
             return PluginHelper.checkPermission(context, Manifest.permission.MODIFY_AUDIO_SETTINGS)
-                    && InterruptionFilterSwitcherService.isRunning();
+                    && isServiceEnabled(context);
         }
     }
 
@@ -82,16 +82,22 @@ public class RingerModeOperationPlugin implements OperationPlugin<RingerModeOper
         if (!PluginHelper.checkPermission(activity, Manifest.permission.MODIFY_AUDIO_SETTINGS))
             PluginHelper.requestPermission(activity, requestCode, Manifest.permission.MODIFY_AUDIO_SETTINGS);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (!InterruptionFilterSwitcherService.isRunning()) {
+            if (!isServiceEnabled(activity)) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
                     activity.startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
                 } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     PluginHelper.requestPermission(activity, requestCode,
                             Manifest.permission.BIND_NOTIFICATION_LISTENER_SERVICE);
                 }
-                toggleNotificationListenerService(activity);
+                PluginHelper.reenableComponent(activity, InterruptionFilterSwitcherService.class);
             }
         }
+    }
+
+    private static boolean isServiceEnabled(Context context) {
+        PackageManager pm = context.getPackageManager();
+        ComponentName componentName = new ComponentName(context, InterruptionFilterSwitcherService.class);
+        return pm.getComponentEnabledSetting(componentName) == PackageManager.COMPONENT_ENABLED_STATE_ENABLED;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

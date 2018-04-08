@@ -19,11 +19,14 @@
 
 package ryey.easer.plugins.event.notification;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 
@@ -33,6 +36,7 @@ import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
+import ryey.easer.plugins.reusable.PluginHelper;
 
 public class NotificationEventPlugin implements EventPlugin<NotificationEventData> {
 
@@ -56,19 +60,26 @@ public class NotificationEventPlugin implements EventPlugin<NotificationEventDat
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public boolean checkPermissions(@NonNull Context context) {
-        return NotificationEventListenerService.isRunning();
+        return isServiceEnabled(context);
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        PackageManager pm = activity.getPackageManager();
-        ComponentName componentName = new ComponentName(activity, NotificationEventListenerService.class);
+        if (!isServiceEnabled(activity)) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+                activity.startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
+            } else {
+                PluginHelper.requestPermission(activity, requestCode,
+                        Manifest.permission.BIND_NOTIFICATION_LISTENER_SERVICE);
+            }
+        }
+        PluginHelper.reenableComponent(activity, NotificationEventListenerService.class);
+    }
 
-        pm.setComponentEnabledSetting(componentName,
-                PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
-
-        pm.setComponentEnabledSetting(componentName,
-                PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+    private static boolean isServiceEnabled(Context context) {
+        PackageManager pm = context.getPackageManager();
+        ComponentName componentName = new ComponentName(context, NotificationEventListenerService.class);
+        return pm.getComponentEnabledSetting(componentName) == PackageManager.COMPONENT_ENABLED_STATE_ENABLED;
     }
 
     @NonNull
