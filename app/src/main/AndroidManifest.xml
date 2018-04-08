@@ -112,9 +112,18 @@
         <service
             android:name=".plugins.event.nfc_tag.NfcListenerService"
             android:enabled="true"
-            android:exported="false"></service>
+            android:exported="false" />
 
-        <activity android:name=".core.ui.edit.EditScenarioActivity"></activity>
+        <activity android:name=".core.ui.edit.EditScenarioActivity" />
+
+        <service
+            android:name=".plugins.operation.media_control.MediaControlHelperNotificationListenerService"
+            android:label="@string/operation_media_control_helper_service_label"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

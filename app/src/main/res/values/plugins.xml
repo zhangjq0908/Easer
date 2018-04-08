@@ -53,7 +53,7 @@
     <string name="event_notification__app_hint">Fully qualified package name of the app</string>
     <string name="event_notification__title">Title (contains…)</string>
     <string name="event_notification__content">Content (contains…)</string>
-    <string name="label_event_notification_listener_service">Easer (Notification Event Listener)</string>
+    <string name="label_event_notification_listener_service">Notification Event Listener</string>
 
     <string name="event_timer">Timer</string>
     <string name="exact_timer">Exact timer?</string>
@@ -117,7 +117,7 @@
     <string name="ringer_mode_dnd_none">None</string>
     <string name="ringer_mode_dnd_alarms">Alarms</string>
     <string name="ringing_items_in_do_not_disturb_mode">Ringing items in Do not Disturb mode</string>
-    <string name="label_operation_ringer_mode_notification_listener_service">Easer (Silent Mode Switcher)</string>
+    <string name="label_operation_ringer_mode_notification_listener_service">Silent Mode Switcher</string>
 
     <string name="operation_command">Run commands</string>
     <string name="operation_hotspot">Hotspot</string>
@@ -137,6 +137,7 @@
     <string name="text_pause">Pause</string>
     <string name="text_previous">Previous</string>
     <string name="text_next">Next</string>
+    <string name="operation_media_control_helper_service_label">Helper for Media Control</string>
 
     <string name="operation_airplane_mode">Airplane Mode</string>
 

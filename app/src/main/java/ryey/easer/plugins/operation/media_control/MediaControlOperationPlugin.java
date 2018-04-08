@@ -19,8 +19,14 @@
 
 package ryey.easer.plugins.operation.media_control;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 
 import ryey.easer.R;
@@ -29,6 +35,7 @@ import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
+import ryey.easer.plugins.reusable.PluginHelper;
 
 public class MediaControlOperationPlugin implements OperationPlugin<MediaControlOperationData> {
 
@@ -61,12 +68,33 @@ public class MediaControlOperationPlugin implements OperationPlugin<MediaControl
 
     @Override
     public boolean checkPermissions(@NonNull Context context) {
-        return true;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            return isHelperServiceEnabled(context);
+        } else {
+            return true;
+        }
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (!isHelperServiceEnabled(activity)) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+                    activity.startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
+                } else {
+                    PluginHelper.requestPermission(activity, requestCode,
+                            Manifest.permission.BIND_NOTIFICATION_LISTENER_SERVICE);
+                }
+            }
+            PluginHelper.reenableComponent(activity, MediaControlHelperNotificationListenerService.class);
+        }
+    }
 
+    private static boolean isHelperServiceEnabled(Context context) {
+        PackageManager pm = context.getPackageManager();
+        return pm.getComponentEnabledSetting(
+                new ComponentName(context, MediaControlHelperNotificationListenerService.class))
+                == PackageManager.COMPONENT_ENABLED_STATE_ENABLED;
     }
 
     @NonNull

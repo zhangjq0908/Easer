@@ -52,7 +52,7 @@
     <string name="event_notification__app_hint">軟件的完整包名</string>
     <string name="event_notification__title">題目（包含…）</string>
     <string name="event_notification__content">內容（包含…）</string>
-    <string name="label_event_notification_listener_service">Easer (通知事件監聽)</string>
+    <string name="label_event_notification_listener_service">通知事件監聽</string>
 
     <string name="event_timer">定時器</string>
     <string name="exact_timer">精確定時？</string>
@@ -109,7 +109,7 @@
     <string name="ringer_mode_dnd_none">全不</string>
     <string name="ringer_mode_dnd_alarms">鬧鈴</string>
     <string name="ringing_items_in_do_not_disturb_mode">勿擾模式響鈴項</string>
-    <string name="label_operation_ringer_mode_notification_listener_service">Easer (切換靜音模式)</string>
+    <string name="label_operation_ringer_mode_notification_listener_service">切換靜音模式</string>
 
     <string name="operation_command">執行命令</string>
     <string name="operation_hotspot">移動熱點</string>
@@ -129,6 +129,7 @@
     <string name="text_pause">暫停</string>
     <string name="text_previous">上一首</string>
     <string name="text_next">下一首</string>
+    <string name="operation_media_control_helper_service_label">媒體控制助手</string>
 
     <string name="operation_airplane_mode">飛行模式</string>
 

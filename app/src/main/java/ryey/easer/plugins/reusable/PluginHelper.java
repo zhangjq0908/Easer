@@ -1,6 +1,7 @@
 package ryey.easer.plugins.reusable;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -64,6 +65,17 @@ public class PluginHelper {
 
     public static void requestPermission(Activity activity, int requestCode, String... permissions) {
         ActivityCompat.requestPermissions(activity, permissions, requestCode);
+    }
+
+    public static void reenableComponent(Context context, Class cls) {
+        PackageManager pm = context.getPackageManager();
+        ComponentName componentName = new ComponentName(context, cls);
+
+        pm.setComponentEnabledSetting(componentName,
+                PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+
+        pm.setComponentEnabledSetting(componentName,
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
     }
 
 }
