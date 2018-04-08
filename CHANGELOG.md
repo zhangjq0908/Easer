@@ -1,6 +1,12 @@
 CHANGELOG
 ======
 
+* v0.5.6.1: Switch between 12-hour and 24-hour clocks && Better MediaControlOperationPlugin for Lollipop+ && Update Danish translation && Minor changes
+	* Allow to change between 12-hour and 24-hour clocks in Settings
+	* Use `MediaSessionManager` for Lollipop+ (API 21+) for better media control
+	* Update Danish translation (thanks to twikedk)
+	* Remove static variable `running` in some `NotificationListenerService`s in favor of PackageManager detection
+
 * v0.5.6: Add the ability to control volume && Allow to customize Do Not Disturb mode (Ringer Mode) && Drop unneeded menus
 	* Add `VolumeOperationPlugin` to control volume
 	* Allow to customize Do Not Disturb mode in `RingerModeOperationPlugin`
