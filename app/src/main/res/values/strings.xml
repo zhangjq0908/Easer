@@ -135,12 +135,6 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     2. Connecting events as <a href="https://en.wikipedia.org/wiki/Tree_structure">trees</a> is CURRENTLY the only way to compose events.
         \n\nAlso have a look at <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> in the project wiki.</string>
 
-    <string name="alert_change_drop_event_type_title">Dropping Event Type</string>
-    <string name="alert_change_drop_event_type">It is planned to drop the support of Event Types in v0.5.7. Please do not use (rely on) them （other than "is" or "any") when creating new Events or Scenarios.
-        \n\nIf you have used Event Types other than "is" or "any", please <a href="https://github.com/renyuneyun/Easer/wiki/Replace-Event-Types-with-advanced-Scenario-conditions">replace them by using fine-tuned advanced Scenario conditions</a>.
-        \n\nBy now, you may need to create dedicated Scenarios. Support for creating "inline Scenario" with advanced conditions will be added later.
-        \n\nThis message will be removed in v0.5.7. Please tolerate :)</string>
-
     <string name="template_export">Exported to %s</string>
     <string name="version">Version</string>
 
