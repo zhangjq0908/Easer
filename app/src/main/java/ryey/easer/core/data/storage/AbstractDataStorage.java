@@ -9,9 +9,10 @@ import java.util.List;
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.core.data.Named;
 import ryey.easer.core.data.Verifiable;
+import ryey.easer.core.data.WithCreatedVersion;
 import ryey.easer.core.data.storage.backend.DataStorageBackendCommonInterface;
 
-public abstract class AbstractDataStorage<T extends Named & Verifiable, T_backend extends DataStorageBackendCommonInterface<T>> {
+public abstract class AbstractDataStorage<T extends Named & Verifiable & WithCreatedVersion, T_backend extends DataStorageBackendCommonInterface<T>> {
     T_backend[] storage_backend_list;
 
     public List<String> list() {

@@ -18,9 +18,10 @@ import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.core.data.Named;
 import ryey.easer.core.data.Verifiable;
+import ryey.easer.core.data.WithCreatedVersion;
 import ryey.easer.core.data.storage.AbstractDataStorage;
 
-abstract class AbstractEditDataActivity<T extends Named & Verifiable, T_storage extends AbstractDataStorage<T, ?>> extends AppCompatActivity {
+abstract class AbstractEditDataActivity<T extends Named & Verifiable & WithCreatedVersion, T_storage extends AbstractDataStorage<T, ?>> extends AppCompatActivity {
 
     protected static String TAG_DATA_TYPE = "<unspecified data type>";
 

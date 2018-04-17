@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import java.util.List;
 
 import ryey.easer.R;
+import ryey.easer.commons.C;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.core.data.EventStructure;
@@ -183,7 +184,8 @@ public class EditEventActivity extends AbstractEditDataActivity<EventStructure, 
 
     @Override
     protected EventStructure saveToData() throws InvalidDataInputException {
-        EventStructure event = new EventStructure(mEditText_name.getText().toString());
+        EventStructure event = new EventStructure(C.VERSION_CREATED_IN_RUNTIME);
+        event.setName(mEditText_name.getText().toString());
         String profile = (String) mSpinner_profile.getSelectedItem();
         event.setProfileName(profile);
         event.setActive(isActive);

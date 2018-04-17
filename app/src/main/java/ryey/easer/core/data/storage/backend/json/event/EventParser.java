@@ -30,10 +30,10 @@ class EventParser implements Parser<EventStructure> {
     }
 
     public EventStructure parse(InputStream in) throws IOException, IllegalStorageDataException {
-        eventStructure = new EventStructure();
         try {
             JSONObject jsonObject = new JSONObject(IOUtils.inputStreamToString(in));
             int version = jsonObject.optInt(C.VERSION, C.VERSION_ADD_JSON);
+            eventStructure = new EventStructure(version);
             eventStructure.setName(jsonObject.getString(C.NAME));
             eventStructure.setActive(jsonObject.optBoolean(C.ACTIVE, true));
             eventStructure.setProfileName(jsonObject.optString(C.PROFILE, null));

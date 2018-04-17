@@ -27,7 +27,7 @@ public class ScenarioParser implements Parser<ScenarioStructure> {
             EventData eventData = PluginRegistry.getInstance().event().findPlugin(spec)
                     .dataFactory()
                     .parse(jsonObject_situation.getString(C.DATA), C.Format.JSON, version);
-            return new ScenarioStructure(name, eventData);
+            return new ScenarioStructure(version, name, eventData);
         } catch (JSONException e) {
             throw new IllegalStorageDataException(e);
         }

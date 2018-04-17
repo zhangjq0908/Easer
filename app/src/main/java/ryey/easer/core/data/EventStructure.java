@@ -34,7 +34,8 @@ import ryey.easer.commons.plugindef.eventplugin.EventData;
  *
  * Only `EditEventActivity` and `EventTree` needs to know the actual structure.
  */
-final public class EventStructure implements Renameable, Verifiable {
+final public class EventStructure implements Renameable, Verifiable, WithCreatedVersion {
+    private final int createdVersion;
     protected String name;
     private ScenarioStructure scenario;
     protected boolean active = true;
@@ -44,10 +45,7 @@ final public class EventStructure implements Renameable, Verifiable {
     @Nullable protected String profileName;
     @Nullable protected String parentName;
 
-    public EventStructure() {}
-    public EventStructure(String name) {
-        setName(name);
-    }
+    public EventStructure(int createdVersion) {this.createdVersion = createdVersion;}
 
     public String getName() {
         return name;
@@ -129,5 +127,10 @@ final public class EventStructure implements Renameable, Verifiable {
 
     public void setReverse(boolean reverse) {
         this.reverse = reverse;
+    }
+
+    @Override
+    public int createdVersion() {
+        return createdVersion;
     }
 }

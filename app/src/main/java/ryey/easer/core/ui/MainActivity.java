@@ -39,6 +39,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import ryey.easer.R;
+import ryey.easer.core.data.storage.StorageHelper;
 import ryey.easer.core.ui.edit.EventListFragment;
 import ryey.easer.core.ui.edit.ProfileListFragment;
 import ryey.easer.core.ui.edit.ScenarioListFragment;
@@ -97,6 +98,19 @@ public class MainActivity extends AppCompatActivity
                     .show()
                     .findViewById(android.R.id.message))
                     .setMovementMethod(LinkMovementMethod.getInstance());
+        }
+
+        if (StorageHelper.hasOldData(this)) {
+            new AlertDialog.Builder(this)
+                    .setTitle(R.string.alert_update_storage_data_title)
+                    .setMessage(R.string.alert_update_storage_data)
+                    .setPositiveButton(R.string.button_understand, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    })
+                    .show();
         }
     }
 

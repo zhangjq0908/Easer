@@ -3,10 +3,12 @@ package ryey.easer.core.data;
 import android.support.annotation.NonNull;
 
 import ryey.easer.Utils;
+import ryey.easer.commons.C;
 import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 
-public class ScenarioStructure implements Named, Verifiable {
+public class ScenarioStructure implements Named, Verifiable, WithCreatedVersion {
+    private final int createdVersion;
 
     private final String name;
     private EventData eventData;
@@ -16,11 +18,13 @@ public class ScenarioStructure implements Named, Verifiable {
     }
 
     private ScenarioStructure(@ValidData EventData eventData) {
+        createdVersion = C.VERSION_CREATED_IN_RUNTIME;
         name = null;
         this.eventData = eventData;
     }
 
-    public ScenarioStructure(@NonNull String name, @ValidData EventData eventData) {
+    public ScenarioStructure(int createdVersion, @NonNull String name, @ValidData EventData eventData) {
+        this.createdVersion = createdVersion;
         this.name = name;
         this.eventData = eventData;
     }
@@ -60,5 +64,10 @@ public class ScenarioStructure implements Named, Verifiable {
         if (!Utils.nullableEqual(eventData, ((ScenarioStructure) obj).eventData))
             return false;
         return true;
+    }
+
+    @Override
+    public int createdVersion() {
+        return createdVersion;
     }
 }
