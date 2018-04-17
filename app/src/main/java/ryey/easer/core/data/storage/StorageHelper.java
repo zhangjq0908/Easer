@@ -1,7 +1,6 @@
 package ryey.easer.core.data.storage;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.widget.Toast;
 
 import com.orhanobut.logger.Logger;
@@ -20,16 +19,6 @@ import ryey.easer.core.data.storage.backend.DataStorageBackendCommonInterface;
 
 public class StorageHelper {
 
-    public static boolean hasDeprecatedFormattedData(@NonNull Context context) {
-        EventDataStorage eventDataStorage = EventDataStorage.getInstance(context);
-        if (eventDataStorage.storage_backend_list[1].list().size() > 0)
-            return true;
-        ProfileDataStorage profileDataStorage = ProfileDataStorage.getInstance(context);
-        if (profileDataStorage.storage_backend_list[1].list().size() > 0)
-            return true;
-        return false;
-    }
-    
     public static boolean convertToNewFormat(Context context) {
         Toast.makeText(context, R.string.message_convert_data_start, Toast.LENGTH_SHORT).show();
         ProfileDataStorage profileDataStorage = ProfileDataStorage.getInstance(context);
