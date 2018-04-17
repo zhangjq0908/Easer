@@ -7,7 +7,6 @@ import java.io.IOException;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.storage.backend.ProfileDataStorageBackendInterface;
 import ryey.easer.core.data.storage.backend.json.profile.JsonProfileDataStorageBackend;
-import ryey.easer.core.data.storage.backend.xml.profile.XmlProfileDataStorageBackend;
 
 public class ProfileDataStorage extends AbstractDataStorage<ProfileStructure, ProfileDataStorageBackendInterface> {
 
@@ -20,7 +19,6 @@ public class ProfileDataStorage extends AbstractDataStorage<ProfileStructure, Pr
             instance = new ProfileDataStorage();
             instance.storage_backend_list = new ProfileDataStorageBackendInterface[] {
                     JsonProfileDataStorageBackend.getInstance(context),
-                    XmlProfileDataStorageBackend.getInstance(context),
             };
             instance.context = context;
         }

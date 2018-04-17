@@ -24,11 +24,7 @@ import android.support.annotation.NonNull;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlSerializer;
 
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -73,16 +69,6 @@ public class AlarmOperationData implements OperationData {
 
     AlarmOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
-    }
-
-    @Override
-    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
-        throw new IllegalAccessError();
-    }
-
-    @Override
-    public void serialize(XmlSerializer serializer) throws IOException {
-        throw new IllegalAccessError();
     }
 
     @Override

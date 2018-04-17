@@ -23,13 +23,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
-import com.orhanobut.logger.Logger;
-
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlSerializer;
-
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -39,10 +32,8 @@ import java.util.Locale;
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
-import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
 
 public class DateEventData extends TypedEventData {
@@ -93,27 +84,6 @@ public class DateEventData extends TypedEventData {
         if (!DateToText(date).equals(DateToText(((DateEventData) obj).date)))
             return false;
         return true;
-    }
-
-    @Override
-    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
-        String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
-        try {
-            this.date = TextToDate(str_data);
-            EventType type = XmlHelper.EventHelper.readLogic(parser);
-            setType(type);
-        } catch (ParseException e) {
-            Logger.e(e, "Illegal Event: illegal time format %s", str_data);
-            throw new IllegalStorageDataException(String.format("Illegal Event: illegal time format %s", str_data));
-        }
-    }
-
-    @Override
-    public void serialize(XmlSerializer serializer) throws IOException {
-        if (date != null) {
-            XmlHelper.EventHelper.writeSingleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).id(), DateToText(date));
-            XmlHelper.EventHelper.writeLogic(serializer, type());
-        }
     }
 
     @Override
