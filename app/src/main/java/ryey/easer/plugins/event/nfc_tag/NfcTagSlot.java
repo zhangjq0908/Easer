@@ -29,12 +29,8 @@ import android.os.IBinder;
 import java.util.Arrays;
 
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventType;
-
-import static ryey.easer.commons.plugindef.eventplugin.EventType.is;
 
 public class NfcTagSlot extends AbstractSlot<NfcTagEventData> {
-    private EventType type = null;
 
     private NfcListenerService.NLSBinder sBinder;
 
@@ -59,7 +55,6 @@ public class NfcTagSlot extends AbstractSlot<NfcTagEventData> {
 
     NfcTagSlot(Context context, NfcTagEventData data, boolean retriggerable, boolean persistent) {
         super(context, data, retriggerable, persistent);
-        type = data.type();
     }
 
     @Override
@@ -79,15 +74,9 @@ public class NfcTagSlot extends AbstractSlot<NfcTagEventData> {
     void checkAndTrigger(final Tag tag) {
         byte[] tag_id = tag.getId();
         if (Arrays.equals(tag_id, eventData.id)) {
-            if (type == is)
-                changeSatisfiedState(true);
-            else
-                changeSatisfiedState(false);
+            changeSatisfiedState(true);
         } else {
-            if (type == is)
-                changeSatisfiedState(false);
-            else
-                changeSatisfiedState(true);
+            changeSatisfiedState(false);
         }
     }
 }

@@ -18,4 +18,3 @@
 
 # ProGuard warns, but don't know why
 -keep class ryey.easer.commons.plugindef.eventplugin.EventData {*;}
--keep class ryey.easer.commons.plugindef.eventplugin.EventType {*;}

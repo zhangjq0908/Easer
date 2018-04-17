@@ -33,11 +33,9 @@ import com.orhanobut.logger.Logger;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 public class SmsConnSlot extends AbstractSlot<SmsEventData> {
     private SmsInnerData smsInnerData = null;
-    private EventType type = null;
 
     private final BroadcastReceiver connReceiver = new BroadcastReceiver() {
         @Override
@@ -89,7 +87,6 @@ public class SmsConnSlot extends AbstractSlot<SmsEventData> {
     SmsConnSlot(Context context, SmsEventData data, boolean retriggerable, boolean persistent) {
         super(context, data, retriggerable, persistent);
         smsInnerData = data.innerData;
-        type = data.type();
     }
 
     @Override

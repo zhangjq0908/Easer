@@ -31,26 +31,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.EnumSet;
 
-import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.commons.plugindef.eventplugin.EventType;
-import ryey.easer.plugins.event.TypedEventData;
+import ryey.easer.plugins.event.AbstractEventData;
 
-public class CalendarEventData extends TypedEventData {
+public class CalendarEventData extends AbstractEventData {
 
     private static final String T_calendar_id = "calendar_id";
     private static final String T_condition = "condition";
 
     CalendarData data;
-
-    {
-        default_type = EventType.is;
-        availableTypes = EnumSet.of(EventType.is);
-    }
 
     public CalendarEventData() {}
 
@@ -125,8 +116,6 @@ public class CalendarEventData extends TypedEventData {
         if (obj == this)
             return true;
         if (!(obj instanceof CalendarEventData))
-            return false;
-        if (!Utils.eEquals(this, (EventData) obj))
             return false;
         if (data.calendar_id != ((CalendarEventData) obj).data.calendar_id)
             return false;

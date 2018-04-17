@@ -10,7 +10,6 @@ import android.net.NetworkInfo;
 import java.util.Set;
 
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 import static ryey.easer.plugins.event.connectivity.ConnectivityType.TYPE_BLUETOOTH;
 import static ryey.easer.plugins.event.connectivity.ConnectivityType.TYPE_ETHERNET;
@@ -22,7 +21,6 @@ import static ryey.easer.plugins.event.connectivity.ConnectivityType.TYPE_WIFI;
 class ConnectivitySlot extends AbstractSlot<ConnectivityEventData> {
 
     private Set<Integer> connectivity_types;
-    private EventType type;
 
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
@@ -48,7 +46,6 @@ class ConnectivitySlot extends AbstractSlot<ConnectivityEventData> {
     ConnectivitySlot(Context context, ConnectivityEventData data, boolean retriggerable, boolean persistent) {
         super(context, data, retriggerable, persistent);
         connectivity_types = data.connectivity_type;
-        type = data.type();
     }
 
     @Override
@@ -89,16 +86,9 @@ class ConnectivitySlot extends AbstractSlot<ConnectivityEventData> {
     }
 
     private void determineAndNotify(int networkType) {
-        if (type == EventType.any) {
-            if (connectivity_types.contains(networkType))
-                changeSatisfiedState(true);
-            else
-                changeSatisfiedState(false);
-        } else {
-            if (connectivity_types.contains(networkType))
-                changeSatisfiedState(false);
-            else
-                changeSatisfiedState(true);
-        }
+        if (connectivity_types.contains(networkType))
+            changeSatisfiedState(true);
+        else
+            changeSatisfiedState(false);
     }
 }

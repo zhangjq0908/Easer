@@ -27,23 +27,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
-import java.util.EnumSet;
 import java.util.List;
 
-import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.commons.plugindef.eventplugin.EventType;
-import ryey.easer.plugins.event.TypedEventData;
+import ryey.easer.plugins.event.AbstractEventData;
 
-public class CellLocationEventData extends TypedEventData {
+public class CellLocationEventData extends AbstractEventData {
     private List<CellLocationSingleData> data = new ArrayList<>();
-
-    {
-        default_type = EventType.any;
-        availableTypes = EnumSet.of(EventType.any, EventType.none);
-    }
 
     public CellLocationEventData() {
     }
@@ -86,8 +77,6 @@ public class CellLocationEventData extends TypedEventData {
     @Override
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof CellLocationEventData))
-            return false;
-        if (!Utils.eEquals(this, (EventData) obj))
             return false;
         if (!data.equals(((CellLocationEventData) obj).data))
             return false;

@@ -28,24 +28,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
-import java.util.EnumSet;
 import java.util.Set;
 
-import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.commons.plugindef.eventplugin.EventType;
-import ryey.easer.plugins.event.TypedEventData;
+import ryey.easer.plugins.event.AbstractEventData;
 
-public class DayOfWeekEventData extends TypedEventData {
+public class DayOfWeekEventData extends AbstractEventData {
 
     Set<Integer> days = new ArraySet<>(7);
-
-    {
-        default_type = EventType.any;
-        availableTypes = EnumSet.of(EventType.any, EventType.none);
-    }
 
     public DayOfWeekEventData() {}
 
@@ -71,8 +62,6 @@ public class DayOfWeekEventData extends TypedEventData {
     @Override
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof DayOfWeekEventData))
-            return false;
-        if (!Utils.eEquals(this, (EventData) obj))
             return false;
         if (!days.equals(((DayOfWeekEventData) obj).days))
             return false;

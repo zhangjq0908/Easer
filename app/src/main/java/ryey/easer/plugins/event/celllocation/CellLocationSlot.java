@@ -27,15 +27,12 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.reusable.PluginHelper;
 
 public class CellLocationSlot extends AbstractSlot<CellLocationEventData> {
     private static TelephonyManager telephonyManager = null;
 
     private CellLocationListener cellLocationListener = new CellLocationListener();
-
-    private EventType type = null;
 
     private CellLocationSingleData curr = null;
 
@@ -45,7 +42,6 @@ public class CellLocationSlot extends AbstractSlot<CellLocationEventData> {
 
     CellLocationSlot(Context context, CellLocationEventData data, boolean retriggerable, boolean persistent) {
         super(context, data, retriggerable, persistent);
-        type = data.type();
 
         if (telephonyManager == null) {
             telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
@@ -78,11 +74,7 @@ public class CellLocationSlot extends AbstractSlot<CellLocationEventData> {
         synchronized public void onCellLocationChanged(CellLocation location) {
             super.onCellLocationChanged(location);
             curr = CellLocationSingleData.fromCellLocation(location);
-            if (type == EventType.any) {
-                changeSatisfiedState(eventData.contains(curr));
-            } else if (type == EventType.none) {
-                changeSatisfiedState(!eventData.contains(curr));
-            }
+            changeSatisfiedState(eventData.contains(curr));
         }
     }
 }

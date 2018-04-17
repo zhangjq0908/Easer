@@ -7,12 +7,10 @@ import android.content.IntentFilter;
 import android.os.BatteryManager;
 
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 public class BatterySlot extends AbstractSlot<BatteryEventData> {
 
     private int status;
-    private EventType type;
 
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
@@ -45,7 +43,6 @@ public class BatterySlot extends AbstractSlot<BatteryEventData> {
     BatterySlot(Context context, BatteryEventData data, boolean retriggerable, boolean persistent) {
         super(context, data, retriggerable, persistent);
         status = data.battery_status;
-        type = data.type();
     }
 
     @Override
@@ -69,10 +66,6 @@ public class BatterySlot extends AbstractSlot<BatteryEventData> {
     }
 
     private void determineAndNotify(boolean isCharging) {
-        if ((status == BatteryStatus.charging) == isCharging) {
-            changeSatisfiedState(type == EventType.is);
-        } else {
-            changeSatisfiedState(type == EventType.is_not);
-        }
+        changeSatisfiedState((status == BatteryStatus.charging) == isCharging);
     }
 }

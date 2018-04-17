@@ -25,16 +25,12 @@ import android.support.annotation.NonNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.EnumSet;
-
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.commons.plugindef.eventplugin.EventType;
-import ryey.easer.plugins.event.TypedEventData;
+import ryey.easer.plugins.event.AbstractEventData;
 
-public class TcpTripEventData extends TypedEventData {
+public class TcpTripEventData extends AbstractEventData {
 
     private static final String K_RADDR = "remote address";
     private static final String K_RPORT = "remote port";
@@ -47,11 +43,6 @@ public class TcpTripEventData extends TypedEventData {
     String send_data;
     boolean check_reply;
     String reply_data;
-
-    {
-        default_type = EventType.is;
-        availableTypes = EnumSet.of(EventType.is);
-    }
 
     public TcpTripEventData() {}
 
@@ -83,8 +74,6 @@ public class TcpTripEventData extends TypedEventData {
     @Override
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof TcpTripEventData))
-            return false;
-        if (!Utils.eEquals(this, (EventData) obj))
             return false;
         if (!Utils.nullableEqual(rAddr, ((TcpTripEventData) obj).rAddr))
             return false;

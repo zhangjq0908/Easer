@@ -21,33 +21,16 @@ package ryey.easer.commons.plugindef.eventplugin;
 
 import android.support.annotation.NonNull;
 
-import java.util.Set;
-
 import ryey.easer.commons.plugindef.StorageData;
 
 public interface EventData extends StorageData {
-
-    /**
-     * EventType related methods
-     */
-
-    // Setter
-    void setType(@NonNull EventType type);
-    // Getter
-    @NonNull EventType type();
-    /**
-     * List all available (i.e. can be handled) types of this plugin
-     */
-    @NonNull Set<EventType> availableTypes();
-    /**
-     * Check to see if such a type is available
-     * FIXME: Designed to be used when dealing with storage
-     */
-    boolean isAvailable(@NonNull EventType type);
 
     /**
      * Test whether the obj matches any of the data
      * Used when the data could contain multiple choices (e.g. when using type `any`)
      */
     boolean match(@NonNull Object obj);
+
+    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
+    boolean equals(Object obj);
 }

@@ -26,16 +26,12 @@ import android.support.annotation.Nullable;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.EnumSet;
-
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.commons.plugindef.eventplugin.EventType;
-import ryey.easer.plugins.event.TypedEventData;
+import ryey.easer.plugins.event.AbstractEventData;
 
-public class HeadsetEventData extends TypedEventData {
+public class HeadsetEventData extends AbstractEventData {
 
     enum HeadsetAction {
         plug_in,
@@ -54,11 +50,6 @@ public class HeadsetEventData extends TypedEventData {
 
     HeadsetAction hs_action = HeadsetAction.any;
     HeadsetType hs_type = HeadsetType.any;
-
-    {
-        default_type = EventType.is;
-        availableTypes = EnumSet.of(EventType.is, EventType.is_not);
-    }
 
     HeadsetEventData() {}
 
@@ -85,8 +76,6 @@ public class HeadsetEventData extends TypedEventData {
     @Override
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof HeadsetEventData))
-            return false;
-        if (!Utils.eEquals(this, (EventData) obj))
             return false;
         if (!Utils.nullableEqual(hs_action, ((HeadsetEventData) obj).hs_action))
             return false;

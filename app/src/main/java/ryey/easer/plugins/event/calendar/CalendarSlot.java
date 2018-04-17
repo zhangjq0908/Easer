@@ -22,14 +22,11 @@ package ryey.easer.plugins.event.calendar;
 import android.app.AlarmManager;
 import android.content.Context;
 
-import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.SelfNotifiableSlot;
 
 public class CalendarSlot extends SelfNotifiableSlot<CalendarEventData> {
 
     private static AlarmManager mAlarmManager = null;
-
-    private EventType type = null;
 
     public CalendarSlot(Context context, CalendarEventData data) {
         this(context, data, RETRIGGERABLE_DEFAULT, PERSISTENT_DEFAULT);
@@ -37,7 +34,6 @@ public class CalendarSlot extends SelfNotifiableSlot<CalendarEventData> {
 
     CalendarSlot(Context context, CalendarEventData data, boolean retriggerable, boolean persistent) {
         super(context, data, retriggerable, persistent);
-        type = data.type();
         mAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
     }
 

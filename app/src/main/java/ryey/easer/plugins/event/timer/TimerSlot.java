@@ -24,7 +24,6 @@ import android.content.Context;
 
 import java.util.Calendar;
 
-import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.SelfNotifiableSlot;
 
 public class TimerSlot extends SelfNotifiableSlot<TimerEventData> {
@@ -33,7 +32,6 @@ public class TimerSlot extends SelfNotifiableSlot<TimerEventData> {
     private static final int INTERVAL_MINUTE = 60 * 1000;
 
     private TimerEventData.Timer timer;
-    private EventType type = null;
 
     public TimerSlot(Context context, TimerEventData data) {
         this(context, data, isRetriggerable(data), PERSISTENT_DEFAULT);
@@ -42,7 +40,6 @@ public class TimerSlot extends SelfNotifiableSlot<TimerEventData> {
     TimerSlot(Context context, TimerEventData data, boolean retriggerable, boolean persistent) {
         super(context, data, retriggerable, persistent);
         timer = data.timer;
-        type = data.type();
 
         if (mAlarmManager == null)
             mAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
@@ -62,20 +59,16 @@ public class TimerSlot extends SelfNotifiableSlot<TimerEventData> {
         super.listen();
         if (timer != null) {
             Calendar now = Calendar.getInstance();
-            switch (type) {
-                case after:
-                    if (timer.exact) {
-                        mAlarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
-                                now.getTimeInMillis() + INTERVAL_MINUTE * timer.minutes,
-                                INTERVAL_MINUTE * timer.minutes,
-                                notifySelfIntent_positive);
-                    } else {
-                        mAlarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
-                                now.getTimeInMillis() + INTERVAL_MINUTE * timer.minutes,
-                                INTERVAL_MINUTE * timer.minutes,
-                                notifySelfIntent_positive);
-                    }
-                    break;
+            if (timer.exact) {
+                mAlarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+                        now.getTimeInMillis() + INTERVAL_MINUTE * timer.minutes,
+                        INTERVAL_MINUTE * timer.minutes,
+                        notifySelfIntent_positive);
+            } else {
+                mAlarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
+                        now.getTimeInMillis() + INTERVAL_MINUTE * timer.minutes,
+                        INTERVAL_MINUTE * timer.minutes,
+                        notifySelfIntent_positive);
             }
         }
     }
@@ -95,8 +88,6 @@ public class TimerSlot extends SelfNotifiableSlot<TimerEventData> {
 
     @Override
     protected void onPositiveNotified() {
-        if (type == EventType.after) {
-            changeSatisfiedState(true);
-        }
+        changeSatisfiedState(true);
     }
 }
