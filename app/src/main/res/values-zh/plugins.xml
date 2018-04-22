@@ -156,13 +156,4 @@
     <string name="o_volume_alarm">鬧鈴</string>
     <string name="o_volume_notification">通知</string>
 
-    <string-array name="event_type">
-        <item>晚於</item>
-        <item>任一</item>
-        <item>早於</item>
-        <item>是</item>
-        <item>不是</item>
-        <item>均非</item>
-    </string-array>
-
 </resources>

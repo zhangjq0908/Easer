@@ -163,13 +163,4 @@
     <string name="o_volume_alarm">Alarm</string>
     <string name="o_volume_notification">Påmindelse</string>
 
-    <string-array name="event_type">
-        <item>Efter</item>
-        <item>Enhver</item>
-        <item>Før</item>
-        <item>Lig med</item>
-        <item>Forskellig fra</item>
-        <item>Ingen</item>
-    </string-array>
-
 </resources>
