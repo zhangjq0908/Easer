@@ -40,8 +40,6 @@ public class SmsEventData extends AbstractEventData {
 
     SmsInnerData innerData;
 
-    public SmsEventData() {}
-
     public SmsEventData(SmsInnerData innerData) {
         this.innerData = innerData;
     }

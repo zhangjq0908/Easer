@@ -39,8 +39,6 @@ public class NotificationEventData extends AbstractEventData {
     String title;
     String content;
 
-    public NotificationEventData() {}
-
     NotificationEventData(String app, String title, String content) {
         this.app = app;
         this.title = title;

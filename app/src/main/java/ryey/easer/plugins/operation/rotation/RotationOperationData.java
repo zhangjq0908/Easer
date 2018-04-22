@@ -28,8 +28,6 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.plugins.operation.BooleanOperationData;
 
 public class RotationOperationData extends BooleanOperationData {
-    RotationOperationData() {
-    }
 
     RotationOperationData(Boolean state) {
         super(state);

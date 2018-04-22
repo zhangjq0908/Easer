@@ -38,8 +38,6 @@ public class DayOfWeekEventData extends AbstractEventData {
 
     Set<Integer> days = new ArraySet<>(7);
 
-    public DayOfWeekEventData() {}
-
     public DayOfWeekEventData(Set<Integer> days) {
         this.days = days;
     }

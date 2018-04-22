@@ -19,9 +19,6 @@ public class ConnectivityEventData extends AbstractEventData {
 
     Set<Integer> connectivity_type = new ArraySet<>();
 
-    public ConnectivityEventData() {
-    }
-
     public ConnectivityEventData(Set<Integer> connectivity_type) {
         this.connectivity_type = connectivity_type;
     }

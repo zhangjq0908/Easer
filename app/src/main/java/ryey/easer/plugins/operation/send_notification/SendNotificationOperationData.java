@@ -37,9 +37,6 @@ public class SendNotificationOperationData implements OperationData {
     String title;
     String content;
 
-    SendNotificationOperationData() {
-    }
-
     SendNotificationOperationData(String title, String content) {
         this.title = title;
         this.content = content;

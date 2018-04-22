@@ -38,8 +38,6 @@ import ryey.easer.plugins.event.AbstractEventData;
 public class BTDeviceEventData extends AbstractEventData {
     private List<String> hwaddresses = new ArrayList<>();
 
-    public BTDeviceEventData() {}
-
     BTDeviceEventData(String[] hardware_addresses) {
         setMultiple(hardware_addresses);
     }

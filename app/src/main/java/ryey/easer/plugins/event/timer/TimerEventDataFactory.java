@@ -14,23 +14,15 @@ class TimerEventDataFactory implements EventDataFactory<TimerEventData> {
         return TimerEventData.class;
     }
 
-    @NonNull
-    @Override
-    public TimerEventData emptyData() {
-        return new TimerEventData();
-    }
-
     @ValidData
     @NonNull
     @Override
     public TimerEventData dummyData() {
-        TimerEventData dummyData = new TimerEventData();
         TimerEventData.Timer timer = new TimerEventData.Timer();
         timer.exact = true;
         timer.repeat = true;
         timer.minutes = 102;
-        dummyData.timer = timer;
-        return dummyData;
+        return new TimerEventData(timer);
     }
 
     @ValidData

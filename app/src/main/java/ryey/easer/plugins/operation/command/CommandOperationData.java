@@ -28,10 +28,8 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.plugins.operation.StringOperationData;
 
 public class CommandOperationData extends StringOperationData {
-    public CommandOperationData() {
-    }
 
-    public CommandOperationData(String command) {
+    CommandOperationData(String command) {
         super(command);
     }
 

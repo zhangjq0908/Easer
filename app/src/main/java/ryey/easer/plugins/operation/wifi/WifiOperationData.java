@@ -28,8 +28,6 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.plugins.operation.BooleanOperationData;
 
 public class WifiOperationData extends BooleanOperationData {
-    WifiOperationData() {
-    }
 
     WifiOperationData(Boolean state) {
         super(state);

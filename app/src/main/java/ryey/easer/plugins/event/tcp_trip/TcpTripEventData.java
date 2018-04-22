@@ -44,8 +44,6 @@ public class TcpTripEventData extends AbstractEventData {
     boolean check_reply;
     String reply_data;
 
-    public TcpTripEventData() {}
-
     TcpTripEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
     }

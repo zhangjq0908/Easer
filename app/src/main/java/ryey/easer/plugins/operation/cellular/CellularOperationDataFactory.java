@@ -14,19 +14,11 @@ class CellularOperationDataFactory implements OperationDataFactory<CellularOpera
         return CellularOperationData.class;
     }
 
-    @NonNull
-    @Override
-    public CellularOperationData emptyData() {
-        return new CellularOperationData();
-    }
-
     @ValidData
     @NonNull
     @Override
     public CellularOperationData dummyData() {
-        CellularOperationData dummyData = new CellularOperationData();
-        dummyData.set(true);
-        return dummyData;
+        return new CellularOperationData(true);
     }
 
     @ValidData

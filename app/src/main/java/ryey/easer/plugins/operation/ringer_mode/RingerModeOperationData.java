@@ -34,9 +34,6 @@ public class RingerModeOperationData implements OperationData {
 
     RingerMode ringerMode;
 
-    RingerModeOperationData() {
-    }
-
     RingerModeOperationData(RingerMode ringerMode) {
         this.ringerMode = ringerMode;
     }

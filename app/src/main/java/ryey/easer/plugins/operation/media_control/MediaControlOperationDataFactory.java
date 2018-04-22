@@ -14,12 +14,6 @@ class MediaControlOperationDataFactory implements OperationDataFactory<MediaCont
         return MediaControlOperationData.class;
     }
 
-    @NonNull
-    @Override
-    public MediaControlOperationData emptyData() {
-        return new MediaControlOperationData();
-    }
-
     @ValidData
     @NonNull
     @Override

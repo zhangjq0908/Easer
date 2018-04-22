@@ -14,12 +14,6 @@ class CalendarEventDataFactory implements EventDataFactory<CalendarEventData> {
         return CalendarEventData.class;
     }
 
-    @NonNull
-    @Override
-    public CalendarEventData emptyData() {
-        return new CalendarEventData();
-    }
-
     @ValidData
     @NonNull
     @Override

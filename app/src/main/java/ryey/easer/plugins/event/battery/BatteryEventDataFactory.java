@@ -14,19 +14,11 @@ class BatteryEventDataFactory implements EventDataFactory<BatteryEventData> {
         return BatteryEventData.class;
     }
 
-    @NonNull
-    @Override
-    public BatteryEventData emptyData() {
-        return new BatteryEventData();
-    }
-
     @ValidData
     @NonNull
     @Override
     public BatteryEventData dummyData() {
-        BatteryEventData dummyData = new BatteryEventData();
-        dummyData.battery_status = 1;
-        return dummyData;
+        return new BatteryEventData(1);
     }
 
     @ValidData

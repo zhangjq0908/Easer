@@ -37,6 +37,7 @@ public class CellLocationEventData extends AbstractEventData {
     private List<CellLocationSingleData> data = new ArrayList<>();
 
     public CellLocationEventData() {
+        //FIXME
     }
 
     CellLocationEventData(String[] locations) {

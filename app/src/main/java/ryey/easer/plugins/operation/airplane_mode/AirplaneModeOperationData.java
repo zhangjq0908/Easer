@@ -28,10 +28,8 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.plugins.operation.BooleanOperationData;
 
 public class AirplaneModeOperationData extends BooleanOperationData {
-    public AirplaneModeOperationData() {
-    }
 
-    public AirplaneModeOperationData(Boolean state) {
+    AirplaneModeOperationData(Boolean state) {
         super(state);
     }
 

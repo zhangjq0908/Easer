@@ -14,12 +14,6 @@ class RingerModeOperationDataFactory implements OperationDataFactory<RingerModeO
         return RingerModeOperationData.class;
     }
 
-    @NonNull
-    @Override
-    public RingerModeOperationData emptyData() {
-        return new RingerModeOperationData();
-    }
-
     @ValidData
     @NonNull
     @Override

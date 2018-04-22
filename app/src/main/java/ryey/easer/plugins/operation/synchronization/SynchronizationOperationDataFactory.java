@@ -14,19 +14,11 @@ class SynchronizationOperationDataFactory implements OperationDataFactory<Synchr
         return SynchronizationOperationData.class;
     }
 
-    @NonNull
-    @Override
-    public SynchronizationOperationData emptyData() {
-        return new SynchronizationOperationData();
-    }
-
     @ValidData
     @NonNull
     @Override
     public SynchronizationOperationData dummyData() {
-        SynchronizationOperationData dummyData = new SynchronizationOperationData();
-        dummyData.set(true);
-        return dummyData;
+        return new SynchronizationOperationData(true);
     }
 
     @ValidData

@@ -16,12 +16,6 @@ class AlarmOperationDataFactory implements OperationDataFactory<AlarmOperationDa
         return AlarmOperationData.class;
     }
 
-    @NonNull
-    @Override
-    public AlarmOperationData emptyData() {
-        return new AlarmOperationData();
-    }
-
     @ValidData
     @NonNull
     @Override

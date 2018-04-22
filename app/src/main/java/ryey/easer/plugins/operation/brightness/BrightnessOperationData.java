@@ -34,9 +34,6 @@ public class BrightnessOperationData extends IntegerOperationData {
         rbound = 255;
     }
 
-    public BrightnessOperationData() {
-    }
-
     public BrightnessOperationData(boolean auto) {
         super(-1);
     }

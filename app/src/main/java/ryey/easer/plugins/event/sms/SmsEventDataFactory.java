@@ -14,22 +14,14 @@ class SmsEventDataFactory implements EventDataFactory<SmsEventData> {
         return SmsEventData.class;
     }
 
-    @NonNull
-    @Override
-    public SmsEventData emptyData() {
-        return new SmsEventData();
-    }
-
     @ValidData
     @NonNull
     @Override
     public SmsEventData dummyData() {
-        SmsEventData dummyData = new SmsEventData();
         SmsInnerData innerData = new SmsInnerData();
         innerData.sender = "15077707777";
         innerData.content = "aaa";
-        dummyData.innerData = innerData;
-        return dummyData;
+        return new SmsEventData(innerData);
     }
 
     @ValidData

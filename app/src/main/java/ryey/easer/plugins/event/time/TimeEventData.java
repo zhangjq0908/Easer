@@ -47,8 +47,6 @@ public class TimeEventData extends AbstractEventData {
 
     Calendar time = null;
 
-    public TimeEventData() {}
-
     public TimeEventData(Calendar time) {
         this.time = time;
     }

@@ -58,9 +58,9 @@ public class NfcTagEventData extends AbstractEventData {
         return data;
     }
 
-    public NfcTagEventData() {}
+    NfcTagEventData() {}
 
-    public NfcTagEventData(String id_str) {
+    NfcTagEventData(String id_str) {
         id = hexString2byteArray(id_str);
     }
 

@@ -14,20 +14,11 @@ class WifiEventDataFactory implements EventDataFactory<WifiEventData> {
         return WifiEventData.class;
     }
 
-    @NonNull
-    @Override
-    public WifiEventData emptyData() {
-        return new WifiEventData();
-    }
-
     @ValidData
     @NonNull
     @Override
     public WifiEventData dummyData() {
-        WifiEventData dummyData = new WifiEventData();
-        dummyData.ssids.add("wifi_device1");
-        dummyData.ssids.add("wifi_dev2");
-        return dummyData;
+        return new WifiEventData("wifi_device1\nwifi_dev2", true);
     }
 
     @ValidData

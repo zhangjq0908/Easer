@@ -37,10 +37,7 @@ public class EventControlOperationData implements OperationData {
     String eventName;
     boolean newStatus;
 
-    public EventControlOperationData() {
-    }
-
-    public EventControlOperationData(String eventName, boolean newStatus) {
+    EventControlOperationData(String eventName, boolean newStatus) {
         this.eventName = eventName;
         this.newStatus = newStatus;
     }

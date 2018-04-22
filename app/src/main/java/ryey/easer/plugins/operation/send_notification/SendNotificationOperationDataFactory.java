@@ -14,12 +14,6 @@ class SendNotificationOperationDataFactory implements OperationDataFactory<SendN
         return SendNotificationOperationData.class;
     }
 
-    @NonNull
-    @Override
-    public SendNotificationOperationData emptyData() {
-        return new SendNotificationOperationData();
-    }
-
     @ValidData
     @NonNull
     @Override

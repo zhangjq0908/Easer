@@ -14,20 +14,11 @@ class EventControlDataFactory implements OperationDataFactory<EventControlOperat
         return EventControlOperationData.class;
     }
 
-    @NonNull
-    @Override
-    public EventControlOperationData emptyData() {
-        return new EventControlOperationData();
-    }
-
     @ValidData
     @NonNull
     @Override
     public EventControlOperationData dummyData() {
-        EventControlOperationData dummyData = new EventControlOperationData();
-        dummyData.eventName = "dummyEventName";
-        dummyData.newStatus = false;
-        return dummyData;
+        return new EventControlOperationData("dummyEventName", false);
     }
 
     @ValidData

@@ -39,10 +39,7 @@ public class MediaControlOperationData implements OperationData {
 
     ControlChoice choice = null;
 
-    public MediaControlOperationData() {
-    }
-
-    public MediaControlOperationData(ControlChoice choice) {
+    MediaControlOperationData(ControlChoice choice) {
         this.choice = choice;
     }
 

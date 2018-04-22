@@ -30,7 +30,7 @@ public class OperationDataTest {
                     super(state);
                 }
                 IBooleanOperationData(String data, C.Format format, int version) throws IllegalStorageDataException {
-                    parse(data, format, version);
+                    super(data, format, version);
                 }
             }
             BooleanOperationData data0 = new IBooleanOperationData(state);

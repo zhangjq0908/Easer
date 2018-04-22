@@ -49,10 +49,7 @@ public class BroadcastOperationData implements OperationData {
 
     IntentData data = new IntentData();
 
-    public BroadcastOperationData() {
-    }
-
-    public BroadcastOperationData(IntentData data) {
+    BroadcastOperationData(IntentData data) {
         this.data = data;
     }
 

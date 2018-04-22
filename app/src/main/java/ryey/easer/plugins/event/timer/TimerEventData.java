@@ -37,8 +37,6 @@ public class TimerEventData extends AbstractEventData {
 
     Timer timer;
 
-    public TimerEventData() {}
-
     public TimerEventData(Timer timer) {
         this.timer = timer;
     }

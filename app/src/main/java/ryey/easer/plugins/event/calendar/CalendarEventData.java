@@ -43,9 +43,7 @@ public class CalendarEventData extends AbstractEventData {
 
     CalendarData data;
 
-    public CalendarEventData() {}
-
-    public CalendarEventData(CalendarData data) {
+    CalendarEventData(CalendarData data) {
         this.data = data;
     }
 

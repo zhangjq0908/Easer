@@ -48,9 +48,6 @@ public class NetworkTransmissionOperationData implements OperationData {
     int remote_port;
     String data; //TODO: change to byte array to support arbitrary data
 
-    public NetworkTransmissionOperationData() {
-    }
-
     NetworkTransmissionOperationData(Protocol protocol, String remote_address, int remote_port, String data) {
         this.protocol = protocol;
         this.remote_address = remote_address;

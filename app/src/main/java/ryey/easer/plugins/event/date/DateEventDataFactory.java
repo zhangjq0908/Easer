@@ -16,12 +16,6 @@ class DateEventDataFactory implements EventDataFactory<DateEventData> {
         return DateEventData.class;
     }
 
-    @NonNull
-    @Override
-    public DateEventData emptyData() {
-        return new DateEventData();
-    }
-
     @ValidData
     @NonNull
     @Override

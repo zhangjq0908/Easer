@@ -41,9 +41,6 @@ public class SmsOperationData implements OperationData {
     String destination;
     String content;
 
-    SmsOperationData() {
-    }
-
     SmsOperationData(String destination, String content) {
         this.destination = destination;
         this.content = content;

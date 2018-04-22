@@ -14,19 +14,11 @@ class BrightnessOperationDataFactory implements OperationDataFactory<BrightnessO
         return BrightnessOperationData.class;
     }
 
-    @NonNull
-    @Override
-    public BrightnessOperationData emptyData() {
-        return new BrightnessOperationData();
-    }
-
     @ValidData
     @NonNull
     @Override
     public BrightnessOperationData dummyData() {
-        BrightnessOperationData dummyData = new BrightnessOperationData();
-        dummyData.set(3);
-        return dummyData;
+        return new BrightnessOperationData(3);
     }
 
     @ValidData

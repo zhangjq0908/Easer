@@ -14,12 +14,6 @@ class HeadsetEventDataFactory implements EventDataFactory<HeadsetEventData> {
         return HeadsetEventData.class;
     }
 
-    @NonNull
-    @Override
-    public HeadsetEventData emptyData() {
-        return new HeadsetEventData();
-    }
-
     @ValidData
     @NonNull
     @Override

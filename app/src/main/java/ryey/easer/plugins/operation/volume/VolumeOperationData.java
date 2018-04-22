@@ -42,9 +42,6 @@ public class VolumeOperationData implements OperationData {
     Integer vol_alarm;
     Integer vol_notification;
 
-    public VolumeOperationData() {
-    }
-
     public VolumeOperationData(Integer vol_ring, Integer vol_media, Integer vol_alarm, Integer vol_notification) {
         this.vol_ring = vol_ring;
         this.vol_media = vol_media;

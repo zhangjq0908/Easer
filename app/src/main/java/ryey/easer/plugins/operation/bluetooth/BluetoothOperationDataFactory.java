@@ -14,19 +14,11 @@ class BluetoothOperationDataFactory implements OperationDataFactory<BluetoothOpe
         return BluetoothOperationData.class;
     }
 
-    @NonNull
-    @Override
-    public BluetoothOperationData emptyData() {
-        return new BluetoothOperationData();
-    }
-
     @ValidData
     @NonNull
     @Override
     public BluetoothOperationData dummyData() {
-        BluetoothOperationData dummyData = new BluetoothOperationData();
-        dummyData.set(true);
-        return dummyData;
+        return new BluetoothOperationData(true);
     }
 
     @ValidData

@@ -14,12 +14,6 @@ class BroadcastEventDataFactory implements EventDataFactory<BroadcastEventData> 
         return BroadcastEventData.class;
     }
 
-    @NonNull
-    @Override
-    public BroadcastEventData emptyData() {
-        return new BroadcastEventData();
-    }
-
     @ValidData
     @NonNull
     @Override

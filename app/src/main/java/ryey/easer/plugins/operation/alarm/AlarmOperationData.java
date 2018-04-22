@@ -58,9 +58,6 @@ public class AlarmOperationData implements OperationData {
     String message;
     boolean absolute = true;
 
-    public AlarmOperationData() {
-    }
-
     AlarmOperationData(Calendar time, String message, boolean absolute) {
         this.time = time;
         this.message = message;

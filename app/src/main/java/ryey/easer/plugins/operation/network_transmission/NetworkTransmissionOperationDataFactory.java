@@ -14,12 +14,6 @@ class NetworkTransmissionOperationDataFactory implements OperationDataFactory<Ne
         return NetworkTransmissionOperationData.class;
     }
 
-    @NonNull
-    @Override
-    public NetworkTransmissionOperationData emptyData() {
-        return new NetworkTransmissionOperationData();
-    }
-
     @ValidData
     @NonNull
     @Override

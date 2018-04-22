@@ -1,6 +1,9 @@
 package ryey.easer.plugins.event.dayofweek;
 
 import android.support.annotation.NonNull;
+import android.support.v4.util.ArraySet;
+
+import java.util.Arrays;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
@@ -14,21 +17,11 @@ class DayOfWeekEventDataFactory implements EventDataFactory<DayOfWeekEventData> 
         return DayOfWeekEventData.class;
     }
 
-    @NonNull
-    @Override
-    public DayOfWeekEventData emptyData() {
-        return new DayOfWeekEventData();
-    }
-
     @ValidData
     @NonNull
     @Override
     public DayOfWeekEventData dummyData() {
-        DayOfWeekEventData dummyData = new DayOfWeekEventData();
-        dummyData.days.add(2);
-        dummyData.days.add(4);
-        dummyData.days.add(5);
-        return dummyData;
+        return new DayOfWeekEventData(new ArraySet<>(Arrays.asList(2, 4, 5)));
     }
 
     @ValidData

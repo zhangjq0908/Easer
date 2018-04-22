@@ -14,12 +14,6 @@ class NfcTagEventDataFactory implements EventDataFactory<NfcTagEventData> {
         return NfcTagEventData.class;
     }
 
-    @NonNull
-    @Override
-    public NfcTagEventData emptyData() {
-        return new NfcTagEventData();
-    }
-
     @ValidData
     @NonNull
     @Override

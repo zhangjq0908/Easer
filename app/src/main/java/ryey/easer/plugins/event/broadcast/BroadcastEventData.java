@@ -39,9 +39,7 @@ public class BroadcastEventData extends AbstractEventData {
 
     ReceiverSideIntentData intentData;
 
-    public BroadcastEventData() {}
-
-    public BroadcastEventData(ReceiverSideIntentData intentData) {
+    BroadcastEventData(ReceiverSideIntentData intentData) {
         this.intentData = intentData;
     }
 

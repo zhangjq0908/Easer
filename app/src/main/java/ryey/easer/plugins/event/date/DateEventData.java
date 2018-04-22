@@ -47,8 +47,6 @@ public class DateEventData extends AbstractEventData {
 
     Calendar date = null;
 
-    public DateEventData() {}
-
     public DateEventData(Calendar date) {
         this.date = date;
     }
