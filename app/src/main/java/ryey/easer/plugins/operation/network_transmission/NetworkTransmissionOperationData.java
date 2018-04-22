@@ -62,7 +62,6 @@ public class NetworkTransmissionOperationData implements OperationData {
         parse(data, format, version);
     }
 
-    @Override
     public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:

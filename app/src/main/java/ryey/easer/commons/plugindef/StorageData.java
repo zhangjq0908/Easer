@@ -23,23 +23,17 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
 import ryey.easer.commons.C;
-import ryey.easer.commons.IllegalStorageDataException;
 
 /**
- * Common interface used by both EventData and OperationData
+ * Common interface used by both EventData and OperationData.
  * Defines a series of methods that are needed.
+ * A {@link StorageData} instance is expected not to change after creation.
  */
 public interface StorageData extends Parcelable {
 
     /**
-     * Parse the given {@param data} to the current object.
-     * @param format The format which the data source is in.
-     *               This parameter can be ignored in the same way as in {@link #serialize(C.Format)}.
-     */
-    void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException;
-
-    /**
      * Serialize the current data to the given {@param format}.
+     * The corresponding method was {@code void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException;}, and it has been moved to {@link DataFactory}.
      * @param format The format which the data source is in.
      *               You can ignore this parameter if you don't want to design a "localized" format.
      * @return The serialized text (which will be used directly in the data field).

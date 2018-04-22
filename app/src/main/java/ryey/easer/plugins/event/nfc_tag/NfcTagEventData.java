@@ -89,7 +89,6 @@ public class NfcTagEventData extends AbstractEventData {
         return Arrays.equals(id, ((NfcTagEventData) obj).id);
     }
 
-    @Override
     public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:

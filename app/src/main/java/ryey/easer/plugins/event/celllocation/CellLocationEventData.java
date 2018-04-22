@@ -83,7 +83,6 @@ public class CellLocationEventData extends AbstractEventData {
         return true;
     }
 
-    @Override
     public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         try {
             JSONArray jsonArray = new JSONArray(data);
