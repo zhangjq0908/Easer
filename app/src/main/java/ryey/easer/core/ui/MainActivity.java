@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-  
+
         if (savedInstanceState == null){
             navigationView.setCheckedItem(R.id.nav_outline);
             Fragment fragment = new OutlineFragment();

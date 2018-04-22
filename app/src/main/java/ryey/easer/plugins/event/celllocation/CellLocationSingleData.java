@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -51,7 +51,7 @@ public class CellLocationSingleData implements Parcelable {
     }
 
     public CellLocationSingleData() {}
-    
+
     public CellLocationSingleData(int cid, int lac) {
         this.cid = cid;
         this.lac = lac;
@@ -86,7 +86,7 @@ public class CellLocationSingleData implements Parcelable {
         cid = Integer.valueOf(parts[0].trim());
         lac = Integer.valueOf(parts[1].trim());
     }
-    
+
     public boolean isValid() {
         if (cid == null || lac == null)
             return false;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -34,7 +34,7 @@ public class WifiOperationData extends BooleanOperationData {
     WifiOperationData(Boolean state) {
         super(state);
     }
-    
+
     WifiOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         super(data, format, version);
     }

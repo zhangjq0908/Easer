@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2017 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -39,7 +39,7 @@ import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.ValidData;
 
 public class VolumeOpeartionPluginViewFragment extends PluginViewFragment<VolumeOperationData> {
-    
+
     CheckBox checkBox_ring, checkBox_media, checkBox_alarm, checkBox_notification;
     SeekBar seekBar_ring, seekBar_media, seekBar_alarm, seekBar_notification;
 
@@ -54,7 +54,7 @@ public class VolumeOpeartionPluginViewFragment extends PluginViewFragment<Volume
             Logger.e("Couldn't get AudioManager");
             throw new IllegalAccessError();
         }
-        
+
         seekBar_ring = view.findViewById(R.id.seekBar_ring);
         seekBar_ring.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_RING));
         checkBox_ring = view.findViewById(R.id.checkBox_ring);
@@ -64,7 +64,7 @@ public class VolumeOpeartionPluginViewFragment extends PluginViewFragment<Volume
                 seekBar_ring.setVisibility(b ? View.VISIBLE : View.GONE);
             }
         });
-        
+
         seekBar_media = view.findViewById(R.id.seekBar_media);
         seekBar_media.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
         checkBox_media = view.findViewById(R.id.checkBox_media);
@@ -74,7 +74,7 @@ public class VolumeOpeartionPluginViewFragment extends PluginViewFragment<Volume
                 seekBar_media.setVisibility(b ? View.VISIBLE : View.GONE);
             }
         });
-        
+
         seekBar_alarm = view.findViewById(R.id.seekBar_alarm);
         seekBar_alarm.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_ALARM));
         checkBox_alarm = view.findViewById(R.id.checkBox_alarm);
@@ -84,7 +84,7 @@ public class VolumeOpeartionPluginViewFragment extends PluginViewFragment<Volume
                 seekBar_alarm.setVisibility(b ? View.VISIBLE : View.GONE);
             }
         });
-        
+
         seekBar_notification = view.findViewById(R.id.seekBar_notification);
         seekBar_notification.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_NOTIFICATION));
         checkBox_notification = view.findViewById(R.id.checkBox_notification);
@@ -94,7 +94,7 @@ public class VolumeOpeartionPluginViewFragment extends PluginViewFragment<Volume
                 seekBar_notification.setVisibility(b ? View.VISIBLE : View.GONE);
             }
         });
-        
+
         return view;
     }
 
@@ -116,7 +116,7 @@ public class VolumeOpeartionPluginViewFragment extends PluginViewFragment<Volume
         Integer vol_notification = getVolume(seekBar_notification);
         return new VolumeOperationData(vol_ring, vol_media, vol_alarm, vol_notification);
     }
-    
+
     private static void setVolumeVisual(CheckBox checkBox, SeekBar seekBar, Integer value) {
         if (value == null) {
             checkBox.setChecked(false);
@@ -125,11 +125,11 @@ public class VolumeOpeartionPluginViewFragment extends PluginViewFragment<Volume
             seekBar.setProgress(value);
         }
     }
-    
+
     private static Integer getVolume(SeekBar seekBar) {
         if (seekBar.getVisibility() == View.VISIBLE)
             return seekBar.getProgress();
-        else 
+        else
             return null;
     }
 }

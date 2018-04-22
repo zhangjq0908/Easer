@@ -68,7 +68,7 @@ Any amount of help is appreciated.
 
 Copyright
 ------
-Copyright (c) 2016 - 2017 Rui Zhao (renyuneyun) <renyuneyun@gmail.com>
+Copyright (c) 2016 - 2018 Rui Zhao (renyuneyun) <renyuneyun@gmail.com>
 
 Licensed under GPLv3+ (See LICENSE)
 
