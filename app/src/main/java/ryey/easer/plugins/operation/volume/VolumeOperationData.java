@@ -36,17 +36,20 @@ public class VolumeOperationData implements OperationData {
     private static final String K_VOL_MEDIA = "media";
     private static final String K_VOL_ALARM = "alarm";
     private static final String K_VOL_NOTIFICATION = "notification";
+    private static final String K_VOL_BT = "bluetooth";
 
     Integer vol_ring;
     Integer vol_media;
     Integer vol_alarm;
     Integer vol_notification;
+    Integer vol_bt;
 
-    public VolumeOperationData(Integer vol_ring, Integer vol_media, Integer vol_alarm, Integer vol_notification) {
+    public VolumeOperationData(Integer vol_ring, Integer vol_media, Integer vol_alarm, Integer vol_notification, Integer vol_bt) {
         this.vol_ring = vol_ring;
         this.vol_media = vol_media;
         this.vol_alarm = vol_alarm;
         this.vol_notification = vol_notification;
+        this.vol_bt = vol_bt;
     }
 
     VolumeOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
@@ -74,6 +77,7 @@ public class VolumeOperationData implements OperationData {
                     vol_media = optInteger(jsonObject, K_VOL_MEDIA);
                     vol_alarm = optInteger(jsonObject, K_VOL_ALARM);
                     vol_notification = optInteger(jsonObject, K_VOL_NOTIFICATION);
+                    vol_bt = optInteger(jsonObject, K_VOL_BT);
                 } catch (JSONException e) {
                     throw new IllegalStorageDataException(e);
                 }
@@ -92,6 +96,7 @@ public class VolumeOperationData implements OperationData {
                     writeNonNull(jsonObject, vol_media, K_VOL_MEDIA);
                     writeNonNull(jsonObject, vol_alarm, K_VOL_ALARM);
                     writeNonNull(jsonObject, vol_notification, K_VOL_NOTIFICATION);
+                    writeNonNull(jsonObject, vol_bt, K_VOL_BT);
                     res = jsonObject.toString();
                 } catch (JSONException e) {
                     throw new IllegalStateException(e);
@@ -114,6 +119,8 @@ public class VolumeOperationData implements OperationData {
             return false;
         if (!Utils.nullableEqual(vol_notification, ((VolumeOperationData) obj).vol_notification))
             return false;
+        if (!Utils.nullableEqual(vol_bt, ((VolumeOperationData) obj).vol_bt))
+            return false;
         return true;
     }
 
@@ -122,7 +129,8 @@ public class VolumeOperationData implements OperationData {
         return isNotNegative(vol_ring)
                 || isNotNegative(vol_media)
                 || isNotNegative(vol_alarm)
-                || isNotNegative(vol_notification);
+                || isNotNegative(vol_notification)
+                || isNotNegative(vol_bt);
     }
 
     @Override
@@ -136,6 +144,7 @@ public class VolumeOperationData implements OperationData {
         parcel.writeValue(vol_media);
         parcel.writeValue(vol_alarm);
         parcel.writeValue(vol_notification);
+        parcel.writeValue(vol_bt);
     }
 
     public static final Creator<VolumeOperationData> CREATOR
@@ -154,6 +163,7 @@ public class VolumeOperationData implements OperationData {
         vol_media = (Integer) in.readValue(Integer.class.getClassLoader());
         vol_alarm = (Integer) in.readValue(Integer.class.getClassLoader());
         vol_notification = (Integer) in.readValue(Integer.class.getClassLoader());
+        vol_bt = (Integer) in.readValue(Integer.class.getClassLoader());
     }
 
     private static boolean isNotNegative(@Nullable Integer value) {

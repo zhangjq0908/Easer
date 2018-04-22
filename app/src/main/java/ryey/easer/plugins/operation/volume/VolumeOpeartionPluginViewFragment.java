@@ -39,9 +39,11 @@ import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.ValidData;
 
 public class VolumeOpeartionPluginViewFragment extends PluginViewFragment<VolumeOperationData> {
+
+    private static final int STREAM_BLUETOOTH = 6;
     
-    CheckBox checkBox_ring, checkBox_media, checkBox_alarm, checkBox_notification;
-    SeekBar seekBar_ring, seekBar_media, seekBar_alarm, seekBar_notification;
+    CheckBox checkBox_ring, checkBox_media, checkBox_alarm, checkBox_notification, checkBox_bt;
+    SeekBar seekBar_ring, seekBar_media, seekBar_alarm, seekBar_notification, seekBar_bt;
 
     @NonNull
     @Override
@@ -94,6 +96,16 @@ public class VolumeOpeartionPluginViewFragment extends PluginViewFragment<Volume
                 seekBar_notification.setVisibility(b ? View.VISIBLE : View.GONE);
             }
         });
+
+        seekBar_bt = view.findViewById(R.id.seekBar_bt);
+        seekBar_bt.setMax(audioManager.getStreamMaxVolume(STREAM_BLUETOOTH));
+        checkBox_bt = view.findViewById(R.id.checkBox_bt);
+        checkBox_bt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                seekBar_bt.setVisibility(b? View.VISIBLE : View.GONE);
+            }
+        });
         
         return view;
     }
@@ -104,6 +116,7 @@ public class VolumeOpeartionPluginViewFragment extends PluginViewFragment<Volume
         setVolumeVisual(checkBox_media, seekBar_media, data.vol_media);
         setVolumeVisual(checkBox_alarm, seekBar_alarm, data.vol_alarm);
         setVolumeVisual(checkBox_notification, seekBar_notification, data.vol_notification);
+        setVolumeVisual(checkBox_bt, seekBar_bt, data.vol_bt);
     }
 
     @ValidData
@@ -114,7 +127,8 @@ public class VolumeOpeartionPluginViewFragment extends PluginViewFragment<Volume
         Integer vol_media = getVolume(seekBar_media);
         Integer vol_alarm = getVolume(seekBar_alarm);
         Integer vol_notification = getVolume(seekBar_notification);
-        return new VolumeOperationData(vol_ring, vol_media, vol_alarm, vol_notification);
+        Integer vol_bt = getVolume(seekBar_bt);
+        return new VolumeOperationData(vol_ring, vol_media, vol_alarm, vol_notification, vol_bt);
     }
     
     private static void setVolumeVisual(CheckBox checkBox, SeekBar seekBar, Integer value) {

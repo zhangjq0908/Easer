@@ -155,6 +155,7 @@
     <string name="o_volume_media">媒體/音樂</string>
     <string name="o_volume_alarm">鬧鈴</string>
     <string name="o_volume_notification">通知</string>
+    <string name="o_volume_bluetooth">藍牙</string>
 
     <string name="op_launch_app">啓動程序</string>
     <string name="op_launch_app_text_app">程序</string>
