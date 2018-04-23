@@ -60,6 +60,7 @@ import ryey.easer.plugins.operation.cellular.CellularOperationPlugin;
 import ryey.easer.plugins.operation.command.CommandOperationPlugin;
 import ryey.easer.plugins.operation.event_control.EventControlOperationPlugin;
 import ryey.easer.plugins.operation.hotspot.HotspotOperationPlugin;
+import ryey.easer.plugins.operation.launch_app.LaunchAppOperationPlugin;
 import ryey.easer.plugins.operation.media_control.MediaControlOperationPlugin;
 import ryey.easer.plugins.operation.network_transmission.NetworkTransmissionOperationPlugin;
 import ryey.easer.plugins.operation.ringer_mode.RingerModeOperationPlugin;
@@ -122,6 +123,7 @@ final public class PluginRegistry {
         operation().registerPlugin(AlarmOperationPlugin.class);
         operation().registerPlugin(EventControlOperationPlugin.class);
         operation().registerPlugin(VolumeOperationPlugin.class);
+        operation().registerPlugin(LaunchAppOperationPlugin.class);
         //TODO: write more plugins
     }
 

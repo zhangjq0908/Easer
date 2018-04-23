@@ -163,5 +163,10 @@
     <string name="o_volume_media">Media</string>
     <string name="o_volume_alarm">Alarm</string>
     <string name="o_volume_notification">Notification</string>
+    <string name="o_volume_bluetooth">Bluetooth</string>
+
+    <string name="op_launch_app">Launch App</string>
+    <string name="op_launch_app_text_app">App</string>
+    <string name="op_launch_app_text_package_name">Package Name</string>
 
 </resources>

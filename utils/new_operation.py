@@ -16,12 +16,17 @@ import sys
 import os.path
 import templates
 
-template_map = {
-        'plugin': templates.tmpl_operation_plugin,
-        'data': templates.tmpl_operation_data,
-        'data_factory': templates.tmpl_operation_data_factory,
-        'view_fragment': templates.tmpl_plugin_view_fragment,
-        'loader': templates.tmpl_operation_loader,
+template_maps = {
+        'main': {
+            'plugin': templates.tmpl_operation_plugin,
+            'data': templates.tmpl_operation_data,
+            'data_factory': templates.tmpl_operation_data_factory,
+            'view_fragment': templates.tmpl_plugin_view_fragment,
+            'loader': templates.tmpl_operation_loader,
+            },
+        'androidTest': {
+            'androidTest$data': templates.tmpl_operation_androidTest_data,
+            },
         }
 
 def new_operation(cname, identifier):
@@ -33,16 +38,18 @@ def new_operation(cname, identifier):
     pdef['data_factory'] = "{}OperationDataFactory".format(cname)
     pdef['view_fragment'] = "{}PluginViewFragment".format(cname)
     pdef['loader'] = "{}Loader".format(cname)
-    dest = '../app/src/main/java/ryey/easer/plugins/operation'
-    dest = "{}/{}".format(dest, identifier)
-    if not os.path.isfile(dest):
-        os.mkdir(dest)
-    for k in template_map:
-        class_content = template_map[k].format_map(pdef)
-        with open("{}/{}.java".format(dest, pdef[k]), 'w') as fd:
-            fd.write(templates.tmpl_copyright)
-            fd.write('\n')
-            fd.write(class_content)
+    pdef['androidTest$data'] = "{}OperationDataTest".format(cname)
+    for t, template_map in template_maps.items():
+        dest = "app/src/{}/java/ryey/easer/plugins/operation/{}".format(t, identifier)
+        dest = "utils/{}/{}".format(t, identifier)
+        if not os.path.isfile(dest):
+            os.mkdir(dest)
+        for k in template_map:
+            class_content = template_map[k].format_map(pdef)
+            with open("{}/{}.java".format(dest, pdef[k]), 'w') as fd:
+                fd.write(templates.tmpl_copyright)
+                fd.write('\n')
+                fd.write(class_content)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
