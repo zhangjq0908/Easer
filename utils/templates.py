@@ -234,3 +234,26 @@ public class {loader} extends OperationLoader<{data}> {{
 }}
 '''
 
+tmpl_operation_androidTest_data = '''package {package};
+
+import android.os.Parcel;
+
+import org.junit.Test;
+
+import ryey.easer.plugins.TestHelper;
+
+import static org.junit.Assert.assertEquals;
+
+public class {androidTest$data} {{
+
+    @Test
+    public void testParcel() {{
+        {data} dummyData = new {data_factory}().dummyData();
+        Parcel parcel = TestHelper.writeToParcel(dummyData);
+        {data} parceledData = {data}.CREATOR.createFromParcel(parcel);
+        assertEquals(dummyData, parceledData);
+    }}
+
+}}
+'''
+
