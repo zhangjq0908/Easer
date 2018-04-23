@@ -33,12 +33,6 @@ class BTDeviceEventDataFactory implements EventDataFactory<BTDeviceEventData> {
         return BTDeviceEventData.class;
     }
 
-    @NonNull
-    @Override
-    public BTDeviceEventData emptyData() {
-        return new BTDeviceEventData();
-    }
-
     @ValidData
     @NonNull
     @Override

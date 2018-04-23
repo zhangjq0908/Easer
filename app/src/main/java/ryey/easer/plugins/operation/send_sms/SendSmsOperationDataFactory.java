@@ -33,12 +33,6 @@ class SendSmsOperationDataFactory implements OperationDataFactory<SmsOperationDa
         return SmsOperationData.class;
     }
 
-    @NonNull
-    @Override
-    public SmsOperationData emptyData() {
-        return new SmsOperationData();
-    }
-
     @ValidData
     @NonNull
     @Override

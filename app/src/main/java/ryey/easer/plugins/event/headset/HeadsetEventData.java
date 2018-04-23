@@ -51,8 +51,6 @@ public class HeadsetEventData extends AbstractEventData {
     HeadsetAction hs_action = HeadsetAction.any;
     HeadsetType hs_type = HeadsetType.any;
 
-    HeadsetEventData() {}
-
     HeadsetEventData(@Nullable HeadsetAction hs_action, @Nullable HeadsetType hs_type) {
         this.hs_action = hs_action;
         this.hs_type = hs_type;
@@ -84,7 +82,6 @@ public class HeadsetEventData extends AbstractEventData {
         return true;
     }
 
-    @Override
     public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:

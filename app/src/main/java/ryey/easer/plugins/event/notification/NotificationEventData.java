@@ -39,8 +39,6 @@ public class NotificationEventData extends AbstractEventData {
     String title;
     String content;
 
-    public NotificationEventData() {}
-
     NotificationEventData(String app, String title, String content) {
         this.app = app;
         this.title = title;
@@ -81,7 +79,6 @@ public class NotificationEventData extends AbstractEventData {
         return true;
     }
 
-    @Override
     public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:

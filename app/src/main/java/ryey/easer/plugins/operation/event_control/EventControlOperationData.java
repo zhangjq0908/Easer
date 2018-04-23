@@ -37,10 +37,7 @@ public class EventControlOperationData implements OperationData {
     String eventName;
     boolean newStatus;
 
-    public EventControlOperationData() {
-    }
-
-    public EventControlOperationData(String eventName, boolean newStatus) {
+    EventControlOperationData(String eventName, boolean newStatus) {
         this.eventName = eventName;
         this.newStatus = newStatus;
     }
@@ -49,7 +46,6 @@ public class EventControlOperationData implements OperationData {
         parse(data, format, version);
     }
 
-    @Override
     public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:

@@ -28,8 +28,6 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.plugins.operation.BooleanOperationData;
 
 public class SynchronizationOperationData extends BooleanOperationData {
-    SynchronizationOperationData() {
-    }
 
     SynchronizationOperationData(Boolean state) {
         super(state);

@@ -39,7 +39,6 @@ public abstract class StringOperationData extends StringData implements Operatio
         parse(data, format, version);
     }
 
-    @Override
     public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:

@@ -38,9 +38,6 @@ public class ConnectivityEventData extends AbstractEventData {
 
     Set<Integer> connectivity_type = new ArraySet<>();
 
-    public ConnectivityEventData() {
-    }
-
     public ConnectivityEventData(Set<Integer> connectivity_type) {
         this.connectivity_type = connectivity_type;
     }
@@ -49,7 +46,6 @@ public class ConnectivityEventData extends AbstractEventData {
         parse(data, format, version);
     }
 
-    @Override
     public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         connectivity_type.clear();
         switch (format) {

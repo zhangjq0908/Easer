@@ -41,9 +41,6 @@ public class SmsOperationData implements OperationData {
     String destination;
     String content;
 
-    SmsOperationData() {
-    }
-
     SmsOperationData(String destination, String content) {
         this.destination = destination;
         this.content = content;
@@ -53,7 +50,6 @@ public class SmsOperationData implements OperationData {
         parse(data, format, version);
     }
 
-    @Override
     public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         try {
             JSONObject jsonObject = new JSONObject(data);

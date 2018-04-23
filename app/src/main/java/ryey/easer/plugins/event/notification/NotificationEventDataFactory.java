@@ -33,12 +33,6 @@ class NotificationEventDataFactory implements EventDataFactory<NotificationEvent
         return NotificationEventData.class;
     }
 
-    @NonNull
-    @Override
-    public NotificationEventData emptyData() {
-        return new NotificationEventData();
-    }
-
     @ValidData
     @NonNull
     @Override

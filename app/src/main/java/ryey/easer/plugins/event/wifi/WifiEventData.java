@@ -44,12 +44,6 @@ public class WifiEventData extends AbstractEventData {
     boolean mode_essid = true;
     Set<String> ssids = new ArraySet<>();
 
-    WifiEventData() {}
-
-    public WifiEventData(String ssid) {
-        ssids.add(ssid);
-    }
-
     WifiEventData(String ssids, boolean mode_essid) {
         this.mode_essid = mode_essid;
         setFromMultiple(ssids.split("\n"));
@@ -87,7 +81,6 @@ public class WifiEventData extends AbstractEventData {
         return true;
     }
 
-    @Override
     public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         ssids.clear();
         switch (format) {

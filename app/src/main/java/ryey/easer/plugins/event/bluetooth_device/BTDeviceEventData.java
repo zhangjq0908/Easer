@@ -38,8 +38,6 @@ import ryey.easer.plugins.event.AbstractEventData;
 public class BTDeviceEventData extends AbstractEventData {
     private List<String> hwaddresses = new ArrayList<>();
 
-    public BTDeviceEventData() {}
-
     BTDeviceEventData(String[] hardware_addresses) {
         setMultiple(hardware_addresses);
     }
@@ -86,7 +84,6 @@ public class BTDeviceEventData extends AbstractEventData {
         return true;
     }
 
-    @Override
     public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         hwaddresses.clear();
         switch (format) {

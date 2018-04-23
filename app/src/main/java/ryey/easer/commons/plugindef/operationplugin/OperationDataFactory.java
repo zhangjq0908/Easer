@@ -31,9 +31,6 @@ public interface OperationDataFactory<T extends OperationData> extends DataFacto
     @NonNull
     Class<T> dataClass();
 
-    @NonNull
-    T emptyData();
-
     @ValidData
     @NonNull
     T dummyData();

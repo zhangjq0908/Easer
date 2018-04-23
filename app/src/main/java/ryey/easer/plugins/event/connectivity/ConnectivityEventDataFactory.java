@@ -36,12 +36,6 @@ class ConnectivityEventDataFactory implements EventDataFactory<ConnectivityEvent
         return ConnectivityEventData.class;
     }
 
-    @NonNull
-    @Override
-    public ConnectivityEventData emptyData() {
-        return new ConnectivityEventData();
-    }
-
     @ValidData
     @NonNull
     @Override

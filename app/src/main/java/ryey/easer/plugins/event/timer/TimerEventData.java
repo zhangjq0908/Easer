@@ -37,8 +37,6 @@ public class TimerEventData extends AbstractEventData {
 
     Timer timer;
 
-    public TimerEventData() {}
-
     public TimerEventData(Timer timer) {
         this.timer = timer;
     }
@@ -71,7 +69,6 @@ public class TimerEventData extends AbstractEventData {
         return true;
     }
 
-    @Override
     public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         timer = new Timer();
         switch (format) {

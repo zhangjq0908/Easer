@@ -32,13 +32,6 @@ public interface DataFactory<T extends StorageData> {
     Class<T> dataClass();
 
     /**
-     * Get an empty data
-     * @return empty data
-     */
-    @NonNull
-    T emptyData();
-
-    /**
      * Get a valid but dummy data.
      * Mainly for testing.
      * @return dummy data

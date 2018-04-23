@@ -33,19 +33,11 @@ class WifiOperationDataFactory implements OperationDataFactory<WifiOperationData
         return WifiOperationData.class;
     }
 
-    @NonNull
-    @Override
-    public WifiOperationData emptyData() {
-        return new WifiOperationData();
-    }
-
     @ValidData
     @NonNull
     @Override
     public WifiOperationData dummyData() {
-        WifiOperationData dummyData = new WifiOperationData();
-        dummyData.set(true);
-        return dummyData;
+        return new WifiOperationData(true);
     }
 
     @ValidData

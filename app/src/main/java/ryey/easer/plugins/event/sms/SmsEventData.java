@@ -40,8 +40,6 @@ public class SmsEventData extends AbstractEventData {
 
     SmsInnerData innerData;
 
-    public SmsEventData() {}
-
     public SmsEventData(SmsInnerData innerData) {
         this.innerData = innerData;
     }
@@ -58,7 +56,6 @@ public class SmsEventData extends AbstractEventData {
         return true;
     }
 
-    @Override
     public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         innerData = new SmsInnerData();
         switch (format) {

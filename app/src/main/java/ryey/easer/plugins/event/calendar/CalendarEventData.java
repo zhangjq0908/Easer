@@ -43,9 +43,7 @@ public class CalendarEventData extends AbstractEventData {
 
     CalendarData data;
 
-    public CalendarEventData() {}
-
-    public CalendarEventData(CalendarData data) {
+    CalendarEventData(CalendarData data) {
         this.data = data;
     }
 
@@ -65,7 +63,6 @@ public class CalendarEventData extends AbstractEventData {
         return true;
     }
 
-    @Override
     public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:

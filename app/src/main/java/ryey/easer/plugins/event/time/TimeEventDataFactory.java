@@ -35,22 +35,14 @@ class TimeEventDataFactory implements EventDataFactory<TimeEventData> {
         return TimeEventData.class;
     }
 
-    @NonNull
-    @Override
-    public TimeEventData emptyData() {
-        return new TimeEventData();
-    }
-
     @ValidData
     @NonNull
     @Override
     public TimeEventData dummyData() {
-        TimeEventData dummyData = new TimeEventData();
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, 13);
         calendar.set(Calendar.MINUTE, 23);
-        dummyData.time = calendar;
-        return dummyData;
+        return new TimeEventData(calendar);
     }
 
     @ValidData

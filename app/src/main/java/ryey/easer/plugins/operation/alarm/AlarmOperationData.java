@@ -58,9 +58,6 @@ public class AlarmOperationData implements OperationData {
     String message;
     boolean absolute = true;
 
-    public AlarmOperationData() {
-    }
-
     AlarmOperationData(Calendar time, String message, boolean absolute) {
         this.time = time;
         this.message = message;
@@ -71,7 +68,6 @@ public class AlarmOperationData implements OperationData {
         parse(data, format, version);
     }
 
-    @Override
     public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:

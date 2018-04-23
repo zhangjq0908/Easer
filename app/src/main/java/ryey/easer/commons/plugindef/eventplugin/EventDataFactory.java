@@ -31,9 +31,6 @@ public interface EventDataFactory<T extends EventData> extends DataFactory<T> {
     @NonNull
     Class<T> dataClass();
 
-    @NonNull
-    T emptyData();
-
     @ValidData
     @NonNull
     T dummyData();

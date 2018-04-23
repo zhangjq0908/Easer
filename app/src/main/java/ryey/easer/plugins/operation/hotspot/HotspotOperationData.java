@@ -28,10 +28,8 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.plugins.operation.BooleanOperationData;
 
 public class HotspotOperationData extends BooleanOperationData {
-    public HotspotOperationData() {
-    }
 
-    public HotspotOperationData(Boolean state) {
+    HotspotOperationData(Boolean state) {
         super(state);
     }
 

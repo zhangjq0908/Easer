@@ -33,12 +33,6 @@ class TcpTripEventDataFactory implements EventDataFactory<TcpTripEventData> {
         return TcpTripEventData.class;
     }
 
-    @NonNull
-    @Override
-    public TcpTripEventData emptyData() {
-        return new TcpTripEventData();
-    }
-
     @ValidData
     @NonNull
     @Override

@@ -28,10 +28,7 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.plugins.operation.BooleanOperationData;
 
 public class CellularOperationData extends BooleanOperationData {
-    public CellularOperationData() {
-    }
-
-    public CellularOperationData(Boolean state) {
+    CellularOperationData(Boolean state) {
         super(state);
     }
 

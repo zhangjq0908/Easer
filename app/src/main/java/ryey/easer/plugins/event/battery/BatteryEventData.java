@@ -31,9 +31,6 @@ public class BatteryEventData extends AbstractEventData {
 
     Integer battery_status = null;
 
-    public BatteryEventData() {
-    }
-
     public BatteryEventData(Integer battery_status) {
         this.battery_status = battery_status;
     }
@@ -42,7 +39,6 @@ public class BatteryEventData extends AbstractEventData {
         parse(data, format, version);
     }
 
-    @Override
     public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:

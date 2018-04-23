@@ -36,17 +36,10 @@ class BroadcastOperationDataFactory implements OperationDataFactory<BroadcastOpe
         return BroadcastOperationData.class;
     }
 
-    @NonNull
-    @Override
-    public BroadcastOperationData emptyData() {
-        return new BroadcastOperationData();
-    }
-
     @ValidData
     @NonNull
     @Override
     public BroadcastOperationData dummyData() {
-        BroadcastOperationData dummyData = new BroadcastOperationData();
         IntentData intentData = new IntentData();
         intentData.action = "testAction";
         intentData.category = new ArrayList<>();
@@ -59,7 +52,7 @@ class BroadcastOperationDataFactory implements OperationDataFactory<BroadcastOpe
         extraItem.value = "extra_value1";
         extraItem.type = "string";
         intentData.extras.add(extraItem);
-        return dummyData;
+        return new BroadcastOperationData(intentData);
     }
 
     @ValidData

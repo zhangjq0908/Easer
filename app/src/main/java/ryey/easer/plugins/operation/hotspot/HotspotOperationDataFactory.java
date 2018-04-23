@@ -33,19 +33,11 @@ class HotspotOperationDataFactory implements OperationDataFactory<HotspotOperati
         return HotspotOperationData.class;
     }
 
-    @NonNull
-    @Override
-    public HotspotOperationData emptyData() {
-        return new HotspotOperationData();
-    }
-
     @ValidData
     @NonNull
     @Override
     public HotspotOperationData dummyData() {
-        HotspotOperationData dummyData = new HotspotOperationData();
-        dummyData.set(true);
-        return dummyData;
+        return new HotspotOperationData(true);
     }
 
     @ValidData

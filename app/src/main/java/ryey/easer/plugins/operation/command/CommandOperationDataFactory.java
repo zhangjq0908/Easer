@@ -33,19 +33,11 @@ class CommandOperationDataFactory implements OperationDataFactory<CommandOperati
         return CommandOperationData.class;
     }
 
-    @NonNull
-    @Override
-    public CommandOperationData emptyData() {
-        return new CommandOperationData();
-    }
-
     @ValidData
     @NonNull
     @Override
     public CommandOperationData dummyData() {
-        CommandOperationData dummyData = new CommandOperationData();
-        dummyData.set("/sdcard/mycmd_file");
-        return dummyData;
+        return new CommandOperationData("/sdcard/mycmd_file");
     }
 
     @ValidData

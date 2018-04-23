@@ -47,8 +47,6 @@ public class TimeEventData extends AbstractEventData {
 
     Calendar time = null;
 
-    public TimeEventData() {}
-
     public TimeEventData(Calendar time) {
         this.time = time;
     }
@@ -75,7 +73,6 @@ public class TimeEventData extends AbstractEventData {
         return true;
     }
 
-    @Override
     public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:

@@ -39,9 +39,7 @@ public class BroadcastEventData extends AbstractEventData {
 
     ReceiverSideIntentData intentData;
 
-    public BroadcastEventData() {}
-
-    public BroadcastEventData(ReceiverSideIntentData intentData) {
+    BroadcastEventData(ReceiverSideIntentData intentData) {
         this.intentData = intentData;
     }
 
@@ -57,7 +55,6 @@ public class BroadcastEventData extends AbstractEventData {
         return true;
     }
 
-    @Override
     public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         intentData = new ReceiverSideIntentData();
         switch (format) {

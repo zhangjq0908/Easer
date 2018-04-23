@@ -33,12 +33,6 @@ class CellLocationEventDataFactory implements EventDataFactory<CellLocationEvent
         return CellLocationEventData.class;
     }
 
-    @NonNull
-    @Override
-    public CellLocationEventData emptyData() {
-        return new CellLocationEventData();
-    }
-
     @ValidData
     @NonNull
     @Override

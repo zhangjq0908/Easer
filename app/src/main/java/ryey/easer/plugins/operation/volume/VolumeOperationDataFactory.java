@@ -33,12 +33,6 @@ class VolumeOperationDataFactory implements OperationDataFactory<VolumeOperation
         return VolumeOperationData.class;
     }
 
-    @NonNull
-    @Override
-    public VolumeOperationData emptyData() {
-        return new VolumeOperationData();
-    }
-
     @ValidData
     @NonNull
     @Override

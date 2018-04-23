@@ -33,19 +33,11 @@ class AirplaneModeOperationDataFactory implements OperationDataFactory<AirplaneM
         return AirplaneModeOperationData.class;
     }
 
-    @NonNull
-    @Override
-    public AirplaneModeOperationData emptyData() {
-        return new AirplaneModeOperationData();
-    }
-
     @ValidData
     @NonNull
     @Override
     public AirplaneModeOperationData dummyData() {
-        AirplaneModeOperationData dummyData = new AirplaneModeOperationData();
-        dummyData.set(true);
-        return dummyData;
+        return new AirplaneModeOperationData(true);
     }
 
     @ValidData

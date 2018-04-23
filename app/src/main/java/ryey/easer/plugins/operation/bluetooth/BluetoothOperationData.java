@@ -28,9 +28,6 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.plugins.operation.BooleanOperationData;
 
 public class BluetoothOperationData extends BooleanOperationData {
-    public BluetoothOperationData() {
-    }
-
     public BluetoothOperationData(Boolean state) {
         super(state);
     }

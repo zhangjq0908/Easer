@@ -33,19 +33,11 @@ class RotationOperationDataFactory implements OperationDataFactory<RotationOpera
         return RotationOperationData.class;
     }
 
-    @NonNull
-    @Override
-    public RotationOperationData emptyData() {
-        return new RotationOperationData();
-    }
-
     @ValidData
     @NonNull
     @Override
     public RotationOperationData dummyData() {
-        RotationOperationData dummyData = new RotationOperationData();
-        dummyData.set(true);
-        return dummyData;
+        return new RotationOperationData(true);
     }
 
     @ValidData

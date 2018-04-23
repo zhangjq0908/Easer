@@ -37,9 +37,6 @@ public class SendNotificationOperationData implements OperationData {
     String title;
     String content;
 
-    SendNotificationOperationData() {
-    }
-
     SendNotificationOperationData(String title, String content) {
         this.title = title;
         this.content = content;
@@ -49,7 +46,6 @@ public class SendNotificationOperationData implements OperationData {
         parse(data, format, version);
     }
 
-    @Override
     public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
