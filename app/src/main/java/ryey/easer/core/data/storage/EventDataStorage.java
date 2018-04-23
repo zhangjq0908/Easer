@@ -28,7 +28,6 @@ import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.EventTree;
 import ryey.easer.core.data.storage.backend.EventDataStorageBackendInterface;
 import ryey.easer.core.data.storage.backend.json.event.JsonEventDataStorageBackend;
-import ryey.easer.core.data.storage.backend.xml.event.XmlEventDataStorageBackend;
 
 public class EventDataStorage extends AbstractDataStorage<EventStructure, EventDataStorageBackendInterface> {
 
@@ -41,7 +40,6 @@ public class EventDataStorage extends AbstractDataStorage<EventStructure, EventD
             instance = new EventDataStorage(context);
             instance.storage_backend_list = new EventDataStorageBackendInterface[] {
                     JsonEventDataStorageBackend.getInstance(context),
-                    XmlEventDataStorageBackend.getInstance(context),
             };
         }
         return instance;

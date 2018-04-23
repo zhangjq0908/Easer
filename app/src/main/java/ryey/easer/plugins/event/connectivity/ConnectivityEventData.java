@@ -24,15 +24,9 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v4.util.ArraySet;
 
-import com.orhanobut.logger.Logger;
-
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlSerializer;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.Set;
@@ -40,10 +34,8 @@ import java.util.Set;
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
-import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
 
 public class ConnectivityEventData extends TypedEventData {
@@ -64,28 +56,6 @@ public class ConnectivityEventData extends TypedEventData {
 
     ConnectivityEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
-    }
-
-    @Override
-    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
-        String[] str_data = XmlHelper.EventHelper.readMultipleSituation(parser);
-        connectivity_type = new ArraySet<>(str_data.length);
-        for (String str : str_data) {
-            connectivity_type.add(Integer.parseInt(str.trim()));
-        }
-        EventType type = XmlHelper.EventHelper.readLogic(parser);
-        setType(type);
-    }
-
-    @Override
-    public void serialize(XmlSerializer serializer) throws IOException {
-        if (!isValid()) {
-            Logger.wtf("Invalid ConnectivityEventData shouldn't be serialized");
-        }
-        Set<Integer> selected_types = connectivity_type;
-        XmlHelper.EventHelper.writeMultipleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).id(),
-                Utils.set2strlist(selected_types).toArray(new String[0]));
-        XmlHelper.EventHelper.writeLogic(serializer, type());
     }
 
     @Override

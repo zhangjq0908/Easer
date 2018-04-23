@@ -23,20 +23,13 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlSerializer;
-
-import java.io.IOException;
 import java.util.EnumSet;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
-import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
 
 public class BatteryEventData extends TypedEventData {
@@ -57,25 +50,6 @@ public class BatteryEventData extends TypedEventData {
 
     BatteryEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
-    }
-
-    @Override
-    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
-        String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
-        Integer int_data = Integer.parseInt(str_data);
-        battery_status = int_data;
-        EventType type = XmlHelper.EventHelper.readLogic(parser);
-        setType(type);
-    }
-
-    @Override
-    public void serialize(XmlSerializer serializer) throws IOException {
-        Integer int_status = battery_status;
-        if (int_status != null) {
-            String status = int_status.toString();
-            XmlHelper.EventHelper.writeSingleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).id(), status);
-            XmlHelper.EventHelper.writeLogic(serializer, type());
-        }
     }
 
     @Override

@@ -22,17 +22,9 @@ package ryey.easer.plugins.operation;
 import android.os.Parcel;
 import android.support.annotation.NonNull;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlSerializer;
-
-import java.io.IOException;
-
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
-import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.reusable.IntegerData;
 
 public abstract class IntegerOperationData extends IntegerData implements OperationData {
@@ -45,16 +37,6 @@ public abstract class IntegerOperationData extends IntegerData implements Operat
 
     public IntegerOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
-    }
-
-    @Override
-    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
-        set(XmlHelper.OperationHelper.readInteger(parser, PluginRegistry.getInstance().operation().findPlugin(this).id()));
-    }
-
-    @Override
-    public void serialize(XmlSerializer serializer) throws IOException {
-        XmlHelper.OperationHelper.writeInteger(serializer, PluginRegistry.getInstance().operation().findPlugin(this).id(), get());
     }
 
     @Override

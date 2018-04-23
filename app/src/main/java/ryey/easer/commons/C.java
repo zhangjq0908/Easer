@@ -28,12 +28,10 @@ public class C {
     public static final String SIT = "situation";
     public static final String LOGIC = "logic";
     public static final String SPEC = "spec";
-    public static final String ITEM = "item";
     public static final String OPERATION = "operation";
     public static final String DATA = "data";
     public static final String OFF = "off";
     public static final String ON = "on";
-    public static final String STATE = "state";
 
     public static final String VERSION = "version";
     public static final int VERSION_GRANULAR_RINGER_MODE = 6;
@@ -46,7 +44,6 @@ public class C {
     public static final int VERSION_CURRENT = VERSION_GRANULAR_RINGER_MODE;
 
     public enum Format {
-        XML,
         JSON,
     }
 }

@@ -24,16 +24,9 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v4.util.ArraySet;
 
-import com.orhanobut.logger.Logger;
-
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlSerializer;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.Set;
@@ -41,10 +34,8 @@ import java.util.Set;
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
-import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
 
 public class DayOfWeekEventData extends TypedEventData {
@@ -86,35 +77,6 @@ public class DayOfWeekEventData extends TypedEventData {
         if (!days.equals(((DayOfWeekEventData) obj).days))
             return false;
         return true;
-    }
-
-    @Override
-    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
-        if (version == C.VERSION_FALLBACK) {
-            String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
-            try {
-                days = Utils.str2set(str_data);
-            } catch (ParseException e) {
-                Logger.e(e, "Illegal Event: illegal time format %s", str_data);
-                throw new IllegalStorageDataException(String.format("Illegal Event: illegal time format %s", str_data));
-            }
-        } else {
-            for (String str : XmlHelper.EventHelper.readMultipleSituation(parser)) {
-                days.add(Integer.parseInt(str.trim()));
-            }
-        }
-        EventType type = XmlHelper.EventHelper.readLogic(parser);
-        setType(type);
-    }
-
-    @Override
-    public void serialize(XmlSerializer serializer) throws IOException {
-        if (!isValid()) {
-            Logger.wtf("Invalid DayOfWeekEventData shouldn't be serialized");
-        }
-        XmlHelper.EventHelper.writeMultipleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).id(),
-                Utils.set2strlist(days).toArray(new String[0]));
-        XmlHelper.EventHelper.writeLogic(serializer, type());
     }
 
     @Override

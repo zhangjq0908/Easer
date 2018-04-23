@@ -24,16 +24,10 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v4.util.ArraySet;
 
-import com.orhanobut.logger.Logger;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlSerializer;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
@@ -42,10 +36,8 @@ import java.util.Set;
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
-import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
 
 public class WifiEventData extends TypedEventData {
@@ -103,33 +95,6 @@ public class WifiEventData extends TypedEventData {
         if (!ssids.equals(((WifiEventData) obj).ssids))
             return false;
         return true;
-    }
-
-    @Override
-    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
-        if (version == C.VERSION_FALLBACK) {
-            String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
-            setFromMultiple(str_data.split("\n"));
-        } else {
-            setFromMultiple(XmlHelper.EventHelper.readMultipleSituation(parser));
-        }
-        EventType type = XmlHelper.EventHelper.readLogic(parser);
-        if (version == C.VERSION_FALLBACK) {
-            if (type == EventType.is)
-                type = EventType.any;
-            else if (type == EventType.is_not)
-                type = EventType.none;
-        }
-        setType(type);
-    }
-
-    @Override
-    public void serialize(XmlSerializer serializer) throws IOException {
-        if (!isValid()) {
-            Logger.wtf("Invalid SmsEventData shouldn't be serialized");
-        }
-        XmlHelper.EventHelper.writeMultipleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).id(), ssids.toArray(new String[0]));
-        XmlHelper.EventHelper.writeLogic(serializer, type());
     }
 
     @Override

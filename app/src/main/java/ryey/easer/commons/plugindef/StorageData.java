@@ -22,12 +22,6 @@ package ryey.easer.commons.plugindef;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlSerializer;
-
-import java.io.IOException;
-
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
 
@@ -36,33 +30,6 @@ import ryey.easer.commons.IllegalStorageDataException;
  * Defines a series of methods that are needed.
  */
 public interface StorageData extends Parcelable {
-
-    /**
-     * This is an OLD interface and is kept only for compatibility.
-     * Implementors should not really inherit this method (just leave it empty).
-     * Please use the {@link #parse(String, C.Format, int)} method instead.
-     *
-     * Read data (to the instance) from a source (currently only XML)
-     * @param parser
-     * @param version The version of the to-be-parsed data. (See also {@link ryey.easer.commons.C})
-     * @throws IOException
-     * @throws XmlPullParserException
-     * @throws IllegalStorageDataException
-     */
-    @Deprecated
-    void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException;
-
-    /**
-     * This is an OLD interface and is kept only for compatibility.
-     * Implementors should not really inherit this method (just leave it empty).
-     * Please use the {@link #serialize(C.Format)} method instead.
-     *
-     * Dump the data (of the instance) to a destination (currently only XML)
-     * @param serializer
-     * @throws IOException
-     */
-    @Deprecated
-    void serialize(XmlSerializer serializer) throws IOException;
 
     /**
      * Parse the given {@param data} to the current object.

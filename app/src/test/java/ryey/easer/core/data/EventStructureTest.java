@@ -5,8 +5,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.commons.plugindef.eventplugin.EventType;
-import ryey.easer.plugins.event.wifi.WifiEventData;
 import ryey.easer.plugins.event.wifi.WifiEventPlugin;
 
 import static org.junit.Assert.assertEquals;

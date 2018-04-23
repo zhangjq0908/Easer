@@ -24,11 +24,7 @@ import android.support.annotation.NonNull;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlSerializer;
 
-import java.io.IOException;
 import java.util.EnumSet;
 
 import ryey.easer.Utils;
@@ -101,16 +97,6 @@ public class TcpTripEventData extends TypedEventData {
         if (!Utils.nullableEqual(reply_data, ((TcpTripEventData) obj).reply_data))
             return false;
         return true;
-    }
-
-    @Override
-    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
-        throw new IllegalAccessError();
-    }
-
-    @Override
-    public void serialize(XmlSerializer serializer) throws IOException {
-        throw new IllegalAccessError();
     }
 
     @Override

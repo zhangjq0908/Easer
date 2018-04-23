@@ -27,19 +27,13 @@ import android.support.annotation.NonNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlSerializer;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
-import ryey.easer.plugins.PluginRegistry;
 
 public class BroadcastOperationData implements OperationData {
     private static final String ns = null;
@@ -64,89 +58,6 @@ public class BroadcastOperationData implements OperationData {
 
     BroadcastOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
-    }
-
-    @Override
-    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
-        String pname = PluginRegistry.getInstance().operation().findPlugin(this).id();
-        int depth = parser.getDepth();
-        int event_type = parser.next();
-        IntentData intentData = new IntentData();
-        while (parser.getDepth() > depth) {
-            if (event_type == XmlPullParser.START_TAG) {
-                switch (parser.getName()) {
-                    case ACTION:
-                        if (parser.next() == XmlPullParser.TEXT)
-                            intentData.action = parser.getText();
-                        else
-                            throw new IllegalStorageDataException(String.format("Illegal Item: (%s) Action has No Content", pname));
-                        break;
-                    case CATEGORY:
-                        if (parser.next() == XmlPullParser.TEXT)
-                            intentData.category = Utils.stringToStringList(parser.getText());
-                        else
-                            throw new IllegalStorageDataException(String.format("Illegal Item: (%s) Category is not valid", pname));
-                        break;
-                    case TYPE:
-                        if (parser.next() == XmlPullParser.TEXT)
-                            intentData.type = parser.getText();
-                        else
-                            throw new IllegalStorageDataException(String.format("Illegal Item: (%s) Type is not valid", pname));
-                        break;
-                    case DATA:
-                        if (parser.next() == XmlPullParser.TEXT)
-                            intentData.data = Uri.parse(parser.getText());
-                        else
-                            throw new IllegalStorageDataException(String.format("Illegal Item: (%s) Data is not valid", pname));
-                        break;
-                    default:
-                        XmlHelper.skip(parser);
-                }
-            }
-            event_type = parser.next();
-        }
-        if (intentData.action == null)
-            throw new IllegalStorageDataException(String.format("Illegal Item: (%s) No Action", pname));
-
-        this.data = intentData;
-    }
-
-    /*
-     * `isValid()` needs to be called before calling this function.
-     */
-    @Override
-    public void serialize(XmlSerializer serializer) throws IOException {
-        String pname = PluginRegistry.getInstance().operation().findPlugin(this).id();
-
-        serializer.startTag(ns, C.ITEM);
-
-        serializer.attribute(ns, C.SPEC, pname);
-
-        if (!Utils.isBlank(data.action)) {
-            serializer.startTag(ns, ACTION);
-            serializer.text(data.action.trim());
-            serializer.endTag(ns, ACTION);
-        }
-
-        if (data.category != null && !data.category.isEmpty()) {
-            serializer.startTag(ns, CATEGORY);
-            serializer.text(Utils.StringCollectionToString(data.category, false));
-            serializer.endTag(ns, CATEGORY);
-        }
-
-        if (!Utils.isBlank(data.type)) {
-            serializer.startTag(ns, TYPE);
-            serializer.text(data.type.trim());
-            serializer.endTag(ns, TYPE);
-        }
-
-        if (data.data != null && !Utils.isBlank(data.data.toString())) {
-            serializer.startTag(ns, DATA);
-            serializer.text(data.data.toString());
-            serializer.endTag(ns, DATA);
-        }
-
-        serializer.endTag(ns, C.ITEM);
     }
 
     @Override

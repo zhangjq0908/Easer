@@ -23,15 +23,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
-import com.orhanobut.logger.Logger;
-
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlSerializer;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
@@ -39,10 +33,8 @@ import java.util.List;
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
-import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
 
 public class CellLocationEventData extends TypedEventData {
@@ -100,33 +92,6 @@ public class CellLocationEventData extends TypedEventData {
         if (!data.equals(((CellLocationEventData) obj).data))
             return false;
         return true;
-    }
-
-    @Override
-    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
-        if (version == C.VERSION_FALLBACK) {
-            String str_data = XmlHelper.EventHelper.readSingleSituation(parser);
-            String[] parts = str_data.split(",");
-            setFromMultiple(parts);
-        } else {
-            setFromMultiple(XmlHelper.EventHelper.readMultipleSituation(parser));
-        }
-        EventType type = XmlHelper.EventHelper.readLogic(parser);
-        setType(type);
-    }
-
-    @Override
-    public void serialize(XmlSerializer serializer) throws IOException {
-        if (data.size() == 0) {
-            Logger.wtf("trying to serialize empty data");
-            return;
-        }
-        List<String> list = new ArrayList<>();
-        for (CellLocationSingleData singleData : data) {
-            list.add(singleData.toString());
-        }
-        XmlHelper.EventHelper.writeMultipleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).id(), list.toArray(new String[0]));
-        XmlHelper.EventHelper.writeLogic(serializer, type());
     }
 
     @Override

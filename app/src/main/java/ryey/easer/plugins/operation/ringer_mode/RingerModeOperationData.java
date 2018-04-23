@@ -25,12 +25,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlSerializer;
-
-import java.io.IOException;
-
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
@@ -49,16 +43,6 @@ public class RingerModeOperationData implements OperationData {
 
     RingerModeOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
-    }
-
-    @Override
-    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
-        throw new IllegalAccessError();
-    }
-
-    @Override
-    public void serialize(XmlSerializer serializer) throws IOException {
-        throw new IllegalAccessError();
     }
 
     @Override

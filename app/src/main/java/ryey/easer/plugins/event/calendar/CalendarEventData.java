@@ -29,21 +29,15 @@ import com.orhanobut.logger.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlSerializer;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EnumSet;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.XmlHelper;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventType;
-import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.event.TypedEventData;
 
 public class CalendarEventData extends TypedEventData {
@@ -78,53 +72,6 @@ public class CalendarEventData extends TypedEventData {
         if (data.conditions.size() == 0)
             return false;
         return true;
-    }
-
-    @Override
-    public void parse(XmlPullParser parser, int version) throws IOException, XmlPullParserException, IllegalStorageDataException {
-        String res_str = XmlHelper.EventHelper.readSingleSituation(parser);
-        try {
-            JSONObject jsonObject = new JSONObject(res_str);
-            this.data = new CalendarData();
-            this.data.calendar_id = jsonObject.optLong(T_calendar_id);
-            JSONArray jsonArray_conditions = jsonObject.optJSONArray(T_condition);
-            for (int i = 0; i < jsonArray_conditions.length(); i++) {
-                String condition = jsonArray_conditions.getString(i);
-                for (int j = 0; j < CalendarData.condition_name.length; j++) {
-                    if (condition.equals(CalendarData.condition_name[j])) {
-                        this.data.conditions.add(condition);
-                        break;
-                    }
-                }
-            }
-        } catch (JSONException e) {
-            Logger.e(e, "Error parsing %s data to SUFFIX", getClass().getSimpleName());
-            e.printStackTrace();
-        }
-
-        EventType type = XmlHelper.EventHelper.readLogic(parser);
-        setType(type);
-    }
-
-    @Override
-    public void serialize(XmlSerializer serializer) throws IOException {
-        if (!isValid()) {
-            Logger.wtf("Invalid CalendarEventData shouldn't be serialized");
-        }
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put(T_calendar_id, data.calendar_id);
-            JSONArray jsonArray_conditions = new JSONArray();
-            for (String k : data.conditions) {
-                jsonArray_conditions.put(k);
-            }
-            jsonObject.put(T_condition, jsonArray_conditions);
-        } catch (JSONException e) {
-            Logger.e(e, "Error putting %s data", getClass().getSimpleName());
-            e.printStackTrace();
-        }
-        XmlHelper.EventHelper.writeSingleSituation(serializer, PluginRegistry.getInstance().event().findPlugin(this).id(), jsonObject.toString());
-        XmlHelper.EventHelper.writeLogic(serializer, type());
     }
 
     @Override
