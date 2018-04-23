@@ -29,28 +29,20 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.commons.plugindef.eventplugin.EventType;
-import ryey.easer.plugins.event.TypedEventData;
+import ryey.easer.plugins.event.AbstractEventData;
 
-public class WifiEventData extends TypedEventData {
+public class WifiEventData extends AbstractEventData {
     private static final String K_ESSID = "essid";
     private static final String K_BSSID = "bssid";
 
     boolean mode_essid = true;
     Set<String> ssids = new ArraySet<>();
-
-    {
-        default_type = EventType.any;
-        availableTypes = EnumSet.of(EventType.any, EventType.none);
-    }
 
     WifiEventData() {}
 
@@ -87,8 +79,6 @@ public class WifiEventData extends TypedEventData {
     @Override
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof WifiEventData))
-            return false;
-        if (!Utils.eEquals(this, (EventData) obj))
             return false;
         if (mode_essid != ((WifiEventData) obj).mode_essid)
             return false;

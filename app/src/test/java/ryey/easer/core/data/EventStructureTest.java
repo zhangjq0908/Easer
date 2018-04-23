@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import ryey.easer.commons.C;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.plugins.event.wifi.WifiEventPlugin;
 
@@ -23,24 +24,13 @@ public class EventStructureTest {
     @BeforeClass
     public static void setUpAll() {
         eventData = new WifiEventPlugin().dataFactory().dummyData();
-        scenario = new ScenarioStructure("myScenario", eventData);
+        scenario = new ScenarioStructure(C.VERSION_CREATED_IN_RUNTIME, "myScenario", eventData);
     }
 
     @Before
     public void setUp() {
-        eventStructure = new EventStructure();
-        eventStructure2 = new EventStructure();
-    }
-
-    @Test
-    public void constructor() {
-        EventStructure structure1 = new EventStructure();
-        EventStructure structure2 = new EventStructure(name);
-        assertEquals(structure1.getName(), null);
-        assertEquals(structure2.getName(), name);
-        assertEquals(structure1.getScenario(), structure2.getScenario());
-        assertEquals(structure1.getParentName(), structure2.getParentName());
-        assertEquals(structure1.getProfileName(), structure2.getProfileName());
+        eventStructure = new EventStructure(C.VERSION_CREATED_IN_RUNTIME);
+        eventStructure2 = new EventStructure(C.VERSION_CREATED_IN_RUNTIME);
     }
 
     @Test

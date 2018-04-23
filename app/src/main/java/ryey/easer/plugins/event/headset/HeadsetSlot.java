@@ -28,7 +28,6 @@ import android.os.Build;
 import android.os.Bundle;
 
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 public class HeadsetSlot extends AbstractSlot<HeadsetEventData> {
     private static final String expected_action;
@@ -50,17 +49,13 @@ public class HeadsetSlot extends AbstractSlot<HeadsetEventData> {
                 final int state = extras.getInt("state");
                 final int microphone = extras.getInt("microphone");
                 final boolean match = determine_match(eventData, state == 1, microphone == 1);
-                if (eventData.type() == EventType.is) {
-                    changeSatisfiedState(match);
-                } else {
-                    changeSatisfiedState(!match);
-                }
+                changeSatisfiedState(match);
             }
         }
     };
 
     HeadsetSlot(Context context, HeadsetEventData data) {
-        this(context, data, (data.type() == EventType.is || data.type() == EventType.is_not), PERSISTENT_DEFAULT);
+        this(context, data, true, PERSISTENT_DEFAULT);
     }
 
     HeadsetSlot(Context context, HeadsetEventData data, boolean retriggerable, boolean persistent) {

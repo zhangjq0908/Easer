@@ -25,11 +25,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 public class BroadcastConnSlot extends AbstractSlot<BroadcastEventData> {
     private ReceiverSideIntentData intentData = null;
-    private EventType type = null;
 
     private final BroadcastReceiver connReceiver = new BroadcastReceiver() {
         @Override
@@ -51,7 +49,6 @@ public class BroadcastConnSlot extends AbstractSlot<BroadcastEventData> {
     BroadcastConnSlot(Context context, BroadcastEventData data, boolean retriggerable, boolean persistent) {
         super(context, data, retriggerable, persistent);
         intentData = data.intentData;
-        type = data.type();
         filter = new IntentFilter();
         if (intentData.action != null) {
             for (String action : intentData.action) {

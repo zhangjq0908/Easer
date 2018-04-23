@@ -164,13 +164,4 @@
     <string name="o_volume_alarm">Alarm</string>
     <string name="o_volume_notification">Notification</string>
 
-    <string-array name="event_type">
-        <item>After</item>
-        <item>Any</item>
-        <item>Before</item>
-        <item>Is</item>
-        <item>IsNot</item>
-        <item>None</item>
-    </string-array>
-
 </resources>

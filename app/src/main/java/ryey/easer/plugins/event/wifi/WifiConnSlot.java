@@ -27,13 +27,9 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 
-import com.orhanobut.logger.Logger;
-
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 public class WifiConnSlot extends AbstractSlot<WifiEventData> {
-    private final EventType type;
 
     private int matched_networks = 0;
 
@@ -69,7 +65,6 @@ public class WifiConnSlot extends AbstractSlot<WifiEventData> {
 
     WifiConnSlot(Context context, WifiEventData data, boolean retriggerable, boolean persistent) {
         super(context, data, retriggerable, persistent);
-        type = data.type();
     }
 
     @Override
@@ -105,12 +100,6 @@ public class WifiConnSlot extends AbstractSlot<WifiEventData> {
     }
 
     private void determine_satisfied() {
-        if (type == EventType.any) {
-            changeSatisfiedState(matched_networks > 0);
-        } else if (type == EventType.none) {
-            changeSatisfiedState(matched_networks == 0);
-        } else {
-            Logger.wtf("Wifi plugin has unrecognized type");
-        }
+        changeSatisfiedState(matched_networks > 0);
     }
 }

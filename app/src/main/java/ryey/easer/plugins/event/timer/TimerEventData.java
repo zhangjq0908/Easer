@@ -25,27 +25,17 @@ import android.support.annotation.NonNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.EnumSet;
-
-import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.commons.plugindef.eventplugin.EventType;
-import ryey.easer.plugins.event.TypedEventData;
+import ryey.easer.plugins.event.AbstractEventData;
 
-public class TimerEventData extends TypedEventData {
+public class TimerEventData extends AbstractEventData {
 
     private static final String K_MINUTES = "minutes";
     private static final String K_EXACT_BOOL = "exact?";
     private static final String K_REPEAT_BOOL = "repeat?";
 
     Timer timer;
-
-    {
-        default_type = EventType.after;
-        availableTypes = EnumSet.of(EventType.after);
-    }
 
     public TimerEventData() {}
 
@@ -71,8 +61,6 @@ public class TimerEventData extends TypedEventData {
     @Override
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof TimerEventData))
-            return false;
-        if (!Utils.eEquals(this, (EventData) obj))
             return false;
         if (timer.minutes != ((TimerEventData) obj).timer.minutes)
             return false;

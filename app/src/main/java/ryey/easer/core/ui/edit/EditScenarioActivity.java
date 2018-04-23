@@ -22,6 +22,7 @@ package ryey.easer.core.ui.edit;
 import android.widget.EditText;
 
 import ryey.easer.R;
+import ryey.easer.commons.C;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.core.data.ScenarioStructure;
@@ -64,6 +65,6 @@ public class EditScenarioActivity extends AbstractEditDataActivity<ScenarioStruc
     @Override
     protected ScenarioStructure saveToData() throws InvalidDataInputException {
         EventData eventData = mViewPager.getEventData();
-        return new ScenarioStructure(mEditText_name.getText().toString(), eventData);
+        return new ScenarioStructure(C.VERSION_CREATED_IN_RUNTIME, mEditText_name.getText().toString(), eventData);
     }
 }

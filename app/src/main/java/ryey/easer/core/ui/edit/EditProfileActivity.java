@@ -28,6 +28,7 @@ import java.util.Collection;
 import java.util.List;
 
 import ryey.easer.R;
+import ryey.easer.commons.C;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
@@ -92,7 +93,8 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
 
     @Override
     protected ProfileStructure saveToData() throws InvalidDataInputException {
-        ProfileStructure profile = new ProfileStructure(editText_profile_name.getText().toString());
+        ProfileStructure profile = new ProfileStructure(C.VERSION_CREATED_IN_RUNTIME);
+        profile.setName(editText_profile_name.getText().toString());
 
         for (ProfilePluginViewContainerFragment fragment : operationViewList) {
             if (!fragment.isEnabled())

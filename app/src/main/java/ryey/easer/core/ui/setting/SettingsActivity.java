@@ -217,7 +217,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                     .setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    if (!StorageHelper.convertToNewFormat(getActivity())) {
+                    if (!StorageHelper.convertToNewData(getActivity())) {
                         Toast.makeText(getActivity(), R.string.message_convert_data_error, Toast.LENGTH_LONG).show();
                     }
                     return true;

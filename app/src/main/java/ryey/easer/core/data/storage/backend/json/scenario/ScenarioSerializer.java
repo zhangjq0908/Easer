@@ -38,7 +38,6 @@ public class ScenarioSerializer implements Serializer<ScenarioStructure> {
             jsonObject.put(C.VERSION, C.VERSION_CURRENT);
 
             EventData event = data.getEventData();
-            jsonObject.put(C.LOGIC, event.type().toString());
             jsonObject.put(C.SIT, serialize_situation(event));
             return jsonObject.toString();
         } catch (JSONException e) {

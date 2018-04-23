@@ -30,7 +30,6 @@ import java.io.InputStream;
 import ryey.easer.BuildConfig;
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.ScenarioStructure;
 import ryey.easer.core.data.storage.C;
@@ -50,10 +49,10 @@ class EventParser implements Parser<EventStructure> {
     }
 
     public EventStructure parse(InputStream in) throws IOException, IllegalStorageDataException {
-        eventStructure = new EventStructure();
         try {
             JSONObject jsonObject = new JSONObject(IOUtils.inputStreamToString(in));
             int version = jsonObject.optInt(C.VERSION, C.VERSION_ADD_JSON);
+            eventStructure = new EventStructure(version);
             eventStructure.setName(jsonObject.getString(C.NAME));
             eventStructure.setActive(jsonObject.optBoolean(C.ACTIVE, true));
             eventStructure.setProfileName(jsonObject.optString(C.PROFILE, null));
@@ -102,14 +101,11 @@ class EventParser implements Parser<EventStructure> {
             String type = jsonObject_trigger.getString(C.TYPE);
             if (BuildConfig.DEBUG && !type.equals(C.TriggerType.T_RAW))
                 throw new AssertionError();
-            EventType logic = EventType.valueOf(jsonObject_trigger.getString(C.LOGIC));
             JSONObject jsonObject_situation = jsonObject_trigger.getJSONObject(C.SIT);
             String spec = jsonObject_situation.getString(C.SPEC);
-            EventData eventData = PluginRegistry.getInstance().event().findPlugin(spec)
+            return PluginRegistry.getInstance().event().findPlugin(spec)
                     .dataFactory()
                     .parse(jsonObject_situation.getString(C.DATA), C.Format.JSON, version);
-            eventData.setType(logic);
-            return eventData;
         } catch (JSONException e) {
             throw new IllegalStorageDataException(e);
         }

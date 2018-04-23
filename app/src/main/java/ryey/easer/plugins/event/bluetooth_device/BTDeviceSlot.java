@@ -28,10 +28,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventType;
 
 public class BTDeviceSlot extends AbstractSlot<BTDeviceEventData> {
-    private EventType type = null;
 
     private int matched_devices = 0;
 
@@ -69,7 +67,6 @@ public class BTDeviceSlot extends AbstractSlot<BTDeviceEventData> {
 
     BTDeviceSlot(Context context, BTDeviceEventData data, boolean retriggerable, boolean persistent) {
         super(context, data, retriggerable, persistent);
-        type = data.type();
     }
 
     @Override
@@ -102,9 +99,6 @@ public class BTDeviceSlot extends AbstractSlot<BTDeviceEventData> {
     }
 
     private void determine_satisfied() {
-        if (type == EventType.any)
-            changeSatisfiedState(matched_devices > 0);
-        else
-            changeSatisfiedState(matched_devices == 0);
+        changeSatisfiedState(matched_devices > 0);
     }
 }

@@ -31,16 +31,14 @@ import ryey.easer.commons.plugindef.operationplugin.OperationData;
  * Only the `EditProfileActivity` and `ProfileLoaderIntentService` need to know the detailed structure of a Profile,
  * other classes only need to know the *name* of the Profile.
  */
-final public class ProfileStructure implements Named, Verifiable {
+final public class ProfileStructure implements Named, Verifiable, WithCreatedVersion {
+    private final int createdVersion;
     String name;
 
     final Multimap<String, OperationData> data = LinkedListMultimap.create();
 
-    public ProfileStructure() {
-    }
-
-    public ProfileStructure(String name) {
-        this.name = name;
+    public ProfileStructure(int createdVersion) {
+        this.createdVersion = createdVersion;
     }
 
     public String getName() {
@@ -74,5 +72,10 @@ final public class ProfileStructure implements Named, Verifiable {
         if ((name == null) || (name.isEmpty()))
             return false;
         return true;
+    }
+
+    @Override
+    public int createdVersion() {
+        return createdVersion;
     }
 }

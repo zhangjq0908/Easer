@@ -4,6 +4,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import ryey.easer.commons.C;
+
 import static org.junit.Assert.assertEquals;
 
 public class EventTreeTest {
@@ -13,10 +15,10 @@ public class EventTreeTest {
 
     @BeforeClass
     public static void setUpAll() {
-        structure = new EventStructure();
-        structure1 = new EventStructure();
-        structure2 = new EventStructure();
-        structure3 = new EventStructure();
+        structure = new EventStructure(C.VERSION_CREATED_IN_RUNTIME);
+        structure1 = new EventStructure(C.VERSION_CREATED_IN_RUNTIME);
+        structure2 = new EventStructure(C.VERSION_CREATED_IN_RUNTIME);
+        structure3 = new EventStructure(C.VERSION_CREATED_IN_RUNTIME);
     }
 
     @Before

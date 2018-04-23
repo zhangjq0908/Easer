@@ -23,23 +23,13 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
-import java.util.EnumSet;
-
-import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.commons.plugindef.eventplugin.EventType;
-import ryey.easer.plugins.event.TypedEventData;
+import ryey.easer.plugins.event.AbstractEventData;
 
-public class BatteryEventData extends TypedEventData {
+public class BatteryEventData extends AbstractEventData {
 
     Integer battery_status = null;
-
-    {
-        default_type = EventType.is;
-        availableTypes = EnumSet.of(EventType.is, EventType.is_not);
-    }
 
     public BatteryEventData() {
     }
@@ -85,8 +75,6 @@ public class BatteryEventData extends TypedEventData {
     @Override
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof BatteryEventData))
-            return false;
-        if (!Utils.eEquals(this, (EventData) obj))
             return false;
         if (!battery_status.equals(((BatteryEventData) obj).battery_status))
             return false;

@@ -34,44 +34,60 @@ import ryey.easer.R;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.EventTree;
 import ryey.easer.core.data.Named;
-import ryey.easer.core.data.storage.backend.DataStorageBackendCommonInterface;
+import ryey.easer.core.data.Verifiable;
+import ryey.easer.core.data.WithCreatedVersion;
 
 public class StorageHelper {
 
-    public static boolean convertToNewFormat(Context context) {
-        Toast.makeText(context, R.string.message_convert_data_start, Toast.LENGTH_SHORT).show();
-        ProfileDataStorage profileDataStorage = ProfileDataStorage.getInstance(context);
-        try {
-            convert(profileDataStorage.storage_backend_list);
-        } catch (ConvertFailedException e) {
-            Logger.e("Failed to convert Profile <%s> to new format.", e.name);
-            Toast.makeText(context, R.string.message_convert_data_abort, Toast.LENGTH_LONG).show();
-            return false;
+    public static boolean hasOldData(Context context) {
+        AbstractDataStorage<?, ?> []dataStorages = {
+                ProfileDataStorage.getInstance(context),
+                EventDataStorage.getInstance(context),
+                ScenarioDataStorage.getInstance(context),
+        };
+        for (AbstractDataStorage<?, ?> dataStorage : dataStorages) {
+            for (String name : dataStorage.list()) {
+                if (dataStorage.get(name).createdVersion() < C.VERSION_CURRENT) {
+                    return true;
+                }
+            }
         }
-        EventDataStorage eventDataStorage = EventDataStorage.getInstance(context);
-        try {
-            convert(eventDataStorage.storage_backend_list);
-        } catch (ConvertFailedException e) {
-            Logger.e("Failed to convert Event <%s> to new format.", e.name);
-            Toast.makeText(context, R.string.message_convert_data_abort, Toast.LENGTH_LONG).show();
-            return false;
+        return false;
+    }
+
+    public static boolean convertToNewData(Context context) {
+        Toast.makeText(context, R.string.message_convert_data_start, Toast.LENGTH_SHORT).show();
+        AbstractDataStorage<?, ?> []dataStorages = {
+                ProfileDataStorage.getInstance(context),
+                EventDataStorage.getInstance(context),
+                ScenarioDataStorage.getInstance(context),
+        };
+        String []tags = {
+                "Profile",
+                "Event",
+                "Scenario",
+        };
+        for (int i = 0; i < dataStorages.length; i++) {
+            AbstractDataStorage<?, ?> dataStorage = dataStorages[i];
+            String tag = tags[i];
+            try {
+                _convert(dataStorage);
+            } catch (ConvertFailedException e) {
+                Logger.e("Failed to convert <%s> <%s> to new format.", tag, e.name);
+                Toast.makeText(context, R.string.message_convert_data_abort, Toast.LENGTH_LONG).show();
+                return false;
+            }
         }
         Toast.makeText(context, R.string.message_convert_data_finish, Toast.LENGTH_LONG).show();
         return true;
     }
 
-    private static <T extends Named> void convert(DataStorageBackendCommonInterface<T>[] backends) throws ConvertFailedException {
-        DataStorageBackendCommonInterface<T> prefered = backends[0];
-        for (int i = 1; i < backends.length; i++) {
-            DataStorageBackendCommonInterface<T> backend = backends[i];
-            for (T data : backend.all()) {
-                try {
-                    prefered.write(data);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    throw new ConvertFailedException(e, data.getName());
-                }
-                backend.delete(data.getName());
+    private static <T extends Named & Verifiable & WithCreatedVersion> void _convert(AbstractDataStorage<T, ?> dataStorage) throws ConvertFailedException {
+        for (String name : dataStorage.list()) {
+            try {
+                dataStorage.edit(name, dataStorage.get(name));
+            } catch (IOException e) {
+                throw new ConvertFailedException(e, name);
             }
         }
     }

@@ -25,16 +25,12 @@ import android.support.annotation.NonNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.EnumSet;
-
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.commons.plugindef.eventplugin.EventType;
-import ryey.easer.plugins.event.TypedEventData;
+import ryey.easer.plugins.event.AbstractEventData;
 
-public class NotificationEventData extends TypedEventData {
+public class NotificationEventData extends AbstractEventData {
     private static final String K_APP = "app";
     private static final String K_TITLE = "title";
     private static final String K_CONTENT = "content";
@@ -42,11 +38,6 @@ public class NotificationEventData extends TypedEventData {
     String app;
     String title;
     String content;
-
-    {
-        default_type = EventType.after;
-        availableTypes = EnumSet.of(EventType.after, EventType.is);
-    }
 
     public NotificationEventData() {}
 
@@ -80,8 +71,6 @@ public class NotificationEventData extends TypedEventData {
         if (!(obj instanceof NotificationEventData))
             return false;
         if (!((NotificationEventData) obj).isValid())
-            return false;
-        if (!Utils.eEquals(this, (EventData) obj))
             return false;
         if (!Utils.nullableEqual(app, ((NotificationEventData) obj).app))
             return false;

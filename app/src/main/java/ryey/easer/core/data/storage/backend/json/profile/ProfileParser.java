@@ -38,13 +38,13 @@ import ryey.easer.plugins.PluginRegistry;
 
 class ProfileParser implements Parser<ProfileStructure> {
 
-    ProfileStructure profile = new ProfileStructure();
+    ProfileStructure profile;
 
     public ProfileStructure parse(InputStream in) throws IOException, IllegalStorageDataException {
         try {
-            profile = new ProfileStructure();
             JSONObject jsonObject = new JSONObject(IOUtils.inputStreamToString(in));
             int version = jsonObject.optInt(C.VERSION, C.VERSION_ADD_JSON);
+            profile = new ProfileStructure(version);
             profile.setName(jsonObject.optString(C.NAME));
             JSONArray jsonArray = jsonObject.optJSONArray(C.OPERATION);
             parseOperations(jsonArray, version);

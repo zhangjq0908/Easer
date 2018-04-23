@@ -26,14 +26,12 @@ import android.content.Context;
 import java.util.Calendar;
 import java.util.Set;
 
-import ryey.easer.commons.plugindef.eventplugin.EventType;
 import ryey.easer.plugins.event.SelfNotifiableSlot;
 
 class DayOfWeekSlot extends SelfNotifiableSlot<DayOfWeekEventData> {
     private static AlarmManager mAlarmManager;
 
     private Set<Integer> days;
-    private EventType type = null;
 
     public DayOfWeekSlot(Context context, DayOfWeekEventData data) {
         this(context, data, RETRIGGERABLE_DEFAULT, PERSISTENT_DEFAULT);
@@ -42,7 +40,6 @@ class DayOfWeekSlot extends SelfNotifiableSlot<DayOfWeekEventData> {
     DayOfWeekSlot(Context context, DayOfWeekEventData data, boolean retriggerable, boolean persistent) {
         super(context, data, retriggerable, persistent);
         setDate(data.days);
-        type = data.type();
 
         if (mAlarmManager == null)
             mAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
@@ -57,14 +54,7 @@ class DayOfWeekSlot extends SelfNotifiableSlot<DayOfWeekEventData> {
     @Override
     public void listen() {
         super.listen();
-        switch (type) {
-            case any:
-                scheduleAlarms(notifySelfIntent_positive);
-                break;
-            case none:
-                scheduleAlarms(notifySelfIntent_negative);
-                break;
-        }
+        scheduleAlarms(notifySelfIntent_positive);
     }
 
     private void scheduleAlarms(PendingIntent pendingIntent) {
@@ -94,19 +84,9 @@ class DayOfWeekSlot extends SelfNotifiableSlot<DayOfWeekEventData> {
     public void check() {
         Calendar cal = Calendar.getInstance();
         int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
-        switch (type) {
-            case any:
-                if (days.contains(dayOfWeek - 1))
-                    changeSatisfiedState(true);
-                else
-                    changeSatisfiedState(false);
-                break;
-            case none:
-                if (days.contains(dayOfWeek - 1))
-                    changeSatisfiedState(false);
-                else
-                    changeSatisfiedState(true);
-                break;
-        }
+        if (days.contains(dayOfWeek - 1))
+            changeSatisfiedState(true);
+        else
+            changeSatisfiedState(false);
     }
 }

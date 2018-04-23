@@ -27,26 +27,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.EnumSet;
-
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.commons.plugindef.eventplugin.EventType;
-import ryey.easer.plugins.event.TypedEventData;
+import ryey.easer.plugins.event.AbstractEventData;
 
-public class BroadcastEventData extends TypedEventData {
+public class BroadcastEventData extends AbstractEventData {
 
     private static final String K_ACTION = "action";
     private static final String K_CATEGORY = "category";
 
     ReceiverSideIntentData intentData;
-
-    {
-        default_type = EventType.is;
-        availableTypes = EnumSet.of(EventType.is, EventType.after);
-    }
 
     public BroadcastEventData() {}
 
@@ -125,8 +116,6 @@ public class BroadcastEventData extends TypedEventData {
         if (obj == this)
             return true;
         if (!(obj instanceof BroadcastEventData))
-            return false;
-        if (!Utils.eEquals(this, (EventData) obj))
             return false;
         if (!Utils.nullableEqual(intentData.action, ((BroadcastEventData) obj).intentData.action))
             return false;

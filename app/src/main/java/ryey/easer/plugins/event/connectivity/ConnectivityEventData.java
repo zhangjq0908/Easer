@@ -28,24 +28,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
-import java.util.EnumSet;
 import java.util.Set;
 
-import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.commons.plugindef.eventplugin.EventType;
-import ryey.easer.plugins.event.TypedEventData;
+import ryey.easer.plugins.event.AbstractEventData;
 
-public class ConnectivityEventData extends TypedEventData {
+public class ConnectivityEventData extends AbstractEventData {
 
     Set<Integer> connectivity_type = new ArraySet<>();
-
-    {
-        default_type = EventType.any;
-        availableTypes = EnumSet.of(EventType.any, EventType.none);
-    }
 
     public ConnectivityEventData() {
     }
@@ -102,8 +93,6 @@ public class ConnectivityEventData extends TypedEventData {
     @Override
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof ConnectivityEventData))
-            return false;
-        if (!Utils.eEquals(this, (EventData) obj))
             return false;
         if (!connectivity_type.equals(((ConnectivityEventData) obj).connectivity_type))
             return false;

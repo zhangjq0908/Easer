@@ -26,26 +26,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
-import java.util.EnumSet;
 
-import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.commons.plugindef.eventplugin.EventType;
-import ryey.easer.plugins.event.TypedEventData;
+import ryey.easer.plugins.event.AbstractEventData;
 
 
-public class NfcTagEventData extends TypedEventData {
+public class NfcTagEventData extends AbstractEventData {
 
     private static final String K_ID = "id";
 
     byte[] id;
-
-    {
-        default_type = EventType.is;
-        availableTypes = EnumSet.of(EventType.is, EventType.is_not);
-    }
 
     static String byteArray2hexString(byte[] bytes) {
         char[] hexChars = new char[bytes.length * 2];
@@ -94,8 +85,6 @@ public class NfcTagEventData extends TypedEventData {
     @Override
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof NfcTagEventData))
-            return false;
-        if (!Utils.eEquals(this, (EventData) obj))
             return false;
         return Arrays.equals(id, ((NfcTagEventData) obj).id);
     }

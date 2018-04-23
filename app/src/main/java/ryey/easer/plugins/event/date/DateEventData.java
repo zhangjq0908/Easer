@@ -26,17 +26,13 @@ import android.support.annotation.NonNull;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.EnumSet;
 import java.util.Locale;
 
-import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.commons.plugindef.eventplugin.EventType;
-import ryey.easer.plugins.event.TypedEventData;
+import ryey.easer.plugins.event.AbstractEventData;
 
-public class DateEventData extends TypedEventData {
+public class DateEventData extends AbstractEventData {
     private static final SimpleDateFormat sdf_date = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
     private static String DateToText(Calendar calendar) {
@@ -50,11 +46,6 @@ public class DateEventData extends TypedEventData {
     }
 
     Calendar date = null;
-
-    {
-        default_type = EventType.after;
-        availableTypes = EnumSet.of(EventType.after, EventType.before, EventType.is);
-    }
 
     public DateEventData() {}
 
@@ -78,8 +69,6 @@ public class DateEventData extends TypedEventData {
     @Override
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof DateEventData))
-            return false;
-        if (!Utils.eEquals(this, (EventData) obj))
             return false;
         if (!DateToText(date).equals(DateToText(((DateEventData) obj).date)))
             return false;

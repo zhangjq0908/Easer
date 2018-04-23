@@ -40,8 +40,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-import ryey.easer.commons.plugindef.eventplugin.EventData;
-
 public class Utils {
 
     public static void panic(String message, Object... objs) {
@@ -57,10 +55,6 @@ public class Utils {
         if (str.trim().isEmpty())
             return true;
         return false;
-    }
-
-    public static <T extends EventData> boolean eEquals(@NonNull T obj1, @NonNull T obj2) {
-        return obj1.type() == obj2.type();
     }
 
     public static boolean nullableEqual(@Nullable Object obj1, @Nullable Object obj2) {

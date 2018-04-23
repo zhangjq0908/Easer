@@ -28,26 +28,17 @@ import com.orhanobut.logger.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.EnumSet;
-
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.commons.plugindef.eventplugin.EventType;
-import ryey.easer.plugins.event.TypedEventData;
+import ryey.easer.plugins.event.AbstractEventData;
 
-public class SmsEventData extends TypedEventData {
+public class SmsEventData extends AbstractEventData {
 
     private static final String K_SENDER = "sender";
     private static final String K_CONTENT = "content";
 
     SmsInnerData innerData;
-
-    {
-        default_type = EventType.is;
-        availableTypes = EnumSet.of(EventType.is, EventType.after);
-    }
 
     public SmsEventData() {}
 
@@ -110,8 +101,6 @@ public class SmsEventData extends TypedEventData {
         if (obj == this)
             return true;
         if (!(obj instanceof SmsEventData))
-            return false;
-        if (!Utils.eEquals(this, (EventData) obj))
             return false;
         return innerData.equals(((SmsEventData) obj).innerData);
     }

@@ -68,11 +68,6 @@
     <string name="message_convert_data_finish">轉換完成</string>
     <string name="message_convert_data_abort">轉換中止</string>
     <string name="message_convert_data_error">轉換數據類型時遇到問題。獲取詳情請查看日誌。</string>
-    <string name="alert_change_drop_event_type_title">棄用Event Type（事件類型）</string>
-    <string name="alert_change_drop_event_type">Event Type將在v0.5.7被棄用。在新建Event（事件）或Scenario（情境）時，請不要使用is或any外的其他Event Type。
-        \n\n如果你以前曾經使用過is（“當”）或any（“任一”）外的其他Event Type，請<a href="https://github.com/renyuneyun/Easer/wiki/Replace-Event-Types-with-advanced-Scenario-conditions">使用情境的高級規則來取代它們</a>。
-        \n\n在該過程中，你或許需要獨立地創建情境。未來版本將允許“內嵌情境”使用高級情境規則，但當前版本暫不支持。
-        \n\n本消息將於v0.5.7版本被刪除。請暫時忍耐一下 :)</string>
     <string name="pref_convert_data_title">轉換數據</string>
     <string name="pref_convert_data_summary">轉換所有數據至推薦格式</string>
     <string name="pref_cooldown_title">冷卻時間</string>
@@ -92,5 +87,7 @@
     <string name="message_importing_invalid_data">這似乎是無效的文件。請僅導入一個之前由Easer導出的文件。</string>
     <string name="pref_category_personalise">個人偏好</string>
     <string name="pref_use_12_hour_clock_title">使用12小時時鐘</string>
+    <string name="alert_update_storage_data_title">發現舊版數據</string>
+    <string name="alert_update_storage_data">你的（部分）數據似乎處於舊版之下，建議更新至新版，否則Easer可能無法正常使用。你可以在設置中選擇“轉換數據”來完成此事。</string>
 
 </resources>

@@ -74,7 +74,6 @@ class EventSerializer implements Serializer<EventStructure> {
     JSONObject serialize_event(EventData event) throws JSONException {
         JSONObject json_trigger_raw = new JSONObject();
         json_trigger_raw.put(C.TYPE, C.TriggerType.T_RAW);
-        json_trigger_raw.put(C.LOGIC, event.type().toString());
         json_trigger_raw.put(C.SIT, serialize_situation(event));
         return json_trigger_raw;
     }
