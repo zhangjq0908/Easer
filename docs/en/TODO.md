@@ -6,7 +6,6 @@ TODO
 		* Receiving phone calls
 	* Add more Operation (suggestions below)
 		* Location setting
-		* Ringtone volume
 		* Perform phone call
 	* UI
 		* Allow to pick some pre-defined broadcasts or even dynamically search

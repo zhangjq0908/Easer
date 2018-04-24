@@ -1,6 +1,18 @@
 CHANGELOG
 ======
 
+* v0.5.7: Remove deprecated classes && Add `LaunchAppOperationPlugin` && Add Bluetooth to `VolumeOperationPlugin` && Dev changes
+	* Remove deprecated interfaces / classes
+		* Remove `XmlDataStorageBackend`
+		* Remove `EventType`
+	* New Operation: Launch App (`LaunchAppOperationPlugin`)
+	* Allow to adjust Bluetooth volume in `VolumeOperationPlugin`
+	* Dev changes:
+		* New script to automatically create templates for new `OperationPlugin` (!!)
+		* Remove `StorageData.parse()`
+			* StorageData can not have their fields declared `final` in principle (!)
+		* Remove `DataFactory.emptyData()` && clean up empty constructors
+
 * v0.5.6.1: Switch between 12-hour and 24-hour clocks && Better MediaControlOperationPlugin for Lollipop+ && Update Danish translation && Minor changes
 	* Allow to change between 12-hour and 24-hour clocks in Settings
 	* Use `MediaSessionManager` for Lollipop+ (API 21+) for better media control

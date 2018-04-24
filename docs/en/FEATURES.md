@@ -36,6 +36,7 @@ Supported Features
 * Set alarm
 * Change Event status
 * Control volume
+* Launch App
 
 ### Misc
 * Formatting expression (supported in the fields of many Events/Operations)
