@@ -31,35 +31,61 @@ tmpl_copyright = '''/*
  */
 '''
 
-tmpl_operation_data_factory = '''package {package};
+tmpl_plugin_view_fragment = '''package {package};
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-import ryey.easer.commons.C;
-import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.plugindef.InvalidDataInputException;
+import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 
-class {data_factory} implements OperationDataFactory<{data}> {{
+public class {view_fragment} extends PluginViewFragment<{data}> {{
+
     @NonNull
     @Override
-    public Class<{data}> dataClass() {{
-        return {data}.class;
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {{
+        //TODO
     }}
 
-    @ValidData
-    @NonNull
     @Override
-    public {data} dummyData() {{
+    protected void _fill(@ValidData @NonNull {data} data) {{
         //TODO
     }}
 
     @ValidData
     @NonNull
     @Override
-    public {data} parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {{
-        return new {data}(data, format, version);
+    public {data} getData() throws InvalidDataInputException {{
+        //TODO
     }}
+}}
+'''
+
+tmpl_androidTest_data = '''package {package};
+
+import android.os.Parcel;
+
+import org.junit.Test;
+
+import ryey.easer.plugins.TestHelper;
+
+import static org.junit.Assert.assertEquals;
+
+public class {androidTest$data} {{
+
+    @Test
+    public void testParcel() {{
+        {data} dummyData = new {data_factory}().dummyData();
+        Parcel parcel = TestHelper.writeToParcel(dummyData);
+        {data} parceledData = {data}.CREATOR.createFromParcel(parcel);
+        assertEquals(dummyData, parceledData);
+    }}
+
 }}
 '''
 
@@ -135,6 +161,38 @@ public class {plugin} implements OperationPlugin<{data}> {{
 }}
 '''
 
+tmpl_operation_data_factory = '''package {package};
+
+import android.support.annotation.NonNull;
+
+import ryey.easer.commons.C;
+import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.plugindef.ValidData;
+import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
+
+class {data_factory} implements OperationDataFactory<{data}> {{
+    @NonNull
+    @Override
+    public Class<{data}> dataClass() {{
+        return {data}.class;
+    }}
+
+    @ValidData
+    @NonNull
+    @Override
+    public {data} dummyData() {{
+        //TODO
+    }}
+
+    @ValidData
+    @NonNull
+    @Override
+    public {data} parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {{
+        return new {data}(data, format, version);
+    }}
+}}
+'''
+
 tmpl_operation_data = '''package {package};
 
 import android.os.Parcel;
@@ -199,41 +257,6 @@ public class {data} implements OperationData {{
 }}
 '''
 
-tmpl_plugin_view_fragment = '''package {package};
-
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import ryey.easer.commons.plugindef.InvalidDataInputException;
-import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.ValidData;
-
-public class {view_fragment} extends PluginViewFragment<{data}> {{
-
-    @NonNull
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {{
-        //TODO
-    }}
-
-    @Override
-    protected void _fill(@ValidData @NonNull {data} data) {{
-        //TODO
-    }}
-
-    @ValidData
-    @NonNull
-    @Override
-    public {data} getData() throws InvalidDataInputException {{
-        //TODO
-    }}
-}}
-'''
-
 tmpl_operation_loader = '''package {package};
 
 import android.content.Context;
@@ -254,26 +277,202 @@ public class {loader} extends OperationLoader<{data}> {{
 }}
 '''
 
-tmpl_operation_androidTest_data = '''package {package};
+tmpl_event_plugin = '''package {package};
 
-import android.os.Parcel;
+import android.app.Activity;
+import android.content.Context;
+import android.support.annotation.NonNull;
 
-import org.junit.Test;
+import ryey.easer.R;
+import ryey.easer.commons.plugindef.PluginViewFragment;
+import ryey.easer.commons.plugindef.ValidData;
+import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
+import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
+import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 
-import ryey.easer.plugins.TestHelper;
+public class {plugin} implements EventPlugin<{data}> {{
 
-import static org.junit.Assert.assertEquals;
-
-public class {androidTest$data} {{
-
-    @Test
-    public void testParcel() {{
-        {data} dummyData = new {data_factory}().dummyData();
-        Parcel parcel = TestHelper.writeToParcel(dummyData);
-        {data} parceledData = {data}.CREATOR.createFromParcel(parcel);
-        assertEquals(dummyData, parceledData);
+    @NonNull
+    @Override
+    public String id() {{
+        return "{id}";
     }}
 
+    @Override
+    public int name() {{
+        //TODO
+    }}
+
+    @Override
+    public boolean isCompatible(@NonNull final Context context) {{
+        return true;
+    }}
+
+    @Override
+    public boolean checkPermissions(@NonNull Context context) {{
+        return true;
+    }}
+
+    @Override
+    public void requestPermissions(@NonNull Activity activity, int requestCode) {{
+    }}
+
+    @NonNull
+    @Override
+    public EventDataFactory<{data}> dataFactory() {{
+        return new {data_factory}();
+    }}
+
+    @NonNull
+    @Override
+    public PluginViewFragment<{data}> view() {{
+        return new {view_fragment}();
+    }}
+
+    @Override
+    public AbstractSlot<{data}> slot(@NonNull Context context, @ValidData @NonNull {data} data) {{
+        return new {slot}(context, data);
+    }}
+
+    @Override
+    public AbstractSlot<{data}> slot(@NonNull Context context, @NonNull {data} data, boolean retriggerable, boolean persistent) {{
+        return new {slot}(context, data, retriggerable, persistent);
+    }}
+
+}}
+'''
+
+tmpl_event_data_factory = '''package {package};
+
+import android.support.annotation.NonNull;
+
+import ryey.easer.commons.C;
+import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.plugindef.ValidData;
+import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
+
+class {data_factory} implements EventDataFactory<{data}> {{
+    @NonNull
+    @Override
+    public Class<{data}> dataClass() {{
+        return {data}.class;
+    }}
+
+    @ValidData
+    @NonNull
+    @Override
+    public {data} dummyData() {{
+        //TODO
+    }}
+
+    @ValidData
+    @NonNull
+    @Override
+    public {data} parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {{
+        return new {data}(data, format, version);
+    }}
+}}
+'''
+
+tmpl_event_data = '''package {package};
+
+import android.os.Parcel;
+import android.support.annotation.NonNull;
+
+import ryey.easer.commons.C;
+import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.plugins.event.AbstractEventData;
+
+public class {data} extends AbstractEventData {{
+
+    {data}(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {{
+        //TODO
+    }}
+
+    @NonNull
+    @Override
+    public String serialize(@NonNull C.Format format) {{
+        String res;
+        //TODO
+        return res;
+    }}
+
+    @SuppressWarnings({{"SimplifiableIfStatement", "RedundantIfStatement"}})
+    @Override
+    public boolean isValid() {{
+        //TODO
+        return true;
+    }}
+
+    @SuppressWarnings({{"SimplifiableIfStatement", "RedundantIfStatement"}})
+    @Override
+    public boolean equals(Object obj) {{
+        if (obj == null || !(obj instanceof {data}))
+            return false;
+        //TODO
+        return true;
+    }}
+
+    @Override
+    public int describeContents() {{
+        return 0;
+    }}
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {{
+        //TODO
+    }}
+
+    public static final Creator<{data}> CREATOR
+            = new Creator<{data}>() {{
+        public {data} createFromParcel(Parcel in) {{
+            return new {data}(in);
+        }}
+
+        public {data}[] newArray(int size) {{
+            return new {data}[size];
+        }}
+    }};
+
+    private {data}(Parcel in) {{
+        //TODO
+    }}
+}}
+'''
+
+tmpl_event_slot = '''package {package};
+
+import android.content.Context;
+
+import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
+
+public class {slot} extends AbstractSlot<{data}> {{
+
+    {slot}(Context context, {data} data) {{
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTENT_DEFAULT);
+    }}
+
+    {slot}(Context context, {data} data, boolean retriggerable, boolean persistent) {{
+        super(context, data, retriggerable, persistent);
+    }}
+
+    @Override
+    public void listen() {{
+        //TODO
+    }}
+
+    @Override
+    public void cancel() {{
+        //TODO
+    }}
+
+    /**
+     * {@inheritDoc}
+     */
+    @Deprecated
+    @Override
+    public void check() {{
+    }}
 }}
 '''
 
