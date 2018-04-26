@@ -137,12 +137,11 @@ public class WifiEventData extends AbstractEventData {
         return res;
     }
 
-    @Override
     public boolean match(@NonNull Object obj) {
         if (obj instanceof String) {
             return ssids.contains(((String) obj).trim());
         }
-        return super.match(obj);
+        return equals(obj);
     }
 
     @Override

@@ -116,12 +116,11 @@ public class BTDeviceEventData extends AbstractEventData {
         return res;
     }
 
-    @Override
     public boolean match(@NonNull Object obj) {
         if (obj instanceof String) {
             return hwaddresses.contains(((String) obj).trim());
         }
-        return super.match(obj);
+        return equals(obj);
     }
 
     @Override

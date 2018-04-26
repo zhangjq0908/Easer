@@ -19,17 +19,9 @@
 
 package ryey.easer.commons.plugindef.eventplugin;
 
-import android.support.annotation.NonNull;
-
 import ryey.easer.commons.plugindef.StorageData;
 
 public interface EventData extends StorageData {
-
-    /**
-     * Test whether the obj matches any of the data
-     * Used when the data could contain multiple choices (e.g. when using type `any`)
-     */
-    boolean match(@NonNull Object obj);
 
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     boolean equals(Object obj);

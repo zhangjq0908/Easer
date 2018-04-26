@@ -91,7 +91,9 @@ public abstract class AbstractSlot<T extends EventData> {
     /**
      * Check to see if the current slot is satisfied.
      * Should set {@link #satisfied} by calling {@link #changeSatisfiedState(boolean)}.
+     * @deprecated See <a href="https://github.com/renyuneyun/Easer/issues/82">this proposal</a>. New implementations *can* still define this, but will be removed in the future.
      */
+    @Deprecated
     public abstract void check();
 
     /**
