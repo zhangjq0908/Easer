@@ -83,7 +83,12 @@
     <string name="send_data">發送數據</string>
     <string name="check_reply">檢查傳回數據</string>
     <string name="reply_data">傳回數據</string>
-    
+
+    <string name="event_screen">屏幕狀態</string>
+    <string name="ev_screen_text_screen_is">當屏幕…</string>
+    <string name="ev_screen_on">開啓</string>
+    <string name="ev_screen_off">關閉</string>
+
     <string name="operation_bluetooth">藍牙</string>
 
     <string name="operation_brightness">亮度</string>

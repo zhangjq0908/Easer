@@ -85,6 +85,11 @@
     <string name="check_reply">Check reply</string>
     <string name="reply_data">Reply data</string>
 
+    <string name="event_screen">Screen Status</string>
+    <string name="ev_screen_text_screen_is">When screen is…</string>
+    <string name="ev_screen_on">On</string>
+    <string name="ev_screen_off">Off</string>
+
     <string name="operation_wifi">WiFi</string>
     <string name="operation_cellular">Mobile data</string>
     <string name="operation_bluetooth">Bluetooth</string>
