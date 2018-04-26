@@ -243,7 +243,7 @@ public class {data} implements OperationData {{
     public static final Creator<{data}> CREATOR
             = new Creator<{data}>() {{
         public {data} createFromParcel(Parcel in) {{
-            return new LaunchAppOperationData(in);
+            return new {data}(in);
         }}
 
         public {data}[] newArray(int size) {{
