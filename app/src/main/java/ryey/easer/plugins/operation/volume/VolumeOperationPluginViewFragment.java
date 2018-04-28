@@ -38,10 +38,8 @@ import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.ValidData;
 
-public class VolumeOpeartionPluginViewFragment extends PluginViewFragment<VolumeOperationData> {
+public class VolumeOperationPluginViewFragment extends PluginViewFragment<VolumeOperationData> {
 
-    private static final int STREAM_BLUETOOTH = 6;
-    
     CheckBox checkBox_ring, checkBox_media, checkBox_alarm, checkBox_notification, checkBox_bt;
     SeekBar seekBar_ring, seekBar_media, seekBar_alarm, seekBar_notification, seekBar_bt;
 
@@ -98,7 +96,7 @@ public class VolumeOpeartionPluginViewFragment extends PluginViewFragment<Volume
         });
 
         seekBar_bt = view.findViewById(R.id.seekBar_bt);
-        seekBar_bt.setMax(audioManager.getStreamMaxVolume(STREAM_BLUETOOTH));
+        seekBar_bt.setMax(audioManager.getStreamMaxVolume(VolumeOperationPlugin.STREAM_BLUETOOTH));
         checkBox_bt = view.findViewById(R.id.checkBox_bt);
         checkBox_bt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

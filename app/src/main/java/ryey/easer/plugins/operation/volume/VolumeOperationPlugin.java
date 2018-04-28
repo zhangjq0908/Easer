@@ -32,6 +32,8 @@ import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
 
 public class VolumeOperationPlugin implements OperationPlugin<VolumeOperationData> {
 
+    static final int STREAM_BLUETOOTH = 6;
+
     @NonNull
     @Override
     public String id() {
@@ -79,7 +81,7 @@ public class VolumeOperationPlugin implements OperationPlugin<VolumeOperationDat
     @NonNull
     @Override
     public PluginViewFragment<VolumeOperationData> view() {
-        return new VolumeOpeartionPluginViewFragment();
+        return new VolumeOperationPluginViewFragment();
     }
 
     @NonNull
