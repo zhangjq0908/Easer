@@ -50,8 +50,10 @@ Easer支持監聽許多Android事件（如時間、系統狀態、日曆等）�
 如果你覺得Easer應當添加某些功能，你也可以提出一個issue。
 
 對於現有的issue，無論你有相同的問題（或想法）、你可以提供更多信息、或是你不認同其中的說法，請對其進行評論。十分歡迎對問題進行討論。
+其中較需要多方意見的issue被[標爲RFC](https://github.com/renyuneyun/Easer/issues?q=is%3Aopen+label%3A%22RFC+%2F+Discussion+Wanted%22)，歡迎任何人的意見/建議。
 
 在某些情況下（如果你是一個開發者），你也許具有解決某些issue的能力。你可以fork本倉庫，編寫代碼，然後創建pull request。這樣，如果你的代碼的確解決了其問題，則你的代碼會進入主幹，並且你會得到其他人的感謝（而且會被列在*Contributors*列表中）。  
+如果有興趣參與但不知道從何下手，可以查看這些被[標爲help wanted的issue](https://github.com/renyuneyun/Easer/issues?q=is%3Aopen+label%3A%22help+wanted%22)——一般而言，它們都是目的較爲清晰、涉及組件較少的issue。
 同樣歡迎對非現有issue創建pull request，但建議首先創建一個issue來描述你將要進行的工作（使得其他人意識到此事）。
 
 ### 捐助

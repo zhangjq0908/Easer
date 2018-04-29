@@ -53,8 +53,10 @@ If you encounter problems when using Easer, you can submit an issue. The more de
 You can also open an issue if you think there are features that Easer should have.
 
 You are also welcome to comment on existing issues. If you believe you have the same problem (or idea), you can provide more information about it. Discussion is always welcome.
+Issue expecting ideas are labeled with [RFC](https://github.com/renyuneyun/Easer/issues?q=is%3Aopen+label%3A%22RFC+%2F+Discussion+Wanted%22).
 
 If you are a developer, you may possess the knowledge and time to solve some issues. You can fork the repo, solve the problem, and create a pull request. Then, your code can be merged, and you can be appreciated by others and listed in the *Contributors* list.
+Don't know where to start? See [these issues labeled with "help wanted"](https://github.com/renyuneyun/Easer/issues?q=is%3Aopen+label%3A%22help+wanted%22) which usually have clear target and involve few components.
 You're also welcome to create pull requests for issues not raised by others, but first, please create an issue describing what you want to do (and that you are going to do it).
 
 ### Donation
