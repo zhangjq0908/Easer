@@ -19,9 +19,13 @@
 
 package ryey.easer.core.ui.edit;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.EditText;
+
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -73,6 +77,13 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
                 operationSelectorFragment.show(getSupportFragmentManager(), "add_op");
             }
         });
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        for (Fragment fragment : fragmentManager.getFragments()) {
+            transaction.remove(fragment);
+        }
+        transaction.commit();
     }
 
     @Override
@@ -115,6 +126,7 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
     }
 
     synchronized void clearPluginView() {
+        Logger.d(operationViewList);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         for (PluginViewContainerFragment fragment : operationViewList) {
             transaction.remove(fragment);
@@ -125,7 +137,7 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
 
     synchronized <T extends OperationData> void addAndFillPluginView(OperationPlugin<T> plugin, T data) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        ProfilePluginViewContainerFragment<T> fragment = ProfilePluginViewContainerFragment.createInstance(plugin.view());
+        ProfilePluginViewContainerFragment<T> fragment = ProfilePluginViewContainerFragment.createInstance(plugin);
         transaction.add(R.id.layout_profiles, fragment, plugin.id());
         operationViewList.add(fragment);
         operationSelectorFragment.addSelectedPlugin(plugin);
@@ -138,7 +150,7 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
         PluginViewContainerFragment[] fragments = new PluginViewContainerFragment[plugins.length];
         for (int i = 0; i < plugins.length; i++) {
             OperationPlugin plugin = plugins[i];
-            ProfilePluginViewContainerFragment fragment = ProfilePluginViewContainerFragment.createInstance(plugin.view());
+            ProfilePluginViewContainerFragment fragment = ProfilePluginViewContainerFragment.createInstance(plugin);
             transaction.add(R.id.layout_profiles, fragment, plugin.id());
             fragments[i] = fragment;
             operationViewList.add(fragment);

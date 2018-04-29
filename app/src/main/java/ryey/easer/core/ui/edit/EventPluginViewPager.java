@@ -114,7 +114,7 @@ public class EventPluginViewPager extends ViewPager {
         @Override
         public Fragment getItem(int position) {
             PluginViewContainerFragment fragment = EventPluginViewContainerFragment.createInstance(
-                    eventPluginList.get(position).view());
+                    eventPluginList.get(position));
             return fragment;
         }
 

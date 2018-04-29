@@ -21,6 +21,7 @@ package ryey.easer.core.ui.edit;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,20 +31,30 @@ import android.widget.TextView;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
-import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
+import ryey.easer.plugins.PluginRegistry;
 
 public class ProfilePluginViewContainerFragment<T extends OperationData> extends PluginViewContainerFragment<T> {
 
-    static <T extends OperationData> ProfilePluginViewContainerFragment<T> createInstance(PluginViewFragment<T> pluginViewFragment) {
+    private static final String EXTRA_PLUGIN = "plugin";
+
+    static <T extends OperationData> ProfilePluginViewContainerFragment<T> createInstance(OperationPlugin<T> plugin) {
+        Bundle bundle = new Bundle();
+        bundle.putString(EXTRA_PLUGIN, plugin.id());
         ProfilePluginViewContainerFragment<T> fragment = new ProfilePluginViewContainerFragment<>();
-        fragment.pluginViewFragment = pluginViewFragment;
+        fragment.setArguments(bundle);
         return fragment;
     }
 
     private CheckBox mCheckBox;
 
-    public ProfilePluginViewContainerFragment() {
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        String plugin_id = getArguments().getString(EXTRA_PLUGIN);
+        @SuppressWarnings("unchecked") OperationPlugin<T> plugin = PluginRegistry.getInstance().operation().findPlugin(plugin_id);
+        pluginViewFragment = plugin.view();
     }
 
     @NonNull
@@ -52,7 +63,7 @@ public class ProfilePluginViewContainerFragment<T extends OperationData> extends
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pluginview_profile, container, false);
         getChildFragmentManager().beginTransaction()
-                .add(R.id.content_pluginview, pluginViewFragment)
+                .replace(R.id.content_pluginview, pluginViewFragment)
                 .commit();
         getChildFragmentManager().executePendingTransactions();
         mCheckBox = view.findViewById(R.id.checkbox_pluginview_enabled);

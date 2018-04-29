@@ -29,17 +29,28 @@ import android.view.ViewGroup;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
-import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.plugins.PluginRegistry;
 
 public class EventPluginViewContainerFragment<T extends EventData> extends PluginViewContainerFragment<T> {
 
-    static <T extends EventData> EventPluginViewContainerFragment<T> createInstance(PluginViewFragment<T> pluginViewFragment) {
+    private static final String EXTRA_PLUGIN = "plugin";
+
+    static <T extends EventData> EventPluginViewContainerFragment<T> createInstance(EventPlugin<T> plugin) {
+        Bundle bundle = new Bundle();
+        bundle.putString(EXTRA_PLUGIN, plugin.id());
         EventPluginViewContainerFragment<T> fragment = new EventPluginViewContainerFragment<>();
-        fragment.pluginViewFragment = pluginViewFragment;
+        fragment.setArguments(bundle);
         return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        String plugin_id = getArguments().getString(EXTRA_PLUGIN);
+        @SuppressWarnings("unchecked") EventPlugin<T> plugin = PluginRegistry.getInstance().event().findPlugin(plugin_id);
+        pluginViewFragment = plugin.view();
     }
 
     @NonNull
