@@ -1,6 +1,12 @@
 CHANGELOG
 ======
 
+* v0.5.7.1: Fix bluetooth volume not changing && Fix crash when rotating && Code clean up
+	* Fix `VolumeOperationPlugin` changing bluetooth volume
+	* Fix crash when rotating device on `Edit{Event,Profile}Activity`
+	* Code clean up
+		* Remove unneeded and deprecated API a little bit
+
 * v0.5.7: Remove deprecated classes && Add `LaunchAppOperationPlugin` && Add Bluetooth to `VolumeOperationPlugin` && Dev changes
 	* Remove deprecated interfaces / classes
 		* Remove `XmlDataStorageBackend`
