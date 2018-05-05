@@ -31,6 +31,7 @@ import android.os.IBinder;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -92,26 +93,23 @@ public class EHService extends Service {
         context.sendBroadcast(intent);
     }
 
-    private static String lastProfile = null;
-    private static String fromEvent = null;
-    private static long loadTime = -1;
+    private static LinkedList<EventHistoryRecord> eventHistoryRecordList = new LinkedList<>();
 
-    private static void recordProfile(Bundle bundle) {
+    synchronized private static void recordProfile(Bundle bundle) {
         final String profileName = bundle.getString(ProfileLoaderIntentService.EXTRA_PROFILE_NAME);
         final String eventName = bundle.getString(ProfileLoaderIntentService.EXTRA_EVENT_NAME);
         final long time = bundle.getLong(ProfileLoaderIntentService.EXTRA_LOAD_TIME);
-        lastProfile = profileName;
-        fromEvent = eventName;
-        loadTime = time;
+        if (eventHistoryRecordList.size() > 1000)
+            eventHistoryRecordList.removeFirst();
+        eventHistoryRecordList.addLast(new EventHistoryRecord(eventName, profileName, time));
     }
-    public static String getLastProfile() {
-        return lastProfile;
+    public static EventHistoryRecord getLastHistory() {
+        if (eventHistoryRecordList.size() == 0)
+            return null;
+        return eventHistoryRecordList.getLast();
     }
-    public static String getFromEvent() {
-        return fromEvent;
-    }
-    public static long getLoadTime() {
-        return loadTime;
+    public static List<EventHistoryRecord> getHistory() {
+        return eventHistoryRecordList;
     }
 
     @Override
@@ -120,9 +118,7 @@ public class EHService extends Service {
         running = true;
         Intent intent = new Intent(ACTION_STATE_CHANGED);
         sendBroadcast(intent);
-        lastProfile = null;
-        fromEvent = null;
-        loadTime = -1;
+        eventHistoryRecordList.clear();
         super.onCreate();
         IntentFilter filter = new IntentFilter();
         filter.addAction(ACTION_RELOAD);

@@ -7,6 +7,7 @@
     <string name="title_event">Event</string>
     <string name="title_scenario">Scenario</string>
     <string name="title_application">App</string>
+    <string name="title_activity_log">Activity Log</string>
     <string name="title_about">About</string>
     <string name="title_setting">Settings</string>
     <string name="title_add">Add</string>
@@ -23,8 +24,9 @@
     <string name="service_indicator_positive">Running</string>
     <string name="service_indicator_negative">Not running</string>
     <string name="profile_indicator_last">Last profile:</string>
-    <string name="profile_indicator_from">From event:</string>
-    <string name="profile_indicator_time">Loaded time:</string>
+    <string name="profile_indicator_profile">Profile</string>
+    <string name="profile_indicator_from">From event</string>
+    <string name="profile_indicator_time">Loaded time</string>
 
     <string name="null_content">NULL CONTENT</string>
 

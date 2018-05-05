@@ -27,6 +27,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.recyclerview.extensions.ListAdapter;
+import android.support.v7.util.DiffUtil;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,42 +43,78 @@ import java.util.Calendar;
 
 import ryey.easer.R;
 import ryey.easer.core.EHService;
+import ryey.easer.core.EventHistoryRecord;
 
 public class LoadedHistoryFragment extends Fragment {
 
-    TextView mLastProfile, mFromEvent, mTimeLoaded;
+    private static final String ARG_SIZE = "ryey.easer.core.ui.LoadedHistoryFragment.ARG.SIZE";
+    private static final String COMPACT = "ryey.easer.core.ui.LoadedHistoryFragment.COMPACT";
+    private static final String FULL = "ryey.easer.core.ui.LoadedHistoryFragment.FULL";
+
+    static LoadedHistoryFragment compact() {
+        Bundle bundle = new Bundle();
+        bundle.putString(ARG_SIZE, COMPACT);
+        LoadedHistoryFragment fragment = new LoadedHistoryFragment();
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
+    static LoadedHistoryFragment full() {
+        Bundle bundle = new Bundle();
+        bundle.putString(ARG_SIZE, FULL);
+        LoadedHistoryFragment fragment = new LoadedHistoryFragment();
+        fragment.setArguments(bundle);
+        return fragment;
+    }
 
     final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             switch (intent.getAction()) {
                 case EHService.ACTION_PROFILE_UPDATED:
-                    updateProfileDisplay();
+                    refreshHistoryDisplay();
                     break;
             }
         }
     };
 
+    HistoryViewHolder historyViewHolder;
+    HistoryAdapter historyAdapter;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_loaded_history, container, false);
+        Bundle args = getArguments();
+        if (args == null || FULL.equals(args.getString(ARG_SIZE))) {
+            View layout = inflater.inflate(R.layout.fragment_loaded_history_full, container, false);
+            RecyclerView view = layout.findViewById(R.id.recycler_view);
+            view.setHasFixedSize(true);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+            view.setLayoutManager(layoutManager);
+            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(view.getContext(),
+                    layoutManager.getOrientation());
+            view.addItemDecoration(dividerItemDecoration);
+            historyAdapter = new HistoryAdapter();
+            view.setAdapter(historyAdapter);
+            return layout;
+        } else {
+            View view = inflater.inflate(R.layout.fragment_loaded_history, container, false);
+            historyViewHolder = new HistoryViewHolder(view);
+            return view;
+        }
+    }
 
-        mLastProfile = view.findViewById(R.id.textView_last_profile);
-        mFromEvent = view.findViewById(R.id.textView_from_event);
-        mTimeLoaded = view.findViewById(R.id.textView_profile_load_time);
-
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         IntentFilter filter = new IntentFilter();
         filter.addAction(EHService.ACTION_PROFILE_UPDATED);
         getContext().registerReceiver(mReceiver, filter);
-
-        return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        updateProfileDisplay();
+        refreshHistoryDisplay();
     }
 
     @Override
@@ -82,19 +123,76 @@ public class LoadedHistoryFragment extends Fragment {
         getActivity().unregisterReceiver(mReceiver);
     }
 
-    private void updateProfileDisplay() {
-        final String profileName = EHService.getLastProfile();
-        final String eventName = EHService.getFromEvent();
-        long loadTime = EHService.getLoadTime();
-        mLastProfile.setText(profileName);
-        mFromEvent.setText(eventName);
-        if (loadTime > 0) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(loadTime);
-            DateFormat df = SimpleDateFormat.getDateTimeInstance();
-            mTimeLoaded.setText(df.format(calendar.getTime()));
+    private void refreshHistoryDisplay() {
+        if (historyViewHolder != null) {
+            historyViewHolder.bindTo(EHService.getLastHistory());
         } else {
-            mTimeLoaded.setText("");
+            historyAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public static class HistoryAdapter extends ListAdapter<EventHistoryRecord, HistoryViewHolder> {
+
+        HistoryAdapter() {
+            super(DIFF_CALLBACK);
+            submitList(EHService.getHistory());
+        }
+
+        @NonNull
+        @Override
+        public HistoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View v = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.fragment_loaded_history, parent, false);
+            return new HistoryViewHolder(v);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull HistoryViewHolder holder, int position) {
+            EventHistoryRecord historyRecord = getItem(position);
+            holder.bindTo(historyRecord);
+        }
+
+        static final DiffUtil.ItemCallback<EventHistoryRecord> DIFF_CALLBACK =
+                new DiffUtil.ItemCallback<EventHistoryRecord>() {
+                    @Override
+                    public boolean areItemsTheSame(
+                            @NonNull EventHistoryRecord oldEventHistoryRecord, @NonNull EventHistoryRecord newEventHistoryRecord) {
+                        return oldEventHistoryRecord.equals(newEventHistoryRecord);
+                    }
+                    @Override
+                    public boolean areContentsTheSame(
+                            @NonNull EventHistoryRecord oldEventHistoryRecord, @NonNull EventHistoryRecord newEventHistoryRecord) {
+                        return oldEventHistoryRecord.equals(newEventHistoryRecord);
+                    }
+                };
+
+    }
+
+    static class HistoryViewHolder extends RecyclerView.ViewHolder {
+        final TextView tv_event, tv_profile, tv_time;
+        HistoryViewHolder(View itemView) {
+            super(itemView);
+            tv_event = itemView.findViewById(R.id.textView_from_event);
+            tv_profile = itemView.findViewById(R.id.textView_last_profile);
+            tv_time = itemView.findViewById(R.id.textView_profile_load_time);
+        }
+
+        void bindTo(EventHistoryRecord historyRecord) {
+            if (historyRecord == null)
+                return;
+            final String eventName = historyRecord.event;
+            final String profileName = historyRecord.profile;
+            long loadTime = historyRecord.loadTime;
+            tv_profile.setText(profileName);
+            tv_event.setText(eventName);
+            if (loadTime > 0) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(loadTime);
+                DateFormat df = SimpleDateFormat.getDateTimeInstance();
+                tv_time.setText(df.format(calendar.getTime()));
+            } else {
+                tv_time.setText("");
+            }
         }
     }
 }

@@ -23,8 +23,8 @@
     <string name="service_indicator_positive">Kører</string>
     <string name="service_indicator_negative">Kører ikke</string>
     <string name="profile_indicator_last">Seneste profil:</string>
-    <string name="profile_indicator_from">Fra hændelse:</string>
-    <string name="profile_indicator_time">Indlæst tidspunkt:</string>
+    <string name="profile_indicator_from">Fra hændelse</string>
+    <string name="profile_indicator_time">Indlæst tidspunkt</string>
 
     <string name="null_content">NULL INDHOLD</string>
 

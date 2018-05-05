@@ -163,6 +163,11 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_setting) {
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
+        } else if (id == R.id.nav_log) {
+            fragment = LoadedHistoryFragment.full();
+            manager.beginTransaction()
+                    .replace(R.id.content_main, fragment)
+                    .commit();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

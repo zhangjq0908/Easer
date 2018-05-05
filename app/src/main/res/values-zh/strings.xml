@@ -19,8 +19,9 @@
     <string name="title_edit">修改</string>
     <string name="title_event">事件</string>
     <string name="title_outline">概覽</string>
-    <string name="profile_indicator_from">源自事件:</string>
-    <string name="profile_indicator_time">載入時間:</string>
+    <string name="profile_indicator_profile">行爲集</string>
+    <string name="profile_indicator_from">源自事件</string>
+    <string name="profile_indicator_time">載入時間</string>
     <string name="appInformation">便易你的生活——讓你的手機自動執行例行動作。\n
         串起不同事件，然後讓他們自行執行。再也不用費心去記住它們！\n
         此軟件本是受CyanogenMod的profile機制以及IFTTT啓發，本擬在特定時間或WiFi連接下自動切換profile，但後來擴展爲更通用的形式。\n
@@ -89,5 +90,6 @@
     <string name="pref_use_12_hour_clock_title">使用12小時時鐘</string>
     <string name="alert_update_storage_data_title">發現舊版數據</string>
     <string name="alert_update_storage_data">你的（部分）數據似乎處於舊版之下，建議更新至新版，否則Easer可能無法正常使用。你可以在設置中選擇“轉換數據”來完成此事。</string>
+    <string name="title_activity_log">活動記錄</string>
 
 </resources>
