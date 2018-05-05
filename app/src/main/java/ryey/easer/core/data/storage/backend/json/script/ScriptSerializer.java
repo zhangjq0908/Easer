@@ -17,26 +17,26 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.data.storage.backend.json.event;
+package ryey.easer.core.data.storage.backend.json.script;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.ScenarioStructure;
+import ryey.easer.core.data.ScriptStructure;
 import ryey.easer.core.data.storage.C;
 import ryey.easer.core.data.storage.backend.Serializer;
 import ryey.easer.core.data.storage.backend.UnableToSerializeException;
 import ryey.easer.plugins.PluginRegistry;
 
-class EventSerializer implements Serializer<EventStructure> {
+class ScriptSerializer implements Serializer<ScriptStructure> {
 
     /**
      * {@inheritDoc}
      * This method assumes the scenario has already been serialized, so the name can uniquely identify a scenario
      */
-    public String serialize(EventStructure event) throws UnableToSerializeException {
+    public String serialize(ScriptStructure event) throws UnableToSerializeException {
         try {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put(C.NAME, event.getName());

@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.data.storage.backend.json.event;
+package ryey.easer.core.data.storage.backend.json.script;
 
 import android.content.Context;
 
@@ -30,45 +30,45 @@ import java.io.InputStream;
 import ryey.easer.BuildConfig;
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.ScenarioStructure;
+import ryey.easer.core.data.ScriptStructure;
 import ryey.easer.core.data.storage.C;
 import ryey.easer.core.data.storage.ScenarioDataStorage;
 import ryey.easer.core.data.storage.backend.IOUtils;
 import ryey.easer.core.data.storage.backend.Parser;
 import ryey.easer.plugins.PluginRegistry;
 
-class EventParser implements Parser<EventStructure> {
+class ScriptParser implements Parser<ScriptStructure> {
 
     final Context context;
 
-    private EventStructure eventStructure;
+    private ScriptStructure scriptStructure;
 
-    EventParser(Context context) {
+    ScriptParser(Context context) {
         this.context = context;
     }
 
-    public EventStructure parse(InputStream in) throws IOException, IllegalStorageDataException {
+    public ScriptStructure parse(InputStream in) throws IOException, IllegalStorageDataException {
         try {
             JSONObject jsonObject = new JSONObject(IOUtils.inputStreamToString(in));
             int version = jsonObject.optInt(C.VERSION, C.VERSION_ADD_JSON);
-            eventStructure = new EventStructure(version);
-            eventStructure.setName(jsonObject.getString(C.NAME));
-            eventStructure.setActive(jsonObject.optBoolean(C.ACTIVE, true));
-            eventStructure.setProfileName(jsonObject.optString(C.PROFILE, null));
-            eventStructure.setParentName(jsonObject.optString(C.AFTER, null));
+            scriptStructure = new ScriptStructure(version);
+            scriptStructure.setName(jsonObject.getString(C.NAME));
+            scriptStructure.setActive(jsonObject.optBoolean(C.ACTIVE, true));
+            scriptStructure.setProfileName(jsonObject.optString(C.PROFILE, null));
+            scriptStructure.setParentName(jsonObject.optString(C.AFTER, null));
             if (version < C.VERSION_USE_SCENARIO) { // Can be removed (because this is covered by the else statement)
                 EventData eventData = parse_eventData(jsonObject.getJSONObject(C.TRIG), version);
-                eventStructure.setEventData(eventData);
+                scriptStructure.setEventData(eventData);
             } else {
                 parseAndSet_trigger(jsonObject.getJSONObject(C.TRIG), version);
-                if (!eventStructure.getScenario().isTmpScenario()) {
-                    eventStructure.setReverse(jsonObject.getBoolean(C.REVERSE));
-                    eventStructure.setRepeatable(jsonObject.getBoolean(C.REPEATABLE));
-                    eventStructure.setPersistent(jsonObject.getBoolean(C.PERSISTENT));
+                if (!scriptStructure.getScenario().isTmpScenario()) {
+                    scriptStructure.setReverse(jsonObject.getBoolean(C.REVERSE));
+                    scriptStructure.setRepeatable(jsonObject.getBoolean(C.REPEATABLE));
+                    scriptStructure.setPersistent(jsonObject.getBoolean(C.PERSISTENT));
                 }
             }
-            return eventStructure;
+            return scriptStructure;
         } catch (JSONException e) {
             throw new IllegalStorageDataException(e);
         }
@@ -80,12 +80,12 @@ class EventParser implements Parser<EventStructure> {
             switch (trigger_type) {
                 case C.TriggerType.T_RAW:
                     EventData eventData = parse_eventData(jsonObject_trigger, version);
-                    eventStructure.setEventData(eventData);
+                    scriptStructure.setEventData(eventData);
                     break;
                 case C.TriggerType.T_PRE:
                     String scenario_name = jsonObject_trigger.getString(C.SCENARIO);
                     ScenarioStructure scenario = ScenarioDataStorage.getInstance(context).get(scenario_name);
-                    eventStructure.setScenario(scenario);
+                    scriptStructure.setScenario(scenario);
                     break;
                 default:
                     throw new IllegalStorageDataException("Unexpected trigger type");

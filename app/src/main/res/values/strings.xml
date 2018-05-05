@@ -5,6 +5,7 @@
     <string name="title_operation">Operation</string>
     <string name="title_profile">Profile</string>
     <string name="title_event">Event</string>
+    <string name="title_script">Script</string>
     <string name="title_scenario">Scenario</string>
     <string name="title_application">App</string>
     <string name="title_activity_log">Activity Log</string>
@@ -42,6 +43,7 @@
     <string name="button_request_permission">Grant permissions</string>
 
     <string name="text_title">Title: </string>
+    <string name="text_parent_node">Parent</string>
     <string name="text_parent">Parent: </string>
     <string name="text_profile">Profile: </string>
     <string name="text_use_scenario">Use Scenario</string>
@@ -54,6 +56,7 @@
     <string name="toggle_active">Active</string>
 
     <string name="hint_event_title">event title</string>
+    <string name="hint_script_title">script title</string>
     <string name="hint_profile_title">profile title</string>
     <string name="hint_scenario_title">scenario title</string>
 

@@ -37,8 +37,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import ryey.easer.SettingsHelper;
-import ryey.easer.core.data.EventTree;
-import ryey.easer.core.data.storage.EventDataStorage;
+import ryey.easer.core.data.ScriptTree;
+import ryey.easer.core.data.storage.ScriptDataStorage;
 
 /*
  * The background service which maintains several Lotus(es) and send Intent to load Profile(s).
@@ -147,8 +147,8 @@ public class EHService extends Service {
     private void reloadTriggers() {
         Logger.v("reloadTriggers()");
         mCancelTriggers();
-        EventDataStorage storage = EventDataStorage.getInstance(this);
-        List<EventTree> events = storage.getEventTrees();
+        ScriptDataStorage storage = ScriptDataStorage.getInstance(this);
+        List<ScriptTree> events = storage.getScriptTrees();
         mSetTriggers(events);
         Logger.d("triggers reloaded");
     }
@@ -160,9 +160,9 @@ public class EHService extends Service {
         mLotusArray.clear();
     }
 
-    private void mSetTriggers(List<EventTree> eventTreeList) {
+    private void mSetTriggers(List<ScriptTree> scriptTreeList) {
         Logger.v("setting triggers");
-        for (EventTree event : eventTreeList) {
+        for (ScriptTree event : scriptTreeList) {
             Logger.v("setting trigger for <%s>", event.getName());
             if (event.isActive()) {
                 Lotus lotus = new Lotus(this, event, executorService);
@@ -196,7 +196,7 @@ public class EHService extends Service {
         }
 
         private boolean setLotusStatus_real(Lotus lotus, String eventName, boolean status) {
-            if (lotus.eventTree.getName().equals(eventName)) {
+            if (lotus.scriptTree.getName().equals(eventName)) {
                 lotus.setStatus(status);
                 return true;
             } else {

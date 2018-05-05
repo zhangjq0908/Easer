@@ -40,7 +40,7 @@ import android.widget.TextView;
 
 import ryey.easer.R;
 import ryey.easer.core.data.storage.StorageHelper;
-import ryey.easer.core.ui.edit.EventListFragment;
+import ryey.easer.core.ui.edit.ScriptListFragment;
 import ryey.easer.core.ui.edit.ProfileListFragment;
 import ryey.easer.core.ui.edit.ScenarioListFragment;
 import ryey.easer.core.ui.setting.SettingsActivity;
@@ -145,10 +145,10 @@ public class MainActivity extends AppCompatActivity
             if (fragment == null)
                 fragment = new ProfileListFragment();
             manager.beginTransaction().replace(R.id.content_main, fragment, FRAGMENT_PROFILE).commit();
-        } else if (id == R.id.nav_event) {
+        } else if (id == R.id.nav_script) {
             fragment = manager.findFragmentByTag(FRAGMENT_EVENT);
             if (fragment == null)
-                fragment = new EventListFragment();
+                fragment = new ScriptListFragment();
             manager.beginTransaction().replace(R.id.content_main, fragment, FRAGMENT_EVENT).commit();
         } else if (id == R.id.nav_scenario) {
             fragment = manager.findFragmentByTag(FRAGMENT_SCENARIO);

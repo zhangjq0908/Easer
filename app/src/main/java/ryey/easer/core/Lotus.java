@@ -39,12 +39,12 @@ import ryey.easer.SettingsHelper;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
-import ryey.easer.core.data.EventTree;
 import ryey.easer.core.data.ScenarioStructure;
+import ryey.easer.core.data.ScriptTree;
 import ryey.easer.plugins.PluginRegistry;
 
 /*
- * Each Lotus holds one EventTree.
+ * Each Lotus holds one ScriptTree.
  *
  * The root of that tree will be registered listener.
  * When the root is satisfied, Lotus will recursively check all children to find which is satisfied.
@@ -58,7 +58,7 @@ final class Lotus {
     private static final String CATEGORY_NOTIFY_LOTUS = "ryey.easer.triggerlotus.category.NOTIFY_LOTUS";
 
     private Context context;
-    final EventTree eventTree;
+    final ScriptTree scriptTree;
     private final ExecutorService executorService;
 
     private final Uri uri = Uri.parse(String.format(Locale.US, "lotus://%d", hashCode()));
@@ -96,9 +96,9 @@ final class Lotus {
         filter.addDataPath(uri.getPath(), PatternMatcher.PATTERN_LITERAL);
     }
 
-    Lotus(Context context, EventTree eventTree, ExecutorService executorService) {
+    Lotus(Context context, ScriptTree scriptTree, ExecutorService executorService) {
         this.context = context;
-        this.eventTree = eventTree;
+        this.scriptTree = scriptTree;
         this.executorService = executorService;
 
         Intent intent1 = new Intent(ACTION_SLOT_SATISFIED);
@@ -108,19 +108,19 @@ final class Lotus {
         intent1.setAction(ACTION_SLOT_UNSATISFIED);
         notifyLotusIntent_negative = PendingIntent.getBroadcast(context, 0, intent1, 0);
 
-        mSlot = nodeToSlot(eventTree);
-        if (eventTree.isReversed()) {
+        mSlot = nodeToSlot(scriptTree);
+        if (scriptTree.isReversed()) {
             mSlot.register(notifyLotusIntent_negative, notifyLotusIntent_positive);
         } else {
             mSlot.register(notifyLotusIntent_positive, notifyLotusIntent_negative);
         }
-        repeatable = eventTree.isRepeatable();
-        persistent = eventTree.isPersistent();
+        repeatable = scriptTree.isRepeatable();
+        persistent = scriptTree.isPersistent();
 
         cooldownInMillisecond = SettingsHelper.coolDownInterval(context);
     }
 
-    private <T extends EventData> AbstractSlot<T> nodeToSlot(EventTree node) {
+    private <T extends EventData> AbstractSlot<T> nodeToSlot(ScriptTree node) {
         ScenarioStructure scenario = node.getScenario();
         AbstractSlot<T> slot;
         //noinspection unchecked
@@ -200,8 +200,8 @@ final class Lotus {
     private synchronized void onSlotSatisfied() {
         if (!repeatable && satisfied)
             return;
-        if (checkAndSetCooldown(eventTree.getName())) {
-            Logger.i("event <%s> satisfied", eventTree.getName());
+        if (checkAndSetCooldown(scriptTree.getName())) {
+            Logger.i("event <%s> satisfied", scriptTree.getName());
             satisfied = true;
             triggerAndPromote();
         }
@@ -210,8 +210,8 @@ final class Lotus {
     private synchronized void onSlotUnsatisfied() {
         if (persistent && satisfied)
             return;
-        if (checkAndSetCooldown(eventTree.getName())) {
-            Logger.i("Event %s unsatisfied", eventTree.getName());
+        if (checkAndSetCooldown(scriptTree.getName())) {
+            Logger.i("Event %s unsatisfied", scriptTree.getName());
             satisfied = false;
             for (Lotus sub : subs) {
                 sub.cancel();
@@ -221,16 +221,16 @@ final class Lotus {
     }
 
     private void triggerAndPromote() {
-        Logger.v(" traversing and find <%s> satisfied", eventTree.getName());
-        String profileName = eventTree.getProfile();
+        Logger.v(" traversing and find <%s> satisfied", scriptTree.getName());
+        String profileName = scriptTree.getProfile();
         if (profileName != null) {
             Intent intent = new Intent(context, ProfileLoaderIntentService.class);
             intent.setAction(ProfileLoaderIntentService.ACTION_LOAD_PROFILE);
             intent.putExtra(ProfileLoaderIntentService.EXTRA_PROFILE_NAME, profileName);
-            intent.putExtra(ProfileLoaderIntentService.EXTRA_EVENT_NAME, eventTree.getName());
+            intent.putExtra(ProfileLoaderIntentService.EXTRA_EVENT_NAME, scriptTree.getName());
             context.startService(intent);
         }
-        for (EventTree sub : eventTree.getSubs()) {
+        for (ScriptTree sub : scriptTree.getSubs()) {
             if (sub.isActive()) {
                 Lotus subLotus = new Lotus(context, sub, executorService);
                 subs.add(subLotus);

@@ -32,9 +32,9 @@ import ryey.easer.commons.plugindef.eventplugin.EventData;
  *
  * This class holds these fields and getters and setters.
  *
- * Only `EditEventActivity` and `EventTree` needs to know the actual structure.
+ * Only `EditScriptActivity` and `ScriptTree` needs to know the actual structure.
  */
-final public class EventStructure implements Renameable, Verifiable, WithCreatedVersion {
+final public class ScriptStructure implements Renameable, Verifiable, WithCreatedVersion {
     private final int createdVersion;
     protected String name;
     private ScenarioStructure scenario;
@@ -45,7 +45,7 @@ final public class EventStructure implements Renameable, Verifiable, WithCreated
     @Nullable protected String profileName;
     @Nullable protected String parentName;
 
-    public EventStructure(int createdVersion) {this.createdVersion = createdVersion;}
+    public ScriptStructure(int createdVersion) {this.createdVersion = createdVersion;}
 
     public String getName() {
         return name;

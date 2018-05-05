@@ -27,11 +27,11 @@ import ryey.easer.commons.plugindef.eventplugin.EventData;
 /*
  * Events are linked together as trees. This class represents that structure and relevant methods.
  */
-final public class EventTree {
-    final EventStructure data;
-    final List<EventTree> subs;
-    public EventTree(EventStructure eventStructure) {
-        this.data = eventStructure;
+final public class ScriptTree {
+    final ScriptStructure data;
+    final List<ScriptTree> subs;
+    public ScriptTree(ScriptStructure scriptStructure) {
+        this.data = scriptStructure;
         this.subs = new LinkedList<>();
     }
     public String getName() {
@@ -52,10 +52,10 @@ final public class EventTree {
     public boolean isPersistent() {
         return data.isPersistent();
     }
-    public void addSub(EventTree sub) {
+    public void addSub(ScriptTree sub) {
         subs.add(sub);
     }
-    public List<EventTree> getSubs() {
+    public List<ScriptTree> getSubs() {
         return subs;
     }
     public String getProfile() {

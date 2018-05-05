@@ -21,8 +21,8 @@ package ryey.easer.core.data.storage.backend;
 
 import java.io.IOException;
 
-import ryey.easer.core.data.EventStructure;
+import ryey.easer.core.data.ScriptStructure;
 
-public interface EventDataStorageBackendInterface extends DataStorageBackendCommonInterface<EventStructure> {
-    void update(EventStructure eventStructure) throws IOException;
+public interface ScriptDataStorageBackendInterface extends DataStorageBackendCommonInterface<ScriptStructure> {
+    void update(ScriptStructure scriptStructure) throws IOException;
 }

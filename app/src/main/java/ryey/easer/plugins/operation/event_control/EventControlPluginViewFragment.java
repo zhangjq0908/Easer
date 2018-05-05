@@ -35,7 +35,7 @@ import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.core.data.storage.EventDataStorage;
+import ryey.easer.core.data.storage.ScriptDataStorage;
 
 public class EventControlPluginViewFragment extends PluginViewFragment<EventControlOperationData> {
 
@@ -47,7 +47,7 @@ public class EventControlPluginViewFragment extends PluginViewFragment<EventCont
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_operation__event_control, container, false);
         spinner_event = view.findViewById(R.id.spinner_event);
-        mEventList = (EventDataStorage.getInstance(getContext())).list();
+        mEventList = (ScriptDataStorage.getInstance(getContext())).list();
         //noinspection ConstantConditions
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.spinner_simple, mEventList); //TODO: change layout
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);

@@ -35,19 +35,19 @@ import ryey.easer.R;
 import ryey.easer.commons.C;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.ScenarioStructure;
-import ryey.easer.core.data.storage.EventDataStorage;
+import ryey.easer.core.data.ScriptStructure;
 import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.core.data.storage.ScenarioDataStorage;
+import ryey.easer.core.data.storage.ScriptDataStorage;
 
 /*
  * TODO: change the layout
  */
-public class EditEventActivity extends AbstractEditDataActivity<EventStructure, EventDataStorage> {
+public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure, ScriptDataStorage> {
 
     static {
-        TAG_DATA_TYPE = "event";
+        TAG_DATA_TYPE = "script";
     }
 
     EventPluginViewPager mViewPager;
@@ -55,7 +55,7 @@ public class EditEventActivity extends AbstractEditDataActivity<EventStructure, 
     EditText mEditText_name = null;
     private static final String NON = ""; //TODO: more robust
     Spinner mSpinner_parent = null;
-    List<String> mEventList = null;
+    List<String> mScriptList = null;
     Spinner mSpinner_profile = null;
     List<String> mProfileList = null;
     boolean isActive = true;
@@ -88,27 +88,27 @@ public class EditEventActivity extends AbstractEditDataActivity<EventStructure, 
     }
 
     @Override
-    protected EventDataStorage retDataStorage() {
-        return EventDataStorage.getInstance(this);
+    protected ScriptDataStorage retDataStorage() {
+        return ScriptDataStorage.getInstance(this);
     }
 
     @Override
     protected String title() {
-        return getString(R.string.title_event);
+        return getString(R.string.title_script);
     }
 
     @Override
     protected int contentViewRes() {
-        return R.layout.activity_edit_event;
+        return R.layout.activity_edit_script;
     }
 
     void init() {
-        mEditText_name = findViewById(R.id.editText_event_title);
+        mEditText_name = findViewById(R.id.editText_script_title);
 
         mSpinner_parent = findViewById(R.id.spinner_parent);
-        mEventList = (EventDataStorage.getInstance(this)).list();
-        mEventList.add(0, NON);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_simple, mEventList); //TODO: change layout
+        mScriptList = (ScriptDataStorage.getInstance(this)).list();
+        mScriptList.add(0, NON);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_simple, mScriptList); //TODO: change layout
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         mSpinner_parent.setAdapter(adapter);
         mSpinner_parent.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -175,17 +175,17 @@ public class EditEventActivity extends AbstractEditDataActivity<EventStructure, 
     }
 
     @Override
-    protected void loadFromData(EventStructure event) {
-        oldName = event.getName();
+    protected void loadFromData(ScriptStructure script) {
+        oldName = script.getName();
         mEditText_name.setText(oldName);
-        String profile = event.getProfileName();
+        String profile = script.getProfileName();
         if (profile == null)
             profile = NON;
         mSpinner_profile.setSelection(mProfileList.indexOf(profile));
-        String parent = event.getParentName();
-        mSpinner_parent.setSelection(mEventList.indexOf(parent));
+        String parent = script.getParentName();
+        mSpinner_parent.setSelection(mScriptList.indexOf(parent));
 
-        ScenarioStructure scenario = event.getScenario();
+        ScenarioStructure scenario = script.getScenario();
         if (scenario.isTmpScenario()) {
             mSwitch_use_scenario.setChecked(false);
             EventData eventData = scenario.getEventData();
@@ -193,36 +193,36 @@ public class EditEventActivity extends AbstractEditDataActivity<EventStructure, 
         } else {
             mSwitch_use_scenario.setChecked(true);
             mSpinner_scenario.setSelection(mScenarioList.indexOf(scenario.getName()));
-            mSwitch_reverse.setChecked(event.isReverse());
-            mSwitch_repeatable.setChecked(event.isRepeatable());
-            mSwitch_persistent.setChecked(event.isPersistent());
+            mSwitch_reverse.setChecked(script.isReverse());
+            mSwitch_repeatable.setChecked(script.isRepeatable());
+            mSwitch_persistent.setChecked(script.isPersistent());
         }
 
-        isActive = event.isActive();
+        isActive = script.isActive();
     }
 
     @Override
-    protected EventStructure saveToData() throws InvalidDataInputException {
-        EventStructure event = new EventStructure(C.VERSION_CREATED_IN_RUNTIME);
-        event.setName(mEditText_name.getText().toString());
+    protected ScriptStructure saveToData() throws InvalidDataInputException {
+        ScriptStructure script = new ScriptStructure(C.VERSION_CREATED_IN_RUNTIME);
+        script.setName(mEditText_name.getText().toString());
         String profile = (String) mSpinner_profile.getSelectedItem();
-        event.setProfileName(profile);
-        event.setActive(isActive);
+        script.setProfileName(profile);
+        script.setActive(isActive);
         String parent = (String) mSpinner_parent.getSelectedItem();
         if (!parent.equals(NON))
-            event.setParentName(parent);
+            script.setParentName(parent);
 
         ScenarioDataStorage scenarioDataStorage = ScenarioDataStorage.getInstance(this);
         if (mSwitch_use_scenario.isChecked()) {
             String scenario_name = (String) mSpinner_scenario.getSelectedItem();
-            event.setScenario(scenarioDataStorage.get(scenario_name));
-            event.setReverse(mSwitch_reverse.isChecked());
-            event.setRepeatable(mSwitch_repeatable.isChecked());
-            event.setPersistent(mSwitch_persistent.isChecked());
+            script.setScenario(scenarioDataStorage.get(scenario_name));
+            script.setReverse(mSwitch_reverse.isChecked());
+            script.setRepeatable(mSwitch_repeatable.isChecked());
+            script.setPersistent(mSwitch_persistent.isChecked());
         } else {
-            event.setEventData(mViewPager.getEventData());
+            script.setEventData(mViewPager.getEventData());
         }
-        return event;
+        return script;
     }
 
 }

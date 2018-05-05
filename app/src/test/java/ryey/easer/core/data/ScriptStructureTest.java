@@ -31,9 +31,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class EventStructureTest {
+public class ScriptStructureTest {
 
-    EventStructure eventStructure, eventStructure2;
+    ScriptStructure scriptStructure, scriptStructure2;
     static final String name = "name to test";
     static final String parentName = "parent name";
     static final String profileName = "profile name";
@@ -48,61 +48,61 @@ public class EventStructureTest {
 
     @Before
     public void setUp() {
-        eventStructure = new EventStructure(C.VERSION_CREATED_IN_RUNTIME);
-        eventStructure2 = new EventStructure(C.VERSION_CREATED_IN_RUNTIME);
+        scriptStructure = new ScriptStructure(C.VERSION_CREATED_IN_RUNTIME);
+        scriptStructure2 = new ScriptStructure(C.VERSION_CREATED_IN_RUNTIME);
     }
 
     @Test
     public void setAndGetName() throws Exception {
-        assertEquals(eventStructure.getName(), null);
-        eventStructure.setName(name);
-        assertEquals(eventStructure.name, name);
-        assertEquals(eventStructure.getName(), name);
+        assertEquals(scriptStructure.getName(), null);
+        scriptStructure.setName(name);
+        assertEquals(scriptStructure.name, name);
+        assertEquals(scriptStructure.getName(), name);
     }
 
     @Test
     public void setAndGetProfileName() throws Exception {
-        assertEquals(eventStructure.getProfileName(), null);
-        eventStructure.setProfileName(profileName);
-        assertEquals(eventStructure.getProfileName(), profileName);
+        assertEquals(scriptStructure.getProfileName(), null);
+        scriptStructure.setProfileName(profileName);
+        assertEquals(scriptStructure.getProfileName(), profileName);
     }
 
     @Test
     public void setAndGetParentName() throws Exception {
-        assertEquals(eventStructure.getParentName(), null);
-        eventStructure.setParentName(parentName);
-        assertEquals(eventStructure.getParentName(), parentName);
+        assertEquals(scriptStructure.getParentName(), null);
+        scriptStructure.setParentName(parentName);
+        assertEquals(scriptStructure.getParentName(), parentName);
     }
 
     @Test
     public void getAndSetScenario() throws Exception {
-        assertEquals(eventStructure.getScenario(), null);
-        eventStructure.setScenario(scenario);
-        assertEquals(eventStructure.getScenario(), scenario);
+        assertEquals(scriptStructure.getScenario(), null);
+        scriptStructure.setScenario(scenario);
+        assertEquals(scriptStructure.getScenario(), scenario);
     }
 
     @Test
     public void setAndTestActive() throws Exception {
-        eventStructure.setActive(true);
-        assertTrue(eventStructure.isActive());
-        eventStructure.setActive(false);
-        assertFalse(eventStructure.isActive());
-        eventStructure.setActive(true);
-        assertTrue(eventStructure.isActive());
+        scriptStructure.setActive(true);
+        assertTrue(scriptStructure.isActive());
+        scriptStructure.setActive(false);
+        assertFalse(scriptStructure.isActive());
+        scriptStructure.setActive(true);
+        assertTrue(scriptStructure.isActive());
     }
 
     @Test
     public void isValid() throws Exception {
-        assertFalse(eventStructure.isValid());
-        eventStructure.setName(name);
-        assertFalse(eventStructure.isValid());
-        eventStructure.setScenario(scenario);
-        assertTrue(eventStructure.isActive());
+        assertFalse(scriptStructure.isValid());
+        scriptStructure.setName(name);
+        assertFalse(scriptStructure.isValid());
+        scriptStructure.setScenario(scenario);
+        assertTrue(scriptStructure.isActive());
 
-        assertFalse(eventStructure2.isValid());
-        eventStructure2.setScenario(scenario);
-        assertFalse(eventStructure2.isValid());
-        eventStructure2.setName(name);
-        assertTrue(eventStructure2.isActive());
+        assertFalse(scriptStructure2.isValid());
+        scriptStructure2.setScenario(scenario);
+        assertFalse(scriptStructure2.isValid());
+        scriptStructure2.setName(name);
+        assertTrue(scriptStructure2.isActive());
     }
 }

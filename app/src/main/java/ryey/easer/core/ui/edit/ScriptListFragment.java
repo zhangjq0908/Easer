@@ -23,17 +23,17 @@ import android.content.Intent;
 
 import ryey.easer.R;
 import ryey.easer.core.EHService;
-import ryey.easer.core.data.storage.EventDataStorage;
+import ryey.easer.core.data.storage.ScriptDataStorage;
 
-public class EventListFragment extends AbstractDataListFragment<EventDataStorage> {
+public class ScriptListFragment extends AbstractDataListFragment<ScriptDataStorage> {
     @Override
     protected String title() {
-        return getString(R.string.title_event);
+        return getString(R.string.title_script);
     }
 
     @Override
-    protected EventDataStorage retmStorage() {
-        return EventDataStorage.getInstance(getContext());
+    protected ScriptDataStorage retmStorage() {
+        return ScriptDataStorage.getInstance(getContext());
     }
 
     @Override
@@ -44,6 +44,6 @@ public class EventListFragment extends AbstractDataListFragment<EventDataStorage
 
     @Override
     protected Intent intentForEditDataActivity() {
-        return new Intent(getActivity(), EditEventActivity.class);
+        return new Intent(getActivity(), EditScriptActivity.class);
     }
 }

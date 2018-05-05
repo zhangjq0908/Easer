@@ -57,8 +57,8 @@ public class ProfileDataStorage extends AbstractDataStorage<ProfileStructure, Pr
         boolean success = super.edit(oldName, profile);
         if (success) {
             if (!oldName.equals(profile.getName())) {
-                EventDataStorage eventDataStorage = EventDataStorage.getInstance(context);
-                eventDataStorage.handleProfileRename(oldName, profile.getName());
+                ScriptDataStorage scriptDataStorage = ScriptDataStorage.getInstance(context);
+                scriptDataStorage.handleProfileRename(oldName, profile.getName());
             }
         }
         return success;
