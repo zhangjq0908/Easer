@@ -6,6 +6,8 @@
 
     <color name="colorDialogTitle">#99A9EE</color>
 
+    <color name="divider">@android:color/darker_gray</color>
+
     <color name="color_positive">#0CF440</color>
     <color name="color_negative">#F22754</color>
 
