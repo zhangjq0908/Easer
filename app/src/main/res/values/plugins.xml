@@ -169,4 +169,8 @@
     <string name="op_launch_app_text_app">App</string>
     <string name="op_launch_app_text_package_name">Package Name</string>
 
+    <string name="op_ui_mode">Car Mode</string>
+    <string name="op_car_mode">Car Mode</string>
+    <string name="op_normal_mode">Normal Mode</string>
+
 </resources>

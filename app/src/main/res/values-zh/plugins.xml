@@ -161,4 +161,8 @@
     <string name="op_launch_app_text_app">程序</string>
     <string name="op_launch_app_text_package_name">包名</string>
 
+    <string name="op_ui_mode">UI模式</string>
+    <string name="op_car_mode">車載模式</string>
+    <string name="op_normal_mode">普通模式</string>
+
 </resources>
