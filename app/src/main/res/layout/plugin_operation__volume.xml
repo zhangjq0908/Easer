@@ -76,7 +76,7 @@
         android:checked="false"
         android:text="@string/o_volume_alarm"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/seekBar_media" />
+        app:layout_constraintTop_toBottomOf="@+id/seekBar_media" />
 
     <SeekBar
         android:id="@+id/seekBar_alarm"
@@ -127,6 +127,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:checked="false"
         android:text="@string/o_volume_bluetooth"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seekBar_notification" />
@@ -137,9 +138,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="9dp"
         android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="9dp"
         android:layout_marginTop="8dp"
         android:max="10"
         android:progress="0"
@@ -147,5 +148,37 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline13"
         app:layout_constraintTop_toBottomOf="@+id/checkBox_bt" />
+
+    <TextView
+        android:id="@+id/textView_bt_delay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/o_volume_delay"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/editText_bt_delay"
+        app:layout_constraintStart_toStartOf="@+id/checkBox_bt"
+        app:layout_constraintTop_toTopOf="@+id/editText_bt_delay" />
+
+    <EditText
+        android:id="@+id/editText_bt_delay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="number"
+        android:singleLine="true"
+        android:text="0"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/seekBar_bt"
+        app:layout_constraintStart_toEndOf="@+id/textView_bt_delay"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar_bt" />
 
 </android.support.constraint.ConstraintLayout>

@@ -45,6 +45,15 @@ public class VolumeLoader extends OperationLoader<VolumeOperationData> {
         setVolume(audioManager, AudioManager.STREAM_ALARM, data.vol_alarm);
         setVolume(audioManager, AudioManager.STREAM_NOTIFICATION, data.vol_notification);
         setVolume(audioManager, VolumeOperationPlugin.STREAM_BLUETOOTH, data.vol_bt);
+        if (data.bt_delay != null) {
+            try {
+                Thread.sleep(data.bt_delay * 1000);
+                setVolume(audioManager, AudioManager.STREAM_MUSIC, data.vol_bt);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
         return true;
     }
 }

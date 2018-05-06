@@ -37,7 +37,7 @@ class VolumeOperationDataFactory implements OperationDataFactory<VolumeOperation
     @NonNull
     @Override
     public VolumeOperationData dummyData() {
-        return new VolumeOperationData(1, 2, null, 0, null);
+        return new VolumeOperationData(1, 2, null, 0, null, null);
     }
 
     @ValidData

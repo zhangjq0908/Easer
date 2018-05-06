@@ -29,6 +29,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.SeekBar;
 
 import com.orhanobut.logger.Logger;
@@ -42,11 +43,12 @@ public class VolumeOperationPluginViewFragment extends PluginViewFragment<Volume
 
     CheckBox checkBox_ring, checkBox_media, checkBox_alarm, checkBox_notification, checkBox_bt;
     SeekBar seekBar_ring, seekBar_media, seekBar_alarm, seekBar_notification, seekBar_bt;
+    EditText et_bt_delay;
 
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_operation__volume, container, false);
+        final View view = inflater.inflate(R.layout.plugin_operation__volume, container, false);
 
         //noinspection ConstantConditions
         AudioManager audioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
@@ -97,11 +99,15 @@ public class VolumeOperationPluginViewFragment extends PluginViewFragment<Volume
 
         seekBar_bt = view.findViewById(R.id.seekBar_bt);
         seekBar_bt.setMax(audioManager.getStreamMaxVolume(VolumeOperationPlugin.STREAM_BLUETOOTH));
+        et_bt_delay = view.findViewById(R.id.editText_bt_delay);
         checkBox_bt = view.findViewById(R.id.checkBox_bt);
         checkBox_bt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                seekBar_bt.setVisibility(b? View.VISIBLE : View.GONE);
+                int visibility = b ? View.VISIBLE : View.GONE;
+                seekBar_bt.setVisibility(visibility);
+                view.findViewById(R.id.textView_bt_delay).setVisibility(visibility);
+                et_bt_delay.setVisibility(visibility);
             }
         });
 
@@ -115,6 +121,10 @@ public class VolumeOperationPluginViewFragment extends PluginViewFragment<Volume
         setVolumeVisual(checkBox_alarm, seekBar_alarm, data.vol_alarm);
         setVolumeVisual(checkBox_notification, seekBar_notification, data.vol_notification);
         setVolumeVisual(checkBox_bt, seekBar_bt, data.vol_bt);
+        if (data.vol_bt != null) {
+            String bt_delay_str = data.bt_delay == null ? "0" : data.bt_delay.toString();
+            et_bt_delay.setText(bt_delay_str);
+        }
     }
 
     @ValidData
@@ -126,7 +136,15 @@ public class VolumeOperationPluginViewFragment extends PluginViewFragment<Volume
         Integer vol_alarm = getVolume(seekBar_alarm);
         Integer vol_notification = getVolume(seekBar_notification);
         Integer vol_bt = getVolume(seekBar_bt);
-        return new VolumeOperationData(vol_ring, vol_media, vol_alarm, vol_notification, vol_bt);
+        Integer bt_delay = null;
+        if (vol_bt != null) {
+            try {
+                bt_delay = Integer.valueOf(et_bt_delay.getText().toString());
+            } catch (NumberFormatException e) {
+                throw new InvalidDataInputException("bluetooth_delay is invalid");
+            }
+        }
+        return new VolumeOperationData(vol_ring, vol_media, vol_alarm, vol_notification, vol_bt, bt_delay);
     }
 
     private static void setVolumeVisual(CheckBox checkBox, SeekBar seekBar, Integer value) {

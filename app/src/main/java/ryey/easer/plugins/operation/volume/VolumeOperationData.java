@@ -37,19 +37,22 @@ public class VolumeOperationData implements OperationData {
     private static final String K_VOL_ALARM = "alarm";
     private static final String K_VOL_NOTIFICATION = "notification";
     private static final String K_VOL_BT = "bluetooth";
+    private static final String K_BT_DELAY = "bluetooth_delay";
 
     Integer vol_ring;
     Integer vol_media;
     Integer vol_alarm;
     Integer vol_notification;
     Integer vol_bt;
+    Integer bt_delay;
 
-    public VolumeOperationData(Integer vol_ring, Integer vol_media, Integer vol_alarm, Integer vol_notification, Integer vol_bt) {
+    VolumeOperationData(Integer vol_ring, Integer vol_media, Integer vol_alarm, Integer vol_notification, Integer vol_bt, Integer bt_delay) {
         this.vol_ring = vol_ring;
         this.vol_media = vol_media;
         this.vol_alarm = vol_alarm;
         this.vol_notification = vol_notification;
         this.vol_bt = vol_bt;
+        this.bt_delay = bt_delay;
     }
 
     VolumeOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
@@ -78,6 +81,7 @@ public class VolumeOperationData implements OperationData {
                     vol_alarm = optInteger(jsonObject, K_VOL_ALARM);
                     vol_notification = optInteger(jsonObject, K_VOL_NOTIFICATION);
                     vol_bt = optInteger(jsonObject, K_VOL_BT);
+                    bt_delay = optInteger(jsonObject, K_BT_DELAY);
                 } catch (JSONException e) {
                     throw new IllegalStorageDataException(e);
                 }
@@ -97,6 +101,7 @@ public class VolumeOperationData implements OperationData {
                     writeNonNull(jsonObject, vol_alarm, K_VOL_ALARM);
                     writeNonNull(jsonObject, vol_notification, K_VOL_NOTIFICATION);
                     writeNonNull(jsonObject, vol_bt, K_VOL_BT);
+                    writeNonNull(jsonObject, bt_delay, K_BT_DELAY);
                     res = jsonObject.toString();
                 } catch (JSONException e) {
                     throw new IllegalStateException(e);
@@ -107,9 +112,9 @@ public class VolumeOperationData implements OperationData {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null)
-            return false;
-        if (!(obj instanceof VolumeOperationData))
+        if (obj == this)
+            return true;
+        if (obj == null || !(obj instanceof VolumeOperationData))
             return false;
         if (!Utils.nullableEqual(vol_ring, ((VolumeOperationData) obj).vol_ring))
             return false;
@@ -121,16 +126,20 @@ public class VolumeOperationData implements OperationData {
             return false;
         if (!Utils.nullableEqual(vol_bt, ((VolumeOperationData) obj).vol_bt))
             return false;
+        if (!Utils.nullableEqual(bt_delay, ((VolumeOperationData) obj).bt_delay))
+            return false;
         return true;
     }
 
     @Override
     public boolean isValid() {
-        return isNotNegative(vol_ring)
-                || isNotNegative(vol_media)
-                || isNotNegative(vol_alarm)
-                || isNotNegative(vol_notification)
-                || isNotNegative(vol_bt);
+        return (isNotNegative(vol_ring)
+                        || isNotNegative(vol_media)
+                        || isNotNegative(vol_alarm)
+                        || isNotNegative(vol_notification)
+                        || isNotNegative(vol_bt)
+                        || isNotNegative(bt_delay))
+                && ((vol_bt == null) == (bt_delay == null));
     }
 
     @Override
@@ -145,6 +154,7 @@ public class VolumeOperationData implements OperationData {
         parcel.writeValue(vol_alarm);
         parcel.writeValue(vol_notification);
         parcel.writeValue(vol_bt);
+        parcel.writeValue(bt_delay);
     }
 
     public static final Creator<VolumeOperationData> CREATOR
@@ -164,9 +174,10 @@ public class VolumeOperationData implements OperationData {
         vol_alarm = (Integer) in.readValue(Integer.class.getClassLoader());
         vol_notification = (Integer) in.readValue(Integer.class.getClassLoader());
         vol_bt = (Integer) in.readValue(Integer.class.getClassLoader());
+        bt_delay = (Integer) in.readValue(Integer.class.getClassLoader());
     }
 
     private static boolean isNotNegative(@Nullable Integer value) {
-        return value != null && value >= 0;
+        return value == null || value >= 0;
     }
 }
