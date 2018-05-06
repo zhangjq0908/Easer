@@ -1,6 +1,14 @@
 CHANGELOG
 ======
 
+* v0.5.8: Rename the UI component "Event" to "Script" && Activity Log && New plugins (`UiModeOperationPlugin` & `ScreenEventPlugin`) && Allow to assign delay to set bluetooth volume && Little UI update
+	* Rename the UI component "Event" to "Script" to avoid confusion to "scenario" (and also for future needs)
+	* New page (Activity Log) for Easer's activity log
+	* New plugin `UiModeOperationPlugin` for Android UI mode (e.g. car mode and normal mode)
+	* New plugin `ScreenEventPlugin` for screen on / off
+	* Allow to assign delay when setting bluetooth volume
+	* Add divider when selecting Operation
+
 * v0.5.7.1: Fix bluetooth volume not changing && Fix crash when rotating && Code clean up
 	* Fix `VolumeOperationPlugin` changing bluetooth volume
 	* Fix crash when rotating device on `Edit{Event,Profile}Activity`

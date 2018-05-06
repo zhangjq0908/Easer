@@ -17,6 +17,7 @@ Supported Features
 * NFC tag scanned
 * Headset plug in/out
 * TCP communication (one round trip)
+* Screen on/off
 
 ### Operation
 * WiFi switch
@@ -37,6 +38,7 @@ Supported Features
 * Change Event status
 * Control volume
 * Launch App
+* UI mode (e.g. car mode)
 
 ### Misc
 * Formatting expression (supported in the fields of many Events/Operations)

@@ -15,7 +15,7 @@ See [README.en.md](README.en.md) for the English version of README.
 ### 智能自動化
 Easer是一個事件驅動的Android自動化工具——用戶告訴它在什麼情況下做什麼事（或連結多個事件來自定義事件），此後再也不需要手動進行這些例程，也不必擔心忘記進行。
 
-Easer類似於一個本地版的IFTTT：在不同的狀況（Event）下載入指定的情境（Profile）。每個情境（Profile）由多個動作（Operation）組成，包括但不限於調整手機設置（見下）。
+Easer類似於一個本地版的IFTTT：在不同的事件（Event）下執行指定的行爲集（Profile）。每個行爲集（Profile）由多個動作（Operation）組成，包括但不限於調整手機設置（見下）。
 
 ### app合作協調
 
@@ -25,9 +25,9 @@ Easer也是app合作的協調者——自定義在收到特定廣播（Broadcast
 
 ### 自定義事件
 
-Event可設置依賴（前置條件），使得他們以樹狀鏈接。這一機制使得Easer的事件初步具備使用布爾邏輯（與、或）相鏈接的能力。
+Event可對事件腳本（Script，包含Event及對應載入的Profile）設置依賴（前置條件），使得他們以樹狀鏈接。這一機制使得Easer的事件初步具備使用布爾邏輯（與、或）相鏈接的能力，以便實現自定義事件。
 
-當前，Easer會以後續遍歷選擇所有符合條件的Event對應Profile載入。但在不久的將來，Easer將會擁有更細緻且更直觀的對事件狀況的分類，使得用戶擁有對事件更佳的把握。
+當前，Easer會以後續遍歷選擇所有符合條件的Script對應Profile載入。但在不久的將來，Easer將會擁有更細緻且更直觀的對事件狀況的分類，使得用戶擁有對事件更佳的把握。
 
 
 另請參見[wiki](https://github.com/renyuneyun/Easer/wiki)，尤其是[須知](https://github.com/renyuneyun/Easer/wiki/%E9%A0%88%E7%9F%A5)。

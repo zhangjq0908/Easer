@@ -12,7 +12,7 @@ Make your smart phone smarter: tell it what to do under different situations.
 
 Easer is an event-driven Android automation tool. It knows various events (see below) and YOU (the user) tell it what to do on what events (you can even combine multiple events). Thus, you no longer need to manually perform routine actions, or worry about forgetting to perform them.
 
-You can think of Easer as a local version of IFTTT: trigger actions or change settings (*Operations*, bundled as *Profiles*) in different situations (*Events*).
+You can think of Easer as a local version of IFTTT: trigger actions or change settings (*Operations*, bundled as *Profiles*) under different situations (*Events*).
 
 ### Inter-app coordination
 
@@ -22,7 +22,7 @@ Easer is also a coordinator of inter-app actions (e.g. communications) -- it can
 
 ### Custom Events
 
-You can chain *Events* (set dependencies) as trees. This mechanism allows Easer to (somewhat) organize *Events* using Boolean logic (e.g. "and", "or").
+You can chain *Script* (which specifies *Events* as well as its *Profile*) as trees (i.e. setting dependencies), by specifying its *Parent*. This mechanism allows Easer to (somewhat) create custom *Events* using Boolean logic (e.g. "and", "or").
 
 Currently, Easer performs a post-order traversal to load your *Profiles*. In the near future, Easer will have more meticulous, expressive and intuitive categorization of *Events*.
 
