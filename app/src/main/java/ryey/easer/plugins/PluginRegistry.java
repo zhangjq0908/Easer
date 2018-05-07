@@ -31,10 +31,13 @@ import ryey.easer.commons.CommonHelper;
 import ryey.easer.commons.plugindef.PluginDef;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.StorageData;
+import ryey.easer.commons.plugindef.conditionplugin.ConditionData;
+import ryey.easer.commons.plugindef.conditionplugin.ConditionPlugin;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
+import ryey.easer.plugins.condition.battery.BatteryConditionPlugin;
 import ryey.easer.plugins.event.battery.BatteryEventPlugin;
 import ryey.easer.plugins.event.bluetooth_device.BTDeviceEventPlugin;
 import ryey.easer.plugins.event.broadcast.BroadcastEventPlugin;
@@ -82,11 +85,13 @@ final public class PluginRegistry {
 
     private static final int TYPE_OPERATION = 0;
     private static final int TYPE_EVENT = 1;
+    private static final int TYPE_CONDITION = 2;
 
     private final Registry<EventPlugin, EventData> eventPluginRegistry = new Registry<>(TYPE_EVENT);
     private final Registry<OperationPlugin, OperationData> operationPluginRegistry = new Registry<>(TYPE_OPERATION);
+    private final Registry<ConditionPlugin, ConditionData> conditionPluginRegistry = new Registry<>(TYPE_CONDITION);
     private final OverallRegistry overallRegistry = new OverallRegistry(new PluginLookuper[] {
-            eventPluginRegistry, operationPluginRegistry,
+            eventPluginRegistry, operationPluginRegistry, conditionPluginRegistry,
     });
 
     {
@@ -107,6 +112,8 @@ final public class PluginRegistry {
         event().registerPlugin(HeadsetEventPlugin.class);
         event().registerPlugin(TcpTripEventPlugin.class);
         event().registerPlugin(ScreenEventPlugin.class);
+
+        condition().registerPlugin(BatteryConditionPlugin.class);
 
         operation().registerPlugin(WifiOperationPlugin.class);
         operation().registerPlugin(CellularOperationPlugin.class);
@@ -145,6 +152,10 @@ final public class PluginRegistry {
 
     public Registry<OperationPlugin, OperationData> operation() {
         return operationPluginRegistry;
+    }
+
+    public Registry<ConditionPlugin, ConditionData> condition() {
+        return conditionPluginRegistry;
     }
 
     public PluginLookuper<PluginDef, StorageData> all() {

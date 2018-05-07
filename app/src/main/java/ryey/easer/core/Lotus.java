@@ -26,61 +26,52 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.PatternMatcher;
+import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 
-import ryey.easer.SettingsHelper;
-import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
-import ryey.easer.core.data.ScenarioStructure;
 import ryey.easer.core.data.ScriptTree;
-import ryey.easer.plugins.PluginRegistry;
 
-/*
+/**
  * Each Lotus holds one ScriptTree.
- *
- * The root of that tree will be registered listener.
- * When the root is satisfied, Lotus will recursively check all children to find which is satisfied.
- * After finding a satisfied child and the child has a Profile, Lotus will load the Profile.
- *
- * See onSlotSatisfied() for the actual way to check and determine which is satisfied.
  */
-final class Lotus {
+abstract class Lotus {
     private static final String ACTION_SLOT_SATISFIED = "ryey.easer.triggerlotus.action.SLOT_SATISFIED";
     private static final String ACTION_SLOT_UNSATISFIED = "ryey.easer.triggerlotus.action.SLOT_UNSATISFIED";
     private static final String CATEGORY_NOTIFY_LOTUS = "ryey.easer.triggerlotus.category.NOTIFY_LOTUS";
 
-    private Context context;
-    final ScriptTree scriptTree;
-    private final ExecutorService executorService;
+    static Lotus createLotus(@NonNull Context context, @NonNull ScriptTree scriptTree,
+                             @NonNull ExecutorService executorService,
+                             @NonNull EHService.ConditionHolder conditionHolder) {
+        if (scriptTree.isEvent())
+            return new EventLotus(context, scriptTree, executorService, conditionHolder);
+        else
+            return new ConditionLotus(context, scriptTree, executorService, conditionHolder);
+    }
+
+    @NonNull protected final Context context;
+    @NonNull protected final ScriptTree scriptTree;
+    @NonNull protected final ExecutorService executorService;
+    @NonNull protected final EHService.ConditionHolder conditionHolder;
+    protected List<Lotus> subs = new ArrayList<>();
+
+    protected boolean satisfied = false;
 
     private final Uri uri = Uri.parse(String.format(Locale.US, "lotus://%d", hashCode()));
-    private final PendingIntent notifyLotusIntent_positive, notifyLotusIntent_negative;
-
-    private AbstractSlot mSlot;
-    List<Lotus> subs = new ArrayList<>();
-
-    private final long cooldownInMillisecond;
-    private Calendar lastSatisfied;
-
-    private final boolean repeatable;
-    private final boolean persistent;
-    private boolean satisfied = false;
+    protected final NotifyPendingIntents notifyPendingIntents;
 
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(ACTION_SLOT_SATISFIED)) {
-                onSlotSatisfied();
+                onSatisfied();
             } else if (intent.getAction().equals(ACTION_SLOT_UNSATISFIED)) {
-                onSlotUnsatisfied();
+                onUnsatisfied();
             }
         }
     };
@@ -96,76 +87,41 @@ final class Lotus {
         filter.addDataPath(uri.getPath(), PatternMatcher.PATTERN_LITERAL);
     }
 
-    Lotus(Context context, ScriptTree scriptTree, ExecutorService executorService) {
+    protected Lotus(@NonNull Context context, @NonNull ScriptTree scriptTree, @NonNull ExecutorService executorService, @NonNull EHService.ConditionHolder conditionHolder) {
         this.context = context;
         this.scriptTree = scriptTree;
         this.executorService = executorService;
+        this.conditionHolder = conditionHolder;
 
-        Intent intent1 = new Intent(ACTION_SLOT_SATISFIED);
-        intent1.addCategory(CATEGORY_NOTIFY_LOTUS);
-        intent1.setData(uri);
-        notifyLotusIntent_positive = PendingIntent.getBroadcast(context, 0, intent1, 0);
-        intent1.setAction(ACTION_SLOT_UNSATISFIED);
-        notifyLotusIntent_negative = PendingIntent.getBroadcast(context, 0, intent1, 0);
-
-        mSlot = nodeToSlot(scriptTree);
-        if (scriptTree.isReversed()) {
-            mSlot.register(notifyLotusIntent_negative, notifyLotusIntent_positive);
-        } else {
-            mSlot.register(notifyLotusIntent_positive, notifyLotusIntent_negative);
-        }
-        repeatable = scriptTree.isRepeatable();
-        persistent = scriptTree.isPersistent();
-
-        cooldownInMillisecond = SettingsHelper.coolDownInterval(context);
+        Intent intent = new Intent(ACTION_SLOT_SATISFIED);
+        intent.addCategory(CATEGORY_NOTIFY_LOTUS);
+        intent.setData(uri);
+        PendingIntent notifyLotusIntent_positive = PendingIntent.getBroadcast(context, 0, intent, 0);
+        intent.setAction(ACTION_SLOT_UNSATISFIED);
+        PendingIntent notifyLotusIntent_negative = PendingIntent.getBroadcast(context, 0, intent, 0);
+        notifyPendingIntents = new NotifyPendingIntents(notifyLotusIntent_positive, notifyLotusIntent_negative);
     }
 
-    private <T extends EventData> AbstractSlot<T> nodeToSlot(ScriptTree node) {
-        ScenarioStructure scenario = node.getScenario();
-        AbstractSlot<T> slot;
-        //noinspection unchecked
-        T data = (T) scenario.getEventData();
-        //noinspection unchecked
-        EventPlugin<T> plugin = PluginRegistry.getInstance().event().findPlugin(data);
-        if (scenario.isTmpScenario()) {
-            slot = plugin.slot(context, data);
-        } else {
-            slot = plugin.slot(context, data, repeatable, persistent);
-        }
-        return slot;
+    final @NonNull String scriptName() {
+        return scriptTree.getName();
     }
 
-    synchronized void check() {
-        executorService.submit(new Runnable() {
-            @Override
-            public void run() {
-                mSlot.check();
-            }
-        });
-    }
-
-    synchronized void listen() {
+    final synchronized void listen() {
         context.registerReceiver(mReceiver, filter);
-        executorService.submit(new Runnable() {
-            @Override
-            public void run() {
-                mSlot.listen();
-            }
-        });
+        onListen();
+    }
+    protected void onListen() {
     }
 
-    synchronized void cancel() {
+    final synchronized void cancel() {
         context.unregisterReceiver(mReceiver);
-        executorService.submit(new Runnable() {
-            @Override
-            public void run() {
-                mSlot.cancel();
-                for (Lotus sub : subs) {
-                    sub.cancel();
-                }
-                subs.clear();
-            }
-        });
+        onCancel();
+        for (Lotus sub : subs) {
+            sub.cancel();
+        }
+        subs.clear();
+    }
+    protected void onCancel() {
     }
 
     /**
@@ -175,52 +131,28 @@ final class Lotus {
      */
     synchronized void setStatus(boolean status) {
         if (status) {
-            onSlotSatisfied();
+            onSatisfied();
         } else {
-            onSlotUnsatisfied();
+            onUnsatisfied();
         }
     }
 
-    private boolean checkAndSetCooldown(String eventName) {
-        if (cooldownInMillisecond > 0) {
-            Calendar now = Calendar.getInstance();
-            if (lastSatisfied != null) {
-                if (now.getTimeInMillis() - lastSatisfied.getTimeInMillis() < cooldownInMillisecond) {
-                    Logger.d("event <%s> is within cooldown time", eventName);
-                    return false;
-                }
-            }
-            Logger.d("event <%s> is not within cooldown time", eventName);
-            lastSatisfied = now;
-            return true;
-        }
-        return true;
+    protected void onSatisfied() {
+        Logger.i("Lotus for <%s> satisfied", scriptTree.getName());
+        satisfied = true;
+        triggerAndPromote();
     }
 
-    private synchronized void onSlotSatisfied() {
-        if (!repeatable && satisfied)
-            return;
-        if (checkAndSetCooldown(scriptTree.getName())) {
-            Logger.i("event <%s> satisfied", scriptTree.getName());
-            satisfied = true;
-            triggerAndPromote();
+    protected void onUnsatisfied() {
+        Logger.i("Lotus for <%s> unsatisfied", scriptTree.getName());
+        satisfied = false;
+        for (Lotus sub : subs) {
+            sub.cancel();
         }
+        subs.clear();
     }
 
-    private synchronized void onSlotUnsatisfied() {
-        if (persistent && satisfied)
-            return;
-        if (checkAndSetCooldown(scriptTree.getName())) {
-            Logger.i("Event %s unsatisfied", scriptTree.getName());
-            satisfied = false;
-            for (Lotus sub : subs) {
-                sub.cancel();
-            }
-            subs.clear();
-        }
-    }
-
-    private void triggerAndPromote() {
+    synchronized protected void triggerAndPromote() {
         Logger.v(" traversing and find <%s> satisfied", scriptTree.getName());
         String profileName = scriptTree.getProfile();
         if (profileName != null) {
@@ -232,13 +164,19 @@ final class Lotus {
         }
         for (ScriptTree sub : scriptTree.getSubs()) {
             if (sub.isActive()) {
-                Lotus subLotus = new Lotus(context, sub, executorService);
+                Lotus subLotus = Lotus.createLotus(context, sub, executorService, conditionHolder);
                 subs.add(subLotus);
                 subLotus.listen();
-                if (!SettingsHelper.passiveMode(context)) {
-                    subLotus.check();
-                }
             }
+        }
+    }
+
+    static class NotifyPendingIntents {
+        final PendingIntent positive, negative;
+
+        public NotifyPendingIntents(PendingIntent positive, PendingIntent negative) {
+            this.positive = positive;
+            this.negative = negative;
         }
     }
 }

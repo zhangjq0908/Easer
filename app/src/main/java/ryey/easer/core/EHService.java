@@ -19,26 +19,38 @@
 
 package ryey.easer.core;
 
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.PatternMatcher;
+import android.support.v4.util.ArraySet;
 
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import ryey.easer.SettingsHelper;
+import ryey.easer.commons.plugindef.conditionplugin.ConditionData;
+import ryey.easer.commons.plugindef.conditionplugin.Tracker;
+import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.ScriptTree;
+import ryey.easer.core.data.storage.ConditionDataStorage;
 import ryey.easer.core.data.storage.ScriptDataStorage;
+import ryey.easer.plugins.PluginRegistry;
 
 /*
  * The background service which maintains several Lotus(es) and send Intent to load Profile(s).
@@ -50,6 +62,7 @@ public class EHService extends Service {
     public static final String ACTION_PROFILE_UPDATED = "ryey.easer.action.PROFILE_UPDATED";
 
     List<Lotus> mLotusArray = new ArrayList<>();
+    ConditionHolder conditionHolder = new ConditionHolder(this);
     private ExecutorService executorService = Executors.newFixedThreadPool(4);
 
     final BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -125,11 +138,6 @@ public class EHService extends Service {
         filter.addAction(ProfileLoaderIntentService.ACTION_PROFILE_LOADED);
         registerReceiver(mReceiver, filter);
         reloadTriggers();
-        if (!SettingsHelper.passiveMode(this)) {
-            for (Lotus lotus : mLotusArray) {
-                lotus.check();
-            }
-        }
         Logger.i("EHService created");
     }
 
@@ -146,7 +154,8 @@ public class EHService extends Service {
 
     private void reloadTriggers() {
         Logger.v("reloadTriggers()");
-        mCancelTriggers();
+        if (mLotusArray.size() > 0)
+            mCancelTriggers();
         ScriptDataStorage storage = ScriptDataStorage.getInstance(this);
         List<ScriptTree> events = storage.getScriptTrees();
         mSetTriggers(events);
@@ -158,16 +167,18 @@ public class EHService extends Service {
             lotus.cancel();
         }
         mLotusArray.clear();
+        conditionHolder.clear();
     }
 
     private void mSetTriggers(List<ScriptTree> scriptTreeList) {
         Logger.v("setting triggers");
-        for (ScriptTree event : scriptTreeList) {
-            Logger.v("setting trigger for <%s>", event.getName());
-            if (event.isActive()) {
-                Lotus lotus = new Lotus(this, event, executorService);
+        conditionHolder.start(scriptTreeList);
+        for (ScriptTree script : scriptTreeList) {
+            Logger.v("setting trigger for <%s>", script.getName());
+            if (script.isActive()) {
+                Lotus lotus = Lotus.createLotus(this, script, executorService, conditionHolder);
                 lotus.listen();
-                Logger.v("trigger for event <%s> is set", event.getName());
+                Logger.v("trigger for event <%s> is set", script.getName());
                 mLotusArray.add(lotus);
             }
         }
@@ -196,7 +207,7 @@ public class EHService extends Service {
         }
 
         private boolean setLotusStatus_real(Lotus lotus, String eventName, boolean status) {
-            if (lotus.scriptTree.getName().equals(eventName)) {
+            if (lotus.scriptName().equals(eventName)) {
                 lotus.setStatus(status);
                 return true;
             } else {
@@ -206,6 +217,118 @@ public class EHService extends Service {
                 }
             }
             return false;
+        }
+    }
+
+    static class ConditionHolder {
+        private static final String ACTION_TRACKER_SATISFIED = "ryey.easer.triggerlotus.action.TRACKER_SATISFIED";
+        private static final String ACTION_TRACKER_UNSATISFIED = "ryey.easer.triggerlotus.action.TRACKER_UNSATISFIED";
+        private static final String CATEGORY_NOTIFY_HOLDER = "ryey.easer.triggerlotus.category.NOTIFY_HOLDER";
+
+        private final Context context;
+
+        private Map<String, Tracker> trackerMap;
+        private Map<String, Set<Lotus.NotifyPendingIntents>> associateMap;
+        
+        private final Uri uri = Uri.parse(String.format(Locale.US, "conditionholder://%d/", hashCode()));
+
+        private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                try {
+                    String name = intent.getData().getLastPathSegment();
+                    if (intent.getAction().equals(ACTION_TRACKER_SATISFIED)) {
+                        for (Lotus.NotifyPendingIntents pendingIntents : associateMap.get(name)) {
+                            try {
+                                pendingIntents.positive.send();
+                            } catch (PendingIntent.CanceledException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    } else if (intent.getAction().equals(ACTION_TRACKER_UNSATISFIED)) {
+                        for (Lotus.NotifyPendingIntents pendingIntents : associateMap.get(name)) {
+                            try {
+                                pendingIntents.negative.send();
+                            } catch (PendingIntent.CanceledException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                } catch (NullPointerException e) {
+                    Logger.e(e, "ConditionHolder's BroadcastListener shouldn't hear invalid Intent");
+                }
+            }
+        };
+        private final IntentFilter filter;
+
+        {
+            filter = new IntentFilter();
+            filter.addAction(ACTION_TRACKER_SATISFIED);
+            filter.addAction(ACTION_TRACKER_UNSATISFIED);
+            filter.addCategory(CATEGORY_NOTIFY_HOLDER);
+            filter.addDataScheme(uri.getScheme());
+            filter.addDataAuthority(uri.getAuthority(), null);
+            filter.addDataPath(uri.getPath(), PatternMatcher.PATTERN_PREFIX);
+        }
+
+        private ConditionHolder(Context context) {
+            this.context = context;
+            trackerMap = new HashMap<>();
+            associateMap = new HashMap<>();
+        }
+
+        private synchronized void start(List<ScriptTree> scriptTreeList) {
+            context.registerReceiver(mReceiver, filter);
+            ConditionDataStorage conditionDataStorage = ConditionDataStorage.getInstance(context);
+            for (String name : conditionsInUse(scriptTreeList)) {
+                Intent intent = new Intent(ACTION_TRACKER_SATISFIED);
+                Uri turi = uri.buildUpon().appendPath(name).build();
+                intent.addCategory(CATEGORY_NOTIFY_HOLDER);
+                intent.setData(turi);
+                PendingIntent positive = PendingIntent.getBroadcast(context, 0, intent, 0);
+                intent.setAction(ACTION_TRACKER_UNSATISFIED);
+                PendingIntent negative = PendingIntent.getBroadcast(context, 0, intent, 0);
+
+                ConditionStructure conditionStructure = conditionDataStorage.get(name);
+                ConditionData conditionData = conditionStructure.getData();
+                Tracker tracker = PluginRegistry.getInstance().condition().findPlugin(conditionData)
+                        .tracker(context, conditionData, positive, negative);
+                tracker.start();
+                trackerMap.put(name, tracker);
+                associateMap.put(name, new ArraySet<Lotus.NotifyPendingIntents>());
+            }
+        }
+        private synchronized void clear() {
+            context.unregisterReceiver(mReceiver);
+            for (Tracker tracker : trackerMap.values()) {
+                tracker.stop();
+            }
+            trackerMap.clear();
+            associateMap.clear();
+        }
+
+        void registerAssociation(String conditionName, Lotus.NotifyPendingIntents pendingIntents) {
+            associateMap.get(conditionName).add(pendingIntents);
+        }
+        void unregisterAssociation(String conditionName, Lotus.NotifyPendingIntents pendingIntents) {
+            associateMap.get(conditionName).remove(pendingIntents);
+        }
+        Boolean conditionState(String conditionName) {
+            Tracker tracker = trackerMap.get(conditionName);
+            return tracker.state();
+        }
+
+        private static Set<String> conditionsInUse(List<ScriptTree> scriptTreeList) {
+            Set<String> names = new ArraySet<>();
+            for (ScriptTree script : scriptTreeList) {
+                if (script.isActive()) {
+                    if (script.isCondition()) {
+                        names.add(script.getCondition().getName());
+                    }
+                    names.addAll(conditionsInUse(script.getSubs()));
+                }
+            }
+            return names;
         }
     }
 }

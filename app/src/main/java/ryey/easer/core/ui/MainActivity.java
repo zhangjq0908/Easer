@@ -40,9 +40,9 @@ import android.widget.TextView;
 
 import ryey.easer.R;
 import ryey.easer.core.data.storage.StorageHelper;
-import ryey.easer.core.ui.edit.ScriptListFragment;
 import ryey.easer.core.ui.edit.ProfileListFragment;
 import ryey.easer.core.ui.edit.ScenarioListFragment;
+import ryey.easer.core.ui.edit.ScriptListFragment;
 import ryey.easer.core.ui.setting.SettingsActivity;
 
 public class MainActivity extends AppCompatActivity

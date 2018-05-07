@@ -1,6 +1,75 @@
 目前，Easer的數據存儲爲文件形式。其中JSON爲目前主力，舊的XML格式將在不遠的將來被移除。
 本文描述文件內容的格式，以便有需要者參考。
 
+## 版本8
+增加Condition（作爲對Event的補充）。該版本之前，數據存儲中的Event被重命名爲Script。
+
+### Condition
+```JSON
+{
+	"name":名稱,
+	"version":數據版本,
+	"condition":{
+		"spec":對應Condition的id,
+		"data":對應Condition的數據
+	}
+}
+```
+
+### 使用Condition的Script
+```JSON
+{
+	"name":名稱,
+	"version":數據版本,
+	"active":true or false,
+	"profile":行爲集名稱,
+	"after":父事件名稱,
+	"trigger":{
+		"type":"condition",
+		"condition":Condition名稱
+	},
+	"reverse":true or false
+}
+```
+
+## 版本7
+移除EventType。
+內容承襲上版本，僅移除事件（內嵌或非內嵌情境均包含）的`trigger/logic`部分。
+
+### 使用內嵌情境的事件
+```JSON
+{
+	"name":名稱,
+	"version":數據版本,
+	"active":true or false,
+	"profile":行爲集名稱,
+	"after":父事件名稱,
+	"trigger":{
+		"type":"raw_event",
+		"situation":{
+			"spec":對應EventPlugin的id,
+			"data":對應EventPlugin的數據
+		}
+	}
+}
+```
+
+### 情境
+```JSON
+{
+	"name":名稱,
+	"version":數據版本,
+	"situation":{
+		"spec":對應EventPlugin的id,
+		"data":對應EventPlugin的數據
+	}
+}
+
+```
+
+## 版本6
+沒有格式變化，故不列出。
+
 ## 版本5
 對版本4進行微調——刪除不必要內容。
 

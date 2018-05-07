@@ -22,6 +22,7 @@ package ryey.easer.commons;
 import java.util.Locale;
 
 import ryey.easer.commons.plugindef.PluginDef;
+import ryey.easer.commons.plugindef.conditionplugin.ConditionPlugin;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 
@@ -32,8 +33,10 @@ public class CommonHelper {
             type_name = "operation";
         else if (plugin instanceof EventPlugin)
             type_name = "event";
+        else if (plugin instanceof ConditionPlugin)
+            type_name = "condition";
         else
-            throw new IllegalAccessError();
+            throw new IllegalAccessError("Unknown plugin type???");
         return String.format(Locale.US, "%s_plugin_enabled_%s", type_name, plugin.name());
     }
 }

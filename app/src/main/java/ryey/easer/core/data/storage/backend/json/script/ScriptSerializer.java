@@ -23,6 +23,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.ScenarioStructure;
 import ryey.easer.core.data.ScriptStructure;
 import ryey.easer.core.data.storage.C;
@@ -36,22 +37,28 @@ class ScriptSerializer implements Serializer<ScriptStructure> {
      * {@inheritDoc}
      * This method assumes the scenario has already been serialized, so the name can uniquely identify a scenario
      */
-    public String serialize(ScriptStructure event) throws UnableToSerializeException {
+    public String serialize(ScriptStructure script) throws UnableToSerializeException {
         try {
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put(C.NAME, event.getName());
+            jsonObject.put(C.NAME, script.getName());
             jsonObject.put(C.VERSION, C.VERSION_CURRENT);
-            jsonObject.put(C.ACTIVE, event.isActive());
-            jsonObject.put(C.PROFILE, event.getProfileName());
-            jsonObject.put(C.AFTER, event.getParentName());
+            jsonObject.put(C.ACTIVE, script.isActive());
+            jsonObject.put(C.PROFILE, script.getProfileName());
+            jsonObject.put(C.AFTER, script.getParentName());
 
-            JSONObject trigger = serialize_trigger(event.getScenario());
-            jsonObject.put(C.TRIG, trigger);
+            if (script.getScenario() != null) {
+                JSONObject trigger = serialize_scenario_trigger(script.getScenario());
+                jsonObject.put(C.TRIG, trigger);
 
-            if (!event.getScenario().isTmpScenario()) {
-                jsonObject.put(C.REVERSE, event.isReverse());
-                jsonObject.put(C.REPEATABLE, event.isRepeatable());
-                jsonObject.put(C.PERSISTENT, event.isPersistent());
+                if (!script.getScenario().isTmpScenario()) {
+                    jsonObject.put(C.REVERSE, script.isReverse());
+                    jsonObject.put(C.REPEATABLE, script.isRepeatable());
+                    jsonObject.put(C.PERSISTENT, script.isPersistent());
+                }
+            } else { // if (script.getCondition() != null) {
+                JSONObject trigger = serialize_condition_trigger(script.getCondition());
+                jsonObject.put(C.TRIG, trigger);
+                jsonObject.put(C.REVERSE, script.isReverse());
             }
 
             return jsonObject.toString();
@@ -60,7 +67,7 @@ class ScriptSerializer implements Serializer<ScriptStructure> {
         }
     }
 
-    JSONObject serialize_trigger(ScenarioStructure scenario) throws JSONException {
+    JSONObject serialize_scenario_trigger(ScenarioStructure scenario) throws JSONException {
         if (scenario.isTmpScenario())
             return serialize_event(scenario.getEventData());
         else {
@@ -85,5 +92,11 @@ class ScriptSerializer implements Serializer<ScriptStructure> {
         return json_situation;
     }
 
+    private JSONObject serialize_condition_trigger(ConditionStructure condition) throws JSONException {
+        JSONObject json_trigger = new JSONObject();
+        json_trigger.put(C.TYPE, C.TriggerType.T_CONDITION);
+        json_trigger.put(C.SCENARIO, condition.getName());
+        return json_trigger;
+    }
 
 }

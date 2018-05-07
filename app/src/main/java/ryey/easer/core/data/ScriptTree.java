@@ -37,8 +37,17 @@ final public class ScriptTree {
     public String getName() {
         return data.name;
     }
+    public boolean isEvent() {
+        return data.getScenario() != null;
+    }
+    public boolean isCondition() {
+        return data.getCondition() != null;
+    }
     public ScenarioStructure getScenario() {
         return data.getScenario();
+    }
+    public ConditionStructure getCondition() {
+        return data.getCondition();
     }
     public EventData getEventData() {
         return data.getScenario().getEventData();

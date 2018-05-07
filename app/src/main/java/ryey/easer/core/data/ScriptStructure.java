@@ -38,6 +38,7 @@ final public class ScriptStructure implements Renameable, Verifiable, WithCreate
     private final int createdVersion;
     protected String name;
     private ScenarioStructure scenario;
+    private ConditionStructure condition;
     protected boolean active = true;
     private boolean reverse = false;
     private boolean repeatable = true;
@@ -55,12 +56,28 @@ final public class ScriptStructure implements Renameable, Verifiable, WithCreate
         this.name = name;
     }
 
+    public boolean isEvent() {
+        return scenario != null;
+    }
+
     public ScenarioStructure getScenario() {
         return scenario;
     }
 
     public void setScenario(ScenarioStructure scenario) {
         this.scenario = scenario;
+    }
+
+    public boolean isCondition() {
+        return condition != null;
+    }
+
+    public ConditionStructure getCondition() {
+        return condition;
+    }
+
+    public void setCondition(ConditionStructure condition) {
+        this.condition = condition;
     }
 
     @Deprecated
@@ -100,7 +117,7 @@ final public class ScriptStructure implements Renameable, Verifiable, WithCreate
     public boolean isValid() {
         if ((name == null) || (name.isEmpty()))
             return false;
-        if (scenario == null)
+        if ((scenario == null) == (condition == null))
             return false;
         return true;
     }
