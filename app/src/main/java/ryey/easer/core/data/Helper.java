@@ -26,6 +26,7 @@ import com.orhanobut.logger.Logger;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,23 +41,24 @@ public class Helper {
 
         File parent_dir = context.getFilesDir();
 
-        addDirToZip(zip, parent_dir, "event");
-        addDirToZip(zip, parent_dir, "scenario");
-        addDirToZip(zip, parent_dir, "profile");
+        for (File file : parent_dir.listFiles()) {
+            if (file.isDirectory())
+                addDirToZip(zip, parent_dir, file.getName());
+        }
 
         zip.close();
     }
 
     private static boolean is_valid_easer_export_data(Context context, Uri uri) throws IOException {
         final String re_top_level = "^[^/]+$";
-        final String re_any_of_three_any = "^(?:(?:event)|(?:profile)|(?:scenario))(?:/.*)?$";
+        final String re_any_of_valid_dirs = "^(?:(?:event)|(?:script)|(?:profile)|(?:scenario)|(?:condition))(?:/.*)?$";
 
         InputStream inputStream = context.getContentResolver().openInputStream(uri);
         ZipInputStream zip = new ZipInputStream(inputStream);
         try {
             for (ZipEntry entry = zip.getNextEntry(); entry != null; entry = zip.getNextEntry()) {
                 String name = entry.getName();
-                if (!name.matches(re_any_of_three_any)) {
+                if (!name.matches(re_any_of_valid_dirs)) {
                     return false;
                 }
                 if (name.matches(re_top_level)) {
