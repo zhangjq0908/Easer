@@ -86,7 +86,7 @@
 
     <ryey.easer.core.ui.edit.EventPluginViewPager
         android:id="@+id/pager"
-        style="@style/AppTheme.EventPluginViewPager"
+        style="@style/AppTheme.PluginViewPager"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"

@@ -14,6 +14,9 @@
         <item
             android:id="@+id/nav_scenario"
             android:title="@string/title_scenario" />
+        <item
+            android:id="@+id/nav_condition"
+            android:title="@string/title_condition" />
     </group>
 
     <item android:title="@string/title_application">

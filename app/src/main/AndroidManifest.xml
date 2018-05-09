@@ -124,6 +124,8 @@
                 <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
         </service>
+
+        <activity android:name=".core.ui.edit.EditConditionActivity"></activity>
     </application>
 
 </manifest>

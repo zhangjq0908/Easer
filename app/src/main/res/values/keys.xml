@@ -13,5 +13,6 @@
     <string name="key_pref_plugins" translatable="false">preference_plugins</string>
     <string name="key_pref_enabled_operation_plugins" translatable="false">preference_enabled_operation_plugins</string>
     <string name="key_pref_enabled_event_plugins" translatable="false">preference_enabled_event_plugins</string>
+    <string name="key_pref_enabled_condition_plugins" translatable="false">preference_enabled_condition_plugins</string>
     <string name="key_pref_convert_data" translatable="false">preference_convert_data</string>
 </resources>

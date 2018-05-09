@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ryey.easer.core.ui.edit.EditScenarioActivity">
+    tools:context=".core.ui.edit.EditConditionActivity">
 
     <TextView
         android:id="@+id/textView38"
@@ -24,14 +24,14 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="@string/hint_scenario_title"
+        android:hint="@string/hint_condition_title"
         android:inputType="text"
         android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView38"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ryey.easer.core.ui.edit.EventPluginViewPager
+    <ryey.easer.core.ui.edit.ConditionPluginViewPager
         android:id="@+id/pager"
         style="@style/AppTheme.PluginViewPager"
         android:layout_width="wrap_content"
@@ -48,5 +48,6 @@
             android:paddingBottom="4dp"
             android:paddingTop="4dp"
             android:textColor="#fff" />
-    </ryey.easer.core.ui.edit.EventPluginViewPager>
+    </ryey.easer.core.ui.edit.ConditionPluginViewPager>
+
 </android.support.constraint.ConstraintLayout>

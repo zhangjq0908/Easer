@@ -94,5 +94,8 @@
     <string name="title_activity_log">活動記錄</string>
     <string name="hint_script_title">事件腳本名稱</string>
     <string name="title_script">事件腳本</string>
+    <string name="title_condition">狀況</string>
+    <string name="title_edit_condition">編輯狀況</string>
+    <string name="hint_condition_title">狀況名</string>
 
 </resources>

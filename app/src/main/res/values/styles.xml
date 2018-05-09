@@ -34,7 +34,7 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="AppTheme.EventPluginViewPager">
+    <style name="AppTheme.PluginViewPager">
         <item name="android:paddingLeft">@dimen/eventpluginviewpager_horizontal_margin</item>
         <item name="android:paddingRight">@dimen/eventpluginviewpager_horizontal_margin</item>
         <item name="android:paddingTop">@dimen/eventpluginviewpager_vertical_margin</item>

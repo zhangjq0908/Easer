@@ -14,4 +14,12 @@
         android:title="@string/title_event">
 
     </PreferenceCategory>
+
+    <PreferenceCategory android:layout="@layout/pref_divider" />
+
+    <PreferenceCategory
+        android:key="@string/key_pref_enabled_condition_plugins"
+        android:title="@string/title_condition">
+
+    </PreferenceCategory>
 </PreferenceScreen>

@@ -45,5 +45,11 @@ public class PluginSettingsPreferenceFragment extends PreferenceFragment {
             PluginEnabledPreference preference = new PluginEnabledPreference(getActivity(), plugin);
             preferenceCategory.addPreference(preference);
         }
+
+        preferenceCategory = (PreferenceCategory) getPreferenceScreen().findPreference(getString(R.string.key_pref_enabled_condition_plugins));
+        for (PluginDef plugin : PluginRegistry.getInstance().condition().getAllPlugins()) {
+            PluginEnabledPreference preference = new PluginEnabledPreference(getActivity(), plugin);
+            preferenceCategory.addPreference(preference);
+        }
     }
 }

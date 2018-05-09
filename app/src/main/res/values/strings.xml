@@ -7,6 +7,7 @@
     <string name="title_event">Event</string>
     <string name="title_script">Script</string>
     <string name="title_scenario">Scenario</string>
+    <string name="title_condition">Condition</string>
     <string name="title_application">App</string>
     <string name="title_activity_log">Activity Log</string>
     <string name="title_about">About</string>
@@ -15,6 +16,7 @@
     <string name="title_edit">Edit</string>
     <string name="title_delete">Delete</string>
     <string name="title_edit_event">Edit Event</string>
+    <string name="title_edit_condition">Edit Condition</string>
     <string name="title_edit_profile">Edit Profile</string>
     <string name="title_select_operation">Select an Operation</string>
 
@@ -59,6 +61,7 @@
     <string name="hint_script_title">script title</string>
     <string name="hint_profile_title">profile title</string>
     <string name="hint_scenario_title">scenario title</string>
+    <string name="hint_condition_title">condition title</string>
 
     <string name="prompt_save_failed">Failed to save</string>
     <string name="prompt_delete">Are you sure to delete: %s</string>

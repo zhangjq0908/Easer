@@ -13,7 +13,7 @@
         <item name="android:paddingEnd">@dimen/lr_padding_outer</item>
     </style>
 
-    <style name="AppTheme.EventPluginViewPager">
+    <style name="AppTheme.PluginViewPager">
         <item name="android:paddingStart">@dimen/eventpluginviewpager_horizontal_margin</item>
         <item name="android:paddingEnd">@dimen/eventpluginviewpager_horizontal_margin</item>
         <item name="android:paddingTop">@dimen/eventpluginviewpager_vertical_margin</item>

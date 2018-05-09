@@ -40,6 +40,7 @@ import android.widget.TextView;
 
 import ryey.easer.R;
 import ryey.easer.core.data.storage.StorageHelper;
+import ryey.easer.core.ui.edit.ConditionListFragment;
 import ryey.easer.core.ui.edit.ProfileListFragment;
 import ryey.easer.core.ui.edit.ScenarioListFragment;
 import ryey.easer.core.ui.edit.ScriptListFragment;
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity
     private static final String FRAGMENT_PROFILE = "ryey.easer.FRAGMENT.PROFILE";
     private static final String FRAGMENT_EVENT = "ryey.easer.FRAGMENT.EVENT";
     private static final String FRAGMENT_SCENARIO = "ryey.easer.FRAGMENT.SCENARIO";
+    private static final String FRAGMENT_CONDITION = "ryey.easer.FRAGMENT.CONDITION";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,6 +158,13 @@ public class MainActivity extends AppCompatActivity
                 fragment = new ScenarioListFragment();
             manager.beginTransaction()
                     .replace(R.id.content_main, fragment, FRAGMENT_SCENARIO)
+                    .commit();
+        } else if (id == R.id.nav_condition) {
+            fragment = manager.findFragmentByTag(FRAGMENT_CONDITION);
+            if (fragment == null)
+                fragment = new ConditionListFragment();
+            manager.beginTransaction()
+                    .replace(R.id.content_main, fragment, FRAGMENT_CONDITION)
                     .commit();
         } else if (id == R.id.nav_about) {
             Intent intent = new Intent(this, AboutActivity.class);
