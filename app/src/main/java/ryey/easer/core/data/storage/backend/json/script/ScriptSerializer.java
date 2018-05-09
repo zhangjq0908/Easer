@@ -95,7 +95,7 @@ class ScriptSerializer implements Serializer<ScriptStructure> {
     private JSONObject serialize_condition_trigger(ConditionStructure condition) throws JSONException {
         JSONObject json_trigger = new JSONObject();
         json_trigger.put(C.TYPE, C.TriggerType.T_CONDITION);
-        json_trigger.put(C.SCENARIO, condition.getName());
+        json_trigger.put(C.CONDITION, condition.getName());
         return json_trigger;
     }
 

@@ -97,5 +97,6 @@
     <string name="title_condition">狀況</string>
     <string name="title_edit_condition">編輯狀況</string>
     <string name="hint_condition_title">狀況名</string>
+    <string name="text_use_condition">使用狀況</string>
 
 </resources>

@@ -27,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import java.util.List;
@@ -35,8 +36,10 @@ import ryey.easer.R;
 import ryey.easer.commons.C;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.ScenarioStructure;
 import ryey.easer.core.data.ScriptStructure;
+import ryey.easer.core.data.storage.ConditionDataStorage;
 import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.core.data.storage.ScenarioDataStorage;
 import ryey.easer.core.data.storage.ScriptDataStorage;
@@ -50,7 +53,7 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         TAG_DATA_TYPE = "script";
     }
 
-    EventPluginViewPager mViewPager;
+    EventPluginViewPager mViewPager_edit_event;
 
     EditText mEditText_name = null;
     private static final String NON = ""; //TODO: more robust
@@ -59,15 +62,19 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
     Spinner mSpinner_profile = null;
     List<String> mProfileList = null;
     boolean isActive = true;
-    CompoundButton mSwitch_use_scenario;
+    RadioGroup rg_mode;
+    CompoundButton mSwitch_reverse;
 
+    ConstraintLayout layout_use_scenario;
     Spinner mSpinner_scenario;
     List<String> mScenarioList;
-    CompoundButton mSwitch_reverse;
     CompoundButton mSwitch_repeatable;
     CompoundButton mSwitch_persistent;
 
-    ConstraintLayout layout_use_scenario;
+    ConstraintLayout layout_use_condition;
+    Spinner mSpinner_condition;
+    List<String> mConditionList;
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -137,14 +144,12 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
             }
         });
 
-        mSwitch_use_scenario = findViewById(R.id.switch_use_scenario);
-        mSwitch_use_scenario.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
-                layout_use_scenario.setVisibility(checked ? View.VISIBLE : View.GONE);
-                mViewPager.setVisibility(!checked ? View.VISIBLE : View.GONE);
-            }
-        });
+        mSwitch_reverse = findViewById(R.id.switch_reverse);
+
+        mViewPager_edit_event = findViewById(R.id.pager);
+        mViewPager_edit_event.init(this);
+
+        layout_use_scenario = findViewById(R.id.layout_use_scenario);
         mSpinner_scenario = findViewById(R.id.spinner_scenario);
         mScenarioList = ScenarioDataStorage.getInstance(this).list();
         ArrayAdapter<String> adapter_scenario = new ArrayAdapter<>(this, R.layout.spinner_simple, mScenarioList);
@@ -161,17 +166,48 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
 
             }
         });
-
-        mViewPager = findViewById(R.id.pager);
-        mViewPager.init(this);
-
-        layout_use_scenario = findViewById(R.id.layout_use_scenario);
-        mSwitch_reverse = findViewById(R.id.switch_reverse);
         mSwitch_repeatable = findViewById(R.id.switch_repeatable);
         mSwitch_persistent = findViewById(R.id.switch_persistent);
 
-        mSwitch_use_scenario.setChecked(true);
-        mSwitch_use_scenario.setChecked(false);
+        layout_use_condition = findViewById(R.id.layout_use_condition);
+        mSpinner_condition = findViewById(R.id.spinner_condition);
+        mConditionList = ConditionDataStorage.getInstance(this).list();
+        ArrayAdapter<String> adapter_condition = new ArrayAdapter<>(this, R.layout.spinner_simple, mConditionList);
+        adapter_condition.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        mSpinner_condition.setAdapter(adapter_condition);
+        mSpinner_condition.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                adapterView.setSelection(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        rg_mode = findViewById(R.id.rg_use_scenario);
+        rg_mode.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int id) {
+                int v_inline = View.GONE, v_scenario = View.GONE, v_condition = View.GONE;
+                if (id == R.id.radioButton_inline_scenario) {
+                    v_inline = View.VISIBLE;
+                } else if (id == R.id.radioButton_scenario) {
+                    v_scenario = View.VISIBLE;
+                } else if (id == R.id.radioButton_condition) {
+                    v_condition = View.VISIBLE;
+                } else {
+                    throw new IllegalAccessError();
+                }
+                mViewPager_edit_event.setVisibility(v_inline);
+                layout_use_scenario.setVisibility(v_scenario);
+                layout_use_condition.setVisibility(v_condition);
+            }
+        });
+        rg_mode.check(R.id.radioButton_condition);
+        rg_mode.check(R.id.radioButton_scenario);
     }
 
     @Override
@@ -185,17 +221,24 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         String parent = script.getParentName();
         mSpinner_parent.setSelection(mScriptList.indexOf(parent));
 
-        ScenarioStructure scenario = script.getScenario();
-        if (scenario.isTmpScenario()) {
-            mSwitch_use_scenario.setChecked(false);
-            EventData eventData = scenario.getEventData();
-            mViewPager.setEventData(eventData);
+        mSwitch_reverse.setChecked(script.isReverse());
+
+        if (script.isEvent()) {
+            ScenarioStructure scenario = script.getScenario();
+            if (scenario.isTmpScenario()) {
+                rg_mode.check(R.id.radioButton_inline_scenario);
+                EventData eventData = scenario.getEventData();
+                mViewPager_edit_event.setEventData(eventData);
+            } else {
+                rg_mode.check(R.id.radioButton_scenario);
+                mSpinner_scenario.setSelection(mScenarioList.indexOf(scenario.getName()));
+                mSwitch_repeatable.setChecked(script.isRepeatable());
+                mSwitch_persistent.setChecked(script.isPersistent());
+            }
         } else {
-            mSwitch_use_scenario.setChecked(true);
-            mSpinner_scenario.setSelection(mScenarioList.indexOf(scenario.getName()));
-            mSwitch_reverse.setChecked(script.isReverse());
-            mSwitch_repeatable.setChecked(script.isRepeatable());
-            mSwitch_persistent.setChecked(script.isPersistent());
+            rg_mode.check(R.id.radioButton_condition);
+            ConditionStructure condition = script.getCondition();
+            mSpinner_condition.setSelection(mConditionList.indexOf(condition.getName()));
         }
 
         isActive = script.isActive();
@@ -212,15 +255,21 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         if (!parent.equals(NON))
             script.setParentName(parent);
 
-        ScenarioDataStorage scenarioDataStorage = ScenarioDataStorage.getInstance(this);
-        if (mSwitch_use_scenario.isChecked()) {
+        script.setReverse(mSwitch_reverse.isChecked());
+
+        if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_inline_scenario) {
+            ScenarioDataStorage scenarioDataStorage = ScenarioDataStorage.getInstance(this);
+            script.setEventData(mViewPager_edit_event.getEventData());
+        } else if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_scenario) {
+            ScenarioDataStorage scenarioDataStorage = ScenarioDataStorage.getInstance(this);
             String scenario_name = (String) mSpinner_scenario.getSelectedItem();
             script.setScenario(scenarioDataStorage.get(scenario_name));
-            script.setReverse(mSwitch_reverse.isChecked());
             script.setRepeatable(mSwitch_repeatable.isChecked());
             script.setPersistent(mSwitch_persistent.isChecked());
-        } else {
-            script.setEventData(mViewPager.getEventData());
+        } else if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_condition) {
+            ConditionDataStorage conditionDataStorage = ConditionDataStorage.getInstance(this);
+            String condition_name = (String) mSpinner_condition.getSelectedItem();
+            script.setCondition(conditionDataStorage.get(condition_name));
         }
         return script;
     }

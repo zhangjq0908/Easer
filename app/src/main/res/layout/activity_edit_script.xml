@@ -70,20 +70,6 @@
 
     </GridLayout>
 
-    <android.support.v7.widget.SwitchCompat
-        android:id="@+id/switch_use_scenario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:showText="true"
-        android:textOff="@string/text_inline_scenario"
-        android:textOn="@string/text_use_scenario"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_top" />
-
     <ryey.easer.core.ui.edit.EventPluginViewPager
         android:id="@+id/pager"
         style="@style/AppTheme.PluginViewPager"
@@ -91,7 +77,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch_use_scenario">
+        app:layout_constraintTop_toBottomOf="@+id/switch_reverse">
 
         <android.support.v4.view.PagerTitleStrip
             android:id="@+id/pager_title_strip"
@@ -109,7 +95,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch_use_scenario">
+        app:layout_constraintTop_toBottomOf="@+id/switch_reverse">
 
         <Spinner
             android:id="@+id/spinner_scenario"
@@ -131,18 +117,6 @@
             android:text="@string/text_repeatable_desc"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch_reverse" />
-
-        <android.support.v7.widget.SwitchCompat
-            android:id="@+id/switch_reverse"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/text_reverse_desc"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinner_scenario" />
 
         <android.support.v7.widget.SwitchCompat
@@ -159,5 +133,68 @@
             app:layout_constraintTop_toBottomOf="@+id/switch_repeatable" />
 
     </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layout_use_condition"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch_reverse">
+
+        <Spinner
+            android:id="@+id/spinner_condition"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <RadioGroup
+        android:id="@+id/rg_use_scenario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:checkedButton="@+id/radioButton_inline_scenario"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_top">
+
+        <RadioButton
+            android:id="@+id/radioButton_inline_scenario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/text_inline_scenario" />
+
+        <RadioButton
+            android:id="@+id/radioButton_scenario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/text_use_scenario" />
+
+        <RadioButton
+            android:id="@+id/radioButton_condition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/text_use_condition" />
+    </RadioGroup>
+
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/switch_reverse"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/text_reverse_desc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rg_use_scenario" />
 
 </android.support.constraint.ConstraintLayout>
