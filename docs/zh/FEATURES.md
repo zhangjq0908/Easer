@@ -19,6 +19,9 @@
 * TCP通信
 * 屏幕開啓/關閉
 
+### 狀況(Condition)
+* 電池狀況
+
 ### 動作(Operation)
 * WiFi開關
 * 數據網絡開關

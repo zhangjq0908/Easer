@@ -24,6 +24,8 @@ Easer is also a coordinator of inter-app actions (e.g. communications) -- it can
 
 You can chain *Script* (which specifies *Events* as well as its *Profile*) as trees (i.e. setting dependencies), by specifying its *Parent*. This mechanism allows Easer to (somewhat) create custom *Events* using Boolean logic (e.g. "and", "or").
 
+Easer is adding the support of *Condition* mechanism, and is transforming relevant *Event* to *Condition*, for better expressivity.
+
 Currently, Easer performs a post-order traversal to load your *Profiles*. In the near future, Easer will have more meticulous, expressive and intuitive categorization of *Events*.
 
 Also, have a look at the [wiki](https://github.com/renyuneyun/Easer/wiki), and especially the [FAQ](https://github.com/renyuneyun/Easer/wiki/FAQ).

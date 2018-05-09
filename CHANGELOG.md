@@ -1,6 +1,12 @@
 CHANGELOG
 ======
 
+* v0.5.9: Add *Condition* mechanism && Add BatteryConditionPlugin && Fix importing / exporting due to storage change
+	* Add *Condition* mechanism, as a complementary of Event
+		* *Condition* represents for "state", and *Event* will be changed to represent real one-shot events
+	* Add BatteryConditionPlugin
+	* Fix importing / exporting, which was broken because of naming change (event -> script)
+
 * v0.5.8: Rename the UI component "Event" to "Script" && Activity Log && New plugins (`UiModeOperationPlugin` & `ScreenEventPlugin`) && Allow to assign delay to set bluetooth volume && Little UI update
 	* Rename the UI component "Event" to "Script" to avoid confusion to "scenario" (and also for future needs)
 	* New page (Activity Log) for Easer's activity log

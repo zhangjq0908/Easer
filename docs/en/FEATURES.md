@@ -19,6 +19,9 @@ Supported Features
 * TCP communication (one round trip)
 * Screen on/off
 
+### Condition
+* Battery status
+
 ### Operation
 * WiFi switch
 * Cellular network switch
