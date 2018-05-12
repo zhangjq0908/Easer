@@ -30,7 +30,7 @@ import ryey.easer.plugins.event.SelfNotifiableSlot;
 public class TimeSlot extends SelfNotifiableSlot<TimeEventData> {
     private static AlarmManager mAlarmManager;
 
-    private Calendar calendar = null;
+    private final Calendar calendar;
 
     public TimeSlot(Context context, TimeEventData data) {
         this(context, data, RETRIGGERABLE_DEFAULT, PERSISTENT_DEFAULT);
@@ -38,19 +38,20 @@ public class TimeSlot extends SelfNotifiableSlot<TimeEventData> {
 
     TimeSlot(Context context, TimeEventData data, boolean retriggerable, boolean persistent) {
         super(context, data, retriggerable, persistent);
-        setTime(data.time);
+
+        calendar = Calendar.getInstance();
+        long currentTimeMillis = System.currentTimeMillis();
+        calendar.setTimeInMillis(currentTimeMillis);
+        calendar.set(Calendar.HOUR_OF_DAY, data.time.get(Calendar.HOUR_OF_DAY));
+        calendar.set(Calendar.MINUTE, data.time.get(Calendar.MINUTE));
+        Calendar now = Calendar.getInstance();
+        now.setTimeInMillis(currentTimeMillis);
+        if (calendar.before(now)) {
+            calendar.add(Calendar.DAY_OF_YEAR, 1);
+        }
 
         if (mAlarmManager == null)
             mAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-    }
-
-    private void setTime(@NonNull Calendar time) {
-        if (calendar == null) {
-            calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(System.currentTimeMillis());
-        }
-        calendar.set(Calendar.HOUR_OF_DAY, time.get(Calendar.HOUR_OF_DAY));
-        calendar.set(Calendar.MINUTE, time.get(Calendar.MINUTE));
     }
 
     @Override
