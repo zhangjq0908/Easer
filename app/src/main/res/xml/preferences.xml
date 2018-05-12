@@ -8,6 +8,10 @@
         android:title="@string/pref_autostart_title" />
     <CheckBoxPreference
         android:defaultValue="true"
+        android:key="@string/key_pref_restart_after_upgrade"
+        android:title="@string/pref_restart_after_upgrade_title" />
+    <CheckBoxPreference
+        android:defaultValue="true"
         android:key="@string/key_pref_welcome"
         android:summary="@string/pref_welcome_summary"
         android:title="@string/pref_welcome_title" />

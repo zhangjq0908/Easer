@@ -52,6 +52,7 @@ import ryey.easer.R;
 import ryey.easer.Utils;
 import ryey.easer.core.BootupReceiver;
 import ryey.easer.core.EHService;
+import ryey.easer.core.UpgradeCompleteReceiver;
 import ryey.easer.core.data.Helper;
 import ryey.easer.core.data.InvalidExportedDataException;
 import ryey.easer.core.data.storage.StorageHelper;
@@ -84,6 +85,18 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(getString(R.string.key_pref_autostart))) {
             ComponentName componentName = new ComponentName(this, BootupReceiver.class);
+            PackageManager pm = getPackageManager();
+            if (sharedPreferences.getBoolean(key, false)) {
+                pm.setComponentEnabledSetting(componentName,
+                        PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                        PackageManager.DONT_KILL_APP);
+            } else {
+                pm.setComponentEnabledSetting(componentName,
+                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                        PackageManager.DONT_KILL_APP);
+            }
+        } else if (key.equals(getString(R.string.key_pref_restart_after_upgrade))) {
+            ComponentName componentName = new ComponentName(this, UpgradeCompleteReceiver.class);
             PackageManager pm = getPackageManager();
             if (sharedPreferences.getBoolean(key, false)) {
                 pm.setComponentEnabledSetting(componentName,

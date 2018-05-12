@@ -98,5 +98,6 @@
     <string name="title_edit_condition">編輯狀況</string>
     <string name="hint_condition_title">狀況名</string>
     <string name="text_use_condition">使用狀況</string>
+    <string name="pref_restart_after_upgrade_title">更新後自動重啓服務</string>
 
 </resources>

@@ -125,7 +125,16 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".core.ui.edit.EditConditionActivity"></activity>
+        <activity android:name=".core.ui.edit.EditConditionActivity" />
+
+        <receiver
+            android:name=".core.UpgradeCompleteReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
