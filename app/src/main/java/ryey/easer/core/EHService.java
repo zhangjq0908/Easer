@@ -143,7 +143,6 @@ public class EHService extends Service {
         running = true;
         Intent intent = new Intent(ACTION_STATE_CHANGED);
         sendBroadcast(intent);
-        eventHistoryRecordList.clear();
         IntentFilter filter = new IntentFilter();
         filter.addAction(ACTION_RELOAD);
         filter.addAction(ProfileLoaderIntentService.ACTION_PROFILE_LOADED);
