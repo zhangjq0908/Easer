@@ -1,6 +1,13 @@
 CHANGELOG
 ======
 
+* v0.5.9.1: Allow to restart after update && Fix Events not triggered sometimes && Do not trigger `TimeEventPlugin` for the past time of the current day
+	* Allow to restart service after updating app (changeable in settings)
+	* Fix "reversed" Events not triggered at the first time
+	* Do not trigger TimeEvent if the current time is later than the designated time
+		* Skip the trigger for that day (i.e. move to the next day)
+	* Add tests
+
 * v0.5.9: Add *Condition* mechanism && Add BatteryConditionPlugin && Fix importing / exporting due to storage change
 	* Add *Condition* mechanism, as a complementary of Event
 		* *Condition* represents for "state", and *Event* will be changed to represent real one-shot events
