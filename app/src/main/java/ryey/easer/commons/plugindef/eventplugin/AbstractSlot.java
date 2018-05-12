@@ -48,7 +48,7 @@ public abstract class AbstractSlot<T extends EventData> {
      * Indicator of whether the current slot is satisfied.
      * May be extended to more status (maybe by enum) in the future.
      */
-    protected boolean satisfied = false;
+    protected Boolean satisfied = null;
 
     /**
      * Controls whether the current slot could be re-triggered if it is already in a satisfied state.
@@ -112,13 +112,15 @@ public abstract class AbstractSlot<T extends EventData> {
      * This method sets the {@link #satisfied} variable.
      */
     protected synchronized void changeSatisfiedState(boolean newSatisfiedState) {
-        if (persistent && satisfied && !newSatisfiedState) {
-            Logger.v("prevent from resetting a persistent slot back to unsatisfied");
-            return;
-        }
-        if (!retriggerable && (satisfied == newSatisfiedState)) {
-            Logger.v("satisfied state is already %s", newSatisfiedState);
-            return;
+        if (satisfied != null) {
+            if (persistent && satisfied && !newSatisfiedState) {
+                Logger.v("prevent from resetting a persistent slot back to unsatisfied");
+                return;
+            }
+            if (!retriggerable && (satisfied == newSatisfiedState)) {
+                Logger.v("satisfied state is already %s", newSatisfiedState);
+                return;
+            }
         }
         satisfied = newSatisfiedState;
         PendingIntent pendingIntent;
