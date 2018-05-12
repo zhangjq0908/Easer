@@ -1,6 +1,75 @@
-Currently, all data of Easer are stored as files. JSON is the current recommended version; the old XML format will be removed in near future.
+Currently, all data of Easer are stored as files. JSON is the current recommended version; the old XML format has been removed.
 
 This document describes the format of the file content, to use as a reference.
+
+## Version 8
+Add *Condition* (as the complementary of *Event*). Before this version, the UI component and data directory named "event" has been renamed to "script", but the concept of *Event* doesn't change (see v0.5.8).
+
+### Condition
+```JSON
+{
+	"name":NAME,
+	"version":VERSION OF DATA,
+	"condition":{
+		"spec":ID OF THE CORRESPONDING CONDITION,
+		"data":DATA OF THE CORRESPONDING CONDITION
+	}
+}
+```
+
+### Script with Condition
+```JSON
+{
+	"name":NAME,
+	"version":VERSION OF DATA,
+	"active":true or false,
+	"profile":PROFILE NAME,
+	"after":PARENT SCRIPT NAME,
+	"trigger":{
+		"type":"condition",
+		"condition":CONDITION NAME
+	},
+	"reverse":true or false
+}
+```
+
+## Version 7
+Remove `EventType`.
+Contents are almost the same as the previous version, with the `trigger/logic` (`EventType`) part removed.
+
+### Event with inline Scenario
+```JSON
+{
+	"name":NAME,
+	"version":VERSION OF DATA,
+	"active":true or false,
+	"profile":PROFILE NAME,
+	"after":PARENT EVENT NAME,
+	"trigger":{
+		"type":"raw_event",
+		"situation":{
+			"spec":ID OF CORRESPONDING EventPlugin,
+			"data":DATA FROM CORRESPONDING EventPlugin
+		}
+	}
+}
+```
+
+### Scenario
+```JSON
+{
+	"name":NAME,
+	"version":VERSION OF DATA,
+	"situation":{
+		"spec":ID OF CORRESPONDING EventPlugin,
+		"data":DATA FROM CORRESPONDING EventPlugin
+	}
+}
+
+```
+
+## 版本6
+No format change; won't list.
 
 ## Version 5
 This version slightly modified version 4.
