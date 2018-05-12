@@ -467,7 +467,7 @@ public class {slot} extends AbstractSlot<{data}> {{
     }}
 
     /**
-     * {@inheritDoc}
+     * {{@inheritDoc}}
      */
     @Deprecated
     @Override
