@@ -43,6 +43,7 @@ import ryey.easer.plugins.event.bluetooth_device.BTDeviceEventPlugin;
 import ryey.easer.plugins.event.broadcast.BroadcastEventPlugin;
 import ryey.easer.plugins.event.calendar.CalendarEventPlugin;
 import ryey.easer.plugins.event.celllocation.CellLocationEventPlugin;
+import ryey.easer.plugins.event.condition_event.ConditionEventEventPlugin;
 import ryey.easer.plugins.event.connectivity.ConnectivityEventPlugin;
 import ryey.easer.plugins.event.date.DateEventPlugin;
 import ryey.easer.plugins.event.dayofweek.DayOfWeekEventPlugin;
@@ -95,6 +96,7 @@ final public class PluginRegistry {
     });
 
     {
+        event().registerPlugin(ConditionEventEventPlugin.class);
         event().registerPlugin(TimeEventPlugin.class);
         event().registerPlugin(DateEventPlugin.class);
         event().registerPlugin(WifiEventPlugin.class);

@@ -60,21 +60,23 @@ public class ConditionHolderService extends Service {
         @Override
         public void onReceive(Context context, Intent intent) {
             try {
-                String name = intent.getData().getLastPathSegment();
-                if (intent.getAction().equals(ACTION_TRACKER_SATISFIED)) {
-                    for (Lotus.NotifyPendingIntents pendingIntents : associateMap.get(name)) {
-                        try {
-                            pendingIntents.positive.send();
-                        } catch (PendingIntent.CanceledException e) {
-                            e.printStackTrace();
+                if (ACTION_TRACKER_SATISFIED.equals(intent.getAction()) || ACTION_TRACKER_UNSATISFIED.equals(intent.getAction())) {
+                    String name = intent.getData().getLastPathSegment();
+                    if (intent.getAction().equals(ACTION_TRACKER_SATISFIED)) {
+                        for (Lotus.NotifyPendingIntents pendingIntents : associateMap.get(name)) {
+                            try {
+                                pendingIntents.positive.send();
+                            } catch (PendingIntent.CanceledException e) {
+                                e.printStackTrace();
+                            }
                         }
-                    }
-                } else if (intent.getAction().equals(ACTION_TRACKER_UNSATISFIED)) {
-                    for (Lotus.NotifyPendingIntents pendingIntents : associateMap.get(name)) {
-                        try {
-                            pendingIntents.negative.send();
-                        } catch (PendingIntent.CanceledException e) {
-                            e.printStackTrace();
+                    } else if (intent.getAction().equals(ACTION_TRACKER_UNSATISFIED)) {
+                        for (Lotus.NotifyPendingIntents pendingIntents : associateMap.get(name)) {
+                            try {
+                                pendingIntents.negative.send();
+                            } catch (PendingIntent.CanceledException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 }
@@ -126,7 +128,7 @@ public class ConditionHolderService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        this.unregisterReceiver(mReceiver);
+        unregisterReceiver(mReceiver);
         for (Tracker tracker : trackerMap.values()) {
             tracker.stop();
         }

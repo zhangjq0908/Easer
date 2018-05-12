@@ -19,6 +19,7 @@
 
 package ryey.easer.core;
 
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -30,6 +31,7 @@ import android.os.Binder;
 import android.os.Bundle;
 import android.os.ConditionVariable;
 import android.os.IBinder;
+import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 
@@ -50,6 +52,30 @@ public class EHService extends Service {
 
     public static final String ACTION_STATE_CHANGED = "ryey.easer.action.STATE_CHANGED";
     public static final String ACTION_PROFILE_UPDATED = "ryey.easer.action.PROFILE_UPDATED";
+
+
+    private static final String ACTION_UNREGISTER_CONDITION_EVENT = "ryey.easer.service.action.UNREGISTER_CONDITION_EVENT";
+    private static final String ACTION_REGISTER_CONDITION_EVENT = "ryey.easer.service.action.REGISTER_CONDITION_EVENT";
+    private static final String EXTRA_CONDITION_NAME = "ryey.easer.service.extra.CONDITION_NAME";
+    private static final String EXTRA_PENDING_INTENT = "ryey.easer.service.extra.PENDING_INTENT";
+    private static final IntentFilter filter_conditionEvent;
+    static {
+        filter_conditionEvent = new IntentFilter();
+        filter_conditionEvent.addAction(ACTION_REGISTER_CONDITION_EVENT);
+        filter_conditionEvent.addAction(ACTION_UNREGISTER_CONDITION_EVENT);
+    }
+    public static void registerConditionEventNotification(@NonNull Context context, @NonNull String conditionName, @NonNull PendingIntent[] pendingIntents) {
+        Intent intent = new Intent(ACTION_REGISTER_CONDITION_EVENT);
+        intent.putExtra(EXTRA_CONDITION_NAME, conditionName);
+        intent.putExtra(EXTRA_PENDING_INTENT, pendingIntents);
+        context.sendBroadcast(intent);
+    }
+    public static void unregisterConditionEventNotification(@NonNull Context context, @NonNull String conditionName, @NonNull PendingIntent[] pendingIntents) {
+        Intent intent = new Intent(ACTION_UNREGISTER_CONDITION_EVENT);
+        intent.putExtra(EXTRA_CONDITION_NAME, conditionName);
+        intent.putExtra(EXTRA_PENDING_INTENT, pendingIntents);
+        context.sendBroadcast(intent);
+    }
 
     private static final String TAG = "[EHService] ";
 
@@ -80,16 +106,22 @@ public class EHService extends Service {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             Logger.d("Broadcast received :: action: <%s>", action);
-            switch (action) {
-                case ACTION_RELOAD:
-                    reloadTriggers();
-                    break;
-                case ProfileLoaderIntentService.ACTION_PROFILE_LOADED:
-                    recordProfile(intent.getExtras());
-                    Intent intent1 = new Intent();
-                    intent1.setAction(ACTION_PROFILE_UPDATED);
-                    sendBroadcast(intent1);
-                    break;
+            if (ACTION_RELOAD.equals(action)) {
+                reloadTriggers();
+            } else if (ProfileLoaderIntentService.ACTION_PROFILE_LOADED.equals(action)) {
+                recordProfile(intent.getExtras());
+                Intent intent1 = new Intent();
+                intent1.setAction(ACTION_PROFILE_UPDATED);
+                sendBroadcast(intent1);
+            } else if (ACTION_REGISTER_CONDITION_EVENT.equals(intent.getAction()) || ACTION_UNREGISTER_CONDITION_EVENT.equals(intent.getAction())) {
+                String conditionName = intent.getStringExtra(EXTRA_CONDITION_NAME);
+                PendingIntent []pendingIntents= (PendingIntent[]) intent.getParcelableArrayExtra(EXTRA_PENDING_INTENT);
+                Lotus.NotifyPendingIntents notifyPendingIntents = new Lotus.NotifyPendingIntents(pendingIntents[0], pendingIntents[1]);
+                requireCHService(TAG);
+                if (ACTION_REGISTER_CONDITION_EVENT.equals(intent.getAction()))
+                    conditionHolderBinder.registerAssociation(conditionName, notifyPendingIntents);
+                else
+                    conditionHolderBinder.unregisterAssociation(conditionName, notifyPendingIntents);
             }
         }
     };
@@ -147,6 +179,7 @@ public class EHService extends Service {
         filter.addAction(ACTION_RELOAD);
         filter.addAction(ProfileLoaderIntentService.ACTION_PROFILE_LOADED);
         registerReceiver(mReceiver, filter);
+        registerReceiver(mReceiver, filter_conditionEvent);
         Logger.i(TAG + "created");
     }
 
