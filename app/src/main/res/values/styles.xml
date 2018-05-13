@@ -51,12 +51,14 @@
         <item name="android:layout_weight">@integer/lr_weight_left</item>
         <item name="android:paddingLeft">@dimen/lr_padding_outer</item>
         <item name="android:paddingRight">@dimen/lr_padding_inner</item>
+        <item name="android:gravity">center_vertical</item>
     </style>
 
     <style name="LR.Right">
         <item name="android:layout_weight">@integer/lr_weight_right</item>
         <item name="android:paddingLeft">@dimen/lr_padding_inner</item>
         <item name="android:paddingRight">@dimen/lr_padding_outer</item>
+        <item name="android:gravity">center_vertical</item>
     </style>
 
     <style name="LR.Input">
