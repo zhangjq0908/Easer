@@ -48,12 +48,12 @@ import ryey.easer.core.EventHistoryRecord;
 public class LoadedHistoryFragment extends Fragment {
 
     private static final String ARG_SIZE = "ryey.easer.core.ui.LoadedHistoryFragment.ARG.SIZE";
-    private static final String COMPACT = "ryey.easer.core.ui.LoadedHistoryFragment.COMPACT";
-    private static final String FULL = "ryey.easer.core.ui.LoadedHistoryFragment.FULL";
+    private static final int COMPACT = 1;
+    private static final int FULL = 0;
 
     static LoadedHistoryFragment compact() {
         Bundle bundle = new Bundle();
-        bundle.putString(ARG_SIZE, COMPACT);
+        bundle.putInt(ARG_SIZE, COMPACT);
         LoadedHistoryFragment fragment = new LoadedHistoryFragment();
         fragment.setArguments(bundle);
         return fragment;
@@ -61,7 +61,7 @@ public class LoadedHistoryFragment extends Fragment {
 
     static LoadedHistoryFragment full() {
         Bundle bundle = new Bundle();
-        bundle.putString(ARG_SIZE, FULL);
+        bundle.putInt(ARG_SIZE, FULL);
         LoadedHistoryFragment fragment = new LoadedHistoryFragment();
         fragment.setArguments(bundle);
         return fragment;
@@ -85,7 +85,8 @@ public class LoadedHistoryFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Bundle args = getArguments();
-        if (args == null || FULL.equals(args.getString(ARG_SIZE))) {
+        if (args == null || FULL == args.getInt(ARG_SIZE)) {
+            getActivity().setTitle(R.string.title_activity_log);
             View layout = inflater.inflate(R.layout.fragment_loaded_history_full, container, false);
             RecyclerView view = layout.findViewById(R.id.recycler_view);
             view.setHasFixedSize(true);

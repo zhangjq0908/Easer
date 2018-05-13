@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity
     private static final String FRAGMENT_EVENT = "ryey.easer.FRAGMENT.EVENT";
     private static final String FRAGMENT_SCENARIO = "ryey.easer.FRAGMENT.SCENARIO";
     private static final String FRAGMENT_CONDITION = "ryey.easer.FRAGMENT.CONDITION";
+    private static final String FRAGMENT_LOG = "ryey.easer.FRAGMENT.LOG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,9 +174,11 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_log) {
-            fragment = LoadedHistoryFragment.full();
+            fragment = manager.findFragmentByTag(FRAGMENT_LOG);
+            if (fragment == null)
+                fragment = LoadedHistoryFragment.full();
             manager.beginTransaction()
-                    .replace(R.id.content_main, fragment)
+                    .replace(R.id.content_main, fragment, FRAGMENT_LOG)
                     .commit();
         }
 
