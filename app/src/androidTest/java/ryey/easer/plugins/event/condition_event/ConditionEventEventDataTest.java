@@ -17,31 +17,24 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui.edit;
+package ryey.easer.plugins.event.condition_event;
 
-import android.content.Intent;
+import android.os.Parcel;
 
-import ryey.easer.R;
-import ryey.easer.core.data.storage.ProfileDataStorage;
+import org.junit.Test;
 
-public class ProfileListFragment extends AbstractDataListFragment<ProfileDataStorage> {
+import ryey.easer.plugins.TestHelper;
 
-    static {
-        TAG = "[ProfileListFragment] ";
+import static org.junit.Assert.assertEquals;
+
+public class ConditionEventEventDataTest {
+
+    @Test
+    public void testParcel() {
+        ConditionEventEventData dummyData = new ConditionEventEventDataFactory().dummyData();
+        Parcel parcel = TestHelper.writeToParcel(dummyData);
+        ConditionEventEventData parceledData = ConditionEventEventData.CREATOR.createFromParcel(parcel);
+        assertEquals(dummyData, parceledData);
     }
 
-    @Override
-    protected String title() {
-        return getString(R.string.title_profile);
-    }
-
-    @Override
-    protected ProfileDataStorage retmStorage() {
-        return ProfileDataStorage.getInstance(getContext());
-    }
-
-    @Override
-    protected Intent intentForEditDataActivity() {
-        return new Intent(getActivity(), EditProfileActivity.class);
-    }
 }

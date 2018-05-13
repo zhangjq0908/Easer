@@ -19,7 +19,6 @@
 
 package ryey.easer.core.ui;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -59,14 +58,8 @@ public class OutlineFragment extends Fragment {
     };
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof Activity)
-            ((Activity) context).setTitle(getString(R.string.title_outline));
-    }
-
-    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
+        getActivity().setTitle(getString(R.string.title_outline));
         mView = inflater.inflate(R.layout.fragment_outline, container, false);
 
         mIndicator = mView.findViewById(R.id.running_ind);

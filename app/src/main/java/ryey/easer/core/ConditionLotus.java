@@ -30,18 +30,18 @@ import ryey.easer.core.data.ScriptTree;
 class ConditionLotus extends Lotus {
     private final ConditionStructure conditionStructure;
 
-    ConditionLotus(@NonNull Context context, @NonNull ScriptTree scriptTree, @NonNull ExecutorService executorService, @NonNull EHService.ConditionHolder conditionHolder) {
-        super(context, scriptTree, executorService, conditionHolder);
+    ConditionLotus(@NonNull Context context, @NonNull ScriptTree scriptTree, @NonNull ExecutorService executorService, @NonNull ConditionHolderService.CHBinder chBinder) {
+        super(context, scriptTree, executorService, chBinder);
         conditionStructure = scriptTree.getCondition();
     }
 
     @Override
     protected void onListen() {
-        conditionHolder.registerAssociation(conditionStructure.getName(), notifyPendingIntents);
-        Boolean state = conditionHolder.conditionState(conditionStructure.getName());
+        chBinder.registerAssociation(conditionStructure.getName(), notifyPendingIntents);
+        Boolean state = chBinder.conditionState(conditionStructure.getName());
         if (state == null) {
         } else {
-            if (state) {
+            if (state != scriptTree.isReversed()) {
                 onSatisfied();
             } else {
                 onUnsatisfied();
@@ -51,6 +51,6 @@ class ConditionLotus extends Lotus {
 
     @Override
     protected void onCancel() {
-        conditionHolder.unregisterAssociation(conditionStructure.getName(), notifyPendingIntents);
+        chBinder.unregisterAssociation(conditionStructure.getName(), notifyPendingIntents);
     }
 }

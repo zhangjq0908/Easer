@@ -26,6 +26,11 @@ import ryey.easer.core.EHService;
 import ryey.easer.core.data.storage.ScriptDataStorage;
 
 public class ScriptListFragment extends AbstractDataListFragment<ScriptDataStorage> {
+
+    static {
+        TAG = "[ScriptListFragment] ";
+    }
+
     @Override
     protected String title() {
         return getString(R.string.title_script);
@@ -37,8 +42,8 @@ public class ScriptListFragment extends AbstractDataListFragment<ScriptDataStora
     }
 
     @Override
-    protected void reloadList() {
-        super.reloadList();
+    protected void onDataChangedFromEditDataActivity() {
+        super.onDataChangedFromEditDataActivity();
         EHService.reload(getContext());
     }
 

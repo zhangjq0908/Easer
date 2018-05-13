@@ -26,6 +26,11 @@ import ryey.easer.core.EHService;
 import ryey.easer.core.data.storage.ScenarioDataStorage;
 
 public class ScenarioListFragment extends AbstractDataListFragment<ScenarioDataStorage> {
+
+    static {
+        TAG = "[ScenarioListFragment] ";
+    }
+
     @Override
     protected String title() {
         return getString(R.string.title_scenario);
@@ -37,8 +42,8 @@ public class ScenarioListFragment extends AbstractDataListFragment<ScenarioDataS
     }
 
     @Override
-    protected void reloadList() {
-        super.reloadList();
+    protected void onDataChangedFromEditDataActivity() {
+        super.onDataChangedFromEditDataActivity();
         EHService.reload(getContext());
     }
 

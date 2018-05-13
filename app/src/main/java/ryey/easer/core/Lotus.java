@@ -47,17 +47,17 @@ abstract class Lotus {
 
     static Lotus createLotus(@NonNull Context context, @NonNull ScriptTree scriptTree,
                              @NonNull ExecutorService executorService,
-                             @NonNull EHService.ConditionHolder conditionHolder) {
+                             @NonNull ConditionHolderService.CHBinder chBinder) {
         if (scriptTree.isEvent())
-            return new EventLotus(context, scriptTree, executorService, conditionHolder);
+            return new EventLotus(context, scriptTree, executorService, chBinder);
         else
-            return new ConditionLotus(context, scriptTree, executorService, conditionHolder);
+            return new ConditionLotus(context, scriptTree, executorService, chBinder);
     }
 
     @NonNull protected final Context context;
     @NonNull protected final ScriptTree scriptTree;
     @NonNull protected final ExecutorService executorService;
-    @NonNull protected final EHService.ConditionHolder conditionHolder;
+    @NonNull protected final ConditionHolderService.CHBinder chBinder;
     protected List<Lotus> subs = new ArrayList<>();
 
     protected boolean satisfied = false;
@@ -87,11 +87,11 @@ abstract class Lotus {
         filter.addDataPath(uri.getPath(), PatternMatcher.PATTERN_LITERAL);
     }
 
-    protected Lotus(@NonNull Context context, @NonNull ScriptTree scriptTree, @NonNull ExecutorService executorService, @NonNull EHService.ConditionHolder conditionHolder) {
+    protected Lotus(@NonNull Context context, @NonNull ScriptTree scriptTree, @NonNull ExecutorService executorService, @NonNull ConditionHolderService.CHBinder chBinder) {
         this.context = context;
         this.scriptTree = scriptTree;
         this.executorService = executorService;
-        this.conditionHolder = conditionHolder;
+        this.chBinder = chBinder;
 
         Intent intent = new Intent(ACTION_SLOT_SATISFIED);
         intent.addCategory(CATEGORY_NOTIFY_LOTUS);
@@ -164,7 +164,7 @@ abstract class Lotus {
         }
         for (ScriptTree sub : scriptTree.getSubs()) {
             if (sub.isActive()) {
-                Lotus subLotus = Lotus.createLotus(context, sub, executorService, conditionHolder);
+                Lotus subLotus = Lotus.createLotus(context, sub, executorService, chBinder);
                 subs.add(subLotus);
                 subLotus.listen();
             }

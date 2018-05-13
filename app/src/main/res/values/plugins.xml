@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <string name="ev_condition_event">Condition Event</string>
+    <string name="condition_event_enter">Enter</string>
+    <string name="condition_event_leave">Leave</string>
+
     <string name="event_time">Time</string>
     <string name="event_date">Date</string>
 

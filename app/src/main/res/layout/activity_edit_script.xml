@@ -2,73 +2,91 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linearLayout"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="ryey.easer.core.ui.edit.EditScriptActivity">
 
 
-    <GridLayout
+    <TableLayout
         android:id="@+id/layout_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView4"
-            style="@style/LR.Left"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_column="0"
-            android:layout_row="0"
-            android:text="@string/text_title" />
-
-        <EditText
-            android:id="@+id/editText_script_title"
-            style="@style/LR.Right"
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_row="0"
-            android:hint="@string/hint_script_title" />
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView6"
-            style="@style/LR.Left"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_column="0"
-            android:layout_marginTop="2dp"
-            android:layout_row="1"
-            android:text="@string/text_parent_node" />
+            <TextView
+                android:id="@+id/textView4"
+                style="@style/LR.Left"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:text="@string/text_title" />
 
-        <Spinner
-            android:id="@+id/spinner_parent"
-            style="@style/LR.Right"
+            <EditText
+                android:id="@+id/editText_script_title"
+                style="@style/LR.Right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_row="0"
+                android:hint="@string/hint_script_title" />
+        </TableRow>
+
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_row="1" />
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView7"
-            style="@style/LR.Left"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_column="0"
-            android:layout_marginTop="2dp"
-            android:layout_row="2"
-            android:text="@string/text_profile" />
+            <TextView
+                android:id="@+id/textView6"
+                style="@style/LR.Left"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:layout_marginTop="2dp"
+                android:layout_row="1"
+                android:text="@string/text_parent_node" />
 
-        <Spinner
-            android:id="@+id/spinner_profile"
-            style="@style/LR.Right"
+            <Spinner
+                android:id="@+id/spinner_parent"
+                style="@style/LR.Right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_row="1" />
+
+        </TableRow>
+
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_row="2" />
+            android:layout_height="match_parent">
 
-    </GridLayout>
+            <TextView
+                android:id="@+id/textView7"
+                style="@style/LR.Left"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:layout_marginTop="2dp"
+                android:layout_row="2"
+                android:text="@string/text_profile" />
+
+            <Spinner
+                android:id="@+id/spinner_profile"
+                style="@style/LR.Right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_row="2" />
+        </TableRow>
+
+    </TableLayout>
 
     <ryey.easer.core.ui.edit.EventPluginViewPager
         android:id="@+id/pager"
@@ -125,12 +143,12 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            app:showText="true"
             android:textOff="@string/text_volatile"
             android:textOn="@string/text_persistent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch_repeatable" />
+            app:layout_constraintTop_toBottomOf="@+id/switch_repeatable"
+            app:showText="true" />
 
     </android.support.constraint.ConstraintLayout>
 
