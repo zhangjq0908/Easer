@@ -25,6 +25,11 @@ import ryey.easer.R;
 import ryey.easer.core.data.storage.ProfileDataStorage;
 
 public class ProfileListFragment extends AbstractDataListFragment<ProfileDataStorage> {
+
+    static {
+        TAG = "[ProfileListFragment] ";
+    }
+
     @Override
     protected String title() {
         return getString(R.string.title_profile);

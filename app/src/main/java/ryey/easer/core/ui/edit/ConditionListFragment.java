@@ -22,9 +22,15 @@ package ryey.easer.core.ui.edit;
 import android.content.Intent;
 
 import ryey.easer.R;
+import ryey.easer.core.EHService;
 import ryey.easer.core.data.storage.ConditionDataStorage;
 
 public class ConditionListFragment extends AbstractDataListFragment<ConditionDataStorage> {
+
+    static {
+        TAG = "[ScriptListFragment] ";
+    }
+
     @Override
     protected String title() {
         return getString(R.string.title_condition);
@@ -33,6 +39,12 @@ public class ConditionListFragment extends AbstractDataListFragment<ConditionDat
     @Override
     protected ConditionDataStorage retmStorage() {
         return ConditionDataStorage.getInstance(getContext());
+    }
+
+    @Override
+    protected void onDataChangedFromEditDataActivity() {
+        super.onDataChangedFromEditDataActivity();
+        EHService.reload(getContext());
     }
 
     @Override

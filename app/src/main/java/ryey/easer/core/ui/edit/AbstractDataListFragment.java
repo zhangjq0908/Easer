@@ -23,6 +23,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ListFragment;
 import android.view.ContextMenu;
@@ -38,12 +39,15 @@ import android.widget.ListView;
 
 import com.orhanobut.logger.Logger;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ryey.easer.R;
 import ryey.easer.core.data.storage.AbstractDataStorage;
 
 abstract class AbstractDataListFragment<T extends AbstractDataStorage> extends ListFragment {
+
+    protected static String TAG = "[AbstractDataListFragment] ";
 
     static final int request_code = 10;
 
@@ -63,13 +67,15 @@ abstract class AbstractDataListFragment<T extends AbstractDataStorage> extends L
         super.onActivityCreated(savedInstanceState);
         registerForContextMenu(getListView());
 
-//        mStorage = ProfileDataStorage.getInstance(getActivity());
         mStorage = retmStorage();
-        List<String> items = mStorage.list();
-        Logger.v("All profiles: %s", items);
-        ListAdapter adapter = new IListAdapter(getActivity(), items);
+        ListAdapter adapter = new IListAdapter(getActivity(), new ArrayList<String>());
         setListAdapter(adapter);
-        reloadList(); //TODO: 尚有重複載入，待改進
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        reloadList();
     }
 
     protected abstract T retmStorage();
@@ -121,13 +127,18 @@ abstract class AbstractDataListFragment<T extends AbstractDataStorage> extends L
     }
 
     protected void reloadList() {
-        Logger.d("reloadList()");
+        Logger.d(TAG + "reloadList()");
         List<String> items = mStorage.list();
-        Logger.v("All profiles: %s", items);
+        Logger.v(TAG + "All item: %s", items);
         IListAdapter adapter = (IListAdapter) getListAdapter();
         adapter.clear();
         adapter.addAll(items);
         adapter.notifyDataSetChanged();
+    }
+
+    @CallSuper
+    protected void onDataChangedFromEditDataActivity() {
+        reloadList();
     }
 
     protected abstract Intent intentForEditDataActivity();
@@ -154,7 +165,7 @@ abstract class AbstractDataListFragment<T extends AbstractDataStorage> extends L
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == request_code) {
             if (resultCode == Activity.RESULT_OK) {
-                reloadList();
+                onDataChangedFromEditDataActivity();
             }
         }
     }
