@@ -53,13 +53,6 @@ abstract class AbstractDataListFragment<T extends AbstractDataStorage> extends L
 
     T mStorage;
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof Activity)
-            ((Activity) context).setTitle(title());
-    }
-
     protected abstract String title();
 
     @Override
@@ -82,6 +75,7 @@ abstract class AbstractDataListFragment<T extends AbstractDataStorage> extends L
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        getActivity().setTitle(title());
         return inflater.inflate(R.layout.fragment_fab_list, container, false);
     }
 

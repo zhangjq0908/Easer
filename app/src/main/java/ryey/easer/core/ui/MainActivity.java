@@ -25,6 +25,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -54,10 +55,12 @@ public class MainActivity extends AppCompatActivity
 
     private static final String FRAGMENT_OUTLINE = "ryey.easer.FRAGMENT.OUTLINE";
     private static final String FRAGMENT_PROFILE = "ryey.easer.FRAGMENT.PROFILE";
-    private static final String FRAGMENT_EVENT = "ryey.easer.FRAGMENT.EVENT";
+    private static final String FRAGMENT_SCRIPT = "ryey.easer.FRAGMENT.SCRIPT";
     private static final String FRAGMENT_SCENARIO = "ryey.easer.FRAGMENT.SCENARIO";
     private static final String FRAGMENT_CONDITION = "ryey.easer.FRAGMENT.CONDITION";
     private static final String FRAGMENT_LOG = "ryey.easer.FRAGMENT.LOG";
+
+    private static final NavTag navTag = new NavTag();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +84,9 @@ public class MainActivity extends AppCompatActivity
         if (savedInstanceState == null){
             navigationView.setCheckedItem(R.id.nav_outline);
             Fragment fragment = new OutlineFragment();
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_main, fragment, FRAGMENT_OUTLINE).commit();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_main, fragment, FRAGMENT_OUTLINE)
+                    .commit();
         }
 
         // Show Welcome page at first launch
@@ -128,6 +133,20 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            NavigationView navigationView = findViewById(R.id.nav_view);
+            FragmentManager manager = getSupportFragmentManager();
+            int previous_entry = manager.getBackStackEntryCount() - 2;
+            if (previous_entry >= 0) {
+                String name = manager
+                        .getBackStackEntryAt(previous_entry)
+                        .getName();
+                Integer id = navTag.findId(name);
+                if (id == null)
+                    throw new IllegalStateException(String.format("<%s> not in tracked go-back items??", name));
+                navigationView.setCheckedItem(id);
+            } else if (previous_entry == -1) {
+                navigationView.setCheckedItem(R.id.nav_outline);
+            }
             super.onBackPressed();
         }
     }
@@ -137,35 +156,47 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         FragmentManager manager = getSupportFragmentManager();
         Fragment fragment;
+        String tag = navTag.findTag(id);
 
         if (id == R.id.nav_outline) {
-            fragment = manager.findFragmentByTag(FRAGMENT_OUTLINE);
+            fragment = manager.findFragmentByTag(tag);
             if (fragment == null)
                 fragment = new OutlineFragment();
-            manager.beginTransaction().replace(R.id.content_main, fragment, FRAGMENT_OUTLINE).commit();
+            manager.beginTransaction()
+                    .replace(R.id.content_main, fragment, tag)
+                    .addToBackStack(tag)
+                    .commit();
         } else if (id == R.id.nav_profile) {
-            fragment = manager.findFragmentByTag(FRAGMENT_PROFILE);
+            fragment = manager.findFragmentByTag(tag);
             if (fragment == null)
                 fragment = new ProfileListFragment();
-            manager.beginTransaction().replace(R.id.content_main, fragment, FRAGMENT_PROFILE).commit();
+            manager.beginTransaction()
+                    .replace(R.id.content_main, fragment, tag)
+                    .addToBackStack(tag)
+                    .commit();
         } else if (id == R.id.nav_script) {
-            fragment = manager.findFragmentByTag(FRAGMENT_EVENT);
+            fragment = manager.findFragmentByTag(tag);
             if (fragment == null)
                 fragment = new ScriptListFragment();
-            manager.beginTransaction().replace(R.id.content_main, fragment, FRAGMENT_EVENT).commit();
+            manager.beginTransaction()
+                    .replace(R.id.content_main, fragment, tag)
+                    .addToBackStack(tag)
+                    .commit();
         } else if (id == R.id.nav_scenario) {
-            fragment = manager.findFragmentByTag(FRAGMENT_SCENARIO);
+            fragment = manager.findFragmentByTag(tag);
             if (fragment == null)
                 fragment = new ScenarioListFragment();
             manager.beginTransaction()
-                    .replace(R.id.content_main, fragment, FRAGMENT_SCENARIO)
+                    .replace(R.id.content_main, fragment, tag)
+                    .addToBackStack(tag)
                     .commit();
         } else if (id == R.id.nav_condition) {
-            fragment = manager.findFragmentByTag(FRAGMENT_CONDITION);
+            fragment = manager.findFragmentByTag(tag);
             if (fragment == null)
                 fragment = new ConditionListFragment();
             manager.beginTransaction()
-                    .replace(R.id.content_main, fragment, FRAGMENT_CONDITION)
+                    .replace(R.id.content_main, fragment, tag)
+                    .addToBackStack(tag)
                     .commit();
         } else if (id == R.id.nav_about) {
             Intent intent = new Intent(this, AboutActivity.class);
@@ -174,16 +205,51 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_log) {
-            fragment = manager.findFragmentByTag(FRAGMENT_LOG);
+            fragment = manager.findFragmentByTag(tag);
             if (fragment == null)
                 fragment = LoadedHistoryFragment.full();
             manager.beginTransaction()
-                    .replace(R.id.content_main, fragment, FRAGMENT_LOG)
+                    .replace(R.id.content_main, fragment, tag)
+                    .addToBackStack(tag)
                     .commit();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private static class NavTag {
+        private static final int[] nav_ids = {
+                R.id.nav_outline,
+                R.id.nav_script,
+                R.id.nav_profile,
+                R.id.nav_scenario,
+                R.id.nav_condition,
+                R.id.nav_log,
+        };
+        private static final String[] fragment_tags = {
+                FRAGMENT_OUTLINE,
+                FRAGMENT_SCRIPT,
+                FRAGMENT_PROFILE,
+                FRAGMENT_SCENARIO,
+                FRAGMENT_CONDITION,
+                FRAGMENT_LOG,
+        };
+
+        private @Nullable Integer findId(String tag) {
+            for (int i = 0; i < nav_ids.length; i++) {
+                if (tag.equals(fragment_tags[i]))
+                    return nav_ids[i];
+            }
+            return null;
+        }
+        private @Nullable String findTag(int id) {
+            for (int i = 0; i < fragment_tags.length; i++) {
+                if (id == nav_ids[i])
+                    return fragment_tags[i];
+            }
+            return null;
+        }
     }
 }
