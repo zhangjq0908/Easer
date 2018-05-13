@@ -1,6 +1,22 @@
 CHANGELOG
 ======
 
+* v0.6: Add ConditionEvent (enter/leave) && Go back when pressing "back" && Do not clear log when reloading service && Various fixes && Dev changes
+	* Add ConditionEvent - Events for Condition state
+		* Enter Condition and Leave condition
+	* Go to previous page / fragment when pressing "back" button
+	* Do not clear log when reloading EHService
+		* The log is kept to at most 1000 entries
+		* The log will be lost if EHService is freed
+	* Fixes
+		* Fix title and navigation drawer behavior of Activity Log
+		* Fix unexpected reloading of scripts when switching pages
+		* Fit spinners when editing Script into screen
+		* Make "reverse" work for Condition
+		* Fix `BatteryTracker.state()`
+	* Dev changes
+		* Move `ConditionHolder` to a separate `Service`
+
 * v0.5.9.1: Allow to restart after update && Fix Events not triggered sometimes && Do not trigger `TimeEventPlugin` for the past time of the current day
 	* Allow to restart service after updating app (changeable in settings)
 	* Fix "reversed" Events not triggered at the first time

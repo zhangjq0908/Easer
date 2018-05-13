@@ -1,6 +1,7 @@
 Supported Features
 ------
 ### Event
+* *Condition* Event
 * Date
 * Time
 * WiFi connection name (SSID)

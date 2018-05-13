@@ -83,6 +83,7 @@ public class StorageHelper {
                 "Profile",
                 "Script",
                 "Scenario",
+                "Condition",
         };
         for (int i = 0; i < dataStorages.length; i++) {
             AbstractDataStorage<?, ?> dataStorage = dataStorages[i];
