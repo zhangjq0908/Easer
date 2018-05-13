@@ -20,6 +20,7 @@
 package ryey.easer.core;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 
@@ -53,8 +54,8 @@ class EventLotus extends Lotus {
     private final boolean repeatable;
     private final boolean persistent;
 
-    EventLotus(Context context, ScriptTree scriptTree, ExecutorService executorService, EHService.ConditionHolder conditionHolder) {
-        super(context, scriptTree, executorService, conditionHolder);
+    EventLotus(@NonNull Context context, @NonNull ScriptTree scriptTree, @NonNull ExecutorService executorService, @NonNull ConditionHolderService.CHBinder chBinder) {
+        super(context, scriptTree, executorService, chBinder);
 
         mSlot = nodeToSlot(scriptTree);
         if (scriptTree.isReversed()) {

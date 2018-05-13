@@ -82,7 +82,7 @@ public class BatteryTracker extends SkeletonTracker<BatteryConditionData> {
         int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
         boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
                 status == BatteryManager.BATTERY_STATUS_FULL;
-        return data.battery_status == BatteryStatus.charging && isCharging;
+        return (data.battery_status == BatteryStatus.charging) == isCharging;
     }
 
     private void determineAndNotify(boolean isCharging) {
