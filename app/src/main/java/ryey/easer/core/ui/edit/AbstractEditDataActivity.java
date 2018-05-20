@@ -138,9 +138,17 @@ abstract class AbstractEditDataActivity<T extends Named & Verifiable & WithCreat
     protected boolean persistChange() {
         try {
             boolean success;
-            if (purpose == EditDataProto.Purpose.delete)
+            if (purpose == EditDataProto.Purpose.delete) {
                 success = storage.delete(oldName);
-            else {
+                if (success) {
+                    setResult(RESULT_OK);
+                    Logger.d("Successfully deleted " + TAG_DATA_TYPE);
+                    finish();
+                } else {
+                    Logger.e("Failed to delete " + TAG_DATA_TYPE);
+                    Toast.makeText(this, getString(R.string.prompt_delete_failed), Toast.LENGTH_SHORT).show();
+                }
+            } else {
                 try {
                     T newData = saveToData();
                     if (newData == null || !newData.isValid()) {
@@ -162,14 +170,14 @@ abstract class AbstractEditDataActivity<T extends Named & Verifiable & WithCreat
                     Toast.makeText(this, getString(R.string.prompt_data_illegal), Toast.LENGTH_LONG).show();
                     return false;
                 }
-            }
-            if (success) {
-                setResult(RESULT_OK);
-                Logger.d("Successfully altered " + TAG_DATA_TYPE);
-                finish();
-            } else {
-                Logger.e("Failed to alter " + TAG_DATA_TYPE);
-                Toast.makeText(this, getString(R.string.prompt_save_failed), Toast.LENGTH_SHORT).show();
+                if (success) {
+                    setResult(RESULT_OK);
+                    Logger.d("Successfully saved " + TAG_DATA_TYPE);
+                    finish();
+                } else {
+                    Logger.e("Failed to save " + TAG_DATA_TYPE);
+                    Toast.makeText(this, getString(R.string.prompt_save_failed), Toast.LENGTH_SHORT).show();
+                }
             }
             return success;
         } catch (IOException e) {

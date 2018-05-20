@@ -66,6 +66,7 @@
 
     <string name="prompt_save_failed">Failed to save</string>
     <string name="prompt_delete">Are you sure to delete: %s</string>
+    <string name="prompt_delete_failed">Failed to delete. Check if this item is being used.</string>
     <string name="prompt_data_illegal">Prevented saving data with invalid field(s). Please recheck your choices / inputs.</string>
 
     <string name="prompt_prevented_for_permission">Easer needs permission &lt;%s&gt; for this function.</string>
