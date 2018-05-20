@@ -23,6 +23,11 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.orhanobut.logger.Logger;
+
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 import ryey.easer.commons.plugindef.conditionplugin.ConditionData;
 import ryey.easer.commons.plugindef.conditionplugin.Tracker;
 
@@ -32,6 +37,9 @@ public abstract class SkeletonTracker<D extends ConditionData> implements Tracke
     protected final D data;
     protected final PendingIntent event_positive, event_negative;
 
+    Lock lck_satisfied = new ReentrantLock();
+    protected Boolean satisfied;
+
     protected SkeletonTracker(Context context, D data,
                               @NonNull PendingIntent event_positive,
                               @NonNull PendingIntent event_negative) {
@@ -39,6 +47,25 @@ public abstract class SkeletonTracker<D extends ConditionData> implements Tracke
         this.data = data;
         this.event_positive = event_positive;
         this.event_negative = event_negative;
+    }
+
+    protected final void newSatisfiedState(boolean newState) {
+        lck_satisfied.lock();
+        try {
+            if (satisfied != null && satisfied == newState) {
+                return;
+            }
+            satisfied = newState;
+            PendingIntent pendingIntent = satisfied ? event_positive : event_negative;
+            try {
+                pendingIntent.send();
+            } catch (PendingIntent.CanceledException e) {
+                Logger.wtf("PendingIntent for notify in SkeletonTracker cancelled before sending???");
+                e.printStackTrace();
+            }
+        } finally {
+            lck_satisfied.unlock();
+        }
     }
 
 }
