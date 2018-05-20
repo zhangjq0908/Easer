@@ -20,9 +20,15 @@
 package ryey.easer.core.ui.edit;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.view.View;
 
 import ryey.easer.R;
 import ryey.easer.core.data.storage.ProfileDataStorage;
+import ryey.easer.plugins.PluginRegistry;
 
 public class ProfileListFragment extends AbstractDataListFragment<ProfileDataStorage> {
 
@@ -43,5 +49,14 @@ public class ProfileListFragment extends AbstractDataListFragment<ProfileDataSto
     @Override
     protected Intent intentForEditDataActivity() {
         return new Intent(getActivity(), EditProfileActivity.class);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        //noinspection ConstantConditions
+        if (PluginRegistry.getInstance().operation().getEnabledPlugins(getContext()).size() == 0) {
+            FloatingActionButton fab = view.findViewById(R.id.fab);
+            fab.hide();
+        }
     }
 }

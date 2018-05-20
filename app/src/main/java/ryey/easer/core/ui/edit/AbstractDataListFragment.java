@@ -24,7 +24,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
-import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ListFragment;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -76,18 +76,17 @@ abstract class AbstractDataListFragment<T extends AbstractDataStorage> extends L
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getActivity().setTitle(title());
-        return inflater.inflate(R.layout.fragment_fab_list, container, false);
-    }
+        View view = inflater.inflate(R.layout.fragment_fab_list, container, false);
 
-    @Override
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        view.findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton fab = view.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 beginNewData();
             }
         });
+
+        return view;
     }
 
     @Override
