@@ -65,10 +65,8 @@ public class OutlineFragment extends Fragment {
         mIndicator = mView.findViewById(R.id.running_ind);
         mBanner = mView.findViewById(R.id.running_ind_banner);
 
-        Fragment fragment_permission = new PermissionOutlineFragment();
         Fragment fragment_history = LoadedHistoryFragment.compact();
         getChildFragmentManager().beginTransaction()
-                .replace(R.id.content_fragment_permission_outline, fragment_permission)
                 .replace(R.id.content_fragment_loaded_history, fragment_history)
                 .commit();
 

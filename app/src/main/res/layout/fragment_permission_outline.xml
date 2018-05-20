@@ -1,24 +1,31 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/boarder_alert"
-    tools:context="ryey.easer.core.ui.PermissionOutlineFragment">
+    tools:context="ryey.easer.core.ui.PermissionOutlineFragment"
+    android:id="@+id/relativeLayout">
 
     <TextView
         android:id="@+id/textView_lack_permission"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_lack_permission"
         android:textColor="@color/color_alert"
-        android:text="@string/text_lack_permission" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_more"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textView_lack_permission"
-        android:layout_centerHorizontal="true"
-        android:text="@string/button_request_permission" />
+        android:layout_marginBottom="8dp"
+        android:text="@string/button_request_permission"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_lack_permission" />
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
