@@ -476,3 +476,205 @@ public class {slot} extends AbstractSlot<{data}> {{
 }}
 '''
 
+tmpl_condition_plugin = '''package {package};
+
+import android.app.Activity;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.support.annotation.NonNull;
+
+import ryey.easer.commons.plugindef.PluginViewFragment;
+import ryey.easer.commons.plugindef.ValidData;
+import ryey.easer.commons.plugindef.conditionplugin.ConditionDataFactory;
+import ryey.easer.commons.plugindef.conditionplugin.ConditionPlugin;
+import ryey.easer.commons.plugindef.conditionplugin.Tracker;
+
+public class {plugin} implements ConditionPlugin<{data}> {{
+
+    @NonNull
+    @Override
+    public String id() {{
+        return "{id}";
+    }}
+
+    @Override
+    public int name() {{
+        //TODO
+    }}
+
+    @Override
+    public boolean isCompatible(@NonNull final Context context) {{
+        return true;
+    }}
+
+    @Override
+    public boolean checkPermissions(@NonNull Context context) {{
+        return true;
+    }}
+
+    @Override
+    public void requestPermissions(@NonNull Activity activity, int requestCode) {{
+    }}
+
+    @NonNull
+    @Override
+    public ConditionDataFactory<{data}> dataFactory() {{
+        return new {data_factory}();
+    }}
+
+    @NonNull
+    @Override
+    public PluginViewFragment<{data}> view() {{
+        return new {view_fragment}();
+    }}
+
+    @NonNull
+    @Override
+    public Tracker<{data}> tracker(@NonNull Context context,
+                                                 @ValidData @NonNull {data} data,
+                                                 @NonNull PendingIntent event_positive,
+                                                 @NonNull PendingIntent event_negative) {{
+        return new {tracker}(context, data, event_positive, event_negative);
+    }}
+
+}}
+'''
+
+tmpl_condition_data_factory = '''package {package};
+
+import android.support.annotation.NonNull;
+
+import ryey.easer.commons.C;
+import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.plugindef.ValidData;
+import ryey.easer.commons.plugindef.conditionplugin.ConditionDataFactory;
+
+class {data_factory} implements ConditionDataFactory<{data}> {{
+    @NonNull
+    @Override
+    public Class<{data}> dataClass() {{
+        return {data}.class;
+    }}
+
+    @ValidData
+    @NonNull
+    @Override
+    public {data} dummyData() {{
+        //TODO
+    }}
+
+    @ValidData
+    @NonNull
+    @Override
+    public {data} parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {{
+        return new {data}(data, format, version);
+    }}
+}}
+'''
+
+tmpl_condition_data = '''package {package};
+
+import android.os.Parcel;
+import android.support.annotation.NonNull;
+
+import ryey.easer.commons.C;
+import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.plugindef.conditionplugin.ConditionData;
+
+public class {data} implements ConditionData {{
+
+    {data}(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {{
+        switch (format) {{
+            default:
+                //TODO
+        }}
+    }}
+
+    @NonNull
+    @Override
+    public String serialize(@NonNull C.Format format) {{
+        String res;
+        switch (format) {{
+            default:
+                //TODO
+        }}
+        return res;
+    }}
+
+    @SuppressWarnings({{"SimplifiableIfStatement", "RedundantIfStatement"}})
+    @Override
+    public boolean isValid() {{
+        //TODO
+        return false;
+    }}
+
+    @SuppressWarnings({{"SimplifiableIfStatement", "RedundantIfStatement"}})
+    @Override
+    public boolean equals(Object obj) {{
+        if (obj == this)
+            return true;
+        if (obj == null || !(obj instanceof {data}))
+            return false;
+        //TODO
+        return true;
+    }}
+
+    @Override
+    public int describeContents() {{
+        return 0;
+    }}
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {{
+        //TODO
+    }}
+
+    public static final Creator<{data}> CREATOR
+            = new Creator<{data}>() {{
+        public {data} createFromParcel(Parcel in) {{
+            return new {data}(in);
+        }}
+
+        public {data}[] newArray(int size) {{
+            return new {data}[size];
+        }}
+    }};
+
+    private {data}(Parcel in) {{
+        //TODO
+    }}
+}}
+'''
+
+tmpl_condition_tracker = '''package {package};
+
+import android.app.PendingIntent;
+import android.content.Context;
+import android.support.annotation.NonNull;
+
+import ryey.easer.plugins.condition.SkeletonTracker;
+
+public class {tracker} extends SkeletonTracker<{data}> {{
+
+    {tracker}(Context context, {data} data,
+                   @NonNull PendingIntent event_positive,
+                   @NonNull PendingIntent event_negative) {{
+        super(context, data, event_positive, event_negative);
+    }}
+
+    @Override
+    public void start() {{
+        //TODO
+    }}
+
+    @Override
+    public void stop() {{
+        //TODO
+    }}
+
+    @Override
+    public Boolean state() {{
+        //TODO
+    }}
+}}
+'''
