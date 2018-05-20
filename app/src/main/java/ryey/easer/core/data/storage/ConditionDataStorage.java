@@ -23,9 +23,13 @@ import android.content.Context;
 
 import java.io.IOException;
 
+import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.core.data.ConditionStructure;
+import ryey.easer.core.data.ScenarioStructure;
+import ryey.easer.core.data.ScriptStructure;
 import ryey.easer.core.data.storage.backend.ConditionDataStorageBackendInterface;
 import ryey.easer.core.data.storage.backend.json.condition.JsonConditionDataStorageBackend;
+import ryey.easer.plugins.event.condition_event.ConditionEventEventData;
 
 public class ConditionDataStorage extends AbstractDataStorage<ConditionStructure, ConditionDataStorageBackendInterface> {
 
@@ -56,15 +60,40 @@ public class ConditionDataStorage extends AbstractDataStorage<ConditionStructure
     public boolean edit(String oldName, ConditionStructure condition) throws IOException {
         boolean success = super.edit(oldName, condition);
         if (success) {
-            ScriptDataStorage scriptDataStorage = ScriptDataStorage.getInstance(context);
             if (!oldName.equals(condition.getName())) {
-                updateScriptsForNewName(scriptDataStorage, oldName, condition.getName());
+                ScriptDataStorage scriptDataStorage = ScriptDataStorage.getInstance(context);
+                updateScriptsForNewName(scriptDataStorage, oldName, condition);
+                ScenarioDataStorage scenarioDataStorage = ScenarioDataStorage.getInstance(context);
+                updateConditionEventForNewName(scenarioDataStorage, oldName, condition.getName());
             }
         }
         return success;
     }
 
-    private static void updateScriptsForNewName(ScriptDataStorage scriptDataStorage, String oldName, String newName) {
-        //TODO
+    private static void updateScriptsForNewName(ScriptDataStorage scriptDataStorage, String oldName, ConditionStructure condition) throws IOException {
+        for (String name : scriptDataStorage.list()) {
+            ScriptStructure script = scriptDataStorage.get(name);
+            if (script.isCondition()) {
+                if (script.getCondition().getName().equals(oldName)) {
+                    script.setCondition(condition);
+                    scriptDataStorage.update(script);
+                }
+            }
+        }
+    }
+
+    private static void updateConditionEventForNewName(ScenarioDataStorage scenarioDataStorage, String oldName, String newName) throws IOException {
+        for (String name : scenarioDataStorage.list()) {
+            ScenarioStructure scenario = scenarioDataStorage.get(name);
+            EventData eventData = scenario.getEventData();
+            if (eventData instanceof ConditionEventEventData) {
+                if (oldName.equals(((ConditionEventEventData) eventData).conditionName)) {
+                    ConditionEventEventData newEventData =
+                            new ConditionEventEventData((ConditionEventEventData) eventData, newName);
+                    scenario.setEventData(newEventData);
+                    scenarioDataStorage.update(scenario);
+                }
+            }
+        }
     }
 }

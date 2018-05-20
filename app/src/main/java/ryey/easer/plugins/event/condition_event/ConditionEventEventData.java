@@ -39,7 +39,7 @@ public class ConditionEventEventData extends AbstractEventData {
     private static final String K_CONDITION_NAME = "condition_name";
     private static final String K_CONDITION_EVENT = "condition_event";
 
-    final String conditionName;
+    public final String conditionName;
     final ConditionEvent conditionEvent;
 
     ConditionEventEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
@@ -58,6 +58,11 @@ public class ConditionEventEventData extends AbstractEventData {
     ConditionEventEventData(String conditionName, ConditionEvent conditionEvent) {
         this.conditionName = conditionName;
         this.conditionEvent = conditionEvent;
+    }
+
+    public ConditionEventEventData(ConditionEventEventData ref, String newConditionName) {
+        conditionName = newConditionName;
+        conditionEvent = ref.conditionEvent;
     }
 
     @NonNull
