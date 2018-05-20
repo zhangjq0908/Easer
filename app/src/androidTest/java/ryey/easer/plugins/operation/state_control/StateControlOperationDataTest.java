@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.operation.event_control;
+package ryey.easer.plugins.operation.state_control;
 
 import android.os.Parcel;
 
@@ -27,13 +27,13 @@ import ryey.easer.plugins.TestHelper;
 
 import static org.junit.Assert.assertEquals;
 
-public class EventControlOperationDataTest {
+public class StateControlOperationDataTest {
 
     @Test
     public void testParcel() {
-        EventControlOperationData dummyData = new EventControlDataFactory().dummyData();
+        StateControlOperationData dummyData = new StateControlDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
-        EventControlOperationData parceledData = EventControlOperationData.CREATOR.createFromParcel(parcel);
+        StateControlOperationData parceledData = StateControlOperationData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);
     }
 

@@ -125,7 +125,7 @@ abstract class Lotus {
     }
 
     /**
-     * Dirty hack for {@link ryey.easer.plugins.operation.event_control.EventControlOperationPlugin}
+     * Dirty hack for {@link ryey.easer.plugins.operation.state_control.StateControlOperationPlugin}
      * TODO: cleaner solution
      * @param status new status for the top level slot of this lotus
      */

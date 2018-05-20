@@ -164,7 +164,7 @@
     <string name="operation_alarm__time">Time</string>
     <string name="operation_alarm__message">Message</string>
 
-    <string name="operation_event_control">Control Event Status</string>
+    <string name="operation_state_control">Control Script Node Status</string>
     <string name="change_status_to">Change status to…</string>
     <string name="unsatisfied">Unsatisfied</string>
 

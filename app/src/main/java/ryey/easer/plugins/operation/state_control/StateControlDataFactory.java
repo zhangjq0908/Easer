@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.operation.event_control;
+package ryey.easer.plugins.operation.state_control;
 
 import android.support.annotation.NonNull;
 
@@ -26,24 +26,24 @@ import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 
-class EventControlDataFactory implements OperationDataFactory<EventControlOperationData> {
+class StateControlDataFactory implements OperationDataFactory<StateControlOperationData> {
     @NonNull
     @Override
-    public Class<EventControlOperationData> dataClass() {
-        return EventControlOperationData.class;
+    public Class<StateControlOperationData> dataClass() {
+        return StateControlOperationData.class;
     }
 
     @ValidData
     @NonNull
     @Override
-    public EventControlOperationData dummyData() {
-        return new EventControlOperationData("dummyEventName", false);
+    public StateControlOperationData dummyData() {
+        return new StateControlOperationData("dummyEventName", false);
     }
 
     @ValidData
     @NonNull
     @Override
-    public EventControlOperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
-        return new EventControlOperationData(data, format, version);
+    public StateControlOperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+        return new StateControlOperationData(data, format, version);
     }
 }

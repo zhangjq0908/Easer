@@ -159,7 +159,7 @@
     <string name="operation_alarm__time">Tid</string>
     <string name="operation_alarm__message">Besked</string>
 
-    <string name="operation_event_control">Kontrollere hændelses-status</string>
+    <string name="operation_state_control">Kontrollere hændelses-status</string>
     <string name="change_status_to">Ændre status til…</string>
     <string name="unsatisfied">Ikke tilfreds</string>
 

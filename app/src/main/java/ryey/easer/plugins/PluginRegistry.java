@@ -23,9 +23,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.v4.util.ArrayMap;
+
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import ryey.easer.commons.CommonHelper;
 import ryey.easer.commons.plugindef.PluginDef;
@@ -63,7 +67,6 @@ import ryey.easer.plugins.operation.brightness.BrightnessOperationPlugin;
 import ryey.easer.plugins.operation.broadcast.BroadcastOperationPlugin;
 import ryey.easer.plugins.operation.cellular.CellularOperationPlugin;
 import ryey.easer.plugins.operation.command.CommandOperationPlugin;
-import ryey.easer.plugins.operation.event_control.EventControlOperationPlugin;
 import ryey.easer.plugins.operation.hotspot.HotspotOperationPlugin;
 import ryey.easer.plugins.operation.launch_app.LaunchAppOperationPlugin;
 import ryey.easer.plugins.operation.media_control.MediaControlOperationPlugin;
@@ -72,6 +75,7 @@ import ryey.easer.plugins.operation.ringer_mode.RingerModeOperationPlugin;
 import ryey.easer.plugins.operation.rotation.RotationOperationPlugin;
 import ryey.easer.plugins.operation.send_notification.SendNotificationOperationPlugin;
 import ryey.easer.plugins.operation.send_sms.SendSmsOperationPlugin;
+import ryey.easer.plugins.operation.state_control.StateControlOperationPlugin;
 import ryey.easer.plugins.operation.synchronization.SynchronizationOperationPlugin;
 import ryey.easer.plugins.operation.ui_mode.UiModeOperationPlugin;
 import ryey.easer.plugins.operation.volume.VolumeOperationPlugin;
@@ -89,7 +93,9 @@ final public class PluginRegistry {
     private static final int TYPE_CONDITION = 2;
 
     private final Registry<EventPlugin, EventData> eventPluginRegistry = new Registry<>(TYPE_EVENT);
-    private final Registry<OperationPlugin, OperationData> operationPluginRegistry = new Registry<>(TYPE_OPERATION);
+    private final Registry<OperationPlugin, OperationData> operationPluginRegistry = new Registry<>(TYPE_OPERATION, new String[][]{
+            {"event control", "state control"},
+    });
     private final Registry<ConditionPlugin, ConditionData> conditionPluginRegistry = new Registry<>(TYPE_CONDITION);
     private final OverallRegistry overallRegistry = new OverallRegistry(new PluginLookuper[] {
             eventPluginRegistry, operationPluginRegistry, conditionPluginRegistry,
@@ -133,7 +139,7 @@ final public class PluginRegistry {
         operation().registerPlugin(SendSmsOperationPlugin.class);
         operation().registerPlugin(SendNotificationOperationPlugin.class);
         operation().registerPlugin(AlarmOperationPlugin.class);
-        operation().registerPlugin(EventControlOperationPlugin.class);
+        operation().registerPlugin(StateControlOperationPlugin.class);
         operation().registerPlugin(VolumeOperationPlugin.class);
         operation().registerPlugin(LaunchAppOperationPlugin.class);
         operation().registerPlugin(UiModeOperationPlugin.class);
@@ -176,9 +182,17 @@ final public class PluginRegistry {
         final int type;
         final List<Class<? extends T>> pluginClassList = new ArrayList<>();
         final List<T> pluginList = new ArrayList<>();
+        final Map<String, String> backwardNameMap = new ArrayMap<>();
 
         private Registry(int type) {
             this.type = type;
+        }
+
+        private Registry(int type, String[][] backwardNameMap) {
+            this(type);
+            for (String[] pair : backwardNameMap) {
+                this.backwardNameMap.put(pair[0], pair[1]);
+            }
         }
 
         synchronized void registerPlugin(Class<? extends T> pluginClass) {
@@ -229,6 +243,10 @@ final public class PluginRegistry {
         }
 
         public T findPlugin(String name) {
+            if (backwardNameMap.size() > 0)
+                Logger.d(backwardNameMap);
+            if (backwardNameMap.containsKey(name))
+                name = backwardNameMap.get(name);
             for (T plugin : getAllPlugins()) {
                 if (name.equals(plugin.id())) {
                     return plugin;

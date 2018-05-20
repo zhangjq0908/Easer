@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.operation.event_control;
+package ryey.easer.plugins.operation.state_control;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -31,7 +31,7 @@ import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.core.EHService;
 
-public class EventControlLoader extends OperationLoader<EventControlOperationData> {
+public class StateControlLoader extends OperationLoader<StateControlOperationData> {
 
     private ServiceConnection connection = new ServiceConnection() {
         @Override
@@ -50,16 +50,16 @@ public class EventControlLoader extends OperationLoader<EventControlOperationDat
 
     private EHService.EHBinder binder;
 
-    EventControlLoader(Context context) {
+    StateControlLoader(Context context) {
         super(context);
     }
 
     @Override
-    public boolean load(@ValidData @NonNull EventControlOperationData data) {
+    public boolean load(@ValidData @NonNull StateControlOperationData data) {
         cv.close();
         Intent intent = new Intent(context, EHService.class);
         context.bindService(intent, connection, Context.BIND_AUTO_CREATE);
         cv.block();
-        return binder.setLotusStatus(data.eventName, data.newStatus);
+        return binder.setLotusStatus(data.scriptName, data.newStatus);
     }
 }

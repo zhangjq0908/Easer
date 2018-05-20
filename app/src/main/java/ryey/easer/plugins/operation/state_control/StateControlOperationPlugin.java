@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.operation.event_control;
+package ryey.easer.plugins.operation.state_control;
 
 import android.app.Activity;
 import android.content.Context;
@@ -30,17 +30,17 @@ import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
 
-public class EventControlOperationPlugin implements OperationPlugin<EventControlOperationData> {
+public class StateControlOperationPlugin implements OperationPlugin<StateControlOperationData> {
 
     @NonNull
     @Override
     public String id() {
-        return "event control";
+        return "state control";
     }
 
     @Override
     public int name() {
-        return R.string.operation_event_control;
+        return R.string.operation_state_control;
     }
 
     @Override
@@ -71,21 +71,21 @@ public class EventControlOperationPlugin implements OperationPlugin<EventControl
 
     @NonNull
     @Override
-    public OperationDataFactory<EventControlOperationData> dataFactory() {
-        return new EventControlDataFactory();
+    public OperationDataFactory<StateControlOperationData> dataFactory() {
+        return new StateControlDataFactory();
 
     }
 
     @NonNull
     @Override
-    public PluginViewFragment<EventControlOperationData> view() {
-        return new EventControlPluginViewFragment();
+    public PluginViewFragment<StateControlOperationData> view() {
+        return new StateControlPluginViewFragment();
     }
 
     @NonNull
     @Override
-    public OperationLoader<EventControlOperationData> loader(@NonNull Context context) {
-        return new EventControlLoader(context);
+    public OperationLoader<StateControlOperationData> loader(@NonNull Context context) {
+        return new StateControlLoader(context);
     }
 
 }

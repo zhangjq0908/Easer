@@ -156,7 +156,7 @@
     <string name="operation_alarm__time">時間</string>
     <string name="operation_alarm__message">消息</string>
 
-    <string name="operation_event_control">調整事件狀態</string>
+    <string name="operation_state_control">調整腳本節點狀態</string>
     <string name="change_status_to">將狀態調整爲…</string>
     <string name="unsatisfied">未滿足</string>
 

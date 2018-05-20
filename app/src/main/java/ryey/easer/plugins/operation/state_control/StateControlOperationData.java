@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.operation.event_control;
+package ryey.easer.plugins.operation.state_control;
 
 import android.os.Parcel;
 import android.support.annotation.NonNull;
@@ -30,28 +30,29 @@ import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
-public class EventControlOperationData implements OperationData {
+public class StateControlOperationData implements OperationData {
     public static final String K_EVENTNAME = "event name";
-    public static final String K_NEWSTATUS = "new status";
+    private static final String K_SCRIPTNAME = "script name";
+    private static final String K_NEWSTATUS = "new status";
 
-    String eventName;
+    String scriptName;
     boolean newStatus;
 
-    EventControlOperationData(String eventName, boolean newStatus) {
-        this.eventName = eventName;
+    StateControlOperationData(String scriptName, boolean newStatus) {
+        this.scriptName = scriptName;
         this.newStatus = newStatus;
     }
 
-    EventControlOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
-        parse(data, format, version);
-    }
-
-    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    StateControlOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 try {
                     JSONObject jsonObject = new JSONObject(data);
-                    eventName = jsonObject.getString(K_EVENTNAME);
+                    if (version < C.VERSION_RENAME_STATE_CONTROL) {
+                        scriptName = jsonObject.getString(K_EVENTNAME);
+                    } else {
+                        scriptName = jsonObject.getString(K_SCRIPTNAME);
+                    }
                     newStatus = jsonObject.getBoolean(K_NEWSTATUS);
                 } catch (JSONException e) {
                     throw new IllegalStorageDataException(e);
@@ -67,7 +68,7 @@ public class EventControlOperationData implements OperationData {
             default:
                 JSONObject jsonObject = new JSONObject();
                 try {
-                    jsonObject.put(K_EVENTNAME, eventName);
+                    jsonObject.put(K_SCRIPTNAME, scriptName);
                     jsonObject.put(K_NEWSTATUS, newStatus);
                     res = jsonObject.toString();
                 } catch (JSONException e) {
@@ -81,18 +82,18 @@ public class EventControlOperationData implements OperationData {
     public boolean equals(Object obj) {
         if (obj == null)
             return false;
-        if (!(obj instanceof EventControlOperationData))
+        if (!(obj instanceof StateControlOperationData))
             return false;
-        if (!eventName.equals(((EventControlOperationData) obj).eventName))
+        if (!scriptName.equals(((StateControlOperationData) obj).scriptName))
             return false;
-        if (newStatus != ((EventControlOperationData) obj).newStatus)
+        if (newStatus != ((StateControlOperationData) obj).newStatus)
             return false;
         return true;
     }
 
     @Override
     public boolean isValid() {
-        if (Utils.isBlank(eventName))
+        if (Utils.isBlank(scriptName))
             return false;
         return true;
     }
@@ -104,23 +105,23 @@ public class EventControlOperationData implements OperationData {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(eventName);
+        parcel.writeString(scriptName);
         parcel.writeByte((byte) (newStatus ? 1 : 0));
     }
 
-    public static final Creator<EventControlOperationData> CREATOR
-            = new Creator<EventControlOperationData>() {
-        public EventControlOperationData createFromParcel(Parcel in) {
-            return new EventControlOperationData(in);
+    public static final Creator<StateControlOperationData> CREATOR
+            = new Creator<StateControlOperationData>() {
+        public StateControlOperationData createFromParcel(Parcel in) {
+            return new StateControlOperationData(in);
         }
 
-        public EventControlOperationData[] newArray(int size) {
-            return new EventControlOperationData[size];
+        public StateControlOperationData[] newArray(int size) {
+            return new StateControlOperationData[size];
         }
     };
 
-    private EventControlOperationData(Parcel in) {
-        eventName = in.readString();
+    private StateControlOperationData(Parcel in) {
+        scriptName = in.readString();
         newStatus = in.readByte() != 0;
     }
 }

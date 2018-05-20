@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.operation.event_control;
+package ryey.easer.plugins.operation.state_control;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -37,22 +37,22 @@ import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.core.data.storage.ScriptDataStorage;
 
-public class EventControlPluginViewFragment extends PluginViewFragment<EventControlOperationData> {
+public class StateControlPluginViewFragment extends PluginViewFragment<StateControlOperationData> {
 
-    List<String> mEventList = null;
-    private Spinner spinner_event;
+    List<String> mScriptList = null;
+    private Spinner spinner_script;
 
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_operation__event_control, container, false);
-        spinner_event = view.findViewById(R.id.spinner_event);
-        mEventList = (ScriptDataStorage.getInstance(getContext())).list();
+        spinner_script = view.findViewById(R.id.spinner_event);
+        mScriptList = (ScriptDataStorage.getInstance(getContext())).list();
         //noinspection ConstantConditions
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.spinner_simple, mEventList); //TODO: change layout
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.spinner_simple, mScriptList); //TODO: change layout
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        spinner_event.setAdapter(adapter);
-        spinner_event.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinner_script.setAdapter(adapter);
+        spinner_script.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 adapterView.setSelection(i);
@@ -66,15 +66,15 @@ public class EventControlPluginViewFragment extends PluginViewFragment<EventCont
     }
 
     @Override
-    protected void _fill(@ValidData @NonNull EventControlOperationData data) {
-        spinner_event.setSelection(mEventList.indexOf(data.eventName));
+    protected void _fill(@ValidData @NonNull StateControlOperationData data) {
+        spinner_script.setSelection(mScriptList.indexOf(data.scriptName));
     }
 
     @ValidData
     @NonNull
     @Override
-    public EventControlOperationData getData() throws InvalidDataInputException {
-        String eventName = (String) spinner_event.getSelectedItem();
-        return new EventControlOperationData(eventName, false);
+    public StateControlOperationData getData() throws InvalidDataInputException {
+        String eventName = (String) spinner_script.getSelectedItem();
+        return new StateControlOperationData(eventName, false);
     }
 }
