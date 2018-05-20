@@ -50,6 +50,25 @@ public class ConditionDataStorage extends AbstractDataStorage<ConditionStructure
 
     @Override
     boolean isSafeToDelete(String name) {
+        ScriptDataStorage scriptDataStorage = ScriptDataStorage.getInstance(context);
+        for (String scriptName : scriptDataStorage.list()) {
+            ScriptStructure script = scriptDataStorage.get(scriptName);
+            if (script.isCondition()) {
+                if (script.getCondition().getName().equals(name)) {
+                    return false;
+                }
+            }
+        }
+        ScenarioDataStorage scenarioDataStorage = ScenarioDataStorage.getInstance(context);
+        for (String scenarioName : scenarioDataStorage.list()) {
+            ScenarioStructure scenario = scenarioDataStorage.get(scenarioName);
+            EventData eventData = scenario.getEventData();
+            if (eventData instanceof ConditionEventEventData) {
+                if (name.equals(((ConditionEventEventData) eventData).conditionName)) {
+                    return false;
+                }
+            }
+        }
         return true;
     }
 
