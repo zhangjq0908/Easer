@@ -1,6 +1,12 @@
 CHANGELOG
 ======
 
+* v0.6.1: Bug fixes && prompt improvement
+	* Fix crash when renaming Condition
+	* Fix crash when deleting Condition in use
+	* Disallow adding new Condition / Scenario / Profile when no relevant plugin is enabled
+	* Prompt for failure to delete
+
 * v0.6: Add ConditionEvent (enter/leave) && Go back when pressing "back" && Do not clear log when reloading service && Various fixes && Dev changes
 	* Add ConditionEvent - Events for Condition state
 		* Enter Condition and Leave condition
