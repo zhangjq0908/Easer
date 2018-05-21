@@ -43,5 +43,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/ev_screen_off" />
+
+        <RadioButton
+            android:id="@+id/radioButton_screen_unlocked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/ev_screen_unlocked" />
     </RadioGroup>
 </android.support.constraint.ConstraintLayout>

@@ -94,6 +94,7 @@
     <string name="ev_screen_text_screen_is">When screen is…</string>
     <string name="ev_screen_on">On</string>
     <string name="ev_screen_off">Off</string>
+    <string name="ev_screen_unlocked">Unlocked</string>
 
     <string name="operation_wifi">WiFi</string>
     <string name="operation_cellular">Mobile data</string>
