@@ -1,11 +1,17 @@
 Contributors of Easer
 ======
 
+I'd like to say thank you to these guys who contributed to Easer.  
+Thanks a lot :)
+
+# People who contributed to the app function and/or UI and/or test
 * AlaskaLinuxUser <https://github.com/alaskalinuxuser>
-* naofum <https://github.com/naofum>
 * Danielsan <https://github.com/trikaphundo>
 * Sohalt <https://github.com/Sohalt>
-* twikedk (Ole Carlsen) <https://github.com/twikedk>
+* DeathTickle (Léopold Delouche) <https://github.com/DeathTickle>
 
-Thanks a lot :)
+# People who contributed to translation and/or documentation
+* naofum <https://github.com/naofum>
+* NPN (Ryan Huang) <https://github.com/NPN>
+* twikedk (Ole Carlsen) <https://github.com/twikedk>
 

@@ -74,7 +74,9 @@ Copyright
 ------
 Copyright (c) 2016 - 2018 Rui Zhao (renyuneyun) <renyuneyun@gmail.com>
 
-Licensed under GPLv3+ (See LICENSE)
+Unless otherwise stated, the program is licensed under GPLv3+ (See LICENSE)
+
+Tools under `utils/` directory are licensed under Apache 2.0 (See `utils/LICENSE`)
 
 ### Why GPL?
 

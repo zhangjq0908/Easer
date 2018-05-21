@@ -71,7 +71,7 @@ Copyright
 ------
 Copyright (c) 2016 - 2018 Rui Zhao (renyuneyun) <renyuneyun@gmail.com>
 
-Licensed under GPLv3+ (See LICENSE)
+Unless otherwise stated, Easer is licensed under GPLv3+ (See LICENSE)
 
 ### Why GPL?
 

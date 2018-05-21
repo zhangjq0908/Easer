@@ -76,7 +76,9 @@ Easer支持監聽許多Android事件（如時間、系統狀態、日曆等）�
 -----
 Copyright (c) 2016 - 2018 Rui Zhao (renyuneyun) <renyuneyun@gmail.com>
 
-以GPLv3+協議分發（參見LICENSE）
+除非額外說明，程序代碼以GPLv3+協議分發（參見LICENSE）
+
+`utils/`目錄下工具以Apache 2.0協議分發（參見`utils/LICENSE`）
 
 ### 爲何使用GPL？
 
