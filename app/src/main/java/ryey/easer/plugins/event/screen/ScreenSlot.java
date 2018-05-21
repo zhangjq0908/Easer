@@ -38,6 +38,8 @@ public class ScreenSlot extends AbstractSlot<ScreenEventData> {
                 changeSatisfiedState(eventData.screenEvent == ScreenEventData.ScreenEvent.on);
             } else if (Intent.ACTION_SCREEN_OFF.equals(intent.getAction())) {
                 changeSatisfiedState(eventData.screenEvent == ScreenEventData.ScreenEvent.off);
+            } else if (Intent.ACTION_USER_PRESENT.equals(intent.getAction())) {
+                changeSatisfiedState(eventData.screenEvent == ScreenEventData.ScreenEvent.unlocked);
             }
         }
     };
@@ -53,6 +55,7 @@ public class ScreenSlot extends AbstractSlot<ScreenEventData> {
         intentFilter = new IntentFilter();
         intentFilter.addAction(Intent.ACTION_SCREEN_ON);
         intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
+        intentFilter.addAction(Intent.ACTION_USER_PRESENT);
     }
 
     @Override

@@ -34,7 +34,7 @@ import ryey.easer.commons.plugindef.ValidData;
 
 public class ScreenPluginViewFragment extends PluginViewFragment<ScreenEventData> {
 
-    RadioButton rb_screen_on, rb_screen_off;
+    RadioButton rb_screen_on, rb_screen_off, rb_screen_unlocked;
 
     @NonNull
     @Override
@@ -42,6 +42,7 @@ public class ScreenPluginViewFragment extends PluginViewFragment<ScreenEventData
         View view = inflater.inflate(R.layout.plugin_event__screen, container, false);
         rb_screen_on = view.findViewById(R.id.radioButton_screen_on);
         rb_screen_off = view.findViewById(R.id.radioButton_screen_off);
+        rb_screen_unlocked = view.findViewById(R.id.radioButton_screen_unlocked);
         return view;
     }
 
@@ -49,8 +50,10 @@ public class ScreenPluginViewFragment extends PluginViewFragment<ScreenEventData
     protected void _fill(@ValidData @NonNull ScreenEventData data) {
         if (data.screenEvent == ScreenEventData.ScreenEvent.on)
             rb_screen_on.setChecked(true);
-        else
+        else if (data.screenEvent == ScreenEventData.ScreenEvent.off)
             rb_screen_off.setChecked(true);
+        else if (data.screenEvent == ScreenEventData.ScreenEvent.unlocked)
+            rb_screen_unlocked.setChecked(true);
     }
 
     @ValidData
@@ -59,7 +62,9 @@ public class ScreenPluginViewFragment extends PluginViewFragment<ScreenEventData
     public ScreenEventData getData() throws InvalidDataInputException {
         if (rb_screen_on.isChecked())
             return new ScreenEventData(ScreenEventData.ScreenEvent.on);
-        else
+        else if (rb_screen_off.isChecked())
             return new ScreenEventData(ScreenEventData.ScreenEvent.off);
+        else
+            return new ScreenEventData(ScreenEventData.ScreenEvent.unlocked);
     }
 }
