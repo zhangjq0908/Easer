@@ -1,6 +1,18 @@
 CHANGELOG
 ======
 
+* v0.6.2: Add `CellLocationConditionPlugin` && Use cards on Outline && Add screen unlock event && Crash removal
+	* Add `CellLocationConditionPlugin` (mirror from `CellLocationEventPlugin`)
+		* Also complement `SkeletonTracker`
+	* Use CardView on Outline
+		* Each section is one card
+		* Respond to click / long-click
+	* Prevent a potential crash
+		* Prevent from removing a Script referenced in StateControlOperation
+	* Add screen unlock event (thanks to @DeathTickle [#105](https://github.com/renyuneyun/Easer/pull/105))
+	* Update da_DK translation (thanks to @twikedk [#109](https://github.com/renyuneyun/Easer/pull/109))
+	* The previous version should really be v0.6.0.1, and this should be v0.6.1 if that didn't happen
+
 * v0.6.1: Bug fixes && prompt improvement
 	* Fix crash when renaming Condition
 	* Fix crash when deleting Condition in use

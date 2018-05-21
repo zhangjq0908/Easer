@@ -22,6 +22,7 @@
 
 ### 狀況(Condition)
 * 電池狀況
+* 位置（基於基站）
 
 ### 動作(Operation)
 * WiFi開關

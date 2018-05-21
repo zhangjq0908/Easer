@@ -5,7 +5,7 @@ Supported Features
 * Date
 * Time
 * WiFi connection name (SSID)
-* Location (based on basestations)
+* Location (based on base station / cellular tower)
 * Battery status
 * Day of week
 * Bluetooth device connected
@@ -22,6 +22,7 @@ Supported Features
 
 ### Condition
 * Battery status
+* Location (based on base station / cellular tower)
 
 ### Operation
 * WiFi switch
