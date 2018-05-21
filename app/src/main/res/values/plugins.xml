@@ -5,6 +5,9 @@
     <string name="condition_event_enter">Enter</string>
     <string name="condition_event_leave">Leave</string>
 
+    <string name="condition_cell_location">@string/event_celllocation</string>
+
+
     <string name="event_time">Time</string>
     <string name="event_date">Date</string>
 
@@ -95,6 +98,7 @@
     <string name="ev_screen_on">On</string>
     <string name="ev_screen_off">Off</string>
     <string name="ev_screen_unlocked">Unlocked</string>
+
 
     <string name="operation_wifi">WiFi</string>
     <string name="operation_cellular">Mobile data</string>
