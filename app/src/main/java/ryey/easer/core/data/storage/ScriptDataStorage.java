@@ -22,12 +22,17 @@ package ryey.easer.core.data.storage;
 import android.content.Context;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 
+import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.ScriptStructure;
 import ryey.easer.core.data.ScriptTree;
 import ryey.easer.core.data.storage.backend.ScriptDataStorageBackendInterface;
 import ryey.easer.core.data.storage.backend.json.script.JsonScriptDataStorageBackend;
+import ryey.easer.plugins.operation.state_control.StateControlOperationData;
+import ryey.easer.plugins.operation.state_control.StateControlOperationPlugin;
 
 public class ScriptDataStorage extends AbstractDataStorage<ScriptStructure, ScriptDataStorageBackendInterface> {
 
@@ -51,7 +56,24 @@ public class ScriptDataStorage extends AbstractDataStorage<ScriptStructure, Scri
 
     @Override
     boolean isSafeToDelete(String name) {
-        return StorageHelper.isSafeToDeleteEvent(context, name);
+        for (ScriptStructure scriptStructure : allScripts()) {
+            if (name.equals(scriptStructure.getParentName()))
+                return false;
+        }
+        ProfileDataStorage profileDataStorage = ProfileDataStorage.getInstance(context);
+        String s_id = (new StateControlOperationPlugin()).id();
+        for (String pname : profileDataStorage.list()) {
+            ProfileStructure profile = profileDataStorage.get(pname);
+            Collection<OperationData> dataCollection = profile.get(s_id);
+            if (dataCollection != null) {
+                for (OperationData operationData : dataCollection) {
+                    StateControlOperationData stateControlOperationData = (StateControlOperationData) operationData;
+                    if (name.equals(stateControlOperationData.scriptName))
+                        return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**

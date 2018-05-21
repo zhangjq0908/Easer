@@ -35,8 +35,8 @@ public class StateControlOperationData implements OperationData {
     private static final String K_SCRIPTNAME = "script name";
     private static final String K_NEWSTATUS = "new status";
 
-    String scriptName;
-    boolean newStatus;
+    public final String scriptName;
+    final boolean newStatus;
 
     StateControlOperationData(String scriptName, boolean newStatus) {
         this.scriptName = scriptName;

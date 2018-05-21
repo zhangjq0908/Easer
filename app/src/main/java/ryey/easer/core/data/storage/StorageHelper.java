@@ -119,15 +119,6 @@ public class StorageHelper {
         return true;
     }
 
-    static boolean isSafeToDeleteEvent(Context context, String name) {
-        ScriptDataStorage scriptDataStorage = ScriptDataStorage.getInstance(context);
-        for (ScriptStructure scriptStructure : scriptDataStorage.allScripts()) {
-            if (name.equals(scriptStructure.getParentName()))
-                return false;
-        }
-        return true;
-    }
-
     static boolean isSafeToDeleteScenario(Context context, String name) {
         ScriptDataStorage scriptDataStorage = ScriptDataStorage.getInstance(context);
         for (ScriptStructure scriptStructure : scriptDataStorage.allScripts()) {
