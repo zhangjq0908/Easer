@@ -75,7 +75,7 @@ public class ScenarioDataStorage extends AbstractDataStorage<ScenarioStructure, 
     private void handleRename(String oldName, ScenarioStructure newScenario) throws IOException {
         ScriptDataStorage scriptDataStorage = ScriptDataStorage.getInstance(context);
         for (ScriptStructure scriptStructure : scriptDataStorage.allScripts()) {
-            if (oldName.equals(scriptStructure.getScenario().getName())) {
+            if (scriptStructure.isEvent() && oldName.equals(scriptStructure.getScenario().getName())) {
                 scriptStructure.setScenario(newScenario);
                 scriptDataStorage.update(scriptStructure);
             }
