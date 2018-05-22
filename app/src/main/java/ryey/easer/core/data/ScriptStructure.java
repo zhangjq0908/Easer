@@ -119,6 +119,10 @@ final public class ScriptStructure implements Renameable, Verifiable, WithCreate
             return false;
         if ((scenario == null) == (condition == null))
             return false;
+        if (scenario != null && !scenario.isValid())
+            return false;
+        if (condition != null && !condition.isValid())
+            return false;
         return true;
     }
 

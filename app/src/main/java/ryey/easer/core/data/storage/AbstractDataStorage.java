@@ -48,10 +48,7 @@ public abstract class AbstractDataStorage<T extends Named & Verifiable & WithCre
     public T get(String name) {
         for (T_backend backend : storage_backend_list) {
             try {
-                T event = backend.get(name);
-                if (event == null || !event.isValid())
-                    return null;
-                return event;
+                return backend.get(name);
             } catch (ryey.easer.commons.IllegalStorageDataException e) {
                 e.printStackTrace();
             } catch (FileNotFoundException e) {

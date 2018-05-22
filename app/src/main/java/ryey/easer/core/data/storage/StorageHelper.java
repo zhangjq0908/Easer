@@ -130,16 +130,18 @@ public class StorageHelper {
 
     static List<ScriptTree> eventListToTrees(List<ScriptStructure> events) {
         List<ScriptTree> scriptTreeList = new ArrayList<>();
-        Map<String, List<ScriptStructure>> eventIntermediateDataMap = StorageHelper.scriptParentMap(events);
+        Map<String, List<ScriptStructure>> eventIntermediateDataMap = scriptParentMap(events);
 
         // construct the forest from the map
         // assume no loops
         List<ScriptStructure> int_roots = eventIntermediateDataMap.get(null);
         if (int_roots != null) {
             for (ScriptStructure int_root : int_roots) {
-                ScriptTree tree = new ScriptTree(int_root);
-                scriptTreeList.add(tree);
-                StorageHelper.mapToTreeList(eventIntermediateDataMap, tree);
+                if (int_root.isValid()) {
+                    ScriptTree tree = new ScriptTree(int_root);
+                    scriptTreeList.add(tree);
+                    mapToTreeList(eventIntermediateDataMap, tree);
+                }
             }
         }
 
@@ -162,9 +164,11 @@ public class StorageHelper {
         if (scriptStructureList == null)
             return;
         for (ScriptStructure int_node : scriptStructureList) {
-            ScriptTree sub_node = new ScriptTree(int_node);
-            node.addSub(sub_node);
-            mapToTreeList(eventIntermediateDataMap, sub_node);
+            if (int_node.isValid()) {
+                ScriptTree sub_node = new ScriptTree(int_node);
+                node.addSub(sub_node);
+                mapToTreeList(eventIntermediateDataMap, sub_node);
+            }
         }
     }
 
