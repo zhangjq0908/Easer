@@ -152,7 +152,7 @@ public class StorageHelper {
         List<ScriptStructure> scriptStructureList = eventIntermediateDataMap.get(name);
         if (scriptStructureList != null) {
             for (ScriptStructure int_node : scriptStructureList) {
-                if (int_node.isValid()) {
+                if (int_node.isValid()) { //TODO: Move this check to EHService and/or Lotus
                     treeList.add(new ScriptTree(
                             int_node,
                             mapToTreeList(eventIntermediateDataMap, int_node.getName())

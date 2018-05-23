@@ -219,7 +219,7 @@ public class EHService extends Service {
         ScriptDataStorage storage = ScriptDataStorage.getInstance(this);
         List<ScriptTree> scriptTreeList = storage.getScriptTrees();
         requireCHService(TAG);
-        for (ScriptTree script : scriptTreeList) {
+        for (ScriptTree script : scriptTreeList) { //TODO?: Move this to `FakeRootLotus`
             Logger.v(TAG + "setting trigger for <%s>", script.getName());
             if (script.isActive()) {
                 Lotus lotus = Lotus.createLotus(this, script, executorService, conditionHolderBinder);
