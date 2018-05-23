@@ -19,6 +19,8 @@
 
 package ryey.easer.core.data;
 
+import android.support.annotation.NonNull;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,9 +32,13 @@ import ryey.easer.commons.plugindef.eventplugin.EventData;
 final public class ScriptTree {
     final ScriptStructure data;
     final List<ScriptTree> subs;
-    public ScriptTree(ScriptStructure scriptStructure) {
+    public ScriptTree(@NonNull ScriptStructure scriptStructure) {
         this.data = scriptStructure;
         this.subs = new LinkedList<>();
+    }
+    public ScriptTree(@NonNull ScriptStructure data, @NonNull List<ScriptTree> subs) {
+        this.data = data;
+        this.subs = subs;
     }
     public String getName() {
         return data.name;

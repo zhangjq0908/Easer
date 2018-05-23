@@ -28,6 +28,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -129,23 +130,10 @@ public class StorageHelper {
     }
 
     static List<ScriptTree> eventListToTrees(List<ScriptStructure> events) {
-        List<ScriptTree> scriptTreeList = new ArrayList<>();
         Map<String, List<ScriptStructure>> eventIntermediateDataMap = scriptParentMap(events);
-
         // construct the forest from the map
         // assume no loops
-        List<ScriptStructure> int_roots = eventIntermediateDataMap.get(null);
-        if (int_roots != null) {
-            for (ScriptStructure int_root : int_roots) {
-                if (int_root.isValid()) {
-                    ScriptTree tree = new ScriptTree(int_root);
-                    scriptTreeList.add(tree);
-                    mapToTreeList(eventIntermediateDataMap, tree);
-                }
-            }
-        }
-
-        return scriptTreeList;
+        return mapToTreeList(eventIntermediateDataMap, null);
     }
 
     static Map<String, List<ScriptStructure>> scriptParentMap(List<ScriptStructure> scripts) {
@@ -159,17 +147,20 @@ public class StorageHelper {
         return scriptIntermediateDataMap;
     }
 
-    static void mapToTreeList(Map<String, List<ScriptStructure>> eventIntermediateDataMap, ScriptTree node) {
-        List<ScriptStructure> scriptStructureList = eventIntermediateDataMap.get(node.getName());
-        if (scriptStructureList == null)
-            return;
-        for (ScriptStructure int_node : scriptStructureList) {
-            if (int_node.isValid()) {
-                ScriptTree sub_node = new ScriptTree(int_node);
-                node.addSub(sub_node);
-                mapToTreeList(eventIntermediateDataMap, sub_node);
+    private static List<ScriptTree> mapToTreeList(Map<String, List<ScriptStructure>> eventIntermediateDataMap, String name) {
+        List<ScriptTree> treeList = new LinkedList<>();
+        List<ScriptStructure> scriptStructureList = eventIntermediateDataMap.get(name);
+        if (scriptStructureList != null) {
+            for (ScriptStructure int_node : scriptStructureList) {
+                if (int_node.isValid()) {
+                    treeList.add(new ScriptTree(
+                            int_node,
+                            mapToTreeList(eventIntermediateDataMap, int_node.getName())
+                    ));
+                }
             }
         }
+        return treeList;
     }
 
     private static class ConvertFailedException extends IOException {
