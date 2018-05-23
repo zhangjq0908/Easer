@@ -1,6 +1,12 @@
 CHANGELOG
 ======
 
+* v0.6.2.1: Less crash
+	* Fix crash when renaming Scenario
+	* Leave broken data in place, without actually using it in Service
+	* Dev change
+		* Refactor helper functions
+
 * v0.6.2: Add `CellLocationConditionPlugin` && Use cards on Outline && Add screen unlock event && Crash removal
 	* Add `CellLocationConditionPlugin` (mirror from `CellLocationEventPlugin`)
 		* Also complement `SkeletonTracker`
