@@ -68,4 +68,8 @@ public abstract class SkeletonTracker<D extends ConditionData> implements Tracke
         }
     }
 
+    @Override
+    public Boolean state() {
+        return satisfied;
+    }
 }

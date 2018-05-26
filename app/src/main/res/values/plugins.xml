@@ -5,6 +5,9 @@
     <string name="condition_event_enter">Enter</string>
     <string name="condition_event_leave">Leave</string>
 
+
+    <string name="condition_bluetooth_device">Connected bluetooth device</string>
+
     <string name="condition_cell_location">@string/event_celllocation</string>
 
 
