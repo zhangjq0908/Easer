@@ -93,6 +93,7 @@
     <string name="ev_screen_text_screen_is">當屏幕…</string>
     <string name="ev_screen_on">開啓</string>
     <string name="ev_screen_off">關閉</string>
+    <string name="ev_screen_unlocked">已解鎖</string>
 
     <string name="operation_bluetooth">藍牙</string>
 
