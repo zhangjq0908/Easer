@@ -10,6 +10,8 @@
 
     <string name="condition_cell_location">@string/event_celllocation</string>
 
+    <string name="condition_connectivity">@string/event_connectivity</string>
+
 
     <string name="event_time">Time</string>
     <string name="event_date">Date</string>

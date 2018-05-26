@@ -17,23 +17,23 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.event.connectivity;
+package ryey.easer.plugins.condition.connectivity;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
-import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
+import ryey.easer.commons.plugindef.conditionplugin.ConditionDataFactory;
+import ryey.easer.commons.plugindef.conditionplugin.ConditionPlugin;
+import ryey.easer.commons.plugindef.conditionplugin.Tracker;
 import ryey.easer.plugins.reusable.PluginHelper;
 
-@Deprecated
-public class ConnectivityEventPlugin implements EventPlugin<ConnectivityEventData> {
+public class ConnectivityConditionPlugin implements ConditionPlugin<ConnectivityConditionData> {
 
     @NonNull
     @Override
@@ -42,8 +42,7 @@ public class ConnectivityEventPlugin implements EventPlugin<ConnectivityEventDat
     }
 
     @Override
-    public int name() {
-        return R.string.event_connectivity;
+    public int name() {return R.string.condition_connectivity;
     }
 
     @Override
@@ -63,24 +62,23 @@ public class ConnectivityEventPlugin implements EventPlugin<ConnectivityEventDat
 
     @NonNull
     @Override
-    public EventDataFactory<ConnectivityEventData> dataFactory() {
-        return new ConnectivityEventDataFactory();
+    public ConditionDataFactory<ConnectivityConditionData> dataFactory() {
+        return new ConnectivityConditionDataFactory();
     }
 
     @NonNull
     @Override
-    public PluginViewFragment<ConnectivityEventData> view() {
+    public PluginViewFragment<ConnectivityConditionData> view() {
         return new ConnectivityPluginViewFragment();
     }
 
+    @NonNull
     @Override
-    public AbstractSlot<ConnectivityEventData> slot(@NonNull Context context, @ValidData @NonNull ConnectivityEventData data) {
-        return new ConnectivitySlot(context, data);
-    }
-
-    @Override
-    public AbstractSlot<ConnectivityEventData> slot(@NonNull Context context, @NonNull ConnectivityEventData data, boolean retriggerable, boolean persistent) {
-        return new ConnectivitySlot(context, data, retriggerable, persistent);
+    public Tracker<ConnectivityConditionData> tracker(@NonNull Context context,
+                                                 @ValidData @NonNull ConnectivityConditionData data,
+                                                 @NonNull PendingIntent event_positive,
+                                                 @NonNull PendingIntent event_negative) {
+        return new ConnectivityTracker(context, data, event_positive, event_negative);
     }
 
 }
