@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui.edit;
+package ryey.easer.core.ui.data;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,34 +27,41 @@ import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 
 import ryey.easer.R;
-import ryey.easer.core.data.storage.ProfileDataStorage;
+import ryey.easer.core.EHService;
+import ryey.easer.core.data.storage.ScenarioDataStorage;
 import ryey.easer.plugins.PluginRegistry;
 
-public class ProfileListFragment extends AbstractDataListFragment<ProfileDataStorage> {
+public class ScenarioListFragment extends AbstractDataListFragment<ScenarioDataStorage> {
 
     static {
-        TAG = "[ProfileListFragment] ";
+        TAG = "[ScenarioListFragment] ";
     }
 
     @Override
     protected String title() {
-        return getString(R.string.title_profile);
+        return getString(R.string.title_scenario);
     }
 
     @Override
-    protected ProfileDataStorage retmStorage() {
-        return ProfileDataStorage.getInstance(getContext());
+    protected ScenarioDataStorage retmStorage() {
+        return ScenarioDataStorage.getInstance(getContext());
+    }
+
+    @Override
+    protected void onDataChangedFromEditDataActivity() {
+        super.onDataChangedFromEditDataActivity();
+        EHService.reload(getContext());
     }
 
     @Override
     protected Intent intentForEditDataActivity() {
-        return new Intent(getActivity(), EditProfileActivity.class);
+        return new Intent(getContext(), EditScenarioActivity.class);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         //noinspection ConstantConditions
-        if (PluginRegistry.getInstance().operation().getEnabledPlugins(getContext()).size() == 0) {
+        if (PluginRegistry.getInstance().event().getEnabledPlugins(getContext()).size() == 0) {
             FloatingActionButton fab = view.findViewById(R.id.fab);
             fab.hide();
         }

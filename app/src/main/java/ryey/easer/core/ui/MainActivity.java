@@ -42,10 +42,10 @@ import android.widget.TextView;
 
 import ryey.easer.R;
 import ryey.easer.core.data.storage.StorageHelper;
-import ryey.easer.core.ui.edit.ConditionListFragment;
-import ryey.easer.core.ui.edit.ProfileListFragment;
-import ryey.easer.core.ui.edit.ScenarioListFragment;
-import ryey.easer.core.ui.edit.ScriptListFragment;
+import ryey.easer.core.ui.data.ConditionListFragment;
+import ryey.easer.core.ui.data.ProfileListFragment;
+import ryey.easer.core.ui.data.ScenarioListFragment;
+import ryey.easer.core.ui.data.ScriptListFragment;
 import ryey.easer.core.ui.setting.SettingsActivity;
 
 public class MainActivity extends AppCompatActivity

@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui.edit;
+package ryey.easer.core.ui.data;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,23 +28,23 @@ import android.view.View;
 
 import ryey.easer.R;
 import ryey.easer.core.EHService;
-import ryey.easer.core.data.storage.ScenarioDataStorage;
+import ryey.easer.core.data.storage.ConditionDataStorage;
 import ryey.easer.plugins.PluginRegistry;
 
-public class ScenarioListFragment extends AbstractDataListFragment<ScenarioDataStorage> {
+public class ConditionListFragment extends AbstractDataListFragment<ConditionDataStorage> {
 
     static {
-        TAG = "[ScenarioListFragment] ";
+        TAG = "[ScriptListFragment] ";
     }
 
     @Override
     protected String title() {
-        return getString(R.string.title_scenario);
+        return getString(R.string.title_condition);
     }
 
     @Override
-    protected ScenarioDataStorage retmStorage() {
-        return ScenarioDataStorage.getInstance(getContext());
+    protected ConditionDataStorage retmStorage() {
+        return ConditionDataStorage.getInstance(getContext());
     }
 
     @Override
@@ -55,13 +55,13 @@ public class ScenarioListFragment extends AbstractDataListFragment<ScenarioDataS
 
     @Override
     protected Intent intentForEditDataActivity() {
-        return new Intent(getContext(), EditScenarioActivity.class);
+        return new Intent(getContext(), EditConditionActivity.class);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         //noinspection ConstantConditions
-        if (PluginRegistry.getInstance().event().getEnabledPlugins(getContext()).size() == 0) {
+        if (PluginRegistry.getInstance().condition().getEnabledPlugins(getContext()).size() == 0) {
             FloatingActionButton fab = view.findViewById(R.id.fab);
             fab.hide();
         }

@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui.edit;
+package ryey.easer.core.ui.data;
 
 final class EditDataProto {
     static final String CONTENT_NAME = "ryey.easer.EVENT.NAME";

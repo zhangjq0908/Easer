@@ -66,8 +66,8 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".core.ui.edit.EditScriptActivity" />
-        <activity android:name=".core.ui.edit.EditProfileActivity" />
+        <activity android:name=".core.ui.data.EditScriptActivity" />
+        <activity android:name=".core.ui.data.EditProfileActivity" />
         <activity
             android:name=".plugins.operation.brightness.DumbSettingBrightnessActivity"
             android:excludeFromRecents="true"
@@ -114,7 +114,7 @@
             android:enabled="true"
             android:exported="false" />
 
-        <activity android:name=".core.ui.edit.EditScenarioActivity" />
+        <activity android:name=".core.ui.data.EditScenarioActivity" />
 
         <service
             android:name=".plugins.operation.media_control.MediaControlHelperNotificationListenerService"
@@ -125,7 +125,7 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".core.ui.edit.EditConditionActivity" />
+        <activity android:name=".core.ui.data.EditConditionActivity" />
 
         <receiver
             android:name=".core.UpgradeCompleteReceiver"

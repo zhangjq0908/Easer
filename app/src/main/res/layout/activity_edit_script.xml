@@ -5,7 +5,7 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ryey.easer.core.ui.edit.EditScriptActivity">
+    tools:context="ryey.easer.core.ui.data.EditScriptActivity">
 
 
     <TableLayout
@@ -88,7 +88,7 @@
 
     </TableLayout>
 
-    <ryey.easer.core.ui.edit.EventPluginViewPager
+    <ryey.easer.core.ui.data.EventPluginViewPager
         android:id="@+id/pager"
         style="@style/AppTheme.PluginViewPager"
         android:layout_width="wrap_content"
@@ -105,7 +105,7 @@
             android:paddingBottom="4dp"
             android:paddingTop="4dp"
             android:textColor="#fff" />
-    </ryey.easer.core.ui.edit.EventPluginViewPager>
+    </ryey.easer.core.ui.data.EventPluginViewPager>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/layout_use_scenario"

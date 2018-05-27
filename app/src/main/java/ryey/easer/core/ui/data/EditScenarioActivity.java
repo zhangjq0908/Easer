@@ -17,54 +17,54 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui.edit;
+package ryey.easer.core.ui.data;
 
 import android.widget.EditText;
 
 import ryey.easer.R;
 import ryey.easer.commons.C;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
-import ryey.easer.commons.plugindef.conditionplugin.ConditionData;
-import ryey.easer.core.data.ConditionStructure;
-import ryey.easer.core.data.storage.ConditionDataStorage;
+import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.core.data.ScenarioStructure;
+import ryey.easer.core.data.storage.ScenarioDataStorage;
 
-public class EditConditionActivity extends AbstractEditDataActivity<ConditionStructure, ConditionDataStorage> {
+public class EditScenarioActivity extends AbstractEditDataActivity<ScenarioStructure, ScenarioDataStorage> {
 
     EditText mEditText_name = null;
-    ConditionPluginViewPager mViewPager;
-    
+    EventPluginViewPager mViewPager;
+
     @Override
-    protected ConditionDataStorage retDataStorage() {
-        return ConditionDataStorage.getInstance(this);
+    protected ScenarioDataStorage retDataStorage() {
+        return ScenarioDataStorage.getInstance(this);
     }
 
     @Override
     protected String title() {
-        return getString(R.string.title_edit_condition);
+        return getString(R.string.title_scenario);
     }
 
     @Override
     protected int contentViewRes() {
-        return R.layout.activity_edit_condition;
+        return R.layout.activity_edit_scenario;
     }
 
     @Override
-    void init() {
+    protected void init() {
         mEditText_name = findViewById(R.id.editText_name);
         mViewPager = findViewById(R.id.pager);
         mViewPager.init(this);
     }
 
     @Override
-    protected void loadFromData(ConditionStructure condition) {
-        oldName = condition.getName();
-        mEditText_name.setText(condition.getName());
-        mViewPager.setConditionData(condition.getData());
+    protected void loadFromData(ScenarioStructure scenario) {
+        oldName = scenario.getName();
+        mEditText_name.setText(scenario.getName());
+        mViewPager.setEventData(scenario.getEventData());
     }
 
     @Override
-    protected ConditionStructure saveToData() throws InvalidDataInputException {
-        ConditionData conditionData = mViewPager.getConditionData();
-        return new ConditionStructure(C.VERSION_CREATED_IN_RUNTIME, mEditText_name.getText().toString(), conditionData);
+    protected ScenarioStructure saveToData() throws InvalidDataInputException {
+        EventData eventData = mViewPager.getEventData();
+        return new ScenarioStructure(C.VERSION_CREATED_IN_RUNTIME, mEditText_name.getText().toString(), eventData);
     }
 }
