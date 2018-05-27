@@ -1,6 +1,13 @@
 CHANGELOG
 ======
 
+* v0.6.3: Copied `BTDeviceConditionPlugin` & `ConnectivityConditionPlugin` && Scroll up/down when editing Scenario or Condition
+	* Copied `BTDeviceConditionPlugin` (from `BTDeviceEventPlugin`)
+	* Copied `ConnectivityConditionPlugin` (from `ConnectivityEventPlugin`)
+	* Allow to scroll up and down when editing Scenario or Condition
+	* Update da_DK translation
+	* Rename package `ryey.easer.core.ui.edit` to `ryey.easer.core.ui.data`
+
 * v0.6.2.1: Less crash
 	* Fix crash when renaming Scenario
 	* Leave broken data in place, without actually using it in Service

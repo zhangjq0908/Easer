@@ -23,6 +23,8 @@ Supported Features
 ### Condition
 * Battery status
 * Location (based on base station / cellular tower)
+* Bluetooth device connected
+* Connectivity status
 
 ### Operation
 * WiFi switch
