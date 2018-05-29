@@ -9,45 +9,13 @@ Ease your life by automatically performing routine actions.
 
 Introduction
 -----
-Make your smart phone smarter: tell it what to do under different situations.
+This document centers on development-related things of Easer.
 
-### Smart automation
-
-Easer is an event-driven Android automation tool. It knows various events (see below) and YOU (the user) tell it what to do on what events (you can even combine multiple events). Thus, you no longer need to manually perform routine actions, or worry about forgetting to perform them.
-
-You can think of Easer as a local version of IFTTT: trigger actions or change settings (*Operations*, bundled as *Profiles*) under different situations (*Events*).
-
-### Inter-app coordination
-
-Easer is also a coordinator of inter-app actions (e.g. communications) -- it can send custom `Broadcast`s upon receiving certain `Broadcast`s (designed by YOU).
-
-`Broadcast` (together with `Intent`) is the way Android provides for inter-app communication and signaling.
-
-### Custom Events
-
-You can chain *Script* (which specifies *Events* as well as its *Profile*) as trees (i.e. setting dependencies), by specifying its *Parent*. This mechanism allows Easer to (somewhat) create custom *Events* using Boolean logic (e.g. "and", "or").
-
-Easer is adding the support of *Condition* mechanism, and is transforming relevant *Event* to *Condition*, for better expressivity.
-
-Currently, Easer performs a post-order traversal to load your *Profiles*. In the near future, Easer will have more meticulous, expressive and intuitive categorization of *Events*.
-
-Also, have a look at the [wiki](https://github.com/renyuneyun/Easer/wiki), and especially the [FAQ](https://github.com/renyuneyun/Easer/wiki/FAQ).
-
-Examples
-------
-* Set your phone to silent mode at 2 a.m.
-* Cancel silent mode at 8 a.m. on weekdays, and at 10 a.m. on weekends
-* Turn on WiFi when approaching your home; turn off WiFi when leaving your home
-
-Supported functions
---------
-Easer supports listening to many Android events (e.g. date/time, system status, calendar). The supported operations include, but are not limited to, changing Android settings, sending messages, and executing commands.
-
-For a list of current features, see [this page](https://renyuneyun.github.io/Easer/en/FEATURES).
+If you are looking for the description of Easer's functionality, please refer to [the website](https://renyuneyun.github.io/Easer/en/).
 
 Extending Easer
 ------
-Extending the functionality of Easer (by adding more *Events* or *Operations*) is really simple (and is becoming simpler).
+Extending the functionality of Easer (by adding more *Events* or *Operations*) is really simple (and is becoming even simpler).
 
 Details are described in [this document](https://renyuneyun.github.io/Easer/en/EXTEND).
 
@@ -60,8 +28,9 @@ You can also open an issue if you think there are features that Easer should hav
 You are also welcome to comment on existing issues. If you believe you have the same problem (or idea), you can provide more information about it. Discussion is always welcome.
 Issue expecting ideas are labeled with [RFC](https://github.com/renyuneyun/Easer/issues?q=is%3Aopen+label%3A%22RFC+%2F+Discussion+Wanted%22).
 
-If you are a developer, you may possess the knowledge and time to solve some issues. You can fork the repo, solve the problem, and create a pull request. Then, your code can be merged, and you can be appreciated by others and listed in the *Contributors* list.
-Don't know where to start? See [these issues labeled with "help wanted"](https://github.com/renyuneyun/Easer/issues?q=is%3Aopen+label%3A%22help+wanted%22) which usually have clear target and involve few components.
+Want to do more but don't know where to start? See issues labeled with GFC (Good For Contributors) [L0](https://github.com/renyuneyun/Easer/issues?q=is%3Aissue+is%3Aopen+label%3A%22GFC%3A+L0%22), [L1](https://github.com/renyuneyun/Easer/issues?q=is%3Aissue+is%3Aopen+label%3A%22GFC%3A+L1%22), [L2](https://github.com/renyuneyun/Easer/issues?q=is%3Aissue+is%3Aopen+label%3A%22GFC%3A+L2%22). These issues usually have clear target and involve few components; the L0, L1 and L2 are my subjective classification of the level of difficulty (ascending).
+
+If you are a developer, you may possess the knowledge and time to solve some issues. You can fork the repo, solve the problem, and create a pull request. Then, your code can be merged, and you can be appreciated by others （and you will be listed in the *Contributors* list unless you don't like to).
 You're also welcome to create pull requests for issues not raised by others, but first, please create an issue describing what you want to do (and that you are going to do it).
 
 ### Donation

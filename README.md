@@ -5,46 +5,13 @@ Easer [![Build Status](https://travis-ci.org/renyuneyun/Easer.svg?branch=master)
       height="60">](https://f-droid.org/app/ryey.easer)
 <img align="right" src='./app/src/main/ic_launcher-web.png' width='128' height='128'/>
 
-See [README.en.md](README.en.md) for the English version of README.
-
+See [README.en.md](README.en.md) for the English version.
 
 簡介
 -----
-讓你的智能手機更加智能：告訴它該在什麼情況下做什麼事。
+本文主要描述Easer的開發相關事宜。
 
-### 智能自動化
-Easer是一個事件驅動的Android自動化工具——用戶告訴它在什麼情況下做什麼事（或連結多個事件來自定義事件），此後再也不需要手動進行這些例程，也不必擔心忘記進行。
-
-Easer類似於一個本地版的IFTTT：在不同的事件（Event）下執行指定的行爲集（Profile）。每個行爲集（Profile）由多個動作（Operation）組成，包括但不限於調整手機設置（見下）。
-
-### app合作協調
-
-Easer也是app合作的協調者——自定義在收到特定廣播（Broadcast）時，自動發出另外的自定義廣播。
-
-廣播（Brodcast及Intent）是Android系統提供的app間通用的交流、通信機制。Android沒有對互操作進行任何的梳理，那麼Easer就此進行嘗試。
-
-### 自定義事件
-
-Easer可對事件腳本（Script，包含Event及對應載入的Profile）設置依賴（前置條件），使得他們以樹狀鏈接。這一機制使得Easer的事件初步具備使用布爾邏輯（與、或）相鏈接的能力，以便實現自定義事件。
-
-Easer在逐步支持*狀況*（Condition）機制，且在逐漸將相關*事件*遷移至*狀況*。
-
-當前，Easer會以後續遍歷選擇所有符合條件的Script對應Profile載入。但在不久的將來，Easer將會擁有更細緻且更直觀的對事件狀況的分類，使得用戶擁有對事件更佳的把握。
-
-
-另請參見[wiki](https://github.com/renyuneyun/Easer/wiki)，尤其是[須知](https://github.com/renyuneyun/Easer/wiki/%E9%A0%88%E7%9F%A5)。
-
-例子
------
-* 每天晚上2點關閉WiFi並且靜音
-* 工作日內早上8點打開通知音，週末早上10點打開通知音
-* 到家附近自動打開WiFi；離開家自動關閉WiFi
-
-已支持功能
-----------
-Easer支持監聽許多Android事件（如時間、系統狀態、日曆等），所支持動作包括但不限於調整Android設置、發送消息、執行命令等。
-
-當前所支持功能的列表見[這個頁面](https://renyuneyun.github.io/Easer/zh/FEATURES)。
+如要查看對Easer功能的介紹，請參見[網站](https://renyuneyun.github.io/Easer/)。
 
 擴展Easer
 -----
@@ -62,8 +29,9 @@ Easer支持監聽許多Android事件（如時間、系統狀態、日曆等）�
 對於現有的issue，無論你有相同的問題（或想法）、你可以提供更多信息、或是你不認同其中的說法，請對其進行評論。十分歡迎對問題進行討論。
 其中較需要多方意見的issue被[標爲RFC](https://github.com/renyuneyun/Easer/issues?q=is%3Aopen+label%3A%22RFC+%2F+Discussion+Wanted%22)，歡迎任何人的意見/建議。
 
-在某些情況下（如果你是一個開發者），你也許具有解決某些issue的能力。你可以fork本倉庫，編寫代碼，然後創建pull request。這樣，如果你的代碼的確解決了其問題，則你的代碼會進入主幹，並且你會得到其他人的感謝（而且會被列在*Contributors*列表中）。  
-如果有興趣參與但不知道從何下手，可以查看這些被[標爲help wanted的issue](https://github.com/renyuneyun/Easer/issues?q=is%3Aopen+label%3A%22help+wanted%22)——一般而言，它們都是目的較爲清晰、涉及組件較少的issue。
+如有興趣參與更多但不知道從何下手，可以查看被標爲GFC (Good For Contributors) [L0](https://github.com/renyuneyun/Easer/issues?q=is%3Aissue+is%3Aopen+label%3A%22GFC%3A+L0%22)、[L1](https://github.com/renyuneyun/Easer/issues?q=is%3Aissue+is%3Aopen+label%3A%22GFC%3A+L1%22)、[L2](https://github.com/renyuneyun/Easer/issues?q=is%3Aissue+is%3Aopen+label%3A%22GFC%3A+L2%22) 的issue。一般而言，它們都是目的較爲清晰、涉及組件較少的issue；L0、L1、L2是我個人主觀按難度遞增順序進行的劃分。
+
+在某些情況下（如果你是一個開發者），你也許具有解決某些issue的能力。你可以fork本倉庫，編寫代碼，然後創建pull request。這樣，如果你的代碼的確解決了其問題，則你的代碼會進入主幹，他人均會受益於你的貢獻（並且你會被列在*Contributors*列表中）。  
 同樣歡迎對非現有issue創建pull request，但建議首先創建一個issue來描述你將要進行的工作（使得其他人意識到此事）。
 
 ### 捐助
