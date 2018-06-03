@@ -31,11 +31,13 @@ import android.os.Binder;
 import android.os.Bundle;
 import android.os.ConditionVariable;
 import android.os.IBinder;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -64,17 +66,19 @@ public class EHService extends Service {
         filter_conditionEvent.addAction(ACTION_REGISTER_CONDITION_EVENT);
         filter_conditionEvent.addAction(ACTION_UNREGISTER_CONDITION_EVENT);
     }
-    public static void registerConditionEventNotification(@NonNull Context context, @NonNull String conditionName, @NonNull PendingIntent[] pendingIntents) {
+    public static void registerConditionEventNotifier(@NonNull Context context, @NonNull String conditionName, @NonNull PendingIntent[] pendingIntents) {
         Intent intent = new Intent(ACTION_REGISTER_CONDITION_EVENT);
         intent.putExtra(EXTRA_CONDITION_NAME, conditionName);
         intent.putExtra(EXTRA_PENDING_INTENT, pendingIntents);
         context.sendBroadcast(intent);
+        //TODO local broadcast
     }
-    public static void unregisterConditionEventNotification(@NonNull Context context, @NonNull String conditionName, @NonNull PendingIntent[] pendingIntents) {
+    public static void unregisterConditionEventNotifier(@NonNull Context context, @NonNull String conditionName, @NonNull PendingIntent[] pendingIntents) {
         Intent intent = new Intent(ACTION_UNREGISTER_CONDITION_EVENT);
         intent.putExtra(EXTRA_CONDITION_NAME, conditionName);
         intent.putExtra(EXTRA_PENDING_INTENT, pendingIntents);
         context.sendBroadcast(intent);
+        //TODO local broadcast
     }
 
     private static final String TAG = "[EHService] ";
@@ -115,7 +119,9 @@ public class EHService extends Service {
                 sendBroadcast(intent1);
             } else if (ACTION_REGISTER_CONDITION_EVENT.equals(intent.getAction()) || ACTION_UNREGISTER_CONDITION_EVENT.equals(intent.getAction())) {
                 String conditionName = intent.getStringExtra(EXTRA_CONDITION_NAME);
-                PendingIntent []pendingIntents= (PendingIntent[]) intent.getParcelableArrayExtra(EXTRA_PENDING_INTENT);
+                Parcelable[] parcelables = intent.getParcelableArrayExtra(EXTRA_PENDING_INTENT);
+                PendingIntent []pendingIntents= Arrays.copyOf(parcelables, parcelables.length, PendingIntent[].class);
+                //TODO: maybe pass Lotus.NotifyPendingIntents around, instead of PendingIntent[]
                 Lotus.NotifyPendingIntents notifyPendingIntents = new Lotus.NotifyPendingIntents(pendingIntents[0], pendingIntents[1]);
                 requireCHService(TAG);
                 if (ACTION_REGISTER_CONDITION_EVENT.equals(intent.getAction()))

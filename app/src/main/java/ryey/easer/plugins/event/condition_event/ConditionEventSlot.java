@@ -37,12 +37,12 @@ public class ConditionEventSlot extends SelfNotifiableSlot<ConditionEventEventDa
 
     @Override
     public void listen() {
-        EHService.registerConditionEventNotification(context, eventData.conditionName, new PendingIntent[]{notifySelfIntent_positive, notifySelfIntent_negative});
+        EHService.registerConditionEventNotifier(context, eventData.conditionName, new PendingIntent[]{notifySelfIntent_positive, notifySelfIntent_negative});
     }
 
     @Override
     public void cancel() {
-        EHService.unregisterConditionEventNotification(context, eventData.conditionName, new PendingIntent[]{notifySelfIntent_positive, notifySelfIntent_negative});
+        EHService.unregisterConditionEventNotifier(context, eventData.conditionName, new PendingIntent[]{notifySelfIntent_positive, notifySelfIntent_negative});
     }
 
     /**
