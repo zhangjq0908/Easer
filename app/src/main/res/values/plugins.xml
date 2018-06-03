@@ -12,6 +12,8 @@
 
     <string name="condition_connectivity">@string/event_connectivity</string>
 
+    <string name="condition_date">@string/event_date</string>
+
 
     <string name="event_time">Time</string>
     <string name="event_date">Date</string>
@@ -193,5 +195,7 @@
     <string name="op_ui_mode">Car Mode</string>
     <string name="op_car_mode">Car Mode</string>
     <string name="op_normal_mode">Normal Mode</string>
+
+    <string name="rel_after">After</string>
 
 </resources>
