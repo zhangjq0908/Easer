@@ -25,6 +25,9 @@ Supported Features
 * Location (based on base station / cellular tower)
 * Bluetooth device connected
 * Connectivity status
+* Date
+* Day of week
+* Screen state (on/off/unlocked)
 
 ### Operation
 * WiFi switch

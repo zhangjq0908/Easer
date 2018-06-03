@@ -1,6 +1,15 @@
 CHANGELOG
 ======
 
+* v0.6.4: Copied `DateConditionPlugin` & `DayOfWeekConditionPlugin` & `ScreenConditionPlugin` && Crash fix
+	* Copied `DateConditionPlugin` (from `DateEventPlugin`)
+		* With a few changes to suit semantics of Condition
+	* Copied `DayOfWeekConditionPlugin` (from `DayOfWeekEventPlugin`)
+		* With a few changes for better performance
+	* Copied `ScreenConditionPlugin` (from `ScreenEventPlugin`)
+	* Fix crash when deleting Scenario
+	* Fix crash when using ConditionEvent
+
 * v0.6.3: Copied `BTDeviceConditionPlugin` & `ConnectivityConditionPlugin` && Scroll up/down when editing Scenario or Condition
 	* Copied `BTDeviceConditionPlugin` (from `BTDeviceEventPlugin`)
 	* Copied `ConnectivityConditionPlugin` (from `ConnectivityEventPlugin`)
