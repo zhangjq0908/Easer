@@ -46,6 +46,7 @@ import ryey.easer.plugins.condition.bluetooth_device.BTDeviceConditionPlugin;
 import ryey.easer.plugins.condition.cell_location.CellLocationConditionPlugin;
 import ryey.easer.plugins.condition.connectivity.ConnectivityConditionPlugin;
 import ryey.easer.plugins.condition.date.DateConditionPlugin;
+import ryey.easer.plugins.condition.day_of_week.DayOfWeekConditionPlugin;
 import ryey.easer.plugins.event.battery.BatteryEventPlugin;
 import ryey.easer.plugins.event.bluetooth_device.BTDeviceEventPlugin;
 import ryey.easer.plugins.event.broadcast.BroadcastEventPlugin;
@@ -130,6 +131,7 @@ final public class PluginRegistry {
         condition().registerPlugin(CellLocationConditionPlugin.class);
         condition().registerPlugin(ConnectivityConditionPlugin.class);
         condition().registerPlugin(DateConditionPlugin.class);
+        condition().registerPlugin(DayOfWeekConditionPlugin.class);
 
         operation().registerPlugin(WifiOperationPlugin.class);
         operation().registerPlugin(CellularOperationPlugin.class);
