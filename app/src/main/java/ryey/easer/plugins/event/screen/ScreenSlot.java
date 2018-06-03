@@ -52,10 +52,6 @@ public class ScreenSlot extends AbstractSlot<ScreenEventData> {
 
     ScreenSlot(Context context, ScreenEventData data, boolean retriggerable, boolean persistent) {
         super(context, data, retriggerable, persistent);
-        intentFilter = new IntentFilter();
-        intentFilter.addAction(Intent.ACTION_SCREEN_ON);
-        intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
-        intentFilter.addAction(Intent.ACTION_USER_PRESENT);
     }
 
     @Override
