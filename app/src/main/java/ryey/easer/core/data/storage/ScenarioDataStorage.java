@@ -53,7 +53,12 @@ public class ScenarioDataStorage extends AbstractDataStorage<ScenarioStructure, 
 
     @Override
     boolean isSafeToDelete(String name) {
-        return StorageHelper.isSafeToDeleteScenario(context, name);
+        ScriptDataStorage scriptDataStorage = ScriptDataStorage.getInstance(context);
+        for (ScriptStructure scriptStructure : scriptDataStorage.allScripts()) {
+            if (scriptStructure.isEvent() && name.equals(scriptStructure.getScenario().getName()))
+                return false;
+        }
+        return true;
     }
 
     @Override

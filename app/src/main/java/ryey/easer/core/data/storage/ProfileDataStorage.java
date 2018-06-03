@@ -24,6 +24,7 @@ import android.content.Context;
 import java.io.IOException;
 
 import ryey.easer.core.data.ProfileStructure;
+import ryey.easer.core.data.ScriptStructure;
 import ryey.easer.core.data.storage.backend.ProfileDataStorageBackendInterface;
 import ryey.easer.core.data.storage.backend.json.profile.JsonProfileDataStorageBackend;
 
@@ -46,7 +47,12 @@ public class ProfileDataStorage extends AbstractDataStorage<ProfileStructure, Pr
 
     @Override
     boolean isSafeToDelete(String name) {
-        return StorageHelper.isSafeToDeleteProfile(context, name);
+        ScriptDataStorage scriptDataStorage = ScriptDataStorage.getInstance(context);
+        for (ScriptStructure scriptStructure : scriptDataStorage.allScripts()) {
+            if (name.equals(scriptStructure.getProfileName()))
+                return false;
+        }
+        return true;
     }
 
     /**

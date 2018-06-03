@@ -111,24 +111,6 @@ public class StorageHelper {
         }
     }
 
-    static boolean isSafeToDeleteProfile(Context context, String name) {
-        ScriptDataStorage scriptDataStorage = ScriptDataStorage.getInstance(context);
-        for (ScriptStructure scriptStructure : scriptDataStorage.allScripts()) {
-            if (name.equals(scriptStructure.getProfileName()))
-                return false;
-        }
-        return true;
-    }
-
-    static boolean isSafeToDeleteScenario(Context context, String name) {
-        ScriptDataStorage scriptDataStorage = ScriptDataStorage.getInstance(context);
-        for (ScriptStructure scriptStructure : scriptDataStorage.allScripts()) {
-            if (name.equals(scriptStructure.getScenario().getName()))
-                return false;
-        }
-        return true;
-    }
-
     static List<ScriptTree> eventListToTrees(List<ScriptStructure> events) {
         Map<String, List<ScriptStructure>> eventIntermediateDataMap = scriptParentMap(events);
         // construct the forest from the map
