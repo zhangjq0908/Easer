@@ -188,6 +188,7 @@ final public class PluginRegistry {
         final int type;
         final List<Class<? extends T>> pluginClassList = new ArrayList<>();
         final List<T> pluginList = new ArrayList<>();
+        //TODO: use Set instead of List for the above two variables && add an "ordered" method to return a List
         final Map<String, String> backwardNameMap = new ArrayMap<>();
 
         private Registry(int type) {
