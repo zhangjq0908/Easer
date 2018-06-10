@@ -20,6 +20,8 @@
 
     <string name="condition_time">@string/event_time</string>
 
+    <string name="condition_wifi">@string/event_wificonn</string>
+
 
     <string name="event_time">Time</string>
     <string name="event_date">Date</string>
