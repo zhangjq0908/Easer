@@ -27,7 +27,10 @@ Supported Features
 * Connectivity status
 * Date
 * Day of week
+* Headset state
 * Screen state (on/off/unlocked)
+* Time
+* WiFi connection status
 
 ### Operation
 * WiFi switch

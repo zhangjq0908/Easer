@@ -1,6 +1,16 @@
 CHANGELOG
 ======
 
+* v0.6.5: Add `TimeConditionPlugin` & `WifiConditionPlugin` & `HeadsetConditionPlugin` && Back to "Outline" && Fix BroadcastEventPlugin
+	* Copied `TimeConditionPlugin`
+		* With a few changes to suit semantics
+	* Copied `WifiConditionPlugin`
+	* Copied `HeadsetConditionPlugin`
+		* Also check state initially
+	* "Back" now goes back to "Outline" (rather than stacked)
+	* Fix `BroadcastEventPlugin` won't save
+		* Wrong condition check for `isValid()`
+
 * v0.6.4: Copied `DateConditionPlugin` & `DayOfWeekConditionPlugin` & `ScreenConditionPlugin` && Crash fix
 	* Copied `DateConditionPlugin` (from `DateEventPlugin`)
 		* With a few changes to suit semantics of Condition
