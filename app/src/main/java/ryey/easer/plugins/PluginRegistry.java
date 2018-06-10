@@ -47,6 +47,7 @@ import ryey.easer.plugins.condition.cell_location.CellLocationConditionPlugin;
 import ryey.easer.plugins.condition.connectivity.ConnectivityConditionPlugin;
 import ryey.easer.plugins.condition.date.DateConditionPlugin;
 import ryey.easer.plugins.condition.day_of_week.DayOfWeekConditionPlugin;
+import ryey.easer.plugins.condition.headset.HeadsetConditionPlugin;
 import ryey.easer.plugins.condition.screen.ScreenConditionPlugin;
 import ryey.easer.plugins.condition.time.TimeConditionPlugin;
 import ryey.easer.plugins.condition.wifi.WifiConditionPlugin;
@@ -135,6 +136,7 @@ final public class PluginRegistry {
         condition().registerPlugin(ConnectivityConditionPlugin.class);
         condition().registerPlugin(DateConditionPlugin.class);
         condition().registerPlugin(DayOfWeekConditionPlugin.class);
+        condition().registerPlugin(HeadsetConditionPlugin.class);
         condition().registerPlugin(ScreenConditionPlugin.class);
         condition().registerPlugin(TimeConditionPlugin.class);
         condition().registerPlugin(WifiConditionPlugin.class);
