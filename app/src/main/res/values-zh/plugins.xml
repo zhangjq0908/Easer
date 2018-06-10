@@ -8,6 +8,9 @@
 
     <string name="condition_bluetooth_device">已連接藍牙設備</string>
 
+    <string name="condition_headset__headset_state">耳機狀態</string>
+    <string name="condition_headset__plugged_in">已插入</string>
+    <string name="condition_headset__plugged_out">已拔出</string>
 
     <string name="event_celllocation">基站位置</string>
     <string name="event_date">日期</string>

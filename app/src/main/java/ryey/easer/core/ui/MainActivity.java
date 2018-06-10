@@ -134,20 +134,9 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            getSupportFragmentManager().popBackStack(0, 0); // The -1'st is the Outline. We rely on super.onBackPressed() to pop the 0th.
             NavigationView navigationView = findViewById(R.id.nav_view);
-            FragmentManager manager = getSupportFragmentManager();
-            int previous_entry = manager.getBackStackEntryCount() - 2;
-            if (previous_entry >= 0) {
-                String name = manager
-                        .getBackStackEntryAt(previous_entry)
-                        .getName();
-                Integer id = navTag.findId(name);
-                if (id == null)
-                    throw new IllegalStateException(String.format("<%s> not in tracked go-back items??", name));
-                navigationView.setCheckedItem(id);
-            } else if (previous_entry == -1) {
-                navigationView.setCheckedItem(R.id.nav_outline);
-            }
+            navigationView.setCheckedItem(R.id.nav_outline);
             super.onBackPressed();
         }
     }
@@ -165,6 +154,7 @@ public class MainActivity extends AppCompatActivity
         FragmentManager manager = getSupportFragmentManager();
         Fragment fragment;
         String tag = navTag.findTag(id);
+        String bs_tag = tag;
 
         if (id == R.id.nav_outline) {
             fragment = manager.findFragmentByTag(tag);
@@ -172,7 +162,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = new OutlineFragment();
             manager.beginTransaction()
                     .replace(R.id.content_main, fragment, tag)
-                    .addToBackStack(tag)
+                    .addToBackStack(bs_tag)
                     .commit();
         } else if (id == R.id.nav_profile) {
             fragment = manager.findFragmentByTag(tag);
@@ -180,7 +170,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = new ProfileListFragment();
             manager.beginTransaction()
                     .replace(R.id.content_main, fragment, tag)
-                    .addToBackStack(tag)
+                    .addToBackStack(bs_tag)
                     .commit();
         } else if (id == R.id.nav_script) {
             fragment = manager.findFragmentByTag(tag);
@@ -188,7 +178,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = new ScriptListFragment();
             manager.beginTransaction()
                     .replace(R.id.content_main, fragment, tag)
-                    .addToBackStack(tag)
+                    .addToBackStack(bs_tag)
                     .commit();
         } else if (id == R.id.nav_scenario) {
             fragment = manager.findFragmentByTag(tag);
@@ -196,7 +186,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = new ScenarioListFragment();
             manager.beginTransaction()
                     .replace(R.id.content_main, fragment, tag)
-                    .addToBackStack(tag)
+                    .addToBackStack(bs_tag)
                     .commit();
         } else if (id == R.id.nav_condition) {
             fragment = manager.findFragmentByTag(tag);
@@ -204,7 +194,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = new ConditionListFragment();
             manager.beginTransaction()
                     .replace(R.id.content_main, fragment, tag)
-                    .addToBackStack(tag)
+                    .addToBackStack(bs_tag)
                     .commit();
         } else if (id == R.id.nav_about) {
             Intent intent = new Intent(this, AboutActivity.class);
@@ -218,7 +208,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = LoadedHistoryFragment.full();
             manager.beginTransaction()
                     .replace(R.id.content_main, fragment, tag)
-                    .addToBackStack(tag)
+                    .addToBackStack(bs_tag)
                     .commit();
         }
     }

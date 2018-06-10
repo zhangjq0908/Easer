@@ -16,7 +16,16 @@
 
     <string name="condition_day_of_week">@string/event_day_of_week</string>
 
+    <string name="condition_headset">@string/event_headset</string>
+    <string name="condition_headset__headset_state">Headset state</string>
+    <string name="condition_headset__plugged_in">Plugged in</string>
+    <string name="condition_headset__plugged_out">Plugged out</string>
+
     <string name="condition_screen">@string/event_screen</string>
+
+    <string name="condition_time">@string/event_time</string>
+
+    <string name="condition_wifi">@string/event_wificonn</string>
 
 
     <string name="event_time">Time</string>

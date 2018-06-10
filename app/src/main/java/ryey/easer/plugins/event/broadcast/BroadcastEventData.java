@@ -50,7 +50,8 @@ public class BroadcastEventData extends AbstractEventData {
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
-        if (intentData.action != null && intentData.category != null)
+        if ((intentData.action == null || intentData.action.size() == 0) &&
+                (intentData.category == null || intentData.category.size() == 0))
             return false;
         return true;
     }
