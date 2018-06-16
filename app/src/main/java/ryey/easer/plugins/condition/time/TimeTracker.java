@@ -55,17 +55,21 @@ public class TimeTracker extends SelfNotifiableSkeletonTracker<TimeConditionData
     }
 
     private static Calendar[] calendarOfToday(Calendar ref) {
+        // target time of today
         Calendar calendar_target = Calendar.getInstance(), calendar_zero = Calendar.getInstance(), now = Calendar.getInstance();
         long currentTimeMillis = System.currentTimeMillis();
         calendar_target.setTimeInMillis(currentTimeMillis);
         calendar_target.set(Calendar.HOUR_OF_DAY, ref.get(Calendar.HOUR_OF_DAY));
         calendar_target.set(Calendar.MINUTE, ref.get(Calendar.MINUTE));
 
+        // 0:00 of the next day (24:00 of today)
         calendar_zero.setTimeInMillis(currentTimeMillis);
         calendar_zero.set(Calendar.HOUR_OF_DAY, 0);
         calendar_zero.set(Calendar.MINUTE, 0);
         calendar_zero.set(Calendar.SECOND, 0);
+        calendar_zero.roll(Calendar.DAY_OF_YEAR, 1);
 
+        // current time
         now.setTimeInMillis(currentTimeMillis);
 
         return new Calendar[]{calendar_target, calendar_zero, now};
