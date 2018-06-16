@@ -53,10 +53,12 @@ public class CellLocationPluginViewFragment extends PluginViewFragment<CellLocat
                     return;
                 TelephonyManager telephonyManager = (TelephonyManager) getContext().getSystemService(Context.TELEPHONY_SERVICE);
                 @SuppressLint("MissingPermission") CellLocationSingleData singleData = CellLocationSingleData.fromCellLocation(telephonyManager.getCellLocation());
-                if (Utils.isBlank(editText.getText().toString())) {
+                String display_str = editText.getText().toString();
+                if (Utils.isBlank(display_str)) {
                     editText.setText(singleData.toString());
                 } else {
-                    editText.setText("\n" + singleData.toString());
+                    display_str += "\n" + singleData.toString();
+                    editText.setText(display_str);
                 }
             }
         });
