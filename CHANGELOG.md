@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+* v0.6.5: Various fixes
+	* Fixed checkbox in TimerCondition
+	* Fix CellLocationCondition UI not correctly add location
+	* Fix "reverse" not working in TimeCondition
+
 * v0.6.5: Add `TimeConditionPlugin` & `WifiConditionPlugin` & `HeadsetConditionPlugin` && Back to "Outline" && Fix BroadcastEventPlugin
 	* Copied `TimeConditionPlugin`
 		* With a few changes to suit semantics
