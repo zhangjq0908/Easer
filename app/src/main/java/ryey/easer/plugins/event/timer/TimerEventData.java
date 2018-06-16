@@ -35,22 +35,34 @@ public class TimerEventData extends AbstractEventData {
     private static final String K_EXACT_BOOL = "exact?";
     private static final String K_REPEAT_BOOL = "repeat?";
 
-    Timer timer;
+    final int minutes;
+    final boolean exact;
+    final boolean repeat;
 
-    public TimerEventData(Timer timer) {
-        this.timer = timer;
+    TimerEventData(int minutes, boolean exact, boolean repeat) {
+        this.minutes = minutes;
+        this.exact = exact;
+        this.repeat = repeat;
     }
 
     TimerEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
-        parse(data, format, version);
+        switch (format) {
+            default:
+                try {
+                    JSONObject jsonObject = new JSONObject(data);
+                    minutes = jsonObject.getInt(K_MINUTES);
+                    exact = jsonObject.getBoolean(K_EXACT_BOOL);
+                    repeat = jsonObject.getBoolean(K_REPEAT_BOOL);
+                } catch (JSONException e) {
+                    throw new IllegalStorageDataException(e);
+                }
+        }
     }
 
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
-        if (timer == null)
-            return false;
-        if (timer.minutes <= 0)
+        if (minutes <= 0)
             return false;
         return true;
     }
@@ -60,28 +72,13 @@ public class TimerEventData extends AbstractEventData {
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof TimerEventData))
             return false;
-        if (timer.minutes != ((TimerEventData) obj).timer.minutes)
+        if (minutes != ((TimerEventData) obj).minutes)
             return false;
-        if (timer.repeat != ((TimerEventData) obj).timer.repeat)
+        if (repeat != ((TimerEventData) obj).repeat)
             return false;
-        if (timer.exact != ((TimerEventData) obj).timer.exact)
+        if (exact != ((TimerEventData) obj).exact)
             return false;
         return true;
-    }
-
-    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
-        timer = new Timer();
-        switch (format) {
-            default:
-                try {
-                    JSONObject jsonObject = new JSONObject(data);
-                    timer.minutes = jsonObject.getInt(K_MINUTES);
-                    timer.exact = jsonObject.getBoolean(K_EXACT_BOOL);
-                    timer.repeat = jsonObject.getBoolean(K_REPEAT_BOOL);
-                } catch (JSONException e) {
-                    throw new IllegalStorageDataException(e);
-                }
-        }
     }
 
     @NonNull
@@ -92,9 +89,9 @@ public class TimerEventData extends AbstractEventData {
             default:
                 JSONObject jsonObject = new JSONObject();
                 try {
-                    jsonObject.put(K_MINUTES, timer.minutes);
-                    jsonObject.put(K_EXACT_BOOL, timer.exact);
-                    jsonObject.put(K_REPEAT_BOOL, timer.repeat);
+                    jsonObject.put(K_MINUTES, minutes);
+                    jsonObject.put(K_EXACT_BOOL, exact);
+                    jsonObject.put(K_REPEAT_BOOL, repeat);
                 } catch (JSONException e) {
                     e.printStackTrace();
                     throw new IllegalStateException(e);
@@ -111,9 +108,9 @@ public class TimerEventData extends AbstractEventData {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(timer.minutes);
-        dest.writeByte((byte) (timer.exact ? 1 : 0));
-        dest.writeByte((byte) (timer.repeat ? 1 : 0));
+        dest.writeInt(minutes);
+        dest.writeByte((byte) (exact ? 1 : 0));
+        dest.writeByte((byte) (repeat ? 1 : 0));
     }
 
     public static final Creator<TimerEventData> CREATOR
@@ -128,15 +125,8 @@ public class TimerEventData extends AbstractEventData {
     };
 
     private TimerEventData(Parcel in) {
-        timer = new Timer();
-        timer.minutes = in.readInt();
-        timer.exact = in.readByte() != 0;
-        timer.repeat = in.readByte() != 0;
-    }
-
-    static class Timer {
-        int minutes;
-        boolean exact;
-        boolean repeat;
+        minutes = in.readInt();
+        exact = in.readByte() != 0;
+        repeat = in.readByte() != 0;
     }
 }

@@ -53,13 +53,12 @@ public class TimerPluginViewFragment extends PluginViewFragment<TimerEventData> 
 
     @Override
     protected void _fill(@ValidData @NonNull TimerEventData data) {
-        TimerEventData.Timer timer = data.timer;
-        editText_minute.setText(String.valueOf(timer.minutes));
-        if (timer.exact)
+        editText_minute.setText(String.valueOf(data.minutes));
+        if (data.exact)
             radioButton_exact.setChecked(true);
         else
             radioButton_inexact.setChecked(true);
-        if (timer.repeat)
+        if (data.repeat)
             radioButton_repeat.setChecked(true);
         else
             radioButton_one_time.setChecked(true);
@@ -69,14 +68,13 @@ public class TimerPluginViewFragment extends PluginViewFragment<TimerEventData> 
     @NonNull
     @Override
     public TimerEventData getData() throws InvalidDataInputException {
-        TimerEventData.Timer timer = new TimerEventData.Timer();
         try {
-            timer.minutes = Integer.parseInt(editText_minute.getText().toString());
+            int minutes = Integer.parseInt(editText_minute.getText().toString());
+            boolean exact = radioButton_exact.isChecked();
+            boolean repeat = radioButton_repeat.isChecked();
+            return new TimerEventData(minutes, exact, repeat);
         } catch (NumberFormatException e) {
             throw new InvalidDataInputException(e.getMessage());
         }
-        timer.exact = radioButton_exact.isChecked();
-        timer.repeat = radioButton_repeat.isChecked();
-        return new TimerEventData(timer);
     }
 }

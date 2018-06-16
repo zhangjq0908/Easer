@@ -37,11 +37,7 @@ class TimerEventDataFactory implements EventDataFactory<TimerEventData> {
     @NonNull
     @Override
     public TimerEventData dummyData() {
-        TimerEventData.Timer timer = new TimerEventData.Timer();
-        timer.exact = true;
-        timer.repeat = true;
-        timer.minutes = 102;
-        return new TimerEventData(timer);
+        return new TimerEventData(102, true, true);
     }
 
     @ValidData

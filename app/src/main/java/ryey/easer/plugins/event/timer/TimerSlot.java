@@ -31,23 +31,19 @@ public class TimerSlot extends SelfNotifiableSlot<TimerEventData> {
 
     private static final int INTERVAL_MINUTE = 60 * 1000;
 
-    private TimerEventData.Timer timer;
-
     public TimerSlot(Context context, TimerEventData data) {
         this(context, data, isRetriggerable(data), PERSISTENT_DEFAULT);
     }
 
     TimerSlot(Context context, TimerEventData data, boolean retriggerable, boolean persistent) {
         super(context, data, retriggerable, persistent);
-        timer = data.timer;
 
         if (mAlarmManager == null)
             mAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
     }
 
     private static boolean isRetriggerable(TimerEventData data) {
-        TimerEventData.Timer timer = data.timer;
-        if (timer.repeat) {
+        if (data.repeat) {
             return true;
         } else {
             return false;
@@ -57,17 +53,17 @@ public class TimerSlot extends SelfNotifiableSlot<TimerEventData> {
     @Override
     public void listen() {
         super.listen();
-        if (timer != null) {
+        if (eventData != null) {
             Calendar now = Calendar.getInstance();
-            if (timer.exact) {
+            if (eventData.exact) {
                 mAlarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
-                        now.getTimeInMillis() + INTERVAL_MINUTE * timer.minutes,
-                        INTERVAL_MINUTE * timer.minutes,
+                        now.getTimeInMillis() + INTERVAL_MINUTE * eventData.minutes,
+                        INTERVAL_MINUTE * eventData.minutes,
                         notifySelfIntent_positive);
             } else {
                 mAlarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
-                        now.getTimeInMillis() + INTERVAL_MINUTE * timer.minutes,
-                        INTERVAL_MINUTE * timer.minutes,
+                        now.getTimeInMillis() + INTERVAL_MINUTE * eventData.minutes,
+                        INTERVAL_MINUTE * eventData.minutes,
                         notifySelfIntent_positive);
             }
         }
@@ -76,7 +72,7 @@ public class TimerSlot extends SelfNotifiableSlot<TimerEventData> {
     @Override
     public void cancel() {
         super.cancel();
-        if (timer != null) {
+        if (eventData != null) {
             mAlarmManager.cancel(notifySelfIntent_positive);
             mAlarmManager.cancel(notifySelfIntent_negative);
         }
