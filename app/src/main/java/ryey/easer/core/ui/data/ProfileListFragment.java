@@ -26,6 +26,9 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ryey.easer.R;
 import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.plugins.PluginRegistry;
@@ -42,8 +45,13 @@ public class ProfileListFragment extends AbstractDataListFragment<ProfileDataSto
     }
 
     @Override
-    protected ProfileDataStorage retmStorage() {
-        return ProfileDataStorage.getInstance(getContext());
+    protected List<ListDataWrapper> queryDataList() {
+        ProfileDataStorage dataStorage = ProfileDataStorage.getInstance(getContext());
+        List<ListDataWrapper> dataWrapperList = new ArrayList<>();
+        for (String name : dataStorage.list()) {
+            dataWrapperList.add(new ListDataWrapper(name));
+        }
+        return dataWrapperList;
     }
 
     @Override

@@ -24,8 +24,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
+import android.support.annotation.ColorRes;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ListFragment;
+import android.support.v4.content.ContextCompat;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -36,6 +40,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
 
@@ -51,8 +56,6 @@ abstract class AbstractDataListFragment<T extends AbstractDataStorage> extends L
 
     static final int request_code = 10;
 
-    T mStorage;
-
     protected abstract String title();
 
     @Override
@@ -60,8 +63,7 @@ abstract class AbstractDataListFragment<T extends AbstractDataStorage> extends L
         super.onActivityCreated(savedInstanceState);
         registerForContextMenu(getListView());
 
-        mStorage = retmStorage();
-        ListAdapter adapter = new IListAdapter(getActivity(), new ArrayList<String>());
+        ListAdapter adapter = new IListAdapter(getActivity(), new ArrayList<ListDataWrapper>());
         setListAdapter(adapter);
     }
 
@@ -70,8 +72,6 @@ abstract class AbstractDataListFragment<T extends AbstractDataStorage> extends L
         super.onResume();
         reloadList();
     }
-
-    protected abstract T retmStorage();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -92,8 +92,8 @@ abstract class AbstractDataListFragment<T extends AbstractDataStorage> extends L
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        String name = (String) l.getItemAtPosition(position);
-        beginEditData(name);
+        ListDataWrapper wrapper = (ListDataWrapper) l.getItemAtPosition(position);
+        beginEditData(wrapper.name);
     }
 
     @Override
@@ -106,7 +106,8 @@ abstract class AbstractDataListFragment<T extends AbstractDataStorage> extends L
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        String name = (String) getListView().getItemAtPosition(info.position);
+        ListDataWrapper wrapper = (ListDataWrapper) getListView().getItemAtPosition(info.position);
+        String name = wrapper.name;
         int id = item.getItemId();
         switch (id) {
             case R.id.action_edit:
@@ -119,9 +120,11 @@ abstract class AbstractDataListFragment<T extends AbstractDataStorage> extends L
         return super.onContextItemSelected(item);
     }
 
+    protected abstract List<ListDataWrapper> queryDataList();
+
     protected void reloadList() {
         Logger.d(TAG + "reloadList()");
-        List<String> items = mStorage.list();
+        List<ListDataWrapper> items = queryDataList();
         Logger.v(TAG + "All item: %s", items);
         IListAdapter adapter = (IListAdapter) getListAdapter();
         adapter.clear();
@@ -163,9 +166,33 @@ abstract class AbstractDataListFragment<T extends AbstractDataStorage> extends L
         }
     }
 
-    static class IListAdapter extends ArrayAdapter<String> {
-        IListAdapter(Context context, List<String> data) {
+    static class IListAdapter extends ArrayAdapter<ListDataWrapper> {
+        IListAdapter(Context context, List<ListDataWrapper> data) {
             super(context, R.layout.item_data_list, R.id.textView_data_title, data);
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            View view = super.getView(position, convertView, parent);
+            ListDataWrapper wrapper = getItem(position);
+            TextView tv_name = view.findViewById(R.id.textView_data_title);
+            tv_name.setTextColor(ContextCompat.getColor(getContext(), wrapper.colorRes));
+            tv_name.setText(wrapper.name);
+            return view;
+        }
+    }
+
+    static class ListDataWrapper {
+        final String name;
+        final @ColorRes int colorRes;
+        ListDataWrapper(String name) {
+            this.name = name;
+            colorRes = R.color.colorText;
+        }
+        ListDataWrapper(String name, @ColorRes int colorRes) {
+            this.name = name;
+            this.colorRes = colorRes;
         }
     }
 }

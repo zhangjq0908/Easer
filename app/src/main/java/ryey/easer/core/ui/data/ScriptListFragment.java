@@ -21,6 +21,9 @@ package ryey.easer.core.ui.data;
 
 import android.content.Intent;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ryey.easer.R;
 import ryey.easer.core.EHService;
 import ryey.easer.core.data.storage.ScriptDataStorage;
@@ -37,8 +40,13 @@ public class ScriptListFragment extends AbstractDataListFragment<ScriptDataStora
     }
 
     @Override
-    protected ScriptDataStorage retmStorage() {
-        return ScriptDataStorage.getInstance(getContext());
+    protected List<ListDataWrapper> queryDataList() {
+        ScriptDataStorage dataStorage = ScriptDataStorage.getInstance(getContext());
+        List<ListDataWrapper> dataWrapperList = new ArrayList<>();
+        for (String name : dataStorage.list()) {
+            dataWrapperList.add(new ListDataWrapper(name));
+        }
+        return dataWrapperList;
     }
 
     @Override

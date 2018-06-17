@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="colorDialogTitle">#99A9EE</color>
+    <color name="colorText">@android:color/black</color>
 
     <color name="divider">@android:color/darker_gray</color>
 

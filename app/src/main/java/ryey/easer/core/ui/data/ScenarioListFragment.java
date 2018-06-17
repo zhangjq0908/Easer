@@ -26,6 +26,9 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ryey.easer.R;
 import ryey.easer.core.EHService;
 import ryey.easer.core.data.storage.ScenarioDataStorage;
@@ -43,8 +46,13 @@ public class ScenarioListFragment extends AbstractDataListFragment<ScenarioDataS
     }
 
     @Override
-    protected ScenarioDataStorage retmStorage() {
-        return ScenarioDataStorage.getInstance(getContext());
+    protected List<ListDataWrapper> queryDataList() {
+        ScenarioDataStorage dataStorage = ScenarioDataStorage.getInstance(getContext());
+        List<ListDataWrapper> dataWrapperList = new ArrayList<>();
+        for (String name : dataStorage.list()) {
+            dataWrapperList.add(new ListDataWrapper(name));
+        }
+        return dataWrapperList;
     }
 
     @Override
