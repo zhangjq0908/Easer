@@ -115,7 +115,7 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
                 if (!data.isValid())
                     throw new InvalidDataInputException();
                 fragment.setHighlight(false);
-                profile.set(PluginRegistry.getInstance().operation().findPlugin(data).id(), data);
+                profile.put(PluginRegistry.getInstance().operation().findPlugin(data).id(), data);
             } catch (InvalidDataInputException e) {
                 fragment.setHighlight(true);
                 return null;

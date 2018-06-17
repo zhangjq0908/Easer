@@ -52,8 +52,11 @@ final public class ProfileStructure implements Named, Verifiable, WithCreatedVer
     public Collection<OperationData> get(String key) {
         return data.get(key);
     }
-    public void set(String key, OperationData value) {
+    public void put(String key, OperationData value) {
         data.put(key, value);
+    }
+    public void set(String key, Collection<OperationData> dataCollection) {
+        data.replaceValues(key, dataCollection);
     }
 
     @Override

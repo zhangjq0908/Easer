@@ -64,7 +64,7 @@ class ProfileParser implements Parser<ProfileStructure> {
             String content = jsonObject.optString(C.DATA);
             OperationPlugin plugin = PluginRegistry.getInstance().operation().findPlugin(spec);
             OperationData data = plugin.dataFactory().parse(content, C.Format.JSON, version);
-            profile.set(plugin.id(), data);
+            profile.put(plugin.id(), data);
         }
     }
 }

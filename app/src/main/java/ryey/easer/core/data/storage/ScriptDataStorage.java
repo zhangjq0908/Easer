@@ -22,6 +22,7 @@ package ryey.easer.core.data.storage;
 import android.content.Context;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -93,12 +94,38 @@ public class ScriptDataStorage extends AbstractDataStorage<ScriptStructure, Scri
 
     @Override
     protected void handleRename(String oldName, ScriptStructure script) throws IOException {
+        String name = script.getName();
         // alter subnodes to point to the new name
         List<ScriptStructure> subs = StorageHelper.scriptParentMap(allScripts()).get(oldName);
         if (subs != null) {
             for (ScriptStructure sub : subs) {
-                sub.setParentName(script.getName());
+                sub.setParentName(name);
                 update(sub);
+            }
+        }
+        ProfileDataStorage profileDataStorage = ProfileDataStorage.getInstance(context);
+        String s_id = (new StateControlOperationPlugin()).id();
+        for (String pname : profileDataStorage.list()) {
+            ProfileStructure profile = profileDataStorage.get(pname);
+            Collection<OperationData> dataCollection = profile.get(s_id);
+            if (dataCollection != null) {
+                List<StateControlOperationData> replaceData = new ArrayList<>();
+                for (OperationData operationData : dataCollection) {
+                    StateControlOperationData stateControlOperationData = (StateControlOperationData) operationData;
+                    if (oldName.equals(stateControlOperationData.scriptName)) {
+                        replaceData.add(stateControlOperationData);
+                    }
+                }
+                if (replaceData.size() > 0) {
+                    Collection<OperationData> copiedDataCollection = new ArrayList<>(dataCollection);
+                    for (StateControlOperationData operationData : replaceData) {
+                        copiedDataCollection.remove(operationData);
+                        StateControlOperationData newData = new StateControlOperationData(operationData, name);
+                        copiedDataCollection.add(newData);
+                    }
+                    profile.set(s_id, copiedDataCollection);
+                    profileDataStorage.edit(pname, profile);
+                }
             }
         }
     }
