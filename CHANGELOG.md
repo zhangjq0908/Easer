@@ -1,7 +1,15 @@
 CHANGELOG
 ======
+* v0.6.6: Rename "Scenario" to "Event" && Colorize lists && Various fixes
+	* Rename "Scenario" to "Event" in code & storage & UI
+	* Show different color in lists
+		* Red for invalid
+		* Grey for inactive (Script)
+	* Several Fixes
+		* Fix incorrect handling of renaming (not linking update)
+		* Fix crash after renaming Condition (by reloading Condition)
 
-* v0.6.5: Various fixes
+* v0.6.5.1: Various fixes
 	* Fixed checkbox in TimerCondition
 	* Fix CellLocationCondition UI not correctly add location
 	* Fix "reverse" not working in TimeCondition
