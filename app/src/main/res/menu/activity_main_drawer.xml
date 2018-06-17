@@ -13,7 +13,7 @@
             android:title="@string/title_profile" />
         <item
             android:id="@+id/nav_scenario"
-            android:title="@string/title_scenario" />
+            android:title="@string/title_event" />
         <item
             android:id="@+id/nav_condition"
             android:title="@string/title_condition" />

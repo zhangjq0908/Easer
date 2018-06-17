@@ -6,7 +6,6 @@
     <string name="title_profile">Profil</string>
     <string name="title_event">Hændelse</string>
     <string name="title_script">Skript</string>
-    <string name="title_scenario">Scenarie</string>
     <string name="title_condition">Tilstand</string>
     <string name="title_application">Program</string>
     <string name="title_activity_log">Aktivitetslog</string>
@@ -48,8 +47,8 @@
     <string name="text_parent_node">Forælder</string>
     <string name="text_parent">Forælder:</string>
     <string name="text_profile">Profil:</string>
-    <string name="text_use_scenario">Brug scenarie</string>
-    <string name="text_inline_scenario">Integreret scenarie</string>
+    <string name="text_predefined_event">Brug scenarie</string>
+    <string name="text_inline_event">Integreret scenarie</string>
     <string name="text_use_condition">Brug tilstand</string>
     <string name="text_repeatable_desc">Gentagelig når tilfreds</string>
     <string name="text_reverse_desc">Omvendt scenarie</string>
@@ -61,7 +60,6 @@
     <string name="hint_event_title">hændelse titel</string>
     <string name="hint_script_title">skript titel</string>
     <string name="hint_profile_title">profil titel</string>
-    <string name="hint_scenario_title">scenarie titel</string>
     <string name="hint_condition_title">tilstand titel</string>
 
     <string name="prompt_save_failed">Kan ikke gemme</string>

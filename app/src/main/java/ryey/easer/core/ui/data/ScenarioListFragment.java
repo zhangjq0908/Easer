@@ -43,7 +43,7 @@ public class ScenarioListFragment extends AbstractDataListFragment<ScenarioDataS
 
     @Override
     protected String title() {
-        return getString(R.string.title_scenario);
+        return getString(R.string.title_event);
     }
 
     @Override

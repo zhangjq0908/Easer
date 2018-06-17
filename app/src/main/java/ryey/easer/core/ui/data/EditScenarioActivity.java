@@ -40,7 +40,7 @@ public class EditScenarioActivity extends AbstractEditDataActivity<ScenarioStruc
 
     @Override
     protected String title() {
-        return getString(R.string.title_scenario);
+        return getString(R.string.title_event);
     }
 
     @Override
