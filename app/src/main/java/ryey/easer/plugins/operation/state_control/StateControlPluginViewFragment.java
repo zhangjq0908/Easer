@@ -25,56 +25,42 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-
-import java.util.List;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.PluginViewFragment;
 import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.core.data.storage.ScriptDataStorage;
+import ryey.easer.core.ui.data.DataSelectSpinnerWrapper;
 
 public class StateControlPluginViewFragment extends PluginViewFragment<StateControlOperationData> {
 
-    List<String> mScriptList = null;
-    private Spinner spinner_script;
+    private DataSelectSpinnerWrapper sw_script;
 
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_operation__event_control, container, false);
-        spinner_script = view.findViewById(R.id.spinner_event);
-        mScriptList = (ScriptDataStorage.getInstance(getContext())).list();
-        //noinspection ConstantConditions
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.spinner_simple, mScriptList); //TODO: change layout
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        spinner_script.setAdapter(adapter);
-        spinner_script.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                adapterView.setSelection(i);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
+        sw_script = new DataSelectSpinnerWrapper(getContext(), (Spinner) view.findViewById(R.id.spinner_event));
+        sw_script
+                .beginInit()
+                .setAllowEmpty(false)
+                .fillData((ScriptDataStorage.getInstance(getContext())).list())
+                .finalizeInit();
         return view;
     }
 
     @Override
     protected void _fill(@ValidData @NonNull StateControlOperationData data) {
-        spinner_script.setSelection(mScriptList.indexOf(data.scriptName));
+        sw_script.setSelection(data.scriptName);
     }
 
     @ValidData
     @NonNull
     @Override
     public StateControlOperationData getData() throws InvalidDataInputException {
-        String eventName = (String) spinner_script.getSelectedItem();
+        String eventName = sw_script.getSelection();
         return new StateControlOperationData(eventName, false);
     }
 }
