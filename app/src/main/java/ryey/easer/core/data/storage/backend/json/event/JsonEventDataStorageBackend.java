@@ -45,7 +45,7 @@ public class JsonEventDataStorageBackend implements EventDataStorageBackendInter
         if (instance == null) {
             if (context != null)
                 s_context = context;
-            dir = IOUtils.mustGetSubDir(s_context.getFilesDir(), "scenario");
+            dir = IOUtils.mustGetSubDir(s_context.getFilesDir(), "event");
             instance = new JsonEventDataStorageBackend();
         }
         return instance;

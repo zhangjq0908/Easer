@@ -41,6 +41,14 @@ import ryey.easer.core.data.WithCreatedVersion;
 
 public class StorageHelper {
 
+    private static boolean dirWithContent(File dir) {
+        if (dir.exists() && dir.isDirectory()) {
+            if (dir.list().length > 0)
+                return true;
+        }
+        return false;
+    }
+
     public static boolean hasOldData(Context context) {
         AbstractDataStorage<?, ?> []dataStorages = {
                 ProfileDataStorage.getInstance(context),
@@ -55,8 +63,12 @@ public class StorageHelper {
                 }
             }
         }
-        File old_event_dir = new File(context.getFilesDir(), "event");
-        if (old_event_dir.exists() && old_event_dir.isDirectory())
+        File dir_event = new File(context.getFilesDir(), "event");;
+        File dir_scenario = new File(context.getFilesDir(), "scenario");
+        File dir_script = new File(context.getFilesDir(), "script");
+        if (dir_event.exists() && dir_scenario.exists())
+            return true;
+        if (dir_scenario.exists() && dir_script.exists())
             return true;
         return false;
     }
@@ -64,11 +76,26 @@ public class StorageHelper {
     public static boolean convertToNewData(Context context) {
         Toast.makeText(context, R.string.message_convert_data_start, Toast.LENGTH_SHORT).show();
 
-        File event_dir = new File(context.getFilesDir(), "event");
-        File script_dir = new File(context.getFilesDir(), "script");
-        if (event_dir.exists() && event_dir.isDirectory()) {
-            if (!event_dir.renameTo(script_dir)) {
+        File dir_event = new File(context.getFilesDir(), "event");
+        File dir_scenario = new File(context.getFilesDir(), "scenario");
+        File dir_script = new File(context.getFilesDir(), "script");
+
+        if (dirWithContent(dir_event) && dirWithContent(dir_scenario)) {
+            if (!dir_event.renameTo(dir_script)) {
                 Logger.e("Failed to rename \"event\" directory to \"script\".");
+                Toast.makeText(context, R.string.message_convert_data_abort, Toast.LENGTH_LONG).show();
+                return false;
+            }
+        }
+        if (dirWithContent(dir_scenario) && dirWithContent(dir_script)) {
+            if (dir_event.exists() && ! dirWithContent(dir_event))
+                if (!dir_event.delete()) {
+                    Logger.e("Failed to delete empty directory \"event\".");
+                    Toast.makeText(context, R.string.message_convert_data_abort, Toast.LENGTH_LONG).show();
+                    return false;
+                }
+            if (!dir_scenario.renameTo(dir_event)) {
+                Logger.e("Failed to rename \"scenario\" directory to \"event\".");
                 Toast.makeText(context, R.string.message_convert_data_abort, Toast.LENGTH_LONG).show();
                 return false;
             }
