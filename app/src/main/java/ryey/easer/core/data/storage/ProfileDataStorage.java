@@ -55,18 +55,17 @@ public class ProfileDataStorage extends AbstractDataStorage<ProfileStructure, Pr
         return true;
     }
 
-    /**
-     * Edit an existing {@link ProfileStructure} and handles name changing if any.
-     * {@inheritDoc}
-     */
-    public boolean edit(String oldName, ProfileStructure profile) throws IOException {
-        boolean success = super.edit(oldName, profile);
-        if (success) {
-            if (!oldName.equals(profile.getName())) {
-                ScriptDataStorage scriptDataStorage = ScriptDataStorage.getInstance(context);
-                scriptDataStorage.handleProfileRename(oldName, profile.getName());
+    @Override
+    protected void handleRename(String oldName, ProfileStructure profile) throws IOException {
+        ScriptDataStorage scriptDataStorage = ScriptDataStorage.getInstance(context);
+        for (String scriptName : scriptDataStorage.list()) {
+            ScriptStructure script = scriptDataStorage.get(scriptName);
+            if (oldName.equals(script.getProfileName())) {
+                script.setProfileName(profile.getName());
+                scriptDataStorage.update(script);
             }
         }
-        return success;
     }
+
+
 }

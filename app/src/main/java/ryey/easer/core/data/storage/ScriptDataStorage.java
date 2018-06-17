@@ -76,21 +76,6 @@ public class ScriptDataStorage extends AbstractDataStorage<ScriptStructure, Scri
         return true;
     }
 
-    /**
-     * Edit an existing {@link ScriptStructure} and handles name changing if any.
-     * {@inheritDoc}
-     */
-    public boolean edit(String oldName, ScriptStructure script) throws IOException {
-        boolean success;
-        success = super.edit(oldName, script);
-        if (success) {
-            if (!oldName.equals(script.getName())) {
-                handleScriptRename(oldName, script.getName());
-            }
-        }
-        return success;
-    }
-
     public List<ScriptTree> getScriptTrees() {
         return StorageHelper.eventListToTrees(allScripts());
     }
@@ -106,31 +91,16 @@ public class ScriptDataStorage extends AbstractDataStorage<ScriptStructure, Scri
         return list;
     }
 
-    void handleProfileRename(String oldName, String newName) throws IOException {
-        for (ScriptDataStorageBackendInterface backend : storage_backend_list) {
-            for (ScriptStructure scriptStructure : backend.all()) {
-                if (oldName.equals(scriptStructure.getProfileName())) {
-                    scriptStructure.setProfileName(newName);
-                    backend.update(scriptStructure);
-                }
-            }
-        }
-    }
-
-    /**
-     *
-     * @param oldName
-     * @param newName
-     * @throws IOException
-     */
-    void handleScriptRename(String oldName, String newName) throws IOException {
+    @Override
+    protected void handleRename(String oldName, ScriptStructure script) throws IOException {
         // alter subnodes to point to the new name
         List<ScriptStructure> subs = StorageHelper.scriptParentMap(allScripts()).get(oldName);
         if (subs != null) {
             for (ScriptStructure sub : subs) {
-                sub.setParentName(newName);
+                sub.setParentName(script.getName());
                 update(sub);
             }
         }
     }
+
 }

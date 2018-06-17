@@ -45,6 +45,14 @@ public abstract class AbstractDataStorage<T extends Named & Verifiable & WithCre
         return list;
     }
 
+    public boolean has(String name) {
+        for (T_backend backend : storage_backend_list) {
+            if (backend.has(name))
+                return true;
+        }
+        return false;
+    }
+
     public T get(String name) {
         for (T_backend backend : storage_backend_list) {
             try {
@@ -116,6 +124,7 @@ public abstract class AbstractDataStorage<T extends Named & Verifiable & WithCre
         }
         if (!add(data))
             return false;
+        handleRename(oldName, data);
         for (T_backend backend : storage_backend_list) {
             if (backend.has(oldName)) {
                 backend.delete(oldName);
@@ -141,4 +150,6 @@ public abstract class AbstractDataStorage<T extends Named & Verifiable & WithCre
         }
         throw new IllegalAccessError();
     }
+
+    protected abstract void handleRename(String oldName, T data) throws IOException;
 }

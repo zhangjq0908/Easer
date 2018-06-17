@@ -72,21 +72,12 @@ public class ConditionDataStorage extends AbstractDataStorage<ConditionStructure
         return true;
     }
 
-    /**
-     * Edit an existing {@link ConditionStructure} and handles name changing if any.
-     * {@inheritDoc}
-     */
-    public boolean edit(String oldName, ConditionStructure condition) throws IOException {
-        boolean success = super.edit(oldName, condition);
-        if (success) {
-            if (!oldName.equals(condition.getName())) {
-                ScriptDataStorage scriptDataStorage = ScriptDataStorage.getInstance(context);
-                updateScriptsForNewName(scriptDataStorage, oldName, condition);
-                ScenarioDataStorage scenarioDataStorage = ScenarioDataStorage.getInstance(context);
-                updateConditionEventForNewName(scenarioDataStorage, oldName, condition.getName());
-            }
-        }
-        return success;
+    @Override
+    protected void handleRename(String oldName, ConditionStructure condition) throws IOException {
+        ScriptDataStorage scriptDataStorage = ScriptDataStorage.getInstance(context);
+        updateScriptsForNewName(scriptDataStorage, oldName, condition);
+        ScenarioDataStorage scenarioDataStorage = ScenarioDataStorage.getInstance(context);
+        updateConditionEventForNewName(scenarioDataStorage, oldName, condition.getName());
     }
 
     private static void updateScriptsForNewName(ScriptDataStorage scriptDataStorage, String oldName, ConditionStructure condition) throws IOException {

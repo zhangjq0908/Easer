@@ -47,11 +47,6 @@ public class ScenarioDataStorage extends AbstractDataStorage<ScenarioStructure, 
     }
 
     @Override
-    public ScenarioStructure get(String name) {
-        return super.get(name);
-    }
-
-    @Override
     boolean isSafeToDelete(String name) {
         ScriptDataStorage scriptDataStorage = ScriptDataStorage.getInstance(context);
         for (ScriptStructure scriptStructure : scriptDataStorage.allScripts()) {
@@ -61,23 +56,7 @@ public class ScenarioDataStorage extends AbstractDataStorage<ScenarioStructure, 
         return true;
     }
 
-    @Override
-    public boolean delete(String name) {
-        return super.delete(name);
-    }
-
-    @Override
-    public boolean edit(String oldName, ScenarioStructure scenario) throws IOException {
-        if (super.edit(oldName, scenario)) {
-            if (!oldName.equals(scenario.getName())) {
-                handleRename(oldName, scenario);
-            }
-            return true;
-        } else
-            return false;
-    }
-
-    private void handleRename(String oldName, ScenarioStructure newScenario) throws IOException {
+    protected void handleRename(String oldName, ScenarioStructure newScenario) throws IOException {
         ScriptDataStorage scriptDataStorage = ScriptDataStorage.getInstance(context);
         for (ScriptStructure scriptStructure : scriptDataStorage.allScripts()) {
             if (scriptStructure.isEvent() && oldName.equals(scriptStructure.getScenario().getName())) {
