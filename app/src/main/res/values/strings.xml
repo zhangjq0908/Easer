@@ -26,9 +26,9 @@
 
     <string name="service_indicator_positive">Running</string>
     <string name="service_indicator_negative">Not running</string>
-    <string name="profile_indicator_last">Last profile:</string>
+    <string name="profile_indicator_last">Last profile</string>
     <string name="profile_indicator_profile">Profile</string>
-    <string name="profile_indicator_from">From event</string>
+    <string name="profile_indicator_from">From</string>
     <string name="profile_indicator_time">Loaded time</string>
 
     <string name="null_content">NULL CONTENT</string>
@@ -44,10 +44,10 @@
     <string name="text_lack_permission">Easer does NOT have all permissions it needs.</string>
     <string name="button_request_permission">Grant permissions</string>
 
-    <string name="text_title">Title: </string>
+    <string name="text_title">Title</string>
     <string name="text_parent_node">Parent</string>
-    <string name="text_parent">Parent: </string>
-    <string name="text_profile">Profile: </string>
+    <string name="text_parent">Parent</string>
+    <string name="text_profile">Profile</string>
     <string name="text_use_scenario">Use Scenario</string>
     <string name="text_inline_scenario">Inline Scenario</string>
     <string name="text_use_condition">Use Condition</string>
