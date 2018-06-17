@@ -26,6 +26,7 @@ import java.util.List;
 
 import ryey.easer.R;
 import ryey.easer.core.EHService;
+import ryey.easer.core.data.ScriptStructure;
 import ryey.easer.core.data.storage.ScriptDataStorage;
 
 public class ScriptListFragment extends AbstractDataListFragment<ScriptDataStorage> {
@@ -44,7 +45,16 @@ public class ScriptListFragment extends AbstractDataListFragment<ScriptDataStora
         ScriptDataStorage dataStorage = ScriptDataStorage.getInstance(getContext());
         List<ListDataWrapper> dataWrapperList = new ArrayList<>();
         for (String name : dataStorage.list()) {
-            dataWrapperList.add(new ListDataWrapper(name));
+            ScriptStructure script = dataStorage.get(name);
+            if (script.isActive()) {
+                if (script.isValid()) {
+                    dataWrapperList.add(new ListDataWrapper(name));
+                } else {
+                    dataWrapperList.add(new ListDataWrapper(name, R.color.colorText_invalid));
+                }
+            } else {
+                dataWrapperList.add(new ListDataWrapper(name, R.color.colorText_scriptInactive));
+            }
         }
         return dataWrapperList;
     }

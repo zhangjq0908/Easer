@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ryey.easer.R;
+import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.plugins.PluginRegistry;
 
@@ -49,7 +50,12 @@ public class ProfileListFragment extends AbstractDataListFragment<ProfileDataSto
         ProfileDataStorage dataStorage = ProfileDataStorage.getInstance(getContext());
         List<ListDataWrapper> dataWrapperList = new ArrayList<>();
         for (String name : dataStorage.list()) {
-            dataWrapperList.add(new ListDataWrapper(name));
+            ProfileStructure profile = dataStorage.get(name);
+            if (profile.isValid()) {
+                dataWrapperList.add(new ListDataWrapper(name));
+            } else {
+                dataWrapperList.add(new ListDataWrapper(name, R.color.colorText_invalid));
+            }
         }
         return dataWrapperList;
     }

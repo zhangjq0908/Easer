@@ -31,6 +31,7 @@ import java.util.List;
 
 import ryey.easer.R;
 import ryey.easer.core.EHService;
+import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.storage.ConditionDataStorage;
 import ryey.easer.plugins.PluginRegistry;
 
@@ -50,7 +51,12 @@ public class ConditionListFragment extends AbstractDataListFragment<ConditionDat
         ConditionDataStorage dataStorage = ConditionDataStorage.getInstance(getContext());
         List<ListDataWrapper> dataWrapperList = new ArrayList<>();
         for (String name : dataStorage.list()) {
-            dataWrapperList.add(new ListDataWrapper(name));
+            ConditionStructure condition = dataStorage.get(name);
+            if (condition.isValid()) {
+                dataWrapperList.add(new ListDataWrapper(name));
+            } else {
+                dataWrapperList.add(new ListDataWrapper(name, R.color.colorText_invalid));
+            }
         }
         return dataWrapperList;
     }

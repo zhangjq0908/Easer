@@ -31,6 +31,7 @@ import java.util.List;
 
 import ryey.easer.R;
 import ryey.easer.core.EHService;
+import ryey.easer.core.data.ScenarioStructure;
 import ryey.easer.core.data.storage.ScenarioDataStorage;
 import ryey.easer.plugins.PluginRegistry;
 
@@ -50,7 +51,12 @@ public class ScenarioListFragment extends AbstractDataListFragment<ScenarioDataS
         ScenarioDataStorage dataStorage = ScenarioDataStorage.getInstance(getContext());
         List<ListDataWrapper> dataWrapperList = new ArrayList<>();
         for (String name : dataStorage.list()) {
-            dataWrapperList.add(new ListDataWrapper(name));
+            ScenarioStructure scenario = dataStorage.get(name);
+            if (scenario.isValid()) {
+                dataWrapperList.add(new ListDataWrapper(name));
+            } else {
+                dataWrapperList.add(new ListDataWrapper(name, R.color.colorText_invalid));
+            }
         }
         return dataWrapperList;
     }
