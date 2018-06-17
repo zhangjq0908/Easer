@@ -2,6 +2,30 @@ Currently, all data of Easer are stored as files. JSON is the current recommende
 
 This document describes the format of the file content, to use as a reference.
 
+## Version 10
+Rename *Scenario* to *Event*. The relevant item in *Script* is affected.
+
+### Script with pre-defined Event
+```JSON
+{
+	"name":NAME,
+	"version":VERSION OF DATA,
+	"active":true or false,
+	"profile":PROFILE NAME,
+	"after":PARENT EVENT NAME,
+	"trigger":{
+		"type":"pre_defined",
+		"event":SCENARIO NAME
+	},
+	"reverse":true or false,
+	"repeatable":true or false,
+	"persistent":true or false
+}
+```
+
+## Version 9
+No format change. Ignored.
+
 ## Version 8
 Add *Condition* (as the complementary of *Event*). Before this version, the UI component and data directory named "event" has been renamed to "script", but the concept of *Event* doesn't change (see v0.5.8).
 

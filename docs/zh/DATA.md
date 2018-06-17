@@ -1,5 +1,30 @@
-目前，Easer的數據存儲爲文件形式。其中JSON爲目前主力，舊的XML格式已被移除。
+目前，Easer的數據存儲爲文件形式。其中JSON爲目前主力，舊的XML格式將在不遠的將來被移除。
 本文描述文件內容的格式，以便有需要者參考。
+
+## 版本10
+將Scenario改名爲Event。Script中相關條目受影響。
+
+### 使用預定義事件的Script
+```
+#JSON
+{
+	"name":名稱,
+	"version":數據版本,
+	"active":true or false,
+	"profile":行爲集名稱,
+	"after":父事件名稱,
+	"trigger":{
+		"type":"pre_defined",
+		"event":情境名稱
+	},
+	"reverse":true or false,
+	"repeatable":true or false,
+	"persistent":true or false
+}
+```
+
+## 版本9
+無格式變化，不列出。
 
 ## 版本8
 增加Condition（作爲對Event的補充）。該版本之前，數據存儲中的Event被重命名爲Script。

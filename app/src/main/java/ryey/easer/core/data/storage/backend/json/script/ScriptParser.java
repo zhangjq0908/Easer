@@ -89,9 +89,13 @@ class ScriptParser implements Parser<ScriptStructure> {
                     scriptStructure.setEventData(eventData);
                     break;
                 case C.TriggerType.T_PRE:
-                    String scenario_name = jsonObject_trigger.getString(C.SCENARIO);
-                    EventStructure scenario = EventDataStorage.getInstance(context).get(scenario_name);
-                    scriptStructure.setEvent(scenario);
+                    String event_name;
+                    if (version < C.VERSION_RENAME_SCENARIO_TO_EVENT)
+                        event_name = jsonObject_trigger.getString(C.SCENARIO);
+                    else
+                        event_name = jsonObject_trigger.getString(C.EVENT);
+                    EventStructure event = EventDataStorage.getInstance(context).get(event_name);
+                    scriptStructure.setEvent(event);
                     break;
                 case C.TriggerType.T_CONDITION:
                     String condition_name = jsonObject_trigger.getString(C.CONDITION);

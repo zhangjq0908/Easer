@@ -73,7 +73,7 @@ class ScriptSerializer implements Serializer<ScriptStructure> {
         else {
             JSONObject json_trigger = new JSONObject();
             json_trigger.put(C.TYPE, C.TriggerType.T_PRE);
-            json_trigger.put(C.SCENARIO, scenario.getName());
+            json_trigger.put(C.EVENT, scenario.getName());
             return json_trigger;
         }
     }
