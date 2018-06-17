@@ -27,12 +27,16 @@ import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.plugins.PluginRegistry;
+import ryey.easer.plugins.operation.state_control.StateControlOperationData;
+import ryey.easer.plugins.operation.state_control.StateControlOperationPlugin;
 
 public class ProfileListFragment extends AbstractDataListFragment<ProfileDataStorage> {
 
@@ -51,7 +55,17 @@ public class ProfileListFragment extends AbstractDataListFragment<ProfileDataSto
         List<ListDataWrapper> dataWrapperList = new ArrayList<>();
         for (String name : dataStorage.list()) {
             ProfileStructure profile = dataStorage.get(name);
-            if (profile.isValid()) {
+            boolean valid = profile.isValid();
+            if (valid) {
+                Collection<OperationData> stateControlOperationData = profile.get(new StateControlOperationPlugin().id());
+                if (stateControlOperationData.size() > 0) {
+                    for (OperationData operationData : stateControlOperationData) {
+                        if (!((StateControlOperationData) operationData).isValid(getContext()))
+                            valid = false;
+                    }
+                }
+            }
+            if (valid) {
                 dataWrapperList.add(new ListDataWrapper(name));
             } else {
                 dataWrapperList.add(new ListDataWrapper(name, R.color.colorText_invalid));

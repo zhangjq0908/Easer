@@ -19,6 +19,7 @@
 
 package ryey.easer.plugins.operation.state_control;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.support.annotation.NonNull;
 
@@ -29,6 +30,7 @@ import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.core.data.storage.ScriptDataStorage;
 
 public class StateControlOperationData implements OperationData {
     public static final String K_EVENTNAME = "event name";
@@ -37,6 +39,11 @@ public class StateControlOperationData implements OperationData {
 
     public final String scriptName;
     final boolean newStatus;
+
+    public StateControlOperationData(StateControlOperationData ref, String scriptName) {
+        this.scriptName = scriptName;
+        newStatus = ref.newStatus;
+    }
 
     StateControlOperationData(String scriptName, boolean newStatus) {
         this.scriptName = scriptName;
@@ -94,6 +101,16 @@ public class StateControlOperationData implements OperationData {
     @Override
     public boolean isValid() {
         if (Utils.isBlank(scriptName))
+            return false;
+        return true;
+    }
+
+    @SuppressWarnings("RedundantIfStatement")
+    public boolean isValid(Context context) {
+        if (!isValid())
+            return false;
+        ScriptDataStorage dataStorage = ScriptDataStorage.getInstance(context);
+        if (!dataStorage.list().contains(scriptName))
             return false;
         return true;
     }
