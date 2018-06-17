@@ -33,11 +33,11 @@ import ryey.easer.commons.C;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.core.data.ConditionStructure;
-import ryey.easer.core.data.ScenarioStructure;
+import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.ScriptStructure;
 import ryey.easer.core.data.storage.ConditionDataStorage;
 import ryey.easer.core.data.storage.ProfileDataStorage;
-import ryey.easer.core.data.storage.ScenarioDataStorage;
+import ryey.easer.core.data.storage.EventDataStorage;
 import ryey.easer.core.data.storage.ScriptDataStorage;
 
 /*
@@ -128,7 +128,7 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         sw_scenario
                 .beginInit()
                 .setAllowEmpty(false)
-                .fillData(ScenarioDataStorage.getInstance(this).list())
+                .fillData(EventDataStorage.getInstance(this).list())
                 .finalizeInit();
         mSwitch_repeatable = findViewById(R.id.switch_repeatable);
         mSwitch_persistent = findViewById(R.id.switch_persistent);
@@ -176,8 +176,8 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         mSwitch_reverse.setChecked(script.isReverse());
 
         if (script.isEvent()) {
-            ScenarioStructure scenario = script.getScenario();
-            if (scenario.isTmpScenario()) {
+            EventStructure scenario = script.getEvent();
+            if (scenario.isTmpEvent()) {
                 rg_mode.check(R.id.radioButton_inline_scenario);
                 EventData eventData = scenario.getEventData();
                 mViewPager_edit_event.setEventData(eventData);
@@ -208,12 +208,12 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         script.setReverse(mSwitch_reverse.isChecked());
 
         if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_inline_scenario) {
-            ScenarioDataStorage scenarioDataStorage = ScenarioDataStorage.getInstance(this);
+            EventDataStorage eventDataStorage = EventDataStorage.getInstance(this);
             script.setEventData(mViewPager_edit_event.getEventData());
         } else if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_scenario) {
-            ScenarioDataStorage scenarioDataStorage = ScenarioDataStorage.getInstance(this);
+            EventDataStorage eventDataStorage = EventDataStorage.getInstance(this);
             String scenario_name = sw_scenario.getSelection();
-            script.setScenario(scenarioDataStorage.get(scenario_name));
+            script.setEvent(eventDataStorage.get(scenario_name));
             script.setRepeatable(mSwitch_repeatable.isChecked());
             script.setPersistent(mSwitch_persistent.isChecked());
         } else if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_condition) {

@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.data.storage.backend.json.scenario;
+package ryey.easer.core.data.storage.backend.json.event;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,16 +27,16 @@ import java.io.InputStream;
 
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.core.data.ScenarioStructure;
+import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.storage.C;
 import ryey.easer.core.data.storage.backend.IOUtils;
 import ryey.easer.core.data.storage.backend.Parser;
 import ryey.easer.plugins.PluginRegistry;
 
-public class ScenarioParser implements Parser<ScenarioStructure> {
+public class EventParser implements Parser<EventStructure> {
 
     @Override
-    public ScenarioStructure parse(InputStream in) throws IOException, IllegalStorageDataException {
+    public EventStructure parse(InputStream in) throws IOException, IllegalStorageDataException {
         try {
             JSONObject jsonObject = new JSONObject(IOUtils.inputStreamToString(in));
             int version = jsonObject.optInt(C.VERSION, C.VERSION_USE_SCENARIO);
@@ -46,7 +46,7 @@ public class ScenarioParser implements Parser<ScenarioStructure> {
             EventData eventData = PluginRegistry.getInstance().event().findPlugin(spec)
                     .dataFactory()
                     .parse(jsonObject_situation.getString(C.DATA), C.Format.JSON, version);
-            return new ScenarioStructure(version, name, eventData);
+            return new EventStructure(version, name, eventData);
         } catch (JSONException e) {
             throw new IllegalStorageDataException(e);
         }

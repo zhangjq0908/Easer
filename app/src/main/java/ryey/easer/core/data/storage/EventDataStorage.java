@@ -23,23 +23,23 @@ import android.content.Context;
 
 import java.io.IOException;
 
-import ryey.easer.core.data.ScenarioStructure;
+import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.ScriptStructure;
-import ryey.easer.core.data.storage.backend.ScenarioDataStorageBackendInterface;
-import ryey.easer.core.data.storage.backend.json.scenario.JsonScenarioDataStorageBackend;
+import ryey.easer.core.data.storage.backend.EventDataStorageBackendInterface;
+import ryey.easer.core.data.storage.backend.json.event.JsonEventDataStorageBackend;
 
-public class ScenarioDataStorage extends AbstractDataStorage<ScenarioStructure, ScenarioDataStorageBackendInterface> {
+public class EventDataStorage extends AbstractDataStorage<EventStructure, EventDataStorageBackendInterface> {
 
 
-    private static ScenarioDataStorage instance = null;
+    private static EventDataStorage instance = null;
 
     Context context;
 
-    public static ScenarioDataStorage getInstance(Context context) {
+    public static EventDataStorage getInstance(Context context) {
         if (instance == null) {
-            instance = new ScenarioDataStorage();
-            instance.storage_backend_list = new ScenarioDataStorageBackendInterface[] {
-                    JsonScenarioDataStorageBackend.getInstance(context),
+            instance = new EventDataStorage();
+            instance.storage_backend_list = new EventDataStorageBackendInterface[] {
+                    JsonEventDataStorageBackend.getInstance(context),
             };
             instance.context = context;
         }
@@ -50,17 +50,17 @@ public class ScenarioDataStorage extends AbstractDataStorage<ScenarioStructure, 
     boolean isSafeToDelete(String name) {
         ScriptDataStorage scriptDataStorage = ScriptDataStorage.getInstance(context);
         for (ScriptStructure scriptStructure : scriptDataStorage.allScripts()) {
-            if (scriptStructure.isEvent() && name.equals(scriptStructure.getScenario().getName()))
+            if (scriptStructure.isEvent() && name.equals(scriptStructure.getEvent().getName()))
                 return false;
         }
         return true;
     }
 
-    protected void handleRename(String oldName, ScenarioStructure newScenario) throws IOException {
+    protected void handleRename(String oldName, EventStructure newScenario) throws IOException {
         ScriptDataStorage scriptDataStorage = ScriptDataStorage.getInstance(context);
         for (ScriptStructure scriptStructure : scriptDataStorage.allScripts()) {
-            if (scriptStructure.isEvent() && oldName.equals(scriptStructure.getScenario().getName())) {
-                scriptStructure.setScenario(newScenario);
+            if (scriptStructure.isEvent() && oldName.equals(scriptStructure.getEvent().getName())) {
+                scriptStructure.setEvent(newScenario);
                 scriptDataStorage.update(scriptStructure);
             }
         }

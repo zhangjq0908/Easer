@@ -31,11 +31,11 @@ import ryey.easer.BuildConfig;
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.core.data.ConditionStructure;
-import ryey.easer.core.data.ScenarioStructure;
+import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.ScriptStructure;
 import ryey.easer.core.data.storage.C;
 import ryey.easer.core.data.storage.ConditionDataStorage;
-import ryey.easer.core.data.storage.ScenarioDataStorage;
+import ryey.easer.core.data.storage.EventDataStorage;
 import ryey.easer.core.data.storage.backend.IOUtils;
 import ryey.easer.core.data.storage.backend.Parser;
 import ryey.easer.plugins.PluginRegistry;
@@ -65,7 +65,7 @@ class ScriptParser implements Parser<ScriptStructure> {
             } else {
                 parseAndSet_trigger(jsonObject.getJSONObject(C.TRIG), version);
                 if (scriptStructure.isEvent()) {
-                    if (!scriptStructure.getScenario().isTmpScenario()) {
+                    if (!scriptStructure.getEvent().isTmpEvent()) {
                         scriptStructure.setReverse(jsonObject.getBoolean(C.REVERSE));
                         scriptStructure.setRepeatable(jsonObject.getBoolean(C.REPEATABLE));
                         scriptStructure.setPersistent(jsonObject.getBoolean(C.PERSISTENT));
@@ -90,8 +90,8 @@ class ScriptParser implements Parser<ScriptStructure> {
                     break;
                 case C.TriggerType.T_PRE:
                     String scenario_name = jsonObject_trigger.getString(C.SCENARIO);
-                    ScenarioStructure scenario = ScenarioDataStorage.getInstance(context).get(scenario_name);
-                    scriptStructure.setScenario(scenario);
+                    EventStructure scenario = EventDataStorage.getInstance(context).get(scenario_name);
+                    scriptStructure.setEvent(scenario);
                     break;
                 case C.TriggerType.T_CONDITION:
                     String condition_name = jsonObject_trigger.getString(C.CONDITION);

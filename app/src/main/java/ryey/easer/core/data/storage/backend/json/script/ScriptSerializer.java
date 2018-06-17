@@ -24,7 +24,7 @@ import org.json.JSONObject;
 
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.core.data.ConditionStructure;
-import ryey.easer.core.data.ScenarioStructure;
+import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.ScriptStructure;
 import ryey.easer.core.data.storage.C;
 import ryey.easer.core.data.storage.backend.Serializer;
@@ -46,11 +46,11 @@ class ScriptSerializer implements Serializer<ScriptStructure> {
             jsonObject.put(C.PROFILE, script.getProfileName());
             jsonObject.put(C.AFTER, script.getParentName());
 
-            if (script.getScenario() != null) {
-                JSONObject trigger = serialize_scenario_trigger(script.getScenario());
+            if (script.getEvent() != null) {
+                JSONObject trigger = serialize_scenario_trigger(script.getEvent());
                 jsonObject.put(C.TRIG, trigger);
 
-                if (!script.getScenario().isTmpScenario()) {
+                if (!script.getEvent().isTmpEvent()) {
                     jsonObject.put(C.REVERSE, script.isReverse());
                     jsonObject.put(C.REPEATABLE, script.isRepeatable());
                     jsonObject.put(C.PERSISTENT, script.isPersistent());
@@ -67,8 +67,8 @@ class ScriptSerializer implements Serializer<ScriptStructure> {
         }
     }
 
-    JSONObject serialize_scenario_trigger(ScenarioStructure scenario) throws JSONException {
-        if (scenario.isTmpScenario())
+    JSONObject serialize_scenario_trigger(EventStructure scenario) throws JSONException {
+        if (scenario.isTmpEvent())
             return serialize_event(scenario.getEventData());
         else {
             JSONObject json_trigger = new JSONObject();

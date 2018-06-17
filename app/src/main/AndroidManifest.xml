@@ -114,7 +114,7 @@
             android:enabled="true"
             android:exported="false" />
 
-        <activity android:name=".core.ui.data.EditScenarioActivity" />
+        <activity android:name=".core.ui.data.EditEventActivity" />
 
         <service
             android:name=".plugins.operation.media_control.MediaControlHelperNotificationListenerService"

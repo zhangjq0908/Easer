@@ -44,7 +44,7 @@ import ryey.easer.R;
 import ryey.easer.core.data.storage.StorageHelper;
 import ryey.easer.core.ui.data.ConditionListFragment;
 import ryey.easer.core.ui.data.ProfileListFragment;
-import ryey.easer.core.ui.data.ScenarioListFragment;
+import ryey.easer.core.ui.data.EventListFragment;
 import ryey.easer.core.ui.data.ScriptListFragment;
 import ryey.easer.core.ui.setting.SettingsActivity;
 
@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_scenario) {
             fragment = manager.findFragmentByTag(tag);
             if (fragment == null)
-                fragment = new ScenarioListFragment();
+                fragment = new EventListFragment();
             manager.beginTransaction()
                     .replace(R.id.content_main, fragment, tag)
                     .addToBackStack(bs_tag)

@@ -25,7 +25,7 @@ import java.io.IOException;
 
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.core.data.ConditionStructure;
-import ryey.easer.core.data.ScenarioStructure;
+import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.ScriptStructure;
 import ryey.easer.core.data.storage.backend.ConditionDataStorageBackendInterface;
 import ryey.easer.core.data.storage.backend.json.condition.JsonConditionDataStorageBackend;
@@ -59,9 +59,9 @@ public class ConditionDataStorage extends AbstractDataStorage<ConditionStructure
                 }
             }
         }
-        ScenarioDataStorage scenarioDataStorage = ScenarioDataStorage.getInstance(context);
-        for (String scenarioName : scenarioDataStorage.list()) {
-            ScenarioStructure scenario = scenarioDataStorage.get(scenarioName);
+        EventDataStorage eventDataStorage = EventDataStorage.getInstance(context);
+        for (String scenarioName : eventDataStorage.list()) {
+            EventStructure scenario = eventDataStorage.get(scenarioName);
             EventData eventData = scenario.getEventData();
             if (eventData instanceof ConditionEventEventData) {
                 if (name.equals(((ConditionEventEventData) eventData).conditionName)) {
@@ -76,8 +76,8 @@ public class ConditionDataStorage extends AbstractDataStorage<ConditionStructure
     protected void handleRename(String oldName, ConditionStructure condition) throws IOException {
         ScriptDataStorage scriptDataStorage = ScriptDataStorage.getInstance(context);
         updateScriptsForNewName(scriptDataStorage, oldName, condition);
-        ScenarioDataStorage scenarioDataStorage = ScenarioDataStorage.getInstance(context);
-        updateConditionEventForNewName(scenarioDataStorage, oldName, condition.getName());
+        EventDataStorage eventDataStorage = EventDataStorage.getInstance(context);
+        updateConditionEventForNewName(eventDataStorage, oldName, condition.getName());
     }
 
     private static void updateScriptsForNewName(ScriptDataStorage scriptDataStorage, String oldName, ConditionStructure condition) throws IOException {
@@ -92,16 +92,16 @@ public class ConditionDataStorage extends AbstractDataStorage<ConditionStructure
         }
     }
 
-    private static void updateConditionEventForNewName(ScenarioDataStorage scenarioDataStorage, String oldName, String newName) throws IOException {
-        for (String name : scenarioDataStorage.list()) {
-            ScenarioStructure scenario = scenarioDataStorage.get(name);
+    private static void updateConditionEventForNewName(EventDataStorage eventDataStorage, String oldName, String newName) throws IOException {
+        for (String name : eventDataStorage.list()) {
+            EventStructure scenario = eventDataStorage.get(name);
             EventData eventData = scenario.getEventData();
             if (eventData instanceof ConditionEventEventData) {
                 if (oldName.equals(((ConditionEventEventData) eventData).conditionName)) {
                     ConditionEventEventData newEventData =
                             new ConditionEventEventData((ConditionEventEventData) eventData, newName);
                     scenario.setEventData(newEventData);
-                    scenarioDataStorage.update(scenario);
+                    eventDataStorage.update(scenario);
                 }
             }
         }

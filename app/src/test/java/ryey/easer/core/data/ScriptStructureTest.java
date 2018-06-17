@@ -37,13 +37,13 @@ public class ScriptStructureTest {
     static final String name = "name to test";
     static final String parentName = "parent name";
     static final String profileName = "profile name";
-    static ScenarioStructure scenario;
+    static EventStructure scenario;
     static EventData eventData;
 
     @BeforeClass
     public static void setUpAll() {
         eventData = new WifiEventPlugin().dataFactory().dummyData();
-        scenario = new ScenarioStructure(C.VERSION_CREATED_IN_RUNTIME, "myScenario", eventData);
+        scenario = new EventStructure(C.VERSION_CREATED_IN_RUNTIME, "myScenario", eventData);
     }
 
     @Before
@@ -76,9 +76,9 @@ public class ScriptStructureTest {
 
     @Test
     public void getAndSetScenario() throws Exception {
-        assertEquals(scriptStructure.getScenario(), null);
-        scriptStructure.setScenario(scenario);
-        assertEquals(scriptStructure.getScenario(), scenario);
+        assertEquals(scriptStructure.getEvent(), null);
+        scriptStructure.setEvent(scenario);
+        assertEquals(scriptStructure.getEvent(), scenario);
     }
 
     @Test
@@ -96,11 +96,11 @@ public class ScriptStructureTest {
         assertFalse(scriptStructure.isValid());
         scriptStructure.setName(name);
         assertFalse(scriptStructure.isValid());
-        scriptStructure.setScenario(scenario);
+        scriptStructure.setEvent(scenario);
         assertTrue(scriptStructure.isActive());
 
         assertFalse(scriptStructure2.isValid());
-        scriptStructure2.setScenario(scenario);
+        scriptStructure2.setEvent(scenario);
         assertFalse(scriptStructure2.isValid());
         scriptStructure2.setName(name);
         assertTrue(scriptStructure2.isActive());

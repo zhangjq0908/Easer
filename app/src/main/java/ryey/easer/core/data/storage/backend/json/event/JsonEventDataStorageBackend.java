@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.data.storage.backend.json.scenario;
+package ryey.easer.core.data.storage.backend.json.event;
 
 import android.content.Context;
 
@@ -29,24 +29,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.core.data.ScenarioStructure;
+import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.storage.backend.FileDataStorageBackendHelper;
 import ryey.easer.core.data.storage.backend.IOUtils;
-import ryey.easer.core.data.storage.backend.ScenarioDataStorageBackendInterface;
+import ryey.easer.core.data.storage.backend.EventDataStorageBackendInterface;
 import ryey.easer.core.data.storage.backend.json.NC;
 
-public class JsonScenarioDataStorageBackend implements ScenarioDataStorageBackendInterface {
+public class JsonEventDataStorageBackend implements EventDataStorageBackendInterface {
 
-    private static JsonScenarioDataStorageBackend instance = null;
+    private static JsonEventDataStorageBackend instance = null;
     private static Context s_context = null;
     private static File dir;
 
-    public static JsonScenarioDataStorageBackend getInstance(Context context) {
+    public static JsonEventDataStorageBackend getInstance(Context context) {
         if (instance == null) {
             if (context != null)
                 s_context = context;
             dir = IOUtils.mustGetSubDir(s_context.getFilesDir(), "scenario");
-            instance = new JsonScenarioDataStorageBackend();
+            instance = new JsonEventDataStorageBackend();
         }
         return instance;
     }
@@ -59,27 +59,27 @@ public class JsonScenarioDataStorageBackend implements ScenarioDataStorageBacken
     @Override
     public List<String> list() {
         ArrayList<String> list = new ArrayList<>();
-        for (ScenarioStructure scenario : all()) {
+        for (EventStructure scenario : all()) {
             list.add(scenario.getName());
         }
         return list;
     }
 
     @Override
-    public ScenarioStructure get(String name) throws FileNotFoundException, IllegalStorageDataException {
+    public EventStructure get(String name) throws FileNotFoundException, IllegalStorageDataException {
         File file = new File(dir, name + NC.SUFFIX);
         return get(file);
     }
 
-    private ScenarioStructure get(File file) throws FileNotFoundException, IllegalStorageDataException {
-        ScenarioParser parser = new ScenarioParser();
+    private EventStructure get(File file) throws FileNotFoundException, IllegalStorageDataException {
+        EventParser parser = new EventParser();
         return FileDataStorageBackendHelper.get(parser, file);
     }
 
     @Override
-    public void write(ScenarioStructure profile) throws IOException {
+    public void write(EventStructure profile) throws IOException {
         File file = new File(dir, profile.getName() + NC.SUFFIX);
-        ScenarioSerializer serializer = new ScenarioSerializer();
+        EventSerializer serializer = new EventSerializer();
         FileDataStorageBackendHelper.write(serializer, file, profile);
     }
 
@@ -91,8 +91,8 @@ public class JsonScenarioDataStorageBackend implements ScenarioDataStorageBacken
     }
 
     @Override
-    public List<ScenarioStructure> all() {
-        List<ScenarioStructure> list = new ArrayList<>();
+    public List<EventStructure> all() {
+        List<EventStructure> list = new ArrayList<>();
         File[] files = dir.listFiles(new FileFilter() {
             @Override
             public boolean accept(File pathname) {

@@ -19,7 +19,7 @@
 
 package ryey.easer.core.data.storage.backend;
 
-import ryey.easer.core.data.ScenarioStructure;
+import ryey.easer.core.data.EventStructure;
 
-public interface ScenarioDataStorageBackendInterface extends DataStorageBackendCommonInterface<ScenarioStructure> {
+public interface EventDataStorageBackendInterface extends DataStorageBackendCommonInterface<EventStructure> {
 }

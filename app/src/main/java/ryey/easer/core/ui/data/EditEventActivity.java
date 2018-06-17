@@ -25,17 +25,17 @@ import ryey.easer.R;
 import ryey.easer.commons.C;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.core.data.ScenarioStructure;
-import ryey.easer.core.data.storage.ScenarioDataStorage;
+import ryey.easer.core.data.EventStructure;
+import ryey.easer.core.data.storage.EventDataStorage;
 
-public class EditScenarioActivity extends AbstractEditDataActivity<ScenarioStructure, ScenarioDataStorage> {
+public class EditEventActivity extends AbstractEditDataActivity<EventStructure, EventDataStorage> {
 
     EditText mEditText_name = null;
     EventPluginViewPager mViewPager;
 
     @Override
-    protected ScenarioDataStorage retDataStorage() {
-        return ScenarioDataStorage.getInstance(this);
+    protected EventDataStorage retDataStorage() {
+        return EventDataStorage.getInstance(this);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class EditScenarioActivity extends AbstractEditDataActivity<ScenarioStruc
 
     @Override
     protected int contentViewRes() {
-        return R.layout.activity_edit_scenario;
+        return R.layout.activity_edit_event;
     }
 
     @Override
@@ -56,15 +56,15 @@ public class EditScenarioActivity extends AbstractEditDataActivity<ScenarioStruc
     }
 
     @Override
-    protected void loadFromData(ScenarioStructure scenario) {
+    protected void loadFromData(EventStructure scenario) {
         oldName = scenario.getName();
         mEditText_name.setText(scenario.getName());
         mViewPager.setEventData(scenario.getEventData());
     }
 
     @Override
-    protected ScenarioStructure saveToData() throws InvalidDataInputException {
+    protected EventStructure saveToData() throws InvalidDataInputException {
         EventData eventData = mViewPager.getEventData();
-        return new ScenarioStructure(C.VERSION_CREATED_IN_RUNTIME, mEditText_name.getText().toString(), eventData);
+        return new EventStructure(C.VERSION_CREATED_IN_RUNTIME, mEditText_name.getText().toString(), eventData);
     }
 }

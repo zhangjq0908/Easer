@@ -26,23 +26,23 @@ import ryey.easer.commons.C;
 import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 
-public class ScenarioStructure implements Named, Verifiable, WithCreatedVersion {
+public class EventStructure implements Named, Verifiable, WithCreatedVersion {
     private final int createdVersion;
 
     private final String name;
     private EventData eventData;
 
-    public static ScenarioStructure createTmpScenario(@ValidData EventData eventData) {
-        return new ScenarioStructure(eventData);
+    public static EventStructure createTmpScenario(@ValidData EventData eventData) {
+        return new EventStructure(eventData);
     }
 
-    private ScenarioStructure(@ValidData EventData eventData) {
+    private EventStructure(@ValidData EventData eventData) {
         createdVersion = C.VERSION_CREATED_IN_RUNTIME;
         name = null;
         this.eventData = eventData;
     }
 
-    public ScenarioStructure(int createdVersion, @NonNull String name, @ValidData EventData eventData) {
+    public EventStructure(int createdVersion, @NonNull String name, @ValidData EventData eventData) {
         this.createdVersion = createdVersion;
         this.name = name;
         this.eventData = eventData;
@@ -61,7 +61,7 @@ public class ScenarioStructure implements Named, Verifiable, WithCreatedVersion 
         this.eventData = eventData;
     }
 
-    public boolean isTmpScenario() {
+    public boolean isTmpEvent() {
         return name == null;
     }
 
@@ -76,11 +76,11 @@ public class ScenarioStructure implements Named, Verifiable, WithCreatedVersion 
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof ScenarioStructure))
+        if (obj == null || !(obj instanceof EventStructure))
             return false;
-        if (!Utils.nullableEqual(name, ((ScenarioStructure) obj).name))
+        if (!Utils.nullableEqual(name, ((EventStructure) obj).name))
             return false;
-        if (!Utils.nullableEqual(eventData, ((ScenarioStructure) obj).eventData))
+        if (!Utils.nullableEqual(eventData, ((EventStructure) obj).eventData))
             return false;
         return true;
     }

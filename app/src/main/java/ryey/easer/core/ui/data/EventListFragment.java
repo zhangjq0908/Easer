@@ -31,14 +31,14 @@ import java.util.List;
 
 import ryey.easer.R;
 import ryey.easer.core.EHService;
-import ryey.easer.core.data.ScenarioStructure;
-import ryey.easer.core.data.storage.ScenarioDataStorage;
+import ryey.easer.core.data.EventStructure;
+import ryey.easer.core.data.storage.EventDataStorage;
 import ryey.easer.plugins.PluginRegistry;
 
-public class ScenarioListFragment extends AbstractDataListFragment<ScenarioDataStorage> {
+public class EventListFragment extends AbstractDataListFragment<EventDataStorage> {
 
     static {
-        TAG = "[ScenarioListFragment] ";
+        TAG = "[EventListFragment] ";
     }
 
     @Override
@@ -48,10 +48,10 @@ public class ScenarioListFragment extends AbstractDataListFragment<ScenarioDataS
 
     @Override
     protected List<ListDataWrapper> queryDataList() {
-        ScenarioDataStorage dataStorage = ScenarioDataStorage.getInstance(getContext());
+        EventDataStorage dataStorage = EventDataStorage.getInstance(getContext());
         List<ListDataWrapper> dataWrapperList = new ArrayList<>();
         for (String name : dataStorage.list()) {
-            ScenarioStructure scenario = dataStorage.get(name);
+            EventStructure scenario = dataStorage.get(name);
             if (scenario.isValid()) {
                 dataWrapperList.add(new ListDataWrapper(name));
             } else {
@@ -69,7 +69,7 @@ public class ScenarioListFragment extends AbstractDataListFragment<ScenarioDataS
 
     @Override
     protected Intent intentForEditDataActivity() {
-        return new Intent(getContext(), EditScenarioActivity.class);
+        return new Intent(getContext(), EditEventActivity.class);
     }
 
     @Override

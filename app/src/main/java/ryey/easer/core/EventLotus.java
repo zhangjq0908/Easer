@@ -31,7 +31,7 @@ import ryey.easer.SettingsHelper;
 import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
-import ryey.easer.core.data.ScenarioStructure;
+import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.ScriptTree;
 import ryey.easer.plugins.PluginRegistry;
 
@@ -70,13 +70,13 @@ class EventLotus extends Lotus {
     }
 
     private <T extends EventData> AbstractSlot<T> nodeToSlot(ScriptTree node) {
-        ScenarioStructure scenario = node.getScenario();
+        EventStructure scenario = node.getEvent();
         AbstractSlot<T> slot;
         //noinspection unchecked
         T data = (T) scenario.getEventData();
         //noinspection unchecked
         EventPlugin<T> plugin = PluginRegistry.getInstance().event().findPlugin(data);
-        if (scenario.isTmpScenario()) {
+        if (scenario.isTmpEvent()) {
             slot = plugin.slot(context, data);
         } else {
             slot = plugin.slot(context, data, repeatable, persistent);

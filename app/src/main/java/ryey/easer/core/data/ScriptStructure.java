@@ -37,7 +37,7 @@ import ryey.easer.commons.plugindef.eventplugin.EventData;
 final public class ScriptStructure implements Renameable, Verifiable, WithCreatedVersion {
     private final int createdVersion;
     protected String name;
-    private ScenarioStructure scenario;
+    private EventStructure event;
     private ConditionStructure condition;
     protected boolean active = true;
     private boolean reverse = false;
@@ -57,15 +57,15 @@ final public class ScriptStructure implements Renameable, Verifiable, WithCreate
     }
 
     public boolean isEvent() {
-        return scenario != null;
+        return event != null;
     }
 
-    public ScenarioStructure getScenario() {
-        return scenario;
+    public EventStructure getEvent() {
+        return event;
     }
 
-    public void setScenario(ScenarioStructure scenario) {
-        this.scenario = scenario;
+    public void setEvent(EventStructure event) {
+        this.event = event;
     }
 
     public boolean isCondition() {
@@ -82,12 +82,12 @@ final public class ScriptStructure implements Renameable, Verifiable, WithCreate
 
     @Deprecated
     public EventData getEventData() {
-        return scenario.getEventData();
+        return event.getEventData();
     }
 
     @Deprecated
     public void setEventData(EventData eventData) {
-        this.scenario = ScenarioStructure.createTmpScenario(eventData);
+        this.event = EventStructure.createTmpScenario(eventData);
     }
 
     public boolean isActive() {
@@ -117,9 +117,9 @@ final public class ScriptStructure implements Renameable, Verifiable, WithCreate
     public boolean isValid() {
         if ((name == null) || (name.isEmpty()))
             return false;
-        if ((scenario == null) == (condition == null))
+        if ((event == null) == (condition == null))
             return false;
-        if (scenario != null && !scenario.isValid())
+        if (event != null && !event.isValid())
             return false;
         if (condition != null && !condition.isValid())
             return false;

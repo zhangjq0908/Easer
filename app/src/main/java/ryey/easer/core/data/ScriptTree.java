@@ -44,19 +44,19 @@ final public class ScriptTree {
         return data.name;
     }
     public boolean isEvent() {
-        return data.getScenario() != null;
+        return data.getEvent() != null;
     }
     public boolean isCondition() {
         return data.getCondition() != null;
     }
-    public ScenarioStructure getScenario() {
-        return data.getScenario();
+    public EventStructure getEvent() {
+        return data.getEvent();
     }
     public ConditionStructure getCondition() {
         return data.getCondition();
     }
     public EventData getEventData() {
-        return data.getScenario().getEventData();
+        return data.getEvent().getEventData();
     }
     public boolean isReversed() {
         return data.isReverse();

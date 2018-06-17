@@ -45,7 +45,7 @@ public class StorageHelper {
         AbstractDataStorage<?, ?> []dataStorages = {
                 ProfileDataStorage.getInstance(context),
                 ScriptDataStorage.getInstance(context),
-                ScenarioDataStorage.getInstance(context),
+                EventDataStorage.getInstance(context),
                 ConditionDataStorage.getInstance(context),
         };
         for (AbstractDataStorage<?, ?> dataStorage : dataStorages) {
@@ -77,7 +77,7 @@ public class StorageHelper {
         AbstractDataStorage<?, ?> []dataStorages = {
                 ProfileDataStorage.getInstance(context),
                 ScriptDataStorage.getInstance(context),
-                ScenarioDataStorage.getInstance(context),
+                EventDataStorage.getInstance(context),
                 ConditionDataStorage.getInstance(context),
         };
         String []tags = {
