@@ -104,7 +104,22 @@ public class ConditionHolderService extends Service {
     public void onCreate() {
         super.onCreate();
         registerReceiver(mReceiver, filter);
+        setTrackers();
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(mReceiver);
+        cancelTrackers();
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return new CHBinder();
+    }
+
+    private void setTrackers() {
         ConditionDataStorage conditionDataStorage = ConditionDataStorage.getInstance(this);
         for (String name : conditionDataStorage.list()) {
             Intent intent = new Intent(ACTION_TRACKER_SATISFIED);
@@ -125,20 +140,12 @@ public class ConditionHolderService extends Service {
         }
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        unregisterReceiver(mReceiver);
+    private void cancelTrackers() {
         for (Tracker tracker : trackerMap.values()) {
             tracker.stop();
         }
         trackerMap.clear();
         associateMap.clear();
-    }
-
-    @Override
-    public IBinder onBind(Intent intent) {
-        return new CHBinder();
     }
 
     class CHBinder extends Binder {
@@ -156,6 +163,11 @@ public class ConditionHolderService extends Service {
         Boolean conditionState(String conditionName) {
             Tracker tracker = trackerMap.get(conditionName);
             return tracker.state();
+        }
+        void reload() {
+            //TODO: fine-grained cancel and reset
+            cancelTrackers();
+            setTrackers();
         }
     }
 }

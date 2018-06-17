@@ -204,6 +204,7 @@ public class EHService extends Service {
 
     private void reloadTriggers() {
         Logger.v(TAG + "reloadTriggers()");
+        conditionHolderBinder.reload();
         if (mLotusArray.size() > 0)
             mCancelTriggers();
         mSetTriggers();
