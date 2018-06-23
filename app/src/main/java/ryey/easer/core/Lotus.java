@@ -68,10 +68,9 @@ abstract class Lotus {
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equals(ACTION_SLOT_SATISFIED)) {
-                onSatisfied();
-            } else if (intent.getAction().equals(ACTION_SLOT_UNSATISFIED)) {
-                onUnsatisfied();
+            final String action = intent.getAction();
+            if (ACTION_SLOT_SATISFIED.equals(action) || ACTION_SLOT_UNSATISFIED.equals(action)) {
+                onStateSignal(ACTION_SLOT_SATISFIED.equals(action));
             }
         }
     };
@@ -131,6 +130,14 @@ abstract class Lotus {
      */
     synchronized void setStatus(boolean status) {
         if (status) {
+            onSatisfied();
+        } else {
+            onUnsatisfied();
+        }
+    }
+
+    protected void onStateSignal(boolean state) {
+        if (state != scriptTree.isReversed()) {
             onSatisfied();
         } else {
             onUnsatisfied();

@@ -29,26 +29,29 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.support.annotation.NonNull;
 
+import com.orhanobut.logger.Logger;
+
 import ryey.easer.plugins.condition.SkeletonTracker;
 
 public class WifiTracker extends SkeletonTracker<WifiConditionData> {
-
-    private int matched_networks = 0;
 
     private final BroadcastReceiver connReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if (action.equals(WifiManager.NETWORK_STATE_CHANGED_ACTION)) {
+            if (WifiManager.NETWORK_STATE_CHANGED_ACTION.equals(action)) {
                 NetworkInfo networkInfo = intent.getParcelableExtra(WifiManager.EXTRA_NETWORK_INFO);
                 if (networkInfo.getState() == NetworkInfo.State.CONNECTED) {
                     WifiInfo wifiInfo = intent.getParcelableExtra(WifiManager.EXTRA_WIFI_INFO);
-                    if (compare(wifiInfo))
-                        matched_networks++;
-                    determine_satisfied();
+                    compareAndSignal(wifiInfo);
                 } else if (networkInfo.getState() == NetworkInfo.State.DISCONNECTED) {
-                    matched_networks = 0;
-                    determine_satisfied();
+                    WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                    boolean wifiEnabled = wifiManager.isWifiEnabled();
+                    if (!wifiEnabled) {
+                        newSatisfiedState(null);
+                        return;
+                    }
+                    newSatisfiedState(false);
                 }
             }
         }
@@ -67,10 +70,14 @@ public class WifiTracker extends SkeletonTracker<WifiConditionData> {
         super(context, data, event_positive, event_negative);
 
         WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-        if (compare(wifiInfo))
-            matched_networks++;
-        determine_satisfied();
+        if (wifiManager == null) {
+            Logger.wtf("[WifiTracker] WifiManager is null");
+            return;
+        }
+        if (wifiManager.isWifiEnabled()) {
+            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+            compareAndSignal(wifiInfo);
+        }
     }
 
     @Override
@@ -83,7 +90,12 @@ public class WifiTracker extends SkeletonTracker<WifiConditionData> {
         context.unregisterReceiver(connReceiver);
     }
 
-    private boolean compare(WifiInfo wifiInfo) {
+    private void compareAndSignal(WifiInfo wifiInfo) {
+        boolean match = compare(data, wifiInfo);
+        newSatisfiedState(match);
+    }
+
+    private static boolean compare(WifiConditionData data, WifiInfo wifiInfo) {
         String ssid;
         if (data.mode_essid) {
             ssid = wifiInfo.getSSID();
@@ -94,9 +106,5 @@ public class WifiTracker extends SkeletonTracker<WifiConditionData> {
             ssid = wifiInfo.getBSSID();
         }
         return data.match(ssid);
-    }
-
-    private void determine_satisfied() {
-        newSatisfiedState(matched_networks > 0);
     }
 }
