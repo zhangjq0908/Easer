@@ -1,5 +1,12 @@
 CHANGELOG
 ======
+
+* v0.6.6.1: Bug fixes && Update Danish translation
+	* Fix crash when opening some existing Broadcast Operation (#129)
+	* Fix incorrect handle of "reversed" of Condition
+	* Fix WifiTracker's initial state (#128)
+	* Update Danish translation (#126)
+
 * v0.6.6: Rename "Scenario" to "Event" && Colorize lists && Various fixes
 	* Rename "Scenario" to "Event" in code & storage & UI
 	* Show different color in lists
