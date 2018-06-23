@@ -41,11 +41,7 @@ class ConditionLotus extends Lotus {
         Boolean state = chBinder.conditionState(conditionStructure.getName());
         if (state == null) {
         } else {
-            if (state != scriptTree.isReversed()) {
-                onSatisfied();
-            } else {
-                onUnsatisfied();
-            }
+            onStateSignal(state);
         }
     }
 

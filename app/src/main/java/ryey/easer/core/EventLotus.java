@@ -58,11 +58,7 @@ class EventLotus extends Lotus {
         super(context, scriptTree, executorService, chBinder);
 
         mSlot = nodeToSlot(scriptTree);
-        if (scriptTree.isReversed()) {
-            mSlot.register(notifyPendingIntents.negative, notifyPendingIntents.positive);
-        } else {
-            mSlot.register(notifyPendingIntents.positive, notifyPendingIntents.negative);
-        }
+        mSlot.register(notifyPendingIntents.positive, notifyPendingIntents.negative);
         repeatable = scriptTree.isRepeatable();
         persistent = scriptTree.isPersistent();
 

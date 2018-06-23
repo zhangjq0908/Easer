@@ -49,13 +49,15 @@ public abstract class SkeletonTracker<D extends ConditionData> implements Tracke
         this.event_negative = event_negative;
     }
 
-    protected final void newSatisfiedState(boolean newState) {
+    protected final void newSatisfiedState(Boolean newState) {
         lck_satisfied.lock();
         try {
-            if (satisfied != null && satisfied == newState) {
+            if (satisfied == newState) {
                 return;
             }
             satisfied = newState;
+            if (satisfied == null)
+                return;
             PendingIntent pendingIntent = satisfied ? event_positive : event_negative;
             try {
                 pendingIntent.send();
