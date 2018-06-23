@@ -91,7 +91,10 @@ public class Utils {
         return list;
     }
 
-    public static String StringCollectionToString(@NonNull Collection<String> collection, boolean trailing) {
+    @NonNull
+    public static String StringCollectionToString(@Nullable Collection<String> collection, boolean trailing) {
+        if (collection == null)
+            return "";
         StringBuilder text = new StringBuilder();
         boolean is_first = true;
         for (String line : collection) {
