@@ -19,7 +19,6 @@
 
 package ryey.easer.plugins.event.condition_event;
 
-import android.app.PendingIntent;
 import android.content.Context;
 
 import ryey.easer.core.EHService;
@@ -37,12 +36,12 @@ public class ConditionEventSlot extends SelfNotifiableSlot<ConditionEventEventDa
 
     @Override
     public void listen() {
-        EHService.registerConditionEventNotifier(context, eventData.conditionName, new PendingIntent[]{notifySelfIntent_positive, notifySelfIntent_negative});
+        EHService.registerConditionEventNotifier(context, eventData.conditionName, notifyLotusData);
     }
 
     @Override
     public void cancel() {
-        EHService.unregisterConditionEventNotifier(context, eventData.conditionName, new PendingIntent[]{notifySelfIntent_positive, notifySelfIntent_negative});
+        EHService.unregisterConditionEventNotifier(context, eventData.conditionName, notifyLotusData);
     }
 
     /**

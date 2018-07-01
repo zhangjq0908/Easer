@@ -19,7 +19,6 @@
 
 package ryey.easer.core;
 
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -27,17 +26,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.net.Uri;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.ConditionVariable;
 import android.os.IBinder;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -59,24 +57,24 @@ public class EHService extends Service {
     private static final String ACTION_UNREGISTER_CONDITION_EVENT = "ryey.easer.service.action.UNREGISTER_CONDITION_EVENT";
     private static final String ACTION_REGISTER_CONDITION_EVENT = "ryey.easer.service.action.REGISTER_CONDITION_EVENT";
     private static final String EXTRA_CONDITION_NAME = "ryey.easer.service.extra.CONDITION_NAME";
-    private static final String EXTRA_PENDING_INTENT = "ryey.easer.service.extra.PENDING_INTENT";
+    private static final String EXTRA_NOTIFY_DATA = "ryey.easer.service.extra.NOTIFY_DATA";
     private static final IntentFilter filter_conditionEvent;
     static {
         filter_conditionEvent = new IntentFilter();
         filter_conditionEvent.addAction(ACTION_REGISTER_CONDITION_EVENT);
         filter_conditionEvent.addAction(ACTION_UNREGISTER_CONDITION_EVENT);
     }
-    public static void registerConditionEventNotifier(@NonNull Context context, @NonNull String conditionName, @NonNull PendingIntent[] pendingIntents) {
+    public static void registerConditionEventNotifier(@NonNull Context context, @NonNull String conditionName, @NonNull Uri notifyData) {
         Intent intent = new Intent(ACTION_REGISTER_CONDITION_EVENT);
         intent.putExtra(EXTRA_CONDITION_NAME, conditionName);
-        intent.putExtra(EXTRA_PENDING_INTENT, pendingIntents);
+        intent.putExtra(EXTRA_NOTIFY_DATA, notifyData);
         context.sendBroadcast(intent);
         //TODO local broadcast
     }
-    public static void unregisterConditionEventNotifier(@NonNull Context context, @NonNull String conditionName, @NonNull PendingIntent[] pendingIntents) {
+    public static void unregisterConditionEventNotifier(@NonNull Context context, @NonNull String conditionName, @NonNull Uri notifyData) {
         Intent intent = new Intent(ACTION_UNREGISTER_CONDITION_EVENT);
         intent.putExtra(EXTRA_CONDITION_NAME, conditionName);
-        intent.putExtra(EXTRA_PENDING_INTENT, pendingIntents);
+        intent.putExtra(EXTRA_NOTIFY_DATA, notifyData);
         context.sendBroadcast(intent);
         //TODO local broadcast
     }
@@ -119,15 +117,12 @@ public class EHService extends Service {
                 sendBroadcast(intent1);
             } else if (ACTION_REGISTER_CONDITION_EVENT.equals(intent.getAction()) || ACTION_UNREGISTER_CONDITION_EVENT.equals(intent.getAction())) {
                 String conditionName = intent.getStringExtra(EXTRA_CONDITION_NAME);
-                Parcelable[] parcelables = intent.getParcelableArrayExtra(EXTRA_PENDING_INTENT);
-                PendingIntent []pendingIntents= Arrays.copyOf(parcelables, parcelables.length, PendingIntent[].class);
-                //TODO: maybe pass Lotus.NotifyPendingIntents around, instead of PendingIntent[]
-                Lotus.NotifyPendingIntents notifyPendingIntents = new Lotus.NotifyPendingIntents(pendingIntents[0], pendingIntents[1]);
+                Uri notifyData = intent.getParcelableExtra(EXTRA_NOTIFY_DATA);
                 requireCHService(TAG);
                 if (ACTION_REGISTER_CONDITION_EVENT.equals(intent.getAction()))
-                    conditionHolderBinder.registerAssociation(conditionName, notifyPendingIntents);
+                    conditionHolderBinder.registerAssociation(conditionName, notifyData);
                 else
-                    conditionHolderBinder.unregisterAssociation(conditionName, notifyPendingIntents);
+                    conditionHolderBinder.unregisterAssociation(conditionName, notifyData);
             }
         }
     };

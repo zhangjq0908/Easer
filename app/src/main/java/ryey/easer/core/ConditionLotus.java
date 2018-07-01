@@ -37,7 +37,7 @@ class ConditionLotus extends Lotus {
 
     @Override
     protected void onListen() {
-        chBinder.registerAssociation(conditionStructure.getName(), notifyPendingIntents);
+        chBinder.registerAssociation(conditionStructure.getName(), uri);
         Boolean state = chBinder.conditionState(conditionStructure.getName());
         if (state == null) {
         } else {
@@ -47,6 +47,6 @@ class ConditionLotus extends Lotus {
 
     @Override
     protected void onCancel() {
-        chBinder.unregisterAssociation(conditionStructure.getName(), notifyPendingIntents);
+        chBinder.unregisterAssociation(conditionStructure.getName(), uri);
     }
 }

@@ -19,7 +19,6 @@
 
 package ryey.easer.core;
 
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -40,7 +39,7 @@ import ryey.easer.core.data.ScriptTree;
 /**
  * Each Lotus holds one ScriptTree.
  */
-abstract class Lotus {
+public abstract class Lotus {
     private static final String ACTION_SLOT_SATISFIED = "ryey.easer.triggerlotus.action.SLOT_SATISFIED";
     private static final String ACTION_SLOT_UNSATISFIED = "ryey.easer.triggerlotus.action.SLOT_UNSATISFIED";
     private static final String CATEGORY_NOTIFY_LOTUS = "ryey.easer.triggerlotus.category.NOTIFY_LOTUS";
@@ -62,8 +61,7 @@ abstract class Lotus {
 
     protected boolean satisfied = false;
 
-    private final Uri uri = Uri.parse(String.format(Locale.US, "lotus://%d", hashCode()));
-    protected final NotifyPendingIntents notifyPendingIntents;
+    protected final Uri uri = Uri.parse(String.format(Locale.US, "lotus://%d", hashCode()));
 
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
@@ -91,14 +89,6 @@ abstract class Lotus {
         this.scriptTree = scriptTree;
         this.executorService = executorService;
         this.chBinder = chBinder;
-
-        Intent intent = new Intent(ACTION_SLOT_SATISFIED);
-        intent.addCategory(CATEGORY_NOTIFY_LOTUS);
-        intent.setData(uri);
-        PendingIntent notifyLotusIntent_positive = PendingIntent.getBroadcast(context, 0, intent, 0);
-        intent.setAction(ACTION_SLOT_UNSATISFIED);
-        PendingIntent notifyLotusIntent_negative = PendingIntent.getBroadcast(context, 0, intent, 0);
-        notifyPendingIntents = new NotifyPendingIntents(notifyLotusIntent_positive, notifyLotusIntent_negative);
     }
 
     final @NonNull String scriptName() {
@@ -178,12 +168,22 @@ abstract class Lotus {
         }
     }
 
-    static class NotifyPendingIntents {
-        final PendingIntent positive, negative;
+    public static class NotifyIntentPrototype {
+        //TODO: Extract interface to ryey.easer.commons
 
-        public NotifyPendingIntents(PendingIntent positive, PendingIntent negative) {
-            this.positive = positive;
-            this.negative = negative;
+        public static Intent obtainPositiveIntent(Uri data) {
+            Intent intent = new Intent(ACTION_SLOT_SATISFIED);
+            intent.addCategory(CATEGORY_NOTIFY_LOTUS);
+            intent.setData(data);
+            return intent;
+        }
+
+        public static Intent obtainNegativeIntent(Uri data) {
+            Intent intent = new Intent(ACTION_SLOT_UNSATISFIED);
+            intent.addCategory(CATEGORY_NOTIFY_LOTUS);
+            intent.setData(data);
+            return intent;
         }
     }
+
 }

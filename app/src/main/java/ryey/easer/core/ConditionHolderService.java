@@ -52,7 +52,7 @@ public class ConditionHolderService extends Service {
 
     //FIXME concurrent
     private Map<String, Tracker> trackerMap = new HashMap<>();
-    private Map<String, Set<Lotus.NotifyPendingIntents>> associateMap = new HashMap<>();
+    private Map<String, Set<Uri>> associateMap = new HashMap<>();
 
     private final Uri uri = Uri.parse(String.format(Locale.US, "conditionholder://%d/", hashCode()));
 
@@ -63,20 +63,14 @@ public class ConditionHolderService extends Service {
                 if (ACTION_TRACKER_SATISFIED.equals(intent.getAction()) || ACTION_TRACKER_UNSATISFIED.equals(intent.getAction())) {
                     String name = intent.getData().getLastPathSegment();
                     if (intent.getAction().equals(ACTION_TRACKER_SATISFIED)) {
-                        for (Lotus.NotifyPendingIntents pendingIntents : associateMap.get(name)) {
-                            try {
-                                pendingIntents.positive.send();
-                            } catch (PendingIntent.CanceledException e) {
-                                e.printStackTrace();
-                            }
+                        for (Uri data : associateMap.get(name)) {
+                            Intent notifyIntent =  Lotus.NotifyIntentPrototype.obtainPositiveIntent(data);
+                            context.sendBroadcast(notifyIntent);
                         }
                     } else if (intent.getAction().equals(ACTION_TRACKER_UNSATISFIED)) {
-                        for (Lotus.NotifyPendingIntents pendingIntents : associateMap.get(name)) {
-                            try {
-                                pendingIntents.negative.send();
-                            } catch (PendingIntent.CanceledException e) {
-                                e.printStackTrace();
-                            }
+                        for (Uri data : associateMap.get(name)) {
+                            Intent notifyIntent =  Lotus.NotifyIntentPrototype.obtainNegativeIntent(data);
+                            context.sendBroadcast(notifyIntent);
                         }
                     }
                 }
@@ -136,7 +130,7 @@ public class ConditionHolderService extends Service {
                     .tracker(this, conditionData, positive, negative);
             tracker.start();
             trackerMap.put(name, tracker);
-            associateMap.put(name, new ArraySet<Lotus.NotifyPendingIntents>());
+            associateMap.put(name, new ArraySet<Uri>());
         }
     }
 
@@ -149,11 +143,11 @@ public class ConditionHolderService extends Service {
     }
 
     class CHBinder extends Binder {
-        void registerAssociation(String conditionName, Lotus.NotifyPendingIntents pendingIntents) {
-            associateMap.get(conditionName).add(pendingIntents);
+        void registerAssociation(String conditionName, Uri data) {
+            associateMap.get(conditionName).add(data);
         }
-        void unregisterAssociation(String conditionName, Lotus.NotifyPendingIntents pendingIntents) {
-            associateMap.get(conditionName).remove(pendingIntents);
+        void unregisterAssociation(String conditionName, Uri data) {
+            associateMap.get(conditionName).remove(data);
         }
         void clearAssociation() {
             for (String name :associateMap.keySet()) {

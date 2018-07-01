@@ -19,13 +19,15 @@
 
 package ryey.easer.commons.plugindef.eventplugin;
 
-import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 
 import ryey.easer.commons.plugindef.ValidData;
+import ryey.easer.core.Lotus;
 import ryey.easer.core.data.ScriptTree;
 
 /**
@@ -64,7 +66,7 @@ public abstract class AbstractSlot<T extends EventData> {
      * Used to tell the holder Lotus that this Slot is satisfied.
      * Only the to-level (in the {@link ScriptTree}) slot will need this (to tell the {@link ryey.easer.core.Lotus} to check the whole tree).
      */
-    protected PendingIntent notifyLotusIntent = null, notifyLotusUnsatisfiedIntent = null;
+    protected Uri notifyLotusData;
 
     public AbstractSlot(@NonNull Context context, @ValidData @NonNull T data, boolean retriggerable, boolean persistent) {
         this.context = context;
@@ -100,14 +102,13 @@ public abstract class AbstractSlot<T extends EventData> {
     /**
      * Set where to notify (the holder {@link ryey.easer.core.Lotus}).
      */
-    public void register(@NonNull PendingIntent notifyLotusIntent, @NonNull PendingIntent notifyLotusUnsatisfiedIntent) {
-        this.notifyLotusIntent = notifyLotusIntent;
-        this.notifyLotusUnsatisfiedIntent = notifyLotusUnsatisfiedIntent;
+    public void register(Uri data) {
+        this.notifyLotusData = data;
     }
 
     /**
      * Change the satisfaction state of the current slot.
-     * It will emit {@link #notifyLotusIntent} or {@link #notifyLotusUnsatisfiedIntent} iif the satisfaction state is changed.
+     * It will notify the corresponding {@link ryey.easer.core.Lotus} (by emitting {@link android.content.Intent} with {@link #notifyLotusData} as data) iif the satisfaction state is changed.
      *
      * This method sets the {@link #satisfied} variable.
      */
@@ -123,23 +124,11 @@ public abstract class AbstractSlot<T extends EventData> {
             }
         }
         satisfied = newSatisfiedState;
-        PendingIntent pendingIntent;
-        if (satisfied) {
-            pendingIntent = notifyLotusIntent;
-        } else {
-            pendingIntent = notifyLotusUnsatisfiedIntent;
-        }
-        if (pendingIntent == null) {
-            Logger.w("slot not properly registered");
-//            throw new RuntimeException("slot never registered");
-        } else {
-            try {
-                pendingIntent.send();
-            } catch (PendingIntent.CanceledException e) {
-                Logger.wtf("PendingIntent shouldn't be cancelled");
-                e.printStackTrace();
-            }
-        }
+        //FIXME: remove the explicit use of core package (Lotus)
+        Intent notifyLotusIntent = satisfied
+                ? Lotus.NotifyIntentPrototype.obtainPositiveIntent(notifyLotusData)
+                : Lotus.NotifyIntentPrototype.obtainNegativeIntent(notifyLotusData);
+        context.sendBroadcast(notifyLotusIntent);
         Logger.d("finished changeSatisfiedState to %s", newSatisfiedState);
     }
 }

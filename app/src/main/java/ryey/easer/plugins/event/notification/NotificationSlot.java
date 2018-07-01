@@ -23,9 +23,9 @@ import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
-import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
+import ryey.easer.plugins.event.SelfNotifiableSlot;
 
-public class NotificationSlot extends AbstractSlot<NotificationEventData> {
+public class NotificationSlot extends SelfNotifiableSlot<NotificationEventData> {
 
     public NotificationSlot(Context context, NotificationEventData data) {
         this(context, data, true, PERSISTENT_DEFAULT);
@@ -38,13 +38,13 @@ public class NotificationSlot extends AbstractSlot<NotificationEventData> {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void listen() {
-        NotificationEventListenerService.listen(context, eventData, notifyLotusIntent, notifyLotusUnsatisfiedIntent);
+        NotificationEventListenerService.listen(context, eventData, notifySelfIntent_positive, notifySelfIntent_negative);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void cancel() {
-        NotificationEventListenerService.cancel(context, eventData, notifyLotusIntent, notifyLotusUnsatisfiedIntent);
+        NotificationEventListenerService.cancel(context, eventData, notifySelfIntent_positive, notifySelfIntent_negative);
     }
 
     @Override
