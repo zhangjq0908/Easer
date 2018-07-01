@@ -23,16 +23,19 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
 public class BroadcastOperationData implements OperationData {
@@ -190,5 +193,17 @@ public class BroadcastOperationData implements OperationData {
 
     private BroadcastOperationData(Parcel in) {
         data = in.readParcelable(IntentData.class.getClassLoader());
+    }
+
+    @Nullable
+    @Override
+    public Set<String> placeholders() {
+        return null;
+    }
+
+    @NonNull
+    @Override
+    public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
+        return null;
     }
 }

@@ -24,10 +24,14 @@ import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
+import java.util.Set;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
 public class RingerModeOperationData implements OperationData {
@@ -121,5 +125,17 @@ public class RingerModeOperationData implements OperationData {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeSerializable(ringerMode);
+    }
+
+    @Nullable
+    @Override
+    public Set<String> placeholders() {
+        return null;
+    }
+
+    @NonNull
+    @Override
+    public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
+        return null;
     }
 }

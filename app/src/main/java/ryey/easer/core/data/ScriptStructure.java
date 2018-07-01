@@ -21,6 +21,7 @@ package ryey.easer.core.data;
 
 import android.support.annotation.Nullable;
 
+import ryey.easer.commons.dynamics.DynamicsLink;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 
 /*
@@ -43,6 +44,7 @@ final public class ScriptStructure implements Renameable, Verifiable, WithCreate
     private boolean reverse = false;
     private boolean repeatable = true;
     private boolean persistent = false;
+    private DynamicsLink dynamicsLink = new DynamicsLink();
     @Nullable protected String profileName;
     @Nullable protected String parentName;
 
@@ -153,5 +155,13 @@ final public class ScriptStructure implements Renameable, Verifiable, WithCreate
     @Override
     public int createdVersion() {
         return createdVersion;
+    }
+
+    public void setDynamicsLink(DynamicsLink dynamicsLink) {
+        this.dynamicsLink = dynamicsLink;
+    }
+
+    public DynamicsLink getDynamicsLink() {
+        return dynamicsLink;
     }
 }

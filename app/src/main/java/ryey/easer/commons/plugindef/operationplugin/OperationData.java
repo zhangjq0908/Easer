@@ -19,7 +19,18 @@
 
 package ryey.easer.commons.plugindef.operationplugin;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
+import java.util.Set;
+
+import ryey.easer.commons.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.plugindef.StorageData;
 
 public interface OperationData extends StorageData {
+    @Nullable
+    Set<String> placeholders();
+
+    @NonNull
+    OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment);
 }

@@ -17,20 +17,21 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.commons.plugindef.eventplugin;
+package ryey.easer.commons.dynamics;
 
-import android.support.annotation.Nullable;
+import java.util.HashMap;
 
-import java.util.Set;
+public class SolidDynamicsAssignment {
 
-import ryey.easer.commons.dynamics.Property;
-import ryey.easer.commons.plugindef.StorageData;
+    private HashMap<String, String> assignments;
 
-public interface EventData extends StorageData {
+    SolidDynamicsAssignment(HashMap<String, String> assignments) {
+        this.assignments = assignments;
+    }
 
-    @Nullable
-    Set<Property> properties();
-
-    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
-    boolean equals(Object obj);
+    public String getAssignment(String placeholder) {
+        if (assignments.containsKey(placeholder))
+            return assignments.get(placeholder);
+        return placeholder;
+    }
 }

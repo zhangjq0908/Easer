@@ -21,14 +21,17 @@ package ryey.easer.plugins.event.nfc_tag;
 
 import android.os.Parcel;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.util.Set;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.dynamics.Property;
 import ryey.easer.plugins.event.AbstractEventData;
 
 
@@ -79,6 +82,12 @@ public class NfcTagEventData extends AbstractEventData {
         if (id == null)
             return false;
         return true;
+    }
+
+    @Nullable
+    @Override
+    public Set<Property> properties() {
+        return null;
     }
 
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})

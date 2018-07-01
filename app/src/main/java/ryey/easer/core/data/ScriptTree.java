@@ -79,4 +79,8 @@ final public class ScriptTree {
     public boolean isActive() {
         return data.isActive();
     }
+
+    public ScriptStructure getData() {
+        return data;
+    }
 }

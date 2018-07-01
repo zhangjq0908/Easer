@@ -21,13 +21,17 @@ package ryey.easer.plugins.operation.send_notification;
 
 import android.os.Parcel;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Set;
+
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
 public class SendNotificationOperationData implements OperationData {
@@ -132,4 +136,15 @@ public class SendNotificationOperationData implements OperationData {
         content = in.readString();
     }
 
+    @Nullable
+    @Override
+    public Set<String> placeholders() {
+        return null;
+    }
+
+    @NonNull
+    @Override
+    public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
+        return null;
+    }
 }

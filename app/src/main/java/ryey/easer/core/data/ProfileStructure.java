@@ -19,10 +19,14 @@
 
 package ryey.easer.core.data;
 
+import android.support.annotation.Nullable;
+import android.support.v4.util.ArraySet;
+
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.Multimap;
 
 import java.util.Collection;
+import java.util.Set;
 
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
@@ -57,6 +61,17 @@ final public class ProfileStructure implements Named, Verifiable, WithCreatedVer
     }
     public void set(String key, Collection<OperationData> dataCollection) {
         data.replaceValues(key, dataCollection);
+    }
+
+    @Nullable
+    public Set<String> placeholders() {
+        Set<String> placeholders = new ArraySet<>();
+        for (String key : data.keys()) {
+            for (OperationData operationData : data.get(key)) {
+                placeholders.addAll(operationData.placeholders());
+            }
+        }
+        return placeholders;
     }
 
     @Override

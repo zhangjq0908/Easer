@@ -22,16 +22,19 @@ package ryey.easer.plugins.event.bluetooth_device;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.dynamics.Property;
 import ryey.easer.plugins.event.AbstractEventData;
 
 
@@ -72,6 +75,12 @@ public class BTDeviceEventData extends AbstractEventData {
         if (hwaddresses.size() == 0)
             return false;
         return true;
+    }
+
+    @Nullable
+    @Override
+    public Set<Property> properties() {
+        return null;
     }
 
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})

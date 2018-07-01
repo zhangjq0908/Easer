@@ -2,6 +2,21 @@ Currently, all data of Easer are stored as files. JSON is the current recommende
 
 This document describes the format of the file content, to use as a reference.
 
+## Version 11
+Introduce *Dynamics*. *Script* has a new entry.
+
+### Script
+```JSON
+{
+	THE SAME AS PREVIOUS
+	"dynamics": {
+		PLACEHOLDER 1: PROPERTY 1,
+		PLACEHOLDER 2: PROPERTY 2,
+		...
+	}
+}
+```
+
 ## Version 10
 Rename *Scenario* to *Event*. The relevant item in *Script* is affected.
 

@@ -21,12 +21,16 @@ package ryey.easer.plugins.event.condition_event;
 
 import android.os.Parcel;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Set;
+
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.dynamics.Property;
 import ryey.easer.plugins.event.AbstractEventData;
 
 public class ConditionEventEventData extends AbstractEventData {
@@ -88,6 +92,12 @@ public class ConditionEventEventData extends AbstractEventData {
     @Override
     public boolean isValid() {
         return true;
+    }
+
+    @Nullable
+    @Override
+    public Set<Property> properties() {
+        return null;
     }
 
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})

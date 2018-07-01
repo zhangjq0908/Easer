@@ -22,9 +22,13 @@ package ryey.easer.plugins.event.battery;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
+import java.util.Set;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.dynamics.Property;
 import ryey.easer.plugins.event.AbstractEventData;
 
 public class BatteryEventData extends AbstractEventData {
@@ -65,6 +69,12 @@ public class BatteryEventData extends AbstractEventData {
         if ((battery_status == BatteryStatus.charging) || (battery_status == BatteryStatus.discharging))
             return true;
         return false;
+    }
+
+    @Nullable
+    @Override
+    public Set<Property> properties() {
+        return null;
     }
 
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})

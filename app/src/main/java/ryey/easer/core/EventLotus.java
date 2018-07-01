@@ -20,6 +20,7 @@
 package ryey.easer.core;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
@@ -126,11 +127,11 @@ class EventLotus extends Lotus {
         return true;
     }
 
-    protected synchronized void onSatisfied() {
+    protected synchronized void onSatisfied(Bundle extras) {
         if (!repeatable && satisfied)
             return;
         if (checkAndSetCooldown(scriptTree.getName())) {
-            super.onSatisfied();
+            super.onSatisfied(extras);
         }
     }
 

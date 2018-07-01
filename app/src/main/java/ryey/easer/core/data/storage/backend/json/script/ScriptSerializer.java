@@ -22,6 +22,8 @@ package ryey.easer.core.data.storage.backend.json.script;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Map;
+
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.EventStructure;
@@ -60,6 +62,15 @@ class ScriptSerializer implements Serializer<ScriptStructure> {
                 jsonObject.put(C.TRIG, trigger);
                 jsonObject.put(C.REVERSE, script.isReverse());
             }
+
+            // dynamics
+            JSONObject json_dynamics = new JSONObject();
+            Map<String, String> dynamicsMap = script.getDynamicsLink().identityMap();
+            for (String placeholder : dynamicsMap.keySet()) {
+                String property = dynamicsMap.get(placeholder);
+                json_dynamics.put(placeholder, property);
+            }
+            jsonObject.put(C.DYNAMICS, json_dynamics);
 
             return jsonObject.toString();
         } catch (JSONException e) {

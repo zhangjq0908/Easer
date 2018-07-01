@@ -22,14 +22,17 @@ package ryey.easer.plugins.event.date;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Set;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.dynamics.Property;
 import ryey.easer.plugins.event.AbstractEventData;
 
 public class DateEventData extends AbstractEventData {
@@ -61,6 +64,12 @@ public class DateEventData extends AbstractEventData {
         if (date == null)
             return false;
         return true;
+    }
+
+    @Nullable
+    @Override
+    public Set<Property> properties() {
+        return null;
     }
 
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})

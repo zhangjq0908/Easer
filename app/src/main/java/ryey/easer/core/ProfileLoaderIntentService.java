@@ -21,12 +21,15 @@ package ryey.easer.core;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.os.Bundle;
 
 import com.orhanobut.logger.Logger;
 
 import java.util.Calendar;
 import java.util.Collection;
 
+import ryey.easer.commons.dynamics.DynamicsLink;
+import ryey.easer.commons.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
@@ -62,17 +65,22 @@ public class ProfileLoaderIntentService extends IntentService {
         if (ACTION_LOAD_PROFILE.equals(action)) {
             final String name = intent.getStringExtra(EXTRA_PROFILE_NAME);
             final String event = intent.getStringExtra(EXTRA_EVENT_NAME);
-            handleActionLoadProfile(name, event);
+            handleActionLoadProfile(name, event, intent.getExtras());
         } else {
             Logger.wtf("ProfileLoaderIntentService got unknown Intent action <%s>", action);
         }
     }
 
-    private void handleActionLoadProfile(String name, String event) {
+    private void handleActionLoadProfile(String name, String event, Bundle extras) {
         Logger.d("Loading profile <%s> by <%s>", name, event);
         ProfileStructure profile;
         ProfileDataStorage storage = ProfileDataStorage.getInstance(this);
         profile = storage.get(name);
+
+        final DynamicsLink dynamicsLink = extras.getParcelable(Lotus.EXTRA_DYNAMICS_LINK);
+        final Bundle macroData = extras.getBundle(Lotus.EXTRA_DYNAMICS_PROPERTIES);
+        final SolidDynamicsAssignment solidMacroAssignment = dynamicsLink.assign(macroData);
+
         if (profile != null) {
             boolean loaded = false;
             for (OperationPlugin plugin : PluginRegistry.getInstance().operation().getEnabledPlugins(this)) {
@@ -82,7 +90,7 @@ public class ProfileLoaderIntentService extends IntentService {
                     for (OperationData data : possibleData) {
                         try {
                             //noinspection unchecked
-                            if (loader.load(data))
+                            if (loader.load(data.applyDynamics(solidMacroAssignment)))
                                 loaded = true;
                         } catch (RuntimeException e) {
                             Logger.e(e, "error while loading operation <%s> for profile <%s>", data.getClass().getSimpleName(), profile.getName());

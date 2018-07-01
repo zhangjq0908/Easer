@@ -24,8 +24,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.PatternMatcher;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.orhanobut.logger.Logger;
 
@@ -43,6 +45,9 @@ public abstract class Lotus {
     private static final String ACTION_SLOT_SATISFIED = "ryey.easer.triggerlotus.action.SLOT_SATISFIED";
     private static final String ACTION_SLOT_UNSATISFIED = "ryey.easer.triggerlotus.action.SLOT_UNSATISFIED";
     private static final String CATEGORY_NOTIFY_LOTUS = "ryey.easer.triggerlotus.category.NOTIFY_LOTUS";
+
+    static final String EXTRA_DYNAMICS_PROPERTIES = "ryey.easer.core.lotus.extras.DYNAMICS_PROPERTIES";
+    static final String EXTRA_DYNAMICS_LINK = "ryey.easer.core.lotus.extras.DYNAMICS_LINK";
 
     static Lotus createLotus(@NonNull Context context, @NonNull ScriptTree scriptTree,
                              @NonNull ExecutorService executorService,
@@ -68,7 +73,7 @@ public abstract class Lotus {
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
             if (ACTION_SLOT_SATISFIED.equals(action) || ACTION_SLOT_UNSATISFIED.equals(action)) {
-                onStateSignal(ACTION_SLOT_SATISFIED.equals(action));
+                onStateSignal(ACTION_SLOT_SATISFIED.equals(action), intent.getExtras());
             }
         }
     };
@@ -120,24 +125,28 @@ public abstract class Lotus {
      */
     synchronized void setStatus(boolean status) {
         if (status) {
-            onSatisfied();
+            onSatisfied(null);
         } else {
             onUnsatisfied();
         }
     }
 
     protected void onStateSignal(boolean state) {
+        onStateSignal(state, null);
+    }
+
+    protected void onStateSignal(boolean state, @Nullable Bundle extras) {
         if (state != scriptTree.isReversed()) {
-            onSatisfied();
+            onSatisfied(extras);
         } else {
             onUnsatisfied();
         }
     }
 
-    protected void onSatisfied() {
+    protected void onSatisfied(@Nullable Bundle extras) {
         Logger.i("Lotus for <%s> satisfied", scriptTree.getName());
         satisfied = true;
-        triggerAndPromote();
+        triggerAndPromote(extras);
     }
 
     protected void onUnsatisfied() {
@@ -149,7 +158,7 @@ public abstract class Lotus {
         subs.clear();
     }
 
-    synchronized protected void triggerAndPromote() {
+    synchronized protected void triggerAndPromote(Bundle extras) {
         Logger.v(" traversing and find <%s> satisfied", scriptTree.getName());
         String profileName = scriptTree.getProfile();
         if (profileName != null) {
@@ -157,6 +166,10 @@ public abstract class Lotus {
             intent.setAction(ProfileLoaderIntentService.ACTION_LOAD_PROFILE);
             intent.putExtra(ProfileLoaderIntentService.EXTRA_PROFILE_NAME, profileName);
             intent.putExtra(ProfileLoaderIntentService.EXTRA_EVENT_NAME, scriptTree.getName());
+            if (extras == null)
+                extras = new Bundle();
+            intent.putExtra(EXTRA_DYNAMICS_PROPERTIES, extras);
+            intent.putExtra(EXTRA_DYNAMICS_LINK, scriptTree.getData().getDynamicsLink());
             context.startService(intent);
         }
         for (ScriptTree sub : scriptTree.getSubs()) {

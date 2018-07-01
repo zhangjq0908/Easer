@@ -2,13 +2,17 @@ package ryey.easer.plugins.operation.launch_app;
 
 import android.os.Parcel;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Set;
+
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
 public class LaunchAppOperationData implements OperationData {
@@ -90,5 +94,17 @@ public class LaunchAppOperationData implements OperationData {
 
     private LaunchAppOperationData(Parcel in) {
         app_package = in.readString();
+    }
+
+    @Nullable
+    @Override
+    public Set<String> placeholders() {
+        return null;
+    }
+
+    @NonNull
+    @Override
+    public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
+        return null;
     }
 }

@@ -21,12 +21,28 @@ package ryey.easer.plugins.operation.ui_mode;
 
 import android.os.Parcel;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
+import java.util.Set;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
 public class UiModeOperationData implements OperationData {
+
+    @Nullable
+    @Override
+    public Set<String> placeholders() {
+        return null;
+    }
+
+    @NonNull
+    @Override
+    public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
+        return null;
+    }
 
     enum UiMode {
         car,

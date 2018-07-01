@@ -21,9 +21,13 @@ package ryey.easer.plugins.operation;
 
 import android.os.Parcel;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
+import java.util.Set;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.plugins.reusable.StringData;
 
@@ -69,5 +73,17 @@ public abstract class StringOperationData extends StringData implements Operatio
 
     protected StringOperationData(@NonNull Parcel in) {
         text = in.readString();
+    }
+
+    @Nullable
+    @Override
+    public Set<String> placeholders() {
+        return null;
+    }
+
+    @NonNull
+    @Override
+    public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
+        return null;
     }
 }

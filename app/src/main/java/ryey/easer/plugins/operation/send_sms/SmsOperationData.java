@@ -22,6 +22,7 @@ package ryey.easer.plugins.operation.send_sms;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.telephony.PhoneNumberUtils;
 
 import com.orhanobut.logger.Logger;
@@ -29,9 +30,12 @@ import com.orhanobut.logger.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Set;
+
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
 public class SmsOperationData implements OperationData {
@@ -131,5 +135,17 @@ public class SmsOperationData implements OperationData {
     private SmsOperationData(Parcel in) {
         destination = in.readString();
         content = in.readString();
+    }
+
+    @Nullable
+    @Override
+    public Set<String> placeholders() {
+        return null;
+    }
+
+    @NonNull
+    @Override
+    public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
+        return null;
     }
 }

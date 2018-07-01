@@ -17,20 +17,11 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.commons.plugindef.eventplugin;
+package ryey.easer.commons.dynamics;
 
-import android.support.annotation.Nullable;
+public interface Property {
+    String id();
 
-import java.util.Set;
+    String name();
 
-import ryey.easer.commons.dynamics.Property;
-import ryey.easer.commons.plugindef.StorageData;
-
-public interface EventData extends StorageData {
-
-    @Nullable
-    Set<Property> properties();
-
-    @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
-    boolean equals(Object obj);
 }

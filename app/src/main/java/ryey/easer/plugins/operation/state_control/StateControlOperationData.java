@@ -22,13 +22,17 @@ package ryey.easer.plugins.operation.state_control;
 import android.content.Context;
 import android.os.Parcel;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Set;
+
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.core.data.storage.ScriptDataStorage;
 
@@ -140,5 +144,17 @@ public class StateControlOperationData implements OperationData {
     private StateControlOperationData(Parcel in) {
         scriptName = in.readString();
         newStatus = in.readByte() != 0;
+    }
+
+    @Nullable
+    @Override
+    public Set<String> placeholders() {
+        return null;
+    }
+
+    @NonNull
+    @Override
+    public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
+        return null;
     }
 }

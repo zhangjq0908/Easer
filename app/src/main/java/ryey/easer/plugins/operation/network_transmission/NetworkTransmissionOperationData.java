@@ -22,13 +22,17 @@ package ryey.easer.plugins.operation.network_transmission;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Set;
+
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
 public class NetworkTransmissionOperationData implements OperationData {
@@ -37,6 +41,18 @@ public class NetworkTransmissionOperationData implements OperationData {
     private static final String K_REMOTE_ADDRESS = "remote_address";
     private static final String K_REMOTE_PORT = "remote_port";
     private static final String K_DATA = "data";
+
+    @Nullable
+    @Override
+    public Set<String> placeholders() {
+        return null;
+    }
+
+    @NonNull
+    @Override
+    public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
+        return null;
+    }
 
     enum Protocol {
         tcp,

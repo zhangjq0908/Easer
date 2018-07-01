@@ -33,6 +33,7 @@ public class C {
     public static final String ON = "on";
 
     public static final String VERSION = "version";
+    public static final int VERSION_ADD_DYNAMICS = 11;
     public static final int VERSION_RENAME_SCENARIO_TO_EVENT = 10;
     public static final int VERSION_RENAME_STATE_CONTROL = 9;
     public static final int VERSION_INTRODUCE_CONDITION = 8;
@@ -45,7 +46,7 @@ public class C {
     public static final int VERSION_FULL_MULTI = 1;
     public static final int VERSION_FALLBACK = 0;
     public static final int VERSION_CREATED_IN_RUNTIME = -1;
-    public static final int VERSION_CURRENT = VERSION_RENAME_SCENARIO_TO_EVENT;
+    public static final int VERSION_CURRENT = VERSION_ADD_DYNAMICS;
 
     public enum Format {
         JSON,

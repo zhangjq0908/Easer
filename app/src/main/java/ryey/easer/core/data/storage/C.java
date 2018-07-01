@@ -31,6 +31,8 @@ public class C extends ryey.easer.commons.C {
     public static final String REPEATABLE = "repeatable";
     public static final String PERSISTENT = "persistent";
 
+    public static final String DYNAMICS = "dynamics";
+
     public class TriggerType {
         public static final String T_RAW = "raw_event";
         public static final String T_PRE = "pre_defined";

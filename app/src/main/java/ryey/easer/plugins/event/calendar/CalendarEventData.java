@@ -22,6 +22,7 @@ package ryey.easer.plugins.event.calendar;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.util.ArraySet;
 
 import com.orhanobut.logger.Logger;
@@ -31,9 +32,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.dynamics.Property;
 import ryey.easer.plugins.event.AbstractEventData;
 
 public class CalendarEventData extends AbstractEventData {
@@ -105,6 +108,12 @@ public class CalendarEventData extends AbstractEventData {
                 res = jsonObject.toString();
         }
         return res;
+    }
+
+    @Nullable
+    @Override
+    public Set<Property> properties() {
+        return null;
     }
 
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})

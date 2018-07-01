@@ -26,9 +26,11 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Iterator;
 
 import ryey.easer.BuildConfig;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.dynamics.DynamicsLink;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.EventStructure;
@@ -74,6 +76,19 @@ class ScriptParser implements Parser<ScriptStructure> {
                     scriptStructure.setReverse(jsonObject.getBoolean(C.REVERSE));
                 }
             }
+
+            //dynamics
+            if (version >= C.VERSION_ADD_DYNAMICS) {
+                JSONObject json_dynamics = jsonObject.getJSONObject(C.DYNAMICS);
+                DynamicsLink dynamicsLink = new DynamicsLink();
+                for (Iterator<String> it = json_dynamics.keys(); it.hasNext(); ) {
+                    String placeholder = it.next();
+                    String property = json_dynamics.getString(placeholder);
+                    dynamicsLink.put(placeholder, property);
+                }
+                scriptStructure.setDynamicsLink(dynamicsLink);
+            }
+
             return scriptStructure;
         } catch (JSONException e) {
             throw new IllegalStorageDataException(e);

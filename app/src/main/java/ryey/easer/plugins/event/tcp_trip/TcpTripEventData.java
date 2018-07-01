@@ -21,13 +21,17 @@ package ryey.easer.plugins.event.tcp_trip;
 
 import android.os.Parcel;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Set;
+
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.dynamics.Property;
 import ryey.easer.plugins.event.AbstractEventData;
 
 public class TcpTripEventData extends AbstractEventData {
@@ -66,6 +70,12 @@ public class TcpTripEventData extends AbstractEventData {
         if (check_reply && !Utils.isBlank(reply_data))
             return false;
         return true;
+    }
+
+    @Nullable
+    @Override
+    public Set<Property> properties() {
+        return null;
     }
 
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
