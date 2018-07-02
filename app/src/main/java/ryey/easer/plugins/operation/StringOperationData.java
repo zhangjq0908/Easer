@@ -25,9 +25,9 @@ import android.support.annotation.Nullable;
 
 import java.util.Set;
 
+import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.plugins.reusable.StringData;
 
@@ -78,12 +78,6 @@ public abstract class StringOperationData extends StringData implements Operatio
     @Nullable
     @Override
     public Set<String> placeholders() {
-        return null;
-    }
-
-    @NonNull
-    @Override
-    public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
-        return null;
+        return Utils.extractPlaceholder(text);
     }
 }

@@ -139,12 +139,16 @@ public class SendNotificationOperationData implements OperationData {
     @Nullable
     @Override
     public Set<String> placeholders() {
-        return null;
+        Set<String> placeholders = Utils.extractPlaceholder(title);
+        placeholders.addAll(Utils.extractPlaceholder(content));
+        return placeholders;
     }
 
     @NonNull
     @Override
     public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
-        return null;
+        String new_title = Utils.applyDynamics(title, dynamicsAssignment);
+        String new_content = Utils.applyDynamics(content, dynamicsAssignment);
+        return new SendNotificationOperationData(new_title, new_content);
     }
 }

@@ -24,6 +24,7 @@ import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.util.ArraySet;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 
@@ -39,6 +40,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import ryey.easer.commons.dynamics.SolidDynamicsAssignment;
 
 public class Utils {
 
@@ -154,5 +159,29 @@ public class Utils {
         res = res.replaceAll(F_DATE, sdf_date.format(now));
         res = res.replaceAll(F_TIME, sdf_time.format(now));
         return res;
+    }
+
+    private static final String regex_placeholder = "<<[^ ]+>>";
+    private static final Pattern pattern_placeholder = Pattern.compile(regex_placeholder);
+
+    @NonNull
+    public static Set<String> extractPlaceholder(@NonNull String str) {
+        Set<String> set = new ArraySet<>();
+        Matcher matcher = pattern_placeholder.matcher(str);
+        while (matcher.find()) {
+            String placeholder = matcher.group();
+            set.add(placeholder);
+        }
+        return set;
+    }
+
+    @NonNull
+    public static String applyDynamics(@NonNull String str, @NonNull SolidDynamicsAssignment dynamicsAssignment) {
+        Set<String> placeholders = extractPlaceholder(str);
+        for (String placeholder : placeholders) {
+            String property = dynamicsAssignment.getAssignment(placeholder);
+            str = str.replaceAll(placeholder, property);
+        }
+        return str;
     }
 }

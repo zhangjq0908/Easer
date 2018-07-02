@@ -140,12 +140,13 @@ public class SmsOperationData implements OperationData {
     @Nullable
     @Override
     public Set<String> placeholders() {
-        return null;
+        return Utils.extractPlaceholder(content);
     }
 
     @NonNull
     @Override
     public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
-        return null;
+        String new_content = Utils.applyDynamics(content, dynamicsAssignment);
+        return new SmsOperationData(destination, new_content);
     }
 }

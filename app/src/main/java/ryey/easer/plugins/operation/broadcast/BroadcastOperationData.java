@@ -24,6 +24,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.util.ArraySet;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -198,12 +199,51 @@ public class BroadcastOperationData implements OperationData {
     @Nullable
     @Override
     public Set<String> placeholders() {
-        return null;
+        Set<String> placeholders = new ArraySet<>();
+        if (data.action != null)
+            placeholders.addAll(Utils.extractPlaceholder(data.action));
+        if (data.category != null) {
+            for (String category : data.category)
+                placeholders.addAll(Utils.extractPlaceholder(category));
+        }
+        if (data.type != null)
+            placeholders.addAll(Utils.extractPlaceholder(data.type));
+        if (data.data != null)
+            placeholders.addAll(Utils.extractPlaceholder(data.data.getPath()));
+        if (data.extras != null) {
+            for (IntentData.ExtraItem extra : data.extras) {
+                placeholders.addAll(Utils.extractPlaceholder(extra.key));
+                placeholders.addAll(Utils.extractPlaceholder(extra.value));
+            }
+        }
+        return placeholders;
     }
 
     @NonNull
     @Override
     public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
-        return null;
+        IntentData intentData = new IntentData();
+        if (data.action != null)
+            intentData.action = Utils.applyDynamics(data.action, dynamicsAssignment);
+        if (data.category != null) {
+            intentData.category = new ArrayList<>(data.category.size());
+            for (String category : data.category)
+                intentData.category.add(Utils.applyDynamics(category, dynamicsAssignment));
+        }
+        if (data.type != null)
+            intentData.type = Utils.applyDynamics(data.type, dynamicsAssignment);
+        if (data.data != null)
+            intentData.data = Uri.parse(Utils.applyDynamics(data.data.getPath(), dynamicsAssignment));
+        if (data.extras != null) {
+            intentData.extras = new ArrayList<>();
+            for (IntentData.ExtraItem extra : data.extras) {
+                IntentData.ExtraItem p_extra = new IntentData.ExtraItem();
+                p_extra.type = extra.type;
+                p_extra.key = Utils.applyDynamics(extra.key, dynamicsAssignment);
+                p_extra.value = Utils.applyDynamics(extra.value, dynamicsAssignment);
+                intentData.extras.add(p_extra);
+            }
+        }
+        return new BroadcastOperationData(intentData);
     }
 }

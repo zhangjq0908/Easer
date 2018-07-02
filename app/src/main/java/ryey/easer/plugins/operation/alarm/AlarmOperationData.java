@@ -172,12 +172,13 @@ public class AlarmOperationData implements OperationData {
     @Nullable
     @Override
     public Set<String> placeholders() {
-        return null;
+        return Utils.extractPlaceholder(message);
     }
 
     @NonNull
     @Override
     public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
-        return null;
+        String new_message = Utils.applyDynamics(message, dynamicsAssignment);
+        return new AlarmOperationData(time, new_message, absolute);
     }
 }

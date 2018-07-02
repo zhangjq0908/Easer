@@ -23,8 +23,11 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
+import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.dynamics.SolidDynamicsAssignment;
+import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.plugins.operation.StringOperationData;
 
 public class CommandOperationData extends StringOperationData {
@@ -52,4 +55,9 @@ public class CommandOperationData extends StringOperationData {
         super(in);
     }
 
+    @NonNull
+    @Override
+    public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
+        return new CommandOperationData(Utils.applyDynamics(text, dynamicsAssignment));
+    }
 }
