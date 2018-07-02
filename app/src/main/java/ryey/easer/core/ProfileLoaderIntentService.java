@@ -35,6 +35,8 @@ import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.storage.ProfileDataStorage;
+import ryey.easer.core.dynamics.CoreDynamics;
+import ryey.easer.core.dynamics.CoreDynamicsInterface;
 import ryey.easer.plugins.PluginRegistry;
 
 public class ProfileLoaderIntentService extends IntentService {
@@ -77,8 +79,17 @@ public class ProfileLoaderIntentService extends IntentService {
         ProfileDataStorage storage = ProfileDataStorage.getInstance(this);
         profile = storage.get(name);
 
-        final DynamicsLink dynamicsLink = extras.getParcelable(Lotus.EXTRA_DYNAMICS_LINK);
-        final Bundle macroData = extras.getBundle(Lotus.EXTRA_DYNAMICS_PROPERTIES);
+        DynamicsLink dynamicsLink = extras.getParcelable(Lotus.EXTRA_DYNAMICS_LINK);
+        if (dynamicsLink == null)
+            dynamicsLink = new DynamicsLink();
+        Bundle macroData = extras.getBundle(Lotus.EXTRA_DYNAMICS_PROPERTIES);
+        if (macroData == null)
+            macroData = new Bundle();
+        for (CoreDynamicsInterface dynamics : CoreDynamics.coreDynamics()) {
+            if (dynamicsLink.identityMap().containsValue(dynamics.id())) {
+                macroData.putString(dynamics.id(), dynamics.invoke(this));
+            }
+        }
         final SolidDynamicsAssignment solidMacroAssignment = dynamicsLink.assign(macroData);
 
         if (profile != null) {
