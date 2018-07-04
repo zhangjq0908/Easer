@@ -20,11 +20,11 @@
 package ryey.easer.plugins.event.notification;
 
 import android.app.Notification;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.service.notification.NotificationListenerService;
@@ -42,8 +42,7 @@ public class NotificationEventListenerService extends NotificationListenerServic
     private static final String ACTION_LISTEN = "ryey.easer.plugins.event.notification.action.LISTEN";
     private static final String ACTION_CANCEL = "ryey.easer.plugins.event.notification.action.CANCEL";
     private static final String EXTRA_DATA = "ryey.easer.plugins.event.notification.extra.DATA";
-    private static final String EXTRA_POSITIVE = "ryey.easer.plugins.event.notification.extra.POSITIVE";
-    private static final String EXTRA_NEGATIVE = "ryey.easer.plugins.event.notification.extra.NEGATIVE";
+    private static final String EXTRA_URI = "ryey.easer.plugins.event.notification.extra.URI";
 
     List<CompoundData> dataList = new ArrayList<>();
 
@@ -57,37 +56,32 @@ public class NotificationEventListenerService extends NotificationListenerServic
                 return;
             Logger.d("broadcast received");
             NotificationEventData eventData = intent.getParcelableExtra(EXTRA_DATA);
-            PendingIntent pendingIntent_positive = intent.getParcelableExtra(EXTRA_POSITIVE);
-            PendingIntent pendingIntent_negative = intent.getParcelableExtra(EXTRA_NEGATIVE);
+            Uri uri = intent.getParcelableExtra(EXTRA_URI);
             if (action.equals(ACTION_LISTEN)) {
-                addListenToNotification(eventData, pendingIntent_positive, pendingIntent_negative);
+                addListenToNotification(eventData, uri);
             } else if (action.equals(ACTION_CANCEL)) {
-                delListenToNotification(eventData, pendingIntent_positive, pendingIntent_negative);
+                delListenToNotification(eventData, uri);
             }
         }
     };
 
     static void listen(Context context,
                        NotificationEventData eventData,
-                       PendingIntent pendingIntent_positive,
-                       PendingIntent pendingIntent_negative) {
+                       Uri uri) {
         Intent intent = new Intent(ACTION_LISTEN);
         intent.putExtra(EXTRA_DATA, eventData);
-        intent.putExtra(EXTRA_POSITIVE, pendingIntent_positive);
-        intent.putExtra(EXTRA_NEGATIVE, pendingIntent_negative);
+        intent.putExtra(EXTRA_URI, uri);
         Logger.d("informing 'listen'");
         LocalBroadcastManager.getInstance(context.getApplicationContext()).sendBroadcast(intent);
     }
 
     static void cancel(Context context,
                        NotificationEventData eventData,
-                       PendingIntent pendingIntent_positive,
-                       PendingIntent pendingIntent_negative) {
+                       Uri uri) {
         Intent intent = new Intent(ACTION_CANCEL);
         intent.putExtra(EXTRA_DATA, eventData);
-        intent.putExtra(EXTRA_POSITIVE, pendingIntent_positive);
-        intent.putExtra(EXTRA_NEGATIVE, pendingIntent_negative);
-        Logger.d("informing 'cancel'");
+        intent.putExtra(EXTRA_URI, uri);
+        Logger.d("informing 'listen'");
         LocalBroadcastManager.getInstance(context.getApplicationContext()).sendBroadcast(intent);
     }
 
@@ -115,13 +109,16 @@ public class NotificationEventListenerService extends NotificationListenerServic
     public void onNotificationPosted(StatusBarNotification sbn) {
         for (CompoundData compoundData : dataList) {
             NotificationEventData eventData = compoundData.notificationEventData;
-            if (match(sbn, eventData.app, eventData.title, eventData.content)) {
-                try {
-                    compoundData.positive.send();
-                } catch (PendingIntent.CanceledException e) {
-                    e.printStackTrace();
-                }
-            }
+            Intent intent = match(sbn, eventData.app, eventData.title, eventData.content)
+                    ? NotificationSlot.NotifyIntentPrototype.obtainPositiveIntent(compoundData.uri)
+                    : NotificationSlot.NotifyIntentPrototype.obtainNegativeIntent(compoundData.uri);
+            intent.putExtra(NotificationEventData.AppProperty.id, sbn.getPackageName());
+            Bundle extras = sbn.getNotification().extras;
+            String title = extras.getString(Notification.EXTRA_TITLE);
+            String contentText = extras.getString(Notification.EXTRA_TEXT);
+            intent.putExtra(NotificationEventData.TitleProperty.id, title);
+            intent.putExtra(NotificationEventData.ContentProperty.id, contentText);
+            sendBroadcast(intent);
         }
         super.onNotificationPosted(sbn);
     }
@@ -154,36 +151,29 @@ public class NotificationEventListenerService extends NotificationListenerServic
 
     private void addListenToNotification(
             NotificationEventData notificationEventData,
-            PendingIntent pendingIntent_positive,
-            PendingIntent pendingIntent_negative) {
+            Uri uri) {
         dataList.add(new CompoundData(
                 notificationEventData,
-                pendingIntent_positive,
-                pendingIntent_negative));
+                uri));
     }
 
     private void delListenToNotification(
             NotificationEventData notificationEventData,
-            PendingIntent pendingIntent_positive,
-            PendingIntent pendingIntent_negative) {
+            Uri uri) {
         CompoundData compoundData = new CompoundData(
                 notificationEventData,
-                pendingIntent_positive,
-                pendingIntent_negative);
+                uri);
         dataList.remove(compoundData);
     }
 
     private static class CompoundData {
         final NotificationEventData notificationEventData;
-        final PendingIntent positive;
-        final PendingIntent negative;
+        final Uri uri;
         private CompoundData(
                 NotificationEventData notificationEventData,
-                PendingIntent positive,
-                PendingIntent negative) {
+                Uri uri) {
             this.notificationEventData = notificationEventData;
-            this.positive = positive;
-            this.negative = negative;
+            this.uri = uri;
         }
 
         @Override
@@ -192,7 +182,7 @@ public class NotificationEventListenerService extends NotificationListenerServic
                 return false;
             if (!(obj instanceof CompoundData))
                 return false;
-            return positive.equals(((CompoundData) obj).positive);
+            return uri.equals(((CompoundData) obj).uri);
         }
     }
 }

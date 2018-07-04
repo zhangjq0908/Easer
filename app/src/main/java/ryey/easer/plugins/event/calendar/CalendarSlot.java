@@ -21,6 +21,7 @@ package ryey.easer.plugins.event.calendar;
 
 import android.app.AlarmManager;
 import android.content.Context;
+import android.content.Intent;
 
 import ryey.easer.plugins.event.SelfNotifiableSlot;
 
@@ -68,7 +69,7 @@ public class CalendarSlot extends SelfNotifiableSlot<CalendarEventData> {
     }
 
     @Override
-    protected void onPositiveNotified() {
+    protected void onPositiveNotified(Intent intent) {
         changeSatisfiedState(true);
         changeSatisfiedState(false);
     }

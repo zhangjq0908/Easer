@@ -22,6 +22,7 @@ package ryey.easer.plugins.event.notification;
 import android.os.Parcel;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.util.ArraySet;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -68,7 +69,11 @@ public class NotificationEventData extends AbstractEventData {
     @Nullable
     @Override
     public Set<Property> properties() {
-        return null;
+        Set<Property> set = new ArraySet<>();
+        set.add(new AppProperty());
+        set.add(new TitleProperty());
+        set.add(new ContentProperty());
+        return set;
     }
 
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
@@ -152,5 +157,47 @@ public class NotificationEventData extends AbstractEventData {
         app = in.readString();
         title = in.readString();
         content = in.readString();
+    }
+
+    static class TitleProperty implements Property {
+        static final String id = "ryey.easer.plugins.event.notification.title";
+
+        @Override
+        public String id() {
+            return id;
+        }
+
+        @Override
+        public String name() {
+            return "Notification Title";
+        }
+    }
+
+    static class ContentProperty implements Property {
+        static final String id = "ryey.easer.plugins.event.notification.content";
+
+        @Override
+        public String id() {
+            return id;
+        }
+
+        @Override
+        public String name() {
+            return "Notification Content";
+        }
+    }
+
+    static class AppProperty implements Property {
+        static final String id = "ryey.easer.plugins.event.notification.app";
+
+        @Override
+        public String id() {
+            return id;
+        }
+
+        @Override
+        public String name() {
+            return "Notification Sender App";
+        }
     }
 }

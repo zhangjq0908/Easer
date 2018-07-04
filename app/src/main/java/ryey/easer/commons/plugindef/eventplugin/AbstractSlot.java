@@ -22,6 +22,7 @@ package ryey.easer.commons.plugindef.eventplugin;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
@@ -112,7 +113,7 @@ public abstract class AbstractSlot<T extends EventData> {
      *
      * This method sets the {@link #satisfied} variable.
      */
-    protected synchronized void changeSatisfiedState(boolean newSatisfiedState) {
+    protected synchronized void changeSatisfiedState(boolean newSatisfiedState, Bundle extras) {
         if (satisfied != null) {
             if (persistent && satisfied && !newSatisfiedState) {
                 Logger.v("prevent from resetting a persistent slot back to unsatisfied");
@@ -128,7 +129,12 @@ public abstract class AbstractSlot<T extends EventData> {
         Intent notifyLotusIntent = satisfied
                 ? Lotus.NotifyIntentPrototype.obtainPositiveIntent(notifyLotusData)
                 : Lotus.NotifyIntentPrototype.obtainNegativeIntent(notifyLotusData);
+        notifyLotusIntent.putExtra(Lotus.EXTRA_DYNAMICS_PROPERTIES, extras);
         context.sendBroadcast(notifyLotusIntent);
         Logger.d("finished changeSatisfiedState to %s", newSatisfiedState);
+    }
+
+    protected void changeSatisfiedState(boolean newSatisfiedState) {
+        changeSatisfiedState(newSatisfiedState, null);
     }
 }

@@ -58,9 +58,9 @@ public abstract class SelfNotifiableSlot<T extends EventData> extends AbstractSl
         public void onReceive(Context context, Intent intent) {
             Logger.d("self notifying Intent received. action: %s", intent.getAction());
             if (intent.getAction().equals(ACTION_SATISFIED)) {
-                onPositiveNotified();
+                onPositiveNotified(intent);
             } else if (intent.getAction().equals(ACTION_UNSATISFIED)) {
-                onNegativeNotified();
+                onNegativeNotified(intent);
             }
         }
     };
@@ -96,13 +96,30 @@ public abstract class SelfNotifiableSlot<T extends EventData> extends AbstractSl
         context.unregisterReceiver(mReceiver);
     }
 
-    protected void onPositiveNotified() {
+    protected void onPositiveNotified(Intent intent) {
         Logger.v("onPositiveNotified");
         changeSatisfiedState(true);
     }
 
-    protected void onNegativeNotified() {
+    protected void onNegativeNotified(Intent intent) {
         Logger.v("onNegativeNotified");
         changeSatisfiedState(false);
+    }
+
+    public static class NotifyIntentPrototype {
+
+        public static Intent obtainPositiveIntent(Uri data) {
+            Intent intent = new Intent(ACTION_SATISFIED);
+            intent.addCategory(CATEGORY_NOTIFY_SLOT);
+            intent.setData(data);
+            return intent;
+        }
+
+        public static Intent obtainNegativeIntent(Uri data) {
+            Intent intent = new Intent(ACTION_UNSATISFIED);
+            intent.addCategory(CATEGORY_NOTIFY_SLOT);
+            intent.setData(data);
+            return intent;
+        }
     }
 }

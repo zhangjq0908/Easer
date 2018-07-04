@@ -21,6 +21,7 @@ package ryey.easer.plugins.event.timer;
 
 import android.app.AlarmManager;
 import android.content.Context;
+import android.content.Intent;
 
 import java.util.Calendar;
 
@@ -83,7 +84,7 @@ public class TimerSlot extends SelfNotifiableSlot<TimerEventData> {
     }
 
     @Override
-    protected void onPositiveNotified() {
+    protected void onPositiveNotified(Intent intent) {
         changeSatisfiedState(true);
     }
 }

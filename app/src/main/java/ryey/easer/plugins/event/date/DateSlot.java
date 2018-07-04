@@ -21,6 +21,7 @@ package ryey.easer.plugins.event.date;
 
 import android.app.AlarmManager;
 import android.content.Context;
+import android.content.Intent;
 
 import java.util.Calendar;
 
@@ -85,7 +86,7 @@ public class DateSlot extends SelfNotifiableSlot<DateEventData> {
     }
 
     @Override
-    protected void onPositiveNotified() {
+    protected void onPositiveNotified(Intent intent) {
         changeSatisfiedState(true);
     }
 }

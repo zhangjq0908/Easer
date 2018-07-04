@@ -20,8 +20,11 @@
 package ryey.easer.plugins.event.notification;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+
+import com.orhanobut.logger.Logger;
 
 import ryey.easer.plugins.event.SelfNotifiableSlot;
 
@@ -38,13 +41,25 @@ public class NotificationSlot extends SelfNotifiableSlot<NotificationEventData> 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void listen() {
-        NotificationEventListenerService.listen(context, eventData, notifySelfIntent_positive, notifySelfIntent_negative);
+        NotificationEventListenerService.listen(context, eventData, uri);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void cancel() {
-        NotificationEventListenerService.cancel(context, eventData, notifySelfIntent_positive, notifySelfIntent_negative);
+        NotificationEventListenerService.cancel(context, eventData, uri);
+    }
+
+    @Override
+    protected void onPositiveNotified(Intent intent) {
+        Logger.v("onPositiveNotified");
+        changeSatisfiedState(true, intent.getExtras());
+    }
+
+    @Override
+    protected void onNegativeNotified(Intent intent) {
+        Logger.v("onNegativeNotified");
+        changeSatisfiedState(false, intent.getExtras());
     }
 
     @Override

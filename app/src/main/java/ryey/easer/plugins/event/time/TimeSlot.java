@@ -21,6 +21,7 @@ package ryey.easer.plugins.event.time;
 
 import android.app.AlarmManager;
 import android.content.Context;
+import android.content.Intent;
 
 import java.util.Calendar;
 
@@ -84,11 +85,11 @@ public class TimeSlot extends SelfNotifiableSlot<TimeEventData> {
     }
 
     @Override
-    protected void onPositiveNotified() {
+    protected void onPositiveNotified(Intent intent) {
         changeSatisfiedState(true);
     }
 
     @Override
-    protected void onNegativeNotified() {
+    protected void onNegativeNotified(Intent intent) {
     }
 }
