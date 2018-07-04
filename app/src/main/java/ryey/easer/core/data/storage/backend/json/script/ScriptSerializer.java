@@ -24,6 +24,7 @@ import org.json.JSONObject;
 
 import java.util.Map;
 
+import ryey.easer.commons.dynamics.DynamicsLink;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.EventStructure;
@@ -64,13 +65,16 @@ class ScriptSerializer implements Serializer<ScriptStructure> {
             }
 
             // dynamics
-            JSONObject json_dynamics = new JSONObject();
-            Map<String, String> dynamicsMap = script.getDynamicsLink().identityMap();
-            for (String placeholder : dynamicsMap.keySet()) {
-                String property = dynamicsMap.get(placeholder);
-                json_dynamics.put(placeholder, property);
+            DynamicsLink dynamicsLink = script.getDynamicsLink();
+            if (dynamicsLink != null) {
+                JSONObject json_dynamics = new JSONObject();
+                Map<String, String> dynamicsMap = dynamicsLink.identityMap();
+                for (String placeholder : dynamicsMap.keySet()) {
+                    String property = dynamicsMap.get(placeholder);
+                    json_dynamics.put(placeholder, property);
+                }
+                jsonObject.put(C.DYNAMICS, json_dynamics);
             }
-            jsonObject.put(C.DYNAMICS, json_dynamics);
 
             return jsonObject.toString();
         } catch (JSONException e) {

@@ -44,7 +44,7 @@ final public class ScriptStructure implements Renameable, Verifiable, WithCreate
     private boolean reverse = false;
     private boolean repeatable = true;
     private boolean persistent = false;
-    private DynamicsLink dynamicsLink = new DynamicsLink();
+    @Nullable private DynamicsLink dynamicsLink;
     @Nullable protected String profileName;
     @Nullable protected String parentName;
 
@@ -157,10 +157,11 @@ final public class ScriptStructure implements Renameable, Verifiable, WithCreate
         return createdVersion;
     }
 
-    public void setDynamicsLink(DynamicsLink dynamicsLink) {
+    public void setDynamicsLink(@Nullable DynamicsLink dynamicsLink) {
         this.dynamicsLink = dynamicsLink;
     }
 
+    @Nullable
     public DynamicsLink getDynamicsLink() {
         return dynamicsLink;
     }
