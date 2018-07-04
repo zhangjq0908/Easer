@@ -1,6 +1,12 @@
 CHANGELOG
 ======
 
+* v0.6.7: Add *Dynamics* && Support *Dynamics* in `NotificationEventPlugin`
+	* *Dynamics* is the universal way of passing data from *Event* to *Profile*
+		* It replaces the previous formatting expressions
+		* Relevant UI is also added
+	* `NotificationEventPlugin` supports *Dynamics* now (#113)
+
 * v0.6.6.1: Bug fixes && Update Danish translation
 	* Fix crash when opening some existing Broadcast Operation (#129)
 	* Fix incorrect handle of "reversed" of Condition

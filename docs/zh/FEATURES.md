@@ -53,8 +53,10 @@
 * 啓動程序
 * 用戶界面模式（如車載模式）
 
-### 雜項
-* 格式化表達式（多數事件和動作的用戶輸入區均支持）
-	* `%DATE%` - 當前日期（`yyyy-MM-DD`）
-	* `%TIME%` - 當前時間（`HH-mm-ss`）
+### *Dynamics*
+* Dynamics引入以取代舊的格式化表達式
+* Operation中以`<<YOUR_DYNAMICS>>`形式出現的內容均被認爲是Dynamics的佔位符，可被配置使用Dynamics
+* 在同一Profile中，所有相同的佔位符均被認爲是相同的，使用同一Dynamics
+* 若某佔位符未被配置Dynamics，則使用其字面值
+* 暫時支持Dynamics的Operation和之前支持格式化表達式的一致，但理論上所有可以由用戶輸入字符串數據的Operation均會支持
 

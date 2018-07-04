@@ -53,7 +53,9 @@ Supported Features
 * Launch App
 * UI mode (e.g. car mode)
 
-### Misc
-* Formatting expression (supported in the fields of many Events/Operations)
-	* `%DATE%` - current date (`yyyy-MM-DD`)
-	* `%TIME%` - current time (`HH-mm-ss`)
+### *Dynamics*
+* Dynamics is introduced to replace the old "formatting expression"
+* In *Operations*, everything like `<<YOUR_DYNAMICS>>` is seen as the *placeholder* which is used to assign *Dynamics*
+* In a *Profile*, all *placeholders* are seen as identical, using the same *Dynamics* assignment (if any)
+* If a *placeholder* isn't assigned a *Dynamics*, its string literal will be used
+* Currently, *Operations* who supports *Dynamics* is the same as the previous ones supporting "formatting expression". However, in theory and plan, all *Operation* which allows the user to input data will support *Dynamics*
