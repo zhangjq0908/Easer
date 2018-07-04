@@ -18,6 +18,8 @@
     <string name="title_edit_condition">Edit Condition</string>
     <string name="title_edit_profile">Edit Profile</string>
     <string name="title_select_operation">Select an Operation</string>
+    <string name="title_dynamics_link">Dynamics Link</string>
+    <string name="title_new_dynamics_link">New Dynamics Link</string>
 
     <string name="menu_start">Start</string>
     <string name="menu_stop">Stop</string>
@@ -54,6 +56,9 @@
     <string name="text_reverse_desc">Reverse Scenario</string>
     <string name="text_volatile">Volatile</string>
     <string name="text_persistent">Persistent</string>
+
+    <string name="text_dynamics">Dynamics</string>
+    <string name="text_placeholder">Placeholder</string>
 
     <string name="toggle_active">Active</string>
 

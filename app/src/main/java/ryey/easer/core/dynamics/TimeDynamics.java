@@ -32,7 +32,7 @@ class TimeDynamics implements CoreDynamicsInterface {
 
     @Override
     public String id() {
-        return "ryey.easer.core.dynamics.date";
+        return "ryey.easer.core.dynamics.time";
     }
 
     @Override

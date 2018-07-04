@@ -19,31 +19,41 @@
 
 package ryey.easer.core.ui.data;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import ryey.easer.R;
 import ryey.easer.commons.C;
+import ryey.easer.commons.dynamics.DynamicsLink;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.EventStructure;
+import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.ScriptStructure;
 import ryey.easer.core.data.storage.ConditionDataStorage;
-import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.core.data.storage.EventDataStorage;
+import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.core.data.storage.ScriptDataStorage;
 
 /*
  * TODO: change the layout
  */
 public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure, ScriptDataStorage> {
+
+    private static final int REQ_CODE = 1;
 
     static {
         TAG_DATA_TYPE = "script";
@@ -67,6 +77,8 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
     ConstraintLayout layout_use_condition;
     DataSelectSpinnerWrapper sw_condition;
 
+    ImageButton dynamics;
+    DynamicsLink dynamicsLink;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -162,6 +174,40 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         });
         rg_mode.check(R.id.radioButton_condition);
         rg_mode.check(R.id.radioButton_scenario);
+
+        dynamics = findViewById(R.id.btn_dynamics);
+        dynamics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EditScriptActivity.this, ListDynamicsActivity.class);
+                intent.putExtra(ListDynamicsActivity.EXTRA_DYNAMICS_LINK, dynamicsLink);
+                ArrayList<String> placeholders = new ArrayList<>();
+                String profileName = sw_profile.getSelection();
+                if (profileName != null) {
+                    ProfileStructure profile = ProfileDataStorage.getInstance(EditScriptActivity.this).get(profileName);
+                    placeholders.addAll(profile.placeholders());
+                }
+                intent.putStringArrayListExtra(ListDynamicsActivity.EXTRA_PLACEHOLDERS, placeholders);
+                try {
+                    if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_inline_scenario) {
+                        EventData eventData = mViewPager_edit_event.getEventData();
+                        intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_TYPE, ListDynamicsActivity.PLUGIN_TYPE_EVENT);
+                        intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_DATA, eventData);
+                    } else if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_scenario) {
+                        EventDataStorage eventDataStorage = EventDataStorage.getInstance(EditScriptActivity.this);
+                        String scenario_name = sw_scenario.getSelection();
+                        EventStructure eventStructure = eventDataStorage.get(scenario_name);
+                        intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_TYPE, ListDynamicsActivity.PLUGIN_TYPE_EVENT);
+                        intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_DATA, eventStructure.getEventData());
+                    } else if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_condition) {
+                        intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_TYPE, ListDynamicsActivity.PLUGIN_TYPE_CONDITION);
+                    }
+                    startActivityForResult(intent, REQ_CODE);
+                } catch (InvalidDataInputException e) {
+                    Toast.makeText(EditScriptActivity.this, R.string.prompt_data_illegal, Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
     @Override
@@ -194,6 +240,8 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         }
 
         isActive = script.isActive();
+
+        dynamicsLink = script.getDynamicsLink();
     }
 
     @Override
@@ -221,7 +269,17 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
             String condition_name = sw_condition.getSelection();
             script.setCondition(conditionDataStorage.get(condition_name));
         }
+        script.setDynamicsLink(dynamicsLink);
         return script;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQ_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                this.dynamicsLink = data.getParcelableExtra(ListDynamicsActivity.EXTRA_DYNAMICS_LINK);
+            }
+        } else
+            super.onActivityResult(requestCode, resultCode, data);
+    }
 }
