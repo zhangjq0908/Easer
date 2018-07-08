@@ -23,11 +23,9 @@ import android.os.Parcel;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import java.util.Set;
-
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.dynamics.Property;
+import ryey.easer.commons.dynamics.Dynamics;
 import ryey.easer.plugins.event.AbstractEventData;
 
 public class ScreenEventData extends AbstractEventData {
@@ -69,7 +67,7 @@ public class ScreenEventData extends AbstractEventData {
 
     @Nullable
     @Override
-    public Set<Property> properties() {
+    public Dynamics[] dynamics() {
         return null;
     }
 

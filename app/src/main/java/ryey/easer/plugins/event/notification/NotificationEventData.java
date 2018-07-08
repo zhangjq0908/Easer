@@ -22,17 +22,14 @@ package ryey.easer.plugins.event.notification;
 import android.os.Parcel;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.util.ArraySet;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Set;
-
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.dynamics.Property;
+import ryey.easer.commons.dynamics.Dynamics;
 import ryey.easer.plugins.event.AbstractEventData;
 
 public class NotificationEventData extends AbstractEventData {
@@ -68,12 +65,12 @@ public class NotificationEventData extends AbstractEventData {
 
     @Nullable
     @Override
-    public Set<Property> properties() {
-        Set<Property> set = new ArraySet<>();
-        set.add(new AppProperty());
-        set.add(new TitleProperty());
-        set.add(new ContentProperty());
-        return set;
+    public Dynamics[] dynamics() {
+        return new Dynamics[]{
+                new AppDynamics(),
+                new TitleDynamics(),
+                new ContentDynamics(),
+        };
     }
 
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
@@ -159,7 +156,7 @@ public class NotificationEventData extends AbstractEventData {
         content = in.readString();
     }
 
-    static class TitleProperty implements Property {
+    static class TitleDynamics implements Dynamics {
         static final String id = "ryey.easer.plugins.event.notification.title";
 
         @Override
@@ -173,7 +170,7 @@ public class NotificationEventData extends AbstractEventData {
         }
     }
 
-    static class ContentProperty implements Property {
+    static class ContentDynamics implements Dynamics {
         static final String id = "ryey.easer.plugins.event.notification.content";
 
         @Override
@@ -187,7 +184,7 @@ public class NotificationEventData extends AbstractEventData {
         }
     }
 
-    static class AppProperty implements Property {
+    static class AppDynamics implements Dynamics {
         static final String id = "ryey.easer.plugins.event.notification.app";
 
         @Override

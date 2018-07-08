@@ -28,11 +28,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
-import java.util.Set;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.dynamics.Property;
+import ryey.easer.commons.dynamics.Dynamics;
 import ryey.easer.plugins.event.AbstractEventData;
 
 public class DateEventData extends AbstractEventData {
@@ -68,7 +67,7 @@ public class DateEventData extends AbstractEventData {
 
     @Nullable
     @Override
-    public Set<Property> properties() {
+    public Dynamics[] dynamics() {
         return null;
     }
 

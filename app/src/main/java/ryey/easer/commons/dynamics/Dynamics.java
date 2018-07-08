@@ -19,7 +19,7 @@
 
 package ryey.easer.commons.dynamics;
 
-public interface Property {
+public interface Dynamics {
     String id();
 
     String name();

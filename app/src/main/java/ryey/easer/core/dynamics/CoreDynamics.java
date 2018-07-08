@@ -19,10 +19,7 @@
 
 package ryey.easer.core.dynamics;
 
-import android.support.v4.util.ArraySet;
-
-import java.util.Arrays;
-import java.util.Set;
+import android.support.annotation.NonNull;
 
 public class CoreDynamics {
 
@@ -31,7 +28,8 @@ public class CoreDynamics {
             new TimeDynamics(),
     };
 
-    public static Set<CoreDynamicsInterface> coreDynamics() {
-        return new ArraySet<>(Arrays.asList(coreDynamicsArray));
+    @NonNull
+    public static CoreDynamicsInterface[] coreDynamics() {
+        return coreDynamicsArray;
     }
 }

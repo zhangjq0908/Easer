@@ -21,8 +21,8 @@ package ryey.easer.core.dynamics;
 
 import android.content.Context;
 
-import ryey.easer.commons.dynamics.Property;
+import ryey.easer.commons.dynamics.Dynamics;
 
-public interface CoreDynamicsInterface extends Property {
+public interface CoreDynamicsInterface extends Dynamics {
     String invoke(Context context);
 }

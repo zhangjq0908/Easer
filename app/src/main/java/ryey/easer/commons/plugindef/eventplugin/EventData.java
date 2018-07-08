@@ -21,15 +21,13 @@ package ryey.easer.commons.plugindef.eventplugin;
 
 import android.support.annotation.Nullable;
 
-import java.util.Set;
-
-import ryey.easer.commons.dynamics.Property;
+import ryey.easer.commons.dynamics.Dynamics;
 import ryey.easer.commons.plugindef.StorageData;
 
 public interface EventData extends StorageData {
 
     @Nullable
-    Set<Property> properties();
+    Dynamics[] dynamics();
 
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     boolean equals(Object obj);

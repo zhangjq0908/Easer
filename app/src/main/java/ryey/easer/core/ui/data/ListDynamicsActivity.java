@@ -28,7 +28,6 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.util.ArrayMap;
-import android.support.v4.util.ArraySet;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
@@ -46,13 +45,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import ryey.easer.R;
+import ryey.easer.commons.dynamics.Dynamics;
 import ryey.easer.commons.dynamics.DynamicsLink;
-import ryey.easer.commons.dynamics.Property;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.core.dynamics.CoreDynamics;
 
@@ -72,14 +71,14 @@ public class ListDynamicsActivity extends AppCompatActivity {
     EventData eventData;
 
     private ArrayList<String> placeholders;
-    private Map<String, Property> propertyMap = new ArrayMap<>();
-    private Set<Property> properties = new ArraySet<>();
+    private Map<String, Dynamics> dynamicsMap = new ArrayMap<>();
+    private List<Dynamics> knownDynamics = new ArrayList<>();
     List<LinkItem> dynamicsLinkList;
     DynamicsLinkAdapter adapter;
     private ListView listView;
 
     {
-        properties.addAll(CoreDynamics.coreDynamics());
+        knownDynamics.addAll(Arrays.asList(CoreDynamics.coreDynamics()));
     }
 
     @Override
@@ -95,12 +94,12 @@ public class ListDynamicsActivity extends AppCompatActivity {
         plugin_type = intent.getStringExtra(EXTRA_PLUGIN_TYPE);
         if (PLUGIN_TYPE_EVENT.equals(plugin_type)) {
             eventData = intent.getParcelableExtra(EXTRA_PLUGIN_DATA);
-            Set<Property> properties = eventData.properties();
-            if (properties != null)
-                this.properties.addAll(properties);
+            Dynamics[] dataDynamics = eventData.dynamics();
+            if (dataDynamics != null)
+                this.knownDynamics.addAll(Arrays.asList(dataDynamics));
         }
-        for (Property property : properties) {
-            propertyMap.put(property.id(), property);
+        for (Dynamics dynamics : knownDynamics) {
+            dynamicsMap.put(dynamics.id(), dynamics);
         }
         DynamicsLink dynamicsLink = intent.getParcelableExtra(EXTRA_DYNAMICS_LINK);
         if (dynamicsLink == null)
@@ -111,8 +110,8 @@ public class ListDynamicsActivity extends AppCompatActivity {
         for (String placeholder : identityMap.keySet()) {
             String property = identityMap.get(placeholder);
             String name = null;
-            if (propertyMap.containsKey(property)) {
-                name = propertyMap.get(property).name();
+            if (dynamicsMap.containsKey(property)) {
+                name = dynamicsMap.get(property).name();
             }
             dynamicsLinkList.add(new LinkItem(placeholder, property, name));
         }
@@ -296,7 +295,7 @@ public class ListDynamicsActivity extends AppCompatActivity {
 
         Spinner spinner_placeholder, spinner_dynamics;
         ArrayAdapter<String> adapter_placeholder;
-        ArrayAdapter<ABWrapper> adapter_dynamics;
+        ArrayAdapter<DynamicsWrapper> adapter_dynamics;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -309,18 +308,18 @@ public class ListDynamicsActivity extends AppCompatActivity {
             adapter_placeholder = new ArrayAdapter<>(this, R.layout.spinner_simple, placeholders);
             spinner_placeholder.setAdapter(adapter_placeholder);
 
-            Set<Property> dynamics = new ArraySet<>();
-            dynamics.addAll(CoreDynamics.coreDynamics());
+            List<Dynamics> allDynamics = new ArrayList<>();
+            allDynamics.addAll(Arrays.asList(CoreDynamics.coreDynamics()));
             String plugin_type = getIntent().getStringExtra(EXTRA_PLUGIN_TYPE);
             if (PLUGIN_TYPE_EVENT.equals(plugin_type)) {
                 EventData eventData = getIntent().getParcelableExtra(EXTRA_PLUGIN_DATA);
-                Set<Property> p_properties = eventData.properties();
+                Dynamics[] p_properties = eventData.dynamics();
                 if (p_properties != null)
-                    dynamics.addAll(p_properties);
+                    allDynamics.addAll(Arrays.asList(p_properties));
             }
-            List<ABWrapper> dynamicsList = new ArrayList<>();
-            for (Property property : dynamics) {
-                ABWrapper wrapper = new ABWrapper(property.id(), property.name());
+            List<DynamicsWrapper> dynamicsList = new ArrayList<>();
+            for (Dynamics dynamics : allDynamics) {
+                DynamicsWrapper wrapper = new DynamicsWrapper(dynamics.id(), dynamics.name());
                 dynamicsList.add(wrapper);
             }
             adapter_dynamics = new ArrayAdapter<>(this, R.layout.spinner_simple, dynamicsList);
@@ -335,13 +334,13 @@ public class ListDynamicsActivity extends AppCompatActivity {
                         toastInvalid();
                         return;
                     }
-                    ABWrapper wrapper = (ABWrapper) spinner_dynamics.getSelectedItem();
+                    DynamicsWrapper wrapper = (DynamicsWrapper) spinner_dynamics.getSelectedItem();
                     if (wrapper == null) {
                         toastInvalid();
                         return;
                     }
                     Intent intent = new Intent();
-                    LinkItem item = new LinkItem(placeholder, wrapper.hiddenData, wrapper.visibleData);
+                    LinkItem item = new LinkItem(placeholder, wrapper.id, wrapper.name);
                     intent.putExtra(EXTRA_LINK_ITEM, item);
                     setResult(RESULT_OK, intent);
                     EditDynamicsActivity.this.finish();
@@ -353,32 +352,32 @@ public class ListDynamicsActivity extends AppCompatActivity {
             });
         }
 
-        public static final class ABWrapper {
+        public static final class DynamicsWrapper {
             @NonNull
-            public final String hiddenData;
+            public final String id;
             @Nullable
-            public final String visibleData;
+            public final String name;
 
-            ABWrapper(@NonNull String hiddenData, @Nullable String visibleData) {
-                this.hiddenData = hiddenData;
-                this.visibleData = visibleData;
+            DynamicsWrapper(@NonNull String id, @Nullable String name) {
+                this.id = id;
+                this.name = name;
             }
 
             @Override
             public boolean equals(Object obj) {
                 if (obj == this)
                     return true;
-                if (obj == null || !(obj instanceof ABWrapper))
+                if (obj == null || !(obj instanceof DynamicsWrapper))
                     return false;
-                return hiddenData.equals(((ABWrapper) obj).hiddenData);
+                return id.equals(((DynamicsWrapper) obj).id);
             }
 
             @Override
             public String toString() {
-                if (visibleData != null)
-                    return visibleData;
+                if (name != null)
+                    return name;
                 else
-                    return hiddenData;
+                    return id;
             }
         }
     }

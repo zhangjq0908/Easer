@@ -112,12 +112,12 @@ public class NotificationEventListenerService extends NotificationListenerServic
             Intent intent = match(sbn, eventData.app, eventData.title, eventData.content)
                     ? NotificationSlot.NotifyIntentPrototype.obtainPositiveIntent(compoundData.uri)
                     : NotificationSlot.NotifyIntentPrototype.obtainNegativeIntent(compoundData.uri);
-            intent.putExtra(NotificationEventData.AppProperty.id, sbn.getPackageName());
+            intent.putExtra(NotificationEventData.AppDynamics.id, sbn.getPackageName());
             Bundle extras = sbn.getNotification().extras;
             String title = extras.getString(Notification.EXTRA_TITLE);
             String contentText = extras.getString(Notification.EXTRA_TEXT);
-            intent.putExtra(NotificationEventData.TitleProperty.id, title);
-            intent.putExtra(NotificationEventData.ContentProperty.id, contentText);
+            intent.putExtra(NotificationEventData.TitleDynamics.id, title);
+            intent.putExtra(NotificationEventData.ContentDynamics.id, contentText);
             sendBroadcast(intent);
         }
         super.onNotificationPosted(sbn);

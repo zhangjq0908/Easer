@@ -29,12 +29,10 @@ import com.orhanobut.logger.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Set;
-
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.dynamics.Property;
+import ryey.easer.commons.dynamics.Dynamics;
 import ryey.easer.plugins.event.AbstractEventData;
 
 public class SmsEventData extends AbstractEventData {
@@ -98,7 +96,7 @@ public class SmsEventData extends AbstractEventData {
 
     @Nullable
     @Override
-    public Set<Property> properties() {
+    public Dynamics[] dynamics() {
         return null;
     }
 
