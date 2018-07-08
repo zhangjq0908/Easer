@@ -63,7 +63,7 @@ class EventLotus extends Lotus {
         repeatable = scriptTree.isRepeatable();
         persistent = scriptTree.isPersistent();
 
-        cooldownInMillisecond = SettingsHelper.coolDownInterval(context);
+        cooldownInMillisecond = SettingsHelper.coolDownInterval(context) * 1000;
     }
 
     private <T extends EventData> AbstractSlot<T> nodeToSlot(ScriptTree node) {
