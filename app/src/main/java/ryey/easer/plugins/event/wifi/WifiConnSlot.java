@@ -31,8 +31,6 @@ import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
 
 public class WifiConnSlot extends AbstractSlot<WifiEventData> {
 
-    private int matched_networks = 0;
-
     private final BroadcastReceiver connReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -41,12 +39,14 @@ public class WifiConnSlot extends AbstractSlot<WifiEventData> {
                 NetworkInfo networkInfo = intent.getParcelableExtra(WifiManager.EXTRA_NETWORK_INFO);
                 if (networkInfo.getState() == NetworkInfo.State.CONNECTED) {
                     WifiInfo wifiInfo = intent.getParcelableExtra(WifiManager.EXTRA_WIFI_INFO);
-                    if (compare(wifiInfo))
-                        matched_networks++;
-                    determine_satisfied();
+                    compareAndSignal(wifiInfo);
                 } else if (networkInfo.getState() == NetworkInfo.State.DISCONNECTED) {
-                    matched_networks = 0;
-                    determine_satisfied();
+                    WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                    boolean wifiEnabled = wifiManager.isWifiEnabled();
+                    if (!wifiEnabled) {
+                        return;
+                    }
+                    changeSatisfiedState(false);
                 }
             }
         }
@@ -81,12 +81,15 @@ public class WifiConnSlot extends AbstractSlot<WifiEventData> {
     public void check() {
         WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-        if (compare(wifiInfo))
-            matched_networks++;
-        determine_satisfied();
+        compareAndSignal(wifiInfo);
     }
 
-    private boolean compare(WifiInfo wifiInfo) {
+    private void compareAndSignal(WifiInfo wifiInfo) {
+        boolean match = compare(eventData, wifiInfo);
+        changeSatisfiedState(match);
+    }
+
+    private static boolean compare(WifiEventData eventData, WifiInfo wifiInfo) {
         String ssid;
         if (eventData.mode_essid) {
             ssid = wifiInfo.getSSID();
@@ -97,9 +100,5 @@ public class WifiConnSlot extends AbstractSlot<WifiEventData> {
             ssid = wifiInfo.getBSSID();
         }
         return eventData.match(ssid);
-    }
-
-    private void determine_satisfied() {
-        changeSatisfiedState(matched_networks > 0);
     }
 }
