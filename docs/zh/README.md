@@ -11,6 +11,8 @@ Easer是一個事件驅動的Android自動化工具——用戶告訴它在什�
 
 更妙的是，Easer不僅僅處理*事件*，也可檢查*狀態*，這使得一些不易用事件描述的狀況變得簡單且直覺化。
 
+不僅如此，Easer還支持傳遞事件的指定消息至用戶所設置的動作中。這樣，用戶動作中的文本不再侷限於靜態的內容。
+
 Easer類似於一個本地版的IFTTT：在不同的事件（Event）下執行指定的行爲集（Profile）。每個行爲集（Profile）由多個動作（Operation）組成，包括但不限於調整手機設置（見下）。
 
 ### app合作協調
@@ -26,6 +28,13 @@ Easer可對*用戶腳本*（Script，包含Event或Condition及對應載入的Pr
 Easer在逐步支持*狀況*（Condition）機制，且在逐漸將相關*事件*遷移至*狀況*。
 
 當*用戶腳本樹*中的節點狀態產生變化時，Easer會對其採取相應措施（如當某*事件*發生時，Easer會載入相應的*行爲集*）。
+
+### 傳遞事件消息
+
+通過*Dynamics*機制（一種類似於[宏](https://en.wikipedia.org/wiki/Macro_\(computer_science\))的機制），Easer可以將事件中的特定部分傳遞至*Profile*（及其*Operation*）中。這樣，*Profile*中的文本部分不再受限於固定的內容，而可以動態變化。
+
+由於設計上的良好解耦，使用該特性時，要在*Profile*中定義*佔位符*，之後在*用戶腳本*中**鏈接**對應*Dynamics*
+
 
 另請參見[wiki](https://github.com/renyuneyun/Easer/wiki)，尤其是[須知](https://github.com/renyuneyun/Easer/wiki/%E9%A0%88%E7%9F%A5)。
 

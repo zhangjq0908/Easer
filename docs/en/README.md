@@ -14,6 +14,8 @@ Easer is an event-driven Android automation tool. It knows various events (see b
 
 More than that, Easer can not only handle *Events*, but also check for *Conditions*. This makes things simpler when they can't be seens as Events, and makes it more intuitive.
 
+It doesn't stop here: in Easer, you can pass message from an Event to a Profile. This allow dynamic content to be generated in Profiles.
+
 You can think of Easer as a local version of IFTTT: trigger actions or change settings (*Operations*, bundled as *Profiles*) under different situations (*Events*).
 
 ### Inter-app coordination
@@ -30,7 +32,15 @@ Easer is adding the support of *Condition* mechanism, and is transforming releva
 
 When a node in the *Script* tree changes its state, Easer will take corresponding actions (e.g. when an Event happens, Easer will load its corresponding *Profile* and listen to children nodes).
 
+### Passing content from Event
+
+By the *Dynamics* mechanism (a mechanism like [macro](https://en.wikipedia.org/wiki/Macro_\(computer_science\))), Easer can pass specific parts (contents) of Events to Profiles (and their corresponding Operations). This makes the text content in a *Profile* not limited to static contents, but can change dynamically.
+
+Thanks to the good decoupling, when using this feature, user need to specify *placeholder* in *Profile*, and link to *Dynamics* in the *Script*.
+
+
 Also, have a look at the [wiki](https://github.com/renyuneyun/Easer/wiki), and especially the [FAQ](https://github.com/renyuneyun/Easer/wiki/FAQ).
+
 
 Examples
 ------
