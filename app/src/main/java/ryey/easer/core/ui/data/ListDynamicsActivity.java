@@ -108,12 +108,12 @@ public class ListDynamicsActivity extends AppCompatActivity {
         Map<String, String> identityMap = dynamicsLink.identityMap();
         dynamicsLinkList = new ArrayList<>(identityMap.size());
         for (String placeholder : identityMap.keySet()) {
-            String property = identityMap.get(placeholder);
+            String dynamics = identityMap.get(placeholder);
             String name = null;
-            if (dynamicsMap.containsKey(property)) {
-                name = dynamicsMap.get(property).name();
+            if (dynamicsMap.containsKey(dynamics)) {
+                name = getString(dynamicsMap.get(dynamics).nameRes());
             }
-            dynamicsLinkList.add(new LinkItem(placeholder, property, name));
+            dynamicsLinkList.add(new LinkItem(placeholder, dynamics, name));
         }
 
         adapter = new DynamicsLinkAdapter(this, dynamicsLinkList);
@@ -319,7 +319,7 @@ public class ListDynamicsActivity extends AppCompatActivity {
             }
             List<DynamicsWrapper> dynamicsList = new ArrayList<>();
             for (Dynamics dynamics : allDynamics) {
-                DynamicsWrapper wrapper = new DynamicsWrapper(dynamics.id(), dynamics.name());
+                DynamicsWrapper wrapper = new DynamicsWrapper(dynamics.id(), getString(dynamics.nameRes()));
                 dynamicsList.add(wrapper);
             }
             adapter_dynamics = new ArrayAdapter<>(this, R.layout.spinner_simple, dynamicsList);

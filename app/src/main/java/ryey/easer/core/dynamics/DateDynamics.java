@@ -26,6 +26,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import ryey.easer.R;
+
 class DateDynamics implements CoreDynamicsInterface {
 
     private static final SimpleDateFormat sdf_date = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
@@ -36,8 +38,8 @@ class DateDynamics implements CoreDynamicsInterface {
     }
 
     @Override
-    public String name() {
-        return "Current Date";
+    public int nameRes() {
+        return R.string.dynamics_date;
     }
 
     @Override

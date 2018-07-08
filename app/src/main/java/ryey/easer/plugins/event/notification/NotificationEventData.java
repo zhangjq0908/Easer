@@ -26,6 +26,7 @@ import android.support.annotation.Nullable;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import ryey.easer.R;
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
@@ -165,8 +166,8 @@ public class NotificationEventData extends AbstractEventData {
         }
 
         @Override
-        public String name() {
-            return "Notification Title";
+        public int nameRes() {
+            return R.string.ev_notification_dynamics_title;
         }
     }
 
@@ -179,8 +180,8 @@ public class NotificationEventData extends AbstractEventData {
         }
 
         @Override
-        public String name() {
-            return "Notification Content";
+        public int nameRes() {
+            return R.string.ev_notification_dynamics_content;
         }
     }
 
@@ -193,8 +194,8 @@ public class NotificationEventData extends AbstractEventData {
         }
 
         @Override
-        public String name() {
-            return "Notification Sender App";
+        public int nameRes() {
+            return R.string.ev_notification_dynamics_app;
         }
     }
 }

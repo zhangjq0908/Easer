@@ -65,6 +65,9 @@
     <string name="event_notification__title">題目（包含…）</string>
     <string name="event_notification__content">內容（包含…）</string>
     <string name="label_event_notification_listener_service">通知事件監聽</string>
+    <string name="ev_notification_dynamics_app">發送通知的app</string>
+    <string name="ev_notification_dynamics_title">通知標題</string>
+    <string name="ev_notification_dynamics_content">通知內容</string>
 
     <string name="event_timer">定時器</string>
     <string name="exact_timer">精確定時？</string>

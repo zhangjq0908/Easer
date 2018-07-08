@@ -157,5 +157,8 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     <string name="version">Version</string>
 
     <string name="message_importing_invalid_data">This file doesn\'t seem to be valid. Make sure to import a file previously exported by Easer.</string>
+
+    <string name="dynamics_time">Current Time</string>
+    <string name="dynamics_date">Current Date</string>
 </resources>
 

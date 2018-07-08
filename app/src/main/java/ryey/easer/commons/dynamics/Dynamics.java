@@ -19,9 +19,12 @@
 
 package ryey.easer.commons.dynamics;
 
+import android.support.annotation.StringRes;
+
 public interface Dynamics {
     String id();
 
-    String name();
+    @StringRes
+    int nameRes();
 
 }

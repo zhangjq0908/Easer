@@ -82,6 +82,9 @@
     <string name="event_notification__title">Title (contains…)</string>
     <string name="event_notification__content">Content (contains…)</string>
     <string name="label_event_notification_listener_service">Notification Event Listener</string>
+    <string name="ev_notification_dynamics_app">Notification Sender App</string>
+    <string name="ev_notification_dynamics_title">Notification Title</string>
+    <string name="ev_notification_dynamics_content">Notification Content</string>
 
     <string name="event_timer">Timer</string>
     <string name="exact_timer">Exact timer?</string>
