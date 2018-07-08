@@ -20,6 +20,7 @@
     <string name="title_select_operation">Select an Operation</string>
     <string name="title_dynamics_link">Dynamics Link</string>
     <string name="title_new_dynamics_link">New Dynamics Link</string>
+    <string name="title_trigger_profile">Trigger this Profile</string>
 
     <string name="menu_start">Start</string>
     <string name="menu_stop">Stop</string>

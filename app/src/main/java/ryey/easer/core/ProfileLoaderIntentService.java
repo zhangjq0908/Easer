@@ -20,8 +20,11 @@
 package ryey.easer.core;
 
 import android.app.IntentService;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.orhanobut.logger.Logger;
 
@@ -46,6 +49,13 @@ public class ProfileLoaderIntentService extends IntentService {
     public static final String EXTRA_PROFILE_NAME = "ryey.easer.extra.PROFILE_NAME";
     public static final String EXTRA_EVENT_NAME = "ryey.easer.extra.EVENT_NAME";
     public static final String EXTRA_LOAD_TIME = "ryey.easer.extra.LOAD_TIME";
+
+    public static void triggerProfile(Context context, String profileName) {
+        Intent intent = new Intent(context, ProfileLoaderIntentService.class);
+        intent.setAction(ProfileLoaderIntentService.ACTION_LOAD_PROFILE);
+        intent.putExtra(ProfileLoaderIntentService.EXTRA_PROFILE_NAME, profileName);
+        context.startService(intent);
+    }
 
     public ProfileLoaderIntentService() {
         super("ProfileLoaderIntentService");
@@ -73,16 +83,20 @@ public class ProfileLoaderIntentService extends IntentService {
         }
     }
 
-    private void handleActionLoadProfile(String name, String event, Bundle extras) {
+    private void handleActionLoadProfile(@NonNull String name, @Nullable String event, @Nullable Bundle extras) {
         Logger.d("Loading profile <%s> by <%s>", name, event);
         ProfileStructure profile;
         ProfileDataStorage storage = ProfileDataStorage.getInstance(this);
         profile = storage.get(name);
 
-        DynamicsLink dynamicsLink = extras.getParcelable(Lotus.EXTRA_DYNAMICS_LINK);
+        DynamicsLink dynamicsLink = null;
+        Bundle macroData = null;
+        if (extras != null) {
+            dynamicsLink = extras.getParcelable(Lotus.EXTRA_DYNAMICS_LINK);
+            macroData = extras.getBundle(Lotus.EXTRA_DYNAMICS_PROPERTIES);
+        }
         if (dynamicsLink == null)
             dynamicsLink = new DynamicsLink();
-        Bundle macroData = extras.getBundle(Lotus.EXTRA_DYNAMICS_PROPERTIES);
         if (macroData == null)
             macroData = new Bundle();
         for (CoreDynamicsInterface dynamics : CoreDynamics.coreDynamics()) {

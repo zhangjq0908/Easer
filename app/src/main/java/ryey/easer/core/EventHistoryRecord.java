@@ -19,12 +19,16 @@
 
 package ryey.easer.core;
 
+import android.support.annotation.Nullable;
+
+import ryey.easer.Utils;
+
 public class EventHistoryRecord {
-    public final String event;
-    public final String profile;
+    @Nullable public final String event;
+    @Nullable public final String profile;
     public final long loadTime;
 
-    public EventHistoryRecord(String event, String profile, long loadTime) {
+    EventHistoryRecord(@Nullable String event, @Nullable String profile, long loadTime) {
         this.event = event;
         this.profile = profile;
         this.loadTime = loadTime;
@@ -36,9 +40,9 @@ public class EventHistoryRecord {
             return true;
         if (obj == null || !(obj instanceof EventHistoryRecord))
             return false;
-        if (!event.equals(((EventHistoryRecord) obj).event))
+        if (!Utils.nullableEqual(event, ((EventHistoryRecord) obj).event))
             return false;
-        if (!profile.equals(((EventHistoryRecord) obj).profile))
+        if (!Utils.nullableEqual(profile, ((EventHistoryRecord) obj).profile))
             return false;
         if (loadTime != ((EventHistoryRecord) obj).loadTime)
             return false;

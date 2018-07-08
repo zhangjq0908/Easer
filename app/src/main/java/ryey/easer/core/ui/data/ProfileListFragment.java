@@ -24,7 +24,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -32,6 +36,7 @@ import java.util.List;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.core.ProfileLoaderIntentService;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.plugins.PluginRegistry;
@@ -47,6 +52,25 @@ public class ProfileListFragment extends AbstractDataListFragment<ProfileDataSto
     @Override
     protected String title() {
         return getString(R.string.title_profile);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        MenuInflater inflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.list_profile, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        ListDataWrapper wrapper = (ListDataWrapper) getListView().getItemAtPosition(info.position);
+        String name = wrapper.name;
+        int id = item.getItemId();
+        if (id == R.id.action_trigger_profile) {
+            ProfileLoaderIntentService.triggerProfile(getContext(), name);
+            return true;
+        } else
+            return super.onContextItemSelected(item);
     }
 
     @Override

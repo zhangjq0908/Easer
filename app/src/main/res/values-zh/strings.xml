@@ -100,5 +100,6 @@
     <string name="prompt_delete_failed">刪除失敗。請檢查此物是否被使用。</string>
     <string name="dynamics_time">當前時間</string>
     <string name="dynamics_date">當前日期</string>
+    <string name="title_trigger_profile">執行此行爲集</string>
 
 </resources>

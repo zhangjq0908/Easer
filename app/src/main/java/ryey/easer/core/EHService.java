@@ -32,6 +32,7 @@ import android.os.Bundle;
 import android.os.ConditionVariable;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.orhanobut.logger.Logger;
 
@@ -111,6 +112,10 @@ public class EHService extends Service {
             if (ACTION_RELOAD.equals(action)) {
                 reloadTriggers();
             } else if (ProfileLoaderIntentService.ACTION_PROFILE_LOADED.equals(action)) {
+                if (intent.getExtras() == null) {
+                    Logger.wtf("ACTION_PROFILE_LOADED Intent has null extras???");
+                    return;
+                }
                 recordProfile(intent.getExtras());
                 Intent intent1 = new Intent();
                 intent1.setAction(ACTION_PROFILE_UPDATED);
@@ -151,9 +156,9 @@ public class EHService extends Service {
 
     private static LinkedList<EventHistoryRecord> eventHistoryRecordList = new LinkedList<>();
 
-    synchronized private static void recordProfile(Bundle bundle) {
-        final String profileName = bundle.getString(ProfileLoaderIntentService.EXTRA_PROFILE_NAME);
-        final String eventName = bundle.getString(ProfileLoaderIntentService.EXTRA_EVENT_NAME);
+    synchronized private static void recordProfile(@NonNull Bundle bundle) {
+        @Nullable final String profileName = bundle.getString(ProfileLoaderIntentService.EXTRA_PROFILE_NAME);
+        @Nullable final String eventName = bundle.getString(ProfileLoaderIntentService.EXTRA_EVENT_NAME);
         final long time = bundle.getLong(ProfileLoaderIntentService.EXTRA_LOAD_TIME);
         if (eventHistoryRecordList.size() > 1000)
             eventHistoryRecordList.removeFirst();
