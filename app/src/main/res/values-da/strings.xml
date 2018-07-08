@@ -18,6 +18,8 @@
     <string name="title_edit_condition">Redigere tilstand</string>
     <string name="title_edit_profile">Redigere profil</string>
     <string name="title_select_operation">Vælge handling</string>
+    <string name="title_dynamics_link">Dynamik sammenkædning</string>
+    <string name="title_new_dynamics_link">Ny dynamik sammenkædning</string>
 
     <string name="menu_start">Start</string>
     <string name="menu_stop">Stop</string>
@@ -55,6 +57,9 @@
     <string name="text_volatile">Omskiftelig</string>
     <string name="text_persistent">Vedvarende</string>
 
+    <string name="text_dynamics">Dynamik</string>
+    <string name="text_placeholder">Pladsholder</string>
+
     <string name="toggle_active">Aktiv</string>
 
     <string name="hint_event_title">hændelse titel</string>
@@ -81,7 +86,7 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
 
     <string name="liscence_stringb">This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
     GNU General Public License for more details.</string>
 
     <string name="liscence_stringc">You should have received a copy of the GNU General Public License
