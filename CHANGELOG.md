@@ -1,6 +1,17 @@
 CHANGELOG
 ======
 
+* v0.6.7.1: Localized names for Dynamics && Make events "repeatable" by default && Bug fixes && Danish translation && Dev changes
+	* Use localized names for Dynamics
+	* Make Events "repeatable" by default when creating an Event
+	* Bug fix:
+		* WifiEventPlugin not correctly handling "connecting" (#133)
+		* Cooldown time unit was milliseconds, but should be seconds
+	* Update Danish translation (#139)
+	* Dev change:
+		* Rename "Property" to "Dynamics" (class, and some methods)
+		* Return an array of Dynamics, instead of Set (though the semantics is still a set)
+
 * v0.6.7: Add *Dynamics* && Support *Dynamics* in `NotificationEventPlugin`
 	* *Dynamics* is the universal way of passing data from *Event* to *Profile*
 		* It replaces the previous formatting expressions
