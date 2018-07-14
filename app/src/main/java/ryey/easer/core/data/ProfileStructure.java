@@ -68,7 +68,9 @@ final public class ProfileStructure implements Named, Verifiable, WithCreatedVer
         Set<String> placeholders = new ArraySet<>();
         for (String key : data.keys()) {
             for (OperationData operationData : data.get(key)) {
-                placeholders.addAll(operationData.placeholders());
+                Set<String> ph = operationData.placeholders();
+                if (ph != null)
+                    placeholders.addAll(ph);
             }
         }
         return placeholders;
