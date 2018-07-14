@@ -42,7 +42,7 @@ public class MediaControlOperationData implements OperationData {
     @NonNull
     @Override
     public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
-        return null;
+        return this;
     }
 
     enum ControlChoice {

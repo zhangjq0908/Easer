@@ -97,6 +97,6 @@ public abstract class BooleanOperationData extends BooleanData implements Operat
     @NonNull
     @Override
     public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
-        return null;
+        return this;
     }
 }

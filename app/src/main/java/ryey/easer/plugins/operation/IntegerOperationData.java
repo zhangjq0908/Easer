@@ -85,6 +85,6 @@ public abstract class IntegerOperationData extends IntegerData implements Operat
     @NonNull
     @Override
     public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
-        return null;
+        return this;
     }
 }

@@ -155,6 +155,6 @@ public class StateControlOperationData implements OperationData {
     @NonNull
     @Override
     public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
-        return null;
+        return this;
     }
 }

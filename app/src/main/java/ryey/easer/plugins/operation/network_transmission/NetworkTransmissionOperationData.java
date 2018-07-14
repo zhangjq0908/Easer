@@ -51,7 +51,7 @@ public class NetworkTransmissionOperationData implements OperationData {
     @NonNull
     @Override
     public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
-        return null;
+        return this;
     }
 
     enum Protocol {
