@@ -1,6 +1,13 @@
 CHANGELOG
 ======
 
+* v0.6.7.2: Allow to manually trigger Profiles && Bug fixes
+	* Add a function to manually trigger any Profile (in the Context menu) (#136)
+	* Fix not working Operation after v0.6.7 (#143, #141)
+		* Previously incorrectly returned `null` in `OperationData.applyDynamics()`
+		* Now return `this` instead
+	* Fix crash when opening Dynamics Link on some Profiles (#142)
+
 * v0.6.7.1: Localized names for Dynamics && Make events "repeatable" by default && Bug fixes && Danish translation && Dev changes
 	* Use localized names for Dynamics
 	* Make Events "repeatable" by default when creating an Event
