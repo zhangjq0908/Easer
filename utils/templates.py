@@ -197,9 +197,13 @@ tmpl_operation_data = '''package {package};
 
 import android.os.Parcel;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
+import java.util.Set;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
 public class {data} implements OperationData {{
@@ -228,6 +232,18 @@ public class {data} implements OperationData {{
             return false;
         //TODO
         return true;
+    }}
+
+    @Nullable
+    @Override
+    public Set<String> placeholders() {{
+        return null;
+    }}
+
+    @NonNull
+    @Override
+    public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {{
+        return this;
     }}
 
     @Override
@@ -378,9 +394,11 @@ tmpl_event_data = '''package {package};
 
 import android.os.Parcel;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.dynamics.Dynamics;
 import ryey.easer.plugins.event.AbstractEventData;
 
 public class {data} extends AbstractEventData {{
@@ -395,6 +413,12 @@ public class {data} extends AbstractEventData {{
         String res;
         //TODO
         return res;
+    }}
+
+    @Nullable
+    @Override
+    public Dynamics[] dynamics() {{
+        return null;
     }}
 
     @SuppressWarnings({{"SimplifiableIfStatement", "RedundantIfStatement"}})
