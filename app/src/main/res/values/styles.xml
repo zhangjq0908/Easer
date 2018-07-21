@@ -17,14 +17,13 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="AppTheme.ActivityDialog" parent="android:Theme.DeviceDefault.Light.Dialog.NoActionBar">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowActionBar">false</item>
+    <style name="AppTheme.ActivityDialog" parent="AppTheme.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
-    <style name="AppTheme.ActivityDialog.TextPrompt" parent="TextAppearance.AppCompat.Headline">
+    <style name="AppTheme.ActivityDialog.TextPrompt">
+        <item name="android:textSize">28sp</item>
         <item name="android:layout_marginBottom">8dp</item>
         <item name="android:layout_marginTop">8dp</item>
         <item name="android:layout_marginLeft">32dp</item>
@@ -34,11 +33,31 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="AppTheme.DialogTitle" parent="TextAppearance.AppCompat.Title">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textColor">@color/colorDialogTitle</item>
+    </style>
+
     <style name="AppTheme.PluginViewPager">
         <item name="android:paddingLeft">@dimen/eventpluginviewpager_horizontal_margin</item>
         <item name="android:paddingRight">@dimen/eventpluginviewpager_horizontal_margin</item>
         <item name="android:paddingTop">@dimen/eventpluginviewpager_vertical_margin</item>
         <item name="android:paddingBottom">@dimen/eventpluginviewpager_vertical_margin</item>
+    </style>
+
+    <style name="AppTheme.PluginEnableSettings" />
+
+    <style name="AppTheme.PluginEnableSettings.PluginFeatureIcon">
+        <item name="android:maxWidth">@dimen/plugin_feature_icon_size</item>
+        <item name="android:maxHeight">@dimen/plugin_feature_icon_size</item>
+    </style>
+
+    <style name="AppTheme.ListItem" />
+
+    <style name="AppTheme.ListItem.OperationSelection">
+        <item name="android:padding">@dimen/list_item_operation_selection_margin</item>
+        <item name="android:textSize">@dimen/list_item_operation_selection_text_size</item>
     </style>
 
     <style name="LR">
@@ -74,21 +93,6 @@
         <item name="android:ems">10</item>
     </style>
 
-    <style name="AppTheme.Dialog" parent="AppTheme" />
-
-    <style name="AppTheme.Dialog.Title" parent="TextAppearance.AppCompat.Title">
-        <item name="android:gravity">center_horizontal</item>
-        <item name="android:padding">8dp</item>
-        <item name="android:textColor">@color/colorDialogTitle</item>
-    </style>
-
-    <style name="ListItem" parent="AppTheme" />
-
-    <style name="ListItem.OperationSelection">
-        <item name="android:padding">@dimen/list_item_operation_selection_margin</item>
-        <item name="android:textSize">@dimen/list_item_operation_selection_text_size</item>
-    </style>
-
     <style name="EmptyActivity" parent="android:Theme.Dialog">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Toast</item>
@@ -96,11 +100,6 @@
         <item name="android:windowBackground">@color/transparent</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:colorForeground">#000</item>
-    </style>
-
-    <style name="AppTheme.PluginFeatureIcon">
-        <item name="android:maxWidth">@dimen/plugin_feature_icon_size</item>
-        <item name="android:maxHeight">@dimen/plugin_feature_icon_size</item>
     </style>
 
 </resources>

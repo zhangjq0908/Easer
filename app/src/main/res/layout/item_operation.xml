@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        style="@style/ListItem.OperationSelection"
+        style="@style/AppTheme.ListItem.OperationSelection"
         android:id="@+id/tv_operation_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
