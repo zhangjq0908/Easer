@@ -98,4 +98,9 @@
         <item name="android:colorForeground">#000</item>
     </style>
 
+    <style name="AppTheme.PluginFeatureIcon">
+        <item name="android:maxWidth">@dimen/plugin_feature_icon_size</item>
+        <item name="android:maxHeight">@dimen/plugin_feature_icon_size</item>
+    </style>
+
 </resources>

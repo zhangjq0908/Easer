@@ -55,8 +55,10 @@ Easer的期望功能中包含大量對隱私信息（比如位置信息、日曆
 
 事實上，強制各衍生/擴展品爲**GPL**並不必要，因爲只需要它們**開源**即可。但GPL是（我）目前所知的唯一可以保證衍生/擴展品爲開源軟件的協議，所以選擇它。
 
-第三方庫
+第三方
 -----
 * [Logger](https://github.com/orhanobut/logger): Apache License v2
 * [android-flowlayout](https://github.com/ApmeM/android-flowlayout): Apache License v2
 * [Guava](https://github.com/google/guava): Apache License v2
+
+* 以`*-fa-*`命名的drawable文件均來自[fontawesome](https://fontawesome.com/): CC-BY 4.0

@@ -23,11 +23,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
+import android.view.View;
+import android.widget.ImageView;
 
 import ryey.easer.BuildConfig;
 import ryey.easer.R;
 import ryey.easer.commons.CommonHelper;
 import ryey.easer.commons.plugindef.PluginDef;
+import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
+import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
 
 class PluginEnabledPreference extends CheckBoxPreference implements Preference.OnPreferenceChangeListener {
 
@@ -40,6 +44,7 @@ class PluginEnabledPreference extends CheckBoxPreference implements Preference.O
         this.plugin = plugin;
         setOnPreferenceChangeListener(this);
         setKey(CommonHelper.pluginEnabledKey(plugin));
+        setLayoutResource(R.layout.pref_plugin_enable);
         setTitle(plugin.name());
         boolean isCompatible = plugin.isCompatible(context);
         if (isCompatible) {
@@ -59,5 +64,19 @@ class PluginEnabledPreference extends CheckBoxPreference implements Preference.O
             return false;
         }
         return true;
+    }
+
+    @Override
+    protected void onBindView(View view) {
+        super.onBindView(view);
+        ImageView img_root = view.findViewById(R.id.img_root);
+        if (plugin instanceof OperationPlugin) {
+            PrivilegeUsage privilege = ((OperationPlugin) plugin).privilege();
+            if (privilege == PrivilegeUsage.root_only || privilege == PrivilegeUsage.prefer_root) {
+                img_root.setVisibility(View.VISIBLE);
+            } else {
+                img_root.setVisibility(View.GONE);
+            }
+        }
     }
 }
