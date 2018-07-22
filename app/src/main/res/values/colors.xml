@@ -10,6 +10,8 @@
     <color name="colorText_invalid">@android:color/holo_red_dark</color>
 
     <color name="divider">@android:color/darker_gray</color>
+    <color name="listHeaderBackground">@color/divider</color>
+    <color name="listHeaderText">@color/colorText</color>
 
     <color name="color_positive">#0CF440</color>
     <color name="color_negative">#F22754</color>

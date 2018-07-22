@@ -59,5 +59,6 @@ Third-party
 * [Logger](https://github.com/orhanobut/logger): Apache License v2
 * [android-flowlayout](https://github.com/ApmeM/android-flowlayout): Apache License v2
 * [Guava](https://github.com/google/guava): Apache License v2
+* [StickyListHeaders](https://github.com/emilsjolander/StickyListHeaders): Apache License v2
 
 * Drawable files named as `*-fa-*` all come from [fontawesome](https://fontawesome.com/): CC-BY 4.0

@@ -19,6 +19,7 @@
 
 package ryey.easer.core.ui.data;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -28,16 +29,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.plugins.PluginRegistry;
+import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
+import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 public class OperationSelectorFragment extends DialogFragment {
 
@@ -48,7 +53,7 @@ public class OperationSelectorFragment extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dialog_select_operation_plugin, container, false);
-        ListView list = view.findViewById(android.R.id.list);
+        StickyListHeadersListView list = view.findViewById(android.R.id.list);
         List<OperationPlugin> operationPluginList = PluginRegistry.getInstance().operation().getEnabledPlugins(getContext());
         List<PluginItemWrapper> descList = new ArrayList<>(operationPluginList.size());
         for (OperationPlugin operationPlugin : operationPluginList) {
@@ -60,7 +65,7 @@ public class OperationSelectorFragment extends DialogFragment {
             }
             descList.add(new PluginItemWrapper(operationPlugin.view().desc(getResources()), operationPlugin));
         }
-        ArrayAdapter<PluginItemWrapper> adapter = new ArrayAdapter<>(getContext(), R.layout.item_operation, R.id.tv_operation_name, descList);
+        PluginListAdapter adapter = new PluginListAdapter(getContext(), descList);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -104,5 +109,87 @@ public class OperationSelectorFragment extends DialogFragment {
         public String toString() {
             return name;
         }
+    }
+
+    public class PluginListAdapter extends BaseAdapter implements StickyListHeadersAdapter {
+
+        private final List<PluginItemWrapper> operationList = new ArrayList<>();
+        private LayoutInflater inflater;
+
+        PluginListAdapter(Context context, List<PluginItemWrapper> originalList) {
+            inflater = LayoutInflater.from(context);
+            this.operationList.addAll(originalList);
+            Collections.sort(operationList, new Comparator<PluginItemWrapper>() {
+                @Override
+                public int compare(PluginItemWrapper pluginItemWrapper, PluginItemWrapper t1) {
+                    return pluginItemWrapper.plugin.category().ordinal() - t1.plugin.category().ordinal();
+                }
+            });
+        }
+
+        @Override
+        public int getCount() {
+            return operationList.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return operationList.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder holder;
+
+            if (convertView == null) {
+                holder = new ViewHolder();
+                convertView = inflater.inflate(R.layout.item_operation, parent, false);
+                holder.text = convertView.findViewById(R.id.tv_operation_name);
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+
+            holder.text.setText(operationList.get(position).name);
+
+            return convertView;
+        }
+
+        @Override
+        public View getHeaderView(int position, View convertView, ViewGroup parent) {
+            HeaderViewHolder holder;
+            if (convertView == null) {
+                holder = new HeaderViewHolder();
+                convertView = inflater.inflate(R.layout.item_header, parent, false);
+                holder.text = convertView.findViewById(R.id.text);
+                convertView.setTag(holder);
+            } else {
+                holder = (HeaderViewHolder) convertView.getTag();
+            }
+            //set header text as first char in name
+            String headerText = operationList.get(position).plugin.category().toString(getResources());
+            holder.text.setText(headerText);
+            return convertView;
+        }
+
+        @Override
+        public long getHeaderId(int position) {
+            //return the first character of the country as ID because this is what headers are based upon
+            return operationList.get(position).plugin.category().ordinal();
+        }
+
+        class HeaderViewHolder {
+            TextView text;
+        }
+
+        class ViewHolder {
+            TextView text;
+        }
+
     }
 }

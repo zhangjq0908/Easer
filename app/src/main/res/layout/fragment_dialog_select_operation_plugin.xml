@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:text="@string/title_select_operation" />
 
-    <ListView
+    <se.emilsjolander.stickylistheaders.StickyListHeadersListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

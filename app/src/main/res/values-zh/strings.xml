@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Easer</string>
+    <string name="easer">Easer</string>
+    <string name="app_name">@string/easer</string>
     <string name="drawer_tip">Ease your life!</string>
     <string name="hint_event_title">事件名</string>
     <string name="menu_start">啓動</string>
@@ -106,5 +107,9 @@
     <string name="help_event">事件代表一個短時間（瞬時）的事件，通常在你手機上或是遠程。\n例如：收到通知，或掃描NFC設備。請參閱<a href="https://github.com/renyuneyun/Easer/wiki">文檔</a>以獲得更多信息。</string>
     <string name="help_condition">狀況代表一個長期（但一般並非永久）的狀況，通常在你手機上或遠程。\n例如：鏈接到某WiFi，或屏幕處於關閉狀態。\n請參閱<a href="https://github.com/renyuneyun/Easer/wiki">文檔</a>以獲得更多信息。</string>
     <string name="help_profile">行爲集是一組行爲/動作的集合。每個行爲/動作代表某一特定的操作。\n例如：打開藍牙，或發送短信。\n請參閱<a href="https://github.com/renyuneyun/Easer/wiki">文檔</a>以獲得更多信息。</string>
+    <string name="category_operation_system_config">系統設置</string>
+    <string name="category_operation_easer">@string/easer</string>
+    <string name="category_operation_misc">雜項</string>
+    <string name="category_operation_android">Android</string>
 
 </resources>
