@@ -50,7 +50,6 @@ release/
 *.swp
 
 tmp/
-asset/
 
 # Python
 __pycache__/
