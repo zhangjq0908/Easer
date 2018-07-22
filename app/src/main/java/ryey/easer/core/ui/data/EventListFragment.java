@@ -47,6 +47,11 @@ public class EventListFragment extends AbstractDataListFragment<EventDataStorage
     }
 
     @Override
+    protected int helpTextRes() {
+        return R.string.help_event;
+    }
+
+    @Override
     protected List<ListDataWrapper> queryDataList() {
         EventDataStorage dataStorage = EventDataStorage.getInstance(getContext());
         List<ListDataWrapper> dataWrapperList = new ArrayList<>();

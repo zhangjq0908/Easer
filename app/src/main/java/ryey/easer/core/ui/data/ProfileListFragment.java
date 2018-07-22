@@ -55,6 +55,11 @@ public class ProfileListFragment extends AbstractDataListFragment<ProfileDataSto
     }
 
     @Override
+    protected int helpTextRes() {
+        return R.string.help_profile;
+    }
+
+    @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         MenuInflater inflater = getActivity().getMenuInflater();
         inflater.inflate(R.menu.list_profile, menu);

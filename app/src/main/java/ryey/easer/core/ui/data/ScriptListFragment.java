@@ -41,6 +41,11 @@ public class ScriptListFragment extends AbstractDataListFragment<ScriptDataStora
     }
 
     @Override
+    protected int helpTextRes() {
+        return R.string.help_script;
+    }
+
+    @Override
     protected List<ListDataWrapper> queryDataList() {
         ScriptDataStorage dataStorage = ScriptDataStorage.getInstance(getContext());
         List<ListDataWrapper> dataWrapperList = new ArrayList<>();

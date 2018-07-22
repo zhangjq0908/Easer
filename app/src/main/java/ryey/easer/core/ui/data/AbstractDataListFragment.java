@@ -20,6 +20,7 @@
 package ryey.easer.core.ui.data;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,11 +28,15 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ListFragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
+import android.text.method.LinkMovementMethod;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -56,27 +61,34 @@ abstract class AbstractDataListFragment<T extends AbstractDataStorage> extends L
 
     static final int request_code = 10;
 
+    private TextView tv_help;
+
     protected abstract String title();
 
+    @StringRes
+    protected abstract int helpTextRes();
+
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        registerForContextMenu(getListView());
+    public void onAttach(Context context) {
+        super.onAttach(context);
 
         ListAdapter adapter = new IListAdapter(getActivity(), new ArrayList<ListDataWrapper>());
         setListAdapter(adapter);
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        reloadList();
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        setHasOptionsMenu(true);
+        registerForContextMenu(getListView());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getActivity().setTitle(title());
         View view = inflater.inflate(R.layout.fragment_fab_list, container, false);
+
+        tv_help = view.findViewById(R.id.help_text);
 
         FloatingActionButton fab = view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -87,6 +99,32 @@ abstract class AbstractDataListFragment<T extends AbstractDataStorage> extends L
         });
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        reloadList();
+    }
+
+    @Override
+    @CallSuper
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.list_data, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_help) {
+            Dialog dialog = new AlertDialog.Builder(getContext())
+                    .setNeutralButton(R.string.button_ok, null)
+                    .setMessage(helpTextRes())
+                    .create();
+            dialog.show();
+            ((TextView) dialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -130,6 +168,14 @@ abstract class AbstractDataListFragment<T extends AbstractDataStorage> extends L
         adapter.clear();
         adapter.addAll(items);
         adapter.notifyDataSetChanged();
+        if (getListAdapter().getCount() == 0) {
+            Logger.d("%s: no item", TAG);
+            tv_help.setVisibility(View.VISIBLE);
+            tv_help.setText(helpTextRes());
+        } else {
+            Logger.d("%s: has item", TAG);
+            tv_help.setVisibility(View.GONE);
+        }
     }
 
     @CallSuper
