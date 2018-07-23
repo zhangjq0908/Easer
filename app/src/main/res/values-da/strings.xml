@@ -21,12 +21,13 @@
     <string name="title_select_operation">Vælge handling</string>
     <string name="title_dynamics_link">Dynamik sammenkædning</string>
     <string name="title_new_dynamics_link">Ny dynamik sammenkædning</string>
+    <string name="title_trigger_profile">Udløse profil</string>
 
     <string name="menu_start">Start</string>
     <string name="menu_stop">Stop</string>
     <string name="menu_action_save">Gem</string>
 
-    <string name="service_indicator_positive">Startet</string>
+    <string name="service_indicator_positive">Kørende</string>
     <string name="service_indicator_negative">Stoppet</string>
     <string name="profile_indicator_last">Seneste profil:</string>
     <string name="profile_indicator_profile">Profil</string>
@@ -141,7 +142,7 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     <string name="message_convert_data_start">Konverterer data.</string>
     <string name="message_convert_data_finish">Data konverteret.</string>
     <string name="message_convert_data_abort">Konvertere data afbrudt.</string>
-    <string name="message_convert_data_error">Fejl opstod ved konvertering. Se i log for detaljer.</string>
+    <string name="message_convert_data_error">Fejl opstod ved konvertering. Se log for detaljer.</string>
 
     <string name="title_welcome_message">Velkommen</string>
     <string name="welcome_message">Velkommen til Easer!
@@ -158,4 +159,19 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     <string name="version">Version</string>
 
     <string name="message_importing_invalid_data">Filen ser ikke ud til at være gyldig. Importere en tidligere eksporteret Easer fil.</string>
+
+    <string name="dynamics_time">Nuværende tidspunkt</string>
+    <string name="dynamics_date">Nuværende dato</string>
+
+    <string name="title_help">Hjælp</string>
+    <string name="help_script">Skript er logik beholderne. Forbind en hændelse eller en tilstand med en profil i et skript, så Easer indlæser/udfører den pågældende profil når hændelsen finder sted eller tilstandn er opfyldt.\nDer er også mere avancerede funktioner f.eks. omvendt hændelse.\nFor yderligere oplysninger henvises til <a href="https://github.com/renyuneyun/Easer/wiki"> dokumentet</a>.</string>
+    <string name="help_event">Hændelse repræsenterer en kortvarig (øjeblikkelig) hændelse på telefonen eller eksternt.\nFor eksempel modtager en påmindelse eller en skannet NFC mærke.\nSe <a href="https://github.com/renyuneyun/Easer/wiki"> dokumentet </a> for at få flere oplysninger.</string>
+    <string name="help_condition">Tilstand repræsenterer en varig tilstand (men normalt ikke for altid) på telefonen eller eksternt.\nFor eksempel forbindelse til trådløst netværk eller skærm er fra.\nSe <a href="https://github.com/renyuneyun/Easer/wiki"> dokumentet </a> for at få flere oplysninger.</string>
+    <string name="help_profile">Profil er et sæt handlinger. Hver handling repræsenterer en bestemt type handling.\nFor eksempel tænd Bluetooth eller send en SMS.\nSe <a href="https://github.com/renyuneyun/Easer/wiki"> dokumentet </a> for at få flere oplysninger.</string>
+
+    <string name="category_operation_android">Android</string>
+    <string name="category_operation_system_config">System opsætning</string>
+    <string name="category_operation_easer">@string/easer</string>
+    <string name="category_operation_misc">Diverse</string>
+
 </resources>
