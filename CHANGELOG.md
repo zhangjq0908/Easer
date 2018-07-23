@@ -1,6 +1,13 @@
 CHANGELOG
 ======
 
+* v0.6.8: New logo && Show help text when list empty && Add category for Operation && Other UI fine-tune
+	* New logo (mainly from #138)
+	* Show help text when Script/Event/Condition/Profile list is empty (#96)
+	* Add category for OperationPlugin and categorize them when adding to Profile
+	* Add "root-feature" indicator to plugin enabling page
+	* Use white "Add" for FAB
+
 * v0.6.7.2: Allow to manually trigger Profiles && Bug fixes
 	* Add a function to manually trigger any Profile (in the Context menu) (#136)
 	* Fix not working Operation after v0.6.7 (#143, #141)
