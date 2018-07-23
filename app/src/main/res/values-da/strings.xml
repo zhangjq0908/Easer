@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">Easer</string>
+    <string name="easer">Easer</string>
+    <string name="app_name">@string/easer</string>
     <string name="drawer_tip">Gør dagligdagen nemmere!</string>
     <string name="title_outline">Skitse</string>
     <string name="title_operation">Handling</string>

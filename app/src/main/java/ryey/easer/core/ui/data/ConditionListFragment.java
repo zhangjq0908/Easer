@@ -47,6 +47,11 @@ public class ConditionListFragment extends AbstractDataListFragment<ConditionDat
     }
 
     @Override
+    protected int helpTextRes() {
+        return R.string.help_condition;
+    }
+
+    @Override
     protected List<ListDataWrapper> queryDataList() {
         ConditionDataStorage dataStorage = ConditionDataStorage.getInstance(getContext());
         List<ListDataWrapper> dataWrapperList = new ArrayList<>();

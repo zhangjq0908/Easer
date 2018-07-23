@@ -3,19 +3,21 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorAlert">#FE221C</color>
+    <color name="colorDivider">@android:color/darker_gray</color>
+    <color name="colorSegment">#CAD0E2</color>
 
-    <color name="colorDialogTitle">#99A9EE</color>
+    <color name="colorDialogTitle">@color/colorAccent</color>
     <color name="colorText">@android:color/black</color>
+    <color name="colorTextInverse">@android:color/white</color>
     <color name="colorText_scriptInactive">#9E9E9E</color>
     <color name="colorText_invalid">@android:color/holo_red_dark</color>
 
-    <color name="divider">@android:color/darker_gray</color>
+    <color name="listHeaderBackground">@color/colorPrimaryDark</color>
+    <color name="listHeaderText">@color/colorTextInverse</color>
 
     <color name="color_positive">#0CF440</color>
     <color name="color_negative">#F22754</color>
 
-    <color name="color_alert">#FE221C</color>
-    <color name="color_surrounding">#CAD0E2</color>
-
-    <color name="transparent">#00FFFFFF</color>
+    <color name="transparent">@android:color/transparent</color>
 </resources>

@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">Easer</string>
+    <string name="easer">Easer</string>
+    <string name="app_name">@string/easer</string>
     <string name="drawer_tip">Ease your life!</string>
     <string name="title_outline">Outline</string>
     <string name="title_operation">Operation</string>
@@ -161,5 +162,17 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
 
     <string name="dynamics_time">Current Time</string>
     <string name="dynamics_date">Current Date</string>
+
+    <string name="title_help">Help</string>
+    <string name="help_script">Script is the logic containers. You will connect an Event or a Condition with a Profile in a Script, so that Easer knows to load/execute that Profile when that Event happens or the Condition is met.\nThere are also more advanced functions, e.g. reversed event.\nPlease refer to the <a href="https://github.com/renyuneyun/Easer/wiki">document</a> for more information.</string>
+    <string name="help_event">Event represents a short-time (instant) event on your phone or remotely.\nFor example, receiving a notification, or an NFC tag is scanned.\nPlease refer to the <a href="https://github.com/renyuneyun/Easer/wiki">document</a> for more information.</string>
+    <string name="help_condition">Condition represents a long-lasting (but usually not forever) condition on your phone or remotely.\nFor example, connected to WiFi, or Screen is Off.\nPlease refer to the <a href="https://github.com/renyuneyun/Easer/wiki">document</a> for more information.</string>
+    <string name="help_profile">Profile is a set of Operations. Each Operation represents a particular type of action.\nFor example, turn on Bluetooth, or send an SMS.\nPlease refer to the <a href="https://github.com/renyuneyun/Easer/wiki">document</a> for more information.</string>
+
+    <string name="category_operation_android">Android</string>
+    <string name="category_operation_system_config">System config</string>
+    <string name="category_operation_easer">@string/easer</string>
+    <string name="category_operation_misc">Misc</string>
+
 </resources>
 

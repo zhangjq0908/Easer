@@ -26,6 +26,7 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.PluginViewFragment;
+import ryey.easer.commons.plugindef.operationplugin.Category;
 import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
@@ -59,6 +60,12 @@ public class SendSmsOperationPlugin implements OperationPlugin<SmsOperationData>
     @Override
     public int maxExistence() {
         return 0;
+    }
+
+    @NonNull
+    @Override
+    public Category category() {
+        return Category.android;
     }
 
     @Override

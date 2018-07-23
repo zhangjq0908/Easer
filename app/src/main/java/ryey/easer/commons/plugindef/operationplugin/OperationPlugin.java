@@ -46,6 +46,9 @@ public interface OperationPlugin<T extends OperationData> extends PluginDef<T> {
     int maxExistence();
 
     @NonNull
+    Category category();
+
+    @NonNull
     OperationDataFactory<T> dataFactory();
 
     /**
