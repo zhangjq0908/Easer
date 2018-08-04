@@ -37,6 +37,7 @@ import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 
 import ryey.easer.core.data.ScriptTree;
+import ryey.easer.core.log.ActivityLogService;
 
 /**
  * Each Lotus holds one ScriptTree.
@@ -146,32 +147,37 @@ public abstract class Lotus {
     protected void onSatisfied(@Nullable Bundle extras) {
         Logger.i("Lotus for <%s> satisfied", scriptTree.getName());
         satisfied = true;
-        triggerAndPromote(extras);
-    }
 
-    protected void onUnsatisfied() {
-        Logger.i("Lotus for <%s> unsatisfied", scriptTree.getName());
-        satisfied = false;
-        for (Lotus sub : subs) {
-            sub.cancel();
-        }
-        subs.clear();
-    }
-
-    synchronized protected void triggerAndPromote(Bundle extras) {
-        Logger.v(" traversing and find <%s> satisfied", scriptTree.getName());
         String profileName = scriptTree.getProfile();
         if (profileName != null) {
             Intent intent = new Intent(context, ProfileLoaderIntentService.class);
             intent.setAction(ProfileLoaderIntentService.ACTION_LOAD_PROFILE);
             intent.putExtra(ProfileLoaderIntentService.EXTRA_PROFILE_NAME, profileName);
-            intent.putExtra(ProfileLoaderIntentService.EXTRA_EVENT_NAME, scriptTree.getName());
+            intent.putExtra(ProfileLoaderIntentService.EXTRA_SCRIPT_NAME, scriptTree.getName());
             if (extras == null)
                 extras = new Bundle();
             intent.putExtra(EXTRA_DYNAMICS_PROPERTIES, extras);
             intent.putExtra(EXTRA_DYNAMICS_LINK, scriptTree.getData().getDynamicsLink());
             context.startService(intent);
         }
+
+        triggerAndPromote();
+    }
+
+    protected void onUnsatisfied() {
+        Logger.i("Lotus for <%s> unsatisfied", scriptTree.getName());
+        satisfied = false;
+
+        ActivityLogService.Companion.notifyScriptUnsatisfied(context, scriptTree.getName(), null);
+
+        for (Lotus sub : subs) {
+            sub.cancel();
+        }
+        subs.clear();
+    }
+
+    synchronized protected void triggerAndPromote() {
+        Logger.v(" <%s> start children's listening", scriptTree.getName());
         for (ScriptTree sub : scriptTree.getSubs()) {
             if (sub.isActive()) {
                 Lotus subLotus = Lotus.createLotus(context, sub, executorService, chBinder);

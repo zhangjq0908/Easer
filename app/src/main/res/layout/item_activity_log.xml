@@ -9,22 +9,7 @@
         android:stretchColumns="1">
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="3dp"
-                android:text="@string/profile_indicator_profile"/>
-
-            <TextView
-                android:id="@+id/textView_last_profile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="3dp"/>
-        </TableRow>
-
-        <TableRow
+            android:id="@+id/c_script"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -32,7 +17,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="3dp"
-                android:text="@string/profile_indicator_from" />
+                android:text="@string/activity_log__script" />
 
             <TextView
                 android:id="@+id/textView_from_event"
@@ -42,13 +27,65 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/c_script_satisfaction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="3dp"
-                android:text="@string/profile_indicator_time"/>
+                android:text="@string/activity_log__satisfaction"/>
+
+            <TextView
+                android:id="@+id/textView_extra_satisfaction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="3dp"/>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/c_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="3dp"
+                android:text="@string/activity_log__profile"/>
+
+            <TextView
+                android:id="@+id/textView_last_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="3dp"/>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/c_extra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="3dp"
+                android:text="@string/activity_log__extra"/>
+
+            <TextView
+                android:id="@+id/textView_extra_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="3dp"/>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/c_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="3dp"
+                android:text="@string/activity_log__time"/>
 
             <TextView
                 android:id="@+id/textView_profile_load_time"
@@ -56,6 +93,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="3dp"/>
         </TableRow>
+
     </TableLayout>
 
 </FrameLayout>

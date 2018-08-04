@@ -28,10 +28,6 @@
 
     <string name="service_indicator_positive">Startet</string>
     <string name="service_indicator_negative">Stoppet</string>
-    <string name="profile_indicator_last">Seneste profil:</string>
-    <string name="profile_indicator_profile">Profil</string>
-    <string name="profile_indicator_from">Fra</string>
-    <string name="profile_indicator_time">Indlæst tidspunkt</string>
 
     <string name="null_content">NULL INDHOLD</string>
 

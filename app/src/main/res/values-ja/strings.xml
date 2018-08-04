@@ -16,9 +16,7 @@
 
     <string name="service_indicator_positive">実行中</string>
     <string name="service_indicator_negative">実行していません</string>
-    <string name="profile_indicator_last">前回のプロファイル:</string>
-    <string name="profile_indicator_from">元のイベント</string>
-    <string name="profile_indicator_time">読み込み時間</string>
+    <string name="activity_log__time">時間</string>
 
     <string name="null_content">空のコンテンツ</string>
 

@@ -29,10 +29,14 @@
 
     <string name="service_indicator_positive">Running</string>
     <string name="service_indicator_negative">Not running</string>
-    <string name="profile_indicator_last">Last profile</string>
-    <string name="profile_indicator_profile">Profile</string>
-    <string name="profile_indicator_from">From</string>
-    <string name="profile_indicator_time">Loaded time</string>
+
+    <string name="activity_log__profile">@string/title_profile</string>
+    <string name="activity_log__script">@string/title_script</string>
+    <string name="activity_log__time">Time</string>
+    <string name="activity_log__extra">Extra info</string>
+    <string name="activity_log__satisfaction">Status</string>
+    <string name="activity_log__satisfied">Satisfied</string>
+    <string name="activity_log__unsatisfied">Unsatisfied</string>
 
     <string name="null_content">NULL CONTENT</string>
 

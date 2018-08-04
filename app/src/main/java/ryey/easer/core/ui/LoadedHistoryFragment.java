@@ -35,6 +35,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.text.DateFormat;
@@ -43,7 +44,10 @@ import java.util.Calendar;
 
 import ryey.easer.R;
 import ryey.easer.core.EHService;
-import ryey.easer.core.EventHistoryRecord;
+import ryey.easer.core.log.ActivityLog;
+import ryey.easer.core.log.ActivityLogService;
+import ryey.easer.core.log.ProfileLoadedLog;
+import ryey.easer.core.log.ScriptSatisfactionLog;
 
 public class LoadedHistoryFragment extends Fragment {
 
@@ -99,7 +103,7 @@ public class LoadedHistoryFragment extends Fragment {
             view.setAdapter(historyAdapter);
             return layout;
         } else {
-            View view = inflater.inflate(R.layout.fragment_loaded_history, container, false);
+            View view = inflater.inflate(R.layout.item_activity_log, container, false);
             historyViewHolder = new HistoryViewHolder(view);
             return view;
         }
@@ -126,73 +130,123 @@ public class LoadedHistoryFragment extends Fragment {
 
     private void refreshHistoryDisplay() {
         if (historyViewHolder != null) {
-            historyViewHolder.bindTo(EHService.getLastHistory());
+            historyViewHolder.bindTo(ActivityLogService.Companion.getLastHistory());
         } else {
             historyAdapter.notifyDataSetChanged();
         }
     }
 
-    public static class HistoryAdapter extends ListAdapter<EventHistoryRecord, HistoryViewHolder> {
+    public static class HistoryAdapter extends ListAdapter<ActivityLog, HistoryViewHolder> {
 
         HistoryAdapter() {
             super(DIFF_CALLBACK);
-            submitList(EHService.getHistory());
+            submitList(ActivityLogService.Companion.getHistory());
         }
 
         @NonNull
         @Override
         public HistoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View v = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.fragment_loaded_history, parent, false);
+                    .inflate(R.layout.item_activity_log, parent, false);
             return new HistoryViewHolder(v);
         }
 
         @Override
         public void onBindViewHolder(@NonNull HistoryViewHolder holder, int position) {
-            EventHistoryRecord historyRecord = getItem(position);
-            holder.bindTo(historyRecord);
+            ActivityLog log = getItem(position);
+            holder.bindTo(log);
         }
 
-        static final DiffUtil.ItemCallback<EventHistoryRecord> DIFF_CALLBACK =
-                new DiffUtil.ItemCallback<EventHistoryRecord>() {
+        static final DiffUtil.ItemCallback<ActivityLog> DIFF_CALLBACK =
+                new DiffUtil.ItemCallback<ActivityLog>() {
                     @Override
                     public boolean areItemsTheSame(
-                            @NonNull EventHistoryRecord oldEventHistoryRecord, @NonNull EventHistoryRecord newEventHistoryRecord) {
-                        return oldEventHistoryRecord.equals(newEventHistoryRecord);
+                            @NonNull ActivityLog oldActivityLog, @NonNull ActivityLog newActivityLog) {
+                        return oldActivityLog.equals(newActivityLog);
                     }
                     @Override
                     public boolean areContentsTheSame(
-                            @NonNull EventHistoryRecord oldEventHistoryRecord, @NonNull EventHistoryRecord newEventHistoryRecord) {
-                        return oldEventHistoryRecord.equals(newEventHistoryRecord);
+                            @NonNull ActivityLog oldActivityLog, @NonNull ActivityLog newActivityLog) {
+                        return oldActivityLog.equals(newActivityLog);
                     }
                 };
 
     }
 
     static class HistoryViewHolder extends RecyclerView.ViewHolder {
-        final TextView tv_event, tv_profile, tv_time;
+        final TableRow c_time, c_script, c_satisfaction, c_profile, c_extra;
+        final TextView tv_time, tv_script, tv_satisfaction, tv_profile, tv_extra;
         HistoryViewHolder(View itemView) {
             super(itemView);
-            tv_event = itemView.findViewById(R.id.textView_from_event);
-            tv_profile = itemView.findViewById(R.id.textView_last_profile);
+            c_time = itemView.findViewById(R.id.c_time);
             tv_time = itemView.findViewById(R.id.textView_profile_load_time);
+            c_script = itemView.findViewById(R.id.c_script);
+            tv_script = itemView.findViewById(R.id.textView_from_event);
+            c_satisfaction = itemView.findViewById(R.id.c_script_satisfaction);
+            tv_satisfaction = itemView.findViewById(R.id.textView_extra_satisfaction);
+            c_profile = itemView.findViewById(R.id.c_profile);
+            tv_profile = itemView.findViewById(R.id.textView_last_profile);
+            c_extra = itemView.findViewById(R.id.c_extra);
+            tv_extra = itemView.findViewById(R.id.textView_extra_info);
         }
 
-        void bindTo(EventHistoryRecord historyRecord) {
-            if (historyRecord == null)
+        @Nullable
+        private static String tLong2Text(long time) {
+            if (time < 0) {
+                return null;
+            }
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(time);
+            DateFormat df = SimpleDateFormat.getDateTimeInstance();
+            return df.format(calendar.getTime());
+        }
+
+        void bindTo(@Nullable ActivityLog activityLog) {
+            if (activityLog == null) {
+                c_script.setVisibility(View.GONE);
+                c_profile.setVisibility(View.GONE);
+                c_time.setVisibility(View.GONE);
+                c_extra.setVisibility(View.GONE);
+                c_satisfaction.setVisibility(View.GONE);
                 return;
-            final String eventName = historyRecord.event;
-            final String profileName = historyRecord.profile;
-            long loadTime = historyRecord.loadTime;
-            tv_profile.setText(profileName);
-            tv_event.setText(eventName);
-            if (loadTime > 0) {
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTimeInMillis(loadTime);
-                DateFormat df = SimpleDateFormat.getDateTimeInstance();
-                tv_time.setText(df.format(calendar.getTime()));
+            }
+            long loadTime = activityLog.time();
+            c_time.setVisibility(View.VISIBLE);
+            tv_time.setText(tLong2Text(loadTime));
+            String extraInfo = activityLog.extraInfo();
+            if (extraInfo == null) {
+                c_extra.setVisibility(View.GONE);
             } else {
-                tv_time.setText("");
+                c_extra.setVisibility(View.VISIBLE);
+                tv_extra.setText(extraInfo);
+            }
+            if (activityLog instanceof ScriptSatisfactionLog) {
+                ScriptSatisfactionLog log = (ScriptSatisfactionLog) activityLog;
+                final String scriptName = (log).getScriptName();
+                c_script.setVisibility(View.VISIBLE);
+                tv_script.setText(scriptName);
+                c_satisfaction.setVisibility(View.VISIBLE);
+                if (log.getSatisfaction()) {
+                    final String profileName = (log).getProfileName();
+                    if (profileName == null) {
+                        c_profile.setVisibility(View.GONE);
+                    } else {
+                        c_profile.setVisibility(View.VISIBLE);
+                        tv_profile.setText(profileName);
+                    }
+                    tv_satisfaction.setText(R.string.activity_log__satisfied);
+                } else {
+                    c_profile.setVisibility(View.GONE);
+                    tv_satisfaction.setText(R.string.activity_log__unsatisfied);
+                }
+            } else {
+                c_satisfaction.setVisibility(View.GONE);
+                if (activityLog instanceof ProfileLoadedLog) {
+                    ProfileLoadedLog log = (ProfileLoadedLog) activityLog;
+                    final String profileName = (log).getProfileName();
+                    c_script.setVisibility(View.GONE);
+                    tv_profile.setText(profileName);
+                }
             }
         }
     }

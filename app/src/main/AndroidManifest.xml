@@ -143,11 +143,17 @@
 
         <activity
             android:name=".core.ui.data.ListDynamicsActivity"
-            android:label="@string/title_dynamics_link"
-            android:excludeFromRecents="true"></activity>
-        <activity android:name=".core.ui.data.ListDynamicsActivity$EditDynamicsActivity"
-            android:label="@string/title_new_dynamics_link"
-            android:excludeFromRecents="true"></activity>
+            android:excludeFromRecents="true"
+            android:label="@string/title_dynamics_link" />
+        <activity
+            android:name=".core.ui.data.ListDynamicsActivity$EditDynamicsActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/title_new_dynamics_link" />
+
+        <service
+            android:name=".core.log.ActivityLogService"
+            android:enabled="true"
+            android:exported="false"></service>
     </application>
 
 </manifest>
