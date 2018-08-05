@@ -170,6 +170,8 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
 
     <string name="dynamics_time">Current Time</string>
     <string name="dynamics_date">Current Date</string>
+    <string name="dynamics_script_name">Script Name</string>
+    <string name="dynamics_profile_name">Profile Name</string>
 
     <string name="title_help">Help</string>
     <string name="help_script">Script is the logic containers. You will connect an Event or a Condition with a Profile in a Script, so that Easer knows to load/execute that Profile when that Event happens or the Condition is met.\nThere are also more advanced functions, e.g. reversed event.\nPlease refer to the <a href="https://github.com/renyuneyun/Easer/wiki">document</a> for more information.</string>

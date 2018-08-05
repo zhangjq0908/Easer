@@ -20,9 +20,11 @@
 package ryey.easer.core.dynamics;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
 
 import ryey.easer.commons.dynamics.Dynamics;
 
 public interface CoreDynamicsInterface extends Dynamics {
-    String invoke(Context context);
+    String invoke(@NonNull Context context, @NonNull Bundle extras);
 }

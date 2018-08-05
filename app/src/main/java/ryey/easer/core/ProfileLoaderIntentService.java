@@ -75,31 +75,31 @@ public class ProfileLoaderIntentService extends IntentService {
         if (ACTION_LOAD_PROFILE.equals(action)) {
             final String name = intent.getStringExtra(EXTRA_PROFILE_NAME);
             final String event = intent.getStringExtra(EXTRA_SCRIPT_NAME);
+            if (intent.getExtras() == null) {
+                Logger.wtf("ProfileLoaderIntent has null extras???");
+                throw new IllegalStateException("ProfileLoaderIntent has null extras???");
+            }
             handleActionLoadProfile(name, event, intent.getExtras());
         } else {
             Logger.wtf("ProfileLoaderIntentService got unknown Intent action <%s>", action);
         }
     }
 
-    private void handleActionLoadProfile(@NonNull String name, @Nullable String event, @Nullable Bundle extras) {
+    private void handleActionLoadProfile(@NonNull String name, @Nullable String event, @NonNull Bundle extras) {
         Logger.d("Loading profile <%s> by <%s>", name, event);
         ProfileStructure profile;
         ProfileDataStorage storage = ProfileDataStorage.getInstance(this);
         profile = storage.get(name);
 
-        DynamicsLink dynamicsLink = null;
-        Bundle macroData = null;
-        if (extras != null) {
-            dynamicsLink = extras.getParcelable(Lotus.EXTRA_DYNAMICS_LINK);
-            macroData = extras.getBundle(Lotus.EXTRA_DYNAMICS_PROPERTIES);
-        }
+        DynamicsLink dynamicsLink = extras.getParcelable(Lotus.EXTRA_DYNAMICS_LINK);
+        Bundle macroData = extras.getBundle(Lotus.EXTRA_DYNAMICS_PROPERTIES);
         if (dynamicsLink == null)
             dynamicsLink = new DynamicsLink();
         if (macroData == null)
             macroData = new Bundle();
         for (CoreDynamicsInterface dynamics : CoreDynamics.coreDynamics()) {
             if (dynamicsLink.identityMap().containsValue(dynamics.id())) {
-                macroData.putString(dynamics.id(), dynamics.invoke(this));
+                macroData.putString(dynamics.id(), dynamics.invoke(this, extras));
             }
         }
         final SolidDynamicsAssignment solidMacroAssignment = dynamicsLink.assign(macroData);

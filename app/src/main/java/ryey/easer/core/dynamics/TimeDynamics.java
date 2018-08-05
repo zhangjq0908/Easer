@@ -20,6 +20,8 @@
 package ryey.easer.core.dynamics;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -43,7 +45,7 @@ class TimeDynamics implements CoreDynamicsInterface {
     }
 
     @Override
-    public String invoke(Context context) {
+    public String invoke(@NonNull Context context, @NonNull Bundle extras) {
         Date now = Calendar.getInstance().getTime();
         return sdf_time.format(now);
     }
