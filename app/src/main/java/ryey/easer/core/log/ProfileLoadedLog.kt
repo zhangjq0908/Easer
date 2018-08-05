@@ -26,7 +26,7 @@ import ryey.easer.Utils
 class ProfileLoadedLog : BasicLog {
     val profileName: String
 
-    constructor(time: Long, profile: String, extraInfo: String? = null) : super(time, extraInfo) {
+    constructor(profile: String, extraInfo: String? = null) : super(extraInfo) {
         this.profileName = profile
     }
 

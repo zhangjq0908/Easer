@@ -29,8 +29,8 @@ class ScriptSatisfactionLog : BasicLog {
     val satisfaction: Boolean
     val profileName: String?
 
-    constructor(time: Long, scriptName: String, satisfaction: Boolean = true, profileName: String?, extraInfo: String?)
-            : super(time, extraInfo) {
+    constructor(scriptName: String, satisfaction: Boolean = true, profileName: String?, extraInfo: String?)
+            : super(extraInfo) {
         this.scriptName = scriptName
         this.satisfaction = satisfaction
         this.profileName = profileName

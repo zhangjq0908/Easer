@@ -73,28 +73,29 @@ class ActivityLogService : Service() {
 
         private val activityLogList = LinkedList<ActivityLog>()
 
-        fun notifyScriptSatisfied(context: Context, scriptName: String, profileName: String? = null, extraInfo: String? = null) {
-            val calendar = Calendar.getInstance()
-            val time = calendar.timeInMillis
-            val log = ScriptSatisfactionLog(time, scriptName, true, profileName, extraInfo)
+        private fun notifyLog(context: Context, log: ActivityLog) {
             val intent = Intent(ACTION_NEW_LOG_ENTRY)
             intent.putExtra(EXTRA_ACTIVITY_LOG, log)
             context.sendBroadcast(intent)
+        }
+
+        fun notifyServiceStatus(context: Context, serviceName: String, start: Boolean, extraInfo: String?) {
+            val log = ServiceLog(serviceName, start, extraInfo)
+            notifyLog(context, log)
+        }
+
+        fun notifyScriptSatisfied(context: Context, scriptName: String, profileName: String? = null, extraInfo: String? = null) {
+            val log = ScriptSatisfactionLog(scriptName, true, profileName, extraInfo)
+            notifyLog(context, log)
         }
 
         fun notifyScriptUnsatisfied(context: Context, scriptName: String, extraInfo: String? = null) {
-            val calendar = Calendar.getInstance()
-            val time = calendar.timeInMillis
-            val log = ScriptSatisfactionLog(time, scriptName, false, null, extraInfo)
-            val intent = Intent(ACTION_NEW_LOG_ENTRY)
-            intent.putExtra(EXTRA_ACTIVITY_LOG, log)
-            context.sendBroadcast(intent)
+            val log = ScriptSatisfactionLog(scriptName, false, null, extraInfo)
+            notifyLog(context, log)
         }
 
         fun notifyProfileLoaded(context: Context, profileName: String, extraInfo: String?) {
-            val calendar = Calendar.getInstance()
-            val time = calendar.timeInMillis
-            val log = ProfileLoadedLog(time, profileName, extraInfo)
+            val log = ProfileLoadedLog(profileName, extraInfo)
             val intent = Intent(ACTION_NEW_LOG_ENTRY)
             intent.putExtra(EXTRA_ACTIVITY_LOG, log)
             context.sendBroadcast(intent)

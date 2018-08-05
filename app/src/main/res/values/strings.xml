@@ -37,6 +37,10 @@
     <string name="activity_log__satisfaction">Status</string>
     <string name="activity_log__satisfied">Satisfied</string>
     <string name="activity_log__unsatisfied">Unsatisfied</string>
+    <string name="activity_log__service">Service</string>
+    <string name="activity_log__status">Status</string>
+    <string name="activity_log__start">Start</string>
+    <string name="activity_log__stop">Stop</string>
 
     <string name="null_content">NULL CONTENT</string>
 

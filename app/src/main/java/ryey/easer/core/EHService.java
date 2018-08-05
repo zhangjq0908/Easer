@@ -41,6 +41,7 @@ import java.util.concurrent.Executors;
 
 import ryey.easer.core.data.ScriptTree;
 import ryey.easer.core.data.storage.ScriptDataStorage;
+import ryey.easer.core.log.ActivityLogService;
 
 /*
  * The background service which maintains several Lotus(es) and send Intent to load Profile(s).
@@ -50,7 +51,6 @@ public class EHService extends Service {
 
     public static final String ACTION_STATE_CHANGED = "ryey.easer.action.STATE_CHANGED";
     public static final String ACTION_PROFILE_UPDATED = "ryey.easer.action.PROFILE_UPDATED";
-
 
     private static final String ACTION_UNREGISTER_CONDITION_EVENT = "ryey.easer.service.action.UNREGISTER_CONDITION_EVENT";
     private static final String ACTION_REGISTER_CONDITION_EVENT = "ryey.easer.service.action.REGISTER_CONDITION_EVENT";
@@ -78,6 +78,7 @@ public class EHService extends Service {
     }
 
     private static final String TAG = "[EHService] ";
+    private static final String SERVICE_NAME = "Easer";
 
     List<Lotus> mLotusArray = new ArrayList<>();
     private ExecutorService executorService = Executors.newFixedThreadPool(4);
@@ -146,6 +147,7 @@ public class EHService extends Service {
     public void onCreate() {
         Logger.v(TAG + "onCreate()");
         super.onCreate();
+        ActivityLogService.Companion.notifyServiceStatus(this, SERVICE_NAME, true, null);
         bindService(new Intent(this, ConditionHolderService.class), connection, Context.BIND_AUTO_CREATE);
         running = true;
         Intent intent = new Intent(ACTION_STATE_CHANGED);
@@ -161,6 +163,7 @@ public class EHService extends Service {
     public void onDestroy() {
         Logger.v(TAG + "onDestroy");
         super.onDestroy();
+        ActivityLogService.Companion.notifyServiceStatus(this, SERVICE_NAME, false, null);
         mCancelTriggers();
         unregisterReceiver(mReceiver);
         unbindService(connection);

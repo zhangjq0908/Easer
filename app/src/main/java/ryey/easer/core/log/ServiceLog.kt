@@ -20,63 +20,58 @@
 package ryey.easer.core.log
 
 import android.os.Parcel
-import android.support.annotation.CallSuper
-import java.util.*
+import android.os.Parcelable
 
-abstract class BasicLog: ActivityLog {
-    val time: Long
-    val extraInfo: String?
+class ServiceLog : BasicLog {
 
-    constructor(extraInfo: String? = null, time: Long = now()) {
-        this.time = time
-        this.extraInfo = extraInfo
-    }
+    val serviceName: String
+    val start: Boolean
 
-    final override fun time(): Long {
-        return time
-    }
-
-    final override fun extraInfo(): String? {
-        return extraInfo
+    constructor(serviceName: String, start: Boolean, extraInfo: String? = null) : super(extraInfo) {
+        this.serviceName = serviceName
+        this.start = start
     }
 
     override fun equals(other: Any?): Boolean {
-        if (other === this)
-            return true
-        if (other == null || other !is ProfileLoadedLog)
+        if (!super.equals(other))
             return false
-        if (time != other.time)
+        other as ServiceLog
+        if (serviceName != other.serviceName)
             return false
-        if (extraInfo != other.extraInfo) {
+        if (start != other.start)
             return false
-        }
         return true
     }
 
     override fun hashCode(): Int {
-        var result = time.hashCode()
-        result = 31 * result + (extraInfo?.hashCode() ?: 0)
+        var result = super.hashCode()
+        result = 31 * result + serviceName.hashCode()
+        result = 31 * result + start.hashCode()
         return result
     }
 
-    protected constructor(parcel: Parcel) {
-        time = parcel.readLong()
-        extraInfo = parcel.readString()
+    constructor(parcel: Parcel) : super(parcel) {
+        serviceName = parcel.readString()
+        start = parcel.readByte() > 0
     }
 
-    @CallSuper
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeLong(time)
-        parcel.writeString(extraInfo)
+        super.writeToParcel(parcel, flags)
+        parcel.writeString(serviceName)
+        parcel.writeByte(if (start) 1 else 0)
     }
 
     override fun describeContents(): Int {
         return 0
     }
-    companion object {
-        private fun now() : Long {
-            val calendar = Calendar.getInstance()
-            return calendar.timeInMillis
+
+    companion object CREATOR : Parcelable.Creator<ServiceLog> {
+        override fun createFromParcel(parcel: Parcel): ServiceLog {
+            return ServiceLog(parcel)
+        }
+
+        override fun newArray(size: Int): Array<ServiceLog?> {
+            return arrayOfNulls(size)
         }
     }
 }
