@@ -122,9 +122,12 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
     public static class SettingsFragment extends PreferenceFragment {
 
         final static int REQCODE_PICK_FILE = 10;
+        final static int REQCODE_PICK_FILE_EXPORT = 15;
         final static int REQCODE_PERM_EXPORT = 11;
         final static int REQCODE_PERM_IMPORT = 12;
         final static int REQCODE_PERM_STORAGE = 1;
+
+        private final static String FILETYPE_EXPORT_DATA = "application/zip";
 
         @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -148,7 +151,15 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                                 REQCODE_PERM_EXPORT);
                     } else {
-                        export_data(getActivity());
+                        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.KITKAT) {
+                            export_data(getActivity());
+                        } else {
+                            Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+                            intent.addCategory(Intent.CATEGORY_OPENABLE);
+                            intent.setType(FILETYPE_EXPORT_DATA);
+                            intent.putExtra(Intent.EXTRA_TITLE, exportFileName());
+                            startActivityForResult(intent, REQCODE_PICK_FILE_EXPORT);
+                        }
                     }
                     return true;
                 }
@@ -255,8 +266,8 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
 
         @Override
         public void onActivityResult(int requestCode, int resultCode, Intent data) {
-            if (requestCode == REQCODE_PICK_FILE) {
-                if (resultCode == RESULT_OK) {
+            if (resultCode == RESULT_OK) {
+                if (requestCode == REQCODE_PICK_FILE) {
                     Uri uri = data.getData();
                     try {
                         Helper.import_data(getActivity(), uri);
@@ -269,6 +280,14 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                                 R.string.message_importing_invalid_data,
                                 Toast.LENGTH_LONG)
                                 .show();
+                        e.printStackTrace();
+                    }
+                } else if (requestCode == REQCODE_PICK_FILE_EXPORT) {
+                    Uri uri = data.getData();
+                    try {
+                        Helper.export_data(getActivity(), uri);
+                    } catch (IOException e) {
+                        Logger.e(e, "IOException caught when exporting data");
                         e.printStackTrace();
                     }
                 }
@@ -294,13 +313,17 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
             }
         }
 
+        private static String exportFileName() {
+            Calendar calendar = Calendar.getInstance();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd.hh:mm:ss", Locale.US);
+            String time_str = sdf.format(calendar.getTime());
+            return String.format("Easer.%s.zip", time_str);
+        }
+
         private static void export_data(Context context) {
             try {
-                Calendar calendar = Calendar.getInstance();
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd.hh:mm:ss", Locale.US);
-                String time_str = sdf.format(calendar.getTime());
                 File sdCard = Environment.getExternalStorageDirectory();
-                File dest = new File(sdCard, String.format("Easer.%s.zip", time_str));
+                File dest = new File(sdCard, exportFileName());
                 Logger.v("Export destination: %s", dest);
                 Helper.export_data(context, dest);
                 Toast.makeText(context,
