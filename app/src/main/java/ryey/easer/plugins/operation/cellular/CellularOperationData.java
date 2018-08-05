@@ -23,8 +23,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.plugins.operation.BooleanOperationData;
 
 public class CellularOperationData extends BooleanOperationData {
@@ -32,7 +32,7 @@ public class CellularOperationData extends BooleanOperationData {
         super(state);
     }
 
-    CellularOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    CellularOperationData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         super(data, format, version);
     }
 

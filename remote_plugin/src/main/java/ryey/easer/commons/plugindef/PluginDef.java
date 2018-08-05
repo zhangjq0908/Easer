@@ -70,5 +70,5 @@ public interface PluginDef<T extends StorageData> {
      * Used in relevant UI.
      */
     @NonNull
-    PluginViewFragment<T> view();
+    PluginViewFragmentInterface<T> view();
 }

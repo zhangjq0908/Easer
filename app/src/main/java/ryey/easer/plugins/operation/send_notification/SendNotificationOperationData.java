@@ -29,8 +29,8 @@ import org.json.JSONObject;
 import java.util.Set;
 
 import ryey.easer.Utils;
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
@@ -46,11 +46,11 @@ public class SendNotificationOperationData implements OperationData {
         this.content = content;
     }
 
-    SendNotificationOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    SendNotificationOperationData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
     }
 
-    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 try {
@@ -65,7 +65,7 @@ public class SendNotificationOperationData implements OperationData {
 
     @NonNull
     @Override
-    public String serialize(@NonNull C.Format format) {
+    public String serialize(@NonNull PluginDataFormat format) {
         String res;
         switch (format) {
             default:

@@ -26,8 +26,8 @@ import android.support.annotation.Nullable;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.dynamics.Dynamics;
 import ryey.easer.plugins.event.AbstractEventData;
 
@@ -44,7 +44,7 @@ public class ConditionEventEventData extends AbstractEventData {
     public final String conditionName;
     final ConditionEvent conditionEvent;
 
-    ConditionEventEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    ConditionEventEventData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 try {
@@ -69,7 +69,7 @@ public class ConditionEventEventData extends AbstractEventData {
 
     @NonNull
     @Override
-    public String serialize(@NonNull C.Format format) {
+    public String serialize(@NonNull PluginDataFormat format) {
         String res;
         switch (format) {
             default:

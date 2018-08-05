@@ -24,6 +24,8 @@
     <string name="title_new_dynamics_link">New Dynamics Link</string>
     <string name="title_trigger_profile">Trigger this Profile</string>
 
+    <string name="title_remote_operation_plugin">Remote Operation Plugin</string>
+
     <string name="menu_start">Start</string>
     <string name="menu_stop">Stop</string>
     <string name="menu_action_save">Save</string>
@@ -184,5 +186,6 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     <string name="category_operation_system_config">System config</string>
     <string name="category_operation_easer">@string/easer</string>
     <string name="category_operation_misc">Misc</string>
+    <string name="category_operation_unknown">Unknown</string>
 
 </resources>

@@ -40,11 +40,13 @@ import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.core.data.ProfileStructure;
+import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.core.dynamics.CoreDynamics;
 import ryey.easer.core.dynamics.CoreDynamicsInterface;
 import ryey.easer.core.log.ActivityLogService;
 import ryey.easer.plugins.PluginRegistry;
+import ryey.easer.remote_plugin.RemoteOperationData;
 
 import static ryey.easer.core.Lotus.EXTRA_DYNAMICS_LINK;
 import static ryey.easer.core.Lotus.EXTRA_DYNAMICS_PROPERTIES;
@@ -72,6 +74,8 @@ public class ProfileLoaderService extends Service {
         LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
     }
 
+    private RemotePluginCommunicationHelper helper;
+
     private IntentFilter intentFilter = new IntentFilter(ACTION_LOAD_PROFILE);
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -95,10 +99,13 @@ public class ProfileLoaderService extends Service {
     public void onCreate() {
         Logger.v("ProfileLoaderService onCreate()");
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, intentFilter);
+        helper = new RemotePluginCommunicationHelper(this);
+        helper.begin();
     }
 
     @Override
     public void onDestroy() {
+        helper.end();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
     }
 
@@ -129,18 +136,28 @@ public class ProfileLoaderService extends Service {
 
         if (profile != null) {
             boolean loaded = false;
-            for (OperationPlugin plugin : PluginRegistry.getInstance().operation().getEnabledPlugins(this)) {
-                OperationLoader loader = plugin.loader(getApplicationContext());
-                Collection<OperationData> possibleData = profile.get(plugin.id());
-                if (possibleData != null) {
-                    for (OperationData data : possibleData) {
+            PluginRegistry.Registry<OperationPlugin, OperationData> operationRegistry = PluginRegistry.getInstance().operation();
+            for (String pluginId : profile.pluginIds()) {
+                Collection<RemoteLocalOperationDataWrapper> dataCollection = profile.get(pluginId);
+                if (operationRegistry.hasPlugin(pluginId)) {
+                    OperationPlugin plugin = operationRegistry.findPlugin(pluginId);
+                    assert plugin != null;
+                    OperationLoader loader = plugin.loader(getApplicationContext());
+                    for (RemoteLocalOperationDataWrapper data : dataCollection) {
+                        OperationData localData = data.localData;
+                        assert localData != null;
                         try {
                             //noinspection unchecked
-                            if (loader.load(data.applyDynamics(solidMacroAssignment)))
+                            if (loader.load(localData.applyDynamics(solidMacroAssignment)))
                                 loaded = true;
                         } catch (RuntimeException e) {
                             Logger.e(e, "error while loading operation <%s> for profile <%s>", data.getClass().getSimpleName(), profile.getName());
                         }
+                    }
+                } else {
+                    for (RemoteLocalOperationDataWrapper data : dataCollection) {
+                        RemoteOperationData remoteData = data.remoteData;
+                        helper.asyncTriggerOperation(pluginId, remoteData);
                     }
                 }
             }

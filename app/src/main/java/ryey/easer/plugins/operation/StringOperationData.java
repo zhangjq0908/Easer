@@ -26,8 +26,8 @@ import android.support.annotation.Nullable;
 import java.util.Set;
 
 import ryey.easer.Utils;
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.plugins.reusable.StringData;
 
@@ -39,11 +39,11 @@ public abstract class StringOperationData extends StringData implements Operatio
         super(text);
     }
 
-    public StringOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public StringOperationData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
     }
 
-    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 set(data);
@@ -52,7 +52,7 @@ public abstract class StringOperationData extends StringData implements Operatio
 
     @NonNull
     @Override
-    public String serialize(@NonNull C.Format format) {
+    public String serialize(@NonNull PluginDataFormat format) {
         String res;
         switch (format) {
             default:

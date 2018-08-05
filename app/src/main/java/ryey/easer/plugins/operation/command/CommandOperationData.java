@@ -24,8 +24,8 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
 import ryey.easer.Utils;
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.plugins.operation.StringOperationData;
@@ -36,7 +36,7 @@ public class CommandOperationData extends StringOperationData {
         super(command);
     }
 
-    CommandOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    CommandOperationData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         super(data, format, version);
     }
 

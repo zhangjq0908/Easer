@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.plugindef.conditionplugin.ConditionData;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.storage.C;
@@ -52,6 +53,6 @@ public class ConditionParser implements Parser<ConditionStructure> {
         String spec = json_condition.getString(C.SPEC);
         return PluginRegistry.getInstance().condition().findPlugin(spec)
                 .dataFactory()
-                .parse(json_condition.getString(C.DATA), C.Format.JSON, version);
+                .parse(json_condition.getString(C.DATA), PluginDataFormat.JSON, version);
     }
 }

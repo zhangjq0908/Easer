@@ -28,8 +28,8 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.plugindef.conditionplugin.ConditionData;
 
 public class CellLocationConditionData implements ConditionData {
@@ -39,7 +39,7 @@ public class CellLocationConditionData implements ConditionData {
         setFromMultiple(locations);
     }
 
-    CellLocationConditionData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    CellLocationConditionData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 try {
@@ -68,7 +68,7 @@ public class CellLocationConditionData implements ConditionData {
 
     @NonNull
     @Override
-    public String serialize(@NonNull C.Format format) {
+    public String serialize(@NonNull PluginDataFormat format) {
         String res;
         switch (format) {
             default:

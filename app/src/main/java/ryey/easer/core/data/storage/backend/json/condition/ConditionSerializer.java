@@ -22,6 +22,7 @@ package ryey.easer.core.data.storage.backend.json.condition;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.plugindef.conditionplugin.ConditionData;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.storage.C;
@@ -46,7 +47,7 @@ public class ConditionSerializer implements Serializer<ConditionStructure> {
     private JSONObject serialize_condition(ConditionData condition) throws JSONException {
         JSONObject json_situation = new JSONObject();
         json_situation.put(C.SPEC, PluginRegistry.getInstance().condition().findPlugin(condition).id());
-        json_situation.put(C.DATA, condition.serialize(C.Format.JSON));
+        json_situation.put(C.DATA, condition.serialize(PluginDataFormat.JSON));
         return json_situation;
     }
 }

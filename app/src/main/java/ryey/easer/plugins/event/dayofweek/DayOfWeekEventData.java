@@ -31,8 +31,8 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.Set;
 
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.dynamics.Dynamics;
 import ryey.easer.plugins.event.AbstractEventData;
 
@@ -44,7 +44,7 @@ public class DayOfWeekEventData extends AbstractEventData {
         this.days = days;
     }
 
-    DayOfWeekEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    DayOfWeekEventData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
     }
 
@@ -74,7 +74,7 @@ public class DayOfWeekEventData extends AbstractEventData {
         return true;
     }
 
-    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         days.clear();
         switch (format) {
             default:
@@ -92,7 +92,7 @@ public class DayOfWeekEventData extends AbstractEventData {
 
     @NonNull
     @Override
-    public String serialize(@NonNull C.Format format) {
+    public String serialize(@NonNull PluginDataFormat format) {
         String res;
         switch (format) {
             default:

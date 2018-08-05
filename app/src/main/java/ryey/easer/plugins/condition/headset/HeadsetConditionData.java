@@ -27,8 +27,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import ryey.easer.Utils;
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.plugindef.conditionplugin.ConditionData;
 
 public class HeadsetConditionData implements ConditionData {
@@ -55,7 +55,7 @@ public class HeadsetConditionData implements ConditionData {
         this.hs_type = hs_type;
     }
 
-    HeadsetConditionData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    HeadsetConditionData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 String name;
@@ -75,7 +75,7 @@ public class HeadsetConditionData implements ConditionData {
 
     @NonNull
     @Override
-    public String serialize(@NonNull C.Format format) {
+    public String serialize(@NonNull PluginDataFormat format) {
         String res;
         switch (format) {
             default:

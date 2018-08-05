@@ -25,10 +25,12 @@ import android.support.v4.util.ArraySet;
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.Multimap;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
 
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.remote_plugin.RemoteOperationData;
 
 /*
  * A Profile is a bundle of several Operation(s).
@@ -39,7 +41,7 @@ final public class ProfileStructure implements Named, Verifiable, WithCreatedVer
     private final int createdVersion;
     String name;
 
-    final Multimap<String, OperationData> data = LinkedListMultimap.create();
+    final Multimap<String, RemoteLocalOperationDataWrapper> data = LinkedListMultimap.create();
 
     public ProfileStructure(int createdVersion) {
         this.createdVersion = createdVersion;
@@ -53,21 +55,36 @@ final public class ProfileStructure implements Named, Verifiable, WithCreatedVer
         this.name = name;
     }
 
-    public Collection<OperationData> get(String key) {
+    //TODO: concurrent
+    public Set<String> pluginIds() {
+        return data.keySet();
+    }
+    public Collection<RemoteLocalOperationDataWrapper> get(String key) {
         return data.get(key);
     }
+    public void put(String key, RemoteOperationData value) {
+        data.put(key, new RemoteLocalOperationDataWrapper(value));
+    }
     public void put(String key, OperationData value) {
-        data.put(key, value);
+        data.put(key, new RemoteLocalOperationDataWrapper(value));
     }
     public void set(String key, Collection<OperationData> dataCollection) {
-        data.replaceValues(key, dataCollection);
+        Collection<RemoteLocalOperationDataWrapper> wrapperCollection = new ArrayList<>(dataCollection.size());
+        for (OperationData operationData : dataCollection) {
+            wrapperCollection.add(new RemoteLocalOperationDataWrapper(operationData));
+        }
+        data.replaceValues(key, wrapperCollection);
     }
 
     @Nullable
     public Set<String> placeholders() {
         Set<String> placeholders = new ArraySet<>();
         for (String key : data.keys()) {
-            for (OperationData operationData : data.get(key)) {
+            for (RemoteLocalOperationDataWrapper dataWrapper : data.get(key)) {
+                if (dataWrapper.isRemote())
+                    break;
+                OperationData operationData = dataWrapper.localData;
+                assert operationData != null;
                 Set<String> ph = operationData.placeholders();
                 if (ph != null)
                     placeholders.addAll(ph);

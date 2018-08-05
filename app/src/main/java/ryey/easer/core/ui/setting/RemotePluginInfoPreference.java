@@ -17,25 +17,18 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.commons.plugindef.operationplugin;
+package ryey.easer.core.ui.setting;
 
-import android.support.annotation.NonNull;
+import android.content.Context;
+import android.preference.Preference;
 
-import ryey.easer.commons.C;
-import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.plugindef.DataFactory;
-import ryey.easer.commons.plugindef.ValidData;
+import ryey.easer.core.RemotePluginInfo;
 
+public class RemotePluginInfoPreference extends Preference {
 
-public interface OperationDataFactory<T extends OperationData> extends DataFactory<T> {
-    @NonNull
-    Class<T> dataClass();
+    public RemotePluginInfoPreference(Context context, RemotePluginInfo pluginInfo) {
+        super(context);
+        setTitle(pluginInfo.getPluginName());
+    }
 
-    @ValidData
-    @NonNull
-    T dummyData();
-
-    @ValidData
-    @NonNull
-    T parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException;
 }

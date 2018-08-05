@@ -38,7 +38,7 @@ import ryey.easer.plugins.PluginRegistry;
 /**
  * Base Fragment class for plugin's UI.
  */
-public abstract class PluginViewFragment<T extends StorageData> extends Fragment {
+public abstract class PluginViewFragment<T extends StorageData> extends PluginViewFragmentInterface<T> {
 
     /**
      * Used in case {@link #onCreateView} is called after {@link #fill}`.

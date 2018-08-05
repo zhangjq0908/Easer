@@ -21,8 +21,8 @@ package ryey.easer.plugins.operation.media_control;
 
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 
@@ -44,7 +44,7 @@ class MediaControlOperationDataFactory implements OperationDataFactory<MediaCont
     @ValidData
     @NonNull
     @Override
-    public MediaControlOperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public MediaControlOperationData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         return new MediaControlOperationData(data, format, version);
     }
 }

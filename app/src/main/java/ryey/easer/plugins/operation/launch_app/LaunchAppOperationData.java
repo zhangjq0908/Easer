@@ -10,8 +10,8 @@ import org.json.JSONObject;
 import java.util.Set;
 
 import ryey.easer.Utils;
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
@@ -24,7 +24,7 @@ public class LaunchAppOperationData implements OperationData {
         this.app_package = app_package;
     }
 
-    LaunchAppOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    LaunchAppOperationData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 try {
@@ -38,7 +38,7 @@ public class LaunchAppOperationData implements OperationData {
 
     @NonNull
     @Override
-    public String serialize(@NonNull C.Format format) {
+    public String serialize(@NonNull PluginDataFormat format) {
         String ret;
         switch (format) {
             default:

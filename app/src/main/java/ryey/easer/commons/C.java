@@ -48,7 +48,4 @@ public class C {
     public static final int VERSION_CREATED_IN_RUNTIME = -1;
     public static final int VERSION_CURRENT = VERSION_ADD_DYNAMICS;
 
-    public enum Format {
-        JSON,
-    }
 }

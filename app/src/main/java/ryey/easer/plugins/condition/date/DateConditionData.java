@@ -30,8 +30,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.plugindef.conditionplugin.ConditionData;
 
 public class DateConditionData implements ConditionData {
@@ -62,7 +62,7 @@ public class DateConditionData implements ConditionData {
         this.rel = rel;
     }
 
-    DateConditionData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    DateConditionData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 try {
@@ -80,7 +80,7 @@ public class DateConditionData implements ConditionData {
 
     @NonNull
     @Override
-    public String serialize(@NonNull C.Format format) {
+    public String serialize(@NonNull PluginDataFormat format) {
         String res;
         switch (format) {
             default:

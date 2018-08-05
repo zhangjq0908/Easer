@@ -25,6 +25,7 @@ import java.lang.reflect.Constructor;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
 import static org.junit.Assert.assertEquals;
@@ -33,8 +34,8 @@ public class OperationDataTest {
 
     <T extends OperationData> void testParseAndSerializeMatch(T data0) throws Exception {
         Class<T> klass = (Class<T>) data0.getClass();
-        Constructor<T> constructor = klass.getDeclaredConstructor(OperationDataTest.class, String.class, C.Format.class, int.class);
-        for (C.Format format : C.Format.values()) {
+        Constructor<T> constructor = klass.getDeclaredConstructor(OperationDataTest.class, String.class, PluginDataFormat.class, int.class);
+        for (PluginDataFormat format : PluginDataFormat.values()) {
             String serialized = data0.serialize(format);
             T data1 = constructor.newInstance(this, serialized, format, C.VERSION_CURRENT);
             assertEquals(data0, data1);
@@ -48,7 +49,7 @@ public class OperationDataTest {
                 IBooleanOperationData(Boolean state) {
                     super(state);
                 }
-                IBooleanOperationData(String data, C.Format format, int version) throws IllegalStorageDataException {
+                IBooleanOperationData(String data, PluginDataFormat format, int version) throws IllegalStorageDataException {
                     super(data, format, version);
                 }
             }
@@ -68,12 +69,12 @@ public class OperationDataTest {
                 IIntegerOperationData(int level) {
                     super(level);
                 }
-                IIntegerOperationData(String data, C.Format format, int version) throws IllegalStorageDataException {
+                IIntegerOperationData(String data, PluginDataFormat format, int version) throws IllegalStorageDataException {
                     parse(data, format, version);
                 }
             }
             IntegerOperationData data0 = new IIntegerOperationData(level);
-            for (C.Format format : C.Format.values()) {
+            for (PluginDataFormat format : PluginDataFormat.values()) {
                 String serialized = data0.serialize(format);
                 IIntegerOperationData data1 = new IIntegerOperationData(serialized, format, C.VERSION_CURRENT);
                 assertEquals(data0, data1);
@@ -85,7 +86,7 @@ public class OperationDataTest {
                 IStringOperationData(String data) {
                     super(data);
                 }
-                IStringOperationData(String data, C.Format format, int version) throws IllegalStorageDataException {
+                IStringOperationData(String data, PluginDataFormat format, int version) throws IllegalStorageDataException {
                     parse(data, format, version);
                 }
             }

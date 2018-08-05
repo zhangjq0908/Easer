@@ -31,6 +31,7 @@ import java.util.Set;
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
@@ -42,11 +43,11 @@ public class RingerModeOperationData implements OperationData {
         this.ringerMode = ringerMode;
     }
 
-    RingerModeOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    RingerModeOperationData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
     }
 
-    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 if (version < C.VERSION_GRANULAR_RINGER_MODE) {
@@ -77,7 +78,7 @@ public class RingerModeOperationData implements OperationData {
 
     @NonNull
     @Override
-    public String serialize(@NonNull C.Format format) {
+    public String serialize(@NonNull PluginDataFormat format) {
         String res = "";
         switch (format) {
             default:

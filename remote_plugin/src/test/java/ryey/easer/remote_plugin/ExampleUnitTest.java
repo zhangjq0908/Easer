@@ -17,24 +17,20 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.commons.plugindef.conditionplugin;
+package ryey.easer.remote_plugin;
 
-import android.support.annotation.NonNull;
+import org.junit.Test;
 
-import ryey.easer.commons.C;
-import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.plugindef.DataFactory;
-import ryey.easer.commons.plugindef.ValidData;
+import static org.junit.Assert.*;
 
-public interface ConditionDataFactory<D extends ConditionData> extends DataFactory<D> {
-    @NonNull
-    Class<D> dataClass();
-
-    @ValidData
-    @NonNull
-    D dummyData();
-
-    @ValidData
-    @NonNull
-    D parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException;
+/**
+ * Example local unit test, which will execute on the development machine (host).
+ *
+ * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ */
+public class ExampleUnitTest {
+    @Test
+    public void addition_isCorrect() {
+        assertEquals(4, 2 + 2);
+    }
 }

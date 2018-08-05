@@ -28,7 +28,7 @@ import android.widget.ImageView;
 
 import ryey.easer.BuildConfig;
 import ryey.easer.R;
-import ryey.easer.commons.CommonHelper;
+import ryey.easer.commons.CommonPluginHelper;
 import ryey.easer.commons.plugindef.PluginDef;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
@@ -43,7 +43,7 @@ class PluginEnabledPreference extends CheckBoxPreference implements Preference.O
         super(context);
         this.plugin = plugin;
         setOnPreferenceChangeListener(this);
-        setKey(CommonHelper.pluginEnabledKey(plugin));
+        setKey(CommonPluginHelper.pluginEnabledKey(plugin));
         setLayoutResource(R.layout.pref_plugin_enable);
         setTitle(plugin.name());
         boolean isCompatible = plugin.isCompatible(context);

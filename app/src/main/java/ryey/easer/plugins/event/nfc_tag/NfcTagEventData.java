@@ -28,8 +28,8 @@ import org.json.JSONObject;
 
 import java.util.Arrays;
 
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.dynamics.Dynamics;
 import ryey.easer.plugins.event.AbstractEventData;
 
@@ -66,7 +66,7 @@ public class NfcTagEventData extends AbstractEventData {
         id = hexString2byteArray(id_str);
     }
 
-    NfcTagEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    NfcTagEventData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
     }
 
@@ -97,7 +97,7 @@ public class NfcTagEventData extends AbstractEventData {
         return Arrays.equals(id, ((NfcTagEventData) obj).id);
     }
 
-    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 try {
@@ -113,7 +113,7 @@ public class NfcTagEventData extends AbstractEventData {
 
     @NonNull
     @Override
-    public String serialize(@NonNull C.Format format) {
+    public String serialize(@NonNull PluginDataFormat format) {
         String res;
         switch (format) {
             default:

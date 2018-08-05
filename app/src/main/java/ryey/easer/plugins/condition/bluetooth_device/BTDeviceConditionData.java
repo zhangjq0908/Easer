@@ -29,8 +29,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ryey.easer.Utils;
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.plugindef.conditionplugin.ConditionData;
 
 public class BTDeviceConditionData implements ConditionData {
@@ -40,7 +40,7 @@ public class BTDeviceConditionData implements ConditionData {
         setMultiple(hardware_addresses);
     }
 
-    BTDeviceConditionData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    BTDeviceConditionData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 hwaddresses.clear();
@@ -70,7 +70,7 @@ public class BTDeviceConditionData implements ConditionData {
 
     @NonNull
     @Override
-    public String serialize(@NonNull C.Format format) {
+    public String serialize(@NonNull PluginDataFormat format) {
         String res;
         switch (format) {
             default:

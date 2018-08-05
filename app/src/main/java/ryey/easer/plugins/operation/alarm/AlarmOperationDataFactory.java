@@ -23,8 +23,8 @@ import android.support.annotation.NonNull;
 
 import java.util.Calendar;
 
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 
@@ -48,7 +48,7 @@ class AlarmOperationDataFactory implements OperationDataFactory<AlarmOperationDa
     @ValidData
     @NonNull
     @Override
-    public AlarmOperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public AlarmOperationData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         return new AlarmOperationData(data, format, version);
     }
 }

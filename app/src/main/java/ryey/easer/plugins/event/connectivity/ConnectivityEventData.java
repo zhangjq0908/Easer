@@ -31,8 +31,8 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.Set;
 
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.dynamics.Dynamics;
 import ryey.easer.plugins.event.AbstractEventData;
 
@@ -44,11 +44,11 @@ public class ConnectivityEventData extends AbstractEventData {
         this.connectivity_type = connectivity_type;
     }
 
-    ConnectivityEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    ConnectivityEventData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
     }
 
-    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         connectivity_type.clear();
         switch (format) {
             default:
@@ -66,7 +66,7 @@ public class ConnectivityEventData extends AbstractEventData {
 
     @NonNull
     @Override
-    public String serialize(@NonNull C.Format format) {
+    public String serialize(@NonNull PluginDataFormat format) {
         String res;
         switch (format) {
             default:

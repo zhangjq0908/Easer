@@ -19,25 +19,18 @@
 
 package ryey.easer.commons;
 
-public class IllegalStorageDataException extends Exception {
+import android.os.Parcel;
+import android.support.annotation.NonNull;
 
-    public IllegalStorageDataException(String detailMessage) {
-        super(detailMessage);
+public enum PluginDataFormat {
+    JSON,
+    ;
+
+    public static void toParcel(@NonNull Parcel dest, @NonNull PluginDataFormat format) {
+        dest.writeInt(format.ordinal());
     }
 
-    public IllegalStorageDataException(Exception e) {
-        this(e.getMessage());
-    }
-
-    public IllegalStorageDataException(C.Format format) {
-        super(String.format("Illegal %s data", format));
-    }
-
-    public IllegalStorageDataException(C.Format format, String field) {
-        super(String.format("Illegal %s data: invalid field <%s>", format, field));
-    }
-
-    public IllegalStorageDataException(C.Format format, String field, String expected) {
-        super(String.format("Illegal %s data: field <%s> doesn't have %s", format, field, expected));
+    public static @NonNull PluginDataFormat fromParcel(@NonNull Parcel in) {
+        return PluginDataFormat.values()[in.readInt()];
     }
 }

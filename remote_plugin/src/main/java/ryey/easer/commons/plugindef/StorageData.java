@@ -22,7 +22,7 @@ package ryey.easer.commons.plugindef;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.C;
+import ryey.easer.commons.PluginDataFormat;
 
 /**
  * Common interface used by both EventData and OperationData.
@@ -39,7 +39,7 @@ public interface StorageData extends Parcelable {
      * @return The serialized text (which will be used directly in the data field).
      */
     @NonNull
-    String serialize(@NonNull C.Format format);
+    String serialize(@NonNull PluginDataFormat format);
 
     /**
      * Check the data's validity. If not valid, this data won't be loaded and/or saved.
