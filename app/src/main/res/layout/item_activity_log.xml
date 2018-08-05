@@ -1,135 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <TableLayout
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:stretchColumns="1">
+        android:layout_height="wrap_content">
 
-        <TableRow
-            android:id="@+id/c_script"
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:stretchColumns="1">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="3dp"
-                android:text="@string/activity_log__script" />
-
-            <TextView
-                android:id="@+id/textView_from_event"
+            <TableRow
+                android:id="@+id/c_script"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="3dp" />
-        </TableRow>
+                android:layout_height="wrap_content">
 
-        <TableRow
-            android:id="@+id/c_script_satisfaction"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="3dp"
-                android:text="@string/activity_log__satisfaction"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="3dp"
+                    android:text="@string/activity_log__script" />
 
-            <TextView
-                android:id="@+id/textView_extra_satisfaction"
+                <TextView
+                    android:id="@+id/tv_script"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="3dp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/c_satisfaction"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="3dp"/>
-        </TableRow>
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="3dp"
+                    android:text="@string/activity_log__satisfaction"/>
 
-        <TableRow
-            android:id="@+id/c_profile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="3dp"
-                android:text="@string/activity_log__profile"/>
+                <TextView
+                    android:id="@+id/tv_satisfaction"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="3dp"/>
+            </TableRow>
 
-            <TextView
-                android:id="@+id/textView_last_profile"
+            <TableRow
+                android:id="@+id/c_profile"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="3dp"/>
-        </TableRow>
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="3dp"
+                    android:text="@string/activity_log__profile"/>
 
-        <TableRow
-            android:id="@+id/c_service"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="3dp"/>
+            </TableRow>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="3dp"
-                android:text="@string/activity_log__service" />
-
-            <TextView
-                android:id="@+id/textView_service"
+            <TableRow
+                android:id="@+id/c_service"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="3dp" />
-        </TableRow>
+                android:layout_height="wrap_content">
 
-        <TableRow
-            android:id="@+id/c_status"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="3dp"
+                    android:text="@string/activity_log__service" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="3dp"
-                android:text="@string/activity_log__status" />
+                <TextView
+                    android:id="@+id/tv_service"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="3dp" />
+            </TableRow>
 
-            <TextView
-                android:id="@+id/textView_status"
+            <TableRow
+                android:id="@+id/c_status"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="3dp" />
-        </TableRow>
+                android:layout_height="wrap_content">
 
-        <TableRow
-            android:id="@+id/c_extra"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="3dp"
-                android:text="@string/activity_log__extra"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="3dp"
+                    android:text="@string/activity_log__status" />
 
-            <TextView
-                android:id="@+id/textView_extra_info"
+                <TextView
+                    android:id="@+id/tv_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="3dp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/c_extra"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="3dp"/>
-        </TableRow>
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="3dp"
+                    android:text="@string/activity_log__extra"/>
 
-        <TableRow
-            android:id="@+id/c_time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="3dp"
-                android:text="@string/activity_log__time"/>
+                <TextView
+                    android:id="@+id/tv_extra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="3dp"/>
+            </TableRow>
 
-            <TextView
-                android:id="@+id/textView_profile_load_time"
+            <TableRow
+                android:id="@+id/c_time"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="3dp"/>
-        </TableRow>
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="3dp"
+                    android:text="@string/activity_log__time"/>
 
-    </TableLayout>
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="3dp"/>
+            </TableRow>
 
-</FrameLayout>
+        </TableLayout>
+
+    </FrameLayout>
+</layout>

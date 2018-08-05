@@ -23,6 +23,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -35,8 +36,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TableRow;
-import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -49,6 +48,7 @@ import ryey.easer.core.log.ActivityLogService;
 import ryey.easer.core.log.ProfileLoadedLog;
 import ryey.easer.core.log.ScriptSatisfactionLog;
 import ryey.easer.core.log.ServiceLog;
+import ryey.easer.databinding.ItemActivityLogBinding;
 
 public class ActivityLogFragment extends Fragment {
 
@@ -175,24 +175,10 @@ public class ActivityLogFragment extends Fragment {
     }
 
     static class HistoryViewHolder extends RecyclerView.ViewHolder {
-        final TableRow c_time, c_extra, c_script, c_satisfaction, c_profile, c_service, c_status;
-        final TextView tv_time, tv_extra, tv_script, tv_satisfaction, tv_profile, tv_service, tv_status;
+        final ItemActivityLogBinding binding;
         HistoryViewHolder(View itemView) {
             super(itemView);
-            c_time = itemView.findViewById(R.id.c_time);
-            tv_time = itemView.findViewById(R.id.textView_profile_load_time);
-            c_script = itemView.findViewById(R.id.c_script);
-            tv_script = itemView.findViewById(R.id.textView_from_event);
-            c_satisfaction = itemView.findViewById(R.id.c_script_satisfaction);
-            tv_satisfaction = itemView.findViewById(R.id.textView_extra_satisfaction);
-            c_profile = itemView.findViewById(R.id.c_profile);
-            tv_profile = itemView.findViewById(R.id.textView_last_profile);
-            c_extra = itemView.findViewById(R.id.c_extra);
-            tv_extra = itemView.findViewById(R.id.textView_extra_info);
-            c_service = itemView.findViewById(R.id.c_service);
-            tv_service = itemView.findViewById(R.id.textView_service);
-            c_status = itemView.findViewById(R.id.c_status);
-            tv_status = itemView.findViewById(R.id.textView_status);
+            binding = DataBindingUtil.bind(itemView);
         }
 
         @Nullable
@@ -207,54 +193,55 @@ public class ActivityLogFragment extends Fragment {
         }
 
         void bindTo(@Nullable ActivityLog activityLog) {
-            c_script.setVisibility(View.GONE);
-            c_profile.setVisibility(View.GONE);
-            c_time.setVisibility(View.GONE);
-            c_extra.setVisibility(View.GONE);
-            c_satisfaction.setVisibility(View.GONE);
-            c_service.setVisibility(View.GONE);
-            c_status.setVisibility(View.GONE);
-            if (activityLog == null) {
+            binding.cScript.setVisibility(View.GONE);
+            binding.cProfile.setVisibility(View.GONE);
+            binding.cTime.setVisibility(View.GONE);
+            binding.cExtra.setVisibility(View.GONE);
+            binding.cSatisfaction.setVisibility(View.GONE);
+            binding.cService.setVisibility(View.GONE);
+            binding.cStatus.setVisibility(View.GONE);
+            if (activityLog == null)
                 return;
-            }
             long loadTime = activityLog.time();
-            c_time.setVisibility(View.VISIBLE);
-            tv_time.setText(tLong2Text(loadTime));
+            binding.cTime.setVisibility(View.VISIBLE);
+            binding.tvTime.setText(tLong2Text(loadTime));
             String extraInfo = activityLog.extraInfo();
             if (extraInfo != null) {
-                c_extra.setVisibility(View.VISIBLE);
-                tv_extra.setText(extraInfo);
+                binding.cExtra.setVisibility(View.VISIBLE);
+                binding.tvExtra.setText(extraInfo);
             }
             if (activityLog instanceof ScriptSatisfactionLog) {
                 ScriptSatisfactionLog log = (ScriptSatisfactionLog) activityLog;
                 final String scriptName = (log).getScriptName();
-                c_script.setVisibility(View.VISIBLE);
-                tv_script.setText(scriptName);
-                c_satisfaction.setVisibility(View.VISIBLE);
+                binding.cScript.setVisibility(View.VISIBLE);
+                binding.tvScript.setText(scriptName);
+                binding.cSatisfaction.setVisibility(View.VISIBLE);
                 if (log.getSatisfaction()) {
                     final String profileName = (log).getProfileName();
                     if (profileName != null) {
-                        c_profile.setVisibility(View.VISIBLE);
-                        tv_profile.setText(profileName);
+                        binding.cProfile.setVisibility(View.VISIBLE);
+                        binding.tvProfile.setText(profileName);
                     }
-                    tv_satisfaction.setText(R.string.activity_log__satisfied);
+                    binding.tvSatisfaction.setText(R.string.activity_log__satisfied);
                 } else {
-                    tv_satisfaction.setText(R.string.activity_log__unsatisfied);
+                    binding.tvSatisfaction.setText(R.string.activity_log__unsatisfied);
                 }
             } else {
                 if (activityLog instanceof ProfileLoadedLog) {
                     ProfileLoadedLog log = (ProfileLoadedLog) activityLog;
                     final String profileName = (log).getProfileName();
-                    c_profile.setVisibility(View.VISIBLE);
-                    tv_profile.setText(profileName);
+                    binding.cProfile.setVisibility(View.VISIBLE);
+                    binding.tvProfile.setText(profileName);
                 } else if (activityLog instanceof ServiceLog) {
                     ServiceLog log = (ServiceLog) activityLog;
                     final String serviceName = log.getServiceName();
                     final boolean start = log.getStart();
-                    c_service.setVisibility(View.VISIBLE);
-                    tv_service.setText(serviceName);
-                    c_status.setVisibility(View.VISIBLE);
-                    tv_status.setText(start ? R.string.activity_log__start : R.string.activity_log__stop);
+                    binding.cService.setVisibility(View.VISIBLE);
+                    binding.tvService.setText(serviceName);
+                    binding.cStatus.setVisibility(View.VISIBLE);
+                    binding.tvStatus.setText(start
+                            ? R.string.activity_log__start
+                            : R.string.activity_log__stop);
                 }
             }
         }
