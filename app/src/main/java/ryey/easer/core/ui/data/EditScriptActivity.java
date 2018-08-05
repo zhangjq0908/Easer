@@ -62,7 +62,6 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
     EventPluginViewPager mViewPager_edit_event;
 
     EditText mEditText_name = null;
-    private static final String NON = ""; //TODO: more robust
     DataSelectSpinnerWrapper sw_parent;
     DataSelectSpinnerWrapper sw_profile;
     boolean isActive = true;
@@ -195,10 +194,12 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
                         intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_DATA, eventData);
                     } else if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_scenario) {
                         EventDataStorage eventDataStorage = EventDataStorage.getInstance(EditScriptActivity.this);
-                        String scenario_name = sw_scenario.getSelection();
-                        EventStructure eventStructure = eventDataStorage.get(scenario_name);
+                        String event_name = sw_scenario.getSelection();
+                        if (event_name != null) {
+                            EventStructure eventStructure = eventDataStorage.get(event_name);
+                            intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_DATA, eventStructure.getEventData());
+                        }
                         intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_TYPE, ListDynamicsActivity.PLUGIN_TYPE_EVENT);
-                        intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_DATA, eventStructure.getEventData());
                     } else if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_condition) {
                         intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_TYPE, ListDynamicsActivity.PLUGIN_TYPE_CONDITION);
                     }
