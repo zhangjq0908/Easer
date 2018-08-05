@@ -1,6 +1,20 @@
 CHANGELOG
 ======
 
+* v0.6.9: Better Activity Log && Widget && More Dynamics && Better UX && i18n && dev change
+	* Allow to log more type of items in Activity Log
+		* Script status
+		* Service on / off
+		* Profile triggering
+	* Add (launcher) widget (for service status)
+	* Add ScriptName & ProfileName Dynamics
+	* Allow to select destination for exporting on Kitkat+ (fix #146)
+	* Fix crash when trying to edit Dynamics with no Event selected (fix #147)
+	* Update Danish translation (#148)
+	* Dev change:
+		* Use Kotlin for new code
+		* Use DataBindingUtil
+
 * v0.6.8: New logo && Show help text when list empty && Add category for Operation && Other UI fine-tune
 	* New logo (mainly from #138)
 	* Show help text when Script/Event/Condition/Profile list is empty (#96)
