@@ -20,47 +20,56 @@
 package ryey.easer.core.log
 
 import android.os.Parcel
-import android.os.Parcelable
-import ryey.easer.Utils
+import android.support.annotation.CallSuper
 
-class ProfileLoadedLog : BasicLog {
-    val profileName: String
+abstract class BasicLog: ActivityLog {
+    val time: Long
+    val extraInfo: String?
 
-    constructor(time: Long, profile: String, extraInfo: String? = null) : super(time, extraInfo) {
-        this.profileName = profile
+    constructor(time: Long, extraInfo: String? = null) {
+        this.time = time
+        this.extraInfo = extraInfo
+    }
+
+    final override fun time(): Long {
+        return time
+    }
+
+    final override fun extraInfo(): String? {
+        return extraInfo
     }
 
     override fun equals(other: Any?): Boolean {
-        if (!super.equals(other))
+        if (other === this)
+            return true
+        if (other == null || other !is ProfileLoadedLog)
             return false
-        other as ProfileLoadedLog
-        if (!Utils.nullableEqual(profileName, other.profileName))
+        if (time != other.time)
             return false
+        if (extraInfo != other.extraInfo) {
+            return false
+        }
         return true
     }
 
     override fun hashCode(): Int {
-        var result = super.hashCode()
-        result = 31 * result + profileName.hashCode()
+        var result = time.hashCode()
+        result = 31 * result + (extraInfo?.hashCode() ?: 0)
         return result
     }
 
-    constructor(parcel: Parcel) : super(parcel) {
-        profileName = parcel.readString()
+    protected constructor(parcel: Parcel) {
+        time = parcel.readLong()
+        extraInfo = parcel.readString()
     }
 
+    @CallSuper
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        super.writeToParcel(parcel, flags)
-        parcel.writeString(profileName)
+        parcel.writeLong(time)
+        parcel.writeString(extraInfo)
     }
 
-    companion object CREATOR : Parcelable.Creator<ProfileLoadedLog> {
-        override fun createFromParcel(parcel: Parcel): ProfileLoadedLog {
-            return ProfileLoadedLog(parcel)
-        }
-
-        override fun newArray(size: Int): Array<ProfileLoadedLog?> {
-            return arrayOfNulls(size)
-        }
+    override fun describeContents(): Int {
+        return 0
     }
 }

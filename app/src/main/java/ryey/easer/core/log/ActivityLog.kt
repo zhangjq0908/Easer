@@ -28,5 +28,5 @@ interface ActivityLog : Parcelable {
     fun extraInfo(): String?
 
     @Suppress("RedundantIf")
-    override fun equals(obj: Any?): Boolean
+    override fun equals(other: Any?): Boolean
 }

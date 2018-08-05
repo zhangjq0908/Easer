@@ -23,63 +23,51 @@ import android.os.Parcel
 import android.os.Parcelable
 import ryey.easer.Utils
 
-class ScriptSatisfactionLog : ActivityLog {
+class ScriptSatisfactionLog : BasicLog {
 
-    val time: Long
     val scriptName: String
     val satisfaction: Boolean
     val profileName: String?
-    val extraInfo: String?
 
-    constructor(time: Long, scriptName: String, satisfaction: Boolean = true, profileName: String?, extraInfo: String?) {
-        this.time = time
+    constructor(time: Long, scriptName: String, satisfaction: Boolean = true, profileName: String?, extraInfo: String?)
+            : super(time, extraInfo) {
         this.scriptName = scriptName
-        this.satisfaction =satisfaction
+        this.satisfaction = satisfaction
         this.profileName = profileName
-        this.extraInfo = extraInfo
     }
 
-    override fun time(): Long {
-        return time
-    }
-
-    override fun extraInfo(): String? {
-        return extraInfo
-    }
-
-    @Suppress("RedundantIf")
-    override fun equals(obj: Any?): Boolean {
-        if (obj === this)
-            return true
-        if (obj == null || obj !is ScriptSatisfactionLog)
+    override fun equals(other: Any?): Boolean {
+        if (!super.equals(other))
             return false
-        if (!Utils.nullableEqual(scriptName, obj.scriptName))
+        other as ScriptSatisfactionLog
+        if (!Utils.nullableEqual(scriptName, other.scriptName))
             return false
-        if (!Utils.nullableEqual(profileName, obj.profileName))
+        if (satisfaction != satisfaction)
             return false
-        if (time != obj.time)
+        if (!Utils.nullableEqual(profileName, other.profileName))
             return false
         return true
     }
 
-    override fun describeContents(): Int {
-        return 0
+    override fun hashCode(): Int {
+        var result = super.hashCode()
+        result = 31 * result + scriptName.hashCode()
+        result = 31 * result + satisfaction.hashCode()
+        result = 31 * result + (profileName?.hashCode() ?: 0)
+        return result
     }
 
     override fun writeToParcel(parcel: Parcel, i: Int) {
-        parcel.writeLong(time)
+        super.writeToParcel(parcel, i)
         parcel.writeString(scriptName)
         parcel.writeByte(if (satisfaction) 1 else 0)
         parcel.writeString(profileName)
-        parcel.writeString(extraInfo)
     }
 
-    protected constructor(parcel: Parcel) {
-        time = parcel.readLong()
+    protected constructor(parcel: Parcel): super(parcel) {
         scriptName = parcel.readString()
         satisfaction = parcel.readByte() > 0
         profileName = parcel.readString()
-        extraInfo = parcel.readString()
     }
 
     companion object CREATOR : Parcelable.Creator<ScriptSatisfactionLog> {

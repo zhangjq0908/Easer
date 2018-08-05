@@ -30,9 +30,9 @@ import java.util.List;
 
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.core.data.EventStructure;
+import ryey.easer.core.data.storage.backend.EventDataStorageBackendInterface;
 import ryey.easer.core.data.storage.backend.FileDataStorageBackendHelper;
 import ryey.easer.core.data.storage.backend.IOUtils;
-import ryey.easer.core.data.storage.backend.EventDataStorageBackendInterface;
 import ryey.easer.core.data.storage.backend.json.NC;
 
 public class JsonEventDataStorageBackend implements EventDataStorageBackendInterface {

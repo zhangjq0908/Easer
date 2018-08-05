@@ -49,24 +49,24 @@ import ryey.easer.core.log.ActivityLogService;
 import ryey.easer.core.log.ProfileLoadedLog;
 import ryey.easer.core.log.ScriptSatisfactionLog;
 
-public class LoadedHistoryFragment extends Fragment {
+public class ActivityLogFragment extends Fragment {
 
-    private static final String ARG_SIZE = "ryey.easer.core.ui.LoadedHistoryFragment.ARG.SIZE";
+    private static final String ARG_SIZE = "ryey.easer.core.ui.ActivityLogFragment.ARG.SIZE";
     private static final int COMPACT = 1;
     private static final int FULL = 0;
 
-    static LoadedHistoryFragment compact() {
+    static ActivityLogFragment compact() {
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_SIZE, COMPACT);
-        LoadedHistoryFragment fragment = new LoadedHistoryFragment();
+        ActivityLogFragment fragment = new ActivityLogFragment();
         fragment.setArguments(bundle);
         return fragment;
     }
 
-    static LoadedHistoryFragment full() {
+    static ActivityLogFragment full() {
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_SIZE, FULL);
-        LoadedHistoryFragment fragment = new LoadedHistoryFragment();
+        ActivityLogFragment fragment = new ActivityLogFragment();
         fragment.setArguments(bundle);
         return fragment;
     }
