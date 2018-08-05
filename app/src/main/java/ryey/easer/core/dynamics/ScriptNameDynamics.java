@@ -23,30 +23,23 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-
 import ryey.easer.R;
 
-class DateDynamics implements CoreDynamicsInterface {
+import static ryey.easer.core.ProfileLoaderIntentService.EXTRA_SCRIPT_NAME;
 
-    private static final SimpleDateFormat sdf_date = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-
+public class ScriptNameDynamics implements CoreDynamicsInterface {
     @Override
     public String id() {
-        return "ryey.easer.core.dynamics.date";
+        return "ryey.easer.core.dynamics.script_name";
     }
 
     @Override
     public int nameRes() {
-        return R.string.dynamics_date;
+        return R.string.dynamics_script_name;
     }
 
     @Override
     public String invoke(@NonNull Context context, @NonNull Bundle extras) {
-        Date now = Calendar.getInstance().getTime();
-        return sdf_date.format(now);
+        return extras.getString(EXTRA_SCRIPT_NAME);
     }
 }

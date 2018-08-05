@@ -29,14 +29,24 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 public class Helper {
+    public static void export_data(Context context, Uri uri) throws IOException {
+        OutputStream outputStream = context.getContentResolver().openOutputStream(uri);
+        export_data(context, outputStream);
+    }
+
     public static void export_data(Context context, File dest) throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream(dest);
-        ZipOutputStream zip = new ZipOutputStream(fileOutputStream);
+        export_data(context, fileOutputStream);
+    }
+
+    public static void export_data(Context context, OutputStream outputStream) throws IOException {
+        ZipOutputStream zip = new ZipOutputStream(outputStream);
 
         File parent_dir = context.getFilesDir();
 

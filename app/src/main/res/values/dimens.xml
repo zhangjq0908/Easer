@@ -9,6 +9,8 @@
     <dimen name="item_margin">4dp</dimen>
     <dimen name="spinner_text_size">8pt</dimen>
 
+    <dimen name="widget_margin">8dp</dimen>
+
     <dimen name="eventpluginviewpager_horizontal_margin">12dp</dimen>
     <dimen name="eventpluginviewpager_vertical_margin">8dp</dimen>
 

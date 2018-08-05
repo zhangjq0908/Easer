@@ -47,9 +47,12 @@ public class DynamicsLink implements Parcelable {
     public SolidDynamicsAssignment assign(Bundle extras) {
         HashMap<String, String> assignment = new HashMap<>();
         for (String key : link.keySet()) {
-            String property = link.get(key);
-            if (extras.containsKey(property)) {
-                assignment.put(key, extras.getString(property));
+            String dynamics_id = link.get(key);
+            String dynamics_value = extras.getString(dynamics_id);
+            if (dynamics_value != null) {
+                if (extras.containsKey(dynamics_id)) {
+                    assignment.put(key, extras.getString(dynamics_value));
+                }
             }
         }
         return new SolidDynamicsAssignment(assignment);

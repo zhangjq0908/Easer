@@ -26,6 +26,8 @@ public class CoreDynamics {
     private static CoreDynamicsInterface[] coreDynamicsArray = {
             new DateDynamics(),
             new TimeDynamics(),
+            new ScriptNameDynamics(),
+            new ProfileNameDynamics(),
     };
 
     @NonNull

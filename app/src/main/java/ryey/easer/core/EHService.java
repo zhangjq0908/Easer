@@ -28,22 +28,20 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.net.Uri;
 import android.os.Binder;
-import android.os.Bundle;
 import android.os.ConditionVariable;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import ryey.easer.core.data.ScriptTree;
 import ryey.easer.core.data.storage.ScriptDataStorage;
+import ryey.easer.core.log.ActivityLogService;
 
 /*
  * The background service which maintains several Lotus(es) and send Intent to load Profile(s).
@@ -53,7 +51,6 @@ public class EHService extends Service {
 
     public static final String ACTION_STATE_CHANGED = "ryey.easer.action.STATE_CHANGED";
     public static final String ACTION_PROFILE_UPDATED = "ryey.easer.action.PROFILE_UPDATED";
-
 
     private static final String ACTION_UNREGISTER_CONDITION_EVENT = "ryey.easer.service.action.UNREGISTER_CONDITION_EVENT";
     private static final String ACTION_REGISTER_CONDITION_EVENT = "ryey.easer.service.action.REGISTER_CONDITION_EVENT";
@@ -81,6 +78,7 @@ public class EHService extends Service {
     }
 
     private static final String TAG = "[EHService] ";
+    private static final String SERVICE_NAME = "Easer";
 
     List<Lotus> mLotusArray = new ArrayList<>();
     private ExecutorService executorService = Executors.newFixedThreadPool(4);
@@ -111,15 +109,6 @@ public class EHService extends Service {
             Logger.d("Broadcast received :: action: <%s>", action);
             if (ACTION_RELOAD.equals(action)) {
                 reloadTriggers();
-            } else if (ProfileLoaderIntentService.ACTION_PROFILE_LOADED.equals(action)) {
-                if (intent.getExtras() == null) {
-                    Logger.wtf("ACTION_PROFILE_LOADED Intent has null extras???");
-                    return;
-                }
-                recordProfile(intent.getExtras());
-                Intent intent1 = new Intent();
-                intent1.setAction(ACTION_PROFILE_UPDATED);
-                sendBroadcast(intent1);
             } else if (ACTION_REGISTER_CONDITION_EVENT.equals(intent.getAction()) || ACTION_UNREGISTER_CONDITION_EVENT.equals(intent.getAction())) {
                 String conditionName = intent.getStringExtra(EXTRA_CONDITION_NAME);
                 Uri notifyData = intent.getParcelableExtra(EXTRA_NOTIFY_DATA);
@@ -154,36 +143,17 @@ public class EHService extends Service {
         context.sendBroadcast(intent);
     }
 
-    private static LinkedList<EventHistoryRecord> eventHistoryRecordList = new LinkedList<>();
-
-    synchronized private static void recordProfile(@NonNull Bundle bundle) {
-        @Nullable final String profileName = bundle.getString(ProfileLoaderIntentService.EXTRA_PROFILE_NAME);
-        @Nullable final String eventName = bundle.getString(ProfileLoaderIntentService.EXTRA_EVENT_NAME);
-        final long time = bundle.getLong(ProfileLoaderIntentService.EXTRA_LOAD_TIME);
-        if (eventHistoryRecordList.size() > 1000)
-            eventHistoryRecordList.removeFirst();
-        eventHistoryRecordList.addLast(new EventHistoryRecord(eventName, profileName, time));
-    }
-    public static EventHistoryRecord getLastHistory() {
-        if (eventHistoryRecordList.size() == 0)
-            return null;
-        return eventHistoryRecordList.getLast();
-    }
-    public static List<EventHistoryRecord> getHistory() {
-        return eventHistoryRecordList;
-    }
-
     @Override
     public void onCreate() {
         Logger.v(TAG + "onCreate()");
         super.onCreate();
+        ActivityLogService.Companion.notifyServiceStatus(this, SERVICE_NAME, true, null);
         bindService(new Intent(this, ConditionHolderService.class), connection, Context.BIND_AUTO_CREATE);
         running = true;
         Intent intent = new Intent(ACTION_STATE_CHANGED);
         sendBroadcast(intent);
         IntentFilter filter = new IntentFilter();
         filter.addAction(ACTION_RELOAD);
-        filter.addAction(ProfileLoaderIntentService.ACTION_PROFILE_LOADED);
         registerReceiver(mReceiver, filter);
         registerReceiver(mReceiver, filter_conditionEvent);
         Logger.i(TAG + "created");
@@ -193,6 +163,7 @@ public class EHService extends Service {
     public void onDestroy() {
         Logger.v(TAG + "onDestroy");
         super.onDestroy();
+        ActivityLogService.Companion.notifyServiceStatus(this, SERVICE_NAME, false, null);
         mCancelTriggers();
         unregisterReceiver(mReceiver);
         unbindService(connection);

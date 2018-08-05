@@ -17,14 +17,16 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.dynamics;
+package ryey.easer.core.log
 
-import android.content.Context;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
+import android.os.Parcelable
 
-import ryey.easer.commons.dynamics.Dynamics;
+interface ActivityLog : Parcelable {
 
-public interface CoreDynamicsInterface extends Dynamics {
-    String invoke(@NonNull Context context, @NonNull Bundle extras);
+    fun time(): Long
+
+    fun extraInfo(): String?
+
+    @Suppress("RedundantIf")
+    override fun equals(other: Any?): Boolean
 }

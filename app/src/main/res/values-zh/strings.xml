@@ -21,16 +21,21 @@
     <string name="title_edit">修改</string>
     <string name="title_event">事件</string>
     <string name="title_outline">概覽</string>
-    <string name="profile_indicator_profile">行爲集</string>
-    <string name="profile_indicator_from">源自</string>
-    <string name="profile_indicator_time">載入時間</string>
+    <string name="activity_log__time">時間</string>
+    <string name="activity_log__extra">更多信息</string>
+    <string name="activity_log__satisfaction">狀態</string>
+    <string name="activity_log__satisfied">滿足</string>
+    <string name="activity_log__unsatisfied">不滿足</string>
+    <string name="activity_log__service">服務</string>
+    <string name="activity_log__status">狀態</string>
+    <string name="activity_log__start">啓動</string>
+    <string name="activity_log__stop">停止</string>
     <string name="appInformation">便易你的生活——讓你的手機自動執行例行動作。\n
         串起不同事件，然後讓他們自行執行。再也不用費心去記住它們！\n
         此軟件本是受CyanogenMod的profile機制以及IFTTT啓發，本擬在特定時間或WiFi連接下自動切換profile，但後來擴展爲更通用的形式。\n
         注意：Easer還在開發中。其可能包含bug，並且界面必然需要改進。當前計劃列在源代碼倉庫的TODO.md文件中，如有興趣可以一看。</string>
     <string name="hint_profile_title">行爲集名</string>
     <string name="text_profile">行爲集</string>
-    <string name="profile_indicator_last">最近行爲集</string>
     <string name="title_profile">行爲集</string>
     <string name="pref_autostart_summary">自動啓動Easer後臺服務</string>
     <string name="pref_autostart_title">開機自啓動</string>
@@ -101,6 +106,8 @@
     <string name="prompt_delete_failed">刪除失敗。請檢查此物是否被使用。</string>
     <string name="dynamics_time">當前時間</string>
     <string name="dynamics_date">當前日期</string>
+    <string name="dynamics_script_name">用戶腳本名稱</string>
+    <string name="dynamics_profile_name">行爲集名稱</string>
     <string name="title_trigger_profile">執行此行爲集</string>
     <string name="title_help">幫助</string>
     <string name="help_script">事件腳本是邏輯的容器。在事件腳本中鏈接事件（或狀況）和行爲集，這樣Easer就能知道在事件發生時（或狀況滿足時）執行/載入對應的行爲集。 事件腳本中還有更多高級功能，比如反轉事件。 請參閱<a href="https://github.com/renyuneyun/Easer/wiki">文檔</a>以獲得更多信息。</string>

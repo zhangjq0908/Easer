@@ -28,7 +28,6 @@ import android.support.annotation.Nullable;
 
 import com.orhanobut.logger.Logger;
 
-import java.util.Calendar;
 import java.util.Collection;
 
 import ryey.easer.commons.dynamics.DynamicsLink;
@@ -40,15 +39,14 @@ import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.core.dynamics.CoreDynamics;
 import ryey.easer.core.dynamics.CoreDynamicsInterface;
+import ryey.easer.core.log.ActivityLogService;
 import ryey.easer.plugins.PluginRegistry;
 
 public class ProfileLoaderIntentService extends IntentService {
     public static final String ACTION_LOAD_PROFILE = "ryey.easer.action.LOAD_PROFILE";
-    public static final String ACTION_PROFILE_LOADED = "ryey.easer.action.PROFILE_LOADED";
 
     public static final String EXTRA_PROFILE_NAME = "ryey.easer.extra.PROFILE_NAME";
-    public static final String EXTRA_EVENT_NAME = "ryey.easer.extra.EVENT_NAME";
-    public static final String EXTRA_LOAD_TIME = "ryey.easer.extra.LOAD_TIME";
+    public static final String EXTRA_SCRIPT_NAME = "ryey.easer.extra.EVENT_NAME";
 
     public static void triggerProfile(Context context, String profileName) {
         Intent intent = new Intent(context, ProfileLoaderIntentService.class);
@@ -76,32 +74,32 @@ public class ProfileLoaderIntentService extends IntentService {
         final String action = intent.getAction();
         if (ACTION_LOAD_PROFILE.equals(action)) {
             final String name = intent.getStringExtra(EXTRA_PROFILE_NAME);
-            final String event = intent.getStringExtra(EXTRA_EVENT_NAME);
+            final String event = intent.getStringExtra(EXTRA_SCRIPT_NAME);
+            if (intent.getExtras() == null) {
+                Logger.wtf("ProfileLoaderIntent has null extras???");
+                throw new IllegalStateException("ProfileLoaderIntent has null extras???");
+            }
             handleActionLoadProfile(name, event, intent.getExtras());
         } else {
             Logger.wtf("ProfileLoaderIntentService got unknown Intent action <%s>", action);
         }
     }
 
-    private void handleActionLoadProfile(@NonNull String name, @Nullable String event, @Nullable Bundle extras) {
+    private void handleActionLoadProfile(@NonNull String name, @Nullable String event, @NonNull Bundle extras) {
         Logger.d("Loading profile <%s> by <%s>", name, event);
         ProfileStructure profile;
         ProfileDataStorage storage = ProfileDataStorage.getInstance(this);
         profile = storage.get(name);
 
-        DynamicsLink dynamicsLink = null;
-        Bundle macroData = null;
-        if (extras != null) {
-            dynamicsLink = extras.getParcelable(Lotus.EXTRA_DYNAMICS_LINK);
-            macroData = extras.getBundle(Lotus.EXTRA_DYNAMICS_PROPERTIES);
-        }
+        DynamicsLink dynamicsLink = extras.getParcelable(Lotus.EXTRA_DYNAMICS_LINK);
+        Bundle macroData = extras.getBundle(Lotus.EXTRA_DYNAMICS_PROPERTIES);
         if (dynamicsLink == null)
             dynamicsLink = new DynamicsLink();
         if (macroData == null)
             macroData = new Bundle();
         for (CoreDynamicsInterface dynamics : CoreDynamics.coreDynamics()) {
             if (dynamicsLink.identityMap().containsValue(dynamics.id())) {
-                macroData.putString(dynamics.id(), dynamics.invoke(this));
+                macroData.putString(dynamics.id(), dynamics.invoke(this, extras));
             }
         }
         final SolidDynamicsAssignment solidMacroAssignment = dynamicsLink.assign(macroData);
@@ -123,16 +121,18 @@ public class ProfileLoaderIntentService extends IntentService {
                     }
                 }
             }
+            String extraInfo;
             if (loaded) {
-                Intent intent = new Intent(ACTION_PROFILE_LOADED);
-                intent.putExtra(EXTRA_EVENT_NAME, event);
-                intent.putExtra(EXTRA_PROFILE_NAME, name);
-                Calendar calendar = Calendar.getInstance();
-                intent.putExtra(EXTRA_LOAD_TIME, calendar.getTimeInMillis());
-                sendBroadcast(intent);
+                extraInfo = null;
                 Logger.i("Profile <%s> loaded", name);
             } else {
+                extraInfo = "Profile failed to load in full";
                 Logger.w("Profile <%s> not loaded (none of the operations successfully loaded", name);
+            }
+            if (event == null) {
+                ActivityLogService.Companion.notifyProfileLoaded(this, name, extraInfo);
+            } else {
+                ActivityLogService.Companion.notifyScriptSatisfied(this, event, name, extraInfo);
             }
         }
     }

@@ -143,11 +143,29 @@
 
         <activity
             android:name=".core.ui.data.ListDynamicsActivity"
-            android:label="@string/title_dynamics_link"
-            android:excludeFromRecents="true"></activity>
-        <activity android:name=".core.ui.data.ListDynamicsActivity$EditDynamicsActivity"
-            android:label="@string/title_new_dynamics_link"
-            android:excludeFromRecents="true"></activity>
+            android:excludeFromRecents="true"
+            android:label="@string/title_dynamics_link" />
+        <activity
+            android:name=".core.ui.data.ListDynamicsActivity$EditDynamicsActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/title_new_dynamics_link" />
+
+        <service
+            android:name=".core.log.ActivityLogService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <receiver android:name=".core.EaserStatusWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="ryey.easer.core.EaserStatusWidget.ACTION_CLICK" />
+                <action android:name="ryey.easer.action.STATE_CHANGED" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/easer_status_widget_info" />
+        </receiver>
     </application>
 
 </manifest>

@@ -23,6 +23,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -35,7 +36,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -43,26 +43,31 @@ import java.util.Calendar;
 
 import ryey.easer.R;
 import ryey.easer.core.EHService;
-import ryey.easer.core.EventHistoryRecord;
+import ryey.easer.core.log.ActivityLog;
+import ryey.easer.core.log.ActivityLogService;
+import ryey.easer.core.log.ProfileLoadedLog;
+import ryey.easer.core.log.ScriptSatisfactionLog;
+import ryey.easer.core.log.ServiceLog;
+import ryey.easer.databinding.ItemActivityLogBinding;
 
-public class LoadedHistoryFragment extends Fragment {
+public class ActivityLogFragment extends Fragment {
 
-    private static final String ARG_SIZE = "ryey.easer.core.ui.LoadedHistoryFragment.ARG.SIZE";
+    private static final String ARG_SIZE = "ryey.easer.core.ui.ActivityLogFragment.ARG.SIZE";
     private static final int COMPACT = 1;
     private static final int FULL = 0;
 
-    static LoadedHistoryFragment compact() {
+    static ActivityLogFragment compact() {
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_SIZE, COMPACT);
-        LoadedHistoryFragment fragment = new LoadedHistoryFragment();
+        ActivityLogFragment fragment = new ActivityLogFragment();
         fragment.setArguments(bundle);
         return fragment;
     }
 
-    static LoadedHistoryFragment full() {
+    static ActivityLogFragment full() {
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_SIZE, FULL);
-        LoadedHistoryFragment fragment = new LoadedHistoryFragment();
+        ActivityLogFragment fragment = new ActivityLogFragment();
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -99,7 +104,7 @@ public class LoadedHistoryFragment extends Fragment {
             view.setAdapter(historyAdapter);
             return layout;
         } else {
-            View view = inflater.inflate(R.layout.fragment_loaded_history, container, false);
+            View view = inflater.inflate(R.layout.item_activity_log, container, false);
             historyViewHolder = new HistoryViewHolder(view);
             return view;
         }
@@ -126,73 +131,115 @@ public class LoadedHistoryFragment extends Fragment {
 
     private void refreshHistoryDisplay() {
         if (historyViewHolder != null) {
-            historyViewHolder.bindTo(EHService.getLastHistory());
+            historyViewHolder.bindTo(ActivityLogService.Companion.getLastHistory());
         } else {
             historyAdapter.notifyDataSetChanged();
         }
     }
 
-    public static class HistoryAdapter extends ListAdapter<EventHistoryRecord, HistoryViewHolder> {
+    public static class HistoryAdapter extends ListAdapter<ActivityLog, HistoryViewHolder> {
 
         HistoryAdapter() {
             super(DIFF_CALLBACK);
-            submitList(EHService.getHistory());
+            submitList(ActivityLogService.Companion.getHistory());
         }
 
         @NonNull
         @Override
         public HistoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View v = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.fragment_loaded_history, parent, false);
+                    .inflate(R.layout.item_activity_log, parent, false);
             return new HistoryViewHolder(v);
         }
 
         @Override
         public void onBindViewHolder(@NonNull HistoryViewHolder holder, int position) {
-            EventHistoryRecord historyRecord = getItem(position);
-            holder.bindTo(historyRecord);
+            ActivityLog log = getItem(position);
+            holder.bindTo(log);
         }
 
-        static final DiffUtil.ItemCallback<EventHistoryRecord> DIFF_CALLBACK =
-                new DiffUtil.ItemCallback<EventHistoryRecord>() {
+        static final DiffUtil.ItemCallback<ActivityLog> DIFF_CALLBACK =
+                new DiffUtil.ItemCallback<ActivityLog>() {
                     @Override
                     public boolean areItemsTheSame(
-                            @NonNull EventHistoryRecord oldEventHistoryRecord, @NonNull EventHistoryRecord newEventHistoryRecord) {
-                        return oldEventHistoryRecord.equals(newEventHistoryRecord);
+                            @NonNull ActivityLog oldActivityLog, @NonNull ActivityLog newActivityLog) {
+                        return oldActivityLog.equals(newActivityLog);
                     }
                     @Override
                     public boolean areContentsTheSame(
-                            @NonNull EventHistoryRecord oldEventHistoryRecord, @NonNull EventHistoryRecord newEventHistoryRecord) {
-                        return oldEventHistoryRecord.equals(newEventHistoryRecord);
+                            @NonNull ActivityLog oldActivityLog, @NonNull ActivityLog newActivityLog) {
+                        return oldActivityLog.equals(newActivityLog);
                     }
                 };
 
     }
 
     static class HistoryViewHolder extends RecyclerView.ViewHolder {
-        final TextView tv_event, tv_profile, tv_time;
+        final ItemActivityLogBinding binding;
         HistoryViewHolder(View itemView) {
             super(itemView);
-            tv_event = itemView.findViewById(R.id.textView_from_event);
-            tv_profile = itemView.findViewById(R.id.textView_last_profile);
-            tv_time = itemView.findViewById(R.id.textView_profile_load_time);
+            binding = DataBindingUtil.bind(itemView);
         }
 
-        void bindTo(EventHistoryRecord historyRecord) {
-            if (historyRecord == null)
+        @Nullable
+        private static String tLong2Text(long time) {
+            if (time < 0) {
+                return null;
+            }
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(time);
+            DateFormat df = SimpleDateFormat.getDateTimeInstance();
+            return df.format(calendar.getTime());
+        }
+
+        void bindTo(@Nullable ActivityLog activityLog) {
+            binding.cScript.setVisibility(View.GONE);
+            binding.cStatus.setVisibility(View.GONE);
+            binding.cProfile.setVisibility(View.GONE);
+            binding.cService.setVisibility(View.GONE);
+            binding.cTime.setVisibility(View.GONE);
+            binding.cExtra.setVisibility(View.GONE);
+            if (activityLog == null)
                 return;
-            final String eventName = historyRecord.event;
-            final String profileName = historyRecord.profile;
-            long loadTime = historyRecord.loadTime;
-            tv_profile.setText(profileName);
-            tv_event.setText(eventName);
-            if (loadTime > 0) {
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTimeInMillis(loadTime);
-                DateFormat df = SimpleDateFormat.getDateTimeInstance();
-                tv_time.setText(df.format(calendar.getTime()));
+            long loadTime = activityLog.time();
+            binding.cTime.setVisibility(View.VISIBLE);
+            binding.tvTime.setText(tLong2Text(loadTime));
+            String extraInfo = activityLog.extraInfo();
+            if (extraInfo != null) {
+                binding.cExtra.setVisibility(View.VISIBLE);
+                binding.tvExtra.setText(extraInfo);
+            }
+            if (activityLog instanceof ScriptSatisfactionLog) {
+                ScriptSatisfactionLog log = (ScriptSatisfactionLog) activityLog;
+                final String scriptName = (log).getScriptName();
+                binding.cScript.setVisibility(View.VISIBLE);
+                binding.tvScript.setText(scriptName);
+                final String profileName = (log).getProfileName();
+                if (profileName != null) {
+                    binding.cProfile.setVisibility(View.VISIBLE);
+                    binding.tvProfile.setText(profileName);
+                }
+                binding.cStatus.setVisibility(View.VISIBLE);
+                binding.tvStatus.setText(log.getSatisfaction()
+                        ? R.string.activity_log__satisfied
+                        : R.string.activity_log__unsatisfied);
             } else {
-                tv_time.setText("");
+                if (activityLog instanceof ProfileLoadedLog) {
+                    ProfileLoadedLog log = (ProfileLoadedLog) activityLog;
+                    final String profileName = (log).getProfileName();
+                    binding.cProfile.setVisibility(View.VISIBLE);
+                    binding.tvProfile.setText(profileName);
+                } else if (activityLog instanceof ServiceLog) {
+                    ServiceLog log = (ServiceLog) activityLog;
+                    final String serviceName = log.getServiceName();
+                    final boolean start = log.getStart();
+                    binding.cService.setVisibility(View.VISIBLE);
+                    binding.tvService.setText(serviceName);
+                    binding.cStatus.setVisibility(View.VISIBLE);
+                    binding.tvStatus.setText(start
+                            ? R.string.activity_log__start
+                            : R.string.activity_log__stop);
+                }
             }
         }
     }
