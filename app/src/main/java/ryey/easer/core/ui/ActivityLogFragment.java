@@ -194,12 +194,11 @@ public class ActivityLogFragment extends Fragment {
 
         void bindTo(@Nullable ActivityLog activityLog) {
             binding.cScript.setVisibility(View.GONE);
+            binding.cStatus.setVisibility(View.GONE);
             binding.cProfile.setVisibility(View.GONE);
+            binding.cService.setVisibility(View.GONE);
             binding.cTime.setVisibility(View.GONE);
             binding.cExtra.setVisibility(View.GONE);
-            binding.cSatisfaction.setVisibility(View.GONE);
-            binding.cService.setVisibility(View.GONE);
-            binding.cStatus.setVisibility(View.GONE);
             if (activityLog == null)
                 return;
             long loadTime = activityLog.time();
@@ -215,17 +214,15 @@ public class ActivityLogFragment extends Fragment {
                 final String scriptName = (log).getScriptName();
                 binding.cScript.setVisibility(View.VISIBLE);
                 binding.tvScript.setText(scriptName);
-                binding.cSatisfaction.setVisibility(View.VISIBLE);
-                if (log.getSatisfaction()) {
-                    final String profileName = (log).getProfileName();
-                    if (profileName != null) {
-                        binding.cProfile.setVisibility(View.VISIBLE);
-                        binding.tvProfile.setText(profileName);
-                    }
-                    binding.tvSatisfaction.setText(R.string.activity_log__satisfied);
-                } else {
-                    binding.tvSatisfaction.setText(R.string.activity_log__unsatisfied);
+                final String profileName = (log).getProfileName();
+                if (profileName != null) {
+                    binding.cProfile.setVisibility(View.VISIBLE);
+                    binding.tvProfile.setText(profileName);
                 }
+                binding.cStatus.setVisibility(View.VISIBLE);
+                binding.tvStatus.setText(log.getSatisfaction()
+                        ? R.string.activity_log__satisfied
+                        : R.string.activity_log__unsatisfied);
             } else {
                 if (activityLog instanceof ProfileLoadedLog) {
                     ProfileLoadedLog log = (ProfileLoadedLog) activityLog;

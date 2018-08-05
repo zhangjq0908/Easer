@@ -28,40 +28,6 @@
             </TableRow>
 
             <TableRow
-                android:id="@+id/c_satisfaction"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="3dp"
-                    android:text="@string/activity_log__satisfaction"/>
-
-                <TextView
-                    android:id="@+id/tv_satisfaction"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="3dp"/>
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/c_profile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="3dp"
-                    android:text="@string/activity_log__profile"/>
-
-                <TextView
-                    android:id="@+id/tv_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="3dp"/>
-            </TableRow>
-
-            <TableRow
                 android:id="@+id/c_service"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -95,6 +61,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="3dp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/c_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="3dp"
+                    android:text="@string/activity_log__profile"/>
+
+                <TextView
+                    android:id="@+id/tv_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="3dp"/>
             </TableRow>
 
             <TableRow
