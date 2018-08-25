@@ -41,10 +41,14 @@ public class WifiTracker extends SkeletonTracker<WifiConditionData> {
             String action = intent.getAction();
             if (WifiManager.NETWORK_STATE_CHANGED_ACTION.equals(action)) {
                 NetworkInfo networkInfo = intent.getParcelableExtra(WifiManager.EXTRA_NETWORK_INFO);
-                if (networkInfo.getState() == NetworkInfo.State.CONNECTED) {
+                if (networkInfo == null) {
+                    newSatisfiedState(null);
+                    return;
+                }
+                if (networkInfo.isConnected()) {
                     WifiInfo wifiInfo = intent.getParcelableExtra(WifiManager.EXTRA_WIFI_INFO);
                     compareAndSignal(wifiInfo);
-                } else if (networkInfo.getState() == NetworkInfo.State.DISCONNECTED) {
+                } else if (!networkInfo.isConnectedOrConnecting()) {
                     WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
                     boolean wifiEnabled = wifiManager.isWifiEnabled();
                     if (!wifiEnabled) {

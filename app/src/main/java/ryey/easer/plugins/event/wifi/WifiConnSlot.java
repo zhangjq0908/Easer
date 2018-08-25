@@ -35,12 +35,16 @@ public class WifiConnSlot extends AbstractSlot<WifiEventData> {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if (action.equals(WifiManager.NETWORK_STATE_CHANGED_ACTION)) {
+            if (WifiManager.NETWORK_STATE_CHANGED_ACTION.equals(action)) {
                 NetworkInfo networkInfo = intent.getParcelableExtra(WifiManager.EXTRA_NETWORK_INFO);
-                if (networkInfo.getState() == NetworkInfo.State.CONNECTED) {
+                if (networkInfo == null) {
+                    changeSatisfiedState(false);
+                    return;
+                }
+                if (networkInfo.isConnected()) {
                     WifiInfo wifiInfo = intent.getParcelableExtra(WifiManager.EXTRA_WIFI_INFO);
                     compareAndSignal(wifiInfo);
-                } else if (networkInfo.getState() == NetworkInfo.State.DISCONNECTED) {
+                } else if (!networkInfo.isConnectedOrConnecting()) {
                     WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
                     boolean wifiEnabled = wifiManager.isWifiEnabled();
                     if (!wifiEnabled) {
