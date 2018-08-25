@@ -1,4 +1,4 @@
-Easer [![Build Status](https://travis-ci.org/renyuneyun/Easer.svg?branch=master)](https://travis-ci.org/renyuneyun/Easer) [![codecov](https://codecov.io/gh/renyuneyun/Easer/branch/master/graph/badge.svg)](https://codecov.io/gh/renyuneyun/Easer) [![matrix-chat](https://matrix.to/img/matrix-badge.svg)](https://matrix.to/#/#Easer:matrix.org)  [ ![Download](https://api.bintray.com/packages/renyuneyun/Android/Easer/images/download.svg) ](https://bintray.com/renyuneyun/Android/Easer/_latestVersion)
+Easer [![Build Status](https://travis-ci.org/renyuneyun/Easer.svg?branch=master)](https://travis-ci.org/renyuneyun/Easer) [![weblate](https://hosted.weblate.org/widgets/easer/-/svg-badge.svg)](https://hosted.weblate.org/engage/easer/?utm_source=widget) [![codecov](https://codecov.io/gh/renyuneyun/Easer/branch/master/graph/badge.svg)](https://codecov.io/gh/renyuneyun/Easer) [![matrix-chat](https://matrix.to/img/matrix-badge.svg)](https://matrix.to/#/#Easer:matrix.org)  [ ![Download](https://api.bintray.com/packages/renyuneyun/Android/Easer/images/download.svg) ](https://bintray.com/renyuneyun/Android/Easer/_latestVersion) 
 =======
 [<img src="https://f-droid.org/badge/get-it-on-zh-cn.png"
       alt="Get it on F-Droid"
@@ -22,6 +22,14 @@ See [README.en.md](README.en.md) for the English version.
 
 支持Easer
 -----
+### 協助翻譯
+Easer的翻譯工作託管在[Hosted Weblate](https://hosted.weblate.org/projects/easer/)。它是[weblate](https://weblate.org)（一個FLOSS的在線翻譯貢獻平臺）的官方託管實例。
+
+十分歡迎有志者幫助翻譯工作，聚沙成塔集腋成裘。
+如無特別說明，翻譯文本將使用[CC-0](https://creativecommons.org/choose/zero/)協議，這意味着它們會進入[公有領域](https://en.wikipedia.org/wiki/Public_domain)；如果希望使用其他協議，請事先聯繫我們。
+
+另請注意，由於Easer作者的個人偏好，中文主體取傳統漢字作爲模字，不取大陸所爲簡化字也不取臺灣所爲正體字。凡涉及翻譯自外文等情況導致地區用語不一致時，模字以大陸版爲主。（計劃後續加入基於[OpenCC](https://github.com/BYVoid/OpenCC)的自動轉換，擬通過CI達成，只是暫時無此精力。歡迎有經驗或有興趣者協助。）
+
 ### 提出、評論以及解決issue
 如果在使用Easer時發現了什麼問題，你可以[提出一個issue](https://github.com/renyuneyun/Easer/issues/new)。在可行的情況下（當然，這不是強制的），相關信息給得越多越好，以便更早定位問題所在。  
 如果你覺得Easer應當添加某些功能，你也可以提出一個issue。

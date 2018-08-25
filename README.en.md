@@ -1,4 +1,4 @@
-Easer [![Build Status](https://travis-ci.org/renyuneyun/Easer.svg?branch=master)](https://travis-ci.org/renyuneyun/Easer) [![codecov](https://codecov.io/gh/renyuneyun/Easer/branch/master/graph/badge.svg)](https://codecov.io/gh/renyuneyun/Easer) [![matrix-chat](https://matrix.to/img/matrix-badge.svg)](https://matrix.to/#/#Easer:matrix.org)  [ ![Download](https://api.bintray.com/packages/renyuneyun/Android/Easer/images/download.svg) ](https://bintray.com/renyuneyun/Android/Easer/_latestVersion)
+Easer [![Build Status](https://travis-ci.org/renyuneyun/Easer.svg?branch=master)](https://travis-ci.org/renyuneyun/Easer) [![weblate](https://hosted.weblate.org/widgets/easer/-/svg-badge.svg)](https://hosted.weblate.org/engage/easer/?utm_source=widget) [![codecov](https://codecov.io/gh/renyuneyun/Easer/branch/master/graph/badge.svg)](https://codecov.io/gh/renyuneyun/Easer) [![matrix-chat](https://matrix.to/img/matrix-badge.svg)](https://matrix.to/#/#Easer:matrix.org)  [ ![Download](https://api.bintray.com/packages/renyuneyun/Android/Easer/images/download.svg) ](https://bintray.com/renyuneyun/Android/Easer/_latestVersion)
 =======
 [<img src="https://f-droid.org/badge/get-it-on.png"
       alt="Get it on F-Droid"
@@ -21,6 +21,12 @@ Details are described in [this document](https://renyuneyun.github.io/Easer/en/E
 
 Support Easer
 ------
+### Help translating
+Easer's translation work is hosted on [Hosted Weblate](https://hosted.weblate.org/projects/easer/), the official hosted instance of [weblate](https://weblate.org), an FLOSS platform for crowd-sourced web translation.
+
+We kindly welcome anyone to contribute any amount of translation.
+Translations will be licensed under [CC-0](https://creativecommons.org/choose/zero/) by default, which effectively means they will enter [Public Domain](https://en.wikipedia.org/wiki/Public_domain); please contact us in advance if you would like a different license.
+
 ### Raising issues, commenting on issues and solving issues
 If you encounter problems when using Easer, you can submit an issue. The more detail you can provide, the better -- it will let the issue be pinned down faster.
 You can also open an issue if you think there are features that Easer should have.
