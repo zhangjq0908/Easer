@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
 
     <string name="ev_condition_event">狀況事件</string>
@@ -189,4 +189,13 @@
 
     <string name="rel_after">在此之後</string>
 
-</resources>
+<string name="condition_cell_location">\@string/event_celllocation</string>
+
+    <string name="condition_connectivity">\@string/event_connectivity</string>
+
+    <string name="condition_date">\@string/event_date</string>
+
+    <string name="condition_day_of_week">\@string/event_day_of_week</string>
+
+    <string name="condition_headset">\@string/event_headset</string>
+    </resources>
