@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="easer">Easer</string>
     <string name="app_name">@string/easer</string>
@@ -56,5 +57,148 @@
 
     <string name="myWebsite">http://renyuneyun.is-programmer.com/</string>
 
-</resources>
+<string name="title_operation">操作</string>
+    <string name="title_script">スクリプト</string>
+    <string name="title_condition">条件</string>
+    <string name="title_activity_log">アクティビティログ</string>
+    <string name="title_setting">設定</string>
+    <string name="title_edit_event">イベントを編集</string>
+    <string name="title_edit_condition">条件を編集</string>
+    <string name="title_edit_profile">プロファイルを編集</string>
+    <string name="title_select_operation">操作を選択</string>
+    <string name="title_dynamics_link">動的リンク</string>
+    <string name="title_new_dynamics_link">新しい動的リンク</string>
+    <string name="title_trigger_profile">このプロファイルを起動</string>
 
+    <string name="menu_action_save">保存</string>
+
+    <string name="activity_log__profile">\@string/title_profile</string>
+    <string name="activity_log__script">\@string/title_script</string>
+    <string name="activity_log__extra">追加情報</string>
+    <string name="activity_log__satisfaction">ステータス</string>
+    <string name="activity_log__satisfied">充足</string>
+    <string name="activity_log__unsatisfied">不足</string>
+    <string name="activity_log__service">サービス</string>
+    <string name="activity_log__status">ステータス</string>
+    <string name="activity_log__start">開始</string>
+    <string name="activity_log__stop">停止</string>
+
+    <string name="button_read_next_time">次回、読む</string>
+    <string name="button_understand">理解しました</string>
+    <string name="text_lack_permission">Easer に必要なすべてのアクセス許可がありません。</string>
+    <string name="button_request_permission">アクセス許可の付与</string>
+
+    <string name="text_parent_node">親</string>
+    <string name="text_predefined_event">定義済みのイベント</string>
+    <string name="text_inline_event">インラインイベント</string>
+    <string name="text_use_condition">条件を使用する</string>
+    <string name="text_repeatable_desc">充足時に繰り返し可能</string>
+    <string name="text_reverse_desc">シナリオを逆にする</string>
+    <string name="text_volatile">揮発性</string>
+    <string name="text_persistent">永続的</string>
+
+    <string name="text_dynamics">動的</string>
+    <string name="text_placeholder">プレースホルダー</string>
+
+    <string name="toggle_active">有効</string>
+
+    <string name="hint_script_title">スクリプトのタイトル</string>
+    <string name="hint_condition_title">条件のタイトル</string>
+
+    <string name="prompt_delete_failed">削除に失敗しました。この項目が使用されているかを確認してください。</string>
+    <string name="prompt_data_illegal">無効なフィールドのデータを保存できませんでした。選択 / 入力を再確認してください。</string>
+
+    <string name="prompt_prevented_for_permission">Easer はこの機能に &lt;%s&gt; のアクセス許可が必要です。</string>
+
+    <string name="pref_category_functionality">機能</string>
+    <string name="pref_category_personalise">パーソナライズ</string>
+    <string name="pref_category_data_manage">データ管理</string>
+
+    <string name="pref_autostart_title">ブート時に自動起動</string>
+    <string name="pref_autostart_summary">Easer を自動的にバックグラウンドサービスで開始します</string>
+
+    <string name="pref_restart_after_upgrade_title">アップグレード後にサービスを開始</string>
+
+    <string name="pref_welcome_title">ウェルカムメッセージを表示</string>
+    <string name="pref_welcome_summary">アプリ起動時にウェルカムメッセージを表示します</string>
+
+    <string name="pref_logging_title">外部ログを有効にする</string>
+    <string name="pref_logging_summary">バグ報告のために外部記憶装置 (/sdcard/logger) にログを保存します。
+\nこの設定の変更は、次回の Easer 起動時から反映されます。</string>
+
+    <string name="pref_use_root_title">root 機能を使用する</string>
+    <string name="pref_use_root_summary">特定の機能 (プラグイン) で root 権限を使用します。これは一部のデバイスで互換性の問題を解決するのに役立ちます。 root アクセス許可は他の場所では使用されません。</string>
+
+    <string name="pref_cooldown_title">クールダウン時間</string>
+    <string name="pref_cooldown_summary">同じイベントの 2 つのトリガー間の最小間隔</string>
+    <string name="cooldown_time_illformed">数値は、0 以上で整数値の範囲に収まるようにする必要があります</string>
+
+    <string name="pref_passive_mode_title">パッシブモード</string>
+    <string name="pref_passive_mode_summary_on">イベントの待機: 有効になったときにチェックしない</string>
+    <string name="pref_passive_mode_summary_off">(各) イベントが有効になったときに充足状態をチェックします</string>
+
+    <string name="pref_enabled_plugins_title">有効なプラグイン</string>
+    <string name="pref_enabled_plugins_summary">特定のプラグインを有効または無効にします</string>
+
+    <string name="pref_use_12_hour_clock_title">12 時間表記を使用する</string>
+
+    <string name="pref_export_title">エクスポート</string>
+    <string name="pref_export_summary">すべてのイベントとプロファイルを SD カードにエクスポートします。
+\nファイルは現在の時刻が名前に付きます。</string>
+    <string name="pref_import_title">インポート</string>
+    <string name="pref_import_summary">zip ファイル内のすべてのイベントおよびプロファイルをインポートします。
+\n同じ名前を持つ既存のイベントとプロファイルは置き換えられます。</string>
+
+    <string name="pref_convert_data_title">データの変換</string>
+    <string name="pref_convert_data_summary">すべてのデータを推奨される形式に変換します</string>
+
+    <string name="message_plugin_not_compatible">このプラグインは、このデバイスと互換性がありません。</string>
+
+    <string name="message_convert_data_start">データを変換しています。</string>
+    <string name="message_convert_data_finish">データを変換しました。</string>
+    <string name="message_convert_data_abort">データの変換を中断しました。</string>
+    <string name="message_convert_data_error">データを変換するときにエラーが発生しました。詳細についてはログを参照してください。</string>
+
+    <string name="title_welcome_message">ようこそ</string>
+    <string name="welcome_message">Easer をご利用いただきありがとうございます!
+\nこのアプリが気に入っていただけることを期待しています :)
+\n
+\n始める前にこれらをお読みください:
+\n 1. 関連するイベントおよびプロファイルを使用する前に、Easer に対応するアクセス許可を与えてください。
+\n 2. 現在、複数のイベントを構成する方法は、<a href="https://en.wikipedia.org/wiki/Tree_structure">ツリー</a> としてイベントを接続する方法のみです。
+\n
+\nプロジェクトの wiki にある <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> もご覧ください。</string>
+
+    <string name="alert_update_storage_data_title">古いバージョンのデータが見つかりました</string>
+    <string name="alert_update_storage_data">データは以前のバージョンで作成されました。新しいバージョンにアップデートすることを推奨します、そうしないと Easer が正しく動作しないことがあります。設定でデータの変換を選択することによってこれを行うことができます。</string>
+
+    <string name="template_export">%s にエクスポートしました</string>
+    <string name="version">バージョン</string>
+
+    <string name="message_importing_invalid_data">このファイルは有効ではないようです。インポートするファイルが、以前 Easer でエクスポートしていることを確認してください。</string>
+
+    <string name="dynamics_time">現在の時刻</string>
+    <string name="dynamics_date">現在の日付</string>
+    <string name="dynamics_script_name">スクリプト名</string>
+    <string name="dynamics_profile_name">プロファイル名</string>
+
+    <string name="title_help">ヘルプ</string>
+    <string name="help_script">スクリプトは、論理コンテナーです。スクリプトで、プロファイルにイベントまたは条件を接続すると、そのイベントが発生または条件が満たされた場合に、Easer がロード/実行するプロファイルを認識します。
+\n逆イベントのような、より高度な機能もあります。
+\n詳細については <a href="https://github.com/renyuneyun/Easer/wiki">ドキュメント</a> を参照してください。</string>
+    <string name="help_event">イベントは、お使いの携帯電話またはリモート上での、短時間の (簡単な) イベントを表します。
+\nたとえば、通知の受信や、NFC タグのスキャンです。
+\n詳細については <a href="https://github.com/renyuneyun/Easer/wiki">ドキュメント</a> を参照してください。</string>
+    <string name="help_condition">条件は、お使いの携帯電話やリモート上での、長期的な (しかし通常永久ではない) 条件を表します。
+\nたとえば、WiFi 接続や画面をオフするなどです。
+\n詳細については <a href="https://github.com/renyuneyun/Easer/wiki">ドキュメント</a> を参照してください。</string>
+    <string name="help_profile">プロファイルは、一連の操作です。それぞれの操作は、特定の種類の動作を表します。
+\nたとえば、Bluetooth をオンにする、や SMS を送信などです。
+\n詳細については <a href="https://github.com/renyuneyun/Easer/wiki">ドキュメント</a> を参照してください。</string>
+
+    <string name="category_operation_android">Android</string>
+    <string name="category_operation_system_config">システム設定</string>
+    <string name="category_operation_easer">\@string/easer</string>
+    <string name="category_operation_misc">その他</string>
+
+</resources>

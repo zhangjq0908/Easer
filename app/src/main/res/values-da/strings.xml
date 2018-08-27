@@ -1,9 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="easer">Easer</string>
     <string name="app_name">@string/easer</string>
-    <string name="drawer_tip">Gør dagligdagen nemmere!</string>
+    <string name="drawer_tip">Gør dagligdagen nem!</string>
     <string name="title_outline">Skitse</string>
-    <string name="title_operation">Handling</string>
+    <string name="title_operation">Funktion</string>
     <string name="title_profile">Profil</string>
     <string name="title_event">Hændelse</string>
     <string name="title_script">Skript</string>
