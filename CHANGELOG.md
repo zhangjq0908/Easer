@@ -1,6 +1,13 @@
 CHANGELOG
 ======
 
+* v0.6.9.1: Allow multiple Ringer Modes && Update translations && Bug fix
+	* Allow to set mutliple Runger Modes in one Profile (close #155)
+	* Update translations
+		* Update Danish translation
+		* Update Chinese translation
+	* Fix incorrect status of WiFi Event/Condition when connecting (fix #149)
+
 * v0.6.9: Better Activity Log && Widget && More Dynamics && Better UX && i18n && dev change
 	* Allow to log more type of items in Activity Log
 		* Script status
