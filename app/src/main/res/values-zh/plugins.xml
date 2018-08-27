@@ -8,9 +8,25 @@
 
     <string name="condition_bluetooth_device">已連接藍牙設備</string>
 
+    <string name="condition_cell_location">@string/event_celllocation</string>
+
+    <string name="condition_connectivity">@string/event_connectivity</string>
+
+    <string name="condition_date">@string/event_date</string>
+
+    <string name="condition_day_of_week">@string/event_day_of_week</string>
+
+    <string name="condition_headset">@string/event_headset</string>
     <string name="condition_headset__headset_state">耳機狀態</string>
     <string name="condition_headset__plugged_in">已插入</string>
     <string name="condition_headset__plugged_out">已拔出</string>
+
+    <string name="condition_screen">@string/event_screen</string>
+
+    <string name="condition_time">@string/event_time</string>
+
+    <string name="condition_wifi">@string/event_wificonn</string>
+
 
     <string name="event_celllocation">基站位置</string>
     <string name="event_date">日期</string>
@@ -115,6 +131,10 @@
     <string name="obroadcast_l_category">Category:</string>
     <string name="obroadcast_l_type">Type:</string>
     <string name="obroadcast_l_data">Data:</string>
+    <string name="text_extras">Extras</string>
+    <string name="text_key">鍵</string>
+    <string name="text_value">值</string>
+    <string name="text_type">類型</string>
 
     <string name="operation_cellular">移動數據</string>
     <string name="operation_rotation">自動旋轉</string>
