@@ -65,7 +65,7 @@ public class RingerModeOperationPlugin implements OperationPlugin<RingerModeOper
 
     @Override
     public int maxExistence() {
-        return 1;
+        return 0;
     }
 
     @NonNull
