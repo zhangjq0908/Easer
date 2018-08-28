@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
 
     <string name="ev_condition_event">Tilstandshændelse</string>
@@ -73,7 +73,7 @@
     <string name="text_category">Kategori</string>
 
     <string name="event_sms">Modtage SMS</string>
-    <string name="sender">Sender</string>
+    <string name="sender">Afsender</string>
     <string name="content_contains">Indhold (indeholder…)</string>
 
     <string name="event_notification">Påmindelse modtaget</string>
