@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="easer">Easer</string>
     <string name="app_name">@string/easer</string>
@@ -78,7 +79,7 @@
     <string name="hint_condition_title">condition title</string>
 
     <string name="prompt_save_failed">Failed to save</string>
-    <string name="prompt_delete">Are you sure to delete: %s</string>
+    <string name="prompt_delete">Are you sure to delete: %s?</string>
     <string name="prompt_delete_failed">Failed to delete. Check if this item is being used.</string>
     <string name="prompt_data_illegal">Prevented saving data with invalid field(s). Please recheck your choices / inputs.</string>
 
@@ -185,4 +186,3 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     <string name="category_operation_misc">Misc</string>
 
 </resources>
-
