@@ -1,2 +1,115 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="easer">Easer</string>
+    <string name="drawer_tip">Erleichtere dein Leben!</string>
+    <string name="title_outline">Entwurf</string>
+    <string name="title_profile">Profil</string>
+    <string name="title_event">Ereignis</string>
+    <string name="title_script">Skript</string>
+    <string name="title_condition">Bedingung</string>
+    <string name="title_application">App</string>
+    <string name="title_activity_log">Aktivitätsprotokoll</string>
+    <string name="title_about">Über</string>
+    <string name="title_setting">Einstellungen</string>
+    <string name="title_add">Hinzufügen</string>
+    <string name="title_edit">Bearbeiten</string>
+    <string name="title_delete">Löschen</string>
+    <string name="title_edit_event">Ereignis bearbeiten</string>
+    <string name="title_edit_condition">Bedingung bearbeiten</string>
+    <string name="title_edit_profile">Profil bearbeiten</string>
+    <string name="title_trigger_profile">Dieses Profil auslösen</string>
+
+    <string name="menu_start">Start</string>
+    <string name="menu_stop">Stopp</string>
+    <string name="menu_action_save">Speichern</string>
+
+    <string name="service_indicator_positive">Läuft</string>
+    <string name="service_indicator_negative">Läuft nicht</string>
+
+    <string name="activity_log__time">Zeit</string>
+    <string name="activity_log__extra">Zusätzliche Info</string>
+    <string name="activity_log__satisfaction">Status</string>
+    <string name="activity_log__satisfied">Erfüllt</string>
+    <string name="activity_log__unsatisfied">Nicht erfüllt</string>
+    <string name="activity_log__service">Dienst</string>
+    <string name="activity_log__status">Status</string>
+    <string name="activity_log__start">Start</string>
+    <string name="activity_log__stop">Stopp</string>
+
+    <string name="null_content">LEERER INHALT</string>
+
+    <string name="button_understand">Verstanden</string>
+    <string name="button_cancel">Abbrechen</string>
+    <string name="button_ok">OK</string>
+
+    <string name="text_lack_permission">Easer hat NICHT alle notwendigen Berechtigungen.</string>
+    <string name="button_request_permission">Berechtigungen erteilen</string>
+
+    <string name="text_title">Titel</string>
+    <string name="text_parent_node">Übergeordnet</string>
+    <string name="text_parent">Übergeordnet</string>
+    <string name="text_profile">Profil</string>
+    <string name="text_predefined_event">Vordefiniertes Ereignis</string>
+    <string name="text_inline_event">Inzeiliges Ereignis</string>
+    <string name="text_use_condition">Bedingung verwenden</string>
+    <string name="text_repeatable_desc">Wiederholbar, wenn erfüllt</string>
+    <string name="text_reverse_desc">Szenario umkehren</string>
+    <string name="text_volatile">Unbeständig</string>
+    <string name="text_persistent">Dauerhaft</string>
+
+    <string name="text_dynamics">Dynamik</string>
+    <string name="text_placeholder">Platzhalter</string>
+
+    <string name="toggle_active">Aktiv</string>
+
+    <string name="hint_event_title">Ereignistitel</string>
+    <string name="hint_script_title">Skripttitel</string>
+    <string name="hint_profile_title">Profiltitel</string>
+    <string name="hint_condition_title">Bedingungstitel</string>
+
+    <string name="prompt_save_failed">Fehler beim Speichern</string>
+    <string name="prompt_delete">Sind Sie sich sicher beim Löschen von: %s?</string>
+    <string name="prompt_delete_failed">Löschen ist fehlgeschlagen. Prüfe, ob dieses Element verwendet wird.</string>
+    <string name="prompt_prevented_for_permission">Easer benötigt für diese Funktion die Berechtigung &lt;%s&gt;.</string>
+
+    <string name="pref_category_functionality">Funktionalität</string>
+    <string name="pref_category_personalise">Personalisieren</string>
+    <string name="pref_category_data_manage">Daten verwalten</string>
+
+    <string name="pref_autostart_title">Autostart beim Booten</string>
+    <string name="pref_autostart_summary">Easer-Hintergrunddienst automatisch starten</string>
+
+    <string name="pref_restart_after_upgrade_title">Dienst nach der Aktualisierung starten</string>
+
+    <string name="pref_welcome_title">Willkommensnachricht anzeigen</string>
+    <string name="pref_welcome_summary">Willkommensnachricht beim App-Start anzeigen</string>
+
+    <string name="pref_logging_title">Externe Protokollierung aktivieren</string>
+    <string name="pref_use_root_title">Root-Funktionen verwenden</string>
+    <string name="pref_passive_mode_title">Passiver Modus</string>
+    <string name="pref_use_12_hour_clock_title">12-Stunden-Uhr verwenden</string>
+
+    <string name="pref_export_title">Exportieren</string>
+    <string name="pref_import_title">Importieren</string>
+    <string name="pref_convert_data_title">Daten konvertieren</string>
+    <string name="pref_convert_data_summary">Alle Daten in das empfohlene Format konvertieren</string>
+
+    <string name="message_convert_data_start">Daten werden konvertiert.</string>
+    <string name="message_convert_data_finish">Konvertierte Daten.</string>
+    <string name="title_welcome_message">Willkommen</string>
+    <string name="alert_update_storage_data_title">Alte Datenversion gefunden</string>
+    <string name="template_export">Exportiert nach %s</string>
+    <string name="version">Version</string>
+
+    <string name="message_importing_invalid_data">Diese Datei scheint ungültig zu sein. Stelle sicher, dass du eine zuvor von Easer exportierte Datei importierst.</string>
+
+    <string name="dynamics_time">Aktuelle Zeit</string>
+    <string name="dynamics_date">Aktuelles Datum</string>
+    <string name="dynamics_script_name">Skriptname</string>
+    <string name="dynamics_profile_name">Profilname</string>
+
+    <string name="title_help">Hilfe</string>
+    <string name="category_operation_android">Android</string>
+    <string name="category_operation_system_config">Systemkonfiguration</string>
+    <string name="category_operation_misc">Verschiedenes</string>
+
+</resources>
