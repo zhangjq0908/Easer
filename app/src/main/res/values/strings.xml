@@ -109,7 +109,7 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
 
     <string name="pref_category_functionality">Functionality</string>
     <string name="pref_category_personalise">Personalise</string>
-    <string name="pref_category_data_manage">Data manage</string>
+    <string name="pref_category_data_manage">Manage data</string>
 
     <string name="pref_autostart_title">Autostart on boot</string>
     <string name="pref_autostart_summary">Start Easer background service automatically</string>
