@@ -1,2 +1,196 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="ev_condition_event">Condition Événement</string>
+    <string name="condition_event_enter">Entrer</string>
+    <string name="condition_event_leave">Quitter</string>
+
+
+    <string name="condition_bluetooth_device">Périphérique bluetooth connecté</string>
+
+    <string name="condition_cell_location">\@string/event_celllocation</string>
+
+    <string name="condition_connectivity">\@string/event_connectivity</string>
+
+    <string name="condition_date">\@string/event_date</string>
+
+    <string name="condition_day_of_week">\@string/event_day_of_week</string>
+
+    <string name="condition_headset">\@string/event_headset</string>
+    <string name="condition_headset__headset_state">État du casque</string>
+    <string name="condition_headset__plugged_in">Branché</string>
+    <string name="condition_headset__plugged_out">Débranché</string>
+
+    <string name="condition_screen">\@string/event_screen</string>
+
+    <string name="condition_time">\@string/event_time</string>
+
+    <string name="condition_wifi">\@string/event_wificonn</string>
+
+
+    <string name="event_time">Heure</string>
+    <string name="event_date">Date</string>
+
+    <string name="event_wificonn">Connexion WiFi</string>
+    <string name="wificonn_select_dialog_title">Sélectionnez le WiFi</string>
+    <string name="wificonn_wait_for_result">Attente du résultat du scan WiFi</string>
+
+    <string name="event_celllocation">Localisation cellulaire</string>
+
+    <string name="event_battery">État de la batterie</string>
+    <string name="event_day_of_week">Jour de la semaine</string>
+
+    <string name="event_bluetooth_device">Périphérique Bluetooth connecté</string>
+    <string name="ebtdevice_select_dialog_title">Sélectionnez le périphérique Bluetooth</string>
+    <string name="ebtdevice_unknown_device">Périphérique inconnu</string>
+
+    <string name="event_connectivity">Type de connectivité</string>
+    <string name="event_calendar">Evénement du calendrier</string>
+    <string name="ecalendar_select_dialog_title">Sélectionnez le calendrier</string>
+    <string name="text_calendar_name">Nom du calendrier</string>
+    <string name="text_calendar">Calendrier</string>
+    <string name="indicator_when">Quand…</string>
+    <string name="choice_start_of">Démarrage de</string>
+    <string name="choice_end_of">Arrêt de</string>
+    <string name="choice_any_event">N\'importe quels évènements</string>
+
+    <string name="event_broadcast">Réception de la diffusion</string>
+    <string name="text_action">Action</string>
+    <string name="text_category">Catégorie</string>
+
+    <string name="event_sms">Réception d\'un SMS</string>
+    <string name="sender">Emetteur</string>
+    <string name="content_contains">Contenu (contient...)</string>
+
+    <string name="event_notification">Réception d\'une notification</string>
+    <string name="event_notification__app">Application</string>
+    <string name="event_notification__app_hint">Nom de package complet de l\'application</string>
+    <string name="event_notification__title">Titre (contient...)</string>
+    <string name="event_notification__content">Contenu (contient...)</string>
+    <string name="label_event_notification_listener_service">Auditeur d\'événement de notification</string>
+    <string name="ev_notification_dynamics_app">Application expéditrice de la notification</string>
+    <string name="ev_notification_dynamics_title">Titre de la notification</string>
+    <string name="ev_notification_dynamics_content">Contenu de la notification</string>
+
+    <string name="event_timer">Minuterie</string>
+    <string name="exact_timer">L\'heure exacte ?</string>
+    <string name="exact">Exacte</string>
+    <string name="inexact">Inexacte</string>
+    <string name="repeative_timer">Répéter le minuteur ?</string>
+    <string name="repeat">Répéter</string>
+    <string name="one_time">Une fois</string>
+    <string name="minutes">Minutes</string>
+
+    <string name="event_nfc_tag">Tag NFC</string>
+    <string name="event_nfc_tag__button_detect">Détecter le tag</string>
+    <string name="event_nfc_tag__prompt_enable_nfc_first">Vous devez activer le NFC</string>
+    <string name="event_nfc_tag__prompt_wait_for_tag">Attente du scan du tag…</string>
+
+    <string name="event_headset">Casque audio</string>
+    <string name="event_headset__headset_action">Action casque audio</string>
+    <string name="event_headset__plug_in">Branché</string>
+    <string name="event_headset__plug_out">Débranché</string>
+    <string name="event_headset__plug_any">Les deux</string>
+    <string name="event_headset__with_microphone">Avec le microphone ?</string>
+    <string name="event_headset__microphone_true">Oui</string>
+    <string name="event_headset__microphone_false">Non</string>
+    <string name="event_headset__microphone_any">Les deux</string>
+
+    <string name="event_tcp_trip">Transport TCP</string>
+    <string name="remote_host">Hôte distant</string>
+    <string name="send_data">Envoyer des données</string>
+    <string name="check_reply">Vérifier la réponse</string>
+    <string name="reply_data">Données de réponse</string>
+
+    <string name="event_screen">Etat de l\'écran</string>
+    <string name="ev_screen_text_screen_is">Quand l\'écran est…</string>
+    <string name="ev_screen_on">Allumé</string>
+    <string name="ev_screen_off">Eteint</string>
+    <string name="ev_screen_unlocked">Déverouillé</string>
+
+
+    <string name="operation_wifi">WiFi</string>
+    <string name="operation_cellular">Données mobiles</string>
+    <string name="operation_bluetooth">Bluetooth</string>
+    <string name="operation_rotation">Rotation automatique</string>
+
+    <string name="operation_broadcast">Envoyer une diffusion</string>
+    <string name="obroadcast_l_action">Action :</string>
+    <string name="obroadcast_l_category">Catégorie :</string>
+    <string name="obroadcast_l_type">Type :</string>
+    <string name="obroadcast_l_data">Données :</string>
+    <string name="text_extras">Extras</string>
+    <string name="text_key">Clé</string>
+    <string name="text_value">Valeur</string>
+    <string name="text_type">Type</string>
+    <string name="operation_brightness">Luminosité</string>
+    <string name="operation_brightness_desc_autobrightness">Luminosité automatique</string>
+
+    <string name="operation_ringer_mode">Mode sonnerie</string>
+    <string name="ringer_mode_normal">Normal</string>
+    <string name="ringer_mode_vibrate">Vibration</string>
+    <string name="ringer_mode_silent">Silencieux</string>
+    <string name="ringer_mode_dnd">Ne pas déranger</string>
+    <string name="ringer_mode_dnd_all">Tous</string>
+    <string name="ringer_mode_dnd_priority">Prioritaires</string>
+    <string name="ringer_mode_dnd_none">Aucun</string>
+    <string name="ringer_mode_dnd_alarms">Alarmes</string>
+    <string name="ringing_items_in_do_not_disturb_mode">Sonnerie des éléments en mode Ne pas déranger</string>
+    <string name="label_operation_ringer_mode_notification_listener_service">Commutateur de mode silencieux</string>
+
+    <string name="operation_command">Exécuter des commandes</string>
+    <string name="operation_hotspot">Point d\'accès</string>
+    <string name="operation_synchronization">Synchronisation du compte</string>
+
+    <string name="operation_network_transmission">Transmission sur le réseau</string>
+    <string name="o_nettrans_protocol">Protocole</string>
+    <string name="o_nettrans_tcp">TCP</string>
+    <string name="o_nettrans_udp">UDP</string>
+    <string name="o_nettrans_remote_address">Accès distant</string>
+    <string name="o_nettrans_remote_port">Port distant</string>
+    <string name="o_nettrans_data">Données</string>
+
+    <string name="operation_media_control">Contrôleur média</string>
+    <string name="text_play_pause">Basculer sur lecture/pause</string>
+    <string name="text_play">Lecture</string>
+    <string name="text_pause">Pause</string>
+    <string name="text_previous">Précédent</string>
+    <string name="text_next">Suivant</string>
+    <string name="operation_media_control_helper_service_label">Aide pour le contrôleur média</string>
+
+    <string name="operation_airplane_mode">Mode avion</string>
+
+    <string name="operation_send_sms">Envoyer un SMS</string>
+    <string name="destination">Destination</string>
+    <string name="content">Contenu</string>
+
+    <string name="operation_send_notification">Envoyer une notification</string>
+    <string name="title">Titre</string>
+
+    <string name="operation_alarm">Configurer une alarme</string>
+    <string name="operation_alarm__absolute">Absolu</string>
+    <string name="operation_alarm__relative">Relatif</string>
+    <string name="operation_alarm__time">Heure</string>
+    <string name="operation_alarm__message">Message</string>
+
+    <string name="operation_state_control">État du nœud du script de contrôle</string>
+    <string name="change_status_to">Changer le status à…</string>
+    <string name="unsatisfied">Non satisfait</string>
+
+    <string name="operation_volume">Ajuster le volume</string>
+    <string name="o_volume_ring">Sonner</string>
+    <string name="o_volume_media">Média</string>
+    <string name="o_volume_alarm">Alarme</string>
+    <string name="o_volume_notification">Notification</string>
+    <string name="o_volume_bluetooth">Bluetooth</string>
+    <string name="o_volume_delay">Délai (s)</string>
+
+    <string name="op_launch_app">Lancer l\'application</string>
+    <string name="op_launch_app_text_app">Application</string>
+    <string name="op_launch_app_text_package_name">Nom du paquet</string>
+
+    <string name="op_ui_mode">Mode voiture</string>
+    <string name="op_car_mode">Mode voiture</string>
+    <string name="op_normal_mode">Mode normal</string>
+
+    <string name="rel_after">Après</string>
+
+</resources>
