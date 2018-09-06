@@ -158,7 +158,7 @@
     <string name="label_operation_ringer_mode_notification_listener_service">Ændre stille tilstand</string>
 
     <string name="operation_command">Udføre kommandoer</string>
-    <string name="operation_hotspot">Hotspot</string>
+    <string name="operation_hotspot">Brændpunkt</string>
     <string name="operation_synchronization">Konto synkronisering</string>
 
     <string name="operation_network_transmission">Netværk overførsel</string>
