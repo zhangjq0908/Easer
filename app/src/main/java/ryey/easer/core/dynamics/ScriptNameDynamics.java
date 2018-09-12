@@ -25,7 +25,7 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.R;
 
-import static ryey.easer.core.ProfileLoaderIntentService.EXTRA_SCRIPT_NAME;
+import static ryey.easer.core.ProfileLoaderService.EXTRA_SCRIPT_NAME;
 
 public class ScriptNameDynamics implements CoreDynamicsInterface {
     @Override

@@ -47,7 +47,8 @@
             android:enabled="true"
             android:exported="true" />
         <service
-            android:name=".core.ProfileLoaderIntentService"
+            android:name=".core.ProfileLoaderService"
+            android:enabled="true"
             android:exported="false" />
 
         <activity

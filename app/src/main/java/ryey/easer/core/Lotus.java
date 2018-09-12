@@ -150,15 +150,10 @@ public abstract class Lotus {
 
         String profileName = scriptTree.getProfile();
         if (profileName != null) {
-            Intent intent = new Intent(context, ProfileLoaderIntentService.class);
-            intent.setAction(ProfileLoaderIntentService.ACTION_LOAD_PROFILE);
-            intent.putExtra(ProfileLoaderIntentService.EXTRA_PROFILE_NAME, profileName);
-            intent.putExtra(ProfileLoaderIntentService.EXTRA_SCRIPT_NAME, scriptTree.getName());
             if (extras == null)
                 extras = new Bundle();
-            intent.putExtra(EXTRA_DYNAMICS_PROPERTIES, extras);
-            intent.putExtra(EXTRA_DYNAMICS_LINK, scriptTree.getData().getDynamicsLink());
-            context.startService(intent);
+            ProfileLoaderService.triggerProfile(context, profileName, scriptTree.getName(),
+                    extras, scriptTree.getData().getDynamicsLink());
         }
 
         triggerAndPromote();

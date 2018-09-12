@@ -19,12 +19,16 @@
 
 package ryey.easer.core;
 
-import android.app.IntentService;
+import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 
 import com.orhanobut.logger.Logger;
 
@@ -42,47 +46,66 @@ import ryey.easer.core.dynamics.CoreDynamicsInterface;
 import ryey.easer.core.log.ActivityLogService;
 import ryey.easer.plugins.PluginRegistry;
 
-public class ProfileLoaderIntentService extends IntentService {
+import static ryey.easer.core.Lotus.EXTRA_DYNAMICS_LINK;
+import static ryey.easer.core.Lotus.EXTRA_DYNAMICS_PROPERTIES;
+
+public class ProfileLoaderService extends Service {
     public static final String ACTION_LOAD_PROFILE = "ryey.easer.action.LOAD_PROFILE";
 
     public static final String EXTRA_PROFILE_NAME = "ryey.easer.extra.PROFILE_NAME";
     public static final String EXTRA_SCRIPT_NAME = "ryey.easer.extra.EVENT_NAME";
 
     public static void triggerProfile(Context context, String profileName) {
-        Intent intent = new Intent(context, ProfileLoaderIntentService.class);
-        intent.setAction(ProfileLoaderIntentService.ACTION_LOAD_PROFILE);
-        intent.putExtra(ProfileLoaderIntentService.EXTRA_PROFILE_NAME, profileName);
-        context.startService(intent);
+        Intent intent = new Intent();
+        intent.setAction(ProfileLoaderService.ACTION_LOAD_PROFILE);
+        intent.putExtra(ProfileLoaderService.EXTRA_PROFILE_NAME, profileName);
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+    }
+    public static void triggerProfile(Context context, String profileName, String scriptName,
+                                      Bundle dynamicsProperties, DynamicsLink dynamicsLink) {
+        Intent intent = new Intent();
+        intent.setAction(ProfileLoaderService.ACTION_LOAD_PROFILE);
+        intent.putExtra(ProfileLoaderService.EXTRA_PROFILE_NAME, profileName);
+        intent.putExtra(ProfileLoaderService.EXTRA_SCRIPT_NAME, scriptName);
+        intent.putExtra(EXTRA_DYNAMICS_PROPERTIES, dynamicsProperties);
+        intent.putExtra(EXTRA_DYNAMICS_LINK, dynamicsLink);
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
     }
 
-    public ProfileLoaderIntentService() {
-        super("ProfileLoaderIntentService");
-    }
+    private IntentFilter intentFilter = new IntentFilter(ACTION_LOAD_PROFILE);
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            final String action = intent.getAction();
+            if (ACTION_LOAD_PROFILE.equals(action)) {
+                final String name = intent.getStringExtra(EXTRA_PROFILE_NAME);
+                final String event = intent.getStringExtra(EXTRA_SCRIPT_NAME);
+                if (intent.getExtras() == null) {
+                    Logger.wtf("ProfileLoaderIntent has null extras???");
+                    throw new IllegalStateException("ProfileLoaderIntent has null extras???");
+                }
+                handleActionLoadProfile(name, event, intent.getExtras());
+            } else {
+                Logger.wtf("ProfileLoaderService got unknown Intent action <%s>", action);
+            }
+        }
+    };
 
     @Override
     public void onCreate() {
-        Logger.v("ProfileLoaderIntentService onCreate()");
-        super.onCreate();
+        Logger.v("ProfileLoaderService onCreate()");
+        LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, intentFilter);
     }
 
     @Override
-    protected void onHandleIntent(Intent intent) {
-        if (intent == null) {
-            Logger.wtf("ProfileLoaderIntentService got null Intent to handle");
-            return;
-        }
-        final String action = intent.getAction();
-        if (ACTION_LOAD_PROFILE.equals(action)) {
-            final String name = intent.getStringExtra(EXTRA_PROFILE_NAME);
-            final String event = intent.getStringExtra(EXTRA_SCRIPT_NAME);
-            if (intent.getExtras() == null) {
-                Logger.wtf("ProfileLoaderIntent has null extras???");
-                throw new IllegalStateException("ProfileLoaderIntent has null extras???");
-            }
-            handleActionLoadProfile(name, event, intent.getExtras());
-        } else {
-            Logger.wtf("ProfileLoaderIntentService got unknown Intent action <%s>", action);
-        }
+    public void onDestroy() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
+    }
+
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
     }
 
     private void handleActionLoadProfile(@NonNull String name, @Nullable String event, @NonNull Bundle extras) {
@@ -91,8 +114,8 @@ public class ProfileLoaderIntentService extends IntentService {
         ProfileDataStorage storage = ProfileDataStorage.getInstance(this);
         profile = storage.get(name);
 
-        DynamicsLink dynamicsLink = extras.getParcelable(Lotus.EXTRA_DYNAMICS_LINK);
-        Bundle macroData = extras.getBundle(Lotus.EXTRA_DYNAMICS_PROPERTIES);
+        DynamicsLink dynamicsLink = extras.getParcelable(EXTRA_DYNAMICS_LINK);
+        Bundle macroData = extras.getBundle(EXTRA_DYNAMICS_PROPERTIES);
         if (dynamicsLink == null)
             dynamicsLink = new DynamicsLink();
         if (macroData == null)

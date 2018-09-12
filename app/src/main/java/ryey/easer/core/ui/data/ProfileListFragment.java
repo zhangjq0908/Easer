@@ -36,7 +36,7 @@ import java.util.List;
 
 import ryey.easer.R;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
-import ryey.easer.core.ProfileLoaderIntentService;
+import ryey.easer.core.ProfileLoaderService;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.plugins.PluginRegistry;
@@ -72,7 +72,7 @@ public class ProfileListFragment extends AbstractDataListFragment<ProfileDataSto
         String name = wrapper.name;
         int id = item.getItemId();
         if (id == R.id.action_trigger_profile) {
-            ProfileLoaderIntentService.triggerProfile(getContext(), name);
+            ProfileLoaderService.triggerProfile(getContext(), name);
             return true;
         } else
             return super.onContextItemSelected(item);
