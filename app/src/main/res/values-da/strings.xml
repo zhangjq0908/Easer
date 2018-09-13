@@ -168,7 +168,9 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     <string name="dynamics_profile_name">Profil navn</string>
 
     <string name="title_help">Hjælp</string>
-    <string name="help_script">Skript er logik beholderne. Forbind en hændelse eller en tilstand med en profil i et skript, så Easer indlæser/udfører den pågældende profil når hændelsen finder sted eller tilstandn er opfyldt.\nDer er også mere avancerede funktioner f.eks. omvendt hændelse.\nFor yderligere oplysninger henvises til <a href="https://github.com/renyuneyun/Easer/wiki"> dokumentet</a>.</string>
+    <string name="help_script">Skript er logikbeholderne. Forbind en hændelse eller en tilstand med en profil i et skript, så Easer indlæser/udfører den pågældende profil når hændelsen finder sted eller tilstanden er opfyldt.
+\nDer er også mere avancerede funktioner, f.eks. omvendt hændelse.
+\nFor yderligere oplysninger henvises det til <a href="https://github.com/renyuneyun/Easer/wiki"> dokumentet</a>.</string>
     <string name="help_event">Hændelse repræsenterer en kortvarig (øjeblikkelig) hændelse på telefonen eller eksternt.\nFor eksempel modtager en påmindelse eller en skannet NFC mærke.\nSe <a href="https://github.com/renyuneyun/Easer/wiki"> dokumentet </a> for at få flere oplysninger.</string>
     <string name="help_condition">Tilstand repræsenterer en varig tilstand (men normalt ikke for altid) på telefonen eller eksternt.\nFor eksempel forbindelse til trådløst netværk eller skærm er fra.\nSe <a href="https://github.com/renyuneyun/Easer/wiki"> dokumentet </a> for at få flere oplysninger.</string>
     <string name="help_profile">Profil er et sæt handlinger. Hver handling repræsenterer en bestemt type handling.\nFor eksempel tænd Bluetooth eller send en SMS.\nSe <a href="https://github.com/renyuneyun/Easer/wiki"> dokumentet </a> for at få flere oplysninger.</string>
