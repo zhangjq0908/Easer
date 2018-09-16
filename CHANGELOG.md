@@ -1,6 +1,19 @@
 CHANGELOG
 ======
 
+* v0.7: Introduce Remote Plugins && Translation updates && More Dynamics
+	* Introduce Remote Plugins to Easer
+		* Remote Plugins are separate apps which can act as plugins of Easer to support more functions (Event/Condition/Operation)
+		* Currently only Operation Remote Plugin is introduced
+		* See [EaserOperationPluginExample](https://github.com/renyuneyun/EaserOperationPluginExample) for an example
+	* More translations from weblate
+		* Danish
+		* Japanese
+		* French
+		* Norwegian Bokmål
+		* Germany
+	* Add Dynamics for Sms Event (for #164)
+
 * v0.6.9.1: Allow multiple Ringer Modes && Update translations && Bug fix
 	* Allow to set mutliple Runger Modes in one Profile (close #155)
 	* Update translations
