@@ -24,6 +24,7 @@ import org.json.JSONObject;
 
 import java.util.Map;
 
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.dynamics.DynamicsLink;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.core.data.ConditionStructure;
@@ -103,7 +104,7 @@ class ScriptSerializer implements Serializer<ScriptStructure> {
     JSONObject serialize_situation(EventData event) throws JSONException {
         JSONObject json_situation = new JSONObject();
         json_situation.put(C.SPEC, PluginRegistry.getInstance().event().findPlugin(event).id());
-        json_situation.put(C.DATA, event.serialize(C.Format.JSON));
+        json_situation.put(C.DATA, event.serialize(PluginDataFormat.JSON));
         return json_situation;
     }
 

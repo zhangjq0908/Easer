@@ -34,6 +34,7 @@ import java.util.Set;
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.plugindef.conditionplugin.ConditionData;
 
 public class WifiConditionData implements ConditionData {
@@ -48,7 +49,7 @@ public class WifiConditionData implements ConditionData {
         setFromMultiple(ssids.split("\n"));
     }
 
-    WifiConditionData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    WifiConditionData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 try {
@@ -88,7 +89,7 @@ public class WifiConditionData implements ConditionData {
 
     @NonNull
     @Override
-    public String serialize(@NonNull C.Format format) {
+    public String serialize(@NonNull PluginDataFormat format) {
         String res;
         switch (format) {
             default:

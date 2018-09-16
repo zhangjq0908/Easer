@@ -21,8 +21,8 @@ package ryey.easer.plugins.event.tcp_trip;
 
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
 
@@ -48,7 +48,7 @@ class TcpTripEventDataFactory implements EventDataFactory<TcpTripEventData> {
     @ValidData
     @NonNull
     @Override
-    public TcpTripEventData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public TcpTripEventData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         return new TcpTripEventData(data, format, version);
     }
 }

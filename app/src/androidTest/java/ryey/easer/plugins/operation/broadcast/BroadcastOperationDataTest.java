@@ -24,6 +24,7 @@ import android.os.Parcel;
 import org.junit.Test;
 
 import ryey.easer.commons.C;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.plugins.TestHelper;
 
 import static org.junit.Assert.assertEquals;
@@ -42,7 +43,7 @@ public class BroadcastOperationDataTest {
     public void testSerialize() throws Exception {
         BroadcastOperationDataFactory factory = new BroadcastOperationDataFactory();
         BroadcastOperationData dummyData = factory.dummyData();
-        for (C.Format format : C.Format.values()) {
+        for (PluginDataFormat format : PluginDataFormat.values()) {
             String serialized_data = dummyData.serialize(format);
             BroadcastOperationData parsed_data = factory.parse(serialized_data, format, C.VERSION_CURRENT);
             assertEquals(dummyData, parsed_data);

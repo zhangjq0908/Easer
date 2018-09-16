@@ -29,8 +29,8 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.Set;
 
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.plugindef.conditionplugin.ConditionData;
 
 public class ConnectivityConditionData implements ConditionData {
@@ -41,7 +41,7 @@ public class ConnectivityConditionData implements ConditionData {
         this.connectivity_type = connectivity_type;
     }
 
-    ConnectivityConditionData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    ConnectivityConditionData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 switch (format) {
@@ -61,7 +61,7 @@ public class ConnectivityConditionData implements ConditionData {
 
     @NonNull
     @Override
-    public String serialize(@NonNull C.Format format) {
+    public String serialize(@NonNull PluginDataFormat format) {
         String res;
         switch (format) {
             default:

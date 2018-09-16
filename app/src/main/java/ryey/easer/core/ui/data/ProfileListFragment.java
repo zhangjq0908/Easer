@@ -35,9 +35,9 @@ import java.util.Collection;
 import java.util.List;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
-import ryey.easer.core.ProfileLoaderIntentService;
+import ryey.easer.core.ProfileLoaderService;
 import ryey.easer.core.data.ProfileStructure;
+import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.plugins.PluginRegistry;
 import ryey.easer.plugins.operation.state_control.StateControlOperationData;
@@ -72,7 +72,7 @@ public class ProfileListFragment extends AbstractDataListFragment<ProfileDataSto
         String name = wrapper.name;
         int id = item.getItemId();
         if (id == R.id.action_trigger_profile) {
-            ProfileLoaderIntentService.triggerProfile(getContext(), name);
+            ProfileLoaderService.triggerProfile(getContext(), name);
             return true;
         } else
             return super.onContextItemSelected(item);
@@ -86,10 +86,12 @@ public class ProfileListFragment extends AbstractDataListFragment<ProfileDataSto
             ProfileStructure profile = dataStorage.get(name);
             boolean valid = profile.isValid();
             if (valid) {
-                Collection<OperationData> stateControlOperationData = profile.get(new StateControlOperationPlugin().id());
+                Collection<RemoteLocalOperationDataWrapper> stateControlOperationData = profile.get(new StateControlOperationPlugin().id());
                 if (stateControlOperationData.size() > 0) {
-                    for (OperationData operationData : stateControlOperationData) {
-                        if (!((StateControlOperationData) operationData).isValid(getContext()))
+                    for (RemoteLocalOperationDataWrapper dataWrapper : stateControlOperationData) {
+                        StateControlOperationData operationData = (StateControlOperationData) dataWrapper.localData;
+                        assert operationData != null;
+                        if (!operationData.isValid(getContext()))
                             valid = false;
                     }
                 }
@@ -110,6 +112,7 @@ public class ProfileListFragment extends AbstractDataListFragment<ProfileDataSto
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        //TODO: Check remote plugins also
         //noinspection ConstantConditions
         if (PluginRegistry.getInstance().operation().getEnabledPlugins(getContext()).size() == 0) {
             FloatingActionButton fab = view.findViewById(R.id.fab);

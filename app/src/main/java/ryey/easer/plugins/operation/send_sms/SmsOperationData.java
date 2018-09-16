@@ -33,8 +33,8 @@ import org.json.JSONObject;
 import java.util.Set;
 
 import ryey.easer.Utils;
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
@@ -50,11 +50,11 @@ public class SmsOperationData implements OperationData {
         this.content = content;
     }
 
-    SmsOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    SmsOperationData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
     }
 
-    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         try {
             JSONObject jsonObject = new JSONObject(data);
             destination = jsonObject.getString(K_DEST);
@@ -67,7 +67,7 @@ public class SmsOperationData implements OperationData {
 
     @NonNull
     @Override
-    public String serialize(@NonNull C.Format format) {
+    public String serialize(@NonNull PluginDataFormat format) {
         String res;
         switch (format) {
             default:

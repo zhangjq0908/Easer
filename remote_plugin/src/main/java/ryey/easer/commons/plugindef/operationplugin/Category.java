@@ -22,13 +22,15 @@ package ryey.easer.commons.plugindef.operationplugin;
 import android.content.res.Resources;
 import android.support.annotation.NonNull;
 
-import ryey.easer.R;
+import ryey.easer.remote_plugin.R;
+
 
 public enum Category {
     android,
     system_config,
     easer,
-    misc;
+    misc,
+    unknown;
 
     @NonNull
     public String toString(Resources resources) {
@@ -41,6 +43,8 @@ public enum Category {
                 return resources.getString(R.string.category_operation_easer);
             case misc:
                 return resources.getString(R.string.category_operation_misc);
+            case unknown:
+                return resources.getString(R.string.category_operation_unknown);
         }
         throw new IllegalStateException("Category isn't caught in switch statement");
     }

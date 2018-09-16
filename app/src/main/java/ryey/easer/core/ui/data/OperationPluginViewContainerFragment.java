@@ -35,14 +35,14 @@ import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.plugins.PluginRegistry;
 
-public class ProfilePluginViewContainerFragment<T extends OperationData> extends PluginViewContainerFragment<T> {
+public class OperationPluginViewContainerFragment<T extends OperationData> extends PluginViewContainerFragment<T> {
 
     private static final String EXTRA_PLUGIN = "plugin";
 
-    static <T extends OperationData> ProfilePluginViewContainerFragment<T> createInstance(OperationPlugin<T> plugin) {
+    static <T extends OperationData> OperationPluginViewContainerFragment<T> createInstance(OperationPlugin<T> plugin) {
         Bundle bundle = new Bundle();
         bundle.putString(EXTRA_PLUGIN, plugin.id());
-        ProfilePluginViewContainerFragment<T> fragment = new ProfilePluginViewContainerFragment<>();
+        OperationPluginViewContainerFragment<T> fragment = new OperationPluginViewContainerFragment<>();
         fragment.setArguments(bundle);
         return fragment;
     }

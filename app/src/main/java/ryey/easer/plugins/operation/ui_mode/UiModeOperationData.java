@@ -25,8 +25,8 @@ import android.support.annotation.Nullable;
 
 import java.util.Set;
 
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 
@@ -55,13 +55,13 @@ public class UiModeOperationData implements OperationData {
         this.ui_mode = ui_mode;
     }
 
-    UiModeOperationData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    UiModeOperationData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         ui_mode = UiMode.valueOf(data);
     }
 
     @NonNull
     @Override
-    public String serialize(@NonNull C.Format format) {
+    public String serialize(@NonNull PluginDataFormat format) {
         return ui_mode.name();
     }
 

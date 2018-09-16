@@ -23,8 +23,8 @@ import android.support.annotation.NonNull;
 
 import java.util.Calendar;
 
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.conditionplugin.ConditionDataFactory;
 
@@ -48,7 +48,7 @@ class TimeConditionDataFactory implements ConditionDataFactory<TimeConditionData
     @ValidData
     @NonNull
     @Override
-    public TimeConditionData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public TimeConditionData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         return new TimeConditionData(data, format, version);
     }
 }

@@ -19,13 +19,14 @@
 
 package ryey.easer.core.ui.data;
 
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.EditText;
-
-import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -33,12 +34,16 @@ import java.util.List;
 
 import ryey.easer.R;
 import ryey.easer.commons.C;
+import ryey.easer.commons.CommonPluginHelper;
 import ryey.easer.commons.plugindef.InvalidDataInputException;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
+import ryey.easer.core.RemotePluginCommunicationHelper;
 import ryey.easer.core.data.ProfileStructure;
+import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.plugins.PluginRegistry;
+import ryey.easer.remote_plugin.RemoteOperationData;
 
 public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructure, ProfileDataStorage> implements OperationSelectorFragment.SelectedListener {
 
@@ -46,10 +51,13 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
         TAG_DATA_TYPE = "profile";
     }
 
+    RemotePluginCommunicationHelper helper;
+
     EditText editText_profile_name = null;
 
     OperationSelectorFragment operationSelectorFragment;
-    List<ProfilePluginViewContainerFragment> operationViewList = new ArrayList<>();
+    List<OperationPluginViewContainerFragment<?>> operationViewList = new ArrayList<>();
+    List<RemoteOperationPluginViewContainerFragment> remoteOperationViewList = new ArrayList<>();
 
     @Override
     protected ProfileDataStorage retDataStorage() {
@@ -64,6 +72,13 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
     @Override
     protected int contentViewRes() {
         return R.layout.activity_edit_profile;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        helper = new RemotePluginCommunicationHelper(this);
+        helper.begin();
     }
 
     @Override
@@ -87,16 +102,30 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        helper.end();
+    }
+
+    @Override
     protected void loadFromData(ProfileStructure profile) {
         editText_profile_name.setText(oldName);
 
         clearPluginView();
-        List<OperationPlugin> plugins = PluginRegistry.getInstance().operation().getEnabledPlugins(this);
-        for (int i = 0; i < plugins.size(); i++) {
-            Collection<OperationData> possibleOperationData = profile.get(plugins.get(i).id());
-            if (possibleOperationData != null) {
-                for (OperationData operationData : possibleOperationData) {
-                    addAndFillPluginView(plugins.get(i), operationData);
+
+        PluginRegistry.Registry<OperationPlugin, OperationData> operationRegistry = PluginRegistry.getInstance().operation();
+        for (String pluginId : profile.pluginIds()) {
+            Collection<RemoteLocalOperationDataWrapper> operationDataCollection = profile.get(pluginId);
+            if (operationRegistry.hasPlugin(pluginId)) {
+                if (CommonPluginHelper.isEnabled(this, CommonPluginHelper.TYPE_OPERATION, pluginId)) {
+                    OperationPlugin plugin = operationRegistry.findPlugin(pluginId);
+                    for (RemoteLocalOperationDataWrapper dataWrapper : operationDataCollection) {
+                        addAndFillLocalPluginView(plugin, dataWrapper.localData);
+                    }
+                }
+            } else {
+                for (RemoteLocalOperationDataWrapper dataWrapper : operationDataCollection) {
+                    addAndFillRemotePluginView(pluginId, dataWrapper.remoteData);
                 }
             }
         }
@@ -107,7 +136,7 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
         ProfileStructure profile = new ProfileStructure(C.VERSION_CREATED_IN_RUNTIME);
         profile.setName(editText_profile_name.getText().toString());
 
-        for (ProfilePluginViewContainerFragment fragment : operationViewList) {
+        for (OperationPluginViewContainerFragment<?> fragment : operationViewList) {
             if (!fragment.isEnabled())
                 continue;
             try {
@@ -115,7 +144,22 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
                 if (!data.isValid())
                     throw new InvalidDataInputException();
                 fragment.setHighlight(false);
-                profile.put(PluginRegistry.getInstance().operation().findPlugin(data).id(), data);
+                String id = PluginRegistry.getInstance().operation().findPlugin(data).id();
+                profile.put(id, data);
+            } catch (InvalidDataInputException e) {
+                fragment.setHighlight(true);
+                return null;
+            }
+        }
+
+        for (RemoteOperationPluginViewContainerFragment fragment : remoteOperationViewList) {
+            if (!fragment.isEnabled())
+                continue;
+            try {
+                RemoteOperationData data = fragment.getData();
+                fragment.setHighlight(false);
+                String id = fragment.id();
+                profile.put(id, data);
             } catch (InvalidDataInputException e) {
                 fragment.setHighlight(true);
                 return null;
@@ -126,18 +170,21 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
     }
 
     synchronized void clearPluginView() {
-        Logger.d(operationViewList);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        for (PluginViewContainerFragment fragment : operationViewList) {
+        for (Fragment fragment : operationViewList) {
             transaction.remove(fragment);
         }
         operationViewList.clear();
+        for (Fragment fragment : remoteOperationViewList) {
+            transaction.remove(fragment);
+        }
+        remoteOperationViewList.clear();
         transaction.commit();
     }
 
-    synchronized <T extends OperationData> void addAndFillPluginView(OperationPlugin<T> plugin, T data) {
+    synchronized <T extends OperationData> void addAndFillLocalPluginView(OperationPlugin<T> plugin, T data) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        ProfilePluginViewContainerFragment<T> fragment = ProfilePluginViewContainerFragment.createInstance(plugin);
+        OperationPluginViewContainerFragment<T> fragment = OperationPluginViewContainerFragment.createInstance(plugin);
         transaction.add(R.id.layout_profiles, fragment, plugin.id());
         operationViewList.add(fragment);
         operationSelectorFragment.addSelectedPlugin(plugin);
@@ -145,23 +192,35 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
         fragment.fill(data);
     }
 
-    synchronized PluginViewContainerFragment[] addPluginView(OperationPlugin[] plugins) {
+    synchronized void addAndFillRemotePluginView(@NonNull String id, @Nullable RemoteOperationData data) {
+        RemoteOperationPluginViewContainerFragment fragment = RemoteOperationPluginViewContainerFragment.createInstance(id, data);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        PluginViewContainerFragment[] fragments = new PluginViewContainerFragment[plugins.length];
-        for (int i = 0; i < plugins.length; i++) {
-            OperationPlugin plugin = plugins[i];
-            ProfilePluginViewContainerFragment fragment = ProfilePluginViewContainerFragment.createInstance(plugin);
-            transaction.add(R.id.layout_profiles, fragment, plugin.id());
-            fragments[i] = fragment;
-            operationViewList.add(fragment);
-            operationSelectorFragment.addSelectedPlugin(plugin);
-        }
+        transaction.add(R.id.layout_profiles, fragment);
+        remoteOperationViewList.add(fragment);
         transaction.commit();
-        return fragments;
     }
 
+//    synchronized PluginViewContainerFragment[] addPluginView(OperationPlugin[] plugins) {
+//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//        PluginViewContainerFragment[] fragments = new PluginViewContainerFragment[plugins.length];
+//        for (int i = 0; i < plugins.length; i++) {
+//            OperationPlugin plugin = plugins[i];
+//            OperationPluginViewContainerFragment fragment = OperationPluginViewContainerFragment.createInstance(plugin);
+//            transaction.add(R.id.layout_profiles, fragment, plugin.id());
+//            fragments[i] = fragment;
+//            operationViewList.add(fragment);
+//            operationSelectorFragment.addSelectedPlugin(plugin);
+//        }
+//        transaction.commit();
+//        return fragments;
+//    }
+
     @Override
-    public void onSelected(OperationPlugin plugin) {
-        addPluginView(new OperationPlugin[]{plugin});
+    public void onSelected(OperationSelectorFragment.OperationPluginItemWrapper operationPluginItemWrapper) {
+        if (!operationPluginItemWrapper.isRemote()) {
+            addAndFillLocalPluginView(operationPluginItemWrapper.plugin, null);
+        } else {
+            addAndFillRemotePluginView(operationPluginItemWrapper.id, null);
+        }
     }
 }

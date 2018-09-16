@@ -28,6 +28,7 @@ import java.util.List;
 
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.core.data.ProfileStructure;
+import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.ScriptStructure;
 import ryey.easer.core.data.ScriptTree;
 import ryey.easer.core.data.storage.backend.ScriptDataStorageBackendInterface;
@@ -65,10 +66,13 @@ public class ScriptDataStorage extends AbstractDataStorage<ScriptStructure, Scri
         String s_id = (new StateControlOperationPlugin()).id();
         for (String pname : profileDataStorage.list()) {
             ProfileStructure profile = profileDataStorage.get(pname);
-            Collection<OperationData> dataCollection = profile.get(s_id);
+            Collection<RemoteLocalOperationDataWrapper> dataCollection = profile.get(s_id);
             if (dataCollection != null) {
-                for (OperationData operationData : dataCollection) {
-                    StateControlOperationData stateControlOperationData = (StateControlOperationData) operationData;
+                for (RemoteLocalOperationDataWrapper dataWrapper : dataCollection) {
+                    if (dataWrapper.isRemote())
+                        throw new IllegalStateException("StateControlOperationData should not be remote");
+                    StateControlOperationData stateControlOperationData = (StateControlOperationData) dataWrapper.localData;
+                    assert stateControlOperationData != null;
                     if (name.equals(stateControlOperationData.scriptName))
                         return false;
                 }
@@ -107,23 +111,30 @@ public class ScriptDataStorage extends AbstractDataStorage<ScriptStructure, Scri
         String s_id = (new StateControlOperationPlugin()).id();
         for (String pname : profileDataStorage.list()) {
             ProfileStructure profile = profileDataStorage.get(pname);
-            Collection<OperationData> dataCollection = profile.get(s_id);
+            Collection<RemoteLocalOperationDataWrapper> dataCollection = profile.get(s_id);
             if (dataCollection != null) {
                 List<StateControlOperationData> replaceData = new ArrayList<>();
-                for (OperationData operationData : dataCollection) {
-                    StateControlOperationData stateControlOperationData = (StateControlOperationData) operationData;
+                for (RemoteLocalOperationDataWrapper operationData : dataCollection) {
+                    if (operationData.isRemote())
+                        throw new IllegalStateException("StateControlOperationData should not be remote");
+                    OperationData localData = operationData.localData;
+                    assert localData != null;
+                    StateControlOperationData stateControlOperationData = (StateControlOperationData) localData;
                     if (oldName.equals(stateControlOperationData.scriptName)) {
                         replaceData.add(stateControlOperationData);
                     }
                 }
                 if (replaceData.size() > 0) {
-                    Collection<OperationData> copiedDataCollection = new ArrayList<>(dataCollection);
-                    for (StateControlOperationData operationData : replaceData) {
-                        copiedDataCollection.remove(operationData);
-                        StateControlOperationData newData = new StateControlOperationData(operationData, name);
-                        copiedDataCollection.add(newData);
+                    Collection<OperationData> newDataCollection = new ArrayList<>(dataCollection.size());
+                    for (RemoteLocalOperationDataWrapper wrapper : dataCollection) {
+                        newDataCollection.add(wrapper.localData);
                     }
-                    profile.set(s_id, copiedDataCollection);
+                    for (StateControlOperationData operationData : replaceData) {
+                        newDataCollection.remove(operationData);
+                        StateControlOperationData newData = new StateControlOperationData(operationData, name);
+                        newDataCollection.add(newData);
+                    }
+                    profile.set(s_id, newDataCollection);
                     profileDataStorage.edit(pname, profile);
                 }
             }

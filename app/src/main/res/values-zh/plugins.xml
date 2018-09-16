@@ -74,6 +74,8 @@
     <string name="event_sms">收到短信</string>
     <string name="sender">發送人</string>
     <string name="content_contains">內容 (包含…)</string>
+    <string name="ev_sms_dynamics_sender">短信發件人</string>
+    <string name="ev_sms_dynamics_content">短信內容</string>
 
     <string name="event_notification">收到通知</string>
     <string name="event_notification__app">App</string>

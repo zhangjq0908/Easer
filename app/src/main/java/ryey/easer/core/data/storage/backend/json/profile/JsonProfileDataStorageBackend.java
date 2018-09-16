@@ -76,7 +76,8 @@ public class JsonProfileDataStorageBackend implements ProfileDataStorageBackendI
 
     private ProfileStructure get(File file) throws FileNotFoundException, IllegalStorageDataException {
         ProfileParser parser = new ProfileParser();
-        return FileDataStorageBackendHelper.get(parser, file);
+        ProfileStructure profileStructure = FileDataStorageBackendHelper.get(parser, file);
+        return profileStructure;
     }
 
     @Override

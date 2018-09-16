@@ -17,38 +17,24 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.commons.plugindef;
+package ryey.easer.commons.plugindef.conditionplugin;
 
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
+import ryey.easer.commons.plugindef.DataFactory;
+import ryey.easer.commons.plugindef.ValidData;
 
-public interface DataFactory<T extends StorageData> {
-    /**
-     * @return The class of the expected data
-     */
+public interface ConditionDataFactory<D extends ConditionData> extends DataFactory<D> {
     @NonNull
-    Class<T> dataClass();
+    Class<D> dataClass();
 
-    /**
-     * Get a valid but dummy data.
-     * Mainly for testing.
-     * @return dummy data
-     */
     @ValidData
     @NonNull
-    T dummyData();
+    D dummyData();
 
-    /**
-     * Parse data from the given input to reconstruct the saved data
-     * @param data The data to be parsed
-     * @param format The format of the underlying storage (e.g. JSON)
-     * @param version The version of the data to-be-parsed
-     * @return The reconstructed data
-     * @throws IllegalStorageDataException If the {@param data} contains error or can't be recognized
-     */
     @ValidData
     @NonNull
-    T parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException;
+    D parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException;
 }

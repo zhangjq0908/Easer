@@ -26,12 +26,11 @@ import org.json.JSONObject;
 import java.util.Collection;
 
 import ryey.easer.commons.C;
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
-import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.core.data.ProfileStructure;
+import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.storage.backend.Serializer;
 import ryey.easer.core.data.storage.backend.UnableToSerializeException;
-import ryey.easer.plugins.PluginRegistry;
 
 public class ProfileSerializer implements Serializer<ProfileStructure> {
 
@@ -49,16 +48,21 @@ public class ProfileSerializer implements Serializer<ProfileStructure> {
 
     JSONArray serialize_operation(ProfileStructure profile) throws JSONException {
         JSONArray json_operations = new JSONArray();
-        for (OperationPlugin plugin : PluginRegistry.getInstance().operation().getAllPlugins()) {
-            Collection<OperationData> possibleData = profile.get(plugin.id());
-            if (possibleData != null) {
-                for (OperationData data : possibleData) {
-                    JSONObject single_data_object = new JSONObject();
-                    single_data_object.put(C.SPEC, plugin.id());
-                    String serialized_data = data.serialize(C.Format.JSON);
-                    single_data_object.put(C.DATA, serialized_data);
-                    json_operations.put(single_data_object);
+        for (String pluginId : profile.pluginIds()) {
+            Collection<RemoteLocalOperationDataWrapper> possibleData = profile.get(pluginId);
+            for (RemoteLocalOperationDataWrapper dataWrapper : possibleData) {
+                JSONObject single_data_object = new JSONObject();
+                single_data_object.put(C.SPEC, pluginId);
+                String serialized_data;
+                if (dataWrapper.isRemote()) {
+                    //noinspection ConstantConditions
+                    serialized_data = dataWrapper.remoteData.rawData;
+                } else {
+                    //noinspection ConstantConditions
+                    serialized_data = dataWrapper.localData.serialize(PluginDataFormat.JSON);
                 }
+                single_data_object.put(C.DATA, serialized_data);
+                json_operations.put(single_data_object);
             }
         }
         return json_operations;

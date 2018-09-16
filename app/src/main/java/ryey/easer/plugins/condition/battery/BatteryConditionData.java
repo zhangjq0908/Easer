@@ -22,8 +22,8 @@ package ryey.easer.plugins.condition.battery;
 import android.os.Parcel;
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.plugindef.conditionplugin.ConditionData;
 
 public class BatteryConditionData implements ConditionData {
@@ -34,11 +34,11 @@ public class BatteryConditionData implements ConditionData {
         this.battery_status = battery_status;
     }
 
-    BatteryConditionData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    BatteryConditionData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
     }
 
-    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 battery_status = Integer.parseInt(data);
@@ -48,7 +48,7 @@ public class BatteryConditionData implements ConditionData {
 
     @NonNull
     @Override
-    public String serialize(@NonNull C.Format format) {
+    public String serialize(@NonNull PluginDataFormat format) {
         String res;
         switch (format) {
             default:

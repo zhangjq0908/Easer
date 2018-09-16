@@ -29,16 +29,21 @@ import java.io.InputStream;
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.plugindef.operationplugin.OperationData;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.storage.backend.IOUtils;
 import ryey.easer.core.data.storage.backend.Parser;
 import ryey.easer.plugins.PluginRegistry;
+import ryey.easer.remote_plugin.RemoteOperationData;
 
 class ProfileParser implements Parser<ProfileStructure> {
 
     ProfileStructure profile;
+
+    ProfileParser() {
+    }
 
     public ProfileStructure parse(InputStream in) throws IOException, IllegalStorageDataException {
         try {
@@ -63,8 +68,12 @@ class ProfileParser implements Parser<ProfileStructure> {
             }
             String content = jsonObject.optString(C.DATA);
             OperationPlugin plugin = PluginRegistry.getInstance().operation().findPlugin(spec);
-            OperationData data = plugin.dataFactory().parse(content, C.Format.JSON, version);
-            profile.put(plugin.id(), data);
+            if (plugin != null) {
+                OperationData data = plugin.dataFactory().parse(content, PluginDataFormat.JSON, version);
+                profile.put(plugin.id(), data);
+            } else {
+                profile.put(spec, new RemoteOperationData(spec, PluginDataFormat.JSON, content));
+            }
         }
     }
 }

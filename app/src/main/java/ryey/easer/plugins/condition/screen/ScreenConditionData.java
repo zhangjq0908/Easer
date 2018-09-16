@@ -22,8 +22,8 @@ package ryey.easer.plugins.condition.screen;
 import android.os.Parcel;
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.plugindef.conditionplugin.ConditionData;
 
 public class ScreenConditionData implements ConditionData {
@@ -40,7 +40,7 @@ public class ScreenConditionData implements ConditionData {
         this.screenEvent = screenEvent;
     }
 
-    ScreenConditionData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    ScreenConditionData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 screenEvent = ScreenEvent.valueOf(data);
@@ -49,7 +49,7 @@ public class ScreenConditionData implements ConditionData {
 
     @NonNull
     @Override
-    public String serialize(@NonNull C.Format format) {
+    public String serialize(@NonNull PluginDataFormat format) {
         String res;
         switch (format) {
             default:

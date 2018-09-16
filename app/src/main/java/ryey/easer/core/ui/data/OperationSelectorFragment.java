@@ -37,9 +37,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import ryey.easer.R;
+import ryey.easer.commons.plugindef.operationplugin.Category;
 import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
+import ryey.easer.core.RemoteOperationPluginInfo;
+import ryey.easer.core.RemotePluginCommunicationHelper;
 import ryey.easer.plugins.PluginRegistry;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
@@ -49,37 +53,90 @@ public class OperationSelectorFragment extends DialogFragment {
     SelectedListener selectedListener = null;
     Map<Class<? extends OperationPlugin>, Integer> addedPlugins = new ArrayMap<>();
 
+    List<OperationPluginItemWrapper> availableLocalPluginList;
+
+    RemotePluginCommunicationHelper helper;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //noinspection ConstantConditions
+        helper = new RemotePluginCommunicationHelper(getContext());
+        helper.begin();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dialog_select_operation_plugin, container, false);
         StickyListHeadersListView list = view.findViewById(android.R.id.list);
-        List<OperationPlugin> operationPluginList = PluginRegistry.getInstance().operation().getEnabledPlugins(getContext());
-        List<PluginItemWrapper> descList = new ArrayList<>(operationPluginList.size());
-        for (OperationPlugin operationPlugin : operationPluginList) {
+        List<OperationPlugin> localOperationPluginList = PluginRegistry.getInstance().operation().getEnabledPlugins(getContext());
+        availableLocalPluginList = new ArrayList<>(localOperationPluginList.size());
+        for (OperationPlugin operationPlugin : localOperationPluginList) {
             if (addedPlugins.containsKey(operationPlugin.getClass())) {
                 if (operationPlugin.maxExistence() > 0) {
                     if (addedPlugins.get(operationPlugin.getClass()) >= operationPlugin.maxExistence())
                         continue;
                 }
             }
-            descList.add(new PluginItemWrapper(operationPlugin.view().desc(getResources()), operationPlugin));
+            availableLocalPluginList.add(new OperationPluginItemWrapper(operationPlugin.id(),
+                    operationPlugin.view().desc(getResources()),
+                    operationPlugin.category(),
+                    operationPlugin)
+            );
         }
-        PluginListAdapter adapter = new PluginListAdapter(getContext(), descList);
+        PluginListAdapter adapter = new PluginListAdapter(getContext(), availableLocalPluginList);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                OperationPlugin plugin = ((PluginItemWrapper) parent.getItemAtPosition(position)).plugin;
-                if (plugin.checkPermissions(getContext())) {
-                    selectedListener.onSelected(plugin);
-                    dismiss();
+                OperationPluginItemWrapper operationPluginItemWrapper = (OperationPluginItemWrapper) parent.getItemAtPosition(position);
+                if (!operationPluginItemWrapper.isRemote()) {
+                    OperationPlugin plugin = operationPluginItemWrapper.plugin;
+                    if (plugin.checkPermissions(getContext())) {
+                        selectedListener.onSelected(operationPluginItemWrapper);
+                        dismiss();
+                    } else {
+                        plugin.requestPermissions(getActivity(), 0);
+                    }
                 } else {
-                    plugin.requestPermissions(getActivity(), 0);
+                    selectedListener.onSelected(operationPluginItemWrapper);
+                    dismiss();
                 }
             }
         });
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
+        helper.asyncCurrentOperationPluginList(new RemotePluginCommunicationHelper.OnOperationPluginListObtainedCallback() {
+            @Override
+            public void onListObtained(Set<RemoteOperationPluginInfo> operationPluginInfos) {
+                StickyListHeadersListView list = view.findViewById(android.R.id.list);
+                List<OperationPluginItemWrapper> descList = new ArrayList<>(availableLocalPluginList);
+                for (RemoteOperationPluginInfo remotePluginInfo : operationPluginInfos) {
+                    descList.add(new OperationPluginItemWrapper(
+                            remotePluginInfo.getPluginId(),
+                            remotePluginInfo.getPluginName(),
+                            remotePluginInfo.getCategory(),
+                            null));
+                }
+                PluginListAdapter adapter = new PluginListAdapter(getContext(), descList);
+                list.setAdapter(adapter);
+            }
+        });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        helper.end();
     }
 
     synchronized void addSelectedPlugin(@NonNull OperationPlugin plugin) {
@@ -96,15 +153,22 @@ public class OperationSelectorFragment extends DialogFragment {
     }
 
     interface SelectedListener {
-        void onSelected(OperationPlugin plugin);
+        void onSelected(OperationPluginItemWrapper operationPluginItemWrapper);
     }
 
-    protected static class PluginItemWrapper {
-        final String name;
-        final OperationPlugin plugin;
-        PluginItemWrapper(String name, OperationPlugin plugin) {
+    protected static class OperationPluginItemWrapper {
+        @NonNull final String id;
+        @NonNull final String name;
+        @NonNull final Category category;
+        @Nullable final OperationPlugin plugin;
+        OperationPluginItemWrapper(@NonNull String id, @NonNull String name, @NonNull Category category, @Nullable OperationPlugin plugin) {
+            this.id = id;
             this.name = name;
+            this.category = category;
             this.plugin = plugin;
+        }
+        public boolean isRemote() {
+            return plugin == null;
         }
         public String toString() {
             return name;
@@ -113,16 +177,16 @@ public class OperationSelectorFragment extends DialogFragment {
 
     public class PluginListAdapter extends BaseAdapter implements StickyListHeadersAdapter {
 
-        private final List<PluginItemWrapper> operationList = new ArrayList<>();
+        private final List<OperationPluginItemWrapper> operationList = new ArrayList<>();
         private LayoutInflater inflater;
 
-        PluginListAdapter(Context context, List<PluginItemWrapper> originalList) {
+        PluginListAdapter(Context context, List<OperationPluginItemWrapper> originalList) {
             inflater = LayoutInflater.from(context);
             this.operationList.addAll(originalList);
-            Collections.sort(operationList, new Comparator<PluginItemWrapper>() {
+            Collections.sort(operationList, new Comparator<OperationPluginItemWrapper>() {
                 @Override
-                public int compare(PluginItemWrapper pluginItemWrapper, PluginItemWrapper t1) {
-                    return pluginItemWrapper.plugin.category().ordinal() - t1.plugin.category().ordinal();
+                public int compare(OperationPluginItemWrapper operationPluginItemWrapper, OperationPluginItemWrapper t1) {
+                    return operationPluginItemWrapper.category.ordinal() - t1.category.ordinal();
                 }
             });
         }
@@ -172,7 +236,7 @@ public class OperationSelectorFragment extends DialogFragment {
                 holder = (HeaderViewHolder) convertView.getTag();
             }
             //set header text as first char in name
-            String headerText = operationList.get(position).plugin.category().toString(getResources());
+            String headerText = operationList.get(position).category.toString(getResources());
             holder.text.setText(headerText);
             return convertView;
         }
@@ -180,7 +244,7 @@ public class OperationSelectorFragment extends DialogFragment {
         @Override
         public long getHeaderId(int position) {
             //return the first character of the country as ID because this is what headers are based upon
-            return operationList.get(position).plugin.category().ordinal();
+            return operationList.get(position).category.ordinal();
         }
 
         class HeaderViewHolder {

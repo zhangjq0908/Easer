@@ -21,8 +21,8 @@ package ryey.easer.plugins.operation.brightness;
 
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
 
@@ -43,7 +43,7 @@ class BrightnessOperationDataFactory implements OperationDataFactory<BrightnessO
     @ValidData
     @NonNull
     @Override
-    public BrightnessOperationData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public BrightnessOperationData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         return new BrightnessOperationData(data, format, version);
     }
 }

@@ -21,8 +21,8 @@ package ryey.easer.plugins.condition.headset;
 
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.plugindef.ValidData;
 import ryey.easer.commons.plugindef.conditionplugin.ConditionDataFactory;
 
@@ -45,7 +45,7 @@ class HeadsetConditionDataFactory implements ConditionDataFactory<HeadsetConditi
     @ValidData
     @NonNull
     @Override
-    public HeadsetConditionData parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public HeadsetConditionData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         return new HeadsetConditionData(data, format, version);
     }
 }

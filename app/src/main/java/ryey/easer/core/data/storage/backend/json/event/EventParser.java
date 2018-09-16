@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.storage.C;
@@ -45,7 +46,7 @@ public class EventParser implements Parser<EventStructure> {
             String spec = jsonObject_situation.getString(C.SPEC);
             EventData eventData = PluginRegistry.getInstance().event().findPlugin(spec)
                     .dataFactory()
-                    .parse(jsonObject_situation.getString(C.DATA), C.Format.JSON, version);
+                    .parse(jsonObject_situation.getString(C.DATA), PluginDataFormat.JSON, version);
             return new EventStructure(version, name, eventData);
         } catch (JSONException e) {
             throw new IllegalStorageDataException(e);

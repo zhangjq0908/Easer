@@ -22,4 +22,12 @@
         android:title="@string/title_condition">
 
     </PreferenceCategory>
+
+    <PreferenceCategory android:layout="@layout/pref_divider" />
+
+    <PreferenceCategory
+        android:key="@string/key_pref_remote_operation_plugins"
+        android:title="@string/title_remote_operation_plugin">
+
+    </PreferenceCategory>
 </PreferenceScreen>

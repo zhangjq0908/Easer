@@ -23,8 +23,8 @@ import android.os.Parcel;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.dynamics.Dynamics;
 import ryey.easer.plugins.event.AbstractEventData;
 
@@ -42,13 +42,13 @@ public class ScreenEventData extends AbstractEventData {
         this.screenEvent = screenEvent;
     }
 
-    ScreenEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    ScreenEventData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         screenEvent = ScreenEvent.valueOf(data);
     }
 
     @NonNull
     @Override
-    public String serialize(@NonNull C.Format format) {
+    public String serialize(@NonNull PluginDataFormat format) {
         String res;
         switch (format) {
             default:

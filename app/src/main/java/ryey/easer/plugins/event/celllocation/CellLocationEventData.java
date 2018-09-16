@@ -30,8 +30,8 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ryey.easer.commons.C;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.dynamics.Dynamics;
 import ryey.easer.plugins.event.AbstractEventData;
 
@@ -54,7 +54,7 @@ public class CellLocationEventData extends AbstractEventData {
             return null;
     }
 
-    CellLocationEventData(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    CellLocationEventData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
     }
 
@@ -92,7 +92,7 @@ public class CellLocationEventData extends AbstractEventData {
         return true;
     }
 
-    public void parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {
+    public void parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         try {
             JSONArray jsonArray = new JSONArray(data);
             String[] strings = new String[jsonArray.length()];
@@ -108,7 +108,7 @@ public class CellLocationEventData extends AbstractEventData {
 
     @NonNull
     @Override
-    public String serialize(@NonNull C.Format format) {
+    public String serialize(@NonNull PluginDataFormat format) {
         String res;
         switch (format) {
             default:

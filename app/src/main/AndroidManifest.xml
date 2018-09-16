@@ -47,7 +47,8 @@
             android:enabled="true"
             android:exported="true" />
         <service
-            android:name=".core.ProfileLoaderIntentService"
+            android:name=".core.ProfileLoaderService"
+            android:enabled="true"
             android:exported="false" />
 
         <activity
@@ -166,6 +167,12 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/easer_status_widget_info" />
         </receiver>
+
+        <service
+            android:name=".core.RemotePluginRegistryService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":RemotePlugin"></service>
     </application>
 
 </manifest>

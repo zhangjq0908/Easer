@@ -30,6 +30,7 @@ import java.util.Iterator;
 
 import ryey.easer.BuildConfig;
 import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.PluginDataFormat;
 import ryey.easer.commons.dynamics.DynamicsLink;
 import ryey.easer.commons.plugindef.eventplugin.EventData;
 import ryey.easer.core.data.ConditionStructure;
@@ -137,7 +138,7 @@ class ScriptParser implements Parser<ScriptStructure> {
             String spec = jsonObject_situation.getString(C.SPEC);
             return PluginRegistry.getInstance().event().findPlugin(spec)
                     .dataFactory()
-                    .parse(jsonObject_situation.getString(C.DATA), C.Format.JSON, version);
+                    .parse(jsonObject_situation.getString(C.DATA), PluginDataFormat.JSON, version);
         } catch (JSONException e) {
             throw new IllegalStorageDataException(e);
         }

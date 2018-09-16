@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.util.ArrayMap;
 
 import com.orhanobut.logger.Logger;
@@ -31,9 +32,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import ryey.easer.commons.CommonHelper;
+import ryey.easer.commons.CommonPluginHelper;
 import ryey.easer.commons.plugindef.PluginDef;
-import ryey.easer.commons.plugindef.PluginViewFragment;
+import ryey.easer.commons.plugindef.PluginViewFragmentInterface;
 import ryey.easer.commons.plugindef.StorageData;
 import ryey.easer.commons.plugindef.conditionplugin.ConditionData;
 import ryey.easer.commons.plugindef.conditionplugin.ConditionPlugin;
@@ -97,16 +98,12 @@ import ryey.easer.plugins.operation.wifi.WifiOperationPlugin;
  */
 final public class PluginRegistry {
 
-    private static final int TYPE_OPERATION = 0;
-    private static final int TYPE_EVENT = 1;
-    private static final int TYPE_CONDITION = 2;
-
-    private final Registry<EventPlugin, EventData> eventPluginRegistry = new Registry<>(TYPE_EVENT);
-    private final Registry<OperationPlugin, OperationData> operationPluginRegistry = new Registry<>(TYPE_OPERATION, new String[][]{
+    private final Registry<EventPlugin, EventData> eventPluginRegistry = new Registry<>(CommonPluginHelper.TYPE_EVENT);
+    private final Registry<OperationPlugin, OperationData> operationPluginRegistry = new Registry<>(CommonPluginHelper.TYPE_OPERATION, new String[][]{
             {"event control", "state control"},
     });
-    private final Registry<ConditionPlugin, ConditionData> conditionPluginRegistry = new Registry<>(TYPE_CONDITION);
-    private final OverallRegistry overallRegistry = new OverallRegistry(new PluginLookuper[] {
+    private final Registry<ConditionPlugin, ConditionData> conditionPluginRegistry = new Registry<>(CommonPluginHelper.TYPE_CONDITION);
+    private final OverallRegistry overallRegistry = new OverallRegistry(new PluginLookupper<?, ?>[] {
             eventPluginRegistry, operationPluginRegistry, conditionPluginRegistry,
     });
 
@@ -184,24 +181,24 @@ final public class PluginRegistry {
         return conditionPluginRegistry;
     }
 
-    public PluginLookuper<PluginDef, StorageData> all() {
+    public PluginLookupper<PluginDef, StorageData> all() {
         return overallRegistry;
     }
 
-    public interface PluginLookuper<T extends PluginDef, T_data extends StorageData> {
+    public interface PluginLookupper<T extends PluginDef, T_data extends StorageData> {
         List<T> getEnabledPlugins(@NonNull Context context);
         List<T> getAllPlugins();
-        T findPlugin(T_data data);
-        T findPlugin(String name);
-        T findPlugin(PluginViewFragment view);
+        @Nullable T findPlugin(T_data data);
+        @Nullable T findPlugin(String name);
+        @Nullable T findPlugin(PluginViewFragmentInterface view);
     }
 
-    public static class Registry<T extends PluginDef, T_data extends StorageData> implements PluginLookuper<T, T_data> {
+    public static class Registry<T extends PluginDef, T_data extends StorageData> implements PluginLookupper<T, T_data> {
         final int type;
         final List<Class<? extends T>> pluginClassList = new ArrayList<>();
         final List<T> pluginList = new ArrayList<>();
         //TODO: use Set instead of List for the above two variables && add an "ordered" method to return a List
-        final Map<String, String> backwardNameMap = new ArrayMap<>();
+        final Map<String, String> backwardNameMap = new ArrayMap<>(); // Backward-compatible name conversion
 
         private Registry(int type) {
             this.type = type;
@@ -239,7 +236,7 @@ final public class PluginRegistry {
             SharedPreferences settingsPreference =
                     PreferenceManager.getDefaultSharedPreferences(context);
             for (T plugin : pluginList) {
-                if (settingsPreference.getBoolean(CommonHelper.pluginEnabledKey(plugin), true)
+                if (settingsPreference.getBoolean(CommonPluginHelper.pluginEnabledKey(plugin), true)
                         && plugin.isCompatible(context)) {
                     enabledPlugins.add(plugin);
                 }
@@ -252,13 +249,25 @@ final public class PluginRegistry {
             return pluginList;
         }
 
+        /**
+         * Test if plugin is available as local plugin
+         * TODO: optimize performance
+         * @param id
+         * @return
+         */
+        public boolean hasPlugin(String id) {
+            if (findPlugin(id) == null)
+                return false;
+            return true;
+        }
+
         public T findPlugin(T_data data) {
             for (T plugin : getAllPlugins()) {
                 if (data.getClass() == plugin.dataFactory().dataClass()) {
                     return plugin;
                 }
             }
-            throw new IllegalAccessError();
+            return null;
         }
 
         public T findPlugin(String name) {
@@ -271,32 +280,32 @@ final public class PluginRegistry {
                     return plugin;
                 }
             }
-            throw new IllegalAccessError();
+            return null;
         }
 
         @Override
-        public T findPlugin(PluginViewFragment view) {
+        public T findPlugin(PluginViewFragmentInterface view) {
             for (T plugin : getAllPlugins()) {
                 if (view.getClass().equals(plugin.view().getClass()))
                     return plugin;
             }
-            throw new IllegalAccessError();
+            return null;
         }
 
     }
 
-    public static class OverallRegistry implements PluginLookuper<PluginDef, StorageData> {
+    public static class OverallRegistry implements PluginLookupper<PluginDef, StorageData> {
 
-        final PluginLookuper<? extends PluginDef, ? extends StorageData>[] lookupers;
+        final PluginLookupper<? extends PluginDef, ? extends StorageData>[] lookupers;
 
-        OverallRegistry(PluginLookuper<? extends PluginDef, ? extends StorageData>[] lookupers) {
+        OverallRegistry(PluginLookupper<? extends PluginDef, ? extends StorageData>[] lookupers) {
             this.lookupers = lookupers;
         }
 
         public List<PluginDef> getEnabledPlugins(@NonNull Context context) {
             List<PluginDef> list = new ArrayList<>();
-            for (PluginLookuper<? extends PluginDef, ? extends StorageData> lookuper : lookupers) {
-                list.addAll(lookuper.getEnabledPlugins(context));
+            for (PluginLookupper<? extends PluginDef, ? extends StorageData> lookupper : lookupers) {
+                list.addAll(lookupper.getEnabledPlugins(context));
             }
             return list;
         }
@@ -304,8 +313,8 @@ final public class PluginRegistry {
         @Override
         public List<PluginDef> getAllPlugins() {
             List<PluginDef> list = new ArrayList<>();
-            for (PluginLookuper<? extends PluginDef, ? extends StorageData> lookuper : lookupers) {
-                list.addAll(lookuper.getAllPlugins());
+            for (PluginLookupper<? extends PluginDef, ? extends StorageData> lookupper : lookupers) {
+                list.addAll(lookupper.getAllPlugins());
             }
             return list;
         }
@@ -329,7 +338,7 @@ final public class PluginRegistry {
         }
 
         @Override
-        public PluginDef findPlugin(PluginViewFragment view) {
+        public PluginDef findPlugin(PluginViewFragmentInterface view) {
             for (PluginDef plugin : getAllPlugins()) {
                 if (view.getClass().equals(plugin.view().getClass()))
                     return plugin;

@@ -25,7 +25,7 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.R;
 
-import static ryey.easer.core.ProfileLoaderIntentService.EXTRA_PROFILE_NAME;
+import static ryey.easer.core.ProfileLoaderService.EXTRA_PROFILE_NAME;
 
 public class ProfileNameDynamics implements CoreDynamicsInterface {
     @Override
