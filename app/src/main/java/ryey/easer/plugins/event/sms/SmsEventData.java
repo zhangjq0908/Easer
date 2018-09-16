@@ -29,6 +29,7 @@ import com.orhanobut.logger.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import ryey.easer.R;
 import ryey.easer.Utils;
 import ryey.easer.commons.IllegalStorageDataException;
 import ryey.easer.commons.PluginDataFormat;
@@ -97,7 +98,7 @@ public class SmsEventData extends AbstractEventData {
     @Nullable
     @Override
     public Dynamics[] dynamics() {
-        return null;
+        return new Dynamics[]{new SenderDynamics(), new ContentDynamics()};
     }
 
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
@@ -133,5 +134,32 @@ public class SmsEventData extends AbstractEventData {
 
     private SmsEventData(Parcel in) {
         innerData = in.readParcelable(SmsInnerData.class.getClassLoader());
+    }
+
+    public static class SenderDynamics implements Dynamics {
+        static final String id = "ryey.easer.plugins.event.sms.dynamics.sender";
+
+        @Override
+        public String id() {
+            return id;
+        }
+
+        @Override
+        public int nameRes() {
+            return R.string.ev_sms_dynamics_sender;
+        }
+    }
+    public static class ContentDynamics implements Dynamics {
+        static final String id = "ryey.easer.plugins.event.sms.dynamics.content";
+
+        @Override
+        public String id() {
+            return id;
+        }
+
+        @Override
+        public int nameRes() {
+            return R.string.ev_sms_dynamics_content;
+        }
     }
 }

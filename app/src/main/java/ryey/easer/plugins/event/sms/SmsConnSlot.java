@@ -59,7 +59,10 @@ public class SmsConnSlot extends AbstractSlot<SmsEventData> {
                                 continue;
                             }
                         }
-                        changeSatisfiedState(true);
+                        Bundle dynamics = new Bundle();
+                        dynamics.putString(SmsEventData.SenderDynamics.id, msg_from);
+                        dynamics.putString(SmsEventData.ContentDynamics.id, msgBody);
+                        changeSatisfiedState(true, dynamics);
                         return;
                     }
                     changeSatisfiedState(false);
