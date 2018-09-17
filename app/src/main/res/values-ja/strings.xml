@@ -34,7 +34,7 @@
     <string name="hint_profile_title">プロファイルのタイトル</string>
 
     <string name="prompt_save_failed">保存に失敗しました</string>
-    <string name="prompt_delete">削除してもよろしいですか: %s</string>
+    <string name="prompt_delete">削除してもよろしいですか: %s?</string>
 
     <string name="appInformation">お使いの電話で日常的な行動や操作を自動的に実行することで、お役に立ちます。\n
 異なるイベントを連鎖させて、対応するアクションを実行します。 もはやそれらを気に留める必要はありません!\n
@@ -200,5 +200,9 @@
     <string name="category_operation_system_config">システム設定</string>
     <string name="category_operation_easer">\@string/easer</string>
     <string name="category_operation_misc">その他</string>
+
+<string name="title_remote_operation_plugin">リモート操作プラグイン</string>
+
+    <string name="category_operation_unknown">不明</string>
 
 </resources>
