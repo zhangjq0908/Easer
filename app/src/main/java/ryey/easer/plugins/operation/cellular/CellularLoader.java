@@ -29,8 +29,8 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
+import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.plugins.operation.OperationLoader;
 import ryey.easer.plugins.reusable.PluginHelper;
 
 public class CellularLoader extends OperationLoader<CellularOperationData> {

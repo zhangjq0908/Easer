@@ -34,11 +34,11 @@ import com.orhanobut.logger.Logger;
 
 import java.util.Collection;
 
-import ryey.easer.commons.dynamics.DynamicsLink;
-import ryey.easer.commons.dynamics.SolidDynamicsAssignment;
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
-import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
-import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
+import ryey.easer.commons.local_plugin.operationplugin.Loader;
+import ryey.easer.commons.local_plugin.dynamics.DynamicsLink;
+import ryey.easer.commons.local_plugin.dynamics.SolidDynamicsAssignment;
+import ryey.easer.commons.local_plugin.operationplugin.OperationData;
+import ryey.easer.commons.local_plugin.operationplugin.OperationPlugin;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.storage.ProfileDataStorage;
@@ -142,7 +142,7 @@ public class ProfileLoaderService extends Service {
                 if (operationRegistry.hasPlugin(pluginId)) {
                     OperationPlugin plugin = operationRegistry.findPlugin(pluginId);
                     assert plugin != null;
-                    OperationLoader loader = plugin.loader(getApplicationContext());
+                    Loader loader = plugin.loader(getApplicationContext());
                     for (RemoteLocalOperationDataWrapper data : dataCollection) {
                         OperationData localData = data.localData;
                         assert localData != null;

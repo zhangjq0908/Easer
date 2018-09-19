@@ -24,7 +24,7 @@ import android.os.Parcel;
 import org.junit.Test;
 
 import ryey.easer.commons.C;
-import ryey.easer.commons.PluginDataFormat;
+import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.plugins.TestHelper;
 
 import static org.junit.Assert.assertEquals;

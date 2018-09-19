@@ -23,8 +23,8 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
-import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.commons.local_plugin.eventplugin.EventData;
 
 public class EventStructure implements Named, Verifiable, WithCreatedVersion {
     private final int createdVersion;

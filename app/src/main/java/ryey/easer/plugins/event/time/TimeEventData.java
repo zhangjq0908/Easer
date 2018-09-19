@@ -29,9 +29,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.PluginDataFormat;
-import ryey.easer.commons.dynamics.Dynamics;
+import ryey.easer.commons.local_plugin.IllegalStorageDataException;
+import ryey.easer.plugin.PluginDataFormat;
+import ryey.easer.commons.local_plugin.dynamics.Dynamics;
 import ryey.easer.plugins.event.AbstractEventData;
 
 public class TimeEventData extends AbstractEventData {

@@ -29,9 +29,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ryey.easer.Utils;
-import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.PluginDataFormat;
-import ryey.easer.commons.plugindef.conditionplugin.ConditionData;
+import ryey.easer.commons.local_plugin.IllegalStorageDataException;
+import ryey.easer.plugin.PluginDataFormat;
+import ryey.easer.commons.local_plugin.conditionplugin.ConditionData;
 
 public class BTDeviceConditionData implements ConditionData {
     final List<String> hwaddresses = new ArrayList<>();

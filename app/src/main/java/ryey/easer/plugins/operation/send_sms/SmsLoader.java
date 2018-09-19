@@ -24,8 +24,8 @@ import android.support.annotation.NonNull;
 import android.telephony.SmsManager;
 
 import ryey.easer.Utils;
-import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
+import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.plugins.operation.OperationLoader;
 
 public class SmsLoader extends OperationLoader<SmsOperationData> {
     public SmsLoader(Context context) {

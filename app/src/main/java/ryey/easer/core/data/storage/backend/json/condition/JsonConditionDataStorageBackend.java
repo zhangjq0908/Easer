@@ -28,7 +28,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.local_plugin.IllegalStorageDataException;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.storage.backend.ConditionDataStorageBackendInterface;
 import ryey.easer.core.data.storage.backend.FileDataStorageBackendHelper;

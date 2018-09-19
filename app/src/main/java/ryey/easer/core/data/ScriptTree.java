@@ -24,7 +24,7 @@ import android.support.annotation.NonNull;
 import java.util.LinkedList;
 import java.util.List;
 
-import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.commons.local_plugin.eventplugin.EventData;
 
 /*
  * Events are linked together as trees. This class represents that structure and relevant methods.

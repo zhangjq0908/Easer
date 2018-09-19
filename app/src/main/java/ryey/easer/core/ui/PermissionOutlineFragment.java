@@ -34,7 +34,7 @@ import java.util.List;
 
 import ryey.easer.R;
 import ryey.easer.SettingsHelper;
-import ryey.easer.commons.plugindef.PluginDef;
+import ryey.easer.commons.local_plugin.PluginDef;
 import ryey.easer.plugins.PluginRegistry;
 
 public class PermissionOutlineFragment extends Fragment {

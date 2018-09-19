@@ -23,8 +23,8 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
+import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.plugins.operation.OperationLoader;
 
 public class VolumeLoader extends OperationLoader<VolumeOperationData> {
 

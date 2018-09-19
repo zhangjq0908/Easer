@@ -28,8 +28,8 @@ import android.support.annotation.RequiresApi;
 
 import com.orhanobut.logger.Logger;
 
-import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
+import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.plugins.operation.OperationLoader;
 
 public class RingerModeLoader extends OperationLoader<RingerModeOperationData> {
     public RingerModeLoader(Context context) {

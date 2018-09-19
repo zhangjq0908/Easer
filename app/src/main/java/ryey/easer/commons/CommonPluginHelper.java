@@ -25,10 +25,10 @@ import android.preference.PreferenceManager;
 
 import java.util.Locale;
 
-import ryey.easer.commons.plugindef.PluginDef;
-import ryey.easer.commons.plugindef.conditionplugin.ConditionPlugin;
-import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
-import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
+import ryey.easer.commons.local_plugin.PluginDef;
+import ryey.easer.commons.local_plugin.conditionplugin.ConditionPlugin;
+import ryey.easer.commons.local_plugin.eventplugin.EventPlugin;
+import ryey.easer.commons.local_plugin.operationplugin.OperationPlugin;
 
 public class CommonPluginHelper {
 

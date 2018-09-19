@@ -27,7 +27,7 @@ import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 
-import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
+import ryey.easer.plugins.event.AbstractSlot;
 
 public class HeadsetSlot extends AbstractSlot<HeadsetEventData> {
     private static final String expected_action;

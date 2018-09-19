@@ -27,7 +27,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import ryey.easer.commons.IllegalStorageDataException;
+import ryey.easer.commons.local_plugin.IllegalStorageDataException;
 
 public class FileDataStorageBackendHelper {
 

@@ -32,9 +32,9 @@ import java.text.ParseException;
 import java.util.Calendar;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.InvalidDataInputException;
-import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.ValidData;
+import ryey.easer.commons.local_plugin.InvalidDataInputException;
+import ryey.easer.plugins.PluginViewFragment;
+import ryey.easer.commons.local_plugin.ValidData;
 
 public class AlarmPluginViewFragment extends PluginViewFragment<AlarmOperationData> {
     private EditText editText_time;

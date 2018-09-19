@@ -32,7 +32,7 @@ import android.telephony.SmsMessage;
 import com.orhanobut.logger.Logger;
 
 import ryey.easer.Utils;
-import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
+import ryey.easer.plugins.event.AbstractSlot;
 
 public class SmsConnSlot extends AbstractSlot<SmsEventData> {
     private SmsInnerData smsInnerData = null;

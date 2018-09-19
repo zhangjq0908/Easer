@@ -26,8 +26,8 @@ In order to add a new *Event* or *Operation*, there are two main steps:
 
 Specifically:
 
-* For new *Event*s, inherit `ryey.easer.commons.plugindef.eventplugin.EventPlugin`
-* For new *Operation*s, inherit `ryey.easer.commons.plugindef.operationplugin.OperationPlugin`
+* For new *Event*s, inherit `ryey.easer.commons.local_plugin.eventplugin.EventPlugin`
+* For new *Operation*s, inherit `ryey.easer.commons.local_plugin.operationplugin.OperationPlugin`
 
 To register you new plugin in `PluginRegistry`, you only need to add one line new code in its `init()` method (following existing codes).
 
@@ -35,7 +35,7 @@ I strongly recommend you to follow the way that existing plugins do and put your
 
 Both `EventPlugin` and `OperationPlugin` are commented in some detail.
 
-Either an `EventPlugin` or `OperationPlugin` will need to implement it relevant UI, by implementing a subclass of `ryey.easer.commons.plugindef.PluginViewFragment`.
+Either an `EventPlugin` or `OperationPlugin` will need to implement it relevant UI, by implementing a subclass of `ryey.easer.plugins.PluginViewFragment`.
 
 Some common subclasses are already in `ryey.easer.plugins` or its sub-package. You can use them as you wish.
 

@@ -26,11 +26,11 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.commons.plugindef.conditionplugin.ConditionDataFactory;
-import ryey.easer.commons.plugindef.conditionplugin.ConditionPlugin;
-import ryey.easer.commons.plugindef.conditionplugin.Tracker;
+import ryey.easer.commons.local_plugin.PluginViewFragmentInterface;
+import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.commons.local_plugin.conditionplugin.ConditionDataFactory;
+import ryey.easer.commons.local_plugin.conditionplugin.ConditionPlugin;
+import ryey.easer.commons.local_plugin.conditionplugin.Tracker;
 import ryey.easer.plugins.reusable.PluginHelper;
 
 public class HeadsetConditionPlugin implements ConditionPlugin<HeadsetConditionData> {
@@ -69,7 +69,7 @@ public class HeadsetConditionPlugin implements ConditionPlugin<HeadsetConditionD
 
     @NonNull
     @Override
-    public PluginViewFragment<HeadsetConditionData> view() {
+    public PluginViewFragmentInterface<HeadsetConditionData> view() {
         return new HeadsetPluginViewFragment();
     }
 

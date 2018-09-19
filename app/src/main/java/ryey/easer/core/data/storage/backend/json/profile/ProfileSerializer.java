@@ -26,7 +26,7 @@ import org.json.JSONObject;
 import java.util.Collection;
 
 import ryey.easer.commons.C;
-import ryey.easer.commons.PluginDataFormat;
+import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.storage.backend.Serializer;

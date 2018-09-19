@@ -27,7 +27,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
-import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
+import ryey.easer.plugins.event.AbstractSlot;
 
 public class BTDeviceSlot extends AbstractSlot<BTDeviceEventData> {
 

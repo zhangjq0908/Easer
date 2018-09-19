@@ -26,11 +26,11 @@ import android.nfc.NfcAdapter;
 import android.support.annotation.NonNull;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
-import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
+import ryey.easer.commons.local_plugin.PluginViewFragmentInterface;
+import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.plugins.event.AbstractSlot;
+import ryey.easer.commons.local_plugin.eventplugin.EventDataFactory;
+import ryey.easer.commons.local_plugin.eventplugin.EventPlugin;
 import ryey.easer.plugins.reusable.PluginHelper;
 
 public class NfcTagEventPlugin implements EventPlugin<NfcTagEventData> {
@@ -72,7 +72,7 @@ public class NfcTagEventPlugin implements EventPlugin<NfcTagEventData> {
 
     @NonNull
     @Override
-    public PluginViewFragment<NfcTagEventData> view() {
+    public PluginViewFragmentInterface<NfcTagEventData> view() {
         return new NfcTagPluginViewFragment();
     }
 

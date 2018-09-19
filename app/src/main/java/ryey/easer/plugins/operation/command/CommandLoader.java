@@ -27,8 +27,8 @@ import com.orhanobut.logger.Logger;
 import java.io.IOException;
 
 import ryey.easer.Utils;
-import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
+import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.plugins.operation.OperationLoader;
 import ryey.easer.plugins.reusable.PluginHelper;
 
 public class CommandLoader extends OperationLoader<CommandOperationData> {

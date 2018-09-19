@@ -23,8 +23,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.PluginDataFormat;
+import ryey.easer.commons.local_plugin.IllegalStorageDataException;
+import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.plugins.operation.IntegerOperationData;
 
 public class BrightnessOperationData extends IntegerOperationData {

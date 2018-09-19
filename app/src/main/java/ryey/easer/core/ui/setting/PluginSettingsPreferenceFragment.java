@@ -28,7 +28,7 @@ import android.support.annotation.Nullable;
 import java.util.Set;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.PluginDef;
+import ryey.easer.commons.local_plugin.PluginDef;
 import ryey.easer.core.RemoteOperationPluginInfo;
 import ryey.easer.core.RemotePluginCommunicationHelper;
 import ryey.easer.core.RemotePluginInfo;

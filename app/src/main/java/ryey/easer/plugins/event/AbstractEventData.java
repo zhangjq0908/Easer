@@ -1,6 +1,6 @@
 package ryey.easer.plugins.event;
 
-import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.commons.local_plugin.eventplugin.EventData;
 
 public abstract class AbstractEventData implements EventData {
 

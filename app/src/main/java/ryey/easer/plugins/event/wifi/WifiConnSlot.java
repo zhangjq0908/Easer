@@ -27,7 +27,7 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 
-import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
+import ryey.easer.plugins.event.AbstractSlot;
 
 public class WifiConnSlot extends AbstractSlot<WifiEventData> {
 

@@ -29,8 +29,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import ryey.easer.R;
 import ryey.easer.Utils;
-import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
+import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.plugins.operation.OperationLoader;
 
 public class SendNotificationLoader extends OperationLoader<SendNotificationOperationData> {
     private static int NOTIFICATION_ID = 0;

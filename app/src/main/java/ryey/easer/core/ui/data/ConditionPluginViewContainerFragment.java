@@ -28,9 +28,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.InvalidDataInputException;
-import ryey.easer.commons.plugindef.conditionplugin.ConditionData;
-import ryey.easer.commons.plugindef.conditionplugin.ConditionPlugin;
+import ryey.easer.commons.local_plugin.InvalidDataInputException;
+import ryey.easer.commons.local_plugin.conditionplugin.ConditionData;
+import ryey.easer.commons.local_plugin.conditionplugin.ConditionPlugin;
 import ryey.easer.plugins.PluginRegistry;
 
 public class ConditionPluginViewContainerFragment<T extends ConditionData> extends PluginViewContainerFragment<T> {

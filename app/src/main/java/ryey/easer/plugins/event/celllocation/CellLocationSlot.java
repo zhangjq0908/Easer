@@ -26,7 +26,7 @@ import android.telephony.CellLocation;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 
-import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
+import ryey.easer.plugins.event.AbstractSlot;
 import ryey.easer.plugins.reusable.PluginHelper;
 
 public class CellLocationSlot extends AbstractSlot<CellLocationEventData> {

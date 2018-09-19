@@ -33,9 +33,9 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import ryey.easer.commons.plugindef.InvalidDataInputException;
-import ryey.easer.commons.plugindef.conditionplugin.ConditionData;
-import ryey.easer.commons.plugindef.conditionplugin.ConditionPlugin;
+import ryey.easer.commons.local_plugin.InvalidDataInputException;
+import ryey.easer.commons.local_plugin.conditionplugin.ConditionData;
+import ryey.easer.commons.local_plugin.conditionplugin.ConditionPlugin;
 import ryey.easer.plugins.PluginRegistry;
 
 public class ConditionPluginViewPager extends ViewPager {

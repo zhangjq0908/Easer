@@ -5,12 +5,12 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.operationplugin.Category;
-import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
-import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
-import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
-import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
+import ryey.easer.commons.local_plugin.PluginViewFragmentInterface;
+import ryey.easer.plugin.operation.Category;
+import ryey.easer.commons.local_plugin.operationplugin.OperationDataFactory;
+import ryey.easer.plugins.operation.OperationLoader;
+import ryey.easer.commons.local_plugin.operationplugin.OperationPlugin;
+import ryey.easer.commons.local_plugin.operationplugin.PrivilegeUsage;
 
 public class LaunchAppOperationPlugin implements OperationPlugin<LaunchAppOperationData> {
 
@@ -65,7 +65,7 @@ public class LaunchAppOperationPlugin implements OperationPlugin<LaunchAppOperat
 
     @NonNull
     @Override
-    public PluginViewFragment<LaunchAppOperationData> view() {
+    public PluginViewFragmentInterface<LaunchAppOperationData> view() {
         return new LaunchAppPluginViewFragment();
     }
 

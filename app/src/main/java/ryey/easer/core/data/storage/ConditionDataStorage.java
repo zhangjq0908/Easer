@@ -23,7 +23,7 @@ import android.content.Context;
 
 import java.io.IOException;
 
-import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.commons.local_plugin.eventplugin.EventData;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.ScriptStructure;

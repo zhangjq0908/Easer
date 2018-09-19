@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">Remote Plugin</string>
-
     <string name="category_operation_android">Android</string>
     <string name="category_operation_system_config">System config</string>
     <string name="category_operation_easer">Easer</string>

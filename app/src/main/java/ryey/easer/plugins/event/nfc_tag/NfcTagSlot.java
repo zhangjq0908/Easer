@@ -28,7 +28,7 @@ import android.os.IBinder;
 
 import java.util.Arrays;
 
-import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
+import ryey.easer.plugins.event.AbstractSlot;
 
 public class NfcTagSlot extends AbstractSlot<NfcTagEventData> {
 

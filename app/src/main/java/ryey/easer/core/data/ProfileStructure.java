@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
 
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.commons.local_plugin.operationplugin.OperationData;
 import ryey.easer.remote_plugin.RemoteOperationData;
 
 /*

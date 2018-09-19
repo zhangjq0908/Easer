@@ -38,8 +38,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-import ryey.easer.commons.plugindef.conditionplugin.ConditionData;
-import ryey.easer.commons.plugindef.conditionplugin.Tracker;
+import ryey.easer.commons.local_plugin.conditionplugin.ConditionData;
+import ryey.easer.commons.local_plugin.conditionplugin.Tracker;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.storage.ConditionDataStorage;
 import ryey.easer.plugins.PluginRegistry;

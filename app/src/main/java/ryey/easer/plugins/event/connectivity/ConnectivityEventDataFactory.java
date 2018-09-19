@@ -24,10 +24,10 @@ import android.support.v4.util.ArraySet;
 
 import java.util.Set;
 
-import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.PluginDataFormat;
-import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
+import ryey.easer.commons.local_plugin.IllegalStorageDataException;
+import ryey.easer.plugin.PluginDataFormat;
+import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.commons.local_plugin.eventplugin.EventDataFactory;
 
 class ConnectivityEventDataFactory implements EventDataFactory<ConnectivityEventData> {
     @NonNull

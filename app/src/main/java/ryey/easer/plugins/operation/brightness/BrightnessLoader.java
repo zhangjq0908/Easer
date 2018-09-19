@@ -23,8 +23,8 @@ import android.content.Context;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
+import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.plugins.operation.OperationLoader;
 
 public class BrightnessLoader extends OperationLoader<BrightnessOperationData> {
     public BrightnessLoader(Context context) {

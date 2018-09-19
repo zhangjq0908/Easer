@@ -31,8 +31,8 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
+import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.plugins.operation.OperationLoader;
 
 public class NetworkTransmissionLoader extends OperationLoader<NetworkTransmissionOperationData> {
     public NetworkTransmissionLoader(Context context) {

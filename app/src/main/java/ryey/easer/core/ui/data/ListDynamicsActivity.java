@@ -50,9 +50,9 @@ import java.util.List;
 import java.util.Map;
 
 import ryey.easer.R;
-import ryey.easer.commons.dynamics.Dynamics;
-import ryey.easer.commons.dynamics.DynamicsLink;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.commons.local_plugin.dynamics.Dynamics;
+import ryey.easer.commons.local_plugin.dynamics.DynamicsLink;
+import ryey.easer.commons.local_plugin.eventplugin.EventData;
 import ryey.easer.core.dynamics.CoreDynamics;
 
 public class ListDynamicsActivity extends AppCompatActivity {

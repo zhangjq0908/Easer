@@ -22,9 +22,9 @@ package ryey.easer.core.ui.data;
 
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.plugindef.InvalidDataInputException;
-import ryey.easer.commons.plugindef.PluginViewFragmentInterface;
-import ryey.easer.commons.plugindef.StorageData;
+import ryey.easer.commons.local_plugin.InvalidDataInputException;
+import ryey.easer.commons.local_plugin.PluginViewFragmentInterface;
+import ryey.easer.commons.local_plugin.StorageData;
 
 public abstract class PluginViewContainerFragment<T extends StorageData> extends AbstractPluginDataFragment<T> {
 

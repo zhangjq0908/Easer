@@ -29,9 +29,9 @@ import android.widget.ImageView;
 import ryey.easer.BuildConfig;
 import ryey.easer.R;
 import ryey.easer.commons.CommonPluginHelper;
-import ryey.easer.commons.plugindef.PluginDef;
-import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
-import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
+import ryey.easer.commons.local_plugin.PluginDef;
+import ryey.easer.commons.local_plugin.operationplugin.OperationPlugin;
+import ryey.easer.commons.local_plugin.operationplugin.PrivilegeUsage;
 
 class PluginEnabledPreference extends CheckBoxPreference implements Preference.OnPreferenceChangeListener {
 

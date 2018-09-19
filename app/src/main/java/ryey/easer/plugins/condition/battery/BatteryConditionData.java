@@ -22,9 +22,9 @@ package ryey.easer.plugins.condition.battery;
 import android.os.Parcel;
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.PluginDataFormat;
-import ryey.easer.commons.plugindef.conditionplugin.ConditionData;
+import ryey.easer.commons.local_plugin.IllegalStorageDataException;
+import ryey.easer.plugin.PluginDataFormat;
+import ryey.easer.commons.local_plugin.conditionplugin.ConditionData;
 
 public class BatteryConditionData implements ConditionData {
 

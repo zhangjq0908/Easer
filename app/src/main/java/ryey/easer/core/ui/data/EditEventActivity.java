@@ -23,8 +23,8 @@ import android.widget.EditText;
 
 import ryey.easer.R;
 import ryey.easer.commons.C;
-import ryey.easer.commons.plugindef.InvalidDataInputException;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.commons.local_plugin.InvalidDataInputException;
+import ryey.easer.commons.local_plugin.eventplugin.EventData;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.storage.EventDataStorage;
 

@@ -436,7 +436,7 @@ CHANGELOG
 	* Remove unneeded codes
 		* remove the need of `EventData.pluginClass()`
 		* remove the need of static method `OerationPlugin.pname()` and `EventPlugin.pname()` in the implementation of event plugins (not in the interface)
-	* Rename `ryey.easer.core.ui.edit.PluginViewFragment` to `ryey.easer.core.ui.edit.PluginViewContainerFragment` to avoid name duplication with `ryey.easer.commons.plugindef.PluginViewFragment` (which was introduced in v0.4)
+	* Rename `ryey.easer.core.ui.edit.PluginViewFragment` to `ryey.easer.core.ui.edit.PluginViewContainerFragment` to avoid name duplication with `ryey.easer.plugins.PluginViewFragment` (which was introduced in v0.4)
 	* More tests
 
 * v0.4: Change `ContentLayout` to `PluginViewFragment` && add permission notification on Outline && other change

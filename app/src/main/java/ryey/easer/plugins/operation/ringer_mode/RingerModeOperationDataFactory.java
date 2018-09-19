@@ -21,10 +21,10 @@ package ryey.easer.plugins.operation.ringer_mode;
 
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.PluginDataFormat;
-import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
+import ryey.easer.commons.local_plugin.IllegalStorageDataException;
+import ryey.easer.plugin.PluginDataFormat;
+import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.commons.local_plugin.operationplugin.OperationDataFactory;
 
 class RingerModeOperationDataFactory implements OperationDataFactory<RingerModeOperationData> {
     @NonNull

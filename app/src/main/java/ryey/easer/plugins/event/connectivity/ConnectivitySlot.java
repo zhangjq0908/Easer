@@ -28,7 +28,7 @@ import android.net.NetworkInfo;
 
 import java.util.Set;
 
-import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
+import ryey.easer.plugins.event.AbstractSlot;
 
 import static ryey.easer.plugins.event.connectivity.ConnectivityType.TYPE_BLUETOOTH;
 import static ryey.easer.plugins.event.connectivity.ConnectivityType.TYPE_ETHERNET;

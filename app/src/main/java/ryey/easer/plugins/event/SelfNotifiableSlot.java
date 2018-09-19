@@ -32,9 +32,8 @@ import com.orhanobut.logger.Logger;
 
 import java.util.Locale;
 
-import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.commons.local_plugin.eventplugin.EventData;
 
 public abstract class SelfNotifiableSlot<T extends EventData> extends AbstractSlot<T> {
     // Fields used in relevant Intent

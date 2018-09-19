@@ -32,7 +32,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.InvalidDataInputException;
+import ryey.easer.commons.local_plugin.InvalidDataInputException;
 import ryey.easer.core.RemotePluginCommunicationHelper;
 import ryey.easer.core.RemotePluginInfo;
 import ryey.easer.remote_plugin.RemoteOperationData;

@@ -33,8 +33,8 @@ import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
-import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
+import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.plugins.operation.OperationLoader;
 
 public class MediaControlLoader extends OperationLoader<MediaControlOperationData> {
     public MediaControlLoader(Context context) {

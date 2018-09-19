@@ -27,11 +27,11 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.commons.plugindef.conditionplugin.ConditionDataFactory;
-import ryey.easer.commons.plugindef.conditionplugin.ConditionPlugin;
-import ryey.easer.commons.plugindef.conditionplugin.Tracker;
+import ryey.easer.commons.local_plugin.PluginViewFragmentInterface;
+import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.commons.local_plugin.conditionplugin.ConditionDataFactory;
+import ryey.easer.commons.local_plugin.conditionplugin.ConditionPlugin;
+import ryey.easer.commons.local_plugin.conditionplugin.Tracker;
 import ryey.easer.plugins.reusable.PluginHelper;
 
 public class BTDeviceConditionPlugin implements ConditionPlugin<BTDeviceConditionData> {
@@ -72,7 +72,7 @@ public class BTDeviceConditionPlugin implements ConditionPlugin<BTDeviceConditio
 
     @NonNull
     @Override
-    public PluginViewFragment<BTDeviceConditionData> view() {
+    public PluginViewFragmentInterface<BTDeviceConditionData> view() {
         return new BTDevicePluginViewFragment();
     }
 

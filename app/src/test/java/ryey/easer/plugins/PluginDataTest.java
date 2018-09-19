@@ -22,10 +22,10 @@ package ryey.easer.plugins;
 import org.junit.Test;
 
 import ryey.easer.commons.C;
-import ryey.easer.commons.PluginDataFormat;
-import ryey.easer.commons.plugindef.DataFactory;
-import ryey.easer.commons.plugindef.PluginDef;
-import ryey.easer.commons.plugindef.StorageData;
+import ryey.easer.plugin.PluginDataFormat;
+import ryey.easer.commons.local_plugin.DataFactory;
+import ryey.easer.commons.local_plugin.PluginDef;
+import ryey.easer.commons.local_plugin.StorageData;
 import ryey.easer.plugins.operation.broadcast.BroadcastOperationPlugin;
 
 import static org.junit.Assert.assertEquals;

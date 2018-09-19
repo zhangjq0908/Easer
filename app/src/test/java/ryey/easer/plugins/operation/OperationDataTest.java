@@ -24,9 +24,9 @@ import org.junit.Test;
 import java.lang.reflect.Constructor;
 
 import ryey.easer.commons.C;
-import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.PluginDataFormat;
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.commons.local_plugin.IllegalStorageDataException;
+import ryey.easer.plugin.PluginDataFormat;
+import ryey.easer.commons.local_plugin.operationplugin.OperationData;
 
 import static org.junit.Assert.assertEquals;
 

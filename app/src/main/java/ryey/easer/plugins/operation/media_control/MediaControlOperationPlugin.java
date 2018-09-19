@@ -30,12 +30,12 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.operationplugin.Category;
-import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
-import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
-import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
-import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
+import ryey.easer.commons.local_plugin.PluginViewFragmentInterface;
+import ryey.easer.plugin.operation.Category;
+import ryey.easer.commons.local_plugin.operationplugin.OperationDataFactory;
+import ryey.easer.plugins.operation.OperationLoader;
+import ryey.easer.commons.local_plugin.operationplugin.OperationPlugin;
+import ryey.easer.commons.local_plugin.operationplugin.PrivilegeUsage;
 import ryey.easer.plugins.reusable.PluginHelper;
 
 public class MediaControlOperationPlugin implements OperationPlugin<MediaControlOperationData> {
@@ -113,7 +113,7 @@ public class MediaControlOperationPlugin implements OperationPlugin<MediaControl
 
     @NonNull
     @Override
-    public PluginViewFragment<MediaControlOperationData> view() {
+    public PluginViewFragmentInterface<MediaControlOperationData> view() {
         return new MediaControlPluginViewFragment();
     }
 

@@ -24,9 +24,9 @@ import org.json.JSONObject;
 
 import java.util.Map;
 
-import ryey.easer.commons.PluginDataFormat;
-import ryey.easer.commons.dynamics.DynamicsLink;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
+import ryey.easer.plugin.PluginDataFormat;
+import ryey.easer.commons.local_plugin.dynamics.DynamicsLink;
+import ryey.easer.commons.local_plugin.eventplugin.EventData;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.ScriptStructure;

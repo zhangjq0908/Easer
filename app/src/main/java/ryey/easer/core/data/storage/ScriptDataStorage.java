@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.commons.local_plugin.operationplugin.OperationData;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.ScriptStructure;

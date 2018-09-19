@@ -43,7 +43,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import ryey.easer.commons.dynamics.SolidDynamicsAssignment;
+import ryey.easer.commons.local_plugin.dynamics.SolidDynamicsAssignment;
 
 public class Utils {
 

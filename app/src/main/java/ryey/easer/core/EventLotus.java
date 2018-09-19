@@ -29,9 +29,9 @@ import java.util.Calendar;
 import java.util.concurrent.ExecutorService;
 
 import ryey.easer.SettingsHelper;
-import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventData;
-import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
+import ryey.easer.commons.local_plugin.eventplugin.Slot;
+import ryey.easer.commons.local_plugin.eventplugin.EventData;
+import ryey.easer.commons.local_plugin.eventplugin.EventPlugin;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.ScriptTree;
 import ryey.easer.plugins.PluginRegistry;
@@ -47,7 +47,7 @@ import ryey.easer.plugins.PluginRegistry;
  */
 class EventLotus extends Lotus {
 
-    private AbstractSlot mSlot;
+    private Slot mSlot;
 
     private final long cooldownInMillisecond;
     private Calendar lastSatisfied;
@@ -66,9 +66,9 @@ class EventLotus extends Lotus {
         cooldownInMillisecond = SettingsHelper.coolDownInterval(context) * 1000;
     }
 
-    private <T extends EventData> AbstractSlot<T> nodeToSlot(ScriptTree node) {
+    private <T extends EventData> Slot<T> nodeToSlot(ScriptTree node) {
         EventStructure scenario = node.getEvent();
-        AbstractSlot<T> slot;
+        Slot<T> slot;
         //noinspection unchecked
         T data = (T) scenario.getEventData();
         //noinspection unchecked

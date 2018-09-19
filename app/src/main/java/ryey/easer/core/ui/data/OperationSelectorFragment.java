@@ -40,8 +40,8 @@ import java.util.Map;
 import java.util.Set;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.operationplugin.Category;
-import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
+import ryey.easer.plugin.operation.Category;
+import ryey.easer.commons.local_plugin.operationplugin.OperationPlugin;
 import ryey.easer.core.RemoteOperationPluginInfo;
 import ryey.easer.core.RemotePluginCommunicationHelper;
 import ryey.easer.plugins.PluginRegistry;

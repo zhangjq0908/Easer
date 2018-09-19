@@ -21,7 +21,7 @@ package ryey.easer.core
 
 import android.os.Parcel
 import android.os.Parcelable
-import ryey.easer.commons.plugindef.operationplugin.Category
+import ryey.easer.plugin.operation.Category
 import ryey.easer.remote_plugin.RemotePlugin
 
 class RemoteOperationPluginInfo(packageName: String, pluginId: String,

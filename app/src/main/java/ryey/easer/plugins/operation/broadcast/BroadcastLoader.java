@@ -28,8 +28,8 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 
 import ryey.easer.Utils;
-import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
+import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.plugins.operation.OperationLoader;
 
 public class BroadcastLoader extends OperationLoader<BroadcastOperationData> {
     public BroadcastLoader(Context context) {

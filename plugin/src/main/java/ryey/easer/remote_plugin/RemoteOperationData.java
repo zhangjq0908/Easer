@@ -22,7 +22,7 @@ package ryey.easer.remote_plugin;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import ryey.easer.commons.PluginDataFormat;
+import ryey.easer.plugin.PluginDataFormat;
 
 public class RemoteOperationData implements Parcelable {
 

@@ -24,12 +24,12 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.operationplugin.Category;
-import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
-import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
-import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
-import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
+import ryey.easer.commons.local_plugin.PluginViewFragmentInterface;
+import ryey.easer.plugin.operation.Category;
+import ryey.easer.commons.local_plugin.operationplugin.OperationDataFactory;
+import ryey.easer.plugins.operation.OperationLoader;
+import ryey.easer.commons.local_plugin.operationplugin.OperationPlugin;
+import ryey.easer.commons.local_plugin.operationplugin.PrivilegeUsage;
 
 public class SendNotificationOperationPlugin implements OperationPlugin<SendNotificationOperationData> {
 
@@ -84,7 +84,7 @@ public class SendNotificationOperationPlugin implements OperationPlugin<SendNoti
 
     @NonNull
     @Override
-    public PluginViewFragment<SendNotificationOperationData> view() {
+    public PluginViewFragmentInterface<SendNotificationOperationData> view() {
         return new SendNotificationPluginViewFragment();
     }
 

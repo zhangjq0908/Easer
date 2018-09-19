@@ -28,10 +28,10 @@ import java.io.InputStream;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
-import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.PluginDataFormat;
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
-import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
+import ryey.easer.commons.local_plugin.IllegalStorageDataException;
+import ryey.easer.plugin.PluginDataFormat;
+import ryey.easer.commons.local_plugin.operationplugin.OperationData;
+import ryey.easer.commons.local_plugin.operationplugin.OperationPlugin;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.storage.backend.IOUtils;
 import ryey.easer.core.data.storage.backend.Parser;

@@ -31,7 +31,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.InvalidDataInputException;
+import ryey.easer.commons.local_plugin.InvalidDataInputException;
 
 public abstract class AbstractPluginDataFragment<T> extends Fragment {
     private Drawable initial_background;

@@ -29,8 +29,8 @@ import android.os.*
 import android.support.v4.util.ArraySet
 import android.util.Log
 import com.orhanobut.logger.Logger
-import ryey.easer.commons.plugindef.operationplugin.Category
-import ryey.easer.commons.plugindef.operationplugin.OperationData
+import ryey.easer.plugin.operation.Category
+import ryey.easer.commons.local_plugin.operationplugin.OperationData
 import ryey.easer.core.RemotePluginCommunicationHelper.C
 import ryey.easer.remote_plugin.RemoteOperationData
 import ryey.easer.remote_plugin.RemotePlugin
@@ -169,7 +169,7 @@ class RemotePluginRegistryService : Service() {
                 }
             } else if (message.what == C.MSG_TRIGGER_OPERATION) {
                 Log.d("RemoPlRegistry", "MSG_TRIGGER_OPERATION")
-                message.data.classLoader = String.javaClass.classLoader
+                message.data.classLoader = String::class.java.classLoader
                 val id = message.data.getString(C.EXTRA_PLUGIN_ID)
 //                message.data.classLoader = RemoteOperationData.javaClass.classLoader
                 val data: RemoteOperationData = message.data.getParcelable(C.EXTRA_PLUGIN_DATA)

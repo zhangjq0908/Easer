@@ -32,7 +32,7 @@ import com.orhanobut.logger.Logger;
 
 import java.util.Locale;
 
-import ryey.easer.commons.plugindef.conditionplugin.ConditionData;
+import ryey.easer.commons.local_plugin.conditionplugin.ConditionData;
 
 public abstract class SelfNotifiableSkeletonTracker<D extends ConditionData> extends SkeletonTracker<D> {
     // Fields used in relevant Intent

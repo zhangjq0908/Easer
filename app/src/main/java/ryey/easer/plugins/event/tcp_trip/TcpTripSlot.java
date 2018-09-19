@@ -33,7 +33,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 import ryey.easer.Utils;
-import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
+import ryey.easer.plugins.event.AbstractSlot;
 
 public class TcpTripSlot extends AbstractSlot<TcpTripEventData> {
 

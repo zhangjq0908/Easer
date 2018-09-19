@@ -30,9 +30,9 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.InvalidDataInputException;
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
-import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
+import ryey.easer.commons.local_plugin.InvalidDataInputException;
+import ryey.easer.commons.local_plugin.operationplugin.OperationData;
+import ryey.easer.commons.local_plugin.operationplugin.OperationPlugin;
 import ryey.easer.plugins.PluginRegistry;
 
 public class OperationPluginViewContainerFragment<T extends OperationData> extends PluginViewContainerFragment<T> {

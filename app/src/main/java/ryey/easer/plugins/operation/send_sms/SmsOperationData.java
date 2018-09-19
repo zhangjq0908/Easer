@@ -33,10 +33,10 @@ import org.json.JSONObject;
 import java.util.Set;
 
 import ryey.easer.Utils;
-import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.PluginDataFormat;
-import ryey.easer.commons.dynamics.SolidDynamicsAssignment;
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.commons.local_plugin.IllegalStorageDataException;
+import ryey.easer.plugin.PluginDataFormat;
+import ryey.easer.commons.local_plugin.dynamics.SolidDynamicsAssignment;
+import ryey.easer.commons.local_plugin.operationplugin.OperationData;
 
 public class SmsOperationData implements OperationData {
     private static final String K_DEST = "destination";

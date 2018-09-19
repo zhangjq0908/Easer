@@ -28,8 +28,8 @@ import com.orhanobut.logger.Logger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import ryey.easer.commons.plugindef.conditionplugin.ConditionData;
-import ryey.easer.commons.plugindef.conditionplugin.Tracker;
+import ryey.easer.commons.local_plugin.conditionplugin.ConditionData;
+import ryey.easer.commons.local_plugin.conditionplugin.Tracker;
 
 public abstract class SkeletonTracker<D extends ConditionData> implements Tracker<D> {
 

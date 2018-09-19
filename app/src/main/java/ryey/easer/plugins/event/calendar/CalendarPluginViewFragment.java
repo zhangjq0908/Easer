@@ -42,9 +42,9 @@ import android.widget.TextView;
 
 import ryey.easer.R;
 import ryey.easer.Utils;
-import ryey.easer.commons.plugindef.InvalidDataInputException;
-import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.ValidData;
+import ryey.easer.commons.local_plugin.InvalidDataInputException;
+import ryey.easer.plugins.PluginViewFragment;
+import ryey.easer.commons.local_plugin.ValidData;
 
 public class CalendarPluginViewFragment extends PluginViewFragment<CalendarEventData> {
 

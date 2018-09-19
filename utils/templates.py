@@ -40,9 +40,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import ryey.easer.commons.plugindef.InvalidDataInputException;
-import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.ValidData;
+import ryey.easer.commons.local_plugin.InvalidDataInputException;
+import ryey.easer.plugins.PluginViewFragment;
+import ryey.easer.commons.local_plugin.ValidData;
 
 public class {view_fragment} extends PluginViewFragment<{data}> {{
 
@@ -95,11 +95,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
-import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
-import ryey.easer.commons.plugindef.operationplugin.OperationPlugin;
-import ryey.easer.commons.plugindef.operationplugin.PrivilegeUsage;
+import ryey.easer.plugins.PluginViewFragment;
+import ryey.easer.commons.local_plugin.operationplugin.OperationDataFactory;
+import ryey.easer.plugins.operation.OperationLoader;
+import ryey.easer.commons.local_plugin.operationplugin.OperationPlugin;
+import ryey.easer.commons.local_plugin.operationplugin.PrivilegeUsage;
 
 public class {plugin} implements OperationPlugin<{data}> {{
 
@@ -166,9 +166,9 @@ tmpl_operation_data_factory = '''package {package};
 import android.support.annotation.NonNull;
 
 import ryey.easer.commons.C;
-import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.commons.plugindef.operationplugin.OperationDataFactory;
+import ryey.easer.commons.local_plugin.IllegalStorageDataException;
+import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.commons.local_plugin.operationplugin.OperationDataFactory;
 
 class {data_factory} implements OperationDataFactory<{data}> {{
     @NonNull
@@ -202,9 +202,9 @@ import android.support.annotation.Nullable;
 import java.util.Set;
 
 import ryey.easer.commons.C;
-import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.dynamics.SolidDynamicsAssignment;
-import ryey.easer.commons.plugindef.operationplugin.OperationData;
+import ryey.easer.commons.local_plugin.IllegalStorageDataException;
+import ryey.easer.commons.local_plugin.dynamics.SolidDynamicsAssignment;
+import ryey.easer.commons.local_plugin.operationplugin.OperationData;
 
 public class {data} implements OperationData {{
     {data}(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {{
@@ -278,8 +278,8 @@ tmpl_operation_loader = '''package {package};
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.commons.plugindef.operationplugin.OperationLoader;
+import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.plugins.operation.OperationLoader;
 
 public class {loader} extends OperationLoader<{data}> {{
     {loader}(Context context) {{
@@ -300,11 +300,11 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import ryey.easer.R;
-import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
-import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
-import ryey.easer.commons.plugindef.eventplugin.EventPlugin;
+import ryey.easer.plugins.PluginViewFragment;
+import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.plugins.event.AbstractSlot;
+import ryey.easer.commons.local_plugin.eventplugin.EventDataFactory;
+import ryey.easer.commons.local_plugin.eventplugin.EventPlugin;
 
 public class {plugin} implements EventPlugin<{data}> {{
 
@@ -363,9 +363,9 @@ tmpl_event_data_factory = '''package {package};
 import android.support.annotation.NonNull;
 
 import ryey.easer.commons.C;
-import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.commons.plugindef.eventplugin.EventDataFactory;
+import ryey.easer.commons.local_plugin.IllegalStorageDataException;
+import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.commons.local_plugin.eventplugin.EventDataFactory;
 
 class {data_factory} implements EventDataFactory<{data}> {{
     @NonNull
@@ -397,8 +397,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import ryey.easer.commons.C;
-import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.dynamics.Dynamics;
+import ryey.easer.commons.local_plugin.IllegalStorageDataException;
+import ryey.easer.commons.local_plugin.dynamics.Dynamics;
 import ryey.easer.plugins.event.AbstractEventData;
 
 public class {data} extends AbstractEventData {{
@@ -468,7 +468,7 @@ tmpl_event_slot = '''package {package};
 
 import android.content.Context;
 
-import ryey.easer.commons.plugindef.eventplugin.AbstractSlot;
+import ryey.easer.plugins.event.AbstractSlot;
 
 public class {slot} extends AbstractSlot<{data}> {{
 
@@ -507,11 +507,11 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.plugindef.PluginViewFragment;
-import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.commons.plugindef.conditionplugin.ConditionDataFactory;
-import ryey.easer.commons.plugindef.conditionplugin.ConditionPlugin;
-import ryey.easer.commons.plugindef.conditionplugin.Tracker;
+import ryey.easer.plugins.PluginViewFragment;
+import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.commons.local_plugin.conditionplugin.ConditionDataFactory;
+import ryey.easer.commons.local_plugin.conditionplugin.ConditionPlugin;
+import ryey.easer.commons.local_plugin.conditionplugin.Tracker;
 
 public class {plugin} implements ConditionPlugin<{data}> {{
 
@@ -569,9 +569,9 @@ tmpl_condition_data_factory = '''package {package};
 import android.support.annotation.NonNull;
 
 import ryey.easer.commons.C;
-import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.commons.plugindef.conditionplugin.ConditionDataFactory;
+import ryey.easer.commons.local_plugin.IllegalStorageDataException;
+import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.commons.local_plugin.conditionplugin.ConditionDataFactory;
 
 class {data_factory} implements ConditionDataFactory<{data}> {{
     @NonNull
@@ -602,8 +602,8 @@ import android.os.Parcel;
 import android.support.annotation.NonNull;
 
 import ryey.easer.commons.C;
-import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.plugindef.conditionplugin.ConditionData;
+import ryey.easer.commons.local_plugin.IllegalStorageDataException;
+import ryey.easer.commons.local_plugin.conditionplugin.ConditionData;
 
 public class {data} implements ConditionData {{
 

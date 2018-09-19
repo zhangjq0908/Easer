@@ -21,10 +21,10 @@ package ryey.easer.plugins.condition.wifi;
 
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.IllegalStorageDataException;
-import ryey.easer.commons.PluginDataFormat;
-import ryey.easer.commons.plugindef.ValidData;
-import ryey.easer.commons.plugindef.conditionplugin.ConditionDataFactory;
+import ryey.easer.commons.local_plugin.IllegalStorageDataException;
+import ryey.easer.plugin.PluginDataFormat;
+import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.commons.local_plugin.conditionplugin.ConditionDataFactory;
 
 class WifiConditionDataFactory implements ConditionDataFactory<WifiConditionData> {
     @NonNull

@@ -23,8 +23,8 @@ import android.widget.EditText;
 
 import ryey.easer.R;
 import ryey.easer.commons.C;
-import ryey.easer.commons.plugindef.InvalidDataInputException;
-import ryey.easer.commons.plugindef.conditionplugin.ConditionData;
+import ryey.easer.commons.local_plugin.InvalidDataInputException;
+import ryey.easer.commons.local_plugin.conditionplugin.ConditionData;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.storage.ConditionDataStorage;
 
