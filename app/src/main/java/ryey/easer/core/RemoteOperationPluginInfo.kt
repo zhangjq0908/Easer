@@ -25,12 +25,12 @@ import ryey.easer.plugin.operation.Category
 import ryey.easer.remote_plugin.RemotePlugin
 
 class RemoteOperationPluginInfo(packageName: String, pluginId: String,
-                                pluginName: String, val category: Category)
-    : RemotePluginInfo(packageName, pluginId, pluginName, RemotePlugin.TYPE_OPERATION_PLUGIN) {
+                                pluginName: String, activityEditData: String?, val category: Category)
+    : RemotePluginInfo(packageName, pluginId, pluginName, RemotePlugin.TYPE_OPERATION_PLUGIN, activityEditData) {
 
     constructor(packageName: String, pluginId: String,
-                pluginName: String, category: String)
-            : this(packageName, pluginId, pluginName,
+                pluginName: String, activityEditData: String?, category: String)
+            : this(packageName, pluginId, pluginName, activityEditData,
             try {
                 Category.valueOf(category)
             } catch (e: Exception) {
@@ -41,12 +41,14 @@ class RemoteOperationPluginInfo(packageName: String, pluginId: String,
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
+            parcel.readString(),
             parcel.readString())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(packageName)
         parcel.writeString(pluginId)
         parcel.writeString(pluginName)
+        parcel.writeString(activityEditData)
         parcel.writeString(category.toString())
     }
 

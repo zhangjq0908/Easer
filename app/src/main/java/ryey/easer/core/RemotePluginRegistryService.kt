@@ -47,6 +47,7 @@ class RemotePluginRegistryService : Service() {
                 val packageName = intent.getStringExtra(RemotePlugin.EXTRA_PACKAGE_NAME)
                 val pluginId = intent.getStringExtra(RemotePlugin.EXTRA_PLUGIN_ID)
                 val pluginName = intent.getStringExtra(RemotePlugin.EXTRA_PLUGIN_NAME)
+                val activityEditData = intent.getStringExtra(RemotePlugin.EXTRA_ACTIVITY_EDIT_DATA)
                 val pluginType = intent.getStringExtra(RemotePlugin.EXTRA_PLUGIN_TYPE)
                 //TODO: More types
                 assert(pluginType == RemotePlugin.TYPE_OPERATION_PLUGIN)
@@ -56,7 +57,7 @@ class RemotePluginRegistryService : Service() {
                 } catch (e: RuntimeException) {
                     Category.unknown
                 }
-                val info = RemoteOperationPluginInfo(packageName, pluginId, pluginName, category)
+                val info = RemoteOperationPluginInfo(packageName, pluginId, pluginName, activityEditData, category)
                 operationPluginInfos.add(info)
             }
         }
@@ -183,7 +184,7 @@ class RemotePluginRegistryService : Service() {
                 val pluginInfo = service.infoForId(id)!!
                 val bundle = Bundle()
                 bundle.putString(C.EXTRA_PLUGIN_PACKAGE, pluginInfo.packageName)
-                bundle.putString(C.EXTRA_PLUGIN_EDIT_DATA_ACTIVITY, "%s.EditDataActivity".format(pluginInfo.packageName))
+                bundle.putString(C.EXTRA_PLUGIN_EDIT_DATA_ACTIVITY, pluginInfo.activityEditData)
                 val reply = Message.obtain()
                 reply.what = C.MSG_EDIT_OPERATION_DATA_RESPONSE
                 reply.data = bundle

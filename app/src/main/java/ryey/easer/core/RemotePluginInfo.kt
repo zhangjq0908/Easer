@@ -22,9 +22,14 @@ package ryey.easer.core
 import android.os.Parcel
 import android.os.Parcelable
 
-open class RemotePluginInfo(val packageName: String, val pluginId: String, val pluginName: String, val pluginType: String)
+open class RemotePluginInfo(val packageName: String, val pluginId: String, val pluginName: String, val pluginType: String, activityEditData: String? = null)
     : Parcelable {
+
+    val activityEditData: String? = activityEditData
+        get() = field ?: "$packageName.EditDataActivity"
+
     constructor(parcel: Parcel) : this(
+            parcel.readString(),
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
@@ -35,6 +40,7 @@ open class RemotePluginInfo(val packageName: String, val pluginId: String, val p
         parcel.writeString(pluginId)
         parcel.writeString(pluginName)
         parcel.writeString(pluginType)
+        parcel.writeString(activityEditData)
     }
 
     override fun describeContents(): Int {

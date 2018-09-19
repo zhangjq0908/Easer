@@ -38,6 +38,7 @@ public class RemotePlugin {
     public static final String EXTRA_PACKAGE_NAME = "ryey.easer.remote_plugin.extra.PACKAGE_NAME";
     public static final String EXTRA_PLUGIN_ID = "ryey.easer.remote_plugin.extra.PLUGIN_ID";
     public static final String EXTRA_PLUGIN_NAME = "ryey.easer.remote_plugin.extra.PLUGIN_NAME";
+    public static final String EXTRA_ACTIVITY_EDIT_DATA = "ryey.easer.remote_plugin.extra.ACTIVITY_EDIT_DATA";
     public static final String EXTRA_PLUGIN_TYPE = "ryey.easer.remote_plugin.extra.PLUGIN_TYPE";
     public static final String EXTRA_DATA = "ryey.easer.remote_plugin.extra.DATA";
 
