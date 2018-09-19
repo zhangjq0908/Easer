@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 import com.orhanobut.logger.Logger;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -144,6 +145,9 @@ public class Utils {
         }
         throw new IllegalStateException("At least one button should be checked");
     }
+
+    public static final DateFormat df_24hour = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+    public static final DateFormat df_12hour = new SimpleDateFormat("yyyy-MM-dd h:mm:ss a", Locale.US);
 
     private static final String F_DATE = "%DATE%";
     private static final String F_TIME = "%TIME%";

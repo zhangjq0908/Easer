@@ -43,11 +43,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.lang.ref.WeakReference;
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import ryey.easer.R;
+import ryey.easer.SettingsHelper;
+import ryey.easer.Utils;
 import ryey.easer.core.EHService;
 import ryey.easer.core.log.ActivityLog;
 import ryey.easer.core.log.ActivityLogService;
@@ -133,7 +135,7 @@ public class ActivityHistoryFragment extends Fragment {
             return layout;
         } else {
             View view = inflater.inflate(R.layout.item_activity_log, container, false);
-            historyViewHolder = new HistoryViewHolder(view);
+            historyViewHolder = new HistoryViewHolder(view, new WeakReference<>(getContext()));
             return view;
         }
     }
@@ -207,7 +209,7 @@ public class ActivityHistoryFragment extends Fragment {
         public HistoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View v = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.item_activity_log, parent, false);
-            return new HistoryViewHolder(v);
+            return new HistoryViewHolder(v, new WeakReference<>(parent.getContext()));
         }
 
         @Override
@@ -234,19 +236,26 @@ public class ActivityHistoryFragment extends Fragment {
 
     static class HistoryViewHolder extends RecyclerView.ViewHolder {
         final ItemActivityLogBinding binding;
-        HistoryViewHolder(View itemView) {
+        final WeakReference<Context> context;
+        HistoryViewHolder(View itemView, WeakReference<Context> context) {
             super(itemView);
             binding = DataBindingUtil.bind(itemView);
+            this.context = context;
         }
 
         @Nullable
-        private static String tLong2Text(long time) {
+        private static String tLong2Text(long time, Context context) {
             if (time < 0) {
                 return null;
             }
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(time);
-            DateFormat df = SimpleDateFormat.getDateTimeInstance();
+            DateFormat df;
+            if (SettingsHelper.use12HourClock(context)) {
+                df = Utils.df_12hour;
+            } else {
+                df = Utils.df_24hour;
+            }
             return df.format(calendar.getTime());
         }
 
@@ -261,7 +270,7 @@ public class ActivityHistoryFragment extends Fragment {
                 return;
             long loadTime = activityLog.time();
             binding.cTime.setVisibility(View.VISIBLE);
-            binding.tvTime.setText(tLong2Text(loadTime));
+            binding.tvTime.setText(tLong2Text(loadTime, context.get()));
             String extraInfo = activityLog.extraInfo();
             if (extraInfo != null) {
                 binding.cExtra.setVisibility(View.VISIBLE);
