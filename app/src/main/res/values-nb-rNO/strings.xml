@@ -186,4 +186,8 @@
     <string name="category_operation_easer">\@string/easer</string>
     <string name="category_operation_misc">Ymse</string>
 
+<string name="title_remote_operation_plugin">Fjernoperasjonsprogramtillegg</string>
+
+    <string name="category_operation_unknown">Ukjent</string>
+
 </resources>
