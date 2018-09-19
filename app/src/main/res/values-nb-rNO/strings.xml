@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="easer">Easer</string>
-    <string name="app_name">\@string/easer</string>
+    <string name="app_name">@string/easer</string>
     <string name="drawer_tip">Lett din hverdag.</string>
     <string name="title_outline">Skisse</string>
     <string name="title_operation">Operasjon</string>
@@ -9,7 +9,7 @@
     <string name="title_script">Skript</string>
     <string name="title_condition">Tilstand</string>
     <string name="title_application">Program</string>
-    <string name="title_activity_log">Aktivitetslogg</string>
+    <string name="title_activity_history">Aktivitetslogg</string>
     <string name="title_about">Om</string>
     <string name="title_setting">Innstillinger</string>
     <string name="title_add">Legg til</string>
@@ -30,17 +30,17 @@
     <string name="service_indicator_positive">Kjørende</string>
     <string name="service_indicator_negative">Kjører ikke</string>
 
-    <string name="activity_log__profile">\@string/title_profile</string>
-    <string name="activity_log__script">\@string/title_script</string>
-    <string name="activity_log__time">Tid</string>
-    <string name="activity_log__extra">Ekstra info</string>
-    <string name="activity_log__satisfaction">Status</string>
-    <string name="activity_log__satisfied">Tilfreds</string>
-    <string name="activity_log__unsatisfied">Ikke tilfreds</string>
-    <string name="activity_log__service">Tjeneste</string>
-    <string name="activity_log__status">Status</string>
-    <string name="activity_log__start">Start</string>
-    <string name="activity_log__stop">Stopp</string>
+    <string name="activity_history__profile">@string/title_profile</string>
+    <string name="activity_history__script">@string/title_script</string>
+    <string name="activity_history__time">Tid</string>
+    <string name="activity_history__extra">Ekstra info</string>
+    <string name="activity_history__satisfaction">Status</string>
+    <string name="activity_history__satisfied">Tilfreds</string>
+    <string name="activity_history__unsatisfied">Ikke tilfreds</string>
+    <string name="activity_history__service">Tjeneste</string>
+    <string name="activity_history__status">Status</string>
+    <string name="activity_history__start">Start</string>
+    <string name="activity_history__stop">Stopp</string>
 
     <string name="null_content">INGET INNHOLD</string>
 

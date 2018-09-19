@@ -10,7 +10,7 @@
     <string name="title_script">Script</string>
     <string name="title_condition">Condition</string>
     <string name="title_application">App</string>
-    <string name="title_activity_log">Activity Log</string>
+    <string name="title_activity_history">Activity History</string>
     <string name="title_about">About</string>
     <string name="title_setting">Settings</string>
     <string name="title_add">Add</string>
@@ -33,17 +33,17 @@
     <string name="service_indicator_positive">Running</string>
     <string name="service_indicator_negative">Not running</string>
 
-    <string name="activity_log__profile">@string/title_profile</string>
-    <string name="activity_log__script">@string/title_script</string>
-    <string name="activity_log__time">Time</string>
-    <string name="activity_log__extra">Extra info</string>
-    <string name="activity_log__satisfaction">Status</string>
-    <string name="activity_log__satisfied">Satisfied</string>
-    <string name="activity_log__unsatisfied">Unsatisfied</string>
-    <string name="activity_log__service">Service</string>
-    <string name="activity_log__status">Status</string>
-    <string name="activity_log__start">Start</string>
-    <string name="activity_log__stop">Stop</string>
+    <string name="activity_history__profile">@string/title_profile</string>
+    <string name="activity_history__script">@string/title_script</string>
+    <string name="activity_history__time">Time</string>
+    <string name="activity_history__extra">Extra info</string>
+    <string name="activity_history__satisfaction">Status</string>
+    <string name="activity_history__satisfied">Satisfied</string>
+    <string name="activity_history__unsatisfied">Unsatisfied</string>
+    <string name="activity_history__service">Service</string>
+    <string name="activity_history__status">Status</string>
+    <string name="activity_history__start">Start</string>
+    <string name="activity_history__stop">Stop</string>
 
     <string name="null_content">NULL CONTENT</string>
 

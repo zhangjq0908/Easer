@@ -50,24 +50,24 @@ import ryey.easer.core.log.ScriptSatisfactionLog;
 import ryey.easer.core.log.ServiceLog;
 import ryey.easer.databinding.ItemActivityLogBinding;
 
-public class ActivityLogFragment extends Fragment {
+public class ActivityHistoryFragment extends Fragment {
 
-    private static final String ARG_SIZE = "ryey.easer.core.ui.ActivityLogFragment.ARG.SIZE";
+    private static final String ARG_SIZE = "ryey.easer.core.ui.ActivityHistoryFragment.ARG.SIZE";
     private static final int COMPACT = 1;
     private static final int FULL = 0;
 
-    static ActivityLogFragment compact() {
+    static ActivityHistoryFragment compact() {
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_SIZE, COMPACT);
-        ActivityLogFragment fragment = new ActivityLogFragment();
+        ActivityHistoryFragment fragment = new ActivityHistoryFragment();
         fragment.setArguments(bundle);
         return fragment;
     }
 
-    static ActivityLogFragment full() {
+    static ActivityHistoryFragment full() {
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_SIZE, FULL);
-        ActivityLogFragment fragment = new ActivityLogFragment();
+        ActivityHistoryFragment fragment = new ActivityHistoryFragment();
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -91,7 +91,7 @@ public class ActivityLogFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Bundle args = getArguments();
         if (args == null || FULL == args.getInt(ARG_SIZE)) {
-            getActivity().setTitle(R.string.title_activity_log);
+            getActivity().setTitle(R.string.title_activity_history);
             View layout = inflater.inflate(R.layout.fragment_loaded_history_full, container, false);
             RecyclerView view = layout.findViewById(R.id.recycler_view);
             view.setHasFixedSize(true);
@@ -221,8 +221,8 @@ public class ActivityLogFragment extends Fragment {
                 }
                 binding.cStatus.setVisibility(View.VISIBLE);
                 binding.tvStatus.setText(log.getSatisfaction()
-                        ? R.string.activity_log__satisfied
-                        : R.string.activity_log__unsatisfied);
+                        ? R.string.activity_history__satisfied
+                        : R.string.activity_history__unsatisfied);
             } else {
                 if (activityLog instanceof ProfileLoadedLog) {
                     ProfileLoadedLog log = (ProfileLoadedLog) activityLog;
@@ -237,8 +237,8 @@ public class ActivityLogFragment extends Fragment {
                     binding.tvService.setText(serviceName);
                     binding.cStatus.setVisibility(View.VISIBLE);
                     binding.tvStatus.setText(start
-                            ? R.string.activity_log__start
-                            : R.string.activity_log__stop);
+                            ? R.string.activity_history__start
+                            : R.string.activity_history__stop);
                 }
             }
         }

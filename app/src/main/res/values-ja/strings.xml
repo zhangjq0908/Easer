@@ -17,7 +17,7 @@
 
     <string name="service_indicator_positive">実行中</string>
     <string name="service_indicator_negative">実行していません</string>
-    <string name="activity_log__time">時間</string>
+    <string name="activity_history__time">時間</string>
 
     <string name="null_content">空のコンテンツ</string>
 
@@ -60,7 +60,7 @@
 <string name="title_operation">操作</string>
     <string name="title_script">スクリプト</string>
     <string name="title_condition">条件</string>
-    <string name="title_activity_log">アクティビティログ</string>
+    <string name="title_activity_history">アクティビティログ</string>
     <string name="title_setting">設定</string>
     <string name="title_edit_event">イベントを編集</string>
     <string name="title_edit_condition">条件を編集</string>
@@ -72,16 +72,16 @@
 
     <string name="menu_action_save">保存</string>
 
-    <string name="activity_log__profile">\@string/title_profile</string>
-    <string name="activity_log__script">\@string/title_script</string>
-    <string name="activity_log__extra">追加情報</string>
-    <string name="activity_log__satisfaction">ステータス</string>
-    <string name="activity_log__satisfied">充足</string>
-    <string name="activity_log__unsatisfied">不足</string>
-    <string name="activity_log__service">サービス</string>
-    <string name="activity_log__status">ステータス</string>
-    <string name="activity_log__start">開始</string>
-    <string name="activity_log__stop">停止</string>
+    <string name="activity_history__profile">@string/title_profile</string>
+    <string name="activity_history__script">@string/title_script</string>
+    <string name="activity_history__extra">追加情報</string>
+    <string name="activity_history__satisfaction">ステータス</string>
+    <string name="activity_history__satisfied">充足</string>
+    <string name="activity_history__unsatisfied">不足</string>
+    <string name="activity_history__service">サービス</string>
+    <string name="activity_history__status">ステータス</string>
+    <string name="activity_history__start">開始</string>
+    <string name="activity_history__stop">停止</string>
 
     <string name="button_read_next_time">次回、読む</string>
     <string name="button_understand">理解しました</string>

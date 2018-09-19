@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="easer">Easer</string>
-    <string name="app_name">\@string/easer</string>
+    <string name="app_name">@string/easer</string>
     <string name="drawer_tip">Facilitez-vous la vie !</string>
     <string name="title_outline">Aperçu</string>
     <string name="title_operation">Opération</string>
@@ -9,7 +9,7 @@
     <string name="title_script">Script</string>
     <string name="title_condition">Condition</string>
     <string name="title_application">Application</string>
-    <string name="title_activity_log">Journal d\'activité</string>
+    <string name="title_activity_history">Journal d\'activité</string>
     <string name="title_about">A propos</string>
     <string name="title_setting">Paramètres</string>
     <string name="title_add">Ajouter</string>
@@ -30,17 +30,17 @@
     <string name="service_indicator_positive">En cours d\'exécution</string>
     <string name="service_indicator_negative">Arrêté</string>
 
-    <string name="activity_log__profile">\@string/title_profile</string>
-    <string name="activity_log__script">\@string/title_script</string>
-    <string name="activity_log__time">Heure</string>
-    <string name="activity_log__extra">Informations supplémentaires</string>
-    <string name="activity_log__satisfaction">Statut</string>
-    <string name="activity_log__satisfied">Satisfait</string>
-    <string name="activity_log__unsatisfied">Non satisfait</string>
-    <string name="activity_log__service">Service</string>
-    <string name="activity_log__status">Statut</string>
-    <string name="activity_log__start">Démarrer</string>
-    <string name="activity_log__stop">Arrêter</string>
+    <string name="activity_history__profile">@string/title_profile</string>
+    <string name="activity_history__script">@string/title_script</string>
+    <string name="activity_history__time">Heure</string>
+    <string name="activity_history__extra">Informations supplémentaires</string>
+    <string name="activity_history__satisfaction">Statut</string>
+    <string name="activity_history__satisfied">Satisfait</string>
+    <string name="activity_history__unsatisfied">Non satisfait</string>
+    <string name="activity_history__service">Service</string>
+    <string name="activity_history__status">Statut</string>
+    <string name="activity_history__start">Démarrer</string>
+    <string name="activity_history__stop">Arrêter</string>
 
     <string name="null_content">Contenu vide</string>
 

@@ -18,7 +18,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="3dp"
-                    android:text="@string/activity_log__script" />
+                    android:text="@string/activity_history__script" />
 
                 <TextView
                     android:id="@+id/tv_script"
@@ -36,7 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="3dp"
-                    android:text="@string/activity_log__service" />
+                    android:text="@string/activity_history__service" />
 
                 <TextView
                     android:id="@+id/tv_service"
@@ -54,7 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="3dp"
-                    android:text="@string/activity_log__status" />
+                    android:text="@string/activity_history__status" />
 
                 <TextView
                     android:id="@+id/tv_status"
@@ -71,7 +71,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="3dp"
-                    android:text="@string/activity_log__profile"/>
+                    android:text="@string/activity_history__profile"/>
 
                 <TextView
                     android:id="@+id/tv_profile"
@@ -88,7 +88,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="3dp"
-                    android:text="@string/activity_log__extra"/>
+                    android:text="@string/activity_history__extra"/>
 
                 <TextView
                     android:id="@+id/tv_extra"
@@ -105,7 +105,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="3dp"
-                    android:text="@string/activity_log__time"/>
+                    android:text="@string/activity_history__time"/>
 
                 <TextView
                     android:id="@+id/tv_time"

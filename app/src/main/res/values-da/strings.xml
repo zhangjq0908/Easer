@@ -10,7 +10,7 @@
     <string name="title_script">Skript</string>
     <string name="title_condition">Tilstand</string>
     <string name="title_application">Program</string>
-    <string name="title_activity_log">Aktivitetslog</string>
+    <string name="title_activity_history">Aktivitetslog</string>
     <string name="title_about">Om</string>
     <string name="title_setting">Opsætning</string>
     <string name="title_add">Tilføje</string>
@@ -31,17 +31,17 @@
     <string name="service_indicator_positive">Kørende</string>
     <string name="service_indicator_negative">Stoppet</string>
 
-    <string name="activity_log__profile">@string/title_profile</string>
-    <string name="activity_log__script">@string/title_script</string>
-    <string name="activity_log__time">Tidspunkt</string>
-    <string name="activity_log__extra">Ekstra information</string>
-    <string name="activity_log__satisfaction">Status</string>
-    <string name="activity_log__satisfied">Tilfreds</string>
-    <string name="activity_log__unsatisfied">Ikke tilfreds</string>
-    <string name="activity_log__service">Tjeneste</string>
-    <string name="activity_log__status">Status</string>
-    <string name="activity_log__start">Start</string>
-    <string name="activity_log__stop">Stop</string>
+    <string name="activity_history__profile">@string/title_profile</string>
+    <string name="activity_history__script">@string/title_script</string>
+    <string name="activity_history__time">Tidspunkt</string>
+    <string name="activity_history__extra">Ekstra information</string>
+    <string name="activity_history__satisfaction">Status</string>
+    <string name="activity_history__satisfied">Tilfreds</string>
+    <string name="activity_history__unsatisfied">Ikke tilfreds</string>
+    <string name="activity_history__service">Tjeneste</string>
+    <string name="activity_history__status">Status</string>
+    <string name="activity_history__start">Start</string>
+    <string name="activity_history__stop">Stop</string>
 
    <string name="null_content">NULL INDHOLD</string>
 

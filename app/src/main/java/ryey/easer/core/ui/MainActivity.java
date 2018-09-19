@@ -205,7 +205,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_log) {
             fragment = manager.findFragmentByTag(tag);
             if (fragment == null)
-                fragment = ActivityLogFragment.full();
+                fragment = ActivityHistoryFragment.full();
             manager.beginTransaction()
                     .replace(R.id.content_main, fragment, tag)
                     .addToBackStack(bs_tag)

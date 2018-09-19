@@ -7,7 +7,7 @@
     <string name="title_script">Skript</string>
     <string name="title_condition">Bedingung</string>
     <string name="title_application">App</string>
-    <string name="title_activity_log">Aktivitätsprotokoll</string>
+    <string name="title_activity_history">Aktivitätsprotokoll</string>
     <string name="title_about">Über</string>
     <string name="title_setting">Einstellungen</string>
     <string name="title_add">Hinzufügen</string>
@@ -25,15 +25,15 @@
     <string name="service_indicator_positive">Läuft</string>
     <string name="service_indicator_negative">Läuft nicht</string>
 
-    <string name="activity_log__time">Zeit</string>
-    <string name="activity_log__extra">Zusätzliche Info</string>
-    <string name="activity_log__satisfaction">Status</string>
-    <string name="activity_log__satisfied">Erfüllt</string>
-    <string name="activity_log__unsatisfied">Nicht erfüllt</string>
-    <string name="activity_log__service">Dienst</string>
-    <string name="activity_log__status">Status</string>
-    <string name="activity_log__start">Start</string>
-    <string name="activity_log__stop">Stopp</string>
+    <string name="activity_history__time">Zeit</string>
+    <string name="activity_history__extra">Zusätzliche Info</string>
+    <string name="activity_history__satisfaction">Status</string>
+    <string name="activity_history__satisfied">Erfüllt</string>
+    <string name="activity_history__unsatisfied">Nicht erfüllt</string>
+    <string name="activity_history__service">Dienst</string>
+    <string name="activity_history__status">Status</string>
+    <string name="activity_history__start">Start</string>
+    <string name="activity_history__stop">Stopp</string>
 
     <string name="null_content">LEERER INHALT</string>
 
