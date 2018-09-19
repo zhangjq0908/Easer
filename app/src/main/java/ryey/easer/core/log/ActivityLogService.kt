@@ -24,6 +24,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.os.Binder
 import android.os.Bundle
 import android.os.IBinder
 import com.orhanobut.logger.Logger
@@ -64,7 +65,13 @@ class ActivityLogService : Service() {
     }
 
     override fun onBind(intent: Intent): IBinder? {
-        TODO("Not yet implemented")
+        return ActivityLogServiceBinder(this)
+    }
+
+    class ActivityLogServiceBinder(val service: ActivityLogService): Binder() {
+        fun clearLog() {
+            ActivityLogService.activityLogList.clear()
+        }
     }
 
     companion object {

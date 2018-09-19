@@ -20,11 +20,14 @@
 package ryey.easer.core.ui;
 
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -34,6 +37,9 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -83,14 +89,35 @@ public class ActivityHistoryFragment extends Fragment {
         }
     };
 
+    private int size = FULL;
     HistoryViewHolder historyViewHolder;
     HistoryAdapter historyAdapter;
+
+    boolean clearHistoryAfterBind = false;
+    ActivityLogService.ActivityLogServiceBinder serviceBinder;
+    ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            serviceBinder = (ActivityLogService.ActivityLogServiceBinder) service;
+            if (clearHistoryAfterBind) {
+                clearHistory();
+                clearHistoryAfterBind = false;
+            }
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            serviceBinder = null;
+        }
+    };
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Bundle args = getArguments();
-        if (args == null || FULL == args.getInt(ARG_SIZE)) {
+        if (args != null && COMPACT == args.getInt(ARG_SIZE))
+            size = COMPACT;
+        if (size == FULL) {
             getActivity().setTitle(R.string.title_activity_history);
             View layout = inflater.inflate(R.layout.fragment_loaded_history_full, container, false);
             RecyclerView view = layout.findViewById(R.id.recycler_view);
@@ -102,6 +129,7 @@ public class ActivityHistoryFragment extends Fragment {
             view.addItemDecoration(dividerItemDecoration);
             historyAdapter = new HistoryAdapter();
             view.setAdapter(historyAdapter);
+            setHasOptionsMenu(true);
             return layout;
         } else {
             View view = inflater.inflate(R.layout.item_activity_log, container, false);
@@ -121,12 +149,42 @@ public class ActivityHistoryFragment extends Fragment {
     public void onResume() {
         super.onResume();
         refreshHistoryDisplay();
+        getContext().bindService(new Intent(getContext(), ActivityLogService.class), serviceConnection, Context.BIND_AUTO_CREATE);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getContext().unbindService(serviceConnection);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         getActivity().unregisterReceiver(mReceiver);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.activity_history, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_clear) {
+            if (serviceBinder == null)
+                clearHistoryAfterBind = true;
+            else
+                clearHistory();
+            return true;
+        } else
+            return super.onOptionsItemSelected(item);
+    }
+
+    private void clearHistory() {
+        serviceBinder.clearLog();
+        historyAdapter.notifyDataSetChanged();
     }
 
     private void refreshHistoryDisplay() {

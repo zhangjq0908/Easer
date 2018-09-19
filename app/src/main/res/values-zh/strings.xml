@@ -50,6 +50,7 @@
     <string name="button_read_next_time">以後再看</string>
     <string name="button_understand">明白了</string>
     <string name="menu_action_save">保存</string>
+    <string name="menu_clear">清空</string>
     <string name="title_edit_event">編輯事件</string>
     <string name="title_edit_profile">編輯行爲集</string>
     <string name="toggle_active">啓用</string>
