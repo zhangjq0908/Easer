@@ -22,12 +22,12 @@ package ryey.easer.core.data.storage.backend.json.event;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.commons.local_plugin.eventplugin.EventData;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.storage.C;
 import ryey.easer.core.data.storage.backend.Serializer;
 import ryey.easer.core.data.storage.backend.UnableToSerializeException;
+import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.plugins.PluginRegistry;
 
 public class EventSerializer implements Serializer<EventStructure> {

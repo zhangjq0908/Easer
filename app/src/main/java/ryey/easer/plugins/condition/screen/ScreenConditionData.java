@@ -23,8 +23,8 @@ import android.os.Parcel;
 import android.support.annotation.NonNull;
 
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
-import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.commons.local_plugin.conditionplugin.ConditionData;
+import ryey.easer.plugin.PluginDataFormat;
 
 public class ScreenConditionData implements ConditionData {
 

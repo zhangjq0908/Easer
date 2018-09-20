@@ -30,10 +30,10 @@ import android.widget.Spinner;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_plugin.InvalidDataInputException;
-import ryey.easer.plugins.PluginViewFragment;
 import ryey.easer.commons.local_plugin.ValidData;
 import ryey.easer.core.data.storage.ConditionDataStorage;
 import ryey.easer.core.ui.data.DataSelectSpinnerWrapper;
+import ryey.easer.plugins.PluginViewFragment;
 
 public class ConditionEventPluginViewFragment extends PluginViewFragment<ConditionEventEventData> {
 

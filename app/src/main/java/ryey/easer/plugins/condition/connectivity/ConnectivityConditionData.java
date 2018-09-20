@@ -30,8 +30,8 @@ import java.util.ArrayList;
 import java.util.Set;
 
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
-import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.commons.local_plugin.conditionplugin.ConditionData;
+import ryey.easer.plugin.PluginDataFormat;
 
 public class ConnectivityConditionData implements ConditionData {
 

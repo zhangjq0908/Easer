@@ -36,8 +36,8 @@ import java.util.Set;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_plugin.InvalidDataInputException;
-import ryey.easer.plugins.PluginViewFragment;
 import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.plugins.PluginViewFragment;
 
 public class DayOfWeekPluginViewFragment extends PluginViewFragment<DayOfWeekConditionData> {
 

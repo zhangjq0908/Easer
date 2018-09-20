@@ -25,9 +25,9 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
-import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.commons.local_plugin.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.local_plugin.operationplugin.OperationData;
+import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.plugins.operation.StringOperationData;
 
 public class CommandOperationData extends StringOperationData {

@@ -21,8 +21,8 @@ package ryey.easer.commons.local_plugin.eventplugin;
 
 import android.support.annotation.Nullable;
 
-import ryey.easer.commons.local_plugin.dynamics.Dynamics;
 import ryey.easer.commons.local_plugin.StorageData;
+import ryey.easer.commons.local_plugin.dynamics.Dynamics;
 
 public interface EventData extends StorageData {
 

@@ -28,8 +28,8 @@ import android.os.IBinder;
 import android.support.annotation.NonNull;
 
 import ryey.easer.commons.local_plugin.ValidData;
-import ryey.easer.plugins.operation.OperationLoader;
 import ryey.easer.core.EHService;
+import ryey.easer.plugins.operation.OperationLoader;
 
 public class StateControlLoader extends OperationLoader<StateControlOperationData> {
 

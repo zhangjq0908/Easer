@@ -31,8 +31,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
-import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.commons.local_plugin.dynamics.Dynamics;
+import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.plugins.event.AbstractEventData;
 
 public class CellLocationEventData extends AbstractEventData {

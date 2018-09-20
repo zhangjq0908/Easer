@@ -36,8 +36,8 @@ import java.util.ArrayList;
 
 import ryey.easer.R;
 import ryey.easer.commons.C;
-import ryey.easer.commons.local_plugin.dynamics.DynamicsLink;
 import ryey.easer.commons.local_plugin.InvalidDataInputException;
+import ryey.easer.commons.local_plugin.dynamics.DynamicsLink;
 import ryey.easer.commons.local_plugin.eventplugin.EventData;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.EventStructure;

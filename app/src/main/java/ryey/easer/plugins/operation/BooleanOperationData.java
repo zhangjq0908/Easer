@@ -27,9 +27,9 @@ import java.util.Set;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
-import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.commons.local_plugin.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.local_plugin.operationplugin.OperationData;
+import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.plugins.reusable.BooleanData;
 
 public abstract class BooleanOperationData extends BooleanData implements OperationData {

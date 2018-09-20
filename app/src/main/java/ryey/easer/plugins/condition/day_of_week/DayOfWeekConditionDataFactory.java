@@ -25,9 +25,9 @@ import android.support.v4.util.ArraySet;
 import java.util.Arrays;
 
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
-import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.commons.local_plugin.ValidData;
 import ryey.easer.commons.local_plugin.conditionplugin.ConditionDataFactory;
+import ryey.easer.plugin.PluginDataFormat;
 
 class DayOfWeekConditionDataFactory implements ConditionDataFactory<DayOfWeekConditionData> {
     @NonNull

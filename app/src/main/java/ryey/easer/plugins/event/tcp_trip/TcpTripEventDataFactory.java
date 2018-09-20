@@ -22,9 +22,9 @@ package ryey.easer.plugins.event.tcp_trip;
 import android.support.annotation.NonNull;
 
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
-import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.commons.local_plugin.ValidData;
 import ryey.easer.commons.local_plugin.eventplugin.EventDataFactory;
+import ryey.easer.plugin.PluginDataFormat;
 
 class TcpTripEventDataFactory implements EventDataFactory<TcpTripEventData> {
     @NonNull

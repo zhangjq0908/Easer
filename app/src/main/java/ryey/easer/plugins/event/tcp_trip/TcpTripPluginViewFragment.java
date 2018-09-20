@@ -30,8 +30,8 @@ import android.widget.EditText;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_plugin.InvalidDataInputException;
-import ryey.easer.plugins.PluginViewFragment;
 import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.plugins.PluginViewFragment;
 
 public class TcpTripPluginViewFragment extends PluginViewFragment<TcpTripEventData> {
     private EditText et_rAddr, et_rPort, et_send_data, et_reply_data;

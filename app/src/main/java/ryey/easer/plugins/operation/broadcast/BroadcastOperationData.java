@@ -35,9 +35,9 @@ import java.util.Set;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
-import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.commons.local_plugin.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.local_plugin.operationplugin.OperationData;
+import ryey.easer.plugin.PluginDataFormat;
 
 public class BroadcastOperationData implements OperationData {
     private static final String ns = null;

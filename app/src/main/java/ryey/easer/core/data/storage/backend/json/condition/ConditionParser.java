@@ -26,12 +26,12 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
-import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.commons.local_plugin.conditionplugin.ConditionData;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.storage.C;
 import ryey.easer.core.data.storage.backend.IOUtils;
 import ryey.easer.core.data.storage.backend.Parser;
+import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.plugins.PluginRegistry;
 
 public class ConditionParser implements Parser<ConditionStructure> {

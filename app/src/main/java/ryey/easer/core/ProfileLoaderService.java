@@ -34,9 +34,9 @@ import com.orhanobut.logger.Logger;
 
 import java.util.Collection;
 
-import ryey.easer.commons.local_plugin.operationplugin.Loader;
 import ryey.easer.commons.local_plugin.dynamics.DynamicsLink;
 import ryey.easer.commons.local_plugin.dynamics.SolidDynamicsAssignment;
+import ryey.easer.commons.local_plugin.operationplugin.Loader;
 import ryey.easer.commons.local_plugin.operationplugin.OperationData;
 import ryey.easer.commons.local_plugin.operationplugin.OperationPlugin;
 import ryey.easer.core.data.ProfileStructure;

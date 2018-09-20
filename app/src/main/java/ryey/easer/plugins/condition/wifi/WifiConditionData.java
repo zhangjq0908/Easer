@@ -34,8 +34,8 @@ import java.util.Set;
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
-import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.commons.local_plugin.conditionplugin.ConditionData;
+import ryey.easer.plugin.PluginDataFormat;
 
 public class WifiConditionData implements ConditionData {
     private static final String K_ESSID = "essid";

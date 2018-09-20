@@ -29,9 +29,9 @@ import java.util.Calendar;
 import java.util.concurrent.ExecutorService;
 
 import ryey.easer.SettingsHelper;
-import ryey.easer.commons.local_plugin.eventplugin.Slot;
 import ryey.easer.commons.local_plugin.eventplugin.EventData;
 import ryey.easer.commons.local_plugin.eventplugin.EventPlugin;
+import ryey.easer.commons.local_plugin.eventplugin.Slot;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.ScriptTree;
 import ryey.easer.plugins.PluginRegistry;

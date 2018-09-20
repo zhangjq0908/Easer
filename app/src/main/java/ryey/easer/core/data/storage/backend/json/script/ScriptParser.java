@@ -30,7 +30,6 @@ import java.util.Iterator;
 
 import ryey.easer.BuildConfig;
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
-import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.commons.local_plugin.dynamics.DynamicsLink;
 import ryey.easer.commons.local_plugin.eventplugin.EventData;
 import ryey.easer.core.data.ConditionStructure;
@@ -41,6 +40,7 @@ import ryey.easer.core.data.storage.ConditionDataStorage;
 import ryey.easer.core.data.storage.EventDataStorage;
 import ryey.easer.core.data.storage.backend.IOUtils;
 import ryey.easer.core.data.storage.backend.Parser;
+import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.plugins.PluginRegistry;
 
 class ScriptParser implements Parser<ScriptStructure> {

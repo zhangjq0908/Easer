@@ -21,10 +21,10 @@ package ryey.easer.commons.local_plugin.conditionplugin;
 
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.local_plugin.IllegalStorageDataException;
-import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.commons.local_plugin.DataFactory;
+import ryey.easer.commons.local_plugin.IllegalStorageDataException;
 import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.plugin.PluginDataFormat;
 
 public interface ConditionDataFactory<D extends ConditionData> extends DataFactory<D> {
     @NonNull

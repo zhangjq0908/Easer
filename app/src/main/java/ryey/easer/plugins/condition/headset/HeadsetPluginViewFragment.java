@@ -30,8 +30,8 @@ import android.widget.RadioButton;
 import ryey.easer.R;
 import ryey.easer.Utils;
 import ryey.easer.commons.local_plugin.InvalidDataInputException;
-import ryey.easer.plugins.PluginViewFragment;
 import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.plugins.PluginViewFragment;
 
 public class HeadsetPluginViewFragment extends PluginViewFragment<HeadsetConditionData> {
     private static final int[] ids_hs_state = {

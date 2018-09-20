@@ -22,12 +22,12 @@ package ryey.easer.core.data.storage.backend.json.condition;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.commons.local_plugin.conditionplugin.ConditionData;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.storage.C;
 import ryey.easer.core.data.storage.backend.Serializer;
 import ryey.easer.core.data.storage.backend.UnableToSerializeException;
+import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.plugins.PluginRegistry;
 
 public class ConditionSerializer implements Serializer<ConditionStructure> {

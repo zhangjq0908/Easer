@@ -22,9 +22,9 @@ package ryey.easer.plugins.condition.wifi;
 import android.support.annotation.NonNull;
 
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
-import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.commons.local_plugin.ValidData;
 import ryey.easer.commons.local_plugin.conditionplugin.ConditionDataFactory;
+import ryey.easer.plugin.PluginDataFormat;
 
 class WifiConditionDataFactory implements ConditionDataFactory<WifiConditionData> {
     @NonNull

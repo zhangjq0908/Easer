@@ -21,10 +21,10 @@ package ryey.easer.commons.local_plugin.operationplugin;
 
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.local_plugin.IllegalStorageDataException;
-import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.commons.local_plugin.DataFactory;
+import ryey.easer.commons.local_plugin.IllegalStorageDataException;
 import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.plugin.PluginDataFormat;
 
 
 public interface OperationDataFactory<T extends OperationData> extends DataFactory<T> {

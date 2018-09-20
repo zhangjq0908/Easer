@@ -24,8 +24,8 @@ import android.support.annotation.Nullable;
 
 import java.util.Set;
 
-import ryey.easer.commons.local_plugin.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.local_plugin.StorageData;
+import ryey.easer.commons.local_plugin.dynamics.SolidDynamicsAssignment;
 
 public interface OperationData extends StorageData {
     @Nullable

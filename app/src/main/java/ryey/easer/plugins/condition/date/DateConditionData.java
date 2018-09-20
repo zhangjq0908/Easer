@@ -31,8 +31,8 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
-import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.commons.local_plugin.conditionplugin.ConditionData;
+import ryey.easer.plugin.PluginDataFormat;
 
 public class DateConditionData implements ConditionData {
     private static final SimpleDateFormat sdf_date = new SimpleDateFormat("yyyy-MM-dd", Locale.US);

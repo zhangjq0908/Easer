@@ -29,9 +29,9 @@ import android.os.*
 import android.support.v4.util.ArraySet
 import android.util.Log
 import com.orhanobut.logger.Logger
-import ryey.easer.plugin.operation.Category
 import ryey.easer.commons.local_plugin.operationplugin.OperationData
 import ryey.easer.core.RemotePluginCommunicationHelper.C
+import ryey.easer.plugin.operation.Category
 import ryey.easer.remote_plugin.RemoteOperationData
 import ryey.easer.remote_plugin.RemotePlugin
 

@@ -32,10 +32,10 @@ import java.util.Set;
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
-import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.commons.local_plugin.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.local_plugin.operationplugin.OperationData;
 import ryey.easer.core.data.storage.ScriptDataStorage;
+import ryey.easer.plugin.PluginDataFormat;
 
 public class StateControlOperationData implements OperationData {
     public static final String K_EVENTNAME = "event name";

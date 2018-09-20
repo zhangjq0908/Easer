@@ -24,7 +24,6 @@ import org.json.JSONObject;
 
 import java.util.Map;
 
-import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.commons.local_plugin.dynamics.DynamicsLink;
 import ryey.easer.commons.local_plugin.eventplugin.EventData;
 import ryey.easer.core.data.ConditionStructure;
@@ -33,6 +32,7 @@ import ryey.easer.core.data.ScriptStructure;
 import ryey.easer.core.data.storage.C;
 import ryey.easer.core.data.storage.backend.Serializer;
 import ryey.easer.core.data.storage.backend.UnableToSerializeException;
+import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.plugins.PluginRegistry;
 
 class ScriptSerializer implements Serializer<ScriptStructure> {

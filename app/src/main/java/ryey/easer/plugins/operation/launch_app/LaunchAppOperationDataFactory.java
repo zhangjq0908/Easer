@@ -3,9 +3,9 @@ package ryey.easer.plugins.operation.launch_app;
 import android.support.annotation.NonNull;
 
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
-import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.commons.local_plugin.ValidData;
 import ryey.easer.commons.local_plugin.operationplugin.OperationDataFactory;
+import ryey.easer.plugin.PluginDataFormat;
 
 class LaunchAppOperationDataFactory implements OperationDataFactory<LaunchAppOperationData> {
     @NonNull

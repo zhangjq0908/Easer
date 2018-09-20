@@ -28,9 +28,9 @@ import android.view.ViewGroup;
 import android.widget.Switch;
 
 import ryey.easer.R;
-import ryey.easer.plugins.PluginViewFragment;
 import ryey.easer.commons.local_plugin.ValidData;
 import ryey.easer.commons.local_plugin.operationplugin.OperationData;
+import ryey.easer.plugins.PluginViewFragment;
 
 public abstract class SwitchPluginViewFragment<T extends OperationData> extends PluginViewFragment<T> {
     private Switch aSwitch;

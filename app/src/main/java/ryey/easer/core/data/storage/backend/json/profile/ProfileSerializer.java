@@ -26,11 +26,11 @@ import org.json.JSONObject;
 import java.util.Collection;
 
 import ryey.easer.commons.C;
-import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.storage.backend.Serializer;
 import ryey.easer.core.data.storage.backend.UnableToSerializeException;
+import ryey.easer.plugin.PluginDataFormat;
 
 public class ProfileSerializer implements Serializer<ProfileStructure> {
 

@@ -28,8 +28,8 @@ import org.json.JSONObject;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
-import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.commons.local_plugin.dynamics.Dynamics;
+import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.plugins.event.AbstractEventData;
 
 public class HeadsetEventData extends AbstractEventData {
