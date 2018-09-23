@@ -1,0 +1,10 @@
+讓你的智能手機更加智能：告訴它該在什麼情況下做什麼事。
+
+簡單來說，Easer是一個事件驅動的Android自動化工具——用戶告訴它在什麼情況下做什麼事（或連結多個事件來自定義事件），此後再也不需要手動進行這些例程，也不必擔心忘記進行。
+更妙的是，Easer不僅僅處理事件，也可檢查狀態，這使得一些不易用事件描述的狀況變得簡單且直覺化。
+
+Easer的開發受啓發於CyanogenMod的'profile'機制與IFTTT。本來目的僅是在特定時間或WiFi自動切換profile，但隨後即擴展爲更通用的功能而不侷限於CyanogenMod。
+
+注意：Easer仍在開發中，可能包含bug且UI需要改進。
+ [https://renyuneyun.github.io/Easer/zh/ 網站]及[https://github.com/renyuneyun/Easer/wiki wiki]中有些許相關信息及指引，使用前請先閱讀之。如對幫助Easer開發感興趣，請閱讀倉庫中的[https://github.com/renyuneyun/Easer/blob/master/README.md README]。
+

@@ -1,6 +1,18 @@
 CHANGELOG
 ======
 
+* v0.7.0.1: Code cleanup && More robust Remote Plugin && Slight UI modification && Bug fixes
+	* Rename `remote_plugin` to `plugin`
+	* Allow to explicitly specify the Activity to edit data in Remote Plugin
+	* Add menu to ActivityHistory to clear history
+	* Respect 12/24 hour clock
+	* Translation update
+		* Japanese
+		* Norwegian Bokmål
+		* Danish
+	* Fix incorrect reference in some translated strings
+	* Dev changes
+
 * v0.7: Introduce Remote Plugins && Translation updates && More Dynamics
 	* Introduce Remote Plugins to Easer
 		* Remote Plugins are separate apps which can act as plugins of Easer to support more functions (Event/Condition/Operation)
