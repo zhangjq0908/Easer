@@ -190,4 +190,6 @@
 
     <string name="category_operation_unknown">Ukjent</string>
 
-</resources>
+<string name="menu_clear">Tøm</string>
+
+    </resources>
