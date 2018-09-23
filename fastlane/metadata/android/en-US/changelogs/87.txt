@@ -1,0 +1,3 @@
+## Fix crash for Remote Plugin
+
+* Fix crash when reading data from Remote Plugin

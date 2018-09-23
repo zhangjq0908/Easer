@@ -1,6 +1,12 @@
 CHANGELOG
 ======
 
+* v0.7.0.2: Fix crash for Remote Plugin && Update translation
+	* Fix crash when reading data from Remote Plugin
+	* Translation update
+		* French
+		* Norwegian Bokmål
+
 * v0.7.0.1: Code cleanup && More robust Remote Plugin && Slight UI modification && Bug fixes
 	* Rename `remote_plugin` to `plugin`
 	* Allow to explicitly specify the Activity to edit data in Remote Plugin
