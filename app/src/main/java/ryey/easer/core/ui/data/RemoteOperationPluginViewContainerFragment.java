@@ -62,6 +62,7 @@ public class RemoteOperationPluginViewContainerFragment extends AbstractPluginDa
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQCODE_EDIT_DATA) {
             if (resultCode == Activity.RESULT_OK) {
+                data.setExtrasClassLoader(RemoteOperationData.class.getClassLoader());
                 passed_data = data.getParcelableExtra(RemotePlugin.EXTRA_DATA);
             }
         } else
