@@ -6,24 +6,24 @@
 
     <string name="condition_bluetooth_device">Périphérique bluetooth connecté</string>
 
-    <string name="condition_cell_location">\@string/event_celllocation</string>
+    <string name="condition_cell_location">Localisation</string>
 
-    <string name="condition_connectivity">\@string/event_connectivity</string>
+    <string name="condition_connectivity">Evénement de connectivité</string>
 
-    <string name="condition_date">\@string/event_date</string>
+    <string name="condition_date">Date</string>
 
-    <string name="condition_day_of_week">\@string/event_day_of_week</string>
+    <string name="condition_day_of_week">Jour de la semaine</string>
 
-    <string name="condition_headset">\@string/event_headset</string>
+    <string name="condition_headset">Casque audio</string>
     <string name="condition_headset__headset_state">État du casque</string>
     <string name="condition_headset__plugged_in">Branché</string>
     <string name="condition_headset__plugged_out">Débranché</string>
 
-    <string name="condition_screen">\@string/event_screen</string>
+    <string name="condition_screen">Evénement écran</string>
 
-    <string name="condition_time">\@string/event_time</string>
+    <string name="condition_time">Evénement heure</string>
 
-    <string name="condition_wifi">\@string/event_wificonn</string>
+    <string name="condition_wifi">Evénement connexion Wifi</string>
 
 
     <string name="event_time">Heure</string>
@@ -193,4 +193,7 @@
 
     <string name="rel_after">Après</string>
 
-</resources>
+<string name="ev_sms_dynamics_sender">Expéditeur du SMS</string>
+    <string name="ev_sms_dynamics_content">Contenu SMS</string>
+
+    </resources>
