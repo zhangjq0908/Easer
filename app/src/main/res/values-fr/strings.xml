@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="easer">Easer</string>
-    <string name="app_name">@string/easer</string>
+    <string name="app_name">easer</string>
     <string name="drawer_tip">Facilitez-vous la vie !</string>
     <string name="title_outline">Aperçu</string>
     <string name="title_operation">Opération</string>
@@ -30,8 +30,8 @@
     <string name="service_indicator_positive">En cours d\'exécution</string>
     <string name="service_indicator_negative">Arrêté</string>
 
-    <string name="activity_history__profile">@string/title_profile</string>
-    <string name="activity_history__script">@string/title_script</string>
+    <string name="activity_history__profile">Titre du profil</string>
+    <string name="activity_history__script">Titre du script</string>
     <string name="activity_history__time">Heure</string>
     <string name="activity_history__extra">Informations supplémentaires</string>
     <string name="activity_history__satisfaction">Statut</string>
@@ -97,10 +97,10 @@
 
     <string name="pref_category_functionality">Fonctionnalité</string>
     <string name="pref_category_personalise">Personnaliser</string>
-    <string name="pref_category_data_manage">Gestion des données</string>
+    <string name="pref_category_data_manage">Gérer des données</string>
 
     <string name="pref_autostart_title">Lancement automatique au démarrage</string>
-    <string name="pref_autostart_summary">"Démarrer automatiquement le service en arrière-plan Easer "</string>
+    <string name="pref_autostart_summary">Démarrer le service en arrière-plan Easer automatiquement</string>
 
     <string name="pref_restart_after_upgrade_title">Démarrer le service après une mise-à-jour</string>
 
@@ -183,7 +183,13 @@
 
     <string name="category_operation_android">Android</string>
     <string name="category_operation_system_config">Configuration du système</string>
-    <string name="category_operation_easer">\@string/easer</string>
+    <string name="category_operation_easer">easer</string>
     <string name="category_operation_misc">Divers</string>
+
+<string name="title_remote_operation_plugin">Plugin de fonctionnement à distance</string>
+
+    <string name="menu_clear">Effacer</string>
+
+    <string name="category_operation_unknown">Inconnu</string>
 
 </resources>
