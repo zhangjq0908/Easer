@@ -47,8 +47,10 @@ Easer在逐步支持*狀況*（Condition）機制，且在逐漸將相關*事件
 已支持功能
 ----------
 Easer支持監聽許多Android事件（如時間、系統狀態、日曆等），所支持動作包括但不限於調整Android設置、發送消息、執行命令等。
+Easer現已在逐步支持（遠程）插件，不過暫時只有*行爲*。
 
-當前所支持功能的列表見[這個頁面](FEATURES.md)。
+當前所支持功能的列表見[這個頁面](FEATURES.md)，頁面也包含對於Dynamics的介紹。
+[這裏](https://github.com/topics/easer-plugin)是一個（不完整的）（遠程）插件列表。
 
 支持Easer
 -----
