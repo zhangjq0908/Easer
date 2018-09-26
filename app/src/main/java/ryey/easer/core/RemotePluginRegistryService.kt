@@ -172,7 +172,7 @@ class RemotePluginRegistryService : Service() {
                 Log.d("RemoPlRegistry", "MSG_TRIGGER_OPERATION")
                 message.data.classLoader = String::class.java.classLoader
                 val id = message.data.getString(C.EXTRA_PLUGIN_ID)
-//                message.data.classLoader = RemoteOperationData.javaClass.classLoader
+                message.data.classLoader = RemoteOperationData::class.java.classLoader
                 val data: RemoteOperationData = message.data.getParcelable(C.EXTRA_PLUGIN_DATA)
                 val pluginInfo = service.infoForId(id)!!
                 val intent = Intent(RemotePlugin.OperationPlugin.ACTION_TRIGGER)
