@@ -214,4 +214,7 @@
 
     <string name="rel_after">Efter</string>
 
-</resources>
+<string name="ev_sms_dynamics_sender">SMS sender</string>
+    <string name="ev_sms_dynamics_content">SMS indhold</string>
+
+    </resources>
