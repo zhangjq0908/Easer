@@ -50,7 +50,7 @@ import java.util.Locale;
 import ryey.easer.BuildConfig;
 import ryey.easer.R;
 import ryey.easer.Utils;
-import ryey.easer.core.BootupReceiver;
+import ryey.easer.core.BootUpReceiver;
 import ryey.easer.core.EHService;
 import ryey.easer.core.UpgradeCompleteReceiver;
 import ryey.easer.core.data.Helper;
@@ -84,7 +84,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(getString(R.string.key_pref_autostart))) {
-            ComponentName componentName = new ComponentName(this, BootupReceiver.class);
+            ComponentName componentName = new ComponentName(this, BootUpReceiver.class);
             PackageManager pm = getPackageManager();
             if (sharedPreferences.getBoolean(key, false)) {
                 pm.setComponentEnabledSetting(componentName,
