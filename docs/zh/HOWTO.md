@@ -14,7 +14,7 @@
 ### 使用腳本自動生成模板
 
 在utils目錄下有兩個腳本（`new_event.py`和`new_operation.py`），用於創建相應插件的“模板”——通用部分會被創建，一般而言只需要填充其中TODO部分即可。
-做完之後，在`ryey.easer.plugins.PluginRegistry`中註冊該新插件即完成。
+做完之後，在`ryey.easer.plugins.LocalPluginRegistry`中註冊該新插件即完成。
 
 組件的各個部分詳解見下。
 
@@ -23,7 +23,7 @@
 要增加新的Event或Operation，本質上來說要做兩件事：
 
 1. 實現新Event或Operation的功能（通過擴展/繼承相應接口，並實現相應內容）
-2. 在`ryey.easer.plugins.PluginRegistry`中註冊該新插件
+2. 在`ryey.easer.plugins.LocalPluginRegistry`中註冊該新插件
 
 其中：
 

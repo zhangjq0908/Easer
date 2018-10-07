@@ -33,7 +33,7 @@ import ryey.easer.core.data.storage.C;
 import ryey.easer.core.data.storage.backend.Serializer;
 import ryey.easer.core.data.storage.backend.UnableToSerializeException;
 import ryey.easer.plugin.PluginDataFormat;
-import ryey.easer.plugins.PluginRegistry;
+import ryey.easer.plugins.LocalPluginRegistry;
 
 class ScriptSerializer implements Serializer<ScriptStructure> {
 
@@ -103,7 +103,7 @@ class ScriptSerializer implements Serializer<ScriptStructure> {
 
     JSONObject serialize_situation(EventData event) throws JSONException {
         JSONObject json_situation = new JSONObject();
-        json_situation.put(C.SPEC, PluginRegistry.getInstance().event().findPlugin(event).id());
+        json_situation.put(C.SPEC, LocalPluginRegistry.getInstance().event().findPlugin(event).id());
         json_situation.put(C.DATA, event.serialize(PluginDataFormat.JSON));
         return json_situation;
     }

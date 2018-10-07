@@ -22,7 +22,7 @@ Detailed explaination of each component are presented below.
 In order to add a new *Event* or *Operation*, there are two main steps:
 
 1. Implement the functions of your new *Event* or *Operation* (by inheriting corresponding interfaces and implementing relevant contents)
-2. Register your new plugin in `ryey.easer.plugins.PluginRegistry`
+2. Register your new plugin in `ryey.easer.plugins.LocalPluginRegistry`
 
 Specifically:
 

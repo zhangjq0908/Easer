@@ -33,7 +33,7 @@ import ryey.easer.R;
 import ryey.easer.commons.local_plugin.InvalidDataInputException;
 import ryey.easer.commons.local_plugin.operationplugin.OperationData;
 import ryey.easer.commons.local_plugin.operationplugin.OperationPlugin;
-import ryey.easer.plugins.PluginRegistry;
+import ryey.easer.plugins.LocalPluginRegistry;
 
 public class OperationPluginViewContainerFragment<T extends OperationData> extends PluginViewContainerFragment<T> {
 
@@ -53,7 +53,7 @@ public class OperationPluginViewContainerFragment<T extends OperationData> exten
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String plugin_id = getArguments().getString(EXTRA_PLUGIN);
-        @SuppressWarnings("unchecked") OperationPlugin<T> plugin = PluginRegistry.getInstance().operation().findPlugin(plugin_id);
+        @SuppressWarnings("unchecked") OperationPlugin<T> plugin = LocalPluginRegistry.getInstance().operation().findPlugin(plugin_id);
         pluginViewFragment = plugin.view();
     }
 

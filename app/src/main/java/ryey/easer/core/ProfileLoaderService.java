@@ -29,10 +29,12 @@ import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.util.ArraySet;
 
 import com.orhanobut.logger.Logger;
 
 import java.util.Collection;
+import java.util.Set;
 
 import ryey.easer.commons.local_plugin.dynamics.DynamicsLink;
 import ryey.easer.commons.local_plugin.dynamics.SolidDynamicsAssignment;
@@ -45,7 +47,7 @@ import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.core.dynamics.CoreDynamics;
 import ryey.easer.core.dynamics.CoreDynamicsInterface;
 import ryey.easer.core.log.ActivityLogService;
-import ryey.easer.plugins.PluginRegistry;
+import ryey.easer.plugins.LocalPluginRegistry;
 import ryey.easer.remote_plugin.RemoteOperationData;
 
 import static ryey.easer.core.Lotus.EXTRA_DYNAMICS_LINK;
@@ -134,24 +136,29 @@ public class ProfileLoaderService extends Service {
         }
         final SolidDynamicsAssignment solidMacroAssignment = dynamicsLink.assign(macroData);
 
+        Set<String> unknownPlugins = new ArraySet<>();
+        Set<String> failedPlugins = new ArraySet<>();
         if (profile != null) {
-            boolean loaded = false;
-            PluginRegistry.Registry<OperationPlugin, OperationData> operationRegistry = PluginRegistry.getInstance().operation();
+            LocalPluginRegistry.Registry<OperationPlugin, OperationData> operationRegistry = LocalPluginRegistry.getInstance().operation();
             for (String pluginId : profile.pluginIds()) {
                 Collection<RemoteLocalOperationDataWrapper> dataCollection = profile.get(pluginId);
                 if (operationRegistry.hasPlugin(pluginId)) {
                     OperationPlugin plugin = operationRegistry.findPlugin(pluginId);
-                    assert plugin != null;
-                    Loader loader = plugin.loader(getApplicationContext());
-                    for (RemoteLocalOperationDataWrapper data : dataCollection) {
-                        OperationData localData = data.localData;
-                        assert localData != null;
-                        try {
-                            //noinspection unchecked
-                            if (loader.load(localData.applyDynamics(solidMacroAssignment)))
-                                loaded = true;
-                        } catch (RuntimeException e) {
-                            Logger.e(e, "error while loading operation <%s> for profile <%s>", data.getClass().getSimpleName(), profile.getName());
+                    if (plugin == null) {
+                        unknownPlugins.add(pluginId);
+                    } else {
+                        Loader loader = plugin.loader(getApplicationContext());
+                        for (RemoteLocalOperationDataWrapper data : dataCollection) {
+                            OperationData localData = data.localData;
+                            assert localData != null;
+                            try {
+                                //noinspection unchecked
+                                if (!loader.load(localData.applyDynamics(solidMacroAssignment))) {
+                                    failedPlugins.add(pluginId);
+                                }
+                            } catch (RuntimeException e) {
+                                Logger.e(e, "error while loading operation <%s> for profile <%s>", data.getClass().getSimpleName(), profile.getName());
+                            }
                         }
                     }
                 } else {
@@ -161,14 +168,27 @@ public class ProfileLoaderService extends Service {
                     }
                 }
             }
-            String extraInfo;
-            if (loaded) {
-                extraInfo = null;
+            StringBuilder extraInfoBuilder = new StringBuilder();
+            if (unknownPlugins.size() == 0 && failedPlugins.size() == 0) {
                 Logger.i("Profile <%s> loaded", name);
             } else {
-                extraInfo = "Profile failed to load in full";
-                Logger.w("Profile <%s> not loaded (none of the operations successfully loaded", name);
+                if (unknownPlugins.size() > 0) {
+                    extraInfoBuilder.append("Unknown plugins:");
+                    for (String id : unknownPlugins) {
+                        extraInfoBuilder.append(" ").append(id);
+                    }
+                    extraInfoBuilder.append("\n");
+                    Logger.i("Profile <%s> has unidentified Operations", name);
+                }
+                if (failedPlugins.size() > 0) {
+                    extraInfoBuilder.append("Failed:");
+                    for (String id : failedPlugins) {
+                        extraInfoBuilder.append(" ").append(id);
+                    }
+                    Logger.w("Profile <%s> has Operations failed to load", name);
+                }
             }
+            String extraInfo = extraInfoBuilder.toString();
             if (event == null) {
                 ActivityLogService.Companion.notifyProfileLoaded(this, name, extraInfo);
             } else {

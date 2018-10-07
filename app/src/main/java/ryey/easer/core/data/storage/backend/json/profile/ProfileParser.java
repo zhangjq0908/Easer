@@ -35,7 +35,7 @@ import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.storage.backend.IOUtils;
 import ryey.easer.core.data.storage.backend.Parser;
 import ryey.easer.plugin.PluginDataFormat;
-import ryey.easer.plugins.PluginRegistry;
+import ryey.easer.plugins.LocalPluginRegistry;
 import ryey.easer.remote_plugin.RemoteOperationData;
 
 class ProfileParser implements Parser<ProfileStructure> {
@@ -67,7 +67,7 @@ class ProfileParser implements Parser<ProfileStructure> {
                 throw new IllegalStorageDataException("Illegal Item: No Spec");
             }
             String content = jsonObject.optString(C.DATA);
-            OperationPlugin plugin = PluginRegistry.getInstance().operation().findPlugin(spec);
+            OperationPlugin plugin = LocalPluginRegistry.getInstance().operation().findPlugin(spec);
             if (plugin != null) {
                 OperationData data = plugin.dataFactory().parse(content, PluginDataFormat.JSON, version);
                 profile.put(plugin.id(), data);

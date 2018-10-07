@@ -42,7 +42,7 @@ import ryey.easer.core.RemotePluginCommunicationHelper;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.storage.ProfileDataStorage;
-import ryey.easer.plugins.PluginRegistry;
+import ryey.easer.plugins.LocalPluginRegistry;
 import ryey.easer.remote_plugin.RemoteOperationData;
 
 public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructure, ProfileDataStorage> implements OperationSelectorFragment.SelectedListener {
@@ -113,7 +113,7 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
 
         clearPluginView();
 
-        PluginRegistry.Registry<OperationPlugin, OperationData> operationRegistry = PluginRegistry.getInstance().operation();
+        LocalPluginRegistry.Registry<OperationPlugin, OperationData> operationRegistry = LocalPluginRegistry.getInstance().operation();
         for (String pluginId : profile.pluginIds()) {
             Collection<RemoteLocalOperationDataWrapper> operationDataCollection = profile.get(pluginId);
             if (operationRegistry.hasPlugin(pluginId)) {
@@ -144,7 +144,7 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
                 if (!data.isValid())
                     throw new InvalidDataInputException();
                 fragment.setHighlight(false);
-                String id = PluginRegistry.getInstance().operation().findPlugin(data).id();
+                String id = LocalPluginRegistry.getInstance().operation().findPlugin(data).id();
                 profile.put(id, data);
             } catch (InvalidDataInputException e) {
                 fragment.setHighlight(true);

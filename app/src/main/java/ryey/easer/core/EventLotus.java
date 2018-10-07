@@ -34,7 +34,7 @@ import ryey.easer.commons.local_plugin.eventplugin.EventPlugin;
 import ryey.easer.commons.local_plugin.eventplugin.Slot;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.ScriptTree;
-import ryey.easer.plugins.PluginRegistry;
+import ryey.easer.plugins.LocalPluginRegistry;
 
 /*
  * Note: old document; may be outdated.
@@ -72,7 +72,7 @@ class EventLotus extends Lotus {
         //noinspection unchecked
         T data = (T) scenario.getEventData();
         //noinspection unchecked
-        EventPlugin<T> plugin = PluginRegistry.getInstance().event().findPlugin(data);
+        EventPlugin<T> plugin = LocalPluginRegistry.getInstance().event().findPlugin(data);
         if (scenario.isTmpEvent()) {
             slot = plugin.slot(context, data);
         } else {

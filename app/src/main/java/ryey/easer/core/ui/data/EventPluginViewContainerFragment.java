@@ -31,7 +31,7 @@ import ryey.easer.R;
 import ryey.easer.commons.local_plugin.InvalidDataInputException;
 import ryey.easer.commons.local_plugin.eventplugin.EventData;
 import ryey.easer.commons.local_plugin.eventplugin.EventPlugin;
-import ryey.easer.plugins.PluginRegistry;
+import ryey.easer.plugins.LocalPluginRegistry;
 
 public class EventPluginViewContainerFragment<T extends EventData> extends PluginViewContainerFragment<T> {
 
@@ -49,7 +49,7 @@ public class EventPluginViewContainerFragment<T extends EventData> extends Plugi
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String plugin_id = getArguments().getString(EXTRA_PLUGIN);
-        @SuppressWarnings("unchecked") EventPlugin<T> plugin = PluginRegistry.getInstance().event().findPlugin(plugin_id);
+        @SuppressWarnings("unchecked") EventPlugin<T> plugin = LocalPluginRegistry.getInstance().event().findPlugin(plugin_id);
         pluginViewFragment = plugin.view();
     }
 
@@ -66,7 +66,7 @@ public class EventPluginViewContainerFragment<T extends EventData> extends Plugi
     @Override
     public void onStart() {
         super.onStart();
-        EventPlugin plugin = PluginRegistry.getInstance().event().findPlugin(pluginViewFragment);
+        EventPlugin plugin = LocalPluginRegistry.getInstance().event().findPlugin(pluginViewFragment);
         //noinspection ConstantConditions
         if (!plugin.checkPermissions(getContext())) {
             setEnabled(false);

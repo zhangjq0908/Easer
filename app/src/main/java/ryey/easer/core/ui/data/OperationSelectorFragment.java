@@ -44,7 +44,7 @@ import ryey.easer.commons.local_plugin.operationplugin.OperationPlugin;
 import ryey.easer.core.RemoteOperationPluginInfo;
 import ryey.easer.core.RemotePluginCommunicationHelper;
 import ryey.easer.plugin.operation.Category;
-import ryey.easer.plugins.PluginRegistry;
+import ryey.easer.plugins.LocalPluginRegistry;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
@@ -75,7 +75,7 @@ public class OperationSelectorFragment extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dialog_select_operation_plugin, container, false);
         StickyListHeadersListView list = view.findViewById(android.R.id.list);
-        List<OperationPlugin> localOperationPluginList = PluginRegistry.getInstance().operation().getEnabledPlugins(getContext());
+        List<OperationPlugin> localOperationPluginList = LocalPluginRegistry.getInstance().operation().getEnabledPlugins(getContext());
         availableLocalPluginList = new ArrayList<>(localOperationPluginList.size());
         for (OperationPlugin operationPlugin : localOperationPluginList) {
             if (addedPlugins.containsKey(operationPlugin.getClass())) {

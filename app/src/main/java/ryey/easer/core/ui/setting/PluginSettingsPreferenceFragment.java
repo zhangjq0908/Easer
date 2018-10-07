@@ -32,7 +32,7 @@ import ryey.easer.commons.local_plugin.PluginDef;
 import ryey.easer.core.RemoteOperationPluginInfo;
 import ryey.easer.core.RemotePluginCommunicationHelper;
 import ryey.easer.core.RemotePluginInfo;
-import ryey.easer.plugins.PluginRegistry;
+import ryey.easer.plugins.LocalPluginRegistry;
 
 public class PluginSettingsPreferenceFragment extends PreferenceFragment implements RemotePluginCommunicationHelper.OnOperationPluginListObtainedCallback {
 
@@ -48,19 +48,19 @@ public class PluginSettingsPreferenceFragment extends PreferenceFragment impleme
 
         PreferenceCategory preferenceCategory;
         preferenceCategory = (PreferenceCategory) getPreferenceScreen().findPreference(getString(R.string.key_pref_enabled_operation_plugins));
-        for (PluginDef plugin : PluginRegistry.getInstance().operation().getAllPlugins()) {
+        for (PluginDef plugin : LocalPluginRegistry.getInstance().operation().getAllPlugins()) {
             PluginEnabledPreference preference = new PluginEnabledPreference(getActivity(), plugin);
             preferenceCategory.addPreference(preference);
         }
 
         preferenceCategory = (PreferenceCategory) getPreferenceScreen().findPreference(getString(R.string.key_pref_enabled_event_plugins));
-        for (PluginDef plugin : PluginRegistry.getInstance().event().getAllPlugins()) {
+        for (PluginDef plugin : LocalPluginRegistry.getInstance().event().getAllPlugins()) {
             PluginEnabledPreference preference = new PluginEnabledPreference(getActivity(), plugin);
             preferenceCategory.addPreference(preference);
         }
 
         preferenceCategory = (PreferenceCategory) getPreferenceScreen().findPreference(getString(R.string.key_pref_enabled_condition_plugins));
-        for (PluginDef plugin : PluginRegistry.getInstance().condition().getAllPlugins()) {
+        for (PluginDef plugin : LocalPluginRegistry.getInstance().condition().getAllPlugins()) {
             PluginEnabledPreference preference = new PluginEnabledPreference(getActivity(), plugin);
             preferenceCategory.addPreference(preference);
         }
