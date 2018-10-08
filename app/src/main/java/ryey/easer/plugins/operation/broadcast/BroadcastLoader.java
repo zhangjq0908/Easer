@@ -54,7 +54,7 @@ public class BroadcastLoader extends OperationLoader<BroadcastOperationData> {
             intent.setDataAndType(iData.data, iData.type);
         } else if (hasType) {
             intent.setType(iData.type);
-        } else {
+        } else if (hasData) {
             intent.setData(iData.data);
         }
         if (iData.extras != null) {
