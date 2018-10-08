@@ -48,7 +48,7 @@ public class ConditionEventPluginViewFragment extends PluginViewFragment<Conditi
         sw_condition
                 .beginInit()
                 .setAllowEmpty(false)
-                .fillData(ConditionDataStorage.getInstance(getContext()).list())
+                .fillData(new ConditionDataStorage(getContext()).list())
                 .finalizeInit();
         rg_condition_event = view.findViewById(R.id.rg_condition_event);
         return view;

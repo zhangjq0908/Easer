@@ -53,7 +53,7 @@ public class EventListFragment extends AbstractDataListFragment<EventDataStorage
 
     @Override
     protected List<ListDataWrapper> queryDataList() {
-        EventDataStorage dataStorage = EventDataStorage.getInstance(getContext());
+        EventDataStorage dataStorage = new EventDataStorage(getContext());
         List<ListDataWrapper> dataWrapperList = new ArrayList<>();
         for (String name : dataStorage.list()) {
             EventStructure scenario = dataStorage.get(name);

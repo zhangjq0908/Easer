@@ -46,7 +46,7 @@ public class StateControlPluginViewFragment extends PluginViewFragment<StateCont
         sw_script
                 .beginInit()
                 .setAllowEmpty(false)
-                .fillData((ScriptDataStorage.getInstance(getContext())).list())
+                .fillData(new ScriptDataStorage(getContext()).list())
                 .finalizeInit();
         return view;
     }

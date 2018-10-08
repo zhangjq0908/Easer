@@ -80,7 +80,7 @@ public class ProfileListFragment extends AbstractDataListFragment<ProfileDataSto
 
     @Override
     protected List<ListDataWrapper> queryDataList() {
-        ProfileDataStorage dataStorage = ProfileDataStorage.getInstance(getContext());
+        ProfileDataStorage dataStorage = new ProfileDataStorage(getContext());
         List<ListDataWrapper> dataWrapperList = new ArrayList<>();
         for (String name : dataStorage.list()) {
             ProfileStructure profile = dataStorage.get(name);

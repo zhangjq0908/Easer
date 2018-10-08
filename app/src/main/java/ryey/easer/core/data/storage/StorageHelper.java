@@ -51,10 +51,10 @@ public class StorageHelper {
 
     public static boolean hasOldData(Context context) {
         AbstractDataStorage<?, ?> []dataStorages = {
-                ProfileDataStorage.getInstance(context),
-                ScriptDataStorage.getInstance(context),
-                EventDataStorage.getInstance(context),
-                ConditionDataStorage.getInstance(context),
+                new ProfileDataStorage(context),
+                new ScriptDataStorage(context),
+                new EventDataStorage(context),
+                new ConditionDataStorage(context),
         };
         for (AbstractDataStorage<?, ?> dataStorage : dataStorages) {
             for (String name : dataStorage.list()) {
@@ -102,10 +102,10 @@ public class StorageHelper {
         }
 
         AbstractDataStorage<?, ?> []dataStorages = {
-                ProfileDataStorage.getInstance(context),
-                ScriptDataStorage.getInstance(context),
-                EventDataStorage.getInstance(context),
-                ConditionDataStorage.getInstance(context),
+                new ProfileDataStorage(context),
+                new ScriptDataStorage(context),
+                new EventDataStorage(context),
+                new ConditionDataStorage(context),
         };
         String []tags = {
                 "Profile",

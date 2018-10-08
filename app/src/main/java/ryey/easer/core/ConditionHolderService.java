@@ -114,7 +114,7 @@ public class ConditionHolderService extends Service {
     }
 
     private void setTrackers() {
-        ConditionDataStorage conditionDataStorage = ConditionDataStorage.getInstance(this);
+        ConditionDataStorage conditionDataStorage = new ConditionDataStorage(this);
         for (String name : conditionDataStorage.list()) {
             Intent intent = new Intent(ACTION_TRACKER_SATISFIED);
             Uri turi = uri.buildUpon().appendPath(name).build();

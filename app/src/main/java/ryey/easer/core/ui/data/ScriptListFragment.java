@@ -47,7 +47,7 @@ public class ScriptListFragment extends AbstractDataListFragment<ScriptDataStora
 
     @Override
     protected List<ListDataWrapper> queryDataList() {
-        ScriptDataStorage dataStorage = ScriptDataStorage.getInstance(getContext());
+        ScriptDataStorage dataStorage = new ScriptDataStorage(getContext());
         List<ListDataWrapper> dataWrapperList = new ArrayList<>();
         for (String name : dataStorage.list()) {
             ScriptStructure script = dataStorage.get(name);

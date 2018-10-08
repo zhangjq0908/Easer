@@ -37,21 +37,12 @@ import ryey.easer.core.data.storage.backend.json.NC;
 
 public class JsonConditionDataStorageBackend implements ConditionDataStorageBackendInterface {
 
-    private static JsonConditionDataStorageBackend instance = null;
-    private static Context context = null;
+    private final Context context;
     private static File dir;
 
-    public static JsonConditionDataStorageBackend getInstance(Context context) {
-        if (instance == null) {
-            if (context != null)
-                JsonConditionDataStorageBackend.context = context;
-            dir = IOUtils.mustGetSubDir(JsonConditionDataStorageBackend.context.getFilesDir(), "condition");
-            instance = new JsonConditionDataStorageBackend();
-        }
-        return instance;
-    }
-
-    private JsonConditionDataStorageBackend() {
+    public JsonConditionDataStorageBackend(Context context) {
+        this.context = context;
+        dir = IOUtils.mustGetSubDir(context.getFilesDir(), "condition");
     }
 
     @Override

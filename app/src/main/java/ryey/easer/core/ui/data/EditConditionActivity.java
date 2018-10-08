@@ -35,7 +35,7 @@ public class EditConditionActivity extends AbstractEditDataActivity<ConditionStr
     
     @Override
     protected ConditionDataStorage retDataStorage() {
-        return ConditionDataStorage.getInstance(this);
+        return new ConditionDataStorage(this);
     }
 
     @Override

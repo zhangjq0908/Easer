@@ -38,22 +38,10 @@ import ryey.easer.plugins.operation.state_control.StateControlOperationPlugin;
 
 public class ScriptDataStorage extends AbstractDataStorage<ScriptStructure, ScriptDataStorageBackendInterface> {
 
-    private static ScriptDataStorage instance = null;
-
-    private final Context context;
-
-    public static ScriptDataStorage getInstance(Context context) {
-        if (instance == null) {
-            instance = new ScriptDataStorage(context);
-            instance.storage_backend_list = new ScriptDataStorageBackendInterface[] {
-                    JsonScriptDataStorageBackend.getInstance(context),
-            };
-        }
-        return instance;
-    }
-
-    private ScriptDataStorage(Context context) {
-        this.context = context;
+    public ScriptDataStorage(Context context) {
+        super(context, new ScriptDataStorageBackendInterface[] {
+            new JsonScriptDataStorageBackend(context),
+        });
     }
 
     @Override
@@ -62,7 +50,7 @@ public class ScriptDataStorage extends AbstractDataStorage<ScriptStructure, Scri
             if (name.equals(scriptStructure.getParentName()))
                 return false;
         }
-        ProfileDataStorage profileDataStorage = ProfileDataStorage.getInstance(context);
+        ProfileDataStorage profileDataStorage = new ProfileDataStorage(context);
         String s_id = (new StateControlOperationPlugin()).id();
         for (String pname : profileDataStorage.list()) {
             ProfileStructure profile = profileDataStorage.get(pname);
@@ -107,7 +95,7 @@ public class ScriptDataStorage extends AbstractDataStorage<ScriptStructure, Scri
                 update(sub);
             }
         }
-        ProfileDataStorage profileDataStorage = ProfileDataStorage.getInstance(context);
+        ProfileDataStorage profileDataStorage = new ProfileDataStorage(context);
         String s_id = (new StateControlOperationPlugin()).id();
         for (String pname : profileDataStorage.list()) {
             ProfileStructure profile = profileDataStorage.get(pname);

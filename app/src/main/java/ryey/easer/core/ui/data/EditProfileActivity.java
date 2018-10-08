@@ -61,7 +61,7 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
 
     @Override
     protected ProfileDataStorage retDataStorage() {
-        return ProfileDataStorage.getInstance(this);
+        return new ProfileDataStorage(this);
     }
 
     @Override

@@ -120,7 +120,7 @@ public class ProfileLoaderService extends Service {
     private void handleActionLoadProfile(@NonNull String name, @Nullable String event, @NonNull Bundle extras) {
         Logger.d("Loading profile <%s> by <%s>", name, event);
         ProfileStructure profile;
-        ProfileDataStorage storage = ProfileDataStorage.getInstance(this);
+        ProfileDataStorage storage = new ProfileDataStorage(this);
         profile = storage.get(name);
 
         DynamicsLink dynamicsLink = extras.getParcelable(EXTRA_DYNAMICS_LINK);

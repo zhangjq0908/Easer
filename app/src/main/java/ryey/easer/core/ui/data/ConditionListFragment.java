@@ -53,7 +53,7 @@ public class ConditionListFragment extends AbstractDataListFragment<ConditionDat
 
     @Override
     protected List<ListDataWrapper> queryDataList() {
-        ConditionDataStorage dataStorage = ConditionDataStorage.getInstance(getContext());
+        ConditionDataStorage dataStorage = new ConditionDataStorage(getContext());
         List<ListDataWrapper> dataWrapperList = new ArrayList<>();
         for (String name : dataStorage.list()) {
             ConditionStructure condition = dataStorage.get(name);

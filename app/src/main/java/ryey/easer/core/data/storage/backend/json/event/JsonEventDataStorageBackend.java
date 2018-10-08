@@ -37,18 +37,12 @@ import ryey.easer.core.data.storage.backend.json.NC;
 
 public class JsonEventDataStorageBackend implements EventDataStorageBackendInterface {
 
-    private static JsonEventDataStorageBackend instance = null;
-    private static Context s_context = null;
+    private final Context context;
     private static File dir;
 
-    public static JsonEventDataStorageBackend getInstance(Context context) {
-        if (instance == null) {
-            if (context != null)
-                s_context = context;
-            dir = IOUtils.mustGetSubDir(s_context.getFilesDir(), "event");
-            instance = new JsonEventDataStorageBackend();
-        }
-        return instance;
+    public JsonEventDataStorageBackend(Context context) {
+        this.context = context;
+        dir = IOUtils.mustGetSubDir(context.getFilesDir(), "event");
     }
 
     @Override
