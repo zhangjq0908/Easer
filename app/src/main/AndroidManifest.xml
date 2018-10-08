@@ -59,11 +59,14 @@
             android:label="@string/title_setting" />
 
         <receiver
-            android:name=".core.BootupReceiver"
-            android:enabled="false"
+            android:name=".core.BootUpReceiver"
+            android:enabled="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <!-- Added for issue #44, to test if related to warm boot and cold boot {{{ -->
+                <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
+                <!-- }}} -->
             </intent-filter>
         </receiver>
 

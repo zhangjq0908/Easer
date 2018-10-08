@@ -23,11 +23,16 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-public class BootupReceiver extends BroadcastReceiver {
+import com.orhanobut.logger.Logger;
+
+public class BootUpReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction()))
+        Logger.d("BootUp onReceive <%s>", intent);
+        String action = intent.getAction();
+        if (Intent.ACTION_BOOT_COMPLETED.equals(action)
+                || "android.intent.action.QUICKBOOT_POWERON".equals(action))
             EHService.start(context);
     }
 }

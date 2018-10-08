@@ -59,6 +59,8 @@
     <string name="text_lack_permission">Easer does NOT have all permissions it needs.</string>
     <string name="button_request_permission">Grant permissions</string>
 
+    <string name="text_notification_running_indicator_content">%s is running in the background</string>
+
     <string name="text_title">Title</string>
     <string name="text_parent_node">Parent</string>
     <string name="text_parent">Parent</string>

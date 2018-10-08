@@ -121,5 +121,6 @@
     <string name="category_operation_easer">@string/easer</string>
     <string name="category_operation_misc">雜項</string>
     <string name="category_operation_android">Android</string>
+    <string name="text_notification_running_indicator_content">%s正在後臺運行</string>
 
 </resources>

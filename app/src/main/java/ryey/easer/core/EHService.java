@@ -19,6 +19,7 @@
 
 package ryey.easer.core;
 
+import android.app.Notification;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -28,9 +29,11 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.net.Uri;
 import android.os.Binder;
+import android.os.Build;
 import android.os.ConditionVariable;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
+import android.support.v4.app.NotificationCompat;
 
 import com.orhanobut.logger.Logger;
 
@@ -39,6 +42,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import ryey.easer.R;
 import ryey.easer.core.data.ScriptTree;
 import ryey.easer.core.data.storage.ScriptDataStorage;
 import ryey.easer.core.log.ActivityLogService;
@@ -79,6 +83,7 @@ public class EHService extends Service {
 
     private static final String TAG = "[EHService] ";
     private static final String SERVICE_NAME = "Easer";
+    private static final int NOTIFICATION_ID = 1;
 
     List<Lotus> mLotusArray = new ArrayList<>();
     private ExecutorService executorService = Executors.newFixedThreadPool(4);
@@ -129,7 +134,11 @@ public class EHService extends Service {
 
     public static void start(Context context) {
         Intent intent = new Intent(context, EHService.class);
-        context.startService(intent);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            context.startForegroundService(intent);
+        } else {
+            context.startService(intent);
+        }
     }
 
     public static void stop(Context context) {
@@ -143,10 +152,26 @@ public class EHService extends Service {
         context.sendBroadcast(intent);
     }
 
+    private static Notification getIndicatorNotification(Context context) {
+        Notification indicatorNotification = new NotificationCompat.Builder(context)
+                .setContentTitle(context.getString(R.string.easer))
+                .setContentText(context.getString(
+                        R.string.text_notification_running_indicator_content,
+                        context.getString(R.string.easer)))
+                .build();
+        return indicatorNotification;
+    }
+
+    private void runInForeground() {
+        Notification indicatorNotification = getIndicatorNotification(this);
+        startForeground(NOTIFICATION_ID, indicatorNotification);
+    }
+
     @Override
     public void onCreate() {
         Logger.v(TAG + "onCreate()");
         super.onCreate();
+        runInForeground();
         ActivityLogService.Companion.notifyServiceStatus(this, SERVICE_NAME, true, null);
         bindService(new Intent(this, ConditionHolderService.class), connection, Context.BIND_AUTO_CREATE);
         running = true;
