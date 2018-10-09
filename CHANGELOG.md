@@ -1,6 +1,12 @@
 CHANGELOG
 ======
 
+* v0.7.0.3: Run service in foreground && Bug fixes && Translation update
+	* Run service in foreground, for Android 8 and memory management
+	* Fix Send Broadcast not working
+	* Catch warm-reboot broadcast
+	* Update Danish translation
+
 * v0.7.0.2: Fix crash for Remote Plugin && Update translation
 	* Fix crash when reading data from Remote Plugin
 	* Translation update

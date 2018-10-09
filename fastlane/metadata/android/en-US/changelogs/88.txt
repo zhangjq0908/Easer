@@ -1,0 +1,6 @@
+Run service in foreground && Bug fixes && Translation update
+* Run service in foreground, for Android 8 and memory management
+* Fix Send Broadcast not working
+* Catch warm-reboot broadcast
+* Update Danish translation
+
