@@ -192,4 +192,6 @@
 
     <string name="category_operation_unknown">Inconnu</string>
 
-</resources>
+<string name="text_notification_running_indicator_content">%s est en cours d\'exécution en arrière-plan</string>
+
+    </resources>
