@@ -17,4 +17,6 @@
     <string name="key_pref_enabled_condition_plugins" translatable="false">preference_enabled_condition_plugins</string>
     <string name="key_pref_remote_operation_plugins" translatable="false">preference_remote_operation_plugins</string>
     <string name="key_pref_convert_data" translatable="false">preference_convert_data</string>
+    <string name="key_pref_show_notification" translatable="false">preference_show_notification</string>
+    <string name="key_pref_foreground" translatable="false">preference_foreground</string>
 </resources>

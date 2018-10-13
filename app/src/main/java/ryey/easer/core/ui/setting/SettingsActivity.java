@@ -248,6 +248,11 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                 }
             });
 
+            findPreference(getString(R.string.key_pref_show_notification))
+                    .setEnabled(Build.VERSION.SDK_INT <= Build.VERSION_CODES.O);
+
+            findPreference(getString(R.string.key_pref_foreground))
+                    .setEnabled(Build.VERSION.SDK_INT <= Build.VERSION_CODES.O);
         }
 
         @Override

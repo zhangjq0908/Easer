@@ -20,6 +20,9 @@
 package ryey.easer.core;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -34,6 +37,7 @@ import android.os.ConditionVariable;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 
 import com.orhanobut.logger.Logger;
 
@@ -43,9 +47,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import ryey.easer.R;
+import ryey.easer.SettingsHelper;
 import ryey.easer.core.data.ScriptTree;
 import ryey.easer.core.data.storage.ScriptDataStorage;
 import ryey.easer.core.log.ActivityLogService;
+import ryey.easer.core.ui.MainActivity;
 
 /*
  * The background service which maintains several Lotus(es) and send Intent to load Profile(s).
@@ -134,11 +140,13 @@ public class EHService extends Service {
 
     public static void start(Context context) {
         Intent intent = new Intent(context, EHService.class);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            context.startForegroundService(intent);
-        } else {
-            context.startService(intent);
-        }
+        ContextCompat.startForegroundService(context, intent);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+////            context.startForegroundService(intent);
+//            ContextCompat.startForegroundService(context, intent);
+//        } else {
+//            context.startService(intent);
+//        }
     }
 
     public static void stop(Context context) {
@@ -152,26 +160,64 @@ public class EHService extends Service {
         context.sendBroadcast(intent);
     }
 
-    private static Notification getIndicatorNotification(Context context) {
-        Notification indicatorNotification = new NotificationCompat.Builder(context)
-                .setContentTitle(context.getString(R.string.easer))
-                .setContentText(context.getString(
+    private void startNotification() {
+        if (!SettingsHelper.showNotification(this))
+            return;
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        NotificationCompat.Builder builder;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String channelId = "easer_ind";
+            String channelName = "Easer Service Indicator";
+            int importance = NotificationManager.IMPORTANCE_LOW;
+            NotificationChannel notificationChannel = new NotificationChannel(channelId, channelName, importance);
+            notificationManager.createNotificationChannel(notificationChannel);
+            builder = new NotificationCompat.Builder(this, channelId);
+            builder.setAutoCancel(true);
+        } else {
+            builder = new NotificationCompat.Builder(this)
+                    .setPriority(NotificationCompat.PRIORITY_MIN);
+        }
+        final int REQ_CODE = 0;
+        PendingIntent pendingIntent = PendingIntent.getActivity(
+                this, REQ_CODE, new Intent(this, MainActivity.class), 0);
+        builder
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle(getString(R.string.easer))
+                .setContentText(getString(
                         R.string.text_notification_running_indicator_content,
-                        context.getString(R.string.easer)))
-                .build();
-        return indicatorNotification;
+                        getString(R.string.easer)))
+                .setOngoing(true)
+                .setVisibility(NotificationCompat.VISIBILITY_SECRET)
+                .setContentIntent(pendingIntent);
+
+        Notification indicatorNotification = builder.build();
+
+        if (SettingsHelper.runInForeground(this)) {
+            startForeground(NOTIFICATION_ID, indicatorNotification);
+        } else {
+            notificationManager.notify(NOTIFICATION_ID, indicatorNotification);
+        }
     }
 
-    private void runInForeground() {
-        Notification indicatorNotification = getIndicatorNotification(this);
-        startForeground(NOTIFICATION_ID, indicatorNotification);
+    private void stopNotification() {
+        if (!SettingsHelper.showNotification(this))
+            return;
+        if (SettingsHelper.runInForeground(this)) {
+
+        } else {
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.cancel(NOTIFICATION_ID);
+        }
     }
 
     @Override
     public void onCreate() {
         Logger.v(TAG + "onCreate()");
         super.onCreate();
-        runInForeground();
+        startNotification();
         ActivityLogService.Companion.notifyServiceStatus(this, SERVICE_NAME, true, null);
         bindService(new Intent(this, ConditionHolderService.class), connection, Context.BIND_AUTO_CREATE);
         running = true;
@@ -188,6 +234,7 @@ public class EHService extends Service {
     public void onDestroy() {
         Logger.v(TAG + "onDestroy");
         super.onDestroy();
+        stopNotification();
         ActivityLogService.Companion.notifyServiceStatus(this, SERVICE_NAME, false, null);
         mCancelTriggers();
         unregisterReceiver(mReceiver);

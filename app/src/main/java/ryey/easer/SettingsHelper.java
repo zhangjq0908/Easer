@@ -21,6 +21,7 @@ package ryey.easer;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.preference.PreferenceManager;
 
 public class SettingsHelper {
@@ -44,6 +45,16 @@ public class SettingsHelper {
 
     public static boolean use12HourClock(Context context) {
         return pref(context).getBoolean(context.getString(R.string.key_pref_use_12_hour_clock), false);
+    }
+
+    public static boolean showNotification(Context context) {
+        return pref(context).getBoolean(context.getString(R.string.key_pref_show_notification), true);
+    }
+
+    public static boolean runInForeground(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            return true;
+        return pref(context).getBoolean(context.getString(R.string.key_pref_foreground), true);
     }
 
 }
