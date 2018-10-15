@@ -192,4 +192,6 @@
 
 <string name="menu_clear">Tøm</string>
 
+    <string name="text_notification_running_indicator_content">%s kjører i bakgrunnen</string>
+
     </resources>
