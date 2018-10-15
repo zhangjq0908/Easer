@@ -194,4 +194,11 @@
 
     <string name="text_notification_running_indicator_content">%s kjører i bakgrunnen</string>
 
+    <string name="pref_category_service">Tjeneste</string>
+
+    <string name="pref_show_notification_title">Vis merknad</string>
+    <string name="pref_show_notification_summary">Vis merknad i merknadsfeltet.</string>
+    <string name="pref_foreground_title">Kjør tjeneste i bakgrunnen</string>
+    <string name="pref_foreground_summary">Gjør tjenesten enklere å drepe av systemet. Vil vise en merknad. Kan ikke skrus av på Android 8+ på grunn av et systemkrav.</string>
+
     </resources>
