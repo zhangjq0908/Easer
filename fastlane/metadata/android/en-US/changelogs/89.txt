@@ -1,0 +1,8 @@
+Better Notification && Bug fix && Translation update
+
+* Add settings for Notification
+* Lower Notification priority if possible
+* Fix crash when adding cell location
+* Minor Translation update
+	* French
+	* Norwegian Bokmål

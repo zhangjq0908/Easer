@@ -1,6 +1,14 @@
 CHANGELOG
 ======
 
+* v0.7.0.4: Better Notification && Bug fix && Translation update
+	* Add settings for Notification
+	* Lower Notification priority if possible
+	* Fix crash when adding cell location
+	* Minor Translation update
+		* French
+		* Norwegian Bokmål
+
 * v0.7.0.3: Run service in foreground && Bug fixes && Translation update
 	* Run service in foreground, for Android 8 and memory management
 	* Fix Send Broadcast not working
