@@ -8,24 +8,9 @@
 
     <string name="condition_bluetooth_device">Forbundet bluetooth enhed</string>
 
-    <string name="condition_cell_location">@string/event_cell_location</string>
-
-    <string name="condition_connectivity">@string/event_connectivity</string>
-
-    <string name="condition_date">@string/event_date</string>
-
-    <string name="condition_day_of_week">@string/event_day_of_week</string>
-
-    <string name="condition_headset">@string/event_headset</string>
     <string name="condition_headset__headset_state">Hovedtelefon tilstand</string>
     <string name="condition_headset__plugged_in">Tilsluttet</string>
     <string name="condition_headset__plugged_out">Frakoblet</string>
-
-    <string name="condition_screen">@string/event_screen</string>
-
-    <string name="condition_time">@string/event_time</string>
-
-    <string name="condition_wifi">@string/event_wificonn</string>
 
 
     <string name="event_time">Tidspunkt</string>

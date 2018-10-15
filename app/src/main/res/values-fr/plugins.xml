@@ -1,29 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="ev_condition_event">Condition Événement</string>
+<resources>
+    <string name="ev_condition_event">Condition Événement</string>
     <string name="condition_event_enter">Entrer</string>
     <string name="condition_event_leave">Quitter</string>
 
-
-    <string name="condition_bluetooth_device">Périphérique bluetooth connecté</string>
-
-    <string name="condition_cell_location">Localisation</string>
-
-    <string name="condition_connectivity">Evénement de connectivité</string>
-
-    <string name="condition_date">Date</string>
-
-    <string name="condition_day_of_week">Jour de la semaine</string>
-
-    <string name="condition_headset">Casque audio</string>
     <string name="condition_headset__headset_state">État du casque</string>
     <string name="condition_headset__plugged_in">Branché</string>
     <string name="condition_headset__plugged_out">Débranché</string>
-
-    <string name="condition_screen">Evénement écran</string>
-
-    <string name="condition_time">Evénement heure</string>
-
-    <string name="condition_wifi">Evénement connexion Wifi</string>
 
 
     <string name="event_time">Heure</string>
