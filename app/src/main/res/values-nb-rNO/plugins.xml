@@ -33,7 +33,7 @@
     <string name="wificonn_select_dialog_title">Velg Wi-Fi-tilgangspunkt</string>
     <string name="wificonn_wait_for_result">Venter på skanningsresultat fra Wi-Fi</string>
 
-    <string name="event_celllocation">Celleplassering</string>
+    <string name="event_cell_location">Celleplassering</string>
 
     <string name="event_battery">Batteristatus</string>
     <string name="event_day_of_week">Ukedag</string>

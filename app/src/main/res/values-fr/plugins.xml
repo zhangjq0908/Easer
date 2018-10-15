@@ -33,7 +33,7 @@
     <string name="wificonn_select_dialog_title">Sélectionnez le WiFi</string>
     <string name="wificonn_wait_for_result">Attente du résultat du scan WiFi</string>
 
-    <string name="event_celllocation">Localisation cellulaire</string>
+    <string name="event_cell_location">Localisation cellulaire</string>
 
     <string name="event_battery">État de la batterie</string>
     <string name="event_day_of_week">Jour de la semaine</string>

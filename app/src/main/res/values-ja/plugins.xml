@@ -3,7 +3,7 @@
     <string name="event_time">時刻</string>
     <string name="event_date">日付</string>
     <string name="event_wificonn">WiFi 接続</string>
-    <string name="event_celllocation">基地局</string>
+    <string name="event_cell_location">基地局</string>
 
     <string name="operation_wifi">WiFi</string>
     <string name="operation_cellular">モバイル通信</string>

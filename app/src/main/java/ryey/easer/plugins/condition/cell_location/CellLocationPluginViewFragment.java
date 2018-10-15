@@ -30,6 +30,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import ryey.easer.R;
 import ryey.easer.Utils;
@@ -52,7 +53,15 @@ public class CellLocationPluginViewFragment extends PluginViewFragment<CellLocat
                 if (!Utils.hasPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION))
                     return;
                 TelephonyManager telephonyManager = (TelephonyManager) getContext().getSystemService(Context.TELEPHONY_SERVICE);
+                if (telephonyManager == null) {
+                    Toast.makeText(getContext(), R.string.condition_cell_location_no_signal, Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 @SuppressLint("MissingPermission") CellLocationSingleData singleData = CellLocationSingleData.fromCellLocation(telephonyManager.getCellLocation());
+                if (singleData == null) {
+                    Toast.makeText(getContext(), R.string.condition_cell_location_no_signal, Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 String display_str = editText.getText().toString();
                 if (Utils.isBlank(display_str)) {
                     editText.setText(singleData.toString());

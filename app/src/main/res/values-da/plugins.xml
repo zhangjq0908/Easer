@@ -8,7 +8,7 @@
 
     <string name="condition_bluetooth_device">Forbundet bluetooth enhed</string>
 
-    <string name="condition_cell_location">@string/event_celllocation</string>
+    <string name="condition_cell_location">@string/event_cell_location</string>
 
     <string name="condition_connectivity">@string/event_connectivity</string>
 
@@ -35,7 +35,7 @@
     <string name="wificonn_select_dialog_title">Vælge trådløs adgangspunkt</string>
     <string name="wificonn_wait_for_result">Venter på trådløs skanne svar</string>
 
-    <string name="event_celllocation">Celle placering</string>
+    <string name="event_cell_location">Celle placering</string>
 
     <string name="event_battery">Batteri status</string>
    <array name="battery_status">

@@ -8,7 +8,7 @@
 
     <string name="condition_bluetooth_device">已連接藍牙設備</string>
 
-    <string name="condition_cell_location">@string/event_celllocation</string>
+    <string name="condition_cell_location">@string/event_cell_location</string>
 
     <string name="condition_connectivity">@string/event_connectivity</string>
 
@@ -28,7 +28,9 @@
     <string name="condition_wifi">@string/event_wificonn</string>
 
 
-    <string name="event_celllocation">基站位置</string>
+    <string name="event_cell_location">基站位置</string>
+    <string name="event_cell_location_no_signal">無法獲取基站信息。請檢查信號。</string>
+
     <string name="event_date">日期</string>
     <string name="event_time">時間</string>
 

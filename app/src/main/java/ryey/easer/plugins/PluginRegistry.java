@@ -56,7 +56,7 @@ import ryey.easer.plugins.event.battery.BatteryEventPlugin;
 import ryey.easer.plugins.event.bluetooth_device.BTDeviceEventPlugin;
 import ryey.easer.plugins.event.broadcast.BroadcastEventPlugin;
 import ryey.easer.plugins.event.calendar.CalendarEventPlugin;
-import ryey.easer.plugins.event.celllocation.CellLocationEventPlugin;
+import ryey.easer.plugins.event.cell_location.CellLocationEventPlugin;
 import ryey.easer.plugins.event.condition_event.ConditionEventEventPlugin;
 import ryey.easer.plugins.event.connectivity.ConnectivityEventPlugin;
 import ryey.easer.plugins.event.date.DateEventPlugin;

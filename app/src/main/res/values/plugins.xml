@@ -8,7 +8,8 @@
 
     <string name="condition_bluetooth_device">Connected bluetooth device</string>
 
-    <string name="condition_cell_location">@string/event_celllocation</string>
+    <string name="condition_cell_location">@string/event_cell_location</string>
+    <string name="condition_cell_location_no_signal">@string/event_cell_location_no_signal</string>
 
     <string name="condition_connectivity">@string/event_connectivity</string>
 
@@ -35,7 +36,8 @@
     <string name="wificonn_select_dialog_title">Select WiFi AP</string>
     <string name="wificonn_wait_for_result">Waiting for WiFi scan result</string>
 
-    <string name="event_celllocation">Cell Location</string>
+    <string name="event_cell_location">Cell Location</string>
+    <string name="event_cell_location_no_signal">Can\'t get cell location. Check your signal.</string>
 
     <string name="event_battery">Battery Status</string>
     <array name="battery_status">

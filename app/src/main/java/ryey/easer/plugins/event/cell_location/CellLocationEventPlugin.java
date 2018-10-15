@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.event.celllocation;
+package ryey.easer.plugins.event.cell_location;
 
 import android.Manifest;
 import android.app.Activity;
@@ -42,7 +42,7 @@ public class CellLocationEventPlugin implements EventPlugin<CellLocationEventDat
 
     @Override
     public int name() {
-        return R.string.event_celllocation;
+        return R.string.event_cell_location;
     }
 
     @Override
