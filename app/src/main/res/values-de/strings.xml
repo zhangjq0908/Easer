@@ -112,4 +112,73 @@
     <string name="category_operation_system_config">Systemkonfiguration</string>
     <string name="category_operation_misc">Verschiedenes</string>
 
-</resources>
+<string name="app_name">\@string/easer</string>
+    <string name="title_operation">Vorgang</string>
+    <string name="title_select_operation">Einen Vorgang auswählen</string>
+    <string name="title_dynamics_link">Dynamik-Link</string>
+    <string name="title_new_dynamics_link">Neuer Dynamik-Link</string>
+    <string name="title_remote_operation_plugin">Fernbedienungs-Plugin</string>
+
+    <string name="menu_clear">Leeren</string>
+
+    <string name="activity_history__profile">\@string/title_profile</string>
+    <string name="activity_history__script">\@string/title_script</string>
+    <string name="navigation_drawer_open">Navigationsleiste öffnen</string>
+    <string name="navigation_drawer_close">Navigationsleiste schließen</string>
+
+    <string name="button_read_next_time">Nächstes Mal lesen</string>
+    <string name="text_notification_running_indicator_content">%s läuft im Hintergrund</string>
+
+    <string name="prompt_data_illegal">Das Speichern von Daten mit ungültigen Feldern wurde verhindert. Bitte überprüfen Sie Ihre Auswahl / Eingaben erneut.</string>
+
+    <string name="appInformation">Erleichtern Sie sich Ihr Leben, indem Sie automatisch Routineaufgaben / -operationen an Ihrem/n Telefon(en) durchführen.
+\n Verketten Sie verschiedene Ereignisse und lassen Sie die entsprechenden Aktionen durchführen. Sie müssen sie nicht mehr im Auge behalten!
+\n Diese App wurde von CyanogenMods \'Profil\'-Mechanismus und IFTTT inspiriert. Die ursprüngliche Intuition war es, das Profil zu bestimmten Zeiten oder bei bestimmten WiFi-Verbindungen automatisch zu ändern und es wurde für den allgemeinen Gebrauch erweitert.
+\n Bitte beachten: Easer befindet sich noch in der Entwicklung. Es kann Fehler enthalten und die Benutzeroberfläche muss definitiv verbessert werden. Aktuelle Pläne sind im Dokument TODO.en.md (oder TODO.md, wenn Sie chinesisch lesen können) im Repo beschrieben. Wenn Sie interessiert sind, schauen Sie es sich bitte an.</string>
+
+    <string name="liscence_stringa">Dieses Programm ist freie Software: sie können es unter den Bedingungen der GNU General Public License, wie sie von der Free Software Foundation veröffentlicht wurde, entweder Version 3 der Lizenz oder (nach Ihrer Wahl) jeder späteren Version weitergeben und/oder modifizieren.</string>
+
+    <string name="liscence_stringb">Dieses Buch wird in der Hoffnung, nützlich zu sein, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTGÄNGIGKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK veröffentlicht. Lesen Sie die GNU General Public License für weitere Details.</string>
+
+    <string name="liscence_stringc">Sie sollten eine Kopie der GNU General Public License zusammen mit diesem Programm erhalten haben. Wenn nicht, siehe https://www.gnu.org/licenses/</string>
+
+    <string name="pref_category_service">Dienst</string>
+
+    <string name="pref_logging_summary">Speichern Sie Protokolle auf externen Speichermedien (/sdcard/logger), um Fehlerberichte zu unterstützen.
+\nDie Änderung dieser Einstellung wird ab dem nächsten Start von Easer wirksam.</string>
+
+    <string name="pref_use_root_summary">Verwenden Sie Root-Rechte für bestimmte Funktionen (Plugins), was helfen kann, Kompatibilitätsprobleme auf einigen Geräten zu beheben. Die Root-Berechtigung wird nicht anderweitig verwendet.</string>
+
+    <string name="pref_cooldown_title">Abkühlzeit</string>
+    <string name="pref_cooldown_summary">Minimales Intervall zwischen zwei Auslösern desselben Ereignisses</string>
+    <string name="cooldown_time_illformed">Die Zahl darf nicht kleiner als 0 und nicht zu groß sein, um in ein Integer zu passen</string>
+
+    <string name="pref_passive_mode_summary_on">auf Ereignis hören; keine Überprüfung bei Aktivierung</string>
+    <string name="pref_passive_mode_summary_off">Den Zufriedenheitsstatus überprüfen, wenn (jedes) Ereignis aktiviert ist</string>
+
+    <string name="pref_enabled_plugins_title">Aktivierte Plugins</string>
+    <string name="pref_enabled_plugins_summary">Aktivieren oder Deaktivieren bestimmter Plugins</string>
+
+    <string name="pref_export_summary">Alle Ereignisse und Profile auf die SD-Karte exportieren.
+\nDie Datei wird nach der aktuellen Zeit benannt.</string>
+    <string name="pref_import_summary">Alle Ereignisse und Profile in eine Zip-Datei importieren.
+\nBestehende Events und Profile mit gleichem Namen werden ersetzt.</string>
+
+    <string name="pref_show_notification_title">Benachrichtigung anzeigen</string>
+    <string name="pref_show_notification_summary">Eine Benachrichtigung in der Benachrichtigungsleiste anzeigen.</string>
+    <string name="pref_foreground_title">Dienst im Vordergrund ausführen</string>
+    <string name="welcome_message">Willkommen bei der Verwendung von Easer!
+\nIch hoffe, Ihnen gefällt diese App :)
+\n
+\nBitte lesen Sie dies vor dem Start:
+\n 1. Bitte erteilen Sie Easer entsprechende Berechtigungen, bevor Sie relevante Ereignisse und Profile verwenden.
+\n 2. Die Verknüpfung von Ereignissen als <a href="https://en.wikipedia.org/wiki/Tree_structure">Bäume</a> ist derzeit die einzige Möglichkeit, Ereignisse zu zusammenzustellen.
+\n
+\nWerfen Sie auch einen Blick auf die <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> im Projekt-Wiki.</string>
+
+    <string name="alert_update_storage_data">Ihre Daten wurden in einer älteren Version angelegt. Es wird empfohlen, sie auf die neue Version zu aktualisieren, da sonst Easer möglicherweise nicht gut funktioniert. Sie können dies tun, indem Sie in den Einstellungen Daten konvertieren wählen.</string>
+
+    <string name="help_script">Skript sind Logik-Container. Sie werden ein Ereignis oder eine Bedingung mit einem Profil in einem Skript verbinden, so dass Easer weiß, wie man dieses Profil lädt/ausführt, wenn dieses Ereignis eintritt oder die Bedingung erfüllt ist.
+\nEs gibt auch erweiterte Funktionen, z.B. umgekehrtes Ereignis.
+\nWeitere Informationen finden Sie im <a href="https://github.com/renyuneyun/Easer/wiki">Dokument</a>.</string>
+    </resources>
