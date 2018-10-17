@@ -181,4 +181,9 @@
     <string name="help_script">Skript sind Logik-Container. Sie werden ein Ereignis oder eine Bedingung mit einem Profil in einem Skript verbinden, so dass Easer weiß, wie man dieses Profil lädt/ausführt, wenn dieses Ereignis eintritt oder die Bedingung erfüllt ist.
 \nEs gibt auch erweiterte Funktionen, z.B. umgekehrtes Ereignis.
 \nWeitere Informationen finden Sie im <a href="https://github.com/renyuneyun/Easer/wiki">Dokument</a>.</string>
+    <string name="message_plugin_not_compatible">Diese Erweiterung ist nicht kompatibel mit dem Gerät.</string>
+
+    <string name="message_convert_data_abort">Datenkonvertierung abgebrochen.</string>
+    <string name="message_convert_data_error">Fehler beim Konvertieren der Daten aufgetreten. Details siehe Log.</string>
+
     </resources>
