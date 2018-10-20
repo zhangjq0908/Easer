@@ -186,4 +186,19 @@
     <string name="message_convert_data_abort">Datenkonvertierung abgebrochen.</string>
     <string name="message_convert_data_error">Fehler beim Konvertieren der Daten aufgetreten. Details siehe Log.</string>
 
-    </resources>
+    <string name="pref_foreground_summary">Macht es dem System weniger einfach, den Dienst zu beenden. Zeigt eine Benachrichtigung an. Kann unter Android 8+ aufgrund der Systemanforderungen nicht deaktiviert werden.</string>
+
+    <string name="help_event">Ereignis stellt ein kurzzeitiges (sofortiges) Ereignis auf Ihrem Telefon oder per Fernzugriff dar.
+\nEs wird beispielsweise der Empfang einer Benachrichtigung oder eines NFC-Tags überwacht.
+\nWeitere Informationen finden Sie im <a href="https://github.com/renyuneyun/Easer/wiki">Dokument</a>.</string>
+    <string name="help_condition">Der Zustand stellt einen lang anhaltenden (aber in der Regel nicht ewigen) Zustand auf Ihrem Telefon oder per Fernzugriff dar.
+\nWenn Sie beispielsweise mit WiFi verbunden sind oder der Bildschirm ausgeschaltet ist.
+\nWeitere Informationen finden Sie im <a href="https://github.com/renyuneyun/Easer/wiki">Dokument</a>.</string>
+    <string name="help_profile">Profil ist eine Reihe von Operationen. Jede Operation repräsentiert eine bestimmte Art von Aktion.
+\nBeispielsweise beim Einschalten von Bluetooth ein oder eine SMS senden.
+\nWeitere Informationen finden Sie im <a href="https://github.com/renyuneyun/Easer/wiki">Dokument</a>.</string>
+
+    <string name="category_operation_easer">\@string/easer</string>
+    <string name="category_operation_unknown">Unbekannt</string>
+
+</resources>
