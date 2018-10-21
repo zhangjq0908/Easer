@@ -8,8 +8,8 @@ android {
         applicationId 'ryey.easer'
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 89
-        versionName "0.7.0.4"
+        versionCode 90
+        versionName "0.7.0.5"
 
         vectorDrawables.useSupportLibrary = true
 

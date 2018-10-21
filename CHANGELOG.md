@@ -1,6 +1,16 @@
 CHANGELOG
 ======
 
+* v0.7.0.5: Bug fixes && Translation update
+	* Fix not working after Easer put to background
+		* By fixing Services not correctly in foreground
+		* Code refactor
+	* Fix Dynamics not working correctly
+	* Translation update
+		* Norwegian Bokmål
+		* German
+		* Danish
+
 * v0.7.0.4: Better Notification && Bug fix && Translation update
 	* Add settings for Notification
 	* Lower Notification priority if possible
