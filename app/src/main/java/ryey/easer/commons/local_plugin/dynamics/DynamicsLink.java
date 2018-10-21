@@ -43,6 +43,13 @@ public class DynamicsLink implements Parcelable {
         return link;
     }
 
+    /**
+     * From `A ==> B & B ==> C` to `A ==> C`
+     * link is `A ==> B` (Placeholder ==> Dynamics id)
+     * extras is `B ==> C` (Dynamics id ==> Dynamics value)
+     * @param extras The mapping between Dynamics id to Dynamics value
+     * @return Mapping from Placeholder to Dynamics value
+     */
     @NonNull
     public SolidDynamicsAssignment assign(Bundle extras) {
         HashMap<String, String> assignment = new HashMap<>();
@@ -50,9 +57,7 @@ public class DynamicsLink implements Parcelable {
             String dynamics_id = link.get(key);
             String dynamics_value = extras.getString(dynamics_id);
             if (dynamics_value != null) {
-                if (extras.containsKey(dynamics_id)) {
-                    assignment.put(key, extras.getString(dynamics_value));
-                }
+                assignment.put(key, dynamics_value);
             }
         }
         return new SolidDynamicsAssignment(assignment);
