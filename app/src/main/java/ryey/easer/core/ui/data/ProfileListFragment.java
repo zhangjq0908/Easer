@@ -35,7 +35,7 @@ import java.util.Collection;
 import java.util.List;
 
 import ryey.easer.R;
-import ryey.easer.core.ProfileLoaderService;
+import ryey.easer.core.AsyncHelper;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.storage.ProfileDataStorage;
@@ -49,6 +49,8 @@ public class ProfileListFragment extends AbstractDataListFragment<ProfileDataSto
         TAG = "[ProfileListFragment] ";
     }
 
+    AsyncHelper.DelayedLoadProfileJobsWrapper loadProfileJobWrapper = new AsyncHelper.DelayedLoadProfileJobsWrapper();
+
     @Override
     protected String title() {
         return getString(R.string.title_profile);
@@ -57,6 +59,18 @@ public class ProfileListFragment extends AbstractDataListFragment<ProfileDataSto
     @Override
     protected int helpTextRes() {
         return R.string.help_profile;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadProfileJobWrapper.bindService(getContext());
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        loadProfileJobWrapper.unbindService(getContext());
     }
 
     @Override
@@ -72,7 +86,7 @@ public class ProfileListFragment extends AbstractDataListFragment<ProfileDataSto
         String name = wrapper.name;
         int id = item.getItemId();
         if (id == R.id.action_trigger_profile) {
-            ProfileLoaderService.triggerProfile(getContext(), name);
+            loadProfileJobWrapper.triggerProfile(name);
             return true;
         } else
             return super.onContextItemSelected(item);

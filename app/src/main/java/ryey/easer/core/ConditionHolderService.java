@@ -97,6 +97,7 @@ public class ConditionHolderService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        ServiceHelper.Companion.startNotification(this);
         registerReceiver(mReceiver, filter);
         setTrackers();
     }
@@ -104,6 +105,7 @@ public class ConditionHolderService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        ServiceHelper.Companion.stopNotification(this);
         unregisterReceiver(mReceiver);
         cancelTrackers();
     }

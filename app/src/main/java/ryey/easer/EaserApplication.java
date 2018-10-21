@@ -30,8 +30,6 @@ import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.DiskLogAdapter;
 import com.orhanobut.logger.Logger;
 
-import ryey.easer.core.ProfileLoaderService;
-import ryey.easer.core.RemotePluginRegistryService;
 import ryey.easer.core.log.ActivityLogService;
 
 public class EaserApplication extends Application {
@@ -53,8 +51,6 @@ public class EaserApplication extends Application {
         }
 
         startService(new Intent(this, ActivityLogService.class));
-        startService(new Intent(this, ProfileLoaderService.class));
-        startService(new Intent(this, RemotePluginRegistryService.class));
 
         Logger.log(Logger.ASSERT, null, "======Easer started======", null);
     }

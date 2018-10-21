@@ -55,8 +55,11 @@ class EventLotus extends Lotus {
     private final boolean repeatable;
     private final boolean persistent;
 
-    EventLotus(@NonNull Context context, @NonNull ScriptTree scriptTree, @NonNull ExecutorService executorService, @NonNull ConditionHolderService.CHBinder chBinder) {
-        super(context, scriptTree, executorService, chBinder);
+    EventLotus(@NonNull Context context, @NonNull ScriptTree scriptTree,
+               @NonNull ExecutorService executorService,
+               @NonNull ConditionHolderService.CHBinder chBinder,
+               @NonNull AsyncHelper.DelayedLoadProfileJobs jobContainerLP) {
+        super(context, scriptTree, executorService, chBinder, jobContainerLP);
 
         mSlot = nodeToSlot(scriptTree);
         mSlot.register(uri);

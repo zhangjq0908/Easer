@@ -318,6 +318,7 @@ public class RemotePluginCommunicationHelper {
         void onEditDataIntentObtained(@NonNull Intent editDataIntent);
     }
 
+    //TODO: Replace with `AsyncHelper.DelayedUntilSatisfiedContainer`
     static class DelayedTaskUntilConnectedWrapper {
 
         private AtomicBoolean connected = new AtomicBoolean(false);

@@ -101,6 +101,7 @@ abstract class AbstractDataListFragment<T extends AbstractDataStorage> extends L
         return view;
     }
 
+    @CallSuper
     @Override
     public void onResume() {
         super.onResume();

@@ -47,6 +47,15 @@ public class WifiTracker extends SkeletonTracker<WifiConditionData> {
                 }
                 if (networkInfo.isConnected()) {
                     WifiInfo wifiInfo = intent.getParcelableExtra(WifiManager.EXTRA_WIFI_INFO);
+                    if (wifiInfo == null) {
+                        WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                        if (wifiManager == null) {
+                            Logger.wtf("[WifiTracker] WifiManager is null");
+                            return;
+                        }
+                        wifiInfo = wifiManager.getConnectionInfo();
+                        Logger.d(wifiInfo);
+                    }
                     compareAndSignal(wifiInfo);
                 } else if (!networkInfo.isConnectedOrConnecting()) {
                     WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);

@@ -30,8 +30,11 @@ import ryey.easer.core.data.ScriptTree;
 class ConditionLotus extends Lotus {
     private final ConditionStructure conditionStructure;
 
-    ConditionLotus(@NonNull Context context, @NonNull ScriptTree scriptTree, @NonNull ExecutorService executorService, @NonNull ConditionHolderService.CHBinder chBinder) {
-        super(context, scriptTree, executorService, chBinder);
+    ConditionLotus(@NonNull Context context, @NonNull ScriptTree scriptTree,
+                   @NonNull ExecutorService executorService,
+                   @NonNull ConditionHolderService.CHBinder chBinder,
+                   @NonNull AsyncHelper.DelayedLoadProfileJobs jobContainerLP) {
+        super(context, scriptTree, executorService, chBinder, jobContainerLP);
         conditionStructure = scriptTree.getCondition();
     }
 

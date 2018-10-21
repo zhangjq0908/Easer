@@ -82,6 +82,7 @@ class RemotePluginRegistryService : Service() {
     private lateinit var incomingMessenger: Messenger
 
     override fun onCreate() {
+        ServiceHelper.startNotification(this)
         handlerThread.start()
         incomingHandler = IncomingHandler(this, handlerThread)
         incomingMessenger = Messenger(incomingHandler)
@@ -90,6 +91,7 @@ class RemotePluginRegistryService : Service() {
     }
 
     override fun onDestroy() {
+        ServiceHelper.stopNotification(this)
         unregisterReceiver(mReceiver)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             handlerThread.quitSafely()

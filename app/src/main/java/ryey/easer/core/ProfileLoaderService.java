@@ -24,6 +24,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
@@ -57,23 +58,6 @@ public class ProfileLoaderService extends Service {
     public static final String EXTRA_PROFILE_NAME = "ryey.easer.extra.PROFILE_NAME";
     public static final String EXTRA_SCRIPT_NAME = "ryey.easer.extra.EVENT_NAME";
 
-    public static void triggerProfile(Context context, String profileName) {
-        Intent intent = new Intent();
-        intent.setAction(ProfileLoaderService.ACTION_LOAD_PROFILE);
-        intent.putExtra(ProfileLoaderService.EXTRA_PROFILE_NAME, profileName);
-        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-    }
-    public static void triggerProfile(Context context, String profileName, String scriptName,
-                                      Bundle dynamicsProperties, DynamicsLink dynamicsLink) {
-        Intent intent = new Intent();
-        intent.setAction(ProfileLoaderService.ACTION_LOAD_PROFILE);
-        intent.putExtra(ProfileLoaderService.EXTRA_PROFILE_NAME, profileName);
-        intent.putExtra(ProfileLoaderService.EXTRA_SCRIPT_NAME, scriptName);
-        intent.putExtra(EXTRA_DYNAMICS_PROPERTIES, dynamicsProperties);
-        intent.putExtra(EXTRA_DYNAMICS_LINK, dynamicsLink);
-        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-    }
-
     private RemotePluginCommunicationHelper helper;
 
     private IntentFilter intentFilter = new IntentFilter(ACTION_LOAD_PROFILE);
@@ -101,10 +85,12 @@ public class ProfileLoaderService extends Service {
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, intentFilter);
         helper = new RemotePluginCommunicationHelper(this);
         helper.begin();
+        ServiceHelper.Companion.startNotification(this);
     }
 
     @Override
     public void onDestroy() {
+        ServiceHelper.Companion.stopNotification(this);
         helper.end();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
     }
@@ -112,7 +98,24 @@ public class ProfileLoaderService extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return null;
+        return new PLSBinder();
+    }
+
+    public class PLSBinder extends Binder {
+        public void triggerProfile(String profileName) {
+            Bundle extras = new Bundle();
+            extras.putString(ProfileLoaderService.EXTRA_PROFILE_NAME, profileName);
+            handleActionLoadProfile(profileName, null, extras);
+        }
+        public void triggerProfile(String profileName, String scriptName,
+                                          Bundle dynamicsProperties, DynamicsLink dynamicsLink) {
+            Bundle extras = new Bundle();
+            extras.putString(ProfileLoaderService.EXTRA_PROFILE_NAME, profileName);
+            extras.putString(ProfileLoaderService.EXTRA_SCRIPT_NAME, scriptName);
+            extras.putParcelable(EXTRA_DYNAMICS_PROPERTIES, dynamicsProperties);
+            extras.putParcelable(EXTRA_DYNAMICS_LINK, dynamicsLink);
+            handleActionLoadProfile(profileName, scriptName, extras);
+        }
     }
 
     private void handleActionLoadProfile(@NonNull String name, @Nullable String event, @NonNull Bundle extras) {

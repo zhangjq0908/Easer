@@ -96,22 +96,32 @@ public class EHService extends Service {
 
     ConditionHolderService.CHBinder conditionHolderBinder;
     private final ConditionVariable cv = new ConditionVariable();
+    private final AsyncHelper.DelayedLoadProfileJobs jobContainerLP = new AsyncHelper.DelayedLoadProfileJobs();
     private final ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            Logger.v(TAG + "onServiceConnected");
-            conditionHolderBinder = (ConditionHolderService.CHBinder) iBinder;
-            cv.open();
-            mSetTriggers();
+            Logger.v("%s onServiceConnected: %s", TAG, componentName);
+            if (componentName.getClassName().equals(ConditionHolderService.class.getName())) {
+                conditionHolderBinder = (ConditionHolderService.CHBinder) iBinder;
+                cv.open();
+                mSetTriggers();
+            } else if (componentName.getClassName().equals(ProfileLoaderService.class.getName())) {
+                jobContainerLP.onBind((ProfileLoaderService.PLSBinder) iBinder);
+            }
         }
 
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
-            Logger.v(TAG + "onServiceDisconnected");
-            cv.close();
-            conditionHolderBinder = null;
+            Logger.v("%s onServiceDisconnected: %s", TAG, componentName);
+            if (componentName.getClassName().equals(ConditionHolderService.class.getName())) {
+                cv.close();
+                conditionHolderBinder = null;
+            } else if (componentName.getClassName().equals(ProfileLoaderService.class.getName())) {
+                jobContainerLP.onUnbind();
+            }
         }
     };
+
 
     final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
@@ -220,6 +230,7 @@ public class EHService extends Service {
         startNotification();
         ActivityLogService.Companion.notifyServiceStatus(this, SERVICE_NAME, true, null);
         bindService(new Intent(this, ConditionHolderService.class), connection, Context.BIND_AUTO_CREATE);
+        bindService(new Intent(this, ProfileLoaderService.class), connection, Context.BIND_AUTO_CREATE);
         running = true;
         Intent intent = new Intent(ACTION_STATE_CHANGED);
         sendBroadcast(intent);
@@ -272,7 +283,7 @@ public class EHService extends Service {
         for (ScriptTree script : scriptTreeList) { //TODO?: Move this to `FakeRootLotus`
             Logger.v(TAG + "setting trigger for <%s>", script.getName());
             if (script.isActive()) {
-                Lotus lotus = Lotus.createLotus(this, script, executorService, conditionHolderBinder);
+                Lotus lotus = Lotus.createLotus(this, script, executorService, conditionHolderBinder, jobContainerLP);
                 lotus.listen();
                 Logger.v(TAG + "trigger for event <%s> is set", script.getName());
                 mLotusArray.add(lotus);
