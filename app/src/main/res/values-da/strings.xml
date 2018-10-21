@@ -186,4 +186,13 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
 
     <string name="category_operation_unknown">Ukendt</string>
 
-</resources>
+<string name="text_notification_running_indicator_content">%s kører i baggrunden</string>
+
+    <string name="pref_category_service">Tjeneste</string>
+
+    <string name="pref_show_notification_title">Vis påmindelse</string>
+    <string name="pref_show_notification_summary">Vis påmindelse i påmindelses bjælken.</string>
+    <string name="pref_foreground_title">Køre tjeneste i forgrund</string>
+    <string name="pref_foreground_summary">Gør tjenesten mindre nem at blive stoppet af systemet. Vil vise en påmindelse. Kan ikke deaktiveres på Android 8+ på grund af systemkrav.</string>
+
+    </resources>

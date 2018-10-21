@@ -5,7 +5,7 @@
     <string name="condition_event_leave">Forlat</string>
 
 
-    <string name="condition_bluetooth_device">Tilkoblet Blåtannsenhet</string>
+    <string name="condition_bluetooth_device">Tilknyttet blåtannsenhet</string>
 
     <string name="condition_headset__headset_state">Hodesettilstand</string>
     <string name="condition_headset__plugged_in">Plugget inn</string>
@@ -105,7 +105,7 @@
     <string name="obroadcast_l_category">Kategori:</string>
     <string name="obroadcast_l_type">Type:</string>
     <string name="obroadcast_l_data">Data:</string>
-    <string name="text_extras">Ekstra:</string>
+    <string name="text_extras">Ekstra</string>
     <string name="text_key">Nøkkel</string>
     <string name="text_value">Verdi</string>
     <string name="text_type">Type</string>
@@ -181,4 +181,6 @@
 
     <string name="rel_after">Etter</string>
 
-</resources>
+<string name="event_cell_location_no_signal">Kan ikke hente telefonplassering. Sjekk signalstyrken.</string>
+
+    </resources>
