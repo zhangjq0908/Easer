@@ -202,4 +202,6 @@
 <string name="ev_sms_dynamics_sender">SMS sender</string>
     <string name="ev_sms_dynamics_content">SMS indhold</string>
 
+    <string name="event_cell_location_no_signal">Kan ikke få celleplacering. Kontrollere signal.</string>
+
     </resources>
