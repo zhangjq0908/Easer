@@ -58,10 +58,10 @@ class EventLotus extends Lotus {
     EventLotus(@NonNull Context context, @NonNull ScriptTree scriptTree, @NonNull ExecutorService executorService, @NonNull ConditionHolderService.CHBinder chBinder) {
         super(context, scriptTree, executorService, chBinder);
 
-        mSlot = nodeToSlot(scriptTree);
-        mSlot.register(uri);
         repeatable = scriptTree.isRepeatable();
         persistent = scriptTree.isPersistent();
+        mSlot = nodeToSlot(scriptTree);
+        mSlot.register(uri);
 
         cooldownInMillisecond = SettingsHelper.coolDownInterval(context) * 1000;
     }
