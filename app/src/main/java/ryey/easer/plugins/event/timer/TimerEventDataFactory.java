@@ -37,7 +37,7 @@ class TimerEventDataFactory implements EventDataFactory<TimerEventData> {
     @NonNull
     @Override
     public TimerEventData dummyData() {
-        return new TimerEventData(102, true, true);
+        return new TimerEventData(false, 102, true, true);
     }
 
     @ValidData

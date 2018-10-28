@@ -88,6 +88,9 @@
     <string name="ev_notification_dynamics_content">通知內容</string>
 
     <string name="event_timer">定時器</string>
+    <string name="event_timer_shorter_time">較短時間</string>
+    <string name="event_timer_longer_time">較長時間</string>
+    <string name="event_timer_seconds">秒</string>
     <string name="exact_timer">精確定時？</string>
     <string name="exact">精確</string>
     <string name="inexact">不精確</string>

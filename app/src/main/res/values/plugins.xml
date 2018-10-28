@@ -89,6 +89,9 @@
     <string name="ev_notification_dynamics_content">Notification Content</string>
 
     <string name="event_timer">Timer</string>
+    <string name="event_timer_shorter_time">Shorter Time</string>
+    <string name="event_timer_longer_time">Longer Time</string>
+    <string name="event_timer_seconds">Second(s)</string>
     <string name="exact_timer">Exact timer?</string>
     <string name="exact">Exact</string>
     <string name="inexact">Inexact</string>
