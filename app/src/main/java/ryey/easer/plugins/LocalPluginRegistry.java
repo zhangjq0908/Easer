@@ -52,6 +52,7 @@ import ryey.easer.plugins.condition.headset.HeadsetConditionPlugin;
 import ryey.easer.plugins.condition.screen.ScreenConditionPlugin;
 import ryey.easer.plugins.condition.time.TimeConditionPlugin;
 import ryey.easer.plugins.condition.wifi.WifiConditionPlugin;
+import ryey.easer.plugins.condition.wifi_enabled.WifiEnabledConditionPlugin;
 import ryey.easer.plugins.event.battery.BatteryEventPlugin;
 import ryey.easer.plugins.event.bluetooth_device.BTDeviceEventPlugin;
 import ryey.easer.plugins.event.broadcast.BroadcastEventPlugin;
@@ -137,6 +138,7 @@ final public class LocalPluginRegistry {
         condition().registerPlugin(ScreenConditionPlugin.class);
         condition().registerPlugin(TimeConditionPlugin.class);
         condition().registerPlugin(WifiConditionPlugin.class);
+        condition().registerPlugin(WifiEnabledConditionPlugin.class);
 
         operation().registerPlugin(WifiOperationPlugin.class);
         operation().registerPlugin(CellularOperationPlugin.class);

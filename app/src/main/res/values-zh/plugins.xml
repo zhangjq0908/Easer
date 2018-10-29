@@ -27,6 +27,12 @@
 
     <string name="condition_wifi">@string/event_wificonn</string>
 
+    <string name="condition_wifi_enabled">WiFi已啓用</string>
+    <string name="condition_wifi_enabled_wifi_is_enabled">WiFi已啓用？</string>
+
+    <string name="condition__enabled_yes">是</string>
+    <string name="condition__enabled_no">否</string>
+
 
     <string name="event_celllocation">基站位置</string>
     <string name="event_date">日期</string>

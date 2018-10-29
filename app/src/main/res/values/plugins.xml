@@ -27,6 +27,12 @@
 
     <string name="condition_wifi">@string/event_wificonn</string>
 
+    <string name="condition_wifi_enabled">WiFi Enabled</string>
+    <string name="condition_wifi_enabled_wifi_is_enabled">WiFi is enabled?</string>
+
+    <string name="condition__enabled_yes">Yes</string>
+    <string name="condition__enabled_no">No</string>
+
 
     <string name="event_time">Time</string>
     <string name="event_date">Date</string>
