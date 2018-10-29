@@ -44,6 +44,7 @@ import ryey.easer.commons.local_plugin.operationplugin.OperationData;
 import ryey.easer.commons.local_plugin.operationplugin.OperationPlugin;
 import ryey.easer.plugins.condition.battery.BatteryConditionPlugin;
 import ryey.easer.plugins.condition.bluetooth_device.BTDeviceConditionPlugin;
+import ryey.easer.plugins.condition.bluetooth_enabled.BluetoothEnabledConditionPlugin;
 import ryey.easer.plugins.condition.cell_location.CellLocationConditionPlugin;
 import ryey.easer.plugins.condition.connectivity.ConnectivityConditionPlugin;
 import ryey.easer.plugins.condition.date.DateConditionPlugin;
@@ -139,6 +140,7 @@ final public class LocalPluginRegistry {
         condition().registerPlugin(TimeConditionPlugin.class);
         condition().registerPlugin(WifiConditionPlugin.class);
         condition().registerPlugin(WifiEnabledConditionPlugin.class);
+        condition().registerPlugin(BluetoothEnabledConditionPlugin.class);
 
         operation().registerPlugin(WifiOperationPlugin.class);
         operation().registerPlugin(CellularOperationPlugin.class);

@@ -30,6 +30,9 @@
     <string name="condition_wifi_enabled">WiFi已啓用</string>
     <string name="condition_wifi_enabled_wifi_is_enabled">WiFi已啓用？</string>
 
+    <string name="condition_bluetooth_enabled">藍牙已啓用</string>
+    <string name="condition_bluetooth_enabled_bluetooth_is_enabled">藍牙已啓用</string>
+
     <string name="condition__enabled_yes">是</string>
     <string name="condition__enabled_no">否</string>
 

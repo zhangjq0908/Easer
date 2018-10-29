@@ -30,6 +30,9 @@
     <string name="condition_wifi_enabled">WiFi Enabled</string>
     <string name="condition_wifi_enabled_wifi_is_enabled">WiFi is enabled?</string>
 
+    <string name="condition_bluetooth_enabled">Bluetooth Enabled</string>
+    <string name="condition_bluetooth_enabled_bluetooth_is_enabled">Bluetooth is enabled?</string>
+
     <string name="condition__enabled_yes">Yes</string>
     <string name="condition__enabled_no">No</string>
 
