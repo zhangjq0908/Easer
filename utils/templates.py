@@ -165,10 +165,10 @@ tmpl_operation_data_factory = '''package {package};
 
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.C;
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
 import ryey.easer.commons.local_plugin.ValidData;
 import ryey.easer.commons.local_plugin.operationplugin.OperationDataFactory;
+import ryey.easer.plugin.PluginDataFormat;
 
 class {data_factory} implements OperationDataFactory<{data}> {{
     @NonNull
@@ -187,7 +187,7 @@ class {data_factory} implements OperationDataFactory<{data}> {{
     @ValidData
     @NonNull
     @Override
-    public {data} parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {{
+    public {data} parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {{
         return new {data}(data, format, version);
     }}
 }}
@@ -201,19 +201,19 @@ import android.support.annotation.Nullable;
 
 import java.util.Set;
 
-import ryey.easer.commons.C;
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
 import ryey.easer.commons.local_plugin.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.local_plugin.operationplugin.OperationData;
+import ryey.easer.plugin.PluginDataFormat;
 
 public class {data} implements OperationData {{
-    {data}(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {{
+    {data}(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {{
         //TODO
     }}
 
     @NonNull
     @Override
-    public String serialize(@NonNull C.Format format) {{
+    public String serialize(@NonNull PluginDataFormat format) {{
         //TODO
     }}
 
@@ -362,10 +362,10 @@ tmpl_event_data_factory = '''package {package};
 
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.C;
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
 import ryey.easer.commons.local_plugin.ValidData;
 import ryey.easer.commons.local_plugin.eventplugin.EventDataFactory;
+import ryey.easer.plugin.PluginDataFormat;
 
 class {data_factory} implements EventDataFactory<{data}> {{
     @NonNull
@@ -384,7 +384,7 @@ class {data_factory} implements EventDataFactory<{data}> {{
     @ValidData
     @NonNull
     @Override
-    public {data} parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {{
+    public {data} parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {{
         return new {data}(data, format, version);
     }}
 }}
@@ -396,20 +396,20 @@ import android.os.Parcel;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import ryey.easer.commons.C;
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
 import ryey.easer.commons.local_plugin.dynamics.Dynamics;
 import ryey.easer.plugins.event.AbstractEventData;
+import ryey.easer.plugin.PluginDataFormat;
 
 public class {data} extends AbstractEventData {{
 
-    {data}(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {{
+    {data}(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {{
         //TODO
     }}
 
     @NonNull
     @Override
-    public String serialize(@NonNull C.Format format) {{
+    public String serialize(@NonNull PluginDataFormat format) {{
         String res;
         //TODO
         return res;
@@ -568,10 +568,10 @@ tmpl_condition_data_factory = '''package {package};
 
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.C;
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
 import ryey.easer.commons.local_plugin.ValidData;
 import ryey.easer.commons.local_plugin.conditionplugin.ConditionDataFactory;
+import ryey.easer.plugin.PluginDataFormat;
 
 class {data_factory} implements ConditionDataFactory<{data}> {{
     @NonNull
@@ -590,7 +590,7 @@ class {data_factory} implements ConditionDataFactory<{data}> {{
     @ValidData
     @NonNull
     @Override
-    public {data} parse(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {{
+    public {data} parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {{
         return new {data}(data, format, version);
     }}
 }}
@@ -601,13 +601,13 @@ tmpl_condition_data = '''package {package};
 import android.os.Parcel;
 import android.support.annotation.NonNull;
 
-import ryey.easer.commons.C;
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
 import ryey.easer.commons.local_plugin.conditionplugin.ConditionData;
+import ryey.easer.plugin.PluginDataFormat;
 
 public class {data} implements ConditionData {{
 
-    {data}(@NonNull String data, @NonNull C.Format format, int version) throws IllegalStorageDataException {{
+    {data}(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {{
         switch (format) {{
             default:
                 //TODO
@@ -616,7 +616,7 @@ public class {data} implements ConditionData {{
 
     @NonNull
     @Override
-    public String serialize(@NonNull C.Format format) {{
+    public String serialize(@NonNull PluginDataFormat format) {{
         String res;
         switch (format) {{
             default:
