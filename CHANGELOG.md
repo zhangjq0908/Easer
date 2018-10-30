@@ -1,6 +1,22 @@
 CHANGELOG
 ======
 
+* v0.7.1: New Conditions && More detailed ActivityLog && TimerEvent supports seconds && Fix && Code clean up && Translation Update
+	* New Conditions
+		* WifiEnabledCondition
+		* BluetoothEnabledCondition
+	* More detailed ActivityLog (now contains detailed Profile status)
+	* Add short delay to TimerEvent to support seconds of delay
+	* Fix *repeated* and *persistent* fields ignored
+	* Code clean up
+		* Create different instances for DataStorage, instead of singleton
+		* Rename PluginRegistry to LocalPluginRegistry
+		* Method signature annotation update
+		* Update utils/templates a little more (C.Format ==> PluginDataFormat)
+	* Translation update
+		* Galician (new)
+		* Danish
+
 * v0.7.0.5: Bug fixes && Translation update
 	* Fix not working after Easer put to background
 		* By fixing Services not correctly in foreground
