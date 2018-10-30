@@ -114,7 +114,7 @@ public class StateControlOperationData implements OperationData {
     public boolean isValid(Context context) {
         if (!isValid())
             return false;
-        ScriptDataStorage dataStorage = ScriptDataStorage.getInstance(context);
+        ScriptDataStorage dataStorage = new ScriptDataStorage(context);
         if (!dataStorage.list().contains(scriptName))
             return false;
         return true;

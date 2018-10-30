@@ -28,7 +28,7 @@ import ryey.easer.plugin.operation.Category;
 
 /**
  * Definition of every Operation plugin.
- * All Operation plugins should implement this interface and write one line to register in `PluginRegistry`.
+ * All Operation plugins should implement this interface and write one line to register in `LocalPluginRegistry`.
  * The implementation / subclass doesn't need to hold any data (because data will be passed as arguments to the relevant methods).
  */
 public interface OperationPlugin<T extends OperationData> extends PluginDef<T> {

@@ -33,7 +33,7 @@ import ryey.easer.R;
 import ryey.easer.core.EHService;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.storage.ConditionDataStorage;
-import ryey.easer.plugins.PluginRegistry;
+import ryey.easer.plugins.LocalPluginRegistry;
 
 public class ConditionListFragment extends AbstractDataListFragment<ConditionDataStorage> {
 
@@ -53,7 +53,7 @@ public class ConditionListFragment extends AbstractDataListFragment<ConditionDat
 
     @Override
     protected List<ListDataWrapper> queryDataList() {
-        ConditionDataStorage dataStorage = ConditionDataStorage.getInstance(getContext());
+        ConditionDataStorage dataStorage = new ConditionDataStorage(getContext());
         List<ListDataWrapper> dataWrapperList = new ArrayList<>();
         for (String name : dataStorage.list()) {
             ConditionStructure condition = dataStorage.get(name);
@@ -80,7 +80,7 @@ public class ConditionListFragment extends AbstractDataListFragment<ConditionDat
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         //noinspection ConstantConditions
-        if (PluginRegistry.getInstance().condition().getEnabledPlugins(getContext()).size() == 0) {
+        if (LocalPluginRegistry.getInstance().condition().getEnabledPlugins(getContext()).size() == 0) {
             FloatingActionButton fab = view.findViewById(R.id.fab);
             fab.hide();
         }

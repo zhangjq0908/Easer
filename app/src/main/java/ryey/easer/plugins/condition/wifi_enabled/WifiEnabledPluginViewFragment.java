@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.operation.state_control;
+package ryey.easer.plugins.condition.wifi_enabled;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -25,42 +25,42 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Spinner;
+import android.widget.RadioButton;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_plugin.InvalidDataInputException;
 import ryey.easer.commons.local_plugin.ValidData;
-import ryey.easer.core.data.storage.ScriptDataStorage;
-import ryey.easer.core.ui.data.DataSelectSpinnerWrapper;
 import ryey.easer.plugins.PluginViewFragment;
 
-public class StateControlPluginViewFragment extends PluginViewFragment<StateControlOperationData> {
+public class WifiEnabledPluginViewFragment extends PluginViewFragment<WifiEnabledConditionData> {
 
-    private DataSelectSpinnerWrapper sw_script;
+    RadioButton radioButton_enabled, radioButton_disabled;
 
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_operation__event_control, container, false);
-        sw_script = new DataSelectSpinnerWrapper(getContext(), (Spinner) view.findViewById(R.id.spinner_event));
-        sw_script
-                .beginInit()
-                .setAllowEmpty(false)
-                .fillData(new ScriptDataStorage(getContext()).list())
-                .finalizeInit();
+        View view = inflater.inflate(R.layout.plugin_condition_wifi_enabled, container, false);
+
+        radioButton_enabled = view.findViewById(R.id.radioButton_yes);
+        radioButton_disabled = view.findViewById(R.id.radioButton_no);
+
         return view;
     }
 
     @Override
-    protected void _fill(@ValidData @NonNull StateControlOperationData data) {
-        sw_script.setSelection(data.scriptName);
+    protected void _fill(@ValidData @NonNull WifiEnabledConditionData data) {
+        if (data.enabled) {
+            radioButton_enabled.setChecked(true);
+        } else {
+            radioButton_disabled.setChecked(true);
+        }
     }
 
     @ValidData
     @NonNull
     @Override
-    public StateControlOperationData getData() throws InvalidDataInputException {
-        String eventName = sw_script.getSelection();
-        return new StateControlOperationData(eventName, false);
+    public WifiEnabledConditionData getData() throws InvalidDataInputException {
+        boolean enabled = radioButton_enabled.isChecked();
+        return new WifiEnabledConditionData(enabled);
     }
 }

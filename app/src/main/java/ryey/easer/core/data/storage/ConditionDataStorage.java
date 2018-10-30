@@ -33,24 +33,15 @@ import ryey.easer.plugins.event.condition_event.ConditionEventEventData;
 
 public class ConditionDataStorage extends AbstractDataStorage<ConditionStructure, ConditionDataStorageBackendInterface> {
 
-    private static ConditionDataStorage instance = null;
-
-    private Context context;
-
-    public static ConditionDataStorage getInstance(Context context) {
-        if (instance == null) {
-            instance = new ConditionDataStorage();
-            instance.storage_backend_list = new ConditionDataStorageBackendInterface[] {
-                    JsonConditionDataStorageBackend.getInstance(context),
-            };
-            instance.context = context;
-        }
-        return instance;
+    public ConditionDataStorage(Context context) {
+        super(context, new ConditionDataStorageBackendInterface[] {
+                new JsonConditionDataStorageBackend(context),
+        });
     }
 
     @Override
     boolean isSafeToDelete(String name) {
-        ScriptDataStorage scriptDataStorage = ScriptDataStorage.getInstance(context);
+        ScriptDataStorage scriptDataStorage = new ScriptDataStorage(context);
         for (String scriptName : scriptDataStorage.list()) {
             ScriptStructure script = scriptDataStorage.get(scriptName);
             if (script.isCondition()) {
@@ -59,7 +50,7 @@ public class ConditionDataStorage extends AbstractDataStorage<ConditionStructure
                 }
             }
         }
-        EventDataStorage eventDataStorage = EventDataStorage.getInstance(context);
+        EventDataStorage eventDataStorage = new EventDataStorage(context);
         for (String scenarioName : eventDataStorage.list()) {
             EventStructure scenario = eventDataStorage.get(scenarioName);
             EventData eventData = scenario.getEventData();
@@ -74,9 +65,9 @@ public class ConditionDataStorage extends AbstractDataStorage<ConditionStructure
 
     @Override
     protected void handleRename(String oldName, ConditionStructure condition) throws IOException {
-        ScriptDataStorage scriptDataStorage = ScriptDataStorage.getInstance(context);
+        ScriptDataStorage scriptDataStorage = new ScriptDataStorage(context);
         updateScriptsForNewName(scriptDataStorage, oldName, condition);
-        EventDataStorage eventDataStorage = EventDataStorage.getInstance(context);
+        EventDataStorage eventDataStorage = new EventDataStorage(context);
         updateConditionEventForNewName(eventDataStorage, oldName, condition.getName());
     }
 

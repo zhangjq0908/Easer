@@ -79,14 +79,14 @@ public abstract class PluginViewFragment<T extends StorageData> extends PluginVi
      */
     @NonNull
     public String desc(@NonNull Resources res) {
-        return res.getString(PluginRegistry.getInstance().all().findPlugin(this).name());
+        return res.getString(LocalPluginRegistry.getInstance().all().findPlugin(this).name());
     }
 
     /**
      * Check whether the to-be-filled data is of the correct type.
      */
     private void checkDataType(@ValidData @NonNull T data) throws IllegalArgumentTypeException {
-        Class expectedDataClass = PluginRegistry.getInstance()
+        Class expectedDataClass = LocalPluginRegistry.getInstance()
                 .all().findPlugin(this)
                 .dataFactory()
                 .dataClass();

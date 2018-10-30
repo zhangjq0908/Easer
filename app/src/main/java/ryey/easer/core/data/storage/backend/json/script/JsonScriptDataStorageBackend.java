@@ -37,21 +37,12 @@ import ryey.easer.core.data.storage.backend.json.NC;
 
 public class JsonScriptDataStorageBackend implements ScriptDataStorageBackendInterface {
 
-    private static JsonScriptDataStorageBackend instance = null;
-    private static Context s_context = null;
+    private final Context context;
     private static File dir;
 
-    public static JsonScriptDataStorageBackend getInstance(Context context) {
-        if (instance == null) {
-            if (context != null)
-                s_context = context;
-            dir = IOUtils.mustGetSubDir(s_context.getFilesDir(), "script");
-            instance = new JsonScriptDataStorageBackend();
-        }
-        return instance;
-    }
-
-    private JsonScriptDataStorageBackend() {
+    public JsonScriptDataStorageBackend(Context context) {
+        this.context = context;
+        dir = IOUtils.mustGetSubDir(context.getFilesDir(), "script");
     }
 
     @Override
@@ -75,7 +66,7 @@ public class JsonScriptDataStorageBackend implements ScriptDataStorageBackendInt
     }
 
     private ScriptStructure get(File file) throws FileNotFoundException, IllegalStorageDataException {
-        ScriptParser parser = new ScriptParser(s_context);
+        ScriptParser parser = new ScriptParser(context);
         return FileDataStorageBackendHelper.get(parser, file);
     }
 

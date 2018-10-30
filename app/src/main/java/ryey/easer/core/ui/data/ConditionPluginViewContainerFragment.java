@@ -31,7 +31,7 @@ import ryey.easer.R;
 import ryey.easer.commons.local_plugin.InvalidDataInputException;
 import ryey.easer.commons.local_plugin.conditionplugin.ConditionData;
 import ryey.easer.commons.local_plugin.conditionplugin.ConditionPlugin;
-import ryey.easer.plugins.PluginRegistry;
+import ryey.easer.plugins.LocalPluginRegistry;
 
 public class ConditionPluginViewContainerFragment<T extends ConditionData> extends PluginViewContainerFragment<T> {
 
@@ -49,7 +49,7 @@ public class ConditionPluginViewContainerFragment<T extends ConditionData> exten
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String plugin_id = getArguments().getString(EXTRA_PLUGIN);
-        @SuppressWarnings("unchecked") ConditionPlugin<T> plugin = PluginRegistry.getInstance().condition().findPlugin(plugin_id);
+        @SuppressWarnings("unchecked") ConditionPlugin<T> plugin = LocalPluginRegistry.getInstance().condition().findPlugin(plugin_id);
         pluginViewFragment = plugin.view();
     }
 
@@ -66,7 +66,7 @@ public class ConditionPluginViewContainerFragment<T extends ConditionData> exten
     @Override
     public void onStart() {
         super.onStart();
-        ConditionPlugin plugin = PluginRegistry.getInstance().condition().findPlugin(pluginViewFragment);
+        ConditionPlugin plugin = LocalPluginRegistry.getInstance().condition().findPlugin(pluginViewFragment);
         //noinspection ConstantConditions
         if (!plugin.checkPermissions(getContext())) {
             setEnabled(false);

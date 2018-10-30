@@ -17,33 +17,33 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.event.timer;
+package ryey.easer.plugins.condition.wifi_enabled;
 
 import android.support.annotation.NonNull;
 
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
 import ryey.easer.commons.local_plugin.ValidData;
-import ryey.easer.commons.local_plugin.eventplugin.EventDataFactory;
+import ryey.easer.commons.local_plugin.conditionplugin.ConditionDataFactory;
 import ryey.easer.plugin.PluginDataFormat;
 
-class TimerEventDataFactory implements EventDataFactory<TimerEventData> {
+class WifiEnabledConditionDataFactory implements ConditionDataFactory<WifiEnabledConditionData> {
     @NonNull
     @Override
-    public Class<TimerEventData> dataClass() {
-        return TimerEventData.class;
+    public Class<WifiEnabledConditionData> dataClass() {
+        return WifiEnabledConditionData.class;
     }
 
     @ValidData
     @NonNull
     @Override
-    public TimerEventData dummyData() {
-        return new TimerEventData(false, 102, true, true);
+    public WifiEnabledConditionData dummyData() {
+        return new WifiEnabledConditionData(true);
     }
 
     @ValidData
     @NonNull
     @Override
-    public TimerEventData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
-        return new TimerEventData(data, format, version);
+    public WifiEnabledConditionData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
+        return new WifiEnabledConditionData(data, format, version);
     }
 }

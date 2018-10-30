@@ -277,7 +277,7 @@ public class EHService extends Service {
     private void mSetTriggers() {
         final String TAG = "[EHService:mSetTriggers] ";
         Logger.v(TAG + "setting triggers");
-        ScriptDataStorage storage = ScriptDataStorage.getInstance(this);
+        ScriptDataStorage storage = new ScriptDataStorage(this);
         List<ScriptTree> scriptTreeList = storage.getScriptTrees();
         requireCHService(TAG);
         for (ScriptTree script : scriptTreeList) { //TODO?: Move this to `FakeRootLotus`

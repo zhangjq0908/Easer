@@ -37,21 +37,12 @@ import ryey.easer.core.data.storage.backend.json.NC;
 
 public class JsonProfileDataStorageBackend implements ProfileDataStorageBackendInterface {
 
-    private static JsonProfileDataStorageBackend instance = null;
-    private static Context s_context = null;
+    private final Context context;
     private static File dir;
 
-    public static JsonProfileDataStorageBackend getInstance(Context context) {
-        if (instance == null) {
-            if (context != null)
-                s_context = context;
-            dir = IOUtils.mustGetSubDir(s_context.getFilesDir(), "profile");
-            instance = new JsonProfileDataStorageBackend();
-        }
-        return instance;
-    }
-
-    private JsonProfileDataStorageBackend() {
+    public JsonProfileDataStorageBackend(Context context) {
+        this.context = context;
+        dir = IOUtils.mustGetSubDir(context.getFilesDir(), "profile");
     }
 
     @Override

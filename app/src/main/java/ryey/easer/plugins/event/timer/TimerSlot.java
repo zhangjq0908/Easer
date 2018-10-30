@@ -22,6 +22,10 @@ package ryey.easer.plugins.event.timer;
 import android.app.AlarmManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.CountDownTimer;
+import android.os.Handler;
+
+import com.orhanobut.logger.Logger;
 
 import java.util.Calendar;
 
@@ -30,9 +34,14 @@ import ryey.easer.plugins.event.SelfNotifiableSlot;
 public class TimerSlot extends SelfNotifiableSlot<TimerEventData> {
     private static AlarmManager mAlarmManager;
 
+    private static final int INTERVAL_SECOND = 1000;
     private static final int INTERVAL_MINUTE = 60 * 1000;
 
-    public TimerSlot(Context context, TimerEventData data) {
+//    private CountDownTimer countDownTimer;
+    private Handler handler = new Handler();
+    private Runnable job;
+
+    TimerSlot(Context context, TimerEventData data) {
         this(context, data, isRetriggerable(data), PERSISTENT_DEFAULT);
     }
 
@@ -55,17 +64,46 @@ public class TimerSlot extends SelfNotifiableSlot<TimerEventData> {
     public void listen() {
         super.listen();
         if (eventData != null) {
-            Calendar now = Calendar.getInstance();
-            if (eventData.exact) {
-                mAlarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
-                        now.getTimeInMillis() + INTERVAL_MINUTE * eventData.minutes,
-                        INTERVAL_MINUTE * eventData.minutes,
-                        notifySelfIntent_positive);
+            if (eventData.shortTime) {
+                job = new Runnable() {
+                    @Override
+                    public void run() {
+                        changeSatisfiedState(true);
+                        if (eventData.repeat)
+                            handler.postDelayed(job, eventData.time * INTERVAL_SECOND);
+                    }
+                };
+                handler.postDelayed(job, eventData.time * INTERVAL_SECOND);
+//                if (eventData.repeat) {
+//                    countDownTimer = new RepeatedTimer();
+//                } else {
+//                    countDownTimer = new CountDownTimer(eventData.time * INTERVAL_SECOND, eventData.time * INTERVAL_SECOND) {
+//                        @Override
+//                        public void onTick(long millisUntilFinished) {
+//                            Logger.d("onTick");
+//                        }
+//
+//                        @Override
+//                        public void onFinish() {
+//                            Logger.d("onFinish");
+//                            changeSatisfiedState(true);
+//                        }
+//                    };
+//                }
+//                countDownTimer.start();
             } else {
-                mAlarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
-                        now.getTimeInMillis() + INTERVAL_MINUTE * eventData.minutes,
-                        INTERVAL_MINUTE * eventData.minutes,
-                        notifySelfIntent_positive);
+                Calendar now = Calendar.getInstance();
+                if (eventData.exact) {
+                    mAlarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+                            now.getTimeInMillis() + INTERVAL_MINUTE * eventData.time,
+                            INTERVAL_MINUTE * eventData.time,
+                            notifySelfIntent_positive);
+                } else {
+                    mAlarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
+                            now.getTimeInMillis() + INTERVAL_MINUTE * eventData.time,
+                            INTERVAL_MINUTE * eventData.time,
+                            notifySelfIntent_positive);
+                }
             }
         }
     }
@@ -74,8 +112,14 @@ public class TimerSlot extends SelfNotifiableSlot<TimerEventData> {
     public void cancel() {
         super.cancel();
         if (eventData != null) {
-            mAlarmManager.cancel(notifySelfIntent_positive);
-            mAlarmManager.cancel(notifySelfIntent_negative);
+            if (eventData.shortTime) {
+//                if (countDownTimer != null)
+//                    countDownTimer.cancel();
+                handler.removeCallbacksAndMessages(job);
+            } else {
+                mAlarmManager.cancel(notifySelfIntent_positive);
+                mAlarmManager.cancel(notifySelfIntent_negative);
+            }
         }
     }
 
@@ -87,4 +131,24 @@ public class TimerSlot extends SelfNotifiableSlot<TimerEventData> {
     protected void onPositiveNotified(Intent intent) {
         changeSatisfiedState(true);
     }
+
+//    private class RepeatedTimer extends CountDownTimer {
+//
+//        RepeatedTimer() {
+//            // Restart the timer after 100 times, to mimic infinite timer
+//            super(eventData.time * INTERVAL_SECOND * 100, eventData.time * INTERVAL_SECOND);
+//        }
+//
+//        @Override
+//        public void onTick(long millisUntilFinished) {
+//            Logger.d("onTick: <%s>", millisUntilFinished);
+//            changeSatisfiedState(true);
+//        }
+//
+//        @Override
+//        public void onFinish() {
+//            countDownTimer = new RepeatedTimer();
+//            countDownTimer.start();
+//        }
+//    }
 }

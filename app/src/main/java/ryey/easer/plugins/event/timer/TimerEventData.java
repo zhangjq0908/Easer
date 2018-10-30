@@ -33,18 +33,30 @@ import ryey.easer.plugins.event.AbstractEventData;
 
 public class TimerEventData extends AbstractEventData {
 
-    private static final String K_MINUTES = "minutes";
+    private static final String K_SHORT = "short?";
+    private static final String K_SECONDS = "seconds";
+    private static final String K_MINUTES = "time";
     private static final String K_EXACT_BOOL = "exact?";
     private static final String K_REPEAT_BOOL = "repeat?";
 
-    final int minutes;
-    final boolean exact;
+    final boolean shortTime;
+    final int time;
+    final Boolean exact;
     final boolean repeat;
 
-    TimerEventData(int minutes, boolean exact, boolean repeat) {
-        this.minutes = minutes;
+    TimerEventData(boolean shortTime, int time, Boolean exact, boolean repeat) {
+        this.shortTime = shortTime;
+        this.time = time;
         this.exact = exact;
         this.repeat = repeat;
+    }
+
+    TimerEventData(int seconds, boolean repeat) {
+        this(true, seconds, null, repeat);
+    }
+
+    TimerEventData(int minutes, boolean exact, boolean repeat) {
+        this(false, minutes, exact, repeat);
     }
 
     TimerEventData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
@@ -52,8 +64,14 @@ public class TimerEventData extends AbstractEventData {
             default:
                 try {
                     JSONObject jsonObject = new JSONObject(data);
-                    minutes = jsonObject.getInt(K_MINUTES);
-                    exact = jsonObject.getBoolean(K_EXACT_BOOL);
+                    shortTime = jsonObject.optBoolean(K_SHORT, false);
+                    if (shortTime) {
+                        time = jsonObject.getInt(K_SECONDS);
+                        exact = null;
+                    } else {
+                        time = jsonObject.getInt(K_MINUTES);
+                        exact = jsonObject.getBoolean(K_EXACT_BOOL);
+                    }
                     repeat = jsonObject.getBoolean(K_REPEAT_BOOL);
                 } catch (JSONException e) {
                     throw new IllegalStorageDataException(e);
@@ -64,7 +82,7 @@ public class TimerEventData extends AbstractEventData {
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
-        if (minutes <= 0)
+        if (time <= 0)
             return false;
         return true;
     }
@@ -80,7 +98,9 @@ public class TimerEventData extends AbstractEventData {
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof TimerEventData))
             return false;
-        if (minutes != ((TimerEventData) obj).minutes)
+        if (shortTime != ((TimerEventData) obj).shortTime)
+            return false;
+        if (time != ((TimerEventData) obj).time)
             return false;
         if (repeat != ((TimerEventData) obj).repeat)
             return false;
@@ -97,8 +117,13 @@ public class TimerEventData extends AbstractEventData {
             default:
                 JSONObject jsonObject = new JSONObject();
                 try {
-                    jsonObject.put(K_MINUTES, minutes);
-                    jsonObject.put(K_EXACT_BOOL, exact);
+                    jsonObject.put(K_SHORT, shortTime);
+                    if (shortTime)
+                        jsonObject.put(K_SECONDS, time);
+                    else {
+                        jsonObject.put(K_MINUTES, time);
+                        jsonObject.put(K_EXACT_BOOL, exact);
+                    }
                     jsonObject.put(K_REPEAT_BOOL, repeat);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -116,8 +141,11 @@ public class TimerEventData extends AbstractEventData {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(minutes);
-        dest.writeByte((byte) (exact ? 1 : 0));
+        dest.writeByte((byte) (shortTime ? 1 : 0));
+        dest.writeInt(time);
+        if (!shortTime) {
+            dest.writeByte((byte) (exact ? 1 : 0));
+        }
         dest.writeByte((byte) (repeat ? 1 : 0));
     }
 
@@ -133,8 +161,13 @@ public class TimerEventData extends AbstractEventData {
     };
 
     private TimerEventData(Parcel in) {
-        minutes = in.readInt();
-        exact = in.readByte() != 0;
+        shortTime = in.readByte() != 0;
+        time = in.readInt();
+        if (shortTime) {
+            exact = null;
+        } else {
+            exact = in.readByte() != 0;
+        }
         repeat = in.readByte() != 0;
     }
 }

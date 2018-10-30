@@ -33,7 +33,7 @@ import ryey.easer.R;
 import ryey.easer.core.EHService;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.storage.EventDataStorage;
-import ryey.easer.plugins.PluginRegistry;
+import ryey.easer.plugins.LocalPluginRegistry;
 
 public class EventListFragment extends AbstractDataListFragment<EventDataStorage> {
 
@@ -53,7 +53,7 @@ public class EventListFragment extends AbstractDataListFragment<EventDataStorage
 
     @Override
     protected List<ListDataWrapper> queryDataList() {
-        EventDataStorage dataStorage = EventDataStorage.getInstance(getContext());
+        EventDataStorage dataStorage = new EventDataStorage(getContext());
         List<ListDataWrapper> dataWrapperList = new ArrayList<>();
         for (String name : dataStorage.list()) {
             EventStructure scenario = dataStorage.get(name);
@@ -80,7 +80,7 @@ public class EventListFragment extends AbstractDataListFragment<EventDataStorage
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         //noinspection ConstantConditions
-        if (PluginRegistry.getInstance().event().getEnabledPlugins(getContext()).size() == 0) {
+        if (LocalPluginRegistry.getInstance().event().getEnabledPlugins(getContext()).size() == 0) {
             FloatingActionButton fab = view.findViewById(R.id.fab);
             fab.hide();
         }

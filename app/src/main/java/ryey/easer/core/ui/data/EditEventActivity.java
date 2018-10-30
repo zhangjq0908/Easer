@@ -35,7 +35,7 @@ public class EditEventActivity extends AbstractEditDataActivity<EventStructure, 
 
     @Override
     protected EventDataStorage retDataStorage() {
-        return EventDataStorage.getInstance(this);
+        return new EventDataStorage(this);
     }
 
     @Override

@@ -19,6 +19,8 @@
 
 package ryey.easer.core.data.storage;
 
+import android.content.Context;
+
 import com.orhanobut.logger.Logger;
 
 import java.io.FileNotFoundException;
@@ -32,7 +34,14 @@ import ryey.easer.core.data.WithCreatedVersion;
 import ryey.easer.core.data.storage.backend.DataStorageBackendCommonInterface;
 
 public abstract class AbstractDataStorage<T extends Named & Verifiable & WithCreatedVersion, T_backend extends DataStorageBackendCommonInterface<T>> {
-    T_backend[] storage_backend_list;
+
+    protected final Context context;
+    protected final T_backend[] storage_backend_list;
+
+    protected AbstractDataStorage(Context context, T_backend[] storage_backend_list) {
+        this.context = context;
+        this.storage_backend_list = storage_backend_list;
+    }
 
     public List<String> list() {
         List<String> list = null;

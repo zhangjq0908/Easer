@@ -36,7 +36,7 @@ import java.util.List;
 import ryey.easer.commons.local_plugin.InvalidDataInputException;
 import ryey.easer.commons.local_plugin.conditionplugin.ConditionData;
 import ryey.easer.commons.local_plugin.conditionplugin.ConditionPlugin;
-import ryey.easer.plugins.PluginRegistry;
+import ryey.easer.plugins.LocalPluginRegistry;
 
 public class ConditionPluginViewPager extends ViewPager {
 
@@ -57,7 +57,7 @@ public class ConditionPluginViewPager extends ViewPager {
 
     void init(AppCompatActivity activity) {
         conditionPluginList.clear();
-        conditionPluginList.addAll(PluginRegistry.getInstance().condition().getEnabledPlugins(activity));
+        conditionPluginList.addAll(LocalPluginRegistry.getInstance().condition().getEnabledPlugins(activity));
         mPagerAdapter = new MyPagerAdapter(activity.getSupportFragmentManager(), getContext());
         setAdapter(mPagerAdapter);
     }

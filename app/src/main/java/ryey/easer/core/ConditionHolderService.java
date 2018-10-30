@@ -42,7 +42,7 @@ import ryey.easer.commons.local_plugin.conditionplugin.ConditionData;
 import ryey.easer.commons.local_plugin.conditionplugin.Tracker;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.storage.ConditionDataStorage;
-import ryey.easer.plugins.PluginRegistry;
+import ryey.easer.plugins.LocalPluginRegistry;
 
 public class ConditionHolderService extends Service {
 
@@ -116,7 +116,7 @@ public class ConditionHolderService extends Service {
     }
 
     private void setTrackers() {
-        ConditionDataStorage conditionDataStorage = ConditionDataStorage.getInstance(this);
+        ConditionDataStorage conditionDataStorage = new ConditionDataStorage(this);
         for (String name : conditionDataStorage.list()) {
             Intent intent = new Intent(ACTION_TRACKER_SATISFIED);
             Uri turi = uri.buildUpon().appendPath(name).build();
@@ -128,7 +128,7 @@ public class ConditionHolderService extends Service {
 
             ConditionStructure conditionStructure = conditionDataStorage.get(name);
             ConditionData conditionData = conditionStructure.getData();
-            Tracker tracker = PluginRegistry.getInstance().condition().findPlugin(conditionData)
+            Tracker tracker = LocalPluginRegistry.getInstance().condition().findPlugin(conditionData)
                     .tracker(this, conditionData, positive, negative);
             tracker.start();
             trackerMap.put(name, tracker);

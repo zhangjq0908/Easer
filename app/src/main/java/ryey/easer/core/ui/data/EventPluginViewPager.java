@@ -36,7 +36,7 @@ import java.util.List;
 import ryey.easer.commons.local_plugin.InvalidDataInputException;
 import ryey.easer.commons.local_plugin.eventplugin.EventData;
 import ryey.easer.commons.local_plugin.eventplugin.EventPlugin;
-import ryey.easer.plugins.PluginRegistry;
+import ryey.easer.plugins.LocalPluginRegistry;
 
 public class EventPluginViewPager extends ViewPager {
 
@@ -57,7 +57,7 @@ public class EventPluginViewPager extends ViewPager {
 
     void init(AppCompatActivity activity) {
         eventPluginList.clear();
-        eventPluginList.addAll(PluginRegistry.getInstance().event().getEnabledPlugins(activity));
+        eventPluginList.addAll(LocalPluginRegistry.getInstance().event().getEnabledPlugins(activity));
         mPagerAdapter = new MyPagerAdapter(activity.getSupportFragmentManager(), getContext());
         setAdapter(mPagerAdapter);
     }

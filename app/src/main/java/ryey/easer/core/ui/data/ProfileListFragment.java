@@ -39,7 +39,7 @@ import ryey.easer.core.AsyncHelper;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.storage.ProfileDataStorage;
-import ryey.easer.plugins.PluginRegistry;
+import ryey.easer.plugins.LocalPluginRegistry;
 import ryey.easer.plugins.operation.state_control.StateControlOperationData;
 import ryey.easer.plugins.operation.state_control.StateControlOperationPlugin;
 
@@ -94,7 +94,7 @@ public class ProfileListFragment extends AbstractDataListFragment<ProfileDataSto
 
     @Override
     protected List<ListDataWrapper> queryDataList() {
-        ProfileDataStorage dataStorage = ProfileDataStorage.getInstance(getContext());
+        ProfileDataStorage dataStorage = new ProfileDataStorage(getContext());
         List<ListDataWrapper> dataWrapperList = new ArrayList<>();
         for (String name : dataStorage.list()) {
             ProfileStructure profile = dataStorage.get(name);
@@ -128,7 +128,7 @@ public class ProfileListFragment extends AbstractDataListFragment<ProfileDataSto
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         //TODO: Check remote plugins also
         //noinspection ConstantConditions
-        if (PluginRegistry.getInstance().operation().getEnabledPlugins(getContext()).size() == 0) {
+        if (LocalPluginRegistry.getInstance().operation().getEnabledPlugins(getContext()).size() == 0) {
             FloatingActionButton fab = view.findViewById(R.id.fab);
             fab.hide();
         }

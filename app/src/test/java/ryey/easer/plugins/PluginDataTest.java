@@ -34,7 +34,7 @@ public class PluginDataTest {
 
     @Test
     public void testPluginData() throws Exception {
-        for (PluginDef plugin : PluginRegistry.getInstance().all().getAllPlugins()) {
+        for (PluginDef plugin : LocalPluginRegistry.getInstance().all().getAllPlugins()) {
             if (plugin instanceof BroadcastOperationPlugin)
                 continue;
             DataFactory factory = plugin.dataFactory();

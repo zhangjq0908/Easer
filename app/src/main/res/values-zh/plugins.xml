@@ -11,9 +11,15 @@
     <string name="condition_headset__plugged_in">已插入</string>
     <string name="condition_headset__plugged_out">已拔出</string>
 
+    <string name="condition_wifi_enabled">WiFi已啓用</string>
+    <string name="condition_wifi_enabled_wifi_is_enabled">WiFi已啓用？</string>
 
-    <string name="event_cell_location">基站位置</string>
-    <string name="event_cell_location_no_signal">無法獲取基站信息。請檢查信號。</string>
+    <string name="condition_bluetooth_enabled">藍牙已啓用</string>
+    <string name="condition_bluetooth_enabled_bluetooth_is_enabled">藍牙已啓用</string>
+
+    <string name="condition__enabled_yes">是</string>
+    <string name="condition__enabled_no">否</string>
+
 
     <string name="event_date">日期</string>
     <string name="event_time">時間</string>
@@ -21,6 +27,9 @@
     <string name="event_wificonn">WiFi連接</string>
     <string name="wificonn_select_dialog_title">選擇WiFi網絡</string>
     <string name="wificonn_wait_for_result">等待WiFi掃描結果</string>
+
+    <string name="event_cell_location">基站位置</string>
+    <string name="event_cell_location_no_signal">無法獲取基站信息。請檢查信號。</string>
 
     <string name="event_battery">電池狀態</string>
     <array name="battery_status">
@@ -74,6 +83,9 @@
     <string name="ev_notification_dynamics_content">通知內容</string>
 
     <string name="event_timer">定時器</string>
+    <string name="event_timer_shorter_time">較短時間</string>
+    <string name="event_timer_longer_time">較長時間</string>
+    <string name="event_timer_seconds">秒</string>
     <string name="exact_timer">精確定時？</string>
     <string name="exact">精確</string>
     <string name="inexact">不精確</string>

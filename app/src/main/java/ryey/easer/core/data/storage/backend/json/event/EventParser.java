@@ -27,12 +27,13 @@ import java.io.InputStream;
 
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
 import ryey.easer.commons.local_plugin.eventplugin.EventData;
+import ryey.easer.commons.local_plugin.eventplugin.EventPlugin;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.storage.C;
 import ryey.easer.core.data.storage.backend.IOUtils;
 import ryey.easer.core.data.storage.backend.Parser;
 import ryey.easer.plugin.PluginDataFormat;
-import ryey.easer.plugins.PluginRegistry;
+import ryey.easer.plugins.LocalPluginRegistry;
 
 public class EventParser implements Parser<EventStructure> {
 
@@ -44,8 +45,8 @@ public class EventParser implements Parser<EventStructure> {
             final String name = jsonObject.getString(C.NAME);
             JSONObject jsonObject_situation = jsonObject.getJSONObject(C.SIT);
             String spec = jsonObject_situation.getString(C.SPEC);
-            EventData eventData = PluginRegistry.getInstance().event().findPlugin(spec)
-                    .dataFactory()
+            EventPlugin<?> plugin = LocalPluginRegistry.getInstance().event().findPlugin(spec);
+            EventData eventData = plugin.dataFactory()
                     .parse(jsonObject_situation.getString(C.DATA), PluginDataFormat.JSON, version);
             return new EventStructure(version, name, eventData);
         } catch (JSONException e) {

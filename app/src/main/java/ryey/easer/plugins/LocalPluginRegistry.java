@@ -44,6 +44,7 @@ import ryey.easer.commons.local_plugin.operationplugin.OperationData;
 import ryey.easer.commons.local_plugin.operationplugin.OperationPlugin;
 import ryey.easer.plugins.condition.battery.BatteryConditionPlugin;
 import ryey.easer.plugins.condition.bluetooth_device.BTDeviceConditionPlugin;
+import ryey.easer.plugins.condition.bluetooth_enabled.BluetoothEnabledConditionPlugin;
 import ryey.easer.plugins.condition.cell_location.CellLocationConditionPlugin;
 import ryey.easer.plugins.condition.connectivity.ConnectivityConditionPlugin;
 import ryey.easer.plugins.condition.date.DateConditionPlugin;
@@ -52,6 +53,7 @@ import ryey.easer.plugins.condition.headset.HeadsetConditionPlugin;
 import ryey.easer.plugins.condition.screen.ScreenConditionPlugin;
 import ryey.easer.plugins.condition.time.TimeConditionPlugin;
 import ryey.easer.plugins.condition.wifi.WifiConditionPlugin;
+import ryey.easer.plugins.condition.wifi_enabled.WifiEnabledConditionPlugin;
 import ryey.easer.plugins.event.battery.BatteryEventPlugin;
 import ryey.easer.plugins.event.bluetooth_device.BTDeviceEventPlugin;
 import ryey.easer.plugins.event.broadcast.BroadcastEventPlugin;
@@ -96,7 +98,7 @@ import ryey.easer.plugins.operation.wifi.WifiOperationPlugin;
  *
  * To register a new plugin, simply write a new line in the constructor of this class.
  */
-final public class PluginRegistry {
+final public class LocalPluginRegistry {
 
     private final Registry<EventPlugin, EventData> eventPluginRegistry = new Registry<>(CommonPluginHelper.TYPE_EVENT);
     private final Registry<OperationPlugin, OperationData> operationPluginRegistry = new Registry<>(CommonPluginHelper.TYPE_OPERATION, new String[][]{
@@ -137,6 +139,8 @@ final public class PluginRegistry {
         condition().registerPlugin(ScreenConditionPlugin.class);
         condition().registerPlugin(TimeConditionPlugin.class);
         condition().registerPlugin(WifiConditionPlugin.class);
+        condition().registerPlugin(WifiEnabledConditionPlugin.class);
+        condition().registerPlugin(BluetoothEnabledConditionPlugin.class);
 
         operation().registerPlugin(WifiOperationPlugin.class);
         operation().registerPlugin(CellularOperationPlugin.class);
@@ -161,13 +165,13 @@ final public class PluginRegistry {
         //TODO: write more plugins
     }
 
-    private static final PluginRegistry instance = new PluginRegistry();
+    private static final LocalPluginRegistry instance = new LocalPluginRegistry();
 
-    public static PluginRegistry getInstance() {
+    public static LocalPluginRegistry getInstance() {
         return instance;
     }
 
-    private PluginRegistry() {}
+    private LocalPluginRegistry() {}
 
     public Registry<EventPlugin, EventData> event() {
         return eventPluginRegistry;
@@ -188,8 +192,9 @@ final public class PluginRegistry {
     public interface PluginLookupper<T extends PluginDef, T_data extends StorageData> {
         List<T> getEnabledPlugins(@NonNull Context context);
         List<T> getAllPlugins();
+        boolean hasPlugin(String id);
         @Nullable T findPlugin(T_data data);
-        @Nullable T findPlugin(String name);
+        @Nullable T findPlugin(String id);
         @Nullable T findPlugin(PluginViewFragmentInterface view);
     }
 
@@ -255,12 +260,14 @@ final public class PluginRegistry {
          * @param id
          * @return
          */
+        @Override
         public boolean hasPlugin(String id) {
             if (findPlugin(id) == null)
                 return false;
             return true;
         }
 
+        @Nullable
         public T findPlugin(T_data data) {
             for (T plugin : getAllPlugins()) {
                 if (data.getClass() == plugin.dataFactory().dataClass()) {
@@ -270,19 +277,21 @@ final public class PluginRegistry {
             return null;
         }
 
-        public T findPlugin(String name) {
+        @Nullable
+        public T findPlugin(String id) {
             if (backwardNameMap.size() > 0)
                 Logger.d(backwardNameMap);
-            if (backwardNameMap.containsKey(name))
-                name = backwardNameMap.get(name);
+            if (backwardNameMap.containsKey(id))
+                id = backwardNameMap.get(id);
             for (T plugin : getAllPlugins()) {
-                if (name.equals(plugin.id())) {
+                if (id.equals(plugin.id())) {
                     return plugin;
                 }
             }
             return null;
         }
 
+        @Nullable
         @Override
         public T findPlugin(PluginViewFragmentInterface view) {
             for (T plugin : getAllPlugins()) {
@@ -320,23 +329,33 @@ final public class PluginRegistry {
         }
 
         @Override
+        public boolean hasPlugin(String id) {
+            if (findPlugin(id) == null)
+                return false;
+            return true;
+        }
+
+        @Nullable
+        @Override
         public PluginDef findPlugin(StorageData storageData) {
             for (PluginDef plugin : getAllPlugins()) {
                 if (storageData.getClass().equals(plugin.dataFactory().dataClass()))
                     return plugin;
             }
-            throw new IllegalAccessError();
+            return null;
         }
 
+        @Nullable
         @Override
-        public PluginDef findPlugin(String name) {
+        public PluginDef findPlugin(String id) {
             for (PluginDef plugin : getAllPlugins()) {
-                if (name.equals(plugin.id()))
+                if (id.equals(plugin.id()))
                     return plugin;
             }
             throw new IllegalAccessError();
         }
 
+        @Nullable
         @Override
         public PluginDef findPlugin(PluginViewFragmentInterface view) {
             for (PluginDef plugin : getAllPlugins()) {

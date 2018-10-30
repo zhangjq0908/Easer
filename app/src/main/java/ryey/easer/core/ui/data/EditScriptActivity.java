@@ -99,7 +99,7 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
 
     @Override
     protected ScriptDataStorage retDataStorage() {
-        return ScriptDataStorage.getInstance(this);
+        return new ScriptDataStorage(this);
     }
 
     @Override
@@ -119,14 +119,14 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         sw_parent
                 .beginInit()
                 .setAllowEmpty(true)
-                .fillData((ScriptDataStorage.getInstance(this)).list())
+                .fillData(new ScriptDataStorage(this).list())
                 .finalizeInit();
 
         sw_profile = new DataSelectSpinnerWrapper(this, (Spinner) findViewById(R.id.spinner_profile));
         sw_profile
                 .beginInit()
                 .setAllowEmpty(true)
-                .fillData((ProfileDataStorage.getInstance(this)).list())
+                .fillData(new ProfileDataStorage(this).list())
                 .finalizeInit();
 
         mSwitch_reverse = findViewById(R.id.switch_reverse);
@@ -139,7 +139,7 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         sw_scenario
                 .beginInit()
                 .setAllowEmpty(false)
-                .fillData(EventDataStorage.getInstance(this).list())
+                .fillData(new EventDataStorage(this).list())
                 .finalizeInit();
         mSwitch_repeatable = findViewById(R.id.switch_repeatable);
         mSwitch_persistent = findViewById(R.id.switch_persistent);
@@ -149,7 +149,7 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         sw_condition
                 .beginInit()
                 .setAllowEmpty(false)
-                .fillData(ConditionDataStorage.getInstance(this).list())
+                .fillData(new ConditionDataStorage(this).list())
                 .finalizeInit();
 
         rg_mode = findViewById(R.id.rg_use_scenario);
@@ -183,7 +183,7 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
                 ArrayList<String> placeholders = new ArrayList<>();
                 String profileName = sw_profile.getSelection();
                 if (profileName != null) {
-                    ProfileStructure profile = ProfileDataStorage.getInstance(EditScriptActivity.this).get(profileName);
+                    ProfileStructure profile = new ProfileDataStorage(EditScriptActivity.this).get(profileName);
                     placeholders.addAll(profile.placeholders());
                 }
                 intent.putStringArrayListExtra(ListDynamicsActivity.EXTRA_PLACEHOLDERS, placeholders);
@@ -193,7 +193,7 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
                         intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_TYPE, ListDynamicsActivity.PLUGIN_TYPE_EVENT);
                         intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_DATA, eventData);
                     } else if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_scenario) {
-                        EventDataStorage eventDataStorage = EventDataStorage.getInstance(EditScriptActivity.this);
+                        EventDataStorage eventDataStorage = new EventDataStorage(EditScriptActivity.this);
                         String event_name = sw_scenario.getSelection();
                         if (event_name != null) {
                             EventStructure eventStructure = eventDataStorage.get(event_name);
@@ -257,16 +257,16 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         script.setReverse(mSwitch_reverse.isChecked());
 
         if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_inline_scenario) {
-            EventDataStorage eventDataStorage = EventDataStorage.getInstance(this);
+            EventDataStorage eventDataStorage = new EventDataStorage(this);
             script.setEventData(mViewPager_edit_event.getEventData());
         } else if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_scenario) {
-            EventDataStorage eventDataStorage = EventDataStorage.getInstance(this);
+            EventDataStorage eventDataStorage = new EventDataStorage(this);
             String scenario_name = sw_scenario.getSelection();
             script.setEvent(eventDataStorage.get(scenario_name));
             script.setRepeatable(mSwitch_repeatable.isChecked());
             script.setPersistent(mSwitch_persistent.isChecked());
         } else if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_condition) {
-            ConditionDataStorage conditionDataStorage = ConditionDataStorage.getInstance(this);
+            ConditionDataStorage conditionDataStorage = new ConditionDataStorage(this);
             String condition_name = sw_condition.getSelection();
             script.setCondition(conditionDataStorage.get(condition_name));
         }

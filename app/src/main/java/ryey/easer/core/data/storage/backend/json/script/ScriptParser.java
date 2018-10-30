@@ -41,7 +41,7 @@ import ryey.easer.core.data.storage.EventDataStorage;
 import ryey.easer.core.data.storage.backend.IOUtils;
 import ryey.easer.core.data.storage.backend.Parser;
 import ryey.easer.plugin.PluginDataFormat;
-import ryey.easer.plugins.PluginRegistry;
+import ryey.easer.plugins.LocalPluginRegistry;
 
 class ScriptParser implements Parser<ScriptStructure> {
 
@@ -112,12 +112,12 @@ class ScriptParser implements Parser<ScriptStructure> {
                         event_name = jsonObject_trigger.getString(C.SCENARIO);
                     else
                         event_name = jsonObject_trigger.getString(C.EVENT);
-                    EventStructure event = EventDataStorage.getInstance(context).get(event_name);
+                    EventStructure event = new EventDataStorage(context).get(event_name);
                     scriptStructure.setEvent(event);
                     break;
                 case C.TriggerType.T_CONDITION:
                     String condition_name = jsonObject_trigger.getString(C.CONDITION);
-                    ConditionStructure condition = ConditionDataStorage.getInstance(context).get(condition_name);
+                    ConditionStructure condition = new ConditionDataStorage(context).get(condition_name);
                     scriptStructure.setCondition(condition);
                     break;
                 default:
@@ -136,7 +136,7 @@ class ScriptParser implements Parser<ScriptStructure> {
                 throw new AssertionError();
             JSONObject jsonObject_situation = jsonObject_trigger.getJSONObject(C.SIT);
             String spec = jsonObject_situation.getString(C.SPEC);
-            return PluginRegistry.getInstance().event().findPlugin(spec)
+            return LocalPluginRegistry.getInstance().event().findPlugin(spec)
                     .dataFactory()
                     .parse(jsonObject_situation.getString(C.DATA), PluginDataFormat.JSON, version);
         } catch (JSONException e) {
