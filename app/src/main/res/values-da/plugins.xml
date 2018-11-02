@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
 
-    <string name="ev_condition_event">Tilstandshændelse</string>
+    <string name="ev_condition_event">Tilstand hændelse</string>
     <string name="condition_event_enter">Ankomme</string>
     <string name="condition_event_leave">Forlade</string>
 
@@ -74,7 +74,7 @@
     <string name="event_timer">Timer</string>
     <string name="exact_timer">Nøjagtig timer?</string>
     <string name="exact">Nøjagtig</string>
-    <string name="inexact">Unøjagtig</string>
+    <string name="inexact">Ikke nøjagtig</string>
     <string name="repeative_timer">Gentagelig timer?</string>
     <string name="repeat">Gentage</string>
     <string name="one_time">Én gang</string>
@@ -204,4 +204,17 @@
 
     <string name="event_cell_location_no_signal">Kan ikke få celleplacering. Kontrollere signal.</string>
 
+    <string name="condition_wifi_enabled">Trådløs aktiveret</string>
+    <string name="condition_wifi_enabled_wifi_is_enabled">Er trådløs aktiveret\?</string>
+
+    <string name="condition_bluetooth_enabled">Bluetooth aktiveret</string>
+    <string name="condition_bluetooth_enabled_bluetooth_is_enabled">Er bluetooth aktiveret\?</string>
+
+    <string name="condition__enabled_yes">Ja</string>
+    <string name="condition__enabled_no">Nej</string>
+
+
+    <string name="event_timer_shorter_time">Kortere tid</string>
+    <string name="event_timer_longer_time">Længere tid</string>
+    <string name="event_timer_seconds">Sekund(er)</string>
     </resources>
