@@ -81,7 +81,7 @@
     <string name="prompt_save_failed">Kan ikke gemme</string>
     <string name="prompt_delete">Slette: %s?</string>
     <string name="prompt_delete_failed">Kan ikke slette. Kontrollere om element er i brug.</string>
-    <string name="prompt_data_illegal">Forhindre at gemme data med ugyldige felter. Kontrollere valg/inddata.</string>
+    <string name="prompt_data_illegal">Forhindret gemme data med ugyldige felter. Kontrollere valg/inddata.</string>
 
     <string name="prompt_prevented_for_permission">Easer behøver rettighed &lt;%s&gt; for denne funktion.</string>
 
@@ -92,7 +92,7 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
 
     <string name="liscence_stringa">Dette program er gratis software: Det kan videre-distribueres og/eller ændres i henhold til GNU General Public License som offentliggjort af Free Software Foundation, enten version 3 Licensen, eller (efter eget valg) en senere version.</string>
 
-    <string name="liscence_stringb">Dette program distribueres i håbet om at det vil være nyttigt, men uden nogen garanti. uden selv den underforståede garanti for SALGBARHED eller EGNETHED TIL ET BESTEMT FORMÅL. Se GNU General Public License for flere detaljer.</string>
+    <string name="liscence_stringb">Dette program distribueres i håb om at det vil være nyttigt men uden nogen garanti; uden selv den underforståede garanti for SALGBARHED eller EGNETHED TIL ET BESTEMT FORMÅL. Se GNU General Public License for flere detaljer.</string>
 
     <string name="liscence_stringc">Der medfølger normalt en kopi af GNU General Public License sammen med dette program. Hvis ikke, se http://www.gnu.org/licenses/</string>
 
@@ -110,7 +110,7 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     <string name="pref_restart_after_upgrade_title">Start tjeneste efter opgradering</string>
 
     <string name="pref_welcome_title">Vise velkomst besked</string>
-    <string name="pref_welcome_summary">Vise velkomst besked ved program opstart</string>
+    <string name="pref_welcome_summary">Vise velkomst besked ved program start</string>
 
     <string name="pref_logging_title">Aktivere ekstern logning</string>
     <string name="pref_logging_summary">Gemme log til ekstern opbevaringsenhed (/sdcard/logger) for at hjælpe med fejl rapporter.\nIndstillings ændringer træder i kraft ved næste Easer start.</string>
@@ -191,7 +191,7 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     <string name="pref_category_service">Tjeneste</string>
 
     <string name="pref_show_notification_title">Vis påmindelse</string>
-    <string name="pref_show_notification_summary">Vis påmindelse i påmindelses bjælken.</string>
+    <string name="pref_show_notification_summary">Vis påmindelse i påmindelse bjælken.</string>
     <string name="pref_foreground_title">Køre tjeneste i forgrund</string>
     <string name="pref_foreground_summary">Gør tjenesten mindre nem at blive stoppet af systemet. Vil vise en påmindelse. Kan ikke deaktiveres på Android 8+ på grund af systemkrav.</string>
 
