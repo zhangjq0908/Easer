@@ -183,4 +183,17 @@
 
 <string name="event_cell_location_no_signal">Kan ikke hente telefonplassering. Sjekk signalstyrken.</string>
 
+    <string name="condition_wifi_enabled">Wi-Fi påslått</string>
+    <string name="condition_wifi_enabled_wifi_is_enabled">Er Wi-Fi påslått\?</string>
+
+    <string name="condition_bluetooth_enabled">Blåtann aktivert</string>
+    <string name="condition_bluetooth_enabled_bluetooth_is_enabled">Er Blåtann aktivert\?</string>
+
+    <string name="condition__enabled_yes">Ja</string>
+    <string name="condition__enabled_no">Nei</string>
+
+
+    <string name="event_timer_shorter_time">Kortere tid</string>
+    <string name="event_timer_longer_time">Lengre tid</string>
+    <string name="event_timer_seconds">Sekund(er)</string>
     </resources>
