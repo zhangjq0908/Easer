@@ -21,14 +21,11 @@ package ryey.easer.plugins.operation.ringer_mode;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_plugin.PluginViewFragmentInterface;
@@ -80,7 +77,8 @@ public class RingerModeOperationPlugin implements OperationPlugin<RingerModeOper
             return PluginHelper.checkPermission(context, Manifest.permission.MODIFY_AUDIO_SETTINGS);
         } else {
             return PluginHelper.checkPermission(context, Manifest.permission.MODIFY_AUDIO_SETTINGS)
-                    && isServiceEnabled(context);
+                    && PluginHelper.isPermissionGrantedForNotificationListenerService(
+                            context, InterruptionFilterSwitcherService.class);
         }
     }
 
@@ -89,7 +87,7 @@ public class RingerModeOperationPlugin implements OperationPlugin<RingerModeOper
         if (!PluginHelper.checkPermission(activity, Manifest.permission.MODIFY_AUDIO_SETTINGS))
             PluginHelper.requestPermission(activity, requestCode, Manifest.permission.MODIFY_AUDIO_SETTINGS);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (!isServiceEnabled(activity)) {
+            if (!PluginHelper.isPermissionGrantedForNotificationListenerService(activity, InterruptionFilterSwitcherService.class)) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
                     activity.startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
                 } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -99,25 +97,6 @@ public class RingerModeOperationPlugin implements OperationPlugin<RingerModeOper
                 PluginHelper.reenableComponent(activity, InterruptionFilterSwitcherService.class);
             }
         }
-    }
-
-    private static boolean isServiceEnabled(Context context) {
-        PackageManager pm = context.getPackageManager();
-        ComponentName componentName = new ComponentName(context, InterruptionFilterSwitcherService.class);
-        return pm.getComponentEnabledSetting(componentName) == PackageManager.COMPONENT_ENABLED_STATE_ENABLED;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private static void toggleNotificationListenerService(Context context) {
-        PackageManager pm = context.getPackageManager();
-        ComponentName componentName = new ComponentName(context, InterruptionFilterSwitcherService.class);
-
-        pm.setComponentEnabledSetting(componentName,
-                PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
-
-        pm.setComponentEnabledSetting(componentName,
-                PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
-
     }
 
     @NonNull

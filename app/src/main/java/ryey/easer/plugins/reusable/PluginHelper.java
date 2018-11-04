@@ -20,11 +20,14 @@
 package ryey.easer.plugins.reusable;
 
 import android.app.Activity;
+import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
+import android.service.notification.NotificationListenerService;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -95,6 +98,19 @@ public class PluginHelper {
 
         pm.setComponentEnabledSetting(componentName,
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+    }
+
+    public static boolean isServiceEnabled(Context context, Class<? extends Service> serviceClass) {
+        PackageManager pm = context.getPackageManager();
+        ComponentName componentName = new ComponentName(context, serviceClass);
+        return pm.getComponentEnabledSetting(componentName) == PackageManager.COMPONENT_ENABLED_STATE_ENABLED;
+    }
+
+    public static boolean isPermissionGrantedForNotificationListenerService(
+            Context context, Class<? extends NotificationListenerService> serviceClass) {
+        ComponentName serviceComponentName = new ComponentName(context, serviceClass);
+        String list = Settings.Secure.getString(context.getContentResolver(), "enabled_notification_listeners");
+        return list != null && list.contains(serviceComponentName.flattenToString());
     }
 
 }

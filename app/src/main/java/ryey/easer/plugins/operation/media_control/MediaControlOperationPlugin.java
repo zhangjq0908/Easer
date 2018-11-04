@@ -76,7 +76,7 @@ public class MediaControlOperationPlugin implements OperationPlugin<MediaControl
     @Override
     public boolean checkPermissions(@NonNull Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            return isHelperServiceEnabled(context);
+            return PluginHelper.isPermissionGrantedForNotificationListenerService(context, MediaControlHelperNotificationListenerService.class);
         } else {
             return true;
         }
@@ -85,23 +85,16 @@ public class MediaControlOperationPlugin implements OperationPlugin<MediaControl
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (!isHelperServiceEnabled(activity)) {
+            if (!PluginHelper.isPermissionGrantedForNotificationListenerService(activity, MediaControlHelperNotificationListenerService.class)) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
                     activity.startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
                 } else {
                     PluginHelper.requestPermission(activity, requestCode,
                             Manifest.permission.BIND_NOTIFICATION_LISTENER_SERVICE);
                 }
+                PluginHelper.reenableComponent(activity, MediaControlHelperNotificationListenerService.class);
             }
-            PluginHelper.reenableComponent(activity, MediaControlHelperNotificationListenerService.class);
         }
-    }
-
-    private static boolean isHelperServiceEnabled(Context context) {
-        PackageManager pm = context.getPackageManager();
-        return pm.getComponentEnabledSetting(
-                new ComponentName(context, MediaControlHelperNotificationListenerService.class))
-                == PackageManager.COMPONENT_ENABLED_STATE_ENABLED;
     }
 
     @NonNull
