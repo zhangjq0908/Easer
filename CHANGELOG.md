@@ -1,6 +1,13 @@
 CHANGELOG
 ======
 
+* v0.7.1.1: Bug fixes && Translation update
+	* Fix AirplaneMode not correctly working
+	* Fix permission check incorrect for some NotificationListener (e.g. ringer mode)
+	* Trnalstion update
+		* Danish
+		* Norwegian Bokmål
+
 * v0.7.1: New Conditions && More detailed ActivityLog && TimerEvent supports seconds && Fix && Code clean up && Translation Update
 	* New Conditions
 		* WifiEnabledCondition

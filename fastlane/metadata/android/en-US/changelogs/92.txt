@@ -1,0 +1,7 @@
+Bug fixes && Translation update
+
+* Fix AirplaneMode not correctly working
+* Fix permission check incorrect for some NotificationListener (e.g. ringer mode)
+* Trnalstion update
+	* Danish
+	* Norwegian Bokmål
