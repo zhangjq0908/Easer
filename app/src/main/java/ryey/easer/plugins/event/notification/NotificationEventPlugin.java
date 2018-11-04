@@ -60,12 +60,13 @@ public class NotificationEventPlugin implements EventPlugin<NotificationEventDat
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public boolean checkPermissions(@NonNull Context context) {
-        return isServiceEnabled(context);
+        return PluginHelper.isPermissionGrantedForNotificationListenerService(context, NotificationEventListenerService.class);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        if (!isServiceEnabled(activity)) {
+        if (!PluginHelper.isPermissionGrantedForNotificationListenerService(activity, NotificationEventListenerService.class)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
                 activity.startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
             } else {
@@ -74,12 +75,6 @@ public class NotificationEventPlugin implements EventPlugin<NotificationEventDat
             }
         }
         PluginHelper.reenableComponent(activity, NotificationEventListenerService.class);
-    }
-
-    private static boolean isServiceEnabled(Context context) {
-        PackageManager pm = context.getPackageManager();
-        ComponentName componentName = new ComponentName(context, NotificationEventListenerService.class);
-        return pm.getComponentEnabledSetting(componentName) == PackageManager.COMPONENT_ENABLED_STATE_ENABLED;
     }
 
     @NonNull

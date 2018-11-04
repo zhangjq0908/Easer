@@ -82,7 +82,7 @@ public class AirplaneModeLoader extends OperationLoader<AirplaneModeOperationDat
                 int enabled = newState ? 1 : 0;
                 String command = COMMAND_FLIGHT_MODE_1 + " " + enabled;
                 PluginHelper.executeCommandAsRoot(context, command);
-                command = COMMAND_FLIGHT_MODE_2 + " " + enabled;
+                command = COMMAND_FLIGHT_MODE_2 + " " + newState;
                 PluginHelper.executeCommandAsRoot(context, command);
                 return true;
             } catch (IOException e) {
