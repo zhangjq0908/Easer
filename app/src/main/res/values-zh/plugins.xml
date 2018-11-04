@@ -121,6 +121,9 @@
     <string name="ev_screen_off">關閉</string>
     <string name="ev_screen_unlocked">已解鎖</string>
 
+    <string name="source_cell_location_listening_title">監聽中</string>
+
+
     <string name="operation_bluetooth">藍牙</string>
 
     <string name="operation_brightness">亮度</string>
