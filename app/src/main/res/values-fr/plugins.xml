@@ -179,4 +179,21 @@
 <string name="ev_sms_dynamics_sender">Expéditeur du SMS</string>
     <string name="ev_sms_dynamics_content">Contenu SMS</string>
 
+    <string name="condition_bluetooth_device">Appareil bluetooth connecté</string>
+
+    <string name="condition_wifi_enabled">WiFi Activé</string>
+    <string name="condition_wifi_enabled_wifi_is_enabled">WiFi est activé \?</string>
+
+    <string name="condition_bluetooth_enabled">Bluetooth Activé</string>
+    <string name="condition_bluetooth_enabled_bluetooth_is_enabled">Bluetooth est activé \?</string>
+
+    <string name="condition__enabled_yes">Oui</string>
+    <string name="condition__enabled_no">Non</string>
+
+
+    <string name="event_cell_location_no_signal">Impossible de localiser le portable. Vérifiez votre signal.</string>
+
+    <string name="event_timer_shorter_time">Délai plus court</string>
+    <string name="event_timer_longer_time">Délai plus long</string>
+    <string name="event_timer_seconds">Seconde(s)</string>
     </resources>
