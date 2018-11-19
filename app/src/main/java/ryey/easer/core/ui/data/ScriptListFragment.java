@@ -20,6 +20,10 @@
 package ryey.easer.core.ui.data;
 
 import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +32,7 @@ import ryey.easer.R;
 import ryey.easer.core.EHService;
 import ryey.easer.core.data.ScriptStructure;
 import ryey.easer.core.data.storage.ScriptDataStorage;
+import ryey.easer.core.ui.data.script_tree_list.ScriptTreeListFragment;
 
 public class ScriptListFragment extends AbstractDataListFragment<ScriptDataStorage> {
 
@@ -43,6 +48,24 @@ public class ScriptListFragment extends AbstractDataListFragment<ScriptDataStora
     @Override
     protected int helpTextRes() {
         return R.string.help_script;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.list_script_extra, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_tree_list) {
+            Fragment fragment = new ScriptTreeListFragment();
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.content_main, fragment)
+                    .commit();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

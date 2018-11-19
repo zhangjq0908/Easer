@@ -48,6 +48,7 @@ dependencies {
     implementation 'com.orhanobut:logger:2.1.1'
     implementation 'org.apmem.tools:layouts:1.10@aar'
     implementation 'se.emilsjolander:stickylistheaders:2.7.0'
+    implementation 'com.github.TellH:RecyclerTreeView:1.2.0'
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.json:json:20160810'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

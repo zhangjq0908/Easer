@@ -31,7 +31,7 @@ import ryey.easer.commons.local_plugin.eventplugin.EventData;
  */
 final public class ScriptTree {
     final ScriptStructure data;
-    final List<ScriptTree> subs;
+    @NonNull final List<ScriptTree> subs;
     public ScriptTree(@NonNull ScriptStructure scriptStructure) {
         this.data = scriptStructure;
         this.subs = new LinkedList<>();
@@ -70,6 +70,7 @@ final public class ScriptTree {
     public void addSub(ScriptTree sub) {
         subs.add(sub);
     }
+    @NonNull
     public List<ScriptTree> getSubs() {
         return subs;
     }

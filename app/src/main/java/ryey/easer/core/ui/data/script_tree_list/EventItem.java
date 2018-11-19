@@ -17,13 +17,21 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui.data;
+package ryey.easer.core.ui.data.script_tree_list;
 
-public final class EditDataProto {
-    public static final String CONTENT_NAME = "ryey.easer.EVENT.NAME";
-    public static final String PURPOSE = "ryey.easer.PURPOSE";
+import ryey.easer.R;
+import tellh.com.recyclertreeview_lib.LayoutItemType;
 
-    public enum Purpose {
-        add, edit, delete
+public final class EventItem implements LayoutItemType {
+
+    String eventName;
+
+    public EventItem(String eventName) {
+        this.eventName = eventName;
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.item_script_data_parent;
     }
 }
