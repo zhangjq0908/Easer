@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+* v0.7.2: Tree List support && Translation update
+	* Add tree list support for Script
+	* French Translation update
+	* ...
+
 * v0.7.1.1: Bug fixes && Translation update
 	* Fix AirplaneMode not correctly working
 	* Fix permission check incorrect for some NotificationListener (e.g. ringer mode)
