@@ -201,4 +201,6 @@
     <string name="category_operation_easer">\@string/easer</string>
     <string name="category_operation_unknown">Unbekannt</string>
 
-</resources>
+<string name="menu_tree_list">Baum Ansicht</string>
+
+    </resources>
