@@ -201,4 +201,6 @@
     <string name="pref_foreground_title">Kjør tjeneste i bakgrunnen</string>
     <string name="pref_foreground_summary">Gjør tjenesten enklere å drepe av systemet. Vil vise en merknad. Kan ikke skrus av på Android 8+ på grunn av et systemkrav.</string>
 
+    <string name="menu_tree_list">Treliste</string>
+
     </resources>
