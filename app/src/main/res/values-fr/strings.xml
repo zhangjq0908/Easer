@@ -201,4 +201,6 @@
     <string name="pref_foreground_title">Exécuter le service au premier plan</string>
     <string name="pref_foreground_summary">Rend le service moins facile d\'être tué par le système. Affiche une notification. Ne peut pas être désactivé sur Android 8+ en raison des exigences du système.</string>
 
+    <string name="menu_tree_list">Arborescence</string>
+
     </resources>
