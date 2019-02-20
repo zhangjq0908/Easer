@@ -25,6 +25,7 @@ import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import ryey.easer.BuildConfig;
@@ -40,6 +41,8 @@ class SkillEnabledPreference extends CheckBoxPreference implements Preference.On
 
     private final Skill skill;
     private final boolean in_use;
+
+    private ImageButton btnPermission;
 
     SkillEnabledPreference(Context context, Skill skill, boolean in_use) {
         super(context);
@@ -85,6 +88,14 @@ class SkillEnabledPreference extends CheckBoxPreference implements Preference.On
             }
         }
         recSetEnabled(view.findViewById(android.R.id.widget_frame), !in_use);
+        btnPermission = view.findViewById(R.id.btn_permission);
+        redrawPermissionButton();
+        btnPermission.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                skill.requestPermissions((Activity) getContext(), REQCODE);
+            }
+        });
     }
 
     private static void recSetEnabled(View view, boolean enabled) {
@@ -93,6 +104,14 @@ class SkillEnabledPreference extends CheckBoxPreference implements Preference.On
             for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
                 recSetEnabled(((ViewGroup) view).getChildAt(i), enabled);
             }
+        }
+    }
+
+    void redrawPermissionButton() {
+        if (skill.checkPermissions(getContext())) {
+            btnPermission.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_status_positive_inner));
+        } else {
+            btnPermission.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_status_negative_inner));
         }
     }
 }
