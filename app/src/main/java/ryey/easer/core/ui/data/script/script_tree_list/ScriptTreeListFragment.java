@@ -100,6 +100,9 @@ public class ScriptTreeListFragment extends Fragment implements DataListInterfac
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_script_tree_list, container, false);
 
+        getActivity().setTitle(title());
+        setHasOptionsMenu(true);
+
         recyclerView = view.findViewById(R.id.recyclerView_script);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         registerForContextMenu(recyclerView);
@@ -140,16 +143,12 @@ public class ScriptTreeListFragment extends Fragment implements DataListInterfac
             }
         });
 
-        getActivity().setTitle(title());
-
-        setHasOptionsMenu(true);
-
         return view;
     }
 
     private void reloadList() {
         scriptTreeNodeList.clear();
-        scriptTreeNodeList = convertScriptTreeToView(scriptDataStorage.getScriptTrees(), scriptTreeNodeList);
+        scriptTreeNodeList = convertScriptTreeToView(scriptDataStorage.getScriptTrees());
         adapter.refresh(scriptTreeNodeList);
 
         if (adapter.getItemCount() == 0) {
@@ -183,15 +182,16 @@ public class ScriptTreeListFragment extends Fragment implements DataListInterfac
     }
 
     private static List<TreeNode> convertScriptTreeToView(List<ScriptTree> scriptTrees) {
-        return convertScriptTreeToView(scriptTrees, new ArrayList<TreeNode>());
+        return convertScriptTreeToView(scriptTrees, new ArrayList<TreeNode>(), null);
     }
 
-    private static List<TreeNode> convertScriptTreeToView(List<ScriptTree> scriptTrees, List<TreeNode> nodes) {
+    private static List<TreeNode> convertScriptTreeToView(List<ScriptTree> scriptTrees, List<TreeNode> nodes, TreeNode parent) {
         for (ScriptTree scriptTree : scriptTrees) {
             EventItem item = new EventItem(scriptTree.getName());
             TreeNode<EventItem> node = new TreeNode<>(item);
+            node.setParent(parent);
             if (scriptTree.getSubs().size() != 0)
-                node.setChildList(convertScriptTreeToView(scriptTree.getSubs(), new ArrayList<TreeNode>()));
+                node.setChildList(convertScriptTreeToView(scriptTree.getSubs(), new ArrayList<TreeNode>(), node));
             nodes.add(node);
         }
         return nodes;

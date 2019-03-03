@@ -36,10 +36,10 @@ public class TreeViewAdapterWithContextMenu extends TreeViewAdapter {
     onLongItemClickListener mOnLongItemClickListener;
 
     TreeViewAdapterWithContextMenu(List<TreeNode> nodes) {
-        this(nodes, new ParentEventNodeBinder());
+        this(nodes, new EventNodeBinder());
     }
 
-    private TreeViewAdapterWithContextMenu(List<TreeNode> nodes, ParentEventNodeBinder binder) {
+    private TreeViewAdapterWithContextMenu(List<TreeNode> nodes, EventNodeBinder binder) {
         super(nodes, Arrays.asList(binder));
         binder.setRef(this);
     }
@@ -52,7 +52,7 @@ public class TreeViewAdapterWithContextMenu extends TreeViewAdapter {
         void ItemLongClicked(View v, EventItem eventItem);
     }
 
-    private static class ParentEventNodeBinder extends TreeViewBinder<ViewHolder> {
+    private static class EventNodeBinder extends TreeViewBinder<ViewHolder> {
 
         WeakReference<TreeViewAdapterWithContextMenu> ref;
 
@@ -92,7 +92,7 @@ public class TreeViewAdapterWithContextMenu extends TreeViewAdapter {
 
         @Override
         public int getLayoutId() {
-            return R.layout.item_script_data_parent;
+            return R.layout.item_script_data_node;
         }
 
     }

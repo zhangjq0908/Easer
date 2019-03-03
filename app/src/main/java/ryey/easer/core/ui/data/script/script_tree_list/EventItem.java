@@ -32,6 +32,6 @@ public final class EventItem implements LayoutItemType {
 
     @Override
     public int getLayoutId() {
-        return R.layout.item_script_data_parent;
+        return R.layout.item_script_data_node;
     }
 }
