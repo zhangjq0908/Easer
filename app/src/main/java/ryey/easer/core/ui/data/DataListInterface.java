@@ -25,7 +25,7 @@ import android.support.annotation.StringRes;
 
 public interface DataListInterface {
 
-    void registerContainer(@NonNull DataListContainerFragment container);
+    void registerContainer(@NonNull DataListContainerInterface container);
 
     @NonNull
     String title();

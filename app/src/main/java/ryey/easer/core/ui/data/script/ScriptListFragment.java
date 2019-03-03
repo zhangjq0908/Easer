@@ -60,7 +60,7 @@ public class ScriptListFragment extends AbstractDataListFragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_tree_list) {
-            container.switchContent(DataListContainerInterface.ListType.script_tree);
+            refContainer.get().switchContent(DataListContainerInterface.ListType.script_tree);
             return true;
         }
         return false;

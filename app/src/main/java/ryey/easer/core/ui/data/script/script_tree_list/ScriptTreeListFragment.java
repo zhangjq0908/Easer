@@ -37,13 +37,13 @@ import android.view.ViewGroup;
 
 import com.orhanobut.logger.Logger;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
 import ryey.easer.R;
 import ryey.easer.core.data.ScriptTree;
 import ryey.easer.core.data.storage.ScriptDataStorage;
-import ryey.easer.core.ui.data.DataListContainerFragment;
 import ryey.easer.core.ui.data.DataListContainerInterface;
 import ryey.easer.core.ui.data.DataListInterface;
 import ryey.easer.core.ui.data.script.EditScriptActivity;
@@ -54,7 +54,7 @@ public class ScriptTreeListFragment extends Fragment implements DataListInterfac
 
     private static final String TAG = "[ScriptTreeList]";
 
-    DataListContainerInterface container;
+    WeakReference<DataListContainerInterface> refContainer;
 
     ScriptDataStorage scriptDataStorage;
 
@@ -83,7 +83,7 @@ public class ScriptTreeListFragment extends Fragment implements DataListInterfac
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_plain_list) {
-            container.switchContent(DataListContainerInterface.ListType.script);
+            refContainer.get().switchContent(DataListContainerInterface.ListType.script);
             return true;
         }
         return false;
@@ -153,10 +153,10 @@ public class ScriptTreeListFragment extends Fragment implements DataListInterfac
 
         if (adapter.getItemCount() == 0) {
             Logger.d("%s: no item", TAG);
-            container.setShowHelp(true);
+            refContainer.get().setShowHelp(true);
         } else {
             Logger.d("%s: has item", TAG);
-            container.setShowHelp(false);
+            refContainer.get().setShowHelp(false);
         }
     }
 
@@ -172,10 +172,10 @@ public class ScriptTreeListFragment extends Fragment implements DataListInterfac
         int id = item.getItemId();
         switch (id) {
             case R.id.action_edit:
-                container.editData(name);
+                refContainer.get().editData(name);
                 return true;
             case R.id.action_delete:
-                container.deleteData(name);
+                refContainer.get().deleteData(name);
                 return true;
         }
         return super.onContextItemSelected(item);
@@ -198,8 +198,8 @@ public class ScriptTreeListFragment extends Fragment implements DataListInterfac
     }
 
     @Override
-    public void registerContainer(@NonNull DataListContainerFragment container) {
-        this.container = container;
+    public void registerContainer(@NonNull DataListContainerInterface container) {
+        this.refContainer = new WeakReference<>(container);
     }
 
     @Override

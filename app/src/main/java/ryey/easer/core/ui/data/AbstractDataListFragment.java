@@ -43,6 +43,7 @@ import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +53,7 @@ public abstract class AbstractDataListFragment extends ListFragment implements D
 
     protected static String TAG = "[AbstractDataListFragment] ";
 
-    protected DataListContainerInterface container;
+    protected WeakReference<DataListContainerInterface> refContainer;
 
     @NonNull
     public abstract String title();
@@ -93,7 +94,7 @@ public abstract class AbstractDataListFragment extends ListFragment implements D
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         ListDataWrapper wrapper = (ListDataWrapper) l.getItemAtPosition(position);
-        container.editData(wrapper.name);
+        refContainer.get().editData(wrapper.name);
     }
 
     @Override
@@ -111,10 +112,10 @@ public abstract class AbstractDataListFragment extends ListFragment implements D
         int id = item.getItemId();
         switch (id) {
             case R.id.action_edit:
-                container.editData(name);
+                refContainer.get().editData(name);
                 return true;
             case R.id.action_delete:
-                container.deleteData(name);
+                refContainer.get().deleteData(name);
                 return true;
         }
         return super.onContextItemSelected(item);
@@ -123,8 +124,8 @@ public abstract class AbstractDataListFragment extends ListFragment implements D
     protected abstract List<ListDataWrapper> queryDataList();
 
     @Override
-    public void registerContainer(@NonNull DataListContainerFragment container) {
-        this.container = container;
+    public void registerContainer(@NonNull DataListContainerInterface container) {
+        this.refContainer = new WeakReference<>(container);
     }
 
     protected void reloadList() {
@@ -137,10 +138,10 @@ public abstract class AbstractDataListFragment extends ListFragment implements D
         adapter.notifyDataSetChanged();
         if (getListAdapter().getCount() == 0) {
             Logger.d("%s: no item", TAG);
-            container.setShowHelp(true);
+            refContainer.get().setShowHelp(true);
         } else {
             Logger.d("%s: has item", TAG);
-            container.setShowHelp(false);
+            refContainer.get().setShowHelp(false);
         }
     }
 
