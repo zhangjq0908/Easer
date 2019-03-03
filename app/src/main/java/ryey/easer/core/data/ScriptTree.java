@@ -28,6 +28,8 @@ import ryey.easer.commons.local_plugin.eventplugin.EventData;
 
 /*
  * Events are linked together as trees. This class represents that structure and relevant methods.
+ *
+ * TODO: Remove delegations which don't appear to be relevant to the "script tree" (but rather, related to the exact Script when triggered).
  */
 final public class ScriptTree {
     final ScriptStructure data;

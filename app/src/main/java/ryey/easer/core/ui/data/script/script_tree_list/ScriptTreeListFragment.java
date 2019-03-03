@@ -114,7 +114,7 @@ public class ScriptTreeListFragment extends Fragment implements DataListInterfac
         });
 
         scriptTreeNodeList = convertScriptTreeToView(scriptDataStorage.getScriptTrees());
-        adapter = new TreeViewAdapterWithContextMenu(scriptTreeNodeList);
+        adapter = new TreeViewAdapterWithContextMenu(scriptTreeNodeList, getContext());
         recyclerView.setAdapter(adapter);
         adapter.setOnLongItemClickListener(new TreeViewAdapterWithContextMenu.onLongItemClickListener() {
             @Override
@@ -187,7 +187,7 @@ public class ScriptTreeListFragment extends Fragment implements DataListInterfac
 
     private static List<TreeNode> convertScriptTreeToView(List<ScriptTree> scriptTrees, List<TreeNode> nodes, TreeNode parent) {
         for (ScriptTree scriptTree : scriptTrees) {
-            EventItem item = new EventItem(scriptTree.getName());
+            EventItem item = new EventItem(scriptTree.getName(), scriptTree.isActive(), scriptTree.getData().isValid());
             TreeNode<EventItem> node = new TreeNode<>(item);
             node.setParent(parent);
             if (scriptTree.getSubs().size() != 0)

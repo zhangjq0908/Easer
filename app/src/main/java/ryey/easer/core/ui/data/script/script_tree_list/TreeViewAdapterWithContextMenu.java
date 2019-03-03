@@ -19,6 +19,9 @@
 
 package ryey.easer.core.ui.data.script.script_tree_list;
 
+import android.content.Context;
+import android.support.annotation.ColorRes;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,13 +38,16 @@ import tellh.com.recyclertreeview_lib.TreeViewBinder;
 public class TreeViewAdapterWithContextMenu extends TreeViewAdapter {
     onLongItemClickListener mOnLongItemClickListener;
 
-    TreeViewAdapterWithContextMenu(List<TreeNode> nodes) {
-        this(nodes, new EventNodeBinder());
+    private final WeakReference<Context> refContext;
+
+    TreeViewAdapterWithContextMenu(List<TreeNode> nodes, Context context) {
+        this(nodes, new EventNodeBinder(), context);
     }
 
-    private TreeViewAdapterWithContextMenu(List<TreeNode> nodes, EventNodeBinder binder) {
+    private TreeViewAdapterWithContextMenu(List<TreeNode> nodes, EventNodeBinder binder, Context context) {
         super(nodes, Arrays.asList(binder));
         binder.setRef(this);
+        this.refContext = new WeakReference<>(context);
     }
 
     public void setOnLongItemClickListener(onLongItemClickListener onLongItemClickListener) {
@@ -81,6 +87,13 @@ public class TreeViewAdapterWithContextMenu extends TreeViewAdapter {
             });
 
             viewHolder.tvEventName.setText(item.eventName);
+
+            @ColorRes final int textColor;
+            if (!item.valid) textColor = R.color.colorText_invalid;
+            else if (!item.active) textColor = R.color.colorText_scriptInactive;
+            else textColor = R.color.colorText;
+            viewHolder.tvEventName.setTextColor(ContextCompat.getColor(ref.get().refContext.get(), textColor));
+
             viewHolder.ivArrow.setImageResource(R.drawable.ic_keyboard_arrow_right_black_24dp);
             int rotateDegree = treeNode.isExpand() ? 90 : 0;
             viewHolder.ivArrow.setRotation(rotateDegree);

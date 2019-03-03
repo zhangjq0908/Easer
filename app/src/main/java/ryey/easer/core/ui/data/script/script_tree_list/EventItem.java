@@ -24,10 +24,14 @@ import tellh.com.recyclertreeview_lib.LayoutItemType;
 
 public final class EventItem implements LayoutItemType {
 
-    String eventName;
+    final String eventName;
+    final boolean active;
+    final boolean valid;
 
-    public EventItem(String eventName) {
+    public EventItem(String eventName, boolean active, boolean valid) {
         this.eventName = eventName;
+        this.active = active;
+        this.valid = valid;
     }
 
     @Override
