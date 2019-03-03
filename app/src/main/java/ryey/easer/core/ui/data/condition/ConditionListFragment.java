@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui.data;
+package ryey.easer.core.ui.data.condition;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,33 +31,35 @@ import java.util.List;
 
 import ryey.easer.R;
 import ryey.easer.core.EHService;
-import ryey.easer.core.data.EventStructure;
-import ryey.easer.core.data.storage.EventDataStorage;
+import ryey.easer.core.data.ConditionStructure;
+import ryey.easer.core.data.storage.ConditionDataStorage;
+import ryey.easer.core.ui.data.AbstractDataListFragment;
 import ryey.easer.plugins.LocalPluginRegistry;
 
-public class EventListFragment extends AbstractDataListFragment<EventDataStorage> {
+public class ConditionListFragment extends AbstractDataListFragment {
 
     static {
-        TAG = "[EventListFragment] ";
+        TAG = "[ScriptListFragment] ";
+    }
+
+    @NonNull
+    @Override
+    public String title() {
+        return getString(R.string.title_condition);
     }
 
     @Override
-    protected String title() {
-        return getString(R.string.title_event);
-    }
-
-    @Override
-    protected int helpTextRes() {
-        return R.string.help_event;
+    public int helpTextRes() {
+        return R.string.help_condition;
     }
 
     @Override
     protected List<ListDataWrapper> queryDataList() {
-        EventDataStorage dataStorage = new EventDataStorage(getContext());
+        ConditionDataStorage dataStorage = new ConditionDataStorage(getContext());
         List<ListDataWrapper> dataWrapperList = new ArrayList<>();
         for (String name : dataStorage.list()) {
-            EventStructure scenario = dataStorage.get(name);
-            if (scenario.isValid()) {
+            ConditionStructure condition = dataStorage.get(name);
+            if (condition.isValid()) {
                 dataWrapperList.add(new ListDataWrapper(name));
             } else {
                 dataWrapperList.add(new ListDataWrapper(name, R.color.colorText_invalid));
@@ -73,14 +75,14 @@ public class EventListFragment extends AbstractDataListFragment<EventDataStorage
     }
 
     @Override
-    protected Intent intentForEditDataActivity() {
-        return new Intent(getContext(), EditEventActivity.class);
+    public Intent intentForEditDataActivity() {
+        return new Intent(getContext(), EditConditionActivity.class);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         //noinspection ConstantConditions
-        if (LocalPluginRegistry.getInstance().event().getEnabledPlugins(getContext()).size() == 0) {
+        if (LocalPluginRegistry.getInstance().condition().getEnabledPlugins(getContext()).size() == 0) {
             FloatingActionButton fab = view.findViewById(R.id.fab);
             fab.hide();
         }

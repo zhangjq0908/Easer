@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui.data;
+package ryey.easer.core.ui.data.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,11 +39,12 @@ import ryey.easer.core.AsyncHelper;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.storage.ProfileDataStorage;
+import ryey.easer.core.ui.data.AbstractDataListFragment;
 import ryey.easer.plugins.LocalPluginRegistry;
 import ryey.easer.plugins.operation.state_control.StateControlOperationData;
 import ryey.easer.plugins.operation.state_control.StateControlOperationPlugin;
 
-public class ProfileListFragment extends AbstractDataListFragment<ProfileDataStorage> {
+public class ProfileListFragment extends AbstractDataListFragment {
 
     static {
         TAG = "[ProfileListFragment] ";
@@ -51,13 +52,14 @@ public class ProfileListFragment extends AbstractDataListFragment<ProfileDataSto
 
     AsyncHelper.DelayedLoadProfileJobsWrapper loadProfileJobWrapper = new AsyncHelper.DelayedLoadProfileJobsWrapper();
 
+    @NonNull
     @Override
-    protected String title() {
+    public String title() {
         return getString(R.string.title_profile);
     }
 
     @Override
-    protected int helpTextRes() {
+    public int helpTextRes() {
         return R.string.help_profile;
     }
 
@@ -120,7 +122,7 @@ public class ProfileListFragment extends AbstractDataListFragment<ProfileDataSto
     }
 
     @Override
-    protected Intent intentForEditDataActivity() {
+    public Intent intentForEditDataActivity() {
         return new Intent(getActivity(), EditProfileActivity.class);
     }
 

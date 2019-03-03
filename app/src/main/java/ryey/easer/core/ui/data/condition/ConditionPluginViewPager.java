@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui.data;
+package ryey.easer.core.ui.data.condition;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -34,62 +34,63 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ryey.easer.commons.local_plugin.InvalidDataInputException;
-import ryey.easer.commons.local_plugin.eventplugin.EventData;
-import ryey.easer.commons.local_plugin.eventplugin.EventPlugin;
+import ryey.easer.commons.local_plugin.conditionplugin.ConditionData;
+import ryey.easer.commons.local_plugin.conditionplugin.ConditionPlugin;
+import ryey.easer.core.ui.data.PluginViewContainerFragment;
 import ryey.easer.plugins.LocalPluginRegistry;
 
-public class EventPluginViewPager extends ViewPager {
+public class ConditionPluginViewPager extends ViewPager {
 
     MyPagerAdapter mPagerAdapter;
 
-    final List<EventPlugin> eventPluginList = new ArrayList<>();
+    final List<ConditionPlugin> conditionPluginList = new ArrayList<>();
 
     Integer initial_position = null;
-    EventData initial_event_data = null;
+    ConditionData initial_condition_data = null;
 
-    public EventPluginViewPager(Context context) {
+    public ConditionPluginViewPager(Context context) {
         super(context);
     }
 
-    public EventPluginViewPager(Context context, AttributeSet attrs) {
+    public ConditionPluginViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
     void init(AppCompatActivity activity) {
-        eventPluginList.clear();
-        eventPluginList.addAll(LocalPluginRegistry.getInstance().event().getEnabledPlugins(activity));
+        conditionPluginList.clear();
+        conditionPluginList.addAll(LocalPluginRegistry.getInstance().condition().getEnabledPlugins(activity));
         mPagerAdapter = new MyPagerAdapter(activity.getSupportFragmentManager(), getContext());
         setAdapter(mPagerAdapter);
     }
 
-    <T extends EventData> void setEventData(T eventData) {
-        initial_event_data = eventData;
-        int i = getPluginIndex(eventData);
+    <T extends ConditionData> void setConditionData(T conditionData) {
+        initial_condition_data = conditionData;
+        int i = getPluginIndex(conditionData);
         initial_position = i;
         if (getCurrentItem() == i) {
             synchronized (this) {
                 //noinspection unchecked
-                EventPluginViewContainerFragment<T> fragment = mPagerAdapter.getRegisteredFragment(i);
+                ConditionPluginViewContainerFragment<T> fragment = mPagerAdapter.getRegisteredFragment(i);
                 if (fragment != null)
                     //noinspection unchecked
-                    fragment.fill((T) initial_event_data);
+                    fragment.fill((T) initial_condition_data);
             }
         } else {
             setCurrentItem(i);
         }
     }
 
-    EventData getEventData() throws InvalidDataInputException {
-        return getEventData(getCurrentItem());
+    ConditionData getConditionData() throws InvalidDataInputException {
+        return getConditionData(getCurrentItem());
     }
 
-    EventData getEventData(int position) throws InvalidDataInputException {
+    ConditionData getConditionData(int position) throws InvalidDataInputException {
         return mPagerAdapter.getRegisteredFragment(position).getData();
     }
 
-    private int getPluginIndex(EventData eventData) {
-        for (int i = 0; i < eventPluginList.size(); i++) {
-            if (eventData.getClass() == eventPluginList.get(i).dataFactory().dataClass())
+    private int getPluginIndex(ConditionData conditionData) {
+        for (int i = 0; i < conditionPluginList.size(); i++) {
+            if (conditionData.getClass() == conditionPluginList.get(i).dataFactory().dataClass())
                 return i;
         }
         throw new IllegalAccessError("Plugin not found???");
@@ -97,7 +98,7 @@ public class EventPluginViewPager extends ViewPager {
 
     class MyPagerAdapter extends FragmentStatePagerAdapter {
 
-        SparseArray<EventPluginViewContainerFragment> registeredFragments = new SparseArray<>();
+        SparseArray<ConditionPluginViewContainerFragment> registeredFragments = new SparseArray<>();
 
         private final Context context;
         final String[] titles;
@@ -105,16 +106,16 @@ public class EventPluginViewPager extends ViewPager {
         public MyPagerAdapter(FragmentManager fm, Context context) {
             super(fm);
             this.context = context;
-            titles = new String[eventPluginList.size()];
-            for (int i = 0; i < eventPluginList.size(); i++) {
-                titles[i] = eventPluginList.get(i).view().desc(getResources());
+            titles = new String[conditionPluginList.size()];
+            for (int i = 0; i < conditionPluginList.size(); i++) {
+                titles[i] = conditionPluginList.get(i).view().desc(getResources());
             }
         }
 
         @Override
         public Fragment getItem(int position) {
-            PluginViewContainerFragment fragment = EventPluginViewContainerFragment.createInstance(
-                    eventPluginList.get(position));
+            PluginViewContainerFragment fragment = ConditionPluginViewContainerFragment.createInstance(
+                    conditionPluginList.get(position));
             return fragment;
         }
 
@@ -131,11 +132,11 @@ public class EventPluginViewPager extends ViewPager {
         @NonNull
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            EventPluginViewContainerFragment fragment = (EventPluginViewContainerFragment) super.instantiateItem(container, position);
-            synchronized (EventPluginViewPager.this) {
+            ConditionPluginViewContainerFragment fragment = (ConditionPluginViewContainerFragment) super.instantiateItem(container, position);
+            synchronized (ConditionPluginViewPager.this) {
                 if ((initial_position != null) && (position == initial_position)) {
                     //noinspection unchecked
-                    fragment.fill(initial_event_data);
+                    fragment.fill(initial_condition_data);
                 }
             }
             registeredFragments.put(position, fragment);
@@ -148,7 +149,7 @@ public class EventPluginViewPager extends ViewPager {
             super.destroyItem(container, position, object);
         }
 
-        public EventPluginViewContainerFragment getRegisteredFragment(int position) {
+        public ConditionPluginViewContainerFragment getRegisteredFragment(int position) {
             return registeredFragments.get(position);
         }
     }

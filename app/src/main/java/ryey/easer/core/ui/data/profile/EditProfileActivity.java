@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui.data;
+package ryey.easer.core.ui.data.profile;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -42,6 +42,7 @@ import ryey.easer.core.RemotePluginCommunicationHelper;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.storage.ProfileDataStorage;
+import ryey.easer.core.ui.data.AbstractEditDataActivity;
 import ryey.easer.plugins.LocalPluginRegistry;
 import ryey.easer.remote_plugin.RemoteOperationData;
 
@@ -82,7 +83,7 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
     }
 
     @Override
-    void init() {
+    protected void init() {
         editText_profile_name = findViewById(R.id.editText_profile_title);
         operationSelectorFragment = new OperationSelectorFragment();
         operationSelectorFragment.setSelectedListener(this);

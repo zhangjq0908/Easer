@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui.data;
+package ryey.easer.core.ui.data.event;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,33 +31,35 @@ import java.util.List;
 
 import ryey.easer.R;
 import ryey.easer.core.EHService;
-import ryey.easer.core.data.ConditionStructure;
-import ryey.easer.core.data.storage.ConditionDataStorage;
+import ryey.easer.core.data.EventStructure;
+import ryey.easer.core.data.storage.EventDataStorage;
+import ryey.easer.core.ui.data.AbstractDataListFragment;
 import ryey.easer.plugins.LocalPluginRegistry;
 
-public class ConditionListFragment extends AbstractDataListFragment<ConditionDataStorage> {
+public class EventListFragment extends AbstractDataListFragment {
 
     static {
-        TAG = "[ScriptListFragment] ";
+        TAG = "[EventListFragment] ";
+    }
+
+    @NonNull
+    @Override
+    public String title() {
+        return getString(R.string.title_event);
     }
 
     @Override
-    protected String title() {
-        return getString(R.string.title_condition);
-    }
-
-    @Override
-    protected int helpTextRes() {
-        return R.string.help_condition;
+    public int helpTextRes() {
+        return R.string.help_event;
     }
 
     @Override
     protected List<ListDataWrapper> queryDataList() {
-        ConditionDataStorage dataStorage = new ConditionDataStorage(getContext());
+        EventDataStorage dataStorage = new EventDataStorage(getContext());
         List<ListDataWrapper> dataWrapperList = new ArrayList<>();
         for (String name : dataStorage.list()) {
-            ConditionStructure condition = dataStorage.get(name);
-            if (condition.isValid()) {
+            EventStructure scenario = dataStorage.get(name);
+            if (scenario.isValid()) {
                 dataWrapperList.add(new ListDataWrapper(name));
             } else {
                 dataWrapperList.add(new ListDataWrapper(name, R.color.colorText_invalid));
@@ -73,14 +75,14 @@ public class ConditionListFragment extends AbstractDataListFragment<ConditionDat
     }
 
     @Override
-    protected Intent intentForEditDataActivity() {
-        return new Intent(getContext(), EditConditionActivity.class);
+    public Intent intentForEditDataActivity() {
+        return new Intent(getContext(), EditEventActivity.class);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         //noinspection ConstantConditions
-        if (LocalPluginRegistry.getInstance().condition().getEnabledPlugins(getContext()).size() == 0) {
+        if (LocalPluginRegistry.getInstance().event().getEnabledPlugins(getContext()).size() == 0) {
             FloatingActionButton fab = view.findViewById(R.id.fab);
             fab.hide();
         }

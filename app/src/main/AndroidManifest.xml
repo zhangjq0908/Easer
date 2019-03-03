@@ -72,8 +72,8 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".core.ui.data.EditScriptActivity" />
-        <activity android:name=".core.ui.data.EditProfileActivity" />
+        <activity android:name=".core.ui.data.script.EditScriptActivity" />
+        <activity android:name=".core.ui.data.profile.EditProfileActivity" />
         <activity
             android:name=".plugins.operation.brightness.DumbSettingBrightnessActivity"
             android:excludeFromRecents="true"
@@ -120,7 +120,7 @@
             android:enabled="true"
             android:exported="false" />
 
-        <activity android:name=".core.ui.data.EditEventActivity" />
+        <activity android:name=".core.ui.data.event.EditEventActivity" />
 
         <service
             android:name=".plugins.operation.media_control.MediaControlHelperNotificationListenerService"
@@ -131,7 +131,7 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".core.ui.data.EditConditionActivity" />
+        <activity android:name=".core.ui.data.condition.EditConditionActivity" />
 
         <receiver
             android:name=".core.UpgradeCompleteReceiver"
@@ -148,11 +148,11 @@
             android:exported="false" />
 
         <activity
-            android:name=".core.ui.data.ListDynamicsActivity"
+            android:name=".core.ui.data.script.ListDynamicsActivity"
             android:excludeFromRecents="true"
             android:label="@string/title_dynamics_link" />
         <activity
-            android:name=".core.ui.data.ListDynamicsActivity$EditDynamicsActivity"
+            android:name=".core.ui.data.script.ListDynamicsActivity$EditDynamicsActivity"
             android:excludeFromRecents="true"
             android:label="@string/title_new_dynamics_link" />
 

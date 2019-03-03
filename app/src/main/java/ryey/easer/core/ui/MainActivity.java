@@ -42,10 +42,8 @@ import android.widget.TextView;
 
 import ryey.easer.R;
 import ryey.easer.core.data.storage.StorageHelper;
-import ryey.easer.core.ui.data.ConditionListFragment;
-import ryey.easer.core.ui.data.EventListFragment;
-import ryey.easer.core.ui.data.ProfileListFragment;
-import ryey.easer.core.ui.data.ScriptListFragment;
+import ryey.easer.core.ui.data.DataListContainerFragment;
+import ryey.easer.core.ui.data.DataListContainerInterface;
 import ryey.easer.core.ui.setting.SettingsActivity;
 
 public class MainActivity extends AppCompatActivity
@@ -164,34 +162,15 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.content_main, fragment, tag)
                     .addToBackStack(bs_tag)
                     .commit();
-        } else if (id == R.id.nav_profile) {
+        } else if (id == R.id.nav_profile || id == R.id.nav_script || id == R.id.nav_scenario || id == R.id.nav_condition) {
             fragment = manager.findFragmentByTag(tag);
-            if (fragment == null)
-                fragment = new ProfileListFragment();
-            manager.beginTransaction()
-                    .replace(R.id.content_main, fragment, tag)
-                    .addToBackStack(bs_tag)
-                    .commit();
-        } else if (id == R.id.nav_script) {
-            fragment = manager.findFragmentByTag(tag);
-            if (fragment == null)
-                fragment = new ScriptListFragment();
-            manager.beginTransaction()
-                    .replace(R.id.content_main, fragment, tag)
-                    .addToBackStack(bs_tag)
-                    .commit();
-        } else if (id == R.id.nav_scenario) {
-            fragment = manager.findFragmentByTag(tag);
-            if (fragment == null)
-                fragment = new EventListFragment();
-            manager.beginTransaction()
-                    .replace(R.id.content_main, fragment, tag)
-                    .addToBackStack(bs_tag)
-                    .commit();
-        } else if (id == R.id.nav_condition) {
-            fragment = manager.findFragmentByTag(tag);
-            if (fragment == null)
-                fragment = new ConditionListFragment();
+            if (fragment == null) {
+                DataListContainerFragment.ListType listType = navTag.listType(id);
+                if (listType == null) {
+                    throw new IllegalStateException(String.format("ListType with mismatched layout id: %s", id));
+                }
+                fragment = DataListContainerFragment.create(listType);
+            }
             manager.beginTransaction()
                     .replace(R.id.content_main, fragment, tag)
                     .addToBackStack(bs_tag)
@@ -230,6 +209,14 @@ public class MainActivity extends AppCompatActivity
                 FRAGMENT_CONDITION,
                 FRAGMENT_LOG,
         };
+        private static final DataListContainerFragment.ListType[] fragment_list_types = {
+                null,
+                DataListContainerInterface.ListType.script,
+                DataListContainerInterface.ListType.profile,
+                DataListContainerInterface.ListType.event,
+                DataListContainerInterface.ListType.condition,
+                null,
+        };
 
         private @Nullable Integer findId(String tag) {
             for (int i = 0; i < nav_ids.length; i++) {
@@ -242,6 +229,16 @@ public class MainActivity extends AppCompatActivity
             for (int i = 0; i < fragment_tags.length; i++) {
                 if (id == nav_ids[i])
                     return fragment_tags[i];
+            }
+            return null;
+        }
+
+        private @Nullable
+        DataListContainerFragment.ListType listType(int id) {
+            for (int i = 0; i < fragment_list_types.length; i++) {
+                if (id == nav_ids[i]) {
+                    return fragment_list_types[i];
+                }
             }
             return null;
         }

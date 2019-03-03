@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,10 +17,10 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui.data;
+package ryey.easer.core.ui.data.script;
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
+import android.support.annotation.NonNull;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -32,40 +32,38 @@ import ryey.easer.R;
 import ryey.easer.core.EHService;
 import ryey.easer.core.data.ScriptStructure;
 import ryey.easer.core.data.storage.ScriptDataStorage;
-import ryey.easer.core.ui.data.script_tree_list.ScriptTreeListFragment;
+import ryey.easer.core.ui.data.AbstractDataListFragment;
+import ryey.easer.core.ui.data.DataListContainerInterface;
 
-public class ScriptListFragment extends AbstractDataListFragment<ScriptDataStorage> {
+public class ScriptListFragment extends AbstractDataListFragment {
 
     static {
         TAG = "[ScriptListFragment] ";
     }
 
+    @NonNull
     @Override
-    protected String title() {
+    public String title() {
         return getString(R.string.title_script);
     }
 
     @Override
-    protected int helpTextRes() {
+    public int helpTextRes() {
         return R.string.help_script;
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.list_script_extra, menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_tree_list) {
-            Fragment fragment = new ScriptTreeListFragment();
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.content_main, fragment)
-                    .commit();
+            container.switchContent(DataListContainerInterface.ListType.script_tree);
             return true;
         }
-        return super.onOptionsItemSelected(item);
+        return false;
     }
 
     @Override
@@ -94,7 +92,7 @@ public class ScriptListFragment extends AbstractDataListFragment<ScriptDataStora
     }
 
     @Override
-    protected Intent intentForEditDataActivity() {
+    public Intent intentForEditDataActivity() {
         return new Intent(getActivity(), EditScriptActivity.class);
     }
 }

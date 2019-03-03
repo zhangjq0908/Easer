@@ -17,23 +17,25 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui.data.script_tree_list;
+package ryey.easer.core.ui.data.script.script_tree_list;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,14 +43,18 @@ import java.util.List;
 import ryey.easer.R;
 import ryey.easer.core.data.ScriptTree;
 import ryey.easer.core.data.storage.ScriptDataStorage;
-import ryey.easer.core.ui.data.EditDataProto;
-import ryey.easer.core.ui.data.EditScriptActivity;
+import ryey.easer.core.ui.data.DataListContainerFragment;
+import ryey.easer.core.ui.data.DataListContainerInterface;
+import ryey.easer.core.ui.data.DataListInterface;
+import ryey.easer.core.ui.data.script.EditScriptActivity;
 import tellh.com.recyclertreeview_lib.TreeNode;
 import tellh.com.recyclertreeview_lib.TreeViewAdapter;
 
-public class ScriptTreeListFragment extends Fragment {
+public class ScriptTreeListFragment extends Fragment implements DataListInterface {
 
-    private static final int request_code = 0;
+    private static final String TAG = "[ScriptTreeList]";
+
+    DataListContainerInterface container;
 
     ScriptDataStorage scriptDataStorage;
 
@@ -57,6 +63,31 @@ public class ScriptTreeListFragment extends Fragment {
     List<TreeNode> scriptTreeNodeList;
 
     private EventItem mCurrentEventItem;
+
+    @NonNull
+    @Override
+    public String title() {
+        return getString(R.string.title_script);
+    }
+
+    @Override
+    public int helpTextRes() {
+        return R.string.help_script;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.list_script_tree_extra, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_plain_list) {
+            container.switchContent(DataListContainerInterface.ListType.script);
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -67,16 +98,7 @@ public class ScriptTreeListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getActivity().setTitle(R.string.title_script);
         View view = inflater.inflate(R.layout.fragment_script_tree_list, container, false);
-
-        FloatingActionButton fab = view.findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                beginNewData();
-            }
-        });
 
         recyclerView = view.findViewById(R.id.recyclerView_script);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -118,6 +140,10 @@ public class ScriptTreeListFragment extends Fragment {
             }
         });
 
+        getActivity().setTitle(title());
+
+        setHasOptionsMenu(true);
+
         return view;
     }
 
@@ -125,6 +151,14 @@ public class ScriptTreeListFragment extends Fragment {
         scriptTreeNodeList.clear();
         scriptTreeNodeList = convertScriptTreeToView(scriptDataStorage.getScriptTrees(), scriptTreeNodeList);
         adapter.refresh(scriptTreeNodeList);
+
+        if (adapter.getItemCount() == 0) {
+            Logger.d("%s: no item", TAG);
+            container.setShowHelp(true);
+        } else {
+            Logger.d("%s: has item", TAG);
+            container.setShowHelp(false);
+        }
     }
 
     @Override
@@ -139,10 +173,10 @@ public class ScriptTreeListFragment extends Fragment {
         int id = item.getItemId();
         switch (id) {
             case R.id.action_edit:
-                beginEditData(name);
+                container.editData(name);
                 return true;
             case R.id.action_delete:
-                begingDeleteData(name);
+                container.deleteData(name);
                 return true;
         }
         return super.onContextItemSelected(item);
@@ -163,34 +197,20 @@ public class ScriptTreeListFragment extends Fragment {
         return nodes;
     }
 
-    Intent intentForEditDataActivity() {
-        return new Intent(getContext(), EditScriptActivity.class);
-    }
-
-    private void beginNewData() {
-        Intent intent = intentForEditDataActivity();
-        intent.putExtra(EditDataProto.PURPOSE, EditDataProto.Purpose.add);
-        startActivityForResult(intent, request_code);
-    }
-    private void beginEditData(String name) {
-        Intent intent = intentForEditDataActivity();
-        intent.putExtra(EditDataProto.PURPOSE, EditDataProto.Purpose.edit);
-        intent.putExtra(EditDataProto.CONTENT_NAME, name);
-        startActivityForResult(intent, request_code);
-    }
-    private void begingDeleteData(String name) {
-        Intent intent = intentForEditDataActivity();
-        intent.putExtra(EditDataProto.PURPOSE, EditDataProto.Purpose.delete);
-        intent.putExtra(EditDataProto.CONTENT_NAME, name);
-        startActivityForResult(intent, request_code);
+    @Override
+    public void registerContainer(@NonNull DataListContainerFragment container) {
+        this.container = container;
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == request_code) {
-            if (resultCode == Activity.RESULT_OK) {
-                onDataChangedFromEditDataActivity();
-            }
+    public Intent intentForEditDataActivity() {
+        return new Intent(getContext(), EditScriptActivity.class);
+    }
+
+    @Override
+    public void onEditDataResultCallback(boolean success) {
+        if (success) {
+            onDataChangedFromEditDataActivity();
         }
     }
 

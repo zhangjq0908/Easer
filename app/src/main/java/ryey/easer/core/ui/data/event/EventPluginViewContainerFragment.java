@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui.data;
+package ryey.easer.core.ui.data.event;
 
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -29,18 +29,19 @@ import android.view.ViewGroup;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_plugin.InvalidDataInputException;
-import ryey.easer.commons.local_plugin.conditionplugin.ConditionData;
-import ryey.easer.commons.local_plugin.conditionplugin.ConditionPlugin;
+import ryey.easer.commons.local_plugin.eventplugin.EventData;
+import ryey.easer.commons.local_plugin.eventplugin.EventPlugin;
+import ryey.easer.core.ui.data.PluginViewContainerFragment;
 import ryey.easer.plugins.LocalPluginRegistry;
 
-public class ConditionPluginViewContainerFragment<T extends ConditionData> extends PluginViewContainerFragment<T> {
+public class EventPluginViewContainerFragment<T extends EventData> extends PluginViewContainerFragment<T> {
 
     private static final String EXTRA_PLUGIN = "plugin";
 
-    static <T extends ConditionData> ConditionPluginViewContainerFragment<T> createInstance(ConditionPlugin<T> plugin) {
+    static <T extends EventData> EventPluginViewContainerFragment<T> createInstance(EventPlugin<T> plugin) {
         Bundle bundle = new Bundle();
         bundle.putString(EXTRA_PLUGIN, plugin.id());
-        ConditionPluginViewContainerFragment<T> fragment = new ConditionPluginViewContainerFragment<>();
+        EventPluginViewContainerFragment<T> fragment = new EventPluginViewContainerFragment<>();
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -49,14 +50,14 @@ public class ConditionPluginViewContainerFragment<T extends ConditionData> exten
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String plugin_id = getArguments().getString(EXTRA_PLUGIN);
-        @SuppressWarnings("unchecked") ConditionPlugin<T> plugin = LocalPluginRegistry.getInstance().condition().findPlugin(plugin_id);
+        @SuppressWarnings("unchecked") EventPlugin<T> plugin = LocalPluginRegistry.getInstance().event().findPlugin(plugin_id);
         pluginViewFragment = plugin.view();
     }
 
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_pluginview_condition, container, false);
+        View v = inflater.inflate(R.layout.fragment_pluginview_event, container, false);
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.content_pluginview, pluginViewFragment)
                 .commit();
@@ -66,7 +67,7 @@ public class ConditionPluginViewContainerFragment<T extends ConditionData> exten
     @Override
     public void onStart() {
         super.onStart();
-        ConditionPlugin plugin = LocalPluginRegistry.getInstance().condition().findPlugin(pluginViewFragment);
+        EventPlugin plugin = LocalPluginRegistry.getInstance().event().findPlugin(pluginViewFragment);
         //noinspection ConstantConditions
         if (!plugin.checkPermissions(getContext())) {
             setEnabled(false);
@@ -93,7 +94,7 @@ public class ConditionPluginViewContainerFragment<T extends ConditionData> exten
      */
     @NonNull
     @Override
-    T getData() throws InvalidDataInputException {
+    public T getData() throws InvalidDataInputException {
         return super.getData();
     }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui.data;
+package ryey.easer.core.ui.data.profile;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -35,13 +35,14 @@ import ryey.easer.R;
 import ryey.easer.commons.local_plugin.InvalidDataInputException;
 import ryey.easer.core.RemotePluginCommunicationHelper;
 import ryey.easer.core.RemotePluginInfo;
+import ryey.easer.core.ui.data.AbstractPluginDataFragment;
 import ryey.easer.remote_plugin.RemoteOperationData;
 import ryey.easer.remote_plugin.RemotePlugin;
 
 public class RemoteOperationPluginViewContainerFragment extends AbstractPluginDataFragment<RemoteOperationData> {
 
-    public static final String ARG_ID = "ryey.easer.core.ui.data.RemoteOperationPluginViewContainerFragment.args.ID";
-    public static final String ARG_DATA = "ryey.easer.core.ui.data.RemoteOperationPluginViewContainerFragment.args.TYPE";
+    public static final String ARG_ID = "ryey.easer.core.ui.data.profile.RemoteOperationPluginViewContainerFragment.args.ID";
+    public static final String ARG_DATA = "ryey.easer.core.ui.data.profile.RemoteOperationPluginViewContainerFragment.args.TYPE";
 
     public static RemoteOperationPluginViewContainerFragment createInstance(String pluginId, @Nullable RemoteOperationData data) {
         RemoteOperationPluginViewContainerFragment fragment = new RemoteOperationPluginViewContainerFragment();
@@ -124,7 +125,7 @@ public class RemoteOperationPluginViewContainerFragment extends AbstractPluginDa
 
     @NonNull
     @Override
-    RemoteOperationData getData() throws InvalidDataInputException {
+    public RemoteOperationData getData() throws InvalidDataInputException {
         if (mCheckBox.isChecked()) {
             if (passed_data != null)
                 return passed_data;

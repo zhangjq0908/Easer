@@ -123,5 +123,6 @@
     <string name="category_operation_android">Android</string>
     <string name="text_notification_running_indicator_content">%s正在後臺運行</string>
     <string name="menu_tree_list">樹狀列表</string>
+    <string name="menu_plain_list">平鋪列表</string>
 
 </resources>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui.data;
+package ryey.easer.core.ui.data.event;
 
 import android.widget.EditText;
 
@@ -27,6 +27,7 @@ import ryey.easer.commons.local_plugin.InvalidDataInputException;
 import ryey.easer.commons.local_plugin.eventplugin.EventData;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.storage.EventDataStorage;
+import ryey.easer.core.ui.data.AbstractEditDataActivity;
 
 public class EditEventActivity extends AbstractEditDataActivity<EventStructure, EventDataStorage> {
 

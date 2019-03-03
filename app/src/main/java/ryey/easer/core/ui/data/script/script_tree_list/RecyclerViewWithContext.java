@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui.data.script_tree_list;
+package ryey.easer.core.ui.data.script.script_tree_list;
 
 import android.content.Context;
 import android.support.annotation.Nullable;

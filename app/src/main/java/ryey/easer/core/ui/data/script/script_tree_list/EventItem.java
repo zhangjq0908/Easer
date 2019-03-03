@@ -17,27 +17,21 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui.data;
+package ryey.easer.core.ui.data.script.script_tree_list;
 
+import ryey.easer.R;
+import tellh.com.recyclertreeview_lib.LayoutItemType;
 
-import android.support.annotation.NonNull;
+public final class EventItem implements LayoutItemType {
 
-import ryey.easer.commons.local_plugin.InvalidDataInputException;
-import ryey.easer.commons.local_plugin.PluginViewFragmentInterface;
-import ryey.easer.commons.local_plugin.StorageData;
+    String eventName;
 
-public abstract class PluginViewContainerFragment<T extends StorageData> extends AbstractPluginDataFragment<T> {
-
-    protected PluginViewFragmentInterface<T> pluginViewFragment = null;
-
-    @Override
-    protected void _fill(@NonNull T data) {
-        pluginViewFragment.fill(data);
+    public EventItem(String eventName) {
+        this.eventName = eventName;
     }
 
     @Override
-    @NonNull
-    public T getData() throws InvalidDataInputException {
-        return pluginViewFragment.getData();
+    public int getLayoutId() {
+        return R.layout.item_script_data_parent;
     }
 }

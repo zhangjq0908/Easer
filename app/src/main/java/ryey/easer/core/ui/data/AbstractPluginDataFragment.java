@@ -53,7 +53,7 @@ public abstract class AbstractPluginDataFragment<T> extends Fragment {
 
     abstract protected void _fill(@NonNull T data);
 
-    void fill(@Nullable T data) {
+    public void fill(@Nullable T data) {
         if (data != null) {
             passed_data = data;
             if (getView() != null) {
@@ -63,9 +63,9 @@ public abstract class AbstractPluginDataFragment<T> extends Fragment {
     }
 
     @NonNull
-    abstract T getData() throws InvalidDataInputException;
+    public abstract T getData() throws InvalidDataInputException;
 
-    void setHighlight(boolean state) {
+    public void setHighlight(boolean state) {
         if (state) {
             getView().setBackgroundResource(R.drawable.boarder_alert);
         } else {

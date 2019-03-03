@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,21 +17,24 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui.data.script_tree_list;
+package ryey.easer.core.ui.data;
 
-import ryey.easer.R;
-import tellh.com.recyclertreeview_lib.LayoutItemType;
+import android.support.annotation.NonNull;
 
-public final class EventItem implements LayoutItemType {
+public interface DataListContainerInterface {
+    void setShowHelp(boolean show);
 
-    String eventName;
+    void newData();
+    void editData(@NonNull String name);
+    void deleteData(@NonNull String name);
 
-    public EventItem(String eventName) {
-        this.eventName = eventName;
-    }
+    void switchContent(@NonNull DataListContainerFragment.ListType type);
 
-    @Override
-    public int getLayoutId() {
-        return R.layout.item_script_data_parent;
+    enum ListType {
+        script,
+        script_tree,
+        event,
+        condition,
+        profile,
     }
 }

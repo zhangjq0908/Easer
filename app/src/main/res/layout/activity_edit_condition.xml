@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".core.ui.data.EditConditionActivity">
+    tools:context=".core.ui.data.condition.EditConditionActivity">
 
     <TextView
         android:id="@+id/textView38"
@@ -31,7 +31,7 @@
         app:layout_constraintStart_toEndOf="@+id/textView38"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ryey.easer.core.ui.data.ConditionPluginViewPager
+    <ryey.easer.core.ui.data.condition.ConditionPluginViewPager
         android:id="@+id/pager"
         style="@style/AppTheme.PluginViewPager"
         android:layout_width="wrap_content"
@@ -48,6 +48,6 @@
             android:paddingBottom="4dp"
             android:paddingTop="4dp"
             android:textColor="#fff" />
-    </ryey.easer.core.ui.data.ConditionPluginViewPager>
+    </ryey.easer.core.ui.data.condition.ConditionPluginViewPager>
 
 </android.support.constraint.ConstraintLayout>

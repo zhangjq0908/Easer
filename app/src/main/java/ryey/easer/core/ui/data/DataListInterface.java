@@ -19,25 +19,21 @@
 
 package ryey.easer.core.ui.data;
 
-
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 
-import ryey.easer.commons.local_plugin.InvalidDataInputException;
-import ryey.easer.commons.local_plugin.PluginViewFragmentInterface;
-import ryey.easer.commons.local_plugin.StorageData;
+public interface DataListInterface {
 
-public abstract class PluginViewContainerFragment<T extends StorageData> extends AbstractPluginDataFragment<T> {
+    void registerContainer(@NonNull DataListContainerFragment container);
 
-    protected PluginViewFragmentInterface<T> pluginViewFragment = null;
-
-    @Override
-    protected void _fill(@NonNull T data) {
-        pluginViewFragment.fill(data);
-    }
-
-    @Override
     @NonNull
-    public T getData() throws InvalidDataInputException {
-        return pluginViewFragment.getData();
-    }
+    String title();
+
+    @StringRes
+    int helpTextRes();
+
+    Intent intentForEditDataActivity();
+
+    void onEditDataResultCallback(boolean success);
 }
