@@ -4,5 +4,6 @@
 
     <item
         android:id="@+id/action_tree_list"
-        android:title="@string/menu_tree_list" />
+        android:title="@string/menu_tree_list"
+        app:showAsAction="ifRoom" />
 </menu>
