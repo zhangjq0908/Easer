@@ -3,8 +3,13 @@ CHANGELOG
 
 * v0.7.2: Tree List support && Translation update
 	* Add tree list support for Script
-	* French Translation update
-	* ...
+	* Translations update
+	* New translations:
+		* Dutch
+		* Russian
+	* Localized Chinese for Taiwan variant through Weblate
+		* Note: as described in the README.md, OpenCC will be used for localized Chinese variants. Changes made on Weblate may be lost later.
+	* Small code refinement
 
 * v0.7.1.1: Bug fixes && Translation update
 	* Fix AirplaneMode not correctly working

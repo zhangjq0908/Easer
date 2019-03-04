@@ -1,0 +1,10 @@
+Formally support tree view for Script && Translation update
+
+* Add tree list support for Script
+* Translations update
+* New translations:
+	* Dutch
+	* Russian
+* Localized Chinese for Taiwan variant through Weblate
+	* Note: as described in the README.md, OpenCC will be used for localized Chinese variants. Changes made on Weblate may be lost later.
+* Small code refinement
