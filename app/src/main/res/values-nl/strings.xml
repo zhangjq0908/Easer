@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources><string name="easer">Easer</string>
+    <string name="app_name">\@string/easer</string>
+    <string name="drawer_tip">Verreenvoudig uw leven!</string>
+    <string name="title_outline">Overzicht</string>
+    <string name="title_operation">Handeling/Bewerking</string>
+    <string name="title_profile">Profiel</string>
+    <string name="title_event">Gebeurtenis</string>
+    <string name="title_script">Script</string>
+    <string name="title_condition">Conditie</string>
+    <string name="title_application">App</string>
+    <string name="title_activity_history">Activiteiten Geschiedenis</string>
+    <string name="title_about">Over</string>
+    <string name="title_setting">Instellingen</string>
+    <string name="title_add">Voeg toe</string>
+    <string name="title_edit">Bewerk</string>
+    <string name="title_delete">Verwijder</string>
+    <string name="title_edit_event">Bewerk Gebeurtenis</string>
+    <string name="title_edit_condition">Bewerk Conditie</string>
+    <string name="title_edit_profile">Bewerk Profiel</string>
+    <string name="title_select_operation">Bewerk een Handeling</string>
+    <string name="title_dynamics_link">Dynamics Link</string>
+    <string name="title_new_dynamics_link">New Dynamics Link</string>
+    <string name="title_trigger_profile">Activeer dit Profiel</string>
+    <string name="title_remote_operation_plugin">Externe Handeling Plugin</string>
+    <string name="menu_start">Start</string>
+    <string name="menu_stop">Stop</string>
+    <string name="menu_action_save">Opslaan</string>
+    <string name="menu_clear">Legen</string>
+    <string name="menu_tree_list">Boom weergave</string>
+    <string name="service_indicator_positive">In uitvoering</string>
+    <string name="service_indicator_negative">Niet in uitvoering</string>
+    <string name="activity_history__profile">\@string/title_profile</string>
+    <string name="activity_history__script">\@string/title_script</string>
+    <string name="activity_history__time">Tijd</string>
+    <string name="activity_history__extra">Extra Info</string>
+    <string name="activity_history__satisfaction">Status</string>
+    <string name="activity_history__satisfied">Tevreden</string>
+    <string name="activity_history__unsatisfied">Ontevreden</string>
+    <string name="activity_history__service">Service</string>
+    <string name="activity_history__status">Status</string>
+    <string name="activity_history__start">Start</string>
+    <string name="activity_history__stop">Stop</string>
+    <string name="null_content">LEGE INHOUD</string>
+    <string name="navigation_drawer_open">Open navigatie paneel</string>
+    <string name="navigation_drawer_close">Sluit navigatie paneel</string>
+    <string name="button_read_next_time">Lees volgende keer</string>
+    <string name="button_understand">Begrepen</string>
+    <string name="button_cancel">Annuleer</string>
+    <string name="button_ok">OK</string>
+    <string name="text_lack_permission">Easer heeft NIET alle benodigde toegangsrechten.</string>
+    <string name="button_request_permission">Ken toegang toe</string>
+    <string name="text_notification_running_indicator_content">%s wordt uitgevoerd in de achtergrond</string>
+    <string name="text_title">Titel</string>
+    <string name="text_parent_node">Ouder</string>
+    <string name="text_parent">Ouder</string>
+    <string name="text_profile">Profiel</string>
+    <string name="text_predefined_event">Voorgedefinieerde Gebeurtenis</string>
+    <string name="text_use_condition">Gebruik Conditie</string>
+    <string name="text_repeatable_desc">Herhaalbaar wanneer voldaan aan</string>
+    <string name="text_reverse_desc">Keer Scenario om</string>
+    <string name="text_volatile">Vluchtig</string>
+    <string name="text_persistent">Blijvend</string>
+    <string name="text_placeholder">Tijdelijke invulling</string>
+    <string name="toggle_active">Actief</string>
+    <string name="hint_event_title">gebeurtenis titel</string>
+    <string name="hint_script_title">script titel</string>
+    <string name="hint_profile_title">profiel titel</string>
+    <string name="hint_condition_title">conditie titel</string>
+    <string name="prompt_save_failed">Opslaan mislukt</string>
+    <string name="prompt_delete">Weet u zeker dat u %s wilt verwijderen\?</string>
+    <string name="prompt_delete_failed">Verwijdering mislukt. Controleer of dit item wordt gebruikt.</string>
+    <string name="prompt_data_illegal">Opslaan van data met incorrect(e) veld(en) voorkomen. Controleer alstublieft uw keuzes / invoer.</string>
+    <string name="prompt_prevented_for_permission">Easer heeft toegang &lt;%s&gt; nodig voor deze functie.</string>
+    <string name="appInformation">"Vereenvoudig uw leven door routine acties op uw telefoon te automatiseren.
+\n- Verbind verschillende gebeurtenissen en laat hun overeenkomstige acties uitvoeren. U hoeft dit niet zelf meer te onthouden!
+\n- Deze app is geinspireerd op het CyanogenMod \"profiel\" mechanisme en IFTTT.  De oorspronkelijke opzet was om automatisch profielen te wijzigen op bepaalde tijdstippen of WiFi verbindingen, en het is toen uitgebreid voor meer algemeen gebruik.
+\n- Notabene: Easer is nog steeds in ontwikkeling. Het kan fouten bevatten en de scherm layout moet zeker verbeterd worden. De huidige plannen staan beschreven in het TODO.en.md document (of TODO.md als je Chinees kunt lezen) in de repository. Als je geinteresseerd bent, lees het dan aub."</string>
+    <string name="liscence_stringa">"Dit programma is vrije software: je mag het herdistribueren en/of wijzigen onder de voorwaarden van de GNU Algemene Publieke Licentie zoals gepubliceerd door de Free Software Foundation, onder versie 3 van de Licentie of (naar jouw keuze) elke latere versie. "</string>
+    <string name="liscence_stringb">Dit programma is gedistribueerd in de hoop dat het nuttig zal zijn maar ZONDER ENIGE GARANTIE; zelfs zonder de impliciete garanties die GEBRUIKELIJK ZIJN IN DE HANDEL of voor BRUIKBAARHEID VOOR EEN SPECIFIEK DOEL. Zie de GNU Algemene Publieke Licentie voor meer details.</string>
+    <string name="liscence_stringc">"Je hoort een kopie van de GNU Algemene Publieke Licentie te hebben ontvangen samen met dit programma. Als dat niet het geval is, zie
+\n&lt;http://www.gnu.org/licenses/&gt;. "</string>
+    <string name="pref_category_functionality">Functionaliteit</string>
+    <string name="pref_category_personalise">Personaliseren</string>
+    <string name="pref_category_data_manage">Beheer data</string>
+    <string name="pref_category_service">Service</string>
+    <string name="pref_autostart_title">Automatisch starten bij boot</string>
+    <string name="pref_autostart_summary">Start de Easer achtergrond service automatisch</string>
+    <string name="pref_restart_after_upgrade_title">Start service na upgrade</string>
+    <string name="pref_welcome_title">Toon welkomstbericht</string>
+    <string name="pref_welcome_summary">Toon welkomstbericht bij starten app</string>
+    <string name="pref_logging_title">Maak externe logging mogelijk</string>
+    <string name="pref_logging_summary">Bewaar logs op externe opslagmedia (/sdcard/logger) om fout rapportage mogelijk te maken.
+\nAnpassing van deze instelling wordt actief na opnieuw startn van Easer.</string>
+    <string name="pref_use_root_title">Gebruik root mogelijkheden</string>
+    <string name="pref_use_root_summary">Gebruik root toegang voor specifieke functies (plugins) om mogelijke compatibiliteits problemen te omzeilen op sommige toestellen. Root toegang wordt niet elders gebruikt.</string>
+    <string name="pref_cooldown_title">Afkoel tijd</string>
+    <string name="pref_cooldown_summary">Minimale interval tussen twee triggers van dezelfde gebeurtenis</string>
+    <string name="cooldown_time_illformed">Het getal mag niet kleiner dan 0 zijn en niet groter dan een integer</string>
+    <string name="pref_passive_mode_title">Passieve modus</string>
+    <string name="pref_passive_mode_summary_on">Luister naar Gebeurtenis; geen check wanneer geactiveerd</string>
+    <string name="pref_enabled_plugins_title">Geactiveerde plugins</string>
+    <string name="pref_enabled_plugins_summary">Activeer of de-activeer bepaalde plugins</string>
+    <string name="pref_use_12_hour_clock_title">Gebruik 12-uurs tijd</string>
+    <string name="pref_export_title">Export</string>
+    <string name="pref_export_summary">Exporteer alle gebeurtenissen en profielen naar SD card.
+\nDe huidige tijd wordt de bestandsnaam.</string>
+    <string name="pref_import_title">Import</string>
+    <string name="pref_import_summary">Importeer alle geburtenissen en profielen uit een zip bestand.
+\nBestaande gebeurtenissen en profielen worden overschreven.</string>
+    <string name="pref_convert_data_title">Converteer data</string>
+    <string name="pref_convert_data_summary">Converteer alle data naar het aanbevolen formaat</string>
+    <string name="pref_show_notification_title">Toon notificatie</string>
+    <string name="pref_show_notification_summary">Toon een notificatie in de notificatie balk.</string>
+    <string name="pref_foreground_title">Voor de service in de achtergrond uit</string>
+    <string name="pref_foreground_summary">Maak het moeilijker voor het systeem om de service te stoppen. Dit toont een notificatie. Dit werkt niet op Android 8+ vanwege systeem vereisten.</string>
+    <string name="message_plugin_not_compatible">De plugin is niet compatibel met dit toestel.</string>
+    <string name="message_convert_data_start">Converteren van data.</string>
+    <string name="message_convert_data_finish">Geconverteerde data.</string>
+    <string name="message_convert_data_abort">Converteren van data afgebroken.</string>
+    <string name="message_convert_data_error">Fout opgetreden bij converteren van data. Bekijk aub de log voor details.</string>
+    <string name="title_welcome_message">Welkom</string>
+    <string name="welcome_message">Welkom bij Easer!
+\nWe hopen dat u deze app op prijs stelt :)
+\n
+\nLees dit alstublieft voor gebruikt:
+\n1. Geef Easer de benodigde toegangsrechten voordat u de relevante gebeurtenissen en profielen gebruikt.
+\n2. Gekoppelde gebeurtenissen zoals <a href="https://en.wikipedia.org/wiki/Tree_structure">trees</a> is OP DIT MOMENT de enige mogelijkheid om deze events samen te stellen. 
+\n
+\nLees alstublieft ook de <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> in de project wiki.</string>
+    <string name="alert_update_storage_data_title">Oude data versie gevonden</string>
+    <string name="alert_update_storage_data">Uw data werd gemaakt in een oudere versie. Het is aanbevolen over te gaan op de nieuwe versie omdat Easer anders mogelijk niet goed werkt. U kunt dit doen door te kiezen voor Converteer Data in de instellingen.</string>
+    <string name="template_export">Geexporteerd naar %s</string>
+    <string name="version">Versie</string>
+    <string name="message_importing_invalid_data">Dit bestand lijkt niet correct. Zorg ervoor dat u een bestand importeert dat eerder door Easer gexporteerd is.</string>
+    <string name="dynamics_time">Huidige Tijd</string>
+    <string name="dynamics_date">Huidige Datum</string>
+    <string name="dynamics_script_name">Script Naam</string>
+    <string name="dynamics_profile_name">Profiel Naam</string>
+    <string name="title_help">Help</string>
+    <string name="help_script">Script is de logische container. U verbindt een Gebeurtenis of Conditie met een Profiel in een Script, zodat Easer weet dat Profiel te laden/uit te voeren wanneer die Gebeurtenis optreedt of aan de Conditie wordt voldaan.
+\nEr zijn ook gevanceerdere functies zoals de omgekeerde Gebeurtenis.
+\n
+\nLees aub het <a href="https://github.com/renyuneyun/Easer/wiki">document</a> voor meer informatie.</string>
+    <string name="help_event">Een Gebeurtenis representeert een kortdurende gebeurtenis op uw telefoon of van een externe gebeurtenis.
+\nBijvoorbeeld: het ontvangen van een notificatie/bericht, of wanneer een NFC tag gescand wordt.
+\nLees aub het <a href="https://github.com/renyuneyun/Easer/wiki">document</a> voor meer informatie.</string>
+    <string name="help_condition">Een Conditie reprsenteert een langdurende (maar niet voor altijd) gebeurtenis op uw telefoon of extern.
+\nBijvoorbeeld: vrbonden aan WiFi, of het scherm staat uit.
+\nLees aub het <a href="https://github.com/renyuneyun/Easer/wiki">document</a> voor meer informatie.</string>
+    <string name="help_profile">Een profiel is een set aan Operaties. Elke operatie represneteert een specifiek type actie.
+\nBijvoorbeeld: Zet bluetooth aan of stuur een SMS.
+\nLees aub het <a href="https://github.com/renyuneyun/Easer/wiki">document</a> voor mer informatie.</string>
+    <string name="category_operation_android">Android</string>
+    <string name="category_operation_system_config">Systeem configuratie</string>
+    <string name="category_operation_easer">\@string/easer</string>
+    <string name="category_operation_misc">Diversen</string>
+    <string name="category_operation_unknown">Onbekend</string>
+</resources>

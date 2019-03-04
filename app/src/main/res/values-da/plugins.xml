@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="ev_condition_event">Tilstand hændelse</string>
@@ -95,7 +95,7 @@
     <string name="event_headset__microphone_false">Nej</string>
     <string name="event_headset__microphone_any">Enhver</string>
 
-    <string name="event_tcp_trip">TCP udløser</string>
+    <string name="event_tcp_trip">TCP rund-tur</string>
     <string name="remote_host">Fjern vært</string>
     <string name="send_data">Sende data</string>
     <string name="check_reply">Kontrollere svar</string>

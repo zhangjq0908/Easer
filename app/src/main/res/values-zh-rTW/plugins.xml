@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources><string name="ev_condition_event">條件事件</string>
+    <string name="condition_event_enter">輸入</string>
+    <string name="condition_event_leave">離開</string>
+    <string name="condition_headset__plugged_in">插入</string>
+    <string name="condition_wifi_enabled">啟用WiFi</string>
+    <string name="condition_wifi_enabled_wifi_is_enabled">WiFi已啟用？</string>
+    <string name="condition_bluetooth_enabled">藍牙已啟用</string>
+    <string name="condition_bluetooth_enabled_bluetooth_is_enabled">藍牙已啟用？</string>
+    <string name="condition__enabled_yes">是</string>
+    <string name="condition__enabled_no">否</string>
+    <string name="event_time">時間</string>
+    <string name="event_date">日期</string>
+    <string name="event_wificonn">WiFi連接</string>
+    <string name="wificonn_select_dialog_title">選擇WiFi AP</string>
+    <string name="wificonn_wait_for_result">等待WiFi掃描結果</string>
+    <string name="rel_after">之後</string>
+</resources>
