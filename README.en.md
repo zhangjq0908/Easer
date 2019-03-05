@@ -32,7 +32,7 @@ Details are described in [this document](https://renyuneyun.github.io/Easer/en/E
 *Remote Plugin* is introduced in v0.7, aiming at using standalone applications to extend Easer's functionality.
 Each *remote plugin* is a stanalone app; it is in theory also possible to include multiple *remote plugins* in one app. Note this feature is rather new and the interface might not be stable yet (though it's unlikely the interface will change much).
 
-Currently, only *Operation* can be extended as *remote plugins*. [This repo] is an example implementation of *remote operation plugin*, as well as documents. Better documentations are also welcome.
+Currently, only *Operation* can be extended as *remote plugins*. [This repo](https://github.com/renyuneyun/EaserOperationPluginExample) is an example implementation of *remote operation plugin*, as well as documents. Better documentations are also welcome.
 
 
 Support Easer
