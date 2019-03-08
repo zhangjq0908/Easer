@@ -47,10 +47,7 @@ class BroadcastOperationDataFactory implements OperationDataFactory<BroadcastOpe
         intentData.type = "myType";
         intentData.data = Uri.parse("myprot://seg1/seg2");
         intentData.extras = new ArrayList<>();
-        IntentData.ExtraItem extraItem = new IntentData.ExtraItem();
-        extraItem.key = "extra_key1";
-        extraItem.value = "extra_value1";
-        extraItem.type = "string";
+        IntentData.ExtraItem extraItem = new IntentData.ExtraItem("extra_key1", "extra_value1", "string");
         intentData.extras.add(extraItem);
         return new BroadcastOperationData(intentData);
     }

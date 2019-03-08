@@ -88,11 +88,10 @@ public class BroadcastOperationData implements OperationData {
                         intentData.extras = new ArrayList<>(jsonArray_extras.length());
                         for (int i = 0; i < jsonArray_extras.length(); i++) {
                             JSONObject jsonObject_extra = jsonArray_extras.getJSONObject(i);
-                            IntentData.ExtraItem item = new IntentData.ExtraItem();
-                            item.key = jsonObject_extra.getString(KEY);
-                            item.value = jsonObject_extra.getString(VALUE);
-                            item.type = jsonObject_extra.getString(V_TYPE);
-                            intentData.extras.add(item);
+                            String key = jsonObject_extra.getString(KEY);
+                            String value = jsonObject_extra.getString(VALUE);
+                            String type = jsonObject_extra.getString(V_TYPE);
+                            intentData.extras.add(new IntentData.ExtraItem(key, value, type));
                         }
                     }
 
@@ -237,11 +236,10 @@ public class BroadcastOperationData implements OperationData {
         if (data.extras != null) {
             intentData.extras = new ArrayList<>();
             for (IntentData.ExtraItem extra : data.extras) {
-                IntentData.ExtraItem p_extra = new IntentData.ExtraItem();
-                p_extra.type = extra.type;
-                p_extra.key = Utils.applyDynamics(extra.key, dynamicsAssignment);
-                p_extra.value = Utils.applyDynamics(extra.value, dynamicsAssignment);
-                intentData.extras.add(p_extra);
+                String key = Utils.applyDynamics(extra.key, dynamicsAssignment);
+                String value = Utils.applyDynamics(extra.value, dynamicsAssignment);
+                String type = extra.type;
+                intentData.extras.add(new IntentData.ExtraItem(key, value, type));
             }
         }
         return new BroadcastOperationData(intentData);

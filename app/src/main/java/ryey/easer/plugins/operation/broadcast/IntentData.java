@@ -22,19 +22,25 @@ package ryey.easer.plugins.operation.broadcast;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import ryey.easer.Utils;
 
+//TODO: Make fields final
 public class IntentData implements Parcelable {
 
     static class ExtraItem implements Parcelable {
-        String key, value, type;
+        @NonNull final String key;
+        @NonNull final String value;
+        @NonNull final String type;
 
-        public ExtraItem() {
-
+        ExtraItem(@NonNull String key, @NonNull String value, @NonNull String type) {
+            this.key = key;
+            this.value = value;
+            this.type = type;
         }
 
         @Override

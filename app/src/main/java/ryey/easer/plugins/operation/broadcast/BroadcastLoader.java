@@ -89,10 +89,10 @@ public class BroadcastLoader extends OperationLoader<BroadcastOperationData> {
         if (data.extras != null) {
             res.extras = new ArrayList<>(data.extras.size());
             for (IntentData.ExtraItem extra : data.extras) {
-                IntentData.ExtraItem p_extra = new IntentData.ExtraItem();
-                p_extra.key = Utils.format(extra.key);
-                p_extra.value = Utils.format(extra.value);
-                res.extras.add(p_extra);
+                String key = Utils.format(extra.key);
+                String value = Utils.format(extra.value);
+                String type = extra.type;
+                res.extras.add(new IntentData.ExtraItem(key, value, type));
             }
         }
         return res;
