@@ -23,6 +23,12 @@ import android.support.annotation.NonNull;
 
 import ryey.easer.commons.local_plugin.ValidData;
 
+/**
+ *
+ * TODO: Change to async style
+ *
+ * @param <T>
+ */
 public interface Loader<T extends OperationData> {
     /**
      * Load the operation given its data.

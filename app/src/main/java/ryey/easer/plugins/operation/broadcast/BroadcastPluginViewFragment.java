@@ -151,13 +151,12 @@ public class BroadcastPluginViewFragment extends PluginViewFragment<BroadcastOpe
         }
 
         IntentData.ExtraItem getData() {
-            IntentData.ExtraItem item = new IntentData.ExtraItem();
             if (Utils.isBlank(editText_key.getText().toString()))
                 return null;
-            item.key = editText_key.getText().toString().trim();
-            item.value = editText_value.getText().toString();
-            item.type = (String) spinner_type.getSelectedItem();
-            return item;
+            String key = editText_key.getText().toString().trim();
+            String value = editText_value.getText().toString();
+            String type = (String) spinner_type.getSelectedItem();
+            return new IntentData.ExtraItem(key, value, type);
         }
 
     }
