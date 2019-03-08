@@ -1,6 +1,12 @@
 CHANGELOG
 ======
 
+* v0.7.2.1: Bug fixes
+	* Fix NetworkTransmission not working
+	* Fix DayOfWeek not correctly scheduled
+	* Fix SendBroadcast with extras not working
+	* Translation update
+
 * v0.7.2: Tree List support && Translation update
 	* Add tree list support for Script
 	* Translations update

@@ -1,0 +1,6 @@
+Bug fixes
+
+* Fix NetworkTransmission not working
+* Fix DayOfWeek not correctly scheduled
+* Fix SendBroadcast with extras not working
+* Translation update
