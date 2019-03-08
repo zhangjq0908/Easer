@@ -69,9 +69,31 @@ public class DayOfWeekTracker extends SelfNotifiableSkeletonTracker<DayOfWeekCon
                 0, pendingIntent);
     }
 
+    private void scheduleAllAlarms() {
+        //TODO: optimise
+        Calendar calendar = Calendar.getInstance();
+
+        // Set calendar to 00:00 of today
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+
+        for (int i = 0; i < 7; i++) {
+            calendar.roll(Calendar.DAY_OF_YEAR, 1);
+            if (calendar.get(Calendar.DAY_OF_YEAR) == 0) {
+                calendar.roll(Calendar.YEAR, 1);
+            }
+            int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK) % 7 - 1;
+            PendingIntent pendingIntent;
+            pendingIntent = data.days.contains(dayOfWeek) ? notifySelfIntent_positive : notifySelfIntent_negative;
+            mAlarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pendingIntent);
+        }
+    }
+
     @Override
     public void start() {
-        scheduleAlarm();
+        scheduleAllAlarms();
     }
 
     @Override
@@ -80,15 +102,4 @@ public class DayOfWeekTracker extends SelfNotifiableSkeletonTracker<DayOfWeekCon
         mAlarmManager.cancel(notifySelfIntent_negative);
     }
 
-    @Override
-    protected void onPositiveNotified() {
-        super.onPositiveNotified();
-        scheduleAlarm();
-    }
-
-    @Override
-    protected void onNegativeNotified() {
-        super.onNegativeNotified();
-        scheduleAlarm();
-    }
 }
