@@ -46,11 +46,12 @@ public class EventDataStorage extends AbstractDataStorage<EventStructure, EventD
         return true;
     }
 
-    protected void handleRename(String oldName, EventStructure newScenario) throws IOException {
+    protected void handleRename(String oldName, EventStructure newEvent) throws IOException {
         ScriptDataStorage scriptDataStorage = new ScriptDataStorage(context);
         for (ScriptStructure scriptStructure : scriptDataStorage.allScripts()) {
-            if (scriptStructure.isEvent() && oldName.equals(scriptStructure.getEvent().getName())) {
-                scriptStructure.setEvent(newScenario);
+            if (scriptStructure.isEvent() && !scriptStructure.getEvent().isTmpEvent()
+                    && oldName.equals(scriptStructure.getEvent().getName())) {
+                scriptStructure.setEvent(newEvent);
                 scriptDataStorage.update(scriptStructure);
             }
         }
