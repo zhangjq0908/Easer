@@ -19,14 +19,18 @@
 
 package ryey.easer.plugins.operation;
 
+import android.support.annotation.NonNull;
+
 import org.junit.Test;
 
 import java.lang.reflect.Constructor;
 
+import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
-import ryey.easer.plugin.PluginDataFormat;
+import ryey.easer.commons.local_plugin.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.local_plugin.operationplugin.OperationData;
+import ryey.easer.plugin.PluginDataFormat;
 
 import static org.junit.Assert.assertEquals;
 
@@ -88,6 +92,11 @@ public class OperationDataTest {
                 }
                 IStringOperationData(String data, PluginDataFormat format, int version) throws IllegalStorageDataException {
                     parse(data, format, version);
+                }
+                @NonNull
+                @Override
+                public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
+                    return new IStringOperationData(Utils.applyDynamics(this.text, dynamicsAssignment));
                 }
             }
             StringOperationData data0 = new IStringOperationData(str);

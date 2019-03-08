@@ -19,8 +19,12 @@
 
 package ryey.easer.plugins.reusable;
 
+import android.support.annotation.NonNull;
+
 import org.junit.Test;
 
+import ryey.easer.commons.local_plugin.dynamics.SolidDynamicsAssignment;
+import ryey.easer.commons.local_plugin.operationplugin.OperationData;
 import ryey.easer.plugins.operation.BooleanOperationData;
 import ryey.easer.plugins.operation.IntegerOperationData;
 import ryey.easer.plugins.operation.StringOperationData;
@@ -28,6 +32,7 @@ import ryey.easer.plugins.operation.StringOperationData;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class ReusableDataTest {
 
@@ -48,7 +53,14 @@ public class ReusableDataTest {
         }
 
         for (String str : new String[]{"mystr1", "mystr2"}) {
-            class IStringOperationData extends StringOperationData {}
+            class IStringOperationData extends StringOperationData {
+                @NonNull
+                @Override
+                public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
+                    fail();
+                    return null;
+                }
+            }
             StringOperationData data0 = new IStringOperationData();
             data0.set(str);
             assertEquals(data0.get(), str);
