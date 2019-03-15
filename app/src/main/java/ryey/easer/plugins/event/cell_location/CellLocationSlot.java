@@ -22,6 +22,7 @@ package ryey.easer.plugins.event.cell_location;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.telephony.CellLocation;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
@@ -69,12 +70,18 @@ public class CellLocationSlot extends AbstractSlot<CellLocationEventData> {
         chck.onCellLocationChanged(telephonyManager.getCellLocation());
     }
 
+    private static Bundle dynamicsForCurrent(CellLocation location) {
+        Bundle dynamics = new Bundle();
+        dynamics.putString(CellLocationEventData.CellLocationDynamics.id, location.toString());
+        return dynamics;
+    }
+
     class CellLocationListener extends PhoneStateListener {
         @Override
         synchronized public void onCellLocationChanged(CellLocation location) {
             super.onCellLocationChanged(location);
             curr = CellLocationSingleData.fromCellLocation(location);
-            changeSatisfiedState(eventData.contains(curr));
+            changeSatisfiedState(eventData.contains(curr), dynamicsForCurrent(location));
         }
     }
 }

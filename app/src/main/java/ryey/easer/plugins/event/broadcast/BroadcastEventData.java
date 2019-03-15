@@ -28,6 +28,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import ryey.easer.R;
 import ryey.easer.Utils;
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
 import ryey.easer.commons.local_plugin.dynamics.Dynamics;
@@ -113,7 +114,7 @@ public class BroadcastEventData extends AbstractEventData {
     @Nullable
     @Override
     public Dynamics[] dynamics() {
-        return null;
+        return new Dynamics[]{new ActionDynamics(), new CategoryDynamics(), new TypeDynamics(), new DataDynamics()};
     }
 
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
@@ -156,5 +157,65 @@ public class BroadcastEventData extends AbstractEventData {
         intentData = new ReceiverSideIntentData();
         in.readStringList(intentData.action);
         in.readStringList(intentData.category);
+    }
+
+    static class ActionDynamics implements Dynamics {
+
+        static final String id = "ryey.easer.plugins.event.broadcast.action";
+
+        @Override
+        public String id() {
+            return id;
+        }
+
+        @Override
+        public int nameRes() {
+            return R.string.broadcast_action;
+        }
+    }
+
+    static class CategoryDynamics implements Dynamics {
+
+        static final String id = "ryey.easer.plugins.event.broadcast.category";
+
+        @Override
+        public String id() {
+            return id;
+        }
+
+        @Override
+        public int nameRes() {
+            return R.string.broadcast_category;
+        }
+    }
+
+    static class TypeDynamics implements Dynamics {
+
+        static final String id = "ryey.easer.plugins.event.broadcast.type";
+
+        @Override
+        public String id() {
+            return id;
+        }
+
+        @Override
+        public int nameRes() {
+            return R.string.broadcast_type;
+        }
+    }
+
+    static class DataDynamics implements Dynamics {
+
+        static final String id = "ryey.easer.plugins.event.broadcast.data";
+
+        @Override
+        public String id() {
+            return id;
+        }
+
+        @Override
+        public int nameRes() {
+            return R.string.broadcast_data;
+        }
     }
 }

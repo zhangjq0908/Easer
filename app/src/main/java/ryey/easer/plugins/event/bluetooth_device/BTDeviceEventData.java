@@ -30,6 +30,7 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 
+import ryey.easer.R;
 import ryey.easer.Utils;
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
 import ryey.easer.commons.local_plugin.dynamics.Dynamics;
@@ -79,7 +80,7 @@ public class BTDeviceEventData extends AbstractEventData {
     @Nullable
     @Override
     public Dynamics[] dynamics() {
-        return null;
+        return new Dynamics[]{new DeviceNameDynamics(), new DeviceAddressDynamics()};
     }
 
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
@@ -154,5 +155,35 @@ public class BTDeviceEventData extends AbstractEventData {
 
     private BTDeviceEventData(Parcel in) {
         in.readStringList(hwaddresses);
+    }
+
+    static class DeviceNameDynamics implements Dynamics {
+
+        static final String id = "ryey.easer.plugins.event.bluetooth_device.device_name";
+
+        @Override
+        public String id() {
+            return id;
+        }
+
+        @Override
+        public int nameRes() {
+            return R.string.ebtdevice_dynamics_device_name;
+        }
+    }
+
+    static class DeviceAddressDynamics implements Dynamics {
+
+        static final String id = "ryey.easer.plugins.event.bluetooth_device.device_address";
+
+        @Override
+        public String id() {
+            return id;
+        }
+
+        @Override
+        public int nameRes() {
+            return R.string.ebtdevice_dynamics_device_address;
+        }
     }
 }

@@ -4,6 +4,7 @@
     <string name="ev_condition_event">Condition Event</string>
     <string name="condition_event_enter">Enter</string>
     <string name="condition_event_leave">Leave</string>
+    <string name="condition_event_dynamics_name">Condition Name</string>
 
 
     <string name="condition_bluetooth_device">Connected bluetooth device</string>
@@ -47,6 +48,7 @@
 
     <string name="event_cell_location">Cell Location</string>
     <string name="event_cell_location_no_signal">Can\'t get cell location. Check your signal.</string>
+    <string name="event_cell_location_dynamics_cell_location">Cell Location</string>
 
     <string name="event_battery">Battery Status</string>
     <array name="battery_status">
@@ -59,6 +61,8 @@
     <string name="event_bluetooth_device">Bluetooth Device Connected</string>
     <string name="ebtdevice_select_dialog_title">Select Bluetooth Device</string>
     <string name="ebtdevice_unknown_device">Unknown device</string>
+    <string name="ebtdevice_dynamics_device_name">Device Name</string>
+    <string name="ebtdevice_dynamics_device_address">Device Address</string>
 
     <string name="event_connectivity">Connectivity Type</string>
     <array name="connectivity_type">
@@ -80,8 +84,10 @@
     <string name="choice_any_event">Any Events</string>
 
     <string name="event_broadcast">Receive Broadcast</string>
-    <string name="text_action">Action</string>
-    <string name="text_category">Category</string>
+    <string name="broadcast_action">Action</string>
+    <string name="broadcast_category">Category</string>
+    <string name="broadcast_type">Type</string>
+    <string name="broadcast_data">Data</string>
 
     <string name="event_sms">Receive Sms</string>
     <string name="sender">Sender</string>

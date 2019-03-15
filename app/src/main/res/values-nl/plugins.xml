@@ -34,8 +34,8 @@
     <string name="choice_end_of">Einde van</string>
     <string name="choice_any_event">Alle Geburtenissen</string>
     <string name="event_broadcast">Ontvang Broadcast</string>
-    <string name="text_action">Actie</string>
-    <string name="text_category">Categorie</string>
+    <string name="broadcast_action">Actie</string>
+    <string name="broadcast_category">Categorie</string>
     <string name="event_sms">Ontvang Sms</string>
     <string name="sender">Zender</string>
     <string name="content_contains">Inhoud (bevat...)</string>

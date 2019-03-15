@@ -36,8 +36,8 @@
     <string name="choice_any_event">N\'importe quels évènements</string>
 
     <string name="event_broadcast">Réception de la diffusion</string>
-    <string name="text_action">Action</string>
-    <string name="text_category">Catégorie</string>
+    <string name="broadcast_action">Action</string>
+    <string name="broadcast_category">Catégorie</string>
 
     <string name="event_sms">Réception d\'un SMS</string>
     <string name="sender">Emetteur</string>

@@ -92,7 +92,7 @@ public abstract class AbstractSlot<T extends EventData> implements Slot<T> {
      *
      * This method sets the {@link #satisfied} variable.
      */
-    protected synchronized void changeSatisfiedState(boolean newSatisfiedState, Bundle extras) {
+    protected synchronized void changeSatisfiedState(boolean newSatisfiedState, Bundle dynamics) {
         if (satisfied != null) {
             if (persistent && satisfied && !newSatisfiedState) {
                 Logger.v("prevent from resetting a persistent slot back to unsatisfied");
@@ -108,7 +108,7 @@ public abstract class AbstractSlot<T extends EventData> implements Slot<T> {
         Intent notifyLotusIntent = satisfied
                 ? Lotus.NotifyIntentPrototype.obtainPositiveIntent(notifyLotusData)
                 : Lotus.NotifyIntentPrototype.obtainNegativeIntent(notifyLotusData);
-        notifyLotusIntent.putExtra(Lotus.EXTRA_DYNAMICS_PROPERTIES, extras);
+        notifyLotusIntent.putExtra(Lotus.EXTRA_DYNAMICS_PROPERTIES, dynamics);
         context.sendBroadcast(notifyLotusIntent);
         Logger.d("finished changeSatisfiedState to %s", newSatisfiedState);
     }

@@ -193,16 +193,26 @@ public abstract class Lotus {
         //TODO: Extract interface to ryey.easer.commons
 
         public static Intent obtainPositiveIntent(Uri data) {
+            return obtainPositiveIntent(data, null);
+        }
+
+        public static Intent obtainPositiveIntent(Uri data, @Nullable Bundle dynamics) {
             Intent intent = new Intent(ACTION_SLOT_SATISFIED);
             intent.addCategory(CATEGORY_NOTIFY_LOTUS);
             intent.setData(data);
+            intent.putExtra(Lotus.EXTRA_DYNAMICS_PROPERTIES, dynamics);
             return intent;
         }
 
         public static Intent obtainNegativeIntent(Uri data) {
+            return obtainNegativeIntent(data, null);
+        }
+
+        public static Intent obtainNegativeIntent(Uri data, @Nullable Bundle dynamics) {
             Intent intent = new Intent(ACTION_SLOT_UNSATISFIED);
             intent.addCategory(CATEGORY_NOTIFY_LOTUS);
             intent.setData(data);
+            intent.putExtra(Lotus.EXTRA_DYNAMICS_PROPERTIES, dynamics);
             return intent;
         }
     }

@@ -40,8 +40,8 @@
     <string name="choice_end_of">Slut ved</string>
     <string name="choice_any_event">Enhver hændelse</string>
     <string name="event_broadcast">Modtage udsendelse</string>
-    <string name="text_action">Handling</string>
-    <string name="text_category">Kategori</string>
+    <string name="broadcast_action">Handling</string>
+    <string name="broadcast_category">Kategori</string>
     <string name="event_sms">Modtage SMS</string>
     <string name="sender">Afsender</string>
     <string name="content_contains">Indhold (indeholder…)</string>

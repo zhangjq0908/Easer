@@ -30,6 +30,7 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 
+import ryey.easer.R;
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
 import ryey.easer.commons.local_plugin.dynamics.Dynamics;
 import ryey.easer.plugin.PluginDataFormat;
@@ -79,7 +80,7 @@ public class CellLocationEventData extends AbstractEventData {
     @Nullable
     @Override
     public Dynamics[] dynamics() {
-        return null;
+        return new Dynamics[]{new CellLocationDynamics()};
     }
 
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
@@ -171,5 +172,20 @@ public class CellLocationEventData extends AbstractEventData {
 
     private CellLocationEventData(Parcel in) {
         in.readList(data, CellLocationSingleData.class.getClassLoader());
+    }
+
+    static class CellLocationDynamics implements Dynamics {
+
+        static final String id = "ryey.easer.plugins.event.cell_location.tower";
+
+        @Override
+        public String id() {
+            return id;
+        }
+
+        @Override
+        public int nameRes() {
+            return R.string.event_cell_location_dynamics_cell_location;
+        }
     }
 }

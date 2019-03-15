@@ -39,8 +39,8 @@
     <string name="choice_any_event">Enhver hendelse</string>
 
     <string name="event_broadcast">Motta kringkasting</string>
-    <string name="text_action">Handling</string>
-    <string name="text_category">Kategori</string>
+    <string name="broadcast_action">Handling</string>
+    <string name="broadcast_category">Kategori</string>
 
     <string name="event_sms">Motta SMS</string>
     <string name="sender">Avsender</string>

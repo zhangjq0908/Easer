@@ -26,6 +26,7 @@ import android.support.annotation.Nullable;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import ryey.easer.R;
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
 import ryey.easer.commons.local_plugin.dynamics.Dynamics;
 import ryey.easer.plugin.PluginDataFormat;
@@ -95,7 +96,7 @@ public class ConditionEventEventData extends AbstractEventData {
     @Nullable
     @Override
     public Dynamics[] dynamics() {
-        return null;
+        return new Dynamics[]{new ConditionNameDynamics()};
     }
 
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
@@ -131,5 +132,20 @@ public class ConditionEventEventData extends AbstractEventData {
     private ConditionEventEventData(Parcel in) {
         conditionName = in.readString();
         conditionEvent = ConditionEvent.values()[in.readInt()];
+    }
+
+    public static class ConditionNameDynamics implements Dynamics {
+
+        public static final String id = "ryey.easer.plugins.event.condition_event.condition_name";
+
+        @Override
+        public String id() {
+            return id;
+        }
+
+        @Override
+        public int nameRes() {
+            return R.string.condition_event_dynamics_name;
+        }
     }
 }

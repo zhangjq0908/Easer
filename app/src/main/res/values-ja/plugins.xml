@@ -43,8 +43,8 @@
     <string name="choice_end_of">終了</string>
     <string name="choice_any_event">任意のイベント</string>
     <string name="event_broadcast">ブロードキャストを受信</string>
-    <string name="text_action">操作</string>
-    <string name="text_category">カテゴリー</string>
+    <string name="broadcast_action">操作</string>
+    <string name="broadcast_category">カテゴリー</string>
     <string name="event_sms">SMSを受信</string>
     <string name="sender">送信者</string>
     <string name="content_contains">内容 (含む…)</string>

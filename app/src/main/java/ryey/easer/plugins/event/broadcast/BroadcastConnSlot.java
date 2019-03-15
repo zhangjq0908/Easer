@@ -23,16 +23,28 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
 
 import ryey.easer.plugins.event.AbstractSlot;
 
 public class BroadcastConnSlot extends AbstractSlot<BroadcastEventData> {
+
+    private static Bundle dynamicsForCurrent(@NonNull Intent intent) {
+        Bundle bundle = new Bundle();
+        bundle.putString(BroadcastEventData.ActionDynamics.id, intent.getAction());
+        bundle.putStringArray(BroadcastEventData.CategoryDynamics.id, intent.getCategories().toArray(new String[0]));
+        bundle.putString(BroadcastEventData.TypeDynamics.id, intent.getType());
+        bundle.putString(BroadcastEventData.DataDynamics.id, intent.getDataString());
+        return bundle;
+    }
+
     private ReceiverSideIntentData intentData = null;
 
     private final BroadcastReceiver connReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            changeSatisfiedState(true);
+            changeSatisfiedState(true, dynamicsForCurrent(intent));
         }
     };
 

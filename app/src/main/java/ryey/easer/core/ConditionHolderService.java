@@ -27,6 +27,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Binder;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.os.PatternMatcher;
 import android.support.v4.util.ArraySet;
@@ -43,12 +44,19 @@ import ryey.easer.commons.local_plugin.conditionplugin.Tracker;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.storage.ConditionDataStorage;
 import ryey.easer.plugins.LocalPluginRegistry;
+import ryey.easer.plugins.event.condition_event.ConditionEventEventData;
 
 public class ConditionHolderService extends Service {
 
     private static final String ACTION_TRACKER_SATISFIED = "ryey.easer.triggerlotus.action.TRACKER_SATISFIED";
     private static final String ACTION_TRACKER_UNSATISFIED = "ryey.easer.triggerlotus.action.TRACKER_UNSATISFIED";
     private static final String CATEGORY_NOTIFY_HOLDER = "ryey.easer.triggerlotus.category.NOTIFY_HOLDER";
+
+    private static Bundle dynamicsForConditionEvent(String conditionName) {
+        Bundle dynamics = new Bundle();
+        dynamics.putString(ConditionEventEventData.ConditionNameDynamics.id, conditionName);
+        return dynamics;
+    }
 
     //FIXME concurrent
     private Map<String, Tracker> trackerMap = new HashMap<>();
@@ -64,12 +72,12 @@ public class ConditionHolderService extends Service {
                     String name = intent.getData().getLastPathSegment();
                     if (intent.getAction().equals(ACTION_TRACKER_SATISFIED)) {
                         for (Uri data : associateMap.get(name)) {
-                            Intent notifyIntent =  Lotus.NotifyIntentPrototype.obtainPositiveIntent(data);
+                            Intent notifyIntent =  Lotus.NotifyIntentPrototype.obtainPositiveIntent(data, dynamicsForConditionEvent(name));
                             context.sendBroadcast(notifyIntent);
                         }
                     } else if (intent.getAction().equals(ACTION_TRACKER_UNSATISFIED)) {
                         for (Uri data : associateMap.get(name)) {
-                            Intent notifyIntent =  Lotus.NotifyIntentPrototype.obtainNegativeIntent(data);
+                            Intent notifyIntent =  Lotus.NotifyIntentPrototype.obtainNegativeIntent(data, dynamicsForConditionEvent(name));
                             context.sendBroadcast(notifyIntent);
                         }
                     }

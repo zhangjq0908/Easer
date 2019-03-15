@@ -34,8 +34,8 @@
     <string name="choice_end_of">Конец</string>
     <string name="choice_any_event">Любые События</string>
     <string name="event_broadcast">Получение Трансляции</string>
-    <string name="text_action">Действие</string>
-    <string name="text_category">Категория</string>
+    <string name="broadcast_action">Действие</string>
+    <string name="broadcast_category">Категория</string>
     <string name="event_sms">Получить Sms</string>
     <string name="sender">Отправитель</string>
     <string name="content_contains">Содержание (содержит…)</string>

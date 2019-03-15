@@ -26,10 +26,18 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
 
 import ryey.easer.plugins.event.AbstractSlot;
 
 public class BTDeviceSlot extends AbstractSlot<BTDeviceEventData> {
+
+    private static Bundle dynamicsForCurrentDevice(BluetoothDevice bluetoothDevice) {
+        Bundle bundle = new Bundle();
+        bundle.putString(BTDeviceEventData.DeviceNameDynamics.id, bluetoothDevice.getName());
+        bundle.putString(BTDeviceEventData.DeviceAddressDynamics.id, bluetoothDevice.getAddress());
+        return bundle;
+    }
 
     private int matched_devices = 0;
 
@@ -41,13 +49,13 @@ public class BTDeviceSlot extends AbstractSlot<BTDeviceEventData> {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 if (is_target(device)) {
                     matched_devices++;
-                    determine_satisfied();
+                    determine_satisfied(dynamicsForCurrentDevice(device));
                 }
             } else if (action.equals(BluetoothDevice.ACTION_ACL_DISCONNECTED)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 if (is_target(device)) {
                     matched_devices--;
-                    determine_satisfied();
+                    determine_satisfied(dynamicsForCurrentDevice(device));
                 }
             }
         }
@@ -91,14 +99,14 @@ public class BTDeviceSlot extends AbstractSlot<BTDeviceEventData> {
                 }
             }
         }
-        determine_satisfied();
+        determine_satisfied(null);
     }
 
     private boolean is_target(BluetoothDevice device) {
         return eventData.match(device.getAddress());
     }
 
-    private void determine_satisfied() {
-        changeSatisfiedState(matched_devices > 0);
+    private void determine_satisfied(Bundle dynamics) {
+        changeSatisfiedState(matched_devices > 0, dynamics);
     }
 }
