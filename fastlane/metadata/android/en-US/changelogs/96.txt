@@ -1,0 +1,4 @@
+More Dynamics
+
+* Add more Dynamics
+* Update German Translation

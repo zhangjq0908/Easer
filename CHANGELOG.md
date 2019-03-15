@@ -1,6 +1,10 @@
 CHANGELOG
 ======
 
+* v0.7.2.2: More Dynamics
+	* Add more Dynamics
+	* Update German Translation
+
 * v0.7.2.1: Bug fixes
 	* Fix NetworkTransmission not working
 	* Fix DayOfWeek not correctly scheduled
