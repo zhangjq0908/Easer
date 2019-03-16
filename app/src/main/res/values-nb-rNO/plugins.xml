@@ -1,33 +1,23 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="ev_condition_event">Hendelshandling</string>
     <string name="condition_event_enter">Gå inn</string>
     <string name="condition_event_leave">Forlat</string>
-
-
     <string name="condition_bluetooth_device">Tilknyttet blåtannsenhet</string>
-
     <string name="condition_headset__headset_state">Hodesettilstand</string>
     <string name="condition_headset__plugged_in">Plugget inn</string>
     <string name="condition_headset__plugged_out">Plugget ut</string>
-
-
     <string name="event_time">Tid</string>
     <string name="event_date">Dato</string>
-
     <string name="event_wificonn">Wi-Fi-tilkobling</string>
     <string name="wificonn_select_dialog_title">Velg Wi-Fi-tilgangspunkt</string>
     <string name="wificonn_wait_for_result">Venter på skanningsresultat fra Wi-Fi</string>
-
     <string name="event_cell_location">Celleplassering</string>
-
     <string name="event_battery">Batteristatus</string>
     <string name="event_day_of_week">Ukedag</string>
-
     <string name="event_bluetooth_device">Blåtannsenhet tilkoblet</string>
     <string name="ebtdevice_select_dialog_title">Velg Blåtannsenhet</string>
     <string name="ebtdevice_unknown_device">Ukjent enhet</string>
-
     <string name="event_connectivity">Tilkoblingstype</string>
     <string name="event_calendar">Kalenderhendelse</string>
     <string name="ecalendar_select_dialog_title">Velg kalender</string>
@@ -37,17 +27,14 @@
     <string name="choice_start_of">Star ved</string>
     <string name="choice_end_of">Slutt ved</string>
     <string name="choice_any_event">Enhver hendelse</string>
-
     <string name="event_broadcast">Motta kringkasting</string>
     <string name="broadcast_action">Handling</string>
     <string name="broadcast_category">Kategori</string>
-
     <string name="event_sms">Motta SMS</string>
     <string name="sender">Avsender</string>
     <string name="content_contains">Innhold (inneholder…)</string>&gt;
     <string name="ev_sms_dynamics_sender">SMS-avsender</string>
     <string name="ev_sms_dynamics_content">SMS-innhold</string>
-
     <string name="event_notification">Merknad mottatt</string>
     <string name="event_notification__app">Program</string>
     <string name="event_notification__app_hint">Helt kvalifisert pakkenavn for programmet</string>
@@ -57,7 +44,6 @@
     <string name="ev_notification_dynamics_app">Påminnelsessendingsprogram</string>
     <string name="ev_notification_dynamics_title">Merknadstittel</string>
     <string name="ev_notification_dynamics_content">Merknadsinnhold</string>
-
     <string name="event_timer">Tidsur</string>
     <string name="exact_timer">Nøyaktig tidsur?</string>
     <string name="exact">Nøyaktig</string>
@@ -66,12 +52,10 @@
     <string name="repeat">Gjenta</string>
     <string name="one_time">Én gang</string>
     <string name="minutes">Minutter</string>
-
     <string name="event_nfc_tag">NFC-brikke</string>
     <string name="event_nfc_tag__button_detect">Oppdag brikke</string>
     <string name="event_nfc_tag__prompt_enable_nfc_first">Du må skru på NFC først</string>
     <string name="event_nfc_tag__prompt_wait_for_tag">Venter på skanning av brikke…</string>
-
     <string name="event_headset">Hodesett</string>
     <string name="event_headset__headset_action">Hodesettshandling</string>
     <string name="event_headset__plug_in">Innplugget</string>
@@ -81,25 +65,20 @@
     <string name="event_headset__microphone_true">Ja</string>
     <string name="event_headset__microphone_false">Nei</string>
     <string name="event_headset__microphone_any">Alle</string>
-
     <string name="event_tcp_trip">TCP-utløser</string>
     <string name="remote_host">Vert annensteds hen</string>
     <string name="send_data">Send data</string>
     <string name="check_reply">Sjekk svar</string>
     <string name="reply_data">Svardata</string>
-
     <string name="event_screen">Skjermstatus</string>
     <string name="ev_screen_text_screen_is">Når skjermen er…</string>
     <string name="ev_screen_on">På</string>
     <string name="ev_screen_off">Av</string>
     <string name="ev_screen_unlocked">Ulåst</string>
-
-
     <string name="operation_wifi">Wi-Fi</string>
     <string name="operation_cellular">Mobildata</string>
     <string name="operation_bluetooth">Blåtann</string>
     <string name="operation_rotation">Automatisk rotasjon</string>
-
     <string name="operation_broadcast">Send kringkasting</string>
     <string name="obroadcast_l_action">Handling:</string>
     <string name="obroadcast_l_category">Kategori:</string>
@@ -111,7 +90,6 @@
     <string name="text_type">Type</string>
     <string name="operation_brightness">Lysstyrke</string>
     <string name="operation_brightness_desc_autobrightness">Automatisk lysstyrke</string>
-
     <string name="operation_ringer_mode">Ringemodus</string>
     <string name="ringer_mode_normal">Normal</string>
     <string name="ringer_mode_vibrate">Vibrer</string>
@@ -123,11 +101,9 @@
     <string name="ringer_mode_dnd_alarms">Alarmer</string>
     <string name="ringing_items_in_do_not_disturb_mode">Ringeelementer i \"ikke forstyrr\"-modus</string>
     <string name="label_operation_ringer_mode_notification_listener_service">Stillemodus-veksler</string>
-
     <string name="operation_command">Kjør kommandoer</string>
     <string name="operation_hotspot">Trådløsdelingspunkt</string>
     <string name="operation_synchronization">Kontosynkronisering</string>
-
     <string name="operation_network_transmission">Nettverksoverføring</string>
     <string name="o_nettrans_protocol">Protokoll</string>
     <string name="o_nettrans_tcp">TCP</string>
@@ -135,7 +111,6 @@
     <string name="o_nettrans_remote_address">Fjernadresse</string>
     <string name="o_nettrans_remote_port">Fjernport</string>
     <string name="o_nettrans_data">Data</string>
-
     <string name="operation_media_control">Mediakontroll</string>
     <string name="text_play_pause">Veksle spill av/pause</string>
     <string name="text_play">Spill av</string>
@@ -143,26 +118,20 @@
     <string name="text_previous">Forrige</string>
     <string name="text_next">Neste</string>
     <string name="operation_media_control_helper_service_label">Hjelper for mediakontroll</string>
-
     <string name="operation_airplane_mode">Flymodus</string>
-
     <string name="operation_send_sms">Send SMS</string>
     <string name="destination">Mål</string>
     <string name="content">Innhold</string>
-
     <string name="operation_send_notification">Send merknad</string>
     <string name="title">Tittel</string>
-
     <string name="operation_alarm">Sett alarm</string>
     <string name="operation_alarm__absolute">Absolutt</string>
     <string name="operation_alarm__relative">Relativ</string>
     <string name="operation_alarm__time">Tid</string>
     <string name="operation_alarm__message">Melding</string>
-
     <string name="operation_state_control">Kontrollskript for nodestatus</string>
     <string name="change_status_to">Endre status til…</string>
     <string name="unsatisfied">Ikke oppfylt</string>
-
     <string name="operation_volume">Juster lydstyrke</string>
     <string name="o_volume_ring">Ring</string>
     <string name="o_volume_media">Media</string>
@@ -170,30 +139,27 @@
     <string name="o_volume_notification">Merknad</string>
     <string name="o_volume_bluetooth">Blåtann</string>
     <string name="o_volume_delay">Forsinkelse (s)</string>
-
     <string name="op_launch_app">Kjør program</string>
     <string name="op_launch_app_text_app">Program</string>
     <string name="op_launch_app_text_package_name">Pakkenavn</string>
-
     <string name="op_ui_mode">Bilmodus</string>
     <string name="op_car_mode">Bilmodus</string>
     <string name="op_normal_mode">Normalt modus</string>
-
     <string name="rel_after">Etter</string>
-
-<string name="event_cell_location_no_signal">Kan ikke hente telefonplassering. Sjekk signalstyrken.</string>
-
+    <string name="event_cell_location_no_signal">Kan ikke hente telefonplassering. Sjekk signalstyrken.</string>
     <string name="condition_wifi_enabled">Wi-Fi påslått</string>
     <string name="condition_wifi_enabled_wifi_is_enabled">Er Wi-Fi påslått\?</string>
-
     <string name="condition_bluetooth_enabled">Blåtann aktivert</string>
     <string name="condition_bluetooth_enabled_bluetooth_is_enabled">Er Blåtann aktivert\?</string>
-
     <string name="condition__enabled_yes">Ja</string>
     <string name="condition__enabled_no">Nei</string>
-
-
     <string name="event_timer_shorter_time">Kortere tid</string>
     <string name="event_timer_longer_time">Lengre tid</string>
     <string name="event_timer_seconds">Sekund(er)</string>
-    </resources>
+    <string name="condition_event_dynamics_name">Vilkårsnavn</string>
+    <string name="event_cell_location_dynamics_cell_location">Celleplassering</string>
+    <string name="ebtdevice_dynamics_device_name">Enhetsnavn</string>
+    <string name="ebtdevice_dynamics_device_address">Enhetsadresse</string>
+    <string name="broadcast_type">Type</string>
+    <string name="broadcast_data">Data</string>
+</resources>
