@@ -20,25 +20,29 @@
 package ryey.easer.plugins.event.cell_location;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.telephony.TelephonyManager;
+import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import java.util.List;
 
 import ryey.easer.R;
 import ryey.easer.Utils;
 import ryey.easer.commons.local_plugin.InvalidDataInputException;
 import ryey.easer.commons.local_plugin.ValidData;
 import ryey.easer.plugins.PluginViewFragment;
+import ryey.easer.plugins.reusable.CellLocationSingleData;
+import ryey.easer.plugins.reusable.ScannerDialogFragment;
 
-public class CellLocationPluginViewFragment extends PluginViewFragment<CellLocationEventData> {
+public class CellLocationPluginViewFragment extends PluginViewFragment<CellLocationEventData> implements ScannerDialogFragment.ScannerListener  {
+
+    public static final int DIALOG_FRAGMENT = 1;
+
     private EditText editText;
 
     @NonNull
@@ -52,21 +56,11 @@ public class CellLocationPluginViewFragment extends PluginViewFragment<CellLocat
             public void onClick(View view) {
                 if (!Utils.hasPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION))
                     return;
-                TelephonyManager telephonyManager = (TelephonyManager) getContext().getSystemService(Context.TELEPHONY_SERVICE);
-                if (telephonyManager == null) {
-                    Toast.makeText(getContext(), R.string.event_cell_location_no_signal, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                @SuppressLint("MissingPermission") CellLocationSingleData singleData = CellLocationSingleData.fromCellLocation(telephonyManager.getCellLocation());
-                if (singleData == null) {
-                    Toast.makeText(getContext(), R.string.event_cell_location_no_signal, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                CellLocationEventData locationData = CellLocationEventData.fromString(editText.getText().toString());
-                if (locationData == null)
-                    locationData = new CellLocationEventData();
-                locationData.add(singleData);
-                editText.setText(locationData.toString());
+
+                DialogFragment dialogFrag = new ScannerDialogFragment();
+                dialogFrag.setTargetFragment(CellLocationPluginViewFragment.this, DIALOG_FRAGMENT);
+                dialogFrag.show(getFragmentManager(), "dialog");
+
             }
         });
 
@@ -84,5 +78,18 @@ public class CellLocationPluginViewFragment extends PluginViewFragment<CellLocat
     public CellLocationEventData getData() throws InvalidDataInputException {
         CellLocationEventData data = CellLocationEventData.fromString(editText.getText().toString());
         return data;
+    }
+
+    @Override
+    public void onPositiveClicked(List<CellLocationSingleData> singleDataList) {
+        String display_str = editText.getText().toString();
+        StringBuilder stringBuilder = new StringBuilder(display_str);
+        for (CellLocationSingleData singleData : singleDataList) {
+            stringBuilder.append('\n')
+                    .append(singleData.toString());
+        }
+        if (stringBuilder.charAt(0) == '\n')
+            stringBuilder.deleteCharAt(0);
+        editText.setText(stringBuilder.toString());
     }
 }

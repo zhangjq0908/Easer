@@ -28,6 +28,7 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 
 import ryey.easer.plugins.condition.SkeletonTracker;
+import ryey.easer.plugins.reusable.CellLocationSingleData;
 
 public class CellLocationTracker extends SkeletonTracker<CellLocationConditionData> {
 

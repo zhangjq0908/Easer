@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,10 +17,21 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.plugins.event.cell_location;
+package ryey.easer.plugins.reusable;
 
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.telephony.CellIdentityCdma;
+import android.telephony.CellIdentityGsm;
+import android.telephony.CellIdentityWcdma;
+import android.telephony.CellInfo;
+import android.telephony.CellInfoCdma;
+import android.telephony.CellInfoGsm;
+import android.telephony.CellInfoWcdma;
 import android.telephony.CellLocation;
 import android.telephony.cdma.CdmaCellLocation;
 import android.telephony.gsm.GsmCellLocation;
@@ -32,7 +43,7 @@ public class CellLocationSingleData implements Parcelable {
     private Integer cid = null;
     private Integer lac = null;
 
-    static CellLocationSingleData fromCellLocation(CellLocation location) {
+    public static CellLocationSingleData fromCellLocation(CellLocation location) {
         int cid, lac;
         if (location != null) {
             if (location instanceof GsmCellLocation) {
@@ -43,11 +54,38 @@ public class CellLocationSingleData implements Parcelable {
                 cid = ((CdmaCellLocation) location).getBaseStationId();
                 lac = ((CdmaCellLocation) location).getSystemId();
             } else {
+                //TODO: More
                 return null;
             }
             return new CellLocationSingleData(cid, lac);
         }
         return null;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    @Nullable
+    public static CellLocationSingleData fromCellInfo(@NonNull CellInfo cellInfo) {
+        int cid, lac;
+        if (cellInfo instanceof CellInfoGsm) {
+            CellIdentityGsm cellIdentity = ((CellInfoGsm) cellInfo).getCellIdentity();
+            cid = cellIdentity.getCid();
+            lac = cellIdentity.getLac();
+        } else if (cellInfo instanceof CellInfoCdma) {
+            CellIdentityCdma cellIdentity = ((CellInfoCdma) cellInfo).getCellIdentity();
+            cid = cellIdentity.getBasestationId();
+            lac = cellIdentity.getSystemId();
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            if (cellInfo instanceof CellInfoWcdma) {
+                CellIdentityWcdma cellIdentity = ((CellInfoWcdma) cellInfo).getCellIdentity();
+                cid = cellIdentity.getCid();
+                lac = cellIdentity.getLac();
+            } else {
+                //TODO: More
+                return null;
+            }
+        } else
+            return null;
+        return new CellLocationSingleData(cid, lac);
     }
 
     public CellLocationSingleData() {}
@@ -127,8 +165,8 @@ public class CellLocationSingleData implements Parcelable {
         dest.writeInt(lac);
     }
 
-    public static final Parcelable.Creator<CellLocationSingleData> CREATOR
-            = new Parcelable.Creator<CellLocationSingleData>() {
+    public static final Creator<CellLocationSingleData> CREATOR
+            = new Creator<CellLocationSingleData>() {
         public CellLocationSingleData createFromParcel(Parcel in) {
             return new CellLocationSingleData(in);
         }

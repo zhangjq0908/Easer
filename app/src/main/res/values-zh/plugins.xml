@@ -4,6 +4,8 @@
     <string name="ev_condition_event">狀況事件</string>
     <string name="condition_event_enter">進入</string>
     <string name="condition_event_leave">離開</string>
+    <string name="condition_event_dynamics_name">狀況名</string>
+
 
     <string name="condition_bluetooth_device">已連接藍牙設備</string>
 
@@ -30,6 +32,7 @@
 
     <string name="event_cell_location">基站位置</string>
     <string name="event_cell_location_no_signal">無法獲取基站信息。請檢查信號。</string>
+    <string name="event_cell_location_dynamics_cell_location">基站位置</string>
 
     <string name="event_battery">電池狀態</string>
     <array name="battery_status">
@@ -42,6 +45,8 @@
     <string name="event_bluetooth_device">連接的藍牙設備</string>
     <string name="ebtdevice_select_dialog_title">選擇藍牙設備</string>
     <string name="ebtdevice_unknown_device">未知設備</string>
+    <string name="ebtdevice_dynamics_device_name">設備名</string>
+    <string name="ebtdevice_dynamics_device_address">設備地址</string>
 
     <string name="event_connectivity">網絡連接類型</string>
     <array name="connectivity_type">
@@ -71,6 +76,7 @@
     <string name="content_contains">內容 (包含…)</string>
     <string name="ev_sms_dynamics_sender">短信發件人</string>
     <string name="ev_sms_dynamics_content">短信內容</string>
+
 
     <string name="event_notification">收到通知</string>
     <string name="event_notification__app">App</string>
@@ -120,6 +126,9 @@
     <string name="ev_screen_on">開啓</string>
     <string name="ev_screen_off">關閉</string>
     <string name="ev_screen_unlocked">已解鎖</string>
+
+    <string name="source_cell_location_listening_title">監聽中</string>
+
 
     <string name="operation_bluetooth">藍牙</string>
 

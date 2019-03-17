@@ -11,6 +11,7 @@
 
     <string name="condition_cell_location" translatable="false">@string/event_cell_location</string>
     <string name="condition_cell_location_no_signal" translatable="false">@string/event_cell_location_no_signal</string>
+    <string name="condition_cell_location_listening_content">Aggregating cell location…</string>
 
     <string name="condition_connectivity" translatable="false">@string/event_connectivity</string>
 
@@ -143,6 +144,8 @@
     <string name="ev_screen_on">On</string>
     <string name="ev_screen_off">Off</string>
     <string name="ev_screen_unlocked">Unlocked</string>
+
+    <string name="source_cell_location_listening_title">Listening</string>
 
 
     <string name="operation_wifi">WiFi</string>

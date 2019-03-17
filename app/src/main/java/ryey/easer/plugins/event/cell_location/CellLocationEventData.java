@@ -35,6 +35,7 @@ import ryey.easer.commons.local_plugin.IllegalStorageDataException;
 import ryey.easer.commons.local_plugin.dynamics.Dynamics;
 import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.plugins.event.AbstractEventData;
+import ryey.easer.plugins.reusable.CellLocationSingleData;
 
 public class CellLocationEventData extends AbstractEventData {
     private List<CellLocationSingleData> data = new ArrayList<>();
