@@ -1,6 +1,13 @@
 CHANGELOG
 ======
 
+* v0.7.2.3: Record CellLocation for a timespan && fix && i18n
+	* Now records CellLocation for a timespan, instead of one-shot
+	* Fix renaming Condition not correctly changing inline ConditionEvent
+	* i18n:
+		* Chinese
+		* Norwegian Bokmål
+
 * v0.7.2.2: More Dynamics
 	* Add more Dynamics
 	* Update German Translation
