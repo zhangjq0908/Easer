@@ -32,8 +32,8 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 
 import ryey.easer.R;
 
@@ -65,12 +65,13 @@ public class PluginHelper {
 
     public static Process executeCommands(String... command) throws IOException {
         Process process = Runtime.getRuntime().exec(command[0]);
-        OutputStream out = process.getOutputStream();
+        DataOutputStream out = new DataOutputStream(process.getOutputStream());
         for (int i = 1; i < command.length; i++) {
             String cmd = command[i];
             if (!cmd.endsWith("\n"))
                 cmd += "\n";
             out.write(cmd.getBytes());
+            out.flush();
         }
         return process;
     }
