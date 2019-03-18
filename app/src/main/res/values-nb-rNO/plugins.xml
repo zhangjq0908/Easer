@@ -162,4 +162,6 @@
     <string name="ebtdevice_dynamics_device_address">Enhetsadresse</string>
     <string name="broadcast_type">Type</string>
     <string name="broadcast_data">Data</string>
+    <string name="condition_cell_location_listening_content">Bestemmer celleplassering…</string>
+    <string name="source_cell_location_listening_title">Lytter</string>
 </resources>
