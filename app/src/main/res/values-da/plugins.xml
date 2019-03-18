@@ -75,7 +75,7 @@
     <string name="event_headset__microphone_true">Ja</string>
     <string name="event_headset__microphone_false">Nej</string>
     <string name="event_headset__microphone_any">Enhver</string>
-    <string name="event_tcp_trip">TCP rund-tur tid</string>
+    <string name="event_tcp_trip">TCP rundtur tid</string>
     <string name="remote_host">Fjern vært</string>
     <string name="send_data">Sende data</string>
     <string name="check_reply">Kontrollere svar</string>
@@ -172,4 +172,12 @@
     <string name="event_timer_shorter_time">Kortere tid</string>
     <string name="event_timer_longer_time">Længere tid</string>
     <string name="event_timer_seconds">Sekund(er)</string>
+    <string name="condition_event_dynamics_name">Tilstand navn</string>
+    <string name="condition_cell_location_listening_content">Sammenlægge celle placering…</string>
+    <string name="event_cell_location_dynamics_cell_location">Celle placering</string>
+    <string name="ebtdevice_dynamics_device_name">Enhed navn</string>
+    <string name="ebtdevice_dynamics_device_address">Enhed adresse</string>
+    <string name="broadcast_type">Type</string>
+    <string name="broadcast_data">Data</string>
+    <string name="source_cell_location_listening_title">Lytter</string>
 </resources>
