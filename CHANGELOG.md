@@ -1,6 +1,13 @@
 CHANGELOG
 ======
 
+* v0.7.2.4: Bug fixes & Slight changes & i18n update
+	* Fix StateControlOperationPlugin causes freeze
+	* Fix command not executed correctly
+	* Alert for near future change (if necessary)
+	* Notification slight change
+	* i18n: Chinese & Danish & Japanese & Norwegian Bokmål
+
 * v0.7.2.3: Record CellLocation for a timespan && fix && i18n
 	* Now records CellLocation for a timespan, instead of one-shot
 	* Fix renaming Condition not correctly changing inline ConditionEvent

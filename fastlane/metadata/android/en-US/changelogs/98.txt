@@ -1,0 +1,8 @@
+v0.7.2.4: Bug fixes & Slight changes & i18n update
+
+* Fix StateControlOperationPlugin causes freeze
+* Fix command not executed correctly
+* Alert for near future change (if necessary)
+* Notification slight change
+* i18n: Chinese & Danish & Japanese & Norwegian Bokmål
+
