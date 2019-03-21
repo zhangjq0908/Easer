@@ -195,7 +195,6 @@ public class EHService extends Service {
                 this, REQ_CODE, new Intent(this, MainActivity.class), 0);
         builder
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle(getString(R.string.easer))
                 .setContentText(getString(
                         R.string.text_notification_running_indicator_content,
                         getString(R.string.easer)))

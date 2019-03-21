@@ -124,5 +124,12 @@
     <string name="text_notification_running_indicator_content">%s正在後臺運行</string>
     <string name="menu_tree_list">樹狀列表</string>
     <string name="menu_plain_list">平鋪列表</string>
+    <string name="message_future_change_title__0_7_4">近期改變</string>
+    <string name="message_future_change_body__0_7_4">在v0.7.4版中，“%s”功能將被刪除——事實上它早就該被移除了。請儘快遷移，將相關事件改爲狀況；然後，請禁用“%s”頁中此選項。</string>
+    <string name="pref_category_service">服務</string>
+    <string name="pref_show_notification_title">顯示通知</string>
+    <string name="pref_show_notification_summary">在通知欄顯示通知</string>
+    <string name="pref_foreground_title">在前臺運行服務</string>
+    <string name="pref_foreground_summary">可以使得服務更不容易被系統誤殺。將會顯示通知。由於系統要求，不可在Android 8+版本禁用。</string>
 
 </resources>

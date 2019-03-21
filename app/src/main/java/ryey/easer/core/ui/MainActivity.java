@@ -19,8 +19,6 @@
 
 package ryey.easer.core.ui;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -36,15 +34,14 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
-import android.text.method.LinkMovementMethod;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import ryey.easer.R;
-import ryey.easer.core.data.storage.StorageHelper;
 import ryey.easer.core.ui.data.DataListContainerFragment;
 import ryey.easer.core.ui.data.DataListContainerInterface;
 import ryey.easer.core.ui.setting.SettingsActivity;
+import ryey.easer.core.ui.version_n_info.Info;
+import ryey.easer.core.ui.version_n_info.Version;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -88,37 +85,9 @@ public class MainActivity extends AppCompatActivity
                     .commit();
         }
 
-        // Show Welcome page at first launch
-        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(getString(R.string.key_pref_welcome), true)) {
-            ((TextView) new AlertDialog.Builder(this)
-                    .setTitle(R.string.title_welcome_message)
-                    .setMessage(R.string.welcome_message)
-                    .setPositiveButton(R.string.button_understand, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            PreferenceManager.getDefaultSharedPreferences(MainActivity.this)
-                                    .edit()
-                                    .putBoolean(getString(R.string.key_pref_welcome), false)
-                                    .apply();
-                        }
-                    })
-                    .setNegativeButton(R.string.button_read_next_time, null)
-                    .show()
-                    .findViewById(android.R.id.message))
-                    .setMovementMethod(LinkMovementMethod.getInstance());
-        }
-
-        if (StorageHelper.hasOldData(this)) {
-            new AlertDialog.Builder(this)
-                    .setTitle(R.string.alert_update_storage_data_title)
-                    .setMessage(R.string.alert_update_storage_data)
-                    .setPositiveButton(R.string.button_understand, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                        }
-                    })
-                    .show();
-        }
+        Info.INSTANCE.welcome(this);
+        Version.INSTANCE.dataVersionChange(this);
+        Version.INSTANCE.nearFutureChange(this);
     }
 
     @Override

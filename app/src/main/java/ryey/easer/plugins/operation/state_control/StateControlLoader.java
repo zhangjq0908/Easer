@@ -23,7 +23,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.os.ConditionVariable;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
 
@@ -33,22 +32,20 @@ import ryey.easer.plugins.operation.OperationLoader;
 
 public class StateControlLoader extends OperationLoader<StateControlOperationData> {
 
+    private StateControlOperationData data;
+
     private ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            binder = (EHService.EHBinder) iBinder;
-            cv.open();
+            EHService.EHBinder binder = (EHService.EHBinder) iBinder;
+            binder.setLotusStatus(data.scriptName, data.newStatus);
+            context.unbindService(this);
         }
 
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
-            cv.close();
-            binder = null;
         }
     };
-    private ConditionVariable cv = new ConditionVariable();
-
-    private EHService.EHBinder binder;
 
     StateControlLoader(Context context) {
         super(context);
@@ -56,10 +53,9 @@ public class StateControlLoader extends OperationLoader<StateControlOperationDat
 
     @Override
     public boolean load(@ValidData @NonNull StateControlOperationData data) {
-        cv.close();
+        this.data = data;
         Intent intent = new Intent(context, EHService.class);
         context.bindService(intent, connection, Context.BIND_AUTO_CREATE);
-        cv.block();
-        return binder.setLotusStatus(data.scriptName, data.newStatus);
+        return true;
     }
 }
