@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="easer">Easer</string>
     <string name="app_name">@string/easer</string>
@@ -23,14 +23,11 @@
     <string name="title_dynamics_link">Dynamik sammenkædning</string>
     <string name="title_new_dynamics_link">Ny dynamik sammenkædning</string>
     <string name="title_trigger_profile">Udløse profil</string>
-
     <string name="menu_start">Start</string>
     <string name="menu_stop">Stop</string>
     <string name="menu_action_save">Gem</string>
-
     <string name="service_indicator_positive">Kørende</string>
     <string name="service_indicator_negative">Stoppet</string>
-
     <string name="activity_history__profile">@string/title_profile</string>
     <string name="activity_history__script">@string/title_script</string>
     <string name="activity_history__time">Tidspunkt</string>
@@ -42,20 +39,15 @@
     <string name="activity_history__status">Status</string>
     <string name="activity_history__start">Start</string>
     <string name="activity_history__stop">Stop</string>
-
-   <string name="null_content">NULL INDHOLD</string>
-
+    <string name="null_content">NULL INDHOLD</string>
     <string name="navigation_drawer_open">Åbne navigationsskuffe</string>
     <string name="navigation_drawer_close">Lukke navigationsskuffe</string>
-
     <string name="button_read_next_time">Læse næste gang</string>
     <string name="button_understand">Forstået</string>
     <string name="button_cancel">Annullere</string>
     <string name="button_ok">O.k.</string>
-
     <string name="text_lack_permission">Easer har IKKE alle nødvendige rettigheder.</string>
     <string name="button_request_permission">Tildele rettigheder</string>
-
     <string name="text_title">Titel</string>
     <string name="text_parent_node">Forælder</string>
     <string name="text_parent">Forælder</string>
@@ -67,85 +59,59 @@
     <string name="text_reverse_desc">Omvendt hændelse</string>
     <string name="text_volatile">Omskiftelig</string>
     <string name="text_persistent">Vedvarende</string>
-
     <string name="text_dynamics">Dynamik</string>
     <string name="text_placeholder">Pladsholder</string>
-
     <string name="toggle_active">Aktiv</string>
-
     <string name="hint_event_title">hændelse titel</string>
     <string name="hint_script_title">skript titel</string>
     <string name="hint_profile_title">profil titel</string>
     <string name="hint_condition_title">tilstand titel</string>
-
     <string name="prompt_save_failed">Kan ikke gemme</string>
     <string name="prompt_delete">Slette: %s?</string>
     <string name="prompt_delete_failed">Kan ikke slette. Kontrollere om element er i brug.</string>
     <string name="prompt_data_illegal">Forhindret gemme data med ugyldige felter. Kontrollere valg/inddata.</string>
-
     <string name="prompt_prevented_for_permission">Easer behøver rettighed &lt;%s&gt; for denne funktion.</string>
-
     <string name="appInformation">Gør dagligdagen nemmere ved automatisk at udføre rutine handlinger.\n
 Sammensætte forskellige hændelser og udføre tilhørende handlinger.\n
 This app was inspired by CyanogenMod\'s \'profile\' mechanism and IFTTT. The original intuition was to automatically change the profile on certain time or specific WiFi connections, and it was expanded for more general use then.\n
 Reminder: Easer is still in development. It may contain bugs and the UI definitely needs to be improved. Current plans are described in the TODO.en.md (or TODO.md if you can read Chinese) document in the repo. If you are interested, please have a look.</string>
-
     <string name="liscence_stringa">Dette program er gratis software: Det kan videre-distribueres og/eller ændres i henhold til GNU General Public License som offentliggjort af Free Software Foundation, enten version 3 Licensen, eller (efter eget valg) en senere version.</string>
-
     <string name="liscence_stringb">Dette program distribueres i håb om at det vil være nyttigt men uden nogen garanti; uden selv den underforståede garanti for SALGBARHED eller EGNETHED TIL ET BESTEMT FORMÅL. Se GNU General Public License for flere detaljer.</string>
-
     <string name="liscence_stringc">Der medfølger normalt en kopi af GNU General Public License sammen med dette program. Hvis ikke, se http://www.gnu.org/licenses/</string>
-
     <string name="myGithub" translatable="false">https://github.com/renyuneyun/Easer</string>
-
     <string name="myWebsite" translatable="false">http://renyuneyun.is-programmer.com/</string>
-
     <string name="pref_category_functionality">Funktionalitet</string>
     <string name="pref_category_personalise">Personliggøre</string>
     <string name="pref_category_data_manage">Håndtere data</string>
-
     <string name="pref_autostart_title">Autostarte ved opstart</string>
     <string name="pref_autostart_summary">Starte Easer baggrundstjeneste automatisk</string>
-
     <string name="pref_restart_after_upgrade_title">Start tjeneste efter opgradering</string>
-
     <string name="pref_welcome_title">Vise velkomst besked</string>
     <string name="pref_welcome_summary">Vise velkomst besked ved program start</string>
-
     <string name="pref_logging_title">Aktivere ekstern logning</string>
     <string name="pref_logging_summary">Gemme log til ekstern opbevaringsenhed (/sdcard/logger) for at hjælpe med fejl rapporter.\nIndstillings ændringer træder i kraft ved næste Easer start.</string>
-
     <string name="pref_use_root_title">Bruge administrator egenskaber</string>
     <string name="pref_use_root_summary">Bruge administrator egenskab for specielle funktioner (udvidelsesmoduler), som kan hjælpe med at løse kompatibilitetsproblem på nogle enheder. Administrator egenskab vil ikke blive brugt andre steder.</string>
-
     <string name="pref_cooldown_title">Pausetid</string>
     <string name="pref_cooldown_summary">Mindste interval mellem to udløsere på samme hændelse</string>
     <string name="cooldown_time_illformed">Værdi skal være i område 0-32767</string>
-
     <string name="pref_passive_mode_title">Passiv tilstand</string>
     <string name="pref_passive_mode_summary_on">Lytter til hændelse; ingen kontrol når den er aktiveret</string>
     <string name="pref_passive_mode_summary_off">Kontrollere tilfredshedstilstand når (hver) hændelse er aktiveret</string>
-
     <string name="pref_enabled_plugins_title">Aktiverede udvidelsesmoduler</string>
     <string name="pref_enabled_plugins_summary">Aktivere eller deaktivere udvidelsesmoduler</string>
-
     <string name="pref_use_12_hour_clock_title">Brug 12 timers ur</string>
-
     <string name="pref_export_title">Eksportere</string>
     <string name="pref_export_summary">Eksportere alle hændelser og profiler til sd-kort.\nFil navngives efter aktuel tid.</string>
     <string name="pref_import_title">Importere</string>
     <string name="pref_import_summary">Importere alle hændelser og profiler i en pakket zip-fil.\nEksisterende hændelser og profiler med samme navn vil blive overskrevet.</string>
-
     <string name="pref_convert_data_title">Konvertere data</string>
     <string name="pref_convert_data_summary">Konvertere al data til anbefalet format</string>
-
     <string name="message_plugin_not_compatible">Udvidelsesmodul er ikke kompatibel med enhed.</string>
-
     <string name="message_convert_data_start">Konverterer data.</string>
     <string name="message_convert_data_finish">Data konverteret.</string>
     <string name="message_convert_data_abort">Konvertere data afbrudt.</string>
     <string name="message_convert_data_error">Fejl opstod ved konvertering. Se log for detaljer.</string>
-
     <string name="title_welcome_message">Velkommen</string>
     <string name="welcome_message">Velkommen til Easer!
         \nForhåbentligt kan du drage nytte af programmet :)
@@ -153,20 +119,15 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     1. Tillad Easer rettigheder før brug af relevante hændelser og profiler.\n
     2. Forbinde hændelser som <a href="https://en.wikipedia.org/wiki/Tree_structure">træer</a> er for NUVÆRENDE eneste måde at sammensætte hændelser.
         \n\nSe også <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> i projekt wiki.</string>
-
     <string name="alert_update_storage_data_title">Ældre data version fundet</string>
     <string name="alert_update_storage_data">Data er oprettet i en ældre version. Det anbefales at opdatere til ny version ellers vil Easer måske ikke fungere korrekt. Dette kan gøres ved at vælge "Konvertere data" under opsætning.</string>
-
     <string name="template_export">Eksporteret til %s</string>
     <string name="version">Version</string>
-
     <string name="message_importing_invalid_data">Filen ser ikke ud til at være gyldig. Importere en tidligere eksporteret Easer fil.</string>
-
     <string name="dynamics_time">Nuværende tidspunkt</string>
     <string name="dynamics_date">Nuværende dato</string>
     <string name="dynamics_script_name">Skript navn</string>
     <string name="dynamics_profile_name">Profil navn</string>
-
     <string name="title_help">Hjælp</string>
     <string name="help_script">Skript er logik beholder. Forbind en hændelse eller en tilstand med en profil i et skript, så Easer indlæser/udfører den pågældende profil når hændelsen finder sted eller tilstanden er opfyldt. 
 \nDer er også mere avancerede funktioner, f.eks. omvendt hændelse. 
@@ -174,27 +135,21 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     <string name="help_event">Hændelse repræsenterer en kortvarig (øjeblikkelig) hændelse på telefonen eller eksternt.\nFor eksempel modtager en påmindelse eller en skannet NFC mærke.\nSe <a href="https://github.com/renyuneyun/Easer/wiki"> dokumentet </a> for at få flere oplysninger.</string>
     <string name="help_condition">Tilstand repræsenterer en varig tilstand (men normalt ikke for altid) på telefonen eller eksternt.\nFor eksempel forbindelse til trådløst netværk eller skærm er fra.\nSe <a href="https://github.com/renyuneyun/Easer/wiki"> dokumentet </a> for at få flere oplysninger.</string>
     <string name="help_profile">Profil er et sæt handlinger. Hver handling repræsenterer en bestemt type handling.\nFor eksempel tænd Bluetooth eller send en SMS.\nSe <a href="https://github.com/renyuneyun/Easer/wiki"> dokumentet </a> for at få flere oplysninger.</string>
-
     <string name="category_operation_android">Android</string>
     <string name="category_operation_system_config">System opsætning</string>
     <string name="category_operation_easer">@string/easer</string>
     <string name="category_operation_misc">Diverse</string>
-
-<string name="title_remote_operation_plugin">Fjernbetjent udvidelses-modul</string>
-
+    <string name="title_remote_operation_plugin">Fjernbetjent udvidelses-modul</string>
     <string name="menu_clear">Rydde</string>
-
     <string name="category_operation_unknown">Ukendt</string>
-
-<string name="text_notification_running_indicator_content">%s kører i baggrunden</string>
-
+    <string name="text_notification_running_indicator_content">%s kører i baggrunden</string>
     <string name="pref_category_service">Tjeneste</string>
-
     <string name="pref_show_notification_title">Vis påmindelse</string>
     <string name="pref_show_notification_summary">Vis påmindelse i påmindelse bjælken.</string>
     <string name="pref_foreground_title">Køre tjeneste i forgrund</string>
     <string name="pref_foreground_summary">Gør tjenesten mindre nem at blive stoppet af systemet. Vil vise en påmindelse. Kan ikke deaktiveres på Android 8+ på grund af systemkrav.</string>
-
     <string name="menu_tree_list">Trævisning</string>
-
-    </resources>
+    <string name="menu_plain_list">Almindelig tekst</string>
+    <string name="message_future_change_title__0_7_4">Ændres snart</string>
+    <string name="message_future_change_body__0_7_4">I v0.7.4, fjernes \"%s\" funktionalitet, som skulle have været fjernet for længe siden. Flyt hurtigst muligt ved at bruge Betingelser i stedet for disse hændelser; og deaktivere denne opsætning på \"%s\" side.</string>
+</resources>

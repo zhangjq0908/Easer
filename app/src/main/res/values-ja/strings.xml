@@ -166,4 +166,6 @@
     <string name="pref_foreground_title">フォアグラウンドでサービスを実行</string>
     <string name="pref_foreground_summary">システムによってサービスが終了する可能性が減ります。 通知を表示します。 システム要件のためにAndroid 8以降で無効にすることはできません。</string>
     <string name="menu_plain_list">プレーンリスト</string>
+    <string name="message_future_change_title__0_7_4">すぐに変更します</string>
+    <string name="message_future_change_body__0_7_4">v0.7.4 で、ずっと前に削除される予定だった \"%s\" の機能が削除されます。できるだけ早く移行して、これらのイベントの代わりに条件を使用するようにしてください。\"%s\" ページでこの設定を無効にしてください。</string>
 </resources>
