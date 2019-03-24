@@ -1,6 +1,9 @@
 CHANGELOG
 ======
 
+* v0.7.2.4.1: Fix wrong user notification of passive-mode
+	* Passive mode should be enabled
+
 * v0.7.2.4: Bug fixes & Slight changes & i18n update
 	* Fix StateControlOperationPlugin causes freeze
 	* Fix command not executed correctly
