@@ -159,4 +159,6 @@
     <string name="category_operation_unknown">Unbekannt</string>
     <string name="menu_tree_list">Baum Ansicht</string>
     <string name="menu_plain_list">Einfache Liste</string>
+    <string name="message_future_change_title__0_7_4">Das ändert sich bald</string>
+    <string name="message_future_change_body__0_7_4">In v0.7.4 werden wir die \"%s\"-Funktionalität entfernen, die vor sehr langer Zeit hätte fallen gelassen werden sollen. Bitte migrieren Sie so schnell wie möglich, indem Sie Bedingungen anstelle dieser Ereignisse verwenden und deaktivieren Sie diese Einstellung auf der Seite \"%s\".</string>
 </resources>
