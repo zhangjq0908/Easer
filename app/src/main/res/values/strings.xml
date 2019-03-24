@@ -178,7 +178,7 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     <string name="alert_update_storage_data">Your data were created in an older version. It\'s suggested to update them to new version or Easer may not work well. You can do this by selecting "Convert Data" in settings.</string>
 
     <string name="message_future_change_title__0_7_4">Changing soon</string>
-    <string name="message_future_change_body__0_7_4">In v0.7.4, we\'ll remove the \"%s\" functionality, which was supposed to be dropped very long ago. Please migrate as soon as possible, by using Conditions instead of these Events; and disable this setting in the \"%s\" page.</string>
+    <string name="message_future_change_body__0_7_4">In v0.7.4, we\'ll remove the toggle of \"%s\" functionality, making it always on, which was supposed to be done very long ago. Please migrate as soon as possible, by using Conditions instead of these Events; and enable this setting in the \"%s\" page.</string>
 
     <string name="template_export">Exported to %s</string>
     <string name="version">Version</string>

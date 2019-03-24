@@ -21,6 +21,7 @@ package ryey.easer.core.ui.version_n_info
 
 import android.app.AlertDialog
 import android.content.Context
+import android.preference.PreferenceManager
 import android.support.annotation.StringRes
 import android.text.method.LinkMovementMethod
 import android.view.View
@@ -53,8 +54,8 @@ object Version {
     }
 
     private fun nearFutureChange_0_7_4(context: Context) {
-//        if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.key_pref_passive_mode), false)) {
+        if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.key_pref_passive_mode), true)) {
             showPrompt(context, R.string.message_future_change_title__0_7_4, R.string.message_future_change_body__0_7_4, R.string.pref_passive_mode_title, R.string.title_setting)
-//        }
+        }
     }
 }
