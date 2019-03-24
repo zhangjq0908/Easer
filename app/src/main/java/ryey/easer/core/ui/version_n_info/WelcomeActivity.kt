@@ -19,16 +19,31 @@
 
 package ryey.easer.core.ui.version_n_info
 
-import android.content.Context
-import android.content.Intent
+import android.os.Bundle
 import android.preference.PreferenceManager
+import android.support.v4.app.Fragment
+import com.github.paolorotolo.appintro.AppIntro2
 import ryey.easer.R
 
-object Info {
-    fun welcome(context: Context) {
-        // Show Welcome page at first launch
-        if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.key_pref_welcome), true)) {
-            context.startActivity(Intent(context, WelcomeActivity::class.java))
-        }
+
+class WelcomeActivity : AppIntro2() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val fragment0 = TextSlide.newInstance(R.string.welcome_message)
+        addSlide(fragment0)
+
+        showSkipButton(true)
     }
+
+    override fun onDonePressed(currentFragment: Fragment?) {
+        super.onDonePressed(currentFragment)
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .edit()
+                .putBoolean(getString(R.string.key_pref_welcome), false)
+                .apply()
+    }
+
+
 }
