@@ -151,5 +151,5 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     <string name="menu_tree_list">Trævisning</string>
     <string name="menu_plain_list">Almindelig tekst</string>
     <string name="message_future_change_title__0_7_4">Ændres snart</string>
-    <string name="message_future_change_body__0_7_4">I v0.7.4, fjernes \"%s\" funktionalitet, som skulle have været fjernet for længe siden. Flyt hurtigst muligt ved at bruge Betingelser i stedet for disse hændelser; og deaktivere denne opsætning på \"%s\" side.</string>
+    <string name="message_future_change_body__0_7_4">I v0.7.4, fjernes skift af \"%s\" funktionalitet, så den altid er til, dette skulle have været gjort for længe siden. Flyt hurtigst muligt ved at bruge Betingelser i stedet for disse hændelser; og aktivere denne opsætning på \"%s\" side.</string>
 </resources>
