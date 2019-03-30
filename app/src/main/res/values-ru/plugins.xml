@@ -150,7 +150,7 @@
     <string name="o_volume_delay">"Задержка "</string>
     <string name="op_launch_app">Запустить Приложение</string>
     <string name="op_launch_app_text_app">Приложение</string>
-    <string name="op_launch_app_text_package_name">Имя Пакета</string>
+    <string name="op_launch_app_text_app_hint">Имя Пакета</string>
     <string name="op_ui_mode">Режим в Машине</string>
     <string name="op_car_mode">Режим в Машине</string>
     <string name="op_normal_mode">Обычный Режим</string>

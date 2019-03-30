@@ -230,8 +230,11 @@
     <string name="o_volume_delay">Delay (s)</string>
 
     <string name="op_launch_app">Launch App</string>
+    <string name="o_launch_app__launch_activity">Launch Activity</string>
     <string name="op_launch_app_text_app">App</string>
-    <string name="op_launch_app_text_package_name">Package Name</string>
+    <string name="op_launch_app_text_app_hint">Package Name</string>
+    <string name="o_launch_app__text_class">Class Name</string>
+    <string name="o_launch_app__text_class_hint">Empty or full class name</string>
 
     <string name="op_ui_mode">Car Mode</string>
     <string name="op_car_mode">Car Mode</string>

@@ -141,7 +141,7 @@
     <string name="o_volume_delay">Forsinkelse (s)</string>
     <string name="op_launch_app">Kjør program</string>
     <string name="op_launch_app_text_app">Program</string>
-    <string name="op_launch_app_text_package_name">Pakkenavn</string>
+    <string name="op_launch_app_text_app_hint">Pakkenavn</string>
     <string name="op_ui_mode">Bilmodus</string>
     <string name="op_car_mode">Bilmodus</string>
     <string name="op_normal_mode">Normalt modus</string>

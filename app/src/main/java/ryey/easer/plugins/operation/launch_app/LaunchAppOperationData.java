@@ -17,11 +17,14 @@ import ryey.easer.plugin.PluginDataFormat;
 
 public class LaunchAppOperationData implements OperationData {
     private static final String K_APP_PACKAGE = "package";
+    private static final String K_CLASS = "class";
 
     final String app_package;
+    final @Nullable String app_class;
 
-    LaunchAppOperationData(String app_package) {
+    LaunchAppOperationData(String app_package, @Nullable String app_class) {
         this.app_package = app_package;
+        this.app_class = app_class;
     }
 
     LaunchAppOperationData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
@@ -30,6 +33,7 @@ public class LaunchAppOperationData implements OperationData {
                 try {
                     JSONObject jsonObject = new JSONObject(data);
                     app_package = jsonObject.getString(K_APP_PACKAGE);
+                    app_class = jsonObject.optString(K_CLASS);
                 } catch (JSONException e) {
                     throw new IllegalStorageDataException(e);
                 }
@@ -45,6 +49,7 @@ public class LaunchAppOperationData implements OperationData {
                 try {
                     JSONObject jsonObject = new JSONObject();
                     jsonObject.put(K_APP_PACKAGE, app_package);
+                    jsonObject.put(K_CLASS, app_class);
                     ret = jsonObject.toString();
                 } catch (JSONException e) {
                     throw new IllegalStateException(e);
@@ -68,6 +73,8 @@ public class LaunchAppOperationData implements OperationData {
             return false;
         if (!Utils.nullableEqual(app_package, ((LaunchAppOperationData) obj).app_package))
             return false;
+        if (!Utils.nullableEqual(app_class, ((LaunchAppOperationData) obj).app_class))
+            return false;
         return true;
     }
 
@@ -79,6 +86,7 @@ public class LaunchAppOperationData implements OperationData {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(app_package);
+        dest.writeString(app_class);
     }
 
     public static final Creator<LaunchAppOperationData> CREATOR
@@ -94,6 +102,7 @@ public class LaunchAppOperationData implements OperationData {
 
     private LaunchAppOperationData(Parcel in) {
         app_package = in.readString();
+        app_class = in.readString();
     }
 
     @Nullable

@@ -209,8 +209,11 @@
     <string name="o_volume_delay">延遲設置（秒）</string>
 
     <string name="op_launch_app">啓動程序</string>
+    <string name="o_launch_app__launch_activity">啓動Activity</string>
     <string name="op_launch_app_text_app">程序</string>
-    <string name="op_launch_app_text_package_name">包名</string>
+    <string name="op_launch_app_text_app_hint">包名</string>
+    <string name="o_launch_app__text_class">類名</string>
+    <string name="o_launch_app__text_class_hint">空白或完整類名</string>
 
     <string name="op_ui_mode">UI模式</string>
     <string name="op_car_mode">車載模式</string>

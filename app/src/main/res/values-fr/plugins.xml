@@ -168,7 +168,7 @@
 
     <string name="op_launch_app">Lancer l\'application</string>
     <string name="op_launch_app_text_app">Application</string>
-    <string name="op_launch_app_text_package_name">Nom du paquet</string>
+    <string name="op_launch_app_text_app_hint">Nom du paquet</string>
 
     <string name="op_ui_mode">Mode voiture</string>
     <string name="op_car_mode">Mode voiture</string>
