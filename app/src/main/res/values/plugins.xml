@@ -240,6 +240,9 @@
     <string name="op_car_mode">Car Mode</string>
     <string name="op_normal_mode">Normal Mode</string>
 
+    <string name="o_play_media">Play Media</string>
+    <string name="o_play_media_text_file">File Path</string>
+
     <string name="rel_after">After</string>
 
 </resources>

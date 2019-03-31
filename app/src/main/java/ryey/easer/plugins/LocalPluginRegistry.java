@@ -83,6 +83,7 @@ import ryey.easer.plugins.operation.hotspot.HotspotOperationPlugin;
 import ryey.easer.plugins.operation.launch_app.LaunchAppOperationPlugin;
 import ryey.easer.plugins.operation.media_control.MediaControlOperationPlugin;
 import ryey.easer.plugins.operation.network_transmission.NetworkTransmissionOperationPlugin;
+import ryey.easer.plugins.operation.play_media.PlayMediaOperationPlugin;
 import ryey.easer.plugins.operation.ringer_mode.RingerModeOperationPlugin;
 import ryey.easer.plugins.operation.rotation.RotationOperationPlugin;
 import ryey.easer.plugins.operation.send_notification.SendNotificationOperationPlugin;
@@ -162,6 +163,7 @@ final public class LocalPluginRegistry {
         operation().registerPlugin(VolumeOperationPlugin.class);
         operation().registerPlugin(LaunchAppOperationPlugin.class);
         operation().registerPlugin(UiModeOperationPlugin.class);
+        operation().registerPlugin(PlayMediaOperationPlugin.class);
         //TODO: write more plugins
     }
 

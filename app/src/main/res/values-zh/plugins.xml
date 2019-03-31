@@ -219,6 +219,9 @@
     <string name="op_car_mode">車載模式</string>
     <string name="op_normal_mode">普通模式</string>
 
+    <string name="o_play_media">播放媒體</string>
+    <string name="o_play_media_text_file">文件路徑</string>
+
     <string name="rel_after">在此之後</string>
 
 </resources>
