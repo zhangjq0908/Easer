@@ -1,6 +1,12 @@
 CHANGELOG
 ======
 
+* v0.7.3: Better welcome page && PlayMediaOperationPlugin && Other changes && i18n
+	* A series of dedicated welcome pages are now used
+	* New operation: PlayMediaOperationPlugin
+	* Allow to specify class in LaunchAppOperationPlugin
+	* i18n update: Danish & German & Japanese
+
 * v0.7.2.4.1: Fix wrong user notification of passive-mode
 	* Passive mode should be enabled
 
