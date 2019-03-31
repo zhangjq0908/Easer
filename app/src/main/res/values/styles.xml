@@ -60,6 +60,20 @@
         <item name="android:textSize">@dimen/list_item_operation_selection_text_size</item>
     </style>
 
+    <style name="AppTheme.Intro" />
+
+    <style name="AppTheme.Intro.PureText" >
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="AppTheme.Intro.PureText.Heading" parent="AppIntroDefaultHeading">
+        <item name="android:textSize">@dimen/appIntroPureTextHeadingTextSize</item>
+    </style>
+
+    <style name="AppTheme.Intro.PureText.Content" parent="AppIntroDefaultText">
+        <item name="android:textSize">@dimen/appIntroPureTextContentTextSize</item>
+    </style>
+
     <style name="LR">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>

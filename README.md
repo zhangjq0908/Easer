@@ -82,5 +82,6 @@ Easer的期望功能中包含大量對隱私信息（比如位置信息、日曆
 * [android-flowlayout](https://github.com/ApmeM/android-flowlayout): Apache License v2
 * [Guava](https://github.com/google/guava): Apache License v2
 * [StickyListHeaders](https://github.com/emilsjolander/StickyListHeaders): Apache License v2
+* [AppIntro](https://github.com/AppIntro/AppIntro): Apache License v2
 
 * 以`*-fa-*`命名的drawable文件均來自[fontawesome](https://fontawesome.com/): CC-BY 4.0

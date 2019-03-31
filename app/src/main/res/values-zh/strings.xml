@@ -46,6 +46,34 @@
     <string name="pref_welcome_title">程序啓動時顯示歡迎消息</string>
     <string name="title_welcome_message">歡迎</string>
     <string name="welcome_message">歡迎使用Easer！\n        \n希望你能喜歡這個軟件 :)\n        \n\n請先閱讀以下事項再開始使用：\n\n    1. 請授予Easer適當權限，以便使用相關的功能。\n\n    2. 在當前，組合“事件”的方法是將它們連成<a href="https://zh.wikipedia.org/wiki/%E6%A8%B9%E7%8B%80%E7%B5%90%E6%A7%8B">樹</a>。\n        \n\n另請移步項目wiki中的<a href="https://github.com/renyuneyun/Easer/wiki/須知">須知</a>部分。</string>
+    <string name="welcome_message_1">
+        歡迎使用Easer！
+        \n\n歡迎頁面包含一些基本信息。
+        \n\n使用前請仔細閱讀。
+        \n
+        \n\n另請移步項目wiki中的<a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a>部分。
+    </string>
+    <string name="welcome_message_2">
+        Easer依靠許多模塊來提供不同功能。你可以分別啓用/禁用它們。
+        \n\n對每個模塊，其相應權限需要在使用前被授予。
+        \n
+        \n\n（默認情況下所有模塊均被啓用。）
+    </string>
+    <string name="welcome_message_3">
+        用戶腳本可以組織成<a href="https://zh.wikipedia.org/wiki/%E6%A8%B9%E7%8B%80%E7%B5%90%E6%A7%8B">樹</a>形結構（通過選擇其父節點）。
+        \n\n在每個分支:“與（AND）”。
+        \n在不同枝之間:“或（OR）”。
+        \n
+        \n\n將來應該會將樹擴展爲圖，但目前暫未去實現。
+    </string>
+    <string name="title_welcome_message_privacy">
+        隱私！
+    </string>
+    <string name="welcome_message_privacy">
+        隱私十分重要！
+        \n\nEaser是<a href="https://zh.wikipedia.org/wiki/%E8%87%AA%E7%94%B1%E8%BD%AF%E4%BB%B6">自由軟件</a>，以保證任何人均可檢查代碼。
+        \n\n您擁有每一分數據。所有數據均存儲在您的設備中，包括日誌也是如此。
+    </string>
     <string name="null_content">空內容</string>
     <string name="button_read_next_time">以後再看</string>
     <string name="button_understand">明白了</string>

@@ -31,8 +31,10 @@ class WelcomeActivity : AppIntro2() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val fragment0 = TextSlide.newInstance(R.string.welcome_message)
-        addSlide(fragment0)
+        addSlide(TextSlide.newInstance(R.string.welcome_message_1))
+        addSlide(TextSlide.newInstance(R.string.welcome_message_2))
+        addSlide(TextSlide.newInstance(R.string.welcome_message_3))
+        addSlide(TextSlide.newInstance(R.string.title_welcome_message_privacy, R.string.welcome_message_privacy))
 
         showSkipButton(true)
     }
@@ -43,7 +45,12 @@ class WelcomeActivity : AppIntro2() {
                 .edit()
                 .putBoolean(getString(R.string.key_pref_welcome), false)
                 .apply()
+        finish()
     }
 
+    override fun onSkipPressed(currentFragment: Fragment?) {
+        super.onSkipPressed(currentFragment)
+        onDonePressed(currentFragment)
+    }
 
 }

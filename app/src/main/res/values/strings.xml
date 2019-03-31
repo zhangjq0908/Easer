@@ -173,6 +173,34 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     1. Please grant Easer corresponding permissions before using relevant events and profiles.\n
     2. Connecting events as <a href="https://en.wikipedia.org/wiki/Tree_structure">trees</a> is CURRENTLY the only way to compose events.
         \n\nAlso have a look at <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> in the project wiki.</string>
+    <string name="welcome_message_1">
+        Welcome to Easer!
+        \n\nThe welcome pages have some basic information.
+        \n\nPlease read before use.
+        \n
+        \n\nBetter to have a look at <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> in the project wiki.
+    </string>
+    <string name="welcome_message_2">
+        Easer contains several modules to provide different functions. You can enable/disable them in Settings.
+        \n\nThe corresponding permissions (for every enabled module) should be granted before use.
+        \n
+        \n\n(Everything is enabled by default.)
+    </string>
+    <string name="welcome_message_3">
+        Scripts are structured as <a href="https://en.wikipedia.org/wiki/Tree_structure">trees</a>, by choosing the relevant "parent".
+        \n\nIn every branch, "AND" logic is performed.
+        \nBetween branches, "OR" logic is performed.
+        \n
+        \n\nExtending trees to graphs is planned, but not currently implemented.
+    </string>
+    <string name="title_welcome_message_privacy">
+        Privacy!
+    </string>
+    <string name="welcome_message_privacy">
+        Privacy is important!
+        \n\nEaser is a <a href="https://en.wikipedia.org/wiki/Free_software">free software</a> (open-source software), ensuring everyone can inspect the code.
+        \n\nYOU own every piece of your data. Everything lives on your device, including the logs.
+    </string>
 
     <string name="alert_update_storage_data_title">Old data version found</string>
     <string name="alert_update_storage_data">Your data were created in an older version. It\'s suggested to update them to new version or Easer may not work well. You can do this by selecting "Convert Data" in settings.</string>

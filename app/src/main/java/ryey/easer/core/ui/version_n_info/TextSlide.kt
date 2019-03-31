@@ -30,26 +30,45 @@ import ryey.easer.R
 
 
 class TextSlide : Fragment() {
-    private var stringId: Int = 0
+    private var contentId: Int = R.string.welcome_message
+    private var titleId: Int? = R.string.title_welcome_message
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                      savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_welcome_1, container, false)
+        if (arguments?.containsKey(ARG_STRING_TITLE_ID) == true)
+            titleId = arguments?.getInt(ARG_STRING_TITLE_ID)
+        contentId = arguments?.getInt(ARG_STRING_CONTENT_ID)!!
+
+        val view = inflater.inflate(R.layout.fragment_welcome_text, container, false)
+        val title = view.findViewById<TextView>(R.id.title)
+        titleId?.let { title.setText(it) }
         val tvDescription = view.findViewById<TextView>(R.id.description)
-        tvDescription.setText(stringId)
+        tvDescription.setText(contentId)
         tvDescription.movementMethod = LinkMovementMethod.getInstance()
         return view
     }
 
     companion object {
 
-        private const val ARG_STRING_RES_ID = "STRING_RES_ID"
+        private const val ARG_STRING_TITLE_ID = "STRING_TITLE_ID"
+        private const val ARG_STRING_CONTENT_ID = "STRING_CONTENT_ID"
 
         fun newInstance(stringId: Int): TextSlide {
             val slide = TextSlide()
 
             val args = Bundle()
-            args.putInt(ARG_STRING_RES_ID, stringId)
+            args.putInt(ARG_STRING_CONTENT_ID, stringId)
+            slide.arguments = args
+
+            return slide
+        }
+
+        fun newInstance(titleId: Int, stringId: Int): TextSlide {
+            val slide = TextSlide()
+
+            val args = Bundle()
+            args.putInt(ARG_STRING_TITLE_ID, titleId)
+            args.putInt(ARG_STRING_CONTENT_ID, stringId)
             slide.arguments = args
 
             return slide
