@@ -148,7 +148,7 @@
     <string name="o_volume_delay">Vertraging (s)</string>
     <string name="op_launch_app">Start App</string>
     <string name="op_launch_app_text_app">App</string>
-    <string name="op_launch_app_text_package_name">Pakketnaam</string>
+    <string name="op_launch_app_text_app_hint">Pakketnaam</string>
     <string name="op_ui_mode">Auto modus</string>
     <string name="op_car_mode">Auto modus</string>
     <string name="op_normal_mode">Normale modus</string>

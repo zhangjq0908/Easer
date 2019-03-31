@@ -59,6 +59,10 @@ public class WifiTracker extends SkeletonTracker<WifiConditionData> {
                     compareAndSignal(wifiInfo);
                 } else if (!networkInfo.isConnectedOrConnecting()) {
                     WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                    if (wifiManager == null) {
+                        Logger.wtf("[WifiTracker] WifiManager is null");
+                        return;
+                    }
                     boolean wifiEnabled = wifiManager.isWifiEnabled();
                     if (!wifiEnabled) {
                         newSatisfiedState(null);

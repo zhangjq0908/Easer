@@ -151,7 +151,7 @@
     <string name="o_volume_delay">遅延 (秒)</string>
     <string name="op_launch_app">アプリを起動</string>
     <string name="op_launch_app_text_app">アプリ</string>
-    <string name="op_launch_app_text_package_name">パッケージ名</string>
+    <string name="op_launch_app_text_app_hint">パッケージ名</string>
     <string name="op_ui_mode">運転モード</string>
     <string name="op_car_mode">運転モード</string>
     <string name="op_normal_mode">通常モード</string>
