@@ -64,7 +64,7 @@
     <string name="text_reverse_desc">Omvända scenariot</string>
     <string name="text_volatile">Flyktig</string>
     <string name="text_persistent">Ihållande</string>
-    <string name="text_dynamics">Dynamics</string>
+    <string name="text_dynamics">Dynamik</string>
     <string name="text_placeholder">Platshållare</string>
     <string name="toggle_active">Aktiv</string>
     <string name="hint_event_title">händelsenamn</string>
@@ -85,4 +85,107 @@
     <string name="liscence_stringc">Du bör ha fått en kopia av GNU General Public License tillsammans med detta program. Om inte, se http://www.gnu.org/licenses/</string>
     <string name="pref_category_functionality">Funktionalitet</string>
     <string name="pref_category_personalise">Anpassa</string>
+    <string name="pref_category_data_manage">Hantera data</string>
+    <string name="pref_category_service">Tjänst</string>
+    <string name="pref_autostart_title">Autostart vid uppstart</string>
+    <string name="pref_autostart_summary">Starta Easer bakgrundstjänst automatiskt</string>
+    <string name="pref_restart_after_upgrade_title">Starta tjänsten efter uppgradering</string>
+    <string name="pref_welcome_title">Visa välkomstmeddelande</string>
+    <string name="pref_welcome_summary">Visa välkomstmeddelande när appen startar</string>
+    <string name="pref_logging_title">Aktivera extern loggning</string>
+    <string name="pref_logging_summary">Spara loggar till externa lagringsenheter (/sdcard/logger) till stöd för felrapporter.
+\nÄndringen av inställningen börjar gälla från nästa gång Easer startar.</string>
+    <string name="pref_use_root_title">Använd root-funktioner</string>
+    <string name="pref_use_root_summary">Använd root-behörighet för specifika funktioner (plugins), som kan hjälpa till att lösa kompatibilitetsproblem på vissa enheter. Rot-behörigheten kommer inte att användas någon annanstans.</string>
+    <string name="pref_cooldown_title">Nedkylningstid</string>
+    <string name="pref_cooldown_summary">Minimala intervallet mellan två utlösare av samma händelse</string>
+    <string name="cooldown_time_illformed">Numret får inte vara lägre än 0 och inte för stor för att rymma i ett heltal</string>
+    <string name="pref_passive_mode_title">Passivt läge</string>
+    <string name="pref_passive_mode_summary_on">Lyssna på händelse; ingen kontroll när aktiverad</string>
+    <string name="pref_passive_mode_summary_off">Kontrollera tillfredsställande tillstånd när (varje) händelse aktiveras</string>
+    <string name="pref_enabled_plugins_title">Aktiverade insticksmoduler</string>
+    <string name="pref_enabled_plugins_summary">Aktivera eller inaktivera vissa insticksmoduler</string>
+    <string name="pref_use_12_hour_clock_title">Använd 12-timmarsklocka</string>
+    <string name="pref_export_title">Exportera</string>
+    <string name="pref_export_summary">Exportera alla händelser och profiler till SD Card.
+\nFil namnges efter aktuell tid.</string>
+    <string name="pref_import_title">Importera</string>
+    <string name="pref_import_summary">Importera alla händelser och profiler i en zip-fil.
+\nBefintliga händelser och profiler med samma namn kommer att ersättas.</string>
+    <string name="pref_convert_data_title">Konvertera data</string>
+    <string name="pref_convert_data_summary">Konvertera all data till det rekommenderade formatet</string>
+    <string name="pref_show_notification_title">Visa meddelande</string>
+    <string name="pref_show_notification_summary">Visa ett meddelande i meddelandefältet.</string>
+    <string name="pref_foreground_title">Kör service i förgrunden</string>
+    <string name="pref_foreground_summary">Gör tjänsten mindre lätt att bli avstängd av systemet. Visar ett meddelande. Kan inte inaktiveras på Android 8+ på grund av systemkrav.</string>
+    <string name="message_plugin_not_compatible">Denna insticksmodul är inte kompatibel med enheten.</string>
+    <string name="message_convert_data_start">Omvandlar data.</string>
+    <string name="message_convert_data_finish">Konverterade data.</string>
+    <string name="message_convert_data_abort">Konvertering av data avbruten.</string>
+    <string name="message_convert_data_error">Fel uppstod vid konvertering av data. Vänligen se loggen för mer information.</string>
+    <string name="title_welcome_message">Välkommen</string>
+    <string name="welcome_message">Välkommen för att börja använda Easer!
+\nHoppas du gillar denna app :)
+\n
+\nLäs dessa innan du börjar: 
+\n 1. Vänligen ge Easer motsvarande behörigheter innan du använder relevanta händelser och profiler.
+\n 2. Ansluta händelser som <a href="https://en.wikipedia.org/wiki/Tree_structure">träd</a> är för närvarande det enda sättet att komponera händelser. 
+\n
+\nOckså ta en titt på <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> i projektets wiki.</string>
+    <string name="welcome_message_1"> Välkommen till Easer! 
+\n
+\nVälkomstsidor har viss grundläggande information. 
+\n
+\nLäs före användning. 
+\n 
+\n
+\nBäst att ta en titt på <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> i projektets wiki. </string>
+    <string name="welcome_message_2">Easer innehåller flera moduler för att ge olika funktioner. Du kan aktivera eller inaktivera dem i inställningar. 
+\n
+\nMotsvarande behörigheter (för varje aktiverad modul) bör beviljas före användning. 
+\n 
+\n
+\n(Allt är aktiverat som standard.)</string>
+    <string name="welcome_message_3"> Skript är strukturerade som <a href="https://en.wikipedia.org/wiki/Tree_structure">träd</a>, genom att välja relevanta föräldern. 
+\n
+\nI varje gren utförs AND logik. 
+\nMellan grenar utförs OR logik. 
+\n 
+\n
+\nAtt utvidga träd till grafer är planerade, men för närvarande inte implementerat. </string>
+    <string name="title_welcome_message_privacy">Integritet!</string>
+    <string name="welcome_message_privacy"> Integritet är viktigt! 
+\n
+\nEaser är <a href="https://en.wikipedia.org/wiki/Free_software">fri programvara</a> (programvara med öppen källkod), för att garantera att alla kan granska koden. 
+\n
+\nDU äger varje bit av din data. Allt liv på enheten, inklusive loggar. </string>
+    <string name="alert_update_storage_data_title">Gammal dataversion hittades</string>
+    <string name="alert_update_storage_data">Dina data har skapats i en äldre version. Det föreslås att uppdatera dem till nya versionen annars kommer Easer inte att fungera bra. Du kan göra detta genom att välja att konvertera Data i inställningar.</string>
+    <string name="message_future_change_title__0_7_4">Ändras snart</string>
+    <string name="message_future_change_body__0_7_4">I v0.7.4, tar vi bort växlingen av \'%s\' funktionen, vilket gör den till alltid på. Det var tänkt att göras för mycket länge sedan. Vänligen flytta så snart som möjligt, genom att använda villkor i stället för dessa händelser; och aktivera den här inställningen på sidan \'%s\'.</string>
+    <string name="template_export">Exporteras till %s</string>
+    <string name="version">Version</string>
+    <string name="message_importing_invalid_data">Den här filen verkar inte vara giltig. Se till att importera en fil som tidigare exporterats med Easer.</string>
+    <string name="dynamics_time">Aktuell tid</string>
+    <string name="dynamics_date">Aktuellt datum</string>
+    <string name="dynamics_script_name">Skriptnamn</string>
+    <string name="dynamics_profile_name">Profilnamn</string>
+    <string name="title_help">Hjälp</string>
+    <string name="help_script">Skript är logikbehållare. Du ansluter en händelse eller ett tillstånd med en profil i ett skript, så att Easer vet för att ladda/köra profilen när den händelsen inträffar eller villkoret uppfylls.
+\nDet finns också mer avancerade funktioner, t ex återförd händelse.
+\nSe <a href="https://github.com/renyuneyun/Easer/wiki">dokumentationen</a> för mer information.</string>
+    <string name="help_event">Händelse representerar en kort tid (omedelbar) händelse på telefonen eller på distans.
+\nTill exempel att ta emot ett meddelande eller att en NFC-tagg skannas.
+\nSe <a href="https://github.com/renyuneyun/Easer/wiki">dokumentationen</a> för mer information.</string>
+    <string name="help_condition">Villkoret utgör ett långvarigt (men oftast inte för evigt) skick på telefonen eller på distans.
+\nTill exempel att vara ansluten till WiFi eller att skärmen är avstängd.
+\nSe <a href="https://github.com/renyuneyun/Easer/wiki">dokumentationen</a> för mer information.</string>
+    <string name="help_profile">Profilen är en uppsättning åtgärder. Varje Operation representerar en viss typ av åtgärd.
+\nTill exempel att slå på Bluetooth, eller att skicka ett SMS.
+\nSe <a href="https://github.com/renyuneyun/Easer/wiki">dokumentationen</a> för mer information.</string>
+    <string name="category_operation_android">Android</string>
+    <string name="category_operation_system_config">Systemkonfiguration</string>
+    <string name="category_operation_easer">\@string/easer</string>
+    <string name="category_operation_misc">Blandat</string>
+    <string name="category_operation_unknown">Okänd</string>
 </resources>
