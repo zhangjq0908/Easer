@@ -152,4 +152,31 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     <string name="menu_plain_list">Almindelig tekst</string>
     <string name="message_future_change_title__0_7_4">Ændres snart</string>
     <string name="message_future_change_body__0_7_4">I v0.7.4, fjernes skift af \"%s\" funktionalitet, så den altid er til, dette skulle have været gjort for længe siden. Flyt hurtigst muligt ved at bruge Betingelser i stedet for disse hændelser; og aktivere denne opsætning på \"%s\" side.</string>
+    <string name="welcome_message_1"> Velkommen til Easer!
+\n
+\nVelkomstsiden har nogle grundlæggende oplysninger.
+\n
+\nLæs venligst før brug.
+\n
+\n
+\nBedre at kigge på <a href="https://github.com/renyuneyun/Easer/wiki/FAQ"> FAQ </a> i projekt wiki. </string>
+    <string name="welcome_message_2">Easer indeholder flere moduler til at levere forskellige funktioner. De kan aktiveres / deaktiveres i opsætning.
+\n
+\nDe tilsvarende tilladelser (for hvert aktiveret modul) skal gives før brug.
+\n 
+\n
+\n(Alt er som standard aktiveret.)</string>
+    <string name="welcome_message_3"> Skripte er struktureret som <a href="https://en.wikipedia.org/wiki/Tree_structure">træer</a>, ved at vælge relevant forælder. 
+\n
+\nI hver gren er OG logik udført. 
+\nMellem grene er ELLER logik udført. 
+\n 
+\n
+\nUdvidelse af træer til grafer er planlagt men endnu ikke implementret. </string>
+    <string name="title_welcome_message_privacy">Privatliv!</string>
+    <string name="welcome_message_privacy"> Privatliv er vigtigt! 
+\n
+\nEaser er <a href="https://en.wikipedia.org/wiki/Free_software">fri software</a> (åben kildekode software) som sikre at alle kan kigge med i koden. 
+\n
+\nMan ejer selv hver eneste stykke data. Alt lever på enheden inklusiv logs. </string>
 </resources>
