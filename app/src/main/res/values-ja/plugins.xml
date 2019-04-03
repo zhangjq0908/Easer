@@ -164,4 +164,9 @@
     <string name="broadcast_type">タイプ</string>
     <string name="broadcast_data">データ</string>
     <string name="source_cell_location_listening_title">リッスン中</string>
+    <string name="o_launch_app__launch_activity">起動アクティビティ</string>
+    <string name="o_launch_app__text_class">クラス名</string>
+    <string name="o_launch_app__text_class_hint">空または完全なクラス名</string>
+    <string name="o_play_media">メディアを再生</string>
+    <string name="o_play_media_text_file">ファイルのパス</string>
 </resources>
