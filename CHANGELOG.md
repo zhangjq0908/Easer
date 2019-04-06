@@ -1,6 +1,14 @@
 CHANGELOG
 ======
 
+* v0.7.3.1: Small bug fixes && i18n update
+	* Fix app_name being incorrect in several languages
+	* Treat invalid CellLocation as invalid
+	* Fix "launch Activity" not checked by default
+	* i18n update:
+		* new language: Swedish
+		* updated translation: Danish, Japanese
+
 * v0.7.3: Better welcome page && PlayMediaOperationPlugin && Other changes && i18n
 	* A series of dedicated welcome pages are now used
 	* New operation: PlayMediaOperationPlugin
