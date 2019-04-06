@@ -82,7 +82,8 @@ public class CellLocationSlot extends AbstractSlot<CellLocationEventData> {
         synchronized public void onCellLocationChanged(CellLocation location) {
             super.onCellLocationChanged(location);
             curr = CellLocationSingleData.fromCellLocation(location);
-            changeSatisfiedState(eventData.contains(curr), dynamicsForCurrent(location));
+            if (curr != null)
+                changeSatisfiedState(eventData.contains(curr), dynamicsForCurrent(location));
         }
     }
 }

@@ -62,8 +62,10 @@ public class CellLocationTracker extends SkeletonTracker<CellLocationConditionDa
         return match(telephonyManager.getCellLocation());
     }
 
-    private boolean match(CellLocation location) {
+    private Boolean match(CellLocation location) {
         CellLocationSingleData curr = CellLocationSingleData.fromCellLocation(location);
+        if (curr == null)
+            return null;
         return data.data.contains(curr);
     }
 
