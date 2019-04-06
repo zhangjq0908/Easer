@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="easer">Easer</string>
-    <string name="app_name">@string/easer</string>
     <string name="drawer_tip">Lett din hverdag.</string>
     <string name="title_outline">Skisse</string>
     <string name="title_operation">Operasjon</string>

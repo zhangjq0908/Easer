@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="easer">Easer</string>
-    <string name="app_name">@string/easer</string>
     <string name="drawer_tip">Ease your life!</string>
     <string name="hint_event_title">事件名</string>
     <string name="menu_start">啓動</string>

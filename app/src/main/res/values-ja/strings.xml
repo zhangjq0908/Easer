@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="easer">Easer</string>
-    <string name="app_name">@string/easer</string>
     <string name="drawer_tip">便利にします!</string>
     <string name="title_outline">概要</string>
     <string name="title_profile">プロファイル</string>

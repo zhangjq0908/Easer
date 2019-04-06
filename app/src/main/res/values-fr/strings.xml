@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="easer">Easer</string>
-    <string name="app_name">easer</string>
     <string name="drawer_tip">Facilitez-vous la vie !</string>
     <string name="title_outline">Aperçu</string>
     <string name="title_operation">Opération</string>

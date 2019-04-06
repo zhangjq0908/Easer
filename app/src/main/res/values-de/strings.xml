@@ -91,7 +91,6 @@
     <string name="category_operation_android">Android</string>
     <string name="category_operation_system_config">Systemkonfiguration</string>
     <string name="category_operation_misc">Verschiedenes</string>
-    <string name="app_name">\@string/easer</string>
     <string name="title_operation">Vorgang</string>
     <string name="title_select_operation">Einen Vorgang auswählen</string>
     <string name="title_dynamics_link">Dynamik-Link</string>
