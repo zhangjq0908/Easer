@@ -158,6 +158,33 @@
     <string name="category_operation_unknown">Unbekannt</string>
     <string name="menu_tree_list">Baum Ansicht</string>
     <string name="menu_plain_list">Einfache Liste</string>
-    <string name="message_future_change_title__0_7_4">Das ändert sich bald</string>
+    <string name="message_future_change_title__0_7_4">Dies ändert sich bald</string>
     <string name="message_future_change_body__0_7_4">In v0.7.4 werden wir den Schalter der \"%s\"-Funktionalität entfernen, so dass sie immer eingeschaltet ist, was vor sehr langer Zeit hätte geschehen sollen. Bitte migrieren Sie so schnell wie möglich, indem Sie Bedingungen anstelle dieser Ereignisse verwenden; und aktivieren Sie diese Einstellung auf der Seite \"%s\".</string>
+    <string name="welcome_message_1"> Willkommen zu Easer!
+\n
+\nDie Willkommensseiten enthalten einige grundlegende Informationen.
+\n
+\nBitte lesen Sie sie vor Nutzung.
+\n 
+\n
+\nEs ist besser, einen Blick auf <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> im Projekt-Wiki zu werfen. </string>
+    <string name="welcome_message_2">Easer enthält mehrere Module, um verschiedene Funktionen bereitzustellen. Sie können sie in den Einstellungen aktivieren/deaktivieren.
+\n
+\nDie entsprechenden Berechtigungen (für jedes aktivierte Modul) sollten vor der Verwendung erteilt werden.
+\n 
+\n
+\n(Alles ist standardmäßig aktiviert.)</string>
+    <string name="welcome_message_3"> Skripte werden als <a href="https://en.wikipedia.org/wiki/Tree_structure">Bäume</a> strukturiert, indem man den entsprechenden Elternteil wählt.
+\n
+\nIn jedem Zweig wird die UND-Verknüpfung angewandt.
+\nZwischen den Zweigen wird eine OR-Logik angewandt.
+\n 
+\n
+\nDie Erweiterung von Bäumen um Diagramme ist geplant, aber derzeit nicht implementiert. </string>
+    <string name="title_welcome_message_privacy">Datenschutz!</string>
+    <string name="welcome_message_privacy"> Datenschutz ist wichtig!
+\n
+\nEaser ist eine <a href="https://en.wikipedia.org/wiki/Free_software">freie Software</a> (Open-Source-Software), die sicherstellt, dass jeder den Code überprüfen kann.
+\n
+\nSIE besitzen jedes Stück Ihrer Daten. Alles bleibt auf Ihrem Gerät, einschließlich der Protokolle. </string>
 </resources>
