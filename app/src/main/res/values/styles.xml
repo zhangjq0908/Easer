@@ -74,6 +74,35 @@
         <item name="android:textSize">@dimen/appIntroPureTextContentTextSize</item>
     </style>
 
+    <style name="AppTheme.OverviewGraph">
+
+    </style>
+
+    <style name="AppTheme.OverviewGraph.Node" parent="CardView">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="cardBackgroundColor">@color/nodeBackground</item>
+        <item name="cardElevation">16dp</item>
+        <item name="contentPadding">10dp</item>
+    </style>
+
+    <!-- TODO: Add these different themes for different types of nodes (requires upstream feature) -->
+
+    <style name="AppTheme.OverviewGraph.Node.Name">
+        <item name="android:textColor">@color/nodeText</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AppTheme.OverviewGraph.Node.ScriptExtra">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="AppTheme.OverviewGraph.Node.ScriptExtra.Type">
+        <item name="android:textColor">@color/nodeText</item>
+        <item name="android:textSize">@dimen/nodeScriptExtraTypeTextSize</item>
+        <item name="android:gravity">top</item>
+    </style>
+
     <style name="LR">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>

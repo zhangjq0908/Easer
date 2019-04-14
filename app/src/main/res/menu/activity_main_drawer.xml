@@ -6,6 +6,9 @@
             android:id="@+id/nav_outline"
             android:title="@string/title_outline" />
         <item
+            android:id="@+id/nav_overview"
+            android:title="@string/title_overview" />
+        <item
             android:id="@+id/nav_script"
             android:title="@string/title_script" />
         <item
