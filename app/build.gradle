@@ -29,7 +29,18 @@ android {
             testCoverageEnabled true
         }
     }
+    flavorDimensions "dev"
     productFlavors {
+        main {
+            dimension 'dev'
+        }
+        beta {
+            dimension 'dev'
+            minSdkVersion 16
+            applicationIdSuffix ".beta"
+            versionCode 102
+            versionName "0.7.4-beta"
+        }
     }
     dataBinding.enabled = true
     compileOptions {
