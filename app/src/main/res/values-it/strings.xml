@@ -1,2 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="easer">Easer</string>
+    <string name="drawer_tip">Semplifica la vita!</string>
+    <string name="title_outline"></string>
+    <string name="title_profile">Profilo</string>
+    <string name="title_event">Evento</string>
+    <string name="title_script">Script</string>
+    <string name="title_condition">Condizione</string>
+    <string name="title_application">App</string>
+    <string name="title_activity_history">Cronologia Attività</string>
+    <string name="title_about">Informazioni</string>
+    <string name="title_setting">Impostazioni</string>
+    <string name="title_add">Aggiungi</string>
+    <string name="title_edit">Modifica</string>
+    <string name="title_delete">Elimina</string>
+    <string name="title_edit_event">Modifica Evento</string>
+    <string name="title_edit_condition">Modifica Condizione</string>
+    <string name="title_edit_profile">Modifica profilo</string>
+    <string name="title_select_operation">Selezionare un\'Operazione</string>
+    <string name="title_trigger_profile">Esegui</string>
+    <string name="menu_start">Avvia</string>
+    <string name="menu_stop">Ferma</string>
+    <string name="menu_action_save">Salva</string>
+    <string name="menu_clear">Pulisci</string>
+    <string name="menu_tree_list">Lista ad Albero</string>
+    <string name="menu_plain_list">Lista Semplice</string>
+    <string name="service_indicator_positive">Avviato</string>
+    <string name="service_indicator_negative">Fermo</string>
+    <string name="activity_history__time">Tempo</string>
+    <string name="activity_history__extra">Info</string>
+    <string name="activity_history__satisfaction">Stato</string>
+</resources>
