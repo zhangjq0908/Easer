@@ -21,6 +21,7 @@ package ryey.easer.core.ui
 
 import android.os.Bundle
 import android.support.annotation.ColorInt
+import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -94,7 +95,7 @@ class OverviewFragment: Fragment() {
                         viewHolder.tvName.text = data.name
                         viewHolder.setBackgroundColor(resources.getColor(R.color.nodeBackground_Profile))
                     } else if (data is ServiceStart) {
-                        viewHolder.tvName.text = data.toString()
+                        viewHolder.tvName.text = getString(data.nameId())
                         viewHolder.setBackgroundColor(resources.getColor(R.color.nodeBackground_VirtualRoot))
                     }
                 }
@@ -131,8 +132,9 @@ class OverviewFragment: Fragment() {
     }
 
     class ServiceStart {
-        override fun toString(): String {
-            return "ServiceStart"
+        @StringRes
+        fun nameId(): Int {
+            return R.string.title_service_start
         }
     }
 
