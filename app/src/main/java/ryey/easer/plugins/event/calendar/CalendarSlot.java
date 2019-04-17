@@ -64,11 +64,6 @@ public class CalendarSlot extends SelfNotifiableSlot<CalendarEventData> {
     }
 
     @Override
-    public void check() {
-        // Does nothing for semantics
-    }
-
-    @Override
     protected void onPositiveNotified(Intent intent) {
         changeSatisfiedState(true);
         changeSatisfiedState(false);

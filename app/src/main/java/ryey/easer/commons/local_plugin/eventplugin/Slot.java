@@ -33,18 +33,8 @@ public interface Slot<T extends EventData> {
     /**
      * Stop functioning as a top-level listener.
      * No longer notify itself even when it is really satisfied.
-     *
-     * This methods doesn't prevent {@link #check()} to set itself satisfied.
      */
     void cancel();
-
-    /**
-     * Check to see if the current slot is satisfied.
-     * Should set {@link #satisfied} by calling {@link #changeSatisfiedState(boolean)}.
-     * @deprecated See <a href="https://github.com/renyuneyun/Easer/issues/82">this proposal</a>. New implementations *can* still define this, but will be removed in the future.
-     */
-    @Deprecated
-    void check();
 
     void register(Uri data);
 }

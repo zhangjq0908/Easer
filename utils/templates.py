@@ -490,13 +490,6 @@ public class {slot} extends AbstractSlot<{data}> {{
         //TODO
     }}
 
-    /**
-     * {{@inheritDoc}}
-     */
-    @Deprecated
-    @Override
-    public void check() {{
-    }}
 }}
 '''
 

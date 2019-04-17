@@ -80,13 +80,4 @@ class DayOfWeekSlot extends SelfNotifiableSlot<DayOfWeekEventData> {
         mAlarmManager.cancel(notifySelfIntent_negative);
     }
 
-    @Override
-    public void check() {
-        Calendar cal = Calendar.getInstance();
-        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
-        if (days.contains(dayOfWeek - 1))
-            changeSatisfiedState(true);
-        else
-            changeSatisfiedState(false);
-    }
 }

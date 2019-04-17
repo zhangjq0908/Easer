@@ -84,15 +84,6 @@ class EventLotus extends Lotus {
         return slot;
     }
 
-    private synchronized void check() {
-        executorService.submit(new Runnable() {
-            @Override
-            public void run() {
-                mSlot.check();
-            }
-        });
-    }
-
     protected synchronized void onListen() {
         executorService.submit(new Runnable() {
             @Override

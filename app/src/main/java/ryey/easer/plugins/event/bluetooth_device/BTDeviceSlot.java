@@ -20,8 +20,6 @@
 package ryey.easer.plugins.event.bluetooth_device;
 
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothManager;
-import android.bluetooth.BluetoothProfile;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -85,21 +83,6 @@ public class BTDeviceSlot extends AbstractSlot<BTDeviceEventData> {
     @Override
     public void cancel() {
         context.unregisterReceiver(connReceiver);
-    }
-
-    @Override
-    public void check() {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            BluetoothManager bluetoothManager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
-            for (int profile : new int[]{BluetoothProfile.GATT, BluetoothProfile.GATT_SERVER}) {
-                for (BluetoothDevice btDevice : bluetoothManager.getConnectedDevices(profile)) {
-                    if (is_target(btDevice)) {
-                        matched_devices++;
-                    }
-                }
-            }
-        }
-        determine_satisfied(null);
     }
 
     private boolean is_target(BluetoothDevice device) {

@@ -22,10 +22,7 @@ package ryey.easer.plugins.event.timer;
 import android.app.AlarmManager;
 import android.content.Context;
 import android.content.Intent;
-import android.os.CountDownTimer;
 import android.os.Handler;
-
-import com.orhanobut.logger.Logger;
 
 import java.util.Calendar;
 
@@ -121,10 +118,6 @@ public class TimerSlot extends SelfNotifiableSlot<TimerEventData> {
                 mAlarmManager.cancel(notifySelfIntent_negative);
             }
         }
-    }
-
-    @Override
-    public void check() {
     }
 
     @Override

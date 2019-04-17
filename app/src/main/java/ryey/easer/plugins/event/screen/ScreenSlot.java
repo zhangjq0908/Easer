@@ -23,9 +23,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.PowerManager;
-
-import com.orhanobut.logger.Logger;
 
 import ryey.easer.plugins.event.AbstractSlot;
 
@@ -64,18 +61,4 @@ public class ScreenSlot extends AbstractSlot<ScreenEventData> {
         context.registerReceiver(mReceiver, intentFilter);
     }
 
-    @Deprecated
-    @Override
-    public void check() {
-        PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-        if (pm == null) {
-            Logger.e("ScreenSlot can't get PowerManager");
-            return;
-        }
-        if (pm.isScreenOn()) {
-            changeSatisfiedState(eventData.screenEvent == ScreenEventData.ScreenEvent.on);
-        } else {
-            changeSatisfiedState(eventData.screenEvent == ScreenEventData.ScreenEvent.off);
-        }
-    }
 }

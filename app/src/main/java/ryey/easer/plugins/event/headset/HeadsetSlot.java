@@ -72,10 +72,6 @@ public class HeadsetSlot extends AbstractSlot<HeadsetEventData> {
         context.unregisterReceiver(mReceiver);
     }
 
-    @Override
-    public void check() {
-    }
-
     @SuppressWarnings("RedundantIfStatement")
     private static boolean determine_match(HeadsetEventData eventData, boolean plug_in, boolean has_microphone) {
         if (!(eventData.hs_action == HeadsetEventData.HeadsetAction.any ||

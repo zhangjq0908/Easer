@@ -73,18 +73,6 @@ public class TimeSlot extends SelfNotifiableSlot<TimeEventData> {
     }
 
     @Override
-    public void check() {
-        Calendar cal = Calendar.getInstance();
-        boolean match;
-        if (cal.after(calendar)) {
-            match = true;
-        } else {
-            match = false;
-        }
-        changeSatisfiedState(match);
-    }
-
-    @Override
     protected void onPositiveNotified(Intent intent) {
         changeSatisfiedState(true);
     }

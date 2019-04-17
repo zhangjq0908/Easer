@@ -75,10 +75,6 @@ public class TcpTripSlot extends AbstractSlot<TcpTripEventData> {
             waiter.interrupt();
     }
 
-    @Override
-    public void check() {
-    }
-
     private class PostSend extends Thread {
         final Socket socket;
 

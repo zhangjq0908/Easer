@@ -84,9 +84,4 @@ public class BroadcastConnSlot extends AbstractSlot<BroadcastEventData> {
         context.unregisterReceiver(connReceiver);
     }
 
-    @Override
-    public void check() {
-        // Empty method as expected
-    }
-
 }

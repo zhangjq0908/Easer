@@ -102,9 +102,4 @@ public class SmsConnSlot extends AbstractSlot<SmsEventData> {
         context.unregisterReceiver(connReceiver);
     }
 
-    @Override
-    public void check() {
-        // Empty method as expected
-    }
-
 }

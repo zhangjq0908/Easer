@@ -46,7 +46,7 @@ class ConnectivitySlot extends AbstractSlot<ConnectivityEventData> {
         public void onReceive(Context context, Intent intent) {
             switch (intent.getAction()) {
                 case ConnectivityManager.CONNECTIVITY_ACTION:
-                    check();
+                    checkConnectivity();
                     break;
             }
         }
@@ -77,8 +77,7 @@ class ConnectivitySlot extends AbstractSlot<ConnectivityEventData> {
         context.unregisterReceiver(receiver);
     }
 
-    @Override
-    public void check() {
+    private void checkConnectivity() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();

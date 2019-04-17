@@ -81,13 +81,6 @@ public class WifiConnSlot extends AbstractSlot<WifiEventData> {
         context.unregisterReceiver(connReceiver);
     }
 
-    @Override
-    public void check() {
-        WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-        compareAndSignal(wifiInfo);
-    }
-
     private void compareAndSignal(WifiInfo wifiInfo) {
         boolean match = compare(eventData, wifiInfo);
         changeSatisfiedState(match);

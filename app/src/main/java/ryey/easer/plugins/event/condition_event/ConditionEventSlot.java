@@ -44,11 +44,4 @@ public class ConditionEventSlot extends SelfNotifiableSlot<ConditionEventEventDa
         EHService.unregisterConditionEventNotifier(context, eventData.conditionName, notifyLotusData);
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Deprecated
-    @Override
-    public void check() {
-    }
 }

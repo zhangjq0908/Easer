@@ -67,10 +67,6 @@ public class NfcTagSlot extends AbstractSlot<NfcTagEventData> {
         context.unbindService(mConnection);
     }
 
-    @Override
-    public void check() {
-    }
-
     void checkAndTrigger(final Tag tag) {
         byte[] tag_id = tag.getId();
         if (Arrays.equals(tag_id, eventData.id)) {

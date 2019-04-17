@@ -62,8 +62,4 @@ public class NotificationSlot extends SelfNotifiableSlot<NotificationEventData> 
         changeSatisfiedState(false, intent.getExtras());
     }
 
-    @Override
-    public void check() {
-    }
-
 }

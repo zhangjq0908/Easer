@@ -76,16 +76,6 @@ public class DateSlot extends SelfNotifiableSlot<DateEventData> {
     }
 
     @Override
-    public void check() {
-        Calendar cal = Calendar.getInstance();
-        if (cal.get(Calendar.DAY_OF_YEAR) >= calendar.get(Calendar.DAY_OF_YEAR)) {
-            changeSatisfiedState(true);
-        } else {
-            changeSatisfiedState(false);
-        }
-    }
-
-    @Override
     protected void onPositiveNotified(Intent intent) {
         changeSatisfiedState(true);
     }

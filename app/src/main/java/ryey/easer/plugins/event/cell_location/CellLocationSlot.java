@@ -19,8 +19,6 @@
 
 package ryey.easer.plugins.event.cell_location;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.telephony.CellLocation;
@@ -29,7 +27,6 @@ import android.telephony.TelephonyManager;
 
 import ryey.easer.plugins.event.AbstractSlot;
 import ryey.easer.plugins.reusable.CellLocationSingleData;
-import ryey.easer.plugins.reusable.PluginHelper;
 
 public class CellLocationSlot extends AbstractSlot<CellLocationEventData> {
     private static TelephonyManager telephonyManager = null;
@@ -60,15 +57,6 @@ public class CellLocationSlot extends AbstractSlot<CellLocationEventData> {
     public void cancel() {
         if (telephonyManager != null)
             telephonyManager.listen(cellLocationListener, PhoneStateListener.LISTEN_NONE);
-    }
-
-    @SuppressLint("MissingPermission")
-    @Override
-    public void check() {
-        if (!PluginHelper.checkPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION))
-            return;
-        CellLocationListener chck = new CellLocationListener();
-        chck.onCellLocationChanged(telephonyManager.getCellLocation());
     }
 
     private static Bundle dynamicsForCurrent(CellLocation location) {
