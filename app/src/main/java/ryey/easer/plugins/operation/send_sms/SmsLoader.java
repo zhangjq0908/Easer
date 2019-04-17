@@ -23,7 +23,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.telephony.SmsManager;
 
-import ryey.easer.Utils;
 import ryey.easer.commons.local_plugin.ValidData;
 import ryey.easer.plugins.operation.OperationLoader;
 
@@ -35,7 +34,7 @@ public class SmsLoader extends OperationLoader<SmsOperationData> {
     @Override
     public boolean load(@ValidData @NonNull SmsOperationData data) {
         String destination = data.destination;
-        String content = Utils.format(data.content);
+        String content = data.content;
         SmsManager smsManager = SmsManager.getDefault();
         if (smsManager == null)
             return false;

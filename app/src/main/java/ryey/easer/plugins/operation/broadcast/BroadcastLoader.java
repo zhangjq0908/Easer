@@ -77,20 +77,18 @@ public class BroadcastLoader extends OperationLoader<BroadcastOperationData> {
 
     private static IntentData preprocess(IntentData data) {
         IntentData res = new IntentData();
-        res.action = Utils.format(data.action);
+        res.action = data.action;
         if (data.category != null) {
             res.category = new ArrayList<>(data.category.size());
-            for (String c : data.category) {
-                res.category.add(Utils.format(c));
-            }
+            res.category.addAll(data.category);
         }
-        res.type = Utils.format(data.type);
-        res.data = Uri.parse(Utils.format(data.data.getPath()));
+        res.type = data.type;
+        res.data = Uri.parse(data.data.getPath());
         if (data.extras != null) {
             res.extras = new ArrayList<>(data.extras.size());
             for (IntentData.ExtraItem extra : data.extras) {
-                String key = Utils.format(extra.key);
-                String value = Utils.format(extra.value);
+                String key = extra.key;
+                String value = extra.value;
                 String type = extra.type;
                 res.extras.add(new IntentData.ExtraItem(key, value, type));
             }

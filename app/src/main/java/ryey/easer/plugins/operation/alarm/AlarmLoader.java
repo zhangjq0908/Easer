@@ -27,7 +27,6 @@ import android.support.annotation.NonNull;
 
 import java.util.Calendar;
 
-import ryey.easer.Utils;
 import ryey.easer.commons.local_plugin.ValidData;
 import ryey.easer.plugins.operation.OperationLoader;
 
@@ -55,7 +54,7 @@ public class AlarmLoader extends OperationLoader<AlarmOperationData> {
         }
         intent.putExtra(AlarmClock.EXTRA_HOUR, hour);
         intent.putExtra(AlarmClock.EXTRA_MINUTES, minute);
-        intent.putExtra(AlarmClock.EXTRA_MESSAGE, Utils.format(data.message));
+        intent.putExtra(AlarmClock.EXTRA_MESSAGE, data.message);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             intent.putExtra(AlarmClock.EXTRA_VIBRATE, true);
         }

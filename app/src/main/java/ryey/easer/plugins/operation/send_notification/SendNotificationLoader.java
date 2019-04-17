@@ -28,7 +28,6 @@ import android.support.v4.app.NotificationCompat;
 import java.util.concurrent.ThreadLocalRandom;
 
 import ryey.easer.R;
-import ryey.easer.Utils;
 import ryey.easer.commons.local_plugin.ValidData;
 import ryey.easer.plugins.operation.OperationLoader;
 
@@ -51,8 +50,8 @@ public class SendNotificationLoader extends OperationLoader<SendNotificationOper
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
         builder.setSmallIcon(R.mipmap.ic_launcher);
-        builder.setContentTitle(Utils.format(data.title));
-        builder.setContentText(Utils.format(data.content));
+        builder.setContentTitle(data.title);
+        builder.setContentText(data.content);
 
         notificationManager.notify(NOTIFICATION_ID, builder.build());
         NOTIFICATION_ID++;

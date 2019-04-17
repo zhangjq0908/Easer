@@ -21,7 +21,6 @@ package ryey.easer.core.ui.version_n_info
 
 import android.app.AlertDialog
 import android.content.Context
-import android.preference.PreferenceManager
 import android.support.annotation.StringRes
 import android.text.method.LinkMovementMethod
 import android.view.View
