@@ -36,12 +36,12 @@ import ryey.easer.core.data.ScriptTree
 import ryey.easer.core.data.storage.ScriptDataStorage
 
 
-class OverviewFragment: Fragment() {
+class PivotFragment: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        activity?.title = getString(R.string.title_overview)
+        activity?.title = getString(R.string.title_pivot)
 
-        val view: View = inflater.inflate(R.layout.fragment_overview, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_pivot, container, false)
 
         val graphView = view.findViewById<GraphView>(R.id.graph)
 

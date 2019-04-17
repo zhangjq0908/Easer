@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private static final String FRAGMENT_OUTLINE = "ryey.easer.FRAGMENT.OUTLINE";
-    private static final String FRAGMENT_OVERVIEW = "ryey.easer.FRAGMENT.OVERVIEW";
+    private static final String FRAGMENT_PIVOT = "ryey.easer.FRAGMENT.PIVOT";
     private static final String FRAGMENT_PROFILE = "ryey.easer.FRAGMENT.PROFILE";
     private static final String FRAGMENT_SCRIPT = "ryey.easer.FRAGMENT.SCRIPT";
     private static final String FRAGMENT_SCENARIO = "ryey.easer.FRAGMENT.SCENARIO";
@@ -132,10 +132,10 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.content_main, fragment, tag)
                     .addToBackStack(bs_tag)
                     .commit();
-        } else if (id == R.id.nav_overview) {
+        } else if (id == R.id.nav_pivot) {
             fragment = manager.findFragmentByTag(tag);
             if (fragment == null)
-                fragment = new OverviewFragment();
+                fragment = new PivotFragment();
             manager.beginTransaction()
                     .replace(R.id.content_main, fragment, tag)
                     .addToBackStack(bs_tag)
@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity
     private static class NavTag {
         private static final int[] nav_ids = {
                 R.id.nav_outline,
-                R.id.nav_overview,
+                R.id.nav_pivot,
                 R.id.nav_script,
                 R.id.nav_profile,
                 R.id.nav_scenario,
@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity
         };
         private static final String[] fragment_tags = {
                 FRAGMENT_OUTLINE,
-                FRAGMENT_OVERVIEW,
+                FRAGMENT_PIVOT,
                 FRAGMENT_SCRIPT,
                 FRAGMENT_PROFILE,
                 FRAGMENT_SCENARIO,

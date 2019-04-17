@@ -25,7 +25,7 @@ import android.support.annotation.NonNull;
  * This class represents a CheckPoint in the background state (i.e. the collection of all Scripts and their dependencies)
  *
  * Currently it is a projection from ScriptTree
- * TODO: Use this class instead of Script in everywhere (ScriptTree, EHService, Lotus, OverviewFragment, TODO)
+ * TODO: Use this class instead of Script in everywhere (ScriptTree, EHService, Lotus, PivotFragment, TODO)
  * TODO: Replace most of Script's role
  *
  * TODO: Convert relevant interfaces to Kotlin so that this class can be written in kotlin

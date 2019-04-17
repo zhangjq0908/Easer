@@ -158,5 +158,7 @@
     <string name="pref_show_notification_summary">在通知欄顯示通知</string>
     <string name="pref_foreground_title">在前臺運行服務</string>
     <string name="pref_foreground_summary">可以使得服務更不容易被系統誤殺。將會顯示通知。由於系統要求，不可在Android 8+版本禁用。</string>
+    <string name="title_service_start">服務啓動</string>
+    <string name="title_pivot">樞律</string>
 
 </resources>
