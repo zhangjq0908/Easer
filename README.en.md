@@ -83,5 +83,6 @@ Third-party
 * [Guava](https://github.com/google/guava): Apache License v2
 * [StickyListHeaders](https://github.com/emilsjolander/StickyListHeaders): Apache License v2
 * [AppIntro](https://github.com/AppIntro/AppIntro): Apache License v2
+* [GraphView](https://github.com/Team-Blox/GraphView): Apache License v2
 
 * Drawable files named as `*-fa-*` all come from [fontawesome](https://fontawesome.com/): CC-BY 4.0

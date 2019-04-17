@@ -1,6 +1,16 @@
 CHANGELOG
 ======
 
+* v0.7.4: New Pivot graph && Remove deprecated functions && i18n update
+	* API 16+ is now required (because of GraphView)
+	* New Pivot graph for displaying the structure of Scripts
+		* Expansion is expected in future versions
+	* Remove "passive mode"
+	* Remove old formatting replacer
+	* i18n update:
+		* new languages: Korean & Italian
+		* updated translation: German
+
 * v0.7.3.1: Small bug fixes && i18n update
 	* Fix app_name being incorrect in several languages
 	* Treat invalid CellLocation as invalid

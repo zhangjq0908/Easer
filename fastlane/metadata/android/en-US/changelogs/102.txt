@@ -1,0 +1,11 @@
+v0.7.4: New Pivot graph && Remove deprecated functions && i18n update
+
+* API 16+ is now required (because of GraphView)
+* New Pivot graph for displaying the structure of Scripts
+	* Expansion is expected in future versions
+* Remove "passive mode"
+* Remove old formatting replacer
+* i18n update:
+	* new languages: Korean & Italian
+	* updated translation: German
+
