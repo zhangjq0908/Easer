@@ -38,8 +38,8 @@ android {
             dimension 'dev'
             minSdkVersion 16
             applicationIdSuffix ".beta"
-            versionCode 102
-            versionName "0.7.4-beta"
+            versionCode 103
+            versionName "0.7.4-beta-2"
         }
     }
     dataBinding.enabled = true
