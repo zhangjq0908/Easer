@@ -137,10 +137,6 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     <string name="pref_cooldown_summary">Minimal interval between two triggers of the same event</string>
     <string name="cooldown_time_illformed">The number must not be lower than 0 and not too large to fit in a integer</string>
 
-    <string name="pref_passive_mode_title">Passive mode</string>
-    <string name="pref_passive_mode_summary_on">Listen to Event; no checking when activated</string>
-    <string name="pref_passive_mode_summary_off">Check the satisfaction state when (each) Event is activated</string>
-
     <string name="pref_enabled_plugins_title">Enabled plugins</string>
     <string name="pref_enabled_plugins_summary">Enable or disable certain plugins</string>
 
@@ -205,8 +201,7 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     <string name="alert_update_storage_data_title">Old data version found</string>
     <string name="alert_update_storage_data">Your data were created in an older version. It\'s suggested to update them to new version or Easer may not work well. You can do this by selecting "Convert Data" in settings.</string>
 
-    <string name="message_future_change_title__0_7_4">Changing soon</string>
-    <string name="message_future_change_body__0_7_4">In v0.7.4, we\'ll remove the toggle of \"%s\" functionality, making it always on, which was supposed to be done very long ago. Please migrate as soon as possible, by using Conditions instead of these Events; and enable this setting in the \"%s\" page.</string>
+    <string name="message_future_change_title">Changing soon</string>
 
     <string name="template_export">Exported to %s</string>
     <string name="version">Version</string>

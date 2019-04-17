@@ -117,9 +117,6 @@
     <string name="text_reverse_desc">反轉情境</string>
     <string name="text_persistent">固定滿足態</string>
     <string name="text_volatile">不固定滿足態</string>
-    <string name="pref_passive_mode_title">被動模式</string>
-    <string name="pref_passive_mode_summary_off">當激活事件時，檢查當前狀態</string>
-    <string name="pref_passive_mode_summary_on">僅監聽事件；事件激活時不檢查</string>
     <string name="message_importing_invalid_data">這似乎是無效的文件。請僅導入一個之前由Easer導出的文件。</string>
     <string name="pref_category_personalise">個人偏好</string>
     <string name="pref_use_12_hour_clock_title">使用12小時時鐘</string>
@@ -151,8 +148,7 @@
     <string name="text_notification_running_indicator_content">%s正在後臺運行</string>
     <string name="menu_tree_list">樹狀列表</string>
     <string name="menu_plain_list">平鋪列表</string>
-    <string name="message_future_change_title__0_7_4">近期改變</string>
-    <string name="message_future_change_body__0_7_4">在v0.7.4版中，“%s”功能的切換將被移除，使得其永久被啓用——事實上早就該這麼做了。請儘快遷移，將相關事件改爲狀況；然後，請啓用“%s”頁中此選項。</string>
+    <string name="message_future_change_title">近期改變</string>
     <string name="pref_category_service">服務</string>
     <string name="pref_show_notification_title">顯示通知</string>
     <string name="pref_show_notification_summary">在通知欄顯示通知</string>

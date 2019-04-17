@@ -70,7 +70,6 @@
     <string name="pref_welcome_summary">Willkommensnachricht beim App-Start anzeigen</string>
     <string name="pref_logging_title">Externe Protokollierung aktivieren</string>
     <string name="pref_use_root_title">Root-Funktionen verwenden</string>
-    <string name="pref_passive_mode_title">Passiver Modus</string>
     <string name="pref_use_12_hour_clock_title">12-Stunden-Uhr verwenden</string>
     <string name="pref_export_title">Exportieren</string>
     <string name="pref_import_title">Importieren</string>
@@ -118,8 +117,6 @@
     <string name="pref_cooldown_title">Abkühlzeit</string>
     <string name="pref_cooldown_summary">Minimales Intervall zwischen zwei Auslösern desselben Ereignisses</string>
     <string name="cooldown_time_illformed">Die Zahl darf nicht kleiner als 0 und nicht zu groß sein, um in ein Integer zu passen</string>
-    <string name="pref_passive_mode_summary_on">auf Ereignis hören; keine Überprüfung bei Aktivierung</string>
-    <string name="pref_passive_mode_summary_off">Den Zufriedenheitsstatus überprüfen, wenn (jedes) Ereignis aktiviert ist</string>
     <string name="pref_enabled_plugins_title">Aktivierte Plugins</string>
     <string name="pref_enabled_plugins_summary">Aktivieren oder Deaktivieren bestimmter Plugins</string>
     <string name="pref_export_summary">Alle Ereignisse und Profile auf die SD-Karte exportieren.
@@ -158,8 +155,7 @@
     <string name="category_operation_unknown">Unbekannt</string>
     <string name="menu_tree_list">Baum Ansicht</string>
     <string name="menu_plain_list">Einfache Liste</string>
-    <string name="message_future_change_title__0_7_4">Dies ändert sich bald</string>
-    <string name="message_future_change_body__0_7_4">In v0.7.4 werden wir den Schalter der \"%s\"-Funktionalität entfernen, so dass sie immer eingeschaltet ist, was vor sehr langer Zeit hätte geschehen sollen. Bitte migrieren Sie so schnell wie möglich, indem Sie Bedingungen anstelle dieser Ereignisse verwenden; und aktivieren Sie diese Einstellung auf der Seite \"%s\".</string>
+    <string name="message_future_change_title">Dies ändert sich bald</string>
     <string name="welcome_message_1"> Willkommen zu Easer!
 \n
 \nDie Willkommensseiten enthalten einige grundlegende Informationen.

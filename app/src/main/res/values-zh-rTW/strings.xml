@@ -51,5 +51,4 @@
     <string name="pref_category_service">服務</string>
     <string name="pref_autostart_title">啟動時自動啟動</string>
     <string name="pref_cooldown_title">冷卻時間</string>
-    <string name="pref_passive_mode_title">被動模式</string>
 </resources>

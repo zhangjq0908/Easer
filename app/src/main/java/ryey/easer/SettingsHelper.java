@@ -35,10 +35,6 @@ public class SettingsHelper {
         return Integer.parseInt(interval_pref);
     }
 
-    public static boolean passiveMode(Context context) {
-        return pref(context).getBoolean(context.getString(R.string.key_pref_passive_mode), true);
-    }
-
     public static boolean logging(Context context) {
         return pref(context).getBoolean(context.getString(R.string.key_pref_logging), false);
     }

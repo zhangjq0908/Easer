@@ -93,9 +93,6 @@
     <string name="pref_cooldown_title">Nedkjølingstid</string>
     <string name="pref_cooldown_summary">Minimal intervall mellom to utløsere av samme hendelse</string>
     <string name="cooldown_time_illformed">Nummeret kan ikke være negativt, og ikke større enn 2147483647</string>
-    <string name="pref_passive_mode_title">Passivt modus</string>
-    <string name="pref_passive_mode_summary_on">Lytt til hendelse; ingen sjekk når aktivert</string>
-    <string name="pref_passive_mode_summary_off">Sjekk tilfredshet ved aktivering av (hver) hendelse</string>
     <string name="pref_enabled_plugins_title">Påskrudde programtillegg</string>
     <string name="pref_enabled_plugins_summary">Skru på eller av gitte programtillegg</string>
     <string name="pref_use_12_hour_clock_title">Bruk tolvtimersklokke</string>
@@ -158,6 +155,5 @@
     <string name="pref_foreground_summary">Gjør tjenesten enklere å drepe av systemet. Vil vise en merknad. Kan ikke skrus av på Android 8+ på grunn av et systemkrav.</string>
     <string name="menu_tree_list">Treliste</string>
     <string name="menu_plain_list">Enkel liste</string>
-    <string name="message_future_change_title__0_7_4">Nært forestående endring</string>
-    <string name="message_future_change_body__0_7_4">I v0.7.4 vill \"%s\"-funksjonaliteten, som skulle ha blitt droppet for veldig lenge siden, bli fjernet. Flytt over så snart som mulig, ved å bruke betingelser istedenfor disse hendelsene , og skru av denne innstillingen på \"%s\"-siden.</string>
+    <string name="message_future_change_title">Nært forestående endring</string>
 </resources>

@@ -50,12 +50,5 @@ object Version {
     }
 
     fun nearFutureChange(context: Context) {
-        nearFutureChange_0_7_4(context)
-    }
-
-    private fun nearFutureChange_0_7_4(context: Context) {
-        if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.key_pref_passive_mode), true)) {
-            showPrompt(context, R.string.message_future_change_title__0_7_4, R.string.message_future_change_body__0_7_4, R.string.pref_passive_mode_title, R.string.title_setting)
-        }
     }
 }

@@ -96,8 +96,6 @@
     <string name="pref_cooldown_title">Afkoel tijd</string>
     <string name="pref_cooldown_summary">Minimale interval tussen twee triggers van dezelfde gebeurtenis</string>
     <string name="cooldown_time_illformed">Het getal mag niet kleiner dan 0 zijn en niet groter dan een integer</string>
-    <string name="pref_passive_mode_title">Passieve modus</string>
-    <string name="pref_passive_mode_summary_on">Luister naar Gebeurtenis; geen check wanneer geactiveerd</string>
     <string name="pref_enabled_plugins_title">Geactiveerde plugins</string>
     <string name="pref_enabled_plugins_summary">Activeer of de-activeer bepaalde plugins</string>
     <string name="pref_use_12_hour_clock_title">Gebruik 12-uurs tijd</string>

@@ -94,9 +94,6 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     <string name="pref_cooldown_title">Pausetid</string>
     <string name="pref_cooldown_summary">Mindste interval mellem to udløsere på samme hændelse</string>
     <string name="cooldown_time_illformed">Værdi skal være i område 0-32767</string>
-    <string name="pref_passive_mode_title">Passiv tilstand</string>
-    <string name="pref_passive_mode_summary_on">Lytter til hændelse; ingen kontrol når den er aktiveret</string>
-    <string name="pref_passive_mode_summary_off">Kontrollere tilfredshedstilstand når (hver) hændelse er aktiveret</string>
     <string name="pref_enabled_plugins_title">Aktiverede udvidelsesmoduler</string>
     <string name="pref_enabled_plugins_summary">Aktivere eller deaktivere udvidelsesmoduler</string>
     <string name="pref_use_12_hour_clock_title">Brug 12 timers ur</string>
@@ -149,8 +146,7 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     <string name="pref_foreground_summary">Gør tjenesten mindre nem at blive stoppet af systemet. Vil vise en påmindelse. Kan ikke deaktiveres på Android 8+ på grund af systemkrav.</string>
     <string name="menu_tree_list">Trævisning</string>
     <string name="menu_plain_list">Almindelig tekst</string>
-    <string name="message_future_change_title__0_7_4">Ændres snart</string>
-    <string name="message_future_change_body__0_7_4">I v0.7.4, fjernes skift af \"%s\" funktionalitet, så den altid er til, dette skulle have været gjort for længe siden. Flyt hurtigst muligt ved at bruge Betingelser i stedet for disse hændelser; og aktivere denne opsætning på \"%s\" side.</string>
+    <string name="message_future_change_title">Ændres snart</string>
     <string name="welcome_message_1"> Velkommen til Easer!
 \n
 \nVelkomstsiden har nogle grundlæggende oplysninger.

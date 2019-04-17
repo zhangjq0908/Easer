@@ -98,9 +98,6 @@ class EventLotus extends Lotus {
             @Override
             public void run() {
                 mSlot.listen();
-                if (!SettingsHelper.passiveMode(context)) {
-                    check();
-                }
             }
         });
     }

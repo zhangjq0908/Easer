@@ -100,9 +100,6 @@
     <string name="pref_cooldown_title">クールダウン時間</string>
     <string name="pref_cooldown_summary">同じイベントの 2 つのトリガー間の最小間隔</string>
     <string name="cooldown_time_illformed">数値は、0 以上で整数値の範囲に収まるようにする必要があります</string>
-    <string name="pref_passive_mode_title">パッシブモード</string>
-    <string name="pref_passive_mode_summary_on">イベントの待機: 有効になったときにチェックしない</string>
-    <string name="pref_passive_mode_summary_off">(各) イベントが有効になったときに充足状態をチェックします</string>
     <string name="pref_enabled_plugins_title">有効なプラグイン</string>
     <string name="pref_enabled_plugins_summary">特定のプラグインを有効または無効にします</string>
     <string name="pref_use_12_hour_clock_title">12 時間表記を使用する</string>
@@ -165,8 +162,7 @@
     <string name="pref_foreground_title">フォアグラウンドでサービスを実行</string>
     <string name="pref_foreground_summary">システムによってサービスが終了する可能性が減ります。 通知を表示します。 システム要件のためにAndroid 8以降で無効にすることはできません。</string>
     <string name="menu_plain_list">プレーンリスト</string>
-    <string name="message_future_change_title__0_7_4">すぐに変更します</string>
-    <string name="message_future_change_body__0_7_4">v0.7.4 で、ずっと前に削除される予定だった \"%s\" 機能の切り替えが削除されます。できるだけ早く移行して、これらのイベントの代わりに条件を使用するようにしてください。\"%s\" ページでこの設定を有効にしてください。</string>
+    <string name="message_future_change_title">すぐに変更します</string>
     <string name="welcome_message_1"> Easer へようこそ!
 \n
 \nウェルカムページにいくつかの基本的な情報があります。

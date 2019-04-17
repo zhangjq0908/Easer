@@ -121,10 +121,6 @@
     <string name="pref_cooldown_summary">Intre mínimo entre dous activadores do mesmo acontecemento</string>
     <string name="cooldown_time_illformed">O número non debe ser inferior a 0 e non moi grande para caber nun número entero</string>
 
-    <string name="pref_passive_mode_title">Modo pasivo</string>
-    <string name="pref_passive_mode_summary_on">Escoitar ó acontecemento; Non hai verificación cando está activada</string>
-    <string name="pref_passive_mode_summary_off">Comproba o estado da satisfación cando (cada) acontecemento está activado</string>
-
     <string name="pref_enabled_plugins_title">Engadidos activados</string>
     <string name="pref_enabled_plugins_summary">Activar ou desactivar certos engadidos</string>
 
