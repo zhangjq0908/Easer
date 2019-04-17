@@ -17,6 +17,8 @@
     <dimen name="appIntroPureTextHeadingTextSize">32dp</dimen>
     <dimen name="appIntroPureTextContentTextSize">20dp</dimen>
 
+    <dimen name="nodeScriptExtraTypeTextSize">12dp</dimen>
+
     <dimen name="lr_padding_inner">5dp</dimen>
     <dimen name="lr_padding_outer">10dp</dimen>
     <integer name="lr_weight_left">1</integer>

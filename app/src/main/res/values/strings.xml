@@ -4,6 +4,7 @@
     <string name="app_name" translatable="false">@string/easer</string>
     <string name="drawer_tip">Ease your life!</string>
     <string name="title_outline">Outline</string>
+    <string name="title_pivot">Pivot</string>
     <string name="title_operation">Operation</string>
     <string name="title_profile">Profile</string>
     <string name="title_event">Event</string>
@@ -23,6 +24,8 @@
     <string name="title_dynamics_link">Dynamics Link</string>
     <string name="title_new_dynamics_link">New Dynamics Link</string>
     <string name="title_trigger_profile">Trigger this Profile</string>
+
+    <string name="title_service_start">Service Start</string>
 
     <string name="title_remote_operation_plugin">Remote Operation Plugin</string>
 

@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private static final String FRAGMENT_OUTLINE = "ryey.easer.FRAGMENT.OUTLINE";
+    private static final String FRAGMENT_PIVOT = "ryey.easer.FRAGMENT.PIVOT";
     private static final String FRAGMENT_PROFILE = "ryey.easer.FRAGMENT.PROFILE";
     private static final String FRAGMENT_SCRIPT = "ryey.easer.FRAGMENT.SCRIPT";
     private static final String FRAGMENT_SCENARIO = "ryey.easer.FRAGMENT.SCENARIO";
@@ -131,6 +132,14 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.content_main, fragment, tag)
                     .addToBackStack(bs_tag)
                     .commit();
+        } else if (id == R.id.nav_pivot) {
+            fragment = manager.findFragmentByTag(tag);
+            if (fragment == null)
+                fragment = new PivotFragment();
+            manager.beginTransaction()
+                    .replace(R.id.content_main, fragment, tag)
+                    .addToBackStack(bs_tag)
+                    .commit();
         } else if (id == R.id.nav_profile || id == R.id.nav_script || id == R.id.nav_scenario || id == R.id.nav_condition) {
             fragment = manager.findFragmentByTag(tag);
             if (fragment == null) {
@@ -164,6 +173,7 @@ public class MainActivity extends AppCompatActivity
     private static class NavTag {
         private static final int[] nav_ids = {
                 R.id.nav_outline,
+                R.id.nav_pivot,
                 R.id.nav_script,
                 R.id.nav_profile,
                 R.id.nav_scenario,
@@ -172,6 +182,7 @@ public class MainActivity extends AppCompatActivity
         };
         private static final String[] fragment_tags = {
                 FRAGMENT_OUTLINE,
+                FRAGMENT_PIVOT,
                 FRAGMENT_SCRIPT,
                 FRAGMENT_PROFILE,
                 FRAGMENT_SCENARIO,
@@ -179,6 +190,7 @@ public class MainActivity extends AppCompatActivity
                 FRAGMENT_LOG,
         };
         private static final DataListContainerFragment.ListType[] fragment_list_types = {
+                null,
                 null,
                 DataListContainerInterface.ListType.script,
                 DataListContainerInterface.ListType.profile,

@@ -13,6 +13,15 @@
     <color name="colorText_scriptInactive">#9E9E9E</color>
     <color name="colorText_invalid">@android:color/holo_red_dark</color>
 
+    <color name="nodeBackground">@android:color/holo_blue_dark</color>
+    <color name="nodeBackground_VirtualRoot">@color/colorPrimary</color>
+    <color name="nodeBackground_Profile">@color/colorAccent</color>
+    <color name="nodeBackground_scriptActive">@color/nodeBackground</color>
+    <color name="nodeBackground_scriptInactive">#9E9E9E</color>
+    <color name="nodeText">@android:color/white</color>
+    <color name="nodeText_scriptValid">@android:color/white</color>
+    <color name="nodeText_scriptInvalid">@color/colorText_invalid</color>
+
     <color name="listHeaderBackground">@color/colorPrimaryDark</color>
     <color name="listHeaderText">@color/colorTextInverse</color>
 
