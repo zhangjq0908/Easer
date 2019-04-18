@@ -164,4 +164,9 @@
     <string name="broadcast_data">Data</string>
     <string name="condition_cell_location_listening_content">Bestemmer celleplassering…</string>
     <string name="source_cell_location_listening_title">Lytter</string>
+    <string name="o_launch_app__launch_activity">Start aktivitet</string>
+    <string name="o_launch_app__text_class">Klassenavn</string>
+    <string name="o_launch_app__text_class_hint">Tomt eller fullt klassenavn</string>
+    <string name="o_play_media">Spill av media</string>
+    <string name="o_play_media_text_file">Filsti</string>
 </resources>
