@@ -183,4 +183,6 @@
 \nEaser ist eine <a href="https://en.wikipedia.org/wiki/Free_software">freie Software</a> (Open-Source-Software), die sicherstellt, dass jeder den Code überprüfen kann.
 \n
 \nSIE besitzen jedes Stück Ihrer Daten. Alles bleibt auf Ihrem Gerät, einschließlich der Protokolle. </string>
+    <string name="title_pivot">Drehpunkt</string>
+    <string name="title_service_start">Dienststart</string>
 </resources>
