@@ -190,4 +190,6 @@
 \nEaser は <a href="https://en.wikipedia.org/wiki/Free_software">フリーソフトウェア</a> (オープンソース ソフトウェア)です。誰でもコードを調べることができます。
 \n
 \nあなたはデータのすべての部分を所有します。ログを含めてすべてデバイスに含まれます。 </string>
+    <string name="title_pivot">ピボット</string>
+    <string name="title_service_start">サービス開始</string>
 </resources>
