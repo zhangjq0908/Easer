@@ -2,7 +2,7 @@
 <resources>
     <string name="easer">Easer</string>
     <string name="drawer_tip">Semplifica la vita!</string>
-    <string name="title_outline"></string>
+    <string name="title_outline">Generale</string>
     <string name="title_profile">Profilo</string>
     <string name="title_event">Evento</string>
     <string name="title_script">Script</string>
@@ -30,4 +30,26 @@
     <string name="activity_history__time">Tempo</string>
     <string name="activity_history__extra">Info</string>
     <string name="activity_history__satisfaction">Stato</string>
+    <string name="title_pivot">Schema</string>
+    <string name="title_operation">Operazione</string>
+    <string name="activity_history__satisfied">Soddisfatto</string>
+    <string name="activity_history__unsatisfied">Non Soddisfatto</string>
+    <string name="activity_history__service">Servizio</string>
+    <string name="activity_history__status">Stato</string>
+    <string name="activity_history__start">Avviato</string>
+    <string name="activity_history__stop">Fermo</string>
+    <string name="null_content">SENZA CONTENUTO</string>
+    <string name="navigation_drawer_open">Apri Pannello di Navigazione</string>
+    <string name="navigation_drawer_close">Chiudi Pannello di Navigazione</string>
+    <string name="button_read_next_time">Leggi la Prossima Volta</string>
+    <string name="button_understand">Capito</string>
+    <string name="button_ok">OK</string>
+    <string name="text_lack_permission">Easer NON dispone di tutte le autorizzazioni necessarie.</string>
+    <string name="button_request_permission">Autorizza</string>
+    <string name="text_notification_running_indicator_content">%s è in esecuzione in background</string>
+    <string name="text_title">Titolo</string>
+    <string name="text_parent_node">Genitore</string>
+    <string name="text_parent">Genitore</string>
+    <string name="text_profile">Profilo</string>
+    <string name="text_predefined_event">Evento Predefinito</string>
 </resources>
