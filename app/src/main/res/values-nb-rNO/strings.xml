@@ -156,4 +156,22 @@
     <string name="menu_tree_list">Treliste</string>
     <string name="menu_plain_list">Enkel liste</string>
     <string name="message_future_change_title">Nært forestående endring</string>
+    <string name="title_pivot"></string>
+    <string name="title_service_start"></string>
+    <string name="welcome_message_1">
+        <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a>. </string>
+    <string name="welcome_message_2"></string>
+    <string name="welcome_message_3">
+        <a href="https://en.wikipedia.org/wiki/Tree_structure">trees</a>, by choosing the relevant parent.
+\n
+\nIn every branch, AND logic is performed.
+\nBetween branches, OR logic is performed.
+\n
+\n
+\nExtending trees to graphs is planned, but not currently implemented.</string>
+    <string name="title_welcome_message_privacy"></string>
+    <string name="welcome_message_privacy">
+        <a href="https://en.wikipedia.org/wiki/Free_software">free software</a> (open-source software), ensuring everyone use, study, change and share it.
+\n
+\nYOU own every piece of your data. Everything lives on your device, including the logs.</string>
 </resources>
