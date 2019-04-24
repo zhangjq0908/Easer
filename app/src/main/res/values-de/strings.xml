@@ -156,26 +156,26 @@
     <string name="menu_tree_list">Baum Ansicht</string>
     <string name="menu_plain_list">Einfache Liste</string>
     <string name="message_future_change_title">Dies ändert sich bald</string>
-    <string name="welcome_message_1"> Willkommen zu Easer!
-\n
-\nDie Willkommensseiten enthalten einige grundlegende Informationen.
-\n
-\nBitte lesen Sie sie vor Nutzung.
+    <string name="welcome_message_1"> Willkommen zu Easer! 
 \n 
-\n
+\nDie Willkommensseiten enthalten einige grundlegende Informationen. 
+\n 
+\nBitte lesen Sie sie vor Nutzung. 
+\n 
+\n 
 \nEs ist besser, einen Blick auf <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> im Projekt-Wiki zu werfen. </string>
-    <string name="welcome_message_2">Easer enthält mehrere Module, um verschiedene Funktionen bereitzustellen. Sie können sie in den Einstellungen aktivieren/deaktivieren.
-\n
-\nDie entsprechenden Berechtigungen (für jedes aktivierte Modul) sollten vor der Verwendung erteilt werden.
+    <string name="welcome_message_2">Easer enthält mehrere Module, um verschiedene Funktionen bereitzustellen. Sie können sie in den Einstellungen aktivieren/deaktivieren. 
 \n 
-\n
+\nDie entsprechenden Berechtigungen (für jedes aktivierte Modul) sollten vor der Verwendung erteilt werden. 
+\n 
+\n 
 \n(Alles ist standardmäßig aktiviert.)</string>
-    <string name="welcome_message_3"> Skripte werden als <a href="https://en.wikipedia.org/wiki/Tree_structure">Bäume</a> strukturiert, indem man den entsprechenden Elternteil wählt.
-\n
-\nIn jedem Zweig wird die UND-Verknüpfung angewandt.
-\nZwischen den Zweigen wird eine OR-Logik angewandt.
+    <string name="welcome_message_3"> Skripte werden als <a href="https://en.wikipedia.org/wiki/Tree_structure">Bäume</a> strukturiert, indem man den entsprechenden Elternteil wählt. 
 \n 
-\n
+\nIn jedem Zweig wird die UND-Verknüpfung angewandt. 
+\nZwischen den Zweigen wird eine OR-Logik angewandt. 
+\n 
+\n 
 \nDie Erweiterung von Bäumen um Diagramme ist geplant, aber derzeit nicht implementiert. </string>
     <string name="title_welcome_message_privacy">Datenschutz!</string>
     <string name="welcome_message_privacy"> Datenschutz ist wichtig!
