@@ -1,6 +1,13 @@
 CHANGELOG
 ======
 
+* v0.7.4.1: Crash fix && i18n
+	* Fix crash when trying to pick CellLocation
+	* Slightly improved English
+	* i18n updates:
+		* New: Italian
+		* Updated: German, Japanese, Norwegian Bokmål
+
 * v0.7.4: New Pivot graph && Remove deprecated functions && i18n update
 	* API 16+ is now required (because of GraphView)
 	* New Pivot graph for displaying the structure of Scripts
