@@ -117,14 +117,6 @@
     <string name="message_convert_data_abort">Конвертация данных отменена.</string>
     <string name="message_convert_data_error">Произошла ошибка при конвертировании данных. Пожалуйста обратитесь к лог файлу за деталями.</string>
     <string name="title_welcome_message">Добро Пожаловать</string>
-    <string name="welcome_message">Добро пожаловать в Easer! 
-\nНадеемся вам нравится это приложение :) 
-\n
-\nПожалуйста, прочитайте прежде чем приступить к работе:
-\n 1. Пожалуйста, предоставьте Easer соответствующие разрешения перед использованием событий и профилей.
-\n 2. Объединение событий в <a href="https://en.wikipedia.org/wiki/Tree_structure">дерево</a>2 на ДАННЫЙ МОМЕНТ единственный способ составления событий. 
-\n
-\nТакже обратите внимание на <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a>4 в wiki проекта.</string>
     <string name="alert_update_storage_data_title">Обнаружены данные старой версии</string>
     <string name="alert_update_storage_data">Ваши данные были созданы в старой версии. Рекомендуется их обновить до новой версии для корректной работы Easer. Вы можете это сделать выбрав Конвертировать Данные в настройках.</string>
     <string name="template_export">Экспортировано в %s</string>

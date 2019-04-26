@@ -117,14 +117,6 @@
     <string name="message_convert_data_abort">データの変換を中断しました。</string>
     <string name="message_convert_data_error">データを変換するときにエラーが発生しました。詳細についてはログを参照してください。</string>
     <string name="title_welcome_message">ようこそ</string>
-    <string name="welcome_message">Easer をご利用いただきありがとうございます!
-\nこのアプリが気に入っていただけることを期待しています :)
-\n
-\n始める前にこれらをお読みください:
-\n 1. 関連するイベントおよびプロファイルを使用する前に、Easer に対応するアクセス許可を与えてください。
-\n 2. 現在、複数のイベントを構成する方法は、<a href="https://en.wikipedia.org/wiki/Tree_structure">ツリー</a> としてイベントを接続する方法のみです。
-\n
-\nプロジェクトの wiki にある <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> もご覧ください。</string>
     <string name="alert_update_storage_data_title">古いバージョンのデータが見つかりました</string>
     <string name="alert_update_storage_data">データは以前のバージョンで作成されました。新しいバージョンにアップデートすることを推奨します、そうしないと Easer が正しく動作しないことがあります。設定でデータの変換を選択することによってこれを行うことができます。</string>
     <string name="template_export">%s にエクスポートしました</string>

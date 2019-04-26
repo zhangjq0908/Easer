@@ -110,14 +110,6 @@
     <string name="message_convert_data_abort">Konvertering av data avbrutt.</string>
     <string name="message_convert_data_error">Kunne ikke konvertere data. Sjekk loggen for detaljer.</string>
     <string name="title_welcome_message">Velkommen</string>
-    <string name="welcome_message">Velkommen til Easer.
-\nHåper du liker programmet :) 
-\n
-\nLes disse før du starter:
-\n 1. Innvilg Easer tilhørende tilganger før du bruker relevanter hendelser og profiler.
-\n 2. Kobling av hendelser som <a href="https://en.wikipedia.org/wiki/Tree_structure">trær</a> er FOR TIDEN den eneste måten å lage hendelser på. 
-\n
-\nTa også en titt på <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">O-S_S</a> i prosjektwiki-en.</string>
     <string name="alert_update_storage_data_title">Gammel dataversjon funnet</string>
     <string name="alert_update_storage_data">Din data ble opprettet i en eldre versjon. Det anbefales å oppdatere dem til en ny versjon, eller så vil ikke Easer fungere godt. Du kan gjøre dette ved å velge \"Konverter data\" i innstillingene.</string>
     <string name="template_export">Eksportert til %s</string>

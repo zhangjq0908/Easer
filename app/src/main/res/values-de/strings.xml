@@ -126,14 +126,6 @@
     <string name="pref_show_notification_title">Benachrichtigung anzeigen</string>
     <string name="pref_show_notification_summary">Eine Benachrichtigung in der Benachrichtigungsleiste anzeigen.</string>
     <string name="pref_foreground_title">Dienst im Vordergrund ausführen</string>
-    <string name="welcome_message">Willkommen bei der Verwendung von Easer!
-\nIch hoffe, Ihnen gefällt diese App :)
-\n
-\nBitte lesen Sie dies vor dem Start:
-\n 1. Bitte erteilen Sie Easer entsprechende Berechtigungen, bevor Sie relevante Ereignisse und Profile verwenden.
-\n 2. Die Verknüpfung von Ereignissen als <a href="https://en.wikipedia.org/wiki/Tree_structure">Bäume</a> ist derzeit die einzige Möglichkeit, Ereignisse zu zusammenzustellen.
-\n
-\nWerfen Sie auch einen Blick auf die <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> im Projekt-Wiki.</string>
     <string name="alert_update_storage_data">Ihre Daten wurden in einer älteren Version angelegt. Es wird empfohlen, sie auf die neue Version zu aktualisieren, da sonst Easer möglicherweise nicht gut funktioniert. Sie können dies tun, indem Sie in den Einstellungen Daten konvertieren wählen.</string>
     <string name="help_script">Skript sind Logik-Container. Sie werden ein Ereignis oder eine Bedingung mit einem Profil in einem Skript verbinden, so dass Easer weiß, wie man dieses Profil lädt/ausführt, wenn dieses Ereignis eintritt oder die Bedingung erfüllt ist.
 \nEs gibt auch erweiterte Funktionen, z.B. umgekehrtes Ereignis.

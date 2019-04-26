@@ -117,14 +117,6 @@
     <string name="message_convert_data_abort">Converteren van data afgebroken.</string>
     <string name="message_convert_data_error">Fout opgetreden bij converteren van data. Bekijk aub de log voor details.</string>
     <string name="title_welcome_message">Welkom</string>
-    <string name="welcome_message">Welkom bij Easer!
-\nWe hopen dat u deze app op prijs stelt :)
-\n
-\nLees dit alstublieft voor gebruikt:
-\n1. Geef Easer de benodigde toegangsrechten voordat u de relevante gebeurtenissen en profielen gebruikt.
-\n2. Gekoppelde gebeurtenissen zoals <a href="https://en.wikipedia.org/wiki/Tree_structure">trees</a> is OP DIT MOMENT de enige mogelijkheid om deze events samen te stellen. 
-\n
-\nLees alstublieft ook de <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> in de project wiki.</string>
     <string name="alert_update_storage_data_title">Oude data versie gevonden</string>
     <string name="alert_update_storage_data">Uw data werd gemaakt in een oudere versie. Het is aanbevolen over te gaan op de nieuwe versie omdat Easer anders mogelijk niet goed werkt. U kunt dit doen door te kiezen voor Converteer Data in de instellingen.</string>
     <string name="template_export">Geexporteerd naar %s</string>

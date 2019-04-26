@@ -44,7 +44,6 @@
     <string name="pref_welcome_summary">顯示歡迎消息</string>
     <string name="pref_welcome_title">程序啓動時顯示歡迎消息</string>
     <string name="title_welcome_message">歡迎</string>
-    <string name="welcome_message">歡迎使用Easer！\n        \n希望你能喜歡這個軟件 :)\n        \n\n請先閱讀以下事項再開始使用：\n\n    1. 請授予Easer適當權限，以便使用相關的功能。\n\n    2. 在當前，組合“事件”的方法是將它們連成<a href="https://zh.wikipedia.org/wiki/%E6%A8%B9%E7%8B%80%E7%B5%90%E6%A7%8B">樹</a>。\n        \n\n另請移步項目wiki中的<a href="https://github.com/renyuneyun/Easer/wiki/須知">須知</a>部分。</string>
     <string name="welcome_message_1">
         歡迎使用Easer！
         \n\n歡迎頁面包含一些基本信息。

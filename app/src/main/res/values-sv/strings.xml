@@ -121,15 +121,7 @@
     <string name="message_convert_data_abort">Konvertering av data avbruten.</string>
     <string name="message_convert_data_error">Fel uppstod vid konvertering av data. Vänligen se loggen för mer information.</string>
     <string name="title_welcome_message">Välkommen</string>
-    <string name="welcome_message">Välkommen för att börja använda Easer!
-\nHoppas du gillar denna app :)
-\n
-\nLäs dessa innan du börjar: 
-\n 1. Vänligen ge Easer motsvarande behörigheter innan du använder relevanta händelser och profiler.
-\n 2. Ansluta händelser som <a href="https://en.wikipedia.org/wiki/Tree_structure">träd</a> är för närvarande det enda sättet att komponera händelser. 
-\n
-\nOckså ta en titt på <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> i projektets wiki.</string>
-    <string name="welcome_message_1"> Välkommen till Easer! 
+    <string name="welcome_message_1"> Välkommen till Easer!
 \n
 \nVälkomstsidor har viss grundläggande information. 
 \n

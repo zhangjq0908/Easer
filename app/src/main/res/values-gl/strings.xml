@@ -149,14 +149,6 @@
     <string name="message_convert_data_error">Ocorreu un erro ó converte-los datos. Olla o rexistro para máis detalles.</string>
 
     <string name="title_welcome_message">Benvido</string>
-    <string name="welcome_message">Benvido a usar Easer!
-\nAgardamos que che goste esta aplicación :)
-\n
-\nLe isto denantes de comezar:
-\n 1. Fornece ós permisos correspondentes a Easer antes de empregar acontecementos e perfís relevantes.
-\n 2. Conecta acontecementos coma <a href="https://en.wikipedia.org/wiki/Tree_structure">este</a>. É actualmente o único xeito de compor acontecementos.
-\n
-\nOlla tamén o <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> (axuda) na Wiki do proxecto.</string>
 
     <string name="alert_update_storage_data_title">Atopouse unha versión antiga dos datos</string>
     <string name="alert_update_storage_data">Os teus datos foron xerados nunha versión anterior. Suxíroche actualizar cara a nova versión ou o Easer pode non funcionar ben. Podes facelo seleccionando \"Converter datos\" nos axustes.</string>

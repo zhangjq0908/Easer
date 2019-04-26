@@ -109,12 +109,6 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     <string name="message_convert_data_abort">Konvertere data afbrudt.</string>
     <string name="message_convert_data_error">Fejl opstod ved konvertering. Se log for detaljer.</string>
     <string name="title_welcome_message">Velkommen</string>
-    <string name="welcome_message">Velkommen til Easer!
-        \nForhåbentligt kan du drage nytte af programmet :)
-        \n\nLæs følgende før start:\n
-    1. Tillad Easer rettigheder før brug af relevante hændelser og profiler.\n
-    2. Forbinde hændelser som <a href="https://en.wikipedia.org/wiki/Tree_structure">træer</a> er for NUVÆRENDE eneste måde at sammensætte hændelser.
-        \n\nSe også <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> i projekt wiki.</string>
     <string name="alert_update_storage_data_title">Ældre data version fundet</string>
     <string name="alert_update_storage_data">Data er oprettet i en ældre version. Det anbefales at opdatere til ny version ellers vil Easer måske ikke fungere korrekt. Dette kan gøres ved at vælge "Konvertere data" under opsætning.</string>
     <string name="template_export">Eksporteret til %s</string>

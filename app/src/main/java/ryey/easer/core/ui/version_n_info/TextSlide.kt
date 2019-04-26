@@ -30,7 +30,7 @@ import ryey.easer.R
 
 
 class TextSlide : Fragment() {
-    private var contentId: Int = R.string.welcome_message
+    private var contentId: Int = R.string.null_content
     private var titleId: Int? = R.string.title_welcome_message
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
