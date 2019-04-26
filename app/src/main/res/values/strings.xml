@@ -52,7 +52,7 @@
     <string name="button_understand">Understood</string>
     <string name="button_cancel">Cancel</string>
     <string name="button_ok">OK</string>
-    <string name="text_lack_permission">Easer does NOT have all permissions it needs.</string>
+    <string name="text_lack_permission">Easer does NOT have sufficient permissions.</string>
     <string name="button_request_permission">Grant permissions</string>
     <string name="text_notification_running_indicator_content">%s is running in the background</string>
     <string name="text_title">Title</string>
@@ -73,15 +73,15 @@
     <string name="hint_script_title">script title</string>
     <string name="hint_profile_title">profile title</string>
     <string name="hint_condition_title">condition title</string>
-    <string name="prompt_save_failed">Failed to save</string>
+    <string name="prompt_save_failed">Saving failed</string>
     <string name="prompt_delete">Are you sure to delete: %s?</string>
-    <string name="prompt_delete_failed">Failed to delete. Check if this item is being used.</string>
+    <string name="prompt_delete_failed">Deletion failed. Check if this item is being used.</string>
     <string name="prompt_data_illegal">Prevented saving data with invalid field(s). Please recheck your choices / inputs.</string>
-    <string name="prompt_prevented_for_permission">Easer needs permission &lt;%s&gt; for this function.</string>
-    <string name="appInformation">Ease your life by automatically performing routine actions / operations on your phone(s).\n
-Chain different events and let their corresponding actions performed. No longer need to keep them in mind!\n
-This app was inspired by CyanogenMod\'s \'profile\' mechanism and IFTTT. The original intuition was to automatically change the profile on certain time or specific WiFi connections, and it was expanded for more general use then.\n
-Reminder: Easer is still in development. It may contain bugs and the UI definitely needs to be improved. Current plans are described in the TODO.en.md (or TODO.md if you can read Chinese) document in the repo. If you are interested, please have a look.</string>
+    <string name="prompt_prevented_for_permission">Easer needs the &lt;%s&gt; permission for this function.</string>
+    <string name="appInformation">Ease your life by automatically performing routine actions / operations on your phone(s).
+\nChain different events and let their corresponding actions performed. No longer need to keep them in mind!
+\nThis app was inspired by CyanogenMod\'s \'profile\' mechanism and IFTTT. The original intuition was to automatically change the profile on certain time or specific Wi-Fi connections, and it was expanded for more general use then.
+\nReminder: Easer is still in development. It may contain bugs and the UI definitely needs to be improved. Current plans are described in the TODO.en.md (or TODO.md if you can read Chinese) document in the repo. If you are interested, please have a look.</string>
     <string name="liscence_stringa">This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -90,8 +90,7 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.</string>
-    <string name="liscence_stringc">You should have received a copy of the GNU General Public License
-    along with this program.  If not, see http://www.gnu.org/licenses/</string>
+    <string name="liscence_stringc">You should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses/</string>
     <string name="myGithub" translatable="false">https://github.com/renyuneyun/Easer</string>
     <string name="myWebsite" translatable="false">http://renyuneyun.is-programmer.com/</string>
     <string name="pref_category_functionality">Functionality</string>
@@ -102,71 +101,76 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     <string name="pref_autostart_summary">Start Easer background service automatically</string>
     <string name="pref_restart_after_upgrade_title">Start service after upgrade</string>
     <string name="pref_welcome_title">Show welcome message</string>
-    <string name="pref_welcome_summary">Show welcome message on app startup</string>
-    <string name="pref_logging_title">Enable external logging</string>
-    <string name="pref_logging_summary">Save logs to external storage devices (/sdcard/logger) to aid bug reports.\nChange of this setting will take effect from next time Easer starts.</string>
+    <string name="pref_welcome_summary">Show welcome message when opening app</string>
+    <string name="pref_logging_title">Turn on external logging</string>
+    <string name="pref_logging_summary">Save logs to external storage devices (/sdcard/logger) to aid bug reports.
+\nChanges take effect the next time Easer starts.</string>
     <string name="pref_use_root_title">Use root features</string>
-    <string name="pref_use_root_summary">Use root permission for specific functions (plugins), which may help resolve compatibility issue on some devices. Root permission won\'t be used elsewhere.</string>
+    <string name="pref_use_root_summary">Use root permission for specific functions (plugins), which may help resolve compatibility issue on some devices. It won\'t be used elsewhere.</string>
     <string name="pref_cooldown_title">Cool down time</string>
     <string name="pref_cooldown_summary">Minimal interval between two triggers of the same event</string>
     <string name="cooldown_time_illformed">The number must not be lower than 0 and not too large to fit in a integer</string>
-    <string name="pref_enabled_plugins_title">Enabled plugins</string>
-    <string name="pref_enabled_plugins_summary">Enable or disable certain plugins</string>
+    <string name="pref_enabled_plugins_title">Active plugins</string>
+    <string name="pref_enabled_plugins_summary">Turn on or off certain plugins</string>
     <string name="pref_use_12_hour_clock_title">Use 12-hour clock</string>
     <string name="pref_export_title">Export</string>
-    <string name="pref_export_summary">Export all events and profiles to SD Card.\nFile will be named after current time.</string>
+    <string name="pref_export_summary">Export all events and profiles to SD card.
+\nThe filename wil be a current timestamp.</string>
     <string name="pref_import_title">Import</string>
-    <string name="pref_import_summary">Import all events and profiles in a zip file.\nExisting events and profiles with same name will be replaced.</string>
+    <string name="pref_import_summary">Import all events and profiles in a ZIP file.
+\nExisting events and profiles with same name will be replaced.</string>
     <string name="pref_convert_data_title">Convert data</string>
     <string name="pref_convert_data_summary">Convert all data to the recommended format</string>
     <string name="pref_show_notification_title">Show notification</string>
     <string name="pref_show_notification_summary">Show a notification in the notification bar.</string>
     <string name="pref_foreground_title">Run service in foreground</string>
-    <string name="pref_foreground_summary">Make the service less easier to be killed by the system. Will show a notification. Can not be disabled on Android 8+ because of system requirement.</string>
+    <string name="pref_foreground_summary">Make it harder to for the system to kill the service. A notification will be shown. Can not be turned off on Android 8+ because of a system requirement.</string>
     <string name="message_plugin_not_compatible">This plugin is not compatible with this device.</string>
     <string name="message_convert_data_start">Converting data.</string>
-    <string name="message_convert_data_finish">Converted data.</string>
-    <string name="message_convert_data_abort">Convert data aborted.</string>
-    <string name="message_convert_data_error">Error occurred when converting data. Please see the log for details.</string>
+    <string name="message_convert_data_finish">Data converted.</string>
+    <string name="message_convert_data_abort">Data conversion aborted.</string>
+    <string name="message_convert_data_error">Could not convert the data. Please see the log for details.</string>
     <string name="title_welcome_message">Welcome</string>
     <string name="welcome_message">Welcome to use Easer!
-        \nHope you like this app :)
-        \n\nPlease read these before starting:\n
-    1. Please grant Easer corresponding permissions before using relevant events and profiles.\n
-    2. Connecting events as <a href="https://en.wikipedia.org/wiki/Tree_structure">trees</a> is CURRENTLY the only way to compose events.
-        \n\nAlso have a look at <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> in the project wiki.</string>
+\nHope you like this app :)
+\n
+\nPlease read these before starting:
+\n1. Please grant Easer corresponding permissions before using relevant events and profiles.
+\n2. Connecting events as <a href="https://en.wikipedia.org/wiki/Tree_structure">trees</a> is CURRENTLY the only way to compose events. 
+\n
+\nAlso have a look at <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> in the project wiki.</string>
     <string name="welcome_message_1">Welcome.
 \n
-\nHere is some basic info to read before using Easer. 
+\nHere is some basic info to read before using Easer.
 \n
 \nMore involved topics covered in the project wiki <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a>. </string>
     <string name="welcome_message_2">Easer contains several modules providing different functions. Turn them on or off in Settings.
 \n
-\nThe corresponding permissions (for every active module) should be granted before use. 
+\nThe corresponding permissions (for every active module) should be granted before use.
 \n
 \n
 \n(Everything is on by default.)</string>
-    <string name="welcome_message_3">Scripts are structured as <a href="https://en.wikipedia.org/wiki/Tree_structure">trees</a>, by choosing the relevant parent. 
+    <string name="welcome_message_3">Scripts are structured as <a href="https://en.wikipedia.org/wiki/Tree_structure">trees</a>, by choosing the relevant parent.
 \n
-\nIn every branch, AND logic is performed. 
-\nBetween branches, OR logic is performed. 
+\nIn every branch, AND logic is performed.
+\nBetween branches, OR logic is performed.
 \n
 \n
-\nExtending trees to graphs is planned, but not currently implemented. </string>
+\nExtending trees to graphs is planned, but not currently implemented.</string>
     <string name="title_welcome_message_privacy">
         Privacy!
     </string>
-    <string name="welcome_message_privacy">
-        Privacy is important!
-        \n\nEaser is a <a href="https://en.wikipedia.org/wiki/Free_software">free software</a> (open-source software), ensuring everyone can inspect the code.
-        \n\nYOU own every piece of your data. Everything lives on your device, including the logs.
-    </string>
+    <string name="welcome_message_privacy">Privacy is important!
+\n
+\nEaser is <a href="https://en.wikipedia.org/wiki/Free_software">free software</a> (open-source software), ensuring everyone use, study, change and share it.
+\n
+\nYOU own every piece of your data. Everything lives on your device, including the logs.</string>
     <string name="alert_update_storage_data_title">Old data version found</string>
-    <string name="alert_update_storage_data">Your data were created in an older version. It\'s suggested to update them to new version or Easer may not work well. You can do this by selecting "Convert Data" in settings.</string>
+    <string name="alert_update_storage_data">Your data were created in an older version. Update them to the new version to ensure Easer works well. You can do this by selecting \'\\Convert Data\\\' in the settings.</string>
     <string name="message_future_change_title">Changing soon</string>
     <string name="template_export">Exported to %s</string>
     <string name="version">Version</string>
-    <string name="message_importing_invalid_data">This file doesn\'t seem to be valid. Make sure to import a file previously exported by Easer.</string>
+    <string name="message_importing_invalid_data">This file doesn\'t seem to be valid. Make sure to import a file exported by Easer.</string>
     <string name="dynamics_time">Current Time</string>
     <string name="dynamics_date">Current Date</string>
     <string name="dynamics_script_name">Script Name</string>
