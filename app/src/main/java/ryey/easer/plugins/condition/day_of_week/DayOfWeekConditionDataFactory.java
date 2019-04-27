@@ -19,8 +19,8 @@
 
 package ryey.easer.plugins.condition.day_of_week;
 
-import android.support.annotation.NonNull;
-import android.support.v4.util.ArraySet;
+import androidx.annotation.NonNull;
+import androidx.collection.ArraySet;
 
 import java.util.Arrays;
 

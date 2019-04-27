@@ -22,8 +22,9 @@ package ryey.easer.plugins.operation.send_notification;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.v4.app.NotificationCompat;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
 
 import java.util.concurrent.ThreadLocalRandom;
 

@@ -22,7 +22,8 @@ package ryey.easer.plugins.condition.screen;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_plugin.PluginViewFragmentInterface;

@@ -20,8 +20,9 @@
 package ryey.easer.plugins.operation.send_sms;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.telephony.SmsManager;
+
+import androidx.annotation.NonNull;
 
 import ryey.easer.commons.local_plugin.ValidData;
 import ryey.easer.plugins.operation.OperationLoader;

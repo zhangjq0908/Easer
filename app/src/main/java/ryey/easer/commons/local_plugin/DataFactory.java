@@ -19,7 +19,7 @@
 
 package ryey.easer.commons.local_plugin;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import ryey.easer.plugin.PluginDataFormat;
 

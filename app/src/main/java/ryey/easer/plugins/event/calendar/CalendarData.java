@@ -19,7 +19,7 @@
 
 package ryey.easer.plugins.event.calendar;
 
-import android.support.v4.util.ArraySet;
+import androidx.collection.ArraySet;
 
 import java.util.Set;
 

@@ -19,7 +19,7 @@
 
 package ryey.easer.commons;
 
-import android.support.annotation.IntRange;
+import androidx.annotation.IntRange;
 
 import com.orhanobut.logger.Logger;
 

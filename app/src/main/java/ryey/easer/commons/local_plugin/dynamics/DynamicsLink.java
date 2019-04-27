@@ -22,7 +22,8 @@ package ryey.easer.commons.local_plugin.dynamics;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import java.util.HashMap;
 import java.util.Map;

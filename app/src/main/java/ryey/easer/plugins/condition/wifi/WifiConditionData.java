@@ -20,8 +20,9 @@
 package ryey.easer.plugins.condition.wifi;
 
 import android.os.Parcel;
-import android.support.annotation.NonNull;
-import android.support.v4.util.ArraySet;
+
+import androidx.annotation.NonNull;
+import androidx.collection.ArraySet;
 
 import org.json.JSONArray;
 import org.json.JSONException;

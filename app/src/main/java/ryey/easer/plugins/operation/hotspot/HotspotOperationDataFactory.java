@@ -19,7 +19,7 @@
 
 package ryey.easer.plugins.operation.hotspot;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;
 import ryey.easer.commons.local_plugin.ValidData;

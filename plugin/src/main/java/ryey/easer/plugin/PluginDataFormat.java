@@ -20,7 +20,7 @@
 package ryey.easer.plugin;
 
 import android.os.Parcel;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public enum PluginDataFormat {
     JSON,

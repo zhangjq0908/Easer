@@ -26,7 +26,7 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.support.v4.app.NotificationCompat
+import androidx.core.app.NotificationCompat
 import ryey.easer.R
 import ryey.easer.SettingsHelper
 import ryey.easer.core.ui.MainActivity

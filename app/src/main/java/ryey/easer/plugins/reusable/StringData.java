@@ -19,8 +19,8 @@
 
 package ryey.easer.plugins.reusable;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.local_plugin.StorageData;

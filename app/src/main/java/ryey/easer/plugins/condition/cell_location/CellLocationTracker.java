@@ -22,10 +22,11 @@ package ryey.easer.plugins.condition.cell_location;
 import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.telephony.CellLocation;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+
+import androidx.annotation.NonNull;
 
 import ryey.easer.plugins.condition.SkeletonTracker;
 import ryey.easer.plugins.reusable.CellLocationSingleData;

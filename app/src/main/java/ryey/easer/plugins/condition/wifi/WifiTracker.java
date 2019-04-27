@@ -27,7 +27,8 @@ import android.content.IntentFilter;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 

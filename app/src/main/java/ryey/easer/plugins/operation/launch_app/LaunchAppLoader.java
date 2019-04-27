@@ -3,7 +3,8 @@ package ryey.easer.plugins.operation.launch_app;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.local_plugin.ValidData;

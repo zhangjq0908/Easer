@@ -25,9 +25,10 @@ import android.content.Intent;
 import android.media.session.MediaController;
 import android.media.session.MediaSessionManager;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.view.KeyEvent;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.orhanobut.logger.Logger;
 

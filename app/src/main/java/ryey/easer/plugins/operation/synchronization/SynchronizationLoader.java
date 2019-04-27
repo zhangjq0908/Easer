@@ -21,7 +21,8 @@ package ryey.easer.plugins.operation.synchronization;
 
 import android.content.ContentResolver;
 import android.content.Context;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import ryey.easer.commons.local_plugin.ValidData;
 import ryey.easer.plugins.operation.OperationLoader;

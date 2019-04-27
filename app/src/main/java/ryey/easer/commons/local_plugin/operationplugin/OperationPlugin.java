@@ -20,8 +20,9 @@
 package ryey.easer.commons.local_plugin.operationplugin;
 
 import android.content.Context;
-import android.support.annotation.IntRange;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.IntRange;
+import androidx.annotation.NonNull;
 
 import ryey.easer.commons.local_plugin.PluginDef;
 import ryey.easer.plugin.operation.Category;

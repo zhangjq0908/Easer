@@ -21,8 +21,9 @@ package ryey.easer.commons.local_plugin;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.StringRes;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 
 public interface PluginDef<T extends StorageData> {
     /**

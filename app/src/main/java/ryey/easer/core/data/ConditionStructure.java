@@ -19,7 +19,7 @@
 
 package ryey.easer.core.data;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.local_plugin.conditionplugin.ConditionData;

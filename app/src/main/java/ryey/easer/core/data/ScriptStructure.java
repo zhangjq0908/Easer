@@ -19,7 +19,7 @@
 
 package ryey.easer.core.data;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import ryey.easer.commons.local_plugin.dynamics.DynamicsLink;
 import ryey.easer.commons.local_plugin.eventplugin.EventData;

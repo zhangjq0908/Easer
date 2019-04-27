@@ -26,7 +26,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.Uri
 import android.os.*
-import android.support.v4.util.ArraySet
 import android.util.Log
 import com.orhanobut.logger.Logger
 import ryey.easer.commons.local_plugin.operationplugin.OperationData
@@ -68,7 +67,7 @@ class RemotePluginRegistryService : Service() {
         mFilter.addAction(RemotePlugin.ACTION_RESPONSE_PLUGIN_INFO)
     }
 
-    private val operationPluginInfos = ArraySet<RemoteOperationPluginInfo>()
+    private val operationPluginInfos = androidx.collection.ArraySet<RemoteOperationPluginInfo>()
     fun infoForId(id: String): RemoteOperationPluginInfo? {
         for (info in operationPluginInfos) {
             if (info.pluginId == id)

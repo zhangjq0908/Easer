@@ -28,8 +28,9 @@ import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.os.Binder;
 import android.os.IBinder;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v4.util.ArraySet;
+
+import androidx.collection.ArraySet;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import java.util.Set;
 

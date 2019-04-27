@@ -19,7 +19,7 @@
 
 package ryey.easer.core.ui.data;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public interface DataListContainerInterface {
     void setShowHelp(boolean show);

@@ -20,7 +20,8 @@
 package ryey.easer.commons.local_plugin.eventplugin;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import ryey.easer.commons.local_plugin.PluginDef;
 import ryey.easer.commons.local_plugin.ValidData;

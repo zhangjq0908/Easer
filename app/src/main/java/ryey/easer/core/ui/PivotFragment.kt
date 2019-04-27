@@ -20,13 +20,13 @@
 package ryey.easer.core.ui
 
 import android.os.Bundle
-import android.support.annotation.ColorInt
-import android.support.annotation.StringRes
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.annotation.ColorInt
+import androidx.annotation.StringRes
+import androidx.fragment.app.Fragment
 import de.blox.graphview.*
 import de.blox.graphview.tree.BuchheimWalkerAlgorithm
 import de.blox.graphview.tree.BuchheimWalkerConfiguration

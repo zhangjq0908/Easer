@@ -19,7 +19,7 @@
 
 package ryey.easer.plugins.operation.wifi;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import ryey.easer.commons.local_plugin.InvalidDataInputException;
 import ryey.easer.commons.local_plugin.ValidData;

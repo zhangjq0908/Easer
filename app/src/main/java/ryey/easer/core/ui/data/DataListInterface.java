@@ -20,8 +20,9 @@
 package ryey.easer.core.ui.data;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.annotation.StringRes;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 
 public interface DataListInterface {
 

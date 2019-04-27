@@ -20,7 +20,7 @@
 package ryey.easer.core.log
 
 import android.os.Parcel
-import android.support.annotation.CallSuper
+import androidx.annotation.CallSuper
 import java.util.*
 
 abstract class BasicLog: ActivityLog {
