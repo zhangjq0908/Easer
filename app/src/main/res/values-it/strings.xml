@@ -70,10 +70,10 @@
     <string name="toggle_active">Attivo</string>
     <string name="hint_event_title">titolo evento</string>
     <string name="hint_script_title">titolo script</string>
-    <string name="hint_profile_title"/>
-    <string name="hint_condition_title"/>
-    <string name="prompt_save_failed"/>
-    <string name="prompt_delete"/>
+    <string name="hint_profile_title">titolo profilo</string>
+    <string name="hint_condition_title">titolo condizione</string>
+    <string name="prompt_save_failed">Salvataggio fallito</string>
+    <string name="prompt_delete">Vuoi eliminare: %s\?</string>
     <string name="prompt_delete_failed"/>
     <string name="prompt_data_illegal"/>
     <string name="prompt_prevented_for_permission"/>
