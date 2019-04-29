@@ -68,8 +68,8 @@
     <string name="text_dynamics"/>
     <string name="text_placeholder">Segnaposto</string>
     <string name="toggle_active">Attivo</string>
-    <string name="hint_event_title"/>
-    <string name="hint_script_title"/>
+    <string name="hint_event_title">titolo evento</string>
+    <string name="hint_script_title">titolo script</string>
     <string name="hint_profile_title"/>
     <string name="hint_condition_title"/>
     <string name="prompt_save_failed"/>
