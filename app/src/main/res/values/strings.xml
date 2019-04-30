@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="easer">Easer</string>
     <string name="app_name" translatable="false">@string/easer</string>
@@ -24,21 +24,16 @@
     <string name="title_dynamics_link">Dynamics Link</string>
     <string name="title_new_dynamics_link">New Dynamics Link</string>
     <string name="title_trigger_profile">Trigger this Profile</string>
-
     <string name="title_service_start">Service Start</string>
-
     <string name="title_remote_operation_plugin">Remote Operation Plugin</string>
-
     <string name="menu_start">Start</string>
     <string name="menu_stop">Stop</string>
     <string name="menu_action_save">Save</string>
     <string name="menu_clear">Clear</string>
     <string name="menu_tree_list">Tree List</string>
     <string name="menu_plain_list">Plain List</string>
-
     <string name="service_indicator_positive">Running</string>
     <string name="service_indicator_negative">Not running</string>
-
     <string name="activity_history__profile">@string/title_profile</string>
     <string name="activity_history__script">@string/title_script</string>
     <string name="activity_history__time">Time</string>
@@ -50,89 +45,74 @@
     <string name="activity_history__status">Status</string>
     <string name="activity_history__start">Start</string>
     <string name="activity_history__stop">Stop</string>
-
     <string name="null_content">NULL CONTENT</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="button_read_next_time">Read next time</string>
     <string name="button_understand">Understood</string>
     <string name="button_cancel">Cancel</string>
     <string name="button_ok">OK</string>
     <string name="text_lack_permission">Easer does NOT have sufficient permissions.</string>
     <string name="button_request_permission">Grant permissions</string>
-
     <string name="text_notification_running_indicator_content">%s is running in the background</string>
-
     <string name="text_title">Title</string>
     <string name="text_parent_node">Parent</string>
     <string name="text_parent">Parent</string>
     <string name="text_profile">Profile</string>
     <string name="text_predefined_event">Predefined Event</string>
-    <string name="text_inline_event">Inline Event</string>
+    <string name="text_inline_event">Integrated event</string>
     <string name="text_use_condition">Use Condition</string>
-    <string name="text_repeatable_desc">Repeatable when satisfied</string>
+    <string name="text_repeatable_desc">Reoccuring</string>
     <string name="text_reverse_desc">Reverse Scenario</string>
     <string name="text_volatile">Volatile</string>
     <string name="text_persistent">Persistent</string>
-
     <string name="text_dynamics">Dynamics</string>
     <string name="text_placeholder">Placeholder</string>
-
     <string name="toggle_active">Active</string>
-
-    <string name="hint_event_title">event title</string>
-    <string name="hint_script_title">script title</string>
-    <string name="hint_profile_title">profile title</string>
-    <string name="hint_condition_title">condition title</string>
-    <string name="prompt_save_failed">Saving failed</string>
+    <string name="hint_event_title">Event title</string>
+    <string name="hint_script_title">Script title</string>
+    <string name="hint_profile_title">Profile title</string>
+    <string name="hint_condition_title">Condition title</string>
+    <string name="prompt_save_failed">Could not save</string>
     <string name="prompt_delete">Are you sure you want to delete %s\?</string>
     <string name="prompt_delete_failed">Deletion failed. Check if this item is being used.</string>
     <string name="prompt_data_illegal">Prevented saving data with invalid field(s). Please recheck your choices / inputs.</string>
-    <string name="prompt_prevented_for_permission">Easer needs the &lt;%s&gt; permission for this function.</string>
-    <string name="appInformation">Ease your life by automatically performing routine actions / operations on your phone(s).
-\nChain different events and let their corresponding actions performed. No longer need to keep them in mind!
-\nThis app was inspired by CyanogenMod\'s \'profile\' mechanism and IFTTT. The original intuition was to automatically change the profile on certain time or specific Wi-Fi connections, and it was expanded for more general use then.
-\nReminder: Easer is still in development. It may contain bugs and the UI definitely needs to be improved. Current plans are described in the TODO.en.md (or TODO.md if you can read Chinese) document in the repo. If you are interested, please have a look.</string>
+    <string name="prompt_prevented_for_permission">Grant Easer &lt;%s&gt; access for this to work.</string>
+    <string name="appInformation">Ease your life by automating routine actions on your device(s).
+\nChain together events their corresponding actions.
+\nThis app was inspired by CyanogenMod\\\'s \\\'profile\\\' mechanism and IFTTT. The original intention was changing profile at a certain time or in specific Wi-Fi coverage, and is now for general use.
+\nEaser is still in development. Have a look in TODO.en.md (or TODO.md if you can read Chinese) on the repo to help out.</string>
     <string name="liscence_stringa">This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.</string>
-
     <string name="liscence_stringb">This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.</string>
     <string name="liscence_stringc">You should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses/</string>
     <string name="myGithub" translatable="false">https://github.com/renyuneyun/Easer</string>
-
     <string name="myWebsite" translatable="false">http://renyuneyun.is-programmer.com/</string>
-
     <string name="pref_category_functionality">Functionality</string>
     <string name="pref_category_personalise">Personalise</string>
     <string name="pref_category_data_manage">Manage data</string>
     <string name="pref_category_service">Service</string>
-
     <string name="pref_autostart_title">Autostart on boot</string>
-    <string name="pref_autostart_summary">Start Easer background service automatically</string>
-
+    <string name="pref_autostart_summary">Starts Easer in the background when the device is turned on</string>
     <string name="pref_restart_after_upgrade_title">Start service after upgrade</string>
-
     <string name="pref_welcome_title">Show welcome message</string>
     <string name="pref_welcome_summary">Show welcome message when opening app</string>
     <string name="pref_logging_title">Turn on external logging</string>
-    <string name="pref_logging_summary">Save logs to external storage devices (/sdcard/logger) to aid bug reports.
-\nChanges take effect the next time Easer starts.</string>
+    <string name="pref_logging_summary">Logs to external storage devices (/sdcard/logger) to aid bug reports.
+\nChanges take effect at next app start.</string>
     <string name="pref_use_root_title">Use root features</string>
-    <string name="pref_use_root_summary">Use root permission for specific functions (plugins), which may help resolve compatibility issue on some devices. It won\'t be used elsewhere.</string>
+    <string name="pref_use_root_summary">Use root permission for specific functions (plugins) to help resolve compatibility issues on some devices.</string>
     <string name="pref_cooldown_title">Cool down time</string>
     <string name="pref_cooldown_summary">Minimal interval between two triggers of the same event</string>
     <string name="cooldown_time_illformed">The number must not be lower than 0 and not too large to fit in a integer</string>
     <string name="pref_enabled_plugins_title">Active plugins</string>
     <string name="pref_enabled_plugins_summary">Turn on or off certain plugins</string>
     <string name="pref_use_12_hour_clock_title">Use 12-hour clock</string>
-
     <string name="pref_export_title">Export</string>
     <string name="pref_export_summary">Export all events and profiles to SD card.
 \nThe filename wil be a current timestamp.</string>
@@ -141,7 +121,6 @@
 \nExisting events and profiles with same name will be replaced.</string>
     <string name="pref_convert_data_title">Convert data</string>
     <string name="pref_convert_data_summary">Convert all data to the recommended format</string>
-
     <string name="pref_show_notification_title">Show notification</string>
     <string name="pref_show_notification_summary">Show a notification in the notification bar.</string>
     <string name="pref_foreground_title">Run service in foreground</string>
@@ -162,7 +141,7 @@
 \n
 \nHere is some basic info to read before using Easer.
 \n
-\nMore involved topics covered in the project wiki <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a>. </string>
+\nMore involved topics covered in the project wiki <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a>.</string>
     <string name="welcome_message_2">Easer contains several modules providing different functions. Turn them on or off in Settings.
 \n
 \nThe corresponding permissions (for every active module) should be granted before use.
@@ -176,7 +155,6 @@
 \n
 \n
 \nExtending trees to graphs is planned, but not currently implemented.</string>
-
     <string name="title_welcome_message_privacy">
         Privacy!
     </string>
@@ -187,20 +165,15 @@
 \nYOU own every piece of your data. Everything lives on your device, including the logs.</string>
     <string name="alert_update_storage_data_title">Old data version found</string>
     <string name="alert_update_storage_data">Select \\\"Convert Data\\\" in the settings to update your data to the new format for compatibility.</string>
-
     <string name="message_future_change_title">Changing soon</string>
-
     <string name="template_export">Exported to %s</string>
     <string name="version">Version</string>
     <string name="message_importing_invalid_data">This file doesn\'t seem to be valid. Make sure to import a file exported by Easer.</string>
-
     <string name="dynamics_time">Current Time</string>
     <string name="dynamics_date">Current Date</string>
     <string name="dynamics_script_name">Script Name</string>
     <string name="dynamics_profile_name">Profile Name</string>
-
     <string name="title_help">Help</string>
-
     <string name="help_script">\\\"Scripts\\\" are the logic containers. Connect an event or a condition with a profile in a script, so that Easer knows to load/execute that profile when the event occurs, or the condition is met.
 \nThere are also more advanced functions, e.g. reversed events.
 \nPlease refer to the <a href="https://github.com/renyuneyun/Easer/wiki">document</a> for more info.</string>
@@ -211,12 +184,11 @@
 \nFor example, upon connection Wi-Fi, or as the screen turns off.
 \nPlease refer to the <a href="https://github.com/renyuneyun/Easer/wiki">document</a> for more info.</string>
     <string name="help_profile">\\\"Profile\\\" is a set of operations. Each operation represents a particular type of action.
-\nFor example, turn on Bluetooth, or send an SMS.
+\nFor example, turn on Bluetooth, or send an SMS. 
 \nPlease refer to the <a href="https://github.com/renyuneyun/Easer/wiki">document</a> for more info.</string>
     <string name="category_operation_android">Android</string>
     <string name="category_operation_system_config">System config</string>
     <string name="category_operation_easer">@string/easer</string>
     <string name="category_operation_misc">Misc</string>
     <string name="category_operation_unknown">Unknown</string>
-
 </resources>
