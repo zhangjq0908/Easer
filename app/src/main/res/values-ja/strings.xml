@@ -155,26 +155,26 @@
     <string name="pref_foreground_summary">システムによってサービスが終了する可能性が減ります。 通知を表示します。 システム要件のためにAndroid 8以降で無効にすることはできません。</string>
     <string name="menu_plain_list">プレーンリスト</string>
     <string name="message_future_change_title">すぐに変更します</string>
-    <string name="welcome_message_1"> Easer へようこそ!
-\n
-\nウェルカムページにいくつかの基本的な情報があります。
-\n
-\n使用する前にお読みください。
+    <string name="welcome_message_1"> Easer へようこそ! 
 \n 
-\n
+\nウェルカムページにいくつかの基本的な情報があります。 
+\n 
+\n使用する前にお読みください。 
+\n 
+\n 
 \nプロジェクト wiki の <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> をご覧ください。 </string>
-    <string name="welcome_message_2">Easer には、異なる機能を提供するいくつかのモジュールが含まれています。設定で有効/無効にすることができます。
-\n
-\n使用する前に、(すべての有効なモジュールの) 対応するアクセス許可を付与してください。
+    <string name="welcome_message_2">Easer には、異なる機能を提供するいくつかのモジュールが含まれています。設定で有効/無効にすることができます。 
 \n 
-\n
+\n使用する前に、(すべての有効なモジュールの) 対応するアクセス許可を付与してください。 
+\n 
+\n 
 \n(デフォルトですべて有効です。)</string>
-    <string name="welcome_message_3"> 関連する親を選択することによって、スクリプトは <a href="https://en.wikipedia.org/wiki/Tree_structure">ツリー</a> として構築されます。
-\n
-\nすべての分岐で AND ロジックが実行されます。
-\n分岐の間は OR ロジックが実行されます。
+    <string name="welcome_message_3"> 関連する親を選択することによって、スクリプトは <a href="https://en.wikipedia.org/wiki/Tree_structure">ツリー</a> として構築されます。 
 \n 
-\n
+\nすべての分岐で AND ロジックが実行されます。 
+\n分岐の間は OR ロジックが実行されます。 
+\n 
+\n 
 \nグラフにツリーの拡張は計画していますが、現在は実装されていません。 </string>
     <string name="title_welcome_message_privacy">プライバシー!</string>
     <string name="welcome_message_privacy"> プライバシーは重要です!

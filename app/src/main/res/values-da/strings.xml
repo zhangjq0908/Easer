@@ -45,7 +45,7 @@
     <string name="button_understand">Forstået</string>
     <string name="button_cancel">Annullere</string>
     <string name="button_ok">O.k.</string>
-    <string name="text_lack_permission">Easer har IKKE alle nødvendige rettigheder.</string>
+    <string name="text_lack_permission">Easer har IKKE nødvendige rettigheder.</string>
     <string name="button_request_permission">Tildele rettigheder</string>
     <string name="text_title">Titel</string>
     <string name="text_parent_node">Forælder</string>
@@ -69,14 +69,17 @@
     <string name="prompt_delete">Slette: %s?</string>
     <string name="prompt_delete_failed">Kan ikke slette. Kontrollere om element er i brug.</string>
     <string name="prompt_data_illegal">Forhindret gemme data med ugyldige felter. Kontrollere valg/inddata.</string>
-    <string name="prompt_prevented_for_permission">Easer behøver rettighed &lt;%s&gt; for denne funktion.</string>
-    <string name="appInformation">Gør dagligdagen nemmere ved automatisk at udføre rutine handlinger.\n
-Sammensætte forskellige hændelser og udføre tilhørende handlinger.\n
-This app was inspired by CyanogenMod\'s \'profile\' mechanism and IFTTT. The original intuition was to automatically change the profile on certain time or specific WiFi connections, and it was expanded for more general use then.\n
-Reminder: Easer is still in development. It may contain bugs and the UI definitely needs to be improved. Current plans are described in the TODO.en.md (or TODO.md if you can read Chinese) document in the repo. If you are interested, please have a look.</string>
+    <string name="prompt_prevented_for_permission">Easer behøver &lt;%s&gt; rettighed for denne funktion.</string>
+    <string name="appInformation">Gør dagligdagen nemmere ved automatisk at udføre rutine handlinger.
+\n
+\nSammensætte forskellige hændelser og udføre tilhørende handlinger.
+\n
+\nThis app was inspired by CyanogenMod\'s \'profile\' mechanism and IFTTT. The original intuition was to automatically change the profile on certain time or specific WiFi connections, and it was expanded for more general use then.
+\n
+\nReminder: Easer is still in development. It may contain bugs and the UI definitely needs to be improved. Current plans are described in the TODO.en.md (or TODO.md if you can read Chinese) document in the repo. If you are interested, please have a look.</string>
     <string name="liscence_stringa">Dette program er gratis software: Det kan videre-distribueres og/eller ændres i henhold til GNU General Public License som offentliggjort af Free Software Foundation, enten version 3 Licensen, eller (efter eget valg) en senere version.</string>
     <string name="liscence_stringb">Dette program distribueres i håb om at det vil være nyttigt men uden nogen garanti; uden selv den underforståede garanti for SALGBARHED eller EGNETHED TIL ET BESTEMT FORMÅL. Se GNU General Public License for flere detaljer.</string>
-    <string name="liscence_stringc">Der medfølger normalt en kopi af GNU General Public License sammen med dette program. Hvis ikke, se http://www.gnu.org/licenses/</string>
+    <string name="liscence_stringc">Der medfølger normalt en kopi af GNU General Public License sammen med dette program. Hvis ikke, se https://www.gnu.org/licenses/</string>
     <string name="myGithub" translatable="false">https://github.com/renyuneyun/Easer</string>
     <string name="myWebsite" translatable="false">http://renyuneyun.is-programmer.com/</string>
     <string name="pref_category_functionality">Funktionalitet</string>
@@ -88,26 +91,30 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     <string name="pref_welcome_title">Vise velkomst besked</string>
     <string name="pref_welcome_summary">Vise velkomst besked ved program start</string>
     <string name="pref_logging_title">Aktivere ekstern logning</string>
-    <string name="pref_logging_summary">Gemme log til ekstern opbevaringsenhed (/sdcard/logger) for at hjælpe med fejl rapporter.\nIndstillings ændringer træder i kraft ved næste Easer start.</string>
+    <string name="pref_logging_summary">Gemme log til ekstern lagerenhed (/sdcard/logger) for hjælp til fejl rapporter.
+\nÆndringer træder i kraft ved næste Easer start.</string>
     <string name="pref_use_root_title">Bruge administrator egenskaber</string>
-    <string name="pref_use_root_summary">Bruge administrator egenskab for specielle funktioner (udvidelsesmoduler), som kan hjælpe med at løse kompatibilitetsproblem på nogle enheder. Administrator egenskab vil ikke blive brugt andre steder.</string>
+    <string name="pref_use_root_summary">Bruge administrator egenskab for specielle funktioner (udvidelsesmoduler), som kan hjælpe med at løse kompatibilitetsproblem på nogle enheder. Det vil ikke blive brugt andre steder.</string>
     <string name="pref_cooldown_title">Pausetid</string>
     <string name="pref_cooldown_summary">Mindste interval mellem to udløsere på samme hændelse</string>
     <string name="cooldown_time_illformed">Værdi skal være i område 0-32767</string>
     <string name="pref_enabled_plugins_title">Aktiverede udvidelsesmoduler</string>
-    <string name="pref_enabled_plugins_summary">Aktivere eller deaktivere udvidelsesmoduler</string>
+    <string name="pref_enabled_plugins_summary">Aktivere eller deaktivere bestemte udvidelsesmoduler</string>
     <string name="pref_use_12_hour_clock_title">Brug 12 timers ur</string>
     <string name="pref_export_title">Eksportere</string>
-    <string name="pref_export_summary">Eksportere alle hændelser og profiler til sd-kort.\nFil navngives efter aktuel tid.</string>
+    <string name="pref_export_summary">Eksportere alle hændelser og profiler til sd-kort.
+\n
+\nFil navngives efter aktuel tid.</string>
     <string name="pref_import_title">Importere</string>
-    <string name="pref_import_summary">Importere alle hændelser og profiler i en pakket zip-fil.\nEksisterende hændelser og profiler med samme navn vil blive overskrevet.</string>
+    <string name="pref_import_summary">Importere alle hændelser og profiler i en pakket ZIP-fil.
+\nEksisterende hændelser og profiler med samme navn vil blive overskrevet.</string>
     <string name="pref_convert_data_title">Konvertere data</string>
     <string name="pref_convert_data_summary">Konvertere al data til anbefalet format</string>
-    <string name="message_plugin_not_compatible">Udvidelsesmodul er ikke kompatibel med enhed.</string>
+    <string name="message_plugin_not_compatible">Denne enhed kan ikke køre dette udvidelsesmodul.</string>
     <string name="message_convert_data_start">Konverterer data.</string>
     <string name="message_convert_data_finish">Data konverteret.</string>
-    <string name="message_convert_data_abort">Konvertere data afbrudt.</string>
-    <string name="message_convert_data_error">Fejl opstod ved konvertering. Se log for detaljer.</string>
+    <string name="message_convert_data_abort">Data konvertering afbrudt.</string>
+    <string name="message_convert_data_error">Kan ikke konvertere data. Se log for detaljer.</string>
     <string name="title_welcome_message">Velkommen</string>
     <string name="alert_update_storage_data_title">Ældre data version fundet</string>
     <string name="alert_update_storage_data">Data er oprettet i en ældre version. Det anbefales at opdatere til ny version ellers vil Easer måske ikke fungere korrekt. Dette kan gøres ved at vælge "Konvertere data" under opsætning.</string>
@@ -137,7 +144,7 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
     <string name="pref_show_notification_title">Vis påmindelse</string>
     <string name="pref_show_notification_summary">Vis påmindelse i påmindelse bjælken.</string>
     <string name="pref_foreground_title">Køre tjeneste i forgrund</string>
-    <string name="pref_foreground_summary">Gør tjenesten mindre nem at blive stoppet af systemet. Vil vise en påmindelse. Kan ikke deaktiveres på Android 8+ på grund af systemkrav.</string>
+    <string name="pref_foreground_summary">Gør det sværere for systemet at stoppe tjenesten. En påmindelse vil blive vist. Kan ikke deaktiveres på Android 8+ på grund af systemkrav.</string>
     <string name="menu_tree_list">Trævisning</string>
     <string name="menu_plain_list">Almindelig tekst</string>
     <string name="message_future_change_title">Ændres snart</string>
@@ -168,4 +175,6 @@ Reminder: Easer is still in development. It may contain bugs and the UI definite
 \nEaser er <a href="https://en.wikipedia.org/wiki/Free_software">fri software</a> (åben kildekode software) som sikre at alle kan kigge med i koden. 
 \n
 \nMan ejer selv hver eneste stykke data. Alt lever på enheden inklusiv logs. </string>
+    <string name="title_pivot">Omdrejningspunkt</string>
+    <string name="title_service_start">Tjeneste start</string>
 </resources>

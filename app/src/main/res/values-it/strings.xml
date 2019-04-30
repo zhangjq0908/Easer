@@ -18,7 +18,7 @@
     <string name="title_edit_condition">Modifica Condizione</string>
     <string name="title_edit_profile">Modifica profilo</string>
     <string name="title_select_operation">Selezionare un\'Operazione</string>
-    <string name="title_trigger_profile">Esegui</string>
+    <string name="title_trigger_profile">Esegui il Profilo</string>
     <string name="menu_start">Avvia</string>
     <string name="menu_stop">Ferma</string>
     <string name="menu_action_save">Salva</string>
@@ -44,7 +44,7 @@
     <string name="button_read_next_time">Leggi la Prossima Volta</string>
     <string name="button_understand">Capito</string>
     <string name="button_ok">OK</string>
-    <string name="text_lack_permission">Easer NON dispone di tutte le autorizzazioni necessarie.</string>
+    <string name="text_lack_permission">Easer NON dispone di sufficienti autorizzazioni.</string>
     <string name="button_request_permission">Autorizza</string>
     <string name="text_notification_running_indicator_content">%s è in esecuzione in background</string>
     <string name="text_title">Titolo</string>
@@ -52,4 +52,130 @@
     <string name="text_parent">Genitore</string>
     <string name="text_profile">Profilo</string>
     <string name="text_predefined_event">Evento Predefinito</string>
+    <string name="title_dynamics_link">Collegamento Dinamica</string>
+    <string name="title_new_dynamics_link">Nuovo Collegamento Dinamica</string>
+    <string name="title_service_start">Avvio Servizio</string>
+    <string name="title_remote_operation_plugin">Operazione (Modulo Remoto)</string>
+    <string name="activity_history__profile"/>
+    <string name="activity_history__script"/>
+    <string name="button_cancel">Annulla</string>
+    <string name="text_inline_event">Evento Inline</string>
+    <string name="text_use_condition">Usa Condizione</string>
+    <string name="text_repeatable_desc">Ripetibile quando Soddisfatto</string>
+    <string name="text_reverse_desc">Scenario Inverso</string>
+    <string name="text_volatile">Volatile</string>
+    <string name="text_persistent">Persistente</string>
+    <string name="text_dynamics">Dinamica</string>
+    <string name="text_placeholder">Segnaposto</string>
+    <string name="toggle_active">Attivo</string>
+    <string name="hint_event_title">titolo evento</string>
+    <string name="hint_script_title">titolo script</string>
+    <string name="hint_profile_title">titolo profilo</string>
+    <string name="hint_condition_title">titolo condizione</string>
+    <string name="prompt_save_failed">Salvataggio fallito</string>
+    <string name="prompt_delete">Vuoi eliminare: %s\?</string>
+    <string name="prompt_delete_failed">Eliminazione fallita. Controllare se questo elemento viene utilizzato.</string>
+    <string name="prompt_data_illegal">Impedito il salvataggio dei dati con campi non validi. Controllare scelte e inserimenti.</string>
+    <string name="prompt_prevented_for_permission">Easer richiede l\'autorizzazione &lt;%s&gt; per questa funzione.</string>
+    <string name="appInformation">Semplifica la tua vita eseguendo automaticamente azioni e operazioni di routine sui tuoi dispositivi.
+\n Collega diversi eventi e lascia che le loro azioni corrispondenti siano eseguite. Non c\'è più bisogno di tenerle a mente!
+\n Questa applicazione è ispirata ai \"Profili\" di CyanogenMod e dall\'IFTTT. L\'intuizione originale era quella di cambiare automaticamente profilo a una certa ora o su specifiche connessioni Wi-Fi, fu poi ampliato per un uso più generale.
+\n Promemoria: Easer è ancora in fase di sviluppo. Può contenere bug e l\'interfaccia utente deve sicuramente essere migliorata. I piani attuali sono descritti nel documento \"TODO.en.md\" (o \"TODO.md\" se conosci il cinese) del repo. Se sei interessato dai un\'occhiata.</string>
+    <string name="liscence_stringa">Questo programma è libero: puoi ridistribuirlo e/o modificarlo secondo i termini della GNU General Public License pubblicata dalla Free Software Foundation, sia la versione 3 della Licenza, sia una versione successiva (a scelta).</string>
+    <string name="liscence_stringb">Questo programma è distribuito nella speranza che sia utile, ma SENZA ALCUNA GARANZIA; senza neppure la garanzia implicita di COMMERCIABILITÀ o IDONEITÀ PER UN PARTICOLARE SCOPO. Per maggiori dettagli vedere la GNU (General Public License).</string>
+    <string name="liscence_stringc">Si dovrebbe aver ricevuto una copia della GNU General Public License insieme a questo programma. In caso contrario, visitare https://www.gnu.org/licenses/</string>
+    <string name="pref_category_functionality">Funzionalità</string>
+    <string name="pref_category_personalise">Personalizza</string>
+    <string name="pref_category_data_manage">Gestione Dati</string>
+    <string name="pref_category_service">Servizio</string>
+    <string name="pref_autostart_title">Avvia al Boot</string>
+    <string name="pref_autostart_summary">Avvia il servizio di Easer automaticamente in background</string>
+    <string name="pref_restart_after_upgrade_title">Avvia Servizio dopo Aggiornamento</string>
+    <string name="pref_welcome_title">Mostra Messaggio di Benvenuto</string>
+    <string name="pref_welcome_summary">Mostra il messaggio di benvenuto aprendo l\'applicazione</string>
+    <string name="pref_logging_title">Attiva Logging Esterno</string>
+    <string name="pref_logging_summary">Salva i log su dispositivi di archiviazione esterni (/sdcard/logger) per facilitare le segnalazioni di bug.
+\nLe modifiche avranno effetto al prossimo avvio di Easer.</string>
+    <string name="pref_use_root_title">Usa Funzionalità di Root</string>
+    <string name="pref_use_root_summary">Utilizza i permessi di root per funzioni specifiche (moduli), che potrebbero aiutare a risolvere il problemi di compatibilità su alcuni dispositivi. Non saranno usati altrove.</string>
+    <string name="pref_cooldown_title">Tempo di Raffreddamento</string>
+    <string name="pref_cooldown_summary">Intervallo minimo tra due trigger dello stesso evento</string>
+    <string name="cooldown_time_illformed">Il numero non deve essere inferiore a 0 e non troppo grande per essere contenuto in un intero</string>
+    <string name="pref_enabled_plugins_title">Moduli Attivi</string>
+    <string name="pref_enabled_plugins_summary">Attiva o disattiva i Moduli</string>
+    <string name="pref_use_12_hour_clock_title">Usa Orologio a 12 ore</string>
+    <string name="pref_export_title">Esporta</string>
+    <string name="pref_export_summary">Esporta Eventi e Profili su scheda SD.
+\nIl nome del file sarà composto da data e ora correnti.</string>
+    <string name="pref_import_title">Importa</string>
+    <string name="pref_import_summary">Importa Eventi e Profili in un file ZIP.
+\nEventi e Profili con lo stesso nome verranno sostituiti.</string>
+    <string name="pref_convert_data_title">Converti Dati</string>
+    <string name="pref_convert_data_summary">Converti i dati nel formato consigliato</string>
+    <string name="pref_show_notification_title">Mostra Notifica</string>
+    <string name="pref_show_notification_summary">Mostra una notifica nella Barra di Notifica.</string>
+    <string name="pref_foreground_title">Eseguire Servizio in Primo Piano</string>
+    <string name="pref_foreground_summary">Rende più difficile per il sistema terminare il servizio. Verrà visualizzata una notifica. Non può essere disattivato su Android 8+ a causa di un requisito di sistema.</string>
+    <string name="message_plugin_not_compatible">Questo dispositivo non può eseguire questo Modulo.</string>
+    <string name="message_convert_data_start">Conversione dati.</string>
+    <string name="message_convert_data_finish">Dati convertiti.</string>
+    <string name="message_convert_data_abort">Conversione dati interrotta.</string>
+    <string name="message_convert_data_error">Impossibile convertire i dati. Consultare il log per dettagli.</string>
+    <string name="title_welcome_message">Benvenuto</string>
+    <string name="welcome_message">1. Concedi a Easer le autorizzazioni corrispondenti prima di usare Eventi e Profili interessati.
+\n2. Collegare Eventi ad <a href="https://en.wikipedia.org/wiki/Tree_structure">albero</a> è <i>attualmente</i> l\'unico modo per comporre Eventi.
+\n
+\nDai un\'occhiata anche alla sezione <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> della wiki del progetto.</string>
+    <string name="welcome_message_1">Benvenuto.
+\n
+\nEcco alcune informazioni di base da leggere prima di usare Easer.
+\n
+\nApprofondimenti sugli argomenti sono disponibili nella wiki <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> del progetto. </string>
+    <string name="welcome_message_2">Easer contiene molteplici Moduli che offrono funzioni diverse. Attivali o disattivali in \"Impostazioni\".
+\n
+\nLe autorizzazioni corrispondenti (per ogni Modulo attivo) devono essere concesse prima dell\'uso.
+\n
+\n
+\n(Sono tutti attivi per impostazione predefinita)</string>
+    <string name="welcome_message_3">Gli Script sono strutturati ad <a href="https://en.wikipedia.org/wiki/Tree_structure">albero</a>, scegliendo il genitore desiderato.
+\n
+\nIn ogni ramo viene eseguita la logica AND.
+\nTra i rami, viene eseguita la logica OR.
+\n
+\n
+\nÈ prevista l\'estensione da alberi a grafici, ma non è ancora implementata.</string>
+    <string name="title_welcome_message_privacy">Privacy!</string>
+    <string name="welcome_message_privacy">La privacy è importante!
+\n
+\nEaser è un <a href="https://en.wikipedia.org/wiki/Free_software">software\"&gt;software libero</a> (open-source), quindi permette a chiunque l\'utilizzo, lo studio, il cambiamento e la condivisione del codice.
+\n
+\nTU possiedi i tuoi dati. Tutto rimane sul tuo dispositivo, compresi i log.</string>
+    <string name="alert_update_storage_data_title">Vecchia Versione Dati trovata</string>
+    <string name="alert_update_storage_data">Seleziona \\\"Converti Dati\\\" nelle impostazioni per aggiornare i dati al nuovo formato, per compatibilità.</string>
+    <string name="message_future_change_title">Cambiamento Imminente</string>
+    <string name="template_export">Esportati in %s</string>
+    <string name="version">Versione</string>
+    <string name="message_importing_invalid_data">File non valido. Assicurarsi di importare un file esportato da Easer.</string>
+    <string name="dynamics_time">Ora Corrente</string>
+    <string name="dynamics_date">Data Corrente</string>
+    <string name="dynamics_script_name">Nome Script</string>
+    <string name="dynamics_profile_name">Nome Profilo</string>
+    <string name="title_help">Aiuto</string>
+    <string name="help_script">Gli \\\"Script\\\" sono contenitori logici. In uno Script è possibile collegare un Evento o una Condizione con un Profilo, in modo che Easer possa eseguire quel Profilo quando l\'Evento si verifica o la Condizione è soddisfatta.
+\nCi sono anche funzioni più avanzate, es. Evento Inverso.
+\nPer ulteriori informazioni fare riferimento a questo <a href="https://github.com/renyuneyun/Easer/wiki">documento</a>.</string>
+    <string name="help_event">Gli \\\"Eventi\\\" rappresentano un avvenimento di breve durata (istantaneo) sul dispositivo o in remoto.
+\nAd esempio, la ricezione di una notifica o la scansione di un tag NFC.
+\nPer ulteriori informazioni fare riferimento a questo <a href="https://github.com/renyuneyun/Easer/wiki">documento</a>.</string>
+    <string name="help_condition">La \\\"Condizione\\\" rappresenta una condizione di lunga durata (solitamente non permanente) sul dispositivo o in remoto.
+\nAd esempio, al momento del collegamento alla connessione Wi-Fi, o allo spegnimento dello schermo.
+\nFare riferimento al documento <a href="https://github.com/renyuneyun/Easer/wiki">documento</a> per ulteriori informazioni.</string>
+    <string name="help_profile">Il \\\"Profilo\\\" è un insieme di Operazioni. Ogni Operazione rappresenta un particolare tipo di azione.
+\nAd esempio, attivare la connessione Bluetooth, o inviare un SMS.
+\nPer ulteriori informazioni fare riferimento a questo <a href="https://github.com/renyuneyun/Easer/wiki">documento</a>.</string>
+    <string name="category_operation_android">Android</string>
+    <string name="category_operation_system_config">Configurazione Sistema</string>
+    <string name="category_operation_easer"/>
+    <string name="category_operation_misc">Altro</string>
+    <string name="category_operation_unknown">Sconosciuta</string>
 </resources>

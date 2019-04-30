@@ -104,7 +104,7 @@
 \nEksisterende hendelser og profiler med samme navn vil erstattes.</string>
     <string name="pref_convert_data_title">Konverter data</string>
     <string name="pref_convert_data_summary">Konverter all data til anbefalt format</string>
-    <string name="message_plugin_not_compatible">Dette programtillegget er ikke kompatibelt med denne enheten.</string>
+    <string name="message_plugin_not_compatible">Denne enheten kan ikke kjøre dette programtillegget.</string>
     <string name="message_convert_data_start">Konverterer data.</string>
     <string name="message_convert_data_finish">Data konvertert.</string>
     <string name="message_convert_data_abort">Konvertering av data avbrutt.</string>
@@ -148,4 +148,30 @@
     <string name="menu_tree_list">Treliste</string>
     <string name="menu_plain_list">Enkel liste</string>
     <string name="message_future_change_title">Nært forestående endring</string>
+    <string name="title_pivot">Omdreiningspunkt</string>
+    <string name="title_service_start">Tjenestestart</string>
+    <string name="welcome_message_1">Velkommen.
+\n
+\nHer er litt grunnleggende info å lese før bruk av Easer.
+\n
+\nMer dyptgående emner er å finne i prosjektwikiens <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">O-S-S</a>. </string>
+    <string name="welcome_message_2">Easer inneholder flere moduler med forskjellige funksjoner. Skru dem av i innstillingene.
+\n
+\nDer-tilhørende tilganger (for hver påslåtte modul) skal innvilges før bruk.
+\n
+\n
+\n(Alt er på som forvalg.)</string>
+    <string name="welcome_message_3">Skript er satt opp som <a href="https://en.wikipedia.org/wiki/Tree_structure">trær</a>, ved å velge relevant opphav.
+\n
+\nI hver forgrening, utføres OG-logikk.
+\nMellom forgreninger, utføres ELLER-logikk.
+\n
+\n
+\nÅ utvide trær til kurver er planlagt, men foreløpig ikke implementert.</string>
+    <string name="title_welcome_message_privacy">Personvern.</string>
+    <string name="welcome_message_privacy">Personvern er viktig!
+\n
+\nEaser er <a href="https://en.wikipedia.org/wiki/Free_software">fri programvare</a>, noe som garanterer at alle kan bruke, studere, endre og dele den.
+\n
+\nDU eier all din data. Alt som lever på din enhet, inkludert loggene.</string>
 </resources>
