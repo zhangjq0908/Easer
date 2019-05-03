@@ -184,4 +184,10 @@
 \nあなたはデータのすべての部分を所有します。ログを含めてすべてデバイスに含まれます。 </string>
     <string name="title_pivot">ピボット</string>
     <string name="title_service_start">サービス開始</string>
+    <string name="welcome_message">
+        <a href="https://en.wikipedia.org/wiki/Tree_structure">trees</a> is <i>currently</i> the only way to compose events.
+\n
+\nHope you like this app :)
+\n
+\n Also have a look in the <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> section of the project wiki.</string>
 </resources>
