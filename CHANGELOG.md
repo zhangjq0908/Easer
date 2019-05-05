@@ -1,6 +1,12 @@
 CHANGELOG
 ======
 
+* v0.7.4.2: AndroidX && toolkit update && i18n
+	* Migrate the project to AndroidX
+	* Update dependencies and gradle tookits
+	* Better English wording
+	* i18n update: German, Italian, Japanese, Norwegian Bokmål, Danish
+
 * v0.7.4.1: Crash fix && i18n
 	* Fix crash when trying to pick CellLocation
 	* Slightly improved English

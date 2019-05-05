@@ -1,0 +1,7 @@
+AndroidX && toolkit update && i18n
+
+* Migrate the project to AndroidX
+* Update dependencies and gradle tookits
+* Better English wording
+* i18n update: German, Italian, Japanese, Norwegian Bokmål, Danish
+
