@@ -21,7 +21,6 @@ package ryey.easer.core.ui.version_n_info
 
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.support.v4.app.Fragment
 import com.github.paolorotolo.appintro.AppIntro2
 import ryey.easer.R
 
@@ -39,7 +38,7 @@ class WelcomeActivity : AppIntro2() {
         showSkipButton(true)
     }
 
-    override fun onDonePressed(currentFragment: Fragment?) {
+    override fun onDonePressed(currentFragment: androidx.fragment.app.Fragment?) {
         super.onDonePressed(currentFragment)
         PreferenceManager.getDefaultSharedPreferences(this)
                 .edit()
@@ -48,7 +47,7 @@ class WelcomeActivity : AppIntro2() {
         finish()
     }
 
-    override fun onSkipPressed(currentFragment: Fragment?) {
+    override fun onSkipPressed(currentFragment: androidx.fragment.app.Fragment?) {
         super.onSkipPressed(currentFragment)
         onDonePressed(currentFragment)
     }

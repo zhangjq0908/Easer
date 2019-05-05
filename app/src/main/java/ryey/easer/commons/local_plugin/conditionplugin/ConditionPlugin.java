@@ -21,7 +21,8 @@ package ryey.easer.commons.local_plugin.conditionplugin;
 
 import android.app.PendingIntent;
 import android.content.Context;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import ryey.easer.commons.local_plugin.PluginDef;
 import ryey.easer.commons.local_plugin.ValidData;

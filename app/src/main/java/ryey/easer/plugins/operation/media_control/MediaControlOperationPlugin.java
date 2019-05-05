@@ -21,13 +21,12 @@ package ryey.easer.plugins.operation.media_control;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_plugin.PluginViewFragmentInterface;

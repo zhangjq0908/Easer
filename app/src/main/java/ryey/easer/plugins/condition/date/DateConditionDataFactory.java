@@ -19,7 +19,7 @@
 
 package ryey.easer.plugins.condition.date;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.util.Calendar;
 

@@ -19,7 +19,7 @@
 
 package ryey.easer.commons.local_plugin.eventplugin;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import ryey.easer.commons.local_plugin.StorageData;
 import ryey.easer.commons.local_plugin.dynamics.Dynamics;

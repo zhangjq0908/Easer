@@ -19,7 +19,7 @@
 
 package ryey.easer.core.data;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -30,7 +30,8 @@ import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.PatternMatcher;
-import android.support.v4.util.ArraySet;
+
+import androidx.collection.ArraySet;
 
 import com.orhanobut.logger.Logger;
 

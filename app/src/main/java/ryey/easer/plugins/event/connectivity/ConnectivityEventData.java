@@ -21,9 +21,10 @@ package ryey.easer.plugins.event.connectivity;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.util.ArraySet;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.collection.ArraySet;
 
 import org.json.JSONArray;
 import org.json.JSONException;

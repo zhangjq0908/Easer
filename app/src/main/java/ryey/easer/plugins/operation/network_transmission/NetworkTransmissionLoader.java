@@ -21,7 +21,8 @@ package ryey.easer.plugins.operation.network_transmission;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import java.io.DataOutputStream;
 import java.io.IOException;

@@ -21,10 +21,10 @@ package ryey.easer.core.ui.version_n_info
 
 import android.app.AlertDialog
 import android.content.Context
-import android.support.annotation.StringRes
 import android.text.method.LinkMovementMethod
 import android.view.View
 import android.widget.TextView
+import androidx.annotation.StringRes
 import ryey.easer.R
 import ryey.easer.core.data.storage.StorageHelper
 

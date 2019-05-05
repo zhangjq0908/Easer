@@ -20,7 +20,8 @@
 package ryey.easer.plugins.operation;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import ryey.easer.commons.local_plugin.operationplugin.Loader;
 import ryey.easer.commons.local_plugin.operationplugin.OperationData;

@@ -23,15 +23,16 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import ryey.easer.R;
-import ryey.easer.plugin.operation.Category;
-import ryey.easer.plugins.PluginViewFragment;
 import ryey.easer.commons.local_plugin.operationplugin.OperationDataFactory;
-import ryey.easer.plugins.operation.OperationLoader;
 import ryey.easer.commons.local_plugin.operationplugin.OperationPlugin;
 import ryey.easer.commons.local_plugin.operationplugin.PrivilegeUsage;
+import ryey.easer.plugin.operation.Category;
+import ryey.easer.plugins.PluginViewFragment;
+import ryey.easer.plugins.operation.OperationLoader;
 import ryey.easer.plugins.reusable.PluginHelper;
 
 public class PlayMediaOperationPlugin implements OperationPlugin<PlayMediaOperationData> {

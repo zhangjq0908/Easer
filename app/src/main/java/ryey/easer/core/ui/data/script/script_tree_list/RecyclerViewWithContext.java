@@ -20,11 +20,12 @@
 package ryey.easer.core.ui.data.script.script_tree_list;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.AdapterView;
+
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class RecyclerViewWithContext extends RecyclerView {
     private AdapterView.AdapterContextMenuInfo contextMenuInfo;

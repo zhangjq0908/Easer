@@ -19,7 +19,7 @@
 
 package ryey.easer.commons.local_plugin.conditionplugin;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import ryey.easer.commons.local_plugin.DataFactory;
 import ryey.easer.commons.local_plugin.IllegalStorageDataException;

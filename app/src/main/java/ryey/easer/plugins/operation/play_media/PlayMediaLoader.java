@@ -21,7 +21,8 @@ package ryey.easer.plugins.operation.play_media;
 
 import android.content.Context;
 import android.media.MediaPlayer;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import java.io.IOException;
 

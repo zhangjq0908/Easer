@@ -35,9 +35,10 @@ import android.os.Binder;
 import android.os.Build;
 import android.os.ConditionVariable;
 import android.os.IBinder;
-import android.support.annotation.NonNull;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.ContextCompat;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 import com.orhanobut.logger.Logger;
 

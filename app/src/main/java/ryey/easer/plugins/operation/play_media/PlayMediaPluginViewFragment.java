@@ -19,24 +19,19 @@
 
 package ryey.easer.plugins.operation.play_media;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageButton;
 
-import com.orhanobut.logger.Logger;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_plugin.InvalidDataInputException;
-import ryey.easer.plugins.PluginViewFragment;
 import ryey.easer.commons.local_plugin.ValidData;
+import ryey.easer.plugins.PluginViewFragment;
 
 public class PlayMediaPluginViewFragment extends PluginViewFragment<PlayMediaOperationData> {
     private EditText et_file;

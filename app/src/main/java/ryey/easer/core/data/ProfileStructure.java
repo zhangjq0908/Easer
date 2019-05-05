@@ -19,8 +19,8 @@
 
 package ryey.easer.core.data;
 
-import android.support.annotation.Nullable;
-import android.support.v4.util.ArraySet;
+import androidx.annotation.Nullable;
+import androidx.collection.ArraySet;
 
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.Multimap;

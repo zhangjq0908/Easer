@@ -30,10 +30,11 @@ import android.os.Message;
 import android.os.Messenger;
 import android.os.ParcelUuid;
 import android.os.RemoteException;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.util.ArrayMap;
-import android.support.v4.util.ArraySet;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.collection.ArrayMap;
+import androidx.collection.ArraySet;
 
 import com.orhanobut.logger.Logger;
 

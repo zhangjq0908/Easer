@@ -20,8 +20,9 @@
 package ryey.easer.plugins.operation.cellular;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.telephony.TelephonyManager;
+
+import androidx.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 

@@ -21,7 +21,8 @@ package ryey.easer.plugins.operation.brightness;
 
 import android.content.Context;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import ryey.easer.commons.local_plugin.ValidData;
 import ryey.easer.plugins.operation.OperationLoader;

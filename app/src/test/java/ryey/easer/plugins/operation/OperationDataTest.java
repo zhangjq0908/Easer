@@ -19,7 +19,7 @@
 
 package ryey.easer.plugins.operation;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.junit.Test;
 

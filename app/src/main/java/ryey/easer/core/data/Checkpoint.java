@@ -19,7 +19,7 @@
 
 package ryey.easer.core.data;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * This class represents a CheckPoint in the background state (i.e. the collection of all Scripts and their dependencies)

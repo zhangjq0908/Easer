@@ -19,7 +19,7 @@
 
 package ryey.easer.commons.local_plugin.dynamics;
 
-import android.support.annotation.StringRes;
+import androidx.annotation.StringRes;
 
 public interface Dynamics {
     String id();
