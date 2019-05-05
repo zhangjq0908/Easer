@@ -1,4 +1,5 @@
-Easer [![Build Status](https://travis-ci.org/renyuneyun/Easer.svg?branch=master)](https://travis-ci.org/renyuneyun/Easer) [![weblate](https://hosted.weblate.org/widgets/easer/-/svg-badge.svg)](https://hosted.weblate.org/engage/easer/?utm_source=widget) [![codecov](https://codecov.io/gh/renyuneyun/Easer/branch/master/graph/badge.svg)](https://codecov.io/gh/renyuneyun/Easer) [![matrix-chat](https://matrix.to/img/matrix-badge.svg)](https://matrix.to/#/#Easer:matrix.org)  [ ![Download](https://api.bintray.com/packages/renyuneyun/Android/Easer/images/download.svg) ](https://bintray.com/renyuneyun/Android/Easer/_latestVersion)
+Easer [![Build Status](https://travis-ci.org/renyuneyun/Easer.svg?branch=master)](https://travis-ci.org/renyuneyun/Easer) [![weblate](https://hosted.weblate.org/widgets/easer/-/svg-badge.svg)](https://hosted.weblate.org/engage/easer/?utm_source=widget) [![codecov](https://codecov.io/gh/renyuneyun/Easer/branch/master/graph/badge.svg)](https://codecov.io/gh/renyuneyun/Easer) [ ![Download](https://api.bintray.com/packages/renyuneyun/Android/Easer/images/download.svg) ](https://bintray.com/renyuneyun/Android/Easer/_latestVersion)  
+[![matrix-chat](https://matrix.to/img/matrix-badge.svg)](https://matrix.to/#/#Easer:matrix.org) [![Backers on Open Collective](https://opencollective.com/Easer/backers/badge.svg)](Contributor.md)
 =======
 [<img src="https://f-droid.org/badge/get-it-on.png"
       alt="Get it on F-Droid"
@@ -61,9 +62,30 @@ If you would like to make a donation, please see [DONATE](https://renyuneyun.git
 
 Any amount of help is appreciated.
 
+Acknowledgement
+------
+
+### Contributors and Backers
+
+The development of Easer receives the support and donation from the community. Thank you guys.
+
+The [Contributor][Contributor.md] document lists this in more detail.
+
+### Third-party
+
+* [Logger](https://github.com/orhanobut/logger): Apache License v2
+* [android-flowlayout](https://github.com/ApmeM/android-flowlayout): Apache License v2
+* [Guava](https://github.com/google/guava): Apache License v2
+* [StickyListHeaders](https://github.com/emilsjolander/StickyListHeaders): Apache License v2
+* [RecyclerTreeView](https://github.com/TellH/RecyclerTreeView): Apache License v2
+* [AppIntro](https://github.com/AppIntro/AppIntro): Apache License v2
+* [GraphView](https://github.com/Team-Blox/GraphView): Apache License v2
+
+* Drawable files named as `*-fa-*` all come from [fontawesome](https://fontawesome.com/): CC-BY 4.0
+
 Copyright
 ------
-Copyright (c) 2016 - 2018 Rui Zhao (renyuneyun) <renyuneyun@gmail.com>
+Copyright (c) 2016 - 2019 Rui Zhao (renyuneyun) <renyuneyun@gmail.com>
 
 Unless otherwise stated, the program is licensed under GPLv3+ (See LICENSE)
 
@@ -76,13 +98,3 @@ Because of the design of Easer, functionality will eventually become modules / p
 
 In fact, ensuring that derived works / plugins are licensed under the **GPL** is unnecessary -- they only need to be **open source**. However, GPL is the only license (that I know of) which requires that derived works / plugins are open sourced, so it's the only choice.
 
-Third-party
------
-* [Logger](https://github.com/orhanobut/logger): Apache License v2
-* [android-flowlayout](https://github.com/ApmeM/android-flowlayout): Apache License v2
-* [Guava](https://github.com/google/guava): Apache License v2
-* [StickyListHeaders](https://github.com/emilsjolander/StickyListHeaders): Apache License v2
-* [AppIntro](https://github.com/AppIntro/AppIntro): Apache License v2
-* [GraphView](https://github.com/Team-Blox/GraphView): Apache License v2
-
-* Drawable files named as `*-fa-*` all come from [fontawesome](https://fontawesome.com/): CC-BY 4.0

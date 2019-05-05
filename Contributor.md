@@ -1,22 +1,36 @@
 Contributors of Easer
 ======
 
-I'd like to say thank you to these guys who contributed to Easer.  
+I'd like to say thank you to the guys who contributed or donated to Easer.  
 Thanks a lot :)
 
-# People who contributed to the app function and/or UI and/or test
+## Contributors
+
+People who contributed to the app function and/or UI and/or test:
+
 * AlaskaLinuxUser <https://github.com/alaskalinuxuser>
 * Danielsan <https://github.com/trikaphundo>
 * Sohalt <https://github.com/Sohalt>
 * DeathTickle (Léopold Delouche) <https://github.com/DeathTickle>
 
-# People who contributed to translation and/or documentation
-* naofum <https://github.com/naofum>
-* NPN (Ryan Huang) <https://github.com/NPN>
-* twikedk (Ole Carlsen) <https://github.com/twikedk>
+Logo contributed by [revilationer](https://github.com/revilationer)
 
+... and
 
-# Supporters
+<a href="https://github.com/renyuneyun/Easer/graphs/contributors"><img src="https://opencollective.com/Easer/contributors.svg?width=890&button=false" /></a>
 
-* gruentee
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/Easer#backer)]
+
+* [gruentee](https://www.bountysource.com/people/58582-gruentee)
+
+<a href="https://opencollective.com/Easer#backers" target="_blank"><img src="https://opencollective.com/Easer/backers.svg?width=890"></a>
+
+## Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/Easer#sponsor)]
+
+<a href="https://opencollective.com/Easer/sponsor/0/website" target="_blank"><img src="https://opencollective.com/Easer/sponsor/0/avatar.svg"></a>
+
 

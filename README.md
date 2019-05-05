@@ -1,4 +1,5 @@
-Easer [![Build Status](https://travis-ci.org/renyuneyun/Easer.svg?branch=master)](https://travis-ci.org/renyuneyun/Easer) [![weblate](https://hosted.weblate.org/widgets/easer/-/svg-badge.svg)](https://hosted.weblate.org/engage/easer/?utm_source=widget) [![codecov](https://codecov.io/gh/renyuneyun/Easer/branch/master/graph/badge.svg)](https://codecov.io/gh/renyuneyun/Easer) [![matrix-chat](https://matrix.to/img/matrix-badge.svg)](https://matrix.to/#/#Easer:matrix.org)  [ ![Download](https://api.bintray.com/packages/renyuneyun/Android/Easer/images/download.svg) ](https://bintray.com/renyuneyun/Android/Easer/_latestVersion) 
+Easer [![Build Status](https://travis-ci.org/renyuneyun/Easer.svg?branch=master)](https://travis-ci.org/renyuneyun/Easer) [![weblate](https://hosted.weblate.org/widgets/easer/-/svg-badge.svg)](https://hosted.weblate.org/engage/easer/?utm_source=widget) [![codecov](https://codecov.io/gh/renyuneyun/Easer/branch/master/graph/badge.svg)](https://codecov.io/gh/renyuneyun/Easer) [ ![Download](https://api.bintray.com/packages/renyuneyun/Android/Easer/images/download.svg) ](https://bintray.com/renyuneyun/Android/Easer/_latestVersion)  
+[![matrix-chat](https://matrix.to/img/matrix-badge.svg)](https://matrix.to/#/#Easer:matrix.org) [![Backers on Open Collective](https://opencollective.com/Easer/backers/badge.svg)](Contributor.md)
 =======
 [<img src="https://f-droid.org/badge/get-it-on-zh-cn.png"
       alt="Get it on F-Droid"
@@ -61,9 +62,30 @@ Easer的翻譯工作託管在[Hosted Weblate](https://hosted.weblate.org/project
 
 感謝任何額度的支持。
 
+鳴謝
+------
+
+### 協助者
+
+Easer的開發離不開社區的幫助及捐贈。十分感謝各位。
+
+詳細列表請見[Contributor](Contributor.md)文檔。
+
+### 第三方
+
+* [Logger](https://github.com/orhanobut/logger): Apache License v2
+* [android-flowlayout](https://github.com/ApmeM/android-flowlayout): Apache License v2
+* [Guava](https://github.com/google/guava): Apache License v2
+* [StickyListHeaders](https://github.com/emilsjolander/StickyListHeaders): Apache License v2
+* [RecyclerTreeView](https://github.com/TellH/RecyclerTreeView): Apache License v2
+* [AppIntro](https://github.com/AppIntro/AppIntro): Apache License v2
+* [GraphView](https://github.com/Team-Blox/GraphView): Apache License v2
+
+* 以`*-fa-*`命名的drawable文件均來自[fontawesome](https://fontawesome.com/): CC-BY 4.0
+
 版權協議
 -----
-Copyright (c) 2016 - 2018 Rui Zhao (renyuneyun) <renyuneyun@gmail.com>
+Copyright (c) 2016 - 2019 Rui Zhao (renyuneyun) <renyuneyun@gmail.com>
 
 除非額外說明，程序代碼以GPLv3+協議分發（參見LICENSE）
 
@@ -76,13 +98,3 @@ Easer的期望功能中包含大量對隱私信息（比如位置信息、日曆
 
 事實上，強制各衍生/擴展品爲**GPL**並不必要，因爲只需要它們**開源**即可。但GPL是（我）目前所知的唯一可以保證衍生/擴展品爲開源軟件的協議，所以選擇它。
 
-第三方
------
-* [Logger](https://github.com/orhanobut/logger): Apache License v2
-* [android-flowlayout](https://github.com/ApmeM/android-flowlayout): Apache License v2
-* [Guava](https://github.com/google/guava): Apache License v2
-* [StickyListHeaders](https://github.com/emilsjolander/StickyListHeaders): Apache License v2
-* [AppIntro](https://github.com/AppIntro/AppIntro): Apache License v2
-* [GraphView](https://github.com/Team-Blox/GraphView): Apache License v2
-
-* 以`*-fa-*`命名的drawable文件均來自[fontawesome](https://fontawesome.com/): CC-BY 4.0

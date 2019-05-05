@@ -71,7 +71,7 @@ Any amount of help is appreciated.
 
 Proud to be open-source
 ------
-Copyright (c) 2016 - 2018 Rui Zhao (renyuneyun) <renyuneyun@gmail.com>
+Copyright (c) 2016 - 2019 Rui Zhao (renyuneyun) <renyuneyun@gmail.com>
 
 Unless otherwise stated, Easer is licensed under GPLv3+ (See LICENSE)
 

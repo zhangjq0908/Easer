@@ -67,7 +67,7 @@ Easer現已在逐步支持（遠程）插件，不過暫時只有*行爲*。
 
 我開源我自豪
 -----
-Copyright (c) 2016 - 2018 Rui Zhao (renyuneyun) <renyuneyun@gmail.com>
+Copyright (c) 2016 - 2019 Rui Zhao (renyuneyun) <renyuneyun@gmail.com>
 
 除非額外聲明，Easer以GPLv3+協議分發（參見LICENSE）
 
