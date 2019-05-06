@@ -45,7 +45,7 @@
     <string name="text_predefined_event">Vordefiniertes Ereignis</string>
     <string name="text_inline_event">Integriertes Ereignis</string>
     <string name="text_use_condition">Bedingung verwenden</string>
-    <string name="text_repeatable_desc">Wiederauftretend</string>
+    <string name="text_repeatable_desc">Wiederholbar, wenn erfüllt</string>
     <string name="text_reverse_desc">Szenario umkehren</string>
     <string name="text_volatile">Unbeständig</string>
     <string name="text_persistent">Dauerhaft</string>
@@ -56,10 +56,10 @@
     <string name="hint_script_title">Skripttitel</string>
     <string name="hint_profile_title">Profiltitel</string>
     <string name="hint_condition_title">Bedingungstitel</string>
-    <string name="prompt_save_failed">Konnte nicht speichern</string>
+    <string name="prompt_save_failed">Fehler beim Speichern</string>
     <string name="prompt_delete">Sind Sie sicher, dass Sie %s löschen möchten\?</string>
     <string name="prompt_delete_failed">Das Löschen ist fehlgeschlagen. Überprüfen Sie, ob dieses Element verwendet wird.</string>
-    <string name="prompt_prevented_for_permission">Gewähren Sie Easer &lt;%s&gt; Zugriff, damit dies funktioniert.</string>
+    <string name="prompt_prevented_for_permission">Gewähren Sie Easer die Berechtigung &lt;%s&gt;, damit dies funktioniert.</string>
     <string name="pref_category_functionality">Funktionalität</string>
     <string name="pref_category_personalise">Personalisieren</string>
     <string name="pref_category_data_manage">Daten verwalten</string>
@@ -113,7 +113,7 @@
     <string name="pref_category_service">Dienst</string>
     <string name="pref_logging_summary">Protokolliert auf externe Speichergeräte (/sdcard/logger) zur Unterstützung von Fehlerberichten.
 \nÄnderungen werden beim nächsten Start der App wirksam.</string>
-    <string name="pref_use_root_summary">Verwenden Sie Root-Rechte für bestimmte Funktionen (Plugins), um Kompatibilitätsprobleme auf einigen Geräten zu beheben.</string>
+    <string name="pref_use_root_summary">Verwenden Sie Root-Rechte für bestimmte Funktionen (Plugins), die Kompatibilitätsprobleme auf einigen Geräten beheben können. Es wird nicht woanders verwendet.</string>
     <string name="pref_cooldown_title">Abkühlzeit</string>
     <string name="pref_cooldown_summary">Minimales Intervall zwischen zwei Auslösern desselben Ereignisses</string>
     <string name="cooldown_time_illformed">Die Zahl darf nicht kleiner als 0 und nicht zu groß sein, um in ein Integer zu passen</string>
