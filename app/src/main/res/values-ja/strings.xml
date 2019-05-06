@@ -27,10 +27,10 @@
     <string name="hint_profile_title">プロファイルのタイトル</string>
     <string name="prompt_save_failed">保存に失敗しました</string>
     <string name="prompt_delete">削除してもよろしいですか: %s?</string>
-    <string name="appInformation">お使いの電話で日常的な行動や操作を自動的に実行することで、お役に立ちます。\n
-異なるイベントを連鎖させて、対応するアクションを実行します。 もはやそれらを気に留める必要はありません!\n
-このアプリは CyanogenMod の \'プロファイル\' メカニズムと IFTTT にインスパイアされました。 もともとの直感は、特定の時間や特定の WiFi 接続でプロファイルを自動的に変更することでした。その後、一般的な使用のために拡張しました。\n
-注意: Easer　はまだ開発中です。 バグを含んでいる可能性があり、UI を改善する必要があります。 現在の計画は、レポジトリ内の TODO.en.md (または中国語を読むことができる場合は TODO.md) ドキュメントに記述されています。 興味があればご覧ください。</string>
+    <string name="appInformation">お使いの電話で定型的な操作を自動化して、生活を楽にします。
+\n異なるイベントを連鎖させて、対応するアクションを実行します。 もはやそれらを気に留める必要はありません!
+\nこのアプリは CyanogenMod の \'プロファイル\' メカニズムと IFTTT にインスパイアされました。 もともとの発想は、特定の時間や特定の WiFi 接続でプロファイルを自動的に変更することでした。その後、一般的な使用のために拡張しました。
+\n注意: Easer はまだ開発中です。 バグを含んでいる可能性があり、UI を改善する必要があります。 レポジトリ内の TODO.en.md (または中国語を読むことができる場合は TODO.md) をご覧ください。</string>
     <string name="liscence_stringa">このプログラムはフリーソフトウェアです。あなたはこれを、フリーソフ
     トウェア財団によって発行されたGNU 一般公衆利用許諾書(バージョン3か、
     それ以降のバージョンのうちどれか)が定める条件の下で再頒布または改変
@@ -83,7 +83,7 @@
     <string name="hint_condition_title">条件のタイトル</string>
     <string name="prompt_delete_failed">削除に失敗しました。この項目が使用されているかを確認してください。</string>
     <string name="prompt_data_illegal">無効なフィールドのデータを保存できませんでした。選択 / 入力を再確認してください。</string>
-    <string name="prompt_prevented_for_permission">Easer はこの機能に &lt;%s&gt; のアクセス許可が必要です。</string>
+    <string name="prompt_prevented_for_permission">動作するため、Easer に &lt;%s&gt; のアクセス許可を付与してください..</string>
     <string name="pref_category_functionality">機能</string>
     <string name="pref_category_personalise">パーソナライズ</string>
     <string name="pref_category_data_manage">データ管理</string>
@@ -96,7 +96,7 @@
     <string name="pref_logging_summary">バグ報告のために外部記憶装置 (/sdcard/logger) にログを保存します。
 \nこの設定の変更は、次回の Easer 起動時から反映されます。</string>
     <string name="pref_use_root_title">root 機能を使用する</string>
-    <string name="pref_use_root_summary">特定の機能 (プラグイン) で root 権限を使用します。これは一部のデバイスで互換性の問題を解決するのに役立ちます。 root アクセス許可は他の場所では使用されません。</string>
+    <string name="pref_use_root_summary">特定の機能 (プラグイン) で root 権限を使用します。これは一部のデバイスで互換性の問題を解決するのに役立ちます。 これは他の場所では使用されません。</string>
     <string name="pref_cooldown_title">クールダウン時間</string>
     <string name="pref_cooldown_summary">同じイベントの 2 つのトリガー間の最小間隔</string>
     <string name="cooldown_time_illformed">数値は、0 以上で整数値の範囲に収まるようにする必要があります</string>
