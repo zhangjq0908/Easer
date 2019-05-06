@@ -56,8 +56,8 @@
     <string name="title_new_dynamics_link">Nuovo Collegamento Dinamica</string>
     <string name="title_service_start">Avvio Servizio</string>
     <string name="title_remote_operation_plugin">Operazione (Modulo Remoto)</string>
-    <string name="activity_history__profile"/>
-    <string name="activity_history__script"/>
+    <string name="activity_history__profile">\@string/title_profile</string>
+    <string name="activity_history__script">\@string/title_script</string>
     <string name="button_cancel">Annulla</string>
     <string name="text_inline_event">Evento Inline</string>
     <string name="text_use_condition">Usa Condizione</string>
@@ -68,19 +68,19 @@
     <string name="text_dynamics">Dinamica</string>
     <string name="text_placeholder">Segnaposto</string>
     <string name="toggle_active">Attivo</string>
-    <string name="hint_event_title">titolo evento</string>
-    <string name="hint_script_title">titolo script</string>
-    <string name="hint_profile_title">titolo profilo</string>
-    <string name="hint_condition_title">titolo condizione</string>
+    <string name="hint_event_title">Titolo Evento</string>
+    <string name="hint_script_title">Titolo Script</string>
+    <string name="hint_profile_title">Titolo Profilo</string>
+    <string name="hint_condition_title">Titolo Condizione</string>
     <string name="prompt_save_failed">Salvataggio fallito</string>
     <string name="prompt_delete">Vuoi eliminare: %s\?</string>
     <string name="prompt_delete_failed">Eliminazione fallita. Controllare se questo elemento viene utilizzato.</string>
     <string name="prompt_data_illegal">Impedito il salvataggio dei dati con campi non validi. Controllare scelte e inserimenti.</string>
-    <string name="prompt_prevented_for_permission">Easer richiede l\'autorizzazione &lt;%s&gt; per questa funzione.</string>
-    <string name="appInformation">Semplifica la tua vita eseguendo automaticamente azioni e operazioni di routine sui tuoi dispositivi.
-\n Collega diversi eventi e lascia che le loro azioni corrispondenti siano eseguite. Non c\'è più bisogno di tenerle a mente!
-\n Questa applicazione è ispirata ai \"Profili\" di CyanogenMod e dall\'IFTTT. L\'intuizione originale era quella di cambiare automaticamente profilo a una certa ora o su specifiche connessioni Wi-Fi, fu poi ampliato per un uso più generale.
-\n Promemoria: Easer è ancora in fase di sviluppo. Può contenere bug e l\'interfaccia utente deve sicuramente essere migliorata. I piani attuali sono descritti nel documento \"TODO.en.md\" (o \"TODO.md\" se conosci il cinese) del repo. Se sei interessato dai un\'occhiata.</string>
+    <string name="prompt_prevented_for_permission">Concedi a Easer l\'autorizzazione &lt;%s&gt; per farlo funzionare...</string>
+    <string name="appInformation">Semplifica la tua vita automatizzando le azioni di routine sui tuoi dispositivi. 
+\nCollega diversi eventi e lascia che le loro azioni corrispondenti siano eseguite. Non c\'è più bisogno di tenerle a mente! 
+\nQuesta applicazione è ispirata ai \"Profili\" di CyanogenMod e dall\'IFTTT. L\'intuizione originale era quella di cambiare automaticamente profilo a una certa ora o su specifiche connessioni Wi-Fi, fu poi ampliato per un uso più generale. 
+\nPromemoria: Easer è ancora in fase di sviluppo. Può contenere bug e l\'interfaccia utente deve sicuramente essere migliorata. Dai un\'occhiata a \"TODO.en.md\" (o \"TODO.md\" se conosci il cinese) nel repo.</string>
     <string name="liscence_stringa">Questo programma è libero: puoi ridistribuirlo e/o modificarlo secondo i termini della GNU General Public License pubblicata dalla Free Software Foundation, sia la versione 3 della Licenza, sia una versione successiva (a scelta).</string>
     <string name="liscence_stringb">Questo programma è distribuito nella speranza che sia utile, ma SENZA ALCUNA GARANZIA; senza neppure la garanzia implicita di COMMERCIABILITÀ o IDONEITÀ PER UN PARTICOLARE SCOPO. Per maggiori dettagli vedere la GNU (General Public License).</string>
     <string name="liscence_stringc">Si dovrebbe aver ricevuto una copia della GNU General Public License insieme a questo programma. In caso contrario, visitare https://www.gnu.org/licenses/</string>
@@ -89,13 +89,13 @@
     <string name="pref_category_data_manage">Gestione Dati</string>
     <string name="pref_category_service">Servizio</string>
     <string name="pref_autostart_title">Avvia al Boot</string>
-    <string name="pref_autostart_summary">Avvia il servizio di Easer automaticamente in background</string>
+    <string name="pref_autostart_summary">Avvia Easer in background all\'accensione del dispositivo</string>
     <string name="pref_restart_after_upgrade_title">Avvia Servizio dopo Aggiornamento</string>
     <string name="pref_welcome_title">Mostra Messaggio di Benvenuto</string>
     <string name="pref_welcome_summary">Mostra il messaggio di benvenuto aprendo l\'applicazione</string>
     <string name="pref_logging_title">Attiva Logging Esterno</string>
-    <string name="pref_logging_summary">Salva i log su dispositivi di archiviazione esterni (/sdcard/logger) per facilitare le segnalazioni di bug.
-\nLe modifiche avranno effetto al prossimo avvio di Easer.</string>
+    <string name="pref_logging_summary">Salva i log su dispositivi di archiviazione esterni (/sdcard/logger) per facilitare le segnalazioni di bug. 
+\nLe modifiche avranno effetto al prossimo avvio dell\'app.</string>
     <string name="pref_use_root_title">Usa Funzionalità di Root</string>
     <string name="pref_use_root_summary">Utilizza i permessi di root per funzioni specifiche (moduli), che potrebbero aiutare a risolvere il problemi di compatibilità su alcuni dispositivi. Non saranno usati altrove.</string>
     <string name="pref_cooldown_title">Tempo di Raffreddamento</string>
@@ -126,11 +126,11 @@
 \n2. Collegare Eventi ad <a href="https://en.wikipedia.org/wiki/Tree_structure">albero</a> è <i>attualmente</i> l\'unico modo per comporre Eventi.
 \n
 \nDai un\'occhiata anche alla sezione <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> della wiki del progetto.</string>
-    <string name="welcome_message_1">Benvenuto.
-\n
-\nEcco alcune informazioni di base da leggere prima di usare Easer.
-\n
-\nApprofondimenti sugli argomenti sono disponibili nella wiki <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> del progetto. </string>
+    <string name="welcome_message_1">Benvenuto. 
+\n 
+\nEcco alcune informazioni di base da leggere prima di usare Easer. 
+\n 
+\nApprofondimenti sugli argomenti sono disponibili nella wiki <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> del progetto.</string>
     <string name="welcome_message_2">Easer contiene molteplici Moduli che offrono funzioni diverse. Attivali o disattivali in \"Impostazioni\".
 \n
 \nLe autorizzazioni corrispondenti (per ogni Modulo attivo) devono essere concesse prima dell\'uso.
@@ -175,7 +175,7 @@
 \nPer ulteriori informazioni fare riferimento a questo <a href="https://github.com/renyuneyun/Easer/wiki">documento</a>.</string>
     <string name="category_operation_android">Android</string>
     <string name="category_operation_system_config">Configurazione Sistema</string>
-    <string name="category_operation_easer"/>
+    <string name="category_operation_easer">\@string/easer</string>
     <string name="category_operation_misc">Altro</string>
     <string name="category_operation_unknown">Sconosciuta</string>
 </resources>
