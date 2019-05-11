@@ -17,19 +17,16 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui.version_n_info
+package ryey.easer.commons.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.preference.PreferenceManager
-import com.github.paolorotolo.appintro.AppIntro2
+import androidx.appcompat.app.AppCompatActivity
 import com.zeugmasolutions.localehelper.LocaleHelperActivityDelegateImpl
-import ryey.easer.R
 
+open class CommonBaseActivity: AppCompatActivity() {
 
-class WelcomeActivity : AppIntro2() {
-
-    private val localeDelegate = LocaleHelperActivityDelegateImpl()
+    protected val localeDelegate = LocaleHelperActivityDelegateImpl()
 
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(localeDelegate.attachBaseContext(newBase))
@@ -37,13 +34,7 @@ class WelcomeActivity : AppIntro2() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        addSlide(TextSlide.newInstance(R.string.welcome_message_1))
-        addSlide(TextSlide.newInstance(R.string.welcome_message_2))
-        addSlide(TextSlide.newInstance(R.string.welcome_message_3))
-        addSlide(TextSlide.newInstance(R.string.title_welcome_message_privacy, R.string.welcome_message_privacy))
-
-        showSkipButton(true)
+        localeDelegate.onCreate(this)
     }
 
     override fun onResume() {
@@ -54,20 +45,6 @@ class WelcomeActivity : AppIntro2() {
     override fun onPause() {
         super.onPause()
         localeDelegate.onPaused()
-    }
-
-    override fun onDonePressed(currentFragment: androidx.fragment.app.Fragment?) {
-        super.onDonePressed(currentFragment)
-        PreferenceManager.getDefaultSharedPreferences(this)
-                .edit()
-                .putBoolean(getString(R.string.key_pref_welcome), false)
-                .apply()
-        finish()
-    }
-
-    override fun onSkipPressed(currentFragment: androidx.fragment.app.Fragment?) {
-        super.onSkipPressed(currentFragment)
-        onDonePressed(currentFragment)
     }
 
 }

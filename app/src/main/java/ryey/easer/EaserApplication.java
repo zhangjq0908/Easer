@@ -21,8 +21,10 @@ package ryey.easer;
 
 import android.Manifest;
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.preference.PreferenceManager;
 
 import androidx.core.content.ContextCompat;
@@ -30,10 +32,14 @@ import androidx.core.content.ContextCompat;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.DiskLogAdapter;
 import com.orhanobut.logger.Logger;
+import com.zeugmasolutions.localehelper.LocaleHelperApplicationDelegate;
 
 import ryey.easer.core.log.ActivityLogService;
 
 public class EaserApplication extends Application {
+
+    private final LocaleHelperApplicationDelegate localeAppDelegate = new LocaleHelperApplicationDelegate();
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -54,5 +60,16 @@ public class EaserApplication extends Application {
         startService(new Intent(this, ActivityLogService.class));
 
         Logger.log(Logger.ASSERT, null, "======Easer started======", null);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        localeAppDelegate.onConfigurationChanged(this);
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(localeAppDelegate.attachBaseContext(base));
     }
 }

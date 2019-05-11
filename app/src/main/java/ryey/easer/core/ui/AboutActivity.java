@@ -19,7 +19,6 @@
 
 package ryey.easer.core.ui;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,12 +27,15 @@ import android.view.View;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import ryey.easer.R;
+import ryey.easer.commons.ui.CommonBaseActivity;
 
-public class AboutActivity extends Activity {
+public class AboutActivity extends CommonBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.title_about);
+
         setContentView(R.layout.activity_about);
 
         FloatingActionButton fabGit = findViewById(R.id.fabGithub);

@@ -80,6 +80,7 @@ Easer的開發離不開社區的幫助及捐贈。十分感謝各位。
 * [RecyclerTreeView](https://github.com/TellH/RecyclerTreeView): Apache License v2
 * [AppIntro](https://github.com/AppIntro/AppIntro): Apache License v2
 * [GraphView](https://github.com/Team-Blox/GraphView): Apache License v2
+* [locale-helper-android](https://github.com/zeugma-solutions/locale-helper-android): Apache License v2
 
 * 以`*-fa-*`命名的drawable文件均來自[fontawesome](https://fontawesome.com/): CC-BY 4.0
 

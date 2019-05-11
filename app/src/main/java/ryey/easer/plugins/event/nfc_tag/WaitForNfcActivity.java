@@ -19,7 +19,6 @@
 
 package ryey.easer.plugins.event.nfc_tag;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.ComponentName;
@@ -34,8 +33,9 @@ import android.provider.Settings;
 import com.orhanobut.logger.Logger;
 
 import ryey.easer.R;
+import ryey.easer.commons.ui.CommonBaseActivity;
 
-public class WaitForNfcActivity extends Activity {
+public class WaitForNfcActivity extends CommonBaseActivity {
 
     public static final String EXTRA_ID = "extra_id";
 

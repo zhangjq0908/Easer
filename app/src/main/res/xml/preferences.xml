@@ -68,6 +68,12 @@
             android:defaultValue="false"
             android:key="@string/key_pref_use_12_hour_clock"
             android:title="@string/pref_use_12_hour_clock_title" />
+        <ListPreference
+            android:defaultValue="_"
+            android:entries="@array/array_languages"
+            android:entryValues="@array/array_languages_values"
+            android:key="@string/key_pref_locale_lang"
+            android:title="@string/pref_locale_custom" />
     </PreferenceCategory>
 
     <PreferenceCategory android:layout="@layout/pref_divider" />

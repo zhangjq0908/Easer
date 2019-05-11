@@ -19,6 +19,7 @@
 
 package ryey.easer.core.ui;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -28,7 +29,6 @@ import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -37,15 +37,18 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.navigation.NavigationView;
+import com.zeugmasolutions.localehelper.LocaleHelperActivityDelegate;
+import com.zeugmasolutions.localehelper.LocaleHelperActivityDelegateImpl;
 
 import ryey.easer.R;
+import ryey.easer.commons.ui.CommonBaseActivity;
 import ryey.easer.core.ui.data.DataListContainerFragment;
 import ryey.easer.core.ui.data.DataListContainerInterface;
 import ryey.easer.core.ui.setting.SettingsActivity;
 import ryey.easer.core.ui.version_n_info.Info;
 import ryey.easer.core.ui.version_n_info.Version;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends CommonBaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
@@ -61,9 +64,17 @@ public class MainActivity extends AppCompatActivity
 
     private static final NavTag navTag = new NavTag();
 
+    private final LocaleHelperActivityDelegate localeDelegate = new LocaleHelperActivityDelegateImpl();
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(localeDelegate.attachBaseContext(newBase));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        localeDelegate.onCreate(this);
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
@@ -96,6 +107,18 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        localeDelegate.onPaused();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        localeDelegate.onResumed(this);
     }
 
     @Override
