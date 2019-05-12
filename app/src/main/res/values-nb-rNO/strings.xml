@@ -70,13 +70,14 @@
     <string name="prompt_delete_failed">Klarte ikke å slette. Sjekk dette hvis valget er i bruk.</string>
     <string name="prompt_data_illegal">Forhendrer lagring av data med ugyldig(e) felt/er. Sjekk dine valg og inndata igjen.</string>
     <string name="prompt_prevented_for_permission">Easer trenger tilgang &lt;%s&gt; for denne funksjoner.</string>
-    <string name="appInformation">Lett dit liv ved å automatisk utføre rutineoppgaver / operasjoner på din enhet, eller enheter.
+    <string name="text_app_description">Lett dit liv ved å automatisk utføre rutineoppgaver / operasjoner på din enhet, eller enheter.
 \nKoble forskjellige hendelser sammen, og la deres pålydende handlinger utføres. Du trenger ikke å huske dem lengre.
 \nDette programmet er inspirert av CyanogenMod sin \"profil\"-mekanisme og IFTTT. Den opprinnelige hensikten avr å autmatisk endre profilen på bestemte tidspunkt, eller spesifikke Wi-Fi-tilkoblinger, og det ble utvides for mer generell bruk da.
 \nPåminndelse: Easer er fremdeles i utviklking. Det kan inneholde feil, og grensesnittet må definitivt forbedres. Nåværende planer er beskrevet i TODO.en.md-dokumentet (eller TODO.md hvis du kan lese kinesisk). Hvis du er interessert, ta en titt.</string>
-    <string name="liscence_stringa">Dette programmet er fri programvare: Du kan redistribuere det og/eller modifisere det i henhold til vilkårene i GNU General Public-lisensen, som offentliggjort av Free Software-stiftelsen, enten versjon 3 av lisensen, eller (etter eget valg) enhver senere versjon.</string>
-    <string name="liscence_stringb">Dette programmet distribueres i håp om at det skal komme til nytte, men UTEN NOEN GARANTI; selv uten implisitt garanti om SALGBARHET eller FORMÅLSTJENLIGHET. Sjekk GNU general public-lisensen for flere detaljer.</string>
-    <string name="liscence_stringc">Du skal ha mottatt en kopi av GNU General Public-lisensen sammen med dette programmet. Hvis ikke, sjekk https://www.gnu.org/licenses/</string>
+    <string name="text_license">Dette programmet er fri programvare: Du kan redistribuere det og/eller modifisere det i henhold til vilkårene i GNU General Public-lisensen, som offentliggjort av Free Software-stiftelsen, enten versjon 3 av lisensen, eller (etter eget valg) enhver senere versjon.\n
+        Dette programmet distribueres i håp om at det skal komme til nytte, men UTEN NOEN GARANTI; selv uten implisitt garanti om SALGBARHET eller FORMÅLSTJENLIGHET. Sjekk GNU general public-lisensen for flere detaljer.\n
+        Du skal ha mottatt en kopi av GNU General Public-lisensen sammen med dette programmet. Hvis ikke, sjekk https://www.gnu.org/licenses/
+    </string>
     <string name="pref_category_functionality">Funksjonalitet</string>
     <string name="pref_category_personalise">Personaliser</string>
     <string name="pref_category_data_manage">Behandle data</string>

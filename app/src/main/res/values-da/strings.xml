@@ -70,13 +70,14 @@
     <string name="prompt_delete_failed">Kan ikke slette. Kontrollere om element er i brug.</string>
     <string name="prompt_data_illegal">Forhindret gemme data med ugyldige felter. Kontrollere valg/inddata.</string>
     <string name="prompt_prevented_for_permission">Giv Easer &lt;%s&gt; rettighed for denne funktion.</string>
-    <string name="appInformation">Gør dagligdagen nemmere ved automatisk at udføre rutine handlinger. 
+    <string name="text_app_description">Gør dagligdagen nemmere ved automatisk at udføre rutine handlinger.
 \nSammensætte forskellige hændelser og udføre tilhørende handlinger. 
 \nThis app was inspired by CyanogenMod\'s \'profile\' mechanism and IFTTT. The original intuition was to automatically change the profile on certain time or specific WiFi connections, and it was expanded for more general use then. 
 \nReminder: Easer is still in development. It may contain bugs and the UI definitely needs to be improved. Current plans are described in the TODO.en.md (or TODO.md if you can read Chinese) document in the repo. If you are interested, please have a look.</string>
-    <string name="liscence_stringa">Dette program er gratis software: Det kan videre-distribueres og/eller ændres i henhold til GNU General Public License som offentliggjort af Free Software Foundation, enten version 3 Licensen, eller (efter eget valg) en senere version.</string>
-    <string name="liscence_stringb">Dette program distribueres i håb om at det vil være nyttigt men uden nogen garanti; uden selv den underforståede garanti for SALGBARHED eller EGNETHED TIL ET BESTEMT FORMÅL. Se GNU General Public License for flere detaljer.</string>
-    <string name="liscence_stringc">Der medfølger normalt en kopi af GNU General Public License sammen med dette program. Hvis ikke, se https://www.gnu.org/licenses/</string>
+    <string name="text_license">Dette program er gratis software: Det kan videre-distribueres og/eller ændres i henhold til GNU General Public License som offentliggjort af Free Software Foundation, enten version 3 Licensen, eller (efter eget valg) en senere version.\n
+        Dette program distribueres i håb om at det vil være nyttigt men uden nogen garanti; uden selv den underforståede garanti for SALGBARHED eller EGNETHED TIL ET BESTEMT FORMÅL. Se GNU General Public License for flere detaljer.\n
+        Der medfølger normalt en kopi af GNU General Public License sammen med dette program. Hvis ikke, se https://www.gnu.org/licenses/
+    </string>
     <string name="myGithub" translatable="false">https://github.com/renyuneyun/Easer</string>
     <string name="myWebsite" translatable="false">http://renyuneyun.is-programmer.com/</string>
     <string name="pref_category_functionality">Funktionalitet</string>

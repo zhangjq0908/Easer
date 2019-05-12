@@ -86,16 +86,15 @@
 
     <string name="prompt_prevented_for_permission">O Easer precisa de máis permisos &lt;%s&gt; para esta funionalidade.</string>
 
-    <string name="appInformation">Faga máis doada a túa vida facendo de xeito automático accións / operacións da rutina no teu teléfono(s).
+    <string name="text_app_description">Faga máis doada a túa vida facendo de xeito automático accións / operacións da rutina no teu teléfono(s).
 \n Encadea diferentes acontecementos e deixa que se fagan as súas correspondentes accións. Xa non é preciso telos en conta!
 \n Esta aplicación foi inspirada polo mecanismo de \"perfil\" do CyanogenMod e IFTTT. A lóxica orixinal era mudar de xeito automático o perfil nun intre determinado ou nas conexións WiFi específicas, e despois expandiuse para un emprego máis xeral.
 \n Lembranza: O Easer aínda está en desenvolvemento. Pode conter erros e a interface do usuario definitivamente precisa dunha mellora. Os plans actuais descríbense no ficheiro TODO.en.md (ou TODO.md se pode ler chinés) no repositorio. Se ti estás interesado, por favor, bota unha ollada.</string>
 
-    <string name="liscence_stringa">Este programa é de software ceibe ou libre: pode redistribuilo e/ou modificalo segundo os termos da Licenza Pública Xeral do GNU publicada pola Free Software Foundation, xa sexa a versión 3 da Licenza ou (á túa escolla) cualquera versión seguinte.</string>
-
-    <string name="liscence_stringb">Este programa distribúese ca espranza de que sexa de utilidade, pero SEN NINGÚN GARANTE; sen nin sequera o garante implícito da COMERCIABILIDADE ou APTITUDE PARA UN PROPÓSITO PARTICULAR. Olla a Licenza Pública Xeral do GNU para máis detalles.</string>
-
-    <string name="liscence_stringc">Deberías de recibir unha copia da Licenza Pública Xeral do GNU xunto con este programa. Se non, olla http://www.gnu.org/licenses/</string>
+    <string name="text_license">Este programa é de software ceibe ou libre: pode redistribuilo e/ou modificalo segundo os termos da Licenza Pública Xeral do GNU publicada pola Free Software Foundation, xa sexa a versión 3 da Licenza ou (á túa escolla) cualquera versión seguinte.\n
+        Este programa distribúese ca espranza de que sexa de utilidade, pero SEN NINGÚN GARANTE; sen nin sequera o garante implícito da COMERCIABILIDADE ou APTITUDE PARA UN PROPÓSITO PARTICULAR. Olla a Licenza Pública Xeral do GNU para máis detalles.\n
+        Deberías de recibir unha copia da Licenza Pública Xeral do GNU xunto con este programa. Se non, olla http://www.gnu.org/licenses/
+    </string>
 
     <string name="pref_category_functionality">Funcionalidade</string>
     <string name="pref_category_personalise">Persoalizar</string>

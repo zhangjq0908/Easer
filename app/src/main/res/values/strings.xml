@@ -96,23 +96,18 @@
     <string name="prompt_delete_failed">Deletion failed. Check if this item is being used.</string>
     <string name="prompt_data_illegal">Prevented saving data with invalid field(s). Please recheck your choices / inputs.</string>
     <string name="prompt_prevented_for_permission">Grant Easer &lt;%s&gt; permission for this to work..</string>
-    <string name="appInformation">Ease your life by automating routine actions on your device(s).
+
+    <string name="text_app_description">Ease your life by automating routine actions on your device(s).
 \nChain different events and let their corresponding actions performed. No longer need to keep them in mind!
 \nThis app was inspired by CyanogenMod\'s \'profile\' mechanism and IFTTT. The original intuition was to automatically change the profile on certain time or specific Wi-Fi connections, and it was expanded for more general use then.
 \nReminder: Easer is still in development. It may contain bugs and the UI definitely needs to be improved. Have a look in TODO.en.md (or TODO.md if you can read Chinese) on the repo to help out.</string>
-    <string name="liscence_stringa">This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.</string>
 
-    <string name="liscence_stringb">This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.</string>
-    <string name="liscence_stringc">You should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses/</string>
-    <string name="myGithub" translatable="false">https://github.com/renyuneyun/Easer</string>
+    <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
 
-    <string name="myWebsite" translatable="false">http://renyuneyun.is-programmer.com/</string>
+    <string name="text_license">This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n
+        This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.\n
+        You should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses/
+    </string>
 
     <string name="pref_category_functionality">Functionality</string>
     <string name="pref_category_personalise">Personalise</string>
@@ -227,8 +222,6 @@
     <string name="category_operation_easer">@string/easer</string>
     <string name="category_operation_misc">Misc</string>
     <string name="category_operation_unknown">Unknown</string>
-
-    <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
 
     <string-array name="array_languages">
         <item>&lt;Default&gt;</item>

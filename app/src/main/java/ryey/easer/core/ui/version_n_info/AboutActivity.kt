@@ -43,7 +43,7 @@ class AboutActivity : MaterialAboutActivity() {
                         .setOnClickAction {
                             AlertDialog.Builder(this)
                                     .setTitle(R.string.easer)
-                                    .setMessage(R.string.appInformation)
+                                    .setMessage(R.string.text_app_description)
                                     .create().show()
                         }
                         .build())
@@ -57,7 +57,7 @@ class AboutActivity : MaterialAboutActivity() {
                         .setOnClickAction { openWebpage("https://www.gnu.org/licenses/gpl.txt") }
                         .setOnLongClickAction {
                             AlertDialog.Builder(this)
-                                    .setMessage(String.format("%s\n%s\n%s", getString(R.string.liscence_stringa), getString(R.string.liscence_stringb), getString(R.string.liscence_stringc)))
+                                    .setMessage(R.string.text_license)
                                     .create()
                                     .show()
                         }

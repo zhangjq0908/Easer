@@ -83,16 +83,15 @@
 
     <string name="prompt_prevented_for_permission">Easer a besoin de la permission &lt;%s&gt; pour cette fonction.</string>
 
-    <string name="appInformation">Simplifiez vous la vie en automatisant des actions / opérations routinières sur votre téléphone.
+    <string name="text_app_description">Simplifiez vous la vie en automatisant des actions / opérations routinières sur votre téléphone.
 \nFaites des liens entre différents événements et laissez leurs actions correspondantes être exécutées. Plus la peine de s\'en préocuper !
 \nCette application a été inspirée par le mécanisme de «profil» de CyanogenMod et IFTTT. L\'intention initiale était de changer automatiquement de profil en fonction de l\'heure ou d\'une connexion WiFi spécifique, et elle a ensuite été étendue à un usage plus général.
 \nRappel : Easer est toujours en développement. Il peut contenir des bugs et l\'inferface a certainement besoin d\'être améliorée. Les projets en cours sont décrits dans le document TODO.en.md (ou TODO.md si vous parlez chinois) dans le dépôt. Si vous êtes intéressés, jetez-y un coup d\'oeil.</string>
 
-    <string name="liscence_stringa">Ce programme est un logiciel libre : vous pouvez le redistribuer et / ou le modifier sous les termes de la Licence publique générale GNU publiée par la Free Software Foundation, soit la version 3 de la licence, ou (selon votre choix) n\'importe quelle autre version ultérieure.</string>
-
-    <string name="liscence_stringb">Ce programme est distribué dans l\'espoir qu\'il sera utile, mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de QUALITÉ MARCHANDE ou D\'ADÉQUATION À UN USAGE PARTICULIER. Voir la Licence publique générale GNU pour plus de détails.</string>
-
-    <string name="liscence_stringc">Vous devriez avoir reçu une copie de la Lience publique générale GNU avec ce programme. Si ce n\'est pas le cas, consultez http://www.gnu.org/licenses/</string>
+    <string name="text_license">Ce programme est un logiciel libre : vous pouvez le redistribuer et / ou le modifier sous les termes de la Licence publique générale GNU publiée par la Free Software Foundation, soit la version 3 de la licence, ou (selon votre choix) n\'importe quelle autre version ultérieure.\n
+        Ce programme est distribué dans l\'espoir qu\'il sera utile, mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de QUALITÉ MARCHANDE ou D\'ADÉQUATION À UN USAGE PARTICULIER. Voir la Licence publique générale GNU pour plus de détails.\n
+        Vous devriez avoir reçu une copie de la Lience publique générale GNU avec ce programme. Si ce n\'est pas le cas, consultez http://www.gnu.org/licenses/
+    </string>
 
     <string name="pref_category_functionality">Fonctionnalité</string>
     <string name="pref_category_personalise">Personnaliser</string>

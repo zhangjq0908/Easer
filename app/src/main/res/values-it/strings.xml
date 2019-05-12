@@ -77,13 +77,14 @@
     <string name="prompt_delete_failed">Eliminazione fallita. Controllare se questo elemento viene utilizzato.</string>
     <string name="prompt_data_illegal">Impedito il salvataggio dei dati con campi non validi. Controllare scelte e inserimenti.</string>
     <string name="prompt_prevented_for_permission">Concedi a Easer l\'autorizzazione &lt;%s&gt; per farlo funzionare...</string>
-    <string name="appInformation">Semplifica la tua vita automatizzando le azioni di routine sui tuoi dispositivi. 
+    <string name="text_app_description">Semplifica la tua vita automatizzando le azioni di routine sui tuoi dispositivi.
 \nCollega diversi eventi e lascia che le loro azioni corrispondenti siano eseguite. Non c\'è più bisogno di tenerle a mente! 
 \nQuesta applicazione è ispirata ai \"Profili\" di CyanogenMod e dall\'IFTTT. L\'intuizione originale era quella di cambiare automaticamente profilo a una certa ora o su specifiche connessioni Wi-Fi, fu poi ampliato per un uso più generale. 
 \nPromemoria: Easer è ancora in fase di sviluppo. Può contenere bug e l\'interfaccia utente deve sicuramente essere migliorata. Dai un\'occhiata a \"TODO.en.md\" (o \"TODO.md\" se conosci il cinese) nel repo.</string>
-    <string name="liscence_stringa">Questo programma è libero: puoi ridistribuirlo e/o modificarlo secondo i termini della GNU General Public License pubblicata dalla Free Software Foundation, sia la versione 3 della Licenza, sia una versione successiva (a scelta).</string>
-    <string name="liscence_stringb">Questo programma è distribuito nella speranza che sia utile, ma SENZA ALCUNA GARANZIA; senza neppure la garanzia implicita di COMMERCIABILITÀ o IDONEITÀ PER UN PARTICOLARE SCOPO. Per maggiori dettagli vedere la GNU (General Public License).</string>
-    <string name="liscence_stringc">Si dovrebbe aver ricevuto una copia della GNU General Public License insieme a questo programma. In caso contrario, visitare https://www.gnu.org/licenses/</string>
+    <string name="text_license">Questo programma è libero: puoi ridistribuirlo e/o modificarlo secondo i termini della GNU General Public License pubblicata dalla Free Software Foundation, sia la versione 3 della Licenza, sia una versione successiva (a scelta).\n
+        Questo programma è distribuito nella speranza che sia utile, ma SENZA ALCUNA GARANZIA; senza neppure la garanzia implicita di COMMERCIABILITÀ o IDONEITÀ PER UN PARTICOLARE SCOPO. Per maggiori dettagli vedere la GNU (General Public License).\n
+        Si dovrebbe aver ricevuto una copia della GNU General Public License insieme a questo programma. In caso contrario, visitare https://www.gnu.org/licenses/
+    </string>
     <string name="pref_category_functionality">Funzionalità</string>
     <string name="pref_category_personalise">Personalizza</string>
     <string name="pref_category_data_manage">Gestione Dati</string>

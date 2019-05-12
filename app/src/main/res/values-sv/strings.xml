@@ -76,13 +76,14 @@
     <string name="prompt_delete_failed">Det gick inte att ta bort. Kontrollera om objektet används.</string>
     <string name="prompt_data_illegal">Hindrade spara data med ogiltigt fält. Vänligen kontrollera dina val / ingångar.</string>
     <string name="prompt_prevented_for_permission">Easer behöver tillåtelse &lt;%s&gt; för denna funktion.</string>
-    <string name="appInformation">Underlätta ditt liv genom att automatiskt utföra rutinmässiga åtgärder / operationer på din telefon.
+    <string name="text_app_description">Underlätta ditt liv genom att automatiskt utföra rutinmässiga åtgärder / operationer på din telefon.
 \n Kedja av olika händelser och låt deras motsvarande åtgärder som utförs. Behöver inte längre hålla dem i åtanke!
 \n Denna app var inspirerad av Cyanogenmod\'s \'profil\' mekanismen och IFTTT. Den ursprungliga intuitionen var att automatiskt ändra profil på viss tid eller visst WiFi-anslutningar, och det var expanderat för mer allmänt bruk sedan.
 \n Påminnelse: Easer är fortfarande under utveckling. Den kan innehålla buggar och UI definitivt behöver förbättras. Nuvarande planer beskrivs i TODO.en.md (eller TODO.md om du kan läsa kinesiska) dokument reporäntan. Om du är intresserad, ta gärna en titt.</string>
-    <string name="liscence_stringa">Detta program är fri programvara: du kan vidaredistribuera det och/eller modifiera det enligt villkoren i GNU General Public License som publicerats av Free Software Foundation, antingen version 3 av licensen eller (vid ditt alternativ) någon senare version.</string>
-    <string name="liscence_stringb">Detta program är distribuerat med förhoppning att det ska vara användbart men helt utan garantier; utan ens underförstådd garanti om SÄLJBARHET eller lämplighet för ett visst ändamål. Se GNU General Public License för mer detaljer.</string>
-    <string name="liscence_stringc">Du bör ha fått en kopia av GNU General Public License tillsammans med detta program. Om inte, se http://www.gnu.org/licenses/</string>
+    <string name="text_license">Detta program är fri programvara: du kan vidaredistribuera det och/eller modifiera det enligt villkoren i GNU General Public License som publicerats av Free Software Foundation, antingen version 3 av licensen eller (vid ditt alternativ) någon senare version.\n
+        Detta program är distribuerat med förhoppning att det ska vara användbart men helt utan garantier; utan ens underförstådd garanti om SÄLJBARHET eller lämplighet för ett visst ändamål. Se GNU General Public License för mer detaljer.\n
+        Du bör ha fått en kopia av GNU General Public License tillsammans med detta program. Om inte, se http://www.gnu.org/licenses/
+    </string>
     <string name="pref_category_functionality">Funktionalitet</string>
     <string name="pref_category_personalise">Anpassa</string>
     <string name="pref_category_data_manage">Hantera data</string>

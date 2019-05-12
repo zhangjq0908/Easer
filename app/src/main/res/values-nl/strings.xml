@@ -71,14 +71,14 @@
     <string name="prompt_delete_failed">Verwijdering mislukt. Controleer of dit item wordt gebruikt.</string>
     <string name="prompt_data_illegal">Opslaan van data met incorrect(e) veld(en) voorkomen. Controleer alstublieft uw keuzes / invoer.</string>
     <string name="prompt_prevented_for_permission">Easer heeft toegang &lt;%s&gt; nodig voor deze functie.</string>
-    <string name="appInformation">"Vereenvoudig uw leven door routine acties op uw telefoon te automatiseren.
+    <string name="text_app_description">"Vereenvoudig uw leven door routine acties op uw telefoon te automatiseren.
 \n- Verbind verschillende gebeurtenissen en laat hun overeenkomstige acties uitvoeren. U hoeft dit niet zelf meer te onthouden!
 \n- Deze app is geinspireerd op het CyanogenMod \"profiel\" mechanisme en IFTTT.  De oorspronkelijke opzet was om automatisch profielen te wijzigen op bepaalde tijdstippen of WiFi verbindingen, en het is toen uitgebreid voor meer algemeen gebruik.
 \n- Notabene: Easer is nog steeds in ontwikkeling. Het kan fouten bevatten en de scherm layout moet zeker verbeterd worden. De huidige plannen staan beschreven in het TODO.en.md document (of TODO.md als je Chinees kunt lezen) in de repository. Als je geinteresseerd bent, lees het dan aub."</string>
-    <string name="liscence_stringa">"Dit programma is vrije software: je mag het herdistribueren en/of wijzigen onder de voorwaarden van de GNU Algemene Publieke Licentie zoals gepubliceerd door de Free Software Foundation, onder versie 3 van de Licentie of (naar jouw keuze) elke latere versie. "</string>
-    <string name="liscence_stringb">Dit programma is gedistribueerd in de hoop dat het nuttig zal zijn maar ZONDER ENIGE GARANTIE; zelfs zonder de impliciete garanties die GEBRUIKELIJK ZIJN IN DE HANDEL of voor BRUIKBAARHEID VOOR EEN SPECIFIEK DOEL. Zie de GNU Algemene Publieke Licentie voor meer details.</string>
-    <string name="liscence_stringc">"Je hoort een kopie van de GNU Algemene Publieke Licentie te hebben ontvangen samen met dit programma. Als dat niet het geval is, zie
-\n&lt;http://www.gnu.org/licenses/&gt;. "</string>
+    <string name="text_license">Dit programma is vrije software: je mag het herdistribueren en/of wijzigen onder de voorwaarden van de GNU Algemene Publieke Licentie zoals gepubliceerd door de Free Software Foundation, onder versie 3 van de Licentie of (naar jouw keuze) elke latere versie.\n
+        Dit programma is gedistribueerd in de hoop dat het nuttig zal zijn maar ZONDER ENIGE GARANTIE; zelfs zonder de impliciete garanties die GEBRUIKELIJK ZIJN IN DE HANDEL of voor BRUIKBAARHEID VOOR EEN SPECIFIEK DOEL. Zie de GNU Algemene Publieke Licentie voor meer details.\n
+        "Je hoort een kopie van de GNU Algemene Publieke Licentie te hebben ontvangen samen met dit programma. Als dat niet het geval is, zie &lt;http://www.gnu.org/licenses/&gt;.
+    </string>
     <string name="pref_category_functionality">Functionaliteit</string>
     <string name="pref_category_personalise">Personaliseren</string>
     <string name="pref_category_data_manage">Beheer data</string>

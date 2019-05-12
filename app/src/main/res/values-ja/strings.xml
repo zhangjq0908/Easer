@@ -27,18 +27,19 @@
     <string name="hint_profile_title">プロファイルのタイトル</string>
     <string name="prompt_save_failed">保存に失敗しました</string>
     <string name="prompt_delete">削除してもよろしいですか: %s?</string>
-    <string name="appInformation">お使いの電話で定型的な操作を自動化して、生活を楽にします。
+    <string name="text_app_description">お使いの電話で定型的な操作を自動化して、生活を楽にします。
 \n異なるイベントを連鎖させて、対応するアクションを実行します。 もはやそれらを気に留める必要はありません!
 \nこのアプリは CyanogenMod の \'プロファイル\' メカニズムと IFTTT にインスパイアされました。 もともとの発想は、特定の時間や特定の WiFi 接続でプロファイルを自動的に変更することでした。その後、一般的な使用のために拡張しました。
 \n注意: Easer はまだ開発中です。 バグを含んでいる可能性があり、UI を改善する必要があります。 レポジトリ内の TODO.en.md (または中国語を読むことができる場合は TODO.md) をご覧ください。</string>
-    <string name="liscence_stringa">このプログラムはフリーソフトウェアです。あなたはこれを、フリーソフ
+    <string name="text_license">このプログラムはフリーソフトウェアです。あなたはこれを、フリーソフ
     トウェア財団によって発行されたGNU 一般公衆利用許諾書(バージョン3か、
     それ以降のバージョンのうちどれか)が定める条件の下で再頒布または改変
-    することができます。</string>
-    <string name="liscence_stringb">このプログラムは有用であることを願って頒布されますが、*全くの無保証
+    することができます。\n
+        このプログラムは有用であることを願って頒布されますが、*全くの無保証
     *です。商業可能性の保証や特定目的への適合性は、言外に示されたものも
-    含め、全く存在しません。詳しくはGNU 一般公衆利用許諾書をご覧くださ い。</string>
-    <string name="liscence_stringc">あなたはこのプログラムと共に、GNU 一般公衆利用許諾書のコピーを一部 受け取っているはずです。もし受け取っていなければ、http://www.gnu.org/licenses/ をご覧ください</string>
+    含め、全く存在しません。詳しくはGNU 一般公衆利用許諾書をご覧くださ い。\n
+        あなたはこのプログラムと共に、GNU 一般公衆利用許諾書のコピーを一部 受け取っているはずです。もし受け取っていなければ、http://www.gnu.org/licenses/ をご覧ください
+    </string>
     <string name="myGithub">https://github.com/renyuneyun/Easer</string>
     <string name="myWebsite">http://renyuneyun.is-programmer.com/</string>
     <string name="title_operation">操作</string>

@@ -103,13 +103,14 @@
     <string name="button_read_next_time">Nächstes Mal lesen</string>
     <string name="text_notification_running_indicator_content">%s läuft im Hintergrund</string>
     <string name="prompt_data_illegal">Das Speichern von Daten mit ungültigen Feldern wurde verhindert. Bitte überprüfen Sie Ihre Auswahl / Eingaben erneut.</string>
-    <string name="appInformation">Erleichtern Sie sich Ihr Leben, indem Sie Routineaufgaben auf Ihren Geräten automatisieren.
+    <string name="text_app_description">Erleichtern Sie sich Ihr Leben, indem Sie Routineaufgaben auf Ihren Geräten automatisieren.
 \nVerketten Sie Ereignisse und die dazugehörigen Aktionen.
 \nDiese App wurde von CyanogenMods Profilmechanismus und IFTTT inspiriert. Die ursprüngliche Absicht war es, das Profil zu einem bestimmten Zeitpunkt oder in einer bestimmten WLAN-Abdeckung zu ändern und ist nun für den allgemeinen Gebrauch bestimmt.
 \nEaser befindet sich noch in der Entwicklung. Werfen Sie einen Blick auf TODO.en.md (oder TODO.md, wenn Sie Chinesisch lesen können) auf dem Repo, um zu helfen.</string>
-    <string name="liscence_stringa">Dieses Programm ist freie Software: sie können es unter den Bedingungen der GNU General Public License, wie sie von der Free Software Foundation veröffentlicht wurde, entweder Version 3 der Lizenz oder (nach Ihrer Wahl) jeder späteren Version weitergeben und/oder modifizieren.</string>
-    <string name="liscence_stringb">Dieses Buch wird in der Hoffnung, nützlich zu sein, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTGÄNGIGKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK veröffentlicht. Lesen Sie die GNU General Public License für weitere Details.</string>
-    <string name="liscence_stringc">Sie sollten eine Kopie der GNU General Public License zusammen mit diesem Programm erhalten haben. Wenn nicht, siehe https://www.gnu.org/licenses/</string>
+    <string name="text_license">Dieses Programm ist freie Software: sie können es unter den Bedingungen der GNU General Public License, wie sie von der Free Software Foundation veröffentlicht wurde, entweder Version 3 der Lizenz oder (nach Ihrer Wahl) jeder späteren Version weitergeben und/oder modifizieren.\n
+        Dieses Buch wird in der Hoffnung, nützlich zu sein, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTGÄNGIGKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK veröffentlicht. Lesen Sie die GNU General Public License für weitere Details.\n
+        Sie sollten eine Kopie der GNU General Public License zusammen mit diesem Programm erhalten haben. Wenn nicht, siehe https://www.gnu.org/licenses/
+    </string>
     <string name="pref_category_service">Dienst</string>
     <string name="pref_logging_summary">Protokolliert auf externe Speichergeräte (/sdcard/logger) zur Unterstützung von Fehlerberichten.
 \nÄnderungen werden beim nächsten Start der App wirksam.</string>
