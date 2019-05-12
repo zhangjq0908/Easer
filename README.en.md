@@ -80,10 +80,12 @@ The [Contributor][Contributor.md] document lists this in more detail.
 * [RecyclerTreeView](https://github.com/TellH/RecyclerTreeView): Apache License v2
 * [AppIntro](https://github.com/AppIntro/AppIntro): Apache License v2
 * [GraphView](https://github.com/Team-Blox/GraphView): Apache License v2
+* [locale-helper-android](https://github.com/zeugma-solutions/locale-helper-android): Apache License v2
+* [material-about-library](https://github.com/daniel-stoneuk/material-about-library): Apache License v2
 
 * Drawable files named as `*-fa-*` all come from [fontawesome](https://fontawesome.com/): CC-BY 4.0
 
-Copyright
+Licensing
 ------
 Copyright (c) 2016 - 2019 Rui Zhao (renyuneyun) <renyuneyun@gmail.com>
 

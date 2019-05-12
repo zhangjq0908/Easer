@@ -17,7 +17,7 @@
     <string name="condition_wifi_enabled_wifi_is_enabled">WiFi已啓用？</string>
 
     <string name="condition_bluetooth_enabled">藍牙已啓用</string>
-    <string name="condition_bluetooth_enabled_bluetooth_is_enabled">藍牙已啓用</string>
+    <string name="condition_bluetooth_enabled_bluetooth_is_enabled">藍牙已啓用？</string>
 
     <string name="condition__enabled_yes">是</string>
     <string name="condition__enabled_no">否</string>
@@ -27,7 +27,7 @@
     <string name="event_time">時間</string>
 
     <string name="event_wificonn">WiFi連接</string>
-    <string name="wificonn_select_dialog_title">選擇WiFi網絡</string>
+    <string name="wificonn_select_dialog_title">選擇WiFi AP</string>
     <string name="wificonn_wait_for_result">等待WiFi掃描結果</string>
 
     <string name="event_cell_location">基站位置</string>

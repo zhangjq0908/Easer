@@ -42,7 +42,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.collection.ArrayMap;
 
 import java.util.ArrayList;
@@ -54,9 +53,10 @@ import ryey.easer.R;
 import ryey.easer.commons.local_plugin.dynamics.Dynamics;
 import ryey.easer.commons.local_plugin.dynamics.DynamicsLink;
 import ryey.easer.commons.local_plugin.eventplugin.EventData;
+import ryey.easer.commons.ui.CommonBaseActivity;
 import ryey.easer.core.dynamics.CoreDynamics;
 
-public class ListDynamicsActivity extends AppCompatActivity {
+public class ListDynamicsActivity extends CommonBaseActivity {
 
     public static final String EXTRA_PLUGIN_TYPE = "ryey.easer.core.ui.data.extra.PLUGIN_TYPE";
     public static final String EXTRA_PLUGIN_DATA = "ryey.easer.core.ui.data.extra.PLUGIN_DATA";
@@ -290,7 +290,7 @@ public class ListDynamicsActivity extends AppCompatActivity {
         }
     }
 
-    public static class EditDynamicsActivity extends AppCompatActivity {
+    public static class EditDynamicsActivity extends CommonBaseActivity {
 
         public static final String EXTRA_LINK_ITEM = "ryey.easer.core.ui.data.extras.LINK_ITEM";
 

@@ -28,7 +28,6 @@ import android.widget.Toast;
 
 import androidx.annotation.LayoutRes;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.orhanobut.logger.Logger;
 
@@ -36,12 +35,13 @@ import java.io.IOException;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_plugin.InvalidDataInputException;
+import ryey.easer.commons.ui.CommonBaseActivity;
 import ryey.easer.core.data.Named;
 import ryey.easer.core.data.Verifiable;
 import ryey.easer.core.data.WithCreatedVersion;
 import ryey.easer.core.data.storage.AbstractDataStorage;
 
-public abstract class AbstractEditDataActivity<T extends Named & Verifiable & WithCreatedVersion, T_storage extends AbstractDataStorage<T, ?>> extends AppCompatActivity {
+public abstract class AbstractEditDataActivity<T extends Named & Verifiable & WithCreatedVersion, T_storage extends AbstractDataStorage<T, ?>> extends CommonBaseActivity {
 
     protected static String TAG_DATA_TYPE = "<unspecified data type>";
 

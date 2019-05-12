@@ -155,5 +155,12 @@
     <string name="pref_foreground_summary">可以使得服務更不容易被系統誤殺。將會顯示通知。由於系統要求，不可在Android 8+版本禁用。</string>
     <string name="title_service_start">服務啓動</string>
     <string name="title_pivot">樞律</string>
+    <string name="pref_locale_custom">自定義語文</string>
+    <string name="title_website">網站</string>
+    <string name="url_donate">https://renyuneyun.github.io/Easer/zh/DONATE.html</string>
+    <string name="title_author">作者</string>
+    <string name="title_donate">捐助</string>
+    <string name="title_homepage">個人主頁</string>
+    <string name="title_source">源代碼</string>
 
 </resources>

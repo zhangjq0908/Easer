@@ -24,6 +24,11 @@
     <string name="title_dynamics_link">Dynamics Link</string>
     <string name="title_new_dynamics_link">New Dynamics Link</string>
     <string name="title_trigger_profile">Trigger this Profile</string>
+    <string name="title_source">Source code</string>
+    <string name="title_author">Author</string>
+    <string name="title_donate">Donate</string>
+    <string name="title_website">Website</string>
+    <string name="title_homepage">Homepage</string>
 
     <string name="title_service_start">Service Start</string>
 
@@ -146,7 +151,11 @@
     <string name="pref_show_notification_summary">Show a notification in the notification bar.</string>
     <string name="pref_foreground_title">Run service in foreground</string>
     <string name="pref_foreground_summary">Make it harder to for the system to kill the service. A notification will be shown. Can not be turned off on Android 8+ because of a system requirement.</string>
+
+    <string name="pref_locale_custom">Custom locale</string>
+
     <string name="message_plugin_not_compatible">This device can not run this plugin.</string>
+
     <string name="message_convert_data_start">Converting data.</string>
     <string name="message_convert_data_finish">Data converted.</string>
     <string name="message_convert_data_abort">Data conversion aborted.</string>
@@ -218,5 +227,25 @@
     <string name="category_operation_easer">@string/easer</string>
     <string name="category_operation_misc">Misc</string>
     <string name="category_operation_unknown">Unknown</string>
+
+    <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
+
+    <string-array name="array_languages">
+        <item>&lt;Default&gt;</item>
+        <item>Chinese</item>
+        <item>Danish</item>
+        <item>Dutch</item>
+        <item>English</item>
+        <item>French</item>
+        <item>Galician</item>
+        <item>German</item>
+        <item>Italian</item>
+        <item>Japanese</item>
+        <item>Korean</item>
+        <item>Norwegian Bokmål</item>
+        <item>Portuguese (Brazil)</item>
+        <item>Russian</item>
+        <item>Swedish</item>
+    </string-array>
 
 </resources>

@@ -19,14 +19,15 @@
 
 package ryey.easer.plugins.event.nfc_tag;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-public class NfcListenerActivity extends Activity {
+import ryey.easer.commons.ui.CommonBaseActivity;
+
+public class NfcListenerActivity extends CommonBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

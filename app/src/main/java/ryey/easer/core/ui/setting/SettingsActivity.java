@@ -30,6 +30,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.view.MenuItem;
@@ -37,10 +38,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.orhanobut.logger.Logger;
+import com.zeugmasolutions.localehelper.LocaleHelper;
 
 import java.io.File;
 import java.io.IOException;
@@ -51,6 +52,7 @@ import java.util.Locale;
 import ryey.easer.BuildConfig;
 import ryey.easer.R;
 import ryey.easer.Utils;
+import ryey.easer.commons.ui.CommonBaseActivity;
 import ryey.easer.core.BootUpReceiver;
 import ryey.easer.core.EHService;
 import ryey.easer.core.UpgradeCompleteReceiver;
@@ -58,13 +60,14 @@ import ryey.easer.core.data.Helper;
 import ryey.easer.core.data.InvalidExportedDataException;
 import ryey.easer.core.data.storage.StorageHelper;
 
-public class SettingsActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class SettingsActivity extends CommonBaseActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final String BS_NAME_PLUGIN_ENABLED = "bs_plugin_enabled";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.title_setting);
         getFragmentManager().beginTransaction()
                 .replace(android.R.id.content, new SettingsFragment())
                 .commit();
@@ -254,6 +257,32 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
 
             findPreference(getString(R.string.key_pref_foreground))
                     .setEnabled(Build.VERSION.SDK_INT <= Build.VERSION_CODES.O);
+
+            ((ListPreference) findPreference(getString(R.string.key_pref_locale_lang)))
+                    .setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                        @Override
+                        public boolean onPreferenceChange(Preference preference, Object newValue) {
+                            String locale_str = (String) newValue;
+                            Locale locale;
+                            if ("_".equals(locale_str)) {
+                                locale = Locale.getDefault();
+                            } else if ("zh".equals(locale_str)) {
+                                locale = Locale.CHINESE;
+                            } else {
+                                locale = new Locale(locale_str);
+                            }
+                            Logger.d("Locale changing to %s, based on %s", locale, locale_str);
+                            Context context;
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                context = getContext();
+                            } else {
+                                context = getActivity();
+                            }
+                            LocaleHelper.INSTANCE.setLocale(context, locale);
+                            return true;
+                        }
+                    });
+
         }
 
         @Override
