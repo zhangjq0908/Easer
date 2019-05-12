@@ -175,4 +175,11 @@
 \nEaser er <a href="https://en.wikipedia.org/wiki/Free_software">fri programvare</a>, noe som garanterer at alle kan bruke, studere, endre og dele den.
 \n
 \nDU eier all din data. Alt som lever på din enhet, inkludert loggene.</string>
+    <string name="title_source">Kildekode</string>
+    <string name="title_author">Utvikler</string>
+    <string name="title_donate">Doner</string>
+    <string name="title_website">Nettside</string>
+    <string name="title_homepage">Hjemmeside</string>
+    <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
+    <string name="pref_locale_custom">Egendefinert lokale</string>
 </resources>
