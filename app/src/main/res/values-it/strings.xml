@@ -179,4 +179,10 @@
     <string name="category_operation_easer">\@string/easer</string>
     <string name="category_operation_misc">Altro</string>
     <string name="category_operation_unknown">Sconosciuta</string>
+    <string name="title_source">Codice Sorgente</string>
+    <string name="title_author">Autore</string>
+    <string name="title_donate">Donazioni</string>
+    <string name="title_website">Sito Web</string>
+    <string name="title_homepage">Pagina Iniziale</string>
+    <string name="pref_locale_custom">Lingua Personalizzata</string>
 </resources>
