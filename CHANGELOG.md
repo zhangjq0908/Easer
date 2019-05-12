@@ -1,6 +1,13 @@
 CHANGELOG
 ======
 
+* v0.7.5: Allow to override locale && Better "About" page && i18n
+	* Users can now override locale from settings
+	* Reimplement the "About" page
+	* i18n update:
+		* New language: Portuguese (Brazil)
+		* Updated: Danish, German, Italian, Japanese
+
 * v0.7.4.2: AndroidX && toolkit update && i18n
 	* Migrate the project to AndroidX
 	* Update dependencies and gradle tookits
