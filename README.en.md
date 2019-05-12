@@ -81,6 +81,7 @@ The [Contributor][Contributor.md] document lists this in more detail.
 * [AppIntro](https://github.com/AppIntro/AppIntro): Apache License v2
 * [GraphView](https://github.com/Team-Blox/GraphView): Apache License v2
 * [locale-helper-android](https://github.com/zeugma-solutions/locale-helper-android): Apache License v2
+* [material-about-library](https://github.com/daniel-stoneuk/material-about-library): Apache License v2
 
 * Drawable files named as `*-fa-*` all come from [fontawesome](https://fontawesome.com/): CC-BY 4.0
 

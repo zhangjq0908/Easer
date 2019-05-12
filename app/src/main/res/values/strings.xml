@@ -24,6 +24,11 @@
     <string name="title_dynamics_link">Dynamics Link</string>
     <string name="title_new_dynamics_link">New Dynamics Link</string>
     <string name="title_trigger_profile">Trigger this Profile</string>
+    <string name="title_source">Source code</string>
+    <string name="title_author">Author</string>
+    <string name="title_donate">Donate</string>
+    <string name="title_website">Website</string>
+    <string name="title_homepage">Homepage</string>
 
     <string name="title_service_start">Service Start</string>
 
@@ -222,6 +227,8 @@
     <string name="category_operation_easer">@string/easer</string>
     <string name="category_operation_misc">Misc</string>
     <string name="category_operation_unknown">Unknown</string>
+
+    <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
 
     <string-array name="array_languages">
         <item>&lt;Default&gt;</item>

@@ -45,6 +45,7 @@ import ryey.easer.commons.ui.CommonBaseActivity;
 import ryey.easer.core.ui.data.DataListContainerFragment;
 import ryey.easer.core.ui.data.DataListContainerInterface;
 import ryey.easer.core.ui.setting.SettingsActivity;
+import ryey.easer.core.ui.version_n_info.AboutActivity;
 import ryey.easer.core.ui.version_n_info.Info;
 import ryey.easer.core.ui.version_n_info.Version;
 
