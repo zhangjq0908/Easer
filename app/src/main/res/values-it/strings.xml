@@ -168,9 +168,9 @@
     <string name="help_event">Gli \\\"Eventi\\\" rappresentano un avvenimento di breve durata (istantaneo) sul dispositivo o in remoto.
 \nAd esempio, la ricezione di una notifica o la scansione di un tag NFC.
 \nPer ulteriori informazioni fare riferimento a questo <a href="https://github.com/renyuneyun/Easer/wiki">documento</a>.</string>
-    <string name="help_condition">La \\\"Condizione\\\" rappresenta una condizione di lunga durata (solitamente non permanente) sul dispositivo o in remoto.
-\nAd esempio, al momento del collegamento alla connessione Wi-Fi, o allo spegnimento dello schermo.
-\nFare riferimento al documento <a href="https://github.com/renyuneyun/Easer/wiki">documento</a> per ulteriori informazioni.</string>
+    <string name="help_condition">La \\\"Condizione\\\" rappresenta una condizione di lunga durata (solitamente non permanente) sul dispositivo o in remoto. 
+\nAd esempio, al momento del collegamento alla connessione Wi-Fi, o allo spegnimento dello schermo. 
+\nPer ulteriori informazioni fare riferimento a questo <a href="https://github.com/renyuneyun/Easer/wiki">documento</a>.</string>
     <string name="help_profile">Il \\\"Profilo\\\" è un insieme di Operazioni. Ogni Operazione rappresenta un particolare tipo di azione.
 \nAd esempio, attivare la connessione Bluetooth, o inviare un SMS.
 \nPer ulteriori informazioni fare riferimento a questo <a href="https://github.com/renyuneyun/Easer/wiki">documento</a>.</string>
@@ -185,4 +185,5 @@
     <string name="title_website">Sito Web</string>
     <string name="title_homepage">Pagina Iniziale</string>
     <string name="pref_locale_custom">Lingua Personalizzata</string>
+    <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
 </resources>
