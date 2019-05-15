@@ -191,4 +191,11 @@
 \nHope you like this app :)
 \n
 \n Also have a look in the <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> section of the project wiki.</string>
+    <string name="title_source">ソースコード</string>
+    <string name="title_author">作者</string>
+    <string name="title_donate">寄付</string>
+    <string name="title_website">ウェブサイト</string>
+    <string name="title_homepage">ホームページ</string>
+    <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
+    <string name="pref_locale_custom">カスタムロケール</string>
 </resources>
