@@ -3,6 +3,11 @@
     <string name="condition_event_enter">Betreedt</string>
     <string name="condition_event_leave">Verlaat</string>
     <string name="condition_bluetooth_device">Verbonden bluetooth apparaat</string>
+    <string name="condition_calendar_name">Kalender Naam</string>
+    <string name="condition_calendar_event_title">Gebeurtenis Titel</string>
+    <string name="condition_calendar_any_event">Alle Gebeurtenissen</string>
+    <string name="condition_calendar_event_match_pattern">Vergelijkingspatroon</string>
+    <string name="condition_calendar_all_day_event">Alleen \'hele-dag\' gebeurtenissen</string>
     <string name="condition_headset__headset_state">status Headset</string>
     <string name="condition_headset__plugged_in">Verbonden</string>
     <string name="condition_headset__plugged_out">Niet verbonden</string>
@@ -32,12 +37,12 @@
     <string name="event_connectivity">Verbindings Type</string>
     <string name="event_calendar">Kalender gebeurtenis</string>
     <string name="ecalendar_select_dialog_title">Selecteer Kalender</string>
-    <string name="text_calendar_name">Kalender naam</string>
+    <string name="text_calendar_name">Kalender Naam</string>
     <string name="text_calendar">Kalender</string>
     <string name="indicator_when">Wanneer…</string>
     <string name="choice_start_of">Start van</string>
     <string name="choice_end_of">Einde van</string>
-    <string name="choice_any_event">Alle Geburtenissen</string>
+    <string name="choice_any_event">Alle Gebeurtenissen</string>
     <string name="event_broadcast">Ontvang Broadcast</string>
     <string name="broadcast_action">Actie</string>
     <string name="broadcast_category">Categorie</string>
