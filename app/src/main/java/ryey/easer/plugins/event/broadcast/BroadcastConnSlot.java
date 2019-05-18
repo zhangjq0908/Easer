@@ -34,7 +34,10 @@ public class BroadcastConnSlot extends AbstractSlot<BroadcastEventData> {
     private static Bundle dynamicsForCurrent(@NonNull Intent intent) {
         Bundle bundle = new Bundle();
         bundle.putString(BroadcastEventData.ActionDynamics.id, intent.getAction());
-        bundle.putStringArray(BroadcastEventData.CategoryDynamics.id, intent.getCategories().toArray(new String[0]));
+        if (intent.getCategories() != null)
+            bundle.putString(BroadcastEventData.CategoryDynamics.id, intent.getCategories().toString());
+        else
+            bundle.putStringArray(BroadcastEventData.CategoryDynamics.id, null);
         bundle.putString(BroadcastEventData.TypeDynamics.id, intent.getType());
         bundle.putString(BroadcastEventData.DataDynamics.id, intent.getDataString());
         return bundle;
