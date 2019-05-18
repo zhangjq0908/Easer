@@ -9,9 +9,21 @@
 
     <string name="condition_bluetooth_device">已連接藍牙設備</string>
 
+    <string name="condition_calendar_name">日曆名</string>
+    <string name="condition_calendar_event_title">事件標題</string>
+    <string name="condition_calendar_any_event">任何事件</string>
+    <string name="condition_calendar_event_match_pattern">匹配下面模式</string>
+    <string name="condition_calendar_all_day_event">僅對持續整日的事件進行匹配</string>
+
     <string name="condition_headset__headset_state">耳機狀態</string>
     <string name="condition_headset__plugged_in">已插入</string>
     <string name="condition_headset__plugged_out">已拔出</string>
+
+    <string name="condition_ringer_mode">響鈴模式</string>
+    <string name="condition_ringer_volume">音量</string>
+    <string name="condition_ringer_above">最低</string>
+    <string name="condition_ringer_below">最高</string>
+    <string name="condition_ringer_equals">等於</string>
 
     <string name="condition_wifi_enabled">WiFi已啓用</string>
     <string name="condition_wifi_enabled_wifi_is_enabled">WiFi已啓用？</string>
