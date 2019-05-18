@@ -66,8 +66,6 @@ public class TcpTripEventData extends AbstractEventData {
             return false;
         if (rPort <= 0)
             return false;
-        if (check_reply && !Utils.isBlank(reply_data))
-            return false;
         return true;
     }
 
