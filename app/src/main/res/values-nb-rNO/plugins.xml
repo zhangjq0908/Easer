@@ -169,4 +169,14 @@
     <string name="o_launch_app__text_class_hint">Tomt eller fullt klassenavn</string>
     <string name="o_play_media">Spill av media</string>
     <string name="o_play_media_text_file">Filsti</string>
+    <string name="condition_calendar_name">Kalendernavn</string>
+    <string name="condition_calendar_event_title">Hendelsestittel</string>
+    <string name="condition_calendar_any_event">Enhver hendelse</string>
+    <string name="condition_calendar_event_match_pattern">Jamfør med</string>
+    <string name="condition_calendar_all_day_event">Kun jamfør heldagshendelser</string>
+    <string name="condition_ringer_mode">Ringemodus</string>
+    <string name="condition_ringer_volume">Lydstyrke</string>
+    <string name="condition_ringer_above">Minst</string>
+    <string name="condition_ringer_below">Høyest</string>
+    <string name="condition_ringer_equals">Tilsvarer</string>
 </resources>
