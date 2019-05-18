@@ -6,6 +6,11 @@
     <string name="condition_headset__headset_state">status Headset</string>
     <string name="condition_headset__plugged_in">Verbonden</string>
     <string name="condition_headset__plugged_out">Niet verbonden</string>
+    <string name="condition_ringer_mode">Beltoonmodus</string>
+    <string name="condition_ringer_volume">Volume</string>
+    <string name="condition_ringer_above">Minimaal</string>
+    <string name="condition_ringer_below">Maximaal</string>
+    <string name="condition_ringer_equals">Gelijk aan</string>
     <string name="condition_wifi_enabled">WiFi geactiveerd</string>
     <string name="condition_wifi_enabled_wifi_is_enabled">Is WiFi geactiveerd\?</string>
     <string name="condition_bluetooth_enabled">Bluetooth geactiveerd</string>

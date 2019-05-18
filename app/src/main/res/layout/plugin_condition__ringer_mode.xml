@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/rg_ringer_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/rb_ringer_mode_silent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/ringer_mode_silent" />
+        <RadioButton
+            android:id="@+id/rb_ringer_mode_vibrate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ringer_mode_vibrate" />
+        <RadioButton
+            android:id="@+id/rb_ringer_mode_normal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ringer_mode_normal" />
+    </RadioGroup>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        app:layout_constraintTop_toBottomOf="@id/rg_ringer_mode"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/cl_ringer_mode_normal_options"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginEnd="32dp">
+
+        <TextView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/tv_volume_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/condition_ringer_volume"/>
+
+        <RadioGroup
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_volume_value"
+            android:id="@+id/rg_volume_match_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_volume_match_above"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/condition_ringer_above" />
+            <RadioButton
+                android:id="@+id/rb_volume_match_below"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/condition_ringer_below" />
+            <RadioButton
+                android:id="@+id/rb_volume_match_equals"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/condition_ringer_equals" />
+
+        </RadioGroup>
+
+        <SeekBar
+            app:layout_constraintTop_toBottomOf="@id/rg_volume_match_type"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_volume_match_value"
+            android:id="@+id/sb_volume_match_value"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:max="0"
+            android:progress="0"
+            />
+        <TextView
+            app:layout_constraintTop_toTopOf="@id/sb_volume_match_value"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/tv_volume_match_value"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

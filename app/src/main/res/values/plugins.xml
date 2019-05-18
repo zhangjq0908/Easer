@@ -24,6 +24,12 @@
     <string name="condition_headset__plugged_in">Plugged in</string>
     <string name="condition_headset__plugged_out">Plugged out</string>
 
+    <string name="condition_ringer_mode">Ringer Mode</string>
+    <string name="condition_ringer_volume">Volume</string>
+    <string name="condition_ringer_above">At least</string>
+    <string name="condition_ringer_below">At most</string>
+    <string name="condition_ringer_equals">Equals</string>
+
     <string name="condition_screen" translatable="false">@string/event_screen</string>
 
     <string name="condition_time" translatable="false">@string/event_time</string>
