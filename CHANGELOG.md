@@ -487,7 +487,7 @@ CHANGELOG
 		*  Add many *nullality* annotations to plugins (including data and views)
 		*  Use exception instead of `null` for data retrival (this seems to be more natural in Java)
 		*  Resolve some lint warnings
-			*  Make the `Handler` in `ryey.easer.plugins.operation.brightness.DumbSettingBrightnessActivity` `static`
+			*  Make the `Handler` in `skills.operation.brightness.DumbSettingBrightnessActivity` `static`
 			*  Add some `final`s
 			*  Use `StringBuilder` in some places (instead of raw `String` manipulation)
 			*  Fix a few javaDoc
@@ -582,7 +582,7 @@ CHANGELOG
 	* Remove unneeded codes
 		* remove the need of `EventData.pluginClass()`
 		* remove the need of static method `OerationPlugin.pname()` and `EventPlugin.pname()` in the implementation of event plugins (not in the interface)
-	* Rename `ryey.easer.core.ui.edit.PluginViewFragment` to `ryey.easer.core.ui.edit.PluginViewContainerFragment` to avoid name duplication with `ryey.easer.plugins.PluginViewFragment` (which was introduced in v0.4)
+	* Rename `ryey.easer.core.ui.edit.PluginViewFragment` to `ryey.easer.core.ui.edit.PluginViewContainerFragment` to avoid name duplication with `skills.PluginViewFragment` (which was introduced in v0.4)
 	* More tests
 
 * v0.4: Change `ContentLayout` to `PluginViewFragment` && add permission notification on Outline && other change

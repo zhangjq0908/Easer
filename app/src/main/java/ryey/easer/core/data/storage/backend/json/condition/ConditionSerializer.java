@@ -22,13 +22,13 @@ package ryey.easer.core.data.storage.backend.json.condition;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import ryey.easer.commons.local_plugin.conditionplugin.ConditionData;
+import ryey.easer.commons.local_skill.conditionskill.ConditionData;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.storage.C;
 import ryey.easer.core.data.storage.backend.Serializer;
 import ryey.easer.core.data.storage.backend.UnableToSerializeException;
 import ryey.easer.plugin.PluginDataFormat;
-import ryey.easer.plugins.LocalPluginRegistry;
+import ryey.easer.skills.LocalSkillRegistry;
 
 public class ConditionSerializer implements Serializer<ConditionStructure> {
     @Override
@@ -46,7 +46,7 @@ public class ConditionSerializer implements Serializer<ConditionStructure> {
 
     private JSONObject serialize_condition(ConditionData condition) throws JSONException {
         JSONObject json_situation = new JSONObject();
-        json_situation.put(C.SPEC, LocalPluginRegistry.getInstance().condition().findPlugin(condition).id());
+        json_situation.put(C.SPEC, LocalSkillRegistry.getInstance().condition().findSkill(condition).id());
         json_situation.put(C.DATA, condition.serialize(PluginDataFormat.JSON));
         return json_situation;
     }

@@ -97,8 +97,8 @@
     <string name="pref_cooldown_title">Время простоя</string>
     <string name="pref_cooldown_summary">Минимальный интервал между двумя триггерами одного события</string>
     <string name="cooldown_time_illformed">Число не должно быть меньше 0 и не должно быть слишком большим, чтобы поместиться тип данных Integer</string>
-    <string name="pref_enabled_plugins_title">Включённые плагины</string>
-    <string name="pref_enabled_plugins_summary">Включить или отключить определённые плагины</string>
+    <string name="pref_enabled_skills_title">Включённые плагины</string>
+    <string name="pref_enabled_skills_summary">Включить или отключить определённые плагины</string>
     <string name="pref_use_12_hour_clock_title">Использовать 12-часовой формат</string>
     <string name="pref_export_title">Экспорт</string>
     <string name="pref_export_summary">Экспорт всех событий и профилей на SD-карту.
@@ -112,7 +112,7 @@
     <string name="pref_show_notification_summary">Показать оповещение в строке уведомлений.</string>
     <string name="pref_foreground_title">Запустить сервис на переднем плане</string>
     <string name="pref_foreground_summary">Сделать службу менее легкой для уничтожения системой. Отображает уведомление. Невозможно отключить на Android 8+ из-за системных требований.</string>
-    <string name="message_plugin_not_compatible">Этот плагин не совместим с вашим устройством.</string>
+    <string name="message_skill_not_compatible">Этот плагин не совместим с вашим устройством.</string>
     <string name="message_convert_data_start">Конвертирование данных.</string>
     <string name="message_convert_data_finish">Конвертированные данные.</string>
     <string name="message_convert_data_abort">Конвертация данных отменена.</string>

@@ -7,7 +7,7 @@ This document will describe how to add new functionality to Easer, especially ho
 Add new Event/Operation
 ------
 
-In Easer, all *Event*s and *Operation*s are implemented as plugins, located in the package `ryey.easer.plugins`. More precisely, *Event*s are under `ryey.easer.plugins.event`，*Operation*s are under `ryey.easer.plugins.operation`.
+In Easer, all *Event*s and *Operation*s are implemented as plugins, located in the package `skills`. More precisely, *Event*s are under `skills.event`，*Operation*s are under `skills.operation`.
 
 You can use the provided scripts in the "utils" directory to automatically generate the skeleton of plugin; or creating everything manually.
 
@@ -22,12 +22,12 @@ Detailed explaination of each component are presented below.
 In order to add a new *Event* or *Operation*, there are two main steps:
 
 1. Implement the functions of your new *Event* or *Operation* (by inheriting corresponding interfaces and implementing relevant contents)
-2. Register your new plugin in `ryey.easer.plugins.LocalPluginRegistry`
+2. Register your new plugin in `skills.LocalPluginRegistry`
 
 Specifically:
 
-* For new *Event*s, inherit `ryey.easer.commons.local_plugin.eventplugin.EventPlugin`
-* For new *Operation*s, inherit `ryey.easer.commons.local_plugin.operationplugin.OperationPlugin`
+* For new *Event*s, inherit `local_skill.eventplugin.EventPlugin`
+* For new *Operation*s, inherit `local_skill.operationplugin.OperationPlugin`
 
 To register you new plugin in `PluginRegistry`, you only need to add one line new code in its `init()` method (following existing codes).
 
@@ -35,9 +35,9 @@ I strongly recommend you to follow the way that existing plugins do and put your
 
 Both `EventPlugin` and `OperationPlugin` are commented in some detail.
 
-Either an `EventPlugin` or `OperationPlugin` will need to implement it relevant UI, by implementing a subclass of `ryey.easer.plugins.PluginViewFragment`.
+Either an `EventPlugin` or `OperationPlugin` will need to implement it relevant UI, by implementing a subclass of `skills.PluginViewFragment`.
 
-Some common subclasses are already in `ryey.easer.plugins` or its sub-package. You can use them as you wish.
+Some common subclasses are already in `skills` or its sub-package. You can use them as you wish.
 
 #### Usage of related interfaces / abstract classes
 

@@ -120,8 +120,8 @@
     <string name="pref_cooldown_summary">Intre mínimo entre dous activadores do mesmo acontecemento</string>
     <string name="cooldown_time_illformed">O número non debe ser inferior a 0 e non moi grande para caber nun número entero</string>
 
-    <string name="pref_enabled_plugins_title">Engadidos activados</string>
-    <string name="pref_enabled_plugins_summary">Activar ou desactivar certos engadidos</string>
+    <string name="pref_enabled_skills_title">Engadidos activados</string>
+    <string name="pref_enabled_skills_summary">Activar ou desactivar certos engadidos</string>
 
     <string name="pref_use_12_hour_clock_title">Emprega-lo formato das 12h na hora</string>
 
@@ -140,7 +140,7 @@
     <string name="pref_foreground_title">Executa o servizo en primeiro plano</string>
     <string name="pref_foreground_summary">Fai que o servizo sexa menos doado de ser detido polo sistema. Amosará unha notificación. Non se pode desactivar no Android 8+ debido á esixencia do sistema.</string>
 
-    <string name="message_plugin_not_compatible">Este engadido non é compatíbel con este dispositivo.</string>
+    <string name="message_skill_not_compatible">Este engadido non é compatíbel con este dispositivo.</string>
 
     <string name="message_convert_data_start">Estasen a converte-los datos.</string>
     <string name="message_convert_data_finish">Datos convertidos.</string>

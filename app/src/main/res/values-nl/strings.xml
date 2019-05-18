@@ -96,8 +96,8 @@
     <string name="pref_cooldown_title">Afkoel tijd</string>
     <string name="pref_cooldown_summary">Minimale interval tussen twee triggers van dezelfde gebeurtenis</string>
     <string name="cooldown_time_illformed">Het getal mag niet kleiner dan 0 zijn en niet groter dan een integer</string>
-    <string name="pref_enabled_plugins_title">Geactiveerde plugins</string>
-    <string name="pref_enabled_plugins_summary">Activeer of de-activeer bepaalde plugins</string>
+    <string name="pref_enabled_skills_title">Geactiveerde plugins</string>
+    <string name="pref_enabled_skills_summary">Activeer of de-activeer bepaalde plugins</string>
     <string name="pref_use_12_hour_clock_title">Gebruik 12-uurs tijd</string>
     <string name="pref_export_title">Export</string>
     <string name="pref_export_summary">Exporteer alle gebeurtenissen en profielen naar SD card.
@@ -111,7 +111,7 @@
     <string name="pref_show_notification_summary">Toon een notificatie in de notificatie balk.</string>
     <string name="pref_foreground_title">Voor de service in de achtergrond uit</string>
     <string name="pref_foreground_summary">Maak het moeilijker voor het systeem om de service te stoppen. Dit toont een notificatie. Dit werkt niet op Android 8+ vanwege systeem vereisten.</string>
-    <string name="message_plugin_not_compatible">De plugin is niet compatibel met dit toestel.</string>
+    <string name="message_skill_not_compatible">De plugin is niet compatibel met dit toestel.</string>
     <string name="message_convert_data_start">Converteren van data.</string>
     <string name="message_convert_data_finish">Geconverteerde data.</string>
     <string name="message_convert_data_abort">Converteren van data afgebroken.</string>

@@ -37,9 +37,9 @@ import java.util.ArrayList;
 
 import ryey.easer.R;
 import ryey.easer.commons.C;
-import ryey.easer.commons.local_plugin.InvalidDataInputException;
-import ryey.easer.commons.local_plugin.dynamics.DynamicsLink;
-import ryey.easer.commons.local_plugin.eventplugin.EventData;
+import ryey.easer.commons.local_skill.InvalidDataInputException;
+import ryey.easer.commons.local_skill.dynamics.DynamicsLink;
+import ryey.easer.commons.local_skill.eventskill.EventData;
 import ryey.easer.commons.ui.DataSelectSpinnerWrapper;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.EventStructure;
@@ -50,7 +50,7 @@ import ryey.easer.core.data.storage.EventDataStorage;
 import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.core.data.storage.ScriptDataStorage;
 import ryey.easer.core.ui.data.AbstractEditDataActivity;
-import ryey.easer.core.ui.data.event.EventPluginViewPager;
+import ryey.easer.core.ui.data.event.EventSkillViewPager;
 
 /*
  * TODO: change the layout
@@ -63,7 +63,7 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         TAG_DATA_TYPE = "script";
     }
 
-    EventPluginViewPager mViewPager_edit_event;
+    EventSkillViewPager mViewPager_edit_event;
 
     EditText mEditText_name = null;
     DataSelectSpinnerWrapper sw_parent;

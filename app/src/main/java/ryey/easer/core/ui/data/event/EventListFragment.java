@@ -36,7 +36,7 @@ import ryey.easer.core.EHService;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.storage.EventDataStorage;
 import ryey.easer.core.ui.data.AbstractDataListFragment;
-import ryey.easer.plugins.LocalPluginRegistry;
+import ryey.easer.skills.LocalSkillRegistry;
 
 public class EventListFragment extends AbstractDataListFragment {
 
@@ -84,7 +84,7 @@ public class EventListFragment extends AbstractDataListFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         //noinspection ConstantConditions
-        if (LocalPluginRegistry.getInstance().event().getEnabledPlugins(getContext()).size() == 0) {
+        if (LocalSkillRegistry.getInstance().event().getEnabledSkills(getContext()).size() == 0) {
             FloatingActionButton fab = view.findViewById(R.id.fab);
             fab.hide();
         }

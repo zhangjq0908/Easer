@@ -19,7 +19,7 @@
 
 package ryey.easer.core.data;
 
-import ryey.easer.commons.local_plugin.operationplugin.OperationData;
+import ryey.easer.commons.local_skill.operationskill.OperationData;
 import ryey.easer.remote_plugin.RemoteOperationData;
 
 public class RemoteLocalOperationDataWrapper {

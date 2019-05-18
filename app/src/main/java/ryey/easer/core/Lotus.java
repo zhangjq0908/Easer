@@ -39,6 +39,7 @@ import java.util.concurrent.ExecutorService;
 
 import ryey.easer.core.data.ScriptTree;
 import ryey.easer.core.log.ActivityLogService;
+import ryey.easer.skills.operation.state_control.StateControlOperationSkill;
 
 /**
  * Each Lotus holds one ScriptTree.
@@ -128,7 +129,7 @@ public abstract class Lotus {
     }
 
     /**
-     * Dirty hack for {@link ryey.easer.plugins.operation.state_control.StateControlOperationPlugin}
+     * Dirty hack for {@link StateControlOperationSkill}
      * TODO: cleaner solution
      * @param status new status for the top level slot of this lotus
      */

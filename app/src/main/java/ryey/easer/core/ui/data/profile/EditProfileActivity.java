@@ -35,16 +35,16 @@ import java.util.List;
 
 import ryey.easer.R;
 import ryey.easer.commons.C;
-import ryey.easer.commons.CommonPluginHelper;
-import ryey.easer.commons.local_plugin.InvalidDataInputException;
-import ryey.easer.commons.local_plugin.operationplugin.OperationData;
-import ryey.easer.commons.local_plugin.operationplugin.OperationPlugin;
+import ryey.easer.commons.CommonSkillHelper;
+import ryey.easer.commons.local_skill.InvalidDataInputException;
+import ryey.easer.commons.local_skill.operationskill.OperationData;
+import ryey.easer.commons.local_skill.operationskill.OperationSkill;
 import ryey.easer.core.RemotePluginCommunicationHelper;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.core.ui.data.AbstractEditDataActivity;
-import ryey.easer.plugins.LocalPluginRegistry;
+import ryey.easer.skills.LocalSkillRegistry;
 import ryey.easer.remote_plugin.RemoteOperationData;
 
 public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructure, ProfileDataStorage> implements OperationSelectorFragment.SelectedListener {
@@ -58,8 +58,8 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
     EditText editText_profile_name = null;
 
     OperationSelectorFragment operationSelectorFragment;
-    List<OperationPluginViewContainerFragment<?>> operationViewList = new ArrayList<>();
-    List<RemoteOperationPluginViewContainerFragment> remoteOperationViewList = new ArrayList<>();
+    List<OperationSkillViewContainerFragment<?>> operationViewList = new ArrayList<>();
+    List<RemoteOperationSkillViewContainerFragment> remoteOperationViewList = new ArrayList<>();
 
     @Override
     protected ProfileDataStorage retDataStorage() {
@@ -115,12 +115,12 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
 
         clearPluginView();
 
-        LocalPluginRegistry.Registry<OperationPlugin, OperationData> operationRegistry = LocalPluginRegistry.getInstance().operation();
+        LocalSkillRegistry.Registry<OperationSkill, OperationData> operationRegistry = LocalSkillRegistry.getInstance().operation();
         for (String pluginId : profile.pluginIds()) {
             Collection<RemoteLocalOperationDataWrapper> operationDataCollection = profile.get(pluginId);
-            if (operationRegistry.hasPlugin(pluginId)) {
-                if (CommonPluginHelper.isEnabled(this, CommonPluginHelper.TYPE_OPERATION, pluginId)) {
-                    OperationPlugin plugin = operationRegistry.findPlugin(pluginId);
+            if (operationRegistry.hasSkill(pluginId)) {
+                if (CommonSkillHelper.isEnabled(this, CommonSkillHelper.TYPE_OPERATION, pluginId)) {
+                    OperationSkill plugin = operationRegistry.findSkill(pluginId);
                     for (RemoteLocalOperationDataWrapper dataWrapper : operationDataCollection) {
                         addAndFillLocalPluginView(plugin, dataWrapper.localData);
                     }
@@ -138,7 +138,7 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
         ProfileStructure profile = new ProfileStructure(C.VERSION_CREATED_IN_RUNTIME);
         profile.setName(editText_profile_name.getText().toString());
 
-        for (OperationPluginViewContainerFragment<?> fragment : operationViewList) {
+        for (OperationSkillViewContainerFragment<?> fragment : operationViewList) {
             if (!fragment.isEnabled())
                 continue;
             try {
@@ -146,7 +146,7 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
                 if (!data.isValid())
                     throw new InvalidDataInputException();
                 fragment.setHighlight(false);
-                String id = LocalPluginRegistry.getInstance().operation().findPlugin(data).id();
+                String id = LocalSkillRegistry.getInstance().operation().findSkill(data).id();
                 profile.put(id, data);
             } catch (InvalidDataInputException e) {
                 fragment.setHighlight(true);
@@ -154,7 +154,7 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
             }
         }
 
-        for (RemoteOperationPluginViewContainerFragment fragment : remoteOperationViewList) {
+        for (RemoteOperationSkillViewContainerFragment fragment : remoteOperationViewList) {
             if (!fragment.isEnabled())
                 continue;
             try {
@@ -184,9 +184,9 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
         transaction.commit();
     }
 
-    synchronized <T extends OperationData> void addAndFillLocalPluginView(OperationPlugin<T> plugin, T data) {
+    synchronized <T extends OperationData> void addAndFillLocalPluginView(OperationSkill<T> plugin, T data) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        OperationPluginViewContainerFragment<T> fragment = OperationPluginViewContainerFragment.createInstance(plugin);
+        OperationSkillViewContainerFragment<T> fragment = OperationSkillViewContainerFragment.createInstance(plugin);
         transaction.add(R.id.layout_profiles, fragment, plugin.id());
         operationViewList.add(fragment);
         operationSelectorFragment.addSelectedPlugin(plugin);
@@ -195,19 +195,19 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
     }
 
     synchronized void addAndFillRemotePluginView(@NonNull String id, @Nullable RemoteOperationData data) {
-        RemoteOperationPluginViewContainerFragment fragment = RemoteOperationPluginViewContainerFragment.createInstance(id, data);
+        RemoteOperationSkillViewContainerFragment fragment = RemoteOperationSkillViewContainerFragment.createInstance(id, data);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.layout_profiles, fragment);
         remoteOperationViewList.add(fragment);
         transaction.commit();
     }
 
-//    synchronized PluginViewContainerFragment[] addPluginView(OperationPlugin[] plugins) {
+//    synchronized SkillViewContainerFragment[] addPluginView(OperationSkill[] plugins) {
 //        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//        PluginViewContainerFragment[] fragments = new PluginViewContainerFragment[plugins.length];
+//        SkillViewContainerFragment[] fragments = new SkillViewContainerFragment[plugins.length];
 //        for (int i = 0; i < plugins.length; i++) {
-//            OperationPlugin plugin = plugins[i];
-//            OperationPluginViewContainerFragment fragment = OperationPluginViewContainerFragment.createInstance(plugin);
+//            OperationSkill plugin = plugins[i];
+//            OperationSkillViewContainerFragment fragment = OperationSkillViewContainerFragment.createInstance(plugin);
 //            transaction.add(R.id.layout_profiles, fragment, plugin.id());
 //            fragments[i] = fragment;
 //            operationViewList.add(fragment);

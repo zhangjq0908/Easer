@@ -23,13 +23,13 @@ import android.content.Context;
 
 import java.io.IOException;
 
-import ryey.easer.commons.local_plugin.eventplugin.EventData;
+import ryey.easer.commons.local_skill.eventskill.EventData;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.ScriptStructure;
 import ryey.easer.core.data.storage.backend.ConditionDataStorageBackendInterface;
 import ryey.easer.core.data.storage.backend.json.condition.JsonConditionDataStorageBackend;
-import ryey.easer.plugins.event.condition_event.ConditionEventEventData;
+import ryey.easer.skills.event.condition_event.ConditionEventEventData;
 
 public class ConditionDataStorage extends AbstractDataStorage<ConditionStructure, ConditionDataStorageBackendInterface> {
 

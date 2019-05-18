@@ -23,8 +23,8 @@ import android.widget.EditText;
 
 import ryey.easer.R;
 import ryey.easer.commons.C;
-import ryey.easer.commons.local_plugin.InvalidDataInputException;
-import ryey.easer.commons.local_plugin.conditionplugin.ConditionData;
+import ryey.easer.commons.local_skill.InvalidDataInputException;
+import ryey.easer.commons.local_skill.conditionskill.ConditionData;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.storage.ConditionDataStorage;
 import ryey.easer.core.ui.data.AbstractEditDataActivity;
@@ -32,7 +32,7 @@ import ryey.easer.core.ui.data.AbstractEditDataActivity;
 public class EditConditionActivity extends AbstractEditDataActivity<ConditionStructure, ConditionDataStorage> {
 
     EditText mEditText_name = null;
-    ConditionPluginViewPager mViewPager;
+    ConditionSkillViewPager mViewPager;
     
     @Override
     protected ConditionDataStorage retDataStorage() {

@@ -49,7 +49,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import ryey.easer.commons.local_plugin.operationplugin.OperationData;
+import ryey.easer.commons.local_skill.operationskill.OperationData;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.remote_plugin.RemoteOperationData;
 

@@ -41,18 +41,18 @@ import java.util.Map;
 import java.util.Set;
 
 import ryey.easer.R;
-import ryey.easer.commons.local_plugin.operationplugin.OperationPlugin;
+import ryey.easer.commons.local_skill.operationskill.OperationSkill;
 import ryey.easer.core.RemoteOperationPluginInfo;
 import ryey.easer.core.RemotePluginCommunicationHelper;
 import ryey.easer.plugin.operation.Category;
-import ryey.easer.plugins.LocalPluginRegistry;
+import ryey.easer.skills.LocalSkillRegistry;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 public class OperationSelectorFragment extends DialogFragment {
 
     SelectedListener selectedListener = null;
-    Map<Class<? extends OperationPlugin>, Integer> addedPlugins = new ArrayMap<>();
+    Map<Class<? extends OperationSkill>, Integer> addedPlugins = new ArrayMap<>();
 
     List<OperationPluginItemWrapper> availableLocalPluginList;
 
@@ -76,19 +76,19 @@ public class OperationSelectorFragment extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dialog_select_operation_plugin, container, false);
         StickyListHeadersListView list = view.findViewById(android.R.id.list);
-        List<OperationPlugin> localOperationPluginList = LocalPluginRegistry.getInstance().operation().getEnabledPlugins(getContext());
-        availableLocalPluginList = new ArrayList<>(localOperationPluginList.size());
-        for (OperationPlugin operationPlugin : localOperationPluginList) {
-            if (addedPlugins.containsKey(operationPlugin.getClass())) {
-                if (operationPlugin.maxExistence() > 0) {
-                    if (addedPlugins.get(operationPlugin.getClass()) >= operationPlugin.maxExistence())
+        List<OperationSkill> localOperationSkillList = LocalSkillRegistry.getInstance().operation().getEnabledSkills(getContext());
+        availableLocalPluginList = new ArrayList<>(localOperationSkillList.size());
+        for (OperationSkill operationSkill : localOperationSkillList) {
+            if (addedPlugins.containsKey(operationSkill.getClass())) {
+                if (operationSkill.maxExistence() > 0) {
+                    if (addedPlugins.get(operationSkill.getClass()) >= operationSkill.maxExistence())
                         continue;
                 }
             }
-            availableLocalPluginList.add(new OperationPluginItemWrapper(operationPlugin.id(),
-                    operationPlugin.view().desc(getResources()),
-                    operationPlugin.category(),
-                    operationPlugin)
+            availableLocalPluginList.add(new OperationPluginItemWrapper(operationSkill.id(),
+                    operationSkill.view().desc(getResources()),
+                    operationSkill.category(),
+                    operationSkill)
             );
         }
         PluginListAdapter adapter = new PluginListAdapter(getContext(), availableLocalPluginList);
@@ -98,7 +98,7 @@ public class OperationSelectorFragment extends DialogFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 OperationPluginItemWrapper operationPluginItemWrapper = (OperationPluginItemWrapper) parent.getItemAtPosition(position);
                 if (!operationPluginItemWrapper.isRemote()) {
-                    OperationPlugin plugin = operationPluginItemWrapper.plugin;
+                    OperationSkill plugin = operationPluginItemWrapper.plugin;
                     if (plugin.checkPermissions(getContext())) {
                         selectedListener.onSelected(operationPluginItemWrapper);
                         dismiss();
@@ -140,8 +140,8 @@ public class OperationSelectorFragment extends DialogFragment {
         helper.end();
     }
 
-    synchronized void addSelectedPlugin(@NonNull OperationPlugin plugin) {
-        Class<? extends OperationPlugin> klass = plugin.getClass();
+    synchronized void addSelectedPlugin(@NonNull OperationSkill plugin) {
+        Class<? extends OperationSkill> klass = plugin.getClass();
         if (addedPlugins.containsKey(klass)) {
             addedPlugins.put(klass, addedPlugins.get(klass) + 1);
         } else {
@@ -161,8 +161,8 @@ public class OperationSelectorFragment extends DialogFragment {
         @NonNull final String id;
         @NonNull final String name;
         @NonNull final Category category;
-        @Nullable final OperationPlugin plugin;
-        OperationPluginItemWrapper(@NonNull String id, @NonNull String name, @NonNull Category category, @Nullable OperationPlugin plugin) {
+        @Nullable final OperationSkill plugin;
+        OperationPluginItemWrapper(@NonNull String id, @NonNull String name, @NonNull Category category, @Nullable OperationSkill plugin) {
             this.id = id;
             this.name = name;
             this.category = category;

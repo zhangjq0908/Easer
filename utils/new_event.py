@@ -31,7 +31,7 @@ template_maps = {
 
 def new_event(cname, identifier):
     pdef = {}
-    pdef['package'] = "ryey.easer.plugins.event.{}".format(identifier)
+    pdef['package'] = "skills.event.{}".format(identifier)
     pdef['plugin'] = "{}EventPlugin".format(cname)
     pdef['id'] = identifier
     pdef['data'] = "{}EventData".format(cname)

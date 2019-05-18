@@ -21,8 +21,8 @@ package ryey.easer.core.data;
 
 import androidx.annotation.Nullable;
 
-import ryey.easer.commons.local_plugin.dynamics.DynamicsLink;
-import ryey.easer.commons.local_plugin.eventplugin.EventData;
+import ryey.easer.commons.local_skill.dynamics.DynamicsLink;
+import ryey.easer.commons.local_skill.eventskill.EventData;
 
 /*
  * An Event consists of the following data:

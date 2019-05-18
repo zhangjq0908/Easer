@@ -232,7 +232,7 @@ public class SettingsActivity extends CommonBaseActivity implements SharedPrefer
                     .setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    PluginSettingsPreferenceFragment fragment = new PluginSettingsPreferenceFragment();
+                    SkillSettingsPreferenceFragment fragment = new SkillSettingsPreferenceFragment();
                     getFragmentManager().beginTransaction()
                             .replace(android.R.id.content, fragment)
                             .addToBackStack(BS_NAME_PLUGIN_ENABLED)

@@ -34,7 +34,7 @@ import com.orhanobut.logger.Logger;
 import java.io.IOException;
 
 import ryey.easer.R;
-import ryey.easer.commons.local_plugin.InvalidDataInputException;
+import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.ui.CommonBaseActivity;
 import ryey.easer.core.data.Named;
 import ryey.easer.core.data.Verifiable;

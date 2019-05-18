@@ -101,8 +101,8 @@
     <string name="pref_cooldown_title">クールダウン時間</string>
     <string name="pref_cooldown_summary">同じイベントの 2 つのトリガー間の最小間隔</string>
     <string name="cooldown_time_illformed">数値は、0 以上で整数値の範囲に収まるようにする必要があります</string>
-    <string name="pref_enabled_plugins_title">有効なプラグイン</string>
-    <string name="pref_enabled_plugins_summary">特定のプラグインを有効または無効にします</string>
+    <string name="pref_enabled_skills_title">有効なプラグイン</string>
+    <string name="pref_enabled_skills_summary">特定のプラグインを有効または無効にします</string>
     <string name="pref_use_12_hour_clock_title">12 時間表記を使用する</string>
     <string name="pref_export_title">エクスポート</string>
     <string name="pref_export_summary">すべてのイベントとプロファイルを SD カードにエクスポートします。
@@ -112,7 +112,7 @@
 \n同じ名前を持つ既存のイベントとプロファイルは置き換えられます。</string>
     <string name="pref_convert_data_title">データの変換</string>
     <string name="pref_convert_data_summary">すべてのデータを推奨される形式に変換します</string>
-    <string name="message_plugin_not_compatible">このプラグインは、このデバイスと互換性がありません。</string>
+    <string name="message_skill_not_compatible">このプラグインは、このデバイスと互換性がありません。</string>
     <string name="message_convert_data_start">データを変換しています。</string>
     <string name="message_convert_data_finish">データを変換しました。</string>
     <string name="message_convert_data_abort">データの変換を中断しました。</string>

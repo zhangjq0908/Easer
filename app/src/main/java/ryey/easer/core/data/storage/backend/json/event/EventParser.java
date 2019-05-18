@@ -25,15 +25,15 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 
-import ryey.easer.commons.local_plugin.IllegalStorageDataException;
-import ryey.easer.commons.local_plugin.eventplugin.EventData;
-import ryey.easer.commons.local_plugin.eventplugin.EventPlugin;
+import ryey.easer.commons.local_skill.IllegalStorageDataException;
+import ryey.easer.commons.local_skill.eventskill.EventData;
+import ryey.easer.commons.local_skill.eventskill.EventSkill;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.storage.C;
 import ryey.easer.core.data.storage.backend.IOUtils;
 import ryey.easer.core.data.storage.backend.Parser;
 import ryey.easer.plugin.PluginDataFormat;
-import ryey.easer.plugins.LocalPluginRegistry;
+import ryey.easer.skills.LocalSkillRegistry;
 
 public class EventParser implements Parser<EventStructure> {
 
@@ -45,7 +45,7 @@ public class EventParser implements Parser<EventStructure> {
             final String name = jsonObject.getString(C.NAME);
             JSONObject jsonObject_situation = jsonObject.getJSONObject(C.SIT);
             String spec = jsonObject_situation.getString(C.SPEC);
-            EventPlugin<?> plugin = LocalPluginRegistry.getInstance().event().findPlugin(spec);
+            EventSkill<?> plugin = LocalSkillRegistry.getInstance().event().findSkill(spec);
             EventData eventData = plugin.dataFactory()
                     .parse(jsonObject_situation.getString(C.DATA), PluginDataFormat.JSON, version);
             return new EventStructure(version, name, eventData);

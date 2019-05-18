@@ -1,0 +1,83 @@
+/*
+ * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
+ *
+ * This file is part of Easer.
+ *
+ * Easer is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Easer is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+package ryey.easer.skills.event.dayofweek;
+
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+
+import java.util.Calendar;
+import java.util.Set;
+
+import ryey.easer.skills.event.SelfNotifiableSlot;
+
+class DayOfWeekSlot extends SelfNotifiableSlot<DayOfWeekEventData> {
+    private static AlarmManager mAlarmManager;
+
+    private Set<Integer> days;
+
+    public DayOfWeekSlot(Context context, DayOfWeekEventData data) {
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTENT_DEFAULT);
+    }
+
+    DayOfWeekSlot(Context context, DayOfWeekEventData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
+        setDate(data.days);
+
+        if (mAlarmManager == null)
+            mAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+    }
+
+    private void setDate(Set<Integer> days) {
+        if (days == null)
+            return;
+        this.days = days;
+    }
+
+    @Override
+    public void listen() {
+        super.listen();
+        scheduleAlarms(notifySelfIntent_positive);
+    }
+
+    private void scheduleAlarms(PendingIntent pendingIntent) {
+        for (int dayOfWeek : days) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY, 0);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+            calendar.set(Calendar.DAY_OF_WEEK, dayOfWeek + 1);
+            if (calendar.getTimeInMillis() < System.currentTimeMillis()) {
+                if (!(calendar.get(Calendar.DAY_OF_YEAR) == Calendar.getInstance().get(Calendar.DAY_OF_YEAR)))
+                    calendar.add(Calendar.DAY_OF_YEAR, 7);
+            }
+            mAlarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY * 7, pendingIntent);
+        }
+    }
+
+    @Override
+    public void cancel() {
+        super.cancel();
+        mAlarmManager.cancel(notifySelfIntent_positive);
+        mAlarmManager.cancel(notifySelfIntent_negative);
+    }
+
+}

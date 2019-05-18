@@ -28,14 +28,14 @@ import java.io.InputStream;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
-import ryey.easer.commons.local_plugin.IllegalStorageDataException;
-import ryey.easer.commons.local_plugin.operationplugin.OperationData;
-import ryey.easer.commons.local_plugin.operationplugin.OperationPlugin;
+import ryey.easer.commons.local_skill.IllegalStorageDataException;
+import ryey.easer.commons.local_skill.operationskill.OperationData;
+import ryey.easer.commons.local_skill.operationskill.OperationSkill;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.storage.backend.IOUtils;
 import ryey.easer.core.data.storage.backend.Parser;
 import ryey.easer.plugin.PluginDataFormat;
-import ryey.easer.plugins.LocalPluginRegistry;
+import ryey.easer.skills.LocalSkillRegistry;
 import ryey.easer.remote_plugin.RemoteOperationData;
 
 class ProfileParser implements Parser<ProfileStructure> {
@@ -67,7 +67,7 @@ class ProfileParser implements Parser<ProfileStructure> {
                 throw new IllegalStorageDataException("Illegal Item: No Spec");
             }
             String content = jsonObject.optString(C.DATA);
-            OperationPlugin plugin = LocalPluginRegistry.getInstance().operation().findPlugin(spec);
+            OperationSkill plugin = LocalSkillRegistry.getInstance().operation().findSkill(spec);
             if (plugin != null) {
                 OperationData data = plugin.dataFactory().parse(content, PluginDataFormat.JSON, version);
                 profile.put(plugin.id(), data);

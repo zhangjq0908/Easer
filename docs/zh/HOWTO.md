@@ -7,14 +7,14 @@
 增加Event/Operation
 ------
 
-在Easer中，所有的Event和Operation都被視爲插件(plugin)，均放置於`ryey.easer.plugins`包下——更具體地，Event在`ryey.easer.plugins.event`包下，Operation在`ryey.easer.plugins.operation`包下。
+在Easer中，所有的Event和Operation都被視爲插件(plugin)，均放置於`skills`包下——更具體地，Event在`skills.event`包下，Operation在`skills.operation`包下。
 
 要新建Event或Operation，可以使用提供的腳本，之後自行填充；也可以純手動。
 
 ### 使用腳本自動生成模板
 
 在utils目錄下有兩個腳本（`new_event.py`和`new_operation.py`），用於創建相應插件的“模板”——通用部分會被創建，一般而言只需要填充其中TODO部分即可。
-做完之後，在`ryey.easer.plugins.LocalPluginRegistry`中註冊該新插件即完成。
+做完之後，在`skills.LocalPluginRegistry`中註冊該新插件即完成。
 
 組件的各個部分詳解見下。
 
@@ -23,12 +23,12 @@
 要增加新的Event或Operation，本質上來說要做兩件事：
 
 1. 實現新Event或Operation的功能（通過擴展/繼承相應接口，並實現相應內容）
-2. 在`ryey.easer.plugins.LocalPluginRegistry`中註冊該新插件
+2. 在`skills.LocalPluginRegistry`中註冊該新插件
 
 其中：
 
-* 添加新Event需要繼承`ryey.easer.commons.local_plugin.eventplugin.EventPlugin`
-* 添加新Operation需要繼承`ryey.easer.commons.local_plugin.operationplugin.OperationPlugin`
+* 添加新Event需要繼承`local_skill.eventplugin.EventPlugin`
+* 添加新Operation需要繼承`local_skill.operationplugin.OperationPlugin`
 
 而在`PluginRegistry`中註冊只需要在其`init()`方法中仿照已有條目，爲新插件寫一行代碼。
 
@@ -36,9 +36,9 @@
 
 `EventPlugin`接口和`OperationPlugin`接口均有詳細註釋。
 
-無論是`EventPlugin`還是`OperationPlugin`均需實現UI部分，均是通過實現一個`ryey.easer.plugins.PluginViewFragment`的子類來完成。
+無論是`EventPlugin`還是`OperationPlugin`均需實現UI部分，均是通過實現一個`skills.PluginViewFragment`的子類來完成。
 
-一些常用的子類已在`ryey.easer.plugins`或子包中寫好，方便使用。
+一些常用的子類已在`skills`或子包中寫好，方便使用。
 
 #### 接口/抽象類作用
 

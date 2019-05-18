@@ -102,8 +102,8 @@
     <string name="pref_cooldown_title">Tempo di Raffreddamento</string>
     <string name="pref_cooldown_summary">Intervallo minimo tra due trigger dello stesso evento</string>
     <string name="cooldown_time_illformed">Il numero non deve essere inferiore a 0 e non troppo grande per essere contenuto in un intero</string>
-    <string name="pref_enabled_plugins_title">Moduli Attivi</string>
-    <string name="pref_enabled_plugins_summary">Attiva o disattiva i Moduli</string>
+    <string name="pref_enabled_skills_title">Moduli Attivi</string>
+    <string name="pref_enabled_skills_summary">Attiva o disattiva i Moduli</string>
     <string name="pref_use_12_hour_clock_title">Usa Orologio a 12 ore</string>
     <string name="pref_export_title">Esporta</string>
     <string name="pref_export_summary">Esporta Eventi e Profili su scheda SD.
@@ -117,7 +117,7 @@
     <string name="pref_show_notification_summary">Mostra una notifica nella Barra di Notifica.</string>
     <string name="pref_foreground_title">Eseguire Servizio in Primo Piano</string>
     <string name="pref_foreground_summary">Rende più difficile per il sistema terminare il servizio. Verrà visualizzata una notifica. Non può essere disattivato su Android 8+ a causa di un requisito di sistema.</string>
-    <string name="message_plugin_not_compatible">Questo dispositivo non può eseguire questo Modulo.</string>
+    <string name="message_skill_not_compatible">Questo dispositivo non può eseguire questo Modulo.</string>
     <string name="message_convert_data_start">Conversione dati.</string>
     <string name="message_convert_data_finish">Dati convertiti.</string>
     <string name="message_convert_data_abort">Conversione dati interrotta.</string>

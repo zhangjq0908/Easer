@@ -38,18 +38,18 @@ import com.orhanobut.logger.Logger;
 import java.util.Collection;
 import java.util.Set;
 
-import ryey.easer.commons.local_plugin.dynamics.DynamicsLink;
-import ryey.easer.commons.local_plugin.dynamics.SolidDynamicsAssignment;
-import ryey.easer.commons.local_plugin.operationplugin.Loader;
-import ryey.easer.commons.local_plugin.operationplugin.OperationData;
-import ryey.easer.commons.local_plugin.operationplugin.OperationPlugin;
+import ryey.easer.commons.local_skill.dynamics.DynamicsLink;
+import ryey.easer.commons.local_skill.dynamics.SolidDynamicsAssignment;
+import ryey.easer.commons.local_skill.operationskill.Loader;
+import ryey.easer.commons.local_skill.operationskill.OperationData;
+import ryey.easer.commons.local_skill.operationskill.OperationSkill;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.core.dynamics.CoreDynamics;
 import ryey.easer.core.dynamics.CoreDynamicsInterface;
 import ryey.easer.core.log.ActivityLogService;
-import ryey.easer.plugins.LocalPluginRegistry;
+import ryey.easer.skills.LocalSkillRegistry;
 import ryey.easer.remote_plugin.RemoteOperationData;
 
 import static ryey.easer.core.Lotus.EXTRA_DYNAMICS_LINK;
@@ -143,11 +143,11 @@ public class ProfileLoaderService extends Service {
         Set<String> unknownPlugins = new ArraySet<>();
         Set<String> failedPlugins = new ArraySet<>();
         if (profile != null) {
-            LocalPluginRegistry.Registry<OperationPlugin, OperationData> operationRegistry = LocalPluginRegistry.getInstance().operation();
+            LocalSkillRegistry.Registry<OperationSkill, OperationData> operationRegistry = LocalSkillRegistry.getInstance().operation();
             for (String pluginId : profile.pluginIds()) {
                 Collection<RemoteLocalOperationDataWrapper> dataCollection = profile.get(pluginId);
-                if (operationRegistry.hasPlugin(pluginId)) {
-                    OperationPlugin plugin = operationRegistry.findPlugin(pluginId);
+                if (operationRegistry.hasSkill(pluginId)) {
+                    OperationSkill plugin = operationRegistry.findSkill(pluginId);
                     if (plugin == null) {
                         unknownPlugins.add(pluginId);
                     } else {
@@ -177,7 +177,7 @@ public class ProfileLoaderService extends Service {
                 Logger.i("Profile <%s> loaded", name);
             } else {
                 if (unknownPlugins.size() > 0) {
-                    extraInfoBuilder.append("Unknown plugins:");
+                    extraInfoBuilder.append("Unknown skills:");
                     for (String id : unknownPlugins) {
                         extraInfoBuilder.append(" ").append(id);
                     }

@@ -27,7 +27,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
-import ryey.easer.commons.local_plugin.IllegalStorageDataException;
+import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.core.data.Named;
 import ryey.easer.core.data.Verifiable;
 import ryey.easer.core.data.WithCreatedVersion;

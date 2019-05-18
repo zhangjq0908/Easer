@@ -17,4 +17,4 @@
 #}
 
 # ProGuard warns, but don't know why
--keep class ryey.easer.commons.local_plugin.eventplugin.EventData {*;}
+-keep class local_skill.eventplugin.EventData {*;}

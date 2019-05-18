@@ -36,7 +36,7 @@ import ryey.easer.core.EHService;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.storage.ConditionDataStorage;
 import ryey.easer.core.ui.data.AbstractDataListFragment;
-import ryey.easer.plugins.LocalPluginRegistry;
+import ryey.easer.skills.LocalSkillRegistry;
 
 public class ConditionListFragment extends AbstractDataListFragment {
 
@@ -84,7 +84,7 @@ public class ConditionListFragment extends AbstractDataListFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         //noinspection ConstantConditions
-        if (LocalPluginRegistry.getInstance().condition().getEnabledPlugins(getContext()).size() == 0) {
+        if (LocalSkillRegistry.getInstance().condition().getEnabledSkills(getContext()).size() == 0) {
             FloatingActionButton fab = view.findViewById(R.id.fab);
             fab.hide();
         }

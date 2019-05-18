@@ -125,12 +125,12 @@
     <string name="pref_logging_summary">Logs to external storage devices (/sdcard/logger) to aid bug reports.
 \nChanges take effect at next app start.</string>
     <string name="pref_use_root_title">Use root features</string>
-    <string name="pref_use_root_summary">Use root permission for specific functions (plugins), which may help resolve compatibility issue on some devices. It won\'t be used elsewhere.</string>
+    <string name="pref_use_root_summary">Use root permission for specific functions (skills), which may help resolve compatibility issue on some devices. It won\'t be used elsewhere.</string>
     <string name="pref_cooldown_title">Cool down time</string>
     <string name="pref_cooldown_summary">Minimal interval between two triggers of the same event</string>
     <string name="cooldown_time_illformed">The number must not be lower than 0 and not too large to fit in a integer</string>
-    <string name="pref_enabled_plugins_title">Active plugins</string>
-    <string name="pref_enabled_plugins_summary">Turn on or off certain plugins</string>
+    <string name="pref_enabled_skills_title">Active skills</string>
+    <string name="pref_enabled_skills_summary">Turn on or off certain skills</string>
     <string name="pref_use_12_hour_clock_title">Use 12-hour clock</string>
 
     <string name="pref_export_title">Export</string>
@@ -149,7 +149,7 @@
 
     <string name="pref_locale_custom">Custom locale</string>
 
-    <string name="message_plugin_not_compatible">This device can not run this plugin.</string>
+    <string name="message_skill_not_compatible">This device can not run this skill.</string>
 
     <string name="message_convert_data_start">Converting data.</string>
     <string name="message_convert_data_finish">Data converted.</string>

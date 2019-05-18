@@ -40,12 +40,12 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-import ryey.easer.commons.local_plugin.conditionplugin.ConditionData;
-import ryey.easer.commons.local_plugin.conditionplugin.Tracker;
+import ryey.easer.commons.local_skill.conditionskill.ConditionData;
+import ryey.easer.commons.local_skill.conditionskill.Tracker;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.storage.ConditionDataStorage;
-import ryey.easer.plugins.LocalPluginRegistry;
-import ryey.easer.plugins.event.condition_event.ConditionEventEventData;
+import ryey.easer.skills.LocalSkillRegistry;
+import ryey.easer.skills.event.condition_event.ConditionEventEventData;
 
 public class ConditionHolderService extends Service {
 
@@ -137,7 +137,7 @@ public class ConditionHolderService extends Service {
 
             ConditionStructure conditionStructure = conditionDataStorage.get(name);
             ConditionData conditionData = conditionStructure.getData();
-            Tracker tracker = LocalPluginRegistry.getInstance().condition().findPlugin(conditionData)
+            Tracker tracker = LocalSkillRegistry.getInstance().condition().findSkill(conditionData)
                     .tracker(this, conditionData, positive, negative);
             tracker.start();
             trackerMap.put(name, tracker);

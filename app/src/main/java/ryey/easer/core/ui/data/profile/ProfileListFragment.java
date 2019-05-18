@@ -42,9 +42,9 @@ import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.core.ui.data.AbstractDataListFragment;
-import ryey.easer.plugins.LocalPluginRegistry;
-import ryey.easer.plugins.operation.state_control.StateControlOperationData;
-import ryey.easer.plugins.operation.state_control.StateControlOperationPlugin;
+import ryey.easer.skills.LocalSkillRegistry;
+import ryey.easer.skills.operation.state_control.StateControlOperationData;
+import ryey.easer.skills.operation.state_control.StateControlOperationSkill;
 
 public class ProfileListFragment extends AbstractDataListFragment {
 
@@ -104,7 +104,7 @@ public class ProfileListFragment extends AbstractDataListFragment {
             ProfileStructure profile = dataStorage.get(name);
             boolean valid = profile.isValid();
             if (valid) {
-                Collection<RemoteLocalOperationDataWrapper> stateControlOperationData = profile.get(new StateControlOperationPlugin().id());
+                Collection<RemoteLocalOperationDataWrapper> stateControlOperationData = profile.get(new StateControlOperationSkill().id());
                 if (stateControlOperationData.size() > 0) {
                     for (RemoteLocalOperationDataWrapper dataWrapper : stateControlOperationData) {
                         StateControlOperationData operationData = (StateControlOperationData) dataWrapper.localData;
@@ -132,7 +132,7 @@ public class ProfileListFragment extends AbstractDataListFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         //TODO: Check remote plugins also
         //noinspection ConstantConditions
-        if (LocalPluginRegistry.getInstance().operation().getEnabledPlugins(getContext()).size() == 0) {
+        if (LocalSkillRegistry.getInstance().operation().getEnabledSkills(getContext()).size() == 0) {
             FloatingActionButton fab = view.findViewById(R.id.fab);
             fab.hide();
         }

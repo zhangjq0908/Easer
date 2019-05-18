@@ -22,7 +22,7 @@ package ryey.easer.core.data;
 import androidx.annotation.NonNull;
 
 import ryey.easer.commons.C;
-import ryey.easer.commons.local_plugin.conditionplugin.ConditionData;
+import ryey.easer.commons.local_skill.conditionskill.ConditionData;
 
 public final class ConditionStructure implements Named, Verifiable, WithCreatedVersion {
 

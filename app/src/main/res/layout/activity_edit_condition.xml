@@ -31,7 +31,7 @@
         app:layout_constraintStart_toEndOf="@+id/textView38"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ryey.easer.core.ui.data.condition.ConditionPluginViewPager
+    <ryey.easer.core.ui.data.condition.ConditionSkillViewPager
         android:id="@+id/pager"
         style="@style/AppTheme.PluginViewPager"
         android:layout_width="wrap_content"
@@ -48,6 +48,6 @@
             android:paddingBottom="4dp"
             android:paddingTop="4dp"
             android:textColor="#fff" />
-    </ryey.easer.core.ui.data.condition.ConditionPluginViewPager>
+    </ryey.easer.core.ui.data.condition.ConditionSkillViewPager>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

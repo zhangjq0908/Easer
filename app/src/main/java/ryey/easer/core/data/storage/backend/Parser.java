@@ -22,7 +22,7 @@ package ryey.easer.core.data.storage.backend;
 import java.io.IOException;
 import java.io.InputStream;
 
-import ryey.easer.commons.local_plugin.IllegalStorageDataException;
+import ryey.easer.commons.local_skill.IllegalStorageDataException;
 
 public interface Parser<T> {
     T parse(InputStream in) throws IOException, IllegalStorageDataException;

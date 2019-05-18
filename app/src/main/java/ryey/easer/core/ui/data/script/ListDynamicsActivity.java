@@ -50,9 +50,9 @@ import java.util.List;
 import java.util.Map;
 
 import ryey.easer.R;
-import ryey.easer.commons.local_plugin.dynamics.Dynamics;
-import ryey.easer.commons.local_plugin.dynamics.DynamicsLink;
-import ryey.easer.commons.local_plugin.eventplugin.EventData;
+import ryey.easer.commons.local_skill.dynamics.Dynamics;
+import ryey.easer.commons.local_skill.dynamics.DynamicsLink;
+import ryey.easer.commons.local_skill.eventskill.EventData;
 import ryey.easer.commons.ui.CommonBaseActivity;
 import ryey.easer.core.dynamics.CoreDynamics;
 

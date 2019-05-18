@@ -34,7 +34,7 @@ import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import ryey.easer.commons.local_plugin.dynamics.DynamicsLink;
+import ryey.easer.commons.local_skill.dynamics.DynamicsLink;
 
 public final class AsyncHelper {
 

@@ -26,15 +26,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import ryey.easer.commons.local_plugin.operationplugin.OperationData;
+import ryey.easer.commons.local_skill.operationskill.OperationData;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.ScriptStructure;
 import ryey.easer.core.data.ScriptTree;
 import ryey.easer.core.data.storage.backend.ScriptDataStorageBackendInterface;
 import ryey.easer.core.data.storage.backend.json.script.JsonScriptDataStorageBackend;
-import ryey.easer.plugins.operation.state_control.StateControlOperationData;
-import ryey.easer.plugins.operation.state_control.StateControlOperationPlugin;
+import ryey.easer.skills.operation.state_control.StateControlOperationData;
+import ryey.easer.skills.operation.state_control.StateControlOperationSkill;
 
 public class ScriptDataStorage extends AbstractDataStorage<ScriptStructure, ScriptDataStorageBackendInterface> {
 
@@ -51,7 +51,7 @@ public class ScriptDataStorage extends AbstractDataStorage<ScriptStructure, Scri
                 return false;
         }
         ProfileDataStorage profileDataStorage = new ProfileDataStorage(context);
-        String s_id = (new StateControlOperationPlugin()).id();
+        String s_id = (new StateControlOperationSkill()).id();
         for (String pname : profileDataStorage.list()) {
             ProfileStructure profile = profileDataStorage.get(pname);
             Collection<RemoteLocalOperationDataWrapper> dataCollection = profile.get(s_id);
@@ -96,7 +96,7 @@ public class ScriptDataStorage extends AbstractDataStorage<ScriptStructure, Scri
             }
         }
         ProfileDataStorage profileDataStorage = new ProfileDataStorage(context);
-        String s_id = (new StateControlOperationPlugin()).id();
+        String s_id = (new StateControlOperationSkill()).id();
         for (String pname : profileDataStorage.list()) {
             ProfileStructure profile = profileDataStorage.get(pname);
             Collection<RemoteLocalOperationDataWrapper> dataCollection = profile.get(s_id);

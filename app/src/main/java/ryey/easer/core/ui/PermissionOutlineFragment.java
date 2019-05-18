@@ -35,8 +35,8 @@ import java.util.List;
 
 import ryey.easer.R;
 import ryey.easer.SettingsHelper;
-import ryey.easer.commons.local_plugin.PluginDef;
-import ryey.easer.plugins.LocalPluginRegistry;
+import ryey.easer.commons.local_skill.Skill;
+import ryey.easer.skills.LocalSkillRegistry;
 
 public class PermissionOutlineFragment extends Fragment {
 
@@ -85,8 +85,8 @@ public class PermissionOutlineFragment extends Fragment {
     boolean hasAllRequiredPermissions() {
         final boolean logging = SettingsHelper.logging(getContext());
         boolean satisfied = true;
-        for (Object obj_plugin : LocalPluginRegistry.getInstance().all().getEnabledPlugins(getContext())) {
-            PluginDef plugin = (PluginDef) obj_plugin;
+        for (Object obj_plugin : LocalSkillRegistry.getInstance().all().getEnabledSkills(getContext())) {
+            Skill plugin = (Skill) obj_plugin;
             if (!plugin.checkPermissions(getContext())) {
                 Logger.d("Permission for plugin <%s> not satisfied", plugin.id());
                 if (!logging)
@@ -98,9 +98,9 @@ public class PermissionOutlineFragment extends Fragment {
     }
 
     void requestAllPermissions() {
-        List plugins = LocalPluginRegistry.getInstance().all().getEnabledPlugins(getContext());
+        List plugins = LocalSkillRegistry.getInstance().all().getEnabledSkills(getContext());
         for (int i = 0; i < plugins.size(); i++) {
-            PluginDef plugin = (PluginDef) plugins.get(i);
+            Skill plugin = (Skill) plugins.get(i);
             if (!plugin.checkPermissions(getContext()))
                 plugin.requestPermissions(getActivity(), i);
         }

@@ -29,9 +29,9 @@ import java.io.InputStream;
 import java.util.Iterator;
 
 import ryey.easer.BuildConfig;
-import ryey.easer.commons.local_plugin.IllegalStorageDataException;
-import ryey.easer.commons.local_plugin.dynamics.DynamicsLink;
-import ryey.easer.commons.local_plugin.eventplugin.EventData;
+import ryey.easer.commons.local_skill.IllegalStorageDataException;
+import ryey.easer.commons.local_skill.dynamics.DynamicsLink;
+import ryey.easer.commons.local_skill.eventskill.EventData;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.ScriptStructure;
@@ -41,7 +41,7 @@ import ryey.easer.core.data.storage.EventDataStorage;
 import ryey.easer.core.data.storage.backend.IOUtils;
 import ryey.easer.core.data.storage.backend.Parser;
 import ryey.easer.plugin.PluginDataFormat;
-import ryey.easer.plugins.LocalPluginRegistry;
+import ryey.easer.skills.LocalSkillRegistry;
 
 class ScriptParser implements Parser<ScriptStructure> {
 
@@ -136,7 +136,7 @@ class ScriptParser implements Parser<ScriptStructure> {
                 throw new AssertionError();
             JSONObject jsonObject_situation = jsonObject_trigger.getJSONObject(C.SIT);
             String spec = jsonObject_situation.getString(C.SPEC);
-            return LocalPluginRegistry.getInstance().event().findPlugin(spec)
+            return LocalSkillRegistry.getInstance().event().findSkill(spec)
                     .dataFactory()
                     .parse(jsonObject_situation.getString(C.DATA), PluginDataFormat.JSON, version);
         } catch (JSONException e) {

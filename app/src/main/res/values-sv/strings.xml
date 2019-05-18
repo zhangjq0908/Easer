@@ -101,8 +101,8 @@
     <string name="pref_cooldown_title">Nedkylningstid</string>
     <string name="pref_cooldown_summary">Minimala intervallet mellan två utlösare av samma händelse</string>
     <string name="cooldown_time_illformed">Numret får inte vara lägre än 0 och inte för stor för att rymma i ett heltal</string>
-    <string name="pref_enabled_plugins_title">Aktiverade insticksmoduler</string>
-    <string name="pref_enabled_plugins_summary">Aktivera eller inaktivera vissa insticksmoduler</string>
+    <string name="pref_enabled_skills_title">Aktiverade insticksmoduler</string>
+    <string name="pref_enabled_skills_summary">Aktivera eller inaktivera vissa insticksmoduler</string>
     <string name="pref_use_12_hour_clock_title">Använd 12-timmarsklocka</string>
     <string name="pref_export_title">Exportera</string>
     <string name="pref_export_summary">Exportera alla händelser och profiler till SD Card.
@@ -116,7 +116,7 @@
     <string name="pref_show_notification_summary">Visa ett meddelande i meddelandefältet.</string>
     <string name="pref_foreground_title">Kör service i förgrunden</string>
     <string name="pref_foreground_summary">Gör tjänsten mindre lätt att bli avstängd av systemet. Visar ett meddelande. Kan inte inaktiveras på Android 8+ på grund av systemkrav.</string>
-    <string name="message_plugin_not_compatible">Denna insticksmodul är inte kompatibel med enheten.</string>
+    <string name="message_skill_not_compatible">Denna insticksmodul är inte kompatibel med enheten.</string>
     <string name="message_convert_data_start">Omvandlar data.</string>
     <string name="message_convert_data_finish">Konverterade data.</string>
     <string name="message_convert_data_abort">Konvertering av data avbruten.</string>

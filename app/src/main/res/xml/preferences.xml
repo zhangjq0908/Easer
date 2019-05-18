@@ -57,8 +57,8 @@
             android:title="@string/pref_cooldown_title" />
         <Preference
             android:key="@string/key_pref_plugins"
-            android:summary="@string/pref_enabled_plugins_summary"
-            android:title="@string/pref_enabled_plugins_title" />
+            android:summary="@string/pref_enabled_skills_summary"
+            android:title="@string/pref_enabled_skills_title" />
     </PreferenceCategory>
 
     <PreferenceCategory android:layout="@layout/pref_divider" />

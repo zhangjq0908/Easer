@@ -31,7 +31,7 @@ template_maps = {
 
 def new_operation(cname, identifier):
     pdef = {}
-    pdef['package'] = "ryey.easer.plugins.operation.{}".format(identifier)
+    pdef['package'] = "skills.operation.{}".format(identifier)
     pdef['plugin'] = "{}OperationPlugin".format(cname)
     pdef['id'] = identifier
     pdef['data'] = "{}OperationData".format(cname)

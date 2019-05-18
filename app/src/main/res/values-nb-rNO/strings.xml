@@ -94,8 +94,8 @@
     <string name="pref_cooldown_title">Nedkjølingstid</string>
     <string name="pref_cooldown_summary">Minimal intervall mellom to utløsere av samme hendelse</string>
     <string name="cooldown_time_illformed">Nummeret kan ikke være negativt, og ikke større enn 2147483647</string>
-    <string name="pref_enabled_plugins_title">Påskrudde programtillegg</string>
-    <string name="pref_enabled_plugins_summary">Skru på eller av gitte programtillegg</string>
+    <string name="pref_enabled_skills_title">Påskrudde programtillegg</string>
+    <string name="pref_enabled_skills_summary">Skru på eller av gitte programtillegg</string>
     <string name="pref_use_12_hour_clock_title">Bruk tolvtimersklokke</string>
     <string name="pref_export_title">Eksporter</string>
     <string name="pref_export_summary">Eksporter alle hendelser og profiler til SD-kort.
@@ -105,7 +105,7 @@
 \nEksisterende hendelser og profiler med samme navn vil erstattes.</string>
     <string name="pref_convert_data_title">Konverter data</string>
     <string name="pref_convert_data_summary">Konverter all data til anbefalt format</string>
-    <string name="message_plugin_not_compatible">Denne enheten kan ikke kjøre dette programtillegget.</string>
+    <string name="message_skill_not_compatible">Denne enheten kan ikke kjøre dette programtillegget.</string>
     <string name="message_convert_data_start">Konverterer data.</string>
     <string name="message_convert_data_finish">Data konvertert.</string>
     <string name="message_convert_data_abort">Konvertering av data avbrutt.</string>

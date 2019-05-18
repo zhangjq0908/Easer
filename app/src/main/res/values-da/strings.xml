@@ -96,8 +96,8 @@
     <string name="pref_cooldown_title">Pausetid</string>
     <string name="pref_cooldown_summary">Mindste interval mellem to udløsere på samme hændelse</string>
     <string name="cooldown_time_illformed">Værdi skal være i område 0-32767</string>
-    <string name="pref_enabled_plugins_title">Aktiverede udvidelses moduler</string>
-    <string name="pref_enabled_plugins_summary">Aktivere eller deaktivere bestemte udvidelsesmoduler</string>
+    <string name="pref_enabled_skills_title">Aktiverede udvidelses moduler</string>
+    <string name="pref_enabled_skills_summary">Aktivere eller deaktivere bestemte udvidelsesmoduler</string>
     <string name="pref_use_12_hour_clock_title">Brug 12 timers ur</string>
     <string name="pref_export_title">Eksportere</string>
     <string name="pref_export_summary">Eksportere alle hændelser og profiler til sd-kort. 
@@ -107,7 +107,7 @@
 \nEksisterende hændelser og profiler med samme navn vil blive overskrevet.</string>
     <string name="pref_convert_data_title">Konvertere data</string>
     <string name="pref_convert_data_summary">Konvertere al data til anbefalet format</string>
-    <string name="message_plugin_not_compatible">Denne enhed kan ikke køre dette udvidelsesmodul.</string>
+    <string name="message_skill_not_compatible">Denne enhed kan ikke køre dette udvidelsesmodul.</string>
     <string name="message_convert_data_start">Konverterer data.</string>
     <string name="message_convert_data_finish">Data konverteret.</string>
     <string name="message_convert_data_abort">Data konvertering afbrudt.</string>

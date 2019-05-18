@@ -24,8 +24,8 @@ import org.json.JSONObject;
 
 import java.util.Map;
 
-import ryey.easer.commons.local_plugin.dynamics.DynamicsLink;
-import ryey.easer.commons.local_plugin.eventplugin.EventData;
+import ryey.easer.commons.local_skill.dynamics.DynamicsLink;
+import ryey.easer.commons.local_skill.eventskill.EventData;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.ScriptStructure;
@@ -33,7 +33,7 @@ import ryey.easer.core.data.storage.C;
 import ryey.easer.core.data.storage.backend.Serializer;
 import ryey.easer.core.data.storage.backend.UnableToSerializeException;
 import ryey.easer.plugin.PluginDataFormat;
-import ryey.easer.plugins.LocalPluginRegistry;
+import ryey.easer.skills.LocalSkillRegistry;
 
 class ScriptSerializer implements Serializer<ScriptStructure> {
 
@@ -103,7 +103,7 @@ class ScriptSerializer implements Serializer<ScriptStructure> {
 
     JSONObject serialize_situation(EventData event) throws JSONException {
         JSONObject json_situation = new JSONObject();
-        json_situation.put(C.SPEC, LocalPluginRegistry.getInstance().event().findPlugin(event).id());
+        json_situation.put(C.SPEC, LocalSkillRegistry.getInstance().event().findSkill(event).id());
         json_situation.put(C.DATA, event.serialize(PluginDataFormat.JSON));
         return json_situation;
     }

@@ -23,8 +23,8 @@ import android.widget.EditText;
 
 import ryey.easer.R;
 import ryey.easer.commons.C;
-import ryey.easer.commons.local_plugin.InvalidDataInputException;
-import ryey.easer.commons.local_plugin.eventplugin.EventData;
+import ryey.easer.commons.local_skill.InvalidDataInputException;
+import ryey.easer.commons.local_skill.eventskill.EventData;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.storage.EventDataStorage;
 import ryey.easer.core.ui.data.AbstractEditDataActivity;
@@ -32,7 +32,7 @@ import ryey.easer.core.ui.data.AbstractEditDataActivity;
 public class EditEventActivity extends AbstractEditDataActivity<EventStructure, EventDataStorage> {
 
     EditText mEditText_name = null;
-    EventPluginViewPager mViewPager;
+    EventSkillViewPager mViewPager;
 
     @Override
     protected EventDataStorage retDataStorage() {

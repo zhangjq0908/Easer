@@ -30,12 +30,12 @@ import java.util.Calendar;
 import java.util.concurrent.ExecutorService;
 
 import ryey.easer.SettingsHelper;
-import ryey.easer.commons.local_plugin.eventplugin.EventData;
-import ryey.easer.commons.local_plugin.eventplugin.EventPlugin;
-import ryey.easer.commons.local_plugin.eventplugin.Slot;
+import ryey.easer.commons.local_skill.eventskill.EventData;
+import ryey.easer.commons.local_skill.eventskill.EventSkill;
+import ryey.easer.commons.local_skill.eventskill.Slot;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.ScriptTree;
-import ryey.easer.plugins.LocalPluginRegistry;
+import ryey.easer.skills.LocalSkillRegistry;
 
 /*
  * Note: old document; may be outdated.
@@ -76,7 +76,7 @@ class EventLotus extends Lotus {
         //noinspection unchecked
         T data = (T) scenario.getEventData();
         //noinspection unchecked
-        EventPlugin<T> plugin = LocalPluginRegistry.getInstance().event().findPlugin(data);
+        EventSkill<T> plugin = LocalSkillRegistry.getInstance().event().findSkill(data);
         if (scenario.isTmpEvent()) {
             slot = plugin.slot(context, data);
         } else {

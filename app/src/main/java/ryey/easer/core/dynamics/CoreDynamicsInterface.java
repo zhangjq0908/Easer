@@ -24,7 +24,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
-import ryey.easer.commons.local_plugin.dynamics.Dynamics;
+import ryey.easer.commons.local_skill.dynamics.Dynamics;
 
 public interface CoreDynamicsInterface extends Dynamics {
     String invoke(@NonNull Context context, @NonNull Bundle extras);
