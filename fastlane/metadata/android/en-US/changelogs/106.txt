@@ -1,0 +1,10 @@
+New Conditions && Bug fixes && Rename Plugin to Skill && i18n
+
+* Add Ringer mode condition
+* Add Calendar condition
+* Bug fixes:
+  * A few bugs of TcpTripEvent
+  * Crash on receiving broadcast for BroadcastEventPlugin
+  * "Default" locale doesn't work
+* i18n update: German, Italian, Norwegian Bokmål, Japanese
+

@@ -1,6 +1,15 @@
 CHANGELOG
 ======
 
+* v0.7.6: New Conditions && Bug fixes && Rename Plugin to Skill && i18n
+	* Add Ringer mode condition
+	* Add Calendar condition
+	* Bug fixes:
+		* A few bugs of TcpTripEvent
+		* Crash on receiving broadcast for BroadcastEventPlugin
+		* "Default" locale doesn't work
+	* i18n update: German, Italian, Norwegian Bokmål, Japanese
+
 * v0.7.5: Allow to override locale && Better "About" page && i18n
 	* Users can now override locale from settings
 	* Reimplement the "About" page
