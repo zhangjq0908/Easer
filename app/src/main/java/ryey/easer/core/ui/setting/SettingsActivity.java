@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -265,7 +266,7 @@ public class SettingsActivity extends CommonBaseActivity implements SharedPrefer
                             String locale_str = (String) newValue;
                             Locale locale;
                             if ("_".equals(locale_str)) {
-                                locale = Locale.getDefault();
+                                locale = Resources.getSystem().getConfiguration().locale;
                             } else if ("zh".equals(locale_str)) {
                                 locale = Locale.CHINESE;
                             } else {
