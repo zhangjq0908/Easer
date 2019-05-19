@@ -19,7 +19,10 @@
 
 package ryey.easer.skills.condition.calendar;
 
-class CalendarData {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+class CalendarData implements Parcelable {
     final long calendar_id;
     final CalendarConditionMatchType matchType;
     final String matchPattern;
@@ -47,4 +50,36 @@ class CalendarData {
         }
         return true;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(calendar_id);
+        dest.writeInt(matchType.getId());
+        dest.writeString(matchPattern);
+        dest.writeByte((byte) (isAllDayEvent ? 1 : 0));
+    }
+
+    protected CalendarData(Parcel in) {
+        calendar_id = in.readLong();
+        matchType = CalendarConditionMatchType.getById(in.readInt());
+        matchPattern = in.readString();
+        isAllDayEvent = in.readByte() != 0;
+    }
+
+    public static final Creator<CalendarData> CREATOR = new Creator<CalendarData>() {
+        @Override
+        public CalendarData createFromParcel(Parcel in) {
+            return new CalendarData(in);
+        }
+
+        @Override
+        public CalendarData[] newArray(int size) {
+            return new CalendarData[size];
+        }
+    };
 }
