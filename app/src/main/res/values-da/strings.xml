@@ -92,7 +92,7 @@
     <string name="pref_logging_summary">Gemme log til ekstern lagerenhed (/sdcard/logger) for hjælp til fejl rapporter. 
 \nÆndringer træder i kraft ved næste program start.</string>
     <string name="pref_use_root_title">Bruge administrator egenskaber</string>
-    <string name="pref_use_root_summary">Bruge administrator egenskab for specielle funktioner (udvidelses moduler), som kan hjælpe med at løse kompatibilitetsproblem på nogle enheder. Det vil ikke blive brugt andre steder.</string>
+    <string name="pref_use_root_summary">Bruge administrator egenskab for specielle funktioner (færdigheder), som kan hjælpe med at løse kompatibilitet problem på nogle enheder. Det vil ikke blive brugt andre steder.</string>
     <string name="pref_cooldown_title">Pausetid</string>
     <string name="pref_cooldown_summary">Mindste interval mellem to udløsere på samme hændelse</string>
     <string name="cooldown_time_illformed">Værdi skal være i område 0-32767</string>
@@ -183,4 +183,11 @@
 \nHåber programmet er for dækkende :) 
 \n 
 \nSe også i <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> sektion for projekt wiki.</string>
+    <string name="title_source">Kilde kode</string>
+    <string name="title_author">Forfatter</string>
+    <string name="title_donate">Donere</string>
+    <string name="title_website">Netsted</string>
+    <string name="title_homepage">Hjemmeside</string>
+    <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
+    <string name="pref_locale_custom">Tilpasset lokalitet</string>
 </resources>
