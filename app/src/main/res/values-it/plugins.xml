@@ -169,4 +169,14 @@
     <string name="o_play_media">Riproduci Multimedia</string>
     <string name="o_play_media_text_file">Percorso File</string>
     <string name="rel_after">Dopo</string>
+    <string name="condition_calendar_name">Nome Calendario</string>
+    <string name="condition_calendar_event_title">Titolo Evento</string>
+    <string name="condition_calendar_any_event">Qualsiasi Evento</string>
+    <string name="condition_calendar_event_match_pattern">Corrisponde allo Schema</string>
+    <string name="condition_calendar_all_day_event">"Corrisponde solo agli Eventi  \"Tutto il Giorno\""</string>
+    <string name="condition_ringer_mode">Modalità Suoneria</string>
+    <string name="condition_ringer_volume">Volume</string>
+    <string name="condition_ringer_above">Almeno</string>
+    <string name="condition_ringer_below">Al Massimo</string>
+    <string name="condition_ringer_equals">Uguale a</string>
 </resources>
