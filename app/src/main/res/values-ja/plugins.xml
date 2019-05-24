@@ -169,4 +169,14 @@
     <string name="o_launch_app__text_class_hint">空または完全なクラス名</string>
     <string name="o_play_media">メディアを再生</string>
     <string name="o_play_media_text_file">ファイルのパス</string>
+    <string name="condition_ringer_mode">着信音モード</string>
+    <string name="condition_ringer_volume">音量</string>
+    <string name="condition_ringer_above">少なくとも</string>
+    <string name="condition_ringer_below">最大</string>
+    <string name="condition_ringer_equals">等しい</string>
+    <string name="condition_calendar_name">カレンダー名</string>
+    <string name="condition_calendar_event_title">イベントのタイトル</string>
+    <string name="condition_calendar_any_event">任意のイベント</string>
+    <string name="condition_calendar_event_match_pattern">一致パターン</string>
+    <string name="condition_calendar_all_day_event">終日のイベントのみに一致</string>
 </resources>
