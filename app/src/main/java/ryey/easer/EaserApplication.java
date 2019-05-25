@@ -25,6 +25,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 
 import androidx.core.content.ContextCompat;
@@ -34,9 +35,20 @@ import com.orhanobut.logger.DiskLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.zeugmasolutions.localehelper.LocaleHelperApplicationDelegate;
 
+import org.acra.ACRA;
+import org.acra.annotation.AcraCore;
+import org.acra.annotation.AcraToast;
+
+import java.io.File;
+
 import ryey.easer.core.log.ActivityLogService;
 
+@AcraCore(buildConfigClass = BuildConfig.class,
+        reportSenderFactoryClasses = ErrorSenderFactory.class)
+@AcraToast(resText=R.string.prompt_error_logged)
 public class EaserApplication extends Application {
+
+    static final String LOG_DIR = new File(Environment.getExternalStorageDirectory(), "/logger/error").getAbsolutePath();
 
     private final LocaleHelperApplicationDelegate localeAppDelegate = new LocaleHelperApplicationDelegate();
 
@@ -71,5 +83,6 @@ public class EaserApplication extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(localeAppDelegate.attachBaseContext(base));
+        ACRA.init(this);
     }
 }

@@ -162,5 +162,6 @@
     <string name="title_donate">捐助</string>
     <string name="title_homepage">個人主頁</string>
     <string name="title_source">源代碼</string>
+    <string name="prompt_error_logged">Easer記錄了一次錯誤。請查看日誌目錄下的error子目錄。</string>
 
 </resources>

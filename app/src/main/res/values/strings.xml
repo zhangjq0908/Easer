@@ -96,6 +96,7 @@
     <string name="prompt_delete_failed">Deletion failed. Check if this item is being used.</string>
     <string name="prompt_data_illegal">Prevented saving data with invalid field(s). Please recheck your choices / inputs.</string>
     <string name="prompt_prevented_for_permission">Grant Easer &lt;%s&gt; permission for this to work..</string>
+    <string name="prompt_error_logged">Easer just recorded an error. See the "error" subdirectory of log directory.</string>
 
     <string name="text_app_description">Ease your life by automating routine actions on your device(s).
 \nChain different events and let their corresponding actions performed. No longer need to keep them in mind!
