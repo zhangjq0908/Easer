@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+* v0.7.6.1: Add crash logs && i18n
+	* Easer now records crash logs too (when external logging enabled)
+		* Under /sdcard/logger/error
+	* i18n update: Italian, Norwegian Bokmål, Danish, Japanese
+
 * v0.7.6: New Conditions && Bug fixes && Rename Plugin to Skill && i18n
 	* Add Ringer mode condition
 	* Add Calendar condition

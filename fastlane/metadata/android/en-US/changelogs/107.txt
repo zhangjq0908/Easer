@@ -1,0 +1,6 @@
+Add crash logs && i18n
+
+* Easer now records crash logs too (when external logging enabled)
+  * Under /sdcard/logger/error
+* i18n update: Italian, Norwegian Bokmål, Danish, Japanese
+
