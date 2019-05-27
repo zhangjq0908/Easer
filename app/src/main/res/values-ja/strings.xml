@@ -97,7 +97,7 @@
     <string name="pref_logging_summary">バグ報告のために外部記憶装置 (/sdcard/logger) にログを保存します。
 \nこの設定の変更は、次回の Easer 起動時から反映されます。</string>
     <string name="pref_use_root_title">root 機能を使用する</string>
-    <string name="pref_use_root_summary">特定の機能 (プラグイン) で root 権限を使用します。これは一部のデバイスで互換性の問題を解決するのに役立ちます。 これは他の場所では使用されません。</string>
+    <string name="pref_use_root_summary">特定の機能 (スキル) で root 権限を使用します。これは一部のデバイスで互換性の問題を解決するのに役立ちます。 これは他の場所では使用されません。</string>
     <string name="pref_cooldown_title">クールダウン時間</string>
     <string name="pref_cooldown_summary">同じイベントの 2 つのトリガー間の最小間隔</string>
     <string name="cooldown_time_illformed">数値は、0 以上で整数値の範囲に収まるようにする必要があります</string>
@@ -156,41 +156,41 @@
     <string name="pref_foreground_summary">システムによってサービスが終了する可能性が減ります。 通知を表示します。 システム要件のためにAndroid 8以降で無効にすることはできません。</string>
     <string name="menu_plain_list">プレーンリスト</string>
     <string name="message_future_change_title">すぐに変更します</string>
-    <string name="welcome_message_1"> Easer へようこそ! 
+    <string name="welcome_message_1">Easer へようこそ! 
 \n 
 \nウェルカムページにいくつかの基本的な情報があります。 
 \n 
 \n使用する前にお読みください。 
 \n 
 \n 
-\nプロジェクト wiki の <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> をご覧ください。 </string>
+\nプロジェクト wiki の <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> をご覧ください。</string>
     <string name="welcome_message_2">Easer には、異なる機能を提供するいくつかのモジュールが含まれています。設定で有効/無効にすることができます。 
 \n 
 \n使用する前に、(すべての有効なモジュールの) 対応するアクセス許可を付与してください。 
 \n 
 \n 
 \n(デフォルトですべて有効です。)</string>
-    <string name="welcome_message_3"> 関連する親を選択することによって、スクリプトは <a href="https://en.wikipedia.org/wiki/Tree_structure">ツリー</a> として構築されます。 
+    <string name="welcome_message_3">関連する親を選択することによって、スクリプトは <a href="https://en.wikipedia.org/wiki/Tree_structure">ツリー</a> として構築されます。 
 \n 
 \nすべての分岐で AND ロジックが実行されます。 
 \n分岐の間は OR ロジックが実行されます。 
 \n 
 \n 
-\nグラフにツリーの拡張は計画していますが、現在は実装されていません。 </string>
+\nグラフにツリーの拡張は計画していますが、現在は実装されていません。</string>
     <string name="title_welcome_message_privacy">プライバシー!</string>
-    <string name="welcome_message_privacy"> プライバシーは重要です!
-\n
-\nEaser は <a href="https://en.wikipedia.org/wiki/Free_software">フリーソフトウェア</a> (オープンソース ソフトウェア)です。誰でもコードを調べることができます。
-\n
-\nあなたはデータのすべての部分を所有します。ログを含めてすべてデバイスに含まれます。 </string>
+    <string name="welcome_message_privacy">プライバシーは重要です! 
+\n 
+\nEaser は <a href="https://en.wikipedia.org/wiki/Free_software">フリーソフトウェア</a> (オープンソース ソフトウェア)です。誰でもコードを調べることができます。 
+\n 
+\nあなたはデータのすべての部分を所有します。ログを含めてすべてデバイスに含まれます。</string>
     <string name="title_pivot">ピボット</string>
     <string name="title_service_start">サービス開始</string>
-    <string name="welcome_message">
-        <a href="https://en.wikipedia.org/wiki/Tree_structure">trees</a> is <i>currently</i> the only way to compose events.
-\n
-\nHope you like this app :)
-\n
-\n Also have a look in the <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> section of the project wiki.</string>
+    <string name="welcome_message">1. 関連するイベントやプロファイルを使用する前に、対応する権限を Easer に付与してください。
+\n2. <a href="https://en.wikipedia.org/wiki/Tree_structure">ツリー</a> としてイベントを接続する方法が <i>現在</i> イベントを作成する唯一の方法です。
+\n 
+\nあなたがこのアプリを気に入っていただけますように :)
+\n 
+\nまた、プロジェクト wiki の <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> セクションをご覧ください。</string>
     <string name="title_source">ソースコード</string>
     <string name="title_author">作者</string>
     <string name="title_donate">寄付</string>
@@ -198,4 +198,5 @@
     <string name="title_homepage">ホームページ</string>
     <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
     <string name="pref_locale_custom">カスタムロケール</string>
+    <string name="prompt_error_logged">Easer がエラーを記録しました。ログディレクトリーのエラーサブディレクトリーを参照してください。</string>
 </resources>
