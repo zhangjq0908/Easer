@@ -18,10 +18,10 @@ import templates
 
 template_maps = {
         'main': {
-            'skill': templates.tmpl_event_plugin,
+            'skill': templates.tmpl_event_skill,
             'data': templates.tmpl_event_data,
             'data_factory': templates.tmpl_event_data_factory,
-            'view_fragment': templates.tmpl_plugin_view_fragment,
+            'view_fragment': templates.tmpl_skill_view_fragment,
             'slot': templates.tmpl_event_slot,
             },
         'androidTest': {
@@ -31,16 +31,16 @@ template_maps = {
 
 def new_event(cname, identifier):
     pdef = {}
-    pdef['package'] = "skills.event.{}".format(identifier)
-    pdef['skill'] = "{}EventPlugin".format(cname)
+    pdef['package'] = "ryey.easer.skills.event.{}".format(identifier)
+    pdef['skill'] = "{}EventSkill".format(cname)
     pdef['id'] = identifier
     pdef['data'] = "{}EventData".format(cname)
     pdef['data_factory'] = "{}EventDataFactory".format(cname)
-    pdef['view_fragment'] = "{}PluginViewFragment".format(cname)
+    pdef['view_fragment'] = "{}SkillViewFragment".format(cname)
     pdef['slot'] = "{}Slot".format(cname)
     pdef['androidTest$data'] = "{}EventDataTest".format(cname)
     for t, template_map in template_maps.items():
-        dest = "app/src/{}/java/ryey/easer/plugins/event/{}".format(t, identifier)
+        dest = "app/src/{}/java/ryey/easer/skills/event/{}".format(t, identifier)
         if not os.path.isfile(dest):
             os.mkdir(dest)
         for k in template_map:

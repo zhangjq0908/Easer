@@ -16,22 +16,22 @@ See [README.en.md](README.en.md) for the English version.
 
 擴展Easer
 -----
-給Easer添加功能主要分爲三類：機制、本地插件以及遠程插件。
+給Easer添加功能主要分爲三類：機制、技能以及遠程技能（插件）。
 
 其中機制是Easer的核心部分，需要對Easer代碼有較好理解；也歡迎對現有代碼進行優化（但不要過度優化）。
-對於多數情況下，所要做的是增加新Event、Condition和Operation，這通過增加新的本地插件或遠程插件實現。
+對於多數情況下，所要做的是增加新Event、Condition和Operation，這通過增加新的技能或遠程技能（插件）實現。
 
-### 本地插件
+### 技能
 
-增加本地插件需要添加自己的Event、Condition或Operation至Easer代碼中的`plugins`包下。有腳本以簡化該操作，並且現有插件均可作爲示例。
+增加技能插件需要添加自己的Event、Condition或Operation至Easer代碼中的`commons`包下。有腳本以簡化該操作，並且現有插件均可作爲示例。
 
 詳細請參見[這個頁面](https://renyuneyun.github.io/Easer/zh/EXTEND)。
 
-### 遠程插件
+### 遠程技能（插件）
 
-遠程插件是v0.7開始新增的功能，旨在通過獨立的軟件擴展Easer的功能。每個遠程插件是一個獨立的app；理論上也可以在一個app中包含多個遠程插件。注意該功能較新，接口暫不穩定（但應該不會大改）。
+遠程技能是v0.7開始新增的功能，旨在通過獨立的軟件擴展Easer的功能。每個遠程技能是一個獨立的app；理論上也可以在一個app中包含多個遠程技能。注意該功能較新，接口暫不穩定（但應該不會大改）。
 
-暫時遠程插件僅有Operation，[該倉庫](https://github.com/renyuneyun/EaserOperationPluginExample)是一個示例。
+暫時遠程技能僅有Operation，[該倉庫](https://github.com/renyuneyun/EaserOperationPluginExample)是一個示例。
 
 
 支持Easer

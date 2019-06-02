@@ -88,8 +88,8 @@
 	"trigger":{
 		"type":"raw_event",
 		"situation":{
-			"spec":對應EventPlugin的id,
-			"data":對應EventPlugin的數據
+			"spec":對應EventSkill的id,
+			"data":對應EventSkill的數據
 		}
 	}
 }
@@ -101,8 +101,8 @@
 	"name":名稱,
 	"version":數據版本,
 	"situation":{
-		"spec":對應EventPlugin的id,
-		"data":對應EventPlugin的數據
+		"spec":對應EventSkill的id,
+		"data":對應EventSkill的數據
 	}
 }
 
@@ -128,8 +128,8 @@
 		"type":"raw_event",
 		"logic":"after" or "any" or "before" or "is" or "is_not" or "none",
 		"situation":{
-			"spec":對應EventPlugin的id,
-			"data":對應EventPlugin的數據
+			"spec":對應EventSkill的id,
+			"data":對應EventSkill的數據
 		}
 	}
 }
@@ -145,8 +145,8 @@
 	"version":數據版本,
 	"operation":[
 		{
-			"spec":對應OperationPlugin的id,
-			"data":對應OperationPlugin的數據
+			"spec":對應OperationSkill的id,
+			"data":對應OperationSkill的數據
 		},
 		...
 	]
@@ -167,8 +167,8 @@
 		"type":"raw_event",
 		"logic":"after" or "any" or "before" or "is" or "is_not" or "none",
 		"situation":{
-			"spec":對應EventPlugin的id,
-			"data":對應EventPlugin的數據
+			"spec":對應EventSkill的id,
+			"data":對應EventSkill的數據
 		}
 	},
 	"reverse":true or false,
@@ -202,8 +202,8 @@
 	"version":數據版本,
 	"logic":"after" or "any" or "before" or "is" or "is_not" or "none",
 	"situation":{
-		"spec":對應EventPlugin的id,
-		"data":對應EventPlugin的數據
+		"spec":對應EventSkill的id,
+		"data":對應EventSkill的數據
 	}
 }
 

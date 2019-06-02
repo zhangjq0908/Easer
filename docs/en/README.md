@@ -51,10 +51,10 @@ Examples
 Supported functions
 --------
 Easer supports listening to many Android events (e.g. date/time, system status, calendar). The supported operations include, but are not limited to, changing Android settings, sending messages, and executing commands.
-Easer is gradually supporting *Remote Plugin*; currently only *Remote Operation Plugin*.
+Easer is gradually supporting *Remote Skill* (*Plugin*)*; currently only *Remote Operation Plugin*.
 
 For a list of current features, see [this page](https://renyuneyun.github.io/Easer/en/FEATURES).
-For an (incomplete) list of *Remote Plugins*, see [here](https://github.com/topics/easer-plugin).
+For an (incomplete) list of *Plugins*, see [here](https://github.com/topics/easer-plugin).
 
 Support Easer
 ------

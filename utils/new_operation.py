@@ -18,10 +18,10 @@ import templates
 
 template_maps = {
         'main': {
-            'skill': templates.tmpl_operation_plugin,
+            'skill': templates.tmpl_operation_skill,
             'data': templates.tmpl_operation_data,
             'data_factory': templates.tmpl_operation_data_factory,
-            'view_fragment': templates.tmpl_plugin_view_fragment,
+            'view_fragment': templates.tmpl_skill_view_fragment,
             'loader': templates.tmpl_operation_loader,
             },
         'androidTest': {
@@ -31,16 +31,16 @@ template_maps = {
 
 def new_operation(cname, identifier):
     pdef = {}
-    pdef['package'] = "skills.operation.{}".format(identifier)
-    pdef['skill'] = "{}OperationPlugin".format(cname)
+    pdef['package'] = "ryey.easer.skills.operation.{}".format(identifier)
+    pdef['skill'] = "{}OperationSkill".format(cname)
     pdef['id'] = identifier
     pdef['data'] = "{}OperationData".format(cname)
     pdef['data_factory'] = "{}OperationDataFactory".format(cname)
-    pdef['view_fragment'] = "{}PluginViewFragment".format(cname)
+    pdef['view_fragment'] = "{}SkillViewFragment".format(cname)
     pdef['loader'] = "{}Loader".format(cname)
     pdef['androidTest$data'] = "{}OperationDataTest".format(cname)
     for t, template_map in template_maps.items():
-        dest = "app/src/{}/java/ryey/easer/plugins/operation/{}".format(t, identifier)
+        dest = "app/src/{}/java/ryey/easer/skills/operation/{}".format(t, identifier)
         if not os.path.isfile(dest):
             os.mkdir(dest)
         for k in template_map:

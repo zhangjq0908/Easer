@@ -18,10 +18,10 @@ import templates
 
 template_maps = {
         'main': {
-            'skill': templates.tmpl_condition_plugin,
+            'skill': templates.tmpl_condition_skill,
             'data': templates.tmpl_condition_data,
             'data_factory': templates.tmpl_condition_data_factory,
-            'view_fragment': templates.tmpl_plugin_view_fragment,
+            'view_fragment': templates.tmpl_skill_view_fragment,
             'tracker': templates.tmpl_condition_tracker,
             },
         'androidTest': {
@@ -31,16 +31,16 @@ template_maps = {
 
 def new_event(cname, identifier):
     pdef = {}
-    pdef['package'] = "skills.condition.{}".format(identifier)
-    pdef['skill'] = "{}ConditionPlugin".format(cname)
+    pdef['package'] = "ryey.easer.skills.condition.{}".format(identifier)
+    pdef['skill'] = "{}ConditionSkill".format(cname)
     pdef['id'] = identifier
     pdef['data'] = "{}ConditionData".format(cname)
     pdef['data_factory'] = "{}ConditionDataFactory".format(cname)
-    pdef['view_fragment'] = "{}PluginViewFragment".format(cname)
+    pdef['view_fragment'] = "{}SkillViewFragment".format(cname)
     pdef['tracker'] = "{}Tracker".format(cname)
     pdef['androidTest$data'] = "{}ConditionDataTest".format(cname)
     for t, template_map in template_maps.items():
-        dest = "app/src/{}/java/ryey/easer/plugins/condition/{}".format(t, identifier)
+        dest = "app/src/{}/java/ryey/easer/skills/condition/{}".format(t, identifier)
         if not os.path.isfile(dest):
             os.mkdir(dest)
         for k in template_map:

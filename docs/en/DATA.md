@@ -87,8 +87,8 @@ Contents are almost the same as the previous version, with the `trigger/logic` (
 	"trigger":{
 		"type":"raw_event",
 		"situation":{
-			"spec":ID OF CORRESPONDING EventPlugin,
-			"data":DATA FROM CORRESPONDING EventPlugin
+			"spec":ID OF CORRESPONDING EventSkill,
+			"data":DATA FROM CORRESPONDING EventSkill
 		}
 	}
 }
@@ -100,8 +100,8 @@ Contents are almost the same as the previous version, with the `trigger/logic` (
 	"name":NAME,
 	"version":VERSION OF DATA,
 	"situation":{
-		"spec":ID OF CORRESPONDING EventPlugin,
-		"data":DATA FROM CORRESPONDING EventPlugin
+		"spec":ID OF CORRESPONDING EventSkill,
+		"data":DATA FROM CORRESPONDING EventSkill
 	}
 }
 
@@ -127,8 +127,8 @@ The only affected thing is *Events using inline Scenario*, and we are listing it
 		"type":"raw_event",
 		"logic":"after" or "any" or "before" or "is" or "is_not" or "none",
 		"situation":{
-			"spec":ID OF THE CORRESPONDING EventPlugin,
-			"data":DATA FROM THE CORRESPONDING EventPlugin
+			"spec":ID OF THE CORRESPONDING EventSkill,
+			"data":DATA FROM THE CORRESPONDING EventSkill
 		}
 	}
 }
@@ -144,8 +144,8 @@ The earlier *Event*s are now treated as "Events using inline Scenario".
 	"version":VERSION OF DATA,
 	"operation":[
 		{
-			"spec":ID OF THE CORRESPONDING OperationPlugin,
-			"data":DATA FROM THE CORRESPONDING OperationPlugin
+			"spec":ID OF THE CORRESPONDING OperationSkill,
+			"data":DATA FROM THE CORRESPONDING OperationSkill
 		},
 		...
 	]
@@ -165,8 +165,8 @@ The earlier *Event*s are now treated as "Events using inline Scenario".
 		"type":"raw_event",
 		"logic":"after" or "any" or "before" or "is" or "is_not" or "none",
 		"situation":{
-			"spec":ID OF THE CORRESPONDING EventPlugin,
-			"data":DATA FROM THE CORRESPONDING EventPlugin
+			"spec":ID OF THE CORRESPONDING EventSkill,
+			"data":DATA FROM THE CORRESPONDING EventSkill
 		}
 	},
 	"reverse":true or false,
@@ -198,8 +198,8 @@ The earlier *Event*s are now treated as "Events using inline Scenario".
 	"version":VERSION OF DATA,
 	"logic":"after" or "any" or "before" or "is" or "is_not" or "none",
 	"situation":{
-		"spec":ID OF THE CORRESPONDING EventPlugin,
-		"data":DATA FROM THE CORRESPONDING EventPlugin
+		"spec":ID OF THE CORRESPONDING EventSkill,
+		"data":DATA FROM THE CORRESPONDING EventSkill
 	}
 }
 
