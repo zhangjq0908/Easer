@@ -17,10 +17,10 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.commons.local_skill.combined_source;
+package ryey.easer.commons.local_skill.usource;
 
-import ryey.easer.commons.local_skill.conditionskill.ConditionDataFactory;
-import ryey.easer.commons.local_skill.eventskill.EventDataFactory;
+import ryey.easer.commons.local_skill.conditionskill.ConditionData;
+import ryey.easer.commons.local_skill.eventskill.EventData;
 
-public interface CombinedSourceDataFactory<D extends CombinedSourceData> extends EventDataFactory<D>, ConditionDataFactory<D> {
+public interface USourceData extends EventData, ConditionData {
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,22 +17,25 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.combined.bluetooth_device;
+package ryey.easer.skills.usource.bluetooth_device;
 
-import android.app.PendingIntent;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothManager;
-import android.bluetooth.BluetoothProfile;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
 
-import androidx.annotation.NonNull;
+import ryey.easer.skills.event.AbstractSlot;
 
-import ryey.easer.skills.condition.SkeletonTracker;
+public class BTDeviceSlot extends AbstractSlot<BTDeviceUSourceData> {
 
-public class BTDeviceTracker extends SkeletonTracker<BTDeviceCombinedSourceData> {
+    private static Bundle dynamicsForCurrentDevice(BluetoothDevice bluetoothDevice) {
+        Bundle bundle = new Bundle();
+        bundle.putString(BTDeviceUSourceData.DeviceNameDynamics.id, bluetoothDevice.getName());
+        bundle.putString(BTDeviceUSourceData.DeviceAddressDynamics.id, bluetoothDevice.getAddress());
+        return bundle;
+    }
 
     private int matched_devices = 0;
 
@@ -44,13 +47,13 @@ public class BTDeviceTracker extends SkeletonTracker<BTDeviceCombinedSourceData>
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 if (is_target(device)) {
                     matched_devices++;
-                    determine_satisfied();
+                    determine_satisfied(dynamicsForCurrentDevice(device));
                 }
             } else if (action.equals(BluetoothDevice.ACTION_ACL_DISCONNECTED)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 if (is_target(device)) {
                     matched_devices--;
-                    determine_satisfied();
+                    determine_satisfied(dynamicsForCurrentDevice(device));
                 }
             }
         }
@@ -64,38 +67,29 @@ public class BTDeviceTracker extends SkeletonTracker<BTDeviceCombinedSourceData>
         filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
     }
 
-    BTDeviceTracker(Context context, BTDeviceCombinedSourceData data,
-                    @NonNull PendingIntent event_positive,
-                    @NonNull PendingIntent event_negative) {
-        super(context, data, event_positive, event_negative);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            BluetoothManager bluetoothManager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
-            for (int profile : new int[]{BluetoothProfile.GATT, BluetoothProfile.GATT_SERVER}) {
-                for (BluetoothDevice btDevice : bluetoothManager.getConnectedDevices(profile)) {
-                    if (is_target(btDevice)) {
-                        matched_devices++;
-                    }
-                }
-            }
-        }
-        determine_satisfied();
+    public BTDeviceSlot(Context context, BTDeviceUSourceData data) {
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTENT_DEFAULT);
+    }
+
+    BTDeviceSlot(Context context, BTDeviceUSourceData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
     }
 
     @Override
-    public void start() {
+    public void listen() {
         context.registerReceiver(connReceiver, filter);
     }
 
     @Override
-    public void stop() {
+    public void cancel() {
         context.unregisterReceiver(connReceiver);
     }
 
     private boolean is_target(BluetoothDevice device) {
-        return data.hwAddresses.contains(device.getAddress());
+        return eventData.match(device.getAddress());
     }
 
-    private void determine_satisfied() {
-        newSatisfiedState(matched_devices > 0);
+    private void determine_satisfied(Bundle dynamics) {
+        changeSatisfiedState(matched_devices > 0, dynamics);
     }
 }

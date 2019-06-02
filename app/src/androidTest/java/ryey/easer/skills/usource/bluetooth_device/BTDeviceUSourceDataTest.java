@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.combined.bluetooth_device;
+package ryey.easer.skills.usource.bluetooth_device;
 
 import android.os.Parcel;
 
@@ -27,13 +27,13 @@ import ryey.easer.skills.TestHelper;
 
 import static org.junit.Assert.assertEquals;
 
-public class BTDeviceCombinedSourceDataTest {
+public class BTDeviceUSourceDataTest {
 
     @Test
     public void testParcel() {
-        BTDeviceCombinedSourceData dummyData = new BTDeviceCombinedSourceDataFactory().dummyData();
+        BTDeviceUSourceData dummyData = new BTDeviceUSourceDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
-        BTDeviceCombinedSourceData parceledData = BTDeviceCombinedSourceData.CREATOR.createFromParcel(parcel);
+        BTDeviceUSourceData parceledData = BTDeviceUSourceData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);
     }
 

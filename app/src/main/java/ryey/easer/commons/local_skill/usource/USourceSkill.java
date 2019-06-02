@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.commons.local_skill.combined_source;
+package ryey.easer.commons.local_skill.usource;
 
 import android.app.Activity;
 import android.app.PendingIntent;
@@ -34,9 +34,9 @@ import ryey.easer.commons.local_skill.eventskill.EventDataFactory;
 import ryey.easer.commons.local_skill.eventskill.EventSkill;
 import ryey.easer.commons.local_skill.eventskill.Slot;
 
-public interface CombinedSourceSkill<D extends CombinedSourceData> extends Skill<D> {
+public interface USourceSkill<D extends USourceData> extends Skill<D> {
 
-    CombinedSourceDataFactory<D> dataFactory();
+    USourceDataFactory<D> dataFactory();
 
     /**
      * Default value for eventView() and conditionView().
@@ -65,49 +65,49 @@ public interface CombinedSourceSkill<D extends CombinedSourceData> extends Skill
             @NonNull
             @Override
             public EventDataFactory<D> dataFactory() {
-                return CombinedSourceSkill.this.dataFactory();
+                return USourceSkill.this.dataFactory();
             }
 
             @Override
             public Slot<D> slot(@NonNull Context context, @NonNull D data) {
-                return CombinedSourceSkill.this.slot(context, data);
+                return USourceSkill.this.slot(context, data);
             }
 
             @Override
             public Slot<D> slot(@NonNull Context context, @NonNull D data, boolean retriggerable, boolean persistent) {
-                return CombinedSourceSkill.this.slot(context, data, retriggerable, persistent);
+                return USourceSkill.this.slot(context, data, retriggerable, persistent);
             }
 
             @NonNull
             @Override
             public String id() {
-                return CombinedSourceSkill.this.id();
+                return USourceSkill.this.id();
             }
 
             @Override
             public int name() {
-                return CombinedSourceSkill.this.name();
+                return USourceSkill.this.name();
             }
 
             @Override
             public boolean isCompatible(@NonNull Context context) {
-                return CombinedSourceSkill.this.isCompatible(context);
+                return USourceSkill.this.isCompatible(context);
             }
 
             @Override
             public boolean checkPermissions(@NonNull Context context) {
-                return CombinedSourceSkill.this.checkPermissions(context);
+                return USourceSkill.this.checkPermissions(context);
             }
 
             @Override
             public void requestPermissions(@NonNull Activity activity, int requestCode) {
-                CombinedSourceSkill.this.requestPermissions(activity, requestCode);
+                USourceSkill.this.requestPermissions(activity, requestCode);
             }
 
             @NonNull
             @Override
             public SkillView<D> view() {
-                return CombinedSourceSkill.this.eventView();
+                return USourceSkill.this.eventView();
             }
         };
     }
@@ -117,45 +117,45 @@ public interface CombinedSourceSkill<D extends CombinedSourceData> extends Skill
             @NonNull
             @Override
             public ConditionDataFactory<D> dataFactory() {
-                return CombinedSourceSkill.this.dataFactory();
+                return USourceSkill.this.dataFactory();
             }
 
             @NonNull
             @Override
             public Tracker<D> tracker(@NonNull Context context, @NonNull D data, @NonNull PendingIntent event_positive, @NonNull PendingIntent event_negative) {
-                return CombinedSourceSkill.this.tracker(context, data, event_positive, event_negative);
+                return USourceSkill.this.tracker(context, data, event_positive, event_negative);
             }
 
             @NonNull
             @Override
             public String id() {
-                return CombinedSourceSkill.this.id();
+                return USourceSkill.this.id();
             }
 
             @Override
             public int name() {
-                return CombinedSourceSkill.this.name();
+                return USourceSkill.this.name();
             }
 
             @Override
             public boolean isCompatible(@NonNull Context context) {
-                return CombinedSourceSkill.this.isCompatible(context);
+                return USourceSkill.this.isCompatible(context);
             }
 
             @Override
             public boolean checkPermissions(@NonNull Context context) {
-                return CombinedSourceSkill.this.checkPermissions(context);
+                return USourceSkill.this.checkPermissions(context);
             }
 
             @Override
             public void requestPermissions(@NonNull Activity activity, int requestCode) {
-                CombinedSourceSkill.this.requestPermissions(activity, requestCode);
+                USourceSkill.this.requestPermissions(activity, requestCode);
             }
 
             @NonNull
             @Override
             public SkillView<D> view() {
-                return CombinedSourceSkill.this.conditionView();
+                return USourceSkill.this.conditionView();
             }
         };
     }

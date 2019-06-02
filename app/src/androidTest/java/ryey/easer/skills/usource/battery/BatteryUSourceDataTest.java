@@ -17,9 +17,24 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.combined.battery;
+package ryey.easer.skills.usource.battery;
 
-class BatteryStatus {
-    static final int charging = 0;
-    static final int discharging = 2;
+import android.os.Parcel;
+
+import org.junit.Test;
+
+import ryey.easer.skills.TestHelper;
+
+import static org.junit.Assert.assertEquals;
+
+public class BatteryUSourceDataTest {
+
+    @Test
+    public void testParcel() {
+        BatteryUSourceData dummyData = new BatteryUSourceDataFactory().dummyData();
+        Parcel parcel = TestHelper.writeToParcel(dummyData);
+        BatteryUSourceData parceledData = BatteryUSourceData.CREATOR.createFromParcel(parcel);
+        assertEquals(dummyData, parceledData);
+    }
+
 }

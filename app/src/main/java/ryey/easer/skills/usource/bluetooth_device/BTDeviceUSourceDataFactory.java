@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,33 +17,33 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.combined.battery;
+package ryey.easer.skills.usource.bluetooth_device;
 
 import androidx.annotation.NonNull;
 
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.ValidData;
-import ryey.easer.commons.local_skill.combined_source.CombinedSourceDataFactory;
+import ryey.easer.commons.local_skill.usource.USourceDataFactory;
 import ryey.easer.plugin.PluginDataFormat;
 
-class BatteryCombinedSourceDataFactory implements CombinedSourceDataFactory<BatteryCombinedSourceData> {
+class BTDeviceUSourceDataFactory implements USourceDataFactory<BTDeviceUSourceData> {
     @NonNull
     @Override
-    public Class<BatteryCombinedSourceData> dataClass() {
-        return BatteryCombinedSourceData.class;
+    public Class<BTDeviceUSourceData> dataClass() {
+        return BTDeviceUSourceData.class;
     }
 
     @ValidData
     @NonNull
     @Override
-    public BatteryCombinedSourceData dummyData() {
-        return new BatteryCombinedSourceData(1);
+    public BTDeviceUSourceData dummyData() {
+        return new BTDeviceUSourceData(new String[]{"device1", "dev2"});
     }
 
     @ValidData
     @NonNull
     @Override
-    public BatteryCombinedSourceData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
-        return new BatteryCombinedSourceData(data, format, version);
+    public BTDeviceUSourceData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
+        return new BTDeviceUSourceData(data, format, version);
     }
 }

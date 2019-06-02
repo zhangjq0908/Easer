@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.combined.bluetooth_device;
+package ryey.easer.skills.usource.bluetooth_device;
 
 import android.os.Parcel;
 
@@ -33,19 +33,19 @@ import java.util.List;
 import ryey.easer.R;
 import ryey.easer.Utils;
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
-import ryey.easer.commons.local_skill.combined_source.CombinedSourceData;
 import ryey.easer.commons.local_skill.dynamics.Dynamics;
+import ryey.easer.commons.local_skill.usource.USourceData;
 import ryey.easer.plugin.PluginDataFormat;
 
 
-public class BTDeviceCombinedSourceData implements CombinedSourceData {
+public class BTDeviceUSourceData implements USourceData {
     final List<String> hwAddresses = new ArrayList<>();
 
-    BTDeviceCombinedSourceData(String[] hardware_addresses) {
+    BTDeviceUSourceData(String[] hardware_addresses) {
         setMultiple(hardware_addresses);
     }
 
-    BTDeviceCombinedSourceData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
+    BTDeviceUSourceData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 hwAddresses.clear();
@@ -89,9 +89,9 @@ public class BTDeviceCombinedSourceData implements CombinedSourceData {
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof BTDeviceCombinedSourceData))
+        if (obj == null || !(obj instanceof BTDeviceUSourceData))
             return false;
-        if (!hwAddresses.equals(((BTDeviceCombinedSourceData) obj).hwAddresses))
+        if (!hwAddresses.equals(((BTDeviceUSourceData) obj).hwAddresses))
             return false;
         return true;
     }
@@ -128,18 +128,18 @@ public class BTDeviceCombinedSourceData implements CombinedSourceData {
         dest.writeStringList(hwAddresses);
     }
 
-    public static final Creator<BTDeviceCombinedSourceData> CREATOR
-            = new Creator<BTDeviceCombinedSourceData>() {
-        public BTDeviceCombinedSourceData createFromParcel(Parcel in) {
-            return new BTDeviceCombinedSourceData(in);
+    public static final Creator<BTDeviceUSourceData> CREATOR
+            = new Creator<BTDeviceUSourceData>() {
+        public BTDeviceUSourceData createFromParcel(Parcel in) {
+            return new BTDeviceUSourceData(in);
         }
 
-        public BTDeviceCombinedSourceData[] newArray(int size) {
-            return new BTDeviceCombinedSourceData[size];
+        public BTDeviceUSourceData[] newArray(int size) {
+            return new BTDeviceUSourceData[size];
         }
     };
 
-    private BTDeviceCombinedSourceData(Parcel in) {
+    private BTDeviceUSourceData(Parcel in) {
         in.readStringList(hwAddresses);
     }
 

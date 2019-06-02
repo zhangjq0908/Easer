@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.combined.bluetooth_device;
+package ryey.easer.skills.usource.bluetooth_device;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -47,7 +47,7 @@ import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.skills.SkillViewFragment;
 
-public class BTDeviceSkillViewFragment extends SkillViewFragment<BTDeviceCombinedSourceData> {
+public class BTDeviceSkillViewFragment extends SkillViewFragment<BTDeviceUSourceData> {
     private final String ACTION_RETURN = "ryey.easer.skills.combined.bluetooth_device.return_from_dialog";
     private final String EXTRA_HARDWARE_ADDRESS = "ryey.easer.skills.combined.bluetooth_device.extra.hardware_address";
 
@@ -165,7 +165,7 @@ public class BTDeviceSkillViewFragment extends SkillViewFragment<BTDeviceCombine
     }
 
     @Override
-    protected void _fill(@ValidData @NonNull BTDeviceCombinedSourceData data) {
+    protected void _fill(@ValidData @NonNull BTDeviceUSourceData data) {
         StringBuilder text = new StringBuilder();
         boolean is_first = true;
         for (String hwaddress : data.hwAddresses) {
@@ -179,8 +179,8 @@ public class BTDeviceSkillViewFragment extends SkillViewFragment<BTDeviceCombine
     @ValidData
     @NonNull
     @Override
-    public BTDeviceCombinedSourceData getData() throws InvalidDataInputException {
-        return new BTDeviceCombinedSourceData(editText.getText().toString().split("\n"));
+    public BTDeviceUSourceData getData() throws InvalidDataInputException {
+        return new BTDeviceUSourceData(editText.getText().toString().split("\n"));
     }
 
     class BTDeviceWrapper {

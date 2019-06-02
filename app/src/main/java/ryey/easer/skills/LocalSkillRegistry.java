@@ -37,15 +37,13 @@ import ryey.easer.commons.CommonSkillHelper;
 import ryey.easer.commons.local_skill.Skill;
 import ryey.easer.commons.local_skill.SkillView;
 import ryey.easer.commons.local_skill.StorageData;
-import ryey.easer.commons.local_skill.combined_source.CombinedSourceSkill;
 import ryey.easer.commons.local_skill.conditionskill.ConditionData;
 import ryey.easer.commons.local_skill.conditionskill.ConditionSkill;
 import ryey.easer.commons.local_skill.eventskill.EventData;
 import ryey.easer.commons.local_skill.eventskill.EventSkill;
 import ryey.easer.commons.local_skill.operationskill.OperationData;
 import ryey.easer.commons.local_skill.operationskill.OperationSkill;
-import ryey.easer.skills.combined.battery.BatteryCombinedSourceSkill;
-import ryey.easer.skills.combined.bluetooth_device.BTDeviceCombinedSourceSkill;
+import ryey.easer.commons.local_skill.usource.USourceSkill;
 import ryey.easer.skills.condition.bluetooth_enabled.BluetoothEnabledConditionSkill;
 import ryey.easer.skills.condition.calendar.CalendarConditionSkill;
 import ryey.easer.skills.condition.cell_location.CellLocationConditionSkill;
@@ -95,6 +93,8 @@ import ryey.easer.skills.operation.synchronization.SynchronizationOperationSkill
 import ryey.easer.skills.operation.ui_mode.UiModeOperationSkill;
 import ryey.easer.skills.operation.volume.VolumeOperationSkill;
 import ryey.easer.skills.operation.wifi.WifiOperationSkill;
+import ryey.easer.skills.usource.battery.BatteryUSourceSkill;
+import ryey.easer.skills.usource.bluetooth_device.BTDeviceUSourceSkill;
 
 /**
  * Used to tell the app what skills can be used.
@@ -113,9 +113,9 @@ final public class LocalSkillRegistry {
     });
 
     {
-        for (CombinedSourceSkill skill : new CombinedSourceSkill[] {
-                new BatteryCombinedSourceSkill(),
-                new BTDeviceCombinedSourceSkill(),
+        for (USourceSkill skill : new USourceSkill[] {
+                new BatteryUSourceSkill(),
+                new BTDeviceUSourceSkill(),
         }) {
             event().registerSkill(skill.event());
             condition().registerSkill(skill.condition());

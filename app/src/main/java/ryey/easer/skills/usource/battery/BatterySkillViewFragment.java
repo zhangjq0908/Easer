@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.combined.battery;
+package ryey.easer.skills.usource.battery;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -36,7 +36,7 @@ import ryey.easer.skills.SkillViewFragment;
 
 import static android.widget.LinearLayout.HORIZONTAL;
 
-public class BatterySkillViewFragment extends SkillViewFragment<BatteryCombinedSourceData> {
+public class BatterySkillViewFragment extends SkillViewFragment<BatteryUSourceData> {
     String []mode_names;
     final int []values = {
             BatteryStatus.charging,
@@ -78,7 +78,7 @@ public class BatterySkillViewFragment extends SkillViewFragment<BatteryCombinedS
     }
 
     @Override
-    protected void _fill(@ValidData @NonNull BatteryCombinedSourceData data) {
+    protected void _fill(@ValidData @NonNull BatteryUSourceData data) {
         int status = data.battery_status;
         for (int i = 0; i < values.length; i++) {
             if (values[i] == status) {
@@ -91,9 +91,9 @@ public class BatterySkillViewFragment extends SkillViewFragment<BatteryCombinedS
     @ValidData
     @NonNull
     @Override
-    public BatteryCombinedSourceData getData() throws InvalidDataInputException {
+    public BatteryUSourceData getData() throws InvalidDataInputException {
         if (checked_item == null)
             throw new InvalidDataInputException();
-        return new BatteryCombinedSourceData(values[checked_item]);
+        return new BatteryUSourceData(values[checked_item]);
     }
 }

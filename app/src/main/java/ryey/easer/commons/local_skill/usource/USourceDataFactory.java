@@ -17,24 +17,10 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.combined.battery;
+package ryey.easer.commons.local_skill.usource;
 
-import android.os.Parcel;
+import ryey.easer.commons.local_skill.conditionskill.ConditionDataFactory;
+import ryey.easer.commons.local_skill.eventskill.EventDataFactory;
 
-import org.junit.Test;
-
-import ryey.easer.skills.TestHelper;
-
-import static org.junit.Assert.assertEquals;
-
-public class BatteryCombinedSourceDataTest {
-
-    @Test
-    public void testParcel() {
-        BatteryCombinedSourceData dummyData = new BatteryCombinedSourceDataFactory().dummyData();
-        Parcel parcel = TestHelper.writeToParcel(dummyData);
-        BatteryCombinedSourceData parceledData = BatteryCombinedSourceData.CREATOR.createFromParcel(parcel);
-        assertEquals(dummyData, parceledData);
-    }
-
+public interface USourceDataFactory<D extends USourceData> extends EventDataFactory<D>, ConditionDataFactory<D> {
 }

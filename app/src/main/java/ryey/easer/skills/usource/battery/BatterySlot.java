@@ -17,22 +17,18 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.combined.battery;
+package ryey.easer.skills.usource.battery;
 
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.BatteryManager;
 
-import androidx.annotation.NonNull;
+import ryey.easer.skills.event.AbstractSlot;
 
-import com.orhanobut.logger.Logger;
+public class BatterySlot extends AbstractSlot<BatteryUSourceData> {
 
-import ryey.easer.skills.condition.SkeletonTracker;
-
-public class BatteryTracker extends SkeletonTracker<BatteryCombinedSourceData> {
+    private int status;
 
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
@@ -58,44 +54,26 @@ public class BatteryTracker extends SkeletonTracker<BatteryCombinedSourceData> {
         filter.addAction(Intent.ACTION_POWER_DISCONNECTED);
     }
 
-    BatteryTracker(Context context, BatteryCombinedSourceData data,
-                   @NonNull PendingIntent event_positive,
-                   @NonNull PendingIntent event_negative) {
-        super(context, data, event_positive, event_negative);
-        Logger.d("BatteryTracker constructed");
+    public BatterySlot(Context context, BatteryUSourceData data) {
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTENT_DEFAULT);
+    }
+
+    BatterySlot(Context context, BatteryUSourceData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
+        status = data.battery_status;
     }
 
     @Override
-    public void start() {
+    public void listen() {
         context.registerReceiver(receiver, filter);
     }
 
     @Override
-    public void stop() {
+    public void cancel() {
         context.unregisterReceiver(receiver);
     }
 
-    @Override
-    public Boolean state() {
-        Logger.d("BatteryTracker.state()");
-        IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-        Intent batteryStatus = context.registerReceiver(null, ifilter);
-        int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
-        boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
-                status == BatteryManager.BATTERY_STATUS_FULL;
-        return (data.battery_status == BatteryStatus.charging) == isCharging;
-    }
-
     private void determineAndNotify(boolean isCharging) {
-        boolean satisfied = (data.battery_status == BatteryStatus.charging) == isCharging;
-        try {
-            if (satisfied) {
-                event_positive.send();
-            } else {
-                event_negative.send();
-            }
-        } catch (PendingIntent.CanceledException e) {
-            e.printStackTrace();
-        }
+        changeSatisfiedState((status == BatteryStatus.charging) == isCharging);
     }
 }

@@ -17,10 +17,9 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.commons.local_skill.combined_source;
+package ryey.easer.skills.usource.battery;
 
-import ryey.easer.commons.local_skill.conditionskill.ConditionData;
-import ryey.easer.commons.local_skill.eventskill.EventData;
-
-public interface CombinedSourceData extends EventData, ConditionData {
+class BatteryStatus {
+    static final int charging = 0;
+    static final int discharging = 2;
 }

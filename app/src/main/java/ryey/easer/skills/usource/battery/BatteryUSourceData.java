@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.combined.battery;
+package ryey.easer.skills.usource.battery;
 
 import android.os.Parcel;
 
@@ -25,19 +25,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
-import ryey.easer.commons.local_skill.combined_source.CombinedSourceData;
 import ryey.easer.commons.local_skill.dynamics.Dynamics;
+import ryey.easer.commons.local_skill.usource.USourceData;
 import ryey.easer.plugin.PluginDataFormat;
 
-public class BatteryCombinedSourceData implements CombinedSourceData {
+public class BatteryUSourceData implements USourceData {
 
     Integer battery_status = null;
 
-    public BatteryCombinedSourceData(Integer battery_status) {
+    public BatteryUSourceData(Integer battery_status) {
         this.battery_status = battery_status;
     }
 
-    BatteryCombinedSourceData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
+    BatteryUSourceData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
     }
 
@@ -78,9 +78,9 @@ public class BatteryCombinedSourceData implements CombinedSourceData {
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof BatteryCombinedSourceData))
+        if (obj == null || !(obj instanceof BatteryUSourceData))
             return false;
-        if (!battery_status.equals(((BatteryCombinedSourceData) obj).battery_status))
+        if (!battery_status.equals(((BatteryUSourceData) obj).battery_status))
             return false;
         return true;
     }
@@ -95,18 +95,18 @@ public class BatteryCombinedSourceData implements CombinedSourceData {
         dest.writeInt(battery_status);
     }
 
-    public static final Creator<BatteryCombinedSourceData> CREATOR
-            = new Creator<BatteryCombinedSourceData>() {
-        public BatteryCombinedSourceData createFromParcel(Parcel in) {
-            return new BatteryCombinedSourceData(in);
+    public static final Creator<BatteryUSourceData> CREATOR
+            = new Creator<BatteryUSourceData>() {
+        public BatteryUSourceData createFromParcel(Parcel in) {
+            return new BatteryUSourceData(in);
         }
 
-        public BatteryCombinedSourceData[] newArray(int size) {
-            return new BatteryCombinedSourceData[size];
+        public BatteryUSourceData[] newArray(int size) {
+            return new BatteryUSourceData[size];
         }
     };
 
-    private BatteryCombinedSourceData(Parcel in) {
+    private BatteryUSourceData(Parcel in) {
         battery_status = in.readInt();
     }
 }
