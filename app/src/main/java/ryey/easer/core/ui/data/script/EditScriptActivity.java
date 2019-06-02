@@ -72,8 +72,8 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
     RadioGroup rg_mode;
     CompoundButton mSwitch_reverse;
 
-    ConstraintLayout layout_use_scenario;
-    DataSelectSpinnerWrapper sw_scenario;
+    ConstraintLayout layout_use_event;
+    DataSelectSpinnerWrapper sw_event;
     CompoundButton mSwitch_repeatable;
     CompoundButton mSwitch_persistent;
 
@@ -138,9 +138,9 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         mViewPager_edit_event = findViewById(R.id.pager);
         mViewPager_edit_event.init(this);
 
-        layout_use_scenario = findViewById(R.id.layout_use_scenario);
-        sw_scenario = new DataSelectSpinnerWrapper(this, (Spinner) findViewById(R.id.spinner_scenario));
-        sw_scenario
+        layout_use_event = findViewById(R.id.layout_use_event);
+        sw_event = new DataSelectSpinnerWrapper(this, (Spinner) findViewById(R.id.spinner_event));
+        sw_event
                 .beginInit()
                 .setAllowEmpty(false)
                 .fillData(new EventDataStorage(this).list())
@@ -160,23 +160,23 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         rg_mode.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int id) {
-                int v_inline = View.GONE, v_scenario = View.GONE, v_condition = View.GONE;
-                if (id == R.id.radioButton_inline_scenario) {
+                int v_inline = View.GONE, v_event = View.GONE, v_condition = View.GONE;
+                if (id == R.id.radioButton_inline_event) {
                     v_inline = View.VISIBLE;
-                } else if (id == R.id.radioButton_scenario) {
-                    v_scenario = View.VISIBLE;
+                } else if (id == R.id.radioButton_event) {
+                    v_event = View.VISIBLE;
                 } else if (id == R.id.radioButton_condition) {
                     v_condition = View.VISIBLE;
                 } else {
                     throw new IllegalAccessError();
                 }
                 mViewPager_edit_event.setVisibility(v_inline);
-                layout_use_scenario.setVisibility(v_scenario);
+                layout_use_event.setVisibility(v_event);
                 layout_use_condition.setVisibility(v_condition);
             }
         });
         rg_mode.check(R.id.radioButton_condition);
-        rg_mode.check(R.id.radioButton_scenario);
+        rg_mode.check(R.id.radioButton_event);
 
         dynamics = findViewById(R.id.btn_dynamics);
         dynamics.setOnClickListener(new View.OnClickListener() {
@@ -186,33 +186,43 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
                 intent.putExtra(ListDynamicsActivity.EXTRA_DYNAMICS_LINK, dynamicsLink);
                 ArrayList<String> placeholders = new ArrayList<>();
                 String profileName = sw_profile.getSelection();
-                if (profileName != null) {
-                    ProfileStructure profile = new ProfileDataStorage(EditScriptActivity.this).get(profileName);
-                    placeholders.addAll(profile.placeholders());
+                if (profileName == null) {
+                    showDynamicsNotReady();
+                    return;
                 }
+                ProfileStructure profile = new ProfileDataStorage(EditScriptActivity.this).get(profileName);
+                placeholders.addAll(profile.placeholders());
                 intent.putStringArrayListExtra(ListDynamicsActivity.EXTRA_PLACEHOLDERS, placeholders);
-                try {
-                    if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_inline_scenario) {
-                        EventData eventData = mViewPager_edit_event.getEventData();
-                        intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_TYPE, ListDynamicsActivity.PLUGIN_TYPE_EVENT);
-                        intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_DATA, eventData);
-                    } else if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_scenario) {
-                        EventDataStorage eventDataStorage = new EventDataStorage(EditScriptActivity.this);
-                        String event_name = sw_scenario.getSelection();
-                        if (event_name != null) {
-                            EventStructure eventStructure = eventDataStorage.get(event_name);
-                            intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_DATA, eventStructure.getEventData());
-                        }
-                        intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_TYPE, ListDynamicsActivity.PLUGIN_TYPE_EVENT);
-                    } else if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_condition) {
-                        intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_TYPE, ListDynamicsActivity.PLUGIN_TYPE_CONDITION);
+                if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_inline_event) {
+                    EventData eventData;
+                    try {
+                        eventData = mViewPager_edit_event.getEventData();
+                    } catch (InvalidDataInputException e) {
+                        showDynamicsNotReady();
+                        return;
                     }
-                    startActivityForResult(intent, REQ_CODE);
-                } catch (InvalidDataInputException e) {
-                    Toast.makeText(EditScriptActivity.this, R.string.prompt_data_illegal, Toast.LENGTH_LONG).show();
+                    intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_TYPE, ListDynamicsActivity.PLUGIN_TYPE_EVENT);
+                    intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_DATA, eventData);
+                } else if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_event) {
+                    EventDataStorage eventDataStorage = new EventDataStorage(EditScriptActivity.this);
+                    String event_name = sw_event.getSelection();
+                    if (event_name == null) {
+                        showDynamicsNotReady();
+                        return;
+                    }
+                    EventStructure eventStructure = eventDataStorage.get(event_name);
+                    intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_DATA, eventStructure.getEventData());
+                    intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_TYPE, ListDynamicsActivity.PLUGIN_TYPE_EVENT);
+                } else if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_condition) {
+                    intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_TYPE, ListDynamicsActivity.PLUGIN_TYPE_CONDITION);
                 }
+                startActivityForResult(intent, REQ_CODE);
             }
         });
+    }
+
+    private void showDynamicsNotReady() {
+        Toast.makeText(EditScriptActivity.this, R.string.prompt_dynamics_not_ready, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -229,12 +239,12 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         if (script.isEvent()) {
             EventStructure scenario = script.getEvent();
             if (scenario.isTmpEvent()) {
-                rg_mode.check(R.id.radioButton_inline_scenario);
+                rg_mode.check(R.id.radioButton_inline_event);
                 EventData eventData = scenario.getEventData();
                 mViewPager_edit_event.setEventData(eventData);
             } else {
-                rg_mode.check(R.id.radioButton_scenario);
-                sw_scenario.setSelection(scenario.getName());
+                rg_mode.check(R.id.radioButton_event);
+                sw_event.setSelection(scenario.getName());
                 mSwitch_repeatable.setChecked(script.isRepeatable());
                 mSwitch_persistent.setChecked(script.isPersistent());
             }
@@ -260,12 +270,12 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
 
         script.setReverse(mSwitch_reverse.isChecked());
 
-        if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_inline_scenario) {
+        if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_inline_event) {
             EventDataStorage eventDataStorage = new EventDataStorage(this);
             script.setEventData(mViewPager_edit_event.getEventData());
-        } else if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_scenario) {
+        } else if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_event) {
             EventDataStorage eventDataStorage = new EventDataStorage(this);
-            String scenario_name = sw_scenario.getSelection();
+            String scenario_name = sw_event.getSelection();
             script.setEvent(eventDataStorage.get(scenario_name));
             script.setRepeatable(mSwitch_repeatable.isChecked());
             script.setPersistent(mSwitch_persistent.isChecked());
