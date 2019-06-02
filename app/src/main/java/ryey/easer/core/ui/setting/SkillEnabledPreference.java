@@ -37,16 +37,16 @@ class SkillEnabledPreference extends CheckBoxPreference implements Preference.On
 
     private static final int REQCODE = 2333;
 
-    private final Skill plugin;
+    private final Skill skill;
 
-    SkillEnabledPreference(Context context, Skill plugin) {
+    SkillEnabledPreference(Context context, Skill skill) {
         super(context);
-        this.plugin = plugin;
+        this.skill = skill;
         setOnPreferenceChangeListener(this);
-        setKey(CommonSkillHelper.pluginEnabledKey(plugin));
+        setKey(CommonSkillHelper.pluginEnabledKey(skill));
         setLayoutResource(R.layout.pref_plugin_enable);
-        setTitle(plugin.name());
-        boolean isCompatible = plugin.isCompatible(context);
+        setTitle(skill.name());
+        boolean isCompatible = skill.isCompatible(context);
         if (isCompatible) {
             setDefaultValue(true);
         } else {
@@ -59,8 +59,8 @@ class SkillEnabledPreference extends CheckBoxPreference implements Preference.On
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (BuildConfig.DEBUG && !(newValue instanceof Boolean)) throw new AssertionError();
-        if ((Boolean) newValue && !plugin.checkPermissions(getContext())) {
-            plugin.requestPermissions((Activity) getContext(), REQCODE);
+        if ((Boolean) newValue && !skill.checkPermissions(getContext())) {
+            skill.requestPermissions((Activity) getContext(), REQCODE);
             return false;
         }
         return true;
@@ -70,8 +70,8 @@ class SkillEnabledPreference extends CheckBoxPreference implements Preference.On
     protected void onBindView(View view) {
         super.onBindView(view);
         ImageView img_root = view.findViewById(R.id.img_root);
-        if (plugin instanceof OperationSkill) {
-            PrivilegeUsage privilege = ((OperationSkill) plugin).privilege();
+        if (skill instanceof OperationSkill) {
+            PrivilegeUsage privilege = ((OperationSkill) skill).privilege();
             if (privilege == PrivilegeUsage.root_only || privilege == PrivilegeUsage.prefer_root) {
                 img_root.setVisibility(View.VISIBLE);
             } else {

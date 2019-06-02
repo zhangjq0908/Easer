@@ -101,7 +101,7 @@ import skills.operation.OperationLoader;
 import local_skill.operationplugin.OperationPlugin;
 import local_skill.operationplugin.PrivilegeUsage;
 
-public class {plugin} implements OperationPlugin<{data}> {{
+public class {skill} implements OperationPlugin<{data}> {{
 
     @NonNull
     @Override
@@ -306,7 +306,7 @@ import skills.event.AbstractSlot;
 import local_skill.eventplugin.EventDataFactory;
 import local_skill.eventplugin.EventPlugin;
 
-public class {plugin} implements EventPlugin<{data}> {{
+public class {skill} implements EventPlugin<{data}> {{
 
     @NonNull
     @Override
@@ -506,7 +506,7 @@ import local_skill.conditionplugin.ConditionDataFactory;
 import local_skill.conditionplugin.ConditionPlugin;
 import local_skill.conditionplugin.Tracker;
 
-public class {plugin} implements ConditionPlugin<{data}> {{
+public class {skill} implements ConditionPlugin<{data}> {{
 
     @NonNull
     @Override
