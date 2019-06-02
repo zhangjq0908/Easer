@@ -1,6 +1,12 @@
 CHANGELOG
 ======
 
+* v0.7.6.2: Fixes && slight UI change && i18n
+	* Fix Dynamics trying to be edited with invalid inputs
+	* Fix Skills in-use can be disabled
+	* Do not enable "Inline Event" for new Scripts
+	* i18n update
+
 * v0.7.6.1: Add crash logs && i18n
 	* Easer now records crash logs too (when external logging enabled)
 		* Under /sdcard/logger/error

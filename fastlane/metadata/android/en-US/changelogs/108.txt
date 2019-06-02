@@ -1,0 +1,6 @@
+Fixes && slight UI change && i18n
+* Fix Dynamics trying to be edited with invalid inputs
+* Fix Skills in-use can be disabled
+* Do not enable "Inline Event" for new Scripts
+* i18n update
+
