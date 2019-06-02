@@ -17,10 +17,9 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.event.bluetooth_device;
+package ryey.easer.skills.combined.bluetooth_device;
 
 import android.os.Parcel;
-import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,46 +33,49 @@ import java.util.List;
 import ryey.easer.R;
 import ryey.easer.Utils;
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
+import ryey.easer.commons.local_skill.combined_source.CombinedSourceData;
 import ryey.easer.commons.local_skill.dynamics.Dynamics;
 import ryey.easer.plugin.PluginDataFormat;
-import ryey.easer.skills.event.AbstractEventData;
 
 
-public class BTDeviceEventData extends AbstractEventData {
-    private List<String> hwaddresses = new ArrayList<>();
+public class BTDeviceCombinedSourceData implements CombinedSourceData {
+    final List<String> hwAddresses = new ArrayList<>();
 
-    BTDeviceEventData(String[] hardware_addresses) {
+    BTDeviceCombinedSourceData(String[] hardware_addresses) {
         setMultiple(hardware_addresses);
     }
 
-    BTDeviceEventData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
-        parse(data, format, version);
+    BTDeviceCombinedSourceData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
+        switch (format) {
+            default:
+                hwAddresses.clear();
+                switch (format) {
+                    default:
+                        try {
+                            JSONArray jsonArray = new JSONArray(data);
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                String hwAddr = jsonArray.getString(i);
+                                hwAddresses.add(hwAddr);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            throw new IllegalStorageDataException(e);
+                        }
+                }
+        }
     }
 
     private void setMultiple(String[] hardware_addresses) {
         for (String hardware_address : hardware_addresses) {
             if (!Utils.isBlank(hardware_address))
-                this.hwaddresses.add(hardware_address.trim());
+                this.hwAddresses.add(hardware_address.trim());
         }
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder text = new StringBuilder();
-        boolean is_first = true;
-        for (String hwaddress : hwaddresses) {
-            if (!is_first)
-                text.append("\n");
-            text.append(hwaddress);
-            is_first = false;
-        }
-        return text.toString();
     }
 
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
-        if (hwaddresses.size() == 0)
+        if (hwAddresses.size() == 0)
             return false;
         return true;
     }
@@ -87,28 +89,11 @@ public class BTDeviceEventData extends AbstractEventData {
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof BTDeviceEventData))
+        if (obj == null || !(obj instanceof BTDeviceCombinedSourceData))
             return false;
-        if (!hwaddresses.equals(((BTDeviceEventData) obj).hwaddresses))
+        if (!hwAddresses.equals(((BTDeviceCombinedSourceData) obj).hwAddresses))
             return false;
         return true;
-    }
-
-    public void parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
-        hwaddresses.clear();
-        switch (format) {
-            default:
-                try {
-                    JSONArray jsonArray = new JSONArray(data);
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        String hwaddr = jsonArray.getString(i);
-                        hwaddresses.add(hwaddr);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    throw new IllegalStorageDataException(e);
-                }
-        }
     }
 
     @NonNull
@@ -118,7 +103,7 @@ public class BTDeviceEventData extends AbstractEventData {
         switch (format) {
             default:
                 JSONArray jsonArray = new JSONArray();
-                for (String hwaddr : hwaddresses) {
+                for (String hwaddr : hwAddresses) {
                     jsonArray.put(hwaddr);
                 }
                 res = jsonArray.toString();
@@ -128,7 +113,7 @@ public class BTDeviceEventData extends AbstractEventData {
 
     public boolean match(@NonNull Object obj) {
         if (obj instanceof String) {
-            return hwaddresses.contains(((String) obj).trim());
+            return hwAddresses.contains(((String) obj).trim());
         }
         return equals(obj);
     }
@@ -140,27 +125,27 @@ public class BTDeviceEventData extends AbstractEventData {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeStringList(hwaddresses);
+        dest.writeStringList(hwAddresses);
     }
 
-    public static final Parcelable.Creator<BTDeviceEventData> CREATOR
-            = new Parcelable.Creator<BTDeviceEventData>() {
-        public BTDeviceEventData createFromParcel(Parcel in) {
-            return new BTDeviceEventData(in);
+    public static final Creator<BTDeviceCombinedSourceData> CREATOR
+            = new Creator<BTDeviceCombinedSourceData>() {
+        public BTDeviceCombinedSourceData createFromParcel(Parcel in) {
+            return new BTDeviceCombinedSourceData(in);
         }
 
-        public BTDeviceEventData[] newArray(int size) {
-            return new BTDeviceEventData[size];
+        public BTDeviceCombinedSourceData[] newArray(int size) {
+            return new BTDeviceCombinedSourceData[size];
         }
     };
 
-    private BTDeviceEventData(Parcel in) {
-        in.readStringList(hwaddresses);
+    private BTDeviceCombinedSourceData(Parcel in) {
+        in.readStringList(hwAddresses);
     }
 
     static class DeviceNameDynamics implements Dynamics {
 
-        static final String id = "ryey.easer.skills.event.bluetooth_device.device_name";
+        static final String id = "ryey.easer.skills.combined.bluetooth_device.device_name";
 
         @Override
         public String id() {
@@ -175,7 +160,7 @@ public class BTDeviceEventData extends AbstractEventData {
 
     static class DeviceAddressDynamics implements Dynamics {
 
-        static final String id = "ryey.easer.skills.event.bluetooth_device.device_address";
+        static final String id = "ryey.easer.skills.combined.bluetooth_device.device_address";
 
         @Override
         public String id() {

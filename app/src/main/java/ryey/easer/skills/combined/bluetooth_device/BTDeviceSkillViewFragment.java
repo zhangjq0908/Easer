@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.condition.bluetooth_device;
+package ryey.easer.skills.combined.bluetooth_device;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -47,9 +47,9 @@ import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.skills.SkillViewFragment;
 
-public class BTDeviceSkillViewFragment extends SkillViewFragment<BTDeviceConditionData> {
-    private final String ACTION_RETURN = "ryey.easer.skills.event.bluetooth_device.return_from_dialog";
-    private final String EXTRA_HARDWARE_ADDRESS = "ryey.easer.skills.event.bluetooth_device.extra.hardware_address";
+public class BTDeviceSkillViewFragment extends SkillViewFragment<BTDeviceCombinedSourceData> {
+    private final String ACTION_RETURN = "ryey.easer.skills.combined.bluetooth_device.return_from_dialog";
+    private final String EXTRA_HARDWARE_ADDRESS = "ryey.easer.skills.combined.bluetooth_device.extra.hardware_address";
 
     private final IntentFilter mFilter = new IntentFilter(ACTION_RETURN);
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -164,25 +164,23 @@ public class BTDeviceSkillViewFragment extends SkillViewFragment<BTDeviceConditi
         text.append(hardware_address);
     }
 
-
     @Override
-    protected void _fill(@ValidData @NonNull BTDeviceConditionData data) {
+    protected void _fill(@ValidData @NonNull BTDeviceCombinedSourceData data) {
         StringBuilder text = new StringBuilder();
         boolean is_first = true;
-        for (String hwaddress : data.hwaddresses) {
+        for (String hwaddress : data.hwAddresses) {
             if (!is_first)
                 text.append("\n");
             text.append(hwaddress);
             is_first = false;
         }
-        editText.setText(text.toString());
     }
 
     @ValidData
     @NonNull
     @Override
-    public BTDeviceConditionData getData() throws InvalidDataInputException {
-        return new BTDeviceConditionData(editText.getText().toString().split("\n"));
+    public BTDeviceCombinedSourceData getData() throws InvalidDataInputException {
+        return new BTDeviceCombinedSourceData(editText.getText().toString().split("\n"));
     }
 
     class BTDeviceWrapper {

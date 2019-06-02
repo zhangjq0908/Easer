@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.condition.bluetooth_device;
+package ryey.easer.skills.combined.bluetooth_device;
 
 import android.app.PendingIntent;
 import android.bluetooth.BluetoothDevice;
@@ -32,7 +32,7 @@ import androidx.annotation.NonNull;
 
 import ryey.easer.skills.condition.SkeletonTracker;
 
-public class BTDeviceTracker extends SkeletonTracker<BTDeviceConditionData> {
+public class BTDeviceTracker extends SkeletonTracker<BTDeviceCombinedSourceData> {
 
     private int matched_devices = 0;
 
@@ -64,9 +64,9 @@ public class BTDeviceTracker extends SkeletonTracker<BTDeviceConditionData> {
         filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
     }
 
-    BTDeviceTracker(Context context, BTDeviceConditionData data,
-                   @NonNull PendingIntent event_positive,
-                   @NonNull PendingIntent event_negative) {
+    BTDeviceTracker(Context context, BTDeviceCombinedSourceData data,
+                    @NonNull PendingIntent event_positive,
+                    @NonNull PendingIntent event_negative) {
         super(context, data, event_positive, event_negative);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
             BluetoothManager bluetoothManager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
@@ -92,7 +92,7 @@ public class BTDeviceTracker extends SkeletonTracker<BTDeviceConditionData> {
     }
 
     private boolean is_target(BluetoothDevice device) {
-        return data.hwaddresses.contains(device.getAddress());
+        return data.hwAddresses.contains(device.getAddress());
     }
 
     private void determine_satisfied() {

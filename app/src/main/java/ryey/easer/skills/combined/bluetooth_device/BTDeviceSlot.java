@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.event.bluetooth_device;
+package ryey.easer.skills.combined.bluetooth_device;
 
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -28,12 +28,12 @@ import android.os.Bundle;
 
 import ryey.easer.skills.event.AbstractSlot;
 
-public class BTDeviceSlot extends AbstractSlot<BTDeviceEventData> {
+public class BTDeviceSlot extends AbstractSlot<BTDeviceCombinedSourceData> {
 
     private static Bundle dynamicsForCurrentDevice(BluetoothDevice bluetoothDevice) {
         Bundle bundle = new Bundle();
-        bundle.putString(BTDeviceEventData.DeviceNameDynamics.id, bluetoothDevice.getName());
-        bundle.putString(BTDeviceEventData.DeviceAddressDynamics.id, bluetoothDevice.getAddress());
+        bundle.putString(BTDeviceCombinedSourceData.DeviceNameDynamics.id, bluetoothDevice.getName());
+        bundle.putString(BTDeviceCombinedSourceData.DeviceAddressDynamics.id, bluetoothDevice.getAddress());
         return bundle;
     }
 
@@ -67,11 +67,11 @@ public class BTDeviceSlot extends AbstractSlot<BTDeviceEventData> {
         filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
     }
 
-    public BTDeviceSlot(Context context, BTDeviceEventData data) {
+    public BTDeviceSlot(Context context, BTDeviceCombinedSourceData data) {
         this(context, data, RETRIGGERABLE_DEFAULT, PERSISTENT_DEFAULT);
     }
 
-    BTDeviceSlot(Context context, BTDeviceEventData data, boolean retriggerable, boolean persistent) {
+    BTDeviceSlot(Context context, BTDeviceCombinedSourceData data, boolean retriggerable, boolean persistent) {
         super(context, data, retriggerable, persistent);
     }
 

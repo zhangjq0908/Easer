@@ -49,7 +49,7 @@ import ryey.easer.skills.SkillViewFragment;
 
 public class CalendarSkillViewFragment extends SkillViewFragment<CalendarEventData> {
 
-    private final static String ACTION_RETURN = "ryey.easer.skills.event.bluetooth_device.return_from_dialog";
+    private final static String ACTION_RETURN = "ryey.easer.skills.combined.bluetooth_device.return_from_dialog";
     private final static String EXTRA_CALENDAR_ID = "ryey.easer.skills.event.calendar.extra.calendar_id";
     private final static String EXTRA_CALENDAR_NAME = "ryey.easer.skills.event.calendar.extra.calendar_name";
 

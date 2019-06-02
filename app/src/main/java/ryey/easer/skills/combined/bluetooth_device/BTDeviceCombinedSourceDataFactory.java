@@ -17,33 +17,33 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.condition.bluetooth_device;
+package ryey.easer.skills.combined.bluetooth_device;
 
 import androidx.annotation.NonNull;
 
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.ValidData;
-import ryey.easer.commons.local_skill.conditionskill.ConditionDataFactory;
+import ryey.easer.commons.local_skill.combined_source.CombinedSourceDataFactory;
 import ryey.easer.plugin.PluginDataFormat;
 
-class BTDeviceConditionDataFactory implements ConditionDataFactory<BTDeviceConditionData> {
+class BTDeviceCombinedSourceDataFactory implements CombinedSourceDataFactory<BTDeviceCombinedSourceData> {
     @NonNull
     @Override
-    public Class<BTDeviceConditionData> dataClass() {
-        return BTDeviceConditionData.class;
+    public Class<BTDeviceCombinedSourceData> dataClass() {
+        return BTDeviceCombinedSourceData.class;
     }
 
     @ValidData
     @NonNull
     @Override
-    public BTDeviceConditionData dummyData() {
-        return new BTDeviceConditionData(new String[]{"device1", "dev2"});
+    public BTDeviceCombinedSourceData dummyData() {
+        return new BTDeviceCombinedSourceData(new String[]{"device1", "dev2"});
     }
 
     @ValidData
     @NonNull
     @Override
-    public BTDeviceConditionData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
-        return new BTDeviceConditionData(data, format, version);
+    public BTDeviceCombinedSourceData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
+        return new BTDeviceCombinedSourceData(data, format, version);
     }
 }

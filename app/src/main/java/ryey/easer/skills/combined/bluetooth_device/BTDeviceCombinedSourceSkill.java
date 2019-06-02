@@ -17,10 +17,11 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.event.bluetooth_device;
+package ryey.easer.skills.combined.bluetooth_device;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 
@@ -29,12 +30,13 @@ import androidx.annotation.NonNull;
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SkillView;
 import ryey.easer.commons.local_skill.ValidData;
-import ryey.easer.commons.local_skill.eventskill.EventDataFactory;
-import ryey.easer.commons.local_skill.eventskill.EventSkill;
+import ryey.easer.commons.local_skill.combined_source.CombinedSourceDataFactory;
+import ryey.easer.commons.local_skill.combined_source.CombinedSourceSkill;
+import ryey.easer.commons.local_skill.conditionskill.Tracker;
 import ryey.easer.skills.event.AbstractSlot;
 import ryey.easer.skills.reusable.PluginHelper;
 
-public class BTDeviceEventSkill implements EventSkill<BTDeviceEventData> {
+public class BTDeviceCombinedSourceSkill implements CombinedSourceSkill<BTDeviceCombinedSourceData> {
 
     @NonNull
     @Override
@@ -66,24 +68,29 @@ public class BTDeviceEventSkill implements EventSkill<BTDeviceEventData> {
 
     @NonNull
     @Override
-    public EventDataFactory<BTDeviceEventData> dataFactory() {
-        return new BTDeviceEventDataFactory();
+    public CombinedSourceDataFactory<BTDeviceCombinedSourceData> dataFactory() {
+        return new BTDeviceCombinedSourceDataFactory();
     }
 
     @NonNull
     @Override
-    public SkillView<BTDeviceEventData> view() {
+    public SkillView<BTDeviceCombinedSourceData> view() {
         return new BTDeviceSkillViewFragment();
     }
 
     @Override
-    public AbstractSlot<BTDeviceEventData> slot(@NonNull Context context, @ValidData @NonNull BTDeviceEventData data) {
+    public AbstractSlot<BTDeviceCombinedSourceData> slot(@NonNull Context context, @ValidData @NonNull BTDeviceCombinedSourceData data) {
         return new BTDeviceSlot(context, data);
     }
 
     @Override
-    public AbstractSlot<BTDeviceEventData> slot(@NonNull Context context, @NonNull BTDeviceEventData data, boolean retriggerable, boolean persistent) {
+    public AbstractSlot<BTDeviceCombinedSourceData> slot(@NonNull Context context, @NonNull BTDeviceCombinedSourceData data, boolean retriggerable, boolean persistent) {
         return new BTDeviceSlot(context, data, retriggerable, persistent);
+    }
+
+    @Override
+    public Tracker<BTDeviceCombinedSourceData> tracker(@NonNull Context context, @NonNull BTDeviceCombinedSourceData data, @NonNull PendingIntent event_positive, @NonNull PendingIntent event_negative) {
+        return new BTDeviceTracker(context, data, event_positive, event_negative);
     }
 
 }
