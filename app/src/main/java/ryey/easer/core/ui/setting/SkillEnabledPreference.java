@@ -24,6 +24,7 @@ import android.content.Context;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import ryey.easer.BuildConfig;
@@ -38,10 +39,12 @@ class SkillEnabledPreference extends CheckBoxPreference implements Preference.On
     private static final int REQCODE = 2333;
 
     private final Skill skill;
+    private final boolean in_use;
 
-    SkillEnabledPreference(Context context, Skill skill) {
+    SkillEnabledPreference(Context context, Skill skill, boolean in_use) {
         super(context);
         this.skill = skill;
+        this.in_use = in_use;
         setOnPreferenceChangeListener(this);
         setKey(CommonSkillHelper.pluginEnabledKey(skill));
         setLayoutResource(R.layout.pref_plugin_enable);
@@ -63,6 +66,9 @@ class SkillEnabledPreference extends CheckBoxPreference implements Preference.On
             skill.requestPermissions((Activity) getContext(), REQCODE);
             return false;
         }
+        if (in_use) {
+            return false;
+        }
         return true;
     }
 
@@ -76,6 +82,16 @@ class SkillEnabledPreference extends CheckBoxPreference implements Preference.On
                 img_root.setVisibility(View.VISIBLE);
             } else {
                 img_root.setVisibility(View.GONE);
+            }
+        }
+        recSetEnabled(view.findViewById(android.R.id.widget_frame), !in_use);
+    }
+
+    private static void recSetEnabled(View view, boolean enabled) {
+        view.setEnabled(enabled);
+        if (view instanceof ViewGroup) {
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                recSetEnabled(((ViewGroup) view).getChildAt(i), enabled);
             }
         }
     }
