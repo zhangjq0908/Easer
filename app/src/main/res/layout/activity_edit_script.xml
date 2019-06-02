@@ -184,10 +184,10 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <RadioGroup
-        android:id="@+id/rg_use_scenario"
+        android:id="@+id/rg_trigger"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:checkedButton="@+id/radioButton_inline_event"
+        android:checkedButton="@id/radioButton_event"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -198,21 +198,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/text_inline_event" />
+            android:text="@string/text_inline_event"
+            android:visibility="gone" />
 
         <RadioButton
             android:id="@+id/radioButton_event"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/text_predefined_event" />
+            android:text="@string/title_event" />
 
         <RadioButton
             android:id="@+id/radioButton_condition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/text_use_condition" />
+            android:text="@string/title_condition" />
     </RadioGroup>
 
     <androidx.appcompat.widget.SwitchCompat
@@ -224,6 +225,6 @@
         android:text="@string/text_reverse_desc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rg_use_scenario" />
+        app:layout_constraintTop_toBottomOf="@+id/rg_trigger" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

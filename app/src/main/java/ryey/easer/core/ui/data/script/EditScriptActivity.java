@@ -27,6 +27,7 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -70,6 +71,7 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
     DataSelectSpinnerWrapper sw_profile;
     boolean isActive = true;
     RadioGroup rg_mode;
+    RadioButton rb_inline, rb_event, rb_condition;
     CompoundButton mSwitch_reverse;
 
     ConstraintLayout layout_use_event;
@@ -156,7 +158,7 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
                 .fillData(new ConditionDataStorage(this).list())
                 .finalizeInit();
 
-        rg_mode = findViewById(R.id.rg_use_scenario);
+        rg_mode = findViewById(R.id.rg_trigger);
         rg_mode.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int id) {
@@ -177,6 +179,10 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         });
         rg_mode.check(R.id.radioButton_condition);
         rg_mode.check(R.id.radioButton_event);
+
+        rb_inline = findViewById(R.id.radioButton_inline_event);
+        rb_event = findViewById(R.id.radioButton_event);
+        rb_condition = findViewById(R.id.radioButton_condition);
 
         dynamics = findViewById(R.id.btn_dynamics);
         dynamics.setOnClickListener(new View.OnClickListener() {
@@ -227,6 +233,8 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
 
     @Override
     protected void loadFromData(ScriptStructure script) {
+        rb_inline.setVisibility(View.GONE);
+
         oldName = script.getName();
         mEditText_name.setText(oldName);
         String profile = script.getProfileName();
@@ -239,6 +247,10 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         if (script.isEvent()) {
             EventStructure scenario = script.getEvent();
             if (scenario.isTmpEvent()) {
+                rb_inline.setVisibility(View.VISIBLE);
+                rb_event.setText(R.string.text_predefined_event);
+                rb_condition.setText(R.string.text_use_condition);
+
                 rg_mode.check(R.id.radioButton_inline_event);
                 EventData eventData = scenario.getEventData();
                 mViewPager_edit_event.setEventData(eventData);
