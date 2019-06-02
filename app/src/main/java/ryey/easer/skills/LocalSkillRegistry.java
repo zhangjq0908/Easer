@@ -43,7 +43,7 @@ import ryey.easer.commons.local_skill.eventskill.EventData;
 import ryey.easer.commons.local_skill.eventskill.EventSkill;
 import ryey.easer.commons.local_skill.operationskill.OperationData;
 import ryey.easer.commons.local_skill.operationskill.OperationSkill;
-import ryey.easer.skills.condition.battery.BatteryConditionSkill;
+import ryey.easer.skills.combined.battery.BatteryCombinedSourceSkill;
 import ryey.easer.skills.condition.bluetooth_device.BTDeviceConditionSkill;
 import ryey.easer.skills.condition.bluetooth_enabled.BluetoothEnabledConditionSkill;
 import ryey.easer.skills.condition.calendar.CalendarConditionSkill;
@@ -57,7 +57,6 @@ import ryey.easer.skills.condition.screen.ScreenConditionSkill;
 import ryey.easer.skills.condition.time.TimeConditionSkill;
 import ryey.easer.skills.condition.wifi.WifiConditionSkill;
 import ryey.easer.skills.condition.wifi_enabled.WifiEnabledConditionSkill;
-import ryey.easer.skills.event.battery.BatteryEventSkill;
 import ryey.easer.skills.event.bluetooth_device.BTDeviceEventSkill;
 import ryey.easer.skills.event.broadcast.BroadcastEventSkill;
 import ryey.easer.skills.event.calendar.CalendarEventSkill;
@@ -119,7 +118,7 @@ final public class LocalSkillRegistry {
         event().registerSkill(DateEventSkill.class);
         event().registerSkill(WifiEventSkill.class);
         event().registerSkill(CellLocationEventSkill.class);
-        event().registerSkill(BatteryEventSkill.class);
+        event().registerSkill((new BatteryCombinedSourceSkill()).event());
         event().registerSkill(DayOfWeekEventSkill.class);
         event().registerSkill(BTDeviceEventSkill.class);
         event().registerSkill(ConnectivityEventSkill.class);
@@ -133,7 +132,7 @@ final public class LocalSkillRegistry {
         event().registerSkill(TcpTripEventSkill.class);
         event().registerSkill(ScreenEventSkill.class);
 
-        condition().registerSkill(BatteryConditionSkill.class);
+        condition().registerSkill((new BatteryCombinedSourceSkill()).condition());
         condition().registerSkill(BTDeviceConditionSkill.class);
         condition().registerSkill(CalendarConditionSkill.class);
         condition().registerSkill(CellLocationConditionSkill.class);
@@ -207,7 +206,7 @@ final public class LocalSkillRegistry {
 
     public static class Registry<T extends Skill, T_data extends StorageData> implements SkillLookupper<T, T_data> {
         final int type;
-        final List<Class<? extends T>> skillClassList = new ArrayList<>();
+        final List<String> skillIdList = new ArrayList<>();
         final List<T> skillList = new ArrayList<>();
         //TODO: use Set instead of List for the above two variables && add an "ordered" method to return a List
         final Map<String, String> backwardNameMap = new ArrayMap<>(); // Backward-compatible name conversion
@@ -223,24 +222,26 @@ final public class LocalSkillRegistry {
             }
         }
 
-        synchronized void registerSkill(Class<? extends T> pluginClass) {
-            for (Class<? extends T> klass : skillClassList) {
-                if (klass == pluginClass)
+        synchronized void registerSkill(T skill) {
+            String id = skill.id();
+            for (String eid : skillIdList) {
+                if (id.equals(eid))
                     return;
             }
-            skillClassList.add(pluginClass);
+            skillList.add(skill);
+            skillIdList.add(skill.id());
+        }
+
+        synchronized void registerSkill(Class<? extends T> skillClass) {
             try {
-                T plugin = pluginClass.newInstance();
-                skillList.add(plugin);
+                T skill = skillClass.newInstance();
+                skillList.add(skill);
+                skillIdList.add(skill.id());
             } catch (InstantiationException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
-        }
-
-        public List<Class<? extends T>> getSkillClasses() {
-            return skillClassList;
         }
 
         public List<T> getEnabledSkills(@NonNull Context context) {

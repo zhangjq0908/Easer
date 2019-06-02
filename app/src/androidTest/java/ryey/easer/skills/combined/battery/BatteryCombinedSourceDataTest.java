@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.condition.battery;
+package ryey.easer.skills.combined.battery;
 
 import android.os.Parcel;
 
@@ -25,15 +25,15 @@ import org.junit.Test;
 
 import ryey.easer.skills.TestHelper;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-public class BatteryConditionDataTest {
+public class BatteryCombinedSourceDataTest {
 
     @Test
     public void testParcel() {
-        BatteryConditionData dummyData = new BatteryConditionDataFactory().dummyData();
+        BatteryCombinedSourceData dummyData = new BatteryCombinedSourceDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
-        BatteryConditionData parceledData = BatteryConditionData.CREATOR.createFromParcel(parcel);
+        BatteryCombinedSourceData parceledData = BatteryCombinedSourceData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);
     }
 

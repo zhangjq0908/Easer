@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,28 +17,27 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.event.battery;
+package ryey.easer.skills.combined.battery;
 
 import android.os.Parcel;
-import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
+import ryey.easer.commons.local_skill.combined_source.CombinedSourceData;
 import ryey.easer.commons.local_skill.dynamics.Dynamics;
 import ryey.easer.plugin.PluginDataFormat;
-import ryey.easer.skills.event.AbstractEventData;
 
-public class BatteryEventData extends AbstractEventData {
+public class BatteryCombinedSourceData implements CombinedSourceData {
 
     Integer battery_status = null;
 
-    public BatteryEventData(Integer battery_status) {
+    public BatteryCombinedSourceData(Integer battery_status) {
         this.battery_status = battery_status;
     }
 
-    BatteryEventData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
+    BatteryCombinedSourceData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
     }
 
@@ -79,9 +78,9 @@ public class BatteryEventData extends AbstractEventData {
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof BatteryEventData))
+        if (obj == null || !(obj instanceof BatteryCombinedSourceData))
             return false;
-        if (!battery_status.equals(((BatteryEventData) obj).battery_status))
+        if (!battery_status.equals(((BatteryCombinedSourceData) obj).battery_status))
             return false;
         return true;
     }
@@ -96,18 +95,18 @@ public class BatteryEventData extends AbstractEventData {
         dest.writeInt(battery_status);
     }
 
-    public static final Parcelable.Creator<BatteryEventData> CREATOR
-            = new Parcelable.Creator<BatteryEventData>() {
-        public BatteryEventData createFromParcel(Parcel in) {
-            return new BatteryEventData(in);
+    public static final Creator<BatteryCombinedSourceData> CREATOR
+            = new Creator<BatteryCombinedSourceData>() {
+        public BatteryCombinedSourceData createFromParcel(Parcel in) {
+            return new BatteryCombinedSourceData(in);
         }
 
-        public BatteryEventData[] newArray(int size) {
-            return new BatteryEventData[size];
+        public BatteryCombinedSourceData[] newArray(int size) {
+            return new BatteryCombinedSourceData[size];
         }
     };
 
-    private BatteryEventData(Parcel in) {
+    private BatteryCombinedSourceData(Parcel in) {
         battery_status = in.readInt();
     }
 }

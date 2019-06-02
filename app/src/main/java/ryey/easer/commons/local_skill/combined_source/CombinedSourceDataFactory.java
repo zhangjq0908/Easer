@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,9 +17,10 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.condition.battery;
+package ryey.easer.commons.local_skill.combined_source;
 
-class BatteryStatus {
-    static final int charging = 0;
-    static final int discharging = 2;
+import ryey.easer.commons.local_skill.conditionskill.ConditionDataFactory;
+import ryey.easer.commons.local_skill.eventskill.EventDataFactory;
+
+public interface CombinedSourceDataFactory<D extends CombinedSourceData> extends EventDataFactory<D>, ConditionDataFactory<D> {
 }

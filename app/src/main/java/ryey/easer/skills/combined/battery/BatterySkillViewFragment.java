@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.condition.battery;
+package ryey.easer.skills.combined.battery;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -36,7 +36,7 @@ import ryey.easer.skills.SkillViewFragment;
 
 import static android.widget.LinearLayout.HORIZONTAL;
 
-public class BatterySkillViewFragment extends SkillViewFragment<BatteryConditionData> {
+public class BatterySkillViewFragment extends SkillViewFragment<BatteryCombinedSourceData> {
     String []mode_names;
     final int []values = {
             BatteryStatus.charging,
@@ -78,7 +78,7 @@ public class BatterySkillViewFragment extends SkillViewFragment<BatteryCondition
     }
 
     @Override
-    protected void _fill(@ValidData @NonNull BatteryConditionData data) {
+    protected void _fill(@ValidData @NonNull BatteryCombinedSourceData data) {
         int status = data.battery_status;
         for (int i = 0; i < values.length; i++) {
             if (values[i] == status) {
@@ -91,9 +91,9 @@ public class BatterySkillViewFragment extends SkillViewFragment<BatteryCondition
     @ValidData
     @NonNull
     @Override
-    public BatteryConditionData getData() throws InvalidDataInputException {
+    public BatteryCombinedSourceData getData() throws InvalidDataInputException {
         if (checked_item == null)
             throw new InvalidDataInputException();
-        return new BatteryConditionData(values[checked_item]);
+        return new BatteryCombinedSourceData(values[checked_item]);
     }
 }

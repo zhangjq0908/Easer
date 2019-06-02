@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,24 +17,10 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.event.battery;
+package ryey.easer.commons.local_skill.combined_source;
 
-import android.os.Parcel;
+import ryey.easer.commons.local_skill.conditionskill.ConditionData;
+import ryey.easer.commons.local_skill.eventskill.EventData;
 
-import org.junit.Test;
-
-import ryey.easer.skills.TestHelper;
-
-import static org.junit.Assert.assertEquals;
-
-public class BatteryEventDataTest {
-
-    @Test
-    public void testParcel() {
-        BatteryEventData dummyData = new BatteryEventDataFactory().dummyData();
-        Parcel parcel = TestHelper.writeToParcel(dummyData);
-        BatteryEventData parceledData = BatteryEventData.CREATOR.createFromParcel(parcel);
-        assertEquals(dummyData, parceledData);
-    }
-
+public interface CombinedSourceData extends EventData, ConditionData {
 }

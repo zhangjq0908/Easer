@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,33 +17,33 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.condition.battery;
+package ryey.easer.skills.combined.battery;
 
 import androidx.annotation.NonNull;
 
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.ValidData;
-import ryey.easer.commons.local_skill.conditionskill.ConditionDataFactory;
+import ryey.easer.commons.local_skill.combined_source.CombinedSourceDataFactory;
 import ryey.easer.plugin.PluginDataFormat;
 
-class BatteryConditionDataFactory implements ConditionDataFactory<BatteryConditionData> {
+class BatteryCombinedSourceDataFactory implements CombinedSourceDataFactory<BatteryCombinedSourceData> {
     @NonNull
     @Override
-    public Class<BatteryConditionData> dataClass() {
-        return BatteryConditionData.class;
+    public Class<BatteryCombinedSourceData> dataClass() {
+        return BatteryCombinedSourceData.class;
     }
 
     @ValidData
     @NonNull
     @Override
-    public BatteryConditionData dummyData() {
-        return new BatteryConditionData(1);
+    public BatteryCombinedSourceData dummyData() {
+        return new BatteryCombinedSourceData(1);
     }
 
     @ValidData
     @NonNull
     @Override
-    public BatteryConditionData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
-        return new BatteryConditionData(data, format, version);
+    public BatteryCombinedSourceData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
+        return new BatteryCombinedSourceData(data, format, version);
     }
 }
