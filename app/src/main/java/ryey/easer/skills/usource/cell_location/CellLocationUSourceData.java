@@ -17,11 +17,12 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.condition.cell_location;
+package ryey.easer.skills.usource.cell_location;
 
 import android.os.Parcel;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,19 +30,21 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 
+import ryey.easer.R;
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
-import ryey.easer.commons.local_skill.conditionskill.ConditionData;
+import ryey.easer.commons.local_skill.dynamics.Dynamics;
+import ryey.easer.commons.local_skill.usource.USourceData;
 import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.skills.reusable.CellLocationSingleData;
 
-public class CellLocationConditionData implements ConditionData {
+public class CellLocationUSourceData implements USourceData {
     final List<CellLocationSingleData> data = new ArrayList<>();
 
-    CellLocationConditionData(String[] locations) {
+    CellLocationUSourceData(String[] locations) {
         setFromMultiple(locations);
     }
 
-    CellLocationConditionData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
+    CellLocationUSourceData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 try {
@@ -91,14 +94,20 @@ public class CellLocationConditionData implements ConditionData {
         return true;
     }
 
+    @Nullable
+    @Override
+    public Dynamics[] dynamics() {
+        return new Dynamics[]{new CellLocationDynamics()};
+    }
+
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(Object obj) {
         if (obj == this)
             return true;
-        if (obj == null || !(obj instanceof CellLocationConditionData))
+        if (obj == null || !(obj instanceof CellLocationUSourceData))
             return false;
-        if (!data.equals(((CellLocationConditionData) obj).data))
+        if (!data.equals(((CellLocationUSourceData) obj).data))
             return false;
         return true;
     }
@@ -125,18 +134,33 @@ public class CellLocationConditionData implements ConditionData {
         dest.writeList(data);
     }
 
-    public static final Creator<CellLocationConditionData> CREATOR
-            = new Creator<CellLocationConditionData>() {
-        public CellLocationConditionData createFromParcel(Parcel in) {
-            return new CellLocationConditionData(in);
+    public static final Creator<CellLocationUSourceData> CREATOR
+            = new Creator<CellLocationUSourceData>() {
+        public CellLocationUSourceData createFromParcel(Parcel in) {
+            return new CellLocationUSourceData(in);
         }
 
-        public CellLocationConditionData[] newArray(int size) {
-            return new CellLocationConditionData[size];
+        public CellLocationUSourceData[] newArray(int size) {
+            return new CellLocationUSourceData[size];
         }
     };
 
-    private CellLocationConditionData(Parcel in) {
+    private CellLocationUSourceData(Parcel in) {
         in.readList(data, CellLocationSingleData.class.getClassLoader());
+    }
+
+    static class CellLocationDynamics implements Dynamics {
+
+        static final String id = "ryey.easer.skills.event.cell_location.tower";
+
+        @Override
+        public String id() {
+            return id;
+        }
+
+        @Override
+        public int nameRes() {
+            return R.string.event_cell_location_dynamics_cell_location;
+        }
     }
 }

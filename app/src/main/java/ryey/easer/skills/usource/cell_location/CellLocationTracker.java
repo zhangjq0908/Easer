@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.condition.cell_location;
+package ryey.easer.skills.usource.cell_location;
 
 import android.annotation.SuppressLint;
 import android.app.PendingIntent;
@@ -31,13 +31,13 @@ import androidx.annotation.NonNull;
 import ryey.easer.skills.condition.SkeletonTracker;
 import ryey.easer.skills.reusable.CellLocationSingleData;
 
-public class CellLocationTracker extends SkeletonTracker<CellLocationConditionData> {
+public class CellLocationTracker extends SkeletonTracker<CellLocationUSourceData> {
 
     private static TelephonyManager telephonyManager = null;
 
     private CellLocationListener cellLocationListener = new CellLocationListener();
 
-    CellLocationTracker(Context context, CellLocationConditionData data,
+    CellLocationTracker(Context context, CellLocationUSourceData data,
                    @NonNull PendingIntent event_positive,
                    @NonNull PendingIntent event_negative) {
         super(context, data, event_positive, event_negative);

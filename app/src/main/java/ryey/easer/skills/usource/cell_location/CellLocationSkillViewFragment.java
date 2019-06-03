@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.event.cell_location;
+package ryey.easer.skills.usource.cell_location;
 
 import android.Manifest;
 import android.os.Bundle;
@@ -40,15 +40,14 @@ import ryey.easer.skills.SkillViewFragment;
 import ryey.easer.skills.reusable.CellLocationSingleData;
 import ryey.easer.skills.reusable.ScannerDialogFragment;
 
-public class CellLocationSkillViewFragment extends SkillViewFragment<CellLocationEventData> implements ScannerDialogFragment.ScannerListener  {
+public class CellLocationSkillViewFragment extends SkillViewFragment<CellLocationUSourceData> implements ScannerDialogFragment.ScannerListener {
+    private EditText editText;
 
     public static final int DIALOG_FRAGMENT = 1;
 
-    private EditText editText;
-
     @NonNull
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.plugin_event__cell_location, container, false);
 
         editText = view.findViewById(R.id.location_text);
@@ -69,16 +68,18 @@ public class CellLocationSkillViewFragment extends SkillViewFragment<CellLocatio
     }
 
     @Override
-    protected void _fill(@ValidData @NonNull CellLocationEventData data) {
+    protected void _fill(@ValidData @NonNull CellLocationUSourceData data) {
         editText.setText(data.toString());
     }
 
     @ValidData
     @NonNull
     @Override
-    public CellLocationEventData getData() throws InvalidDataInputException {
-        CellLocationEventData data = CellLocationEventData.fromString(editText.getText().toString());
-        return data;
+    public CellLocationUSourceData getData() throws InvalidDataInputException {
+        CellLocationUSourceData data = new CellLocationUSourceData(editText.getText().toString().split("\n"));
+        if (data.isValid())
+            return data;
+        throw new InvalidDataInputException();
     }
 
     @Override

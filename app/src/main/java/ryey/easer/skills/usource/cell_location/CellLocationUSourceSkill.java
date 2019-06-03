@@ -17,10 +17,11 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.event.cell_location;
+package ryey.easer.skills.usource.cell_location;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
@@ -28,12 +29,13 @@ import androidx.annotation.NonNull;
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SkillView;
 import ryey.easer.commons.local_skill.ValidData;
-import ryey.easer.commons.local_skill.eventskill.EventDataFactory;
-import ryey.easer.commons.local_skill.eventskill.EventSkill;
-import ryey.easer.skills.event.AbstractSlot;
+import ryey.easer.commons.local_skill.conditionskill.Tracker;
+import ryey.easer.commons.local_skill.eventskill.Slot;
+import ryey.easer.commons.local_skill.usource.USourceDataFactory;
+import ryey.easer.commons.local_skill.usource.USourceSkill;
 import ryey.easer.skills.reusable.PluginHelper;
 
-public class CellLocationEventSkill implements EventSkill<CellLocationEventData> {
+public class CellLocationUSourceSkill implements USourceSkill<CellLocationUSourceData> {
 
     @NonNull
     @Override
@@ -43,7 +45,7 @@ public class CellLocationEventSkill implements EventSkill<CellLocationEventData>
 
     @Override
     public int name() {
-        return R.string.event_cell_location;
+        return R.string.condition_cell_location;
     }
 
     @Override
@@ -63,24 +65,33 @@ public class CellLocationEventSkill implements EventSkill<CellLocationEventData>
 
     @NonNull
     @Override
-    public EventDataFactory<CellLocationEventData> dataFactory() {
-        return new CellLocationEventDataFactory();
+    public USourceDataFactory<CellLocationUSourceData> dataFactory() {
+        return new CellLocationUSourceDataFactory();
     }
 
     @NonNull
     @Override
-    public SkillView<CellLocationEventData> view() {
+    public SkillView<CellLocationUSourceData> view() {
         return new CellLocationSkillViewFragment();
     }
 
     @Override
-    public AbstractSlot<CellLocationEventData> slot(@NonNull Context context, @ValidData @NonNull CellLocationEventData data) {
+    public Slot<CellLocationUSourceData> slot(@NonNull Context context, @NonNull CellLocationUSourceData data) {
         return new CellLocationSlot(context, data);
     }
 
     @Override
-    public AbstractSlot<CellLocationEventData> slot(@NonNull Context context, @NonNull CellLocationEventData data, boolean retriggerable, boolean persistent) {
+    public Slot<CellLocationUSourceData> slot(@NonNull Context context, @NonNull CellLocationUSourceData data, boolean retriggerable, boolean persistent) {
         return new CellLocationSlot(context, data, retriggerable, persistent);
+    }
+
+    @NonNull
+    @Override
+    public Tracker<CellLocationUSourceData> tracker(@NonNull Context context,
+                                                    @ValidData @NonNull CellLocationUSourceData data,
+                                                    @NonNull PendingIntent event_positive,
+                                                    @NonNull PendingIntent event_negative) {
+        return new CellLocationTracker(context, data, event_positive, event_negative);
     }
 
 }

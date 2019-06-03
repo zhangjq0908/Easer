@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.event.cell_location;
+package ryey.easer.skills.usource.cell_location;
 
 import android.os.Parcel;
 
@@ -27,13 +27,13 @@ import ryey.easer.skills.TestHelper;
 
 import static org.junit.Assert.assertEquals;
 
-public class CellLocationEventDataTest {
+public class CellLocationUSourceDataTest {
 
     @Test
     public void testParcel() {
-        CellLocationEventData dummyData = new CellLocationEventDataFactory().dummyData();
+        CellLocationUSourceData dummyData = new CellLocationUSourceDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
-        CellLocationEventData parceledData = CellLocationEventData.CREATOR.createFromParcel(parcel);
+        CellLocationUSourceData parceledData = CellLocationUSourceData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);
     }
 

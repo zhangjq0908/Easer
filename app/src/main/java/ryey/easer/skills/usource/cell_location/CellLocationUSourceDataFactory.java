@@ -17,34 +17,33 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.event.cell_location;
+package ryey.easer.skills.usource.cell_location;
 
 import androidx.annotation.NonNull;
 
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.ValidData;
-import ryey.easer.commons.local_skill.eventskill.EventDataFactory;
+import ryey.easer.commons.local_skill.usource.USourceDataFactory;
 import ryey.easer.plugin.PluginDataFormat;
 
-class CellLocationEventDataFactory implements EventDataFactory<CellLocationEventData> {
+class CellLocationUSourceDataFactory implements USourceDataFactory<CellLocationUSourceData> {
     @NonNull
     @Override
-    public Class<CellLocationEventData> dataClass() {
-        return CellLocationEventData.class;
+    public Class<CellLocationUSourceData> dataClass() {
+        return CellLocationUSourceData.class;
     }
 
     @ValidData
     @NonNull
     @Override
-    public CellLocationEventData dummyData() {
-        CellLocationEventData dummyData = new CellLocationEventData(new String[]{"1-2", "2-3"});
-        return dummyData;
+    public CellLocationUSourceData dummyData() {
+        return new CellLocationUSourceData(new String[]{"1-2", "2-3"});
     }
 
     @ValidData
     @NonNull
     @Override
-    public CellLocationEventData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
-        return new CellLocationEventData(data, format, version);
+    public CellLocationUSourceData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
+        return new CellLocationUSourceData(data, format, version);
     }
 }

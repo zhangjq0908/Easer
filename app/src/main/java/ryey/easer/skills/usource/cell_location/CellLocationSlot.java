@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.event.cell_location;
+package ryey.easer.skills.usource.cell_location;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -28,18 +28,18 @@ import android.telephony.TelephonyManager;
 import ryey.easer.skills.event.AbstractSlot;
 import ryey.easer.skills.reusable.CellLocationSingleData;
 
-public class CellLocationSlot extends AbstractSlot<CellLocationEventData> {
+public class CellLocationSlot extends AbstractSlot<CellLocationUSourceData> {
     private static TelephonyManager telephonyManager = null;
 
     private CellLocationListener cellLocationListener = new CellLocationListener();
 
     private CellLocationSingleData curr = null;
 
-    public CellLocationSlot(Context context, CellLocationEventData data) {
+    public CellLocationSlot(Context context, CellLocationUSourceData data) {
         this(context, data, RETRIGGERABLE_DEFAULT, PERSISTENT_DEFAULT);
     }
 
-    CellLocationSlot(Context context, CellLocationEventData data, boolean retriggerable, boolean persistent) {
+    CellLocationSlot(Context context, CellLocationUSourceData data, boolean retriggerable, boolean persistent) {
         super(context, data, retriggerable, persistent);
 
         if (telephonyManager == null) {
@@ -61,7 +61,7 @@ public class CellLocationSlot extends AbstractSlot<CellLocationEventData> {
 
     private static Bundle dynamicsForCurrent(CellLocation location) {
         Bundle dynamics = new Bundle();
-        dynamics.putString(CellLocationEventData.CellLocationDynamics.id, location.toString());
+        dynamics.putString(CellLocationUSourceData.CellLocationDynamics.id, location.toString());
         return dynamics;
     }
 
@@ -71,7 +71,7 @@ public class CellLocationSlot extends AbstractSlot<CellLocationEventData> {
             super.onCellLocationChanged(location);
             curr = CellLocationSingleData.fromCellLocation(location);
             if (curr != null)
-                changeSatisfiedState(eventData.contains(curr), dynamicsForCurrent(location));
+                changeSatisfiedState(eventData.data.contains(curr), dynamicsForCurrent(location));
         }
     }
 }
