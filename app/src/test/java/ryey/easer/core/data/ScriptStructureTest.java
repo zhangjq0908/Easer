@@ -25,7 +25,7 @@ import org.junit.Test;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.local_skill.eventskill.EventData;
-import ryey.easer.skills.event.wifi.WifiEventSkill;
+import ryey.easer.skills.usource.wifi.WifiUSourceSkill;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -42,7 +42,7 @@ public class ScriptStructureTest {
 
     @BeforeClass
     public static void setUpAll() {
-        eventData = new WifiEventSkill().dataFactory().dummyData();
+        eventData = new WifiUSourceSkill().dataFactory().dummyData();
         scenario = new EventStructure(C.VERSION_CREATED_IN_RUNTIME, "myScenario", eventData);
     }
 
