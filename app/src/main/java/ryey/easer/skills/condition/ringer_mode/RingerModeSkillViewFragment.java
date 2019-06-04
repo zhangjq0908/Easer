@@ -22,9 +22,6 @@ package ryey.easer.skills.condition.ringer_mode;
 import android.content.Context;
 import android.media.AudioManager;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,10 +30,13 @@ import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.InvalidDataInputException;
-import ryey.easer.skills.SkillViewFragment;
 import ryey.easer.commons.local_skill.ValidData;
+import ryey.easer.skills.SkillViewFragment;
 
 public class RingerModeSkillViewFragment extends SkillViewFragment<RingerModeConditionData> {
 

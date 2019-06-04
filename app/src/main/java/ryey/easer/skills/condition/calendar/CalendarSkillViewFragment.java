@@ -45,8 +45,8 @@ import androidx.annotation.Nullable;
 import ryey.easer.R;
 import ryey.easer.Utils;
 import ryey.easer.commons.local_skill.InvalidDataInputException;
-import ryey.easer.skills.SkillViewFragment;
 import ryey.easer.commons.local_skill.ValidData;
+import ryey.easer.skills.SkillViewFragment;
 
 import static ryey.easer.skills.condition.calendar.CalendarConditionMatchType.EVENT_TITLE;
 

@@ -49,8 +49,8 @@ import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.core.dynamics.CoreDynamics;
 import ryey.easer.core.dynamics.CoreDynamicsInterface;
 import ryey.easer.core.log.ActivityLogService;
-import ryey.easer.skills.LocalSkillRegistry;
 import ryey.easer.remote_plugin.RemoteOperationData;
+import ryey.easer.skills.LocalSkillRegistry;
 
 import static ryey.easer.core.Lotus.EXTRA_DYNAMICS_LINK;
 import static ryey.easer.core.Lotus.EXTRA_DYNAMICS_PROPERTIES;

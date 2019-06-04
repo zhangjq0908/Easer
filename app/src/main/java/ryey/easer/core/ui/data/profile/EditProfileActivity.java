@@ -44,8 +44,8 @@ import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.core.ui.data.AbstractEditDataActivity;
-import ryey.easer.skills.LocalSkillRegistry;
 import ryey.easer.remote_plugin.RemoteOperationData;
+import ryey.easer.skills.LocalSkillRegistry;
 
 public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructure, ProfileDataStorage> implements OperationSelectorFragment.SelectedListener {
 

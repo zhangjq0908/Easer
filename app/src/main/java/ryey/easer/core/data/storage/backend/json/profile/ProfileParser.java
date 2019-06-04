@@ -35,8 +35,8 @@ import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.storage.backend.IOUtils;
 import ryey.easer.core.data.storage.backend.Parser;
 import ryey.easer.plugin.PluginDataFormat;
-import ryey.easer.skills.LocalSkillRegistry;
 import ryey.easer.remote_plugin.RemoteOperationData;
+import ryey.easer.skills.LocalSkillRegistry;
 
 class ProfileParser implements Parser<ProfileStructure> {
 
