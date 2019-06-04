@@ -83,4 +83,16 @@
     <string name="prompt_data_illegal">Não foi possível salvar dados com campo(s) inválido(s). Por favor verifique novamente suas escolhas/entradas.</string>
     <string name="prompt_prevented_for_permission">Conceda ao Easer a permissão para &lt;%s&gt; para que isso funcione...</string>
     <string name="prompt_error_logged">Easer acabou de gravar um erro. Veja o subdiretório de erros dentro do diretório do log.</string>
+    <string name="text_app_description">Facilite sua vida automatizando ações rotineiras no(s) seu(s) dispositivo(s). 
+\nEncadeie eventos diferentes e deixe suas ações correspondentes serem executadas. Não se preocupe mais com elas!
+\nEste aplicativo foi inspirado no mecanismo \'perfil\' da CyanogenMod e IFTTT. A intenção original era alterar automaticamente o perfil em determinados horários ou conexões Wi-Fi específicas, e acabou sendo expandido para uso mais geral.
+\nLembrete: Easer ainda está em desenvolvimento. Pode conter erros e a interface do usuário com certeza precisa ser melhorada. Dê uma olhada em TODO.en.md (ou TODO.md se você souber ler em chinês) no repo para ajudar.</string>
+    <string name="url_donate">https://renyuneyun.github.io/Easer/ptbr/DONATE.html</string>
+    <string name="text_license">Este programa é software livre: você pode redistribuí-lo e / ou modificá-lo sob os termos da Licença Pública Geral GNU, conforme publicada pela Free Software Foundation, versão 3 da Licença, ou (a seu critério) qualquer versão posterior.
+\n  Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIALIZAÇÃO ou ADEQUAÇÃO A UM DETERMINADO FIM. Veja a Licença Pública Geral GNU para mais detalhes.
+\n  Você deve ter recebido uma cópia da Licença Pública Geral GNU junto com este programa. Se não, veja https://www.gnu.org/licenses/</string>
+    <string name="pref_category_functionality">Funcionalidade</string>
+    <string name="pref_category_personalise">Personalizar</string>
+    <string name="pref_category_data_manage">Gerenciar dados</string>
+    <string name="pref_category_service">Serviço</string>
 </resources>
