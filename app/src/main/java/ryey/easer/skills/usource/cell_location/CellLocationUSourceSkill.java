@@ -45,7 +45,7 @@ public class CellLocationUSourceSkill implements USourceSkill<CellLocationUSourc
 
     @Override
     public int name() {
-        return R.string.condition_cell_location;
+        return R.string.event_cell_location;
     }
 
     @Override

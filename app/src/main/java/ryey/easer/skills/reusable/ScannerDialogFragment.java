@@ -74,7 +74,7 @@ public class ScannerDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         if (telephonyManager == null) {
-            Toast.makeText(getContext(), R.string.condition_cell_location_no_signal, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.event_cell_location_no_signal, Toast.LENGTH_SHORT).show();
             dismiss();
         }
 

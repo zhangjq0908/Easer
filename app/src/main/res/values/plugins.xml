@@ -15,17 +15,8 @@
     <string name="condition_calendar_event_match_pattern">Match Pattern</string>
     <string name="condition_calendar_all_day_event">Only match all-day events</string>
 
-    <string name="condition_cell_location" translatable="false">@string/event_cell_location</string>
-    <string name="condition_cell_location_no_signal" translatable="false">@string/event_cell_location_no_signal</string>
     <string name="condition_cell_location_listening_content">Aggregating cell location…</string>
 
-    <string name="condition_connectivity" translatable="false">@string/event_connectivity</string>
-
-    <string name="condition_date" translatable="false">@string/event_date</string>
-
-    <string name="condition_day_of_week" translatable="false">@string/event_day_of_week</string>
-
-    <string name="condition_headset" translatable="false">@string/event_headset</string>
     <string name="condition_headset__headset_state">Headset state</string>
     <string name="condition_headset__plugged_in">Plugged in</string>
     <string name="condition_headset__plugged_out">Plugged out</string>
@@ -35,12 +26,6 @@
     <string name="condition_ringer_above">At least</string>
     <string name="condition_ringer_below">At most</string>
     <string name="condition_ringer_equals">Equals</string>
-
-    <string name="condition_screen" translatable="false">@string/event_screen</string>
-
-    <string name="condition_time" translatable="false">@string/event_time</string>
-
-    <string name="condition_wifi" translatable="false">@string/event_wificonn</string>
 
     <string name="condition_wifi_enabled">WiFi Enabled</string>
     <string name="condition_wifi_enabled_wifi_is_enabled">WiFi is enabled?</string>
