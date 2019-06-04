@@ -1,2 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="easer">Easer</string>
+    <string name="drawer_tip">Facilite sua vida!</string>
+    <string name="title_outline">Geral</string>
+    <string name="title_pivot">Esquema</string>
+    <string name="title_operation">Operação</string>
+    <string name="title_profile">Perfil</string>
+    <string name="title_event">Evento</string>
+    <string name="title_script">Script</string>
+    <string name="title_condition">Condição</string>
+    <string name="title_application">Aplicativo</string>
+    <string name="title_activity_history">Histórico de atividades</string>
+    <string name="title_about">Sobre</string>
+    <string name="title_setting">Configurações</string>
+    <string name="title_add">Adicionar</string>
+    <string name="title_edit">Editar</string>
+    <string name="title_delete">Remover</string>
+    <string name="title_edit_event">Editar evento</string>
+    <string name="title_edit_condition">Editar condição</string>
+    <string name="title_edit_profile">Editar perfil</string>
+    <string name="title_select_operation">Selecione uma operação</string>
+    <string name="title_dynamics_link">Link dinâmico</string>
+    <string name="title_new_dynamics_link">Novo link dinâmico</string>
+    <string name="title_trigger_profile">Disparar este perfil</string>
+    <string name="title_source">Código fonte</string>
+    <string name="title_author">Autor</string>
+    <string name="title_donate">Doar</string>
+</resources>
