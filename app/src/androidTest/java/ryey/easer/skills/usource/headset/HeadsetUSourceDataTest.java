@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.condition.headset;
+package ryey.easer.skills.usource.headset;
 
 import android.os.Parcel;
 
@@ -27,13 +27,13 @@ import ryey.easer.skills.TestHelper;
 
 import static org.junit.Assert.assertEquals;
 
-public class HeadsetConditionDataTest {
+public class HeadsetUSourceDataTest {
 
     @Test
     public void testParcel() {
-        HeadsetConditionData dummyData = new HeadsetConditionDataFactory().dummyData();
+        HeadsetUSourceData dummyData = new HeadsetUSourceDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
-        HeadsetConditionData parceledData = HeadsetConditionData.CREATOR.createFromParcel(parcel);
+        HeadsetUSourceData parceledData = HeadsetUSourceData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);
     }
 

@@ -22,6 +22,7 @@ package ryey.easer.commons.local_skill.usource;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
@@ -36,6 +37,11 @@ import ryey.easer.commons.local_skill.eventskill.Slot;
 
 public interface USourceSkill<D extends USourceData> extends Skill<D> {
 
+    String EXTRA_INFO_TYPE = "ryey.easer.skill.source.type";
+    String INFO_TYPE_EVENT = "event";
+    String INFO_TYPE_CONDITION = "condition";
+
+    @NonNull
     USourceDataFactory<D> dataFactory();
 
     /**
@@ -53,11 +59,19 @@ public interface USourceSkill<D extends USourceData> extends Skill<D> {
     Tracker<D> tracker(@NonNull Context context, @NonNull D data, @NonNull PendingIntent event_positive, @NonNull PendingIntent event_negative);
 
     default SkillView<D> eventView() {
-        return view();
+        Bundle args = new Bundle();
+        args.putString(EXTRA_INFO_TYPE, INFO_TYPE_EVENT);
+        SkillView<D> v = view();
+        v.setArguments(args);
+        return v;
     }
 
     default SkillView<D> conditionView() {
-        return view();
+        Bundle args = new Bundle();
+        args.putString(EXTRA_INFO_TYPE, INFO_TYPE_CONDITION);
+        SkillView<D> v = view();
+        v.setArguments(args);
+        return v;
     }
 
     default EventSkill<D> event() {

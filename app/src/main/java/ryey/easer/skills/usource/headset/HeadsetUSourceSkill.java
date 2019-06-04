@@ -17,9 +17,10 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.event.headset;
+package ryey.easer.skills.usource.headset;
 
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
@@ -27,11 +28,12 @@ import androidx.annotation.NonNull;
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SkillView;
 import ryey.easer.commons.local_skill.ValidData;
-import ryey.easer.commons.local_skill.eventskill.EventDataFactory;
-import ryey.easer.commons.local_skill.eventskill.EventSkill;
+import ryey.easer.commons.local_skill.conditionskill.Tracker;
+import ryey.easer.commons.local_skill.usource.USourceDataFactory;
+import ryey.easer.commons.local_skill.usource.USourceSkill;
 import ryey.easer.skills.event.AbstractSlot;
 
-public class HeadsetEventSkill implements EventSkill<HeadsetEventData> {
+public class HeadsetUSourceSkill implements USourceSkill<HeadsetUSourceData> {
 
     @NonNull
     @Override
@@ -61,25 +63,30 @@ public class HeadsetEventSkill implements EventSkill<HeadsetEventData> {
 
     @NonNull
     @Override
-    public EventDataFactory<HeadsetEventData> dataFactory() {
-        return new HeadsetEventDataFactory();
+    public USourceDataFactory<HeadsetUSourceData> dataFactory() {
+        return new HeadsetUSourceDataFactory();
 
     }
 
     @NonNull
     @Override
-    public SkillView<HeadsetEventData> view() {
+    public SkillView<HeadsetUSourceData> view() {
         return new HeadsetSkillViewFragment();
     }
 
     @Override
-    public AbstractSlot<HeadsetEventData> slot(@NonNull Context context, @ValidData @NonNull HeadsetEventData data) {
+    public AbstractSlot<HeadsetUSourceData> slot(@NonNull Context context, @ValidData @NonNull HeadsetUSourceData data) {
         return new HeadsetSlot(context, data);
     }
 
     @Override
-    public AbstractSlot<HeadsetEventData> slot(@NonNull Context context, @NonNull HeadsetEventData data, boolean retriggerable, boolean persistent) {
+    public AbstractSlot<HeadsetUSourceData> slot(@NonNull Context context, @NonNull HeadsetUSourceData data, boolean retriggerable, boolean persistent) {
         return new HeadsetSlot(context, data, retriggerable, persistent);
+    }
+
+    @Override
+    public Tracker<HeadsetUSourceData> tracker(@NonNull Context context, @NonNull HeadsetUSourceData data, @NonNull PendingIntent event_positive, @NonNull PendingIntent event_negative) {
+        return new HeadsetTracker(context, data, event_positive, event_negative);
     }
 
 }

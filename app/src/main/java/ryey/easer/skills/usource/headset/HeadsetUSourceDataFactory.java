@@ -17,35 +17,35 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.event.headset;
+package ryey.easer.skills.usource.headset;
 
 import androidx.annotation.NonNull;
 
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.ValidData;
-import ryey.easer.commons.local_skill.eventskill.EventDataFactory;
+import ryey.easer.commons.local_skill.usource.USourceDataFactory;
 import ryey.easer.plugin.PluginDataFormat;
 
-class HeadsetEventDataFactory implements EventDataFactory<HeadsetEventData> {
+class HeadsetUSourceDataFactory implements USourceDataFactory<HeadsetUSourceData> {
     @NonNull
     @Override
-    public Class<HeadsetEventData> dataClass() {
-        return HeadsetEventData.class;
+    public Class<HeadsetUSourceData> dataClass() {
+        return HeadsetUSourceData.class;
     }
 
     @ValidData
     @NonNull
     @Override
-    public HeadsetEventData dummyData() {
-        return new HeadsetEventData(
-                HeadsetEventData.HeadsetAction.plug_in,
-                HeadsetEventData.HeadsetType.without_microphone);
+    public HeadsetUSourceData dummyData() {
+        return new HeadsetUSourceData(
+                HeadsetUSourceData.HeadsetState.plug_in,
+                HeadsetUSourceData.HeadsetType.without_microphone);
     }
 
     @ValidData
     @NonNull
     @Override
-    public HeadsetEventData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
-        return new HeadsetEventData(data, format, version);
+    public HeadsetUSourceData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
+        return new HeadsetUSourceData(data, format, version);
     }
 }

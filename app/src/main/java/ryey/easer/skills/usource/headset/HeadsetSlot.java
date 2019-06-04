@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.event.headset;
+package ryey.easer.skills.usource.headset;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -29,7 +29,7 @@ import android.os.Bundle;
 
 import ryey.easer.skills.event.AbstractSlot;
 
-public class HeadsetSlot extends AbstractSlot<HeadsetEventData> {
+public class HeadsetSlot extends AbstractSlot<HeadsetUSourceData> {
     private static final String expected_action;
 
     static {
@@ -54,11 +54,11 @@ public class HeadsetSlot extends AbstractSlot<HeadsetEventData> {
         }
     };
 
-    HeadsetSlot(Context context, HeadsetEventData data) {
+    HeadsetSlot(Context context, HeadsetUSourceData data) {
         this(context, data, true, PERSISTENT_DEFAULT);
     }
 
-    HeadsetSlot(Context context, HeadsetEventData data, boolean retriggerable, boolean persistent) {
+    HeadsetSlot(Context context, HeadsetUSourceData data, boolean retriggerable, boolean persistent) {
         super(context, data, retriggerable, persistent);
     }
 
@@ -73,12 +73,12 @@ public class HeadsetSlot extends AbstractSlot<HeadsetEventData> {
     }
 
     @SuppressWarnings("RedundantIfStatement")
-    private static boolean determine_match(HeadsetEventData eventData, boolean plug_in, boolean has_microphone) {
-        if (!(eventData.hs_action == HeadsetEventData.HeadsetAction.any ||
-                plug_in == (eventData.hs_action == HeadsetEventData.HeadsetAction.plug_in)))
+    private static boolean determine_match(HeadsetUSourceData eventData, boolean plug_in, boolean has_microphone) {
+        if (!(eventData.hs_state == HeadsetUSourceData.HeadsetState.any ||
+                plug_in == (eventData.hs_state == HeadsetUSourceData.HeadsetState.plug_in)))
             return false;
-        if (!(eventData.hs_type == HeadsetEventData.HeadsetType.any ||
-                has_microphone == (eventData.hs_type == HeadsetEventData.HeadsetType.with_microphone)))
+        if (!(eventData.hs_type == HeadsetUSourceData.HeadsetType.any ||
+                has_microphone == (eventData.hs_type == HeadsetUSourceData.HeadsetType.with_microphone)))
             return false;
         return true;
     }

@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.condition.headset;
+package ryey.easer.skills.usource.headset;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -34,10 +34,11 @@ import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.skills.SkillViewFragment;
 
-public class HeadsetSkillViewFragment extends SkillViewFragment<HeadsetConditionData> {
+public class HeadsetSkillViewFragment extends SkillViewFragment<HeadsetUSourceData> {
     private static final int[] ids_hs_state = {
             R.id.radioButton_plug_in,
             R.id.radioButton_plug_out,
+            R.id.radioButton_plug_any,
     };
     private static final int[] ids_hs_type = {
             R.id.radioButton_micro_true,
@@ -45,15 +46,24 @@ public class HeadsetSkillViewFragment extends SkillViewFragment<HeadsetCondition
             R.id.radioButton_micro_any,
     };
 
-    private RadioButton[] radioButtons_hs_state = new RadioButton[ids_hs_state.length];
+    private RadioButton[] radioButtons_hs_action = new RadioButton[ids_hs_state.length];
     private RadioButton[] radioButtons_hs_type = new RadioButton[ids_hs_type.length];
 
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.plugin_event__headset, container, false);
-        for (int i = 0; i < ids_hs_state.length; i++) {
-            radioButtons_hs_state[i] = v.findViewById(ids_hs_state[i]);
+        String type = getArguments().getString(HeadsetUSourceSkill.EXTRA_INFO_TYPE);
+        View v;
+        if (HeadsetUSourceSkill.INFO_TYPE_CONDITION.equals(type)) {
+            v = inflater.inflate(R.layout.plugin_condition__headset, container, false);
+            for (int i = 0; i < ids_hs_state.length - 1; i++) {
+                radioButtons_hs_action[i] = v.findViewById(ids_hs_state[i]);
+            }
+        } else {
+            v = inflater.inflate(R.layout.plugin_event__headset, container, false);
+            for (int i = 0; i < ids_hs_state.length; i++) {
+                radioButtons_hs_action[i] = v.findViewById(ids_hs_state[i]);
+            }
         }
         for (int i = 0; i < ids_hs_type.length; i++) {
             radioButtons_hs_type[i] = v.findViewById(ids_hs_type[i]);
@@ -62,18 +72,18 @@ public class HeadsetSkillViewFragment extends SkillViewFragment<HeadsetCondition
     }
 
     @Override
-    protected void _fill(@ValidData @NonNull HeadsetConditionData data) {
-        radioButtons_hs_state[data.hs_state.ordinal()].setChecked(true);
+    protected void _fill(@ValidData @NonNull HeadsetUSourceData data) {
+        radioButtons_hs_action[data.hs_state.ordinal() % ids_hs_state.length].setChecked(true);
         radioButtons_hs_type[data.hs_type.ordinal()].setChecked(true);
     }
 
     @ValidData
     @NonNull
     @Override
-    public HeadsetConditionData getData() throws InvalidDataInputException {
-        return new HeadsetConditionData(
-                HeadsetConditionData.HeadsetState.values()[Utils.checkedIndexFirst(radioButtons_hs_state)],
-                HeadsetConditionData.HeadsetType.values()[Utils.checkedIndexFirst(radioButtons_hs_type)]
+    public HeadsetUSourceData getData() throws InvalidDataInputException {
+        return new HeadsetUSourceData(
+                HeadsetUSourceData.HeadsetState.values()[Utils.checkedIndexFirst(radioButtons_hs_action)],
+                HeadsetUSourceData.HeadsetType.values()[Utils.checkedIndexFirst(radioButtons_hs_type)]
         );
     }
 }
