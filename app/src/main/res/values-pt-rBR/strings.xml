@@ -95,4 +95,96 @@
     <string name="pref_category_personalise">Personalizar</string>
     <string name="pref_category_data_manage">Gerenciar dados</string>
     <string name="pref_category_service">Serviço</string>
+    <string name="pref_autostart_title">Iniciar durante o boot</string>
+    <string name="pref_autostart_summary">Inicia o Easer em segundo plano quando o dispositivo estiver ligado</string>
+    <string name="pref_restart_after_upgrade_title">Iniciar serviço após atualização</string>
+    <string name="pref_welcome_title">Exibir mensagem de boas-vindas</string>
+    <string name="pref_welcome_summary">Exibir mensagens de boas-vindas ao abrir o aplicativo</string>
+    <string name="pref_logging_title">Habilitar log externo</string>
+    <string name="pref_logging_summary">Logs nos dispositivos de armazenamento externos (/sdcard/logger) para auxiliar no relato de bugs.
+\nMudanças serão aplicadas na próxima vez que o aplicativo iniciar.</string>
+    <string name="pref_use_root_title">Usar características root</string>
+    <string name="pref_use_root_summary">Usar permissões de root para funções específicas (skills), que podem ajudar a resolver problemas de compatibilidade em alguns dispositivos. Essas permissões não serão usadas em mais nenhum outro lugar.</string>
+    <string name="pref_cooldown_title">Tempo de resfriamento</string>
+    <string name="pref_cooldown_summary">Intervalo mínimo entre dois disparadores do mesmo evento</string>
+    <string name="cooldown_time_illformed">O número não deve ser menor que 0 e não muito grande para caber em um inteiro</string>
+    <string name="pref_enabled_skills_title">Skills ativas</string>
+    <string name="pref_enabled_skills_summary">Ligar ou desligar certas skills</string>
+    <string name="pref_use_12_hour_clock_title">Usar relógio de 12 horas</string>
+    <string name="pref_export_title">Exportar</string>
+    <string name="pref_export_summary">Exportar todos os eventos e perfis para o cartão SD.
+\nO nome do arquivo será o timestamp atual.</string>
+    <string name="pref_import_title">Importar</string>
+    <string name="pref_import_summary">Importar todos os eventos e perfis em um arquivo ZIP.
+\nEventos e perfis existentes com o mesmo nome serão substituídos.</string>
+    <string name="pref_convert_data_title">Converter dados</string>
+    <string name="pref_convert_data_summary">Converter todos os dados para o formato recomendado</string>
+    <string name="pref_show_notification_title">Exibir notificação</string>
+    <string name="pref_show_notification_summary">Exibir uma notificação na barra de notificações.</string>
+    <string name="pref_foreground_title">Executar serviço em primeiro plano</string>
+    <string name="pref_foreground_summary">Tornar mais difícil para o sistema matar o serviço. Uma notificação será mostrada. Não pode ser desativado em Android 8 ou superior devido a uma exigência do sistema.</string>
+    <string name="pref_locale_custom">Idioma personalizado</string>
+    <string name="message_skill_not_compatible">Este dispositivo não pode executar esta skill.</string>
+    <string name="message_convert_data_start">Convertendo dados.</string>
+    <string name="message_convert_data_finish">Dados convertidos.</string>
+    <string name="message_convert_data_abort">Conversão de dados abortados.</string>
+    <string name="message_convert_data_error">Impossível converter os dados. Por favor, veja o log para detalhes.</string>
+    <string name="title_welcome_message">Bem-vindo(a)</string>
+    <string name="welcome_message">1. Conceda ao Easer as permissões correspondentes antes de usar eventos e perfis relevantes. 
+\n2. Conectar eventos como <a href="https://pt.wikipedia.org/wiki/Topologia_em_%C3%A1rvore">árvores</a> é <i>atualmente</i> a única forma de compor eventos. 
+\n 
+\nEspero que goste deste aplicativo :) 
+\n 
+\nTambém dê uma olhada na seção <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> na wiki do projeto.</string>
+    <string name="welcome_message_1">Bem-vindo(a). 
+\n 
+\nAqui estão algumas informações básicas antes de usar o Easer. 
+\n 
+\nMais tópicos cobertos na wiki, na <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> do projeto.</string>
+    <string name="welcome_message_2">Easer contém vários módulos que trazem diferentes funçoes. Habilite-os ou os desabilite em Configurações. 
+\n 
+\nAs permissões correspondentes (para cada módulo ativo) deveriam ser concedidas antes do uso. 
+\n 
+\n 
+\n(Tudo vem habilitado por padrão)</string>
+    <string name="welcome_message_3">Scripts são estruturados como <a href="https://pt.wikipedia.org/wiki/Topologia_em_%C3%A1rvore">árvores</a>, escolhendo o nó relevante. 
+\n 
+\nDentro de cada ramificação, a lógica AND é executada.
+\nEntre as ramificações, a lógica OR é executada.
+\n 
+\nEstender árvores para gráficos está nos planos, mas ainda não foi implementado.</string>
+    <string name="title_welcome_message_privacy">Privacidade!</string>
+    <string name="welcome_message_privacy">Privacidade é importante! 
+\n 
+\nEaser é <a href="https://pt.wikipedia.org/wiki/Software_livre">software livre</a> (software de código aberto), garantindo que todos possam usá-lo, estudá-lo, alterá-lo e compartilhá-lo. 
+\n 
+\nVOCÊ é dono(a) de cada parte dos seus dados. Todo fica no seu dispositivo, inclusive os logs.</string>
+    <string name="alert_update_storage_data_title">Encontrados dados de versão antiga</string>
+    <string name="alert_update_storage_data">Selecione \\\"Converter dados\\\" nas configurações para atualizar seus dados para o novo formato para compatibilidade.</string>
+    <string name="message_future_change_title">Mudanças em breve</string>
+    <string name="template_export">Exportado para %s</string>
+    <string name="version">Versão</string>
+    <string name="message_importing_invalid_data">Este arquivo não parece ser válido. Certifique-se de importar um arquivo exportado pelo Easer.</string>
+    <string name="dynamics_time">Hora atual</string>
+    <string name="dynamics_date">Data atual</string>
+    <string name="dynamics_script_name">Nome do script</string>
+    <string name="dynamics_profile_name">Nome do perfil</string>
+    <string name="title_help">Ajuda</string>
+    <string name="help_script">\\\"Scripts\\\" são os contêineres lógicos. Conecte um evento ou uma condição com um perfil em um script para que o Easer saiba como carregar/executar esse perfil quando o evento ocorrer ou a condição for atendida. 
+\nTambém há mais funções avançadas como eventos invertidos. 
+\nPor favor leia o <a href="https://github.com/renyuneyun/Easer/wiki">documento</a> para mais informações.</string>
+    <string name="help_event">\\\"Eventos\\\" representam ocorrências de curto prazo (instantâneas) no seu dispositivo ou remotamente. 
+\nPor exemplo, receber uma notificação ou digitalizar uma etiqueta NFC. 
+\nPor favor leia o <a href="https://github.com/renyuneyun/Easer/wiki">documento</a> para mais informações.</string>
+    <string name="help_condition">\\ \"Condição \\\" representa uma condição duradoura (mas geralmente não é para sempre) no seu dispositivo ou remotamente.
+\nPor exemplo, após a conexão Wi-Fi ou quando a tela é desligada.
+\nPor favor, consulte o <a href="https://github.com/renyuneyun/Easer/wiki"> documento </a> para mais informações.</string>
+    <string name="help_profile">\\ \"Perfil \\\" é um conjunto de operações. Cada operação representa um tipo específico de ação.
+\nPor exemplo, ative o Bluetooth ou envie um SMS.
+\nPor favor, consulte o <a href="https://github.com/renyuneyun/Easer/wiki"> documento </a> para mais informações.</string>
+    <string name="category_operation_android">Android</string>
+    <string name="category_operation_system_config">Configurações do sistema</string>
+    <string name="category_operation_easer">\@string/easer</string>
+    <string name="category_operation_misc">Diversos</string>
+    <string name="category_operation_unknown">Desconhecido</string>
 </resources>
