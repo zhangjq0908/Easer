@@ -169,4 +169,14 @@
     <string name="o_play_media">Reproduzir mídia</string>
     <string name="o_play_media_text_file">Caminho do arquivo</string>
     <string name="rel_after">Depois</string>
+    <string name="condition_ringer_mode">Modo de toque</string>
+    <string name="condition_ringer_volume">Volume</string>
+    <string name="condition_ringer_above">Pelo menos</string>
+    <string name="condition_ringer_below">No máximo</string>
+    <string name="condition_ringer_equals">Igual a</string>
+    <string name="condition_calendar_name">Nome do calendário</string>
+    <string name="condition_calendar_event_title">Título do evento</string>
+    <string name="condition_calendar_any_event">Qualquer evento</string>
+    <string name="condition_calendar_event_match_pattern">Correspondência</string>
+    <string name="condition_calendar_all_day_event">Apenas corresponder eventos que durem o dia todo</string>
 </resources>
