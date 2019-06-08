@@ -43,7 +43,7 @@ public class DayOfWeekEventSkill implements USourceSkill<DayOfWeekUSourceData> {
 
     @Override
     public int name() {
-        return R.string.event_day_of_week;
+        return R.string.usource_day_of_week;
     }
 
     @Override

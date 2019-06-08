@@ -52,7 +52,7 @@ public class ConnectivitySkillViewFragment extends SkillViewFragment<Connectivit
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mode_names = getResources().getStringArray(R.array.connectivity_type);
+        mode_names = getResources().getStringArray(R.array.usource_connectivity_type);
     }
 
     @NonNull

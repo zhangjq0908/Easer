@@ -1,31 +1,31 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-    <string name="ev_condition_event">Condition Événement</string>
-    <string name="condition_event_enter">Entrer</string>
-    <string name="condition_event_leave">Quitter</string>
+    <string name="event_condition_event">Condition Événement</string>
+    <string name="event_condition_event_enter">Entrer</string>
+    <string name="event_condition_event_leave">Quitter</string>
 
-    <string name="condition_headset__headset_state">État du casque</string>
-    <string name="condition_headset__plugged_in">Branché</string>
-    <string name="condition_headset__plugged_out">Débranché</string>
+    <string name="usource_headset__headset_state">État du casque</string>
+    <string name="usource_headset__plugged_in">Branché</string>
+    <string name="usource_headset__plugged_out">Débranché</string>
 
 
-    <string name="event_time">Heure</string>
-    <string name="event_date">Date</string>
+    <string name="usource_time">Heure</string>
+    <string name="usource_date">Date</string>
 
-    <string name="event_wificonn">Connexion WiFi</string>
-    <string name="wificonn_select_dialog_title">Sélectionnez le WiFi</string>
-    <string name="wificonn_wait_for_result">Attente du résultat du scan WiFi</string>
+    <string name="usource_wificonn">Connexion WiFi</string>
+    <string name="usource_wificonn_select_dialog_title">Sélectionnez le WiFi</string>
+    <string name="usource_wificonn_wait_for_result">Attente du résultat du scan WiFi</string>
 
-    <string name="event_cell_location">Localisation cellulaire</string>
+    <string name="usource_cell_location">Localisation cellulaire</string>
 
-    <string name="event_battery">État de la batterie</string>
-    <string name="event_day_of_week">Jour de la semaine</string>
+    <string name="usource_battery">État de la batterie</string>
+    <string name="usource_day_of_week">Jour de la semaine</string>
 
-    <string name="event_bluetooth_device">Périphérique Bluetooth connecté</string>
-    <string name="ebtdevice_select_dialog_title">Sélectionnez le périphérique Bluetooth</string>
-    <string name="ebtdevice_unknown_device">Périphérique inconnu</string>
+    <string name="usource_bluetooth_device">Périphérique Bluetooth connecté</string>
+    <string name="usource_bt_device_select_dialog_title">Sélectionnez le périphérique Bluetooth</string>
+    <string name="usource_bt_device_unknown_device">Périphérique inconnu</string>
 
-    <string name="event_connectivity">Type de connectivité</string>
+    <string name="usource_connectivity">Type de connectivité</string>
     <string name="event_calendar">Evénement du calendrier</string>
     <string name="ecalendar_select_dialog_title">Sélectionnez le calendrier</string>
     <string name="text_calendar_name">Nom du calendrier</string>
@@ -67,15 +67,15 @@
     <string name="event_nfc_tag__prompt_enable_nfc_first">Vous devez activer le NFC</string>
     <string name="event_nfc_tag__prompt_wait_for_tag">Attente du scan du tag…</string>
 
-    <string name="event_headset">Casque audio</string>
-    <string name="event_headset__headset_action">Action casque audio</string>
-    <string name="event_headset__plug_in">Branché</string>
-    <string name="event_headset__plug_out">Débranché</string>
-    <string name="event_headset__plug_any">Les deux</string>
-    <string name="event_headset__with_microphone">Avec le microphone ?</string>
-    <string name="event_headset__microphone_true">Oui</string>
-    <string name="event_headset__microphone_false">Non</string>
-    <string name="event_headset__microphone_any">Les deux</string>
+    <string name="usource_headset">Casque audio</string>
+    <string name="usource_headset__headset_action">Action casque audio</string>
+    <string name="usource_headset__plug_in">Branché</string>
+    <string name="usource_headset__plug_out">Débranché</string>
+    <string name="usource_event_headset__plug_any">Les deux</string>
+    <string name="usource_headset__with_microphone">Avec le microphone ?</string>
+    <string name="usource_headset__microphone_true">Oui</string>
+    <string name="usource_headset__microphone_false">Non</string>
+    <string name="usource_headset__microphone_any">Les deux</string>
 
     <string name="event_tcp_trip">Transport TCP</string>
     <string name="remote_host">Hôte distant</string>
@@ -83,11 +83,11 @@
     <string name="check_reply">Vérifier la réponse</string>
     <string name="reply_data">Données de réponse</string>
 
-    <string name="event_screen">Etat de l\'écran</string>
-    <string name="ev_screen_text_screen_is">Quand l\'écran est…</string>
-    <string name="ev_screen_on">Allumé</string>
-    <string name="ev_screen_off">Eteint</string>
-    <string name="ev_screen_unlocked">Déverouillé</string>
+    <string name="usource_screen">Etat de l\'écran</string>
+    <string name="usource_screen_text_screen_is">Quand l\'écran est…</string>
+    <string name="usource_screen_on">Allumé</string>
+    <string name="usource_screen_off">Eteint</string>
+    <string name="usource_screen_unlocked">Déverouillé</string>
 
 
     <string name="operation_wifi">WiFi</string>
@@ -174,12 +174,10 @@
     <string name="op_car_mode">Mode voiture</string>
     <string name="op_normal_mode">Mode normal</string>
 
-    <string name="rel_after">Après</string>
+    <string name="condition__rel_after">Après</string>
 
 <string name="ev_sms_dynamics_sender">Expéditeur du SMS</string>
     <string name="ev_sms_dynamics_content">Contenu SMS</string>
-
-    <string name="condition_bluetooth_device">Appareil bluetooth connecté</string>
 
     <string name="condition_wifi_enabled">WiFi Activé</string>
     <string name="condition_wifi_enabled_wifi_is_enabled">WiFi est activé \?</string>
@@ -191,7 +189,7 @@
     <string name="condition__enabled_no">Non</string>
 
 
-    <string name="event_cell_location_no_signal">Impossible de localiser le portable. Vérifiez votre signal.</string>
+    <string name="usource_cell_location_no_signal">Impossible de localiser le portable. Vérifiez votre signal.</string>
 
     <string name="event_timer_shorter_time">Délai plus court</string>
     <string name="event_timer_longer_time">Délai plus long</string>

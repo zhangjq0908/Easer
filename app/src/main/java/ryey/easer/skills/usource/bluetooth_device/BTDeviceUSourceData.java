@@ -154,7 +154,7 @@ public class BTDeviceUSourceData implements USourceData {
 
         @Override
         public int nameRes() {
-            return R.string.ebtdevice_dynamics_device_name;
+            return R.string.usource_bt_device_dynamics_device_name;
         }
     }
 
@@ -169,7 +169,7 @@ public class BTDeviceUSourceData implements USourceData {
 
         @Override
         public int nameRes() {
-            return R.string.ebtdevice_dynamics_device_address;
+            return R.string.usource_bt_device_dynamics_device_address;
         }
     }
 }

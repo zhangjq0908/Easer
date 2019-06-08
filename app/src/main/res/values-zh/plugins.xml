@@ -1,13 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
 
-    <string name="ev_condition_event">狀況事件</string>
-    <string name="condition_event_enter">進入</string>
-    <string name="condition_event_leave">離開</string>
-    <string name="condition_event_dynamics_name">狀況名</string>
+    <string name="event_condition_event">狀況事件</string>
+    <string name="event_condition_event_enter">進入</string>
+    <string name="event_condition_event_leave">離開</string>
+    <string name="event_condition_event_dynamics_name">狀況名</string>
 
-
-    <string name="condition_bluetooth_device">已連接藍牙設備</string>
 
     <string name="condition_calendar_name">日曆名</string>
     <string name="condition_calendar_event_title">事件標題</string>
@@ -15,9 +13,9 @@
     <string name="condition_calendar_event_match_pattern">匹配下面模式</string>
     <string name="condition_calendar_all_day_event">僅對持續整日的事件進行匹配</string>
 
-    <string name="condition_headset__headset_state">耳機狀態</string>
-    <string name="condition_headset__plugged_in">已插入</string>
-    <string name="condition_headset__plugged_out">已拔出</string>
+    <string name="usource_headset__headset_state">耳機狀態</string>
+    <string name="usource_headset__plugged_in">已插入</string>
+    <string name="usource_headset__plugged_out">已拔出</string>
 
     <string name="condition_ringer_mode">響鈴模式</string>
     <string name="condition_ringer_volume">音量</string>
@@ -28,40 +26,37 @@
     <string name="condition_wifi_enabled">WiFi已啓用</string>
     <string name="condition_wifi_enabled_wifi_is_enabled">WiFi已啓用？</string>
 
-    <string name="condition_bluetooth_enabled">藍牙已啓用</string>
-    <string name="condition_bluetooth_enabled_bluetooth_is_enabled">藍牙已啓用？</string>
-
     <string name="condition__enabled_yes">是</string>
     <string name="condition__enabled_no">否</string>
 
 
-    <string name="event_date">日期</string>
-    <string name="event_time">時間</string>
+    <string name="usource_date">日期</string>
+    <string name="usource_time">時間</string>
 
-    <string name="event_wificonn">WiFi連接</string>
-    <string name="wificonn_select_dialog_title">選擇WiFi AP</string>
-    <string name="wificonn_wait_for_result">等待WiFi掃描結果</string>
+    <string name="usource_wificonn">WiFi連接</string>
+    <string name="usource_wificonn_select_dialog_title">選擇WiFi AP</string>
+    <string name="usource_wificonn_wait_for_result">等待WiFi掃描結果</string>
 
-    <string name="event_cell_location">基站位置</string>
-    <string name="event_cell_location_no_signal">無法獲取基站信息。請檢查信號。</string>
-    <string name="event_cell_location_dynamics_cell_location">基站位置</string>
+    <string name="usource_cell_location">基站位置</string>
+    <string name="usource_cell_location_no_signal">無法獲取基站信息。請檢查信號。</string>
+    <string name="usource_cell_location_dynamics_cell_location">基站位置</string>
 
-    <string name="event_battery">電池狀態</string>
-    <array name="battery_status">
+    <string name="usource_battery">電池狀態</string>
+    <array name="usource_battery_status">
         <item>充電中</item>
         <item>放電中</item>
     </array>
 
-    <string name="event_day_of_week">星期幾</string>
+    <string name="usource_day_of_week">星期幾</string>
 
-    <string name="event_bluetooth_device">連接的藍牙設備</string>
-    <string name="ebtdevice_select_dialog_title">選擇藍牙設備</string>
-    <string name="ebtdevice_unknown_device">未知設備</string>
-    <string name="ebtdevice_dynamics_device_name">設備名</string>
-    <string name="ebtdevice_dynamics_device_address">設備地址</string>
+    <string name="usource_bluetooth_device">連接的藍牙設備</string>
+    <string name="usource_bt_device_select_dialog_title">選擇藍牙設備</string>
+    <string name="usource_bt_device_unknown_device">未知設備</string>
+    <string name="usource_bt_device_dynamics_device_name">設備名</string>
+    <string name="usource_bt_device_dynamics_device_address">設備地址</string>
 
-    <string name="event_connectivity">網絡連接類型</string>
-    <array name="connectivity_type">
+    <string name="usource_connectivity">網絡連接類型</string>
+    <array name="usource_connectivity_type">
         <item>未連接</item>
         <item>WiFi</item>
         <item>移動網絡</item>
@@ -117,15 +112,15 @@
     <string name="event_nfc_tag__prompt_enable_nfc_first">你需要先打開NFC</string>
     <string name="event_nfc_tag__prompt_wait_for_tag">等待標籤被掃描中…</string>
 
-    <string name="event_headset">耳機</string>
-    <string name="event_headset__headset_action">設備事件</string>
-    <string name="event_headset__plug_in">插入</string>
-    <string name="event_headset__plug_out">拔出</string>
-    <string name="event_headset__plug_any">任意</string>
-    <string name="event_headset__with_microphone">帶有麥克風？</string>
-    <string name="event_headset__microphone_true">帶有</string>
-    <string name="event_headset__microphone_false">不帶有</string>
-    <string name="event_headset__microphone_any">均可</string>
+    <string name="usource_headset">耳機</string>
+    <string name="usource_headset__headset_action">設備事件</string>
+    <string name="usource_headset__plug_in">插入</string>
+    <string name="usource_headset__plug_out">拔出</string>
+    <string name="usource_event_headset__plug_any">任意</string>
+    <string name="usource_headset__with_microphone">帶有麥克風？</string>
+    <string name="usource_headset__microphone_true">帶有</string>
+    <string name="usource_headset__microphone_false">不帶有</string>
+    <string name="usource_headset__microphone_any">均可</string>
 
     <string name="event_tcp_trip">TCP往復</string>
     <string name="remote_host">遠程主機</string>
@@ -133,13 +128,13 @@
     <string name="check_reply">檢查傳回數據</string>
     <string name="reply_data">傳回數據</string>
 
-    <string name="event_screen">屏幕狀態</string>
-    <string name="ev_screen_text_screen_is">當屏幕…</string>
-    <string name="ev_screen_on">開啓</string>
-    <string name="ev_screen_off">關閉</string>
-    <string name="ev_screen_unlocked">已解鎖</string>
+    <string name="usource_screen">屏幕狀態</string>
+    <string name="usource_screen_text_screen_is">當屏幕…</string>
+    <string name="usource_screen_on">開啓</string>
+    <string name="usource_screen_off">關閉</string>
+    <string name="usource_screen_unlocked">已解鎖</string>
 
-    <string name="source_cell_location_listening_title">監聽中</string>
+    <string name="usource_cell_location_listening_title">監聽中</string>
 
 
     <string name="operation_bluetooth">藍牙</string>
@@ -234,6 +229,6 @@
     <string name="o_play_media">播放媒體</string>
     <string name="o_play_media_text_file">文件路徑</string>
 
-    <string name="rel_after">在此之後</string>
+    <string name="condition__rel_after">在此之後</string>
 
 </resources>

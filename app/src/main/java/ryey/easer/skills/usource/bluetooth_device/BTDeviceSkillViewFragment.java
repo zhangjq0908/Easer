@@ -74,7 +74,7 @@ public class BTDeviceSkillViewFragment extends SkillViewFragment<BTDeviceUSource
         textView = view.findViewById(R.id.device_name);
 
         editText.addTextChangedListener(new TextWatcher() {
-            final String name_not_found = getResources().getString(R.string.ebtdevice_unknown_device);
+            final String name_not_found = getResources().getString(R.string.usource_bt_device_unknown_device);
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -114,7 +114,7 @@ public class BTDeviceSkillViewFragment extends SkillViewFragment<BTDeviceUSource
                     return;
                 getContext().registerReceiver(mReceiver, mFilter);
                 AlertDialog.Builder builderSingle = new AlertDialog.Builder(getContext());
-                builderSingle.setTitle(R.string.ebtdevice_select_dialog_title);
+                builderSingle.setTitle(R.string.usource_bt_device_select_dialog_title);
                 final ArrayAdapter<BTDeviceWrapper> arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.select_dialog_singlechoice);
                 BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
                 if (bluetoothAdapter != null) {

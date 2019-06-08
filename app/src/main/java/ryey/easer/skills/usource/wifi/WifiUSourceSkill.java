@@ -45,7 +45,7 @@ public class WifiUSourceSkill implements USourceSkill<WifiUSourceData> {
 
     @Override
     public int name() {
-        return R.string.event_wificonn;
+        return R.string.usource_wificonn;
     }
 
     @Override

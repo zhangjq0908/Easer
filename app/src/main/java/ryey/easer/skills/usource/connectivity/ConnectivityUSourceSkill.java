@@ -46,7 +46,7 @@ public class ConnectivityUSourceSkill implements USourceSkill<ConnectivityEventD
 
     @Override
     public int name() {
-        return R.string.event_connectivity;
+        return R.string.usource_connectivity;
     }
 
     @Override

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/event_headset__headset_action"
+        android:text="@string/usource_headset__headset_action"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginLeft="8dp" />
@@ -35,21 +35,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/event_headset__plug_in" />
+            android:text="@string/usource_headset__plug_in" />
 
         <RadioButton
             android:id="@+id/radioButton_plug_out"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/event_headset__plug_out" />
+            android:text="@string/usource_headset__plug_out" />
 
         <RadioButton
             android:id="@+id/radioButton_plug_any"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/event_headset__plug_any" />
+            android:text="@string/usource_event_headset__plug_any" />
     </RadioGroup>
 
     <TextView
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:text="@string/event_headset__with_microphone"
+        android:text="@string/usource_headset__with_microphone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup_hs_action"
         android:layout_marginLeft="8dp" />
@@ -81,20 +81,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/event_headset__microphone_true" />
+            android:text="@string/usource_headset__microphone_true" />
 
         <RadioButton
             android:id="@+id/radioButton_micro_false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/event_headset__microphone_false" />
+            android:text="@string/usource_headset__microphone_false" />
 
         <RadioButton
             android:id="@+id/radioButton_micro_any"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/event_headset__microphone_any" />
+            android:text="@string/usource_headset__microphone_any" />
     </RadioGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>

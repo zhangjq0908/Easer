@@ -146,7 +146,7 @@ public class ConditionEventEventData extends AbstractEventData {
 
         @Override
         public int nameRes() {
-            return R.string.condition_event_dynamics_name;
+            return R.string.event_condition_event_dynamics_name;
         }
     }
 }

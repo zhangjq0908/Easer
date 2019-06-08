@@ -46,7 +46,7 @@ public class BTDeviceUSourceSkill implements USourceSkill<BTDeviceUSourceData> {
 
     @Override
     public int name() {
-        return R.string.event_bluetooth_device;
+        return R.string.usource_bluetooth_device;
     }
 
     @Override

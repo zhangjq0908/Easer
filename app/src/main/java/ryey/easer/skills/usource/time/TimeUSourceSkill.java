@@ -43,7 +43,7 @@ public class TimeUSourceSkill implements USourceSkill<TimeUSourceData> {
 
     @Override
     public int name() {
-        return R.string.event_time;
+        return R.string.usource_time;
     }
 
     @Override

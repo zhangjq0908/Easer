@@ -160,7 +160,7 @@ public class CellLocationUSourceData implements USourceData {
 
         @Override
         public int nameRes() {
-            return R.string.event_cell_location_dynamics_cell_location;
+            return R.string.usource_cell_location_dynamics_cell_location;
         }
     }
 }

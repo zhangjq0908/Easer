@@ -48,13 +48,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/condition_event_enter" />
+            android:text="@string/event_condition_event_enter" />
 
         <RadioButton
             android:id="@+id/rb_leave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/condition_event_leave" />
+            android:text="@string/event_condition_event_leave" />
     </RadioGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>

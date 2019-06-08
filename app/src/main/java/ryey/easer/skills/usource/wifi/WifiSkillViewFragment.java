@@ -101,7 +101,7 @@ public class WifiSkillViewFragment extends SkillViewFragment<WifiUSourceData> {
                 }
                 wifiManager.startScan();
                 progressDialog = new ProgressDialog(getContext());
-                progressDialog.setTitle(R.string.wificonn_wait_for_result);
+                progressDialog.setTitle(R.string.usource_wificonn_wait_for_result);
                 progressDialog.setIndeterminate(true);
                 progressDialog.show();
             }
@@ -133,7 +133,7 @@ public class WifiSkillViewFragment extends SkillViewFragment<WifiUSourceData> {
             arrayAdapter.add(wrapper);
         }
         AlertDialog.Builder builderSingle = new AlertDialog.Builder(getContext());
-        builderSingle.setTitle(R.string.wificonn_select_dialog_title);
+        builderSingle.setTitle(R.string.usource_wificonn_select_dialog_title);
         builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
             @SuppressWarnings("ConstantConditions")
             @Override

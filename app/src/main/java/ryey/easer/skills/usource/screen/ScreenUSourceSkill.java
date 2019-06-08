@@ -43,7 +43,7 @@ public class ScreenUSourceSkill implements USourceSkill<ScreenUSourceData> {
 
     @Override
     public int name() {
-        return R.string.event_screen;
+        return R.string.usource_screen;
     }
 
     @Override

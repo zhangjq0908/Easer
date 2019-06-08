@@ -49,7 +49,7 @@ public class BatterySkillViewFragment extends SkillViewFragment<BatteryUSourceDa
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mode_names = getResources().getStringArray(R.array.battery_status);
+        mode_names = getResources().getStringArray(R.array.usource_battery_status);
     }
 
     @NonNull

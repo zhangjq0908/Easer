@@ -13,7 +13,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/ev_screen_text_screen_is"
+        android:text="@string/usource_screen_text_screen_is"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,20 +35,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/ev_screen_on" />
+            android:text="@string/usource_screen_on" />
 
         <RadioButton
             android:id="@+id/radioButton_screen_off"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/ev_screen_off" />
+            android:text="@string/usource_screen_off" />
 
         <RadioButton
             android:id="@+id/radioButton_screen_unlocked"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/ev_screen_unlocked" />
+            android:text="@string/usource_screen_unlocked" />
     </RadioGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>

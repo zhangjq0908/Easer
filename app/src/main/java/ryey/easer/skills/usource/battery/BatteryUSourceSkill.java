@@ -43,7 +43,7 @@ public class BatteryUSourceSkill implements USourceSkill<BatteryUSourceData> {
 
     @Override
     public int name() {
-        return R.string.event_battery;
+        return R.string.usource_battery;
     }
 
     @Override

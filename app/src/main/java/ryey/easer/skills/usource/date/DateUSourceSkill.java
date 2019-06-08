@@ -43,7 +43,7 @@ public class DateUSourceSkill implements USourceSkill<DateUSourceData> {
 
     @Override
     public int name() {
-        return R.string.event_date;
+        return R.string.usource_date;
     }
 
     @Override

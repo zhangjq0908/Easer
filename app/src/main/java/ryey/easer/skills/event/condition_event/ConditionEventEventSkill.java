@@ -44,7 +44,7 @@ public class ConditionEventEventSkill implements EventSkill<ConditionEventEventD
 
     @Override
     public int name() {
-        return R.string.ev_condition_event;
+        return R.string.event_condition_event;
     }
 
     @Override

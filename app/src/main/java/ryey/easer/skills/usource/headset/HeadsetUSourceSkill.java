@@ -43,7 +43,7 @@ public class HeadsetUSourceSkill implements USourceSkill<HeadsetUSourceData> {
 
     @Override
     public int name() {
-        return R.string.event_headset;
+        return R.string.usource_headset;
     }
 
     @Override

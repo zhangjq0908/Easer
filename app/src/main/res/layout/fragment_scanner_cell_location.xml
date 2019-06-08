@@ -13,7 +13,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/source_cell_location_listening_title"
+        android:text="@string/usource_cell_location_listening_title"
         android:textAppearance="@style/AppTheme.DialogTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
