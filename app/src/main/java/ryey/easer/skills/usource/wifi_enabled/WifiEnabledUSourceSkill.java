@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.condition.wifi_enabled;
+package ryey.easer.skills.usource.wifi_enabled;
 
 import android.Manifest;
 import android.app.Activity;
@@ -29,13 +29,14 @@ import androidx.annotation.NonNull;
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SourceCategory;
 import ryey.easer.commons.local_skill.ValidData;
-import ryey.easer.commons.local_skill.conditionskill.ConditionDataFactory;
-import ryey.easer.commons.local_skill.conditionskill.ConditionSkill;
 import ryey.easer.commons.local_skill.conditionskill.Tracker;
+import ryey.easer.commons.local_skill.eventskill.Slot;
+import ryey.easer.commons.local_skill.usource.USourceDataFactory;
+import ryey.easer.commons.local_skill.usource.USourceSkill;
 import ryey.easer.skills.SkillHelper;
 import ryey.easer.skills.SkillViewFragment;
 
-public class WifiEnabledConditionSkill implements ConditionSkill<WifiEnabledConditionData> {
+public class WifiEnabledUSourceSkill implements USourceSkill<WifiEnabledUSourceData> {
 
     @NonNull
     @Override
@@ -45,7 +46,7 @@ public class WifiEnabledConditionSkill implements ConditionSkill<WifiEnabledCond
 
     @Override
     public int name() {
-        return R.string.condition_wifi_enabled;
+        return R.string.usource_wifi_enabled;
     }
 
     @Override
@@ -69,8 +70,8 @@ public class WifiEnabledConditionSkill implements ConditionSkill<WifiEnabledCond
 
     @NonNull
     @Override
-    public ConditionDataFactory<WifiEnabledConditionData> dataFactory() {
-        return new WifiEnabledConditionDataFactory();
+    public USourceDataFactory<WifiEnabledUSourceData> dataFactory() {
+        return new WifiEnabledUSourceDataFactory();
     }
 
     @NonNull
@@ -81,16 +82,26 @@ public class WifiEnabledConditionSkill implements ConditionSkill<WifiEnabledCond
 
     @NonNull
     @Override
-    public SkillViewFragment<WifiEnabledConditionData> view() {
+    public SkillViewFragment<WifiEnabledUSourceData> view() {
         return new WifiEnabledSkillViewFragment();
+    }
+
+    @Override
+    public Slot<WifiEnabledUSourceData> slot(@NonNull Context context, @NonNull WifiEnabledUSourceData data) {
+        return new WifiEnabledSlot(context, data);
+    }
+
+    @Override
+    public Slot<WifiEnabledUSourceData> slot(@NonNull Context context, @NonNull WifiEnabledUSourceData data, boolean retriggerable, boolean persistent) {
+        return new WifiEnabledSlot(context, data, retriggerable, persistent);
     }
 
     @NonNull
     @Override
-    public Tracker<WifiEnabledConditionData> tracker(@NonNull Context context,
-                                                 @ValidData @NonNull WifiEnabledConditionData data,
-                                                 @NonNull PendingIntent event_positive,
-                                                 @NonNull PendingIntent event_negative) {
+    public Tracker<WifiEnabledUSourceData> tracker(@NonNull Context context,
+                                                   @ValidData @NonNull WifiEnabledUSourceData data,
+                                                   @NonNull PendingIntent event_positive,
+                                                   @NonNull PendingIntent event_negative) {
         return new WifiEnabledTracker(context, data, event_positive, event_negative);
     }
 

@@ -17,25 +17,27 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.condition.bluetooth_enabled;
+package ryey.easer.skills.usource.bluetooth_enabled;
 
 import android.os.Parcel;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
-import ryey.easer.commons.local_skill.conditionskill.ConditionData;
+import ryey.easer.commons.local_skill.dynamics.Dynamics;
+import ryey.easer.commons.local_skill.usource.USourceData;
 import ryey.easer.plugin.PluginDataFormat;
 
-public class BluetoothEnabledConditionData implements ConditionData {
+public class BluetoothEnabledUSourceData implements USourceData {
 
     final boolean enabled;
 
-    BluetoothEnabledConditionData(boolean enabled) {
+    BluetoothEnabledUSourceData(boolean enabled) {
         this.enabled = enabled;
     }
 
-    BluetoothEnabledConditionData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
+    BluetoothEnabledUSourceData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 enabled = Boolean.parseBoolean(data);
@@ -59,14 +61,20 @@ public class BluetoothEnabledConditionData implements ConditionData {
         return true;
     }
 
+    @Nullable
+    @Override
+    public Dynamics[] dynamics() {
+        return null;
+    }
+
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(Object obj) {
         if (obj == this)
             return true;
-        if (obj == null || !(obj instanceof BluetoothEnabledConditionData))
+        if (obj == null || !(obj instanceof BluetoothEnabledUSourceData))
             return false;
-        if (enabled != ((BluetoothEnabledConditionData) obj).enabled)
+        if (enabled != ((BluetoothEnabledUSourceData) obj).enabled)
             return false;
         return true;
     }
@@ -81,18 +89,18 @@ public class BluetoothEnabledConditionData implements ConditionData {
         dest.writeByte((byte) (enabled ? 1 : 0));
     }
 
-    public static final Creator<BluetoothEnabledConditionData> CREATOR
-            = new Creator<BluetoothEnabledConditionData>() {
-        public BluetoothEnabledConditionData createFromParcel(Parcel in) {
-            return new BluetoothEnabledConditionData(in);
+    public static final Creator<BluetoothEnabledUSourceData> CREATOR
+            = new Creator<BluetoothEnabledUSourceData>() {
+        public BluetoothEnabledUSourceData createFromParcel(Parcel in) {
+            return new BluetoothEnabledUSourceData(in);
         }
 
-        public BluetoothEnabledConditionData[] newArray(int size) {
-            return new BluetoothEnabledConditionData[size];
+        public BluetoothEnabledUSourceData[] newArray(int size) {
+            return new BluetoothEnabledUSourceData[size];
         }
     };
 
-    private BluetoothEnabledConditionData(Parcel in) {
+    private BluetoothEnabledUSourceData(Parcel in) {
         enabled = in.readByte() != 0;
     }
 }

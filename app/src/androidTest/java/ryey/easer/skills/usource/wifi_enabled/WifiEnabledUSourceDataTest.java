@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.condition.bluetooth_enabled;
+package ryey.easer.skills.usource.wifi_enabled;
 
 import android.os.Parcel;
 
@@ -27,13 +27,13 @@ import ryey.easer.skills.TestHelper;
 
 import static org.junit.Assert.assertEquals;
 
-public class BluetoothEnabledConditionDataTest {
+public class WifiEnabledUSourceDataTest {
 
     @Test
     public void testParcel() {
-        BluetoothEnabledConditionData dummyData = new BluetoothEnabledConditionDataFactory().dummyData();
+        WifiEnabledUSourceData dummyData = new WifiEnabledUSourceDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
-        BluetoothEnabledConditionData parceledData = BluetoothEnabledConditionData.CREATOR.createFromParcel(parcel);
+        WifiEnabledUSourceData parceledData = WifiEnabledUSourceData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);
     }
 

@@ -44,10 +44,8 @@ import ryey.easer.commons.local_skill.eventskill.EventSkill;
 import ryey.easer.commons.local_skill.operationskill.OperationData;
 import ryey.easer.commons.local_skill.operationskill.OperationSkill;
 import ryey.easer.commons.local_skill.usource.USourceSkill;
-import ryey.easer.skills.condition.bluetooth_enabled.BluetoothEnabledConditionSkill;
 import ryey.easer.skills.condition.calendar.CalendarConditionSkill;
 import ryey.easer.skills.condition.ringer_mode.RingerModeConditionSkill;
-import ryey.easer.skills.condition.wifi_enabled.WifiEnabledConditionSkill;
 import ryey.easer.skills.event.broadcast.BroadcastEventSkill;
 import ryey.easer.skills.event.calendar.CalendarEventSkill;
 import ryey.easer.skills.event.condition_event.ConditionEventEventSkill;
@@ -79,6 +77,7 @@ import ryey.easer.skills.operation.volume.VolumeOperationSkill;
 import ryey.easer.skills.operation.wifi.WifiOperationSkill;
 import ryey.easer.skills.usource.battery.BatteryUSourceSkill;
 import ryey.easer.skills.usource.bluetooth_device.BTDeviceUSourceSkill;
+import ryey.easer.skills.usource.bluetooth_enabled.BluetoothEnabledUSourceSkill;
 import ryey.easer.skills.usource.cell_location.CellLocationUSourceSkill;
 import ryey.easer.skills.usource.date.DateUSourceSkill;
 import ryey.easer.skills.usource.day_of_week.DayOfWeekEventSkill;
@@ -86,6 +85,7 @@ import ryey.easer.skills.usource.headset.HeadsetUSourceSkill;
 import ryey.easer.skills.usource.screen.ScreenUSourceSkill;
 import ryey.easer.skills.usource.time.TimeUSourceSkill;
 import ryey.easer.skills.usource.wifi.WifiUSourceSkill;
+import ryey.easer.skills.usource.wifi_enabled.WifiEnabledUSourceSkill;
 
 /**
  * Used to tell the app what skills can be used.
@@ -107,6 +107,7 @@ final public class LocalSkillRegistry {
         for (USourceSkill skill : new USourceSkill[] {
                 new BatteryUSourceSkill(),
                 new BTDeviceUSourceSkill(),
+                new BluetoothEnabledUSourceSkill(),
                 new CellLocationUSourceSkill(),
                 new DateUSourceSkill(),
                 new DayOfWeekEventSkill(),
@@ -114,6 +115,7 @@ final public class LocalSkillRegistry {
                 new ScreenUSourceSkill(),
                 new TimeUSourceSkill(),
                 new WifiUSourceSkill(),
+                new WifiEnabledUSourceSkill(),
         }) {
             event().registerSkill(skill.event());
             condition().registerSkill(skill.condition());
@@ -130,8 +132,6 @@ final public class LocalSkillRegistry {
 
         condition().registerSkill(CalendarConditionSkill.class);
         condition().registerSkill(RingerModeConditionSkill.class);
-        condition().registerSkill(WifiEnabledConditionSkill.class);
-        condition().registerSkill(BluetoothEnabledConditionSkill.class);
 
         operation().registerSkill(WifiOperationSkill.class);
         operation().registerSkill(CellularOperationSkill.class);

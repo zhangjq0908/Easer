@@ -17,25 +17,27 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.condition.wifi_enabled;
+package ryey.easer.skills.usource.wifi_enabled;
 
 import android.os.Parcel;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
-import ryey.easer.commons.local_skill.conditionskill.ConditionData;
+import ryey.easer.commons.local_skill.dynamics.Dynamics;
+import ryey.easer.commons.local_skill.usource.USourceData;
 import ryey.easer.plugin.PluginDataFormat;
 
-public class WifiEnabledConditionData implements ConditionData {
+public class WifiEnabledUSourceData implements USourceData {
 
     final boolean enabled;
 
-    WifiEnabledConditionData(boolean enabled) {
+    WifiEnabledUSourceData(boolean enabled) {
         this.enabled = enabled;
     }
 
-    WifiEnabledConditionData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
+    WifiEnabledUSourceData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 enabled = Boolean.parseBoolean(data);
@@ -59,14 +61,20 @@ public class WifiEnabledConditionData implements ConditionData {
         return true;
     }
 
+    @Nullable
+    @Override
+    public Dynamics[] dynamics() {
+        return null;
+    }
+
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(Object obj) {
         if (obj == this)
             return true;
-        if (obj == null || !(obj instanceof WifiEnabledConditionData))
+        if (obj == null || !(obj instanceof WifiEnabledUSourceData))
             return false;
-        if (enabled != ((WifiEnabledConditionData) obj).enabled)
+        if (enabled != ((WifiEnabledUSourceData) obj).enabled)
             return false;
         return true;
     }
@@ -81,18 +89,18 @@ public class WifiEnabledConditionData implements ConditionData {
         dest.writeByte((byte) (enabled ? 1 : 0));
     }
 
-    public static final Creator<WifiEnabledConditionData> CREATOR
-            = new Creator<WifiEnabledConditionData>() {
-        public WifiEnabledConditionData createFromParcel(Parcel in) {
-            return new WifiEnabledConditionData(in);
+    public static final Creator<WifiEnabledUSourceData> CREATOR
+            = new Creator<WifiEnabledUSourceData>() {
+        public WifiEnabledUSourceData createFromParcel(Parcel in) {
+            return new WifiEnabledUSourceData(in);
         }
 
-        public WifiEnabledConditionData[] newArray(int size) {
-            return new WifiEnabledConditionData[size];
+        public WifiEnabledUSourceData[] newArray(int size) {
+            return new WifiEnabledUSourceData[size];
         }
     };
 
-    private WifiEnabledConditionData(Parcel in) {
+    private WifiEnabledUSourceData(Parcel in) {
         enabled = in.readByte() != 0;
     }
 }

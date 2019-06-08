@@ -24,14 +24,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/condition__enabled_yes" />
+            android:text="@string/usource__enabled_yes" />
 
         <RadioButton
             android:id="@+id/radioButton_no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/condition__enabled_no" />
+            android:text="@string/usource__enabled_no" />
     </RadioGroup>
 
     <TextView
@@ -41,7 +41,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/condition_wifi_enabled_wifi_is_enabled"
+        android:text="@string/usource_wifi_enabled_wifi_is_enabled"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

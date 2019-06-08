@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.condition.bluetooth_enabled;
+package ryey.easer.skills.usource.wifi_enabled;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -33,14 +33,14 @@ import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.skills.SkillViewFragment;
 
-public class BluetoothEnabledSkillViewFragment extends SkillViewFragment<BluetoothEnabledConditionData> {
+public class WifiEnabledSkillViewFragment extends SkillViewFragment<WifiEnabledUSourceData> {
 
     RadioButton radioButton_enabled, radioButton_disabled;
 
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_condition__bluetooth_enabled, container, false);
+        View view = inflater.inflate(R.layout.plugin_usource_wifi_enabled, container, false);
 
         radioButton_enabled = view.findViewById(R.id.radioButton_yes);
         radioButton_disabled = view.findViewById(R.id.radioButton_no);
@@ -49,7 +49,7 @@ public class BluetoothEnabledSkillViewFragment extends SkillViewFragment<Bluetoo
     }
 
     @Override
-    protected void _fill(@ValidData @NonNull BluetoothEnabledConditionData data) {
+    protected void _fill(@ValidData @NonNull WifiEnabledUSourceData data) {
         if (data.enabled) {
             radioButton_enabled.setChecked(true);
         } else {
@@ -60,8 +60,8 @@ public class BluetoothEnabledSkillViewFragment extends SkillViewFragment<Bluetoo
     @ValidData
     @NonNull
     @Override
-    public BluetoothEnabledConditionData getData() throws InvalidDataInputException {
+    public WifiEnabledUSourceData getData() throws InvalidDataInputException {
         boolean enabled = radioButton_enabled.isChecked();
-        return new BluetoothEnabledConditionData(enabled);
+        return new WifiEnabledUSourceData(enabled);
     }
 }

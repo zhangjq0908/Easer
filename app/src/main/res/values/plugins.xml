@@ -14,13 +14,7 @@
 
     <!--Condition (c)-->
 
-    <string name="condition__enabled_yes">Yes</string>
-    <string name="condition__enabled_no">No</string>
-
     <string name="condition__rel_after">After</string>
-
-    <string name="condition_bluetooth_enabled">Bluetooth Enabled</string>
-    <string name="condition_bluetooth_enabled_bluetooth_is_enabled">Bluetooth is enabled?</string>
 
     <string name="condition_calendar_name">Calendar Name</string>
     <string name="condition_calendar_event_title">Event Title</string>
@@ -33,9 +27,6 @@
     <string name="condition_ringer_above">At least</string>
     <string name="condition_ringer_below">At most</string>
     <string name="condition_ringer_equals">Equals</string>
-
-    <string name="condition_wifi_enabled">WiFi Enabled</string>
-    <string name="condition_wifi_enabled_wifi_is_enabled">WiFi is enabled?</string>
 
     <!--Event (e, ev)-->
 
@@ -202,6 +193,9 @@
 
     <!--USource (us)-->
 
+    <string name="usource__enabled_yes">Yes</string>
+    <string name="usource__enabled_no">No</string>
+
     <string name="usource_battery">Battery Status</string>
     <array name="usource_battery_status">
         <item>Charging</item>
@@ -213,6 +207,9 @@
     <string name="usource_bt_device_unknown_device">Unknown device</string>
     <string name="usource_bt_device_dynamics_device_name">Device Name</string>
     <string name="usource_bt_device_dynamics_device_address">Device Address</string>
+
+    <string name="usource_bluetooth_enabled">Bluetooth Enabled</string>
+    <string name="usource_bluetooth_enabled_bluetooth_is_enabled">Bluetooth is enabled?</string>
 
     <string name="usource_cell_location">Cell Location</string>
     <string name="usource_cell_location_no_signal">Can\'t get cell location. Check your signal.</string>
@@ -258,5 +255,8 @@
     <string name="usource_wificonn">WiFi Connection</string>
     <string name="usource_wificonn_select_dialog_title">Select WiFi AP</string>
     <string name="usource_wificonn_wait_for_result">Waiting for WiFi scan result</string>
+
+    <string name="usource_wifi_enabled">WiFi Enabled</string>
+    <string name="usource_wifi_enabled_wifi_is_enabled">WiFi is enabled?</string>
 
 </resources>

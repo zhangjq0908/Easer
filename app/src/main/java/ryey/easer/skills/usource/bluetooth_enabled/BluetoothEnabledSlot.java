@@ -17,9 +17,8 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.condition.bluetooth_enabled;
+package ryey.easer.skills.usource.bluetooth_enabled;
 
-import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -28,11 +27,9 @@ import android.content.IntentFilter;
 
 import androidx.annotation.NonNull;
 
-import ryey.easer.skills.condition.SkeletonTracker;
+import ryey.easer.skills.event.AbstractSlot;
 
-public class BluetoothEnabledTracker extends SkeletonTracker<BluetoothEnabledConditionData> {
-
-    private BluetoothAdapter bluetoothAdapter;
+public class BluetoothEnabledSlot extends AbstractSlot<BluetoothEnabledUSourceData> {
 
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -40,41 +37,32 @@ public class BluetoothEnabledTracker extends SkeletonTracker<BluetoothEnabledCon
             if (BluetoothAdapter.ACTION_STATE_CHANGED.equals(intent.getAction())) {
                 switch (intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, -1)) {
                     case BluetoothAdapter.STATE_ON:
-                        newSatisfiedState(data.enabled);
+                        changeSatisfiedState(eventData.enabled);
                         break;
                     case BluetoothAdapter.STATE_OFF:
-                        newSatisfiedState(!data.enabled);
+                        changeSatisfiedState(!eventData.enabled);
                         break;
-                    default:
-                        newSatisfiedState(null);
                 }
             }
         }
     };
     private static IntentFilter intentFilter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
 
-    BluetoothEnabledTracker(Context context, BluetoothEnabledConditionData data,
-                   @NonNull PendingIntent event_positive,
-                   @NonNull PendingIntent event_negative) {
-        super(context, data, event_positive, event_negative);
+    public BluetoothEnabledSlot(Context context, BluetoothEnabledUSourceData data) {
+        this(context, data, RETRIGGERABLE_DEFAULT, PERSISTENT_DEFAULT);
+    }
 
-        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+    public BluetoothEnabledSlot(@NonNull Context context, @NonNull BluetoothEnabledUSourceData data, boolean retriggerable, boolean persistent) {
+        super(context, data, retriggerable, persistent);
     }
 
     @Override
-    public void start() {
+    public void listen() {
         context.registerReceiver(broadcastReceiver, intentFilter);
     }
 
     @Override
-    public void stop() {
+    public void cancel() {
         context.unregisterReceiver(broadcastReceiver);
-    }
-
-    @Override
-    public Boolean state() {
-        if (bluetoothAdapter == null)
-            return null;
-        return bluetoothAdapter.isEnabled();
     }
 }

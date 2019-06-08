@@ -23,11 +23,11 @@
     <string name="condition_ringer_below">最高</string>
     <string name="condition_ringer_equals">等於</string>
 
-    <string name="condition_wifi_enabled">WiFi已啓用</string>
-    <string name="condition_wifi_enabled_wifi_is_enabled">WiFi已啓用？</string>
+    <string name="usource_wifi_enabled">WiFi已啓用</string>
+    <string name="usource_wifi_enabled_wifi_is_enabled">WiFi已啓用？</string>
 
-    <string name="condition__enabled_yes">是</string>
-    <string name="condition__enabled_no">否</string>
+    <string name="usource__enabled_yes">是</string>
+    <string name="usource__enabled_no">否</string>
 
 
     <string name="usource_date">日期</string>

@@ -179,14 +179,14 @@
 <string name="ev_sms_dynamics_sender">Expéditeur du SMS</string>
     <string name="ev_sms_dynamics_content">Contenu SMS</string>
 
-    <string name="condition_wifi_enabled">WiFi Activé</string>
-    <string name="condition_wifi_enabled_wifi_is_enabled">WiFi est activé \?</string>
+    <string name="usource_wifi_enabled">WiFi Activé</string>
+    <string name="usource_wifi_enabled_wifi_is_enabled">WiFi est activé \?</string>
 
-    <string name="condition_bluetooth_enabled">Bluetooth Activé</string>
-    <string name="condition_bluetooth_enabled_bluetooth_is_enabled">Bluetooth est activé \?</string>
+    <string name="usource_bluetooth_enabled">Bluetooth Activé</string>
+    <string name="usource_bluetooth_enabled_bluetooth_is_enabled">Bluetooth est activé \?</string>
 
-    <string name="condition__enabled_yes">Oui</string>
-    <string name="condition__enabled_no">Non</string>
+    <string name="usource__enabled_yes">Oui</string>
+    <string name="usource__enabled_no">Non</string>
 
 
     <string name="usource_cell_location_no_signal">Impossible de localiser le portable. Vérifiez votre signal.</string>

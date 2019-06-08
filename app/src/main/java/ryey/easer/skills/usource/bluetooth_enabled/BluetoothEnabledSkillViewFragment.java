@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.condition.wifi_enabled;
+package ryey.easer.skills.usource.bluetooth_enabled;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -33,14 +33,14 @@ import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.skills.SkillViewFragment;
 
-public class WifiEnabledSkillViewFragment extends SkillViewFragment<WifiEnabledConditionData> {
+public class BluetoothEnabledSkillViewFragment extends SkillViewFragment<BluetoothEnabledUSourceData> {
 
     RadioButton radioButton_enabled, radioButton_disabled;
 
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_condition_wifi_enabled, container, false);
+        View view = inflater.inflate(R.layout.plugin_usource__bluetooth_enabled, container, false);
 
         radioButton_enabled = view.findViewById(R.id.radioButton_yes);
         radioButton_disabled = view.findViewById(R.id.radioButton_no);
@@ -49,7 +49,7 @@ public class WifiEnabledSkillViewFragment extends SkillViewFragment<WifiEnabledC
     }
 
     @Override
-    protected void _fill(@ValidData @NonNull WifiEnabledConditionData data) {
+    protected void _fill(@ValidData @NonNull BluetoothEnabledUSourceData data) {
         if (data.enabled) {
             radioButton_enabled.setChecked(true);
         } else {
@@ -60,8 +60,8 @@ public class WifiEnabledSkillViewFragment extends SkillViewFragment<WifiEnabledC
     @ValidData
     @NonNull
     @Override
-    public WifiEnabledConditionData getData() throws InvalidDataInputException {
+    public BluetoothEnabledUSourceData getData() throws InvalidDataInputException {
         boolean enabled = radioButton_enabled.isChecked();
-        return new WifiEnabledConditionData(enabled);
+        return new BluetoothEnabledUSourceData(enabled);
     }
 }

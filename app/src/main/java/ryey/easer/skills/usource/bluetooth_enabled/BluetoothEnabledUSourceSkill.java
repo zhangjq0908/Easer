@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.condition.bluetooth_enabled;
+package ryey.easer.skills.usource.bluetooth_enabled;
 
 import android.Manifest;
 import android.app.Activity;
@@ -30,13 +30,14 @@ import androidx.annotation.NonNull;
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SourceCategory;
 import ryey.easer.commons.local_skill.ValidData;
-import ryey.easer.commons.local_skill.conditionskill.ConditionDataFactory;
-import ryey.easer.commons.local_skill.conditionskill.ConditionSkill;
 import ryey.easer.commons.local_skill.conditionskill.Tracker;
+import ryey.easer.commons.local_skill.eventskill.Slot;
+import ryey.easer.commons.local_skill.usource.USourceDataFactory;
+import ryey.easer.commons.local_skill.usource.USourceSkill;
 import ryey.easer.skills.SkillHelper;
 import ryey.easer.skills.SkillViewFragment;
 
-public class BluetoothEnabledConditionSkill implements ConditionSkill<BluetoothEnabledConditionData> {
+public class BluetoothEnabledUSourceSkill implements USourceSkill<BluetoothEnabledUSourceData> {
 
     @NonNull
     @Override
@@ -46,7 +47,7 @@ public class BluetoothEnabledConditionSkill implements ConditionSkill<BluetoothE
 
     @Override
     public int name() {
-        return R.string.condition_bluetooth_enabled;
+        return R.string.usource_bluetooth_enabled;
     }
 
     @Override
@@ -67,8 +68,8 @@ public class BluetoothEnabledConditionSkill implements ConditionSkill<BluetoothE
 
     @NonNull
     @Override
-    public ConditionDataFactory<BluetoothEnabledConditionData> dataFactory() {
-        return new BluetoothEnabledConditionDataFactory();
+    public USourceDataFactory<BluetoothEnabledUSourceData> dataFactory() {
+        return new BluetoothEnabledUSourceDataFactory();
     }
 
     @NonNull
@@ -79,16 +80,26 @@ public class BluetoothEnabledConditionSkill implements ConditionSkill<BluetoothE
 
     @NonNull
     @Override
-    public SkillViewFragment<BluetoothEnabledConditionData> view() {
+    public SkillViewFragment<BluetoothEnabledUSourceData> view() {
         return new BluetoothEnabledSkillViewFragment();
+    }
+
+    @Override
+    public Slot<BluetoothEnabledUSourceData> slot(@NonNull Context context, @NonNull BluetoothEnabledUSourceData data) {
+        return new BluetoothEnabledSlot(context, data);
+    }
+
+    @Override
+    public Slot<BluetoothEnabledUSourceData> slot(@NonNull Context context, @NonNull BluetoothEnabledUSourceData data, boolean retriggerable, boolean persistent) {
+        return new BluetoothEnabledSlot(context, data, retriggerable, persistent);
     }
 
     @NonNull
     @Override
-    public Tracker<BluetoothEnabledConditionData> tracker(@NonNull Context context,
-                                                 @ValidData @NonNull BluetoothEnabledConditionData data,
-                                                 @NonNull PendingIntent event_positive,
-                                                 @NonNull PendingIntent event_negative) {
+    public Tracker<BluetoothEnabledUSourceData> tracker(@NonNull Context context,
+                                                        @ValidData @NonNull BluetoothEnabledUSourceData data,
+                                                        @NonNull PendingIntent event_positive,
+                                                        @NonNull PendingIntent event_negative) {
         return new BluetoothEnabledTracker(context, data, event_positive, event_negative);
     }
 

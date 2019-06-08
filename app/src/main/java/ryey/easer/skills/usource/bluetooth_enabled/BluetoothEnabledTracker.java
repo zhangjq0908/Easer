@@ -17,36 +17,33 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.condition.wifi_enabled;
+package ryey.easer.skills.usource.bluetooth_enabled;
 
 import android.app.PendingIntent;
+import android.bluetooth.BluetoothAdapter;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.wifi.WifiManager;
 
 import androidx.annotation.NonNull;
 
 import ryey.easer.skills.condition.SkeletonTracker;
 
-public class WifiEnabledTracker extends SkeletonTracker<WifiEnabledConditionData> {
+public class BluetoothEnabledTracker extends SkeletonTracker<BluetoothEnabledUSourceData> {
 
-    private WifiManager wifiManager;
+    private BluetoothAdapter bluetoothAdapter;
 
-    private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (WifiManager.WIFI_STATE_CHANGED_ACTION.equals(intent.getAction())) {
-                int extraWifiState = intent.getIntExtra(WifiManager.EXTRA_WIFI_STATE, WifiManager.WIFI_STATE_UNKNOWN);
-
-                switch (extraWifiState)
-                {
-                    case WifiManager.WIFI_STATE_DISABLED:
-                        newSatisfiedState(!data.enabled);
-                        break;
-                    case WifiManager.WIFI_STATE_ENABLED:
+            if (BluetoothAdapter.ACTION_STATE_CHANGED.equals(intent.getAction())) {
+                switch (intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, -1)) {
+                    case BluetoothAdapter.STATE_ON:
                         newSatisfiedState(data.enabled);
+                        break;
+                    case BluetoothAdapter.STATE_OFF:
+                        newSatisfiedState(!data.enabled);
                         break;
                     default:
                         newSatisfiedState(null);
@@ -54,14 +51,14 @@ public class WifiEnabledTracker extends SkeletonTracker<WifiEnabledConditionData
             }
         }
     };
-    private final IntentFilter intentFilter = new IntentFilter(WifiManager.WIFI_STATE_CHANGED_ACTION);
+    private static IntentFilter intentFilter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
 
-    WifiEnabledTracker(Context context, WifiEnabledConditionData data,
+    BluetoothEnabledTracker(Context context, BluetoothEnabledUSourceData data,
                    @NonNull PendingIntent event_positive,
                    @NonNull PendingIntent event_negative) {
         super(context, data, event_positive, event_negative);
 
-        wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
     }
 
     @Override
@@ -76,8 +73,8 @@ public class WifiEnabledTracker extends SkeletonTracker<WifiEnabledConditionData
 
     @Override
     public Boolean state() {
-        if (wifiManager == null)
+        if (bluetoothAdapter == null)
             return null;
-        return wifiManager.isWifiEnabled();
+        return bluetoothAdapter.isEnabled();
     }
 }

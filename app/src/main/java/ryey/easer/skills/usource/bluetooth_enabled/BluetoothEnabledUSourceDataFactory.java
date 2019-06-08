@@ -17,33 +17,33 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.condition.bluetooth_enabled;
+package ryey.easer.skills.usource.bluetooth_enabled;
 
 import androidx.annotation.NonNull;
 
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.ValidData;
-import ryey.easer.commons.local_skill.conditionskill.ConditionDataFactory;
+import ryey.easer.commons.local_skill.usource.USourceDataFactory;
 import ryey.easer.plugin.PluginDataFormat;
 
-class BluetoothEnabledConditionDataFactory implements ConditionDataFactory<BluetoothEnabledConditionData> {
+class BluetoothEnabledUSourceDataFactory implements USourceDataFactory<BluetoothEnabledUSourceData> {
     @NonNull
     @Override
-    public Class<BluetoothEnabledConditionData> dataClass() {
-        return BluetoothEnabledConditionData.class;
+    public Class<BluetoothEnabledUSourceData> dataClass() {
+        return BluetoothEnabledUSourceData.class;
     }
 
     @ValidData
     @NonNull
     @Override
-    public BluetoothEnabledConditionData dummyData() {
-        return new BluetoothEnabledConditionData(true);
+    public BluetoothEnabledUSourceData dummyData() {
+        return new BluetoothEnabledUSourceData(true);
     }
 
     @ValidData
     @NonNull
     @Override
-    public BluetoothEnabledConditionData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
-        return new BluetoothEnabledConditionData(data, format, version);
+    public BluetoothEnabledUSourceData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
+        return new BluetoothEnabledUSourceData(data, format, version);
     }
 }
