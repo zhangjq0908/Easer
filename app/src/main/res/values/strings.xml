@@ -225,22 +225,4 @@
     <string name="category_operation_misc">Misc</string>
     <string name="category_operation_unknown">Unknown</string>
 
-    <string-array name="array_languages">
-        <item>&lt;Default&gt;</item>
-        <item>Chinese</item>
-        <item>Danish</item>
-        <item>Dutch</item>
-        <item>English</item>
-        <item>French</item>
-        <item>Galician</item>
-        <item>German</item>
-        <item>Italian</item>
-        <item>Japanese</item>
-        <item>Korean</item>
-        <item>Norwegian Bokmål</item>
-        <item>Portuguese (Brazil)</item>
-        <item>Russian</item>
-        <item>Swedish</item>
-    </string-array>
-
 </resources>

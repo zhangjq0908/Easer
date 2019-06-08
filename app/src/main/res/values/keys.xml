@@ -22,22 +22,4 @@
     <string name="key_pref_locale_custom" translatable="false">preference_locale_custom</string>
     <string name="key_pref_locale_lang" translatable="false">preference_locale_language</string>
 
-    <!-- Do not translate this array! They are used as keys and should be the same regardless of locale. -->
-    <string-array name="array_languages_values">
-        <item>_</item>
-        <item>zh</item>
-        <item>da</item>
-        <item>nl</item>
-        <item>en</item>
-        <item>fr</item>
-        <item>gl</item>
-        <item>de</item>
-        <item>it</item>
-        <item>ja</item>
-        <item>ko</item>
-        <item>nb</item>
-        <item>pt-rBR</item>
-        <item>ru</item>
-        <item>sv</item>
-    </string-array>
 </resources>
