@@ -32,7 +32,7 @@ import ryey.easer.commons.local_skill.conditionskill.ConditionDataFactory;
 import ryey.easer.commons.local_skill.conditionskill.ConditionSkill;
 import ryey.easer.commons.local_skill.conditionskill.Tracker;
 import ryey.easer.skills.SkillViewFragment;
-import ryey.easer.skills.reusable.PluginHelper;
+import ryey.easer.skills.SkillHelper;
 
 public class CalendarConditionSkill implements ConditionSkill<CalendarConditionData> {
 
@@ -52,12 +52,12 @@ public class CalendarConditionSkill implements ConditionSkill<CalendarConditionD
 
     @Override
     public boolean checkPermissions(@NonNull Context context) {
-        return PluginHelper.checkPermission(context, Manifest.permission.READ_CALENDAR);
+        return SkillHelper.checkPermission(context, Manifest.permission.READ_CALENDAR);
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        PluginHelper.requestPermission(activity, requestCode, Manifest.permission.READ_CALENDAR);
+        SkillHelper.requestPermission(activity, requestCode, Manifest.permission.READ_CALENDAR);
     }
 
     @NonNull

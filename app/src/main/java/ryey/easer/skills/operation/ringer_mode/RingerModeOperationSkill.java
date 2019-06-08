@@ -35,7 +35,7 @@ import ryey.easer.commons.local_skill.operationskill.OperationSkill;
 import ryey.easer.commons.local_skill.operationskill.PrivilegeUsage;
 import ryey.easer.plugin.operation.Category;
 import ryey.easer.skills.operation.OperationLoader;
-import ryey.easer.skills.reusable.PluginHelper;
+import ryey.easer.skills.SkillHelper;
 
 public class RingerModeOperationSkill implements OperationSkill<RingerModeOperationData> {
 
@@ -75,27 +75,27 @@ public class RingerModeOperationSkill implements OperationSkill<RingerModeOperat
     @Override
     public boolean checkPermissions(@NonNull Context context) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            return PluginHelper.checkPermission(context, Manifest.permission.MODIFY_AUDIO_SETTINGS);
+            return SkillHelper.checkPermission(context, Manifest.permission.MODIFY_AUDIO_SETTINGS);
         } else {
-            return PluginHelper.checkPermission(context, Manifest.permission.MODIFY_AUDIO_SETTINGS)
-                    && PluginHelper.isPermissionGrantedForNotificationListenerService(
+            return SkillHelper.checkPermission(context, Manifest.permission.MODIFY_AUDIO_SETTINGS)
+                    && SkillHelper.isPermissionGrantedForNotificationListenerService(
                             context, InterruptionFilterSwitcherService.class);
         }
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        if (!PluginHelper.checkPermission(activity, Manifest.permission.MODIFY_AUDIO_SETTINGS))
-            PluginHelper.requestPermission(activity, requestCode, Manifest.permission.MODIFY_AUDIO_SETTINGS);
+        if (!SkillHelper.checkPermission(activity, Manifest.permission.MODIFY_AUDIO_SETTINGS))
+            SkillHelper.requestPermission(activity, requestCode, Manifest.permission.MODIFY_AUDIO_SETTINGS);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (!PluginHelper.isPermissionGrantedForNotificationListenerService(activity, InterruptionFilterSwitcherService.class)) {
+            if (!SkillHelper.isPermissionGrantedForNotificationListenerService(activity, InterruptionFilterSwitcherService.class)) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
                     activity.startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
                 } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    PluginHelper.requestPermission(activity, requestCode,
+                    SkillHelper.requestPermission(activity, requestCode,
                             Manifest.permission.BIND_NOTIFICATION_LISTENER_SERVICE);
                 }
-                PluginHelper.reenableComponent(activity, InterruptionFilterSwitcherService.class);
+                SkillHelper.reenableComponent(activity, InterruptionFilterSwitcherService.class);
             }
         }
     }

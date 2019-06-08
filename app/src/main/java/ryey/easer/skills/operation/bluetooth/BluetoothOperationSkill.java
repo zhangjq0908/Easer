@@ -33,7 +33,7 @@ import ryey.easer.commons.local_skill.operationskill.OperationSkill;
 import ryey.easer.commons.local_skill.operationskill.PrivilegeUsage;
 import ryey.easer.plugin.operation.Category;
 import ryey.easer.skills.operation.OperationLoader;
-import ryey.easer.skills.reusable.PluginHelper;
+import ryey.easer.skills.SkillHelper;
 
 public class BluetoothOperationSkill implements OperationSkill<BluetoothOperationData> {
 
@@ -73,24 +73,24 @@ public class BluetoothOperationSkill implements OperationSkill<BluetoothOperatio
 
     @Override
     public boolean checkPermissions(@NonNull Context context) {
-        return PluginHelper.checkPermission(context,
+        return SkillHelper.checkPermission(context,
                 Manifest.permission.BLUETOOTH,
                 Manifest.permission.BLUETOOTH_ADMIN);
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        boolean can_access_bluetooth = PluginHelper.checkPermission(activity, Manifest.permission.BLUETOOTH);
-        boolean can_bluetooth_admin = PluginHelper.checkPermission(activity, Manifest.permission.BLUETOOTH_ADMIN);
+        boolean can_access_bluetooth = SkillHelper.checkPermission(activity, Manifest.permission.BLUETOOTH);
+        boolean can_bluetooth_admin = SkillHelper.checkPermission(activity, Manifest.permission.BLUETOOTH_ADMIN);
         if (!can_access_bluetooth && !can_bluetooth_admin) {
-            PluginHelper.requestPermission(activity, requestCode,
+            SkillHelper.requestPermission(activity, requestCode,
                     Manifest.permission.BLUETOOTH,
                     Manifest.permission.BLUETOOTH_ADMIN);
         } else if (!can_access_bluetooth) {
-            PluginHelper.requestPermission(activity, requestCode,
+            SkillHelper.requestPermission(activity, requestCode,
                     Manifest.permission.BLUETOOTH);
         } else {
-            PluginHelper.requestPermission(activity, requestCode,
+            SkillHelper.requestPermission(activity, requestCode,
                     Manifest.permission.BLUETOOTH_ADMIN);
         }
     }

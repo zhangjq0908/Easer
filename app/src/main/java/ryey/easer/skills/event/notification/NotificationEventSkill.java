@@ -35,7 +35,7 @@ import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.eventskill.EventDataFactory;
 import ryey.easer.commons.local_skill.eventskill.EventSkill;
 import ryey.easer.skills.event.AbstractSlot;
-import ryey.easer.skills.reusable.PluginHelper;
+import ryey.easer.skills.SkillHelper;
 
 public class NotificationEventSkill implements EventSkill<NotificationEventData> {
 
@@ -59,21 +59,21 @@ public class NotificationEventSkill implements EventSkill<NotificationEventData>
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public boolean checkPermissions(@NonNull Context context) {
-        return PluginHelper.isPermissionGrantedForNotificationListenerService(context, NotificationEventListenerService.class);
+        return SkillHelper.isPermissionGrantedForNotificationListenerService(context, NotificationEventListenerService.class);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        if (!PluginHelper.isPermissionGrantedForNotificationListenerService(activity, NotificationEventListenerService.class)) {
+        if (!SkillHelper.isPermissionGrantedForNotificationListenerService(activity, NotificationEventListenerService.class)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
                 activity.startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
             } else {
-                PluginHelper.requestPermission(activity, requestCode,
+                SkillHelper.requestPermission(activity, requestCode,
                         Manifest.permission.BIND_NOTIFICATION_LISTENER_SERVICE);
             }
         }
-        PluginHelper.reenableComponent(activity, NotificationEventListenerService.class);
+        SkillHelper.reenableComponent(activity, NotificationEventListenerService.class);
     }
 
     @NonNull

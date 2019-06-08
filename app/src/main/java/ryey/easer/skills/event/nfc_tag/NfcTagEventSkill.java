@@ -32,7 +32,7 @@ import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.eventskill.EventDataFactory;
 import ryey.easer.commons.local_skill.eventskill.EventSkill;
 import ryey.easer.skills.event.AbstractSlot;
-import ryey.easer.skills.reusable.PluginHelper;
+import ryey.easer.skills.SkillHelper;
 
 public class NfcTagEventSkill implements EventSkill<NfcTagEventData> {
 
@@ -55,13 +55,13 @@ public class NfcTagEventSkill implements EventSkill<NfcTagEventData> {
 
     @Override
     public boolean checkPermissions(@NonNull Context context) {
-        return PluginHelper.checkPermission(context,
+        return SkillHelper.checkPermission(context,
                 Manifest.permission.NFC);
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        PluginHelper.requestPermission(activity, requestCode, Manifest.permission.NFC);
+        SkillHelper.requestPermission(activity, requestCode, Manifest.permission.NFC);
     }
 
     @NonNull

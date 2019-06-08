@@ -32,7 +32,7 @@ import java.lang.reflect.Method;
 
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.skills.operation.OperationLoader;
-import ryey.easer.skills.reusable.PluginHelper;
+import ryey.easer.skills.SkillHelper;
 
 public class CellularLoader extends OperationLoader<CellularOperationData> {
     public CellularLoader(Context context) {
@@ -46,10 +46,10 @@ public class CellularLoader extends OperationLoader<CellularOperationData> {
         if (state == (telephonyManager.getDataState() == TelephonyManager.DATA_CONNECTED)) {
             return true;
         } else {
-            if (PluginHelper.useRootFeature(context)) {
+            if (SkillHelper.useRootFeature(context)) {
                 try {
                     String command = "svc data " + (state ? "enable" : "disable");
-                    PluginHelper.executeCommandAsRoot(context, command);
+                    SkillHelper.executeCommandAsRoot(context, command);
                     return true;
                 } catch (IOException e) {
                     e.printStackTrace();

@@ -33,7 +33,7 @@ import ryey.easer.commons.local_skill.conditionskill.Tracker;
 import ryey.easer.commons.local_skill.usource.USourceDataFactory;
 import ryey.easer.commons.local_skill.usource.USourceSkill;
 import ryey.easer.skills.event.AbstractSlot;
-import ryey.easer.skills.reusable.PluginHelper;
+import ryey.easer.skills.SkillHelper;
 
 public class WifiUSourceSkill implements USourceSkill<WifiUSourceData> {
 
@@ -55,14 +55,14 @@ public class WifiUSourceSkill implements USourceSkill<WifiUSourceData> {
 
     @Override
     public boolean checkPermissions(@NonNull Context context) {
-        return PluginHelper.checkPermission(context,
+        return SkillHelper.checkPermission(context,
                 Manifest.permission.ACCESS_WIFI_STATE,
                 Manifest.permission.CHANGE_WIFI_STATE);
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        PluginHelper.requestPermission(activity, requestCode,
+        SkillHelper.requestPermission(activity, requestCode,
                 Manifest.permission.ACCESS_WIFI_STATE,
                 Manifest.permission.CHANGE_WIFI_STATE);
     }

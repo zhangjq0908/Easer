@@ -33,7 +33,7 @@ import ryey.easer.commons.local_skill.operationskill.PrivilegeUsage;
 import ryey.easer.plugin.operation.Category;
 import ryey.easer.skills.SkillViewFragment;
 import ryey.easer.skills.operation.OperationLoader;
-import ryey.easer.skills.reusable.PluginHelper;
+import ryey.easer.skills.SkillHelper;
 
 public class PlayMediaOperationSkill implements OperationSkill<PlayMediaOperationData> {
 
@@ -73,7 +73,7 @@ public class PlayMediaOperationSkill implements OperationSkill<PlayMediaOperatio
     @Override
     public boolean checkPermissions(@NonNull Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            return PluginHelper.checkPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE);
+            return SkillHelper.checkPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE);
         }
         return true;
     }
@@ -81,7 +81,7 @@ public class PlayMediaOperationSkill implements OperationSkill<PlayMediaOperatio
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            PluginHelper.requestPermission(activity, requestCode, Manifest.permission.READ_EXTERNAL_STORAGE);
+            SkillHelper.requestPermission(activity, requestCode, Manifest.permission.READ_EXTERNAL_STORAGE);
         }
     }
 

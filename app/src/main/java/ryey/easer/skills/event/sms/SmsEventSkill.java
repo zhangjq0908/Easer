@@ -31,7 +31,7 @@ import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.eventskill.EventDataFactory;
 import ryey.easer.commons.local_skill.eventskill.EventSkill;
 import ryey.easer.skills.event.AbstractSlot;
-import ryey.easer.skills.reusable.PluginHelper;
+import ryey.easer.skills.SkillHelper;
 
 public class SmsEventSkill implements EventSkill<SmsEventData> {
 
@@ -53,23 +53,23 @@ public class SmsEventSkill implements EventSkill<SmsEventData> {
 
     @Override
     public boolean checkPermissions(@NonNull Context context) {
-        return PluginHelper.checkPermission(context,
+        return SkillHelper.checkPermission(context,
                 Manifest.permission.READ_SMS,
                 Manifest.permission.RECEIVE_SMS);
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        boolean can_read_sms = PluginHelper.checkPermission(activity, Manifest.permission.READ_SMS);
-        boolean can_receive_sms = PluginHelper.checkPermission(activity, Manifest.permission.RECEIVE_SMS);
+        boolean can_read_sms = SkillHelper.checkPermission(activity, Manifest.permission.READ_SMS);
+        boolean can_receive_sms = SkillHelper.checkPermission(activity, Manifest.permission.RECEIVE_SMS);
         if (!can_read_sms && !can_receive_sms) {
-            PluginHelper.requestPermission(activity, requestCode,
+            SkillHelper.requestPermission(activity, requestCode,
                     Manifest.permission.READ_SMS,
                     Manifest.permission.RECEIVE_SMS);
         } else if (!can_read_sms) {
-            PluginHelper.requestPermission(activity, requestCode, Manifest.permission.READ_SMS);
+            SkillHelper.requestPermission(activity, requestCode, Manifest.permission.READ_SMS);
         } else {
-            PluginHelper.requestPermission(activity, requestCode, Manifest.permission.RECEIVE_SMS);
+            SkillHelper.requestPermission(activity, requestCode, Manifest.permission.RECEIVE_SMS);
         }
     }
 

@@ -34,7 +34,7 @@ import ryey.easer.commons.local_skill.eventskill.EventSkill;
 import ryey.easer.commons.local_skill.usource.USourceDataFactory;
 import ryey.easer.commons.local_skill.usource.USourceSkill;
 import ryey.easer.skills.event.AbstractSlot;
-import ryey.easer.skills.reusable.PluginHelper;
+import ryey.easer.skills.SkillHelper;
 
 public class ConnectivityUSourceSkill implements USourceSkill<ConnectivityEventData> {
 
@@ -56,12 +56,12 @@ public class ConnectivityUSourceSkill implements USourceSkill<ConnectivityEventD
 
     @Override
     public boolean checkPermissions(@NonNull Context context) {
-        return PluginHelper.checkPermission(context, Manifest.permission.ACCESS_NETWORK_STATE);
+        return SkillHelper.checkPermission(context, Manifest.permission.ACCESS_NETWORK_STATE);
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        PluginHelper.requestPermission(activity, requestCode, Manifest.permission.ACCESS_NETWORK_STATE);
+        SkillHelper.requestPermission(activity, requestCode, Manifest.permission.ACCESS_NETWORK_STATE);
     }
 
     @NonNull

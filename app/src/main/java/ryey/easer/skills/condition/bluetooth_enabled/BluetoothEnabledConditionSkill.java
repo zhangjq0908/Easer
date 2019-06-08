@@ -33,7 +33,7 @@ import ryey.easer.commons.local_skill.conditionskill.ConditionDataFactory;
 import ryey.easer.commons.local_skill.conditionskill.ConditionSkill;
 import ryey.easer.commons.local_skill.conditionskill.Tracker;
 import ryey.easer.skills.SkillViewFragment;
-import ryey.easer.skills.reusable.PluginHelper;
+import ryey.easer.skills.SkillHelper;
 
 public class BluetoothEnabledConditionSkill implements ConditionSkill<BluetoothEnabledConditionData> {
 
@@ -55,13 +55,13 @@ public class BluetoothEnabledConditionSkill implements ConditionSkill<BluetoothE
 
     @Override
     public boolean checkPermissions(@NonNull Context context) {
-        return PluginHelper.checkPermission(context,
+        return SkillHelper.checkPermission(context,
                 Manifest.permission.BLUETOOTH);
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        PluginHelper.requestPermission(activity, requestCode, Manifest.permission.BLUETOOTH);
+        SkillHelper.requestPermission(activity, requestCode, Manifest.permission.BLUETOOTH);
     }
 
     @NonNull

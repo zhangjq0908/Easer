@@ -35,7 +35,7 @@ import ryey.easer.commons.local_skill.operationskill.OperationSkill;
 import ryey.easer.commons.local_skill.operationskill.PrivilegeUsage;
 import ryey.easer.plugin.operation.Category;
 import ryey.easer.skills.operation.OperationLoader;
-import ryey.easer.skills.reusable.PluginHelper;
+import ryey.easer.skills.SkillHelper;
 
 public class MediaControlOperationSkill implements OperationSkill<MediaControlOperationData> {
 
@@ -75,7 +75,7 @@ public class MediaControlOperationSkill implements OperationSkill<MediaControlOp
     @Override
     public boolean checkPermissions(@NonNull Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            return PluginHelper.isPermissionGrantedForNotificationListenerService(context, MediaControlHelperNotificationListenerService.class);
+            return SkillHelper.isPermissionGrantedForNotificationListenerService(context, MediaControlHelperNotificationListenerService.class);
         } else {
             return true;
         }
@@ -84,14 +84,14 @@ public class MediaControlOperationSkill implements OperationSkill<MediaControlOp
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (!PluginHelper.isPermissionGrantedForNotificationListenerService(activity, MediaControlHelperNotificationListenerService.class)) {
+            if (!SkillHelper.isPermissionGrantedForNotificationListenerService(activity, MediaControlHelperNotificationListenerService.class)) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
                     activity.startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
                 } else {
-                    PluginHelper.requestPermission(activity, requestCode,
+                    SkillHelper.requestPermission(activity, requestCode,
                             Manifest.permission.BIND_NOTIFICATION_LISTENER_SERVICE);
                 }
-                PluginHelper.reenableComponent(activity, MediaControlHelperNotificationListenerService.class);
+                SkillHelper.reenableComponent(activity, MediaControlHelperNotificationListenerService.class);
             }
         }
     }

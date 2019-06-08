@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.reusable;
+package ryey.easer.skills;
 
 import android.app.Activity;
 import android.app.Service;
@@ -38,7 +38,7 @@ import java.io.IOException;
 
 import ryey.easer.R;
 
-public class PluginHelper {
+public class SkillHelper {
 
     public static boolean useRootFeature(@NonNull Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);

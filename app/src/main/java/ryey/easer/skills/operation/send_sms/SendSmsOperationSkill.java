@@ -32,7 +32,7 @@ import ryey.easer.commons.local_skill.operationskill.OperationSkill;
 import ryey.easer.commons.local_skill.operationskill.PrivilegeUsage;
 import ryey.easer.plugin.operation.Category;
 import ryey.easer.skills.operation.OperationLoader;
-import ryey.easer.skills.reusable.PluginHelper;
+import ryey.easer.skills.SkillHelper;
 
 public class SendSmsOperationSkill implements OperationSkill<SmsOperationData> {
 
@@ -71,12 +71,12 @@ public class SendSmsOperationSkill implements OperationSkill<SmsOperationData> {
 
     @Override
     public boolean checkPermissions(@NonNull Context context) {
-        return PluginHelper.checkPermission(context, Manifest.permission.SEND_SMS);
+        return SkillHelper.checkPermission(context, Manifest.permission.SEND_SMS);
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        PluginHelper.requestPermission(activity, requestCode, Manifest.permission.SEND_SMS);
+        SkillHelper.requestPermission(activity, requestCode, Manifest.permission.SEND_SMS);
     }
 
     @NonNull

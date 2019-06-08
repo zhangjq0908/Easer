@@ -32,7 +32,7 @@ import ryey.easer.commons.local_skill.operationskill.OperationSkill;
 import ryey.easer.commons.local_skill.operationskill.PrivilegeUsage;
 import ryey.easer.plugin.operation.Category;
 import ryey.easer.skills.operation.OperationLoader;
-import ryey.easer.skills.reusable.PluginHelper;
+import ryey.easer.skills.SkillHelper;
 
 public class AlarmOperationSkill implements OperationSkill<AlarmOperationData> {
 
@@ -71,12 +71,12 @@ public class AlarmOperationSkill implements OperationSkill<AlarmOperationData> {
 
     @Override
     public boolean checkPermissions(@NonNull Context context) {
-        return PluginHelper.checkPermission(context, Manifest.permission.SET_ALARM);
+        return SkillHelper.checkPermission(context, Manifest.permission.SET_ALARM);
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        PluginHelper.requestPermission(activity, requestCode, Manifest.permission.SET_ALARM);
+        SkillHelper.requestPermission(activity, requestCode, Manifest.permission.SET_ALARM);
     }
 
     @NonNull

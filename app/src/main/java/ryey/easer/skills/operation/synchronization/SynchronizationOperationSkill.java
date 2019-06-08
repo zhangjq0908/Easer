@@ -32,7 +32,7 @@ import ryey.easer.commons.local_skill.operationskill.OperationSkill;
 import ryey.easer.commons.local_skill.operationskill.PrivilegeUsage;
 import ryey.easer.plugin.operation.Category;
 import ryey.easer.skills.operation.OperationLoader;
-import ryey.easer.skills.reusable.PluginHelper;
+import ryey.easer.skills.SkillHelper;
 
 public class SynchronizationOperationSkill implements OperationSkill<SynchronizationOperationData> {
 
@@ -71,12 +71,12 @@ public class SynchronizationOperationSkill implements OperationSkill<Synchroniza
 
     @Override
     public boolean checkPermissions(@NonNull Context context) {
-        return PluginHelper.checkPermission(context, Manifest.permission.WRITE_SYNC_SETTINGS);
+        return SkillHelper.checkPermission(context, Manifest.permission.WRITE_SYNC_SETTINGS);
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        PluginHelper.requestPermission(activity, requestCode, Manifest.permission.WRITE_SYNC_SETTINGS);
+        SkillHelper.requestPermission(activity, requestCode, Manifest.permission.WRITE_SYNC_SETTINGS);
     }
 
     @NonNull

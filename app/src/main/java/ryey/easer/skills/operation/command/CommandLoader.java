@@ -29,7 +29,7 @@ import java.io.IOException;
 
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.skills.operation.OperationLoader;
-import ryey.easer.skills.reusable.PluginHelper;
+import ryey.easer.skills.SkillHelper;
 
 public class CommandLoader extends OperationLoader<CommandOperationData> {
     public CommandLoader(Context context) {
@@ -43,10 +43,10 @@ public class CommandLoader extends OperationLoader<CommandOperationData> {
         String []commands = text.split("\n");
         Process process;
         try {
-            if (PluginHelper.useRootFeature(context)) {
-                process = PluginHelper.executeCommandsAsRoot(commands);
+            if (SkillHelper.useRootFeature(context)) {
+                process = SkillHelper.executeCommandsAsRoot(commands);
             } else {
-                process = PluginHelper.executeCommandsContinuously(commands);
+                process = SkillHelper.executeCommandsContinuously(commands);
             }
         } catch (IOException e) {
             Logger.e(e, "error while launching process");
