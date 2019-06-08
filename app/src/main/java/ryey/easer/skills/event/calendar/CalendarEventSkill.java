@@ -27,6 +27,7 @@ import androidx.annotation.NonNull;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SkillView;
+import ryey.easer.commons.local_skill.SourceCategory;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.eventskill.EventDataFactory;
 import ryey.easer.commons.local_skill.eventskill.EventSkill;
@@ -65,6 +66,12 @@ public class CalendarEventSkill implements EventSkill<CalendarEventData> {
     @Override
     public EventDataFactory<CalendarEventData> dataFactory() {
         return new CalendarEventDataFactory();
+    }
+
+    @NonNull
+    @Override
+    public SourceCategory category() {
+        return SourceCategory.personal;
     }
 
     @NonNull

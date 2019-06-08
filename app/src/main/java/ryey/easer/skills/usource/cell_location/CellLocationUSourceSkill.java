@@ -28,6 +28,7 @@ import androidx.annotation.NonNull;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SkillView;
+import ryey.easer.commons.local_skill.SourceCategory;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.conditionskill.Tracker;
 import ryey.easer.commons.local_skill.eventskill.Slot;
@@ -67,6 +68,12 @@ public class CellLocationUSourceSkill implements USourceSkill<CellLocationUSourc
     @Override
     public USourceDataFactory<CellLocationUSourceData> dataFactory() {
         return new CellLocationUSourceDataFactory();
+    }
+
+    @NonNull
+    @Override
+    public SourceCategory category() {
+        return SourceCategory.personal;
     }
 
     @NonNull

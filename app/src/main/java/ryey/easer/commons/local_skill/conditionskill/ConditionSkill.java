@@ -25,12 +25,18 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import ryey.easer.commons.local_skill.Skill;
+import ryey.easer.commons.local_skill.SourceCategory;
 import ryey.easer.commons.local_skill.ValidData;
 
 public interface ConditionSkill<D extends ConditionData> extends Skill<D> {
 
     @NonNull
     ConditionDataFactory<D> dataFactory();
+
+    @NonNull
+    default SourceCategory category() {
+        return SourceCategory.unknown;
+    }
 
     @NonNull
     Tracker<D> tracker(@NonNull Context context, @ValidData @NonNull D data,

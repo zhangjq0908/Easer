@@ -28,6 +28,7 @@ import androidx.annotation.NonNull;
 
 import ryey.easer.commons.local_skill.Skill;
 import ryey.easer.commons.local_skill.SkillView;
+import ryey.easer.commons.local_skill.SourceCategory;
 import ryey.easer.commons.local_skill.conditionskill.ConditionDataFactory;
 import ryey.easer.commons.local_skill.conditionskill.ConditionSkill;
 import ryey.easer.commons.local_skill.conditionskill.Tracker;
@@ -43,6 +44,11 @@ public interface USourceSkill<D extends USourceData> extends Skill<D> {
 
     @NonNull
     USourceDataFactory<D> dataFactory();
+
+    @NonNull
+    default SourceCategory category() {
+        return SourceCategory.unknown;
+    }
 
     /**
      * Default value for eventView() and conditionView().
@@ -80,6 +86,12 @@ public interface USourceSkill<D extends USourceData> extends Skill<D> {
             @Override
             public EventDataFactory<D> dataFactory() {
                 return USourceSkill.this.dataFactory();
+            }
+
+            @NonNull
+            @Override
+            public SourceCategory category() {
+                return USourceSkill.this.category();
             }
 
             @Override
@@ -132,6 +144,12 @@ public interface USourceSkill<D extends USourceData> extends Skill<D> {
             @Override
             public ConditionDataFactory<D> dataFactory() {
                 return USourceSkill.this.dataFactory();
+            }
+
+            @NonNull
+            @Override
+            public SourceCategory category() {
+                return USourceSkill.this.category();
             }
 
             @NonNull

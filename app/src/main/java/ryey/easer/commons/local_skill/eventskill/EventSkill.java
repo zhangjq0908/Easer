@@ -24,6 +24,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import ryey.easer.commons.local_skill.Skill;
+import ryey.easer.commons.local_skill.SourceCategory;
 import ryey.easer.commons.local_skill.ValidData;
 
 /*
@@ -36,15 +37,20 @@ public interface EventSkill<T extends EventData> extends Skill<T> {
     @NonNull
     EventDataFactory<T> dataFactory();
 
+    @NonNull
+    default SourceCategory category() {
+        return SourceCategory.unknown;
+    }
+
     /**
      * Returns a Slot (reflecting a inline Scenario) of this plugin.
-     * See {@link AbstractSlot} for more information
+     * See {@link Slot} for more information
      */
     Slot<T> slot(@NonNull Context context, @ValidData @NonNull T data);
 
     /**
      * Returns a Slot (reflecting an existing Scenario) of this plugin.
-     * See {@link AbstractSlot} for more information
+     * See {@link Slot} for more information
      */
     Slot<T> slot(@NonNull Context context, @ValidData @NonNull T data,
                          boolean retriggerable, boolean persistent);

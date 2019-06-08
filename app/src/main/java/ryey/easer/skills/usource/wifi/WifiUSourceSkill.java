@@ -28,6 +28,7 @@ import androidx.annotation.NonNull;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SkillView;
+import ryey.easer.commons.local_skill.SourceCategory;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.conditionskill.Tracker;
 import ryey.easer.commons.local_skill.usource.USourceDataFactory;
@@ -71,6 +72,12 @@ public class WifiUSourceSkill implements USourceSkill<WifiUSourceData> {
     @Override
     public USourceDataFactory<WifiUSourceData> dataFactory() {
         return new WifiUSourceDataFactory();
+    }
+
+    @NonNull
+    @Override
+    public SourceCategory category() {
+        return SourceCategory.device;
     }
 
     @NonNull

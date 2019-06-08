@@ -27,6 +27,7 @@ import androidx.annotation.NonNull;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SkillView;
+import ryey.easer.commons.local_skill.SourceCategory;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.conditionskill.Tracker;
 import ryey.easer.commons.local_skill.usource.USourceDataFactory;
@@ -66,6 +67,12 @@ public class DayOfWeekEventSkill implements USourceSkill<DayOfWeekUSourceData> {
     public USourceDataFactory<DayOfWeekUSourceData> dataFactory() {
         return new DayOfWeekUSourceDataFactory();
 
+    }
+
+    @NonNull
+    @Override
+    public SourceCategory category() {
+        return SourceCategory.date_time;
     }
 
     @NonNull

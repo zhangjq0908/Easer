@@ -27,6 +27,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import ryey.easer.R;
+import ryey.easer.commons.local_skill.SourceCategory;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.conditionskill.ConditionDataFactory;
 import ryey.easer.commons.local_skill.conditionskill.ConditionSkill;
@@ -64,6 +65,12 @@ public class CalendarConditionSkill implements ConditionSkill<CalendarConditionD
     @Override
     public ConditionDataFactory<CalendarConditionData> dataFactory() {
         return new CalendarConditionDataFactory();
+    }
+
+    @NonNull
+    @Override
+    public SourceCategory category() {
+        return SourceCategory.personal;
     }
 
     @NonNull

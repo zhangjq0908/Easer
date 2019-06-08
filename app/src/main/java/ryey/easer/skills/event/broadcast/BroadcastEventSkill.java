@@ -26,6 +26,7 @@ import androidx.annotation.NonNull;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SkillView;
+import ryey.easer.commons.local_skill.SourceCategory;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.eventskill.EventDataFactory;
 import ryey.easer.commons.local_skill.eventskill.EventSkill;
@@ -63,6 +64,12 @@ public class BroadcastEventSkill implements EventSkill<BroadcastEventData> {
     @Override
     public EventDataFactory<BroadcastEventData> dataFactory() {
         return new BroadcastEventDataFactory();
+    }
+
+    @NonNull
+    @Override
+    public SourceCategory category() {
+        return SourceCategory.android;
     }
 
     @NonNull

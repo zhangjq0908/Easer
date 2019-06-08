@@ -31,6 +31,7 @@ import androidx.annotation.RequiresApi;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SkillView;
+import ryey.easer.commons.local_skill.SourceCategory;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.eventskill.EventDataFactory;
 import ryey.easer.commons.local_skill.eventskill.EventSkill;
@@ -81,6 +82,12 @@ public class NotificationEventSkill implements EventSkill<NotificationEventData>
     public EventDataFactory<NotificationEventData> dataFactory() {
         return new NotificationEventDataFactory();
 
+    }
+
+    @NonNull
+    @Override
+    public SourceCategory category() {
+        return SourceCategory.android;
     }
 
     @NonNull

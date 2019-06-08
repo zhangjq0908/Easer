@@ -28,6 +28,7 @@ import androidx.annotation.NonNull;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SkillView;
+import ryey.easer.commons.local_skill.SourceCategory;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.conditionskill.Tracker;
 import ryey.easer.commons.local_skill.eventskill.EventSkill;
@@ -68,6 +69,12 @@ public class ConnectivityUSourceSkill implements USourceSkill<ConnectivityEventD
     @Override
     public USourceDataFactory<ConnectivityEventData> dataFactory() {
         return new ConnectivityEventDataFactory();
+    }
+
+    @NonNull
+    @Override
+    public SourceCategory category() {
+        return SourceCategory.device;
     }
 
     @NonNull

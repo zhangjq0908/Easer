@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--Source Category (c)-->
+
+    <string name="category_source_android">Android</string>
+    <string name="category_source_date_time">Date / Time</string>
+    <string name="category_source_device">Device</string>
+    <string name="category_source_easer">Easer</string>
+    <string name="category_source_data_communication">Data communication</string>
+    <string name="category_source_misc">Misc</string>
+    <string name="category_source_personal">Personal</string>
+    <string name="category_source_unknown">Unknown</string>
+
     <!--Condition (c)-->
 
     <string name="condition__enabled_yes">Yes</string>

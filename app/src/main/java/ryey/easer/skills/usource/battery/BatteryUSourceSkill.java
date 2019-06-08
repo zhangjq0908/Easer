@@ -27,6 +27,7 @@ import androidx.annotation.NonNull;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SkillView;
+import ryey.easer.commons.local_skill.SourceCategory;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.conditionskill.Tracker;
 import ryey.easer.commons.local_skill.usource.USourceDataFactory;
@@ -65,6 +66,12 @@ public class BatteryUSourceSkill implements USourceSkill<BatteryUSourceData> {
     @Override
     public USourceDataFactory<BatteryUSourceData> dataFactory() {
         return new BatteryUSourceDataFactory();
+    }
+
+    @NonNull
+    @Override
+    public SourceCategory category() {
+        return SourceCategory.device;
     }
 
     @NonNull

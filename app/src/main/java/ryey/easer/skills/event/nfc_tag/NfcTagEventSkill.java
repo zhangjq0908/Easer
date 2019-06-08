@@ -28,6 +28,7 @@ import androidx.annotation.NonNull;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SkillView;
+import ryey.easer.commons.local_skill.SourceCategory;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.eventskill.EventDataFactory;
 import ryey.easer.commons.local_skill.eventskill.EventSkill;
@@ -69,6 +70,12 @@ public class NfcTagEventSkill implements EventSkill<NfcTagEventData> {
     public EventDataFactory<NfcTagEventData> dataFactory() {
         return new NfcTagEventDataFactory();
 
+    }
+
+    @NonNull
+    @Override
+    public SourceCategory category() {
+        return SourceCategory.data_communication;
     }
 
     @NonNull

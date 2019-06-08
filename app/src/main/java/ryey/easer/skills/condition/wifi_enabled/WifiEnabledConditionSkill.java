@@ -27,6 +27,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import ryey.easer.R;
+import ryey.easer.commons.local_skill.SourceCategory;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.conditionskill.ConditionDataFactory;
 import ryey.easer.commons.local_skill.conditionskill.ConditionSkill;
@@ -70,6 +71,12 @@ public class WifiEnabledConditionSkill implements ConditionSkill<WifiEnabledCond
     @Override
     public ConditionDataFactory<WifiEnabledConditionData> dataFactory() {
         return new WifiEnabledConditionDataFactory();
+    }
+
+    @NonNull
+    @Override
+    public SourceCategory category() {
+        return SourceCategory.device;
     }
 
     @NonNull
