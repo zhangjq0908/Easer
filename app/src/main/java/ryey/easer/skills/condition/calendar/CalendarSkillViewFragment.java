@@ -43,9 +43,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import ryey.easer.R;
-import ryey.easer.Utils;
 import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.local_skill.ValidData;
+import ryey.easer.skills.SkillHelper;
 import ryey.easer.skills.SkillViewFragment;
 
 import static ryey.easer.skills.condition.calendar.CalendarConditionMatchType.EVENT_TITLE;
@@ -95,7 +95,7 @@ public class CalendarSkillViewFragment extends SkillViewFragment<CalendarConditi
         view.findViewById(R.id.calendar_picker).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!Utils.hasPermission(getContext(), Manifest.permission.READ_CALENDAR))
+                if (!SkillHelper.checkPermission(getContext(), Manifest.permission.READ_CALENDAR))
                     return;
                 AlertDialog.Builder builderSingle = new AlertDialog.Builder(getContext());
                 builderSingle.setTitle(R.string.ecalendar_select_dialog_title);

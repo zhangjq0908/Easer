@@ -34,8 +34,8 @@ import ryey.easer.commons.local_skill.SkillView;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.eventskill.EventDataFactory;
 import ryey.easer.commons.local_skill.eventskill.EventSkill;
-import ryey.easer.skills.event.AbstractSlot;
 import ryey.easer.skills.SkillHelper;
+import ryey.easer.skills.event.AbstractSlot;
 
 public class NotificationEventSkill implements EventSkill<NotificationEventData> {
 

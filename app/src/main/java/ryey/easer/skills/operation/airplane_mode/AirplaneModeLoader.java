@@ -29,8 +29,8 @@ import androidx.annotation.NonNull;
 import java.io.IOException;
 
 import ryey.easer.commons.local_skill.ValidData;
-import ryey.easer.skills.operation.OperationLoader;
 import ryey.easer.skills.SkillHelper;
+import ryey.easer.skills.operation.OperationLoader;
 
 public class AirplaneModeLoader extends OperationLoader<AirplaneModeOperationData> {
     public AirplaneModeLoader(Context context) {

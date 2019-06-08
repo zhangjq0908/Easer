@@ -40,6 +40,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.orhanobut.logger.Logger;
 import com.zeugmasolutions.localehelper.LocaleHelper;
@@ -52,7 +53,6 @@ import java.util.Locale;
 
 import ryey.easer.BuildConfig;
 import ryey.easer.R;
-import ryey.easer.Utils;
 import ryey.easer.commons.ui.CommonBaseActivity;
 import ryey.easer.core.BootUpReceiver;
 import ryey.easer.core.EHService;
@@ -64,6 +64,17 @@ import ryey.easer.core.data.storage.StorageHelper;
 public class SettingsActivity extends CommonBaseActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final String BS_NAME_PLUGIN_ENABLED = "bs_plugin_enabled";
+
+    private static boolean hasPermission(Context context, String permission) {
+        if (ContextCompat.checkSelfPermission(context, permission)
+                != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(context, String.format(
+                    context.getString(R.string.prompt_prevented_for_permission), permission),
+                    Toast.LENGTH_LONG).show();
+            return false;
+        } else
+            return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,7 +162,7 @@ public class SettingsActivity extends CommonBaseActivity implements SharedPrefer
             Preference pref_export = findPreference(getString(R.string.key_pref_export));
             pref_export.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 public boolean onPreferenceClick(Preference preference) {
-                    if (!Utils.hasPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                    if (!hasPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                         ActivityCompat.requestPermissions(getActivity(),
                                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                                 REQCODE_PERM_EXPORT);
@@ -174,7 +185,7 @@ public class SettingsActivity extends CommonBaseActivity implements SharedPrefer
             pref_import.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    if (!Utils.hasPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                    if (!hasPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE)) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                             ActivityCompat.requestPermissions(getActivity(),
                                     new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
@@ -195,7 +206,7 @@ public class SettingsActivity extends CommonBaseActivity implements SharedPrefer
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     if ((Boolean) newValue) {
-                        if (!Utils.hasPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                        if (!hasPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                             Logger.i("Permission <%s> not granted. Requesting...",
                                     Manifest.permission.WRITE_EXTERNAL_STORAGE);
                             ActivityCompat.requestPermissions(getActivity(),

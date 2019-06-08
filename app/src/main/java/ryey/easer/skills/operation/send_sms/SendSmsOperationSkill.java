@@ -31,8 +31,8 @@ import ryey.easer.commons.local_skill.operationskill.OperationDataFactory;
 import ryey.easer.commons.local_skill.operationskill.OperationSkill;
 import ryey.easer.commons.local_skill.operationskill.PrivilegeUsage;
 import ryey.easer.plugin.operation.Category;
-import ryey.easer.skills.operation.OperationLoader;
 import ryey.easer.skills.SkillHelper;
+import ryey.easer.skills.operation.OperationLoader;
 
 public class SendSmsOperationSkill implements OperationSkill<SmsOperationData> {
 

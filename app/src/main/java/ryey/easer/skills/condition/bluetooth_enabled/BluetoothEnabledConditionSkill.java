@@ -32,8 +32,8 @@ import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.conditionskill.ConditionDataFactory;
 import ryey.easer.commons.local_skill.conditionskill.ConditionSkill;
 import ryey.easer.commons.local_skill.conditionskill.Tracker;
-import ryey.easer.skills.SkillViewFragment;
 import ryey.easer.skills.SkillHelper;
+import ryey.easer.skills.SkillViewFragment;
 
 public class BluetoothEnabledConditionSkill implements ConditionSkill<BluetoothEnabledConditionData> {
 

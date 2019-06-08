@@ -31,8 +31,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import ryey.easer.commons.local_skill.ValidData;
-import ryey.easer.skills.operation.OperationLoader;
 import ryey.easer.skills.SkillHelper;
+import ryey.easer.skills.operation.OperationLoader;
 
 public class CellularLoader extends OperationLoader<CellularOperationData> {
     public CellularLoader(Context context) {

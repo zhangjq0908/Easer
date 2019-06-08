@@ -19,15 +19,11 @@
 
 package ryey.easer;
 
-import android.content.Context;
-import android.content.pm.PackageManager;
 import android.widget.CompoundButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.collection.ArraySet;
-import androidx.core.content.ContextCompat;
 
 import com.orhanobut.logger.Logger;
 
@@ -46,6 +42,8 @@ import java.util.regex.Pattern;
 import ryey.easer.commons.local_skill.dynamics.SolidDynamicsAssignment;
 
 public class Utils {
+
+    private Utils() {}
 
     public static void panic(String message, Object... objs) {
         Logger.e(message, objs);
@@ -124,17 +122,6 @@ public class Utils {
                 list.add(trimmed);
         }
         return list;
-    }
-
-    public static boolean hasPermission(Context context, String permission) {
-        if (ContextCompat.checkSelfPermission(context, permission)
-                != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(context, String.format(
-                    context.getString(R.string.prompt_prevented_for_permission), permission),
-                    Toast.LENGTH_LONG).show();
-            return false;
-        } else
-            return true;
     }
 
     public static int checkedIndexFirst(CompoundButton[] buttons) {

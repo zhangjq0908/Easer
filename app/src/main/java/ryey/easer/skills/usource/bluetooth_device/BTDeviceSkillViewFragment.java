@@ -45,6 +45,7 @@ import ryey.easer.R;
 import ryey.easer.Utils;
 import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.local_skill.ValidData;
+import ryey.easer.skills.SkillHelper;
 import ryey.easer.skills.SkillViewFragment;
 
 public class BTDeviceSkillViewFragment extends SkillViewFragment<BTDeviceUSourceData> {
@@ -110,7 +111,7 @@ public class BTDeviceSkillViewFragment extends SkillViewFragment<BTDeviceUSource
         view.findViewById(R.id.connection_picker).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!Utils.hasPermission(getContext(), Manifest.permission.BLUETOOTH))
+                if (!SkillHelper.checkPermission(getContext(), Manifest.permission.BLUETOOTH))
                     return;
                 getContext().registerReceiver(mReceiver, mFilter);
                 AlertDialog.Builder builderSingle = new AlertDialog.Builder(getContext());
