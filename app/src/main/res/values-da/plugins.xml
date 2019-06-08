@@ -9,9 +9,9 @@
     <string name="condition_headset__plugged_out">Frakoblet</string>
     <string name="event_time">Tidspunkt</string>
     <string name="event_date">Dato</string>
-    <string name="event_wificonn">Trådløs forbindelse</string>
-    <string name="wificonn_select_dialog_title">Vælge trådløs adgangspunkt</string>
-    <string name="wificonn_wait_for_result">Venter på trådløs skanne svar</string>
+    <string name="event_wificonn">Trådløs netværk forbindelse</string>
+    <string name="wificonn_select_dialog_title">Vælge trådløs netvær adgangs-punkt</string>
+    <string name="wificonn_wait_for_result">Venter på trådløs netværk skanne svar</string>
     <string name="event_cell_location">Celle placering</string>
     <string name="event_battery">Batteri status</string>
     <array name="battery_status">
@@ -185,4 +185,14 @@
     <string name="o_launch_app__text_class_hint">Tom eller fuld klassenavn</string>
     <string name="o_play_media">Afspille medie</string>
     <string name="o_play_media_text_file">Fil sti</string>
+    <string name="condition_ringer_mode">Opkald tilstand</string>
+    <string name="condition_ringer_volume">Lydstyrke</string>
+    <string name="condition_ringer_above">Mindst</string>
+    <string name="condition_ringer_below">Højest</string>
+    <string name="condition_ringer_equals">Svarer til</string>
+    <string name="condition_calendar_name">Kalender navn</string>
+    <string name="condition_calendar_event_title">Hændelse titel</string>
+    <string name="condition_calendar_any_event">Enhver hændelse</string>
+    <string name="condition_calendar_event_match_pattern">Finde mønster</string>
+    <string name="condition_calendar_all_day_event">Find kun hele-dagen hændelser</string>
 </resources>
