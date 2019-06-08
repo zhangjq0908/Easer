@@ -35,7 +35,6 @@ import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.dynamics.Dynamics;
 import ryey.easer.commons.local_skill.usource.USourceData;
 import ryey.easer.plugin.PluginDataFormat;
-import ryey.easer.skills.reusable.CellLocationSingleData;
 
 public class CellLocationUSourceData implements USourceData {
     final List<CellLocationSingleData> data = new ArrayList<>();

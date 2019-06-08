@@ -29,7 +29,6 @@ import android.telephony.TelephonyManager;
 import androidx.annotation.NonNull;
 
 import ryey.easer.skills.condition.SkeletonTracker;
-import ryey.easer.skills.reusable.CellLocationSingleData;
 
 public class CellLocationTracker extends SkeletonTracker<CellLocationUSourceData> {
 

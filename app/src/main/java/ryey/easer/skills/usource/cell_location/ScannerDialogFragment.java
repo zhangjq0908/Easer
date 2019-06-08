@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.reusable;
+package ryey.easer.skills.usource.cell_location;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;

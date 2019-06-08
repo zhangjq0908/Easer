@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.reusable;
+package ryey.easer.skills.usource.cell_location;
 
 import android.os.Build;
 import android.os.Parcel;
@@ -40,11 +40,11 @@ import androidx.annotation.RequiresApi;
 import java.util.List;
 import java.util.Locale;
 
-public class CellLocationSingleData implements Parcelable {
+class CellLocationSingleData implements Parcelable {
     private Integer cid = null;
     private Integer lac = null;
 
-    public static CellLocationSingleData fromCellLocation(CellLocation location) {
+    static CellLocationSingleData fromCellLocation(CellLocation location) {
         int cid, lac;
         if (location != null) {
             if (location instanceof GsmCellLocation) {
@@ -65,7 +65,7 @@ public class CellLocationSingleData implements Parcelable {
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Nullable
-    public static CellLocationSingleData fromCellInfo(@NonNull CellInfo cellInfo) {
+    static CellLocationSingleData fromCellInfo(@NonNull CellInfo cellInfo) {
         int cid, lac;
         if (cellInfo instanceof CellInfoGsm) {
             CellIdentityGsm cellIdentity = ((CellInfoGsm) cellInfo).getCellIdentity();
@@ -89,9 +89,9 @@ public class CellLocationSingleData implements Parcelable {
         return new CellLocationSingleData(cid, lac);
     }
 
-    public CellLocationSingleData() {}
+    CellLocationSingleData() {}
 
-    public CellLocationSingleData(int cid, int lac) {
+    private CellLocationSingleData(int cid, int lac) {
         this.cid = cid;
         this.lac = lac;
     }

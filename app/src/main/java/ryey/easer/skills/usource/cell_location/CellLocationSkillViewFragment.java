@@ -37,13 +37,11 @@ import ryey.easer.Utils;
 import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.skills.SkillViewFragment;
-import ryey.easer.skills.reusable.CellLocationSingleData;
-import ryey.easer.skills.reusable.ScannerDialogFragment;
 
 public class CellLocationSkillViewFragment extends SkillViewFragment<CellLocationUSourceData> implements ScannerDialogFragment.ScannerListener {
     private EditText editText;
 
-    public static final int DIALOG_FRAGMENT = 1;
+    private static final int DIALOG_FRAGMENT = 1;
 
     @NonNull
     @Override
