@@ -51,7 +51,7 @@ import ryey.easer.core.data.storage.EventDataStorage;
 import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.core.data.storage.ScriptDataStorage;
 import ryey.easer.core.ui.data.AbstractEditDataActivity;
-import ryey.easer.core.ui.data.event.EventSkillViewPager;
+import ryey.easer.core.ui.data.event.EditEventDataFragment;
 
 /*
  * TODO: change the layout
@@ -64,7 +64,7 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         TAG_DATA_TYPE = "script";
     }
 
-    EventSkillViewPager mViewPager_edit_event;
+    EditEventDataFragment editEventDataFragment;
 
     EditText mEditText_name = null;
     DataSelectSpinnerWrapper sw_parent;
@@ -137,8 +137,7 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
 
         mSwitch_reverse = findViewById(R.id.switch_reverse);
 
-        mViewPager_edit_event = findViewById(R.id.pager);
-        mViewPager_edit_event.init(this);
+        editEventDataFragment = (EditEventDataFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_inline_event);
 
         layout_use_event = findViewById(R.id.layout_use_event);
         sw_event = new DataSelectSpinnerWrapper(this, (Spinner) findViewById(R.id.spinner_event));
@@ -172,7 +171,10 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
                 } else {
                     throw new IllegalAccessError();
                 }
-                mViewPager_edit_event.setVisibility(v_inline);
+                if (v_inline == View.GONE)
+                    getSupportFragmentManager().beginTransaction().hide(editEventDataFragment).commit();
+                else
+                    getSupportFragmentManager().beginTransaction().show(editEventDataFragment).commit();
                 layout_use_event.setVisibility(v_event);
                 layout_use_condition.setVisibility(v_condition);
             }
@@ -202,7 +204,7 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
                 if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_inline_event) {
                     EventData eventData;
                     try {
-                        eventData = mViewPager_edit_event.getData();
+                        eventData = editEventDataFragment.saveToData();
                     } catch (InvalidDataInputException e) {
                         showDynamicsNotReady();
                         return;
@@ -253,7 +255,7 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
 
                 rg_mode.check(R.id.radioButton_inline_event);
                 EventData eventData = scenario.getEventData();
-                mViewPager_edit_event.setData(eventData);
+                editEventDataFragment.loadFromData(eventData);
             } else {
                 rg_mode.check(R.id.radioButton_event);
                 sw_event.setSelection(scenario.getName());
@@ -284,7 +286,7 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
 
         if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_inline_event) {
             EventDataStorage eventDataStorage = new EventDataStorage(this);
-            script.setEventData(mViewPager_edit_event.getData());
+            script.setEventData(editEventDataFragment.saveToData());
         } else if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_event) {
             EventDataStorage eventDataStorage = new EventDataStorage(this);
             String scenario_name = sw_event.getSelection();

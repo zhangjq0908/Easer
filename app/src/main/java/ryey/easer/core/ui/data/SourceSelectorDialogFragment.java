@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui.data.profile;
+package ryey.easer.core.ui.data;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -30,62 +30,42 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.collection.ArrayMap;
+import androidx.annotation.StringRes;
 import androidx.fragment.app.DialogFragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import ryey.easer.R;
-import ryey.easer.commons.local_skill.operationskill.OperationSkill;
-import ryey.easer.core.RemoteOperationPluginInfo;
-import ryey.easer.core.RemotePluginCommunicationHelper;
-import ryey.easer.plugin.operation.Category;
-import ryey.easer.skills.LocalSkillRegistry;
+import ryey.easer.commons.local_skill.Skill;
+import ryey.easer.commons.local_skill.SourceCategory;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
-public class OperationSelectorFragment extends DialogFragment {
+public abstract class SourceSelectorDialogFragment<S extends Skill & SourceCategory.Categorized> extends DialogFragment {
 
-    SelectedListener selectedListener = null;
-    Map<Class<? extends OperationSkill>, Integer> addedPlugins = new ArrayMap<>();
+    private SelectedListener<S> selectedListener = null;
 
-    List<OperationPluginItemWrapper> availableLocalPluginList;
+    private List<SkillItemWrapper<S>> availableLocalPluginList;
 
-    RemotePluginCommunicationHelper helper;
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //noinspection ConstantConditions
-        helper = new RemotePluginCommunicationHelper(getContext());
-        helper.begin();
-    }
+    @StringRes protected abstract int titleRes();
+    protected abstract List<S> skillList();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dialog_select_skill, container, false);
+        {
+            TextView tvTitle = view.findViewById(android.R.id.title);
+            tvTitle.setText(titleRes());
+        }
         StickyListHeadersListView list = view.findViewById(android.R.id.list);
-        List<OperationSkill> localOperationSkillList = LocalSkillRegistry.getInstance().operation().getEnabledSkills(getContext());
-        availableLocalPluginList = new ArrayList<>(localOperationSkillList.size());
-        for (OperationSkill operationSkill : localOperationSkillList) {
-            if (addedPlugins.containsKey(operationSkill.getClass())) {
-                if (operationSkill.maxExistence() > 0) {
-                    if (addedPlugins.get(operationSkill.getClass()) >= operationSkill.maxExistence())
-                        continue;
-                }
-            }
-            availableLocalPluginList.add(new OperationPluginItemWrapper(operationSkill.id(),
+        List<S> localSkillList = skillList();
+        availableLocalPluginList = new ArrayList<>(localSkillList.size());
+        for (S operationSkill : localSkillList) {
+            availableLocalPluginList.add(new SkillItemWrapper<>(operationSkill.id(),
                     operationSkill.view().desc(getResources()),
                     operationSkill.category(),
                     operationSkill)
@@ -96,17 +76,17 @@ public class OperationSelectorFragment extends DialogFragment {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                OperationPluginItemWrapper operationPluginItemWrapper = (OperationPluginItemWrapper) parent.getItemAtPosition(position);
-                if (!operationPluginItemWrapper.isRemote()) {
-                    OperationSkill plugin = operationPluginItemWrapper.plugin;
+                SkillItemWrapper<S> skillItemWrapper = (SkillItemWrapper<S>) parent.getItemAtPosition(position);
+                if (!skillItemWrapper.isRemote()) {
+                    S plugin = skillItemWrapper.skill;
                     if (plugin.checkPermissions(getContext())) {
-                        selectedListener.onSelected(operationPluginItemWrapper);
+                        selectedListener.onSelected(skillItemWrapper);
                         dismiss();
                     } else {
                         plugin.requestPermissions(getActivity(), 0);
                     }
                 } else {
-                    selectedListener.onSelected(operationPluginItemWrapper);
+                    selectedListener.onSelected(skillItemWrapper);
                     dismiss();
                 }
             }
@@ -114,62 +94,27 @@ public class OperationSelectorFragment extends DialogFragment {
         return view;
     }
 
-    @Override
-    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
-        helper.asyncCurrentOperationPluginList(new RemotePluginCommunicationHelper.OnOperationPluginListObtainedCallback() {
-            @Override
-            public void onListObtained(Set<RemoteOperationPluginInfo> operationPluginInfos) {
-                StickyListHeadersListView list = view.findViewById(android.R.id.list);
-                List<OperationPluginItemWrapper> descList = new ArrayList<>(availableLocalPluginList);
-                for (RemoteOperationPluginInfo remotePluginInfo : operationPluginInfos) {
-                    descList.add(new OperationPluginItemWrapper(
-                            remotePluginInfo.getPluginId(),
-                            remotePluginInfo.getPluginName(),
-                            remotePluginInfo.getCategory(),
-                            null));
-                }
-                PluginListAdapter adapter = new PluginListAdapter(getContext(), descList);
-                list.setAdapter(adapter);
-            }
-        });
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        helper.end();
-    }
-
-    synchronized void addSelectedPlugin(@NonNull OperationSkill plugin) {
-        Class<? extends OperationSkill> klass = plugin.getClass();
-        if (addedPlugins.containsKey(klass)) {
-            addedPlugins.put(klass, addedPlugins.get(klass) + 1);
-        } else {
-            addedPlugins.put(klass, 1);
-        }
-    }
-
-    void setSelectedListener(SelectedListener listener) {
+    public void setSelectedListener(SelectedListener<S> listener) {
         this.selectedListener = listener;
     }
 
-    interface SelectedListener {
-        void onSelected(OperationPluginItemWrapper operationPluginItemWrapper);
+    public interface SelectedListener<S extends Skill> {
+        void onSelected(SkillItemWrapper<S> skillItemWrapper);
     }
 
-    protected static class OperationPluginItemWrapper {
-        @NonNull final String id;
-        @NonNull final String name;
-        @NonNull final Category category;
-        @Nullable final OperationSkill plugin;
-        OperationPluginItemWrapper(@NonNull String id, @NonNull String name, @NonNull Category category, @Nullable OperationSkill plugin) {
+    public static class SkillItemWrapper<S extends Skill> {
+        @NonNull public final String id;
+        @NonNull public final String name;
+        @NonNull public final SourceCategory category;
+        @Nullable public final S skill;
+        SkillItemWrapper(@NonNull String id, @NonNull String name, @NonNull SourceCategory category, @Nullable S skill) {
             this.id = id;
             this.name = name;
             this.category = category;
-            this.plugin = plugin;
+            this.skill = skill;
         }
         public boolean isRemote() {
-            return plugin == null;
+            return skill == null;
         }
         public String toString() {
             return name;
@@ -178,16 +123,16 @@ public class OperationSelectorFragment extends DialogFragment {
 
     public class PluginListAdapter extends BaseAdapter implements StickyListHeadersAdapter {
 
-        private final List<OperationPluginItemWrapper> operationList = new ArrayList<>();
+        private final List<SkillItemWrapper<S>> operationList = new ArrayList<>();
         private LayoutInflater inflater;
 
-        PluginListAdapter(Context context, List<OperationPluginItemWrapper> originalList) {
+        PluginListAdapter(Context context, List<SkillItemWrapper<S>> originalList) {
             inflater = LayoutInflater.from(context);
             this.operationList.addAll(originalList);
-            Collections.sort(operationList, new Comparator<OperationPluginItemWrapper>() {
+            Collections.sort(operationList, new Comparator<SkillItemWrapper<S>>() {
                 @Override
-                public int compare(OperationPluginItemWrapper operationPluginItemWrapper, OperationPluginItemWrapper t1) {
-                    return operationPluginItemWrapper.category.ordinal() - t1.category.ordinal();
+                public int compare(SkillItemWrapper<S> skillItemWrapper, SkillItemWrapper<S> t1) {
+                    return skillItemWrapper.category.ordinal() - t1.category.ordinal();
                 }
             });
         }

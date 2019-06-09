@@ -28,7 +28,7 @@ import ryey.easer.commons.local_skill.Skill;
 import ryey.easer.commons.local_skill.SourceCategory;
 import ryey.easer.commons.local_skill.ValidData;
 
-public interface ConditionSkill<D extends ConditionData> extends Skill<D> {
+public interface ConditionSkill<D extends ConditionData> extends Skill<D>, SourceCategory.Categorized {
 
     @NonNull
     ConditionDataFactory<D> dataFactory();

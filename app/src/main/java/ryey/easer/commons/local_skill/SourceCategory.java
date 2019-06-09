@@ -57,4 +57,8 @@ public enum SourceCategory {
         }
         throw new IllegalStateException("Category isn't caught in switch statement");
     }
+
+    public interface Categorized {
+        @NonNull SourceCategory category();
+    }
 }

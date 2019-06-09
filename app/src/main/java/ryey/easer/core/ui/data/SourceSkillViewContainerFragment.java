@@ -41,14 +41,23 @@ public abstract class SourceSkillViewContainerFragment<D extends StorageData, S 
     protected static <D extends StorageData, S extends Skill<D>, F extends SourceSkillViewContainerFragment<D, S>> F createInstance(
             @NonNull S skill,
             @NonNull F fragment) {
-        return createInstance(skill, fragment, new Bundle());
+        return createInstance(skill, fragment, null);
     }
 
     protected static <D extends StorageData, S extends Skill<D>, F extends SourceSkillViewContainerFragment<D, S>> F createInstance(
             @NonNull S skill,
             @NonNull F fragment,
-            @NonNull Bundle bundle) {
-        bundle.putString(EXTRA_SKILL, skill.id());
+            @Nullable Bundle bundle) {
+        return createInstance(skill.id(), fragment, bundle);
+    }
+
+    protected static <D extends StorageData, S extends Skill<D>, F extends SourceSkillViewContainerFragment<D, S>> F createInstance(
+            @NonNull String skillId,
+            @NonNull F fragment,
+            @Nullable Bundle bundle) {
+        if (bundle == null)
+            bundle = new Bundle();
+        bundle.putString(EXTRA_SKILL, skillId);
         fragment.setArguments(bundle);
         return fragment;
     }

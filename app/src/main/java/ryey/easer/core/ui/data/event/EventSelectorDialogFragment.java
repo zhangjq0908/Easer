@@ -19,30 +19,21 @@
 
 package ryey.easer.core.ui.data.event;
 
-import androidx.annotation.NonNull;
+import java.util.List;
 
-import ryey.easer.commons.local_skill.InvalidDataInputException;
-import ryey.easer.commons.local_skill.eventskill.EventData;
+import ryey.easer.R;
 import ryey.easer.commons.local_skill.eventskill.EventSkill;
-import ryey.easer.core.ui.data.SourceSkillViewContainerFragment;
+import ryey.easer.core.ui.data.SourceSelectorDialogFragment;
 import ryey.easer.skills.LocalSkillRegistry;
 
-public class EventSkillViewContainerFragment<D extends EventData, S extends EventSkill<D>> extends SourceSkillViewContainerFragment<D, S> {
-
-    static <D extends EventData, S extends EventSkill<D>> EventSkillViewContainerFragment<D, S> createInstance(S plugin) {
-        return SourceSkillViewContainerFragment.createInstance(plugin, new EventSkillViewContainerFragment<>());
+public class EventSelectorDialogFragment extends SourceSelectorDialogFragment<EventSkill> {
+    @Override
+    protected int titleRes() {
+        return R.string.title_select_event;
     }
 
     @Override
-    protected S findSkill(String skillID) {
-        return (S) LocalSkillRegistry.getInstance().event().findSkill(skillID);
+    protected List<EventSkill> skillList() {
+        return LocalSkillRegistry.getInstance().event().getEnabledSkills(getContext());
     }
-
-    @NonNull
-    @Override
-    public D getData() throws InvalidDataInputException {
-        return super.getData();
-    }
-
 }
-

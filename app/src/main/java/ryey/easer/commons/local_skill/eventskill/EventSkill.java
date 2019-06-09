@@ -32,7 +32,7 @@ import ryey.easer.commons.local_skill.ValidData;
  * All Event skills should implement this interface and write one line to register in `LocalSkillRegistry`.
  * The implementation / subclass doesn't need to hold any data (because data will be passed as arguments to the relevant methods).
  */
-public interface EventSkill<T extends EventData> extends Skill<T> {
+public interface EventSkill<T extends EventData> extends Skill<T>, SourceCategory.Categorized {
 
     @NonNull
     EventDataFactory<T> dataFactory();

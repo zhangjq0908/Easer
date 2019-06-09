@@ -164,5 +164,7 @@
     <string name="title_source">源代碼</string>
     <string name="prompt_error_logged">Easer記錄了一次錯誤。請查看日誌目錄下的error子目錄。</string>
     <string name="prompt_dynamics_not_ready">欲設置Dynamics，請選擇有效的行爲集以及有效的觸發設置（如事件）</string>
+    <string name="title_select_condition">選擇一個狀況</string>
+    <string name="title_select_event">選擇一個事件</string>
 
 </resources>
