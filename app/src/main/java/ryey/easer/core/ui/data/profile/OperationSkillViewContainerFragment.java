@@ -63,7 +63,7 @@ public class OperationSkillViewContainerFragment<T extends OperationData> extend
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_pluginview_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_skillview_container_operation_profile, container, false);
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.content_pluginview, pluginViewFragment)
                 .commit();

@@ -60,12 +60,12 @@ public class EditEventActivity extends AbstractEditDataActivity<EventStructure, 
     protected void loadFromData(EventStructure scenario) {
         oldName = scenario.getName();
         mEditText_name.setText(scenario.getName());
-        mViewPager.setEventData(scenario.getEventData());
+        mViewPager.setData(scenario.getEventData());
     }
 
     @Override
     protected EventStructure saveToData() throws InvalidDataInputException {
-        EventData eventData = mViewPager.getEventData();
+        EventData eventData = mViewPager.getData();
         return new EventStructure(C.VERSION_CREATED_IN_RUNTIME, mEditText_name.getText().toString(), eventData);
     }
 }

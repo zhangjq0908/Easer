@@ -26,18 +26,18 @@ import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.local_skill.SkillView;
 import ryey.easer.commons.local_skill.StorageData;
 
-public abstract class SkillViewContainerFragment<T extends StorageData> extends AbstractSkillDataFragment<T> {
+public abstract class SkillViewContainerFragment<D extends StorageData> extends AbstractSkillDataFragment<D> {
 
-    protected SkillView<T> pluginViewFragment = null;
+    protected SkillView<D> pluginViewFragment = null;
 
     @Override
-    protected void _fill(@NonNull T data) {
+    protected void _fill(@NonNull D data) {
         pluginViewFragment.fill(data);
     }
 
     @Override
     @NonNull
-    public T getData() throws InvalidDataInputException {
+    public D getData() throws InvalidDataInputException {
         return pluginViewFragment.getData();
     }
 }

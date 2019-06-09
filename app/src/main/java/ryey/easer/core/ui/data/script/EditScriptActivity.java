@@ -202,7 +202,7 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
                 if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_inline_event) {
                     EventData eventData;
                     try {
-                        eventData = mViewPager_edit_event.getEventData();
+                        eventData = mViewPager_edit_event.getData();
                     } catch (InvalidDataInputException e) {
                         showDynamicsNotReady();
                         return;
@@ -253,7 +253,7 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
 
                 rg_mode.check(R.id.radioButton_inline_event);
                 EventData eventData = scenario.getEventData();
-                mViewPager_edit_event.setEventData(eventData);
+                mViewPager_edit_event.setData(eventData);
             } else {
                 rg_mode.check(R.id.radioButton_event);
                 sw_event.setSelection(scenario.getName());
@@ -284,7 +284,7 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
 
         if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_inline_event) {
             EventDataStorage eventDataStorage = new EventDataStorage(this);
-            script.setEventData(mViewPager_edit_event.getEventData());
+            script.setEventData(mViewPager_edit_event.getData());
         } else if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_event) {
             EventDataStorage eventDataStorage = new EventDataStorage(this);
             String scenario_name = sw_event.getSelection();

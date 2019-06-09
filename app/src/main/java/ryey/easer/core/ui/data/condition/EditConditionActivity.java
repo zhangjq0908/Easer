@@ -60,12 +60,12 @@ public class EditConditionActivity extends AbstractEditDataActivity<ConditionStr
     protected void loadFromData(ConditionStructure condition) {
         oldName = condition.getName();
         mEditText_name.setText(condition.getName());
-        mViewPager.setConditionData(condition.getData());
+        mViewPager.setData(condition.getData());
     }
 
     @Override
     protected ConditionStructure saveToData() throws InvalidDataInputException {
-        ConditionData conditionData = mViewPager.getConditionData();
+        ConditionData conditionData = mViewPager.getData();
         return new ConditionStructure(C.VERSION_CREATED_IN_RUNTIME, mEditText_name.getText().toString(), conditionData);
     }
 }
