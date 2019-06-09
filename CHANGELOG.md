@@ -1,6 +1,16 @@
 CHANGELOG
 ======
 
+* v0.7.7: Introduce USource && More shared Event / Condition && Introduce SourceCategory && Code clean up && i18n
+	* Introduce `USource` as a uniformed way to define `Event` and `Condition`
+	* Converted existing shared `Event` and `Condition` to `USource`
+	* Added more `USource` (`BluetoothEnabled`, `WifiEnabled`)
+	* Introduce `SourceCategory` (no UI yet)
+		* Assigned to existing skills
+	* Code re-arrangements
+	* New locale: Ukrainian
+	* i18n update
+
 * v0.7.6.2: Fixes && slight UI change && i18n
 	* Fix Dynamics trying to be edited with invalid inputs
 	* Fix Skills in-use can be disabled
