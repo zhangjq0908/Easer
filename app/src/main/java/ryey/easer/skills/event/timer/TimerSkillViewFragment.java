@@ -72,6 +72,8 @@ public class TimerSkillViewFragment extends SkillViewFragment<TimerEventData> {
         };
         radioButton_short.setOnCheckedChangeListener(onCheckedChangeListener);
         radioButton_long.setOnCheckedChangeListener(onCheckedChangeListener);
+        radioButton_long.setChecked(true);
+        radioButton_short.setChecked(true);
 
         editText_second = view.findViewById(R.id.editText_second);
 
