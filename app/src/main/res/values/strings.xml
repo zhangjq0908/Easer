@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <string name="easer">Easer</string>
-    <string name="app_name" translatable="false">@string/easer</string>
+    <string name="easer_beta">Easer (beta)</string>
+    <string name="app_name" translatable="false">@string/easer_beta</string>
     <string name="drawer_tip">Ease your life!</string>
     <string name="title_outline">Outline</string>
     <string name="title_pivot">Pivot</string>
