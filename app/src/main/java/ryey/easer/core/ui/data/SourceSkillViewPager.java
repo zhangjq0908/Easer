@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui.data.event;
+package ryey.easer.core.ui.data;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -35,89 +35,88 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ryey.easer.commons.local_skill.InvalidDataInputException;
-import ryey.easer.commons.local_skill.eventskill.EventData;
-import ryey.easer.commons.local_skill.eventskill.EventSkill;
-import ryey.easer.core.ui.data.SkillViewContainerFragment;
-import ryey.easer.skills.LocalSkillRegistry;
+import ryey.easer.commons.local_skill.Skill;
+import ryey.easer.commons.local_skill.StorageData;
 
-public class EventSkillViewPager extends ViewPager {
+public abstract class SourceSkillViewPager<GD extends StorageData, GS extends Skill> extends ViewPager {
 
     MyPagerAdapter mPagerAdapter;
 
-    final List<EventSkill> eventSkillList = new ArrayList<>();
+    final List<GS> skillList = new ArrayList<>();
 
     Integer initial_position = null;
-    EventData initial_event_data = null;
+    GD initial_data = null;
 
-    public EventSkillViewPager(Context context) {
+    public SourceSkillViewPager(Context context) {
         super(context);
     }
 
-    public EventSkillViewPager(Context context, AttributeSet attrs) {
+    public SourceSkillViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
+    protected abstract List<GS> enabledSkills();
+    protected abstract MyPagerAdapter newPagerAdapter(FragmentManager fm, Context context);
+
     public void init(AppCompatActivity activity) {
-        eventSkillList.clear();
-        eventSkillList.addAll(LocalSkillRegistry.getInstance().event().getEnabledSkills(activity));
-        mPagerAdapter = new MyPagerAdapter(activity.getSupportFragmentManager(), getContext());
+        skillList.clear();
+        skillList.addAll(enabledSkills());
+        mPagerAdapter = newPagerAdapter(activity.getSupportFragmentManager(), getContext());
         setAdapter(mPagerAdapter);
     }
 
-    public <T extends EventData> void setEventData(T eventData) {
-        initial_event_data = eventData;
-        int i = getPluginIndex(eventData);
+    public <T extends GD> void setData(T data) {
+        initial_data = data;
+        int i = getPluginIndex(data);
         initial_position = i;
         if (getCurrentItem() == i) {
             synchronized (this) {
-                //noinspection unchecked
-                EventSkillViewContainerFragment<T> fragment = mPagerAdapter.getRegisteredFragment(i);
+                SourceSkillViewContainerFragment<GD, GS> fragment = mPagerAdapter.getRegisteredFragment(i);
                 if (fragment != null)
-                    //noinspection unchecked
-                    fragment.fill((T) initial_event_data);
+                    fragment.fill(initial_data);
             }
         } else {
             setCurrentItem(i);
         }
     }
 
-    public EventData getEventData() throws InvalidDataInputException {
-        return getEventData(getCurrentItem());
+    public GD getData() throws InvalidDataInputException {
+        return getData(getCurrentItem());
     }
 
-    public EventData getEventData(int position) throws InvalidDataInputException {
+    GD getData(int position) throws InvalidDataInputException {
         return mPagerAdapter.getRegisteredFragment(position).getData();
     }
 
-    private int getPluginIndex(EventData eventData) {
-        for (int i = 0; i < eventSkillList.size(); i++) {
-            if (eventData.getClass() == eventSkillList.get(i).dataFactory().dataClass())
+    private int getPluginIndex(GD data) {
+        for (int i = 0; i < skillList.size(); i++) {
+            if (data.getClass() == skillList.get(i).dataFactory().dataClass())
                 return i;
         }
         throw new IllegalAccessError("Plugin not found???");
     }
 
-    class MyPagerAdapter extends FragmentStatePagerAdapter {
+    protected abstract class MyPagerAdapter extends FragmentStatePagerAdapter {
 
-        SparseArray<EventSkillViewContainerFragment> registeredFragments = new SparseArray<>();
+        SparseArray<SourceSkillViewContainerFragment<GD, GS>> registeredFragments = new SparseArray<>();
 
         private final Context context;
         final String[] titles;
 
-        public MyPagerAdapter(FragmentManager fm, Context context) {
+        protected MyPagerAdapter(FragmentManager fm, Context context) {
             super(fm);
             this.context = context;
-            titles = new String[eventSkillList.size()];
-            for (int i = 0; i < eventSkillList.size(); i++) {
-                titles[i] = eventSkillList.get(i).view().desc(getResources());
+            titles = new String[skillList.size()];
+            for (int i = 0; i < skillList.size(); i++) {
+                titles[i] = skillList.get(i).view().desc(getResources());
             }
         }
 
+        protected abstract SourceSkillViewContainerFragment<GD, GS> newFragment(GS skill);
+
         @Override
         public Fragment getItem(int position) {
-            SkillViewContainerFragment fragment = EventSkillViewContainerFragment.createInstance(
-                    eventSkillList.get(position));
-            return fragment;
+            return newFragment(skillList.get(position));
         }
 
         @Override
@@ -133,11 +132,10 @@ public class EventSkillViewPager extends ViewPager {
         @NonNull
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            EventSkillViewContainerFragment fragment = (EventSkillViewContainerFragment) super.instantiateItem(container, position);
-            synchronized (EventSkillViewPager.this) {
+            SourceSkillViewContainerFragment<GD, GS> fragment = (SourceSkillViewContainerFragment<GD, GS>) super.instantiateItem(container, position);
+            synchronized (SourceSkillViewPager.this) {
                 if ((initial_position != null) && (position == initial_position)) {
-                    //noinspection unchecked
-                    fragment.fill(initial_event_data);
+                    fragment.fill(initial_data);
                 }
             }
             registeredFragments.put(position, fragment);
@@ -150,7 +148,7 @@ public class EventSkillViewPager extends ViewPager {
             super.destroyItem(container, position, object);
         }
 
-        public EventSkillViewContainerFragment getRegisteredFragment(int position) {
+        public SourceSkillViewContainerFragment<GD, GS> getRegisteredFragment(int position) {
             return registeredFragments.get(position);
         }
     }

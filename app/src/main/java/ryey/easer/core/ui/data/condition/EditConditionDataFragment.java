@@ -19,20 +19,32 @@
 
 package ryey.easer.core.ui.data.condition;
 
+import ryey.easer.R;
 import ryey.easer.commons.local_skill.conditionskill.ConditionData;
 import ryey.easer.commons.local_skill.conditionskill.ConditionSkill;
+import ryey.easer.core.ui.data.EditSourceDataFragment;
+import ryey.easer.core.ui.data.SourceSelectorDialogFragment;
 import ryey.easer.core.ui.data.SourceSkillViewContainerFragment;
 import ryey.easer.skills.LocalSkillRegistry;
 
-public class ConditionSkillViewContainerFragment<D extends ConditionData, S extends ConditionSkill<D>> extends SourceSkillViewContainerFragment<D, S> {
-
-    static <D extends ConditionData, S extends ConditionSkill<D>> ConditionSkillViewContainerFragment<D, S> createInstance(S plugin) {
-        return SourceSkillViewContainerFragment.createInstance(plugin, new ConditionSkillViewContainerFragment<>());
+public class EditConditionDataFragment extends EditSourceDataFragment<ConditionData, ConditionSkill> {
+    @Override
+    protected int buttonText() {
+        return R.string.title_select_condition;
     }
 
     @Override
-    protected S findSkill(String skillID) {
-        return (S) LocalSkillRegistry.getInstance().condition().findSkill(skillID);
+    protected SourceSelectorDialogFragment<ConditionSkill> selectorDialogFragment() {
+        return new ConditionSelectorDialogFragment();
     }
 
+    @Override
+    protected ConditionSkill findSkill(ConditionData data) {
+        return LocalSkillRegistry.getInstance().condition().findSkill(data);
+    }
+
+    @Override
+    protected SourceSkillViewContainerFragment<ConditionData, ConditionSkill> skillViewContainerFragment(ConditionSkill skill) {
+        return ConditionSkillViewContainerFragment.createInstance(skill);
+    }
 }

@@ -32,7 +32,7 @@ import ryey.easer.core.ui.data.AbstractEditDataActivity;
 public class EditConditionActivity extends AbstractEditDataActivity<ConditionStructure, ConditionDataStorage> {
 
     EditText mEditText_name = null;
-    ConditionSkillViewPager mViewPager;
+    EditConditionDataFragment editConditionDataFragment = null;
     
     @Override
     protected ConditionDataStorage retDataStorage() {
@@ -52,20 +52,20 @@ public class EditConditionActivity extends AbstractEditDataActivity<ConditionStr
     @Override
     protected void init() {
         mEditText_name = findViewById(R.id.editText_name);
-        mViewPager = findViewById(R.id.pager);
-        mViewPager.init(this);
+        editConditionDataFragment = (EditConditionDataFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
     }
 
     @Override
     protected void loadFromData(ConditionStructure condition) {
         oldName = condition.getName();
         mEditText_name.setText(condition.getName());
-        mViewPager.setConditionData(condition.getData());
+        editConditionDataFragment.loadFromData(condition.getData());
     }
 
     @Override
     protected ConditionStructure saveToData() throws InvalidDataInputException {
-        ConditionData conditionData = mViewPager.getConditionData();
+        assert editConditionDataFragment != null;
+        ConditionData conditionData = editConditionDataFragment.saveToData();
         return new ConditionStructure(C.VERSION_CREATED_IN_RUNTIME, mEditText_name.getText().toString(), conditionData);
     }
 }

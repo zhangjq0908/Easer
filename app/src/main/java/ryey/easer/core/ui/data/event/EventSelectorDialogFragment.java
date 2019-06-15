@@ -17,27 +17,23 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui.data;
+package ryey.easer.core.ui.data.event;
 
+import java.util.List;
 
-import androidx.annotation.NonNull;
+import ryey.easer.R;
+import ryey.easer.commons.local_skill.eventskill.EventSkill;
+import ryey.easer.core.ui.data.SourceSelectorDialogFragment;
+import ryey.easer.skills.LocalSkillRegistry;
 
-import ryey.easer.commons.local_skill.InvalidDataInputException;
-import ryey.easer.commons.local_skill.SkillView;
-import ryey.easer.commons.local_skill.StorageData;
-
-public abstract class SkillViewContainerFragment<D extends StorageData> extends AbstractSkillDataFragment<D> {
-
-    protected SkillView<D> pluginViewFragment = null;
-
+public class EventSelectorDialogFragment extends SourceSelectorDialogFragment<EventSkill> {
     @Override
-    protected void _fill(@NonNull D data) {
-        pluginViewFragment.fill(data);
+    protected int titleRes() {
+        return R.string.title_select_event;
     }
 
     @Override
-    @NonNull
-    public D getData() throws InvalidDataInputException {
-        return pluginViewFragment.getData();
+    protected List<EventSkill> skillList() {
+        return LocalSkillRegistry.getInstance().event().getEnabledSkills(getContext());
     }
 }

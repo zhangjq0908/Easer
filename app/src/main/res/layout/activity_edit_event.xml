@@ -31,22 +31,19 @@
         app:layout_constraintStart_toEndOf="@+id/textView38"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ryey.easer.core.ui.data.event.EventSkillViewPager
-        android:id="@+id/pager"
-        style="@style/AppTheme.PluginViewPager"
-        android:layout_width="wrap_content"
+    <fragment
+        android:id="@+id/fragment"
+        android:name="ryey.easer.core.ui.data.event.EditEventDataFragment"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_name">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_name" />
 
-        <androidx.viewpager.widget.PagerTitleStrip
-            android:id="@+id/pager_title_strip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:paddingBottom="4dp"
-            android:paddingTop="4dp"
-            android:textColor="#fff" />
-    </ryey.easer.core.ui.data.event.EventSkillViewPager>
 </androidx.constraintlayout.widget.ConstraintLayout>

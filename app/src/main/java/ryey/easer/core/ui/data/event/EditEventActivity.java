@@ -32,7 +32,7 @@ import ryey.easer.core.ui.data.AbstractEditDataActivity;
 public class EditEventActivity extends AbstractEditDataActivity<EventStructure, EventDataStorage> {
 
     EditText mEditText_name = null;
-    EventSkillViewPager mViewPager;
+    protected EditEventDataFragment editEventDataFragment;
 
     @Override
     protected EventDataStorage retDataStorage() {
@@ -52,20 +52,20 @@ public class EditEventActivity extends AbstractEditDataActivity<EventStructure, 
     @Override
     protected void init() {
         mEditText_name = findViewById(R.id.editText_name);
-        mViewPager = findViewById(R.id.pager);
-        mViewPager.init(this);
+        editEventDataFragment = (EditEventDataFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
     }
 
     @Override
-    protected void loadFromData(EventStructure scenario) {
-        oldName = scenario.getName();
-        mEditText_name.setText(scenario.getName());
-        mViewPager.setEventData(scenario.getEventData());
+    protected void loadFromData(EventStructure event) {
+        oldName = event.getName();
+        mEditText_name.setText(event.getName());
+        editEventDataFragment.loadFromData(event.getEventData());
     }
 
     @Override
     protected EventStructure saveToData() throws InvalidDataInputException {
-        EventData eventData = mViewPager.getEventData();
-        return new EventStructure(C.VERSION_CREATED_IN_RUNTIME, mEditText_name.getText().toString(), eventData);
+        assert editEventDataFragment != null;
+        EventData eventData = editEventDataFragment.saveToData();
+        return new EventStructure(C.VERSION_CREATED_IN_RUNTIME, mEditText_name.getText().toString(), eventData); // TODO: confirm where this C.VERSION_CREATED_IN_RUNTIME is used
     }
 }
