@@ -4,6 +4,8 @@ HOWTO
 This document will describe how to add new functionality to Easer, especially how to add new *Event*(s) (and Condition(s)) and/or *Operation*(s). It may also say something about the design of the structure of Easer.  
 (**Notice**: *Profile* is merely a collection of *Operation*(s), so if you want to extend the function of *Profile*, you just need to create new *Operation*(s).)
 
+Additionally, v0.7.7 introduced `USource` to unify the authoring for *Event and Condition*. This mechanism is still consider as early stage, so this document does not describe it yet (but it's similar to the previous ways).
+
 Add new Event/Operation
 ------
 
