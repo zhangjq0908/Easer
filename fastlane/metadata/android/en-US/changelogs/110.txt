@@ -1,0 +1,7 @@
+Event and Condition are now in a list selection && Use SourceCategory && Minor improvements
+
+* Change Event and Condition's ViewPager to a list selection similar to Profile
+* Use SourceCategory for categories of Event and Condition
+* Slight UI improvement for TimerUSource
+* Improved Chinese
+* Update Danish translation

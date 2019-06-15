@@ -1,6 +1,13 @@
 CHANGELOG
 ======
 
+* v0.7.7.1: Categorized Event and Condition selection && Minor improvements
+	* Change Event and Condition's ViewPager to a list selection similar to Profile
+	* Use SourceCategory for categories of Event and Condition
+	* Slight UI improvement for TimerUSource
+	* Improved Chinese
+	* Update Danish translation
+
 * v0.7.7: Introduce USource && More shared Event / Condition && Introduce SourceCategory && Code clean up && i18n
 	* Introduce `USource` as a uniformed way to define `Event` and `Condition`
 	* Converted existing shared `Event` and `Condition` to `USource`
