@@ -178,4 +178,12 @@
     <string name="condition_ringer_above">Minimo</string>
     <string name="condition_ringer_below">Massimo</string>
     <string name="condition_ringer_equals">Uguale a</string>
+    <string name="category_source_android">Android</string>
+    <string name="category_source_date_time">Data / Ora</string>
+    <string name="category_source_device">Dispositivo</string>
+    <string name="category_source_easer">Easer</string>
+    <string name="category_source_data_communication">Comunicazione Dati</string>
+    <string name="category_source_misc">Altro</string>
+    <string name="category_source_personal">Personale</string>
+    <string name="category_source_unknown">Sconosciuto</string>
 </resources>

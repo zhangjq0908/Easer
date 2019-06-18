@@ -178,4 +178,12 @@
     <string name="condition_calendar_any_event">任意のイベント</string>
     <string name="condition_calendar_event_match_pattern">一致パターン</string>
     <string name="condition_calendar_all_day_event">終日のイベントのみに一致</string>
+    <string name="category_source_android">Android</string>
+    <string name="category_source_date_time">日付 / 時間</string>
+    <string name="category_source_device">デバイス</string>
+    <string name="category_source_easer">Easer</string>
+    <string name="category_source_data_communication">データ通信</string>
+    <string name="category_source_misc">その他</string>
+    <string name="category_source_personal">個人</string>
+    <string name="category_source_unknown">不明</string>
 </resources>
