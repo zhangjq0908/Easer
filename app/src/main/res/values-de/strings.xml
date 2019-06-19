@@ -190,4 +190,6 @@
     <string name="pref_locale_custom">Benutzerdefiniertes Gebietsschema</string>
     <string name="prompt_error_logged">Easer hat gerade einen Fehler aufgezeichnet. Sehen Sie sich das Fehlerunterverzeichnis des Log-Verzeichnisses an.</string>
     <string name="prompt_dynamics_not_ready">Um die Dynamik einzustellen, müssen Sie ein gültiges Profil und einen gültigen Auslöser (z.B. Ereignis) auswählen.</string>
+    <string name="title_select_event">Wählen Sie ein Ereignis</string>
+    <string name="title_select_condition">Wählen Sie eine Bedingung</string>
 </resources>
