@@ -200,4 +200,6 @@
     <string name="pref_locale_custom">カスタムロケール</string>
     <string name="prompt_error_logged">Easer がエラーを記録しました。ログディレクトリーのエラーサブディレクトリーを参照してください。</string>
     <string name="prompt_dynamics_not_ready">動的を設定するには、有効なプロファイルと有効なトリガー（イベントなど）を選択する必要があります。</string>
+    <string name="title_select_event">イベントの選択</string>
+    <string name="title_select_condition">条件の選択</string>
 </resources>
