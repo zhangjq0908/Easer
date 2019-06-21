@@ -7,7 +7,7 @@
     <string name="title_profile">Profil</string>
     <string name="title_event">Hendelse</string>
     <string name="title_script">Skript</string>
-    <string name="title_condition">Tilstand</string>
+    <string name="title_condition">Betingelse</string>
     <string name="title_application">Program</string>
     <string name="title_activity_history">Aktivitetslogg</string>
     <string name="title_about">Om</string>
@@ -16,7 +16,7 @@
     <string name="title_edit">Rediger</string>
     <string name="title_delete">Slett</string>
     <string name="title_edit_event">Rediger hendelse</string>
-    <string name="title_edit_condition">Rediger tilstand</string>
+    <string name="title_edit_condition">Rediger betingelse</string>
     <string name="title_edit_profile">Rediger profil</string>
     <string name="title_select_operation">Velg en operasjon</string>
     <string name="title_dynamics_link">Dynamikklenking</string>
@@ -53,7 +53,7 @@
     <string name="text_profile">Profil</string>
     <string name="text_predefined_event">Forhåndsdefinert hendelse</string>
     <string name="text_inline_event">Integrert hendelse</string>
-    <string name="text_use_condition">Bruk tilstand</string>
+    <string name="text_use_condition">Bruk betingelse</string>
     <string name="text_repeatable_desc">Gjentagbart når oppfylt</string>
     <string name="text_reverse_desc">Reverser hendelse</string>
     <string name="text_volatile">Flyktig</string>
@@ -61,10 +61,10 @@
     <string name="text_dynamics">Dynamikk</string>
     <string name="text_placeholder">Plassholder</string>
     <string name="toggle_active">Aktiv</string>
-    <string name="hint_event_title">hendelsestittel</string>
+    <string name="hint_event_title">Hendelsestittel</string>
     <string name="hint_script_title">Skripttittel</string>
     <string name="hint_profile_title">Profiltittel</string>
-    <string name="hint_condition_title">Tilstandstittel</string>
+    <string name="hint_condition_title">Betingelsestittel</string>
     <string name="prompt_save_failed">Klarte ikke å lagre</string>
     <string name="prompt_delete">Er du sikker på at du ønsker å slette: %s\?</string>
     <string name="prompt_delete_failed">Klarte ikke å slette. Sjekk dette hvis valget er i bruk.</string>
@@ -121,13 +121,13 @@
     <string name="dynamics_script_name">Skriptnavn</string>
     <string name="dynamics_profile_name">Profilnavn</string>
     <string name="title_help">Hjelp</string>
-    <string name="help_script">Skript er logikkbeholderne. Du vil koble sammen en hendelse eller en tilstand i et skript, slik at Easer vet at denne profilen skal lastes/kjøres når den hendelsen inntreffer, eller tilstanden er oppfylt.
-\nDet er også mer avanserte funksjoner, f.eks. reverserte hendelser.
+    <string name="help_script">\\\"Skript\\\" er logikkbeholderne. Du vil koble sammen en hendelse eller en betingelse i et skript, slik at Easer vet at denne profilen skal lastes/kjøres når den hendelsen inntreffer, eller tilstanden er oppfylt. 
+\nDet er også mer avanserte funksjoner, f.eks. reverserte hendelser. 
 \nSjekk <a href="https://github.com/renyuneyun/Easer/wiki">dokumentet</a> for mer info.</string>
     <string name="help_event">Hendelser representerer en kort tids (umiddelbar) hendelse på din enhet, eller annensteds hen.
 \nFor eksempel, mottak av en merknad, eller en NFC-krets skannes.
 \nSjekk <a href="https://github.com/renyuneyun/Easer/wiki">dokumentet</a> for mer info.</string>
-    <string name="help_condition">\\\"Tilstand\\\" representerer en langtidsvarende (men vanligvis ikke evig) tilstand på din enhet eller annensteds hen. 
+    <string name="help_condition">\\\"Betingelse\\\" representerer en langtidsvarende (men vanligvis ikke evig) tilstand på din enhet eller annensteds hen. 
 \nFor eksempel, ved tilkobling til Wi-Fi, eller at skjermen slås av. 
 \nSjekk <a href="https://github.com/renyuneyun/Easer/wiki">dokumentet</a> for mer info.</string>
     <string name="help_profile">\\\"Profil\\\" er et sett operasjoner. Hver operasjon representerer en bestemt handling. 
@@ -184,4 +184,6 @@
     <string name="pref_locale_custom">Egendefinert lokale</string>
     <string name="prompt_error_logged">Easer loggførte en feil. Se feilundermappen i loggingsmappen.</string>
     <string name="prompt_dynamics_not_ready">For å sette dynamikk, må du velge en gyldig profil og en gyldig utløser (f.eks. hendelse)</string>
+    <string name="title_select_event">Velg en hendelse</string>
+    <string name="title_select_condition">Velg en betingelse</string>
 </resources>
