@@ -194,4 +194,12 @@
     <string name="condition_calendar_any_event">Enhver hændelse</string>
     <string name="condition_calendar_event_match_pattern">Finde mønster</string>
     <string name="condition_calendar_all_day_event">Find kun hele-dagen hændelser</string>
+    <string name="category_source_android">Android</string>
+    <string name="category_source_date_time">Dato / tid</string>
+    <string name="category_source_device">Enhed</string>
+    <string name="category_source_easer">Easer</string>
+    <string name="category_source_data_communication">Data kommunikation</string>
+    <string name="category_source_misc">Div.</string>
+    <string name="category_source_personal">Personlig</string>
+    <string name="category_source_unknown">Ukendt</string>
 </resources>
