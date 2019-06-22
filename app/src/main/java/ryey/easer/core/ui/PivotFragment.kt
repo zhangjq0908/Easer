@@ -19,24 +19,57 @@
 
 package ryey.easer.core.ui
 
+import android.content.*
 import android.os.Bundle
+import android.os.IBinder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import de.blox.graphview.*
 import de.blox.graphview.tree.BuchheimWalkerAlgorithm
 import de.blox.graphview.tree.BuchheimWalkerConfiguration
 import ryey.easer.R
-import ryey.easer.core.data.Checkpoint
+import ryey.easer.core.EHService
+import ryey.easer.core.Lotus
+import ryey.easer.core.data.ScriptStructure
 import ryey.easer.core.data.ScriptTree
 import ryey.easer.core.data.storage.ScriptDataStorage
 
 
 class PivotFragment: Fragment() {
+
+    private val lotusStatusReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            val satisfied = intent!!.getBooleanExtra(Lotus.EXTRA_SATISFACTION, false)
+            val id = intent.getStringExtra(Lotus.EXTRA_SCRIPT_ID)
+            updateNodeStatus(id, satisfied)
+        }
+    }
+
+    private val virtualRoot = Node(ServiceStart())
+    var graph: Graph? = null
+    private val checkpointNodeMap = HashMap<String, NodeInfo>()
+
+    var adapter: BaseGraphAdapter<ViewHolder>? = null
+
+    private val serviceConnection = object: ServiceConnection{
+        override fun onServiceDisconnected(name: ComponentName?) {
+            binder = null
+            redrawGraph()
+        }
+
+        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+            binder = service as EHService.EHBinder
+            redrawGraph()
+        }
+    }
+    private var binder: EHService.EHBinder? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         activity?.title = getString(R.string.title_pivot)
@@ -45,19 +78,9 @@ class PivotFragment: Fragment() {
 
         val graphView = view.findViewById<GraphView>(R.id.graph)
 
-        val scriptDataStorage = ScriptDataStorage(context)
-        val scriptTrees = scriptDataStorage.scriptTrees
+        recreateGraph()
 
-        val virtualRoot = Node(ServiceStart())
-
-        val graph = Graph()
-        graph.addNode(virtualRoot)
-
-        for (scriptTree in scriptTrees) {
-            addToGraph(scriptTree, graph, virtualRoot)
-        }
-
-        val adapter = object : BaseGraphAdapter<ViewHolder>(graph) {
+        adapter = object : BaseGraphAdapter<ViewHolder>(graph!!) {
 
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
                 val v = LayoutInflater.from(parent.context).inflate(R.layout.node_script, parent, false)
@@ -76,11 +99,23 @@ class PivotFragment: Fragment() {
                     viewHolder.tvName.setTextColor(resources.getColor(color))
 
                     color = if (data.enabled) {
-                        R.color.nodeBackground_scriptActive
-                    } else {
-                        R.color.nodeBackground_scriptInactive
-                    }
+                                R.color.nodeBackground_scriptActive
+                            } else {
+                                R.color.nodeBackground_scriptInactive
+                            }
                     viewHolder.setBackgroundColor(resources.getColor(color))
+                    if (data.satisfied == null) {
+                        viewHolder.ivNodeStatus.visibility = View.INVISIBLE
+                    } else {
+                        viewHolder.ivNodeStatus.visibility = View.VISIBLE
+                        val drawable = context!!.resources.getDrawable(
+                                if (data.satisfied == true) {
+                                    R.drawable.ind_node_positive
+                                } else {
+                                    R.drawable.ind_node_negative
+                                })
+                        viewHolder.ivNodeStatus.setImageDrawable(drawable)
+                    }
 
                     viewHolder.layoutScriptExtra.visibility = View.VISIBLE
                     viewHolder.tvType.text = getString(if (data.isCondition) {
@@ -110,14 +145,93 @@ class PivotFragment: Fragment() {
                 .setSubtreeSeparation(300)
                 .setOrientation(BuchheimWalkerConfiguration.ORIENTATION_TOP_BOTTOM)
                 .build()
-        adapter.algorithm = BuchheimWalkerAlgorithm(configuration)
+        adapter!!.algorithm = BuchheimWalkerAlgorithm(configuration)
 
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+        LocalBroadcastManager.getInstance(context!!).registerReceiver(lotusStatusReceiver, lotusStateIntentFilter)
+        context!!.bindService(Intent(context, EHService::class.java), serviceConnection, 0)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        LocalBroadcastManager.getInstance(context!!).unregisterReceiver(lotusStatusReceiver)
+        context!!.unbindService(serviceConnection)
+    }
+
+    fun updateNodeStatus(id: String, satisfied: Boolean) {
+        val node = checkpointNodeMap[id]
+        if (node != null) {
+            updateNodeStatus(node, satisfied)
+        }
+    }
+
+    private fun updateNodeStatus(node: NodeInfo, satisfied: Boolean?) {
+        redrawGraph()
+    }
+
+    private fun recreateGraph() {
+        graph = if (binder == null) {
+            createBasicGraph()
+        } else {
+            createAdvancedGraph()
+        }
+    }
+
+    private fun createBasicGraph(): Graph {
+        val scriptDataStorage = ScriptDataStorage(context)
+        val scriptTrees = scriptDataStorage.scriptTrees
+
+        val graph = Graph()
+        graph.addNode(virtualRoot)
+
+        for (scriptTree in scriptTrees) {
+            addToGraph(scriptTree, graph, virtualRoot, checkpointNodeMap)
+        }
+
+        return graph
+    }
+
+    private fun createAdvancedGraph(): Graph {
+        val statusList = binder!!.lotusStatus()
+        val statusMap: HashMap<String, Boolean> = HashMap()
+        for (status in statusList) {
+            statusMap[status.id] = status.satisfied
+        }
+
+        val scriptDataStorage = ScriptDataStorage(context)
+        val scriptTrees = scriptDataStorage.scriptTrees
+
+        val graph = Graph()
+        graph.addNode(virtualRoot)
+
+        for (scriptTree in scriptTrees) {
+            addToGraph(scriptTree, graph, virtualRoot, checkpointNodeMap, statusMap)
+        }
+
+        return graph
+    }
+
+    private fun redrawGraph() {
+        recreateGraph()
+        adapter!!.graph = graph
+        adapter!!.notifyInvalidated()
+    }
+
     companion object {
-        fun addToGraph(scriptTree: ScriptTree, graph: Graph, parent: Node) {
-            val node = Node(Checkpoint.fromScript(scriptTree.data))
+        val lotusStateIntentFilter = IntentFilter(Lotus.ACTION_LOTUS_SATISFACTION_CHANGED)
+
+        fun addToGraph(scriptTree: ScriptTree, graph: Graph, parent: Node, checkpointMap: MutableMap<String, NodeInfo>): Node {
+            return Companion.addToGraph(scriptTree, graph, parent, checkpointMap, null)
+        }
+
+        fun addToGraph(scriptTree: ScriptTree, graph: Graph, parent: Node, checkpointMap: MutableMap<String, NodeInfo>, statusMap: HashMap<String, Boolean>?): Node {
+            val checkpoint = Checkpoint.fromScript(scriptTree.data)
+            checkpoint.satisfied = statusMap?.get(checkpoint.name)
+            val node = Node(checkpoint)
             graph.addNode(node)
             graph.addEdge(parent, node)
             if (scriptTree.profile != null) {
@@ -125,10 +239,40 @@ class PivotFragment: Fragment() {
                 graph.addNode(profileNode)
                 graph.addEdge(node, profileNode)
             }
+            val children = ArrayList<Node>()
             for (subTree in scriptTree.subs) {
-                addToGraph(subTree, graph, node)
+                children.add(addToGraph(subTree, graph, node, checkpointMap, statusMap))
+            }
+            checkpointMap[checkpoint.name] = NodeInfo(parent, node, children)
+            return node
+        }
+
+        class NodeInfo(val parent: Node, val node: Node, val children: List<Node>)
+    }
+
+    /**
+     * This class represents a CheckPoint in the background state (i.e. the collection of all Scripts and their dependencies)
+     *
+     * Currently it is a projection from ScriptTree
+     * TODO: Use this class instead of Script in everywhere (ScriptTree, EHService, Lotus, PivotFragment, TODO)
+     * TODO: Replace most of Script's role
+     *
+     * TODO: Convert relevant interfaces to Kotlin so that this class can be written in kotlin
+     */
+    class Checkpoint(val name: String, val enabled: Boolean, val valid: Boolean, val isCondition: Boolean) {
+
+        var satisfied: Boolean? = null
+
+        companion object {
+
+            fun fromScript(scriptStructure: ScriptStructure): Checkpoint {
+                val name = scriptStructure.name
+                val enabled = scriptStructure.isActive
+                val valid = scriptStructure.isValid
+                return Checkpoint(name, enabled, valid, scriptStructure.isCondition)
             }
         }
+
     }
 
     class ServiceStart {
@@ -144,6 +288,7 @@ class PivotFragment: Fragment() {
         internal val tvName: TextView = itemView.findViewById(R.id.name)
         internal val layoutScriptExtra: ViewGroup = itemView.findViewById(R.id.extra_script_info)
         internal val tvType: TextView = itemView.findViewById(R.id.tv_type)
+        internal val ivNodeStatus: ImageView = itemView.findViewById(R.id.iv_node_status)
 
         fun setBackgroundColor(@ColorInt color: Int) {
             itemView.setBackgroundColor(color)

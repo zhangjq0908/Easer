@@ -43,6 +43,7 @@ import androidx.core.content.ContextCompat;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -152,12 +153,6 @@ public class EHService extends Service {
     public static void start(Context context) {
         Intent intent = new Intent(context, EHService.class);
         ContextCompat.startForegroundService(context, intent);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-////            context.startForegroundService(intent);
-//            ContextCompat.startForegroundService(context, intent);
-//        } else {
-//            context.startService(intent);
-//        }
     }
 
     public static void stop(Context context) {
@@ -330,6 +325,14 @@ public class EHService extends Service {
                 }
             }
             return false;
+        }
+
+        public List<Lotus.Status> lotusStatus() {
+            List<Lotus.Status> statusList = new LinkedList<>();
+            for (Lotus lotus : mLotusArray) {
+                statusList.addAll(lotus.statusRec());
+            }
+            return statusList;
         }
     }
 

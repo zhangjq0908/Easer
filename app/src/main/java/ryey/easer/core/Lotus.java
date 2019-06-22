@@ -29,10 +29,12 @@ import android.os.PatternMatcher;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ExecutorService;
@@ -45,6 +47,10 @@ import ryey.easer.skills.operation.state_control.StateControlOperationSkill;
  * Each Lotus holds one ScriptTree.
  */
 public abstract class Lotus {
+    public static final String ACTION_LOTUS_SATISFACTION_CHANGED = "ryey.easer.lotus.action.LOTUS_SATISFACTION_CHANGED";
+    public static final String EXTRA_SATISFACTION = "ryey.easer.lotus.extra.LOTUS_SATISFACTION";
+    public static final String EXTRA_SCRIPT_ID = "ryey.easer.lotus.extra.SCRIPT_ID";
+
     private static final String ACTION_SLOT_SATISFIED = "ryey.easer.triggerlotus.action.SLOT_SATISFIED";
     private static final String ACTION_SLOT_UNSATISFIED = "ryey.easer.triggerlotus.action.SLOT_UNSATISFIED";
     private static final String CATEGORY_NOTIFY_LOTUS = "ryey.easer.triggerlotus.category.NOTIFY_LOTUS";
@@ -141,6 +147,13 @@ public abstract class Lotus {
         }
     }
 
+    protected void sendSatisfactionChangeBroadcast(boolean satisfied) {
+        Intent intent = new Intent(ACTION_LOTUS_SATISFACTION_CHANGED);
+        intent.putExtra(EXTRA_SATISFACTION, satisfied);
+        intent.putExtra(EXTRA_SCRIPT_ID, scriptTree.getName());
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+    }
+
     protected void onStateSignal(boolean state) {
         onStateSignal(state, null);
     }
@@ -156,6 +169,7 @@ public abstract class Lotus {
     protected void onSatisfied(@Nullable Bundle extras) {
         Logger.i("Lotus for <%s> satisfied", scriptTree.getName());
         satisfied = true;
+        sendSatisfactionChangeBroadcast(true);
 
         String profileName = scriptTree.getProfile();
         if (profileName != null) {
@@ -171,6 +185,7 @@ public abstract class Lotus {
     protected void onUnsatisfied() {
         Logger.i("Lotus for <%s> unsatisfied", scriptTree.getName());
         satisfied = false;
+        sendSatisfactionChangeBroadcast(false);
 
         ActivityLogService.Companion.notifyScriptUnsatisfied(context, scriptTree.getName(), null);
 
@@ -189,6 +204,19 @@ public abstract class Lotus {
                 subLotus.listen();
             }
         }
+    }
+
+    protected Status status() {
+        return new Status(scriptName(), satisfied);
+    }
+
+    protected List<Status> statusRec() {
+        List<Status> list = new LinkedList<>();
+        list.add(status());
+        for (Lotus sub : subs) {
+            list.addAll(sub.statusRec());
+        }
+        return list;
     }
 
     public static class NotifyIntentPrototype {
@@ -216,6 +244,15 @@ public abstract class Lotus {
             intent.setData(data);
             intent.putExtra(Lotus.EXTRA_DYNAMICS_PROPERTIES, dynamics);
             return intent;
+        }
+    }
+
+    public static class Status {
+        public final String id;
+        public final boolean satisfied;
+        public Status(String id, boolean satisfied) {
+            this.id = id;
+            this.satisfied = satisfied;
         }
     }
 
