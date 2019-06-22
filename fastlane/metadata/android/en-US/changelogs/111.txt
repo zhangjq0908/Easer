@@ -1,0 +1,6 @@
+Show status in Pivot && i18n update
+
+* The Pivot page now shows the status of each Script (a color dot at top-left)
+* Update dependencies
+* Update for i18n: Danish, Japanese, Italian, Norwegian Bokmål
+

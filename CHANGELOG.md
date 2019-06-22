@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+* v0.7.7.2: Show status in Pivot && i18n update
+	* The Pivot page now shows the status of each Script (a color dot at top-left)
+	* Update dependencies
+	* Update for i18n: Danish, Japanese, Italian, Norwegian Bokmål
+
 * v0.7.7.1: Categorized Event and Condition selection && Minor improvements
 	* Change Event and Condition's ViewPager to a list selection similar to Profile
 	* Use SourceCategory for categories of Event and Condition
