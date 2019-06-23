@@ -38,7 +38,7 @@ import java.io.IOException;
 
 import ryey.easer.R;
 
-public class SkillHelper {
+public class SkillUtils {
 
     public static boolean useRootFeature(@NonNull Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);

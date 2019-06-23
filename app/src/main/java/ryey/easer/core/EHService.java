@@ -49,7 +49,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import ryey.easer.R;
-import ryey.easer.SettingsHelper;
+import ryey.easer.SettingsUtils;
 import ryey.easer.core.data.ScriptTree;
 import ryey.easer.core.data.storage.ScriptDataStorage;
 import ryey.easer.core.log.ActivityLogService;
@@ -167,7 +167,7 @@ public class EHService extends Service {
     }
 
     private void startNotification() {
-        if (!SettingsHelper.showNotification(this))
+        if (!SettingsUtils.showNotification(this))
             return;
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -200,7 +200,7 @@ public class EHService extends Service {
 
         Notification indicatorNotification = builder.build();
 
-        if (SettingsHelper.runInForeground(this)) {
+        if (SettingsUtils.runInForeground(this)) {
             startForeground(NOTIFICATION_ID, indicatorNotification);
         } else {
             notificationManager.notify(NOTIFICATION_ID, indicatorNotification);
@@ -208,9 +208,9 @@ public class EHService extends Service {
     }
 
     private void stopNotification() {
-        if (!SettingsHelper.showNotification(this))
+        if (!SettingsUtils.showNotification(this))
             return;
-        if (SettingsHelper.runInForeground(this)) {
+        if (SettingsUtils.runInForeground(this)) {
 
         } else {
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);

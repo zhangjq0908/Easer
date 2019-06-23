@@ -29,7 +29,7 @@ import android.widget.ImageView;
 
 import ryey.easer.BuildConfig;
 import ryey.easer.R;
-import ryey.easer.commons.CommonSkillHelper;
+import ryey.easer.commons.CommonSkillUtils;
 import ryey.easer.commons.local_skill.Skill;
 import ryey.easer.commons.local_skill.operationskill.OperationSkill;
 import ryey.easer.commons.local_skill.operationskill.PrivilegeUsage;
@@ -46,7 +46,7 @@ class SkillEnabledPreference extends CheckBoxPreference implements Preference.On
         this.skill = skill;
         this.in_use = in_use;
         setOnPreferenceChangeListener(this);
-        setKey(CommonSkillHelper.pluginEnabledKey(skill));
+        setKey(CommonSkillUtils.pluginEnabledKey(skill));
         setLayoutResource(R.layout.pref_plugin_enable);
         setTitle(skill.name());
         boolean isCompatible = skill.isCompatible(context);

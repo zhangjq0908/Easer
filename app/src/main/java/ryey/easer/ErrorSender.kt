@@ -30,7 +30,7 @@ import java.util.*
 
 class ErrorSender : ReportSender {
     override fun send(context: Context, errorContent: CrashReportData) {
-        if (SettingsHelper.logging(context)) {
+        if (SettingsUtils.logging(context)) {
             val dir = File(EaserApplication.LOG_DIR)
             if (!dir.exists()) {
                 dir.mkdirs()

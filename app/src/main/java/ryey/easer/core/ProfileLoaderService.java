@@ -83,12 +83,12 @@ public class ProfileLoaderService extends Service {
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, intentFilter);
         helper = new SkillHelper.OperationHelper(this);
         helper.begin();
-        ServiceHelper.Companion.startNotification(this);
+        ServiceUtils.Companion.startNotification(this);
     }
 
     @Override
     public void onDestroy() {
-        ServiceHelper.Companion.stopNotification(this);
+        ServiceUtils.Companion.stopNotification(this);
         helper.end();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
     }

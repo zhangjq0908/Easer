@@ -35,7 +35,7 @@ import java.util.List;
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.local_skill.ValidData;
-import ryey.easer.skills.SkillHelper;
+import ryey.easer.skills.SkillUtils;
 import ryey.easer.skills.SkillViewFragment;
 
 public class CellLocationSkillViewFragment extends SkillViewFragment<CellLocationUSourceData> implements ScannerDialogFragment.ScannerListener {
@@ -52,7 +52,7 @@ public class CellLocationSkillViewFragment extends SkillViewFragment<CellLocatio
         view.findViewById(R.id.location_picker).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!SkillHelper.checkPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION))
+                if (!SkillUtils.checkPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION))
                     return;
 
                 DialogFragment dialogFrag = new ScannerDialogFragment();

@@ -34,7 +34,7 @@ import ryey.easer.commons.local_skill.conditionskill.Tracker;
 import ryey.easer.commons.local_skill.eventskill.Slot;
 import ryey.easer.commons.local_skill.usource.USourceDataFactory;
 import ryey.easer.commons.local_skill.usource.USourceSkill;
-import ryey.easer.skills.SkillHelper;
+import ryey.easer.skills.SkillUtils;
 
 public class CellLocationUSourceSkill implements USourceSkill<CellLocationUSourceData> {
 
@@ -56,12 +56,12 @@ public class CellLocationUSourceSkill implements USourceSkill<CellLocationUSourc
 
     @Override
     public boolean checkPermissions(@NonNull Context context) {
-        return SkillHelper.checkPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION);
+        return SkillUtils.checkPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION);
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        SkillHelper.requestPermission(activity, requestCode, Manifest.permission.ACCESS_COARSE_LOCATION);
+        SkillUtils.requestPermission(activity, requestCode, Manifest.permission.ACCESS_COARSE_LOCATION);
     }
 
     @NonNull

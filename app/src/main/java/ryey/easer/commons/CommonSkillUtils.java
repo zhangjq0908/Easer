@@ -30,7 +30,7 @@ import ryey.easer.commons.local_skill.conditionskill.ConditionSkill;
 import ryey.easer.commons.local_skill.eventskill.EventSkill;
 import ryey.easer.commons.local_skill.operationskill.OperationSkill;
 
-public class CommonSkillHelper {
+public class CommonSkillUtils {
 
     public static final int TYPE_OPERATION = 0;
     public static final int TYPE_EVENT = 1;
@@ -64,6 +64,6 @@ public class CommonSkillHelper {
     public static boolean isEnabled(Context context, int type, String id) {
         SharedPreferences settingsPreference =
                 PreferenceManager.getDefaultSharedPreferences(context);
-        return settingsPreference.getBoolean(CommonSkillHelper.pluginEnabledKey(type, id), true);
+        return settingsPreference.getBoolean(CommonSkillUtils.pluginEnabledKey(type, id), true);
     }
 }

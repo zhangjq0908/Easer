@@ -49,7 +49,7 @@ import java.text.DateFormat;
 import java.util.Calendar;
 
 import ryey.easer.R;
-import ryey.easer.SettingsHelper;
+import ryey.easer.SettingsUtils;
 import ryey.easer.Utils;
 import ryey.easer.core.EHService;
 import ryey.easer.core.log.ActivityLog;
@@ -252,7 +252,7 @@ public class ActivityHistoryFragment extends Fragment {
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(time);
             DateFormat df;
-            if (SettingsHelper.use12HourClock(context)) {
+            if (SettingsUtils.use12HourClock(context)) {
                 df = Utils.df_12hour;
             } else {
                 df = Utils.df_24hour;
