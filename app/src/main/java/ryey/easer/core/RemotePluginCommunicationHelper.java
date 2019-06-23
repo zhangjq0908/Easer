@@ -40,12 +40,10 @@ import com.orhanobut.logger.Logger;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.Callable;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -116,7 +114,7 @@ public class RemotePluginCommunicationHelper {
 
     private DelayedTaskUntilConnectedWrapper delayedTaskUntilConnectedWrapper = new DelayedTaskUntilConnectedWrapper();
     public void doAfterConnect(Callable<Void> task) {
-        delayedTaskUntilConnectedWrapper.doAfterConnect(task);
+        delayedTaskUntilConnectedWrapper.doAfterConnected(task);
     }
 
     private Lock lck_operationDataParsedCallbackMap = new ReentrantLock();
@@ -307,10 +305,6 @@ public class RemotePluginCommunicationHelper {
         }
     }
 
-    public interface OnConnectedCallback {
-        void onConnected(Messenger outMessenger);
-    }
-
     public interface OnOperationPluginListObtainedCallback {
         void onListObtained(Set<RemoteOperationPluginInfo> operationPluginInfos);
     }
@@ -327,58 +321,17 @@ public class RemotePluginCommunicationHelper {
         void onEditDataIntentObtained(@NonNull Intent editDataIntent);
     }
 
-    //TODO: Replace with `AsyncHelper.DelayedUntilSatisfiedContainer`
-    static class DelayedTaskUntilConnectedWrapper {
-
-        private AtomicBoolean connected = new AtomicBoolean(false);
-
-        Lock lck_tasks = new ReentrantLock();
-        List<Callable<Void>> tasksAfterConnect = new ArrayList<>();
-
-        private OnConnectedCallback onConnectedDoTasksCallback = new OnConnectedCallback() {
-            @Override
-            public void onConnected(Messenger outMessenger) {
-                lck_tasks.lock();
-                try {
-                    for (int i = tasksAfterConnect.size() - 1; i >= 0; i--) {
-                        Callable<Void> task = tasksAfterConnect.get(i);
-                        try {
-                            task.call();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        tasksAfterConnect.remove(i);
-                    }
-                } finally {
-                    lck_tasks.unlock();
-                }
-            }
-        };
-
-        public void onConnected(Messenger outMessenger) {
-            connected.set(true);
-            onConnectedDoTasksCallback.onConnected(outMessenger);
+    static class DelayedTaskUntilConnectedWrapper extends AsyncHelper.DelayedWhenSatisfied {
+        void onConnected(Messenger outMessenger) {
+            super.onSatisfied();
         }
 
-        public void onDisconnected() {
-            connected.set(false);
+        void onDisconnected() {
+            super.onUnsatisfied();
         }
 
-        public void doAfterConnect(Callable<Void> task) {
-            lck_tasks.lock();
-            try {
-                if (connected.get()) {
-                    try {
-                        task.call();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    tasksAfterConnect.add(task);
-                }
-            } finally {
-                lck_tasks.unlock();
-            }
+        void doAfterConnected(Callable<Void> task) {
+            super.doAfter(task);
         }
     }
 
