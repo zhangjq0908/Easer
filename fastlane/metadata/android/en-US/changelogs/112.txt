@@ -1,0 +1,7 @@
+Fixes && Dev changes && i18n update
+
+* Fix crash log not working
+* Fix Condition can have empty names
+* Dev changes: better async backend & better naming
+* Danish i18n update
+

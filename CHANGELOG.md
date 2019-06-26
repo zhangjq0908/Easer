@@ -1,6 +1,12 @@
 CHANGELOG
 ======
 
+* v0.7.7.3: Fixes && Dev changes && i18n update
+	* Fix crash log not working
+	* Fix Condition can have empty names
+	* Dev changes: better async backend & better naming
+	* Danish i18n update
+
 * v0.7.7.2: Show status in Pivot && i18n update
 	* The Pivot page now shows the status of each Script (a color dot at top-left)
 	* Update dependencies
