@@ -198,7 +198,7 @@
     <string name="category_source_date_time">Dato / tid</string>
     <string name="category_source_device">Enhed</string>
     <string name="category_source_easer">Easer</string>
-    <string name="category_source_data_communication">Data kommunikation</string>
+    <string name="category_source_data_communication">Datakommunikation</string>
     <string name="category_source_misc">Div.</string>
     <string name="category_source_personal">Personlig</string>
     <string name="category_source_unknown">Ukendt</string>
