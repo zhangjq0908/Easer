@@ -35,7 +35,7 @@ import java.util.List;
 
 import ryey.easer.R;
 import ryey.easer.commons.C;
-import ryey.easer.commons.CommonSkillHelper;
+import ryey.easer.commons.CommonSkillUtils;
 import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.local_skill.operationskill.OperationData;
 import ryey.easer.commons.local_skill.operationskill.OperationSkill;
@@ -119,7 +119,7 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
         for (String pluginId : profile.pluginIds()) {
             Collection<RemoteLocalOperationDataWrapper> operationDataCollection = profile.get(pluginId);
             if (operationRegistry.hasSkill(pluginId)) {
-                if (CommonSkillHelper.isEnabled(this, CommonSkillHelper.TYPE_OPERATION, pluginId)) {
+                if (CommonSkillUtils.isEnabled(this, CommonSkillUtils.TYPE_OPERATION, pluginId)) {
                     OperationSkill plugin = operationRegistry.findSkill(pluginId);
                     for (RemoteLocalOperationDataWrapper dataWrapper : operationDataCollection) {
                         addAndFillLocalPluginView(plugin, dataWrapper.localData);

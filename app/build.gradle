@@ -24,6 +24,7 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-rules-acra.pro',
                     'proguard-rules-guava.pro',
                     'proguard-rules.pro'
         }

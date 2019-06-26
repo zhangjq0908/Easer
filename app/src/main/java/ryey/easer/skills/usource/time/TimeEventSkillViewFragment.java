@@ -31,7 +31,7 @@ import androidx.annotation.Nullable;
 
 import java.util.Calendar;
 
-import ryey.easer.SettingsHelper;
+import ryey.easer.SettingsUtils;
 import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.skills.SkillViewFragment;
@@ -44,7 +44,7 @@ public class TimeEventSkillViewFragment extends SkillViewFragment<TimeUSourceDat
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         timePicker = new TimePicker(getContext());
-        timePicker.setIs24HourView(!SettingsHelper.use12HourClock(getContext()));
+        timePicker.setIs24HourView(!SettingsUtils.use12HourClock(getContext()));
 
         return timePicker;
     }

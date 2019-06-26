@@ -31,12 +31,131 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import ryey.easer.commons.local_skill.dynamics.DynamicsLink;
 
 public final class AsyncHelper {
+
+    public static class DelayedWhenSatisfied {
+
+        private interface OnSatisfiedProcessQueue {
+            void process();
+        }
+
+        protected AtomicBoolean satisfied = new AtomicBoolean(false);
+
+        protected Lock lck_tasks = new ReentrantLock();
+        protected List<Callable<Void>> tasksAfterConnect = new ArrayList<>();
+
+        private OnSatisfiedProcessQueue onSatisfiedProcessQueue = new OnSatisfiedProcessQueue() {
+            @Override
+            public void process() {
+                lck_tasks.lock();
+                try {
+                    for (int i = tasksAfterConnect.size() - 1; i >= 0; i--) {
+                        Callable<Void> task = tasksAfterConnect.get(i);
+                        try {
+                            task.call();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        tasksAfterConnect.remove(i);
+                    }
+                } finally {
+                    lck_tasks.unlock();
+                }
+            }
+        };
+
+        public void onSatisfied() {
+            satisfied.set(true);
+            onSatisfiedProcessQueue.process();
+        }
+
+        public void onUnsatisfied() {
+            satisfied.set(false);
+        }
+
+        public void doAfter(Callable<Void> task) {
+            lck_tasks.lock();
+            try {
+                if (satisfied.get()) {
+                    try {
+                        task.call();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    tasksAfterConnect.add(task);
+                }
+            } finally {
+                lck_tasks.unlock();
+            }
+        }
+    }
+
+    public static class DelayedLoadProfileJobs extends DelayedWhenSatisfied {
+
+        private ProfileLoaderService.PLSBinder binder;
+
+        public void onBind(ProfileLoaderService.PLSBinder binder) {
+            lck_tasks.lock();
+            try {
+                this.binder = binder;
+                super.onSatisfied();
+            } finally {
+                lck_tasks.unlock();
+            }
+        }
+
+        public void onUnbind() {
+            lck_tasks.lock();
+            try {
+                super.onUnsatisfied();
+                this.binder = null;
+            } finally {
+                lck_tasks.unlock();
+            }
+        }
+
+        private void doAfterSatisfied(TaskSpec taskSpec) {
+            doAfter(() -> {
+                if (taskSpec.scriptName == null) {
+                    binder.triggerProfile(taskSpec.profileName);
+                } else {
+                    binder.triggerProfile(taskSpec.profileName, taskSpec.scriptName,
+                            taskSpec.dynamicsProperties, taskSpec.dynamicsLink);
+                }
+                return null;
+            });
+        }
+
+        public void triggerProfile(String profileName) {
+            doAfterSatisfied(new TaskSpec(profileName, null, null, null));
+        }
+        public void triggerProfile(String profileName, String scriptName,
+                                   Bundle dynamicsProperties, DynamicsLink dynamicsLink) {
+            doAfterSatisfied(new TaskSpec(profileName, scriptName, dynamicsProperties, dynamicsLink));
+        }
+
+        private static class TaskSpec {
+            @NonNull public final String profileName;
+            @Nullable public final String scriptName;
+            @Nullable public final Bundle dynamicsProperties;
+            @Nullable public final DynamicsLink dynamicsLink;
+
+            public TaskSpec(@NonNull String profileName, @Nullable String scriptName, @Nullable Bundle dynamicsProperties, @Nullable DynamicsLink dynamicsLink) {
+                this.profileName = profileName;
+                this.scriptName = scriptName;
+                this.dynamicsProperties = dynamicsProperties;
+                this.dynamicsLink = dynamicsLink;
+            }
+        }
+    }
 
     public static class DelayedLoadProfileJobsWrapper {
         private final DelayedLoadProfileJobs jobLoadProfile = new DelayedLoadProfileJobs();
@@ -74,82 +193,6 @@ public final class AsyncHelper {
 
         public void triggerProfile(String profileName, String scriptName, Bundle dynamicsProperties, DynamicsLink dynamicsLink) {
             jobLoadProfile.triggerProfile(profileName, scriptName, dynamicsProperties, dynamicsLink);
-        }
-    }
-
-    public static class DelayedLoadProfileJobs {
-
-        private Lock lck_tasks = new ReentrantLock();
-
-        private ProfileLoaderService.PLSBinder binder;
-
-        private List<Task> tasksAfterConnect = new ArrayList<>();
-
-        public void onBind(ProfileLoaderService.PLSBinder binder) {
-            lck_tasks.lock();
-            try {
-                this.binder = binder;
-                for (int i = tasksAfterConnect.size() - 1; i >= 0; i--) {
-                    Task task = tasksAfterConnect.get(i);
-                    load(binder, task);
-                    tasksAfterConnect.remove(i);
-                }
-            } finally {
-                lck_tasks.unlock();
-            }
-        }
-
-        public void onUnbind() {
-            lck_tasks.lock();
-            try {
-                this.binder = null;
-            } finally {
-                lck_tasks.unlock();
-            }
-        }
-
-        private void doAfterSatisfied(Task task) {
-            lck_tasks.lock();
-            try {
-                if (binder != null) {
-                    load(binder, task);
-                } else {
-                    tasksAfterConnect.add(task);
-                }
-            } finally {
-                lck_tasks.unlock();
-            }
-        }
-
-        private static void load(ProfileLoaderService.PLSBinder binder, Task task) {
-            if (task.scriptName == null) {
-                binder.triggerProfile(task.profileName);
-            } else {
-                binder.triggerProfile(task.profileName, task.scriptName,
-                        task.dynamicsProperties, task.dynamicsLink);
-            }
-        }
-
-        public void triggerProfile(String profileName) {
-            doAfterSatisfied(new Task(profileName, null, null, null));
-        }
-        public void triggerProfile(String profileName, String scriptName,
-                                   Bundle dynamicsProperties, DynamicsLink dynamicsLink) {
-            doAfterSatisfied(new Task(profileName, scriptName, dynamicsProperties, dynamicsLink));
-        }
-
-        private static class Task {
-            @NonNull public final String profileName;
-            @Nullable public final String scriptName;
-            @Nullable public final Bundle dynamicsProperties;
-            @Nullable public final DynamicsLink dynamicsLink;
-
-            public Task(@NonNull String profileName, @Nullable String scriptName, @Nullable Bundle dynamicsProperties, @Nullable DynamicsLink dynamicsLink) {
-                this.profileName = profileName;
-                this.scriptName = scriptName;
-                this.dynamicsProperties = dynamicsProperties;
-                this.dynamicsLink = dynamicsLink;
-            }
         }
     }
 

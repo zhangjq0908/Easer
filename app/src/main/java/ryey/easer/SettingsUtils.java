@@ -24,7 +24,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
 
-public class SettingsHelper {
+public class SettingsUtils {
 
     private static SharedPreferences pref(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context);

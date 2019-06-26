@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import ryey.easer.commons.CommonSkillHelper;
+import ryey.easer.commons.CommonSkillUtils;
 import ryey.easer.commons.local_skill.Skill;
 import ryey.easer.commons.local_skill.SkillView;
 import ryey.easer.commons.local_skill.StorageData;
@@ -94,11 +94,11 @@ import ryey.easer.skills.usource.wifi_enabled.WifiEnabledUSourceSkill;
  */
 final public class LocalSkillRegistry {
 
-    private final Registry<EventSkill, EventData> eventSkillRegistry = new Registry<>(CommonSkillHelper.TYPE_EVENT);
-    private final Registry<OperationSkill, OperationData> operationSkillRegistry = new Registry<>(CommonSkillHelper.TYPE_OPERATION, new String[][]{
+    private final Registry<EventSkill, EventData> eventSkillRegistry = new Registry<>(CommonSkillUtils.TYPE_EVENT);
+    private final Registry<OperationSkill, OperationData> operationSkillRegistry = new Registry<>(CommonSkillUtils.TYPE_OPERATION, new String[][]{
             {"event control", "state control"},
     });
-    private final Registry<ConditionSkill, ConditionData> conditionSkillRegistry = new Registry<>(CommonSkillHelper.TYPE_CONDITION);
+    private final Registry<ConditionSkill, ConditionData> conditionSkillRegistry = new Registry<>(CommonSkillUtils.TYPE_CONDITION);
     private final OverallRegistry overallRegistry = new OverallRegistry(new SkillLookupper<?, ?>[] {
             eventSkillRegistry, operationSkillRegistry, conditionSkillRegistry,
     });
@@ -235,7 +235,7 @@ final public class LocalSkillRegistry {
             SharedPreferences settingsPreference =
                     PreferenceManager.getDefaultSharedPreferences(context);
             for (T plugin : skillList) {
-                if (settingsPreference.getBoolean(CommonSkillHelper.pluginEnabledKey(plugin), true)
+                if (settingsPreference.getBoolean(CommonSkillUtils.pluginEnabledKey(plugin), true)
                         && plugin.isCompatible(context)) {
                     enabledPlugins.add(plugin);
                 }

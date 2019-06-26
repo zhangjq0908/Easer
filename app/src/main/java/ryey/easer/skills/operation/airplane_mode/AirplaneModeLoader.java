@@ -29,7 +29,7 @@ import androidx.annotation.NonNull;
 import java.io.IOException;
 
 import ryey.easer.commons.local_skill.ValidData;
-import ryey.easer.skills.SkillHelper;
+import ryey.easer.skills.SkillUtils;
 import ryey.easer.skills.operation.OperationLoader;
 
 public class AirplaneModeLoader extends OperationLoader<AirplaneModeOperationData> {
@@ -78,13 +78,13 @@ public class AirplaneModeLoader extends OperationLoader<AirplaneModeOperationDat
     private boolean switchAfter17(boolean newState) {
         final String COMMAND_FLIGHT_MODE_1 = "settings put global airplane_mode_on";
         final String COMMAND_FLIGHT_MODE_2 = "am broadcast -a android.intent.action.AIRPLANE_MODE --ez state";
-        if (SkillHelper.useRootFeature(context)) {
+        if (SkillUtils.useRootFeature(context)) {
             try {
                 int enabled = newState ? 1 : 0;
                 String command = COMMAND_FLIGHT_MODE_1 + " " + enabled;
-                SkillHelper.executeCommandAsRoot(context, command);
+                SkillUtils.executeCommandAsRoot(context, command);
                 command = COMMAND_FLIGHT_MODE_2 + " " + newState;
-                SkillHelper.executeCommandAsRoot(context, command);
+                SkillUtils.executeCommandAsRoot(context, command);
                 return true;
             } catch (IOException e) {
                 e.printStackTrace();

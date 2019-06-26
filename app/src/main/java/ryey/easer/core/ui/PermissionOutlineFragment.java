@@ -34,7 +34,7 @@ import com.orhanobut.logger.Logger;
 import java.util.List;
 
 import ryey.easer.R;
-import ryey.easer.SettingsHelper;
+import ryey.easer.SettingsUtils;
 import ryey.easer.commons.local_skill.Skill;
 import ryey.easer.skills.LocalSkillRegistry;
 
@@ -83,7 +83,7 @@ public class PermissionOutlineFragment extends Fragment {
     }
 
     boolean hasAllRequiredPermissions() {
-        final boolean logging = SettingsHelper.logging(getContext());
+        final boolean logging = SettingsUtils.logging(getContext());
         boolean satisfied = true;
         for (Object obj_plugin : LocalSkillRegistry.getInstance().all().getEnabledSkills(getContext())) {
             Skill plugin = (Skill) obj_plugin;

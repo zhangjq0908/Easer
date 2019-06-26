@@ -31,7 +31,7 @@ import ryey.easer.commons.local_skill.SourceCategory;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.eventskill.EventDataFactory;
 import ryey.easer.commons.local_skill.eventskill.EventSkill;
-import ryey.easer.skills.SkillHelper;
+import ryey.easer.skills.SkillUtils;
 import ryey.easer.skills.event.AbstractSlot;
 
 public class SmsEventSkill implements EventSkill<SmsEventData> {
@@ -54,23 +54,23 @@ public class SmsEventSkill implements EventSkill<SmsEventData> {
 
     @Override
     public boolean checkPermissions(@NonNull Context context) {
-        return SkillHelper.checkPermission(context,
+        return SkillUtils.checkPermission(context,
                 Manifest.permission.READ_SMS,
                 Manifest.permission.RECEIVE_SMS);
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        boolean can_read_sms = SkillHelper.checkPermission(activity, Manifest.permission.READ_SMS);
-        boolean can_receive_sms = SkillHelper.checkPermission(activity, Manifest.permission.RECEIVE_SMS);
+        boolean can_read_sms = SkillUtils.checkPermission(activity, Manifest.permission.READ_SMS);
+        boolean can_receive_sms = SkillUtils.checkPermission(activity, Manifest.permission.RECEIVE_SMS);
         if (!can_read_sms && !can_receive_sms) {
-            SkillHelper.requestPermission(activity, requestCode,
+            SkillUtils.requestPermission(activity, requestCode,
                     Manifest.permission.READ_SMS,
                     Manifest.permission.RECEIVE_SMS);
         } else if (!can_read_sms) {
-            SkillHelper.requestPermission(activity, requestCode, Manifest.permission.READ_SMS);
+            SkillUtils.requestPermission(activity, requestCode, Manifest.permission.READ_SMS);
         } else {
-            SkillHelper.requestPermission(activity, requestCode, Manifest.permission.RECEIVE_SMS);
+            SkillUtils.requestPermission(activity, requestCode, Manifest.permission.RECEIVE_SMS);
         }
     }
 

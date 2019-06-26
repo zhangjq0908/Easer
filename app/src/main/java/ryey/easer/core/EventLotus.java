@@ -29,7 +29,7 @@ import com.orhanobut.logger.Logger;
 import java.util.Calendar;
 import java.util.concurrent.ExecutorService;
 
-import ryey.easer.SettingsHelper;
+import ryey.easer.SettingsUtils;
 import ryey.easer.commons.local_skill.eventskill.EventData;
 import ryey.easer.commons.local_skill.eventskill.EventSkill;
 import ryey.easer.commons.local_skill.eventskill.Slot;
@@ -67,7 +67,7 @@ class EventLotus extends Lotus {
         mSlot = nodeToSlot(scriptTree);
         mSlot.register(uri);
 
-        cooldownInMillisecond = SettingsHelper.coolDownInterval(context) * 1000;
+        cooldownInMillisecond = SettingsUtils.coolDownInterval(context) * 1000;
     }
 
     private <T extends EventData> Slot<T> nodeToSlot(ScriptTree node) {

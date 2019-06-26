@@ -31,7 +31,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import ryey.easer.commons.local_skill.ValidData;
-import ryey.easer.skills.SkillHelper;
+import ryey.easer.skills.SkillUtils;
 import ryey.easer.skills.operation.OperationLoader;
 
 public class CellularLoader extends OperationLoader<CellularOperationData> {
@@ -46,10 +46,10 @@ public class CellularLoader extends OperationLoader<CellularOperationData> {
         if (state == (telephonyManager.getDataState() == TelephonyManager.DATA_CONNECTED)) {
             return true;
         } else {
-            if (SkillHelper.useRootFeature(context)) {
+            if (SkillUtils.useRootFeature(context)) {
                 try {
                     String command = "svc data " + (state ? "enable" : "disable");
-                    SkillHelper.executeCommandAsRoot(context, command);
+                    SkillUtils.executeCommandAsRoot(context, command);
                     return true;
                 } catch (IOException e) {
                     e.printStackTrace();
