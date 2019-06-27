@@ -186,7 +186,7 @@
     <string name="title_homepage">Pagina Iniziale</string>
     <string name="pref_locale_custom">Lingua Personalizzata</string>
     <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
-    <string name="prompt_error_logged">Easer ha appena registrato un errore. Controlla la sottocartella errori della cartella log.</string>
+    <string name="prompt_error_logged">Easer ha registrato un errore. Controlla la sottocartella errori della cartella log.</string>
     <string name="prompt_dynamics_not_ready">Per impostare una Dinamica, è necessario selezionare un Profilo valido e un trigger valido (es. Evento).</string>
     <string name="title_select_event">Scegli un Evento</string>
     <string name="title_select_condition">Scegli una Condizione</string>
