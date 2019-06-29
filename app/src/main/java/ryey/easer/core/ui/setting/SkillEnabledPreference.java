@@ -65,9 +65,11 @@ class SkillEnabledPreference extends CheckBoxPreference implements Preference.On
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (BuildConfig.DEBUG && !(newValue instanceof Boolean)) throw new AssertionError();
-        if ((Boolean) newValue && !skill.checkPermissions(getContext())) {
-            skill.requestPermissions((Activity) getContext(), REQCODE);
-            return false;
+        if ((Boolean) newValue) {
+            if (skill.checkPermissions(getContext()) == Boolean.FALSE) {
+                skill.requestPermissions((Activity) getContext(), REQCODE);
+                return false;
+            }
         }
         if (in_use) {
             return false;
@@ -89,13 +91,15 @@ class SkillEnabledPreference extends CheckBoxPreference implements Preference.On
         }
         recSetEnabled(view.findViewById(android.R.id.widget_frame), !in_use);
         btnPermission = view.findViewById(R.id.btn_permission);
-        redrawPermissionButton();
-        btnPermission.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                skill.requestPermissions((Activity) getContext(), REQCODE);
-            }
-        });
+        boolean requiresPermission = redrawPermissionButton();
+        if (requiresPermission) {
+            btnPermission.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    skill.requestPermissions((Activity) getContext(), REQCODE);
+                }
+            });
+        }
     }
 
     private static void recSetEnabled(View view, boolean enabled) {
@@ -107,11 +111,19 @@ class SkillEnabledPreference extends CheckBoxPreference implements Preference.On
         }
     }
 
-    void redrawPermissionButton() {
-        if (skill.checkPermissions(getContext())) {
-            btnPermission.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_status_positive_inner));
+    boolean redrawPermissionButton() {
+        Boolean ret = skill.checkPermissions(getContext());
+        if (ret == null) {
+            btnPermission.setVisibility(View.INVISIBLE);
+            return false;
         } else {
-            btnPermission.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_status_negative_inner));
+            btnPermission.setVisibility(View.VISIBLE);
+            if (ret) {
+                btnPermission.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_status_positive_inner));
+            } else {
+                btnPermission.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_status_negative_inner));
+            }
         }
+        return true;
     }
 }

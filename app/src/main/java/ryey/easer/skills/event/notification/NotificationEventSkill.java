@@ -27,6 +27,7 @@ import android.os.Build;
 import android.provider.Settings;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import ryey.easer.R;
@@ -57,9 +58,10 @@ public class NotificationEventSkill implements EventSkill<NotificationEventData>
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
     }
 
+    @Nullable
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
-    public boolean checkPermissions(@NonNull Context context) {
+    public Boolean checkPermissions(@NonNull Context context) {
         return SkillUtils.isPermissionGrantedForNotificationListenerService(context, NotificationEventListenerService.class);
     }
 

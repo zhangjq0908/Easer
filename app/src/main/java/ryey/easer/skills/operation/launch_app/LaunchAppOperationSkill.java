@@ -23,6 +23,7 @@ import android.app.Activity;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SkillView;
@@ -67,9 +68,10 @@ public class LaunchAppOperationSkill implements OperationSkill<LaunchAppOperatio
         return Category.android;
     }
 
+    @Nullable
     @Override
-    public boolean checkPermissions(@NonNull Context context) {
-        return true;
+    public Boolean checkPermissions(@NonNull Context context) {
+        return null;
     }
 
     @Override

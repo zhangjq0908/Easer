@@ -26,6 +26,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SourceCategory;
@@ -55,8 +56,9 @@ public class BluetoothEnabledUSourceSkill implements USourceSkill<BluetoothEnabl
         return BluetoothAdapter.getDefaultAdapter() != null;
     }
 
+    @Nullable
     @Override
-    public boolean checkPermissions(@NonNull Context context) {
+    public Boolean checkPermissions(@NonNull Context context) {
         return SkillUtils.checkPermission(context,
                 Manifest.permission.BLUETOOTH);
     }

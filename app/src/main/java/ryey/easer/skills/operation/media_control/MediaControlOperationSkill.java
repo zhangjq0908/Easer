@@ -27,6 +27,7 @@ import android.os.Build;
 import android.provider.Settings;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SkillView;
@@ -72,8 +73,9 @@ public class MediaControlOperationSkill implements OperationSkill<MediaControlOp
         return Category.android;
     }
 
+    @Nullable
     @Override
-    public boolean checkPermissions(@NonNull Context context) {
+    public Boolean checkPermissions(@NonNull Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             return SkillUtils.isPermissionGrantedForNotificationListenerService(context, MediaControlHelperNotificationListenerService.class);
         } else {

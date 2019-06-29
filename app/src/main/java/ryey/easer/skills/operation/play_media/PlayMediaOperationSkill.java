@@ -25,6 +25,7 @@ import android.content.Context;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.operationskill.OperationDataFactory;
@@ -70,8 +71,9 @@ public class PlayMediaOperationSkill implements OperationSkill<PlayMediaOperatio
         return Category.android;
     }
 
+    @Nullable
     @Override
-    public boolean checkPermissions(@NonNull Context context) {
+    public Boolean checkPermissions(@NonNull Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             return SkillUtils.checkPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE);
         }

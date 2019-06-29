@@ -87,7 +87,7 @@ public class PermissionOutlineFragment extends Fragment {
         boolean satisfied = true;
         for (Object obj_plugin : LocalSkillRegistry.getInstance().all().getEnabledSkills(getContext())) {
             Skill plugin = (Skill) obj_plugin;
-            if (!plugin.checkPermissions(getContext())) {
+            if (plugin.checkPermissions(getContext()) == Boolean.FALSE) {
                 Logger.d("Permission for plugin <%s> not satisfied", plugin.id());
                 if (!logging)
                     return false;
@@ -101,7 +101,7 @@ public class PermissionOutlineFragment extends Fragment {
         List plugins = LocalSkillRegistry.getInstance().all().getEnabledSkills(getContext());
         for (int i = 0; i < plugins.size(); i++) {
             Skill plugin = (Skill) plugins.get(i);
-            if (!plugin.checkPermissions(getContext()))
+            if (plugin.checkPermissions(getContext()) == Boolean.FALSE)
                 plugin.requestPermissions(getActivity(), i);
         }
     }
