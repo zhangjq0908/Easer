@@ -46,7 +46,6 @@
     <string name="button_cancel">Annullere</string>
     <string name="button_ok">O.k.</string>
     <string name="text_lack_permission">Easer har IKKE nødvendige rettigheder.</string>
-    <string name="button_request_permission">Tildele rettigheder</string>
     <string name="text_title">Titel</string>
     <string name="text_parent_node">Forælder</string>
     <string name="text_parent">Forælder</string>

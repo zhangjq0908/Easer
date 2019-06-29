@@ -31,11 +31,10 @@ import androidx.fragment.app.Fragment;
 
 import com.orhanobut.logger.Logger;
 
-import java.util.List;
-
 import ryey.easer.R;
 import ryey.easer.SettingsUtils;
 import ryey.easer.commons.local_skill.Skill;
+import ryey.easer.core.ui.setting.SettingsActivity;
 import ryey.easer.skills.LocalSkillRegistry;
 
 public class PermissionOutlineFragment extends Fragment {
@@ -67,7 +66,7 @@ public class PermissionOutlineFragment extends Fragment {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                requestAllPermissions();
+                SettingsActivity.callSkillSettings(getActivity());
             }
         });
     }
@@ -95,14 +94,5 @@ public class PermissionOutlineFragment extends Fragment {
             }
         }
         return satisfied;
-    }
-
-    void requestAllPermissions() {
-        List plugins = LocalSkillRegistry.getInstance().all().getEnabledSkills(getContext());
-        for (int i = 0; i < plugins.size(); i++) {
-            Skill plugin = (Skill) plugins.get(i);
-            if (plugin.checkPermissions(getContext()) == Boolean.FALSE)
-                plugin.requestPermissions(getActivity(), i);
-        }
     }
 }

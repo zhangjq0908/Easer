@@ -68,7 +68,6 @@
     <string name="button_read_next_time">次回、読む</string>
     <string name="button_understand">理解しました</string>
     <string name="text_lack_permission">Easer に必要なすべてのアクセス許可がありません。</string>
-    <string name="button_request_permission">アクセス許可の付与</string>
     <string name="text_parent_node">親</string>
     <string name="text_predefined_event">定義済みのイベント</string>
     <string name="text_inline_event">インラインイベント</string>

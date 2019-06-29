@@ -48,7 +48,6 @@
     <string name="button_cancel">Отменить</string>
     <string name="button_ok">ОК</string>
     <string name="text_lack_permission">Easer не были предоставлены требуемые разрешения.</string>
-    <string name="button_request_permission">Предоставить разрешения</string>
     <string name="text_notification_running_indicator_content">%s работает в фоне</string>
     <string name="text_title">Название</string>
     <string name="text_parent_node">Родитель</string>

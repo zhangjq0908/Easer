@@ -45,7 +45,6 @@
     <string name="button_understand">Capito</string>
     <string name="button_ok">OK</string>
     <string name="text_lack_permission">Easer NON dispone di sufficienti autorizzazioni.</string>
-    <string name="button_request_permission">Autorizza</string>
     <string name="text_notification_running_indicator_content">%s è in esecuzione in background</string>
     <string name="text_title">Titolo</string>
     <string name="text_parent_node">Genitore</string>
