@@ -1,0 +1,6 @@
+Display permission in skill settings && i18n
+
+* Permission status is now displayed in skill settings
+* PluginOutlineFragment will redirect to skill settings
+* i18n update
+

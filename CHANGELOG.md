@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+* v0.7.7.4: Display permission in skill settings && i18n
+	* Permission status is now displayed in skill settings
+	* PluginOutlineFragment will redirect to skill settings
+	* i18n update
+
 * v0.7.7.3: Fixes && Dev changes && i18n update
 	* Fix crash log not working
 	* Fix Condition can have empty names
