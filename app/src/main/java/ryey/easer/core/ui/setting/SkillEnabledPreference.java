@@ -96,6 +96,7 @@ class SkillEnabledPreference extends CheckBoxPreference implements Preference.On
             btnPermission.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    redrawPermissionButton();
                     skill.requestPermissions((Activity) getContext(), REQCODE);
                 }
             });
