@@ -24,6 +24,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SkillView;
@@ -52,9 +53,10 @@ public class HeadsetUSourceSkill implements USourceSkill<HeadsetUSourceData> {
         return true;
     }
 
+    @Nullable
     @Override
-    public boolean checkPermissions(@NonNull Context context) {
-        return true;
+    public Boolean checkPermissions(@NonNull Context context) {
+        return null;
     }
 
     @Override

@@ -25,6 +25,7 @@ import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import ryey.easer.BuildConfig;
@@ -40,6 +41,8 @@ class SkillEnabledPreference extends CheckBoxPreference implements Preference.On
 
     private final Skill skill;
     private final boolean in_use;
+
+    private ImageButton btnPermission;
 
     SkillEnabledPreference(Context context, Skill skill, boolean in_use) {
         super(context);
@@ -62,9 +65,11 @@ class SkillEnabledPreference extends CheckBoxPreference implements Preference.On
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (BuildConfig.DEBUG && !(newValue instanceof Boolean)) throw new AssertionError();
-        if ((Boolean) newValue && !skill.checkPermissions(getContext())) {
-            skill.requestPermissions((Activity) getContext(), REQCODE);
-            return false;
+        if ((Boolean) newValue) {
+            if (skill.checkPermissions(getContext()) == Boolean.FALSE) {
+                skill.requestPermissions((Activity) getContext(), REQCODE);
+                return false;
+            }
         }
         if (in_use) {
             return false;
@@ -85,6 +90,17 @@ class SkillEnabledPreference extends CheckBoxPreference implements Preference.On
             }
         }
         recSetEnabled(view.findViewById(android.R.id.widget_frame), !in_use);
+        btnPermission = view.findViewById(R.id.btn_permission);
+        boolean requiresPermission = redrawPermissionButton();
+        if (requiresPermission) {
+            btnPermission.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    redrawPermissionButton();
+                    skill.requestPermissions((Activity) getContext(), REQCODE);
+                }
+            });
+        }
     }
 
     private static void recSetEnabled(View view, boolean enabled) {
@@ -94,5 +110,21 @@ class SkillEnabledPreference extends CheckBoxPreference implements Preference.On
                 recSetEnabled(((ViewGroup) view).getChildAt(i), enabled);
             }
         }
+    }
+
+    boolean redrawPermissionButton() {
+        Boolean ret = skill.checkPermissions(getContext());
+        if (ret == null) {
+            btnPermission.setVisibility(View.INVISIBLE);
+            return false;
+        } else {
+            btnPermission.setVisibility(View.VISIBLE);
+            if (ret) {
+                btnPermission.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_status_positive_inner));
+            } else {
+                btnPermission.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_status_negative_inner));
+            }
+        }
+        return true;
     }
 }

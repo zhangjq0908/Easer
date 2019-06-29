@@ -20,6 +20,9 @@
 package ryey.easer.core.ui.setting;
 
 import android.Manifest;
+import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -65,6 +68,16 @@ public class SettingsActivity extends CommonBaseActivity implements SharedPrefer
 
     private static final String BS_NAME_PLUGIN_ENABLED = "bs_plugin_enabled";
 
+    private static final String ARG_PAGE = "ryey.easer.core.ui.setting.ARG.PAGE";
+    private static final int PAGE_DEFAULT = -1;
+    private static final int PAGE_SKILL = 1;
+
+    public static void callSkillSettings(Activity activity) {
+        Intent intent = new Intent(activity, SettingsActivity.class);
+        intent.putExtra(ARG_PAGE, PAGE_SKILL);
+        activity.startActivity(intent);
+    }
+
     private static boolean hasPermission(Context context, String permission) {
         if (ContextCompat.checkSelfPermission(context, permission)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -80,9 +93,20 @@ public class SettingsActivity extends CommonBaseActivity implements SharedPrefer
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(R.string.title_setting);
-        getFragmentManager().beginTransaction()
-                .replace(android.R.id.content, new SettingsFragment())
-                .commit();
+        Bundle args = getIntent().getExtras();
+        int startPage = PAGE_DEFAULT;
+        if (args != null) {
+            startPage = args.getInt(ARG_PAGE, PAGE_DEFAULT);
+        }
+        switch (startPage) {
+            case PAGE_SKILL:
+                setSkillFragment(getFragmentManager(), false);
+                break;
+            default:
+                getFragmentManager().beginTransaction()
+                        .replace(android.R.id.content, new SettingsFragment())
+                        .commit();
+        }
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
@@ -133,6 +157,16 @@ public class SettingsActivity extends CommonBaseActivity implements SharedPrefer
                 }
             }
         }
+    }
+
+    static void setSkillFragment(FragmentManager fragmentManager, boolean addToBackStack) {
+        SkillSettingsPreferenceFragment fragment = new SkillSettingsPreferenceFragment();
+        FragmentTransaction transaction = fragmentManager.beginTransaction()
+                .replace(android.R.id.content, fragment);
+        if (addToBackStack) {
+            transaction.addToBackStack(BS_NAME_PLUGIN_ENABLED);
+        }
+        transaction.commit();
     }
 
     public static class SettingsFragment extends PreferenceFragment {
@@ -244,11 +278,7 @@ public class SettingsActivity extends CommonBaseActivity implements SharedPrefer
                     .setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    SkillSettingsPreferenceFragment fragment = new SkillSettingsPreferenceFragment();
-                    getFragmentManager().beginTransaction()
-                            .replace(android.R.id.content, fragment)
-                            .addToBackStack(BS_NAME_PLUGIN_ENABLED)
-                            .commit();
+                    setSkillFragment(getFragmentManager(), true);
                     return true;
                 }
             });

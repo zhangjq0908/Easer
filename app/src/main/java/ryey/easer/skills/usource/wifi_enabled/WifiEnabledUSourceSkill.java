@@ -25,6 +25,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SourceCategory;
@@ -54,8 +55,9 @@ public class WifiEnabledUSourceSkill implements USourceSkill<WifiEnabledUSourceD
         return true;
     }
 
+    @Nullable
     @Override
-    public boolean checkPermissions(@NonNull Context context) {
+    public Boolean checkPermissions(@NonNull Context context) {
         return SkillUtils.checkPermission(context,
                 Manifest.permission.ACCESS_WIFI_STATE,
                 Manifest.permission.CHANGE_WIFI_STATE);

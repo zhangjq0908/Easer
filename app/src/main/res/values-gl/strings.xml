@@ -55,7 +55,6 @@
     <string name="button_ok">Feito</string>
 
     <string name="text_lack_permission">O Easer NON ten tódolos permisos que precisa.</string>
-    <string name="button_request_permission">Fornecer permisos</string>
 
     <string name="text_notification_running_indicator_content">%s está a funcionar no segundo plano</string>
 

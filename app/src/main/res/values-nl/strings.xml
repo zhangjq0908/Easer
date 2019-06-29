@@ -48,7 +48,6 @@
     <string name="button_cancel">Annuleer</string>
     <string name="button_ok">OK</string>
     <string name="text_lack_permission">Easer heeft NIET alle benodigde toegangsrechten.</string>
-    <string name="button_request_permission">Ken toegang toe</string>
     <string name="text_notification_running_indicator_content">%s wordt uitgevoerd in de achtergrond</string>
     <string name="text_title">Titel</string>
     <string name="text_parent_node">Ouder</string>

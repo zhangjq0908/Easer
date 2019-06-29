@@ -23,6 +23,7 @@ import android.app.Activity;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 public interface Skill<T extends StorageData> {
@@ -49,9 +50,9 @@ public interface Skill<T extends StorageData> {
     /**
      * Checks all permission(s) used by this plugin
      * @param context Context object used to check permission
-     * @return whether all permissions are satisfied (or not)
+     * @return whether all permissions are satisfied (or not); {@code null} for not requiring any permissions
      */
-    boolean checkPermissions(@NonNull Context context);
+    @Nullable Boolean checkPermissions(@NonNull Context context);
 
     /**
      * Request for all permissions used by this plugin
