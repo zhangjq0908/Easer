@@ -185,4 +185,5 @@
     <string name="prompt_dynamics_not_ready">For å sette dynamikk, må du velge en gyldig profil og en gyldig utløser (f.eks. hendelse)</string>
     <string name="title_select_event">Velg en hendelse</string>
     <string name="title_select_condition">Velg en betingelse</string>
+    <string name="button_see_detail">Vis detaljer</string>
 </resources>
