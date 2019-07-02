@@ -45,7 +45,7 @@
     <string name="button_understand">Forstået</string>
     <string name="button_cancel">Annullere</string>
     <string name="button_ok">O.k.</string>
-    <string name="text_lack_permission">Easer har IKKE nødvendige rettigheder.</string>
+    <string name="text_lack_permission">"Nogle færdigheder har IKKE  nødvendige rettigheder."</string>
     <string name="text_title">Titel</string>
     <string name="text_parent_node">Forælder</string>
     <string name="text_parent">Forælder</string>
@@ -193,4 +193,5 @@
     <string name="prompt_dynamics_not_ready">For at indstille dynamik skal der vælges en gyldig profil og en gyldig udløser (f.eks. hændelse).</string>
     <string name="title_select_event">Vælge en hændelse</string>
     <string name="title_select_condition">Vælge en tilstand</string>
+    <string name="button_see_detail">Se oplysninger</string>
 </resources>
