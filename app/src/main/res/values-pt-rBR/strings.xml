@@ -56,7 +56,7 @@
     <string name="button_understand">Entendido</string>
     <string name="button_cancel">Cancelar</string>
     <string name="button_ok">OK</string>
-    <string name="text_lack_permission">Easer NÃO tem permissões suficientes.</string>
+    <string name="text_lack_permission">Algumas habilidades NÃO têm permissões suficientes.</string>
     <string name="text_notification_running_indicator_content">%s está executando em segundo plano</string>
     <string name="text_title">Título</string>
     <string name="text_parent_node">Nó principal</string>
@@ -186,4 +186,8 @@
     <string name="category_operation_easer">\@string/easer</string>
     <string name="category_operation_misc">Diversos</string>
     <string name="category_operation_unknown">Desconhecido</string>
+    <string name="prompt_dynamics_not_ready">Para definir uma Dinâmica, você precisa selecionar um Perfil válido e um gatilho valido (ex: Evento).</string>
+    <string name="title_select_event">Escolha um evento</string>
+    <string name="title_select_condition">Escolher uma condição</string>
+    <string name="button_see_detail">Ver Detalhes</string>
 </resources>
