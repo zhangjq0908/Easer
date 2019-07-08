@@ -178,4 +178,12 @@
     <string name="condition_calendar_any_event">Qualquer evento</string>
     <string name="condition_calendar_event_match_pattern">Correspondência</string>
     <string name="condition_calendar_all_day_event">Apenas corresponder eventos que durem o dia todo</string>
+    <string name="category_source_android">Android</string>
+    <string name="category_source_date_time">Data / Hora</string>
+    <string name="category_source_device">Dispositivo</string>
+    <string name="category_source_easer">Easer</string>
+    <string name="category_source_data_communication">Comunicação de dados</string>
+    <string name="category_source_misc">Outros</string>
+    <string name="category_source_personal">Pessoal</string>
+    <string name="category_source_unknown">Desconhecido</string>
 </resources>
