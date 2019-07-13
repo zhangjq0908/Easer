@@ -1,0 +1,5 @@
+Fix some Skill can not be selected && translation update
+
+* Fix some Skills can not be selected when adding them
+* i18n update
+

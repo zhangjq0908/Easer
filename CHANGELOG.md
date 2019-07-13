@@ -1,6 +1,10 @@
 CHANGELOG
 ======
 
+* v0.7.7.5: Fix some Skill can not be selected && translation update
+	* Fix some Skills can not be selected when adding them
+	* i18n update
+
 * v0.7.7.4: Display permission in skill settings && i18n
 	* Permission status is now displayed in skill settings
 	* PluginOutlineFragment will redirect to skill settings
