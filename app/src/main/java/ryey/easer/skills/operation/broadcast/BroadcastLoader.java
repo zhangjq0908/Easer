@@ -21,12 +21,8 @@ package ryey.easer.skills.operation.broadcast;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-
-import java.util.ArrayList;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.local_skill.ValidData;
@@ -39,7 +35,7 @@ public class BroadcastLoader extends OperationLoader<BroadcastOperationData> {
 
     @Override
     public boolean load(@ValidData @NonNull BroadcastOperationData data) {
-        IntentData iData = preprocess(data.data);
+        IntentData iData = data.data;
         Intent intent = new Intent();
         intent.setAction(iData.action);
         if (iData.category != null)
@@ -59,41 +55,9 @@ public class BroadcastLoader extends OperationLoader<BroadcastOperationData> {
             intent.setData(iData.data);
         }
         if (iData.extras != null) {
-            Bundle extras = new Bundle();
-            for (IntentData.ExtraItem item : iData.extras) {
-                switch (item.type) {
-                    case "string":
-                        extras.putString(item.key, item.value);
-                        break;
-                    case "int":
-                        extras.putInt(item.key, Integer.parseInt(item.value));
-                        break;
-                }
-            }
-            intent.putExtras(extras);
+            intent.putExtras(iData.extras.asBundle());
         }
         context.sendBroadcast(intent);
         return true;
-    }
-
-    private static IntentData preprocess(IntentData data) {
-        IntentData res = new IntentData();
-        res.action = data.action;
-        if (data.category != null) {
-            res.category = new ArrayList<>(data.category.size());
-            res.category.addAll(data.category);
-        }
-        res.type = data.type;
-        res.data = Uri.parse(data.data.getPath());
-        if (data.extras != null) {
-            res.extras = new ArrayList<>(data.extras.size());
-            for (IntentData.ExtraItem extra : data.extras) {
-                String key = extra.key;
-                String value = extra.value;
-                String type = extra.type;
-                res.extras.add(new IntentData.ExtraItem(key, value, type));
-            }
-        }
-        return res;
     }
 }

@@ -34,17 +34,21 @@ import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.local_skill.operationskill.OperationData;
 import ryey.easer.plugin.PluginDataFormat;
+import ryey.easer.skills.operation.Extras;
 
 public class LaunchAppOperationData implements OperationData {
     private static final String K_APP_PACKAGE = "package";
     private static final String K_CLASS = "class";
+    private static final String K_EXTRAS = "extras";
 
-    final String app_package;
+    final String app_package; //FIXME: @Nonnull???
     final @Nullable String app_class;
+    final @Nullable Extras extras;
 
-    LaunchAppOperationData(String app_package, @Nullable String app_class) {
+    LaunchAppOperationData(String app_package, @Nullable String app_class, @Nullable Extras extras) {
         this.app_package = app_package;
         this.app_class = app_class;
+        this.extras = extras;
     }
 
     LaunchAppOperationData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
@@ -54,6 +58,7 @@ public class LaunchAppOperationData implements OperationData {
                     JSONObject jsonObject = new JSONObject(data);
                     app_package = jsonObject.getString(K_APP_PACKAGE);
                     app_class = jsonObject.optString(K_CLASS);
+                    extras = Extras.mayParse(jsonObject.optString(K_EXTRAS), format, version);
                 } catch (JSONException e) {
                     throw new IllegalStorageDataException(e);
                 }
@@ -70,6 +75,8 @@ public class LaunchAppOperationData implements OperationData {
                     JSONObject jsonObject = new JSONObject();
                     jsonObject.put(K_APP_PACKAGE, app_package);
                     jsonObject.put(K_CLASS, app_class);
+                    if (extras != null)
+                        jsonObject.put(K_EXTRAS, extras.serialize(format));
                     ret = jsonObject.toString();
                 } catch (JSONException e) {
                     throw new IllegalStateException(e);
@@ -81,7 +88,7 @@ public class LaunchAppOperationData implements OperationData {
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
-        return app_package != null && !Utils.isBlank(app_package);
+        return !Utils.isBlank(app_package);
     }
 
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
@@ -89,11 +96,13 @@ public class LaunchAppOperationData implements OperationData {
     public boolean equals(Object obj) {
         if (obj == this)
             return true;
-        if (obj == null || !(obj instanceof LaunchAppOperationData))
+        if (!(obj instanceof LaunchAppOperationData))
             return false;
         if (!Utils.nullableEqual(app_package, ((LaunchAppOperationData) obj).app_package))
             return false;
         if (!Utils.nullableEqual(app_class, ((LaunchAppOperationData) obj).app_class))
+            return false;
+        if (!Utils.nullableEqual(extras, ((LaunchAppOperationData) obj).extras))
             return false;
         return true;
     }
@@ -107,6 +116,7 @@ public class LaunchAppOperationData implements OperationData {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(app_package);
         dest.writeString(app_class);
+        dest.writeParcelable(extras, 0);
     }
 
     public static final Creator<LaunchAppOperationData> CREATOR
@@ -123,6 +133,7 @@ public class LaunchAppOperationData implements OperationData {
     private LaunchAppOperationData(Parcel in) {
         app_package = in.readString();
         app_class = in.readString();
+        extras = in.readParcelable(Extras.class.getClassLoader());
     }
 
     @Nullable

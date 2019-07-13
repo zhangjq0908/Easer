@@ -32,10 +32,12 @@ import ryey.easer.R;
 import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.skills.SkillViewFragment;
+import ryey.easer.skills.operation.EditExtraFragment;
 
 public class LaunchAppSkillViewFragment extends SkillViewFragment<LaunchAppOperationData> {
     EditText et_app_package;
     EditText et_class;
+    EditExtraFragment editExtraFragment;
 
     @NonNull
     @Override
@@ -43,6 +45,7 @@ public class LaunchAppSkillViewFragment extends SkillViewFragment<LaunchAppOpera
         View view = inflater.inflate(R.layout.plugin_operation__launch_app, container, false);
         et_app_package = view.findViewById(R.id.editText_app_package);
         et_class = view.findViewById(R.id.editText_app_activity);
+        editExtraFragment = (EditExtraFragment) getChildFragmentManager().findFragmentById(R.id.fragment_edit_extra);
         return view;
     }
 
@@ -50,12 +53,13 @@ public class LaunchAppSkillViewFragment extends SkillViewFragment<LaunchAppOpera
     protected void _fill(@ValidData @NonNull LaunchAppOperationData data) {
         et_app_package.setText(data.app_package);
         et_class.setText(data.app_class);
+        editExtraFragment.fillExtras(data.extras);
     }
 
     @ValidData
     @NonNull
     @Override
     public LaunchAppOperationData getData() throws InvalidDataInputException {
-        return new LaunchAppOperationData(et_app_package.getText().toString(), et_class.getText().toString());
+        return new LaunchAppOperationData(et_app_package.getText().toString(), et_class.getText().toString(), editExtraFragment.getExtras());
     }
 }

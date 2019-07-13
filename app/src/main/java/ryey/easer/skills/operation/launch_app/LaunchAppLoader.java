@@ -45,6 +45,8 @@ public class LaunchAppLoader extends OperationLoader<LaunchAppOperationData> {
         }
         if (intent != null) {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            if (data.extras != null)
+                intent.putExtras(data.extras.asBundle());
             context.startActivity(intent);
             return true;
         }

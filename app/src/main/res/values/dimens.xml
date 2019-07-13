@@ -11,6 +11,8 @@
 
     <dimen name="widget_margin">8dp</dimen>
 
+    <dimen name="indent">12dp</dimen>
+
     <dimen name="eventpluginviewpager_horizontal_margin">12dp</dimen>
     <dimen name="eventpluginviewpager_vertical_margin">8dp</dimen>
 

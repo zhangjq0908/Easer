@@ -112,37 +112,17 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="20dp" />
 
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/text_extras"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_data" />
-
-    <LinearLayout
-        android:id="@+id/layout_extras"
+    <fragment
+        android:id="@+id/fragment_edit_extra"
+        android:name="ryey.easer.skills.operation.EditExtraFragment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/textView19">
-
-    </LinearLayout>
-
-    <ImageButton
-        android:id="@+id/button_add_extra"
-        android:layout_width="20dp"
-        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView19"
-        app:layout_constraintStart_toEndOf="@+id/textView19"
-        app:layout_constraintTop_toTopOf="@+id/textView19"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_data" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

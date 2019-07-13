@@ -29,6 +29,8 @@ import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.operationskill.OperationDataFactory;
 import ryey.easer.plugin.PluginDataFormat;
+import ryey.easer.skills.operation.ExtraItem;
+import ryey.easer.skills.operation.Extras;
 
 class BroadcastOperationDataFactory implements OperationDataFactory<BroadcastOperationData> {
     @NonNull
@@ -47,9 +49,10 @@ class BroadcastOperationDataFactory implements OperationDataFactory<BroadcastOpe
         intentData.category.add("testCategory");
         intentData.type = "myType";
         intentData.data = Uri.parse("myprot://seg1/seg2");
-        intentData.extras = new ArrayList<>();
-        IntentData.ExtraItem extraItem = new IntentData.ExtraItem("extra_key1", "extra_value1", "string");
-        intentData.extras.add(extraItem);
+        ArrayList<ExtraItem> extras = new ArrayList<>();
+        ExtraItem extraItem = new ExtraItem("extra_key1", "extra_value1", "string");
+        extras.add(extraItem);
+        intentData.extras = new Extras(extras);
         return new BroadcastOperationData(intentData);
     }
 
