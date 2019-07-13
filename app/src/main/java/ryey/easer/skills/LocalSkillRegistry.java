@@ -54,6 +54,7 @@ import ryey.easer.skills.event.notification.NotificationEventSkill;
 import ryey.easer.skills.event.sms.SmsEventSkill;
 import ryey.easer.skills.event.tcp_trip.TcpTripEventSkill;
 import ryey.easer.skills.event.timer.TimerEventSkill;
+import ryey.easer.skills.event.widget.WidgetEventSkill;
 import ryey.easer.skills.operation.airplane_mode.AirplaneModeOperationSkill;
 import ryey.easer.skills.operation.alarm.AlarmOperationSkill;
 import ryey.easer.skills.operation.bluetooth.BluetoothOperationSkill;
@@ -129,6 +130,7 @@ final public class LocalSkillRegistry {
         event().registerSkill(TimerEventSkill.class);
         event().registerSkill(NfcTagEventSkill.class);
         event().registerSkill(TcpTripEventSkill.class);
+        event().registerSkill(WidgetEventSkill.class);
 
         condition().registerSkill(CalendarConditionSkill.class);
         condition().registerSkill(RingerModeConditionSkill.class);

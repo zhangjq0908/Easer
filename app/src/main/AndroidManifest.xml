@@ -33,8 +33,25 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl">
-        <activity android:name=".core.ui.version_n_info.AboutActivity"
-            android:theme="@style/AppTheme.About"></activity>
+        <receiver android:name=".skills.event.widget.UserActionWidget"
+            android:label="@string/event_widget_widget_label">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_event_widget_info" />
+        </receiver>
+
+        <activity android:name=".skills.event.widget.UserActionWidgetConfigureActivity">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".core.ui.version_n_info.AboutActivity"
+            android:theme="@style/AppTheme.About" />
         <activity android:name=".core.ui.version_n_info.WelcomeActivity" />
         <activity
             android:name=".core.ui.MainActivity"

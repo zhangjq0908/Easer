@@ -89,6 +89,14 @@
     <string name="one_time">One time</string>
     <string name="minutes">Minutes</string>
 
+    <string name="event_widget">Widget</string>
+    <string name="event_widget_widget_label">WidgetEvent Widget</string>
+    <string name="event_widget_text">Text</string>
+    <string name="event_widget_tag">Tag</string>
+    <string name="event_widget_default_text">DISPLAY TEXT</string>
+    <string name="event_widget_default_tag">TAG</string>
+    <string name="event_widget_button_add_widget">Add widget</string>
+
     <!--Operation (o, op)-->
 
     <string name="operation_airplane_mode">Airplane Mode</string>
