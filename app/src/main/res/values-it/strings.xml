@@ -44,7 +44,7 @@
     <string name="button_read_next_time">Leggi la Prossima Volta</string>
     <string name="button_understand">Capito</string>
     <string name="button_ok">OK</string>
-    <string name="text_lack_permission">Qualche Modulo NON dispone di autorizzazioni sufficienti.</string>
+    <string name="text_lack_permission">Qualche Modulo NON dispone di sufficienti autorizzazioni.</string>
     <string name="text_notification_running_indicator_content">%s è in esecuzione in background</string>
     <string name="text_title">Titolo</string>
     <string name="text_parent_node">Genitore</string>
