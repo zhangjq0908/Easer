@@ -23,77 +23,23 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import ryey.easer.Utils;
+import ryey.easer.skills.operation.Extras;
 
 //TODO: Make fields final
 public class IntentData implements Parcelable {
-
-    static class ExtraItem implements Parcelable {
-        @NonNull final String key;
-        @NonNull final String value;
-        @NonNull final String type;
-
-        ExtraItem(@NonNull String key, @NonNull String value, @NonNull String type) {
-            this.key = key;
-            this.value = value;
-            this.type = type;
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            if (obj == this)
-                return true;
-            if (!(obj instanceof ExtraItem))
-                return false;
-            if (!key.equals(((ExtraItem) obj).key))
-                return false;
-            if (!value.equals(((ExtraItem) obj).value))
-                return false;
-            if (!type.equals(((ExtraItem) obj).type))
-                return false;
-            return true;
-        }
-
-        @Override
-        public int describeContents() {
-            return 0;
-        }
-
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-            dest.writeString(key);
-            dest.writeString(value);
-            dest.writeString(type);
-        }
-
-        public static final Parcelable.Creator<ExtraItem> CREATOR
-                = new Parcelable.Creator<ExtraItem>() {
-            public ExtraItem createFromParcel(Parcel in) {
-                return new ExtraItem(in);
-            }
-
-            public ExtraItem[] newArray(int size) {
-                return new ExtraItem[size];
-            }
-        };
-
-        private ExtraItem(Parcel in) {
-            key = in.readString();
-            value = in.readString();
-            type = in.readString();
-        }
-    }
 
     String action;
     List<String> category;
     String type;
     Uri data;
-    List<ExtraItem> extras;
+    @Nullable
+    Extras extras;
 
     IntentData() {
 
@@ -134,7 +80,7 @@ public class IntentData implements Parcelable {
         dest.writeStringList(category);
         dest.writeString(type);
         dest.writeParcelable(data, 0);
-        dest.writeTypedList(extras);
+        dest.writeParcelable(extras, 0);
     }
 
     public static final Parcelable.Creator<IntentData> CREATOR
@@ -156,9 +102,6 @@ public class IntentData implements Parcelable {
             category = cat;
         type = in.readString();
         data = in.readParcelable(Uri.class.getClassLoader());
-        List<ExtraItem> ext = new ArrayList<>();
-        in.readTypedList(ext, ExtraItem.CREATOR);
-        if (ext.size() > 0)
-            extras = ext;
+        extras = in.readParcelable(Extras.class.getClassLoader());
     }
 }
