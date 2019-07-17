@@ -4,6 +4,8 @@
 本指南將描述如何爲Easer添加新功能，如增加新的Event、Condition或Operation，同時也會簡單涉及Easer的設計結構。  
 （注意：Profile是一組Operation的集合，所以要擴展Profile只要創建相應的新Operation即可。）
 
+另，v0.7.7新加入`USource`，以便統一Event和Condition的編寫。該機制仍處於早期試驗，故而本文不對其進行描述（但其與之前類似）。
+
 增加Event/Operation
 ------
 

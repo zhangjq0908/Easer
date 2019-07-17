@@ -18,6 +18,9 @@
     <color name="nodeBackground_Profile">@color/colorAccent</color>
     <color name="nodeBackground_scriptActive">@color/nodeBackground</color>
     <color name="nodeBackground_scriptInactive">#9E9E9E</color>
+    <color name="nodeIndicator_neutral">@color/transparent</color>
+    <color name="nodeIndicator_scriptUnsatisfied">@color/color_negative</color>
+    <color name="nodeIndicator_scriptSatisfied">@color/color_positive</color>
     <color name="nodeText">@android:color/white</color>
     <color name="nodeText_scriptValid">@android:color/white</color>
     <color name="nodeText_scriptInvalid">@color/colorText_invalid</color>

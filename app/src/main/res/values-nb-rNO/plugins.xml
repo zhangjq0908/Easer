@@ -178,4 +178,12 @@
     <string name="condition_ringer_above">Minst</string>
     <string name="condition_ringer_below">Høyest</string>
     <string name="condition_ringer_equals">Tilsvarer</string>
+    <string name="category_source_android">Android</string>
+    <string name="category_source_date_time">Dato / tid</string>
+    <string name="category_source_device">Enhet</string>
+    <string name="category_source_easer">Easer</string>
+    <string name="category_source_data_communication">Datakommunikasjon</string>
+    <string name="category_source_misc">Ymse</string>
+    <string name="category_source_personal">Personlig</string>
+    <string name="category_source_unknown">Ukjent</string>
 </resources>

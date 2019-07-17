@@ -1,6 +1,33 @@
 CHANGELOG
 ======
 
+* v0.7.7.5: Fix some Skill can not be selected && translation update
+	* Fix some Skills can not be selected when adding them
+	* i18n update
+
+* v0.7.7.4: Display permission in skill settings && i18n
+	* Permission status is now displayed in skill settings
+	* PluginOutlineFragment will redirect to skill settings
+	* i18n update
+
+* v0.7.7.3: Fixes && Dev changes && i18n update
+	* Fix crash log not working
+	* Fix Condition can have empty names
+	* Dev changes: better async backend & better naming
+	* Danish i18n update
+
+* v0.7.7.2: Show status in Pivot && i18n update
+	* The Pivot page now shows the status of each Script (a color dot at top-left)
+	* Update dependencies
+	* Update for i18n: Danish, Japanese, Italian, Norwegian Bokmål
+
+* v0.7.7.1: Categorized Event and Condition selection && Minor improvements
+	* Change Event and Condition's ViewPager to a list selection similar to Profile
+	* Use SourceCategory for categories of Event and Condition
+	* Slight UI improvement for TimerUSource
+	* Improved Chinese
+	* Update Danish translation
+
 * v0.7.7: Introduce USource && More shared Event / Condition && Introduce SourceCategory && Code clean up && i18n
 	* Introduce `USource` as a uniformed way to define `Event` and `Condition`
 	* Converted existing shared `Event` and `Condition` to `USource`

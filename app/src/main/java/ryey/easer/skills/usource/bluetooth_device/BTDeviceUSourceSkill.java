@@ -26,6 +26,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SkillView;
@@ -34,7 +35,7 @@ import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.conditionskill.Tracker;
 import ryey.easer.commons.local_skill.usource.USourceDataFactory;
 import ryey.easer.commons.local_skill.usource.USourceSkill;
-import ryey.easer.skills.SkillHelper;
+import ryey.easer.skills.SkillUtils;
 import ryey.easer.skills.event.AbstractSlot;
 
 public class BTDeviceUSourceSkill implements USourceSkill<BTDeviceUSourceData> {
@@ -56,15 +57,16 @@ public class BTDeviceUSourceSkill implements USourceSkill<BTDeviceUSourceData> {
         return adapter != null;
     }
 
+    @Nullable
     @Override
-    public boolean checkPermissions(@NonNull Context context) {
-        return SkillHelper.checkPermission(context,
+    public Boolean checkPermissions(@NonNull Context context) {
+        return SkillUtils.checkPermission(context,
                 Manifest.permission.BLUETOOTH);
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        SkillHelper.requestPermission(activity, requestCode, Manifest.permission.BLUETOOTH);
+        SkillUtils.requestPermission(activity, requestCode, Manifest.permission.BLUETOOTH);
     }
 
     @NonNull

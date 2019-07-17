@@ -27,6 +27,7 @@ import android.os.Build;
 import android.provider.Settings;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SkillView;
@@ -34,7 +35,7 @@ import ryey.easer.commons.local_skill.operationskill.OperationDataFactory;
 import ryey.easer.commons.local_skill.operationskill.OperationSkill;
 import ryey.easer.commons.local_skill.operationskill.PrivilegeUsage;
 import ryey.easer.plugin.operation.Category;
-import ryey.easer.skills.SkillHelper;
+import ryey.easer.skills.SkillUtils;
 import ryey.easer.skills.operation.OperationLoader;
 
 public class RingerModeOperationSkill implements OperationSkill<RingerModeOperationData> {
@@ -72,30 +73,31 @@ public class RingerModeOperationSkill implements OperationSkill<RingerModeOperat
         return Category.system_config;
     }
 
+    @Nullable
     @Override
-    public boolean checkPermissions(@NonNull Context context) {
+    public Boolean checkPermissions(@NonNull Context context) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            return SkillHelper.checkPermission(context, Manifest.permission.MODIFY_AUDIO_SETTINGS);
+            return SkillUtils.checkPermission(context, Manifest.permission.MODIFY_AUDIO_SETTINGS);
         } else {
-            return SkillHelper.checkPermission(context, Manifest.permission.MODIFY_AUDIO_SETTINGS)
-                    && SkillHelper.isPermissionGrantedForNotificationListenerService(
+            return SkillUtils.checkPermission(context, Manifest.permission.MODIFY_AUDIO_SETTINGS)
+                    && SkillUtils.isPermissionGrantedForNotificationListenerService(
                             context, InterruptionFilterSwitcherService.class);
         }
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        if (!SkillHelper.checkPermission(activity, Manifest.permission.MODIFY_AUDIO_SETTINGS))
-            SkillHelper.requestPermission(activity, requestCode, Manifest.permission.MODIFY_AUDIO_SETTINGS);
+        if (!SkillUtils.checkPermission(activity, Manifest.permission.MODIFY_AUDIO_SETTINGS))
+            SkillUtils.requestPermission(activity, requestCode, Manifest.permission.MODIFY_AUDIO_SETTINGS);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (!SkillHelper.isPermissionGrantedForNotificationListenerService(activity, InterruptionFilterSwitcherService.class)) {
+            if (!SkillUtils.isPermissionGrantedForNotificationListenerService(activity, InterruptionFilterSwitcherService.class)) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
                     activity.startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
                 } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    SkillHelper.requestPermission(activity, requestCode,
+                    SkillUtils.requestPermission(activity, requestCode,
                             Manifest.permission.BIND_NOTIFICATION_LISTENER_SERVICE);
                 }
-                SkillHelper.reenableComponent(activity, InterruptionFilterSwitcherService.class);
+                SkillUtils.reenableComponent(activity, InterruptionFilterSwitcherService.class);
             }
         }
     }

@@ -44,8 +44,7 @@
     <string name="button_read_next_time">Leggi la Prossima Volta</string>
     <string name="button_understand">Capito</string>
     <string name="button_ok">OK</string>
-    <string name="text_lack_permission">Easer NON dispone di sufficienti autorizzazioni.</string>
-    <string name="button_request_permission">Autorizza</string>
+    <string name="text_lack_permission">Qualche Modulo NON dispone di sufficienti autorizzazioni.</string>
     <string name="text_notification_running_indicator_content">%s è in esecuzione in background</string>
     <string name="text_title">Titolo</string>
     <string name="text_parent_node">Genitore</string>
@@ -146,10 +145,10 @@
 \n
 \nÈ prevista l\'estensione da alberi a grafici, ma non è ancora implementata.</string>
     <string name="title_welcome_message_privacy">Privacy!</string>
-    <string name="welcome_message_privacy">La privacy è importante!
-\n
-\nEaser è un <a href="https://en.wikipedia.org/wiki/Free_software">software\"&gt;software libero</a> (open-source), quindi permette a chiunque l\'utilizzo, lo studio, il cambiamento e la condivisione del codice.
-\n
+    <string name="welcome_message_privacy">La privacy è importante! 
+\n 
+\nEaser è un <a href="https://en.wikipedia.org/wiki/Free_software">software libero</a> (open-source), quindi permette a chiunque l\'utilizzo, lo studio, il cambiamento e la condivisione del codice. 
+\n 
 \nTU possiedi i tuoi dati. Tutto rimane sul tuo dispositivo, compresi i log.</string>
     <string name="alert_update_storage_data_title">Vecchia Versione Dati trovata</string>
     <string name="alert_update_storage_data">Seleziona \\\"Converti Dati\\\" nelle impostazioni per aggiornare i dati al nuovo formato, per compatibilità.</string>
@@ -186,6 +185,9 @@
     <string name="title_homepage">Pagina Iniziale</string>
     <string name="pref_locale_custom">Lingua Personalizzata</string>
     <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
-    <string name="prompt_error_logged">Easer ha appena registrato un errore. Controlla la sottocartella errori della cartella log.</string>
+    <string name="prompt_error_logged">Easer ha registrato un errore. Controlla la sottocartella errori della cartella log.</string>
     <string name="prompt_dynamics_not_ready">Per impostare una Dinamica, è necessario selezionare un Profilo valido e un trigger valido (es. Evento).</string>
+    <string name="title_select_event">Scegli un Evento</string>
+    <string name="title_select_condition">Scegli una Condizione</string>
+    <string name="button_see_detail">Vedi Dettagli</string>
 </resources>

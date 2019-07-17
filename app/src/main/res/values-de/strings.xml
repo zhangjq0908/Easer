@@ -36,8 +36,7 @@
     <string name="button_understand">Verstanden</string>
     <string name="button_cancel">Abbrechen</string>
     <string name="button_ok">OK</string>
-    <string name="text_lack_permission">Easer hat NICHT alle notwendigen Berechtigungen.</string>
-    <string name="button_request_permission">Berechtigungen erteilen</string>
+    <string name="text_lack_permission">Einige Plugins haben NICHT alle notwendigen Berechtigungen.</string>
     <string name="text_title">Titel</string>
     <string name="text_parent_node">Übergeordnet</string>
     <string name="text_parent">Übergeordnet</string>
@@ -190,4 +189,7 @@
     <string name="pref_locale_custom">Benutzerdefiniertes Gebietsschema</string>
     <string name="prompt_error_logged">Easer hat gerade einen Fehler aufgezeichnet. Sehen Sie sich das Fehlerunterverzeichnis des Log-Verzeichnisses an.</string>
     <string name="prompt_dynamics_not_ready">Um die Dynamik einzustellen, müssen Sie ein gültiges Profil und einen gültigen Auslöser (z.B. Ereignis) auswählen.</string>
+    <string name="title_select_event">Wählen Sie ein Ereignis</string>
+    <string name="title_select_condition">Wählen Sie eine Bedingung</string>
+    <string name="button_see_detail">Siehe Details</string>
 </resources>

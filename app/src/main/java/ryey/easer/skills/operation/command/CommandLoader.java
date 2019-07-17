@@ -28,7 +28,7 @@ import com.orhanobut.logger.Logger;
 import java.io.IOException;
 
 import ryey.easer.commons.local_skill.ValidData;
-import ryey.easer.skills.SkillHelper;
+import ryey.easer.skills.SkillUtils;
 import ryey.easer.skills.operation.OperationLoader;
 
 public class CommandLoader extends OperationLoader<CommandOperationData> {
@@ -43,10 +43,10 @@ public class CommandLoader extends OperationLoader<CommandOperationData> {
         String []commands = text.split("\n");
         Process process;
         try {
-            if (SkillHelper.useRootFeature(context)) {
-                process = SkillHelper.executeCommandsAsRoot(commands);
+            if (SkillUtils.useRootFeature(context)) {
+                process = SkillUtils.executeCommandsAsRoot(commands);
             } else {
-                process = SkillHelper.executeCommandsContinuously(commands);
+                process = SkillUtils.executeCommandsContinuously(commands);
             }
         } catch (IOException e) {
             Logger.e(e, "error while launching process");

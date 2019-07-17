@@ -58,7 +58,7 @@ public class EaserApplication extends Application {
 
         Logger.addLogAdapter(new AndroidLogAdapter());
 
-        if (SettingsHelper.logging(this)) {
+        if (SettingsUtils.logging(this)) {
             if (ContextCompat.checkSelfPermission(getApplicationContext(),
                     Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                 Logger.addLogAdapter(new DiskLogAdapter());

@@ -4,4 +4,3 @@ Event and Condition are now in a list selection && Use SourceCategory && Minor i
 * Use SourceCategory for categories of Event and Condition
 * Slight UI improvement for TimerUSource
 * Improved Chinese
-

@@ -25,6 +25,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SkillView;
@@ -34,7 +35,7 @@ import ryey.easer.commons.local_skill.conditionskill.Tracker;
 import ryey.easer.commons.local_skill.eventskill.EventSkill;
 import ryey.easer.commons.local_skill.usource.USourceDataFactory;
 import ryey.easer.commons.local_skill.usource.USourceSkill;
-import ryey.easer.skills.SkillHelper;
+import ryey.easer.skills.SkillUtils;
 import ryey.easer.skills.event.AbstractSlot;
 
 public class ConnectivityUSourceSkill implements USourceSkill<ConnectivityEventData> {
@@ -55,14 +56,15 @@ public class ConnectivityUSourceSkill implements USourceSkill<ConnectivityEventD
         return true;
     }
 
+    @Nullable
     @Override
-    public boolean checkPermissions(@NonNull Context context) {
-        return SkillHelper.checkPermission(context, Manifest.permission.ACCESS_NETWORK_STATE);
+    public Boolean checkPermissions(@NonNull Context context) {
+        return SkillUtils.checkPermission(context, Manifest.permission.ACCESS_NETWORK_STATE);
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        SkillHelper.requestPermission(activity, requestCode, Manifest.permission.ACCESS_NETWORK_STATE);
+        SkillUtils.requestPermission(activity, requestCode, Manifest.permission.ACCESS_NETWORK_STATE);
     }
 
     @NonNull

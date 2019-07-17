@@ -24,6 +24,7 @@ import android.app.Activity;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SkillView;
@@ -31,7 +32,7 @@ import ryey.easer.commons.local_skill.operationskill.OperationDataFactory;
 import ryey.easer.commons.local_skill.operationskill.OperationSkill;
 import ryey.easer.commons.local_skill.operationskill.PrivilegeUsage;
 import ryey.easer.plugin.operation.Category;
-import ryey.easer.skills.SkillHelper;
+import ryey.easer.skills.SkillUtils;
 import ryey.easer.skills.operation.OperationLoader;
 
 public class NetworkTransmissionOperationSkill implements OperationSkill<NetworkTransmissionOperationData> {
@@ -69,14 +70,15 @@ public class NetworkTransmissionOperationSkill implements OperationSkill<Network
         return Category.misc;
     }
 
+    @Nullable
     @Override
-    public boolean checkPermissions(@NonNull Context context) {
-        return SkillHelper.checkPermission(context, Manifest.permission.INTERNET);
+    public Boolean checkPermissions(@NonNull Context context) {
+        return SkillUtils.checkPermission(context, Manifest.permission.INTERNET);
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        SkillHelper.requestPermission(activity, requestCode, Manifest.permission.INTERNET);
+        SkillUtils.requestPermission(activity, requestCode, Manifest.permission.INTERNET);
     }
 
     @NonNull

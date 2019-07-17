@@ -51,7 +51,7 @@ import ryey.easer.R;
 import ryey.easer.Utils;
 import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.local_skill.ValidData;
-import ryey.easer.skills.SkillHelper;
+import ryey.easer.skills.SkillUtils;
 import ryey.easer.skills.SkillViewFragment;
 
 public class WifiSkillViewFragment extends SkillViewFragment<WifiUSourceData> {
@@ -92,7 +92,7 @@ public class WifiSkillViewFragment extends SkillViewFragment<WifiUSourceData> {
         view.findViewById(R.id.connection_picker).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!SkillHelper.checkPermission(getContext(), Manifest.permission.ACCESS_WIFI_STATE))
+                if (!SkillUtils.checkPermission(getContext(), Manifest.permission.ACCESS_WIFI_STATE))
                     return;
                 wait_lock.lock();
                 try {

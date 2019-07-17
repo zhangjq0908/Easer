@@ -21,6 +21,7 @@ package ryey.easer.core.data;
 
 import androidx.annotation.NonNull;
 
+import ryey.easer.Utils;
 import ryey.easer.commons.C;
 import ryey.easer.commons.local_skill.conditionskill.ConditionData;
 
@@ -53,6 +54,10 @@ public final class ConditionStructure implements Named, Verifiable, WithCreatedV
 
     @Override
     public boolean isValid() {
+        if (Utils.isBlank(name))
+            return false;
+        if (!data.isValid())
+            return false;
         return true;
     }
 

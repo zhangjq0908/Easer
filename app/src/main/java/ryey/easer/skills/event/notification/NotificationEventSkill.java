@@ -27,6 +27,7 @@ import android.os.Build;
 import android.provider.Settings;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import ryey.easer.R;
@@ -35,7 +36,7 @@ import ryey.easer.commons.local_skill.SourceCategory;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.eventskill.EventDataFactory;
 import ryey.easer.commons.local_skill.eventskill.EventSkill;
-import ryey.easer.skills.SkillHelper;
+import ryey.easer.skills.SkillUtils;
 import ryey.easer.skills.event.AbstractSlot;
 
 public class NotificationEventSkill implements EventSkill<NotificationEventData> {
@@ -57,24 +58,25 @@ public class NotificationEventSkill implements EventSkill<NotificationEventData>
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
     }
 
+    @Nullable
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
-    public boolean checkPermissions(@NonNull Context context) {
-        return SkillHelper.isPermissionGrantedForNotificationListenerService(context, NotificationEventListenerService.class);
+    public Boolean checkPermissions(@NonNull Context context) {
+        return SkillUtils.isPermissionGrantedForNotificationListenerService(context, NotificationEventListenerService.class);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        if (!SkillHelper.isPermissionGrantedForNotificationListenerService(activity, NotificationEventListenerService.class)) {
+        if (!SkillUtils.isPermissionGrantedForNotificationListenerService(activity, NotificationEventListenerService.class)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
                 activity.startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
             } else {
-                SkillHelper.requestPermission(activity, requestCode,
+                SkillUtils.requestPermission(activity, requestCode,
                         Manifest.permission.BIND_NOTIFICATION_LISTENER_SERVICE);
             }
         }
-        SkillHelper.reenableComponent(activity, NotificationEventListenerService.class);
+        SkillUtils.reenableComponent(activity, NotificationEventListenerService.class);
     }
 
     @NonNull

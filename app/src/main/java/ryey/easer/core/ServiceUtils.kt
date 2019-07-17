@@ -28,14 +28,14 @@ import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import ryey.easer.R
-import ryey.easer.SettingsHelper
+import ryey.easer.SettingsUtils
 import ryey.easer.core.ui.MainActivity
 
-class ServiceHelper {
+class ServiceUtils {
 
     companion object {
 
-        val EXTRA_RUN_WITH_UI = "ryey.easer.core.ServiceHelper.EXTRA.RUN_WITH_UI"
+        val EXTRA_RUN_WITH_UI = "ryey.easer.core.ServiceUtils.EXTRA.RUN_WITH_UI"
         
         private val NOTIFICATION_ID = 1
 
@@ -44,7 +44,7 @@ class ServiceHelper {
         
         fun startNotification(service: Service) {
             startCount++
-            if (!SettingsHelper.showNotification(service))
+            if (!SettingsUtils.showNotification(service))
                 return
             val notificationManager = service.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
 
@@ -77,7 +77,7 @@ class ServiceHelper {
 
             val indicatorNotification = builder.build()
 
-            if (SettingsHelper.runInForeground(service)) {
+            if (SettingsUtils.runInForeground(service)) {
                 service.startForeground(NOTIFICATION_ID, indicatorNotification)
             } else {
                 notificationManager!!.notify(NOTIFICATION_ID, indicatorNotification)
@@ -86,9 +86,9 @@ class ServiceHelper {
 
         fun stopNotification(service: Service) {
             stopCount++
-            if (!SettingsHelper.showNotification(service))
+            if (!SettingsUtils.showNotification(service))
                 return
-            if (SettingsHelper.runInForeground(service)) {
+            if (SettingsUtils.runInForeground(service)) {
 
             } else {
                 val notificationManager = service.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?

@@ -99,7 +99,7 @@ public class OperationSelectorFragment extends DialogFragment {
                 OperationPluginItemWrapper operationPluginItemWrapper = (OperationPluginItemWrapper) parent.getItemAtPosition(position);
                 if (!operationPluginItemWrapper.isRemote()) {
                     OperationSkill plugin = operationPluginItemWrapper.plugin;
-                    if (plugin.checkPermissions(getContext())) {
+                    if (plugin.checkPermissions(getContext()) != Boolean.FALSE) {
                         selectedListener.onSelected(operationPluginItemWrapper);
                         dismiss();
                     } else {

@@ -19,10 +19,12 @@
 
 package ryey.easer.skills.event.tcp_trip;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SkillView;
@@ -30,6 +32,7 @@ import ryey.easer.commons.local_skill.SourceCategory;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.eventskill.EventDataFactory;
 import ryey.easer.commons.local_skill.eventskill.EventSkill;
+import ryey.easer.skills.SkillUtils;
 import ryey.easer.skills.event.AbstractSlot;
 
 public class TcpTripEventSkill implements EventSkill<TcpTripEventData> {
@@ -50,14 +53,15 @@ public class TcpTripEventSkill implements EventSkill<TcpTripEventData> {
         return true;
     }
 
+    @Nullable
     @Override
-    public boolean checkPermissions(@NonNull Context context) {
-        return true;
+    public Boolean checkPermissions(@NonNull Context context) {
+        return SkillUtils.checkPermission(context, Manifest.permission.INTERNET);
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-
+        SkillUtils.requestPermission(activity, requestCode, Manifest.permission.INTERNET);
     }
 
     @NonNull

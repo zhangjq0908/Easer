@@ -25,6 +25,7 @@ import android.content.Context;
 import android.nfc.NfcAdapter;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SkillView;
@@ -32,7 +33,7 @@ import ryey.easer.commons.local_skill.SourceCategory;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.eventskill.EventDataFactory;
 import ryey.easer.commons.local_skill.eventskill.EventSkill;
-import ryey.easer.skills.SkillHelper;
+import ryey.easer.skills.SkillUtils;
 import ryey.easer.skills.event.AbstractSlot;
 
 public class NfcTagEventSkill implements EventSkill<NfcTagEventData> {
@@ -54,15 +55,16 @@ public class NfcTagEventSkill implements EventSkill<NfcTagEventData> {
         return adapter != null;
     }
 
+    @Nullable
     @Override
-    public boolean checkPermissions(@NonNull Context context) {
-        return SkillHelper.checkPermission(context,
+    public Boolean checkPermissions(@NonNull Context context) {
+        return SkillUtils.checkPermission(context,
                 Manifest.permission.NFC);
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        SkillHelper.requestPermission(activity, requestCode, Manifest.permission.NFC);
+        SkillUtils.requestPermission(activity, requestCode, Manifest.permission.NFC);
     }
 
     @NonNull

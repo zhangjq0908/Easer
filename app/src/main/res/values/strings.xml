@@ -68,8 +68,8 @@
     <string name="button_understand">Understood</string>
     <string name="button_cancel">Cancel</string>
     <string name="button_ok">OK</string>
-    <string name="text_lack_permission">Easer does NOT have sufficient permissions.</string>
-    <string name="button_request_permission">Grant permissions</string>
+    <string name="text_lack_permission">Some skills do NOT have sufficient permissions.</string>
+    <string name="button_see_detail">See Details</string>
 
     <string name="text_notification_running_indicator_content">%s is running in the background</string>
 

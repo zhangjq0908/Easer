@@ -25,13 +25,14 @@ import android.content.Context;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.operationskill.OperationDataFactory;
 import ryey.easer.commons.local_skill.operationskill.OperationSkill;
 import ryey.easer.commons.local_skill.operationskill.PrivilegeUsage;
 import ryey.easer.plugin.operation.Category;
-import ryey.easer.skills.SkillHelper;
+import ryey.easer.skills.SkillUtils;
 import ryey.easer.skills.SkillViewFragment;
 import ryey.easer.skills.operation.OperationLoader;
 
@@ -70,10 +71,11 @@ public class PlayMediaOperationSkill implements OperationSkill<PlayMediaOperatio
         return Category.android;
     }
 
+    @Nullable
     @Override
-    public boolean checkPermissions(@NonNull Context context) {
+    public Boolean checkPermissions(@NonNull Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            return SkillHelper.checkPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE);
+            return SkillUtils.checkPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE);
         }
         return true;
     }
@@ -81,7 +83,7 @@ public class PlayMediaOperationSkill implements OperationSkill<PlayMediaOperatio
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            SkillHelper.requestPermission(activity, requestCode, Manifest.permission.READ_EXTERNAL_STORAGE);
+            SkillUtils.requestPermission(activity, requestCode, Manifest.permission.READ_EXTERNAL_STORAGE);
         }
     }
 

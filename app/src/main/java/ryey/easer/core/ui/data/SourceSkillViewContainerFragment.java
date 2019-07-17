@@ -89,7 +89,7 @@ public abstract class SourceSkillViewContainerFragment<D extends StorageData, S 
         super.onStart();
         S plugin = findSkill(skillID);
         //noinspection ConstantConditions
-        if (!plugin.checkPermissions(getContext())) {
+        if (plugin.checkPermissions(getContext()) == Boolean.FALSE) {
             setEnabled(false);
             //noinspection ConstantConditions
             plugin.requestPermissions(getActivity(), 1);

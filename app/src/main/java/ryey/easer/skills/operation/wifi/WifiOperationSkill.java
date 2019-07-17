@@ -24,6 +24,7 @@ import android.app.Activity;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SkillView;
@@ -31,7 +32,7 @@ import ryey.easer.commons.local_skill.operationskill.OperationDataFactory;
 import ryey.easer.commons.local_skill.operationskill.OperationSkill;
 import ryey.easer.commons.local_skill.operationskill.PrivilegeUsage;
 import ryey.easer.plugin.operation.Category;
-import ryey.easer.skills.SkillHelper;
+import ryey.easer.skills.SkillUtils;
 import ryey.easer.skills.operation.OperationLoader;
 
 public class WifiOperationSkill implements OperationSkill<WifiOperationData> {
@@ -69,26 +70,27 @@ public class WifiOperationSkill implements OperationSkill<WifiOperationData> {
         return Category.system_config;
     }
 
+    @Nullable
     @Override
-    public boolean checkPermissions(@NonNull Context context) {
-        return SkillHelper.checkPermission(context,
+    public Boolean checkPermissions(@NonNull Context context) {
+        return SkillUtils.checkPermission(context,
                 Manifest.permission.ACCESS_WIFI_STATE,
                 Manifest.permission.CHANGE_WIFI_STATE);
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        boolean can_access_wifi = SkillHelper.checkPermission(activity, Manifest.permission.ACCESS_WIFI_STATE);
-        boolean can_change_wifi = SkillHelper.checkPermission(activity, Manifest.permission.CHANGE_WIFI_STATE);
+        boolean can_access_wifi = SkillUtils.checkPermission(activity, Manifest.permission.ACCESS_WIFI_STATE);
+        boolean can_change_wifi = SkillUtils.checkPermission(activity, Manifest.permission.CHANGE_WIFI_STATE);
         if (!can_access_wifi && !can_change_wifi) {
-            SkillHelper.requestPermission(activity, requestCode,
+            SkillUtils.requestPermission(activity, requestCode,
                     Manifest.permission.ACCESS_WIFI_STATE,
                     Manifest.permission.CHANGE_WIFI_STATE);
         } else if (!can_access_wifi) {
-            SkillHelper.requestPermission(activity, requestCode,
+            SkillUtils.requestPermission(activity, requestCode,
                     Manifest.permission.ACCESS_WIFI_STATE);
         } else {
-            SkillHelper.requestPermission(activity, requestCode,
+            SkillUtils.requestPermission(activity, requestCode,
                     Manifest.permission.CHANGE_WIFI_STATE);
         }
     }

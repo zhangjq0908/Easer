@@ -24,6 +24,7 @@ import android.app.Activity;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SkillView;
@@ -31,7 +32,7 @@ import ryey.easer.commons.local_skill.operationskill.OperationDataFactory;
 import ryey.easer.commons.local_skill.operationskill.OperationSkill;
 import ryey.easer.commons.local_skill.operationskill.PrivilegeUsage;
 import ryey.easer.plugin.operation.Category;
-import ryey.easer.skills.SkillHelper;
+import ryey.easer.skills.SkillUtils;
 import ryey.easer.skills.operation.OperationLoader;
 
 public class SendSmsOperationSkill implements OperationSkill<SmsOperationData> {
@@ -69,14 +70,15 @@ public class SendSmsOperationSkill implements OperationSkill<SmsOperationData> {
         return Category.android;
     }
 
+    @Nullable
     @Override
-    public boolean checkPermissions(@NonNull Context context) {
-        return SkillHelper.checkPermission(context, Manifest.permission.SEND_SMS);
+    public Boolean checkPermissions(@NonNull Context context) {
+        return SkillUtils.checkPermission(context, Manifest.permission.SEND_SMS);
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-        SkillHelper.requestPermission(activity, requestCode, Manifest.permission.SEND_SMS);
+        SkillUtils.requestPermission(activity, requestCode, Manifest.permission.SEND_SMS);
     }
 
     @NonNull

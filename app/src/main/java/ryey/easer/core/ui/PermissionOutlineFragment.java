@@ -31,11 +31,10 @@ import androidx.fragment.app.Fragment;
 
 import com.orhanobut.logger.Logger;
 
-import java.util.List;
-
 import ryey.easer.R;
-import ryey.easer.SettingsHelper;
+import ryey.easer.SettingsUtils;
 import ryey.easer.commons.local_skill.Skill;
+import ryey.easer.core.ui.setting.SettingsActivity;
 import ryey.easer.skills.LocalSkillRegistry;
 
 public class PermissionOutlineFragment extends Fragment {
@@ -67,7 +66,7 @@ public class PermissionOutlineFragment extends Fragment {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                requestAllPermissions();
+                SettingsActivity.callSkillSettings(getActivity());
             }
         });
     }
@@ -83,11 +82,11 @@ public class PermissionOutlineFragment extends Fragment {
     }
 
     boolean hasAllRequiredPermissions() {
-        final boolean logging = SettingsHelper.logging(getContext());
+        final boolean logging = SettingsUtils.logging(getContext());
         boolean satisfied = true;
         for (Object obj_plugin : LocalSkillRegistry.getInstance().all().getEnabledSkills(getContext())) {
             Skill plugin = (Skill) obj_plugin;
-            if (!plugin.checkPermissions(getContext())) {
+            if (plugin.checkPermissions(getContext()) == Boolean.FALSE) {
                 Logger.d("Permission for plugin <%s> not satisfied", plugin.id());
                 if (!logging)
                     return false;
@@ -95,14 +94,5 @@ public class PermissionOutlineFragment extends Fragment {
             }
         }
         return satisfied;
-    }
-
-    void requestAllPermissions() {
-        List plugins = LocalSkillRegistry.getInstance().all().getEnabledSkills(getContext());
-        for (int i = 0; i < plugins.size(); i++) {
-            Skill plugin = (Skill) plugins.get(i);
-            if (!plugin.checkPermissions(getContext()))
-                plugin.requestPermissions(getActivity(), i);
-        }
     }
 }

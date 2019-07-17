@@ -79,7 +79,7 @@ public abstract class SourceSelectorDialogFragment<S extends Skill & SourceCateg
                 SkillItemWrapper<S> skillItemWrapper = (SkillItemWrapper<S>) parent.getItemAtPosition(position);
                 if (!skillItemWrapper.isRemote()) {
                     S plugin = skillItemWrapper.skill;
-                    if (plugin.checkPermissions(getContext())) {
+                    if (plugin.checkPermissions(getContext()) != Boolean.FALSE) {
                         selectedListener.onSelected(skillItemWrapper);
                         dismiss();
                     } else {

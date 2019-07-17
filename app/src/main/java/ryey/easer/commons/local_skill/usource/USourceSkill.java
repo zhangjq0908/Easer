@@ -25,6 +25,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import ryey.easer.commons.local_skill.Skill;
 import ryey.easer.commons.local_skill.SkillView;
@@ -120,8 +121,9 @@ public interface USourceSkill<D extends USourceData> extends Skill<D> {
                 return USourceSkill.this.isCompatible(context);
             }
 
+            @Nullable
             @Override
-            public boolean checkPermissions(@NonNull Context context) {
+            public Boolean checkPermissions(@NonNull Context context) {
                 return USourceSkill.this.checkPermissions(context);
             }
 
@@ -174,8 +176,9 @@ public interface USourceSkill<D extends USourceData> extends Skill<D> {
                 return USourceSkill.this.isCompatible(context);
             }
 
+            @Nullable
             @Override
-            public boolean checkPermissions(@NonNull Context context) {
+            public Boolean checkPermissions(@NonNull Context context) {
                 return USourceSkill.this.checkPermissions(context);
             }
 

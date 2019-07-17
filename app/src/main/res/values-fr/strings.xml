@@ -52,7 +52,6 @@
     <string name="button_ok">OK</string>
 
     <string name="text_lack_permission">Easer n\'a PAS les permissions dont il a besoin.</string>
-    <string name="button_request_permission">Accorder les permissions</string>
 
     <string name="text_title">Titre</string>
     <string name="text_parent_node">Parent</string>
