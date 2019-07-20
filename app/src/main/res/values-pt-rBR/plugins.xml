@@ -119,7 +119,7 @@
     <string name="ringing_items_in_do_not_disturb_mode">Itens que tocam no modo Não perturbe</string>
     <string name="label_operation_ringer_mode_notification_listener_service">Alternador de modo silencioso</string>
     <string name="operation_command">Executar comandos</string>
-    <string name="operation_hotspot">Hotspot</string>
+    <string name="operation_hotspot">Roteamento Wi-Fi</string>
     <string name="operation_synchronization">Sincronização da conta</string>
     <string name="operation_network_transmission">Transmissão da rede</string>
     <string name="o_nettrans_protocol">Protocolo</string>
