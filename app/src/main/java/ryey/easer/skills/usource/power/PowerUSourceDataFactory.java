@@ -17,33 +17,35 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.usource.battery;
+package ryey.easer.skills.usource.power;
 
 import androidx.annotation.NonNull;
+
+import java.util.Collections;
 
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.usource.USourceDataFactory;
 import ryey.easer.plugin.PluginDataFormat;
 
-class BatteryUSourceDataFactory implements USourceDataFactory<BatteryUSourceData> {
+class PowerUSourceDataFactory implements USourceDataFactory<PowerUSourceData> {
     @NonNull
     @Override
-    public Class<BatteryUSourceData> dataClass() {
-        return BatteryUSourceData.class;
+    public Class<PowerUSourceData> dataClass() {
+        return PowerUSourceData.class;
     }
 
     @ValidData
     @NonNull
     @Override
-    public BatteryUSourceData dummyData() {
-        return new BatteryUSourceData(1);
+    public PowerUSourceData dummyData() {
+        return new PowerUSourceData(BatteryStatus.charging, Collections.singletonList(ChargingMethod.usb));
     }
 
     @ValidData
     @NonNull
     @Override
-    public BatteryUSourceData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
-        return new BatteryUSourceData(data, format, version);
+    public PowerUSourceData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
+        return new PowerUSourceData(data, format, version);
     }
 }

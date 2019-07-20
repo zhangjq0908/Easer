@@ -18,7 +18,7 @@
     <string name="usource_wificonn_wait_for_result">Ожидание результатов сканирования WiFi</string>
     <string name="usource_cell_location">Местоположение сети</string>
     <string name="usource_cell_location_no_signal">Не удалось получить местоположение сети. Проверьте Ваш сигнал.</string>
-    <string name="usource_battery">Состояние Батареи</string>
+    <string name="usource_power">Состояние Батареи</string>
     <string name="usource_day_of_week">День Недели</string>
     <string name="usource_bluetooth_device">Подключен Bluetooth девайс</string>
     <string name="usource_bt_device_select_dialog_title">Выберите Bluetooth устройство</string>

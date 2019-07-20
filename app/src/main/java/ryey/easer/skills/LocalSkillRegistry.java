@@ -76,13 +76,13 @@ import ryey.easer.skills.operation.synchronization.SynchronizationOperationSkill
 import ryey.easer.skills.operation.ui_mode.UiModeOperationSkill;
 import ryey.easer.skills.operation.volume.VolumeOperationSkill;
 import ryey.easer.skills.operation.wifi.WifiOperationSkill;
-import ryey.easer.skills.usource.battery.BatteryUSourceSkill;
 import ryey.easer.skills.usource.bluetooth_device.BTDeviceUSourceSkill;
 import ryey.easer.skills.usource.bluetooth_enabled.BluetoothEnabledUSourceSkill;
 import ryey.easer.skills.usource.cell_location.CellLocationUSourceSkill;
 import ryey.easer.skills.usource.date.DateUSourceSkill;
 import ryey.easer.skills.usource.day_of_week.DayOfWeekEventSkill;
 import ryey.easer.skills.usource.headset.HeadsetUSourceSkill;
+import ryey.easer.skills.usource.power.PowerUSourceSkill;
 import ryey.easer.skills.usource.screen.ScreenUSourceSkill;
 import ryey.easer.skills.usource.time.TimeUSourceSkill;
 import ryey.easer.skills.usource.wifi.WifiUSourceSkill;
@@ -95,18 +95,22 @@ import ryey.easer.skills.usource.wifi_enabled.WifiEnabledUSourceSkill;
  */
 final public class LocalSkillRegistry {
 
-    private final Registry<EventSkill, EventData> eventSkillRegistry = new Registry<>(CommonSkillUtils.TYPE_EVENT);
-    private final Registry<OperationSkill, OperationData> operationSkillRegistry = new Registry<>(CommonSkillUtils.TYPE_OPERATION, new String[][]{
-            {"event control", "state control"},
+    private final Registry<EventSkill, EventData> eventSkillRegistry = new Registry<>(CommonSkillUtils.TYPE_EVENT, new String[][]{
+            {"battery", "power_status"}, // v0.7.8
     });
-    private final Registry<ConditionSkill, ConditionData> conditionSkillRegistry = new Registry<>(CommonSkillUtils.TYPE_CONDITION);
+    private final Registry<OperationSkill, OperationData> operationSkillRegistry = new Registry<>(CommonSkillUtils.TYPE_OPERATION, new String[][]{
+            {"event control", "state control"}, // (don't remember when)
+    });
+    private final Registry<ConditionSkill, ConditionData> conditionSkillRegistry = new Registry<>(CommonSkillUtils.TYPE_CONDITION, new String[][]{
+            {"battery", "power_status"}, // v0.7.8
+    });
     private final OverallRegistry overallRegistry = new OverallRegistry(new SkillLookupper<?, ?>[] {
             eventSkillRegistry, operationSkillRegistry, conditionSkillRegistry,
     });
 
     {
         for (USourceSkill skill : new USourceSkill[] {
-                new BatteryUSourceSkill(),
+                new PowerUSourceSkill(),
                 new BTDeviceUSourceSkill(),
                 new BluetoothEnabledUSourceSkill(),
                 new CellLocationUSourceSkill(),

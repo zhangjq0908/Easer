@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.usource.battery;
+package ryey.easer.skills.usource.power;
 
 import android.app.Activity;
 import android.app.PendingIntent;
@@ -35,17 +35,17 @@ import ryey.easer.commons.local_skill.usource.USourceDataFactory;
 import ryey.easer.commons.local_skill.usource.USourceSkill;
 import ryey.easer.skills.event.AbstractSlot;
 
-public class BatteryUSourceSkill implements USourceSkill<BatteryUSourceData> {
+public class PowerUSourceSkill implements USourceSkill<PowerUSourceData> {
 
     @NonNull
     @Override
     public String id() {
-        return "battery";
+        return "power_status";
     }
 
     @Override
     public int name() {
-        return R.string.usource_battery;
+        return R.string.usource_power;
     }
 
     @Override
@@ -66,8 +66,8 @@ public class BatteryUSourceSkill implements USourceSkill<BatteryUSourceData> {
 
     @NonNull
     @Override
-    public USourceDataFactory<BatteryUSourceData> dataFactory() {
-        return new BatteryUSourceDataFactory();
+    public USourceDataFactory<PowerUSourceData> dataFactory() {
+        return new PowerUSourceDataFactory();
     }
 
     @NonNull
@@ -78,23 +78,23 @@ public class BatteryUSourceSkill implements USourceSkill<BatteryUSourceData> {
 
     @NonNull
     @Override
-    public SkillView<BatteryUSourceData> view() {
-        return new BatterySkillViewFragment();
+    public SkillView<PowerUSourceData> view() {
+        return new PowerSkillViewFragment();
     }
 
     @Override
-    public AbstractSlot<BatteryUSourceData> slot(@NonNull Context context, @ValidData @NonNull BatteryUSourceData data) {
-        return new BatterySlot(context, data);
+    public AbstractSlot<PowerUSourceData> slot(@NonNull Context context, @ValidData @NonNull PowerUSourceData data) {
+        return new PowerSlot(context, data);
     }
 
     @Override
-    public AbstractSlot<BatteryUSourceData> slot(@NonNull Context context, @NonNull BatteryUSourceData data, boolean retriggerable, boolean persistent) {
-        return new BatterySlot(context, data, retriggerable, persistent);
+    public AbstractSlot<PowerUSourceData> slot(@NonNull Context context, @NonNull PowerUSourceData data, boolean retriggerable, boolean persistent) {
+        return new PowerSlot(context, data, retriggerable, persistent);
     }
 
     @Override
-    public Tracker<BatteryUSourceData> tracker(@NonNull Context context, @NonNull BatteryUSourceData data, @NonNull PendingIntent event_positive, @NonNull PendingIntent event_negative) {
-        return new BatteryTracker(context, data, event_positive, event_negative);
+    public Tracker<PowerUSourceData> tracker(@NonNull Context context, @NonNull PowerUSourceData data, @NonNull PendingIntent event_positive, @NonNull PendingIntent event_negative) {
+        return new PowerTracker(context, data, event_positive, event_negative);
     }
 
 }

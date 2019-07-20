@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.usource.battery;
+package ryey.easer.skills.usource.power;
 
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -32,7 +32,7 @@ import com.orhanobut.logger.Logger;
 
 import ryey.easer.skills.condition.SkeletonTracker;
 
-public class BatteryTracker extends SkeletonTracker<BatteryUSourceData> {
+public class PowerTracker extends SkeletonTracker<PowerUSourceData> {
 
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
@@ -58,11 +58,11 @@ public class BatteryTracker extends SkeletonTracker<BatteryUSourceData> {
         filter.addAction(Intent.ACTION_POWER_DISCONNECTED);
     }
 
-    BatteryTracker(Context context, BatteryUSourceData data,
-                   @NonNull PendingIntent event_positive,
-                   @NonNull PendingIntent event_negative) {
+    PowerTracker(Context context, PowerUSourceData data,
+                 @NonNull PendingIntent event_positive,
+                 @NonNull PendingIntent event_negative) {
         super(context, data, event_positive, event_negative);
-        Logger.d("BatteryTracker constructed");
+        Logger.d("PowerTracker constructed");
     }
 
     @Override
@@ -77,25 +77,15 @@ public class BatteryTracker extends SkeletonTracker<BatteryUSourceData> {
 
     @Override
     public Boolean state() {
-        Logger.d("BatteryTracker.state()");
-        IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-        Intent batteryStatus = context.registerReceiver(null, ifilter);
-        int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+        Logger.d("PowerTracker.state()");
+        Intent batteryStickyIntent = Utils.getBatteryStickyIntent(context);
+        int status = batteryStickyIntent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
         boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
                 status == BatteryManager.BATTERY_STATUS_FULL;
-        return (data.battery_status == BatteryStatus.charging) == isCharging;
+        return Utils.determine(isCharging, data, batteryStickyIntent);
     }
 
     private void determineAndNotify(boolean isCharging) {
-        boolean satisfied = (data.battery_status == BatteryStatus.charging) == isCharging;
-        try {
-            if (satisfied) {
-                event_positive.send();
-            } else {
-                event_negative.send();
-            }
-        } catch (PendingIntent.CanceledException e) {
-            e.printStackTrace();
-        }
+        newSatisfiedState(Utils.determine(isCharging, data, context));
     }
 }

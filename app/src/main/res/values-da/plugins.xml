@@ -12,11 +12,7 @@
     <string name="usource_wificonn_select_dialog_title">Vælge trådløs netvær adgangs-punkt</string>
     <string name="usource_wificonn_wait_for_result">Venter på trådløs netværk skanne svar</string>
     <string name="usource_cell_location">Celle placering</string>
-    <string name="usource_battery">Batteri status</string>
-    <array name="usource_battery_status">
-        <item>Lader</item>
-        <item>Aflader</item>
-    </array>
+    <string name="usource_power">Batteri status</string>
     <string name="usource_day_of_week">Ugedag</string>
     <string name="usource_bluetooth_device">Bluetooth enhed forbundet</string>
     <string name="usource_bt_device_select_dialog_title">Vælge Bluetooth enhed</string>

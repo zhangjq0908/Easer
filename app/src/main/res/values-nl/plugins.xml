@@ -28,7 +28,7 @@
     <string name="usource_wificonn_wait_for_result">Wachten op WiFi scan resultaat</string>
     <string name="usource_cell_location">Mobiele locatie</string>
     <string name="usource_cell_location_no_signal">Kan geen mobiele locatie verkrijgen. Controleer uw signaal.</string>
-    <string name="usource_battery">Batterij status</string>
+    <string name="usource_power">Batterij status</string>
     <string name="usource_day_of_week">Weekdag</string>
     <string name="usource_bluetooth_device">Bluetooth apparaat verbonden</string>
     <string name="usource_bt_device_select_dialog_title">Select Bluetooth apparaat</string>

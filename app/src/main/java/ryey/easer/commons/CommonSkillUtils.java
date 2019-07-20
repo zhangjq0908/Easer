@@ -21,9 +21,17 @@ package ryey.easer.commons;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Parcel;
 import android.preference.PreferenceManager;
 
+import androidx.annotation.NonNull;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Locale;
+
+import javax.annotation.Nullable;
 
 import ryey.easer.commons.local_skill.Skill;
 import ryey.easer.commons.local_skill.conditionskill.ConditionSkill;
@@ -65,5 +73,29 @@ public class CommonSkillUtils {
         SharedPreferences settingsPreference =
                 PreferenceManager.getDefaultSharedPreferences(context);
         return settingsPreference.getBoolean(CommonSkillUtils.pluginEnabledKey(type, id), true);
+    }
+
+    public static class IO {
+
+        public static <T extends Enum<?>> void writeEnumCollectionToParcel(@NonNull Parcel dest, int flags, @Nullable Collection<T> enumArray) {
+            if (enumArray == null || enumArray.size() == 0) {
+                dest.writeInt(0);
+            } else {
+                dest.writeInt(enumArray.size());
+                for (T elem : enumArray) {
+                    dest.writeInt(elem.ordinal());
+                }
+            }
+        }
+
+        @NonNull
+        public static <T extends Enum<T>> Collection<T> readEnumCollectionFromParcel(@NonNull Parcel in, @NonNull T[] values) {
+            List<T> list = new ArrayList<>();
+            int length = in.readByte();
+            for (int i = 0; i < length; i++)
+                list.add(values[in.readInt()]);
+            return list;
+        }
+
     }
 }
