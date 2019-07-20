@@ -46,6 +46,8 @@ public class EventParser implements Parser<EventStructure> {
             JSONObject jsonObject_situation = jsonObject.getJSONObject(C.SIT);
             String spec = jsonObject_situation.getString(C.SPEC);
             EventSkill<?> plugin = LocalSkillRegistry.getInstance().event().findSkill(spec);
+            if (plugin == null)
+                throw new IllegalStorageDataException("Event skill not found");
             EventData eventData = plugin.dataFactory()
                     .parse(jsonObject_situation.getString(C.DATA), PluginDataFormat.JSON, version);
             return new EventStructure(version, name, eventData);
