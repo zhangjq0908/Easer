@@ -56,6 +56,8 @@ public class WifiTracker extends SkeletonTracker<WifiUSourceData> {
                         }
                         wifiInfo = wifiManager.getConnectionInfo();
                         Logger.d(wifiInfo);
+                        if (wifiInfo == null)
+                            return;
                     }
                     compareAndSignal(wifiInfo);
                 } else if (!networkInfo.isConnectedOrConnecting()) {
@@ -108,21 +110,9 @@ public class WifiTracker extends SkeletonTracker<WifiUSourceData> {
         context.unregisterReceiver(connReceiver);
     }
 
-    private void compareAndSignal(WifiInfo wifiInfo) {
-        boolean match = compare(data, wifiInfo);
+    private void compareAndSignal(@NonNull WifiInfo wifiInfo) {
+        boolean match = Utils.compare(data, wifiInfo);
         newSatisfiedState(match);
     }
 
-    private static boolean compare(WifiUSourceData data, WifiInfo wifiInfo) {
-        String ssid;
-        if (data.mode_essid) {
-            ssid = wifiInfo.getSSID();
-            if (ssid.startsWith("\"")) {
-                ssid = ssid.substring(1, ssid.length() - 1);
-            }
-        } else {
-            ssid = wifiInfo.getBSSID();
-        }
-        return data.match(ssid);
-    }
 }
