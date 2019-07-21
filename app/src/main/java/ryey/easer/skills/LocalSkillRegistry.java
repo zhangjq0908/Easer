@@ -79,6 +79,7 @@ import ryey.easer.skills.usource.battery.BatteryUSourceSkill;
 import ryey.easer.skills.usource.bluetooth_device.BTDeviceUSourceSkill;
 import ryey.easer.skills.usource.bluetooth_enabled.BluetoothEnabledUSourceSkill;
 import ryey.easer.skills.usource.cell_location.CellLocationUSourceSkill;
+import ryey.easer.skills.usource.connectivity.ConnectivityUSourceSkill;
 import ryey.easer.skills.usource.date.DateUSourceSkill;
 import ryey.easer.skills.usource.day_of_week.DayOfWeekEventSkill;
 import ryey.easer.skills.usource.headset.HeadsetUSourceSkill;
@@ -109,6 +110,7 @@ final public class LocalSkillRegistry {
                 new BTDeviceUSourceSkill(),
                 new BluetoothEnabledUSourceSkill(),
                 new CellLocationUSourceSkill(),
+                new ConnectivityUSourceSkill(),
                 new DateUSourceSkill(),
                 new DayOfWeekEventSkill(),
                 new HeadsetUSourceSkill(),
