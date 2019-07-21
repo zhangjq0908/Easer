@@ -171,5 +171,6 @@
     <string name="usource_power__charging">充電中</string>
     <string name="usource_power__discharging">放電中</string>
     <string name="usource_power__usb">USB</string>
+    <string name="title_data_collection">數據</string>
 
 </resources>

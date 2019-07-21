@@ -21,7 +21,9 @@ package ryey.easer.core.ui.data;
 
 import android.content.Intent;
 
+import androidx.annotation.MenuRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 public interface DataListInterface {
@@ -33,6 +35,12 @@ public interface DataListInterface {
 
     @StringRes
     int helpTextRes();
+
+    @MenuRes
+    @Nullable
+    default Integer extraMenu() {
+        return null;
+    }
 
     Intent intentForEditDataActivity();
 

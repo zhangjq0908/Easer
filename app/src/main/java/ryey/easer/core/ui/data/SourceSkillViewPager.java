@@ -38,6 +38,7 @@ import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.local_skill.Skill;
 import ryey.easer.commons.local_skill.StorageData;
 
+@Deprecated
 public abstract class SourceSkillViewPager<GD extends StorageData, GS extends Skill> extends ViewPager {
 
     MyPagerAdapter mPagerAdapter;
