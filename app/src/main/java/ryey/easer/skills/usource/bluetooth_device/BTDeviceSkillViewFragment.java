@@ -175,6 +175,7 @@ public class BTDeviceSkillViewFragment extends SkillViewFragment<BTDeviceUSource
             text.append(hwaddress);
             is_first = false;
         }
+        editText.setText(text.toString());
     }
 
     @ValidData
