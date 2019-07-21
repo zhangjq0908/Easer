@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,33 +17,33 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.usource.battery;
+package ryey.easer.skills.event.widget;
 
 import androidx.annotation.NonNull;
 
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.ValidData;
-import ryey.easer.commons.local_skill.usource.USourceDataFactory;
+import ryey.easer.commons.local_skill.eventskill.EventDataFactory;
 import ryey.easer.plugin.PluginDataFormat;
 
-class BatteryUSourceDataFactory implements USourceDataFactory<BatteryUSourceData> {
+class WidgetEventDataFactory implements EventDataFactory<WidgetEventData> {
     @NonNull
     @Override
-    public Class<BatteryUSourceData> dataClass() {
-        return BatteryUSourceData.class;
+    public Class<WidgetEventData> dataClass() {
+        return WidgetEventData.class;
     }
 
     @ValidData
     @NonNull
     @Override
-    public BatteryUSourceData dummyData() {
-        return new BatteryUSourceData(1);
+    public WidgetEventData dummyData() {
+        return new WidgetEventData("random action");
     }
 
     @ValidData
     @NonNull
     @Override
-    public BatteryUSourceData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
-        return new BatteryUSourceData(data, format, version);
+    public WidgetEventData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
+        return new WidgetEventData(data, format, version);
     }
 }

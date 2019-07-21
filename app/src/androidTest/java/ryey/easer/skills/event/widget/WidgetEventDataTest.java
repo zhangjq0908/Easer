@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,32 +17,24 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui.data;
+package ryey.easer.skills.event.widget;
 
-import android.content.Intent;
+import android.os.Parcel;
 
-import androidx.annotation.MenuRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
+import org.junit.Test;
 
-public interface DataListInterface {
+import ryey.easer.skills.TestHelper;
 
-    void registerContainer(@NonNull DataListContainerInterface container);
+import static org.junit.Assert.assertEquals;
 
-    @NonNull
-    String title();
+public class WidgetEventDataTest {
 
-    @StringRes
-    int helpTextRes();
-
-    @MenuRes
-    @Nullable
-    default Integer extraMenu() {
-        return null;
+    @Test
+    public void testParcel() {
+        WidgetEventData dummyData = new WidgetEventDataFactory().dummyData();
+        Parcel parcel = TestHelper.writeToParcel(dummyData);
+        WidgetEventData parceledData = WidgetEventData.CREATOR.createFromParcel(parcel);
+        assertEquals(dummyData, parceledData);
     }
 
-    Intent intentForEditDataActivity();
-
-    void onEditDataResultCallback(boolean success);
 }

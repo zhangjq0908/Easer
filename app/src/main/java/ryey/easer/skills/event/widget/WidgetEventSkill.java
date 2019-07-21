@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,35 +17,32 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.usource.battery;
+package ryey.easer.skills.event.widget;
 
 import android.app.Activity;
-import android.app.PendingIntent;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import ryey.easer.R;
-import ryey.easer.commons.local_skill.SkillView;
 import ryey.easer.commons.local_skill.SourceCategory;
+import ryey.easer.skills.SkillViewFragment;
 import ryey.easer.commons.local_skill.ValidData;
-import ryey.easer.commons.local_skill.conditionskill.Tracker;
-import ryey.easer.commons.local_skill.usource.USourceDataFactory;
-import ryey.easer.commons.local_skill.usource.USourceSkill;
 import ryey.easer.skills.event.AbstractSlot;
+import ryey.easer.commons.local_skill.eventskill.EventDataFactory;
+import ryey.easer.commons.local_skill.eventskill.EventSkill;
 
-public class BatteryUSourceSkill implements USourceSkill<BatteryUSourceData> {
+public class WidgetEventSkill implements EventSkill<WidgetEventData> {
 
     @NonNull
     @Override
     public String id() {
-        return "battery";
+        return "widget";
     }
 
     @Override
     public int name() {
-        return R.string.usource_battery;
+        return R.string.event_widget;
     }
 
     @Override
@@ -53,7 +50,6 @@ public class BatteryUSourceSkill implements USourceSkill<BatteryUSourceData> {
         return true;
     }
 
-    @Nullable
     @Override
     public Boolean checkPermissions(@NonNull Context context) {
         return null;
@@ -61,40 +57,34 @@ public class BatteryUSourceSkill implements USourceSkill<BatteryUSourceData> {
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
-
     }
 
     @NonNull
     @Override
-    public USourceDataFactory<BatteryUSourceData> dataFactory() {
-        return new BatteryUSourceDataFactory();
+    public EventDataFactory<WidgetEventData> dataFactory() {
+        return new WidgetEventDataFactory();
     }
 
     @NonNull
     @Override
     public SourceCategory category() {
-        return SourceCategory.device;
+        return SourceCategory.easer;
     }
 
     @NonNull
     @Override
-    public SkillView<BatteryUSourceData> view() {
-        return new BatterySkillViewFragment();
+    public SkillViewFragment<WidgetEventData> view() {
+        return new WidgetSkillViewFragment();
     }
 
     @Override
-    public AbstractSlot<BatteryUSourceData> slot(@NonNull Context context, @ValidData @NonNull BatteryUSourceData data) {
-        return new BatterySlot(context, data);
+    public AbstractSlot<WidgetEventData> slot(@NonNull Context context, @ValidData @NonNull WidgetEventData data) {
+        return new WidgetSlot(context, data);
     }
 
     @Override
-    public AbstractSlot<BatteryUSourceData> slot(@NonNull Context context, @NonNull BatteryUSourceData data, boolean retriggerable, boolean persistent) {
-        return new BatterySlot(context, data, retriggerable, persistent);
-    }
-
-    @Override
-    public Tracker<BatteryUSourceData> tracker(@NonNull Context context, @NonNull BatteryUSourceData data, @NonNull PendingIntent event_positive, @NonNull PendingIntent event_negative) {
-        return new BatteryTracker(context, data, event_positive, event_negative);
+    public AbstractSlot<WidgetEventData> slot(@NonNull Context context, @NonNull WidgetEventData data, boolean retriggerable, boolean persistent) {
+        return new WidgetSlot(context, data, retriggerable, persistent);
     }
 
 }

@@ -18,7 +18,7 @@
 
     <string name="usource_cell_location">Localisation cellulaire</string>
 
-    <string name="usource_battery">État de la batterie</string>
+    <string name="usource_power">État de la batterie</string>
     <string name="usource_day_of_week">Jour de la semaine</string>
 
     <string name="usource_bluetooth_device">Périphérique Bluetooth connecté</string>

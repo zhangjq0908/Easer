@@ -32,4 +32,5 @@
     <color name="color_negative">#F22754</color>
 
     <color name="transparent">@android:color/transparent</color>
+    <color name="semi_transparent">#30FFFFFF</color>
 </resources>

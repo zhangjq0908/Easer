@@ -22,7 +22,7 @@
     <string name="usource_cell_location">Localização celular</string>
     <string name="usource_cell_location_no_signal">Impossível obter localização celular. Verifique o sinal.</string>
     <string name="usource_cell_location_dynamics_cell_location">Localização celular</string>
-    <string name="usource_battery">Estado do bateria</string>
+    <string name="usource_power">Estado do bateria</string>
     <string name="usource_day_of_week">Dia da semana</string>
     <string name="usource_bluetooth_device">Dispositivo de bluetooth conectado</string>
     <string name="usource_bt_device_select_dialog_title">Selecione dispositivo bluetooth</string>

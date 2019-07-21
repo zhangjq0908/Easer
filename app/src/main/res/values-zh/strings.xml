@@ -166,5 +166,11 @@
     <string name="title_select_condition">選擇一個狀況</string>
     <string name="title_select_event">選擇一個事件</string>
     <string name="button_see_detail">查看詳情</string>
+    <string name="usource_power__ac">直流電源</string>
+    <string name="usource_power__any">任意</string>
+    <string name="usource_power__charging">充電中</string>
+    <string name="usource_power__discharging">放電中</string>
+    <string name="usource_power__usb">USB</string>
+    <string name="title_data_collection">數據</string>
 
 </resources>

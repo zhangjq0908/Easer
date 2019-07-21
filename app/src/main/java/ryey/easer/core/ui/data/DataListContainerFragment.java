@@ -39,6 +39,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.orhanobut.logger.Logger;
 
 import ryey.easer.R;
 import ryey.easer.core.ui.data.condition.ConditionListFragment;
@@ -59,6 +60,7 @@ public final class DataListContainerFragment extends Fragment implements DataLis
     private DataListInterface currentDataList;
 
     public static DataListContainerFragment create(ListType listType) {
+        Logger.i("going to create DataListFragment %s", listType);
         DataListContainerFragment fragment = new DataListContainerFragment();
         Bundle args = new Bundle();
         args.putSerializable(ARG_LIST_TYPE, listType);
@@ -67,8 +69,8 @@ public final class DataListContainerFragment extends Fragment implements DataLis
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
 
@@ -101,6 +103,10 @@ public final class DataListContainerFragment extends Fragment implements DataLis
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.list_data, menu);
+        assert currentDataList != null;
+        Integer extra = currentDataList.extraMenu();
+        if (extra != null)
+            inflater.inflate(extra, menu);
     }
 
     @Override

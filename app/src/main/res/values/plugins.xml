@@ -89,6 +89,14 @@
     <string name="one_time">One time</string>
     <string name="minutes">Minutes</string>
 
+    <string name="event_widget">Widget</string>
+    <string name="event_widget_widget_label">WidgetEvent Widget</string>
+    <string name="event_widget_text">Text</string>
+    <string name="event_widget_tag">Tag</string>
+    <string name="event_widget_default_text">DISPLAY TEXT</string>
+    <string name="event_widget_default_tag">TAG</string>
+    <string name="event_widget_button_add_widget">Add widget</string>
+
     <!--Operation (o, op)-->
 
     <string name="operation_airplane_mode">Airplane Mode</string>
@@ -196,11 +204,12 @@
     <string name="usource__enabled_yes">Yes</string>
     <string name="usource__enabled_no">No</string>
 
-    <string name="usource_battery">Battery Status</string>
-    <array name="usource_battery_status">
-        <item>Charging</item>
-        <item>Discharging</item>
-    </array>
+    <string name="usource_power">Power Status</string>
+    <string name="usource_power__charging">Charging</string>
+    <string name="usource_power__discharging">Discharging</string>
+    <string name="usource_power__any">Any</string>
+    <string name="usource_power__usb">USB</string>
+    <string name="usource_power__ac">AC</string>
 
     <string name="usource_bluetooth_device">Bluetooth Device Connected</string>
     <string name="usource_bt_device_select_dialog_title">Select Bluetooth Device</string>

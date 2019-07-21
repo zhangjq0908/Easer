@@ -39,6 +39,7 @@ import android.os.IBinder;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.orhanobut.logger.Logger;
 
@@ -54,6 +55,7 @@ import ryey.easer.core.data.ScriptTree;
 import ryey.easer.core.data.storage.ScriptDataStorage;
 import ryey.easer.core.log.ActivityLogService;
 import ryey.easer.core.ui.MainActivity;
+import ryey.easer.skills.event.widget.UserActionWidget;
 
 /*
  * The background service which maintains several Lotus(es) and send Intent to load Profile(s).
@@ -144,6 +146,8 @@ public class EHService extends Service {
         }
     };
 
+    WidgetBroadcastRedispatcher widgetBroadcastRedispatcher = new WidgetBroadcastRedispatcher();
+
     private static boolean running = false;
 
     public static boolean isRunning() {
@@ -222,6 +226,7 @@ public class EHService extends Service {
     public void onCreate() {
         Logger.v(TAG + "onCreate()");
         super.onCreate();
+        widgetBroadcastRedispatcher.start(this);
         startNotification();
         ActivityLogService.Companion.notifyServiceStatus(this, SERVICE_NAME, true, null);
         bindService(new Intent(this, ConditionHolderService.class), connection, Context.BIND_AUTO_CREATE);
@@ -240,6 +245,7 @@ public class EHService extends Service {
     public void onDestroy() {
         Logger.v(TAG + "onDestroy");
         super.onDestroy();
+        widgetBroadcastRedispatcher.stop(this);
         stopNotification();
         ActivityLogService.Companion.notifyServiceStatus(this, SERVICE_NAME, false, null);
         mCancelTriggers();
@@ -333,6 +339,29 @@ public class EHService extends Service {
                 statusList.addAll(lotus.statusRec());
             }
             return statusList;
+        }
+    }
+
+    private static class WidgetBroadcastRedispatcher {
+        /**
+         * Handles the broadcast (from PendingIntent) from any widgets, by redispatching
+         * This is required because AppWidget can only send PendingIntent to a specific Component (EHService)
+         */
+        final BroadcastReceiver widgetBroadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+            }
+        };
+
+        void start(Context context) {
+            IntentFilter intentFilter = new IntentFilter();
+            intentFilter.addAction(UserActionWidget.Companion.getACTION_WIDGET_CLICKED());
+            context.registerReceiver(widgetBroadcastReceiver, intentFilter);
+        }
+
+        void stop(Context context) {
+            context.unregisterReceiver(widgetBroadcastReceiver);
         }
     }
 

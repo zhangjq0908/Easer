@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.usource.battery;
+package ryey.easer.skills.usource.power;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -26,9 +26,7 @@ import android.content.IntentFilter;
 
 import ryey.easer.skills.event.AbstractSlot;
 
-public class BatterySlot extends AbstractSlot<BatteryUSourceData> {
-
-    private int status;
+public class PowerSlot extends AbstractSlot<PowerUSourceData> {
 
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
@@ -54,13 +52,12 @@ public class BatterySlot extends AbstractSlot<BatteryUSourceData> {
         filter.addAction(Intent.ACTION_POWER_DISCONNECTED);
     }
 
-    public BatterySlot(Context context, BatteryUSourceData data) {
+    public PowerSlot(Context context, PowerUSourceData data) {
         this(context, data, RETRIGGERABLE_DEFAULT, PERSISTENT_DEFAULT);
     }
 
-    BatterySlot(Context context, BatteryUSourceData data, boolean retriggerable, boolean persistent) {
+    PowerSlot(Context context, PowerUSourceData data, boolean retriggerable, boolean persistent) {
         super(context, data, retriggerable, persistent);
-        status = data.battery_status;
     }
 
     @Override
@@ -74,6 +71,7 @@ public class BatterySlot extends AbstractSlot<BatteryUSourceData> {
     }
 
     private void determineAndNotify(boolean isCharging) {
-        changeSatisfiedState((status == BatteryStatus.charging) == isCharging);
+        changeSatisfiedState(Utils.determine(isCharging, eventData, context));
     }
+
 }

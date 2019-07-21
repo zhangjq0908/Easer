@@ -17,32 +17,10 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui.data;
+package ryey.easer.skills.usource.power;
 
-import android.content.Intent;
-
-import androidx.annotation.MenuRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
-
-public interface DataListInterface {
-
-    void registerContainer(@NonNull DataListContainerInterface container);
-
-    @NonNull
-    String title();
-
-    @StringRes
-    int helpTextRes();
-
-    @MenuRes
-    @Nullable
-    default Integer extraMenu() {
-        return null;
-    }
-
-    Intent intentForEditDataActivity();
-
-    void onEditDataResultCallback(boolean success);
+@Deprecated
+class BatteryStatus_Old {
+    static final int charging = 0;
+    static final int discharging = 2;
 }

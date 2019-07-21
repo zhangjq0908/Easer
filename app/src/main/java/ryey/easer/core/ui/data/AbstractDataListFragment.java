@@ -79,8 +79,8 @@ public abstract class AbstractDataListFragment extends ListFragment implements D
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_fab_list, container, false);
-        getActivity().setTitle(title());
-        setHasOptionsMenu(true);
+//        getActivity().setTitle(title());
+//        setHasOptionsMenu(true);
         return view;
     }
 

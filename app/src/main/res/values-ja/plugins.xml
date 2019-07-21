@@ -26,7 +26,7 @@
     <string name="usource_wificonn_select_dialog_title">WiFiアクセスポイントを選択</string>
     <string name="usource_wificonn_wait_for_result">WiFiスキャン結果を待っています</string>
     <string name="usource_cell_location_no_signal">基地局の場所を取得できません。電波状況を確認してください。</string>
-    <string name="usource_battery">バッテリーの状態</string>
+    <string name="usource_power">バッテリーの状態</string>
     <string name="usource_day_of_week">曜日</string>
     <string name="usource_bluetooth_device">Bluetoothデバイスが接続された</string>
     <string name="usource_bt_device_select_dialog_title">Bluetoothデバイスを選択</string>

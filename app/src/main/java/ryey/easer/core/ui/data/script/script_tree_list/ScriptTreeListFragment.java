@@ -24,8 +24,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,9 +74,10 @@ public class ScriptTreeListFragment extends Fragment implements DataListInterfac
         return R.string.help_script;
     }
 
+    @Nullable
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.list_script_tree_extra, menu);
+    public Integer extraMenu() {
+        return R.menu.list_script_tree_extra;
     }
 
     @Override
@@ -96,13 +95,16 @@ public class ScriptTreeListFragment extends Fragment implements DataListInterfac
         scriptDataStorage = new ScriptDataStorage(getContext());
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_script_tree_list, container, false);
-
-        getActivity().setTitle(title());
-        setHasOptionsMenu(true);
 
         recyclerView = view.findViewById(R.id.recyclerView_script);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

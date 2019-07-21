@@ -41,11 +41,7 @@
     <string name="usource_cell_location_no_signal">無法獲取基站信息。請檢查信號。</string>
     <string name="usource_cell_location_dynamics_cell_location">基站位置</string>
 
-    <string name="usource_battery">電池狀態</string>
-    <array name="usource_battery_status">
-        <item>充電中</item>
-        <item>放電中</item>
-    </array>
+    <string name="usource_power">電源狀態</string>
 
     <string name="usource_day_of_week">星期幾</string>
 
