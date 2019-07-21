@@ -145,6 +145,8 @@ public class MainActivity extends CommonBaseActivity
         String tag = navTag.findTag(id);
         String bs_tag = tag;
 
+        invalidateOptionsMenu();
+
         if (id == R.id.nav_outline) {
             fragment = manager.findFragmentByTag(tag);
             if (fragment == null)
