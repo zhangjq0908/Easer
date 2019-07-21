@@ -1,0 +1,8 @@
+LaunchAppOperation now allows extras && fixes && i18n update
+
+* LaunchAppOperation now can have extras
+* Fix BTDeviceUSource data not poped to UI (when edit)
+* Fix USource not popped to SkillRegistry
+* Fix crash on some devices with "current" wifi connection
+* i18n update: Danish, Portuguese (Brazil)
+
