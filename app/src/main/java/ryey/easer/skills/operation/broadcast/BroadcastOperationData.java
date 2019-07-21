@@ -32,6 +32,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import ryey.easer.Utils;
@@ -39,6 +40,8 @@ import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.local_skill.operationskill.OperationData;
 import ryey.easer.plugin.PluginDataFormat;
+import ryey.easer.skills.operation.ExtraItem;
+import ryey.easer.skills.operation.Extras;
 
 public class BroadcastOperationData implements OperationData {
     private static final String ns = null;
@@ -48,9 +51,6 @@ public class BroadcastOperationData implements OperationData {
     private static final String TYPE = "type";
     private static final String DATA = "data";
     private static final String EXTRAS = "extras";
-    private static final String KEY = "key";
-    private static final String VALUE = "value";
-    private static final String V_TYPE = "type";
 
     IntentData data = new IntentData();
 
@@ -84,16 +84,9 @@ public class BroadcastOperationData implements OperationData {
                     if (uri != null)
                         intentData.data = Uri.parse(uri);
 
-                    JSONArray jsonArray_extras = jsonObject.optJSONArray(EXTRAS);
-                    if (jsonArray_extras != null) {
-                        intentData.extras = new ArrayList<>(jsonArray_extras.length());
-                        for (int i = 0; i < jsonArray_extras.length(); i++) {
-                            JSONObject jsonObject_extra = jsonArray_extras.getJSONObject(i);
-                            String key = jsonObject_extra.getString(KEY);
-                            String value = jsonObject_extra.getString(VALUE);
-                            String type = jsonObject_extra.getString(V_TYPE);
-                            intentData.extras.add(new IntentData.ExtraItem(key, value, type));
-                        }
+                    String strExtras = jsonObject.optString(EXTRAS);
+                    if (strExtras != null) {
+                        intentData.extras = new Extras(strExtras, format, version);
                     }
 
                     this.data = intentData;
@@ -127,16 +120,8 @@ public class BroadcastOperationData implements OperationData {
                     if (data.data != null)
                         jsonObject.put(DATA, data.data.toString());
 
-                    if (data.extras != null && data.extras.size() > 0) {
-                        JSONArray jsonArray_extras = new JSONArray();
-                        for (IntentData.ExtraItem item : data.extras) {
-                            JSONObject jsonObject_extra = new JSONObject();
-                            jsonObject_extra.put(KEY, item.key);
-                            jsonObject_extra.put(VALUE, item.value);
-                            jsonObject_extra.put(V_TYPE, item.type);
-                            jsonArray_extras.put(jsonObject_extra);
-                        }
-                        jsonObject.put(EXTRAS, jsonArray_extras);
+                    if (data.extras != null) {
+                        jsonObject.put(EXTRAS, data.extras.serialize(format));
                     }
 
                     res = jsonObject.toString();
@@ -211,7 +196,7 @@ public class BroadcastOperationData implements OperationData {
         if (data.data != null)
             placeholders.addAll(Utils.extractPlaceholder(data.data.getPath()));
         if (data.extras != null) {
-            for (IntentData.ExtraItem extra : data.extras) {
+            for (ExtraItem extra : data.extras.extras) {
                 placeholders.addAll(Utils.extractPlaceholder(extra.key));
                 placeholders.addAll(Utils.extractPlaceholder(extra.value));
             }
@@ -235,13 +220,14 @@ public class BroadcastOperationData implements OperationData {
         if (data.data != null)
             intentData.data = Uri.parse(Utils.applyDynamics(data.data.getPath(), dynamicsAssignment));
         if (data.extras != null) {
-            intentData.extras = new ArrayList<>();
-            for (IntentData.ExtraItem extra : data.extras) {
+            List<ExtraItem> extras = new ArrayList<>();
+            for (ExtraItem extra : data.extras.extras) {
                 String key = Utils.applyDynamics(extra.key, dynamicsAssignment);
                 String value = Utils.applyDynamics(extra.value, dynamicsAssignment);
                 String type = extra.type;
-                intentData.extras.add(new IntentData.ExtraItem(key, value, type));
+                extras.add(new ExtraItem(key, value, type));
             }
+            data.extras = new Extras(extras);
         }
         return new BroadcastOperationData(intentData);
     }
