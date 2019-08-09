@@ -78,6 +78,7 @@ import ryey.easer.skills.operation.wifi.WifiOperationSkill;
 import ryey.easer.skills.usource.battery.BatteryUSourceSkill;
 import ryey.easer.skills.usource.bluetooth_device.BTDeviceUSourceSkill;
 import ryey.easer.skills.usource.bluetooth_enabled.BluetoothEnabledUSourceSkill;
+import ryey.easer.skills.usource.call.CallUSourceSkill;
 import ryey.easer.skills.usource.cell_location.CellLocationUSourceSkill;
 import ryey.easer.skills.usource.connectivity.ConnectivityUSourceSkill;
 import ryey.easer.skills.usource.date.DateUSourceSkill;
@@ -109,6 +110,7 @@ final public class LocalSkillRegistry {
                 new BatteryUSourceSkill(),
                 new BTDeviceUSourceSkill(),
                 new BluetoothEnabledUSourceSkill(),
+                new CallUSourceSkill(),
                 new CellLocationUSourceSkill(),
                 new ConnectivityUSourceSkill(),
                 new DateUSourceSkill(),

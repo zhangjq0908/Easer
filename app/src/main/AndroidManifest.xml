@@ -16,6 +16,7 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.NFC" />
     <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
@@ -33,8 +34,10 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl">
-        <activity android:name=".core.ui.version_n_info.AboutActivity"
-            android:theme="@style/AppTheme.About"></activity>
+
+        <activity
+            android:name=".core.ui.version_n_info.AboutActivity"
+            android:theme="@style/AppTheme.About" />
         <activity android:name=".core.ui.version_n_info.WelcomeActivity" />
         <activity
             android:name=".core.ui.MainActivity"

@@ -211,6 +211,13 @@
     <string name="usource_bluetooth_enabled">Bluetooth Enabled</string>
     <string name="usource_bluetooth_enabled_bluetooth_is_enabled">Bluetooth is enabled?</string>
 
+    <string name="usource_call">Call</string>
+    <string name="usource_call_state">Call State</string>
+    <string name="usource_call_state_idle">Idle</string>
+    <string name="usource_call_state_ringing">Ringing</string>
+    <string name="usource_call_state_ongoing">Ongoing</string>
+    <string name="usource_call_number">Number</string>
+
     <string name="usource_cell_location">Cell Location</string>
     <string name="usource_cell_location_no_signal">Can\'t get cell location. Check your signal.</string>
     <string name="usource_cell_location_listening_title">Listening</string>
