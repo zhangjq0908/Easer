@@ -36,6 +36,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
@@ -47,13 +49,13 @@ import ryey.easer.R;
 public class ScannerDialogFragment extends DialogFragment {
 
     private TelephonyManager telephonyManager;
-    private CellLocationListener cellLocationListener = new CellLocationListener();
+    private final CellLocationListener cellLocationListener = new CellLocationListener();
 
-    private List<CellLocationSingleData> singleDataList = new ArrayList<>();
+    private final List<CellLocationSingleData> singleDataList = new ArrayList<>();
     private ArrayAdapter<CellLocationSingleData> cellLocationDataListAdapter;
 
     public interface ScannerListener {
-        void onPositiveClicked(List<CellLocationSingleData> singleData);
+        void onPositiveClicked(@NonNull List<CellLocationSingleData> singleData);
     }
 
     @Override
@@ -103,9 +105,9 @@ public class ScannerDialogFragment extends DialogFragment {
         return dialog;
     }
 
-    private static void addData(List<CellLocationSingleData> singleDataList,
-                                ArrayAdapter<CellLocationSingleData> cellLocationDataListAdapter,
-                                CellLocationSingleData data) {
+    private static void addData(@NonNull List<CellLocationSingleData> singleDataList,
+                                @NonNull ArrayAdapter<CellLocationSingleData> cellLocationDataListAdapter,
+                                @Nullable CellLocationSingleData data) {
         if (data != null) {
             if (!singleDataList.contains(data)) {
                 singleDataList.add(data);
@@ -114,7 +116,7 @@ public class ScannerDialogFragment extends DialogFragment {
         }
     }
 
-    private void addData(CellLocationSingleData data) {
+    private void addData(@Nullable CellLocationSingleData data) {
         addData(singleDataList, cellLocationDataListAdapter, data);
     }
 
@@ -146,9 +148,12 @@ public class ScannerDialogFragment extends DialogFragment {
         @Override
         protected Void doInBackground(Void... voids) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                for (CellInfo cellInfo : telephonyManager.getAllCellInfo()) {
-                    if (cellInfo.isRegistered()) {
-                        publishProgress(CellLocationSingleData.fromCellInfo(cellInfo));
+                List<CellInfo> cellInfoList = telephonyManager.getAllCellInfo();
+                if (cellInfoList != null) {
+                    for (CellInfo cellInfo : cellInfoList) {
+                        if (cellInfo.isRegistered()) {
+                            publishProgress(CellLocationSingleData.fromCellInfo(cellInfo));
+                        }
                     }
                 }
             } else {
