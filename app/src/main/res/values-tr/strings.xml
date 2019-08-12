@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="easer">Easer</string>
+    <string name="drawer_tip">Hayatınızı kolaylaştırın!</string>
+    <string name="title_outline">Anahat</string>
+    <string name="title_pivot">Özet</string>
+    <string name="title_operation">İşlem</string>
+    <string name="title_profile">Profil</string>
+    <string name="title_event">Olay</string>
+    <string name="title_script">Betik</string>
+    <string name="title_condition">Durum</string>
+    <string name="title_application">Uygulama</string>
+    <string name="title_activity_history">Etkinlik Geçmişi</string>
+    <string name="title_about">Hakkında</string>
+    <string name="title_setting">Ayarlar</string>
+</resources>
