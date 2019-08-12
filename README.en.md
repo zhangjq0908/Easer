@@ -38,7 +38,7 @@ Currently, only *Operation* can be extended as *remote skills*. [This repo](http
 
 Support Easer
 ------
-### Help translating
+### Translation
 Easer's translation work is hosted on [Hosted Weblate](https://hosted.weblate.org/projects/easer/), the official hosted instance of [weblate](https://weblate.org), an FLOSS platform for crowd-sourced web translation.
 
 We kindly welcome anyone to contribute any amount of translation.
@@ -55,6 +55,12 @@ Want to do more but don't know where to start? See issues labeled with GFC (Good
 
 If you are a developer, you may possess the knowledge and time to solve some issues. You can fork the repo, solve the problem, and create a pull request. Then, your code can be merged, and you can be appreciated by others （and you will be listed in the *Contributors* list unless you don't like to).
 You're also welcome to create pull requests for issues not raised by others, but first, please create an issue describing what you want to do (and that you are going to do it).
+
+### Test coverage
+Test is important.
+Easer is far from being tested too much -- in fact, most of its code has not been automatically tested.
+
+Contribution to test is very much appreciated, especially to the core (including the UI, data backend and the services).
 
 ### Donation
 

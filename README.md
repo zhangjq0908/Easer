@@ -56,6 +56,12 @@ Easer的翻譯工作託管在[Hosted Weblate](https://hosted.weblate.org/project
 在某些情況下（如果你是一個開發者），你也許具有解決某些issue的能力。你可以fork本倉庫，編寫代碼，然後創建pull request。這樣，如果你的代碼的確解決了其問題，則你的代碼會進入主幹，他人均會受益於你的貢獻（並且你會被列在*Contributors*列表中）。  
 同樣歡迎對非現有issue創建pull request，但建議首先創建一個issue來描述你將要進行的工作（使得其他人意識到此事）。
 
+### 測試覆蓋
+測試實是重要。
+而Easer目前遠不及過分測試的程度——事實上，多數代碼並沒有相應的自動測試。
+
+如願意幫助貢獻測試代碼——尤其是對於核心部分（包括UI、數據後端以及服務）的測試——這裏實在感激不盡。
+
 ### 捐助
 
 如果您願意給Easer的開發提供任何額度的捐助，請參看[DONATE.md](https://renyuneyun.github.io/Easer/zh/DONATE)。
