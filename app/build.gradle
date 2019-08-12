@@ -40,8 +40,8 @@ android {
         beta {
             dimension 'dev'
             applicationIdSuffix ".beta"
-            versionCode 100120
-            versionName "0.7.8-beta"
+            versionCode 100121
+            versionName "0.7.8-beta2"
         }
     }
     dataBinding.enabled = true
