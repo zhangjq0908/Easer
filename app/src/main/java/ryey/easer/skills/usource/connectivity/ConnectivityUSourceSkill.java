@@ -99,11 +99,4 @@ public class ConnectivityUSourceSkill implements USourceSkill<ConnectivityEventD
     public Tracker<ConnectivityEventData> tracker(@NonNull Context context, @NonNull ConnectivityEventData data, @NonNull PendingIntent event_positive, @NonNull PendingIntent event_negative) {
         return new ConnectivityTracker(context, data, event_positive, event_negative);
     }
-
-    @Deprecated
-    @Override
-    public EventSkill<ConnectivityEventData> event() {
-        return ((USourceSkill<ConnectivityEventData>) this).event();
-    }
-
 }

@@ -44,7 +44,8 @@ class CellLocationSingleData implements Parcelable {
     private Integer cid = null;
     private Integer lac = null;
 
-    static CellLocationSingleData fromCellLocation(CellLocation location) {
+    @Nullable
+    static CellLocationSingleData fromCellLocation(@Nullable CellLocation location) {
         int cid, lac;
         if (location != null) {
             if (location instanceof GsmCellLocation) {

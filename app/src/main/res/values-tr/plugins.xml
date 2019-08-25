@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="category_source_android">Android</string>
+    <string name="category_source_date_time">Tarih / Saat</string>
+    <string name="category_source_device">Aygıt</string>
+    <string name="category_source_easer">Easer</string>
+    <string name="category_source_data_communication">Veri iletişimi</string>
+    <string name="category_source_misc">Çeşitli</string>
+    <string name="category_source_personal">Kişisel</string>
+    <string name="category_source_unknown">Bilinmeyen</string>
+    <string name="condition__rel_after">Sonra</string>
+    <string name="condition_calendar_name">Takvim Adı</string>
+    <string name="condition_calendar_event_title">Etkinlik Başlığı</string>
+    <string name="condition_calendar_any_event">Herhangi bir olay</string>
+    <string name="condition_calendar_event_match_pattern">Eşleşme Deseni</string>
+</resources>

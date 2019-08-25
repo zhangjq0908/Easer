@@ -81,7 +81,7 @@ public class CellLocationSkillViewFragment extends SkillViewFragment<CellLocatio
     }
 
     @Override
-    public void onPositiveClicked(List<CellLocationSingleData> singleDataList) {
+    public void onPositiveClicked(@NonNull List<CellLocationSingleData> singleDataList) {
         String display_str = editText.getText().toString();
         StringBuilder stringBuilder = new StringBuilder(display_str);
         for (CellLocationSingleData singleData : singleDataList) {

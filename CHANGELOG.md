@@ -1,6 +1,11 @@
 CHANGELOG
 ======
 
+* v0.7.7.7: Bug fixes & i18n update
+	* Fix ConnectivityUSource causes crash by StackOverflow (#217, fixed in PR #239 by @GuepardoApps)
+	* Fix Aquiring Cell Towers crashes app (#216)
+	* New language: Turkish
+
 * v0.7.7.6: LaunchAppOperation now allows extras && fixes && i18n update
 	* LaunchAppOperation now can have extras
 		* Unified Extra field from BroadcastOperation
