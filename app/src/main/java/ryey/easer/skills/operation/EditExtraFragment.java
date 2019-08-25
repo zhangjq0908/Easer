@@ -95,7 +95,7 @@ public class EditExtraFragment extends Fragment {
         return null;
     }
 
-    static class ExtraItemFragment extends Fragment {
+    public static class ExtraItemFragment extends Fragment {
 
         ExtraItem item;
 
