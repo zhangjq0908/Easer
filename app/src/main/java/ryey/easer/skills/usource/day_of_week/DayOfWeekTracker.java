@@ -40,7 +40,7 @@ public class DayOfWeekTracker extends SelfNotifiableSkeletonTracker<DayOfWeekUSo
         if (mAlarmManager == null)
             mAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
-        Calendar cal = Calendar.getInstance();
+        Calendar cal = Calendar.getInstance(); // TODO: Make "super()" call "state()" and remove all these
         int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
         if (data.days.contains(dayOfWeek - 1))
             newSatisfiedState(true);
@@ -70,37 +70,23 @@ public class DayOfWeekTracker extends SelfNotifiableSkeletonTracker<DayOfWeekUSo
                 0, pendingIntent);
     }
 
-    private void scheduleAllAlarms() {
-        //TODO: optimise
-        Calendar calendar = Calendar.getInstance();
-
-        // Set calendar to 00:00 of today
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-
-        for (int i = 0; i < 7; i++) {
-            calendar.roll(Calendar.DAY_OF_YEAR, 1);
-            if (calendar.get(Calendar.DAY_OF_YEAR) == 0) {
-                calendar.roll(Calendar.YEAR, 1);
-            }
-            int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK) % 7 - 1;
-            PendingIntent pendingIntent;
-            pendingIntent = data.days.contains(dayOfWeek) ? notifySelfIntent_positive : notifySelfIntent_negative;
-            mAlarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                    AlarmManager.INTERVAL_DAY, pendingIntent);
-        }
-    }
-
     @Override
     public void start() {
-        scheduleAllAlarms();
+        Utils.scheduleAlarmEveryday(mAlarmManager, notifySelfIntent_positive);
     }
 
     @Override
     public void stop() {
         mAlarmManager.cancel(notifySelfIntent_positive);
-        mAlarmManager.cancel(notifySelfIntent_negative);
+    }
+
+    @Override
+    protected void onPositiveNotified() {
+        if (Utils.isSatisfied(data.days)) {
+            newSatisfiedState(true);
+        } else {
+            newSatisfiedState(false);
+        }
     }
 
 }

@@ -19,8 +19,6 @@
 
 package ryey.easer.core.ui
 
-import android.app.Activity
-import android.content.Context
 import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -31,19 +29,16 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.fragment_data_collection.*
 import ryey.easer.R
 import ryey.easer.core.ui.data.DataListContainerFragment
 import ryey.easer.core.ui.data.DataListContainerInterface
 
 class DataCollectionFragment: Fragment() {
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        if (context is Activity) {
-            context.setTitle(R.string.title_data_collection)
-        }
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        activity?.title = getString(R.string.title_data_collection)
+
         val view = inflater.inflate(R.layout.fragment_data_collection, container, false)
 
         val viewPager: ViewPager = view.findViewById(R.id.view_pager)
@@ -53,6 +48,10 @@ class DataCollectionFragment: Fragment() {
         tabLayout.setupWithViewPager(viewPager)
 
         return view
+    }
+
+    fun currentItem(): Int {
+        return view_pager.currentItem
     }
 
     class PagerAdapter(val resources: Resources, fm: FragmentManager?) : FragmentPagerAdapter(fm) {

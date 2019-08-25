@@ -42,6 +42,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orhanobut.logger.Logger;
 
 import ryey.easer.R;
+import ryey.easer.core.ui.DataCollectionFragment;
 import ryey.easer.core.ui.data.condition.ConditionListFragment;
 import ryey.easer.core.ui.data.event.EventListFragment;
 import ryey.easer.core.ui.data.profile.ProfileListFragment;
@@ -56,6 +57,7 @@ public final class DataListContainerFragment extends Fragment implements DataLis
 
     private TextView tv_help;
 
+    private ListType listType;
     private Fragment currentFragment;
     private DataListInterface currentDataList;
 
@@ -89,13 +91,11 @@ public final class DataListContainerFragment extends Fragment implements DataLis
             }
         });
 
-        if (currentFragment == null) {
-            Bundle args = getArguments();
-            assert args != null;
-            ListType listType = (ListType) args.getSerializable(ARG_LIST_TYPE);
-            assert listType != null;
-            switchContent(listType);
-        }
+        Bundle args = getArguments();
+        assert args != null;
+        ListType listType = (ListType) args.getSerializable(ARG_LIST_TYPE);
+        assert listType != null;
+        switchContent(listType);
 
         return view;
     }
@@ -153,6 +153,7 @@ public final class DataListContainerFragment extends Fragment implements DataLis
 
     @Override
     public void switchContent(@NonNull ListType type) {
+        this.listType = type;
         switch (type) {
             case script:
                 currentFragment = new ScriptListFragment();
@@ -179,6 +180,17 @@ public final class DataListContainerFragment extends Fragment implements DataLis
         fragmentManager.beginTransaction()
                 .replace(R.id.data_list, currentFragment)
                 .commit();
+    }
+
+    @Override
+    public boolean isVisibleToUser() {
+        assert getParentFragment() != null;
+        DataCollectionFragment parent = ((DataCollectionFragment) getParentFragment());
+        int item = parent.currentItem();
+        ListType type = listType;
+        if (listType == ListType.script_tree)
+            type = ListType.script;
+        return item == DataCollectionFragment.PagerAdapter.Companion.getFragmentOrder().indexOf(type);
     }
 
     @Override

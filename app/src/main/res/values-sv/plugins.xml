@@ -168,4 +168,20 @@
     <string name="o_play_media">Spela upp media</string>
     <string name="o_play_media_text_file">Sökväg</string>
     <string name="condition__rel_after">Efter</string>
+    <string name="condition_ringer_volume">Volym</string>
+    <string name="condition_ringer_above">Åtminstone</string>
+    <string name="condition_ringer_below">Som mest</string>
+    <string name="condition_ringer_equals">Motsvarar</string>
+    <string name="condition_calendar_name">Kalendernamn</string>
+    <string name="condition_calendar_event_title">Händelsetitel</string>
+    <string name="condition_calendar_any_event">Någon händelse</string>
+    <string name="condition_calendar_all_day_event">Matcha bara heldags-händelser</string>
+    <string name="category_source_android">Android</string>
+    <string name="category_source_date_time">Datum / Tid</string>
+    <string name="category_source_device">Enhet</string>
+    <string name="category_source_easer">Easer</string>
+    <string name="category_source_data_communication">Datakommunikation</string>
+    <string name="category_source_misc">Diverse</string>
+    <string name="category_source_personal">Personlig</string>
+    <string name="category_source_unknown">Okänd</string>
 </resources>
