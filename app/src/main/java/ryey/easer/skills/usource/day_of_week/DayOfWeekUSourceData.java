@@ -39,10 +39,11 @@ import ryey.easer.plugin.PluginDataFormat;
 
 public class DayOfWeekUSourceData implements USourceData {
 
-    Set<Integer> days = new ArraySet<>(7);
+    @NonNull
+    final Set<Integer> days = new ArraySet<>(7);
 
-    public DayOfWeekUSourceData(Set<Integer> days) {
-        this.days = days;
+    DayOfWeekUSourceData(Set<Integer> days) {
+        this.days.addAll(days);
     }
 
     DayOfWeekUSourceData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
@@ -52,8 +53,6 @@ public class DayOfWeekUSourceData implements USourceData {
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
-        if (days == null)
-            return false;
         if (days.isEmpty())
             return false;
         return true;
@@ -68,7 +67,7 @@ public class DayOfWeekUSourceData implements USourceData {
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof DayOfWeekUSourceData))
+        if (!(obj instanceof DayOfWeekUSourceData))
             return false;
         if (!days.equals(((DayOfWeekUSourceData) obj).days))
             return false;
@@ -130,6 +129,7 @@ public class DayOfWeekUSourceData implements USourceData {
     private DayOfWeekUSourceData(Parcel in) {
         ArrayList<Integer> list = new ArrayList<>();
         in.readList(list, null);
-        days = new ArraySet<>(list);
+        days.clear();
+        days.addAll(list);
     }
 }

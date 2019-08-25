@@ -20,10 +20,11 @@
 package ryey.easer.skills.usource.day_of_week;
 
 import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 
-import java.util.Calendar;
+import androidx.annotation.NonNull;
+
 import java.util.Set;
 
 import ryey.easer.skills.event.SelfNotifiableSlot;
@@ -31,53 +32,40 @@ import ryey.easer.skills.event.SelfNotifiableSlot;
 class DayOfWeekSlot extends SelfNotifiableSlot<DayOfWeekUSourceData> {
     private static AlarmManager mAlarmManager;
 
-    private Set<Integer> days;
+    @NonNull
+    private final Set<Integer> days;
 
-    public DayOfWeekSlot(Context context, DayOfWeekUSourceData data) {
+    DayOfWeekSlot(Context context, DayOfWeekUSourceData data) {
         this(context, data, RETRIGGERABLE_DEFAULT, PERSISTENT_DEFAULT);
     }
 
     DayOfWeekSlot(Context context, DayOfWeekUSourceData data, boolean retriggerable, boolean persistent) {
         super(context, data, retriggerable, persistent);
-        setDate(data.days);
+        this.days = data.days;
 
         if (mAlarmManager == null)
             mAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
     }
 
-    private void setDate(Set<Integer> days) {
-        if (days == null)
-            return;
-        this.days = days;
-    }
-
     @Override
     public void listen() {
         super.listen();
-        scheduleAlarms(notifySelfIntent_positive);
-    }
-
-    private void scheduleAlarms(PendingIntent pendingIntent) {
-        for (int dayOfWeek : days) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.HOUR_OF_DAY, 0);
-            calendar.set(Calendar.MINUTE, 0);
-            calendar.set(Calendar.SECOND, 0);
-            calendar.set(Calendar.DAY_OF_WEEK, dayOfWeek + 1);
-            if (calendar.getTimeInMillis() < System.currentTimeMillis()) {
-                if (!(calendar.get(Calendar.DAY_OF_YEAR) == Calendar.getInstance().get(Calendar.DAY_OF_YEAR)))
-                    calendar.add(Calendar.DAY_OF_YEAR, 7);
-            }
-            mAlarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                    AlarmManager.INTERVAL_DAY * 7, pendingIntent);
-        }
+        Utils.scheduleAlarmEveryday(mAlarmManager, notifySelfIntent_positive);
     }
 
     @Override
     public void cancel() {
         super.cancel();
         mAlarmManager.cancel(notifySelfIntent_positive);
-        mAlarmManager.cancel(notifySelfIntent_negative);
+    }
+
+    @Override
+    protected void onPositiveNotified(Intent intent) {
+        if (Utils.isSatisfied(days)) {
+            changeSatisfiedState(true);
+        } else {
+            changeSatisfiedState(false);
+        }
     }
 
 }
