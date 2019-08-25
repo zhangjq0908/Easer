@@ -29,6 +29,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.fragment_data_collection.*
 import ryey.easer.R
 import ryey.easer.core.ui.data.DataListContainerFragment
 import ryey.easer.core.ui.data.DataListContainerInterface
@@ -47,6 +48,10 @@ class DataCollectionFragment: Fragment() {
         tabLayout.setupWithViewPager(viewPager)
 
         return view
+    }
+
+    fun currentItem(): Int {
+        return view_pager.currentItem
     }
 
     class PagerAdapter(val resources: Resources, fm: FragmentManager?) : FragmentPagerAdapter(fm) {

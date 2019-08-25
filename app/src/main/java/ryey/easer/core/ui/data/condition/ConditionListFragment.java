@@ -41,7 +41,7 @@ import ryey.easer.skills.LocalSkillRegistry;
 public class ConditionListFragment extends AbstractDataListFragment {
 
     static {
-        TAG = "[ScriptListFragment] ";
+        TAG = "[ConditionListFragment] ";
     }
 
     @NonNull

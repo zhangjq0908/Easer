@@ -30,6 +30,12 @@ public interface DataListContainerInterface {
 
     void switchContent(@NonNull DataListContainerFragment.ListType type);
 
+    /**
+     * Workaround due to preload of ViewPager (which causes {@link androidx.fragment.app.Fragment#getUserVisibleHint} doesn't work) and {@link androidx.fragment.app.Fragment#onContextItemSelected} is called on all Fragments (from {@link androidx.fragment.app.FragmentManager}
+     * @return if the current is really the current page displayed to the user
+     */
+    boolean isVisibleToUser();
+
     enum ListType {
         script,
         script_tree,
