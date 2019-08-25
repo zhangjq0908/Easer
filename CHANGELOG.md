@@ -1,6 +1,14 @@
 CHANGELOG
 ======
 
+* v0.7.7.6: LaunchAppOperation now allows extras && fixes && i18n update
+	* LaunchAppOperation now can have extras
+		* Unified Extra field from BroadcastOperation
+	* Fix BTDeviceUSource data not poped to UI (when edit)
+	* Fix USource not popped to SkillRegistry
+	* Fix crash on some devices with "current" wifi connection
+	* i18n update: Danish, Portuguese (Brazil)
+
 * v0.7.7.5: Fix some Skill can not be selected && translation update
 	* Fix some Skills can not be selected when adding them
 	* i18n update

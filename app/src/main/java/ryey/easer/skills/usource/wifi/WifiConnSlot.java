@@ -27,6 +27,8 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 
+import androidx.annotation.NonNull;
+
 import ryey.easer.skills.event.AbstractSlot;
 
 public class WifiConnSlot extends AbstractSlot<WifiUSourceData> {
@@ -43,6 +45,15 @@ public class WifiConnSlot extends AbstractSlot<WifiUSourceData> {
                 }
                 if (networkInfo.isConnected()) {
                     WifiInfo wifiInfo = intent.getParcelableExtra(WifiManager.EXTRA_WIFI_INFO);
+                    if (wifiInfo == null) {
+                        WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                        if (wifiManager == null) {
+                            return;
+                        }
+                        wifiInfo = wifiManager.getConnectionInfo();
+                        if (wifiInfo == null)
+                            return;
+                    }
                     compareAndSignal(wifiInfo);
                 } else if (!networkInfo.isConnectedOrConnecting()) {
                     WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
@@ -81,21 +92,8 @@ public class WifiConnSlot extends AbstractSlot<WifiUSourceData> {
         context.unregisterReceiver(connReceiver);
     }
 
-    private void compareAndSignal(WifiInfo wifiInfo) {
-        boolean match = compare(eventData, wifiInfo);
+    private void compareAndSignal(@NonNull WifiInfo wifiInfo) {
+        boolean match = Utils.compare(eventData, wifiInfo);
         changeSatisfiedState(match);
-    }
-
-    private static boolean compare(WifiUSourceData eventData, WifiInfo wifiInfo) {
-        String ssid;
-        if (eventData.mode_essid) {
-            ssid = wifiInfo.getSSID();
-            if (ssid.startsWith("\"")) {
-                ssid = ssid.substring(1, ssid.length() - 1);
-            }
-        } else {
-            ssid = wifiInfo.getBSSID();
-        }
-        return eventData.match(ssid);
     }
 }

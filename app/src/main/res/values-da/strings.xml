@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="easer">Easer</string>
-    <string name="drawer_tip">Gør dagligdagen nem!</string>
+    <string name="drawer_tip">Gør hverdagen nem!</string>
     <string name="title_outline">Skitse</string>
     <string name="title_operation">Funktion</string>
     <string name="title_profile">Profil</string>
@@ -44,8 +44,8 @@
     <string name="button_read_next_time">Læse næste gang</string>
     <string name="button_understand">Forstået</string>
     <string name="button_cancel">Annullere</string>
-    <string name="button_ok">O.k.</string>
-    <string name="text_lack_permission">"Nogle færdigheder har IKKE  nødvendige rettigheder."</string>
+    <string name="button_ok">OK</string>
+    <string name="text_lack_permission">Nogle færdigheder har IKKE nødvendige rettigheder.</string>
     <string name="text_title">Titel</string>
     <string name="text_parent_node">Forælder</string>
     <string name="text_parent">Forælder</string>
@@ -54,7 +54,7 @@
     <string name="text_inline_event">Integreret hændelse</string>
     <string name="text_use_condition">Brug tilstand</string>
     <string name="text_repeatable_desc">Gentagelig når tilfreds</string>
-    <string name="text_reverse_desc">Omvendt hændelse</string>
+    <string name="text_reverse_desc">Omvendt scenarie</string>
     <string name="text_volatile">Omskiftelig</string>
     <string name="text_persistent">Vedvarende</string>
     <string name="text_dynamics">Dynamik</string>
@@ -68,7 +68,7 @@
     <string name="prompt_delete">Slette: %s?</string>
     <string name="prompt_delete_failed">Kan ikke slette. Kontrollere om element er i brug.</string>
     <string name="prompt_data_illegal">Forhindret gemme data med ugyldige felter. Kontrollere valg/inddata.</string>
-    <string name="prompt_prevented_for_permission">Giv Easer &lt;%s&gt; rettighed for denne funktion.</string>
+    <string name="prompt_prevented_for_permission">Giv Easer &lt;%s&gt; rettighed for at dette fungerer.</string>
     <string name="text_app_description">Gør dagligdagen nemmere ved automatisk at udføre rutine handlinger.
 \nSammensætte forskellige hændelser og udføre tilhørende handlinger. 
 \nThis app was inspired by CyanogenMod\'s \'profile\' mechanism and IFTTT. The original intuition was to automatically change the profile on certain time or specific WiFi connections, and it was expanded for more general use then. 
@@ -83,30 +83,30 @@
     <string name="pref_category_personalise">Personliggøre</string>
     <string name="pref_category_data_manage">Håndtere data</string>
     <string name="pref_autostart_title">Autostarte ved opstart</string>
-    <string name="pref_autostart_summary">Starte Easer i baggrunden når enhed tændes</string>
+    <string name="pref_autostart_summary">Starte Easer i baggrund når enhed tændes</string>
     <string name="pref_restart_after_upgrade_title">Start tjeneste efter opgradering</string>
     <string name="pref_welcome_title">Vise velkomst besked</string>
     <string name="pref_welcome_summary">Vise velkomst besked ved program start</string>
     <string name="pref_logging_title">Aktivere ekstern logning</string>
-    <string name="pref_logging_summary">Gemme log til ekstern lagerenhed (/sdcard/logger) for hjælp til fejl rapporter. 
+    <string name="pref_logging_summary">Gemme log til ekstern lagerenhed (/sdcard/logger) til fejl rapport hjælp. 
 \nÆndringer træder i kraft ved næste program start.</string>
     <string name="pref_use_root_title">Bruge administrator egenskaber</string>
-    <string name="pref_use_root_summary">Bruge administrator egenskab for specielle funktioner (færdigheder), som kan hjælpe med at løse kompatibilitet problem på nogle enheder. Det vil ikke blive brugt andre steder.</string>
+    <string name="pref_use_root_summary">Bruge administrator egenskab for bestemte funktioner (færdigheder), som kan hjælpe med at løse kompatibilitet problem på nogle enheder. Det vil ikke blive brugt andre steder.</string>
     <string name="pref_cooldown_title">Pausetid</string>
-    <string name="pref_cooldown_summary">Mindste interval mellem to udløsere på samme hændelse</string>
+    <string name="pref_cooldown_summary">Mindste interval mellem to udløsere for samme hændelse</string>
     <string name="cooldown_time_illformed">Værdi skal være i område 0-32767</string>
-    <string name="pref_enabled_skills_title">Aktiverede udvidelses moduler</string>
-    <string name="pref_enabled_skills_summary">Aktivere eller deaktivere bestemte udvidelsesmoduler</string>
-    <string name="pref_use_12_hour_clock_title">Brug 12 timers ur</string>
+    <string name="pref_enabled_skills_title">Aktiverede færdigheder</string>
+    <string name="pref_enabled_skills_summary">Aktivere eller deaktivere bestemte færdigheder</string>
+    <string name="pref_use_12_hour_clock_title">Brug 12 timer ur</string>
     <string name="pref_export_title">Eksportere</string>
     <string name="pref_export_summary">Eksportere alle hændelser og profiler til sd-kort. 
 \nFil navngives efter aktuel tid.</string>
     <string name="pref_import_title">Importere</string>
-    <string name="pref_import_summary">Importere alle hændelser og profiler i en pakket ZIP-fil.
+    <string name="pref_import_summary">Importere alle hændelser og profiler i en ZIP-fil. 
 \nEksisterende hændelser og profiler med samme navn vil blive overskrevet.</string>
     <string name="pref_convert_data_title">Konvertere data</string>
     <string name="pref_convert_data_summary">Konvertere al data til anbefalet format</string>
-    <string name="message_skill_not_compatible">Denne enhed kan ikke køre dette udvidelsesmodul.</string>
+    <string name="message_skill_not_compatible">Enhed kan ikke køre denne færdighed.</string>
     <string name="message_convert_data_start">Konverterer data.</string>
     <string name="message_convert_data_finish">Data konverteret.</string>
     <string name="message_convert_data_abort">Data konvertering afbrudt.</string>
@@ -138,10 +138,10 @@
     <string name="category_operation_system_config">System opsætning</string>
     <string name="category_operation_easer">@string/easer</string>
     <string name="category_operation_misc">Diverse</string>
-    <string name="title_remote_operation_plugin">Fjernbetjent udvidelses-modul</string>
+    <string name="title_remote_operation_plugin">Fjernbetjent udvidelsesmodul</string>
     <string name="menu_clear">Rydde</string>
     <string name="category_operation_unknown">Ukendt</string>
-    <string name="text_notification_running_indicator_content">%s kører i baggrunden</string>
+    <string name="text_notification_running_indicator_content">%s kører i baggrund</string>
     <string name="pref_category_service">Tjeneste</string>
     <string name="pref_show_notification_title">Vis påmindelse</string>
     <string name="pref_show_notification_summary">Vis påmindelse i påmindelse bjælken.</string>
@@ -161,7 +161,7 @@
 \n  
 \n 
 \n(Alt er som standard aktiveret.)</string>
-    <string name="welcome_message_3">Skripte er struktureret som <a href="https://en.wikipedia.org/wiki/Tree_structure">træer</a>, ved at vælge relevant forælder. 
+    <string name="welcome_message_3">Skript er struktureret som <a href="https://en.wikipedia.org/wiki/Tree_structure">træer</a>, ved at vælge relevant forælder. 
 \n 
 \nI hver gren er OG logik udført. 
 \nMellem grene er ELLER logik udført. 
@@ -179,7 +179,7 @@
     <string name="welcome_message">1. Giv Easer tilhørende rettigheder før brug af relevante hændelser og profiler. 
 \n2. Forbinde hændelser som <a href="https://en.wikipedia.org/wiki/Tree_structure">træer</a> er <i>for nuværende</i> eneste måde at bygge hændelser. 
 \n 
-\nHåber programmet er for dækkende :) 
+\nHåber programmet er brugbart :) 
 \n 
 \nSe også i <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> sektion for projekt wiki.</string>
     <string name="title_source">Kilde kode</string>
@@ -191,7 +191,7 @@
     <string name="pref_locale_custom">Tilpasset lokalitet</string>
     <string name="prompt_error_logged">Easer registrerede en fejl. Se i fejl underbiblioteket til log biblioteket.</string>
     <string name="prompt_dynamics_not_ready">For at indstille dynamik skal der vælges en gyldig profil og en gyldig udløser (f.eks. hændelse).</string>
-    <string name="title_select_event">Vælge en hændelse</string>
-    <string name="title_select_condition">Vælge en tilstand</string>
+    <string name="title_select_event">Vælge hændelse</string>
+    <string name="title_select_condition">Vælge tilstand</string>
     <string name="button_see_detail">Se oplysninger</string>
 </resources>
