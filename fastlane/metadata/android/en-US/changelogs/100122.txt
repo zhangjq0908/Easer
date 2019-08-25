@@ -1,0 +1,10 @@
+Bug fixes && added Hungarian
+
+* Fix Data title not correctly set
+* Fix crash when opening BroadcastOperation with extras
+* Fix BroadcastOperationData not correctly (de)serialized<Paste>
+* Added cooldown interval unit (i.e. seconds)
+* Fix Data page context menu doesn't handle correctly
+* Improve day-of-week check
+* i18n: merged Hungarian && updates
+
