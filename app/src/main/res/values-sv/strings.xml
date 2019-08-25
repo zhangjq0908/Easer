@@ -50,31 +50,31 @@
     <string name="button_understand">Förstått</string>
     <string name="button_cancel">Avbryt</string>
     <string name="button_ok">Okej</string>
-    <string name="text_lack_permission">Easer har inte alla behörigheter som den behöver.</string>
+    <string name="text_lack_permission">Vissa insticksmoduler har INTE tillräckliga behörigheter.</string>
     <string name="text_notification_running_indicator_content">%s körs i bakgrunden</string>
     <string name="text_title">Titel</string>
     <string name="text_parent_node">Förälder</string>
     <string name="text_parent">Förälder</string>
     <string name="text_profile">Profil</string>
     <string name="text_predefined_event">Fördefinierad händelse</string>
-    <string name="text_inline_event">Inline händelse</string>
+    <string name="text_inline_event">Integrerad händelse</string>
     <string name="text_use_condition">Använd villkor</string>
-    <string name="text_repeatable_desc">Repeterbar när den är tillfredsställd</string>
+    <string name="text_repeatable_desc">Repeterbar när det är uppfyllt</string>
     <string name="text_reverse_desc">Omvända scenariot</string>
     <string name="text_volatile">Flyktig</string>
     <string name="text_persistent">Ihållande</string>
     <string name="text_dynamics">Dynamik</string>
     <string name="text_placeholder">Platshållare</string>
     <string name="toggle_active">Aktiv</string>
-    <string name="hint_event_title">händelsenamn</string>
-    <string name="hint_script_title">skriptnamn</string>
-    <string name="hint_profile_title">profilnamn</string>
-    <string name="hint_condition_title">villkorsnamn</string>
-    <string name="prompt_save_failed">Det gick inte att spara</string>
-    <string name="prompt_delete">Vill du verkligen ta bort: %s\?</string>
-    <string name="prompt_delete_failed">Det gick inte att ta bort. Kontrollera om objektet används.</string>
+    <string name="hint_event_title">Händelsenamn</string>
+    <string name="hint_script_title">Skriptnamn</string>
+    <string name="hint_profile_title">Profilnamn</string>
+    <string name="hint_condition_title">Villkorsnamn</string>
+    <string name="prompt_save_failed">Kunde inte spara</string>
+    <string name="prompt_delete">Vill du verkligen ta bort %s\?</string>
+    <string name="prompt_delete_failed">Borttagningen misslyckades. Kontrollera om objektet används.</string>
     <string name="prompt_data_illegal">Hindrade spara data med ogiltigt fält. Vänligen kontrollera dina val / ingångar.</string>
-    <string name="prompt_prevented_for_permission">Easer behöver tillåtelse &lt;%s&gt; för denna funktion.</string>
+    <string name="prompt_prevented_for_permission">"Ge Easer  behörigheten &lt;%s&gt; för att denna funktion ska fungera."</string>
     <string name="text_app_description">Underlätta ditt liv genom att automatiskt utföra rutinmässiga åtgärder / operationer på din telefon.
 \n Kedja av olika händelser och låt deras motsvarande åtgärder som utförs. Behöver inte längre hålla dem i åtanke!
 \n Denna app var inspirerad av Cyanogenmod\'s \'profil\' mekanismen och IFTTT. Den ursprungliga intuitionen var att automatiskt ändra profil på viss tid eller visst WiFi-anslutningar, och det var expanderat för mer allmänt bruk sedan.
@@ -88,15 +88,15 @@
     <string name="pref_category_data_manage">Hantera data</string>
     <string name="pref_category_service">Tjänst</string>
     <string name="pref_autostart_title">Autostart vid uppstart</string>
-    <string name="pref_autostart_summary">Starta Easer bakgrundstjänst automatiskt</string>
+    <string name="pref_autostart_summary">Startar Easer som bakgrundstjänst när enheten startas</string>
     <string name="pref_restart_after_upgrade_title">Starta tjänsten efter uppgradering</string>
     <string name="pref_welcome_title">Visa välkomstmeddelande</string>
-    <string name="pref_welcome_summary">Visa välkomstmeddelande när appen startar</string>
-    <string name="pref_logging_title">Aktivera extern loggning</string>
-    <string name="pref_logging_summary">Spara loggar till externa lagringsenheter (/sdcard/logger) till stöd för felrapporter.
-\nÄndringen av inställningen börjar gälla från nästa gång Easer startar.</string>
+    <string name="pref_welcome_summary">Visa välkomstmeddelande när appen öppnas</string>
+    <string name="pref_logging_title">Slå på extern loggning</string>
+    <string name="pref_logging_summary">Loggar till externa lagringsenheter (/sdcard/logger) till stöd för felrapporter. 
+\nÄndringar börjar gälla från nästa gång appen startar.</string>
     <string name="pref_use_root_title">Använd root-funktioner</string>
-    <string name="pref_use_root_summary">Använd root-behörighet för specifika funktioner (plugins), som kan hjälpa till att lösa kompatibilitetsproblem på vissa enheter. Rot-behörigheten kommer inte att användas någon annanstans.</string>
+    <string name="pref_use_root_summary">Använd rot-behörighet för specifika funktioner (insticksmoduler), som kan hjälpa till att lösa kompatibilitetsproblem på vissa enheter. Rot-behörigheten kommer inte att användas någon annanstans.</string>
     <string name="pref_cooldown_title">Nedkylningstid</string>
     <string name="pref_cooldown_summary">Minimala intervallet mellan två utlösare av samma händelse</string>
     <string name="cooldown_time_illformed">Numret får inte vara lägre än 0 och inte för stor för att rymma i ett heltal</string>
@@ -104,76 +104,91 @@
     <string name="pref_enabled_skills_summary">Aktivera eller inaktivera vissa insticksmoduler</string>
     <string name="pref_use_12_hour_clock_title">Använd 12-timmarsklocka</string>
     <string name="pref_export_title">Exportera</string>
-    <string name="pref_export_summary">Exportera alla händelser och profiler till SD Card.
-\nFil namnges efter aktuell tid.</string>
+    <string name="pref_export_summary">Exportera alla händelser och profiler till SD-kortet .
+\nFilnamnet kommer att bestå av en aktuell tidsstämpel.</string>
     <string name="pref_import_title">Importera</string>
-    <string name="pref_import_summary">Importera alla händelser och profiler i en zip-fil.
+    <string name="pref_import_summary">Importera alla händelser och profiler i en ZIP-fil.
 \nBefintliga händelser och profiler med samma namn kommer att ersättas.</string>
     <string name="pref_convert_data_title">Konvertera data</string>
     <string name="pref_convert_data_summary">Konvertera all data till det rekommenderade formatet</string>
     <string name="pref_show_notification_title">Visa meddelande</string>
     <string name="pref_show_notification_summary">Visa ett meddelande i meddelandefältet.</string>
     <string name="pref_foreground_title">Kör service i förgrunden</string>
-    <string name="pref_foreground_summary">Gör tjänsten mindre lätt att bli avstängd av systemet. Visar ett meddelande. Kan inte inaktiveras på Android 8+ på grund av systemkrav.</string>
+    <string name="pref_foreground_summary">Gör det svårare för systemet att stänga av tjänsten. En avisering kommer att visas. Kan inte inaktiveras på Android 8+ på grund av systemkrav.</string>
     <string name="message_skill_not_compatible">Denna insticksmodul är inte kompatibel med enheten.</string>
     <string name="message_convert_data_start">Omvandlar data.</string>
-    <string name="message_convert_data_finish">Konverterade data.</string>
-    <string name="message_convert_data_abort">Konvertering av data avbruten.</string>
-    <string name="message_convert_data_error">Fel uppstod vid konvertering av data. Vänligen se loggen för mer information.</string>
+    <string name="message_convert_data_finish">Data har konverterats.</string>
+    <string name="message_convert_data_abort">Datakonvertering avbröts.</string>
+    <string name="message_convert_data_error">Kunde inte konvertera datan. Vänligen se loggen för mer information.</string>
     <string name="title_welcome_message">Välkommen</string>
-    <string name="welcome_message_1"> Välkommen till Easer!
-\n
-\nVälkomstsidor har viss grundläggande information. 
-\n
-\nLäs före användning. 
+    <string name="welcome_message_1">Välkommen! 
 \n 
-\n
-\nBäst att ta en titt på <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> i projektets wiki. </string>
-    <string name="welcome_message_2">Easer innehåller flera moduler för att ge olika funktioner. Du kan aktivera eller inaktivera dem i inställningar. 
-\n
-\nMotsvarande behörigheter (för varje aktiverad modul) bör beviljas före användning. 
+\nHär finns grundläggande information att läsa före användning av Easer.
 \n 
-\n
-\n(Allt är aktiverat som standard.)</string>
-    <string name="welcome_message_3"> Skript är strukturerade som <a href="https://en.wikipedia.org/wiki/Tree_structure">träd</a>, genom att välja relevanta föräldern. 
-\n
-\nI varje gren utförs AND logik. 
-\nMellan grenar utförs OR logik. 
+\nMer detaljerad information finns att tillgå i projektets <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a>.</string>
+    <string name="welcome_message_2">Easer innehåller flera moduler som ger tillgång till olika funktioner. Dessa kan slås av och på i inställningarna. 
 \n 
+\nMotsvarande behörigheter (för varje aktiv modul) bör beviljas före användning.
+\n 
+\n 
+\n(I grundutförande är allting påslaget.)</string>
+    <string name="welcome_message_3">Skript är strukturerade som <a href="https://sv.wikipedia.org/wiki/Tr%C3%A4d_(datastruktur)">träd</a>, genom att välja den relevanta föräldern.
+\n 
+\nI varje gren utförs AND-logik.
+\nMellan grenar utförs OR-logik.
 \n
-\nAtt utvidga träd till grafer är planerade, men för närvarande inte implementerat. </string>
+\n
+\nAtt utvidga träd till grafer är planerat, men ännu inte implementerat.</string>
     <string name="title_welcome_message_privacy">Integritet!</string>
-    <string name="welcome_message_privacy"> Integritet är viktigt! 
+    <string name="welcome_message_privacy">Integritet är viktigt!
 \n
-\nEaser är <a href="https://en.wikipedia.org/wiki/Free_software">fri programvara</a> (programvara med öppen källkod), för att garantera att alla kan granska koden. 
+\nEaser är <a href="https://en.wikipedia.org/wiki/Free_software">fri programvara</a> (programvara med öppen källkod), för att garantera att alla kan använda, granska, ändra och dela koden.
 \n
-\nDU äger varje bit av din data. Allt liv på enheten, inklusive loggar. </string>
+\nDU äger varje bit av din data. Allting bor på din enhet, inklusive loggar.</string>
     <string name="alert_update_storage_data_title">Gammal dataversion hittades</string>
-    <string name="alert_update_storage_data">Dina data har skapats i en äldre version. Det föreslås att uppdatera dem till nya versionen annars kommer Easer inte att fungera bra. Du kan göra detta genom att välja att konvertera Data i inställningar.</string>
+    <string name="alert_update_storage_data">Välj \\\"Konvertera data\\\" i inställningarna för att uppdatera din data till det nya formatet för att bli kompatibelt.</string>
     <string name="message_future_change_title">Ändras snart</string>
     <string name="template_export">Exporteras till %s</string>
     <string name="version">Version</string>
-    <string name="message_importing_invalid_data">Den här filen verkar inte vara giltig. Se till att importera en fil som tidigare exporterats med Easer.</string>
+    <string name="message_importing_invalid_data">Den här filen verkar inte vara giltig. Se till att importera en fil som exporterats med Easer.</string>
     <string name="dynamics_time">Aktuell tid</string>
     <string name="dynamics_date">Aktuellt datum</string>
     <string name="dynamics_script_name">Skriptnamn</string>
     <string name="dynamics_profile_name">Profilnamn</string>
     <string name="title_help">Hjälp</string>
-    <string name="help_script">Skript är logikbehållare. Du ansluter en händelse eller ett tillstånd med en profil i ett skript, så att Easer vet för att ladda/köra profilen när den händelsen inträffar eller villkoret uppfylls.
-\nDet finns också mer avancerade funktioner, t ex återförd händelse.
-\nSe <a href="https://github.com/renyuneyun/Easer/wiki">dokumentationen</a> för mer information.</string>
-    <string name="help_event">Händelse representerar en kort tid (omedelbar) händelse på telefonen eller på distans.
-\nTill exempel att ta emot ett meddelande eller att en NFC-tagg skannas.
-\nSe <a href="https://github.com/renyuneyun/Easer/wiki">dokumentationen</a> för mer information.</string>
-    <string name="help_condition">Villkoret utgör ett långvarigt (men oftast inte för evigt) skick på telefonen eller på distans.
-\nTill exempel att vara ansluten till WiFi eller att skärmen är avstängd.
-\nSe <a href="https://github.com/renyuneyun/Easer/wiki">dokumentationen</a> för mer information.</string>
-    <string name="help_profile">Profilen är en uppsättning åtgärder. Varje Operation representerar en viss typ av åtgärd.
-\nTill exempel att slå på Bluetooth, eller att skicka ett SMS.
-\nSe <a href="https://github.com/renyuneyun/Easer/wiki">dokumentationen</a> för mer information.</string>
+    <string name="help_script">\\\"Skript\\\" är logikbehållare. Anslut en händelse eller ett villkor med en profil i ett skript, för att Easer ska ladda/köra profilen när den händelsen inträffar eller villkoret uppfylls. 
+\nDet finns också mer avancerade funktioner, t ex återförd händelse. 
+\nSe <a href="https://github.com/renyuneyun/Easer/wiki">dokumentationen</a> för mer info.</string>
+    <string name="help_event">\\\"Händelser\\\" representerar korta (omedelbara) händelser på enheten eller från en fjärrkälla. 
+\nTill exempel att ett meddelande tas emot eller att en NFC-tagg skannas. 
+\nSe <a href="https://github.com/renyuneyun/Easer/wiki">dokumentationen</a> för mer info.</string>
+    <string name="help_condition">Ett \\\"Villkor\\\" utgör ett långvarigt (men oftast inte evigt) tillstånd på enheten eller en fjärrkälla. 
+\nTill exempel att vara ansluten till WiFi eller att skärmen är avstängd. 
+\nSe <a href="https://github.com/renyuneyun/Easer/wiki">dokumentationen</a> för mer info.</string>
+    <string name="help_profile">En \\\"Profil\\\" är en uppsättning åtgärder. Varje åtgärd representerar en viss typ av specifik handling. 
+\nTill exempel att slå på Bluetooth, eller att skicka ett SMS. 
+\nSe <a href="https://github.com/renyuneyun/Easer/wiki">dokumentationen</a> för mer info.</string>
     <string name="category_operation_android">Android</string>
     <string name="category_operation_system_config">Systemkonfiguration</string>
     <string name="category_operation_easer">\@string/easer</string>
     <string name="category_operation_misc">Blandat</string>
     <string name="category_operation_unknown">Okänd</string>
+    <string name="welcome_message">1. Ge Easer motsvarande behörigheter före användning av relevanta händelser och profiler. 
+\n2. Sammankoppling av händelser som <a href="https://en.wikipedia.org/wiki/Tree_structure">trädstrukturer</a> är <i>för stunden</i> den enda metoden för att sammansätta dem.
+\n 
+\nHoppas att du tycker om den här appen :)
+\n 
+\n Ta också en titt på <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> -delen av projektets wiki.</string>
+    <string name="title_pivot">Pivot</string>
+    <string name="title_source">Källkod</string>
+    <string name="title_author">Författare</string>
+    <string name="title_donate">Donera</string>
+    <string name="title_website">Webbsida</string>
+    <string name="title_homepage">Hemsida</string>
+    <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
+    <string name="pref_locale_custom">Anpassad språkinställning</string>
+    <string name="prompt_error_logged">Easer registrerade just ett fel. Se error-katalogen som ligger i log-katalogen.</string>
+    <string name="title_select_event">Välj en händelse</string>
+    <string name="title_select_condition">Välj ett villkor</string>
+    <string name="button_see_detail">Se detaljer</string>
 </resources>
