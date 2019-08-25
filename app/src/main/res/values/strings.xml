@@ -132,7 +132,7 @@
     <string name="pref_use_root_title">Use root features</string>
     <string name="pref_use_root_summary">Use root permission for specific functions (skills), which may help resolve compatibility issue on some devices. It won\'t be used elsewhere.</string>
     <string name="pref_cooldown_title">Cool down time</string>
-    <string name="pref_cooldown_summary">Minimal interval between two triggers of the same event</string>
+    <string name="pref_cooldown_summary">Minimal interval (in seconds) between two triggers of the same event</string>
     <string name="cooldown_time_illformed">The number must not be lower than 0 and not too large to fit in a integer</string>
     <string name="pref_enabled_skills_title">Active skills</string>
     <string name="pref_enabled_skills_summary">Turn on or off certain skills</string>
