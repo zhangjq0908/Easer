@@ -53,6 +53,8 @@ public class ConditionParser implements Parser<ConditionStructure> {
     private static ConditionData parse_condition(JSONObject json_condition, int version) throws JSONException, IllegalStorageDataException {
         String spec = json_condition.getString(C.SPEC);
         ConditionSkill<?> plugin = LocalSkillRegistry.getInstance().condition().findSkill(spec);
+        if (plugin == null)
+            throw new IllegalStorageDataException("Condition skill not found");
         return plugin.dataFactory()
                 .parse(json_condition.getString(C.DATA), PluginDataFormat.JSON, version);
     }

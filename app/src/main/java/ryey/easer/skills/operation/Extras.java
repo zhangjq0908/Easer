@@ -36,6 +36,7 @@ import java.util.Objects;
 
 import javax.annotation.Nonnull;
 
+import ryey.easer.Utils;
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.plugin.PluginDataFormat;
 
@@ -58,11 +59,15 @@ public class Extras implements Parcelable {
     @Nonnull
     public final List<ExtraItem> extras;
 
-    public Extras(List<ExtraItem> extras) {
+    public Extras(@NonNull List<ExtraItem> extras) {
         this.extras = extras;
     }
 
     public Extras(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
+        if (Utils.isBlank(data)) {
+            extras = new ArrayList<>();
+            return;
+        }
         switch (format) {
             default:
                 try {
@@ -88,7 +93,7 @@ public class Extras implements Parcelable {
         switch (format) {
             default:
                 try {
-                    if (extras != null && extras.size() > 0) {
+                    if (extras.size() > 0) {
                         JSONArray jsonArray_extras = new JSONArray();
                         for (ExtraItem item : extras) {
                             JSONObject jsonObject_extra = new JSONObject();

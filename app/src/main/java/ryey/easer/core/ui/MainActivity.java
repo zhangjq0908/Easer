@@ -42,8 +42,6 @@ import com.zeugmasolutions.localehelper.LocaleHelperActivityDelegateImpl;
 
 import ryey.easer.R;
 import ryey.easer.commons.ui.CommonBaseActivity;
-import ryey.easer.core.ui.data.DataListContainerFragment;
-import ryey.easer.core.ui.data.DataListContainerInterface;
 import ryey.easer.core.ui.setting.SettingsActivity;
 import ryey.easer.core.ui.version_n_info.AboutActivity;
 import ryey.easer.core.ui.version_n_info.Info;
@@ -57,10 +55,7 @@ public class MainActivity extends CommonBaseActivity
 
     private static final String FRAGMENT_OUTLINE = "ryey.easer.FRAGMENT.OUTLINE";
     private static final String FRAGMENT_PIVOT = "ryey.easer.FRAGMENT.PIVOT";
-    private static final String FRAGMENT_PROFILE = "ryey.easer.FRAGMENT.PROFILE";
-    private static final String FRAGMENT_SCRIPT = "ryey.easer.FRAGMENT.SCRIPT";
-    private static final String FRAGMENT_SCENARIO = "ryey.easer.FRAGMENT.SCENARIO";
-    private static final String FRAGMENT_CONDITION = "ryey.easer.FRAGMENT.CONDITION";
+    private static final String FRAGMENT_DATA = "ryey.easer.FRAGMENT.DATA";
     private static final String FRAGMENT_LOG = "ryey.easer.FRAGMENT.LOG";
 
     private static final NavTag navTag = new NavTag();
@@ -150,6 +145,8 @@ public class MainActivity extends CommonBaseActivity
         String tag = navTag.findTag(id);
         String bs_tag = tag;
 
+        invalidateOptionsMenu();
+
         if (id == R.id.nav_outline) {
             fragment = manager.findFragmentByTag(tag);
             if (fragment == null)
@@ -166,15 +163,10 @@ public class MainActivity extends CommonBaseActivity
                     .replace(R.id.content_main, fragment, tag)
                     .addToBackStack(bs_tag)
                     .commit();
-        } else if (id == R.id.nav_profile || id == R.id.nav_script || id == R.id.nav_scenario || id == R.id.nav_condition) {
+        } else if (id == R.id.nav_data) {
             fragment = manager.findFragmentByTag(tag);
-            if (fragment == null) {
-                DataListContainerFragment.ListType listType = navTag.listType(id);
-                if (listType == null) {
-                    throw new IllegalStateException(String.format("ListType with mismatched layout id: %s", id));
-                }
-                fragment = DataListContainerFragment.create(listType);
-            }
+            if (fragment == null)
+                fragment = new DataCollectionFragment();
             manager.beginTransaction()
                     .replace(R.id.content_main, fragment, tag)
                     .addToBackStack(bs_tag)
@@ -200,29 +192,14 @@ public class MainActivity extends CommonBaseActivity
         private static final int[] nav_ids = {
                 R.id.nav_outline,
                 R.id.nav_pivot,
-                R.id.nav_script,
-                R.id.nav_profile,
-                R.id.nav_scenario,
-                R.id.nav_condition,
+                R.id.nav_data,
                 R.id.nav_log,
         };
         private static final String[] fragment_tags = {
                 FRAGMENT_OUTLINE,
                 FRAGMENT_PIVOT,
-                FRAGMENT_SCRIPT,
-                FRAGMENT_PROFILE,
-                FRAGMENT_SCENARIO,
-                FRAGMENT_CONDITION,
+                FRAGMENT_DATA,
                 FRAGMENT_LOG,
-        };
-        private static final DataListContainerFragment.ListType[] fragment_list_types = {
-                null,
-                null,
-                DataListContainerInterface.ListType.script,
-                DataListContainerInterface.ListType.profile,
-                DataListContainerInterface.ListType.event,
-                DataListContainerInterface.ListType.condition,
-                null,
         };
 
         private @Nullable Integer findId(String tag) {
@@ -236,16 +213,6 @@ public class MainActivity extends CommonBaseActivity
             for (int i = 0; i < fragment_tags.length; i++) {
                 if (id == nav_ids[i])
                     return fragment_tags[i];
-            }
-            return null;
-        }
-
-        private @Nullable
-        DataListContainerFragment.ListType listType(int id) {
-            for (int i = 0; i < fragment_list_types.length; i++) {
-                if (id == nav_ids[i]) {
-                    return fragment_list_types[i];
-                }
             }
             return null;
         }

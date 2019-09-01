@@ -17,9 +17,15 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.usource.battery;
+package ryey.easer.skills.usource.power
 
-class BatteryStatus {
-    static final int charging = 0;
-    static final int discharging = 2;
+enum class BatteryStatus {
+    discharging,
+    charging,
+}
+
+enum class ChargingMethod {
+    any,
+    ac,
+    usb,
 }

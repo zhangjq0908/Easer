@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.usource.battery;
+package ryey.easer.skills.usource.call;
 
 import android.os.Parcel;
 
@@ -27,13 +27,13 @@ import ryey.easer.skills.TestHelper;
 
 import static org.junit.Assert.assertEquals;
 
-public class BatteryUSourceDataTest {
+public class CallUSourceDataTest {
 
     @Test
     public void testParcel() {
-        BatteryUSourceData dummyData = new BatteryUSourceDataFactory().dummyData();
+        CallUSourceData dummyData = new CallUSourceDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
-        BatteryUSourceData parceledData = BatteryUSourceData.CREATOR.createFromParcel(parcel);
+        CallUSourceData parceledData = CallUSourceData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);
     }
 

@@ -22,7 +22,7 @@
     <string name="usource_cell_location">Posizione Cella</string>
     <string name="usource_cell_location_no_signal">Impossibile localizzare la cella. Controllare il segnale.</string>
     <string name="usource_cell_location_dynamics_cell_location">Posizione Cella</string>
-    <string name="usource_battery">Stato Batteria</string>
+    <string name="usource_power">Stato Batteria</string>
     <string name="usource_day_of_week">Giorno della Settimana</string>
     <string name="usource_bluetooth_device">Dispositivo Bluetooth Connesso</string>
     <string name="usource_bt_device_select_dialog_title">Seleziona Dispositivo Bluetooth</string>

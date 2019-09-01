@@ -110,7 +110,10 @@ public class ProfileLoaderService extends Service {
             Bundle extras = new Bundle();
             extras.putString(ProfileLoaderService.EXTRA_PROFILE_NAME, profileName);
             extras.putString(ProfileLoaderService.EXTRA_SCRIPT_NAME, scriptName);
-            extras.putParcelable(EXTRA_DYNAMICS_PROPERTIES, dynamicsProperties);
+            if (dynamicsProperties.containsKey(EXTRA_DYNAMICS_PROPERTIES)) //TODO: Make the semantics better so this if condition is not needed
+                extras.putAll(dynamicsProperties);
+            else
+                extras.putParcelable(EXTRA_DYNAMICS_PROPERTIES, dynamicsProperties);
             extras.putParcelable(EXTRA_DYNAMICS_LINK, dynamicsLink);
             handleActionLoadProfile(profileName, scriptName, extras);
         }

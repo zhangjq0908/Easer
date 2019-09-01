@@ -71,16 +71,10 @@ public abstract class AbstractDataListFragment extends ListFragment implements D
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        registerForContextMenu(getListView());
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_fab_list, container, false);
-        getActivity().setTitle(title());
-        setHasOptionsMenu(true);
+//        getActivity().setTitle(title());
+//        setHasOptionsMenu(true);
         return view;
     }
 
@@ -89,6 +83,13 @@ public abstract class AbstractDataListFragment extends ListFragment implements D
     public void onResume() {
         super.onResume();
         reloadList();
+        registerForContextMenu(getListView()); // Don't know if ever works
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        unregisterForContextMenu(getListView()); // Same as the paired method
     }
 
     @Override
@@ -107,6 +108,8 @@ public abstract class AbstractDataListFragment extends ListFragment implements D
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+        if (!refContainer.get().isVisibleToUser())
+            return false;
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         ListDataWrapper wrapper = (ListDataWrapper) getListView().getItemAtPosition(info.position);
         String name = wrapper.name;

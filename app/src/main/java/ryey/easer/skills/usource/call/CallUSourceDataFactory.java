@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,33 +17,39 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.usource.battery;
+package ryey.easer.skills.usource.call;
 
 import androidx.annotation.NonNull;
+
+import java.util.Collections;
 
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.usource.USourceDataFactory;
 import ryey.easer.plugin.PluginDataFormat;
 
-class BatteryUSourceDataFactory implements USourceDataFactory<BatteryUSourceData> {
+class CallUSourceDataFactory implements USourceDataFactory<CallUSourceData> {
     @NonNull
     @Override
-    public Class<BatteryUSourceData> dataClass() {
-        return BatteryUSourceData.class;
+    public Class<CallUSourceData> dataClass() {
+        return CallUSourceData.class;
     }
 
     @ValidData
     @NonNull
     @Override
-    public BatteryUSourceData dummyData() {
-        return new BatteryUSourceData(1);
+    public CallUSourceData dummyData() {
+        return new CallUSourceData(
+//                CallUSourceData.Direction.both,
+                Collections.singletonList(CallUSourceData.CallState.OFFHOOK),
+                "1234"
+        );
     }
 
     @ValidData
     @NonNull
     @Override
-    public BatteryUSourceData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
-        return new BatteryUSourceData(data, format, version);
+    public CallUSourceData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
+        return new CallUSourceData(data, format, version);
     }
 }

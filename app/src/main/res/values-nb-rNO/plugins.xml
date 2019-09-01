@@ -12,7 +12,7 @@
     <string name="usource_wificonn_select_dialog_title">Velg Wi-Fi-tilgangspunkt</string>
     <string name="usource_wificonn_wait_for_result">Venter på skanningsresultat fra Wi-Fi</string>
     <string name="usource_cell_location">Celleplassering</string>
-    <string name="usource_battery">Batteristatus</string>
+    <string name="usource_power">Batteristatus</string>
     <string name="usource_day_of_week">Ukedag</string>
     <string name="usource_bluetooth_device">Blåtannsenhet tilkoblet</string>
     <string name="usource_bt_device_select_dialog_title">Velg Blåtannsenhet</string>

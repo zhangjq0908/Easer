@@ -39,8 +39,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.orhanobut.logger.Logger;
 
 import ryey.easer.R;
+import ryey.easer.core.ui.DataCollectionFragment;
 import ryey.easer.core.ui.data.condition.ConditionListFragment;
 import ryey.easer.core.ui.data.event.EventListFragment;
 import ryey.easer.core.ui.data.profile.ProfileListFragment;
@@ -55,10 +57,12 @@ public final class DataListContainerFragment extends Fragment implements DataLis
 
     private TextView tv_help;
 
+    private ListType listType;
     private Fragment currentFragment;
     private DataListInterface currentDataList;
 
     public static DataListContainerFragment create(ListType listType) {
+        Logger.i("going to create DataListFragment %s", listType);
         DataListContainerFragment fragment = new DataListContainerFragment();
         Bundle args = new Bundle();
         args.putSerializable(ARG_LIST_TYPE, listType);
@@ -67,8 +71,8 @@ public final class DataListContainerFragment extends Fragment implements DataLis
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
 
@@ -87,13 +91,11 @@ public final class DataListContainerFragment extends Fragment implements DataLis
             }
         });
 
-        if (currentFragment == null) {
-            Bundle args = getArguments();
-            assert args != null;
-            ListType listType = (ListType) args.getSerializable(ARG_LIST_TYPE);
-            assert listType != null;
-            switchContent(listType);
-        }
+        Bundle args = getArguments();
+        assert args != null;
+        ListType listType = (ListType) args.getSerializable(ARG_LIST_TYPE);
+        assert listType != null;
+        switchContent(listType);
 
         return view;
     }
@@ -101,6 +103,10 @@ public final class DataListContainerFragment extends Fragment implements DataLis
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.list_data, menu);
+        assert currentDataList != null;
+        Integer extra = currentDataList.extraMenu();
+        if (extra != null)
+            inflater.inflate(extra, menu);
     }
 
     @Override
@@ -147,6 +153,7 @@ public final class DataListContainerFragment extends Fragment implements DataLis
 
     @Override
     public void switchContent(@NonNull ListType type) {
+        this.listType = type;
         switch (type) {
             case script:
                 currentFragment = new ScriptListFragment();
@@ -173,6 +180,17 @@ public final class DataListContainerFragment extends Fragment implements DataLis
         fragmentManager.beginTransaction()
                 .replace(R.id.data_list, currentFragment)
                 .commit();
+    }
+
+    @Override
+    public boolean isVisibleToUser() {
+        assert getParentFragment() != null;
+        DataCollectionFragment parent = ((DataCollectionFragment) getParentFragment());
+        int item = parent.currentItem();
+        ListType type = listType;
+        if (listType == ListType.script_tree)
+            type = ListType.script;
+        return item == DataCollectionFragment.PagerAdapter.Companion.getFragmentOrder().indexOf(type);
     }
 
     @Override

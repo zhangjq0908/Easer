@@ -20,11 +20,11 @@
 package ryey.easer.core.ui.data.script;
 
 import android.content.Intent;
-import android.view.Menu;
-import android.view.MenuInflater;
+import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,9 +53,16 @@ public class ScriptListFragment extends AbstractDataListFragment {
         return R.string.help_script;
     }
 
+    @Nullable
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.list_script_extra, menu);
+    public Integer extraMenu() {
+        return R.menu.list_script_extra;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Override
