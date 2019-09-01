@@ -1,6 +1,21 @@
 CHANGELOG
 ======
 
+* v0.7.8: UI: group to Data page && add WidgetEvent && Add Call source && better BatteryUSource && minor improvements && Bug fixes && i18n update
+	* Move data (Script, Condition, Event, Profile) to a dedicated Data page
+	* Added WidgetEvent: launcher widget
+	* Add CallUSourceSkill
+	* Enhance BatteryUSource: rename (Power) & support more checks
+	* Added cooldown interval unit (i.e. seconds)
+	* Improve day-of-week check
+	* Minor UI improvements
+	* Fix crash when opening BroadcastOperation with extras
+	* Fix BroadcastOperationData not correctly (de)serialized
+	* Fix Dynamics not correctly passed
+	* Fix quotes in string resources
+	* i18n: merged Hungarian && updates
+	* Update skill generation script templates
+
 * v0.7.7.7: Bug fixes & i18n update
 	* Fix ConnectivityUSource causes crash by StackOverflow (#217, fixed in PR #239 by @GuepardoApps)
 	* Fix Aquiring Cell Towers crashes app (#216)
