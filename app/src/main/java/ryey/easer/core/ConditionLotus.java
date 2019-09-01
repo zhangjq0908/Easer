@@ -33,24 +33,26 @@ class ConditionLotus extends Lotus {
 
     ConditionLotus(@NonNull Context context, @NonNull ScriptTree scriptTree,
                    @NonNull ExecutorService executorService,
-                   @NonNull ConditionHolderService.CHBinder chBinder,
-                   @NonNull AsyncHelper.DelayedLoadProfileJobs jobContainerLP) {
-        super(context, scriptTree, executorService, chBinder, jobContainerLP);
+                   @NonNull EHService.DelayedConditionHolderBinderJobs jobCH,
+                   @NonNull AsyncHelper.DelayedLoadProfileJobs jobLP) {
+        super(context, scriptTree, executorService, jobCH, jobLP);
         conditionStructure = scriptTree.getCondition();
     }
 
     @Override
     protected void onListen() {
-        chBinder.registerAssociation(conditionStructure.getName(), uri);
-        Boolean state = chBinder.conditionState(conditionStructure.getName());
-        if (state == null) {
-        } else {
-            onStateSignal(state);
-        }
+        jobCH.doAfter(binder -> {
+            binder.registerAssociation(conditionStructure.getName(), uri);
+            Boolean state = binder.conditionState(conditionStructure.getName());
+            if (state == null) {
+            } else {
+                onStateSignal(state);
+            }
+        });
     }
 
     @Override
     protected void onCancel() {
-        chBinder.unregisterAssociation(conditionStructure.getName(), uri);
+        jobCH.doAfter(binder -> binder.unregisterAssociation(conditionStructure.getName(), uri));
     }
 }

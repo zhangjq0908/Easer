@@ -33,7 +33,6 @@ import android.content.ServiceConnection;
 import android.net.Uri;
 import android.os.Binder;
 import android.os.Build;
-import android.os.ConditionVariable;
 import android.os.IBinder;
 
 import androidx.annotation.NonNull;
@@ -95,22 +94,35 @@ public class EHService extends Service {
     private static final String SERVICE_NAME = "Easer";
     private static final int NOTIFICATION_ID = 1;
 
+    /**
+     * All 1-layer {@link Lotus}es are stored here.
+     * TODO: Store all of them here (with additional helper function)
+     */
     List<Lotus> mLotusArray = new ArrayList<>();
+    /**
+     * Shared thread pool for all {@link Lotus} to execute tasks
+     */
     private ExecutorService executorService = Executors.newFixedThreadPool(4);
 
-    ConditionHolderService.CHBinder conditionHolderBinder;
-    private final ConditionVariable cv = new ConditionVariable();
-    private final AsyncHelper.DelayedLoadProfileJobs jobContainerLP = new AsyncHelper.DelayedLoadProfileJobs();
+    /**
+     * Necessary objects for the correct functioning of EHService.
+     * {@link #jobCH} is for calling functions from {@link ConditionHolderService}
+     * {@link #jobLP} is for calling functions from {@link ProfileLoaderService}
+     */
+    private final DelayedConditionHolderBinderJobs jobCH = new DelayedConditionHolderBinderJobs();
+    private final AsyncHelper.DelayedLoadProfileJobs jobLP = new AsyncHelper.DelayedLoadProfileJobs();
     private final ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             Logger.v("%s onServiceConnected: %s", TAG, componentName);
             if (componentName.getClassName().equals(ConditionHolderService.class.getName())) {
-                conditionHolderBinder = (ConditionHolderService.CHBinder) iBinder;
-                cv.open();
-                mSetTriggers();
+                jobCH.onBind((ConditionHolderService.CHBinder) iBinder);
+                jobCH.doAfter(() -> {
+                    mSetTriggers();
+                    return null;
+                });
             } else if (componentName.getClassName().equals(ProfileLoaderService.class.getName())) {
-                jobContainerLP.onBind((ProfileLoaderService.PLSBinder) iBinder);
+                jobLP.onBind((ProfileLoaderService.PLSBinder) iBinder);
             }
         }
 
@@ -118,10 +130,9 @@ public class EHService extends Service {
         public void onServiceDisconnected(ComponentName componentName) {
             Logger.v("%s onServiceDisconnected: %s", TAG, componentName);
             if (componentName.getClassName().equals(ConditionHolderService.class.getName())) {
-                cv.close();
-                conditionHolderBinder = null;
+                jobCH.onUnbind();
             } else if (componentName.getClassName().equals(ProfileLoaderService.class.getName())) {
-                jobContainerLP.onUnbind();
+                jobLP.onUnbind();
             }
         }
     };
@@ -137,15 +148,17 @@ public class EHService extends Service {
             } else if (ACTION_REGISTER_CONDITION_EVENT.equals(intent.getAction()) || ACTION_UNREGISTER_CONDITION_EVENT.equals(intent.getAction())) {
                 String conditionName = intent.getStringExtra(EXTRA_CONDITION_NAME);
                 Uri notifyData = intent.getParcelableExtra(EXTRA_NOTIFY_DATA);
-                requireCHService(TAG);
                 if (ACTION_REGISTER_CONDITION_EVENT.equals(intent.getAction()))
-                    conditionHolderBinder.registerAssociation(conditionName, notifyData);
+                    jobCH.doAfter(binder -> binder.registerAssociation(conditionName, notifyData));
                 else
-                    conditionHolderBinder.unregisterAssociation(conditionName, notifyData);
+                    jobCH.doAfter(binder -> binder.unregisterAssociation(conditionName, notifyData));
             }
         }
     };
 
+    /**
+     * For {@link ryey.easer.skills.event.widget.WidgetEventSkill}
+     */
     WidgetBroadcastRedispatcher widgetBroadcastRedispatcher = new WidgetBroadcastRedispatcher();
 
     private static boolean running = false;
@@ -258,21 +271,25 @@ public class EHService extends Service {
     }
 
     private void reloadTriggers() {
-        Logger.v(TAG + "reloadTriggers()");
-        conditionHolderBinder.reload();
-        if (mLotusArray.size() > 0)
-            mCancelTriggers();
-        mSetTriggers();
-        Logger.d(TAG + "triggers reloaded");
+        Logger.v(TAG + "reloadTriggers(): setting job");
+        jobCH.doAfter(binder -> {
+            Logger.v(TAG + "triggers reloading");
+            binder.reload();
+            if (mLotusArray.size() > 0)
+                mCancelTriggers();
+            mSetTriggers();
+            Logger.d(TAG + "triggers reloaded");
+        });
     }
 
     private void mCancelTriggers() {
-        for (Lotus lotus : mLotusArray) {
-            lotus.cancel();
-        }
-        mLotusArray.clear();
-        requireCHService(TAG);
-        conditionHolderBinder.clearAssociation();
+        jobCH.doAfter(binder -> {
+            for (Lotus lotus : mLotusArray) {
+                lotus.cancel();
+            }
+            mLotusArray.clear();
+            binder.clearAssociation();
+        });
     }
 
     private void mSetTriggers() {
@@ -280,23 +297,16 @@ public class EHService extends Service {
         Logger.v(TAG + "setting triggers");
         ScriptDataStorage storage = new ScriptDataStorage(this);
         List<ScriptTree> scriptTreeList = storage.getScriptTrees();
-        requireCHService(TAG);
         for (ScriptTree script : scriptTreeList) { //TODO?: Move this to `FakeRootLotus`
             Logger.v(TAG + "setting trigger for <%s>", script.getName());
             if (script.isActive()) {
-                Lotus lotus = Lotus.createLotus(this, script, executorService, conditionHolderBinder, jobContainerLP);
+                Lotus lotus = Lotus.createLotus(this, script, executorService, jobCH, jobLP);
                 lotus.listen();
                 Logger.v(TAG + "trigger for event <%s> is set", script.getName());
                 mLotusArray.add(lotus);
             }
         }
         Logger.d(TAG + "triggers have been set");
-    }
-
-    private void requireCHService(String TAG) {
-        Logger.v(TAG + "waiting for ConditionVariable for CHBinder");
-        cv.block();
-        Logger.v(TAG + "ConditionVariable for CHBinder met");
     }
 
     @Override
@@ -340,6 +350,10 @@ public class EHService extends Service {
             }
             return statusList;
         }
+    }
+
+    static class DelayedConditionHolderBinderJobs extends AsyncHelper.DelayedServiceBinderJobs<ConditionHolderService.CHBinder> {
+
     }
 
     private static class WidgetBroadcastRedispatcher {

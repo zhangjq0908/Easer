@@ -98,11 +98,11 @@ public final class AsyncHelper {
         }
     }
 
-    public static class DelayedLoadProfileJobs extends DelayedWhenSatisfied {
+    public static class DelayedServiceBinderJobs<B> extends DelayedWhenSatisfied {
 
-        private ProfileLoaderService.PLSBinder binder;
+        protected B binder;
 
-        public void onBind(ProfileLoaderService.PLSBinder binder) {
+        public void onBind(B binder) {
             lck_tasks.lock();
             try {
                 this.binder = binder;
@@ -121,6 +121,20 @@ public final class AsyncHelper {
                 lck_tasks.unlock();
             }
         }
+
+        public void doAfter(Job<B> job) {
+            doAfter(() -> {
+                job.run(binder);
+                return null;
+            });
+        }
+
+        interface Job<B> {
+            void run(B binder);
+        }
+    }
+
+    public static class DelayedLoadProfileJobs extends DelayedServiceBinderJobs<ProfileLoaderService.PLSBinder> {
 
         private void doAfterSatisfied(TaskSpec taskSpec) {
             doAfter(() -> {
@@ -195,5 +209,4 @@ public final class AsyncHelper {
             jobLoadProfile.triggerProfile(profileName, scriptName, dynamicsProperties, dynamicsLink);
         }
     }
-
 }
