@@ -47,8 +47,9 @@ import ryey.easer.core.data.storage.ScriptDataStorage;
 import ryey.easer.core.log.ActivityLogService;
 import ryey.easer.skills.event.widget.UserActionWidget;
 
-/*
- * The background service which maintains several Lotus(es) and send Intent to load Profile(s).
+/**
+ * The main background service.
+ * It maintains several {@link Lotus}(es) and send Intent to load Profile(s) & etc.
  */
 public class EHService extends Service {
     public static final String ACTION_RELOAD = "ryey.easer.action.RELOAD";
@@ -70,20 +71,17 @@ public class EHService extends Service {
         Intent intent = new Intent(ACTION_REGISTER_CONDITION_EVENT);
         intent.putExtra(EXTRA_CONDITION_NAME, conditionName);
         intent.putExtra(EXTRA_NOTIFY_DATA, notifyData);
-        context.sendBroadcast(intent);
-        //TODO local broadcast
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
     }
     public static void unregisterConditionEventNotifier(@NonNull Context context, @NonNull String conditionName, @NonNull Uri notifyData) {
         Intent intent = new Intent(ACTION_UNREGISTER_CONDITION_EVENT);
         intent.putExtra(EXTRA_CONDITION_NAME, conditionName);
         intent.putExtra(EXTRA_NOTIFY_DATA, notifyData);
-        context.sendBroadcast(intent);
-        //TODO local broadcast
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
     }
 
     private static final String TAG = "[EHService] ";
     private static final String SERVICE_NAME = "Easer";
-    private static final int NOTIFICATION_ID = 1;
 
     /**
      * All 1-layer {@link Lotus}es are stored here.
@@ -171,7 +169,7 @@ public class EHService extends Service {
     public static void reload(Context context) {
         Intent intent = new Intent();
         intent.setAction(EHService.ACTION_RELOAD);
-        context.sendBroadcast(intent);
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
     }
 
     @Override
@@ -188,8 +186,8 @@ public class EHService extends Service {
         sendBroadcast(intent);
         IntentFilter filter = new IntentFilter();
         filter.addAction(ACTION_RELOAD);
-        registerReceiver(mReceiver, filter);
-        registerReceiver(mReceiver, filter_conditionEvent);
+        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, filter);
+        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, filter_conditionEvent);
         Logger.i(TAG + "created");
     }
 
@@ -201,7 +199,7 @@ public class EHService extends Service {
         ServiceUtils.Companion.stopNotification(this);
         ActivityLogService.Companion.notifyServiceStatus(this, SERVICE_NAME, false, null);
         mCancelTriggers();
-        unregisterReceiver(mReceiver);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mReceiver);
         unbindService(connection);
         running = false;
         Intent intent = new Intent(ACTION_STATE_CHANGED);
