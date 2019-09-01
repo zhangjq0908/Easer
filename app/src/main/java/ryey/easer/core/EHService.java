@@ -19,10 +19,6 @@
 
 package ryey.easer.core;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -32,11 +28,9 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.net.Uri;
 import android.os.Binder;
-import android.os.Build;
 import android.os.IBinder;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
@@ -48,12 +42,9 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import ryey.easer.R;
-import ryey.easer.SettingsUtils;
 import ryey.easer.core.data.ScriptTree;
 import ryey.easer.core.data.storage.ScriptDataStorage;
 import ryey.easer.core.log.ActivityLogService;
-import ryey.easer.core.ui.MainActivity;
 import ryey.easer.skills.event.widget.UserActionWidget;
 
 /*
@@ -183,64 +174,12 @@ public class EHService extends Service {
         context.sendBroadcast(intent);
     }
 
-    private void startNotification() {
-        if (!SettingsUtils.showNotification(this))
-            return;
-
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        NotificationCompat.Builder builder;
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            String channelId = "easer_ind";
-            String channelName = "Easer Service Indicator";
-            int importance = NotificationManager.IMPORTANCE_LOW;
-            NotificationChannel notificationChannel = new NotificationChannel(channelId, channelName, importance);
-            notificationManager.createNotificationChannel(notificationChannel);
-            builder = new NotificationCompat.Builder(this, channelId);
-            builder.setAutoCancel(true);
-        } else {
-            builder = new NotificationCompat.Builder(this)
-                    .setPriority(NotificationCompat.PRIORITY_MIN);
-        }
-        final int REQ_CODE = 0;
-        PendingIntent pendingIntent = PendingIntent.getActivity(
-                this, REQ_CODE, new Intent(this, MainActivity.class), 0);
-        builder
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentText(getString(
-                        R.string.text_notification_running_indicator_content,
-                        getString(R.string.easer)))
-                .setOngoing(true)
-                .setVisibility(NotificationCompat.VISIBILITY_SECRET)
-                .setContentIntent(pendingIntent);
-
-        Notification indicatorNotification = builder.build();
-
-        if (SettingsUtils.runInForeground(this)) {
-            startForeground(NOTIFICATION_ID, indicatorNotification);
-        } else {
-            notificationManager.notify(NOTIFICATION_ID, indicatorNotification);
-        }
-    }
-
-    private void stopNotification() {
-        if (!SettingsUtils.showNotification(this))
-            return;
-        if (SettingsUtils.runInForeground(this)) {
-
-        } else {
-            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            notificationManager.cancel(NOTIFICATION_ID);
-        }
-    }
-
     @Override
     public void onCreate() {
         Logger.v(TAG + "onCreate()");
         super.onCreate();
         widgetBroadcastRedispatcher.start(this);
-        startNotification();
+        ServiceUtils.Companion.startNotification(this);
         ActivityLogService.Companion.notifyServiceStatus(this, SERVICE_NAME, true, null);
         bindService(new Intent(this, ConditionHolderService.class), connection, Context.BIND_AUTO_CREATE);
         bindService(new Intent(this, ProfileLoaderService.class), connection, Context.BIND_AUTO_CREATE);
@@ -259,7 +198,7 @@ public class EHService extends Service {
         Logger.v(TAG + "onDestroy");
         super.onDestroy();
         widgetBroadcastRedispatcher.stop(this);
-        stopNotification();
+        ServiceUtils.Companion.stopNotification(this);
         ActivityLogService.Companion.notifyServiceStatus(this, SERVICE_NAME, false, null);
         mCancelTriggers();
         unregisterReceiver(mReceiver);
