@@ -57,29 +57,6 @@ public class EHService extends Service {
     public static final String ACTION_STATE_CHANGED = "ryey.easer.action.STATE_CHANGED";
     public static final String ACTION_PROFILE_UPDATED = "ryey.easer.action.PROFILE_UPDATED";
 
-    private static final String ACTION_UNREGISTER_CONDITION_EVENT = "ryey.easer.service.action.UNREGISTER_CONDITION_EVENT";
-    private static final String ACTION_REGISTER_CONDITION_EVENT = "ryey.easer.service.action.REGISTER_CONDITION_EVENT";
-    private static final String EXTRA_CONDITION_NAME = "ryey.easer.service.extra.CONDITION_NAME";
-    private static final String EXTRA_NOTIFY_DATA = "ryey.easer.service.extra.NOTIFY_DATA";
-    private static final IntentFilter filter_conditionEvent;
-    static {
-        filter_conditionEvent = new IntentFilter();
-        filter_conditionEvent.addAction(ACTION_REGISTER_CONDITION_EVENT);
-        filter_conditionEvent.addAction(ACTION_UNREGISTER_CONDITION_EVENT);
-    }
-    public static void registerConditionEventNotifier(@NonNull Context context, @NonNull String conditionName, @NonNull Uri notifyData) {
-        Intent intent = new Intent(ACTION_REGISTER_CONDITION_EVENT);
-        intent.putExtra(EXTRA_CONDITION_NAME, conditionName);
-        intent.putExtra(EXTRA_NOTIFY_DATA, notifyData);
-        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-    }
-    public static void unregisterConditionEventNotifier(@NonNull Context context, @NonNull String conditionName, @NonNull Uri notifyData) {
-        Intent intent = new Intent(ACTION_UNREGISTER_CONDITION_EVENT);
-        intent.putExtra(EXTRA_CONDITION_NAME, conditionName);
-        intent.putExtra(EXTRA_NOTIFY_DATA, notifyData);
-        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-    }
-
     private static final String TAG = "[EHService] ";
     private static final String SERVICE_NAME = "Easer";
 
@@ -126,6 +103,13 @@ public class EHService extends Service {
         }
     };
 
+    private final CoreSkillHelper coreSkillHelper = new CoreSkillHelper(this);
+    public static void registerConditionEventNotifier(@NonNull Context context, @NonNull String conditionName, @NonNull Uri notifyData) {
+        CoreSkillHelper.registerConditionEventNotifier(context, conditionName, notifyData);
+    }
+    public static void unregisterConditionEventNotifier(@NonNull Context context, @NonNull String conditionName, @NonNull Uri notifyData) {
+        CoreSkillHelper.unregisterConditionEventNotifier(context, conditionName, notifyData);
+    }
 
     final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
@@ -134,21 +118,9 @@ public class EHService extends Service {
             Logger.d("Broadcast received :: action: <%s>", action);
             if (ACTION_RELOAD.equals(action)) {
                 reloadTriggers();
-            } else if (ACTION_REGISTER_CONDITION_EVENT.equals(intent.getAction()) || ACTION_UNREGISTER_CONDITION_EVENT.equals(intent.getAction())) {
-                String conditionName = intent.getStringExtra(EXTRA_CONDITION_NAME);
-                Uri notifyData = intent.getParcelableExtra(EXTRA_NOTIFY_DATA);
-                if (ACTION_REGISTER_CONDITION_EVENT.equals(intent.getAction()))
-                    jobCH.doAfter(binder -> binder.registerAssociation(conditionName, notifyData));
-                else
-                    jobCH.doAfter(binder -> binder.unregisterAssociation(conditionName, notifyData));
             }
         }
     };
-
-    /**
-     * For {@link ryey.easer.skills.event.widget.WidgetEventSkill}
-     */
-    WidgetBroadcastRedispatcher widgetBroadcastRedispatcher = new WidgetBroadcastRedispatcher();
 
     private static boolean running = false;
 
@@ -176,7 +148,6 @@ public class EHService extends Service {
     public void onCreate() {
         Logger.v(TAG + "onCreate()");
         super.onCreate();
-        widgetBroadcastRedispatcher.start(this);
         ServiceUtils.Companion.startNotification(this);
         ActivityLogService.Companion.notifyServiceStatus(this, SERVICE_NAME, true, null);
         bindService(new Intent(this, ConditionHolderService.class), connection, Context.BIND_AUTO_CREATE);
@@ -187,7 +158,7 @@ public class EHService extends Service {
         IntentFilter filter = new IntentFilter();
         filter.addAction(ACTION_RELOAD);
         LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, filter);
-        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, filter_conditionEvent);
+        coreSkillHelper.onCreate();
         Logger.i(TAG + "created");
     }
 
@@ -195,11 +166,11 @@ public class EHService extends Service {
     public void onDestroy() {
         Logger.v(TAG + "onDestroy");
         super.onDestroy();
-        widgetBroadcastRedispatcher.stop(this);
         ServiceUtils.Companion.stopNotification(this);
         ActivityLogService.Companion.notifyServiceStatus(this, SERVICE_NAME, false, null);
         mCancelTriggers();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mReceiver);
+        coreSkillHelper.onDestroy();
         unbindService(connection);
         running = false;
         Intent intent = new Intent(ACTION_STATE_CHANGED);
@@ -293,26 +264,95 @@ public class EHService extends Service {
 
     }
 
-    private static class WidgetBroadcastRedispatcher {
+    private static class CoreSkillHelper {
+        private static final String ACTION_UNREGISTER_CONDITION_EVENT = "ryey.easer.service.action.UNREGISTER_CONDITION_EVENT";
+        private static final String ACTION_REGISTER_CONDITION_EVENT = "ryey.easer.service.action.REGISTER_CONDITION_EVENT";
+        private static final String EXTRA_CONDITION_NAME = "ryey.easer.service.extra.CONDITION_NAME";
+        private static final String EXTRA_NOTIFY_DATA = "ryey.easer.service.extra.NOTIFY_DATA";
+        private static final IntentFilter filter_conditionEvent;
+        static {
+            filter_conditionEvent = new IntentFilter();
+            filter_conditionEvent.addAction(ACTION_REGISTER_CONDITION_EVENT);
+            filter_conditionEvent.addAction(ACTION_UNREGISTER_CONDITION_EVENT);
+        }
+
+        public static void registerConditionEventNotifier(@NonNull Context context, @NonNull String conditionName, @NonNull Uri notifyData) {
+            Intent intent = new Intent(ACTION_REGISTER_CONDITION_EVENT);
+            intent.putExtra(EXTRA_CONDITION_NAME, conditionName);
+            intent.putExtra(EXTRA_NOTIFY_DATA, notifyData);
+            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+        }
+        public static void unregisterConditionEventNotifier(@NonNull Context context, @NonNull String conditionName, @NonNull Uri notifyData) {
+            Intent intent = new Intent(ACTION_UNREGISTER_CONDITION_EVENT);
+            intent.putExtra(EXTRA_CONDITION_NAME, conditionName);
+            intent.putExtra(EXTRA_NOTIFY_DATA, notifyData);
+            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+        }
+
         /**
-         * Handles the broadcast (from PendingIntent) from any widgets, by redispatching
-         * This is required because AppWidget can only send PendingIntent to a specific Component (EHService)
+         * For {@link ryey.easer.skills.event.condition_event.ConditionEventEventSkill}
          */
-        final BroadcastReceiver widgetBroadcastReceiver = new BroadcastReceiver() {
+        final BroadcastReceiver mReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+                String action = intent.getAction();
+                Logger.d("Broadcast received :: action: <%s>", action);
+                if (ACTION_REGISTER_CONDITION_EVENT.equals(intent.getAction()) || ACTION_UNREGISTER_CONDITION_EVENT.equals(intent.getAction())) {
+                    String conditionName = intent.getStringExtra(EXTRA_CONDITION_NAME);
+                    Uri notifyData = intent.getParcelableExtra(EXTRA_NOTIFY_DATA);
+                    if (ACTION_REGISTER_CONDITION_EVENT.equals(intent.getAction()))
+                        service.jobCH.doAfter(binder -> binder.registerAssociation(conditionName, notifyData));
+                    else
+                        service.jobCH.doAfter(binder -> binder.unregisterAssociation(conditionName, notifyData));
+                }
             }
         };
 
-        void start(Context context) {
-            IntentFilter intentFilter = new IntentFilter();
-            intentFilter.addAction(UserActionWidget.Companion.getACTION_WIDGET_CLICKED());
-            context.registerReceiver(widgetBroadcastReceiver, intentFilter);
+        private final EHService service;
+
+        private CoreSkillHelper(EHService service) {
+            this.service = service;
         }
 
-        void stop(Context context) {
-            context.unregisterReceiver(widgetBroadcastReceiver);
+        /**
+         * For {@link ryey.easer.skills.event.widget.WidgetEventSkill}
+         */
+        WidgetBroadcastRedispatcher widgetBroadcastRedispatcher = new WidgetBroadcastRedispatcher();
+
+        void onCreate() {
+            widgetBroadcastRedispatcher.start(service);
+            LocalBroadcastManager.getInstance(service).registerReceiver(mReceiver, filter_conditionEvent);
+        }
+
+        void onDestroy() {
+            widgetBroadcastRedispatcher.stop(service);
+            LocalBroadcastManager.getInstance(service).unregisterReceiver(mReceiver);
+        }
+        
+        /**
+         * For {@link ryey.easer.skills.event.widget.WidgetEventSkill}
+         */
+        private static class WidgetBroadcastRedispatcher {
+            /**
+             * Handles the broadcast (from PendingIntent) from any widgets, by redispatching
+             * This is required because AppWidget can only send PendingIntent to a specific Component (EHService)
+             */
+            final BroadcastReceiver widgetBroadcastReceiver = new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+                }
+            };
+
+            void start(Context context) {
+                IntentFilter intentFilter = new IntentFilter();
+                intentFilter.addAction(UserActionWidget.Companion.getACTION_WIDGET_CLICKED());
+                context.registerReceiver(widgetBroadcastReceiver, intentFilter);
+            }
+
+            void stop(Context context) {
+                context.unregisterReceiver(widgetBroadcastReceiver);
+            }
         }
     }
 
