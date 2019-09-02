@@ -183,7 +183,7 @@
     <string name="title_source">Quellcode</string>
     <string name="title_author">Autor</string>
     <string name="title_donate">Spenden</string>
-    <string name="title_website">Internetseite</string>
+    <string name="title_website">Website</string>
     <string name="title_homepage">Homepage</string>
     <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
     <string name="pref_locale_custom">Benutzerdefiniertes Gebietsschema</string>
