@@ -24,7 +24,7 @@
     <string name="menu_action_save">Salva</string>
     <string name="menu_clear">Pulisci</string>
     <string name="menu_tree_list">Lista ad Albero</string>
-    <string name="menu_plain_list">Lista Semplice</string>
+    <string name="menu_plain_list">Lista semplice</string>
     <string name="service_indicator_positive">Avviato</string>
     <string name="service_indicator_negative">Fermo</string>
     <string name="activity_history__time">Tempo</string>
@@ -32,8 +32,8 @@
     <string name="activity_history__satisfaction">Stato</string>
     <string name="title_pivot">Schema</string>
     <string name="title_operation">Operazione</string>
-    <string name="activity_history__satisfied">Soddisfatto</string>
-    <string name="activity_history__unsatisfied">Non Soddisfatto</string>
+    <string name="activity_history__satisfied">Soddisfatto/a</string>
+    <string name="activity_history__unsatisfied">Non soddisfatto/a</string>
     <string name="activity_history__service">Servizio</string>
     <string name="activity_history__status">Stato</string>
     <string name="activity_history__start">Avviato</string>
@@ -182,7 +182,7 @@
     <string name="title_author">Autore</string>
     <string name="title_donate">Donazioni</string>
     <string name="title_website">Sito Web</string>
-    <string name="title_homepage">Pagina Iniziale</string>
+    <string name="title_homepage">Pagina iniziale</string>
     <string name="pref_locale_custom">Lingua Personalizzata</string>
     <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
     <string name="prompt_error_logged">Easer ha registrato un errore. Controlla la sottocartella errori della cartella log.</string>
