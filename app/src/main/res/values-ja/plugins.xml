@@ -186,4 +186,22 @@
     <string name="category_source_misc">その他</string>
     <string name="category_source_personal">個人</string>
     <string name="category_source_unknown">不明</string>
+    <string name="event_widget">ウィジェット</string>
+    <string name="event_widget_widget_label">WidgetEvent ウィジェット</string>
+    <string name="event_widget_text">テキスト</string>
+    <string name="event_widget_tag">タグ</string>
+    <string name="event_widget_default_text">表示テキスト</string>
+    <string name="event_widget_default_tag">タグ</string>
+    <string name="event_widget_button_add_widget">ウィジェットを追加</string>
+    <string name="usource_power__charging">充電中</string>
+    <string name="usource_power__discharging">未充電</string>
+    <string name="usource_power__any">すべて</string>
+    <string name="usource_power__usb">USB</string>
+    <string name="usource_power__ac">AC</string>
+    <string name="usource_call">通話</string>
+    <string name="usource_call_state">通話状態</string>
+    <string name="usource_call_state_idle">アイドル</string>
+    <string name="usource_call_state_ringing">着信中</string>
+    <string name="usource_call_state_ongoing">通話中</string>
+    <string name="usource_call_number">番号</string>
 </resources>
