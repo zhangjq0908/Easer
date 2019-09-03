@@ -33,9 +33,9 @@ public class SynchronizationLoader extends OperationLoader<SynchronizationOperat
     }
 
     @Override
-    public boolean load(@ValidData @NonNull SynchronizationOperationData data) {
+    public void _load(@ValidData @NonNull SynchronizationOperationData data, @NonNull OnResultCallback callback) {
         Boolean state = data.get();
         ContentResolver.setMasterSyncAutomatically(state);
-        return true;
+        callback.onResult(true);
     }
 }

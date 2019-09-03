@@ -35,16 +35,16 @@ public class PlayMediaLoader extends OperationLoader<PlayMediaOperationData> {
     }
 
     @Override
-    public boolean load(@ValidData @NonNull PlayMediaOperationData data) {
+    public void _load(@ValidData @NonNull PlayMediaOperationData data, @NonNull OnResultCallback callback) {
         MediaPlayer mp = new MediaPlayer();
         try {
             mp.setDataSource(data.filePath);
             mp.prepare();
             mp.start();
-            return true;
+            callback.onResult(true);
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
+            callback.onResult(false);
         }
     }
 }

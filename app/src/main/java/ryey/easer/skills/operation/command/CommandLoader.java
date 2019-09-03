@@ -37,7 +37,7 @@ public class CommandLoader extends OperationLoader<CommandOperationData> {
     }
 
     @Override
-    public boolean load(@ValidData @NonNull CommandOperationData data) {
+    public void _load(@ValidData @NonNull CommandOperationData data, @NonNull OnResultCallback callback) {
         boolean success = true;
         String text = data.get();
         String []commands = text.split("\n");
@@ -53,6 +53,6 @@ public class CommandLoader extends OperationLoader<CommandOperationData> {
             e.printStackTrace();
             success = false;
         }
-        return success;
+        callback.onResult(success);
     }
 }

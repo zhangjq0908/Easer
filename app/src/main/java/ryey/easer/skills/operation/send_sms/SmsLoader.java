@@ -33,13 +33,15 @@ public class SmsLoader extends OperationLoader<SmsOperationData> {
     }
 
     @Override
-    public boolean load(@ValidData @NonNull SmsOperationData data) {
+    public void _load(@ValidData @NonNull SmsOperationData data, @NonNull OnResultCallback callback) {
         String destination = data.destination;
         String content = data.content;
         SmsManager smsManager = SmsManager.getDefault();
-        if (smsManager == null)
-            return false;
+        if (smsManager == null) {
+            callback.onResult(false);
+            return;
+        }
         smsManager.sendTextMessage(destination, null, content, null, null);
-        return true;
+        callback.onResult(true);
     }
 }

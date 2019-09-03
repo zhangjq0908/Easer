@@ -72,8 +72,9 @@ public final class SkillHelper {
                     OperationData localData = data.localData;
                     assert localData != null;
                     //noinspection unchecked
-                    boolean result = loader.load(localData.applyDynamics(solidMacroAssignment));
-                    callback.onResult(skillId, result);
+                    loader.load(localData.applyDynamics(solidMacroAssignment), (success -> {
+                        callback.onResult(skillId, success); // TODO: Remove this second-layer callback
+                    }));
                 }
             } else {
                 for (RemoteLocalOperationDataWrapper data : dataCollection) {

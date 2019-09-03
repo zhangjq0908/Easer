@@ -37,19 +37,19 @@ class HotspotLoader extends OperationLoader<HotspotOperationData> {
     }
 
     @Override
-    public boolean load(@ValidData @NonNull HotspotOperationData data) {
+    public void _load(@ValidData @NonNull HotspotOperationData data, @NonNull OnResultCallback callback) {
         Boolean state = data.get();
         try {
             if (helper.isApEnabled() == state)
-                return true;
+                callback.onResult(true);
             if (state)
-                return helper.enableAp();
+                callback.onResult(helper.enableAp());
             else
-                return helper.disableAp();
+                callback.onResult(helper.disableAp());
         } catch (Exception e) {
             Logger.e(e, "error while changing hotspot state");
             e.printStackTrace();
-            return false;
+            callback.onResult(false);
         }
     }
 }

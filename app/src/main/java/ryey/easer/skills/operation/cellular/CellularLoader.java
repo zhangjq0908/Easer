@@ -40,20 +40,23 @@ public class CellularLoader extends OperationLoader<CellularOperationData> {
     }
 
     @Override
-    public boolean load(@ValidData @NonNull CellularOperationData data) {
+    public void _load(@ValidData @NonNull CellularOperationData data, @NonNull OnResultCallback callback) {
         Boolean state = data.get();
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         if (state == (telephonyManager.getDataState() == TelephonyManager.DATA_CONNECTED)) {
-            return true;
+            callback.onResult(true);
+            return;
         } else {
             if (SkillUtils.useRootFeature(context)) {
                 try {
                     String command = "svc data " + (state ? "enable" : "disable");
                     SkillUtils.executeCommandAsRoot(context, command);
-                    return true;
+                    callback.onResult(true);
+                    return;
                 } catch (IOException e) {
                     e.printStackTrace();
-                    return false;
+                    callback.onResult(false);
+                    return;
                 }
             } else {
                 try {
@@ -70,7 +73,8 @@ public class CellularLoader extends OperationLoader<CellularOperationData> {
                     }
                     dataConnSwitchMethod.setAccessible(true);
                     dataConnSwitchMethod.invoke(ITelephonyStub);
-                    return true;
+                    callback.onResult(true);
+                    return;
                 } catch (ClassNotFoundException e) {
                     Logger.e(e, null);
                     e.printStackTrace();
@@ -86,6 +90,6 @@ public class CellularLoader extends OperationLoader<CellularOperationData> {
                 }
             }
         }
-        return false;
+        callback.onResult(false);
     }
 }
