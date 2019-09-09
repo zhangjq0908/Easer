@@ -30,6 +30,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import ryey.easer.skills.condition.SkeletonTracker;
 
@@ -52,7 +53,7 @@ public class HeadsetTracker extends SkeletonTracker<HeadsetUSourceData> {
             if (expected_action.equals(intent.getAction()) && extras != null) {
                 final int state = extras.getInt("state");
                 final int microphone = extras.getInt("microphone");
-                final boolean match = determine_match(data, state == 1, microphone == 1);
+                final Boolean match = determine_match(data, state == 1, microphone == 1);
                 newSatisfiedState(match);
             }
         }
@@ -63,7 +64,7 @@ public class HeadsetTracker extends SkeletonTracker<HeadsetUSourceData> {
                    @NonNull PendingIntent event_negative) {
         super(context, data, event_positive, event_negative);
 
-        Boolean plugged_in = null;
+        boolean plugged_in = false;
         Boolean has_microphone = null;
 
         AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
@@ -76,24 +77,11 @@ public class HeadsetTracker extends SkeletonTracker<HeadsetUSourceData> {
                     has_microphone = deviceInfo.isSource();
                 }
             }
-            if (plugged_in == null)
-                plugged_in = false;
         } else {
             plugged_in = audioManager.isWiredHeadsetOn();
         }
-        if (plugged_in == (data.hs_state == HeadsetUSourceData.HeadsetState.plugged_in)) {
-            if (data.hs_type == HeadsetUSourceData.HeadsetType.any) {
-                newSatisfiedState(true);
-            } else {
-                if (has_microphone != null)
-                    newSatisfiedState(
-                            has_microphone ==
-                                    (data.hs_type == HeadsetUSourceData.HeadsetType.with_microphone)
-                    );
-            }
-        } else {
-            newSatisfiedState(false);
-        }
+        Boolean match = determine_match(data, plugged_in, has_microphone);
+        newSatisfiedState(match);
     }
 
     @Override
@@ -107,12 +95,14 @@ public class HeadsetTracker extends SkeletonTracker<HeadsetUSourceData> {
     }
 
     @SuppressWarnings("RedundantIfStatement")
-    private static boolean determine_match(HeadsetUSourceData data, boolean plugging_in, boolean has_microphone) {
-        if (!(plugging_in == (data.hs_state == HeadsetUSourceData.HeadsetState.plugged_in)))
+    static Boolean determine_match(HeadsetUSourceData data, boolean plugging_in, @Nullable Boolean has_microphone) {
+        if (!(data.hs_state == HeadsetUSourceData.HeadsetState.any ||
+                plugging_in == (data.hs_state == HeadsetUSourceData.HeadsetState.plug_in)))
             return false;
-        if (!(data.hs_type == HeadsetUSourceData.HeadsetType.any ||
-                has_microphone == (data.hs_type == HeadsetUSourceData.HeadsetType.with_microphone)))
-            return false;
-        return true;
+        if (data.hs_type == HeadsetUSourceData.HeadsetType.any)
+            return true;
+        if (has_microphone == null)
+            return null;
+        return has_microphone == (data.hs_type == HeadsetUSourceData.HeadsetType.with_microphone);
     }
 }

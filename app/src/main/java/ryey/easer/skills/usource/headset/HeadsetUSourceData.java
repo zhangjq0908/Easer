@@ -24,6 +24,8 @@ import android.os.Parcel;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.orhanobut.logger.Logger;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -98,6 +100,17 @@ public class HeadsetUSourceData implements USourceData {
         } else {
                 name = jsonObject.getString(K_HS_STATE);
                 hs_state = HeadsetState.valueOf(name);
+        }
+        if (version < C.VERSION_UNIFORMED_SOURCE) {
+            if (hs_state == HeadsetState.plugged_in) {
+                hs_state = HeadsetState.plug_in;
+            } else if (hs_state == HeadsetState.plugged_out) {
+                hs_state = HeadsetState.plug_out;
+            }
+        } else {
+            if (hs_state == HeadsetState.plugged_in || hs_state == HeadsetState.plugged_out) {
+                Logger.e("HeadsetUSource data (after USource) uses deprecated HeadsetState");
+            }
         }
         return hs_state;
     }
