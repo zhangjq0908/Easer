@@ -40,19 +40,27 @@ import com.orhanobut.logger.Logger;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.Callable;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 import ryey.easer.commons.local_skill.operationskill.OperationData;
 import ryey.easer.remote_plugin.RemoteOperationData;
 
+/**
+ * This class is meant to help the communication to remote plugins.
+ * It communicates with {@link RemotePluginRegistryService}, exposing relevant methods.
+ */
 public class RemotePluginCommunicationHelper {
 
+    /**
+     * Constants of this class are used only internally in Easer (? at least I believe), not in plugins.
+     * They can be changed freely without side-effects.
+     */
     public static class C {
+
+        public static final String EXTRA_MESSAGE_ID = "ryey.easer.IPC.EXTRA.MESSAGE_ID";
 
         public static final int MSG_FIND_PLUGIN = 0;
         public static final int MSG_FIND_PLUGIN_RESPONSE = 0;
@@ -65,11 +73,12 @@ public class RemotePluginCommunicationHelper {
 
         public static final int MSG_PARSE_OPERATION_DATA = 2;
         public static final int MSG_PARSE_OPERATION_DATA_RESPONSE = 2;
-        public static final String EXTRA_MESSAGE_ID = "ryey.easer.IPC.EXTRA.MESSAGE_ID";
         public static final String EXTRA_RAW_DATA = "ryey.easer.IPC.EXTRA.RAW_DATA";
         public static final String EXTRA_PLUGIN_DATA = "ryey.easer.IPC.EXTRA.PLUGIN_DATA";
 
         public static final int MSG_TRIGGER_OPERATION = 3;
+        public static final int MSG_TRIGGER_OPERATION_RESPONSE = 3;
+        public static final String EXTRA_SUCCESS = "ryey.easer.IPC.EXTRA_SUCCESS";
 
         public static final int MSG_EDIT_OPERATION_DATA = 4;
         public static final int MSG_EDIT_OPERATION_DATA_RESPONSE = 4;
@@ -102,10 +111,11 @@ public class RemotePluginCommunicationHelper {
         delayedTaskUntilConnectedWrapper.doAfterConnected(task);
     }
 
-    private final DelayedCallback<OnPluginFoundCallback> onPluginFoundCallbackDelayedCallback = new DelayedCallback<>(new ArrayMap<>());
-    private final DelayedCallback<OnOperationPluginListObtainedCallback> onOperationPluginListObtainedCallbackDelayedCallback = new DelayedCallback<>(new ArrayMap<>());
-    private final DelayedCallback<OnEditDataIntentObtainedCallback> onEditDataIntentObtainedCallbackDelayedCallback = new DelayedCallback<>(new ArrayMap<>());
-    private final DelayedCallback<OnOperationDataParsedCallback> onOperationDataParsedCallbackDelayedCallback = new DelayedCallback<>(new ArrayMap<>());
+    private final AsyncHelper.CallbackStore<OnPluginFoundCallback> onPluginFoundCallbackCallbackStore = new AsyncHelper.CallbackStore<>(new ArrayMap<>());
+    private final AsyncHelper.CallbackStore<OnOperationPluginListObtainedCallback> onOperationPluginListObtainedCallbackCallbackStore = new AsyncHelper.CallbackStore<>(new ArrayMap<>());
+    private final AsyncHelper.CallbackStore<OnEditDataIntentObtainedCallback> onEditDataIntentObtainedCallbackCallbackStore = new AsyncHelper.CallbackStore<>(new ArrayMap<>());
+    private final AsyncHelper.CallbackStore<OnOperationDataParsedCallback> onOperationDataParsedCallbackCallbackStore = new AsyncHelper.CallbackStore<>(new ArrayMap<>());
+    private final AsyncHelper.CallbackStore<SkillHelper.OperationHelper.OnOperationLoadResultCallback> onOperationLoadResultCallbackCallbackStore = new AsyncHelper.CallbackStore<>(new ArrayMap<>()); //TODO: add timeout
 
     public RemotePluginCommunicationHelper(@NonNull Context context) {
         this.context = context;
@@ -117,31 +127,32 @@ public class RemotePluginCommunicationHelper {
         context.bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
     }
 
-    public void onConnectedParseOperationData(final String id, final String rawData, final OnOperationDataParsedCallback onOperationDataParsedCallback) {
-        ParcelUuid uuid = onOperationDataParsedCallbackDelayedCallback.putCallback(onOperationDataParsedCallback);
-        doAfterConnect(new Callable<Void>() {
-            @Override
-            public Void call() throws Exception {
-                Message message = Message.obtain();
-                message.what = C.MSG_PARSE_OPERATION_DATA;
-                message.replyTo = inMessenger;
-                Bundle bundle = new Bundle();
-                bundle.putString(C.EXTRA_PLUGIN_ID, id);
-                bundle.putString(C.EXTRA_RAW_DATA, rawData);
-                bundle.putParcelable(C.EXTRA_MESSAGE_ID, uuid);
-                message.setData(bundle);
-                try {
-                    outMessenger.send(message);
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-        });
-    }
+//    @Deprecated
+//    public void onConnectedParseOperationData(final String id, final String rawData, final OnOperationDataParsedCallback onOperationDataParsedCallback) {
+//        ParcelUuid uuid = onOperationDataParsedCallbackCallbackStore.putCallback(onOperationDataParsedCallback);
+//        doAfterConnect(new Callable<Void>() {
+//            @Override
+//            public Void call() throws Exception {
+//                Message message = Message.obtain();
+//                message.what = C.MSG_PARSE_OPERATION_DATA;
+//                message.replyTo = inMessenger;
+//                Bundle bundle = new Bundle();
+//                bundle.putString(C.EXTRA_PLUGIN_ID, id);
+//                bundle.putString(C.EXTRA_RAW_DATA, rawData);
+//                bundle.putParcelable(C.EXTRA_MESSAGE_ID, uuid);
+//                message.setData(bundle);
+//                try {
+//                    outMessenger.send(message);
+//                } catch (RemoteException e) {
+//                    e.printStackTrace();
+//                }
+//                return null;
+//            }
+//        });
+//    }
 
     synchronized public void asyncFindPlugin(final String id, OnPluginFoundCallback onPluginFoundCallback) {
-        ParcelUuid uuid = onPluginFoundCallbackDelayedCallback.putCallback(onPluginFoundCallback);
+        ParcelUuid uuid = onPluginFoundCallbackCallbackStore.putCallback(onPluginFoundCallback);
         doAfterConnect(new Callable<Void>() {
             @Override
             public Void call() throws Exception {
@@ -163,7 +174,7 @@ public class RemotePluginCommunicationHelper {
     }
 
     synchronized public void asyncCurrentOperationPluginList(@NonNull OnOperationPluginListObtainedCallback onOperationPluginListObtainedCallback) {
-        ParcelUuid uuid = onOperationPluginListObtainedCallbackDelayedCallback.putCallback(onOperationPluginListObtainedCallback);
+        ParcelUuid uuid = onOperationPluginListObtainedCallbackCallbackStore.putCallback(onOperationPluginListObtainedCallback);
         doAfterConnect(new Callable<Void>() {
             @Override
             public Void call() throws Exception {
@@ -183,18 +194,24 @@ public class RemotePluginCommunicationHelper {
         });
     }
 
-    public void asyncTriggerOperation(final String id, final RemoteOperationData data) {
+    public void asyncTriggerOperation(final UUID jobId, final String skillId, final RemoteOperationData data, SkillHelper.OperationHelper.OnOperationLoadResultCallback callback) {
+        final ParcelUuid parcelUuid = new ParcelUuid(jobId);
+        onOperationLoadResultCallbackCallbackStore.putCallback(parcelUuid, callback);
         doAfterConnect(new Callable<Void>() {
             @Override
             public Void call() throws Exception {
                 Message message = Message.obtain();
                 message.what = C.MSG_TRIGGER_OPERATION;
-                message.getData().putString(C.EXTRA_PLUGIN_ID, id);
+                message.replyTo = inMessenger;
+                message.getData().putParcelable(C.EXTRA_MESSAGE_ID, parcelUuid);
+                message.getData().putString(C.EXTRA_PLUGIN_ID, skillId);
                 message.getData().putParcelable(C.EXTRA_PLUGIN_DATA, data);
                 try {
                     outMessenger.send(message);
+                    callback.onResult(jobId, true); //TODO: listen remote result
                 } catch (RemoteException e) {
                     e.printStackTrace();
+                    callback.onResult(jobId, false);
                 }
                 return null;
             }
@@ -202,7 +219,7 @@ public class RemotePluginCommunicationHelper {
     }
 
     public void asyncRemoteEditOperationData(final String id, OnEditDataIntentObtainedCallback onEditDataIntentObtainedCallback) {
-        ParcelUuid uuid = onEditDataIntentObtainedCallbackDelayedCallback.putCallback(onEditDataIntentObtainedCallback);
+        ParcelUuid uuid = onEditDataIntentObtainedCallbackCallbackStore.putCallback(onEditDataIntentObtainedCallback);
         doAfterConnect(new Callable<Void>() {
             @Override
             public Void call() throws Exception {
@@ -238,7 +255,7 @@ public class RemotePluginCommunicationHelper {
                 RemotePluginInfo info = msg.getData().getParcelable(C.EXTRA_PLUGIN_INFO);
                 ParcelUuid uuid = msg.getData().getParcelable(C.EXTRA_MESSAGE_ID);
                 assert uuid != null;
-                OnPluginFoundCallback callback = ref.get().onPluginFoundCallbackDelayedCallback.retrieveCallBack(uuid);
+                OnPluginFoundCallback callback = ref.get().onPluginFoundCallbackCallbackStore.extractCallBack(uuid);
                 if (callback != null)
                     callback.onPluginFound(info);
             } else if (msg.what == C.MSG_CURRENT_OPERATION_PLUGIN_LIST_RESPONSE) {
@@ -247,14 +264,14 @@ public class RemotePluginCommunicationHelper {
                 Set<RemoteOperationPluginInfo> infoSet = new ArraySet<>(infoList);
                 ParcelUuid uuid = msg.getData().getParcelable(C.EXTRA_MESSAGE_ID);
                 assert uuid != null;
-                OnOperationPluginListObtainedCallback callback = ref.get().onOperationPluginListObtainedCallbackDelayedCallback.retrieveCallBack(uuid);
+                OnOperationPluginListObtainedCallback callback = ref.get().onOperationPluginListObtainedCallbackCallbackStore.extractCallBack(uuid);
                 if (callback != null)
                     callback.onListObtained(infoSet);
             } else if (msg.what == C.MSG_PARSE_OPERATION_DATA_RESPONSE) {
                 OperationData operationData = msg.getData().getParcelable(C.EXTRA_PLUGIN_DATA);
                 assert operationData != null;
                 ParcelUuid uuid = msg.getData().getParcelable(C.EXTRA_MESSAGE_ID);
-                OnOperationDataParsedCallback callback = ref.get().onOperationDataParsedCallbackDelayedCallback.retrieveCallBack(uuid);
+                OnOperationDataParsedCallback callback = ref.get().onOperationDataParsedCallbackCallbackStore.extractCallBack(uuid);
                 if (callback != null)
                     callback.onOperationDataParsed(operationData);
             } else if (msg.what == C.MSG_EDIT_OPERATION_DATA_RESPONSE) {
@@ -266,9 +283,16 @@ public class RemotePluginCommunicationHelper {
                 Intent editDataIntent = new Intent();
                 editDataIntent.setComponent(new ComponentName(packageName, activityName));
                 ParcelUuid uuid = bundle.getParcelable(C.EXTRA_MESSAGE_ID);
-                OnEditDataIntentObtainedCallback callback = ref.get().onEditDataIntentObtainedCallbackDelayedCallback.retrieveCallBack(uuid);
+                OnEditDataIntentObtainedCallback callback = ref.get().onEditDataIntentObtainedCallbackCallbackStore.extractCallBack(uuid);
                 if (callback != null)
                     callback.onEditDataIntentObtained(editDataIntent);
+            } else if (msg.what == C.MSG_TRIGGER_OPERATION_RESPONSE) {
+                Bundle bundle = msg.getData();
+                ParcelUuid uuid = Objects.requireNonNull(bundle.getParcelable(C.EXTRA_MESSAGE_ID));
+                boolean success = bundle.getBoolean(C.EXTRA_SUCCESS);
+                SkillHelper.OperationHelper.OnOperationLoadResultCallback callback = ref.get().onOperationLoadResultCallbackCallbackStore.extractCallBack(uuid);
+                if (callback != null)
+                    callback.onResult(uuid.getUuid(), success);
             }
         }
     }
@@ -300,38 +324,6 @@ public class RemotePluginCommunicationHelper {
 
         void doAfterConnected(Callable<Void> task) {
             super.doAfter(task);
-        }
-    }
-
-    static class DelayedCallback<T>  {
-        private Lock lckCallbackMap = new ReentrantLock();
-        private final Map<ParcelUuid, T> callbackMap;
-
-        DelayedCallback(Map<ParcelUuid, T> callbackMap) {
-            this.callbackMap = callbackMap;
-        }
-
-        ParcelUuid putCallback(T callback) {
-            lckCallbackMap.lock();
-            try {
-                ParcelUuid uuid = new ParcelUuid(UUID.randomUUID());
-                callbackMap.put(uuid, callback);
-                return uuid;
-            } finally {
-                lckCallbackMap.unlock();
-            }
-        }
-
-        T retrieveCallBack(ParcelUuid uuid) {
-            lckCallbackMap.lock();
-            try {
-                T callback = callbackMap.get(uuid);
-                if (callback != null)
-                    callbackMap.remove(uuid);
-                return callback;
-            } finally {
-                lckCallbackMap.unlock();
-            }
         }
     }
 

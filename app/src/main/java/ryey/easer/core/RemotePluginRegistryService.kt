@@ -27,6 +27,7 @@ import android.content.IntentFilter
 import android.net.Uri
 import android.os.*
 import android.util.Log
+import androidx.collection.ArrayMap
 import com.orhanobut.logger.Logger
 import ryey.easer.commons.local_skill.operationskill.OperationData
 import ryey.easer.core.RemotePluginCommunicationHelper.C
@@ -35,9 +36,14 @@ import ryey.easer.remote_plugin.RemoteOperationData
 import ryey.easer.remote_plugin.RemotePlugin
 
 /**
+ * This service performs the actual communication with remote plugins. It executes in a separate process.
+ * Use [RemotePluginCommunicationHelper] to interact with this service.
+ *
  * TODO: Support more remote plugin types
  */
 class RemotePluginRegistryService : Service() {
+
+    private val callbackStore: AsyncHelper.CallbackStore<OnOperationLoadResultCallback> = AsyncHelper.CallbackStore(ArrayMap())
 
     private val mReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
@@ -58,6 +64,13 @@ class RemotePluginRegistryService : Service() {
                 }
                 val info = RemoteOperationPluginInfo(packageName, pluginId, pluginName, activityEditData, category)
                 operationPluginInfos.add(info)
+            } else if (RemotePlugin.OperationPlugin.ACTION_TRIGGER_RESULT == intent.action) {
+                val jobId: ParcelUuid = intent.getParcelableExtra(RemotePlugin.EXTRA_MESSAGE_ID)
+                if (!intent.hasExtra(RemotePlugin.OperationPlugin.EXTRA_SUCCESS)) {
+                    Logger.w("Remote Operation Plugin load Operation returned WITHOUT success value. Using `false` instead.")
+                }
+                val success: Boolean = intent.getBooleanExtra(RemotePlugin.OperationPlugin.EXTRA_SUCCESS, false)
+                callbackStore.extractCallBack(jobId)?.onResult(success)
             }
         }
     }
@@ -65,6 +78,7 @@ class RemotePluginRegistryService : Service() {
 
     init {
         mFilter.addAction(RemotePlugin.ACTION_RESPONSE_PLUGIN_INFO)
+        mFilter.addAction(RemotePlugin.OperationPlugin.ACTION_TRIGGER_RESULT)
     }
 
     private val operationPluginInfos = androidx.collection.ArraySet<RemoteOperationPluginInfo>()
@@ -125,7 +139,7 @@ class RemotePluginRegistryService : Service() {
             Logger.d("[RemotePluginRegistryService][handleMessage] %s", message)
             val rMessenger = message.replyTo
             if (message.what == C.MSG_FIND_PLUGIN) {
-                val id = message.data.getString(C.EXTRA_PLUGIN_ID)
+                val id = message.data.getString(C.EXTRA_PLUGIN_ID)!!
                 val reply = Message.obtain()
                 reply.what = C.MSG_FIND_PLUGIN_RESPONSE
                 reply.data.putParcelable(C.EXTRA_PLUGIN_INFO, service.infoForId(id))
@@ -136,6 +150,7 @@ class RemotePluginRegistryService : Service() {
                 reply.data.putParcelableArrayList(C.EXTRA_PLUGIN_LIST, ArrayList<RemoteOperationPluginInfo>(service.operationPluginInfos))
                 rMessenger.send(reply)
             } else if (message.what == C.MSG_PARSE_OPERATION_DATA) {
+                // FIXME: This branch seems not to be necessary nor possible. Remove when adding Event and Condition.
                 throw IllegalAccessError("This message is not yet in use")
                 Logger.d("[RemotePluginRegistryService] MSG_PARSE_OPERATION_DATA")
                 val id = message.data.getString(C.EXTRA_PLUGIN_ID)
@@ -172,16 +187,19 @@ class RemotePluginRegistryService : Service() {
             } else if (message.what == C.MSG_TRIGGER_OPERATION) {
                 Log.d("RemoPlRegistry", "MSG_TRIGGER_OPERATION")
                 message.data.classLoader = String::class.java.classLoader
-                val id = message.data.getString(C.EXTRA_PLUGIN_ID)
+                val id = message.data.getString(C.EXTRA_PLUGIN_ID)!!
                 message.data.classLoader = RemoteOperationData::class.java.classLoader
-                val data: RemoteOperationData = message.data.getParcelable(C.EXTRA_PLUGIN_DATA)
+                val data: RemoteOperationData = message.data.getParcelable(C.EXTRA_PLUGIN_DATA)!!
+                val jobId: ParcelUuid = message.data.getParcelable(C.EXTRA_MESSAGE_ID)!!
+                service.callbackStore.putCallback(jobId, OnOperationLoadResultCallback(jobId, rMessenger))
                 val pluginInfo = service.infoForId(id)!!
                 val intent = Intent(RemotePlugin.OperationPlugin.ACTION_TRIGGER)
                 intent.`package` = pluginInfo.packageName
                 intent.putExtra(RemotePlugin.EXTRA_DATA, data)
+                intent.putExtra(RemotePlugin.EXTRA_MESSAGE_ID, jobId)
                 service.sendBroadcast(intent)
             } else if (message.what == C.MSG_EDIT_OPERATION_DATA) {
-                val id = message.data.getString(C.EXTRA_PLUGIN_ID)
+                val id = message.data.getString(C.EXTRA_PLUGIN_ID)!!
                 val pluginInfo = service.infoForId(id)!!
                 val bundle = Bundle()
                 bundle.putString(C.EXTRA_PLUGIN_PACKAGE, pluginInfo.packageName)
@@ -194,4 +212,13 @@ class RemotePluginRegistryService : Service() {
         }
     }
 
+    private class OnOperationLoadResultCallback(val jobId: ParcelUuid, val messenger: Messenger) {
+        fun onResult(success: Boolean) {
+            val reply = Message.obtain()
+            reply.what = C.MSG_TRIGGER_OPERATION_RESPONSE
+            reply.data.putParcelable(C.EXTRA_MESSAGE_ID, jobId)
+            reply.data.putBoolean(C.EXTRA_SUCCESS, success)
+            messenger.send(reply)
+        }
+    }
 }
