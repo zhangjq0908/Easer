@@ -72,15 +72,9 @@ public class HeadsetSlot extends AbstractSlot<HeadsetUSourceData> {
         context.unregisterReceiver(mReceiver);
     }
 
-    @SuppressWarnings("RedundantIfStatement")
     private static boolean determine_match(HeadsetUSourceData eventData, boolean plug_in, boolean has_microphone) {
-        if (!(eventData.hs_state == HeadsetUSourceData.HeadsetState.any ||
-                plug_in == (eventData.hs_state == HeadsetUSourceData.HeadsetState.plug_in)))
-            return false;
-        if (!(eventData.hs_type == HeadsetUSourceData.HeadsetType.any ||
-                has_microphone == (eventData.hs_type == HeadsetUSourceData.HeadsetType.with_microphone)))
-            return false;
-        return true;
+        //noinspection ConstantConditions
+        return HeadsetTracker.determine_match(eventData, plug_in, has_microphone);
     }
 
 }
