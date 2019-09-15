@@ -39,7 +39,7 @@ public abstract class SwitchSkillViewFragment<T extends OperationData> extends S
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_reusable__switch, container, false);
+        View view = inflater.inflate(R.layout.skill_reusable__switch, container, false);
         aSwitch = view.findViewById(R.id.plugin_reusable__switch);
         return view;
     }

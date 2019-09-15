@@ -40,7 +40,7 @@ public class UiModeSkillViewFragment extends SkillViewFragment<UiModeOperationDa
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_operation__ui_mode, container, false);
+        View view = inflater.inflate(R.layout.skill_operation__ui_mode, container, false);
 
         rb_car = view.findViewById(R.id.rb_car);
         rb_normal = view.findViewById(R.id.rb_normal);

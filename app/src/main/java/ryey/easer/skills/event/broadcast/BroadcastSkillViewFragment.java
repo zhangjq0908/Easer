@@ -41,7 +41,7 @@ public class BroadcastSkillViewFragment extends SkillViewFragment<BroadcastEvent
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_event__broadcast, container, false);
+        View view = inflater.inflate(R.layout.skill_event__broadcast, container, false);
         editText_action = view.findViewById(R.id.editText_action);
         editText_category = view.findViewById(R.id.editText_category);
 

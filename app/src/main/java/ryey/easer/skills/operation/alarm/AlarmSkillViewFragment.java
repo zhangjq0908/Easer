@@ -45,7 +45,7 @@ public class AlarmSkillViewFragment extends SkillViewFragment<AlarmOperationData
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_operation__set_alarm, container, false);
+        View view = inflater.inflate(R.layout.skill_operation__set_alarm, container, false);
 
         editText_time = view.findViewById(R.id.editText_time);
         editText_message = view.findViewById(R.id.editText_message);

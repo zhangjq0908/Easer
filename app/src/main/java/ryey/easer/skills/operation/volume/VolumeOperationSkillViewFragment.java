@@ -49,7 +49,7 @@ public class VolumeOperationSkillViewFragment extends SkillViewFragment<VolumeOp
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.plugin_operation__volume, container, false);
+        final View view = inflater.inflate(R.layout.skill_operation__volume, container, false);
 
         //noinspection ConstantConditions
         AudioManager audioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);

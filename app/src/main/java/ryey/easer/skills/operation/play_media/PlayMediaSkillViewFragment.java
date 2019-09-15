@@ -39,7 +39,7 @@ public class PlayMediaSkillViewFragment extends SkillViewFragment<PlayMediaOpera
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.plugin_operation__play_media, container, false);
+        View v = inflater.inflate(R.layout.skill_operation__play_media, container, false);
         et_file = v.findViewById(R.id.editText_file);
         return v;
     }

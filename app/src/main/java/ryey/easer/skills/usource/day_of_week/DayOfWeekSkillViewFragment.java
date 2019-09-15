@@ -46,7 +46,7 @@ public class DayOfWeekSkillViewFragment extends SkillViewFragment<DayOfWeekUSour
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_usource__day_of_week, container, false);
+        View view = inflater.inflate(R.layout.skill_usource__day_of_week, container, false);
         ViewGroup vg = view.findViewById(R.id.plugin__day_of_week_container);
         SimpleDateFormat sdf = new SimpleDateFormat("E", Locale.getDefault());
         Calendar cal = Calendar.getInstance();

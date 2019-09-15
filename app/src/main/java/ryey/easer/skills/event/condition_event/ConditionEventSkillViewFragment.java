@@ -44,7 +44,7 @@ public class ConditionEventSkillViewFragment extends SkillViewFragment<Condition
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_event__condition_event, container, false);
+        View view = inflater.inflate(R.layout.skill_event__condition_event, container, false);
         sw_condition = new DataSelectSpinnerWrapper(getContext(), (Spinner) view.findViewById(R.id.spinner_condition));
         sw_condition
                 .beginInit()

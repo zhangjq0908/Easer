@@ -83,7 +83,7 @@ public class WifiSkillViewFragment extends SkillViewFragment<WifiUSourceData> {
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.plugin_usource__wifi_connection, container, false);
+        final View view = inflater.inflate(R.layout.skill_usource__wifi_connection, container, false);
         editText_ssid = view.findViewById(R.id.wifi_name);
 
         rb_match_essid = view.findViewById(R.id.rb_match_essid);

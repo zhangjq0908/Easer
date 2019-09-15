@@ -69,7 +69,7 @@ public class BTDeviceSkillViewFragment extends SkillViewFragment<BTDeviceUSource
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_usource__bluetooth_device, container, false);
+        View view = inflater.inflate(R.layout.skill_usource__bluetooth_device, container, false);
 
         editText = view.findViewById(R.id.hardware_address);
         textView = view.findViewById(R.id.device_name);

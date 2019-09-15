@@ -55,12 +55,12 @@ public class HeadsetSkillViewFragment extends SkillViewFragment<HeadsetUSourceDa
         String type = getArguments().getString(HeadsetUSourceSkill.EXTRA_INFO_TYPE);
         View v;
         if (HeadsetUSourceSkill.INFO_TYPE_CONDITION.equals(type)) {
-            v = inflater.inflate(R.layout.plugin_condition__headset, container, false);
+            v = inflater.inflate(R.layout.skill_condition__headset, container, false);
             for (int i = 0; i < ids_hs_state.length - 1; i++) {
                 radioButtons_hs_action[i] = v.findViewById(ids_hs_state[i]);
             }
         } else {
-            v = inflater.inflate(R.layout.plugin_event__headset, container, false);
+            v = inflater.inflate(R.layout.skill_event__headset, container, false);
             for (int i = 0; i < ids_hs_state.length; i++) {
                 radioButtons_hs_action[i] = v.findViewById(ids_hs_state[i]);
             }

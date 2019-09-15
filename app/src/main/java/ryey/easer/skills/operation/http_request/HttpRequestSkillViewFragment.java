@@ -46,7 +46,7 @@ public class HttpRequestSkillViewFragment extends SkillViewFragment<HttpRequestO
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_operation__http_request, container, false);
+        View view = inflater.inflate(R.layout.skill_operation__http_request, container, false);
         rb_get = view.findViewById(R.id.radioButton_get);
         rb_post = view.findViewById(R.id.radioButton_post);
         editText_url = view.findViewById(R.id.editText_url);

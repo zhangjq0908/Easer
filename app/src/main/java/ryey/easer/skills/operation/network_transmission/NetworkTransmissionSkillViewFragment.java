@@ -45,7 +45,7 @@ public class NetworkTransmissionSkillViewFragment extends SkillViewFragment<Netw
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_operation__network_transmission, container, false);
+        View view = inflater.inflate(R.layout.skill_operation__network_transmission, container, false);
         rb_tcp = view.findViewById(R.id.radioButton_tcp);
         rb_udp = view.findViewById(R.id.radioButton_udp);
         editText_remote_address = view.findViewById(R.id.editText_remote_address);
