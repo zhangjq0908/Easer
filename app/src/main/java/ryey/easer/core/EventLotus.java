@@ -58,9 +58,9 @@ class EventLotus extends Lotus {
 
     EventLotus(@NonNull Context context, @NonNull ScriptTree scriptTree,
                @NonNull ExecutorService executorService,
-               @NonNull ConditionHolderService.CHBinder chBinder,
-               @NonNull AsyncHelper.DelayedLoadProfileJobs jobContainerLP) {
-        super(context, scriptTree, executorService, chBinder, jobContainerLP);
+               @NonNull EHService.DelayedConditionHolderBinderJobs jobCH,
+               @NonNull AsyncHelper.DelayedLoadProfileJobs jobLP) {
+        super(context, scriptTree, executorService, jobCH, jobLP);
 
         repeatable = scriptTree.isRepeatable();
         persistent = scriptTree.isPersistent();

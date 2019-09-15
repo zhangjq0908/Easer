@@ -67,7 +67,6 @@ class ServiceUtils {
                     service, REQ_CODE, Intent(service, MainActivity::class.java), 0)
             builder
                     .setSmallIcon(R.mipmap.ic_launcher)
-                    .setContentTitle(service.getString(R.string.easer))
                     .setContentText(service.getString(
                             R.string.text_notification_running_indicator_content,
                             service.getString(R.string.easer)))
