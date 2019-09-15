@@ -1,6 +1,12 @@
 CHANGELOG
 ======
 
+* v0.7.8.1: Add Operation to send HTTP request && Pivot with better zoom && Fix state checking of Headset Condition && i18n update
+	* Added HttpRequestOperation (#269, thanks @xylo)
+	* Use looser restriction on zoom at Pivot
+	* Correct the state checking of HeadsetTracker
+	* i18n update: German, Danish, Japanese, Italian, French
+
 * v0.7.8: UI: group to Data page && add WidgetEvent && Add Call source && better BatteryUSource && minor improvements && Bug fixes && i18n update
 	* Move data (Script, Condition, Event, Profile) to a dedicated Data page
 	* Added WidgetEvent: launcher widget
