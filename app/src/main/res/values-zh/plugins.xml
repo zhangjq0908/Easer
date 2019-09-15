@@ -238,5 +238,17 @@
     <string name="category_source_unknown">未知</string>
     <string name="usource_bluetooth_enabled">藍牙啓用</string>
     <string name="usource_bluetooth_enabled_bluetooth_is_enabled">藍牙已啟用？</string>
+    <string name="event_widget">微件</string>
+    <string name="event_widget_button_add_widget">添加微件</string>
+    <string name="event_widget_tag">標籤</string>
+    <string name="event_widget_text">文本</string>
+    <string name="event_widget_widget_label">微件事件用微件</string>
+    <string name="usource_call">電話</string>
+    <string name="usource_call_number">號碼</string>
+    <string name="usource_call_state">通話狀況</string>
+    <string name="o_http_header">請求頭（格式：鍵:值）</string>
+    <string name="o_http_method">方法</string>
+    <string name="o_http_post_data">POST數據</string>
+    <string name="operation_http_request">HTTP請求</string>
 
 </resources>
