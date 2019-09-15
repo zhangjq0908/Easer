@@ -22,12 +22,12 @@ package ryey.easer.skills.operation.http_request;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import androidx.annotation.NonNull;
+
 import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
-import androidx.annotation.NonNull;
 
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.skills.operation.OperationLoader;
@@ -54,12 +54,12 @@ public class HttpRequestLoader extends OperationLoader<HttpRequestOperationData>
             HttpURLConnection urlConnection = null;
 
             try {
-                final URL url = new URL(data.url);
+                final URL url = new URL(data.url.str);
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod(data.requestMethod.name());
 
                 // set request header
-                final String[] headerLines = data.requestHeader.split("\r?\n");
+                final String[] headerLines = data.requestHeader.str.split("\r?\n");
                 for (String headerLine : headerLines) {
                     if (headerLine.contains(":")) {
                         final String[] parts = headerLine.split(":", 2);
@@ -74,12 +74,12 @@ public class HttpRequestLoader extends OperationLoader<HttpRequestOperationData>
                     case POST:
                         // set header for POST request
                         urlConnection.setDoOutput(true);
-                        urlConnection.addRequestProperty("Content-Type", data.contentType);
-                        urlConnection.setFixedLengthStreamingMode(data.postData.length());
+                        urlConnection.addRequestProperty("Content-Type", data.contentType.str);
+                        urlConnection.setFixedLengthStreamingMode(data.postData.str.length());
 
                         // send POST data
                         try (final DataOutputStream out = new DataOutputStream(urlConnection.getOutputStream())) {
-                            out.writeBytes(data.postData);
+                            out.writeBytes(data.postData.str);
                             out.flush();
                         }
                         break;

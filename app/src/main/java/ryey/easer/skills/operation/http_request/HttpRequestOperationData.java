@@ -22,22 +22,22 @@ package ryey.easer.skills.operation.http_request;
 import android.os.Build;
 import android.os.Parcel;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.local_skill.operationskill.OperationData;
 import ryey.easer.plugin.PluginDataFormat;
+import ryey.easer.skills.operation.DynamicsEnabledString;
 
 public class HttpRequestOperationData implements OperationData {
 
@@ -47,18 +47,6 @@ public class HttpRequestOperationData implements OperationData {
     private static final String K_CONTENT_TYPE = "contentType";
     private static final String K_POST_DATA = "postData";
 
-    @Nullable
-    @Override
-    public Set<String> placeholders() {
-        return null;
-    }
-
-    @NonNull
-    @Override
-    public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
-        return this;
-    }
-
     enum RequestMethod {
         GET,
         POST,
@@ -67,15 +55,19 @@ public class HttpRequestOperationData implements OperationData {
     @NonNull
     final RequestMethod requestMethod;
     @NonNull
-    final String url;
+    final DynamicsEnabledString url;
     @NonNull
-    final String requestHeader;
+    final DynamicsEnabledString requestHeader;
     @NonNull
-    final String contentType;
+    final DynamicsEnabledString contentType;
     @NonNull
-    final String postData;
+    final DynamicsEnabledString postData;
 
     HttpRequestOperationData(@NotNull RequestMethod requestMethod, @NotNull String url, @NotNull String requestHeader, @NotNull String contentType, @NotNull String postData) {
+        this(requestMethod, new DynamicsEnabledString(url), new DynamicsEnabledString(requestHeader), new DynamicsEnabledString(contentType), new DynamicsEnabledString(postData));
+    }
+
+    HttpRequestOperationData(@NotNull RequestMethod requestMethod, @NotNull DynamicsEnabledString url, @NotNull DynamicsEnabledString requestHeader, @NotNull DynamicsEnabledString contentType, @NotNull DynamicsEnabledString postData) {
         this.requestMethod = requestMethod;
         this.url = url;
         this.requestHeader = requestHeader;
@@ -89,10 +81,10 @@ public class HttpRequestOperationData implements OperationData {
                 try {
                     JSONObject jsonObject = new JSONObject(data);
                     requestMethod = RequestMethod.valueOf(jsonObject.getString(K_REQUEST_METHOD));
-                    url = jsonObject.getString(K_URL);
-                    requestHeader = jsonObject.getString(K_REQUEST_HEADER);
-                    contentType = jsonObject.getString(K_CONTENT_TYPE);
-                    postData = jsonObject.getString(K_POST_DATA);
+                    url = new DynamicsEnabledString(jsonObject.getString(K_URL));
+                    requestHeader = new DynamicsEnabledString(jsonObject.getString(K_REQUEST_HEADER));
+                    contentType =new DynamicsEnabledString( jsonObject.getString(K_CONTENT_TYPE));
+                    postData = new DynamicsEnabledString(jsonObject.getString(K_POST_DATA));
                 } catch (JSONException e) {
                     e.printStackTrace();
                     throw new IllegalStorageDataException(e);
@@ -106,10 +98,10 @@ public class HttpRequestOperationData implements OperationData {
         try {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put(K_REQUEST_METHOD, requestMethod);
-            jsonObject.put(K_URL, url);
-            jsonObject.put(K_REQUEST_HEADER, requestHeader);
-            jsonObject.put(K_CONTENT_TYPE, contentType);
-            jsonObject.put(K_POST_DATA, postData);
+            jsonObject.put(K_URL, url.toString());
+            jsonObject.put(K_REQUEST_HEADER, requestHeader.toString());
+            jsonObject.put(K_CONTENT_TYPE, contentType.toString());
+            jsonObject.put(K_POST_DATA, postData.toString());
             return jsonObject.toString();
         } catch (JSONException e) {
             e.printStackTrace();
@@ -129,6 +121,26 @@ public class HttpRequestOperationData implements OperationData {
         }
 
         return true;
+    }
+
+    @Nullable
+    @Override
+    public Set<String> placeholders() {
+        Set<String> placeholders = url.placeholders();
+        placeholders.addAll(requestHeader.placeholders());
+        placeholders.addAll(contentType.placeholders());
+        placeholders.addAll(postData.placeholders());
+        return placeholders;
+    }
+
+    @NonNull
+    @Override
+    public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
+        return new HttpRequestOperationData(requestMethod,
+                url.applyDynamics(dynamicsAssignment),
+                requestHeader.applyDynamics(dynamicsAssignment),
+                contentType.applyDynamics(dynamicsAssignment),
+                postData.applyDynamics(dynamicsAssignment));
     }
 
     @Override
@@ -164,10 +176,10 @@ public class HttpRequestOperationData implements OperationData {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeSerializable(requestMethod);
-        dest.writeString(url);
-        dest.writeString(requestHeader);
-        dest.writeString(contentType);
-        dest.writeString(postData);
+        dest.writeString(url.str);
+        dest.writeString(requestHeader.str);
+        dest.writeString(contentType.str);
+        dest.writeString(postData.str);
     }
 
     public static final Creator<HttpRequestOperationData> CREATOR = new Creator<HttpRequestOperationData>() {
@@ -182,9 +194,9 @@ public class HttpRequestOperationData implements OperationData {
 
     private HttpRequestOperationData(Parcel in) {
         requestMethod = (RequestMethod) Objects.requireNonNull(in.readSerializable());
-        url = Objects.requireNonNull(in.readString());
-        requestHeader = Objects.requireNonNull(in.readString());
-        contentType = Objects.requireNonNull(in.readString());
-        postData = Objects.requireNonNull(in.readString());
+        url = new DynamicsEnabledString(Objects.requireNonNull(in.readString()));
+        requestHeader = new DynamicsEnabledString(Objects.requireNonNull(in.readString()));
+        contentType = new DynamicsEnabledString(Objects.requireNonNull(in.readString()));
+        postData = new DynamicsEnabledString(Objects.requireNonNull(in.readString()));
     }
 }

@@ -25,6 +25,7 @@ import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.operationskill.OperationDataFactory;
 import ryey.easer.plugin.PluginDataFormat;
+import ryey.easer.skills.operation.DynamicsEnabledString;
 
 class NetworkTransmissionOperationDataFactory implements OperationDataFactory<NetworkTransmissionOperationData> {
     @NonNull
@@ -41,7 +42,7 @@ class NetworkTransmissionOperationDataFactory implements OperationDataFactory<Ne
         int remote_port = 146;
         String remote_address = "192.168.0.143";
         String data = "aaaData";
-        return new NetworkTransmissionOperationData(protocol, remote_address, remote_port, data);
+        return new NetworkTransmissionOperationData(protocol, remote_address, remote_port, new DynamicsEnabledString(data));
     }
 
     @ValidData

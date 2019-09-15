@@ -35,6 +35,7 @@ import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.local_skill.operationskill.OperationData;
 import ryey.easer.plugin.PluginDataFormat;
+import ryey.easer.skills.operation.DynamicsEnabledString;
 
 public class NetworkTransmissionOperationData implements OperationData {
 
@@ -46,13 +47,13 @@ public class NetworkTransmissionOperationData implements OperationData {
     @Nullable
     @Override
     public Set<String> placeholders() {
-        return null;
+        return data.placeholders();
     }
 
     @NonNull
     @Override
     public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
-        return this;
+        return new NetworkTransmissionOperationData(protocol, remote_address, remote_port, data.applyDynamics(dynamicsAssignment));
     }
 
     enum Protocol {
@@ -60,12 +61,12 @@ public class NetworkTransmissionOperationData implements OperationData {
         udp,
     }
 
-    Protocol protocol;
-    String remote_address;
-    int remote_port;
-    String data; //TODO: change to byte array to support arbitrary data
+    @NonNull final Protocol protocol;
+    @NonNull final String remote_address;
+    final int remote_port;
+    @NonNull final DynamicsEnabledString data; //TODO: change to byte array to support arbitrary data
 
-    NetworkTransmissionOperationData(Protocol protocol, String remote_address, int remote_port, String data) {
+    NetworkTransmissionOperationData(@NonNull Protocol protocol, @NonNull String remote_address, int remote_port, @NonNull DynamicsEnabledString data) {
         this.protocol = protocol;
         this.remote_address = remote_address;
         this.remote_port = remote_port;
@@ -73,10 +74,6 @@ public class NetworkTransmissionOperationData implements OperationData {
     }
 
     NetworkTransmissionOperationData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
-        parse(data, format, version);
-    }
-
-    public void parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 try {
@@ -84,7 +81,7 @@ public class NetworkTransmissionOperationData implements OperationData {
                     protocol = Protocol.valueOf(jsonObject.getString(K_PROTOCOL));
                     remote_address = jsonObject.getString(K_REMOTE_ADDRESS);
                     remote_port = jsonObject.getInt(K_REMOTE_PORT);
-                    this.data = jsonObject.getString(K_DATA);
+                    this.data = new DynamicsEnabledString(jsonObject.getString(K_DATA));
                 } catch (JSONException e) {
                     e.printStackTrace();
                     throw new IllegalStorageDataException(e);
@@ -103,7 +100,7 @@ public class NetworkTransmissionOperationData implements OperationData {
                     jsonObject.put(K_PROTOCOL, protocol.toString());
                     jsonObject.put(K_REMOTE_ADDRESS, remote_address);
                     jsonObject.put(K_REMOTE_PORT, remote_port);
-                    jsonObject.put(K_DATA, data);
+                    jsonObject.put(K_DATA, data.toString());
                     res = jsonObject.toString();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -116,8 +113,6 @@ public class NetworkTransmissionOperationData implements OperationData {
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
-        if (protocol == null)
-            return false;
         if (Utils.isBlank(remote_address))
             return false;
         if (remote_port <= 0)
@@ -153,7 +148,7 @@ public class NetworkTransmissionOperationData implements OperationData {
         dest.writeSerializable(protocol);
         dest.writeString(remote_address);
         dest.writeInt(remote_port);
-        dest.writeString(data);
+        dest.writeParcelable(data, 0);
     }
 
     public static final Parcelable.Creator<NetworkTransmissionOperationData> CREATOR
@@ -171,6 +166,6 @@ public class NetworkTransmissionOperationData implements OperationData {
         protocol = (Protocol) in.readSerializable();
         remote_address = in.readString();
         remote_port = in.readInt();
-        data = in.readString();
+        data = in.readParcelable(DynamicsEnabledString.class.getClassLoader());
     }
 }
