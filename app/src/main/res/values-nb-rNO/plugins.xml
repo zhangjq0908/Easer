@@ -186,4 +186,22 @@
     <string name="category_source_misc">Ymse</string>
     <string name="category_source_personal">Personlig</string>
     <string name="category_source_unknown">Ukjent</string>
+    <string name="event_widget">Miniprogram</string>
+    <string name="event_widget_text">Tekst</string>
+    <string name="event_widget_tag">Etikett</string>
+    <string name="event_widget_default_text">VIS TEKST</string>
+    <string name="event_widget_default_tag">ETIKETT</string>
+    <string name="event_widget_button_add_widget">Legg til miniprogram</string>
+    <string name="usource_power__charging">Lader</string>
+    <string name="usource_power__usb">USB</string>
+    <string name="usource_call_state_ringing">Ringer</string>
+    <string name="usource_call_state_ongoing">Pågående</string>
+    <string name="usource_call_number">Nummer</string>
+    <string name="operation_http_request">HTTP-forespørsel</string>
+    <string name="o_http_method">Metode</string>
+    <string name="o_http_get">GET</string>
+    <string name="o_http_post">POST</string>
+    <string name="o_http_url">Nettadresse</string>
+    <string name="o_http_content_type">Innholdstype</string>
+    <string name="o_http_post_data">Postdata</string>
 </resources>
