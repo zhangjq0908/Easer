@@ -157,12 +157,6 @@
     <string name="hint_event_title">Esemény címe</string>
     <string name="prompt_data_illegal">Adatok mentése érvénytelen mezővel meg lett akadályozva. Ellenőrizze a választási lehetőségeit / bemeneteket.</string>
     <string name="message_convert_data_error">Nem lehet konvertálni az adatokat. A részletekért tekintse meg a naplót.</string>
-    <string name="welcome_message">1. Adjon megfelelő engedélyeket az Easer-nek a releváns események és profilok használata előtt.
-\n2. Az események <a href="https://en.wikipedia.org/wiki/Tree_structure">fákként</a> történő összekapcsolása <i>jelenleg</i> az egyetlen módszer események összeállítására.
-\n 
-\nRemélem kedveli ezt az alkalmazást :)
-\n
-\nTekintse meg a projekt wiki <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">GYIK</a> részét is.</string>
     <string name="pref_show_notification_summary">Értesítés megjelenítése az értesítési sávon.</string>
     <string name="prompt_save_failed">Nem sikerült elmenteni</string>
     <string name="welcome_message_privacy">Fontos az adatvédelem!

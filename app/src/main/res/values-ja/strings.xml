@@ -184,12 +184,6 @@
 \nあなたはデータのすべての部分を所有します。ログを含めてすべてデバイスに含まれます。</string>
     <string name="title_pivot">ピボット</string>
     <string name="title_service_start">サービス開始</string>
-    <string name="welcome_message">1. 関連するイベントやプロファイルを使用する前に、対応する権限を Easer に付与してください。
-\n2. <a href="https://en.wikipedia.org/wiki/Tree_structure">ツリー</a> としてイベントを接続する方法が <i>現在</i> イベントを作成する唯一の方法です。
-\n 
-\nあなたがこのアプリを気に入っていただけますように :)
-\n 
-\nまた、プロジェクト wiki の <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> セクションをご覧ください。</string>
     <string name="title_source">ソースコード</string>
     <string name="title_author">作者</string>
     <string name="title_donate">寄付</string>

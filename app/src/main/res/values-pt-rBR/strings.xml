@@ -129,13 +129,7 @@
     <string name="message_convert_data_abort">Conversão de dados abortados.</string>
     <string name="message_convert_data_error">Impossível converter os dados. Por favor, veja o log para detalhes.</string>
     <string name="title_welcome_message">Bem-vindo(a)</string>
-    <string name="welcome_message">1. Conceda ao Easer as permissões correspondentes antes de usar eventos e perfis relevantes. 
-\n2. Conectar eventos como <a href="https://pt.wikipedia.org/wiki/Topologia_em_%C3%A1rvore">árvores</a> é <i>atualmente</i> a única forma de compor eventos. 
-\n 
-\nEspero que goste deste aplicativo :) 
-\n 
-\nTambém dê uma olhada na seção <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> na wiki do projeto.</string>
-    <string name="welcome_message_1">Bem-vindo(a). 
+    <string name="welcome_message_1">Bem-vindo(a).
 \n 
 \nAqui estão algumas informações básicas antes de usar o Easer. 
 \n 

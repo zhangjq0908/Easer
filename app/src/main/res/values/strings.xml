@@ -161,12 +161,6 @@
     <string name="message_convert_data_abort">Data conversion aborted.</string>
     <string name="message_convert_data_error">Could not convert the data. Please see the log for details.</string>
     <string name="title_welcome_message">Welcome</string>
-    <string name="welcome_message">1. Grant Easer corresponding permissions before using relevant events and profiles.
-\n2. Connecting events as <a href="https://en.wikipedia.org/wiki/Tree_structure">trees</a> is <i>currently</i> the only way to compose events.
-\n
-\nHope you like this app :)
-\n
-\n Also have a look in the <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> section of the project wiki.</string>
     <string name="welcome_message_1">Welcome.
 \n
 \nHere is some basic info to read before using Easer.

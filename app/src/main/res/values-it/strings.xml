@@ -122,11 +122,7 @@
     <string name="message_convert_data_abort">Conversione dati interrotta.</string>
     <string name="message_convert_data_error">Impossibile convertire i dati. Consultare il log per dettagli.</string>
     <string name="title_welcome_message">Benvenuto</string>
-    <string name="welcome_message">1. Concedi a Easer le autorizzazioni corrispondenti prima di usare Eventi e Profili interessati.
-\n2. Collegare Eventi ad <a href="https://en.wikipedia.org/wiki/Tree_structure">albero</a> è <i>attualmente</i> l\'unico modo per comporre Eventi.
-\n
-\nDai un\'occhiata anche alla sezione <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> della wiki del progetto.</string>
-    <string name="welcome_message_1">Benvenuto. 
+    <string name="welcome_message_1">Benvenuto.
 \n 
 \nEcco alcune informazioni di base da leggere prima di usare Easer. 
 \n 

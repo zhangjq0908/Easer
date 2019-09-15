@@ -173,12 +173,6 @@
     <string name="category_operation_easer">\@string/easer</string>
     <string name="category_operation_misc">Blandat</string>
     <string name="category_operation_unknown">Okänd</string>
-    <string name="welcome_message">1. Ge Easer motsvarande behörigheter före användning av relevanta händelser och profiler. 
-\n2. Sammankoppling av händelser som <a href="https://en.wikipedia.org/wiki/Tree_structure">trädstrukturer</a> är <i>för stunden</i> den enda metoden för att sammansätta dem.
-\n 
-\nHoppas att du tycker om den här appen :)
-\n 
-\n Ta också en titt på <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> -delen av projektets wiki.</string>
     <string name="title_pivot">Pivot</string>
     <string name="title_source">Källkod</string>
     <string name="title_author">Författare</string>

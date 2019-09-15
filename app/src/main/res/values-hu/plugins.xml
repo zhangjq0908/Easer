@@ -158,8 +158,8 @@
     <string name="o_volume_notification">Értesítés</string>
     <string name="operation_alarm__absolute">Abszolút</string>
     <string name="repeative_timer">Ismétlődő időzítő\?</string>
-    <string name="content_contains">Tartalom (tartalmazza…)</string>&gt;
-    <string name="usource_battery">Akkumulátor állapota</string>
+    <string name="content_contains">Tartalom (tartalmazza…)</string><![CDATA[>
+    ]]>
     <string name="event_timer_seconds">Másodperc</string>
     <string name="usource_headset">Fejhallgató</string>
     <string name="op_launch_app_text_app">Alkalmazás</string>

@@ -174,12 +174,6 @@
 \nSIE besitzen jedes Stück Ihrer Daten. Alles bleibt auf Ihrem Gerät, einschließlich der Protokolle.</string>
     <string name="title_pivot">Drehpunkt</string>
     <string name="title_service_start">Dienststart</string>
-    <string name="welcome_message">1. Erteilen Sie Easer entsprechende Berechtigungen, bevor Sie entsprechende Ereignisse und Profile verwenden.
-\n2. Ereignisse als <a href="https://en.wikipedia.org/wiki/Tree_structure">Bäume</a> zu verbinden ist <i>aktuell</i> die einzige Möglichkeit, Ereignisse zu verbinden.
-\n 
-\nIch hoffe, Ihnen gefällt diese App :)
-\n 
-\n Werfen Sie auch einen Blick in den Abschnitt <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> des Projekt-Wikis.</string>
     <string name="title_source">Quellcode</string>
     <string name="title_author">Autor</string>
     <string name="title_donate">Spenden</string>

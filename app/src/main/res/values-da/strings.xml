@@ -176,12 +176,6 @@
 \nMan ejer selv hver eneste stykke data. Alt lever på enheden inklusiv log.</string>
     <string name="title_pivot">Omdrejningspunkt</string>
     <string name="title_service_start">Tjeneste start</string>
-    <string name="welcome_message">1. Giv Easer tilhørende rettigheder før brug af relevante hændelser og profiler. 
-\n2. Forbinde hændelser som <a href="https://en.wikipedia.org/wiki/Tree_structure">træer</a> er <i>for nuværende</i> eneste måde at bygge hændelser. 
-\n 
-\nHåber programmet er brugbart :) 
-\n 
-\nSe også i <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> sektion for projekt wiki.</string>
     <string name="title_source">Kilde kode</string>
     <string name="title_author">Forfatter</string>
     <string name="title_donate">Donere</string>
