@@ -88,9 +88,9 @@ public class WidgetEventData extends AbstractEventData {
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof WidgetEventData))
+        if (!(obj instanceof WidgetEventData))
             return false;
-        if (widgetTag.equals(((WidgetEventData) obj).widgetTag))
+        if (!widgetTag.equals(((WidgetEventData) obj).widgetTag))
             return false;
         return true;
     }

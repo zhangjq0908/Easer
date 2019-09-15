@@ -98,7 +98,7 @@
     <string name="pref_use_root_title">root 機能を使用する</string>
     <string name="pref_use_root_summary">特定の機能 (スキル) で root 権限を使用します。これは一部のデバイスで互換性の問題を解決するのに役立ちます。 これは他の場所では使用されません。</string>
     <string name="pref_cooldown_title">クールダウン時間</string>
-    <string name="pref_cooldown_summary">同じイベントの 2 つのトリガー間の最小間隔</string>
+    <string name="pref_cooldown_summary">同じイベントの 2 つのトリガー間の最小間隔 (秒)</string>
     <string name="cooldown_time_illformed">数値は、0 以上で整数値の範囲に収まるようにする必要があります</string>
     <string name="pref_enabled_skills_title">有効なプラグイン</string>
     <string name="pref_enabled_skills_summary">特定のプラグインを有効または無効にします</string>
@@ -118,7 +118,7 @@
     <string name="message_convert_data_error">データを変換するときにエラーが発生しました。詳細についてはログを参照してください。</string>
     <string name="title_welcome_message">ようこそ</string>
     <string name="alert_update_storage_data_title">古いバージョンのデータが見つかりました</string>
-    <string name="alert_update_storage_data">データは以前のバージョンで作成されました。新しいバージョンにアップデートすることを推奨します、そうしないと Easer が正しく動作しないことがあります。設定でデータの変換を選択することによってこれを行うことができます。</string>
+    <string name="alert_update_storage_data">設定で \"データを変換\" を選択して、互換性のためにデータを新しい形式に更新してください。</string>
     <string name="template_export">%s にエクスポートしました</string>
     <string name="version">バージョン</string>
     <string name="message_importing_invalid_data">このファイルは有効ではないようです。インポートするファイルが、以前 Easer でエクスポートしていることを確認してください。</string>
@@ -127,17 +127,17 @@
     <string name="dynamics_script_name">スクリプト名</string>
     <string name="dynamics_profile_name">プロファイル名</string>
     <string name="title_help">ヘルプ</string>
-    <string name="help_script">スクリプトは、論理コンテナーです。スクリプトで、プロファイルにイベントまたは条件を接続すると、そのイベントが発生または条件が満たされた場合に、Easer がロード/実行するプロファイルを認識します。
-\n逆イベントのような、より高度な機能もあります。
+    <string name="help_script">\"スクリプト\" は、論理コンテナーです。スクリプトで、プロファイルにイベントまたは条件を接続すると、そのイベントが発生または条件が満たされた場合に、Easer がロード/実行するプロファイルを認識します。 
+\n逆イベントのような、より高度な機能もあります。 
 \n詳細については <a href="https://github.com/renyuneyun/Easer/wiki">ドキュメント</a> を参照してください。</string>
-    <string name="help_event">イベントは、お使いの携帯電話またはリモート上での、短時間の (簡単な) イベントを表します。
-\nたとえば、通知の受信や、NFC タグのスキャンです。
+    <string name="help_event">\"イベント\" は、お使いの携帯電話またはリモート上での、短時間の (簡単な) イベントを表します。 
+\nたとえば、通知の受信や、NFC タグのスキャンです。 
 \n詳細については <a href="https://github.com/renyuneyun/Easer/wiki">ドキュメント</a> を参照してください。</string>
-    <string name="help_condition">条件は、お使いの携帯電話やリモート上での、長期的な (しかし通常永久ではない) 条件を表します。
-\nたとえば、WiFi 接続や画面をオフするなどです。
+    <string name="help_condition">\"条件\" は、お使いの携帯電話やリモート上での、長期的な (しかし通常永久ではない) 条件を表します。 
+\nたとえば、WiFi 接続や画面をオフするなどです。 
 \n詳細については <a href="https://github.com/renyuneyun/Easer/wiki">ドキュメント</a> を参照してください。</string>
-    <string name="help_profile">プロファイルは、一連の操作です。それぞれの操作は、特定の種類の動作を表します。
-\nたとえば、Bluetooth をオンにする、や SMS を送信などです。
+    <string name="help_profile">\"プロファイル\" は、一連の操作です。それぞれの操作は、特定の種類の動作を表します。 
+\nたとえば、Bluetooth をオンにする、や SMS を送信などです。 
 \n詳細については <a href="https://github.com/renyuneyun/Easer/wiki">ドキュメント</a> を参照してください。</string>
     <string name="category_operation_android">Android</string>
     <string name="category_operation_system_config">システム設定</string>
@@ -202,4 +202,5 @@
     <string name="title_select_event">イベントの選択</string>
     <string name="title_select_condition">条件の選択</string>
     <string name="button_see_detail">詳細を参照</string>
+    <string name="title_data_collection">データ</string>
 </resources>

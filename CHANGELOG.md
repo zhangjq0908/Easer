@@ -1,6 +1,27 @@
 CHANGELOG
 ======
 
+* v0.7.8.1: Add Operation to send HTTP request && Pivot with better zoom && Fix state checking of Headset Condition && i18n update
+	* Added HttpRequestOperation (#269, thanks @xylo)
+	* Use looser restriction on zoom at Pivot
+	* Correct the state checking of HeadsetTracker
+	* i18n update: German, Danish, Japanese, Italian, French
+
+* v0.7.8: UI: group to Data page && add WidgetEvent && Add Call source && better BatteryUSource && minor improvements && Bug fixes && i18n update
+	* Move data (Script, Condition, Event, Profile) to a dedicated Data page
+	* Added WidgetEvent: launcher widget
+	* Add CallUSourceSkill
+	* Enhance BatteryUSource: rename (Power) & support more checks
+	* Added cooldown interval unit (i.e. seconds)
+	* Improve day-of-week check
+	* Minor UI improvements
+	* Fix crash when opening BroadcastOperation with extras
+	* Fix BroadcastOperationData not correctly (de)serialized
+	* Fix Dynamics not correctly passed
+	* Fix quotes in string resources
+	* i18n: merged Hungarian && updates
+	* Update skill generation script templates
+
 * v0.7.7.7: Bug fixes & i18n update
 	* Fix ConnectivityUSource causes crash by StackOverflow (#217, fixed in PR #239 by @GuepardoApps)
 	* Fix Aquiring Cell Towers crashes app (#216)

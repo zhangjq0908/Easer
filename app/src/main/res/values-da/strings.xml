@@ -93,7 +93,7 @@
     <string name="pref_use_root_title">Bruge administrator egenskaber</string>
     <string name="pref_use_root_summary">Bruge administrator egenskab for bestemte funktioner (færdigheder), som kan hjælpe med at løse kompatibilitet problem på nogle enheder. Det vil ikke blive brugt andre steder.</string>
     <string name="pref_cooldown_title">Pausetid</string>
-    <string name="pref_cooldown_summary">Mindste interval mellem to udløsere for samme hændelse</string>
+    <string name="pref_cooldown_summary">Mindste interval (i sekunder) mellem to udløsere for samme hændelse</string>
     <string name="cooldown_time_illformed">Værdi skal være i område 0-32767</string>
     <string name="pref_enabled_skills_title">Aktiverede færdigheder</string>
     <string name="pref_enabled_skills_summary">Aktivere eller deaktivere bestemte færdigheder</string>
@@ -113,7 +113,7 @@
     <string name="message_convert_data_error">Kan ikke konvertere data. Se log for detaljer.</string>
     <string name="title_welcome_message">Velkommen</string>
     <string name="alert_update_storage_data_title">Ældre data version fundet</string>
-    <string name="alert_update_storage_data">Vælg \\\"Data konvertering\\\" i opsætning for at opdatere data til det ny format for kompatibilitet.</string>
+    <string name="alert_update_storage_data">Vælg \"Data konvertering\" i opsætning for at opdatere data til det nye format for kompatibilitet.</string>
     <string name="template_export">Eksporteret til %s</string>
     <string name="version">Version</string>
     <string name="message_importing_invalid_data">Filen ser ikke ud til at være gyldig. Importere en tidligere eksporteret Easer fil.</string>
@@ -122,17 +122,17 @@
     <string name="dynamics_script_name">Skript navn</string>
     <string name="dynamics_profile_name">Profil navn</string>
     <string name="title_help">Hjælp</string>
-    <string name="help_script">\\\"Skript\\\" er logik beholder. Forbind en hændelse eller en tilstand med en profil i et skript, så Easer indlæser/udfører den pågældende profil når hændelsen finder sted eller tilstanden er opfyldt. 
+    <string name="help_script">\"Skript\" er logik beholder. Forbind en hændelse eller en tilstand med en profil i et skript, så Easer indlæser/udfører den pågældende profil når hændelsen finder sted eller tilstanden er opfyldt. 
 \nDer er også mere avancerede funktioner, f.eks. omvendt hændelse. 
 \nFor yderligere oplysninger henvises til <a href="https://github.com/renyuneyun/Easer/wiki">dokument</a> for yderlig information.</string>
-    <string name="help_event">\\\"Hændelse\\\" repræsenterer en kortvarig (øjeblikkelig) hændelse på telefonen eller eksternt.
-\nFor eksempel modtager en påmindelse eller en skannet NFC mærke.
+    <string name="help_event">\"Hændelse\" repræsenterer en kortvarig (øjeblikkelig) hændelse på telefonen eller eksternt. 
+\nFor eksempel modtager en påmindelse eller en skannet NFC mærke. 
 \nSe <a href="https://github.com/renyuneyun/Easer/wiki"> dokumentet </a> for at få flere oplysninger.</string>
-    <string name="help_condition">\\\"Tilstand\\\" repræsenterer en varig tilstand (men normalt ikke for altid) på telefonen eller eksternt.
-\nFor eksempel forbindelse til trådløst netværk eller når skærm slukker.
+    <string name="help_condition">\"Tilstand\" repræsenterer en varig tilstand (men normalt ikke for altid) på telefonen eller eksternt. 
+\nFor eksempel forbindelse til trådløst netværk eller når skærm slukker. 
 \nSe <a href="https://github.com/renyuneyun/Easer/wiki">dokumentet</a> for at få flere oplysninger.</string>
-    <string name="help_profile">\\\"Profil\\\" er et sæt handlinger. Hver handling repræsenterer en bestemt type handling.
-\nFor eksempel tænd Bluetooth eller send en SMS.
+    <string name="help_profile">\"Profil\" er et sæt handlinger. Hver handling repræsenterer en bestemt type handling. 
+\nFor eksempel tænd Bluetooth eller send en SMS. 
 \nSe <a href="https://github.com/renyuneyun/Easer/wiki"> dokumentet </a> for at få flere oplysninger.</string>
     <string name="category_operation_android">Android</string>
     <string name="category_operation_system_config">System opsætning</string>
@@ -194,4 +194,5 @@
     <string name="title_select_event">Vælge hændelse</string>
     <string name="title_select_condition">Vælge tilstand</string>
     <string name="button_see_detail">Se oplysninger</string>
+    <string name="title_data_collection">Data</string>
 </resources>

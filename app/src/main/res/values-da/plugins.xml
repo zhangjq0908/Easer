@@ -198,4 +198,22 @@
     <string name="category_source_misc">Div.</string>
     <string name="category_source_personal">Personlig</string>
     <string name="category_source_unknown">Ukendt</string>
+    <string name="event_widget">Kontrol</string>
+    <string name="event_widget_widget_label">WidgetEvent kontrol</string>
+    <string name="event_widget_text">Tekst</string>
+    <string name="event_widget_tag">Mærke</string>
+    <string name="event_widget_default_text">VIS TEKST</string>
+    <string name="event_widget_default_tag">MÆRKE</string>
+    <string name="event_widget_button_add_widget">Tilføj kontrol</string>
+    <string name="usource_power__charging">Oplader</string>
+    <string name="usource_power__discharging">Aflader</string>
+    <string name="usource_power__any">Enhver</string>
+    <string name="usource_power__usb">USB</string>
+    <string name="usource_power__ac">AC</string>
+    <string name="usource_call">Opkald</string>
+    <string name="usource_call_state">Opkaldstilstand</string>
+    <string name="usource_call_state_idle">Tomgang</string>
+    <string name="usource_call_state_ringing">Ringer</string>
+    <string name="usource_call_state_ongoing">Igangværende</string>
+    <string name="usource_call_number">Nummer</string>
 </resources>
