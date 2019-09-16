@@ -204,4 +204,12 @@
     <string name="usource_call_state_ringing">着信中</string>
     <string name="usource_call_state_ongoing">通話中</string>
     <string name="usource_call_number">番号</string>
+    <string name="operation_http_request">HTTP リクエスト</string>
+    <string name="o_http_method">メソッド</string>
+    <string name="o_http_get">GET</string>
+    <string name="o_http_post">POST</string>
+    <string name="o_http_url">URL</string>
+    <string name="o_http_header">ヘッダー (行形式: キー: 値)</string>
+    <string name="o_http_content_type">コンテンツタイプ</string>
+    <string name="o_http_post_data">送信データ</string>
 </resources>
