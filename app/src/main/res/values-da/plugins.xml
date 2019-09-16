@@ -216,4 +216,12 @@
     <string name="usource_call_state_ringing">Ringer</string>
     <string name="usource_call_state_ongoing">Igangværende</string>
     <string name="usource_call_number">Nummer</string>
+    <string name="operation_http_request">HTTP forespørgsel</string>
+    <string name="o_http_method">Metode</string>
+    <string name="o_http_get">GET</string>
+    <string name="o_http_post">POST</string>
+    <string name="o_http_url">URL</string>
+    <string name="o_http_header">Hoved (linje format: nøgle: værdi)</string>
+    <string name="o_http_content_type">Indhold type</string>
+    <string name="o_http_post_data">Indsend data</string>
 </resources>
