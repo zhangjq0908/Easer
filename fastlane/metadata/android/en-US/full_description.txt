@@ -1,3 +1,5 @@
+(This is the *beta* version of Easer, with a different package name.)
+
 Make your smart phone smarter: tell it what to do under what situation.
 
 Easer provides you with explicit automation. You can also say it's an event-driven Android automation app. It knows various events, and you, the user and the device owner, can tell it what to do on what event or condition (and even combine multiple events!). Routine actions no longer need to be taken manually.

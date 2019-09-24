@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="easer_beta">Easer (beta)</string>
+    <string name="app_name" translatable="false">@string/easer_beta</string>
+</resources>

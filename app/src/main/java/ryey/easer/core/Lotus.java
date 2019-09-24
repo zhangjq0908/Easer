@@ -60,19 +60,19 @@ public abstract class Lotus {
 
     static Lotus createLotus(@NonNull Context context, @NonNull ScriptTree scriptTree,
                              @NonNull ExecutorService executorService,
-                             @NonNull ConditionHolderService.CHBinder chBinder,
-                             @NonNull AsyncHelper.DelayedLoadProfileJobs jobContainerLP) {
+                             @NonNull EHService.DelayedConditionHolderBinderJobs jobCH,
+                             @NonNull AsyncHelper.DelayedLoadProfileJobs jobLP) {
         if (scriptTree.isEvent())
-            return new EventLotus(context, scriptTree, executorService, chBinder, jobContainerLP);
+            return new EventLotus(context, scriptTree, executorService, jobCH, jobLP);
         else
-            return new ConditionLotus(context, scriptTree, executorService, chBinder, jobContainerLP);
+            return new ConditionLotus(context, scriptTree, executorService, jobCH, jobLP);
     }
 
     @NonNull protected final Context context;
     @NonNull protected final ScriptTree scriptTree;
     @NonNull protected final ExecutorService executorService;
-    @NonNull protected final ConditionHolderService.CHBinder chBinder;
-    @NonNull protected final AsyncHelper.DelayedLoadProfileJobs jobContainerLP;
+    @NonNull protected final EHService.DelayedConditionHolderBinderJobs jobCH;
+    @NonNull protected final AsyncHelper.DelayedLoadProfileJobs jobLP;
 
     protected List<Lotus> subs = new ArrayList<>();
 
@@ -103,13 +103,13 @@ public abstract class Lotus {
 
     protected Lotus(@NonNull Context context, @NonNull ScriptTree scriptTree,
                     @NonNull ExecutorService executorService,
-                    @NonNull ConditionHolderService.CHBinder chBinder,
-                    @NonNull AsyncHelper.DelayedLoadProfileJobs jobContainerLP) {
+                    @NonNull EHService.DelayedConditionHolderBinderJobs jobCH,
+                    @NonNull AsyncHelper.DelayedLoadProfileJobs jobLP) {
         this.context = context;
         this.scriptTree = scriptTree;
         this.executorService = executorService;
-        this.chBinder = chBinder;
-        this.jobContainerLP = jobContainerLP;
+        this.jobCH = jobCH;
+        this.jobLP = jobLP;
     }
 
     final @NonNull String scriptName() {
@@ -175,7 +175,7 @@ public abstract class Lotus {
         if (profileName != null) {
             if (extras == null)
                 extras = new Bundle();
-            jobContainerLP.triggerProfile(profileName, scriptTree.getName(),
+            jobLP.triggerProfile(profileName, scriptTree.getName(),
                     extras, scriptTree.getData().getDynamicsLink());
         }
 
@@ -199,7 +199,7 @@ public abstract class Lotus {
         Logger.v(" <%s> start children's listening", scriptTree.getName());
         for (ScriptTree sub : scriptTree.getSubs()) {
             if (sub.isActive()) {
-                Lotus subLotus = Lotus.createLotus(context, sub, executorService, chBinder, jobContainerLP);
+                Lotus subLotus = Lotus.createLotus(context, sub, executorService, jobCH, jobLP);
                 subs.add(subLotus);
                 subLotus.listen();
             }
