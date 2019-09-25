@@ -1,0 +1,8 @@
+Unifying status notification && Fix a potential deadlock (or not so serious) in main service && More local broadcast && i18n update
+
+	* Remove redundant functions EHService.startNotification() & EHService.stopNotification()
+	* Clean CV in EHService with DelayedConditionHolderBinderJobs
+	* Make some broadcasts local
+	* EHService: Move some elements into CoreSkillHelper
+	* i18n update: Chinese, German, Danish, Japanese, Norwegian Bokmål
+

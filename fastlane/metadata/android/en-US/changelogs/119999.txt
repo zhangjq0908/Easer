@@ -1,0 +1,4 @@
+i18n update
+
+* i18n update: Chinese, German, Danish, Japanese, Norwegian Bokmål
+

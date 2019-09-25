@@ -1,6 +1,13 @@
 CHANGELOG
 ======
 
+* v0.7.8.2: Unifying status notification && Fix a potential deadlock (or not so serious) in main service && More local broadcast && i18n update
+	* Remove redundant functions EHService.startNotification() & EHService.stopNotification()
+	* Clean CV in EHService with DelayedConditionHolderBinderJobs
+	* Make some broadcasts local
+	* EHService: Move some elements into CoreSkillHelper
+	* i18n update: Chinese, German, Danish, Japanese, Norwegian Bokmål
+
 * v0.7.8.1: Add Operation to send HTTP request && Pivot with better zoom && Fix state checking of Headset Condition && i18n update
 	* Added HttpRequestOperation (#269, thanks @xylo)
 	* Use looser restriction on zoom at Pivot
