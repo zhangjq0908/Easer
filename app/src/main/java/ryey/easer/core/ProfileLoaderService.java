@@ -238,12 +238,12 @@ public class ProfileLoaderService extends Service {
                     Logger.i("Profile <%s> loaded", name);
                 } else {
                     if (unknownSkills.size() > 0) {
-                        extraInfoBuilder.append("Unknown skills:");
+                        extraInfoBuilder.append("Unknown results from skills:");
                         for (String id : unknownSkills) {
                             extraInfoBuilder.append(" ").append(id);
                         }
                         extraInfoBuilder.append("\n");
-                        Logger.i("Profile <%s> has unidentified Operations", name);
+                        Logger.i("Profile <%s> has unidentified Operation load results", name);
                     }
                     if (failedSkills.size() > 0) {
                         extraInfoBuilder.append("Failed:");

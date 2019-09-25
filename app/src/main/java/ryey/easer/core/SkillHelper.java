@@ -117,10 +117,6 @@ public final class SkillHelper {
 //            return count;
 //        }
 
-        public interface OnOperationLoadingResultListener {
-            void onResult(String skillId, Boolean success);
-        }
-
         public interface OnOperationLoadResultCallback {
             void onResult(@NonNull UUID id, @Nullable Boolean success);
         }

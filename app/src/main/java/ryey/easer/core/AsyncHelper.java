@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.ParcelUuid;
 
@@ -214,8 +215,8 @@ public final class AsyncHelper {
     }
 
     public static class CallbackStore<T>  {
-        private Lock lckCallbackMap = new ReentrantLock();
-        private final Map<ParcelUuid, T> callbackMap;
+        protected Lock lckCallbackMap = new ReentrantLock();
+        protected final Map<ParcelUuid, T> callbackMap;
 
         public CallbackStore(Map<ParcelUuid, T> callbackMap) {
             this.callbackMap = callbackMap;
@@ -252,5 +253,41 @@ public final class AsyncHelper {
                 lckCallbackMap.unlock();
             }
         }
+    }
+
+    public abstract static class TimedCallbackStore<T> extends CallbackStore<T> {
+
+        public final long defaultTimeout;
+
+        protected Handler handler = new Handler();
+
+        public TimedCallbackStore(Map<ParcelUuid, T> callbackMap, long defaultTimeout) {
+            super(callbackMap);
+            this.defaultTimeout = defaultTimeout;
+        }
+
+        public void putCallback(ParcelUuid uuid, T callback) {
+            putCallback(uuid, callback, defaultTimeout);
+        }
+
+        public void putCallback(ParcelUuid uuid, T callback, long milliseconds) {
+            lckCallbackMap.lock();
+            try {
+                callbackMap.put(uuid, callback);
+                handler.postDelayed(() -> _timeout(uuid), milliseconds);
+            } finally {
+                lckCallbackMap.unlock();
+            }
+        }
+
+        private void _timeout(ParcelUuid uuid) {
+            T callback = extractCallBack(uuid);
+            if (callback != null) {
+                onTimeout(uuid, callback);
+            }
+        }
+
+        protected abstract void onTimeout(ParcelUuid uuid, T callback);
+
     }
 }

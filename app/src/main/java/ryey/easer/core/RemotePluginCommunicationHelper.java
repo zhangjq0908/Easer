@@ -115,7 +115,7 @@ public class RemotePluginCommunicationHelper {
     private final AsyncHelper.CallbackStore<OnOperationPluginListObtainedCallback> onOperationPluginListObtainedCallbackCallbackStore = new AsyncHelper.CallbackStore<>(new ArrayMap<>());
     private final AsyncHelper.CallbackStore<OnEditDataIntentObtainedCallback> onEditDataIntentObtainedCallbackCallbackStore = new AsyncHelper.CallbackStore<>(new ArrayMap<>());
     private final AsyncHelper.CallbackStore<OnOperationDataParsedCallback> onOperationDataParsedCallbackCallbackStore = new AsyncHelper.CallbackStore<>(new ArrayMap<>());
-    private final AsyncHelper.CallbackStore<SkillHelper.OperationHelper.OnOperationLoadResultCallback> onOperationLoadResultCallbackCallbackStore = new AsyncHelper.CallbackStore<>(new ArrayMap<>()); //TODO: add timeout
+    private final AsyncHelper.TimedCallbackStore<SkillHelper.OperationHelper.OnOperationLoadResultCallback> onOperationLoadResultCallbackCallbackStore = new LoadProfileCallbackStore();
 
     public RemotePluginCommunicationHelper(@NonNull Context context) {
         this.context = context;
@@ -324,6 +324,18 @@ public class RemotePluginCommunicationHelper {
 
         void doAfterConnected(Callable<Void> task) {
             super.doAfter(task);
+        }
+    }
+
+    private static class LoadProfileCallbackStore extends AsyncHelper.TimedCallbackStore<SkillHelper.OperationHelper.OnOperationLoadResultCallback> {
+
+        LoadProfileCallbackStore() {
+            super(new ArrayMap<>(), 5000);
+        }
+
+        @Override
+        protected void onTimeout(ParcelUuid uuid, SkillHelper.OperationHelper.OnOperationLoadResultCallback callback) {
+            callback.onResult(uuid.getUuid(), null);
         }
     }
 
