@@ -39,7 +39,7 @@ import ryey.easer.skills.LocalSkillRegistry;
  *
  * Async is needed. This class uses {@link AsyncHelper} and {@link RemotePluginCommunicationHelper}
  *
- * A lot todo
+ * A lot todo: more types & include UI
  */
 public final class SkillHelper {
 
