@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources><string name="easer">Easer</string>
+<resources>
+    <string name="easer">Easer</string>
     <string name="drawer_tip">Облегчи свою жизнь!</string>
     <string name="title_outline">Эскиз</string>
     <string name="title_operation">Операция</string>
@@ -65,7 +66,7 @@
     <string name="toggle_active">Активный</string>
     <string name="hint_event_title">название события</string>
     <string name="hint_script_title">скрипт события</string>
-    <string name="hint_profile_title">название профиля</string>
+    <string name="hint_profile_title">Название профиля</string>
     <string name="hint_condition_title">название условия</string>
     <string name="prompt_save_failed">Не удалось сохранить</string>
     <string name="prompt_delete">Вы уверены, что хотите удалить: %s\?</string>
@@ -144,4 +145,20 @@
     <string name="category_operation_easer">\@string/easer</string>
     <string name="category_operation_misc">Разное</string>
     <string name="category_operation_unknown">Неизвестный</string>
+    <string name="menu_plain_list">Простой список</string>
+    <string name="title_welcome_message_privacy">Конфиденциальность!</string>
+    <string name="title_pivot">Пивот</string>
+    <string name="title_service_start">Запустить Службу</string>
+    <string name="message_future_change_title">предстоящие изменения</string>
+    <string name="title_source">Исходный код</string>
+    <string name="title_author">Автор</string>
+    <string name="title_donate">Пожертвовать</string>
+    <string name="title_website">Веб-сайт</string>
+    <string name="title_homepage">Домашняя страница</string>
+    <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
+    <string name="pref_locale_custom">Пользовательская локаль</string>
+    <string name="title_select_event">Выберите событие</string>
+    <string name="title_select_condition">Выберите условие</string>
+    <string name="button_see_detail">Смотрите подробности</string>
+    <string name="title_data_collection">Данные</string>
 </resources>
