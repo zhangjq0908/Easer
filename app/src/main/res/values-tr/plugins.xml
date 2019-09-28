@@ -13,4 +13,18 @@
     <string name="condition_calendar_event_title">Etkinlik Başlığı</string>
     <string name="condition_calendar_any_event">Herhangi bir olay</string>
     <string name="condition_calendar_event_match_pattern">Eşleşme Deseni</string>
+    <string name="condition_calendar_all_day_event">Yalnızca tüm gün etkinlikleriyle eşleş</string>
+    <string name="condition_ringer_mode">Zil Modu</string>
+    <string name="condition_ringer_volume">Ses Düzeyi</string>
+    <string name="condition_ringer_above">En azından</string>
+    <string name="condition_ringer_below">En fazla</string>
+    <string name="condition_ringer_equals">Eşittir</string>
+    <string name="event_broadcast">Yayını al</string>
+    <string name="broadcast_action">Eylem</string>
+    <string name="broadcast_category">Kategori</string>
+    <string name="broadcast_type">Tür</string>
+    <string name="broadcast_data">Veri</string>
+    <string name="event_calendar">Takvim Etkinliği</string>
+    <string name="ecalendar_select_dialog_title">Takvim Seç</string>
+    <string name="text_calendar_name">Takvim Adı</string>
 </resources>
