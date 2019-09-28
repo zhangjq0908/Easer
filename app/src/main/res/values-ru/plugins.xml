@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources><string name="event_condition_event">Условное Событие</string>
+<resources>
+    <string name="event_condition_event">Условное Событие</string>
     <string name="event_condition_event_enter">Войти</string>
     <string name="event_condition_event_leave">Выйти</string>
     <string name="usource_headset__headset_state">Состояние гарнитуры</string>
@@ -154,4 +155,48 @@
     <string name="op_car_mode">Режим в Машине</string>
     <string name="op_normal_mode">Обычный Режим</string>
     <string name="condition__rel_after">После</string>
+    <string name="broadcast_type">Тип</string>
+    <string name="broadcast_data">Данные</string>
+    <string name="o_launch_app__launch_activity">Запуск Активности</string>
+    <string name="o_launch_app__text_class">Имя класса</string>
+    <string name="o_launch_app__text_class_hint">Пустое или полное имя класса</string>
+    <string name="o_play_media">Воспроизвести мультимедиа</string>
+    <string name="o_play_media_text_file">Путь к файлу</string>
+    <string name="condition_ringer_mode">Режим звонка</string>
+    <string name="condition_ringer_volume">Громкость</string>
+    <string name="condition_ringer_above">По крайней мере</string>
+    <string name="condition_ringer_equals">Равно</string>
+    <string name="condition_calendar_name">Название календаря</string>
+    <string name="condition_calendar_event_title">Название события</string>
+    <string name="condition_calendar_any_event">Любое событие</string>
+    <string name="category_source_date_time">Дата / Время</string>
+    <string name="category_source_device">Устройство</string>
+    <string name="category_source_easer">Easer</string>
+    <string name="category_source_data_communication">Передача данных</string>
+    <string name="category_source_misc">Разное</string>
+    <string name="category_source_personal">Личные</string>
+    <string name="category_source_unknown">Неизвестный</string>
+    <string name="usource_bt_device_dynamics_device_name">Имя устройства</string>
+    <string name="usource_bt_device_dynamics_device_address">Адрес устройства</string>
+    <string name="usource_cell_location_dynamics_cell_location">Местоположение ячейки</string>
+    <string name="usource_cell_location_listening_content">Агрегирование местоположения ячейки…</string>
+    <string name="event_widget">Виджет</string>
+    <string name="event_widget_text">Текст</string>
+    <string name="event_widget_tag">Тег</string>
+    <string name="event_widget_default_tag">МЕТКА</string>
+    <string name="event_widget_button_add_widget">Добавить виджет</string>
+    <string name="usource_power__charging">Зарядка</string>
+    <string name="usource_power__discharging">Разрядка</string>
+    <string name="usource_power__any">Любой</string>
+    <string name="usource_power__usb">USB</string>
+    <string name="usource_call">Вызов</string>
+    <string name="usource_call_state">Состояние вызова</string>
+    <string name="usource_call_state_idle">Ожидания</string>
+    <string name="usource_call_state_ongoing">Текущий</string>
+    <string name="usource_call_number">Номер</string>
+    <string name="operation_http_request">HTTP-запрос</string>
+    <string name="o_http_method">Метод</string>
+    <string name="o_http_header">Заголовок (формат строки: ключ: значение)</string>
+    <string name="o_http_content_type">Тип контента</string>
+    <string name="o_http_post_data">POST-данные</string>
 </resources>
