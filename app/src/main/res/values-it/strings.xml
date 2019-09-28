@@ -99,7 +99,7 @@
     <string name="pref_use_root_title">Usa Funzionalità di Root</string>
     <string name="pref_use_root_summary">Utilizza i permessi di root per funzioni specifiche (moduli), che potrebbero aiutare a risolvere il problemi di compatibilità su alcuni dispositivi. Non saranno usati altrove.</string>
     <string name="pref_cooldown_title">Tempo di Raffreddamento</string>
-    <string name="pref_cooldown_summary">Intervallo minimo tra due trigger dello stesso evento</string>
+    <string name="pref_cooldown_summary">Intervallo minimo (in secondi) tra due trigger dello stesso evento</string>
     <string name="cooldown_time_illformed">Il numero non deve essere inferiore a 0 e non troppo grande per essere contenuto in un intero</string>
     <string name="pref_enabled_skills_title">Moduli Attivi</string>
     <string name="pref_enabled_skills_summary">Attiva o disattiva i Moduli</string>
@@ -157,17 +157,17 @@
     <string name="dynamics_script_name">Nome Script</string>
     <string name="dynamics_profile_name">Nome Profilo</string>
     <string name="title_help">Aiuto</string>
-    <string name="help_script">Gli \\\"Script\\\" sono contenitori logici. In uno Script è possibile collegare un Evento o una Condizione con un Profilo, in modo che Easer possa eseguire quel Profilo quando l\'Evento si verifica o la Condizione è soddisfatta.
-\nCi sono anche funzioni più avanzate, es. Evento Inverso.
+    <string name="help_script">Gli \"Script\" sono contenitori logici. In uno Script è possibile collegare un Evento o una Condizione con un Profilo, in modo che Easer possa eseguire quel Profilo quando l\'Evento si verifica o la Condizione è soddisfatta. 
+\nCi sono anche funzioni più avanzate, es. Evento Inverso. 
 \nPer ulteriori informazioni fare riferimento a questo <a href="https://github.com/renyuneyun/Easer/wiki">documento</a>.</string>
-    <string name="help_event">Gli \\\"Eventi\\\" rappresentano un avvenimento di breve durata (istantaneo) sul dispositivo o in remoto.
-\nAd esempio, la ricezione di una notifica o la scansione di un tag NFC.
+    <string name="help_event">Gli \"Eventi\" rappresentano un avvenimento di breve durata (istantaneo) sul dispositivo o in remoto. 
+\nAd esempio, la ricezione di una notifica o la scansione di un tag NFC. 
 \nPer ulteriori informazioni fare riferimento a questo <a href="https://github.com/renyuneyun/Easer/wiki">documento</a>.</string>
-    <string name="help_condition">La \\\"Condizione\\\" rappresenta una condizione di lunga durata (solitamente non permanente) sul dispositivo o in remoto. 
+    <string name="help_condition">La \"Condizione\" rappresenta una condizione di lunga durata (solitamente non permanente) sul dispositivo o in remoto. 
 \nAd esempio, al momento del collegamento alla connessione Wi-Fi, o allo spegnimento dello schermo. 
 \nPer ulteriori informazioni fare riferimento a questo <a href="https://github.com/renyuneyun/Easer/wiki">documento</a>.</string>
-    <string name="help_profile">Il \\\"Profilo\\\" è un insieme di Operazioni. Ogni Operazione rappresenta un particolare tipo di azione.
-\nAd esempio, attivare la connessione Bluetooth, o inviare un SMS.
+    <string name="help_profile">Il \"Profilo\" è un insieme di Operazioni. Ogni Operazione rappresenta un particolare tipo di azione. 
+\nAd esempio, attivare la connessione Bluetooth, o inviare un SMS. 
 \nPer ulteriori informazioni fare riferimento a questo <a href="https://github.com/renyuneyun/Easer/wiki">documento</a>.</string>
     <string name="category_operation_android">Android</string>
     <string name="category_operation_system_config">Configurazione Sistema</string>
