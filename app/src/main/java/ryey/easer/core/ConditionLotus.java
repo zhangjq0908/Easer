@@ -32,10 +32,11 @@ class ConditionLotus extends Lotus {
     private final ConditionStructure conditionStructure;
 
     ConditionLotus(@NonNull Context context, @NonNull ScriptTree scriptTree,
+                   @NonNull CoreServiceComponents.LogicManager logicManager,
                    @NonNull ExecutorService executorService,
-                   @NonNull EHService.DelayedConditionHolderBinderJobs jobCH,
+                   @NonNull CoreServiceComponents.DelayedConditionHolderBinderJobs jobCH,
                    @NonNull AsyncHelper.DelayedLoadProfileJobs jobLP) {
-        super(context, scriptTree, executorService, jobCH, jobLP);
+        super(context, scriptTree, logicManager, executorService, jobCH, jobLP);
         conditionStructure = scriptTree.getCondition();
     }
 
