@@ -59,7 +59,7 @@ public abstract class Lotus {
                              @NonNull CoreServiceComponents.DelayedConditionHolderBinderJobs jobCH,
                              @NonNull AsyncHelper.DelayedLoadProfileJobs jobLP) {
         if (scriptTree.isEvent())
-            return new EventLotus(context, scriptTree, logicManager, jobCH, jobLP);
+            return new EventLotus(context, scriptTree, logicManager, jobLP);
         else
             return new ConditionLotus(context, scriptTree, logicManager, jobCH, jobLP);
     }
@@ -67,7 +67,6 @@ public abstract class Lotus {
     @NonNull protected final Context context;
     @NonNull protected final ScriptTree scriptTree;
     @NonNull protected final CoreServiceComponents.LogicManager logicManager;
-    @NonNull protected final CoreServiceComponents.DelayedConditionHolderBinderJobs jobCH;
     @NonNull protected final AsyncHelper.DelayedLoadProfileJobs jobLP;
 
     protected boolean satisfied = false;
@@ -97,12 +96,10 @@ public abstract class Lotus {
 
     protected Lotus(@NonNull Context context, @NonNull ScriptTree scriptTree,
                     @NonNull CoreServiceComponents.LogicManager logicManager,
-                    @NonNull CoreServiceComponents.DelayedConditionHolderBinderJobs jobCH,
                     @NonNull AsyncHelper.DelayedLoadProfileJobs jobLP) {
         this.context = context;
         this.scriptTree = scriptTree;
         this.logicManager = logicManager;
-        this.jobCH = jobCH;
         this.jobLP = jobLP;
     }
 

@@ -27,13 +27,17 @@ import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.ScriptTree;
 
 class ConditionLotus extends Lotus {
+
+    @NonNull protected final CoreServiceComponents.DelayedConditionHolderBinderJobs jobCH;
+
     private final ConditionStructure conditionStructure;
 
     ConditionLotus(@NonNull Context context, @NonNull ScriptTree scriptTree,
                    @NonNull CoreServiceComponents.LogicManager logicManager,
                    @NonNull CoreServiceComponents.DelayedConditionHolderBinderJobs jobCH,
                    @NonNull AsyncHelper.DelayedLoadProfileJobs jobLP) {
-        super(context, scriptTree, logicManager, jobCH, jobLP);
+        super(context, scriptTree, logicManager, jobLP);
+        this.jobCH = jobCH;
         conditionStructure = scriptTree.getCondition();
     }
 
