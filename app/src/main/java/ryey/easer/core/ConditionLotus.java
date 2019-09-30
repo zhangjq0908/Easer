@@ -23,8 +23,6 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import java.util.concurrent.ExecutorService;
-
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.ScriptTree;
 
@@ -33,10 +31,9 @@ class ConditionLotus extends Lotus {
 
     ConditionLotus(@NonNull Context context, @NonNull ScriptTree scriptTree,
                    @NonNull CoreServiceComponents.LogicManager logicManager,
-                   @NonNull ExecutorService executorService,
                    @NonNull CoreServiceComponents.DelayedConditionHolderBinderJobs jobCH,
                    @NonNull AsyncHelper.DelayedLoadProfileJobs jobLP) {
-        super(context, scriptTree, logicManager, executorService, jobCH, jobLP);
+        super(context, scriptTree, logicManager, jobCH, jobLP);
         conditionStructure = scriptTree.getCondition();
     }
 

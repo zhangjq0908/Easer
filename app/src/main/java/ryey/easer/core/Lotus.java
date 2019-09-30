@@ -34,7 +34,6 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.orhanobut.logger.Logger;
 
 import java.util.Locale;
-import java.util.concurrent.ExecutorService;
 
 import ryey.easer.core.data.ScriptTree;
 import ryey.easer.core.log.ActivityLogService;
@@ -57,19 +56,17 @@ public abstract class Lotus {
 
     static Lotus createLotus(@NonNull Context context, @NonNull ScriptTree scriptTree,
                              @NonNull CoreServiceComponents.LogicManager logicManager,
-                             @NonNull ExecutorService executorService,
                              @NonNull CoreServiceComponents.DelayedConditionHolderBinderJobs jobCH,
                              @NonNull AsyncHelper.DelayedLoadProfileJobs jobLP) {
         if (scriptTree.isEvent())
-            return new EventLotus(context, scriptTree, logicManager, executorService, jobCH, jobLP);
+            return new EventLotus(context, scriptTree, logicManager, jobCH, jobLP);
         else
-            return new ConditionLotus(context, scriptTree, logicManager, executorService, jobCH, jobLP);
+            return new ConditionLotus(context, scriptTree, logicManager, jobCH, jobLP);
     }
 
     @NonNull protected final Context context;
     @NonNull protected final ScriptTree scriptTree;
     @NonNull protected final CoreServiceComponents.LogicManager logicManager;
-    @NonNull protected final ExecutorService executorService;
     @NonNull protected final CoreServiceComponents.DelayedConditionHolderBinderJobs jobCH;
     @NonNull protected final AsyncHelper.DelayedLoadProfileJobs jobLP;
 
@@ -100,13 +97,11 @@ public abstract class Lotus {
 
     protected Lotus(@NonNull Context context, @NonNull ScriptTree scriptTree,
                     @NonNull CoreServiceComponents.LogicManager logicManager,
-                    @NonNull ExecutorService executorService,
                     @NonNull CoreServiceComponents.DelayedConditionHolderBinderJobs jobCH,
                     @NonNull AsyncHelper.DelayedLoadProfileJobs jobLP) {
         this.context = context;
         this.scriptTree = scriptTree;
         this.logicManager = logicManager;
-        this.executorService = executorService;
         this.jobCH = jobCH;
         this.jobLP = jobLP;
     }

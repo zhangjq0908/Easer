@@ -40,8 +40,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import ryey.easer.core.data.ScriptTree;
 import ryey.easer.core.data.storage.ScriptDataStorage;
@@ -67,10 +65,6 @@ public class EHService extends Service implements CoreServiceComponents.LogicMan
      */
     Map<String, CountedLotus> lotusMap = new HashMap<>();
     List<ScriptTree> scriptTreeList;
-    /**
-     * Shared thread pool for all {@link Lotus} to execute tasks
-     */
-    private ExecutorService executorService = Executors.newFixedThreadPool(4);
 
     /**
      * Necessary objects for the correct functioning of EHService.
@@ -235,7 +229,7 @@ public class EHService extends Service implements CoreServiceComponents.LogicMan
     public void activate(ScriptTree scriptTree) {
         CountedLotus countedLotus = lotusMap.get(scriptTree.getName());
         if (countedLotus == null) {
-            countedLotus = new CountedLotus(Lotus.createLotus(this, scriptTree, this, executorService, jobCH, jobLP));
+            countedLotus = new CountedLotus(Lotus.createLotus(this, scriptTree, this, jobCH, jobLP));
             lotusMap.put(scriptTree.getName(), countedLotus);
         }
         countedLotus.incCount();

@@ -27,7 +27,6 @@ import androidx.annotation.NonNull;
 import com.orhanobut.logger.Logger;
 
 import java.util.Calendar;
-import java.util.concurrent.ExecutorService;
 
 import ryey.easer.SettingsUtils;
 import ryey.easer.commons.local_skill.eventskill.EventData;
@@ -58,10 +57,9 @@ class EventLotus extends Lotus {
 
     EventLotus(@NonNull Context context, @NonNull ScriptTree scriptTree,
                @NonNull CoreServiceComponents.LogicManager logicManager,
-               @NonNull ExecutorService executorService,
                @NonNull CoreServiceComponents.DelayedConditionHolderBinderJobs jobCH,
                @NonNull AsyncHelper.DelayedLoadProfileJobs jobLP) {
-        super(context, scriptTree, logicManager, executorService, jobCH, jobLP);
+        super(context, scriptTree, logicManager, jobCH, jobLP);
 
         repeatable = scriptTree.isRepeatable();
         persistent = scriptTree.isPersistent();
@@ -87,21 +85,11 @@ class EventLotus extends Lotus {
     }
 
     protected synchronized void onListen() {
-        executorService.submit(new Runnable() {
-            @Override
-            public void run() {
-                mSlot.listen();
-            }
-        });
+        mSlot.listen();
     }
 
     protected synchronized void onCancel() {
-        executorService.submit(new Runnable() {
-            @Override
-            public void run() {
-                mSlot.cancel();
-            }
-        });
+        mSlot.cancel();
     }
 
     private boolean checkAndSetCooldown(String eventName) {
