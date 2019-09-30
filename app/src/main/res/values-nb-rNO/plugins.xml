@@ -204,4 +204,12 @@
     <string name="o_http_url">Nettadresse</string>
     <string name="o_http_content_type">Innholdstype</string>
     <string name="o_http_post_data">Postdata</string>
+    <string name="event_widget_widget_label">WidgetEvent-miniprogram</string>
+    <string name="usource_power__discharging">Utlading</string>
+    <string name="usource_power__any">Alle</string>
+    <string name="usource_power__ac">Lysnett</string>
+    <string name="usource_call">Anrop</string>
+    <string name="usource_call_state">Anropstilstand</string>
+    <string name="usource_call_state_idle">Tomgang</string>
+    <string name="o_http_header">Hode (linjeformat: nøkkel: verdi)</string>
 </resources>
