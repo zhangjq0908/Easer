@@ -32,14 +32,16 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import de.blox.graphview.*
-import de.blox.graphview.tree.BuchheimWalkerAlgorithm
-import de.blox.graphview.tree.BuchheimWalkerConfiguration
+import de.blox.graphview.layered.SugiyamaAlgorithm
+import de.blox.graphview.layered.SugiyamaConfiguration
 import ryey.easer.R
 import ryey.easer.core.EHService
 import ryey.easer.core.Lotus
+import ryey.easer.core.data.LogicGraph
 import ryey.easer.core.data.ScriptStructure
-import ryey.easer.core.data.ScriptTree
 import ryey.easer.core.data.storage.ScriptDataStorage
+import java.util.*
+import kotlin.collections.HashMap
 
 
 class PivotFragment: Fragment() {
@@ -52,9 +54,8 @@ class PivotFragment: Fragment() {
         }
     }
 
-    private val virtualRoot = Node(ServiceStart())
     var graph: Graph? = null
-    private val checkpointNodeMap = HashMap<String, NodeInfo>()
+    private var checkpointNodeMap: Map<String, Node>? = null
 
     var adapter: BaseGraphAdapter<ViewHolder>? = null
 
@@ -138,14 +139,9 @@ class PivotFragment: Fragment() {
         }
         graphView.adapter = adapter
 
-        // set the algorithm here
-        val configuration = BuchheimWalkerConfiguration.Builder()
-                .setSiblingSeparation(100)
-                .setLevelSeparation(300)
-                .setSubtreeSeparation(300)
-                .setOrientation(BuchheimWalkerConfiguration.ORIENTATION_TOP_BOTTOM)
-                .build()
-        adapter!!.algorithm = BuchheimWalkerAlgorithm(configuration)
+        val configurationBuilder = SugiyamaConfiguration.Builder().setLevelSeparation(300).setNodeSeparation(100)
+        val algorithm = SugiyamaAlgorithm(SugiyamaConfiguration(configurationBuilder))
+        adapter!!.algorithm = algorithm
 
         return view
     }
@@ -163,52 +159,14 @@ class PivotFragment: Fragment() {
     }
 
     fun updateNodeStatus(id: String, satisfied: Boolean) {
-        val node = checkpointNodeMap[id]
+        val node = checkpointNodeMap?.get(id)
         if (node != null) {
             updateNodeStatus(node, satisfied)
         }
     }
 
-    private fun updateNodeStatus(node: NodeInfo, satisfied: Boolean?) {
+    private fun updateNodeStatus(node: Node, satisfied: Boolean?) {
         redrawGraph()
-    }
-
-    private fun recreateGraph() {
-        graph = if (binder == null) {
-            createBasicGraph()
-        } else {
-            createAdvancedGraph()
-        }
-    }
-
-    private fun createBasicGraph(): Graph {
-        val scriptDataStorage = ScriptDataStorage(context)
-        val scriptTrees = scriptDataStorage.scriptTrees
-
-        val graph = Graph()
-        graph.addNode(virtualRoot)
-
-        for (scriptTree in scriptTrees) {
-            addToGraph(scriptTree, graph, virtualRoot, checkpointNodeMap)
-        }
-
-        return graph
-    }
-
-    private fun createAdvancedGraph(): Graph {
-        val statusMap: Map<String, Boolean> = binder!!.lotusStatusMap()
-
-        val scriptDataStorage = ScriptDataStorage(context)
-        val scriptTrees = scriptDataStorage.scriptTrees
-
-        val graph = Graph()
-        graph.addNode(virtualRoot)
-
-        for (scriptTree in scriptTrees) {
-            addToGraph(scriptTree, graph, virtualRoot, checkpointNodeMap, statusMap)
-        }
-
-        return graph
     }
 
     private fun redrawGraph() {
@@ -217,40 +175,80 @@ class PivotFragment: Fragment() {
         adapter!!.notifyInvalidated()
     }
 
+    private fun recreateGraph() {
+        val ret = if (binder == null) {
+            createBasicGraph()
+        } else {
+            createAdvancedGraph()
+        }
+        graph = ret.first
+        checkpointNodeMap = ret.second
+    }
+
+    private fun createBasicGraph(): Pair<Graph, Map<String, Node>> {
+        val scriptDataStorage = ScriptDataStorage(context)
+
+        return convertToGraph(scriptDataStorage.logicGraph, null)
+    }
+
+    private fun createAdvancedGraph(): Pair<Graph, Map<String, Node>> {
+        val statusMap: Map<String, Boolean> = binder!!.lotusStatusMap()
+
+        val scriptDataStorage = ScriptDataStorage(context)
+
+        return convertToGraph(scriptDataStorage.logicGraph, statusMap)
+    }
+
     companion object {
         val lotusStateIntentFilter = IntentFilter(Lotus.ACTION_LOTUS_SATISFACTION_CHANGED)
 
-        fun addToGraph(scriptTree: ScriptTree, graph: Graph, parent: Node, checkpointMap: MutableMap<String, NodeInfo>): Node {
-            return Companion.addToGraph(scriptTree, graph, parent, checkpointMap, null)
-        }
+        fun convertToGraph(logicGraph: LogicGraph, statusMap: Map<String, Boolean>?): Pair<Graph, Map<String, Node>> {
+            val graph = Graph()
+            val nodeMap = HashMap<String, Node>()
 
-        fun addToGraph(scriptTree: ScriptTree, graph: Graph, parent: Node, checkpointMap: MutableMap<String, NodeInfo>, statusMap: Map<String, Boolean>?): Node {
-            val checkpoint = Checkpoint.fromScript(scriptTree.data)
-            checkpoint.satisfied = statusMap?.get(checkpoint.name)
-            val node = Node(checkpoint)
-            graph.addNode(node)
-            graph.addEdge(parent, node)
-            if (scriptTree.profile != null) {
-                val profileNode = Node(ProfileInfo(scriptTree.profile))
-                graph.addNode(profileNode)
-                graph.addEdge(node, profileNode)
-            }
-            val children = ArrayList<Node>()
-            for (subTree in scriptTree.subs) {
-                children.add(addToGraph(subTree, graph, node, checkpointMap, statusMap))
-            }
-            checkpointMap[checkpoint.name] = NodeInfo(parent, node, children)
-            return node
-        }
+            val queue = LinkedList<LogicGraph.LogicNode>()
 
-        class NodeInfo(val parent: Node, val node: Node, val children: List<Node>)
+            fun newNode(logicNode: LogicGraph.LogicNode): Node {
+                val checkpoint = Checkpoint.fromScript(logicNode.script)
+                checkpoint.satisfied = statusMap?.get(checkpoint.name)
+                val node = Node(checkpoint)
+                graph.addNode(node)
+                queue.add(logicNode)
+                nodeMap[logicNode.id] = node
+                return node
+            }
+
+            for (logicNode in logicGraph.initialNodes()) {
+                newNode(logicNode)
+            }
+
+            while (queue.isNotEmpty()) {
+                val logicNode = queue.poll()
+                val node = nodeMap[logicNode.id]!!
+                logicNode.script.profileName?.let {
+                    val profileNode = Node(ProfileInfo(it))
+                    graph.addNode(profileNode)
+                    graph.addEdge(node, profileNode)
+                }
+                logicGraph.successors(logicNode)?.let {
+                    for (successor in it) {
+                        var node2 = nodeMap[successor.id]
+                        if (node2 == null) {
+                            node2 = newNode(successor)
+                        }
+                        graph.addEdge(node, node2)
+                    }
+                }
+            }
+            return Pair(graph, nodeMap)
+        }
     }
 
     /**
      * This class represents a CheckPoint in the background state (i.e. the collection of all Scripts and their dependencies)
      *
-     * Currently it is a projection from ScriptTree
-     * TODO: Use this class instead of Script in everywhere (ScriptTree, EHService, Lotus, PivotFragment, TODO)
+     * Currently it is a projection from ScriptStructure
+     * TODO: Use this class as the base of LogicNode instead of Script in everywhere (EHService, Lotus, PivotFragment, TODO)
      * TODO: Replace most of Script's role
      *
      * TODO: Convert relevant interfaces to Kotlin so that this class can be written in kotlin
@@ -258,6 +256,18 @@ class PivotFragment: Fragment() {
     class Checkpoint(val name: String, val enabled: Boolean, val valid: Boolean, val isCondition: Boolean) {
 
         var satisfied: Boolean? = null
+
+        override fun equals(other: Any?): Boolean {
+            if (other === this)
+                return true
+            if (other !is Checkpoint)
+                return false
+            return name == other.name
+        }
+
+        override fun hashCode(): Int {
+            return name.hashCode()
+        }
 
         companion object {
 

@@ -32,7 +32,6 @@ import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.eventskill.EventData;
 import ryey.easer.commons.local_skill.eventskill.Slot;
 import ryey.easer.core.Lotus;
-import ryey.easer.core.data.ScriptTree;
 
 /**
  * Slots are used to tell the current state of the relevant Event plugin.
@@ -68,7 +67,7 @@ public abstract class AbstractSlot<T extends EventData> implements Slot<T> {
 
     /**
      * Used to tell the holder Lotus that this Slot is satisfied.
-     * Only the to-level (in the {@link ScriptTree}) slot will need this (to tell the {@link ryey.easer.core.Lotus} to check the whole tree).
+     * Only the to-level (in the {@link ryey.easer.core.data.LogicGraph}) slot will need this (to tell the {@link ryey.easer.core.Lotus} to check the whole tree).
      */
     protected Uri notifyLotusData;
 

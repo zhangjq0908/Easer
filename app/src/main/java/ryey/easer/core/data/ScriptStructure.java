@@ -33,7 +33,7 @@ import ryey.easer.commons.local_skill.eventskill.EventData;
  *
  * This class holds these fields and getters and setters.
  *
- * Only `EditScriptActivity` and `ScriptTree` needs to know the actual structure.
+ * Only `EditScriptActivity` and `LogicGraph` needs to know the actual structure (?)
  */
 final public class ScriptStructure implements Renameable, Verifiable, WithCreatedVersion {
     private final int createdVersion;

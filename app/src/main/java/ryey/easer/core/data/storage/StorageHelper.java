@@ -22,6 +22,8 @@ package ryey.easer.core.data.storage;
 import android.content.Context;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.orhanobut.logger.Logger;
 
 import java.io.File;
@@ -31,8 +33,10 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import ryey.easer.R;
+import ryey.easer.core.data.LogicGraph;
 import ryey.easer.core.data.Named;
 import ryey.easer.core.data.ScriptStructure;
 import ryey.easer.core.data.ScriptTree;
@@ -138,13 +142,6 @@ public class StorageHelper {
         }
     }
 
-    static List<ScriptTree> eventListToTrees(List<ScriptStructure> events) {
-        Map<String, List<ScriptStructure>> eventIntermediateDataMap = scriptParentMap(events);
-        // construct the forest from the map
-        // assume no loops
-        return mapToTreeList(eventIntermediateDataMap, null);
-    }
-
     static Map<String, List<ScriptStructure>> scriptParentMap(List<ScriptStructure> scripts) {
         Map<String, List<ScriptStructure>> scriptIntermediateDataMap = new HashMap<>();
         for (ScriptStructure script : scripts) {
@@ -156,18 +153,15 @@ public class StorageHelper {
         return scriptIntermediateDataMap;
     }
 
-    private static List<ScriptTree> mapToTreeList(Map<String, List<ScriptStructure>> eventIntermediateDataMap, String name) {
+    static List<ScriptTree> logicGraphToTreeList(LogicGraph logicGraph) {
+        return recGraphToTreeList(logicGraph, logicGraph.initialNodes());
+    }
+
+    private static List<ScriptTree> recGraphToTreeList(@NonNull LogicGraph logicGraph, @NonNull Set<LogicGraph.LogicNode> nodes) {
         List<ScriptTree> treeList = new LinkedList<>();
-        List<ScriptStructure> scriptStructureList = eventIntermediateDataMap.get(name);
-        if (scriptStructureList != null) {
-            for (ScriptStructure int_node : scriptStructureList) {
-                if (int_node.isValid()) { //TODO: Move this check to EHService and/or Lotus
-                    treeList.add(new ScriptTree(
-                            int_node,
-                            mapToTreeList(eventIntermediateDataMap, int_node.getName())
-                    ));
-                }
-            }
+        for (LogicGraph.LogicNode node : nodes) {
+            if (node.script.isValid())
+                treeList.add(new ScriptTree(node.script, recGraphToTreeList(logicGraph, logicGraph.successorsM(node))));
         }
         return treeList;
     }

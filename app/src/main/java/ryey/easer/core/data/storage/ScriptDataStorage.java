@@ -27,6 +27,7 @@ import java.util.Collection;
 import java.util.List;
 
 import ryey.easer.commons.local_skill.operationskill.OperationData;
+import ryey.easer.core.data.LogicGraph;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.ScriptStructure;
@@ -69,8 +70,13 @@ public class ScriptDataStorage extends AbstractDataStorage<ScriptStructure, Scri
         return true;
     }
 
+    @Deprecated
     public List<ScriptTree> getScriptTrees() {
-        return StorageHelper.eventListToTrees(allScripts());
+        return StorageHelper.logicGraphToTreeList(getLogicGraph());
+    }
+
+    public LogicGraph getLogicGraph() {
+        return LogicGraph.createFromScriptList(allScripts());
     }
 
     List<ScriptStructure> allScripts() {

@@ -31,6 +31,7 @@ import ryey.easer.commons.local_skill.eventskill.EventData;
  *
  * TODO: Remove delegations which don't appear to be relevant to the "script tree" (but rather, related to the exact Script when triggered).
  */
+@Deprecated
 final public class ScriptTree {
     final ScriptStructure data;
     @NonNull final List<ScriptTree> subs;

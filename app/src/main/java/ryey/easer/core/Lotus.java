@@ -35,12 +35,13 @@ import com.orhanobut.logger.Logger;
 
 import java.util.Locale;
 
-import ryey.easer.core.data.ScriptTree;
+import ryey.easer.core.data.LogicGraph;
+import ryey.easer.core.data.ScriptStructure;
 import ryey.easer.core.log.ActivityLogService;
 import ryey.easer.skills.operation.state_control.StateControlOperationSkill;
 
 /**
- * Each Lotus holds one ScriptTree.
+ * Each Lotus holds one {@link ryey.easer.core.data.LogicGraph.LogicNode}.
  */
 public abstract class Lotus {
     public static final String ACTION_LOTUS_SATISFACTION_CHANGED = "ryey.easer.lotus.action.LOTUS_SATISFACTION_CHANGED";
@@ -54,18 +55,18 @@ public abstract class Lotus {
     public static final String EXTRA_DYNAMICS_PROPERTIES = "ryey.easer.core.lotus.extras.DYNAMICS_PROPERTIES";
     static final String EXTRA_DYNAMICS_LINK = "ryey.easer.core.lotus.extras.DYNAMICS_LINK";
 
-    static Lotus createLotus(@NonNull Context context, @NonNull ScriptTree scriptTree,
+    static Lotus createLotus(@NonNull Context context, @NonNull LogicGraph.LogicNode node,
                              @NonNull CoreServiceComponents.LogicManager logicManager,
                              @NonNull CoreServiceComponents.DelayedConditionHolderBinderJobs jobCH,
                              @NonNull AsyncHelper.DelayedLoadProfileJobs jobLP) {
-        if (scriptTree.isEvent())
-            return new EventLotus(context, scriptTree, logicManager, jobLP);
+        if (node.script.isEvent())
+            return new EventLotus(context, node, logicManager, jobLP);
         else
-            return new ConditionLotus(context, scriptTree, logicManager, jobCH, jobLP);
+            return new ConditionLotus(context, node, logicManager, jobCH, jobLP);
     }
 
     @NonNull protected final Context context;
-    @NonNull protected final ScriptTree scriptTree;
+    @NonNull protected final LogicGraph.LogicNode node;
     @NonNull protected final CoreServiceComponents.LogicManager logicManager;
     @NonNull protected final AsyncHelper.DelayedLoadProfileJobs jobLP;
 
@@ -94,13 +95,20 @@ public abstract class Lotus {
         filter.addDataPath(uri.getPath(), PatternMatcher.PATTERN_LITERAL);
     }
 
-    protected Lotus(@NonNull Context context, @NonNull ScriptTree scriptTree,
+    protected Lotus(@NonNull Context context, @NonNull LogicGraph.LogicNode node,
                     @NonNull CoreServiceComponents.LogicManager logicManager,
                     @NonNull AsyncHelper.DelayedLoadProfileJobs jobLP) {
         this.context = context;
-        this.scriptTree = scriptTree;
+        this.node = node;
         this.logicManager = logicManager;
         this.jobLP = jobLP;
+    }
+
+    /**
+     * TODO: merge with {@link #node}
+     */
+    protected ScriptStructure script() {
+        return node.script;
     }
 
     final synchronized void listen() {
@@ -113,7 +121,7 @@ public abstract class Lotus {
     final synchronized void cancel() {
         context.unregisterReceiver(mReceiver);
         onCancel();
-        logicManager.deactivateSuccessors(scriptTree);
+        logicManager.deactivateSuccessors(node);
     }
     protected void onCancel() {
     }
@@ -134,7 +142,7 @@ public abstract class Lotus {
     protected void sendSatisfactionChangeBroadcast(boolean satisfied) {
         Intent intent = new Intent(ACTION_LOTUS_SATISFACTION_CHANGED);
         intent.putExtra(EXTRA_SATISFACTION, satisfied);
-        intent.putExtra(EXTRA_SCRIPT_ID, scriptTree.getName());
+        intent.putExtra(EXTRA_SCRIPT_ID, script().getName());
         LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
     }
 
@@ -143,7 +151,7 @@ public abstract class Lotus {
     }
 
     protected void onStateSignal(boolean state, @Nullable Bundle extras) {
-        if (state != scriptTree.isReversed()) {
+        if (state != script().isReverse()) {
             onSatisfied(extras);
         } else {
             onUnsatisfied();
@@ -151,29 +159,29 @@ public abstract class Lotus {
     }
 
     protected void onSatisfied(@Nullable Bundle extras) {
-        Logger.i("Lotus for <%s> satisfied", scriptTree.getName());
+        Logger.i("Lotus for <%s> satisfied", script().getName());
         satisfied = true;
         sendSatisfactionChangeBroadcast(true);
 
-        String profileName = scriptTree.getProfile();
+        String profileName = script().getProfileName();
         if (profileName != null) {
             if (extras == null)
                 extras = new Bundle();
-            jobLP.triggerProfile(profileName, scriptTree.getName(),
-                    extras, scriptTree.getData().getDynamicsLink());
+            jobLP.triggerProfile(profileName, script().getName(),
+                    extras, script().getDynamicsLink());
         }
 
-        logicManager.activateSuccessors(scriptTree);
+        logicManager.activateSuccessors(node);
     }
 
     protected void onUnsatisfied() {
-        Logger.i("Lotus for <%s> unsatisfied", scriptTree.getName());
+        Logger.i("Lotus for <%s> unsatisfied", script().getName());
         satisfied = false;
         sendSatisfactionChangeBroadcast(false);
 
-        ActivityLogService.Companion.notifyScriptUnsatisfied(context, scriptTree.getName(), null);
+        ActivityLogService.Companion.notifyScriptUnsatisfied(context, script().getName(), null);
 
-        logicManager.deactivateSuccessors(scriptTree);
+        logicManager.deactivateSuccessors(node);
     }
 
     protected boolean status() {
