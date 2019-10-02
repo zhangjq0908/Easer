@@ -38,7 +38,6 @@ public interface DataListContainerInterface {
 
     enum ListType {
         script,
-        script_tree,
         event,
         condition,
         profile,
