@@ -19,6 +19,7 @@
 
 package ryey.easer.core.data.storage.backend.json.script;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -48,7 +49,12 @@ class ScriptSerializer implements Serializer<ScriptStructure> {
             jsonObject.put(C.VERSION, C.VERSION_CURRENT);
             jsonObject.put(C.ACTIVE, script.isActive());
             jsonObject.put(C.PROFILE, script.getProfileName());
-            jsonObject.put(C.AFTER, script.getParentName());
+            {
+                if (script.getPredecessors().size() > 0) {
+                    JSONArray predecessorArray = new JSONArray(script.getPredecessors());
+                    jsonObject.put(C.AFTER, predecessorArray);
+                }
+            }
 
             if (script.getEvent() != null) {
                 JSONObject trigger = serialize_scenario_trigger(script.getEvent());

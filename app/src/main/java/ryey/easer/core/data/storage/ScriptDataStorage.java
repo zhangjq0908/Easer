@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import ryey.easer.commons.local_skill.operationskill.OperationData;
 import ryey.easer.core.data.LogicGraph;
@@ -48,7 +49,7 @@ public class ScriptDataStorage extends AbstractDataStorage<ScriptStructure, Scri
     @Override
     boolean isSafeToDelete(String name) {
         for (ScriptStructure scriptStructure : allScripts()) {
-            if (name.equals(scriptStructure.getParentName()))
+            if (scriptStructure.getPredecessors().contains(name))
                 return false;
         }
         ProfileDataStorage profileDataStorage = new ProfileDataStorage(context);
@@ -94,11 +95,13 @@ public class ScriptDataStorage extends AbstractDataStorage<ScriptStructure, Scri
     protected void handleRename(String oldName, ScriptStructure script) throws IOException {
         String name = script.getName();
         // alter subnodes to point to the new name
-        List<ScriptStructure> subs = StorageHelper.scriptParentMap(allScripts()).get(oldName);
-        if (subs != null) {
-            for (ScriptStructure sub : subs) {
-                sub.setParentName(name);
-                update(sub);
+        List<ScriptStructure> successors = StorageHelper.scriptParentMap(allScripts()).get(oldName);
+        if (successors != null) {
+            for (ScriptStructure successor : successors) {
+                Set<String> predecessors = successor.getPredecessors();
+                predecessors.remove(oldName);
+                predecessors.add(name);
+                update(successor);
             }
         }
         ProfileDataStorage profileDataStorage = new ProfileDataStorage(context);

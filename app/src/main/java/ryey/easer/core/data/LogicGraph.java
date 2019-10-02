@@ -41,15 +41,17 @@ public final class LogicGraph {
             idToNode.put(node.id, node);
         }
         for (ScriptStructure script : scripts) {
-            if (script.getParentName() == null) {
+            if (script.getPredecessors().size() == 0) {
                 initials.add(idToNode.get(script.getName()));
             } else {
-                LogicNode predecessor = Objects.requireNonNull(idToNode.get(script.getParentName()));
-                Set<LogicNode> set = edge.get(predecessor);
-                if (set == null)
-                    set = new ArraySet<>();
-                set.add(idToNode.get(script.getName()));
-                edge.put(predecessor, set);
+                for (String predecessorName : script.getPredecessors()) {
+                    LogicNode predecessor = Objects.requireNonNull(idToNode.get(predecessorName));
+                    Set<LogicNode> set = edge.get(predecessor);
+                    if (set == null)
+                        set = new ArraySet<>();
+                    set.add(idToNode.get(script.getName()));
+                    edge.put(predecessor, set);
+                }
             }
         }
         return new LogicGraph(initials, idToNode, edge);

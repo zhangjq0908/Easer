@@ -145,10 +145,12 @@ public class StorageHelper {
     static Map<String, List<ScriptStructure>> scriptParentMap(List<ScriptStructure> scripts) {
         Map<String, List<ScriptStructure>> scriptIntermediateDataMap = new HashMap<>();
         for (ScriptStructure script : scripts) {
-            if (!scriptIntermediateDataMap.containsKey(script.getParentName())) {
-                scriptIntermediateDataMap.put(script.getParentName(), new ArrayList<ScriptStructure>());
+            for (String predecessor : script.getPredecessors()) {
+                if (!scriptIntermediateDataMap.containsKey(predecessor)) {
+                    scriptIntermediateDataMap.put(predecessor, new ArrayList<ScriptStructure>());
+                }
+                scriptIntermediateDataMap.get(predecessor).add(script);
             }
-            scriptIntermediateDataMap.get(script.getParentName()).add(script);
         }
         return scriptIntermediateDataMap;
     }

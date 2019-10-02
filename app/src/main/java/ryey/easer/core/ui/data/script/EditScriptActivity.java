@@ -32,9 +32,11 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.collection.ArraySet;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import ryey.easer.R;
 import ryey.easer.commons.C;
@@ -241,7 +243,7 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         mEditText_name.setText(oldName);
         String profile = script.getProfileName();
         sw_profile.setSelection(profile);
-        String parent = script.getParentName();
+        String parent = script.getPredecessors().iterator().next(); //TODO: (0) multiple predecessors!
         sw_parent.setSelection(parent);
 
         mSwitch_reverse.setChecked(script.isReverse());
@@ -280,7 +282,11 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         String profile = sw_profile.getSelection();
         script.setProfileName(profile);
         script.setActive(isActive);
-        script.setParentName(sw_parent.getSelection());
+        {
+            Set<String> predecessors = new ArraySet<>();
+            predecessors.add(sw_parent.getSelection());
+            script.setPredecessors(predecessors);
+        }
 
         script.setReverse(mSwitch_reverse.isChecked());
 

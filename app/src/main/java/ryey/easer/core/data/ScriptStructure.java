@@ -19,7 +19,11 @@
 
 package ryey.easer.core.data;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.collection.ArraySet;
+
+import java.util.Set;
 
 import ryey.easer.commons.local_skill.dynamics.DynamicsLink;
 import ryey.easer.commons.local_skill.eventskill.EventData;
@@ -46,7 +50,7 @@ final public class ScriptStructure implements Renameable, Verifiable, WithCreate
     private boolean persistent = false;
     @Nullable private DynamicsLink dynamicsLink;
     @Nullable protected String profileName;
-    @Nullable protected String parentName;
+    @NonNull protected Set<String> predecessors = new ArraySet<>();
 
     public ScriptStructure(int createdVersion) {this.createdVersion = createdVersion;}
 
@@ -109,13 +113,13 @@ final public class ScriptStructure implements Renameable, Verifiable, WithCreate
         this.profileName = profileName;
     }
 
-    @Nullable
-    public String getParentName() {
-        return parentName;
+    @NonNull
+    public Set<String> getPredecessors() {
+        return predecessors;
     }
 
-    public void setParentName(@Nullable String parentName) {
-        this.parentName = parentName;
+    public void setPredecessors(@NonNull Set<String> predecessors) {
+        this.predecessors = predecessors;
     }
 
     public boolean isValid() {
