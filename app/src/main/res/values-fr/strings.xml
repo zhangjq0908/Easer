@@ -54,7 +54,7 @@
     <string name="text_lack_permission">Easer n\'a PAS les permissions dont il a besoin.</string>
 
     <string name="text_title">Titre</string>
-    <string name="text_parent_node">Parent</string>
+    <string name="text_predecessor_nodes">Parent</string>
     <string name="text_parent">Parent</string>
     <string name="text_profile">Profil</string>
     <string name="text_predefined_event">Evénément prédéfini</string>

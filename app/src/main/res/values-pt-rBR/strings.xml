@@ -59,7 +59,7 @@
     <string name="text_lack_permission">Algumas habilidades NÃO têm permissões suficientes.</string>
     <string name="text_notification_running_indicator_content">%s está executando em segundo plano</string>
     <string name="text_title">Título</string>
-    <string name="text_parent_node">Nó principal</string>
+    <string name="text_predecessor_nodes">Nó principal</string>
     <string name="text_parent">Nó principal</string>
     <string name="text_profile">Perfil</string>
     <string name="text_predefined_event">Evento predefinido</string>

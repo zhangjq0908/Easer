@@ -50,7 +50,7 @@
     <string name="text_lack_permission">Easer не были предоставлены требуемые разрешения.</string>
     <string name="text_notification_running_indicator_content">%s работает в фоне</string>
     <string name="text_title">Название</string>
-    <string name="text_parent_node">Родитель</string>
+    <string name="text_predecessor_nodes">Родитель</string>
     <string name="text_parent">Родитель</string>
     <string name="text_profile">Профиль</string>
     <string name="text_predefined_event">Предопределённое событие</string>

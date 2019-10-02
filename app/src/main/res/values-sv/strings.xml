@@ -53,7 +53,7 @@
     <string name="text_lack_permission">Vissa insticksmoduler har INTE tillräckliga behörigheter.</string>
     <string name="text_notification_running_indicator_content">%s körs i bakgrunden</string>
     <string name="text_title">Titel</string>
-    <string name="text_parent_node">Förälder</string>
+    <string name="text_predecessor_nodes">Förälder</string>
     <string name="text_parent">Förälder</string>
     <string name="text_profile">Profil</string>
     <string name="text_predefined_event">Fördefinierad händelse</string>

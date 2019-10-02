@@ -47,7 +47,7 @@
     <string name="button_ok">OK</string>
     <string name="text_lack_permission">Nogle færdigheder har IKKE nødvendige rettigheder.</string>
     <string name="text_title">Titel</string>
-    <string name="text_parent_node">Forælder</string>
+    <string name="text_predecessor_nodes">Forælder</string>
     <string name="text_parent">Forælder</string>
     <string name="text_profile">Profil</string>
     <string name="text_predefined_event">Forudbestemt hændelse</string>

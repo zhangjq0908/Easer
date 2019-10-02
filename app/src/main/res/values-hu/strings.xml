@@ -111,7 +111,7 @@
     <string name="title_select_operation">Válasszon egy műveletet</string>
     <string name="pref_autostart_title">Automatikus indítás rendszerindításkor</string>
     <string name="alert_update_storage_data">Válassza az \\\"Adatok konvertálása\\\" elemet a beállításokban az adatok új formátumra való frissítéséhez a kompatibilitás érdekében.</string>
-    <string name="text_parent_node">Szülő</string>
+    <string name="text_predecessor_nodes">Szülő</string>
     <string name="pref_cooldown_title">Lehűlési idő</string>
     <string name="text_repeatable_desc">Ismételhető, ha teljesült</string>
     <string name="pref_enabled_skills_title">Aktív készségek</string>
