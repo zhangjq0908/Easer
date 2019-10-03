@@ -46,7 +46,7 @@ public class SendNotificationLoader extends OperationLoader<SendNotificationOper
     }
 
     @Override
-    public boolean load(@ValidData @NonNull SendNotificationOperationData data) {
+    public void _load(@ValidData @NonNull SendNotificationOperationData data, @NonNull OnResultCallback callback) {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
@@ -57,6 +57,6 @@ public class SendNotificationLoader extends OperationLoader<SendNotificationOper
         notificationManager.notify(NOTIFICATION_ID, builder.build());
         NOTIFICATION_ID++;
 
-        return true;
+        callback.onResult(true);
     }
 }

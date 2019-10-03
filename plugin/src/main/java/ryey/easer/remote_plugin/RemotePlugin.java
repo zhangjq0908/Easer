@@ -44,9 +44,10 @@ public class RemotePlugin {
 
     public static class OperationPlugin {
 
-        public static final String ACTION_TRIGGER = "ryey.easer.remote_plugin.action.TRIGGER_ACTION";
+        public static final String ACTION_TRIGGER = "ryey.easer.remote_plugin.action.TRIGGER_ACTION"; //Request
+        public static final String ACTION_TRIGGER_RESULT = "ryey.easer.remote_plugin.action.TRIGGER_ACTION"; //Response
 
         public static final String EXTRA_PLUGIN_CATEGORY = "ryey.easer.remote_plugin.extra.PLUGIN_CATEGORY";
-
+        public static final String EXTRA_SUCCESS = "ryey.easer.remote_plugin.extra.SUCCESS";
     }
 }

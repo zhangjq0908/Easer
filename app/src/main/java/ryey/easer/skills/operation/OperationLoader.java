@@ -27,8 +27,8 @@ import ryey.easer.commons.local_skill.operationskill.Loader;
 import ryey.easer.commons.local_skill.operationskill.OperationData;
 
 /**
- * Loader of a operation plugin.
- * Used to perform relevant action given the data (configuration).
+ * Basic implementation of the {@link Loader} class.
+ * Every skill's own Loader should use this class as the base class, unless you are able to handle the callback correctly.
  */
 public abstract class OperationLoader<T extends OperationData> implements Loader<T> {
     protected final Context context;
@@ -37,4 +37,27 @@ public abstract class OperationLoader<T extends OperationData> implements Loader
         this.context = context;
     }
 
+    @Override
+    public final void load(@NonNull T data, @NonNull OnResultCallback callback) {
+        final IntermediateCallback intermediateCallback = new IntermediateCallback();
+        _load(data, intermediateCallback);
+        final Boolean result = intermediateCallback.result;
+        if (result == null) {
+            callback.onResult(true);
+        } else {
+            callback.onResult(result);
+        }
+    }
+
+    public abstract void _load(@NonNull T data, @NonNull OnResultCallback callback);
+
+    private static final class IntermediateCallback implements OnResultCallback {
+
+        private Boolean result = null;
+
+        @Override
+        public void onResult(boolean success) {
+            result = success;
+        }
+    }
 }

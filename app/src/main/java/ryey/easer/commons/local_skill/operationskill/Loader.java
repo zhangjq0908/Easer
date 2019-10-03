@@ -24,15 +24,18 @@ import androidx.annotation.NonNull;
 import ryey.easer.commons.local_skill.ValidData;
 
 /**
- *
- * TODO: Change to async style
- *
- * @param <T>
+ * Loader of an operation plugin.
+ * Used to perform relevant action given the data (configuration).
  */
 public interface Loader<T extends OperationData> {
     /**
      * Load the operation given its data.
-     * @return whether the load is successful or not.
+     * The {@link OnResultCallback#onResult(boolean)} method must be called EXACTLY once.
+     * @param callback The callback to notify about whether the load is successful or not.
      */
-    boolean load(@ValidData @NonNull T data);
+    void load(@ValidData @NonNull T data, @NonNull OnResultCallback callback);
+
+    interface OnResultCallback {
+        void onResult(boolean success);
+    }
 }

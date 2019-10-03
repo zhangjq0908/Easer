@@ -328,7 +328,7 @@ public class EHService extends Service {
             widgetBroadcastRedispatcher.stop(service);
             LocalBroadcastManager.getInstance(service).unregisterReceiver(mReceiver);
         }
-        
+
         /**
          * For {@link ryey.easer.skills.event.widget.WidgetEventSkill}
          */

@@ -22,14 +22,13 @@ package ryey.easer.skills.operation.http_request;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import androidx.annotation.NonNull;
+
 import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import androidx.annotation.NonNull;
-
-import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.skills.operation.OperationLoader;
 
 public class HttpRequestLoader extends OperationLoader<HttpRequestOperationData> {
@@ -38,14 +37,18 @@ public class HttpRequestLoader extends OperationLoader<HttpRequestOperationData>
     }
 
     @Override
-    public boolean load(@ValidData @NonNull HttpRequestOperationData data) {
-        //TODO: Async and correctly report
-        HttpTask task = new HttpTask();
+    public void _load(@NonNull HttpRequestOperationData data, @NonNull OnResultCallback callback) {
+        HttpTask task = new HttpTask(callback);
         task.execute(data);
-        return true;
     }
 
     private static class HttpTask extends AsyncTask<HttpRequestOperationData, Void, Boolean> {
+
+        private final OnResultCallback callback;
+
+        HttpTask(OnResultCallback callback) {
+            this.callback = callback;
+        }
 
         @Override
         protected Boolean doInBackground(HttpRequestOperationData... httpRequestOperationData) {
@@ -100,6 +103,11 @@ public class HttpRequestLoader extends OperationLoader<HttpRequestOperationData>
             }
 
             return true;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            callback.onResult(result);
         }
     }
 }

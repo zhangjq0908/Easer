@@ -34,7 +34,7 @@ public class BroadcastLoader extends OperationLoader<BroadcastOperationData> {
     }
 
     @Override
-    public boolean load(@ValidData @NonNull BroadcastOperationData data) {
+    public void _load(@ValidData @NonNull BroadcastOperationData data, @NonNull OnResultCallback callback) {
         IntentData iData = data.data;
         Intent intent = new Intent();
         intent.setAction(iData.action);
@@ -58,6 +58,6 @@ public class BroadcastLoader extends OperationLoader<BroadcastOperationData> {
             intent.putExtras(iData.extras.asBundle());
         }
         context.sendBroadcast(intent);
-        return true;
+        callback.onResult(true);
     }
 }

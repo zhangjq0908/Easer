@@ -21,7 +21,10 @@ package ryey.easer.core;
 
 import android.content.Context;
 
-import java.util.Collection;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import java.util.UUID;
 
 import ryey.easer.commons.local_skill.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.local_skill.operationskill.Loader;
@@ -36,7 +39,7 @@ import ryey.easer.skills.LocalSkillRegistry;
  *
  * Async is needed. This class uses {@link AsyncHelper} and {@link RemotePluginCommunicationHelper}
  *
- * A lot todo
+ * A lot todo: more types & include UI
  */
 public final class SkillHelper {
 
@@ -61,33 +64,61 @@ public final class SkillHelper {
             helper.end();
         }
 
-        public int triggerOperations(String skillId, Collection<RemoteLocalOperationDataWrapper> dataCollection, SolidDynamicsAssignment solidMacroAssignment, OnOperationLoadingResultListener callback) {
-            int count = 0;
+        /**
+         *
+         * @param jobId
+         * @param skillId
+         * @param data
+         * @param solidDynamicsAssignment
+         * @param callback
+         * @return succeeded to run the job or not
+         */
+        public boolean triggerOperation(UUID jobId, String skillId, RemoteLocalOperationDataWrapper data, SolidDynamicsAssignment solidDynamicsAssignment, OnOperationLoadResultCallback callback) {
             if (operationRegistry.hasSkill(skillId)) {
                 OperationSkill plugin = operationRegistry.findSkill(skillId);
                 assert plugin != null;
                 Loader loader = plugin.loader(context);
-                for (RemoteLocalOperationDataWrapper data : dataCollection) {
-                    count++;
-                    OperationData localData = data.localData;
-                    assert localData != null;
-                    //noinspection unchecked
-                    boolean result = loader.load(localData.applyDynamics(solidMacroAssignment));
-                    callback.onResult(skillId, result);
-                }
+                OperationData localData = data.localData;
+                assert localData != null;
+                //noinspection unchecked
+                loader.load(localData.applyDynamics(solidDynamicsAssignment), (success -> {
+                    callback.onResult(jobId, success); // TODO: Remove this second-layer callback
+                }));
             } else {
-                for (RemoteLocalOperationDataWrapper data : dataCollection) {
-                    count++;
-                    RemoteOperationData remoteData = data.remoteData;
-                    helper.asyncTriggerOperation(skillId, remoteData);
-                    callback.onResult(skillId, true);
-                }
+                RemoteOperationData remoteData = data.remoteData;
+                helper.asyncTriggerOperation(jobId, skillId, remoteData, callback);
             }
-            return count;
+            return true;
         }
 
-        public interface OnOperationLoadingResultListener {
-            void onResult(String skillId, Boolean success);
+//        public int triggerOperations(String skillId, Collection<RemoteLocalOperationDataWrapper> dataCollection, SolidDynamicsAssignment solidMacroAssignment, OnOperationLoadResultCallback callback) {
+//            int count = 0;
+//            if (operationRegistry.hasSkill(skillId)) {
+//                OperationSkill plugin = operationRegistry.findSkill(skillId);
+//                assert plugin != null;
+//                Loader loader = plugin.loader(context);
+//                for (RemoteLocalOperationDataWrapper data : dataCollection) {
+//                    count++;
+//                    OperationData localData = data.localData;
+//                    assert localData != null;
+//                    //noinspection unchecked
+//                    loader.load(localData.applyDynamics(solidMacroAssignment), (success -> {
+//                        callback.onResult(skillId, success); // TODO: Remove this second-layer callback
+//                    }));
+//                }
+//            } else {
+//                for (RemoteLocalOperationDataWrapper data : dataCollection) {
+//                    count++;
+//                    RemoteOperationData remoteData = data.remoteData;
+//                    helper.asyncTriggerOperation(skillId, remoteData); //TODO: listen remote result
+//                    callback.onResult(skillId, true);
+//                }
+//            }
+//            return count;
+//        }
+
+        public interface OnOperationLoadResultCallback {
+            void onResult(@NonNull UUID id, @Nullable Boolean success);
         }
 
     }

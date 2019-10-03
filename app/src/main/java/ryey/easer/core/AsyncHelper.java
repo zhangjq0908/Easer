@@ -24,13 +24,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.ParcelUuid;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Lock;
@@ -208,5 +212,82 @@ public final class AsyncHelper {
         public void triggerProfile(String profileName, String scriptName, Bundle dynamicsProperties, DynamicsLink dynamicsLink) {
             jobLoadProfile.triggerProfile(profileName, scriptName, dynamicsProperties, dynamicsLink);
         }
+    }
+
+    public static class CallbackStore<T>  {
+        protected Lock lckCallbackMap = new ReentrantLock();
+        protected final Map<ParcelUuid, T> callbackMap;
+
+        public CallbackStore(Map<ParcelUuid, T> callbackMap) {
+            this.callbackMap = callbackMap;
+        }
+
+        public ParcelUuid putCallback(T callback) {
+            ParcelUuid uuid = new ParcelUuid(UUID.randomUUID());
+            putCallback(uuid, callback);
+            return uuid;
+        }
+
+        public void putCallback(UUID uuid, T callback) {
+            putCallback(new ParcelUuid(uuid), callback);
+        }
+
+        public void putCallback(ParcelUuid uuid, T callback) {
+            lckCallbackMap.lock();
+            try {
+                callbackMap.put(uuid, callback);
+            } finally {
+                lckCallbackMap.unlock();
+            }
+        }
+
+        @Nullable
+        public T extractCallBack(ParcelUuid uuid) {
+            lckCallbackMap.lock();
+            try {
+                T callback = callbackMap.get(uuid);
+                if (callback != null)
+                    callbackMap.remove(uuid);
+                return callback;
+            } finally {
+                lckCallbackMap.unlock();
+            }
+        }
+    }
+
+    public abstract static class TimedCallbackStore<T> extends CallbackStore<T> {
+
+        public final long defaultTimeout;
+
+        protected Handler handler = new Handler();
+
+        public TimedCallbackStore(Map<ParcelUuid, T> callbackMap, long defaultTimeout) {
+            super(callbackMap);
+            this.defaultTimeout = defaultTimeout;
+        }
+
+        public void putCallback(ParcelUuid uuid, T callback) {
+            putCallback(uuid, callback, defaultTimeout);
+        }
+
+        public void putCallback(ParcelUuid uuid, T callback, long milliseconds) {
+            lckCallbackMap.lock();
+            try {
+                callbackMap.put(uuid, callback);
+                handler.postDelayed(() -> _timeout(uuid), milliseconds);
+            } finally {
+                lckCallbackMap.unlock();
+            }
+        }
+
+        private void _timeout(ParcelUuid uuid) {
+            T callback = extractCallBack(uuid);
+            if (callback != null) {
+                onTimeout(uuid, callback);
+            }
+        }
+
+        protected abstract void onTimeout(ParcelUuid uuid, T callback);
+
     }
 }

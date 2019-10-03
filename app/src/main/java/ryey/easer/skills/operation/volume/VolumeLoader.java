@@ -39,7 +39,7 @@ public class VolumeLoader extends OperationLoader<VolumeOperationData> {
     }
 
     @Override
-    public boolean load(@ValidData @NonNull VolumeOperationData data) {
+    public void _load(@ValidData @NonNull VolumeOperationData data, @NonNull OnResultCallback callback) {
         AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         setVolume(audioManager, AudioManager.STREAM_RING, data.vol_ring);
         setVolume(audioManager, AudioManager.STREAM_MUSIC, data.vol_media);
@@ -52,9 +52,10 @@ public class VolumeLoader extends OperationLoader<VolumeOperationData> {
                 setVolume(audioManager, AudioManager.STREAM_MUSIC, data.vol_bt);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-                return false;
+                callback.onResult(false);
+                return;
             }
         }
-        return true;
+        callback.onResult(true);
     }
 }

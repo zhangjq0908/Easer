@@ -33,11 +33,11 @@ public class BrightnessLoader extends OperationLoader<BrightnessOperationData> {
     }
 
     @Override
-    public boolean load(@ValidData @NonNull BrightnessOperationData data) {
-        return loadthis(data);
+    public void _load(@ValidData @NonNull BrightnessOperationData data, @NonNull OnResultCallback callback) {
+        callback.onResult(loadThis(data));
     }
 
-    private boolean loadthis(BrightnessOperationData data) {
+    private boolean loadThis(BrightnessOperationData data) {
         Integer level = data.get();
         if (data.isAuto())
             Settings.System.putInt(context.getContentResolver(),

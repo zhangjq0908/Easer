@@ -37,22 +37,25 @@ public class BluetoothLoader extends OperationLoader<BluetoothOperationData> {
     }
 
     @Override
-    public boolean load(@ValidData @NonNull BluetoothOperationData data) {
+    public void _load(@ValidData @NonNull BluetoothOperationData data, @NonNull OnResultCallback callback) {
         Boolean state = data.get();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             BluetoothManager bluetoothManager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
             BluetoothAdapter adapter = bluetoothManager.getAdapter();
             if (adapter == null) {
                 Logger.w("no BluetoothAdapter");
-                return true;
+                callback.onResult(true);
+                return;
             }
             if (state) {
-                return adapter.enable();
+                callback.onResult(adapter.enable());
+                return;
             } else {
-                return adapter.disable();
+                callback.onResult(adapter.disable());
+                return;
             }
-        }
+        } // TODO: Support lower versions or set compatibility check
         Logger.wtf("System version lower than min requirement");
-        return false;
+        callback.onResult(false);
     }
 }
