@@ -1,0 +1,7 @@
+Make Operation loading asynchronous && i18n update
+
+* Make Operation Loader async
+* Add reply from remote Operation plugin
+* 5s timeout for Operation loading
+* i18n update: Russian, Italian, Turkish, French, Norwegian Bokmål
+* Added communication diagram (under `diagram/` directory)
