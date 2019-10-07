@@ -39,7 +39,7 @@ import ryey.easer.skills.SkillViewFragment;
 public class TimerSkillViewFragment extends SkillViewFragment<TimerEventData> {
     private RadioButton radioButton_short, radioButton_long;
 
-    Group group_short, group_long;
+    private Group group_short, group_long;
 
     private EditText editText_minute, editText_second;
 
@@ -91,8 +91,9 @@ public class TimerSkillViewFragment extends SkillViewFragment<TimerEventData> {
             radioButton_short.setChecked(true);
             editText_second.setText(String.valueOf(data.time));
         } else {
+            radioButton_long.setChecked(true);
             editText_minute.setText(String.valueOf(data.time));
-            if (data.exact)
+            if (Boolean.TRUE == data.exact)
                 radioButton_exact.setChecked(true);
             else
                 radioButton_inexact.setChecked(true);
