@@ -33,7 +33,6 @@ import ryey.easer.core.data.LogicGraph;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.ScriptStructure;
-import ryey.easer.core.data.ScriptTree;
 import ryey.easer.core.data.storage.backend.ScriptDataStorageBackendInterface;
 import ryey.easer.core.data.storage.backend.json.script.JsonScriptDataStorageBackend;
 import ryey.easer.skills.operation.state_control.StateControlOperationData;
@@ -70,11 +69,6 @@ public class ScriptDataStorage extends AbstractDataStorage<ScriptStructure, Scri
             }
         }
         return true;
-    }
-
-    @Deprecated
-    public List<ScriptTree> getScriptTrees() {
-        return StorageHelper.logicGraphToTreeList(getLogicGraph());
     }
 
     public LogicGraph getLogicGraph() {

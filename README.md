@@ -83,7 +83,6 @@ Easer的開發離不開社區的幫助及捐贈。十分感謝各位。
 * [android-flowlayout](https://github.com/ApmeM/android-flowlayout): Apache License v2
 * [Guava](https://github.com/google/guava): Apache License v2
 * [StickyListHeaders](https://github.com/emilsjolander/StickyListHeaders): Apache License v2
-* [RecyclerTreeView](https://github.com/TellH/RecyclerTreeView): Apache License v2
 * [AppIntro](https://github.com/AppIntro/AppIntro): Apache License v2
 * [GraphView](https://github.com/Team-Blox/GraphView): Apache License v2
 * [locale-helper-android](https://github.com/zeugma-solutions/locale-helper-android): Apache License v2
