@@ -30,7 +30,7 @@ public class EventStructure implements Named, Verifiable, WithCreatedVersion {
     private final int createdVersion;
 
     private final String name;
-    private EventData eventData;
+    private final EventData eventData;
 
     public static EventStructure createTmpScenario(@ValidData EventData eventData) {
         return new EventStructure(eventData);
@@ -57,10 +57,6 @@ public class EventStructure implements Named, Verifiable, WithCreatedVersion {
         return eventData;
     }
 
-    public void setEventData(EventData eventData) {
-        this.eventData = eventData;
-    }
-
     public boolean isTmpEvent() {
         return name == null;
     }
@@ -85,8 +81,52 @@ public class EventStructure implements Named, Verifiable, WithCreatedVersion {
         return true;
     }
 
+    public Builder inBuilder() {
+        return new Builder(this);
+    }
+
     @Override
     public int createdVersion() {
         return createdVersion;
+    }
+
+    public static class Builder {
+
+        private int createdVersion = C.VERSION_CREATED_IN_RUNTIME;
+        private String name;
+        private EventData eventData;
+
+        public Builder() {}
+
+        public Builder(EventStructure copyFrom) {
+            this.createdVersion = copyFrom.createdVersion;
+            this.name = copyFrom.name;
+            this.eventData = copyFrom.eventData;
+        }
+
+        public EventStructure build() throws BuilderInfoClashedException {
+            if (name == null)
+                return new EventStructure(eventData);
+            if (createdVersion < -1)
+                throw new BuilderInfoClashedException("Event createdVersion not set");
+            if (eventData == null)
+                throw new BuilderInfoClashedException("Event data is null");
+            return new EventStructure(createdVersion, name, eventData);
+        }
+
+        public Builder setCreatedVersion(int createdVersion) {
+            this.createdVersion = createdVersion;
+            return this;
+        }
+
+        public Builder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder setEventData(EventData eventData) {
+            this.eventData = eventData;
+            return this;
+        }
     }
 }

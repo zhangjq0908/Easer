@@ -21,22 +21,19 @@ package ryey.easer.core.data.storage.backend.json.script;
 
 import android.content.Context;
 
-import androidx.collection.ArraySet;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Collections;
 import java.util.Iterator;
-import java.util.Set;
 
 import ryey.easer.BuildConfig;
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.dynamics.DynamicsLink;
 import ryey.easer.commons.local_skill.eventskill.EventData;
+import ryey.easer.core.data.BuilderInfoClashedException;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.ScriptStructure;
@@ -52,7 +49,7 @@ class ScriptParser implements Parser<ScriptStructure> {
 
     final Context context;
 
-    private ScriptStructure scriptStructure;
+    private ScriptStructure.Builder builder;
 
     ScriptParser(Context context) {
         this.context = context;
@@ -62,41 +59,42 @@ class ScriptParser implements Parser<ScriptStructure> {
         try {
             JSONObject jsonObject = new JSONObject(IOUtils.inputStreamToString(in));
             int version = jsonObject.optInt(C.VERSION, C.VERSION_ADD_JSON);
-            scriptStructure = new ScriptStructure(version);
-            scriptStructure.setName(jsonObject.getString(C.NAME));
-            scriptStructure.setActive(jsonObject.optBoolean(C.ACTIVE, true));
-            scriptStructure.setProfileName(jsonObject.optString(C.PROFILE, null));
+            builder = new ScriptStructure.Builder(version);
+            builder.setName(jsonObject.getString(C.NAME))
+                    .setActive(jsonObject.optBoolean(C.ACTIVE, true))
+                    .setProfileName(jsonObject.optString(C.PROFILE, null));
             {
                 if (version < C.VERSION_GRAPH_SCRIPT) {
                     if (jsonObject.has(C.AFTER)) {
                         String parent = jsonObject.getString(C.AFTER);
-                        Set<String> predecessors = new ArraySet<>(Collections.singletonList(parent));
-                        scriptStructure.setPredecessors(predecessors);
+                        builder.addPredecessor(parent);
                     }
                 } else {
                     JSONArray arrayPredecessors = jsonObject.optJSONArray(C.AFTER);
                     if (arrayPredecessors != null) {
-                        Set<String> predecessors = new ArraySet<>(arrayPredecessors.length());
                         for (int i = 0; i < arrayPredecessors.length(); i++) {
-                            predecessors.add(arrayPredecessors.getString(i));
+                            builder.addPredecessor(arrayPredecessors.getString(i));
                         }
-                        scriptStructure.setPredecessors(predecessors);
                     }
                 }
             }
             if (version < C.VERSION_USE_SCENARIO) { // Can be removed (because this is covered by the else statement)
                 EventData eventData = parse_eventData(jsonObject.getJSONObject(C.TRIG), version);
-                scriptStructure.setEventData(eventData);
+                builder.setTmpEvent(eventData);
             } else {
                 parseAndSet_trigger(jsonObject.getJSONObject(C.TRIG), version);
-                if (scriptStructure.isEvent()) {
-                    if (!scriptStructure.getEvent().isTmpEvent()) {
-                        scriptStructure.setReverse(jsonObject.getBoolean(C.REVERSE));
-                        scriptStructure.setRepeatable(jsonObject.getBoolean(C.REPEATABLE));
-                        scriptStructure.setPersistent(jsonObject.getBoolean(C.PERSISTENT));
+                if (jsonObject.has(C.REVERSE))
+                    builder.setReverse(jsonObject.getBoolean(C.REVERSE));
+                try {
+                    if (builder.isEvent() && !builder.isTmpEvent()) {
+                        builder.setReverse(jsonObject.getBoolean(C.REVERSE));
+                        builder.setRepeatable(jsonObject.getBoolean(C.REPEATABLE));
+                        builder.setPersistent(jsonObject.getBoolean(C.PERSISTENT));
+                    } else {
+                        builder.setReverse(jsonObject.getBoolean(C.REVERSE));
                     }
-                } else {
-                    scriptStructure.setReverse(jsonObject.getBoolean(C.REVERSE));
+                } catch (BuilderInfoClashedException e) {
+                    throw new IllegalStateException(e);
                 }
             }
 
@@ -110,12 +108,14 @@ class ScriptParser implements Parser<ScriptStructure> {
                         String property = json_dynamics.getString(placeholder);
                         dynamicsLink.put(placeholder, property);
                     }
-                    scriptStructure.setDynamicsLink(dynamicsLink);
+                    builder.setDynamicsLink(dynamicsLink);
                 }
             }
 
-            return scriptStructure;
+            return builder.build();
         } catch (JSONException e) {
+            throw new IllegalStorageDataException(e);
+        } catch (BuilderInfoClashedException e) {
             throw new IllegalStorageDataException(e);
         }
     }
@@ -126,7 +126,7 @@ class ScriptParser implements Parser<ScriptStructure> {
             switch (trigger_type) {
                 case C.TriggerType.T_RAW:
                     EventData eventData = parse_eventData(jsonObject_trigger, version);
-                    scriptStructure.setEventData(eventData);
+                    builder.setTmpEvent(eventData);
                     break;
                 case C.TriggerType.T_PRE:
                     String event_name;
@@ -135,12 +135,12 @@ class ScriptParser implements Parser<ScriptStructure> {
                     else
                         event_name = jsonObject_trigger.getString(C.EVENT);
                     EventStructure event = new EventDataStorage(context).get(event_name);
-                    scriptStructure.setEvent(event);
+                    builder.setEvent(event);
                     break;
                 case C.TriggerType.T_CONDITION:
                     String condition_name = jsonObject_trigger.getString(C.CONDITION);
                     ConditionStructure condition = new ConditionDataStorage(context).get(condition_name);
-                    scriptStructure.setCondition(condition);
+                    builder.setCondition(condition);
                     break;
                 default:
                     throw new IllegalStorageDataException("Unexpected trigger type");

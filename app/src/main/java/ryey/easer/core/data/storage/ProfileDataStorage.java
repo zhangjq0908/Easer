@@ -23,6 +23,7 @@ import android.content.Context;
 
 import java.io.IOException;
 
+import ryey.easer.core.data.BuilderInfoClashedException;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.ScriptStructure;
 import ryey.easer.core.data.storage.backend.ProfileDataStorageBackendInterface;
@@ -52,7 +53,11 @@ public class ProfileDataStorage extends AbstractDataStorage<ProfileStructure, Pr
         for (String scriptName : scriptDataStorage.list()) {
             ScriptStructure script = scriptDataStorage.get(scriptName);
             if (oldName.equals(script.getProfileName())) {
-                script.setProfileName(profile.getName());
+                try {
+                    script = script.inBuilder().setProfileName(profile.getName()).build();
+                } catch (BuilderInfoClashedException e) {
+                    throw new IllegalStateException(e);
+                }
                 scriptDataStorage.update(script);
             }
         }

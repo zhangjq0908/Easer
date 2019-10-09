@@ -19,13 +19,9 @@
 
 package ryey.easer.core.data;
 
-import androidx.collection.ArraySet;
-
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import java.util.Arrays;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.local_skill.eventskill.EventData;
@@ -37,77 +33,58 @@ import static org.junit.Assert.assertTrue;
 
 public class ScriptStructureTest {
 
-    ScriptStructure scriptStructure, scriptStructure2;
     static final String name = "name to test";
     static final String parentName = "parent name";
     static final String profileName = "profile name";
-    static EventStructure scenario;
+    static EventStructure eventStructure;
     static EventData eventData;
 
     @BeforeClass
     public static void setUpAll() {
         eventData = new WifiUSourceSkill().dataFactory().dummyData();
-        scenario = new EventStructure(C.VERSION_CREATED_IN_RUNTIME, "myScenario", eventData);
-    }
-
-    @Before
-    public void setUp() {
-        scriptStructure = new ScriptStructure(C.VERSION_CREATED_IN_RUNTIME);
-        scriptStructure2 = new ScriptStructure(C.VERSION_CREATED_IN_RUNTIME);
+        eventStructure = new EventStructure(C.VERSION_CREATED_IN_RUNTIME, "myScenario", eventData);
     }
 
     @Test
-    public void setAndGetName() throws Exception {
-        assertEquals(scriptStructure.getName(), null);
-        scriptStructure.setName(name);
-        assertEquals(scriptStructure.name, name);
-        assertEquals(scriptStructure.getName(), name);
+    public void testBuilder() throws Exception {
+        assertTrue(canBuild(new ScriptStructure.Builder(C.VERSION_CREATED_IN_RUNTIME)
+                .setName("1")
+                .setEvent(eventStructure)
+        ));
+
+        ScriptStructure.Builder builder = new ScriptStructure.Builder(C.VERSION_CREATED_IN_RUNTIME);
+        assertFalse(canBuild(builder));
+        builder.setName(name);
+        assertFalse(canBuild(builder));
+        builder.setProfileName(profileName);
+        assertFalse(canBuild(builder));
+        builder.addPredecessor(parentName);
+        assertFalse(canBuild(builder));
+        builder.setEvent(eventStructure);
+        assertTrue(canBuild(builder));
     }
 
     @Test
-    public void setAndGetProfileName() throws Exception {
-        assertEquals(scriptStructure.getProfileName(), null);
-        scriptStructure.setProfileName(profileName);
-        assertEquals(scriptStructure.getProfileName(), profileName);
+    public void testOrderIndependent() throws Exception {
+        ScriptStructure.Builder b1 = new ScriptStructure.Builder(C.VERSION_CREATED_IN_RUNTIME)
+                .setName(name)
+                .setProfileName(profileName)
+                .addPredecessor(parentName)
+                .setEvent(eventStructure);
+        ScriptStructure.Builder b2 = new ScriptStructure.Builder(C.VERSION_CREATED_IN_RUNTIME)
+                .addPredecessor(parentName)
+                .setProfileName(profileName)
+                .setEvent(eventStructure)
+                .setName(name);
+        assertEquals(b1.build(), b2.build());
     }
 
-    @Test
-    public void setAndGetParentName() throws Exception {
-        assertEquals(scriptStructure.getPredecessors().size(), 0);
-        scriptStructure.setPredecessors(new ArraySet<>(Arrays.asList(parentName)));
-        assertEquals(scriptStructure.getPredecessors().size(), 1);
-        assertTrue(scriptStructure.getPredecessors().contains(parentName));
-    }
-
-    @Test
-    public void getAndSetScenario() throws Exception {
-        assertEquals(scriptStructure.getEvent(), null);
-        scriptStructure.setEvent(scenario);
-        assertEquals(scriptStructure.getEvent(), scenario);
-    }
-
-    @Test
-    public void setAndTestActive() throws Exception {
-        scriptStructure.setActive(true);
-        assertTrue(scriptStructure.isActive());
-        scriptStructure.setActive(false);
-        assertFalse(scriptStructure.isActive());
-        scriptStructure.setActive(true);
-        assertTrue(scriptStructure.isActive());
-    }
-
-    @Test
-    public void isValid() throws Exception {
-        assertFalse(scriptStructure.isValid());
-        scriptStructure.setName(name);
-        assertFalse(scriptStructure.isValid());
-        scriptStructure.setEvent(scenario);
-        assertTrue(scriptStructure.isActive());
-
-        assertFalse(scriptStructure2.isValid());
-        scriptStructure2.setEvent(scenario);
-        assertFalse(scriptStructure2.isValid());
-        scriptStructure2.setName(name);
-        assertTrue(scriptStructure2.isActive());
+    private static boolean canBuild(ScriptStructure.Builder builder) {
+        try {
+            builder.build();
+            return true;
+        } catch (BuilderInfoClashedException e) {
+            return false;
+        }
     }
 }

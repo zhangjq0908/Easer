@@ -31,6 +31,7 @@ import ryey.easer.commons.C;
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.operationskill.OperationData;
 import ryey.easer.commons.local_skill.operationskill.OperationSkill;
+import ryey.easer.core.data.BuilderInfoClashedException;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.storage.backend.IOUtils;
 import ryey.easer.core.data.storage.backend.Parser;
@@ -40,7 +41,7 @@ import ryey.easer.skills.LocalSkillRegistry;
 
 class ProfileParser implements Parser<ProfileStructure> {
 
-    ProfileStructure profile;
+    ProfileStructure.Builder builder;
 
     ProfileParser() {
     }
@@ -49,12 +50,14 @@ class ProfileParser implements Parser<ProfileStructure> {
         try {
             JSONObject jsonObject = new JSONObject(IOUtils.inputStreamToString(in));
             int version = jsonObject.optInt(C.VERSION, C.VERSION_ADD_JSON);
-            profile = new ProfileStructure(version);
-            profile.setName(jsonObject.optString(C.NAME));
+            builder = new ProfileStructure.Builder(version);
+            builder.setName(jsonObject.optString(C.NAME));
             JSONArray jsonArray = jsonObject.optJSONArray(C.OPERATION);
             parseOperations(jsonArray, version);
-            return profile;
+            return builder.build();
         } catch (JSONException e) {
+            throw new IllegalStorageDataException(e);
+        } catch (BuilderInfoClashedException e) {
             throw new IllegalStorageDataException(e);
         }
     }
@@ -70,9 +73,9 @@ class ProfileParser implements Parser<ProfileStructure> {
             OperationSkill plugin = LocalSkillRegistry.getInstance().operation().findSkill(spec);
             if (plugin != null) {
                 OperationData data = plugin.dataFactory().parse(content, PluginDataFormat.JSON, version);
-                profile.put(plugin.id(), data);
+                builder.put(plugin.id(), data);
             } else {
-                profile.put(spec, new RemoteOperationData(spec, PluginDataFormat.JSON, content));
+                builder.put(spec, new RemoteOperationData(spec, PluginDataFormat.JSON, content));
             }
         }
     }

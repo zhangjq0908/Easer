@@ -17,17 +17,14 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.commons.local_skill;
+package ryey.easer.core.data;
 
-public class InvalidDataInputException extends Exception {
-    public InvalidDataInputException() {
+public class BuilderInfoClashedException extends Exception {
+    BuilderInfoClashedException(String msg) {
+        super(msg);
     }
 
-    public InvalidDataInputException(String s) {
-        super(s);
-    }
-
-    public InvalidDataInputException(Exception e) {
+    BuilderInfoClashedException(Exception e) {
         super(e);
     }
 }

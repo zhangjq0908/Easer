@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Set;
 
 import ryey.easer.commons.local_skill.operationskill.OperationData;
+import ryey.easer.core.data.BuilderInfoClashedException;
 import ryey.easer.core.data.LogicGraph;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
@@ -131,7 +132,11 @@ public class ScriptDataStorage extends AbstractDataStorage<ScriptStructure, Scri
                         StateControlOperationData newData = new StateControlOperationData(operationData, name);
                         newDataCollection.add(newData);
                     }
-                    profile.set(s_id, newDataCollection);
+                    try {
+                        profile = profile.inBuilder().set(s_id, newDataCollection).build();
+                    } catch (BuilderInfoClashedException e) {
+                        throw new IllegalStateException(e);
+                    }
                     profileDataStorage.edit(pname, profile);
                 }
             }

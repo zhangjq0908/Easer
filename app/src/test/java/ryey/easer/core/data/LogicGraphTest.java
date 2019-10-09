@@ -30,6 +30,8 @@ import java.util.Map;
 import java.util.Set;
 
 import ryey.easer.commons.C;
+import ryey.easer.commons.local_skill.eventskill.EventData;
+import ryey.easer.skills.usource.wifi.WifiUSourceSkill;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -40,6 +42,8 @@ public class LogicGraphTest {
     LogicGraph graph;
     LogicGraph.LogicNode node1, node2, node3, node4;
     static ScriptStructure structure, structure1, structure2, structure3;
+    static EventStructure eventStructure;
+    static EventData eventData;
 
     private static LogicGraph edgeToGraph(LogicGraph.LogicNode nodes[], LogicGraph.LogicNode edges[][]) {
         Set<LogicGraph.LogicNode> initials = new HashSet<>();
@@ -63,15 +67,25 @@ public class LogicGraphTest {
     }
 
     @BeforeClass
-    public static void setUpAll() {
-        structure = new ScriptStructure(C.VERSION_CREATED_IN_RUNTIME);
-        structure.setName("1");
-        structure1 = new ScriptStructure(C.VERSION_CREATED_IN_RUNTIME);
-        structure1.setName("2");
-        structure2 = new ScriptStructure(C.VERSION_CREATED_IN_RUNTIME);
-        structure2.setName("3");
-        structure3 = new ScriptStructure(C.VERSION_CREATED_IN_RUNTIME);
-        structure3.setName("4");
+    public static void setUpAll() throws Exception {
+        eventData = new WifiUSourceSkill().dataFactory().dummyData();
+        eventStructure = new EventStructure(C.VERSION_CREATED_IN_RUNTIME, "myScenario", eventData);
+        structure = new ScriptStructure.Builder(C.VERSION_CREATED_IN_RUNTIME)
+                .setName("1")
+                .setEvent(eventStructure)
+                .build();
+        structure1 = new ScriptStructure.Builder(C.VERSION_CREATED_IN_RUNTIME)
+                .setName("4")
+                .setEvent(eventStructure)
+                .build();
+        structure2 = new ScriptStructure.Builder(C.VERSION_CREATED_IN_RUNTIME)
+                .setName("2")
+                .setEvent(eventStructure)
+                .build();
+        structure3 = new ScriptStructure.Builder(C.VERSION_CREATED_IN_RUNTIME)
+                .setName("3")
+                .setEvent(eventStructure)
+                .build();
     }
 
     @Before
