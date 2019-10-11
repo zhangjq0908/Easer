@@ -1,2 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="easer">Easer</string>
+    <string name="drawer_tip">Mempermudah hidupmu!</string>
+    <string name="title_outline">Garis Besar</string>
+    <string name="title_data_collection">Data</string>
+    <string name="title_operation">Operasi</string>
+    <string name="title_profile">Profil</string>
+    <string name="title_condition">Kondisi</string>
+    <string name="title_activity_history">Riwayat Kegiatan</string>
+    <string name="title_about">Tentang</string>
+    <string name="title_setting">Pengaturan</string>
+    <string name="title_add">Tambah</string>
+    <string name="title_edit">Sunting</string>
+    <string name="title_delete">Hapus</string>
+    <string name="title_edit_event">Sunting Acara</string>
+</resources>
