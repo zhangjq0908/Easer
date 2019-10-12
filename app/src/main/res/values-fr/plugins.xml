@@ -187,10 +187,10 @@
     <string name="usource_cell_location_dynamics_cell_location">Localisation cellulaire</string>
     <string name="usource_cell_location_listening_content">Aggrégation de l\'emplacement cellulaire…</string>
     <string name="event_widget">Widget</string>
-    <string name="event_widget_widget_label">WidgetEvent Widget</string>
+    <string name="event_widget_widget_label">Widget WidgetEvent</string>
     <string name="event_widget_text">Texte</string>
     <string name="event_widget_tag">Étiquette</string>
-    <string name="event_widget_default_text">TEXTE D\'AFFICHAGE</string>
+    <string name="event_widget_default_text">AFFICHER LE TEXTE</string>
     <string name="event_widget_default_tag">ÉTIQUETTE</string>
     <string name="event_widget_button_add_widget">Ajouter widget</string>
     <string name="usource_power__charging">En charge</string>
@@ -211,4 +211,5 @@
     <string name="o_http_url">URL</string>
     <string name="o_http_header">En-tête (format de ligne : clé : valeur)</string>
     <string name="o_http_content_type">Type de contenu</string>
+    <string name="o_http_post_data">Publier les données</string>
 </resources>
