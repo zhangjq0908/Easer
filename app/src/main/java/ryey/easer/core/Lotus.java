@@ -33,11 +33,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.orhanobut.logger.Logger;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.ExecutorService;
 
 import ryey.easer.core.data.ScriptTree;
 import ryey.easer.core.log.ActivityLogService;
@@ -59,22 +55,19 @@ public abstract class Lotus {
     static final String EXTRA_DYNAMICS_LINK = "ryey.easer.core.lotus.extras.DYNAMICS_LINK";
 
     static Lotus createLotus(@NonNull Context context, @NonNull ScriptTree scriptTree,
-                             @NonNull ExecutorService executorService,
-                             @NonNull EHService.DelayedConditionHolderBinderJobs jobCH,
+                             @NonNull CoreServiceComponents.LogicManager logicManager,
+                             @NonNull CoreServiceComponents.DelayedConditionHolderBinderJobs jobCH,
                              @NonNull AsyncHelper.DelayedLoadProfileJobs jobLP) {
         if (scriptTree.isEvent())
-            return new EventLotus(context, scriptTree, executorService, jobCH, jobLP);
+            return new EventLotus(context, scriptTree, logicManager, jobLP);
         else
-            return new ConditionLotus(context, scriptTree, executorService, jobCH, jobLP);
+            return new ConditionLotus(context, scriptTree, logicManager, jobCH, jobLP);
     }
 
     @NonNull protected final Context context;
     @NonNull protected final ScriptTree scriptTree;
-    @NonNull protected final ExecutorService executorService;
-    @NonNull protected final EHService.DelayedConditionHolderBinderJobs jobCH;
+    @NonNull protected final CoreServiceComponents.LogicManager logicManager;
     @NonNull protected final AsyncHelper.DelayedLoadProfileJobs jobLP;
-
-    protected List<Lotus> subs = new ArrayList<>();
 
     protected boolean satisfied = false;
 
@@ -102,18 +95,12 @@ public abstract class Lotus {
     }
 
     protected Lotus(@NonNull Context context, @NonNull ScriptTree scriptTree,
-                    @NonNull ExecutorService executorService,
-                    @NonNull EHService.DelayedConditionHolderBinderJobs jobCH,
+                    @NonNull CoreServiceComponents.LogicManager logicManager,
                     @NonNull AsyncHelper.DelayedLoadProfileJobs jobLP) {
         this.context = context;
         this.scriptTree = scriptTree;
-        this.executorService = executorService;
-        this.jobCH = jobCH;
+        this.logicManager = logicManager;
         this.jobLP = jobLP;
-    }
-
-    final @NonNull String scriptName() {
-        return scriptTree.getName();
     }
 
     final synchronized void listen() {
@@ -126,10 +113,7 @@ public abstract class Lotus {
     final synchronized void cancel() {
         context.unregisterReceiver(mReceiver);
         onCancel();
-        for (Lotus sub : subs) {
-            sub.cancel();
-        }
-        subs.clear();
+        logicManager.deactivateSuccessors(scriptTree);
     }
     protected void onCancel() {
     }
@@ -179,7 +163,7 @@ public abstract class Lotus {
                     extras, scriptTree.getData().getDynamicsLink());
         }
 
-        triggerAndPromote();
+        logicManager.activateSuccessors(scriptTree);
     }
 
     protected void onUnsatisfied() {
@@ -189,34 +173,11 @@ public abstract class Lotus {
 
         ActivityLogService.Companion.notifyScriptUnsatisfied(context, scriptTree.getName(), null);
 
-        for (Lotus sub : subs) {
-            sub.cancel();
-        }
-        subs.clear();
+        logicManager.deactivateSuccessors(scriptTree);
     }
 
-    synchronized protected void triggerAndPromote() {
-        Logger.v(" <%s> start children's listening", scriptTree.getName());
-        for (ScriptTree sub : scriptTree.getSubs()) {
-            if (sub.isActive()) {
-                Lotus subLotus = Lotus.createLotus(context, sub, executorService, jobCH, jobLP);
-                subs.add(subLotus);
-                subLotus.listen();
-            }
-        }
-    }
-
-    protected Status status() {
-        return new Status(scriptName(), satisfied);
-    }
-
-    protected List<Status> statusRec() {
-        List<Status> list = new LinkedList<>();
-        list.add(status());
-        for (Lotus sub : subs) {
-            list.addAll(sub.statusRec());
-        }
-        return list;
+    protected boolean status() {
+        return satisfied;
     }
 
     public static class NotifyIntentPrototype {
@@ -246,14 +207,4 @@ public abstract class Lotus {
             return intent;
         }
     }
-
-    public static class Status {
-        public final String id;
-        public final boolean satisfied;
-        public Status(String id, boolean satisfied) {
-            this.id = id;
-            this.satisfied = satisfied;
-        }
-    }
-
 }

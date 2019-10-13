@@ -196,11 +196,7 @@ class PivotFragment: Fragment() {
     }
 
     private fun createAdvancedGraph(): Graph {
-        val statusList = binder!!.lotusStatus()
-        val statusMap: HashMap<String, Boolean> = HashMap()
-        for (status in statusList) {
-            statusMap[status.id] = status.satisfied
-        }
+        val statusMap: Map<String, Boolean> = binder!!.lotusStatusMap()
 
         val scriptDataStorage = ScriptDataStorage(context)
         val scriptTrees = scriptDataStorage.scriptTrees
@@ -228,7 +224,7 @@ class PivotFragment: Fragment() {
             return Companion.addToGraph(scriptTree, graph, parent, checkpointMap, null)
         }
 
-        fun addToGraph(scriptTree: ScriptTree, graph: Graph, parent: Node, checkpointMap: MutableMap<String, NodeInfo>, statusMap: HashMap<String, Boolean>?): Node {
+        fun addToGraph(scriptTree: ScriptTree, graph: Graph, parent: Node, checkpointMap: MutableMap<String, NodeInfo>, statusMap: Map<String, Boolean>?): Node {
             val checkpoint = Checkpoint.fromScript(scriptTree.data)
             checkpoint.satisfied = statusMap?.get(checkpoint.name)
             val node = Node(checkpoint)
