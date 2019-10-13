@@ -98,7 +98,7 @@
     <string name="pref_use_root_title">Använd root-funktioner</string>
     <string name="pref_use_root_summary">Använd rot-behörighet för specifika funktioner (insticksmoduler), som kan hjälpa till att lösa kompatibilitetsproblem på vissa enheter. Rot-behörigheten kommer inte att användas någon annanstans.</string>
     <string name="pref_cooldown_title">Nedkylningstid</string>
-    <string name="pref_cooldown_summary">Minimala intervallet mellan två utlösare av samma händelse</string>
+    <string name="pref_cooldown_summary">Minimala intervallet (i sekunder) mellan två utlösare av samma händelse</string>
     <string name="cooldown_time_illformed">Numret får inte vara lägre än 0 och inte för stor för att rymma i ett heltal</string>
     <string name="pref_enabled_skills_title">Aktiverade insticksmoduler</string>
     <string name="pref_enabled_skills_summary">Aktivera eller inaktivera vissa insticksmoduler</string>
@@ -146,7 +146,7 @@
 \n
 \nDU äger varje bit av din data. Allting bor på din enhet, inklusive loggar.</string>
     <string name="alert_update_storage_data_title">Gammal dataversion hittades</string>
-    <string name="alert_update_storage_data">Välj \\\"Konvertera data\\\" i inställningarna för att uppdatera din data till det nya formatet för att bli kompatibelt.</string>
+    <string name="alert_update_storage_data">Välj \"Konvertera data\" i inställningarna för att uppdatera din data till det nya formatet för att bli kompatibelt.</string>
     <string name="message_future_change_title">Ändras snart</string>
     <string name="template_export">Exporteras till %s</string>
     <string name="version">Version</string>
@@ -156,16 +156,16 @@
     <string name="dynamics_script_name">Skriptnamn</string>
     <string name="dynamics_profile_name">Profilnamn</string>
     <string name="title_help">Hjälp</string>
-    <string name="help_script">\\\"Skript\\\" är logikbehållare. Anslut en händelse eller ett villkor med en profil i ett skript, för att Easer ska ladda/köra profilen när den händelsen inträffar eller villkoret uppfylls. 
+    <string name="help_script">\"Skript\" är logikbehållare. Anslut en händelse eller ett villkor med en profil i ett skript, för att Easer ska ladda/köra profilen när den händelsen inträffar eller villkoret uppfylls. 
 \nDet finns också mer avancerade funktioner, t ex återförd händelse. 
 \nSe <a href="https://github.com/renyuneyun/Easer/wiki">dokumentationen</a> för mer info.</string>
-    <string name="help_event">\\\"Händelser\\\" representerar korta (omedelbara) händelser på enheten eller från en fjärrkälla. 
+    <string name="help_event">\"Händelser\" representerar korta (omedelbara) händelser på enheten eller från en fjärrkälla. 
 \nTill exempel att ett meddelande tas emot eller att en NFC-tagg skannas. 
 \nSe <a href="https://github.com/renyuneyun/Easer/wiki">dokumentationen</a> för mer info.</string>
-    <string name="help_condition">Ett \\\"Villkor\\\" utgör ett långvarigt (men oftast inte evigt) tillstånd på enheten eller en fjärrkälla. 
+    <string name="help_condition">\"Villkor\" utgör ett långvarigt (men oftast inte evigt) tillstånd på enheten eller en fjärrkälla. 
 \nTill exempel att vara ansluten till WiFi eller att skärmen är avstängd. 
 \nSe <a href="https://github.com/renyuneyun/Easer/wiki">dokumentationen</a> för mer info.</string>
-    <string name="help_profile">En \\\"Profil\\\" är en uppsättning åtgärder. Varje åtgärd representerar en viss typ av specifik handling. 
+    <string name="help_profile">\"Profil\" är en uppsättning åtgärder. Varje åtgärd representerar en viss typ av specifik handling. 
 \nTill exempel att slå på Bluetooth, eller att skicka ett SMS. 
 \nSe <a href="https://github.com/renyuneyun/Easer/wiki">dokumentationen</a> för mer info.</string>
     <string name="category_operation_android">Android</string>
@@ -185,4 +185,7 @@
     <string name="title_select_event">Välj en händelse</string>
     <string name="title_select_condition">Välj ett villkor</string>
     <string name="button_see_detail">Se detaljer</string>
+    <string name="title_service_start">Service start</string>
+    <string name="prompt_dynamics_not_ready">Om du vill ställa in Dynamics måste du välja en giltig profil och en giltig utlösare (t. ex. händelse).</string>
+    <string name="title_data_collection">Data</string>
 </resources>

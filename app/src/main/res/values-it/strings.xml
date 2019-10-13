@@ -147,7 +147,7 @@
 \n 
 \nTU possiedi i tuoi dati. Tutto rimane sul tuo dispositivo, compresi i log.</string>
     <string name="alert_update_storage_data_title">Vecchia Versione Dati trovata</string>
-    <string name="alert_update_storage_data">Seleziona \\\"Converti Dati\\\" nelle impostazioni per aggiornare i dati al nuovo formato, per compatibilità.</string>
+    <string name="alert_update_storage_data">Seleziona \"Converti Dati\" nelle impostazioni per aggiornare i dati al nuovo formato, per compatibilità.</string>
     <string name="message_future_change_title">Cambiamento Imminente</string>
     <string name="template_export">Esportati in %s</string>
     <string name="version">Versione</string>
@@ -186,4 +186,5 @@
     <string name="title_select_event">Scegli un Evento</string>
     <string name="title_select_condition">Scegli una Condizione</string>
     <string name="button_see_detail">Vedi Dettagli</string>
+    <string name="title_data_collection">Dati</string>
 </resources>
