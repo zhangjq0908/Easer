@@ -2,11 +2,11 @@
 <resources>
     <string name="easer">Easer</string>
     <string name="drawer_tip">Erleichtere dein Leben!</string>
-    <string name="title_outline">Entwurf</string>
+    <string name="title_outline">Übersicht</string>
     <string name="title_profile">Profil</string>
     <string name="title_event">Ereignis</string>
     <string name="title_script">Skript</string>
-    <string name="title_condition">Bedingung</string>
+    <string name="title_condition">Zustand</string>
     <string name="title_application">App</string>
     <string name="title_activity_history">Aktivitätsprotokoll</string>
     <string name="title_about">Über</string>
@@ -21,8 +21,8 @@
     <string name="menu_start">Start</string>
     <string name="menu_stop">Stopp</string>
     <string name="menu_action_save">Speichern</string>
-    <string name="service_indicator_positive">Läuft</string>
-    <string name="service_indicator_negative">Läuft nicht</string>
+    <string name="service_indicator_positive">Aktiv</string>
+    <string name="service_indicator_negative">Nicht aktiv</string>
     <string name="activity_history__time">Zeit</string>
     <string name="activity_history__extra">Zusätzliche Info</string>
     <string name="activity_history__satisfaction">Status</string>
@@ -43,10 +43,10 @@
     <string name="text_profile">Profil</string>
     <string name="text_predefined_event">Vordefiniertes Ereignis</string>
     <string name="text_inline_event">Integriertes Ereignis</string>
-    <string name="text_use_condition">Bedingung verwenden</string>
+    <string name="text_use_condition">Zustand verwenden</string>
     <string name="text_repeatable_desc">Wiederholbar, wenn erfüllt</string>
     <string name="text_reverse_desc">Szenario umkehren</string>
-    <string name="text_volatile">Unbeständig</string>
+    <string name="text_volatile">Instabil</string>
     <string name="text_persistent">Dauerhaft</string>
     <string name="text_dynamics">Dynamik</string>
     <string name="text_placeholder">Platzhalter</string>
@@ -54,11 +54,11 @@
     <string name="hint_event_title">Ereignistitel</string>
     <string name="hint_script_title">Skripttitel</string>
     <string name="hint_profile_title">Profiltitel</string>
-    <string name="hint_condition_title">Bedingungstitel</string>
+    <string name="hint_condition_title">Zustandstitel</string>
     <string name="prompt_save_failed">Fehler beim Speichern</string>
     <string name="prompt_delete">Sind Sie sicher, dass Sie %s löschen möchten\?</string>
     <string name="prompt_delete_failed">Das Löschen ist fehlgeschlagen. Überprüfen Sie, ob dieses Element verwendet wird.</string>
-    <string name="prompt_prevented_for_permission">Gewähren Sie Easer die Berechtigung &lt;%s&gt;, damit dies funktioniert.</string>
+    <string name="prompt_prevented_for_permission">Erlauben Sie Easer die Berechtigung &lt;%s&gt;, damit dies funktioniert.</string>
     <string name="pref_category_functionality">Funktionalität</string>
     <string name="pref_category_personalise">Personalisieren</string>
     <string name="pref_category_data_manage">Daten verwalten</string>
@@ -78,9 +78,9 @@
     <string name="message_convert_data_finish">Daten konvertiert.</string>
     <string name="title_welcome_message">Willkommen</string>
     <string name="alert_update_storage_data_title">Alte Datenversion gefunden</string>
-    <string name="template_export">Exportiert nach %s</string>
+    <string name="template_export">Nach %s exportiert</string>
     <string name="version">Version</string>
-    <string name="message_importing_invalid_data">Diese Datei scheint nicht gültig zu sein. Achten Sie darauf, eine von Easer exportierte Datei zu importieren.</string>
+    <string name="message_importing_invalid_data">Diese Datei scheint ungültig zu sein. Achten Sie darauf, eine von Easer exportierte Datei zu importieren.</string>
     <string name="dynamics_time">Aktuelle Zeit</string>
     <string name="dynamics_date">Aktuelles Datum</string>
     <string name="dynamics_script_name">Skriptname</string>
@@ -94,7 +94,7 @@
     <string name="title_dynamics_link">Dynamik-Link</string>
     <string name="title_new_dynamics_link">Neuer Dynamik-Link</string>
     <string name="title_remote_operation_plugin">Fernbedienungs-Plugin</string>
-    <string name="menu_clear">Leeren</string>
+    <string name="menu_clear">Löschen</string>
     <string name="activity_history__profile">\@string/title_profile</string>
     <string name="activity_history__script">\@string/title_script</string>
     <string name="navigation_drawer_open">Navigationsleiste öffnen</string>
@@ -102,9 +102,9 @@
     <string name="button_read_next_time">Nächstes Mal lesen</string>
     <string name="text_notification_running_indicator_content">%s läuft im Hintergrund</string>
     <string name="prompt_data_illegal">Das Speichern von Daten mit ungültigen Feldern wurde verhindert. Bitte überprüfen Sie Ihre Auswahl / Eingaben erneut.</string>
-    <string name="text_app_description">Erleichtern Sie sich Ihr Leben, indem Sie Routineaufgaben auf Ihren Geräten automatisieren.
-\nVerketten Sie Ereignisse und die dazugehörigen Aktionen.
-\nDiese App wurde von CyanogenMods Profilmechanismus und IFTTT inspiriert. Die ursprüngliche Absicht war es, das Profil zu einem bestimmten Zeitpunkt oder in einer bestimmten WLAN-Abdeckung zu ändern und ist nun für den allgemeinen Gebrauch bestimmt.
+    <string name="text_app_description">Erleichtern Sie sich Ihr Leben, indem Sie Routineaufgaben auf Ihren Geräten automatisieren. 
+\nVerbinden Sie Ereignisse und die dazugehörigen Aktionen. 
+\nDiese App wurde von CyanogenMods Profilmechanismus und IFTTT inspiriert. Die ursprüngliche Absicht war es, das Profil zu einem bestimmten Zeitpunkt oder in einer bestimmten WLAN-Abdeckung zu ändern und ist nun für den allgemeinen Gebrauch bestimmt. 
 \nEaser befindet sich noch in der Entwicklung. Werfen Sie einen Blick auf TODO.en.md (oder TODO.md, wenn Sie Chinesisch lesen können) auf dem Repo, um zu helfen.</string>
     <string name="text_license">Dieses Programm ist freie Software: sie können es unter den Bedingungen der GNU General Public License, wie sie von der Free Software Foundation veröffentlicht wurde, entweder Version 3 der Lizenz oder (nach Ihrer Wahl) jeder späteren Version weitergeben und/oder modifizieren.\n
         Dieses Buch wird in der Hoffnung, nützlich zu sein, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTGÄNGIGKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK veröffentlicht. Lesen Sie die GNU General Public License für weitere Details.\n
@@ -113,12 +113,12 @@
     <string name="pref_category_service">Dienst</string>
     <string name="pref_logging_summary">Protokolliert auf externe Speichergeräte (/sdcard/logger) zur Unterstützung von Fehlerberichten.
 \nÄnderungen werden beim nächsten Start der App wirksam.</string>
-    <string name="pref_use_root_summary">Verwenden Sie Root-Rechte für bestimmte Funktionen (Plugins), die Kompatibilitätsprobleme auf einigen Geräten beheben können. Es wird nicht woanders verwendet.</string>
-    <string name="pref_cooldown_title">Abkühlzeit</string>
+    <string name="pref_use_root_summary">Verwenden Sie Root-Rechte für bestimmte Funktionen (Plugins), um Kompatibilitätsprobleme auf einigen Geräten zu beheben. Es wird nicht anderweitig verwendet.</string>
+    <string name="pref_cooldown_title">Cooldown-Zeit</string>
     <string name="pref_cooldown_summary">Minimales Intervall (in Sekunden) zwischen zwei Auslösern desselben Ereignisses</string>
-    <string name="cooldown_time_illformed">Die Zahl darf nicht kleiner als 0 und nicht zu groß sein, um in ein Integer zu passen</string>
+    <string name="cooldown_time_illformed">Die Zahl darf nicht kleiner als 0 und nicht größer als ein Integer sein</string>
     <string name="pref_enabled_skills_title">Aktive Plugins</string>
-    <string name="pref_enabled_skills_summary">Aktivieren oder Deaktivieren bestimmter Plugins</string>
+    <string name="pref_enabled_skills_summary">Bestimmte Plugins (de-)aktivieren</string>
     <string name="pref_export_summary">Alle Ereignisse und Profile auf die SD-Karte exportieren.
 \nDie Datei wird nach der aktuellen Zeit benannt.</string>
     <string name="pref_import_summary">Alle Ereignisse und Profile in eine Zip-Datei importieren.
@@ -127,7 +127,7 @@
     <string name="pref_show_notification_summary">Eine Benachrichtigung in der Benachrichtigungsleiste anzeigen.</string>
     <string name="pref_foreground_title">Dienst im Vordergrund ausführen</string>
     <string name="alert_update_storage_data">Wählen Sie in den Einstellungen \"Daten konvertieren\", um Ihre Daten aus Kompatibilitätsgründen auf das neue Format zu aktualisieren.</string>
-    <string name="help_script">\"Skripte\" sind die Logikbehälter. Verbinden Sie ein Ereignis oder eine Bedingung mit einem Profil in einem Skript, sodass Easer weiß, dass es dieses Profil lädt/ausführt, wenn das Ereignis eintritt oder die Bedingung erfüllt ist. 
+    <string name="help_script">\"Skripte\" sind die Logikbehälter. Verbinden Sie ein Ereignis oder eine Bedingung mit einem Profil in einem Skript, so dass Easer weiß, dass es dieses Profil lädt/ausführt, wenn das Ereignis eintritt oder die Bedingung erfüllt ist. 
 \nEs gibt auch erweiterte Funktionen, z.B. umgekehrte Ereignisse. 
 \nBitte beachten Sie das <a href="https://github.com/renyuneyun/Easer/wiki">Dokument</a> für weitere Informationen.</string>
     <string name="message_skill_not_compatible">Dieses Gerät kann dieses Plugin nicht ausführen.</string>
@@ -136,13 +136,13 @@
     <string name="pref_foreground_summary">Macht es dem System schwerer, den Dienst zu beenden. Zeigt eine Benachrichtigung an. Kann unter Android &gt;=8 aufgrund der Systemanforderungen nicht deaktiviert werden.</string>
     <string name="help_event">\"Ereignisse\" stellen kurzzeitige (sofortige) Ereignisse auf Ihrem Gerät oder aus der Ferne dar. 
 \nZum Beispiel der Empfang einer Benachrichtigung oder das Scannen eines NFC-Tags. 
-\nBitte beachten Sie das <a href="https://github.com/renyuneyun/Easer/wiki">Dokument</a> für weitere Informationen.</string>
-    <string name="help_condition">\"Zustand\" stellt eine lang anhaltende (aber in der Regel nicht dauerhafte) Bedingung auf Ihrem Gerät oder aus der Ferne dar. 
+\nBitte beachten Sie die <a href="https://github.com/renyuneyun/Easer/wiki">Dokumentation</a> für weitere Informationen.</string>
+    <string name="help_condition">\"Zustände\" stellen eine lang anhaltende (aber in der Regel nicht dauerhafte) Bedingung auf Ihrem Gerät oder aus der Ferne dar. 
 \nZum Beispiel bei einer Verbindung mit WLAN oder wenn sich der Bildschirm abschaltet. 
-\nBitte beachten Sie das <a href="https://github.com/renyuneyun/Easer/wiki">Dokument</a> für weitere Informationen.</string>
+\nBitte beachten Sie die <a href="https://github.com/renyuneyun/Easer/wiki">Dokumentation</a> für weitere Informationen.</string>
     <string name="help_profile">\"Profil\" ist eine Reihe von Vorgängen. Jeder Vorgang entspricht einer bestimmten Art von Aktion. 
 \nSchalten Sie beispielsweise Bluetooth ein oder senden Sie eine SMS. 
-\nBitte beachten Sie das <a href="https://github.com/renyuneyun/Easer/wiki">Dokument</a> für weitere Informationen.</string>
+\nBitte beachten Sie die <a href="https://github.com/renyuneyun/Easer/wiki">Dokumentation</a> für weitere Informationen.</string>
     <string name="category_operation_easer">\@string/easer</string>
     <string name="category_operation_unknown">Unbekannt</string>
     <string name="menu_tree_list">Baum Ansicht</string>
@@ -159,20 +159,20 @@
 \n 
 \n 
 \n(Alles ist standardmäßig eingeschaltet.)</string>
-    <string name="welcome_message_3">Skripte werden als <a href="https://en.wikipedia.org/wiki/Tree_structure">Bäume</a> strukturiert, indem man den entsprechenden Elternteil wählt. 
+    <string name="welcome_message_3">Skripte werden als <a href="https://de.wikipedia.org/wiki/Baum_(Datenstruktur)">Bäume</a> strukturiert, indem man den entsprechenden Elternteil wählt. 
 \n 
-\nIn jedem Zweig wird eine UND-Verknüpfung durchgeführt. 
-\nZwischen den Zweigen wird eine OR-Verknüpfung durchgeführt. 
+\nJede Kante stellt eine UND-Verknüpfung dar. 
+\nZwischen den Kanten findet eine OR-Verknüpfung statt. 
 \n 
 \n 
-\nDie Erweiterung von Bäumen um Graphen ist geplant, aber derzeit nicht implementiert.</string>
+\nBäume zu Graphen zu erweitern ist geplant, aber derzeit nicht implementiert.</string>
     <string name="title_welcome_message_privacy">Datenschutz!</string>
     <string name="welcome_message_privacy">Datenschutz ist wichtig! 
 \n 
-\nEaser ist eine <a href="https://en.wikipedia.org/wiki/Free_software">freie Software</a> (Open-Source-Software), die sicherstellt, dass jeder den Code überprüfen kann. 
+\nEaser ist eine <a href="https://en.wikipedia.org/wiki/Free_software">freie Software</a> (Open-Source-Software), die sicherstellt, dass jeder sie nutzen, überprüfen, verändern und teilen kann. 
 \n 
-\nSIE besitzen jedes Stück Ihrer Daten. Alles bleibt auf Ihrem Gerät, einschließlich der Protokolle.</string>
-    <string name="title_pivot">Drehpunkt</string>
+\nSIE besitzen alle Ihre Daten. Alles bleibt auf Ihrem Gerät, einschließlich der Protokolle.</string>
+    <string name="title_pivot">Pivot-Tabelle</string>
     <string name="title_service_start">Dienststart</string>
     <string name="title_source">Quellcode</string>
     <string name="title_author">Autor</string>
@@ -180,11 +180,11 @@
     <string name="title_website">Website</string>
     <string name="title_homepage">Homepage</string>
     <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
-    <string name="pref_locale_custom">Benutzerdefiniertes Gebietsschema</string>
+    <string name="pref_locale_custom">Sprache</string>
     <string name="prompt_error_logged">Easer hat gerade einen Fehler aufgezeichnet. Sehen Sie sich das Fehlerunterverzeichnis des Log-Verzeichnisses an.</string>
     <string name="prompt_dynamics_not_ready">Um die Dynamik einzustellen, müssen Sie ein gültiges Profil und einen gültigen Auslöser (z.B. Ereignis) auswählen.</string>
     <string name="title_select_event">Wählen Sie ein Ereignis</string>
-    <string name="title_select_condition">Wählen Sie eine Bedingung</string>
-    <string name="button_see_detail">Siehe Details</string>
+    <string name="title_select_condition">Wählen Sie einen Zustand</string>
+    <string name="button_see_detail">Details ansehen</string>
     <string name="title_data_collection">Daten</string>
 </resources>
