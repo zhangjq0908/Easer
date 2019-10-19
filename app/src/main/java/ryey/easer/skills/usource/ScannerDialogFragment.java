@@ -25,6 +25,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -47,6 +48,10 @@ public abstract class ScannerDialogFragment<T> extends DialogFragment {
         boolean onPositiveClicked(@NonNull List<T> singleData);
     }
 
+    public interface OnListItemClickedListener<T> {
+        boolean onListItemClicked(@NonNull T data);
+    }
+
     @Nullable
     protected GetInitialDataTask<T> getInitialDataTask(List<T> singleDataList, ArrayAdapter<T> dataListAdapter) {
         return null;
@@ -56,11 +61,24 @@ public abstract class ScannerDialogFragment<T> extends DialogFragment {
     protected OnPositiveButtonClickedListener<T> positiveButtonClickedListener() {
         return null;
     }
+    
+    @Nullable
+    protected OnListItemClickedListener<T> listItemClickedListener() {
+        return null;
+    }
 
     protected boolean onDialogPositiveButtonClicked(DialogInterface dialog, int id, List<T> singleDataList) {
         OnPositiveButtonClickedListener<T> listener = positiveButtonClickedListener();
         if (listener != null) {
             return listener.onPositiveClicked(singleDataList);
+        }
+        return false;
+    }
+
+    protected boolean onDialogListItemClicked(AdapterView<?> parent, View view, int position, long id, T data) {
+        OnListItemClickedListener<T> listener = listItemClickedListener();
+        if (listener != null) {
+            return listener.onListItemClicked(data);
         }
         return false;
     }
@@ -78,6 +96,16 @@ public abstract class ScannerDialogFragment<T> extends DialogFragment {
                 android.R.layout.simple_list_item_1,
                 singleDataList);
         listView.setAdapter(dataListAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                T itemData = singleDataList.get(position);
+                assert itemData != null;
+                if (onDialogListItemClicked(parent, view, position, id, itemData))
+                    dismiss();
+            }
+        });
 
         builder.setView(v);
 

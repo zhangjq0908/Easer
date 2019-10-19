@@ -85,6 +85,7 @@ import ryey.easer.skills.usource.connectivity.ConnectivityUSourceSkill;
 import ryey.easer.skills.usource.date.DateUSourceSkill;
 import ryey.easer.skills.usource.day_of_week.DayOfWeekEventSkill;
 import ryey.easer.skills.usource.headset.HeadsetUSourceSkill;
+import ryey.easer.skills.usource.location.LocationUSourceSkill;
 import ryey.easer.skills.usource.power.PowerUSourceSkill;
 import ryey.easer.skills.usource.screen.ScreenUSourceSkill;
 import ryey.easer.skills.usource.time.TimeUSourceSkill;
@@ -122,6 +123,7 @@ final public class LocalSkillRegistry {
                 new DateUSourceSkill(),
                 new DayOfWeekEventSkill(),
                 new HeadsetUSourceSkill(),
+                new LocationUSourceSkill(),
                 new ScreenUSourceSkill(),
                 new TimeUSourceSkill(),
                 new WifiUSourceSkill(),

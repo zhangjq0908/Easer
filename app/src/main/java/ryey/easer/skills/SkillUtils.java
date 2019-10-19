@@ -35,6 +35,7 @@ import androidx.core.content.ContextCompat;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.util.Collection;
 
 import ryey.easer.R;
 

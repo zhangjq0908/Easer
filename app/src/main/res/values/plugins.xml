@@ -272,6 +272,12 @@
     <string name="usource_headset__microphone_false">No</string>
     <string name="usource_headset__microphone_any">Any</string>
 
+    <string name="usource_location">Location</string>
+    <string name="usource_location__radius_meters">Radius (meters)</string>
+    <string name="usource_location__listen_min_time_seconds">Listen min time (seconds)</string>
+    <string name="usource_location__threshold_age_seconds">Threshold age (seconds)</string>
+    <string name="usource_location__threshold_accuracy_meters">Threshold accuracy (meters)</string>
+
     <string name="usource_screen">Screen Status</string>
     <string name="usource_screen_text_screen_is">When screen is…</string>
     <string name="usource_screen_on">On</string>
