@@ -10,8 +10,8 @@ android {
         minSdkVersion 16
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 23
-        versionCode 119
-        versionName "0.7.8.2"
+        versionCode 120
+        versionName "0.7.8.3"
 
         vectorDrawables.useSupportLibrary = true
 
@@ -40,8 +40,8 @@ android {
         beta {
             dimension 'dev'
             applicationIdSuffix ".beta"
-            versionCode 120002
-            versionName "0.7.8.3-beta2"
+            versionCode 120999
+            versionName "0.7.8.3"
         }
     }
     dataBinding.enabled = true

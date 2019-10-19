@@ -1,6 +1,18 @@
 CHANGELOG
 ======
 
+* v0.7.8.3: Async Operation loading && Bug fixes && Backend optimization && i18n update
+	* Make Operation Loader async
+		* Add reply from remote Operation plugin
+		* 5s timeout for Operation loading
+	* Backend optimization: Make EHService manage Lotuses & Remove unnecessary code
+	* Fix TimerEvent "long" doesn't display correctly
+	* Notify users for changes in v0.8
+	* I18n update:
+		* New locale: Indonesian
+		* Updated: Russian, Italian, Turkish, French, Norwegian Bokmål, Swedish, German
+	* Added communication diagram (under `diagram/` directory)
+
 * v0.7.8.2: Unifying status notification && Fix a potential deadlock (or not so serious) in main service && More local broadcast && i18n update
 	* Remove redundant functions EHService.startNotification() & EHService.stopNotification()
 	* Clean CV in EHService with DelayedConditionHolderBinderJobs
