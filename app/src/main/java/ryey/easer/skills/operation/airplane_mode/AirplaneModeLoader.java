@@ -38,18 +38,20 @@ public class AirplaneModeLoader extends OperationLoader<AirplaneModeOperationDat
     }
 
     @Override
-    public boolean load(@ValidData @NonNull AirplaneModeOperationData data) {
+    public void _load(@ValidData @NonNull AirplaneModeOperationData data, @NonNull OnResultCallback callback) {
         Boolean state = data.get();
-        if (state == airplaneModeIsOn())
-            return true;
+        if (state == airplaneModeIsOn()) {
+            callback.onResult(true);
+            return;
+        }
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN) {
-            return switchBefore17(state);
+            callback.onResult(switchBefore17(state));
         } else {
-            if (switchAfter17(state))
-                return true;
-            else {
+            if (switchAfter17(state)) {
+                callback.onResult(true);
+            } else {
                 switchBefore17(state);
-                return airplaneModeIsOn();
+                callback.onResult(airplaneModeIsOn());
             }
         }
     }

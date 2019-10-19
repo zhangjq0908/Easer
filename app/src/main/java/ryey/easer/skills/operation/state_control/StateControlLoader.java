@@ -53,10 +53,10 @@ public class StateControlLoader extends OperationLoader<StateControlOperationDat
     }
 
     @Override
-    public boolean load(@ValidData @NonNull StateControlOperationData data) {
+    public void _load(@ValidData @NonNull StateControlOperationData data, @NonNull OnResultCallback callback) {
         this.data = data;
         Intent intent = new Intent(context, EHService.class);
         context.bindService(intent, connection, Context.BIND_AUTO_CREATE);
-        return true;
+        callback.onResult(true);
     }
 }

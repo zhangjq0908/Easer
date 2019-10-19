@@ -43,11 +43,11 @@ public class MediaControlLoader extends OperationLoader<MediaControlOperationDat
     }
 
     @Override
-    public boolean load(@ValidData @NonNull MediaControlOperationData data) {
+    public void _load(@ValidData @NonNull MediaControlOperationData data, @NonNull OnResultCallback callback) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            return handleOnApi21(data);
+            callback.onResult(handleOnApi21(data));
         } else {
-            return fallback(data);
+            callback.onResult(fallback(data));
         }
     }
 

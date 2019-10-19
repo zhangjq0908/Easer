@@ -38,18 +38,18 @@ public class RingerModeLoader extends OperationLoader<RingerModeOperationData> {
     }
 
     @Override
-    public boolean load(@ValidData @NonNull RingerModeOperationData data) {
+    public void _load(@ValidData @NonNull RingerModeOperationData data, @NonNull OnResultCallback callback) {
         RingerMode mode = RingerMode.compatible(data.ringerMode);
         AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             if (mode == RingerMode.vibrate || mode == RingerMode.normal) {
-                return amSetMode(audioManager, mode);
+                callback.onResult(amSetMode(audioManager, mode));
             } else {
-                return setDoNotDisturbForLollipop(mode);
+                callback.onResult(setDoNotDisturbForLollipop(mode));
             }
         } else {
-            return amSetMode(audioManager, mode);
+            callback.onResult(amSetMode(audioManager, mode));
         }
     }
 

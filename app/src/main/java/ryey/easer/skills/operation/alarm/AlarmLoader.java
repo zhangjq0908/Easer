@@ -37,7 +37,7 @@ public class AlarmLoader extends OperationLoader<AlarmOperationData> {
     }
 
     @Override
-    public boolean load(@ValidData @NonNull AlarmOperationData data) {
+    public void _load(@ValidData @NonNull AlarmOperationData data, @NonNull OnResultCallback callback) {
         Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
         int hour = data.time.get(Calendar.HOUR_OF_DAY);
         int minute = data.time.get(Calendar.MINUTE);
@@ -63,8 +63,8 @@ public class AlarmLoader extends OperationLoader<AlarmOperationData> {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (intent.resolveActivity(context.getPackageManager()) != null) {
             context.startActivity(intent);
-            return true;
+            callback.onResult(true);
         } else
-            return false;
+            callback.onResult(false);
     }
 }

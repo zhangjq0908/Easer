@@ -192,6 +192,7 @@
     <string name="alert_update_storage_data">Select \"Convert Data\" in the settings to update your data to the new format for compatibility.</string>
 
     <string name="message_future_change_title">Changing soon</string>
+    <string name="message_future_change_0_8">Tree view of Scripts will be removed in v0.8. Pivot provides a better view towards that.</string>
 
     <string name="template_export">Exported to %s</string>
     <string name="version">Version</string>

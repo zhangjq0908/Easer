@@ -1,0 +1,6 @@
+Backend optimizations && Bug fixes && Version (v0.8) alert && i18n
+
+* Backend optimization: Make EHService manage Lotuses & Remove unnecessary code
+* Fix TimerEvent "long" doesn't display correctly
+* Notify users for changes in v0.8
+* I18n update: Italian & Swedish

@@ -42,14 +42,18 @@ public class NetworkTransmissionLoader extends OperationLoader<NetworkTransmissi
     }
 
     @Override
-    public boolean load(@ValidData @NonNull NetworkTransmissionOperationData data) {
-        //TODO: Async and correctly report
-        NetworkTask task = new NetworkTask();
+    public void _load(@ValidData @NonNull NetworkTransmissionOperationData data, @NonNull OnResultCallback callback) {
+        NetworkTask task = new NetworkTask(callback);
         task.execute(data);
-        return true;
     }
 
     private static class NetworkTask extends AsyncTask<NetworkTransmissionOperationData, Void, Boolean> {
+
+        private final OnResultCallback callback;
+
+        NetworkTask(OnResultCallback callback) {
+            this.callback = callback;
+        }
 
         @Override
         protected Boolean doInBackground(NetworkTransmissionOperationData... networkTransmissionOperationData) {
@@ -101,6 +105,11 @@ public class NetworkTransmissionLoader extends OperationLoader<NetworkTransmissi
                 return false;
             }
             return true;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            callback.onResult(result);
         }
     }
 }

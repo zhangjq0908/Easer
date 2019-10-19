@@ -35,7 +35,7 @@ public class LaunchAppLoader extends OperationLoader<LaunchAppOperationData> {
     }
 
     @Override
-    public boolean load(@ValidData @NonNull LaunchAppOperationData data) {
+    public void _load(@ValidData @NonNull LaunchAppOperationData data, @NonNull OnResultCallback callback) {
         Intent intent;
         if (Utils.isBlank(data.app_class)) {
             intent = context.getPackageManager().getLaunchIntentForPackage(data.app_package);
@@ -48,8 +48,8 @@ public class LaunchAppLoader extends OperationLoader<LaunchAppOperationData> {
             if (data.extras != null)
                 intent.putExtras(data.extras.asBundle());
             context.startActivity(intent);
-            return true;
+            callback.onResult(true);
         }
-        return false;
+        callback.onResult(false);
     }
 }

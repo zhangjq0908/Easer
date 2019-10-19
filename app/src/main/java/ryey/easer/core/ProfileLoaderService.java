@@ -30,18 +30,23 @@ import android.os.IBinder;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.collection.ArrayMap;
 import androidx.collection.ArraySet;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.orhanobut.logger.Logger;
 
+import java.util.Collection;
+import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 
 import ryey.easer.commons.local_skill.dynamics.DynamicsLink;
 import ryey.easer.commons.local_skill.dynamics.SolidDynamicsAssignment;
 import ryey.easer.core.data.ProfileStructure;
+import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.core.dynamics.CoreDynamics;
 import ryey.easer.core.dynamics.CoreDynamicsInterface;
@@ -139,23 +144,33 @@ public class ProfileLoaderService extends Service {
         }
         final SolidDynamicsAssignment solidMacroAssignment = dynamicsLink.assign(macroData);
 
-        ProfileLoadWatcher profileLoadWatcher = new ProfileLoadWatcher(this, name, event);
+        LoadWatcher profileLoadWatcher = new LoadWatcher(this, name, event);
 
         new Thread(profileLoadWatcher).start();
 
         for (String pluginId : profile.pluginIds()) {
-            int count = helper.triggerOperations(pluginId, profile.get(pluginId), solidMacroAssignment, profileLoadWatcher);
-            profileLoadWatcher.addTaskCount(count);
+            Collection<RemoteLocalOperationDataWrapper> dataWrappers = profile.get(pluginId);
+            for (RemoteLocalOperationDataWrapper dataWrapper : dataWrappers) {
+                UUID jobId = UUID.randomUUID();
+                profileLoadWatcher.addJob(jobId, pluginId);
+                helper.triggerOperation(jobId, pluginId, dataWrapper, solidMacroAssignment, profileLoadWatcher);
+            }
         }
         profileLoadWatcher.finishInit();
     }
 
-    class ProfileLoadWatcher implements Runnable, SkillHelper.OperationHelper.OnOperationLoadingResultListener {
+    /**
+     * Self-made concurrent task counter
+     * There ought to be existing classes for this purpose, but I didn't find any.
+     * TODO: replace with existing class
+     */
+    class LoadWatcher implements Runnable, SkillHelper.OperationHelper.OnOperationLoadResultCallback {
 
         private final Context context;
         private final String name;
         private final String event;
 
+        private final Map<UUID, String> jobMap = new ArrayMap<>();
         private final Set<String> failedSkills = new ArraySet<>();
         private final Set<String> unknownSkills = new ArraySet<>();
 
@@ -163,7 +178,7 @@ public class ProfileLoaderService extends Service {
         private final AtomicInteger taskCount = new AtomicInteger();
         private final AtomicInteger finishedCount = new AtomicInteger();
 
-        ProfileLoadWatcher(Context context, String name, String event) {
+        LoadWatcher(Context context, String name, String event) {
             this.context = context;
             this.name = name;
             this.event = event;
@@ -174,21 +189,41 @@ public class ProfileLoaderService extends Service {
         public void run() {
             lock.lock();
             try {
-                while (finishedCount.get() < taskCount.get()) {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                allResultsCollected();
             } finally {
                 lock.unlock();
+            } // Check if initialization has completed
+            while (finishedCount.get() < taskCount.get()) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            allResultsCollected();
+        }
+
+        @Override
+        public void onResult(@NonNull UUID id, @Nullable Boolean success) {
+            String skillId = jobMap.get(id);
+            if (skillId != null) {
+                lock.lock();
+                try {
+                    jobMap.remove(id);
+                    if (success == null) {
+                        unknownSkills.add(skillId);
+                    } else if (!success) {
+                        failedSkills.add(skillId);
+                    }
+                    finishedCount.incrementAndGet();
+                } finally {
+                    lock.unlock();
+                }
             }
         }
 
-        void addTaskCount(int count) {
-            this.taskCount.addAndGet(count);
+        void addJob(UUID jobId, String pluginId) {
+            jobMap.put(jobId, pluginId);
+            taskCount.incrementAndGet();
         }
 
         void finishInit() {
@@ -196,42 +231,38 @@ public class ProfileLoaderService extends Service {
         }
 
         private void allResultsCollected() {
-            StringBuilder extraInfoBuilder = new StringBuilder();
-            if (unknownSkills.size() == 0 && failedSkills.size() == 0) {
-                Logger.i("Profile <%s> loaded", name);
-            } else {
-                if (unknownSkills.size() > 0) {
-                    extraInfoBuilder.append("Unknown skills:");
-                    for (String id : unknownSkills) {
-                        extraInfoBuilder.append(" ").append(id);
+            lock.lock(); // Ensure no onResult() is running
+            try {
+                StringBuilder extraInfoBuilder = new StringBuilder();
+                if (unknownSkills.size() == 0 && failedSkills.size() == 0) {
+                    Logger.i("Profile <%s> loaded", name);
+                } else {
+                    if (unknownSkills.size() > 0) {
+                        extraInfoBuilder.append("Unknown results from skills:");
+                        for (String id : unknownSkills) {
+                            extraInfoBuilder.append(" ").append(id);
+                        }
+                        extraInfoBuilder.append("\n");
+                        Logger.i("Profile <%s> has unidentified Operation load results", name);
                     }
-                    extraInfoBuilder.append("\n");
-                    Logger.i("Profile <%s> has unidentified Operations", name);
-                }
-                if (failedSkills.size() > 0) {
-                    extraInfoBuilder.append("Failed:");
-                    for (String id : failedSkills) {
-                        extraInfoBuilder.append(" ").append(id);
+                    if (failedSkills.size() > 0) {
+                        extraInfoBuilder.append("Failed:");
+                        for (String id : failedSkills) {
+                            extraInfoBuilder.append(" ").append(id);
+                        }
+                        Logger.w("Profile <%s> has Operations failed to load", name);
                     }
-                    Logger.w("Profile <%s> has Operations failed to load", name);
                 }
+                String extraInfo = extraInfoBuilder.toString();
+                if (event == null) {
+                    ActivityLogService.Companion.notifyProfileLoaded(context, name, extraInfo);
+                } else {
+                    ActivityLogService.Companion.notifyScriptSatisfied(context, event, name, extraInfo);
+                }
+            } finally {
+                lock.unlock();
             }
-            String extraInfo = extraInfoBuilder.toString();
-            if (event == null) {
-                ActivityLogService.Companion.notifyProfileLoaded(context, name, extraInfo);
-            } else {
-                ActivityLogService.Companion.notifyScriptSatisfied(context, event, name, extraInfo);
-            }
-        }
-
-        @Override
-        public void onResult(String skillId, Boolean success) {
-            if (success == null) {
-                unknownSkills.add(skillId);
-            } else if (!success) {
-                failedSkills.add(skillId);
-            }
-            finishedCount.incrementAndGet();
         }
     }
+
 }

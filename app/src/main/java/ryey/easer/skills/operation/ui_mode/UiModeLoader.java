@@ -35,17 +35,18 @@ public class UiModeLoader extends OperationLoader<UiModeOperationData> {
     }
 
     @Override
-    public boolean load(@ValidData @NonNull UiModeOperationData data) {
+    public void _load(@ValidData @NonNull UiModeOperationData data, @NonNull OnResultCallback callback) {
         UiModeManager uiModeManager = (UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE);
         if (uiModeManager == null) {
             Logger.wtf("Can't get UiModeManager???");
-            return false;
+            callback.onResult(false);
+            return;
         }
         if (data.ui_mode == UiModeOperationData.UiMode.car) {
             uiModeManager.enableCarMode(0);
         } else { // if (data.ui_mode == UiModeOperationData.UiMode.normal) {
             uiModeManager.disableCarMode(0);
         }
-        return true;
+        callback.onResult(true);
     }
 }

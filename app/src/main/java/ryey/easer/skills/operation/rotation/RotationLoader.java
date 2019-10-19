@@ -34,9 +34,9 @@ public class RotationLoader extends OperationLoader<RotationOperationData> {
     }
 
     @Override
-    public boolean load(@ValidData @NonNull RotationOperationData data) {
+    public void _load(@ValidData @NonNull RotationOperationData data, @NonNull OnResultCallback callback) {
         ContentResolver resolver = context.getContentResolver();
         Boolean state = data.get();
-        return Settings.System.putInt(resolver, Settings.System.ACCELEROMETER_ROTATION, state ? 1 : 0);
+        callback.onResult(Settings.System.putInt(resolver, Settings.System.ACCELEROMETER_ROTATION, state ? 1 : 0));
     }
 }
