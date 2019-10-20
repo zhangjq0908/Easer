@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,54 +17,49 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.operation.ui_mode;
+package ryey.easer.skills.operation.toast;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.Objects;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.skills.SkillViewFragment;
+import ryey.easer.skills.operation.DynamicsEnabledString;
 
-public class UiModeSkillViewFragment extends SkillViewFragment<UiModeOperationData> {
+public class ToastSkillViewFragment extends SkillViewFragment<ToastOperationData> {
 
-    RadioButton rb_car, rb_normal;
+    private TextInputLayout textInputLayout;
 
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.skill_operation__ui_mode, container, false);
+        View view = inflater.inflate(R.layout.skill_operation__toast, container, false);
 
-        rb_car = view.findViewById(R.id.rb_car);
-        rb_normal = view.findViewById(R.id.rb_normal);
+        textInputLayout = view.findViewById(R.id.text_input);
 
         return view;
     }
 
     @Override
-    protected void _fill(@ValidData @NonNull UiModeOperationData data) {
-        if (data.ui_mode == UiModeOperationData.UiMode.car) {
-            rb_car.setChecked(true);
-        } else { // if data.ui_mode == UiModeOperationData.UiMode.normal) {
-            rb_normal.setChecked(true);
-        }
+    protected void _fill(@ValidData @NonNull ToastOperationData data) {
+        Objects.requireNonNull(textInputLayout.getEditText()).setText(data.text.str);
     }
 
     @ValidData
     @NonNull
     @Override
-    public UiModeOperationData getData() throws InvalidDataInputException {
-        if (rb_car.isChecked()) {
-            return new UiModeOperationData(UiModeOperationData.UiMode.car);
-        } else { // if (rb_normal.isChecked()) {
-            return new UiModeOperationData(UiModeOperationData.UiMode.normal);
-        }
+    public ToastOperationData getData() throws InvalidDataInputException {
+        return new ToastOperationData(DynamicsEnabledString.fromView(Objects.requireNonNull(textInputLayout.getEditText())));
     }
 }

@@ -172,5 +172,6 @@
     <string name="usource_power__discharging">放電中</string>
     <string name="usource_power__usb">USB</string>
     <string name="title_data_collection">數據</string>
+    <string name="op_toast_hint_text">提示文字</string>
 
 </resources>

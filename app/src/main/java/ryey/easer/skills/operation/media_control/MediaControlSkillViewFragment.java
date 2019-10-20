@@ -44,7 +44,7 @@ public class MediaControlSkillViewFragment extends SkillViewFragment<MediaContro
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_operation__media_control, container, false);
+        View view = inflater.inflate(R.layout.skill_operation__media_control, container, false);
         radioButton_play_pause = view.findViewById(R.id.radioButton_play_pause);
         radioButton_play = view.findViewById(R.id.radioButton_play);
         radioButton_pause = view.findViewById(R.id.radioButton_pause);

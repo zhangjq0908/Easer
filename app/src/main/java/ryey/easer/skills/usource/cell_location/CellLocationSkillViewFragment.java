@@ -46,7 +46,7 @@ public class CellLocationSkillViewFragment extends SkillViewFragment<CellLocatio
     @NonNull
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_usource__cell_location, container, false);
+        View view = inflater.inflate(R.layout.skill_usource__cell_location, container, false);
 
         editText = view.findViewById(R.id.location_text);
         view.findViewById(R.id.location_picker).setOnClickListener(new View.OnClickListener() {

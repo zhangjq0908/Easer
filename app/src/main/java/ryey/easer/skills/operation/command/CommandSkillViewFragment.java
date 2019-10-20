@@ -39,7 +39,7 @@ public class CommandSkillViewFragment extends SkillViewFragment<CommandOperation
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_operation__command, container, false);
+        View view = inflater.inflate(R.layout.skill_operation__command, container, false);
         editText_command = view.findViewById(R.id.command);
         return view;
     }

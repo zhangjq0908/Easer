@@ -45,7 +45,7 @@ public class RingerModeSkillViewFragment extends SkillViewFragment<RingerModeOpe
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_operation__ringer_mode, container, false);
+        View view = inflater.inflate(R.layout.skill_operation__ringer_mode, container, false);
 
         rb_normal = view.findViewById(R.id.radioButton_normal);
         rb_vibrate = view.findViewById(R.id.radioButton_vibrate);

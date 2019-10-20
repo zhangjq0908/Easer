@@ -42,7 +42,7 @@ public class LaunchAppSkillViewFragment extends SkillViewFragment<LaunchAppOpera
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_operation__launch_app, container, false);
+        View view = inflater.inflate(R.layout.skill_operation__launch_app, container, false);
         et_app_package = view.findViewById(R.id.editText_app_package);
         et_class = view.findViewById(R.id.editText_app_activity);
         editExtraFragment = (EditExtraFragment) getChildFragmentManager().findFragmentById(R.id.fragment_edit_extra);

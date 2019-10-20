@@ -40,7 +40,7 @@ public class SmsSkillViewFragment extends SkillViewFragment<SmsEventData> {
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_event__sms, container, false);
+        View view = inflater.inflate(R.layout.skill_event__sms, container, false);
         editText_sender = view.findViewById(R.id.editText_sender);
         editText_content = view.findViewById(R.id.editText_content);
 

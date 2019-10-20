@@ -41,7 +41,7 @@ public class TcpTripSkillViewFragment extends SkillViewFragment<TcpTripEventData
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.plugin_event__tcp_trip, container, false);
+        View v = inflater.inflate(R.layout.skill_event__tcp_trip, container, false);
 
         et_rAddr = v.findViewById(R.id.editText_rAddr);
         et_rPort = v.findViewById(R.id.editText_rPort);

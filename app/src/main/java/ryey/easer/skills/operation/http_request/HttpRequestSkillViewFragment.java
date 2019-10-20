@@ -33,6 +33,7 @@ import ryey.easer.R;
 import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.skills.SkillViewFragment;
+import ryey.easer.skills.operation.DynamicsEnabledString;
 
 public class HttpRequestSkillViewFragment extends SkillViewFragment<HttpRequestOperationData> {
 
@@ -46,7 +47,7 @@ public class HttpRequestSkillViewFragment extends SkillViewFragment<HttpRequestO
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_operation__http_request, container, false);
+        View view = inflater.inflate(R.layout.skill_operation__http_request, container, false);
         rb_get = view.findViewById(R.id.radioButton_get);
         rb_post = view.findViewById(R.id.radioButton_post);
         editText_url = view.findViewById(R.id.editText_url);
@@ -68,10 +69,10 @@ public class HttpRequestSkillViewFragment extends SkillViewFragment<HttpRequestO
             default:
                 throw new IllegalAccessError();
         }
-        editText_url.setText(data.url);
-        editText_header.setText(data.requestHeader);
-        editText_contentType.setText(data.contentType);
-        editText_postData.setText(data.postData);
+        editText_url.setText(data.url.str);
+        editText_header.setText(data.requestHeader.str);
+        editText_contentType.setText(data.contentType.str);
+        editText_postData.setText(data.postData.str);
     }
 
     @ValidData
@@ -86,10 +87,10 @@ public class HttpRequestSkillViewFragment extends SkillViewFragment<HttpRequestO
         else
             throw new IllegalStateException("This line ought to be unreachable");
 
-        final String url = editText_url.getText().toString();
-        final String header = editText_header.getText().toString();
-        final String contentType = editText_contentType.getText().toString();
-        final String postData = editText_postData.getText().toString();
+        final DynamicsEnabledString url = DynamicsEnabledString.fromView(editText_url);
+        final DynamicsEnabledString header = DynamicsEnabledString.fromView(editText_header);
+        final DynamicsEnabledString contentType = DynamicsEnabledString.fromView(editText_contentType);
+        final DynamicsEnabledString postData = DynamicsEnabledString.fromView(editText_postData);
 
         return new HttpRequestOperationData(requestMethod, url, header, contentType, postData);
     }

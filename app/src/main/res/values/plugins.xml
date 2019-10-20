@@ -194,6 +194,9 @@
 
     <string name="operation_synchronization">Account synchronization</string>
 
+    <string name="operation_toast">Toast</string>
+    <string name="op_toast_hint_text">Text</string>
+
     <string name="op_ui_mode">Car Mode</string>
     <string name="op_car_mode">Car Mode</string>
     <string name="op_normal_mode">Normal Mode</string>

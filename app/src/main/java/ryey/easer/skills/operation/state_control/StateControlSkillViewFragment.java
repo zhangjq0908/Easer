@@ -42,7 +42,7 @@ public class StateControlSkillViewFragment extends SkillViewFragment<StateContro
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_operation__event_control, container, false);
+        View view = inflater.inflate(R.layout.skill_operation__event_control, container, false);
         sw_script = new DataSelectSpinnerWrapper(getContext(), (Spinner) view.findViewById(R.id.spinner_event));
         sw_script
                 .beginInit()

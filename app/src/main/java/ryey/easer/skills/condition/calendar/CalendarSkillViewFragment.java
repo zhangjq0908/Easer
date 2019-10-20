@@ -84,7 +84,7 @@ public class CalendarSkillViewFragment extends SkillViewFragment<CalendarConditi
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_condition__calendar, container, false);
+        View view = inflater.inflate(R.layout.skill_condition__calendar, container, false);
         tv_calendar_name = view.findViewById(R.id.text_calendar_name);
         rg_event_title = view.findViewById(R.id.radioGroup_event_title);
         rb_event_title_any = view.findViewById(R.id.radioButton_any_event);

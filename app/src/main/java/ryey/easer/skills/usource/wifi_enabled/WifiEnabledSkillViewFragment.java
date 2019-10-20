@@ -40,7 +40,7 @@ public class WifiEnabledSkillViewFragment extends SkillViewFragment<WifiEnabledU
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_usource_wifi_enabled, container, false);
+        View view = inflater.inflate(R.layout.skill_usource_wifi_enabled, container, false);
 
         radioButton_enabled = view.findViewById(R.id.radioButton_yes);
         radioButton_disabled = view.findViewById(R.id.radioButton_no);

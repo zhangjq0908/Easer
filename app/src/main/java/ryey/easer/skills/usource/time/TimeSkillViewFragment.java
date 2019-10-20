@@ -43,7 +43,7 @@ public class TimeSkillViewFragment extends SkillViewFragment<TimeUSourceData> {
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_condition__time, container, false);
+        View view = inflater.inflate(R.layout.skill_condition__time, container, false);
 
         timePicker = view.findViewById(R.id.timePicker);
         timePicker.setIs24HourView(!SettingsUtils.use12HourClock(getContext()));

@@ -49,7 +49,7 @@ public class TimerSkillViewFragment extends SkillViewFragment<TimerEventData> {
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_event__timer, container, false);
+        View view = inflater.inflate(R.layout.skill_event__timer, container, false);
 
         group_short = view.findViewById(R.id.group_short);
         group_long = view.findViewById(R.id.group_long);

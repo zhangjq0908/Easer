@@ -40,6 +40,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import ryey.easer.commons.local_skill.dynamics.SolidDynamicsAssignment;
+import ryey.easer.skills.operation.DynamicsEnabledString;
 
 public class Utils {
 
@@ -58,6 +59,12 @@ public class Utils {
         if (str.trim().isEmpty())
             return true;
         return false;
+    }
+
+    public static boolean isBlank(@Nullable DynamicsEnabledString str) {
+        if (str == null)
+            return true;
+        return isBlank(str.str);
     }
 
     public static boolean nullableEqual(@Nullable Object obj1, @Nullable Object obj2) {

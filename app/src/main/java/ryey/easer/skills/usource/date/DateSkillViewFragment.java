@@ -41,7 +41,7 @@ public class DateSkillViewFragment extends SkillViewFragment<DateUSourceData> {
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_condition__date, container, false);
+        View view = inflater.inflate(R.layout.skill_condition__date, container, false);
 
         datePicker = view.findViewById(R.id.date_picker);
 

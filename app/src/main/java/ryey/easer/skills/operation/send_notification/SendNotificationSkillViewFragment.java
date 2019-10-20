@@ -40,7 +40,7 @@ public class SendNotificationSkillViewFragment extends SkillViewFragment<SendNot
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_operation__send_notification, container, false);
+        View view = inflater.inflate(R.layout.skill_operation__send_notification, container, false);
         editText_title = view.findViewById(R.id.editText_title);
         editText_content = view.findViewById(R.id.editText_content);
         return view;

@@ -57,7 +57,7 @@ public class NfcTagSkillViewFragment extends SkillViewFragment<NfcTagEventData> 
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_event__nfc_tag, container, false);
+        View view = inflater.inflate(R.layout.skill_event__nfc_tag, container, false);
 
         editText = view.findViewById(R.id.editText_tag_id);
         view.findViewById(R.id.button_wait_for_device).setOnClickListener(new View.OnClickListener() {

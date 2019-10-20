@@ -33,6 +33,7 @@ import ryey.easer.R;
 import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.skills.SkillViewFragment;
+import ryey.easer.skills.operation.DynamicsEnabledString;
 
 public class NetworkTransmissionSkillViewFragment extends SkillViewFragment<NetworkTransmissionOperationData> {
 
@@ -45,7 +46,7 @@ public class NetworkTransmissionSkillViewFragment extends SkillViewFragment<Netw
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_operation__network_transmission, container, false);
+        View view = inflater.inflate(R.layout.skill_operation__network_transmission, container, false);
         rb_tcp = view.findViewById(R.id.radioButton_tcp);
         rb_udp = view.findViewById(R.id.radioButton_udp);
         editText_remote_address = view.findViewById(R.id.editText_remote_address);
@@ -68,7 +69,7 @@ public class NetworkTransmissionSkillViewFragment extends SkillViewFragment<Netw
         }
         editText_remote_address.setText(data.remote_address);
         editText_remote_port.setText(String.valueOf(data.remote_port));
-        editText_data.setText(data.data);
+        editText_data.setText(data.data.toString());
     }
 
     @ValidData
@@ -90,7 +91,6 @@ public class NetworkTransmissionSkillViewFragment extends SkillViewFragment<Netw
             e.printStackTrace();
             throw new InvalidDataInputException("Invalid port");
         }
-        String data = editText_data.getText().toString();
-        return new NetworkTransmissionOperationData(protocol, remote_address, remote_port, data);
+        return new NetworkTransmissionOperationData(protocol, remote_address, remote_port, DynamicsEnabledString.fromView(editText_data));
     }
 }

@@ -41,7 +41,7 @@ public class NotificationSkillViewFragment extends SkillViewFragment<Notificatio
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.plugin_event__notification, container, false);
+        View view = inflater.inflate(R.layout.skill_event__notification, container, false);
 
         editText_app = view.findViewById(R.id.editText_app);
         editText_title = view.findViewById(R.id.editText_title);
