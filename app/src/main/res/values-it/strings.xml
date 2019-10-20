@@ -47,7 +47,7 @@
     <string name="text_lack_permission">Qualche Modulo NON dispone di sufficienti autorizzazioni.</string>
     <string name="text_notification_running_indicator_content">%s è in esecuzione in background</string>
     <string name="text_title">Titolo</string>
-    <string name="text_parent_node">Genitore</string>
+    <string name="text_predecessor_nodes">Genitore</string>
     <string name="text_parent">Genitore</string>
     <string name="text_profile">Profilo</string>
     <string name="text_predefined_event">Evento Predefinito</string>

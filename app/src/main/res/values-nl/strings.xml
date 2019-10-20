@@ -50,7 +50,7 @@
     <string name="text_lack_permission">Easer heeft NIET alle benodigde toegangsrechten.</string>
     <string name="text_notification_running_indicator_content">%s wordt uitgevoerd in de achtergrond</string>
     <string name="text_title">Titel</string>
-    <string name="text_parent_node">Ouder</string>
+    <string name="text_predecessor_nodes">Ouder</string>
     <string name="text_parent">Ouder</string>
     <string name="text_profile">Profiel</string>
     <string name="text_predefined_event">Voorgedefinieerde Gebeurtenis</string>

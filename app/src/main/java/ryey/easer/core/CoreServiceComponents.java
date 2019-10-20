@@ -30,7 +30,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.orhanobut.logger.Logger;
 
-import ryey.easer.core.data.ScriptTree;
+import ryey.easer.core.data.LogicGraph;
 import ryey.easer.skills.event.widget.UserActionWidget;
 
 final class CoreServiceComponents {
@@ -38,25 +38,13 @@ final class CoreServiceComponents {
 
 
     public interface LogicManager {
-        void activate(ScriptTree scriptTree);
+        void activate(LogicGraph.LogicNode node);
 
-        void deactivate(ScriptTree scriptTree);
+        void deactivate(LogicGraph.LogicNode node);
 
-        default void activateSuccessors(ScriptTree scriptTree) {
-            for (ScriptTree sub : scriptTree.getSubs()) {
-                if (sub.isActive()) {
-                    activate(sub);
-                }
-            }
-        }
+        void activateSuccessors(LogicGraph.LogicNode node);
 
-        default void deactivateSuccessors(ScriptTree scriptTree) {
-            for (ScriptTree sub : scriptTree.getSubs()) {
-                if (sub.isActive()) {
-                    deactivate(sub);
-                }
-            }
-        }
+        void deactivateSuccessors(LogicGraph.LogicNode node);
     }
 
     static class CoreSkillHelper {

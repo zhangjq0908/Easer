@@ -33,7 +33,7 @@ import ryey.easer.commons.local_skill.eventskill.EventData;
 import ryey.easer.commons.local_skill.eventskill.EventSkill;
 import ryey.easer.commons.local_skill.eventskill.Slot;
 import ryey.easer.core.data.EventStructure;
-import ryey.easer.core.data.ScriptTree;
+import ryey.easer.core.data.LogicGraph;
 import ryey.easer.skills.LocalSkillRegistry;
 
 /*
@@ -47,7 +47,7 @@ import ryey.easer.skills.LocalSkillRegistry;
  */
 class EventLotus extends Lotus {
 
-    private Slot mSlot;
+    private final Slot mSlot;
 
     private final long cooldownInMillisecond;
     private Calendar lastSatisfied;
@@ -55,27 +55,26 @@ class EventLotus extends Lotus {
     private final boolean repeatable;
     private final boolean persistent;
 
-    EventLotus(@NonNull Context context, @NonNull ScriptTree scriptTree,
+    EventLotus(@NonNull Context context, @NonNull LogicGraph.LogicNode node,
                @NonNull CoreServiceComponents.LogicManager logicManager,
                @NonNull AsyncHelper.DelayedLoadProfileJobs jobLP) {
-        super(context, scriptTree, logicManager, jobLP);
+        super(context, node, logicManager, jobLP);
 
-        repeatable = scriptTree.isRepeatable();
-        persistent = scriptTree.isPersistent();
-        mSlot = nodeToSlot(scriptTree);
+        repeatable = script().isRepeatable();
+        persistent = script().isPersistent();
+        mSlot = eventToSlot(script().getEvent());
         mSlot.register(uri);
 
         cooldownInMillisecond = SettingsUtils.coolDownInterval(context) * 1000;
     }
 
-    private <T extends EventData> Slot<T> nodeToSlot(ScriptTree node) {
-        EventStructure scenario = node.getEvent();
+    private <T extends EventData> Slot<T> eventToSlot(EventStructure event) {
         Slot<T> slot;
         //noinspection unchecked
-        T data = (T) scenario.getEventData();
+        T data = (T) event.getEventData();
         //noinspection unchecked
         EventSkill<T> plugin = LocalSkillRegistry.getInstance().event().findSkill(data);
-        if (scenario.isTmpEvent()) {
+        if (event.isTmpEvent()) {
             slot = plugin.slot(context, data);
         } else {
             slot = plugin.slot(context, data, repeatable, persistent);
@@ -110,7 +109,7 @@ class EventLotus extends Lotus {
     protected synchronized void onSatisfied(Bundle extras) {
         if (!repeatable && satisfied)
             return;
-        if (checkAndSetCooldown(scriptTree.getName())) {
+        if (checkAndSetCooldown(script().getName())) {
             super.onSatisfied(extras);
         }
     }
@@ -118,7 +117,7 @@ class EventLotus extends Lotus {
     protected synchronized void onUnsatisfied() {
         if (persistent && satisfied)
             return;
-        if (checkAndSetCooldown(scriptTree.getName())) {
+        if (checkAndSetCooldown(script().getName())) {
             super.onUnsatisfied();
         }
     }

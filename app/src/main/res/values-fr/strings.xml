@@ -47,7 +47,7 @@
     <string name="button_ok">OK</string>
     <string name="text_lack_permission">Certaines compétences n\'ont PAS suffisamment d\'autorisations.</string>
     <string name="text_title">Titre</string>
-    <string name="text_parent_node">Parent</string>
+    <string name="text_predecessor_nodes">Parent</string>
     <string name="text_parent">Parent</string>
     <string name="text_profile">Profil</string>
     <string name="text_predefined_event">Evénément prédéfini</string>

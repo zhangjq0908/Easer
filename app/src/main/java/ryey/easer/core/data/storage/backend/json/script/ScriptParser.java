@@ -21,12 +21,17 @@ package ryey.easer.core.data.storage.backend.json.script;
 
 import android.content.Context;
 
+import androidx.collection.ArraySet;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.Set;
 
 import ryey.easer.BuildConfig;
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
@@ -61,7 +66,24 @@ class ScriptParser implements Parser<ScriptStructure> {
             scriptStructure.setName(jsonObject.getString(C.NAME));
             scriptStructure.setActive(jsonObject.optBoolean(C.ACTIVE, true));
             scriptStructure.setProfileName(jsonObject.optString(C.PROFILE, null));
-            scriptStructure.setParentName(jsonObject.optString(C.AFTER, null));
+            {
+                if (version < C.VERSION_GRAPH_SCRIPT) {
+                    if (jsonObject.has(C.AFTER)) {
+                        String parent = jsonObject.getString(C.AFTER);
+                        Set<String> predecessors = new ArraySet<>(Collections.singletonList(parent));
+                        scriptStructure.setPredecessors(predecessors);
+                    }
+                } else {
+                    JSONArray arrayPredecessors = jsonObject.optJSONArray(C.AFTER);
+                    if (arrayPredecessors != null) {
+                        Set<String> predecessors = new ArraySet<>(arrayPredecessors.length());
+                        for (int i = 0; i < arrayPredecessors.length(); i++) {
+                            predecessors.add(arrayPredecessors.getString(i));
+                        }
+                        scriptStructure.setPredecessors(predecessors);
+                    }
+                }
+            }
             if (version < C.VERSION_USE_SCENARIO) { // Can be removed (because this is covered by the else statement)
                 EventData eventData = parse_eventData(jsonObject.getJSONObject(C.TRIG), version);
                 scriptStructure.setEventData(eventData);

@@ -37,11 +37,10 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.orhanobut.logger.Logger;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Objects;
+import java.util.Set;
 
-import ryey.easer.core.data.ScriptTree;
+import ryey.easer.core.data.LogicGraph;
 import ryey.easer.core.data.storage.ScriptDataStorage;
 import ryey.easer.core.log.ActivityLogService;
 
@@ -63,8 +62,8 @@ public class EHService extends Service implements CoreServiceComponents.LogicMan
      * key: Script (node) name
      * value: lotus
      */
-    Map<String, CountedLotus> lotusMap = new HashMap<>();
-    List<ScriptTree> scriptTreeList;
+    Map<String, CountedLotus> lotusMap = new HashMap<>(); //TODO: merge into LogicGraph ?
+    LogicGraph logicGraph;
 
     /**
      * Necessary objects for the correct functioning of EHService.
@@ -179,8 +178,8 @@ public class EHService extends Service implements CoreServiceComponents.LogicMan
         jobCH.doAfter(binder -> {
             Logger.v(TAG + "triggers reloading");
             binder.reload();
-            for (ScriptTree scriptTree : scriptTreeList) {
-                CountedLotus countedLotus = lotusMap.get(scriptTree.getName());
+            for (LogicGraph.LogicNode node : logicGraph.initialNodes()) {
+                CountedLotus countedLotus = lotusMap.get(node.id);
                 if (countedLotus != null && countedLotus.getCount() > 0) {
                     mCancelTriggers();
                     break;
@@ -193,8 +192,8 @@ public class EHService extends Service implements CoreServiceComponents.LogicMan
 
     private void mCancelTriggers() {
         jobCH.doAfter(binder -> {
-            for (ScriptTree scriptTree : scriptTreeList) {
-                CountedLotus countedLotus = lotusMap.get(scriptTree.getName());
+            for (LogicGraph.LogicNode node : logicGraph.initialNodes()) {
+                CountedLotus countedLotus = lotusMap.get(node.id);
                 if (countedLotus != null && countedLotus.getCount() > 0) {
                     countedLotus.decCount();
                 }
@@ -209,12 +208,12 @@ public class EHService extends Service implements CoreServiceComponents.LogicMan
         final String TAG = "[EHService:mSetTriggers] ";
         Logger.v(TAG + "setting triggers");
         ScriptDataStorage storage = new ScriptDataStorage(this);
-        scriptTreeList = storage.getScriptTrees();
-        for (ScriptTree script : scriptTreeList) { //TODO?: Move this to `FakeRootLotus`
-            Logger.v(TAG + "setting trigger for <%s>", script.getName());
-            if (script.isActive()) {
-                activate(script);
-                Logger.v(TAG + "trigger for script node <%s> is set", script.getName());
+        logicGraph = storage.getLogicGraph();
+        for (LogicGraph.LogicNode node : logicGraph.initialNodes()) {
+            Logger.v(TAG + "setting trigger for <%s>", node.id);
+            if (node.active) {
+                activate(node);
+                Logger.v(TAG + "trigger for script node <%s> is set", node.id);
             }
         }
         Logger.d(TAG + "triggers have been set");
@@ -226,19 +225,42 @@ public class EHService extends Service implements CoreServiceComponents.LogicMan
     }
 
     @Override
-    public void activate(ScriptTree scriptTree) {
-        CountedLotus countedLotus = lotusMap.get(scriptTree.getName());
+    public void activate(LogicGraph.LogicNode node) {
+        CountedLotus countedLotus = lotusMap.get(node.id);
         if (countedLotus == null) {
-            countedLotus = new CountedLotus(Lotus.createLotus(this, scriptTree, this, jobCH, jobLP));
-            lotusMap.put(scriptTree.getName(), countedLotus);
+            countedLotus = new CountedLotus(Lotus.createLotus(this, node, this, jobCH, jobLP));
+            lotusMap.put(node.id, countedLotus);
         }
         countedLotus.incCount();
     }
 
     @Override
-    public void deactivate(ScriptTree scriptTree) {
-        CountedLotus countedLotus = Objects.requireNonNull(lotusMap.get(scriptTree.getName()));
-        countedLotus.decCount();
+    public void deactivate(LogicGraph.LogicNode node) {
+        CountedLotus countedLotus = lotusMap.get(node.id);
+        if (countedLotus != null)
+            countedLotus.decCount();
+    }
+
+    @Override
+    public void activateSuccessors(LogicGraph.LogicNode node) {
+        Set<LogicGraph.LogicNode> successors = logicGraph.successors(node);
+        if (successors != null) {
+            for (LogicGraph.LogicNode successor : successors) {
+                if (successor.active)
+                    activate(successor);
+            }
+        }
+    }
+
+    @Override
+    public void deactivateSuccessors(LogicGraph.LogicNode node) {
+        Set<LogicGraph.LogicNode> successors = logicGraph.successors(node);
+        if (successors != null) {
+            for (LogicGraph.LogicNode successor : successors) {
+                if (successor.active)
+                    deactivate(successor);
+            }
+        }
     }
 
     public class EHBinder extends Binder {

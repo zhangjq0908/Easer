@@ -47,7 +47,7 @@
     <string name="button_ok">OK</string>
     <string name="text_lack_permission">Easer har ikke alle tilgangene det trenger.</string>
     <string name="text_title">Tittel</string>
-    <string name="text_parent_node">Overordnet</string>
+    <string name="text_predecessor_nodes">Overordnet</string>
     <string name="text_parent">Overordnet</string>
     <string name="text_profile">Profil</string>
     <string name="text_predefined_event">Forhåndsdefinert hendelse</string>

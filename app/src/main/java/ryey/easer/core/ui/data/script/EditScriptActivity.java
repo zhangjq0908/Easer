@@ -32,9 +32,17 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.collection.ArraySet;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
+
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Set;
 
 import ryey.easer.R;
 import ryey.easer.commons.C;
@@ -56,7 +64,7 @@ import ryey.easer.core.ui.data.event.EditEventDataFragment;
 /*
  * TODO: change the layout
  */
-public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure, ScriptDataStorage> {
+public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure, ScriptDataStorage> implements PickPredecessorsDialogFragment.OnChosenListener {
 
     private static final int REQ_CODE = 1;
 
@@ -67,7 +75,9 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
     EditEventDataFragment editEventDataFragment;
 
     EditText mEditText_name = null;
-    DataSelectSpinnerWrapper sw_parent;
+
+    PredecessorManager predecessorManager;
+
     DataSelectSpinnerWrapper sw_profile;
     boolean isActive = true;
     RadioGroup rg_mode;
@@ -121,12 +131,7 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
     protected void init() {
         mEditText_name = findViewById(R.id.editText_script_title);
 
-        sw_parent = new DataSelectSpinnerWrapper(this, (Spinner) findViewById(R.id.spinner_parent));
-        sw_parent
-                .beginInit()
-                .setAllowEmpty(true)
-                .fillData(new ScriptDataStorage(this).list())
-                .finalizeInit();
+        predecessorManager = new PredecessorManager(this, findViewById(R.id.chip_group_predecessors));
 
         sw_profile = new DataSelectSpinnerWrapper(this, (Spinner) findViewById(R.id.spinner_profile));
         sw_profile
@@ -241,8 +246,9 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         mEditText_name.setText(oldName);
         String profile = script.getProfileName();
         sw_profile.setSelection(profile);
-        String parent = script.getParentName();
-        sw_parent.setSelection(parent);
+
+        predecessorManager.addExcluded(script.getName());
+        predecessorManager.setChosenPredecessors(script.getPredecessors());
 
         mSwitch_reverse.setChecked(script.isReverse());
 
@@ -280,7 +286,8 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         String profile = sw_profile.getSelection();
         script.setProfileName(profile);
         script.setActive(isActive);
-        script.setParentName(sw_parent.getSelection());
+
+        script.setPredecessors(predecessorManager.getChosenPredecessors());
 
         script.setReverse(mSwitch_reverse.isChecked());
 
@@ -310,5 +317,58 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
             }
         } else
             super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onPredecessorsChosen(@NotNull Collection<String> chosenPredecessors) {
+        predecessorManager.setChosenPredecessors(chosenPredecessors);
+    }
+
+    static class PredecessorManager {
+
+        private static final String TAG_DIALOG = "PickPredecessor";
+
+        private final EditScriptActivity activity;
+        private final ChipGroup chipGroup;
+
+        private Set<String> chosenPredecessors;
+        private final Set<String> excludedPredecessors = new ArraySet<>();
+
+        PredecessorManager(EditScriptActivity activity, ChipGroup chipGroup) {
+            this.activity = activity;
+            this.chipGroup = chipGroup;
+            chipGroup.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PickPredecessorsDialogFragment dialog = PickPredecessorsDialogFragment.Companion.
+                            createInstance(chosenPredecessors, excludedPredecessors);
+                    dialog.show(activity.getSupportFragmentManager(), TAG_DIALOG);
+                }
+            });
+        }
+
+        public void setChosenPredecessors(Collection<String> chosenPredecessors) {
+            chipGroup.removeAllViews();
+            this.chosenPredecessors = new ArraySet<>(chosenPredecessors);
+            for (String predecessor : chosenPredecessors) {
+                Chip chip = new Chip(activity);
+                chip.setText(predecessor);
+                chip.setClickable(false);
+                chipGroup.addView(chip);
+            }
+        }
+
+        public Set<String> getChosenPredecessors() {
+            return chosenPredecessors;
+        }
+
+        public void addExcluded(String excluded) {
+            excludedPredecessors.add(excluded);
+        }
+
+        public void removeExcluded(String excluded) {
+            excludedPredecessors.remove(excluded);
+        }
+
     }
 }

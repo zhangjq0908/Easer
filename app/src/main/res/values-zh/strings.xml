@@ -11,7 +11,7 @@
     <string name="service_indicator_positive">運行中</string>
     <string name="button_cancel">取消</string>
     <string name="button_ok">確認</string>
-    <string name="text_parent_node">父節點</string>
+    <string name="text_predecessor_nodes">前驅節點</string>
     <string name="text_parent">父</string>
     <string name="text_title">名稱</string>
     <string name="title_about">關於</string>

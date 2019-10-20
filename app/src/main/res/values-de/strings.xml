@@ -38,7 +38,7 @@
     <string name="button_ok">OK</string>
     <string name="text_lack_permission">Einige Plugins haben NICHT alle notwendigen Berechtigungen.</string>
     <string name="text_title">Titel</string>
-    <string name="text_parent_node">Übergeordnet</string>
+    <string name="text_predecessor_nodes">Übergeordnet</string>
     <string name="text_parent">Übergeordnet</string>
     <string name="text_profile">Profil</string>
     <string name="text_predefined_event">Vordefiniertes Ereignis</string>

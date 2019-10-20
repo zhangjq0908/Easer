@@ -68,7 +68,7 @@
     <string name="button_read_next_time">次回、読む</string>
     <string name="button_understand">理解しました</string>
     <string name="text_lack_permission">一部のスキルは必要なアクセス許可がありません。</string>
-    <string name="text_parent_node">親</string>
+    <string name="text_predecessor_nodes">親</string>
     <string name="text_predefined_event">定義済みのイベント</string>
     <string name="text_inline_event">インラインイベント</string>
     <string name="text_use_condition">条件を使用する</string>

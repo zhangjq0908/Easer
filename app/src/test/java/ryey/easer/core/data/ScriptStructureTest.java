@@ -19,9 +19,13 @@
 
 package ryey.easer.core.data;
 
+import androidx.collection.ArraySet;
+
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import java.util.Arrays;
 
 import ryey.easer.commons.C;
 import ryey.easer.commons.local_skill.eventskill.EventData;
@@ -69,9 +73,10 @@ public class ScriptStructureTest {
 
     @Test
     public void setAndGetParentName() throws Exception {
-        assertEquals(scriptStructure.getParentName(), null);
-        scriptStructure.setParentName(parentName);
-        assertEquals(scriptStructure.getParentName(), parentName);
+        assertEquals(scriptStructure.getPredecessors().size(), 0);
+        scriptStructure.setPredecessors(new ArraySet<>(Arrays.asList(parentName)));
+        assertEquals(scriptStructure.getPredecessors().size(), 1);
+        assertTrue(scriptStructure.getPredecessors().contains(parentName));
     }
 
     @Test
