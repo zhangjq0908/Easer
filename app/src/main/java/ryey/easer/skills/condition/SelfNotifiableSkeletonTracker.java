@@ -27,6 +27,7 @@ import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.PatternMatcher;
 
+import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
@@ -93,5 +94,17 @@ public abstract class SelfNotifiableSkeletonTracker<D extends ConditionData> ext
     protected void onNegativeNotified() {
         Logger.v("onNegativeNotified");
         newSatisfiedState(false);
+    }
+
+    @Override
+    @CallSuper
+    public void start() {
+        context.registerReceiver(mReceiver, filter);
+    }
+
+    @Override
+    @CallSuper
+    public void stop() {
+        context.unregisterReceiver(mReceiver);
     }
 }

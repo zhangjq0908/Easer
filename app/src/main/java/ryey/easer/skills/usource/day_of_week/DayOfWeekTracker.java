@@ -72,11 +72,13 @@ public class DayOfWeekTracker extends SelfNotifiableSkeletonTracker<DayOfWeekUSo
 
     @Override
     public void start() {
+        super.start();
         Utils.scheduleAlarmEveryday(mAlarmManager, notifySelfIntent_positive);
     }
 
     @Override
     public void stop() {
+        super.stop();
         mAlarmManager.cancel(notifySelfIntent_positive);
     }
 

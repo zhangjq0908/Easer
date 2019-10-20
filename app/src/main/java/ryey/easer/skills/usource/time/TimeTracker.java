@@ -78,6 +78,7 @@ public class TimeTracker extends SelfNotifiableSkeletonTracker<TimeUSourceData> 
 
     @Override
     public void start() {
+        super.start();
         Calendar[] calendars = calendarOfToday(data.time);
         if (calendars[0].before(calendars[2]))
             calendars[0].add(Calendar.DAY_OF_YEAR, 1);
@@ -89,6 +90,7 @@ public class TimeTracker extends SelfNotifiableSkeletonTracker<TimeUSourceData> 
 
     @Override
     public void stop() {
+        super.stop();
         mAlarmManager.cancel(notifySelfIntent_positive);
         mAlarmManager.cancel(notifySelfIntent_negative);
     }

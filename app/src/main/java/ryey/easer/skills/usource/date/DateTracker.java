@@ -50,12 +50,14 @@ public class DateTracker extends SelfNotifiableSkeletonTracker<DateUSourceData> 
 
     @Override
     public void start() {
+        super.start();
         mAlarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, data.date.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY, notifySelfIntent_positive);
     }
 
     @Override
     public void stop() {
+        super.stop();
         mAlarmManager.cancel(notifySelfIntent_positive);
         mAlarmManager.cancel(notifySelfIntent_negative);
     }
