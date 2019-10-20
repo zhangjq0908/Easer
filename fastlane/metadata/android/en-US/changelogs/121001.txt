@@ -1,0 +1,6 @@
+Graph structure for Script logic && Add ToastOperation && Fixes
+
+* Fully support graph data structure for script logic
+* Add ToastOperation
+* Support Dynamics on network and http Operations
+* Fix SelfNotifiableSkeletonTracker not really listening (affecting Date, Time & DayOfWeek Condition)
