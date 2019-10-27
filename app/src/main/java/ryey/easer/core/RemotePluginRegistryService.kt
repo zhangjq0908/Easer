@@ -47,8 +47,8 @@ class RemotePluginRegistryService : Service() {
 
     private val mReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
+            Logger.d("[RemotePluginRegistryService][onReceive] %s", intent)
             if (RemotePlugin.ACTION_RESPONSE_PLUGIN_INFO == intent.action) {
-                Logger.d("[RemotePluginRegistryService][onReceive] %s", intent)
                 val packageName = intent.getStringExtra(RemotePlugin.EXTRA_PACKAGE_NAME)
                 val pluginId = intent.getStringExtra(RemotePlugin.EXTRA_PLUGIN_ID)
                 val pluginName = intent.getStringExtra(RemotePlugin.EXTRA_PLUGIN_NAME)
@@ -125,6 +125,7 @@ class RemotePluginRegistryService : Service() {
             Logger.d("%s %s", ri, ri.activityInfo.packageName)
             val intent = Intent(RemotePlugin.ACTION_REQUEST_PLUGIN_INFO)
             intent.setPackage(ri.activityInfo.packageName)
+            intent.putExtra(RemotePlugin.EXTRA_REPLY_PACKAGE, packageName)
             sendBroadcast(intent)
         }
     }
@@ -140,13 +141,17 @@ class RemotePluginRegistryService : Service() {
             val rMessenger = message.replyTo
             if (message.what == C.MSG_FIND_PLUGIN) {
                 val id = message.data.getString(C.EXTRA_PLUGIN_ID)!!
+                val jobId: ParcelUuid = message.data.getParcelable(C.EXTRA_MESSAGE_ID)!!
                 val reply = Message.obtain()
                 reply.what = C.MSG_FIND_PLUGIN_RESPONSE
+                reply.data.putParcelable(C.EXTRA_MESSAGE_ID, jobId)
                 reply.data.putParcelable(C.EXTRA_PLUGIN_INFO, service.infoForId(id))
                 rMessenger.send(reply)
             } else if (message.what == C.MSG_CURRENT_OPERATION_PLUGIN_LIST) {
+                val jobId: ParcelUuid = message.data.getParcelable(C.EXTRA_MESSAGE_ID)!!
                 val reply = Message.obtain()
                 reply.what = C.MSG_CURRENT_OPERATION_PLUGIN_LIST_RESPONSE
+                reply.data.putParcelable(C.EXTRA_MESSAGE_ID, jobId)
                 reply.data.putParcelableArrayList(C.EXTRA_PLUGIN_LIST, ArrayList<RemoteOperationPluginInfo>(service.operationPluginInfos))
                 rMessenger.send(reply)
             } else if (message.what == C.MSG_PARSE_OPERATION_DATA) {
@@ -201,9 +206,11 @@ class RemotePluginRegistryService : Service() {
             } else if (message.what == C.MSG_EDIT_OPERATION_DATA) {
                 val id = message.data.getString(C.EXTRA_PLUGIN_ID)!!
                 val pluginInfo = service.infoForId(id)!!
+                val jobId: ParcelUuid = message.data.getParcelable(C.EXTRA_MESSAGE_ID)!!
                 val bundle = Bundle()
                 bundle.putString(C.EXTRA_PLUGIN_PACKAGE, pluginInfo.packageName)
                 bundle.putString(C.EXTRA_PLUGIN_EDIT_DATA_ACTIVITY, pluginInfo.activityEditData)
+                bundle.putParcelable(C.EXTRA_MESSAGE_ID, jobId)
                 val reply = Message.obtain()
                 reply.what = C.MSG_EDIT_OPERATION_DATA_RESPONSE
                 reply.data = bundle
