@@ -37,6 +37,7 @@ import android.os.Environment;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.TwoStatePreference;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -294,11 +295,15 @@ public class SettingsActivity extends CommonBaseActivity implements SharedPrefer
                 }
             });
 
-            findPreference(getString(R.string.key_pref_show_notification))
-                    .setEnabled(Build.VERSION.SDK_INT <= Build.VERSION_CODES.O);
-
-            findPreference(getString(R.string.key_pref_foreground))
-                    .setEnabled(Build.VERSION.SDK_INT <= Build.VERSION_CODES.O);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                for (int key_id : new int[]{
+                        R.string.key_pref_show_notification,
+                        R.string.key_pref_foreground}) {
+                    Preference pref = findPreference(getString(key_id));
+                    pref.setEnabled(false);
+                    ((TwoStatePreference) pref).setChecked(true);
+                }
+            }
 
             ((ListPreference) findPreference(getString(R.string.key_pref_locale_lang)))
                     .setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
