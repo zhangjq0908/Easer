@@ -200,6 +200,7 @@ class RemotePluginRegistryService : Service() {
                 val pluginInfo = service.infoForId(id)!!
                 val intent = Intent(RemotePlugin.OperationPlugin.ACTION_TRIGGER)
                 intent.`package` = pluginInfo.packageName
+                intent.putExtra(RemotePlugin.EXTRA_REPLY_PACKAGE, service.packageName)
                 intent.putExtra(RemotePlugin.EXTRA_DATA, data)
                 intent.putExtra(RemotePlugin.EXTRA_MESSAGE_ID, jobId)
                 service.sendBroadcast(intent)
