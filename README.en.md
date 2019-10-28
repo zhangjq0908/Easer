@@ -10,6 +10,8 @@ Ease your life by automatically performing routine actions.
 
 Introduction
 -----
+Make your smart phone smarter: tell it what to do under different situations. It can handle Events, Conditions, and combine events to new custom complex events.  
+
 This document centers on development-related things of Easer.
 
 If you are looking for the description of Easer's functionality, please refer to [the website](https://renyuneyun.github.io/Easer/en/).
