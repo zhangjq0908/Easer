@@ -54,7 +54,7 @@ class DataCollectionFragment: Fragment() {
         return view_pager.currentItem
     }
 
-    class PagerAdapter(val resources: Resources, fm: FragmentManager?) : FragmentPagerAdapter(fm) {
+    class PagerAdapter(val resources: Resources, fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
         override fun getItem(position: Int): Fragment {
             if (position >= count) {

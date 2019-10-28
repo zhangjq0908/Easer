@@ -34,6 +34,7 @@ public class RemotePlugin {
     public static final String ACTION_REQUEST_PARSE_DATA = "ryey.easer.remote_plugin.action.REQUEST.PARSE_DATA";
     public static final String ACTION_RESPONSE_PARSE_DATA = "ryey.easer.remote_plugin.action.RESPONSE.PARSE_DATA";
 
+    public static final String EXTRA_REPLY_PACKAGE = "ryey.easer.remote_plugin.extra.REPLY_PACKAGE";
     public static final String EXTRA_MESSAGE_ID = "ryey.easer.remote_plugin.extra.MESSAGE_ID";
     public static final String EXTRA_PACKAGE_NAME = "ryey.easer.remote_plugin.extra.PACKAGE_NAME";
     public static final String EXTRA_PLUGIN_ID = "ryey.easer.remote_plugin.extra.PLUGIN_ID";

@@ -44,6 +44,8 @@ public class SettingsUtils {
     }
 
     public static boolean showNotification(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            return true;
         return pref(context).getBoolean(context.getString(R.string.key_pref_show_notification), true);
     }
 

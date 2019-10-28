@@ -32,6 +32,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.collection.ArraySet;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -331,7 +332,7 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         private final EditScriptActivity activity;
         private final ChipGroup chipGroup;
 
-        private Set<String> chosenPredecessors;
+        private final Set<String> chosenPredecessors = new ArraySet<>();
         private final Set<String> excludedPredecessors = new ArraySet<>();
 
         PredecessorManager(EditScriptActivity activity, ChipGroup chipGroup) {
@@ -347,9 +348,10 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
             });
         }
 
-        public void setChosenPredecessors(Collection<String> chosenPredecessors) {
+        public void setChosenPredecessors(@NonNull Collection<String> chosenPredecessors) {
             chipGroup.removeAllViews();
-            this.chosenPredecessors = new ArraySet<>(chosenPredecessors);
+            this.chosenPredecessors.clear();
+            this.chosenPredecessors.addAll(chosenPredecessors);
             for (String predecessor : chosenPredecessors) {
                 Chip chip = new Chip(activity);
                 chip.setText(predecessor);
@@ -358,6 +360,7 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
             }
         }
 
+        @NonNull
         public Set<String> getChosenPredecessors() {
             return chosenPredecessors;
         }
