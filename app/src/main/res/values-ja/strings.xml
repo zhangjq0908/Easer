@@ -197,4 +197,5 @@
     <string name="title_select_condition">条件の選択</string>
     <string name="button_see_detail">詳細を参照</string>
     <string name="title_data_collection">データ</string>
+    <string name="message_future_change_0_8">スクリプトのツリービューは v0.8 で削除されます。ピボットが、それに向けて良いビューを提供します。</string>
 </resources>

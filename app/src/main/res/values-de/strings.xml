@@ -187,4 +187,5 @@
     <string name="title_select_condition">Wählen Sie einen Zustand</string>
     <string name="button_see_detail">Details ansehen</string>
     <string name="title_data_collection">Daten</string>
+    <string name="message_future_change_0_8">Die Baumansicht der Skripte wird in v0.8 entfernt. Die Pivot-Tabelle bietet eine bessere Sicht darauf.</string>
 </resources>
