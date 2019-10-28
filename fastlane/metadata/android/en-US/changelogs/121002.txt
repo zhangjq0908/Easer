@@ -1,0 +1,7 @@
+Bug fixes && i18n update
+
+* Fix RemotePlugin not correctly discovered
+* Prevent Android 8 users from disabling foreground and notification setting
+* Fix crash related to predecessor (of Script) empty
+* Update gradle and dependencies
+* I18n update: Japanese, Swedish & German
