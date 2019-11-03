@@ -25,6 +25,7 @@ import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.collection.ArraySet;
 
@@ -90,7 +91,7 @@ public class SkillSettingsPreferenceFragment extends PreferenceFragment implemen
     }
 
     @Override
-    public void onListObtained(Set<RemoteOperationPluginInfo> operationPluginInfos) {
+    public void onListObtained(@NonNull Set<RemoteOperationPluginInfo> operationPluginInfos) {
         PreferenceCategory preferenceCategory;
         preferenceCategory = (PreferenceCategory) getPreferenceScreen().findPreference(getString(R.string.key_pref_remote_operation_plugins));
         for (RemotePluginInfo pluginInfo : operationPluginInfos) {

@@ -51,6 +51,8 @@ import ryey.easer.remote_plugin.RemoteOperationData;
 /**
  * This class is meant to help the communication to remote plugins.
  * It communicates with {@link RemotePluginRegistryService}, exposing relevant methods.
+ *
+ * TODO: having a `SkillInfoSetSnapshot`?
  */
 public class RemotePluginCommunicationHelper {
 
@@ -111,7 +113,7 @@ public class RemotePluginCommunicationHelper {
         delayedTaskUntilConnectedWrapper.doAfterConnected(task);
     }
 
-    private final AsyncHelper.CallbackStore<OnPluginFoundCallback> onPluginFoundCallbackCallbackStore = new AsyncHelper.CallbackStore<>(new ArrayMap<>());
+    private final AsyncHelper.CallbackStore<OnFindPluginResultCallback> onPluginFoundCallbackCallbackStore = new AsyncHelper.CallbackStore<>(new ArrayMap<>());
     private final AsyncHelper.CallbackStore<OnOperationPluginListObtainedCallback> onOperationPluginListObtainedCallbackCallbackStore = new AsyncHelper.CallbackStore<>(new ArrayMap<>());
     private final AsyncHelper.CallbackStore<OnEditDataIntentObtainedCallback> onEditDataIntentObtainedCallbackCallbackStore = new AsyncHelper.CallbackStore<>(new ArrayMap<>());
     private final AsyncHelper.CallbackStore<OnOperationDataParsedCallback> onOperationDataParsedCallbackCallbackStore = new AsyncHelper.CallbackStore<>(new ArrayMap<>());
@@ -151,8 +153,8 @@ public class RemotePluginCommunicationHelper {
 //        });
 //    }
 
-    synchronized public void asyncFindPlugin(final String id, OnPluginFoundCallback onPluginFoundCallback) {
-        ParcelUuid uuid = onPluginFoundCallbackCallbackStore.putCallback(onPluginFoundCallback);
+    synchronized public void asyncFindPlugin(final String id, OnFindPluginResultCallback onFindPluginResultCallback) {
+        ParcelUuid uuid = onPluginFoundCallbackCallbackStore.putCallback(onFindPluginResultCallback);
         doAfterConnect(new Callable<Void>() {
             @Override
             public Void call() throws Exception {
@@ -255,9 +257,9 @@ public class RemotePluginCommunicationHelper {
                 RemotePluginInfo info = msg.getData().getParcelable(C.EXTRA_PLUGIN_INFO);
                 ParcelUuid uuid = msg.getData().getParcelable(C.EXTRA_MESSAGE_ID);
                 assert uuid != null;
-                OnPluginFoundCallback callback = ref.get().onPluginFoundCallbackCallbackStore.extractCallBack(uuid);
+                OnFindPluginResultCallback callback = ref.get().onPluginFoundCallbackCallbackStore.extractCallBack(uuid);
                 if (callback != null)
-                    callback.onPluginFound(info);
+                    callback.onFindPluginResult(info);
             } else if (msg.what == C.MSG_CURRENT_OPERATION_PLUGIN_LIST_RESPONSE) {
                 msg.getData().setClassLoader(RemoteOperationPluginInfo.class.getClassLoader()); // Required (for strange reason); otherwise ClassNotFound
                 ArrayList<RemoteOperationPluginInfo> infoList = msg.getData().getParcelableArrayList(C.EXTRA_PLUGIN_LIST);
@@ -298,11 +300,11 @@ public class RemotePluginCommunicationHelper {
     }
 
     public interface OnOperationPluginListObtainedCallback {
-        void onListObtained(Set<RemoteOperationPluginInfo> operationPluginInfos);
+        void onListObtained(@NonNull Set<RemoteOperationPluginInfo> operationPluginInfos);
     }
 
-    public interface OnPluginFoundCallback {
-        void onPluginFound(@Nullable RemotePluginInfo info);
+    public interface OnFindPluginResultCallback {
+        void onFindPluginResult(@Nullable RemotePluginInfo info);
     }
 
     public interface OnOperationDataParsedCallback {

@@ -30,8 +30,8 @@ import androidx.annotation.Nullable;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.InvalidDataInputException;
-import ryey.easer.skills.SkillViewFragment;
 import ryey.easer.commons.local_skill.ValidData;
+import ryey.easer.skills.SkillViewFragment;
 
 public class WidgetSkillViewFragment extends SkillViewFragment<WidgetEventData> {
 

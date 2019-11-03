@@ -86,6 +86,8 @@
     <string name="text_volatile">Volatile</string>
     <string name="text_persistent">Persistent</string>
 
+    <string name="text_unknown_skill">[Unknown skill]</string>
+
     <string name="text_dynamics">Dynamics</string>
     <string name="text_placeholder">Placeholder</string>
 

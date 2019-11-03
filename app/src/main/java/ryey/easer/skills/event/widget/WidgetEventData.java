@@ -29,8 +29,8 @@ import org.json.JSONObject;
 
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.dynamics.Dynamics;
-import ryey.easer.skills.event.AbstractEventData;
 import ryey.easer.plugin.PluginDataFormat;
+import ryey.easer.skills.event.AbstractEventData;
 
 public class WidgetEventData extends AbstractEventData {
 

@@ -51,15 +51,15 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 public class OperationSelectorFragment extends DialogFragment {
 
-    SelectedListener selectedListener = null;
-    Map<Class<? extends OperationSkill>, Integer> addedPlugins = new ArrayMap<>();
+    private SelectedListener selectedListener = null;
+    private Map<Class<? extends OperationSkill>, Integer> addedPlugins = new ArrayMap<>();
 
-    List<OperationPluginItemWrapper> availableLocalPluginList;
+    private List<OperationPluginItemWrapper> availableLocalPluginList;
 
-    RemotePluginCommunicationHelper helper;
+    private RemotePluginCommunicationHelper helper;
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
     }
 
@@ -118,7 +118,7 @@ public class OperationSelectorFragment extends DialogFragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         helper.asyncCurrentOperationPluginList(new RemotePluginCommunicationHelper.OnOperationPluginListObtainedCallback() {
             @Override
-            public void onListObtained(Set<RemoteOperationPluginInfo> operationPluginInfos) {
+            public void onListObtained(@NonNull Set<RemoteOperationPluginInfo> operationPluginInfos) {
                 StickyListHeadersListView list = view.findViewById(android.R.id.list);
                 List<OperationPluginItemWrapper> descList = new ArrayList<>(availableLocalPluginList);
                 for (RemoteOperationPluginInfo remotePluginInfo : operationPluginInfos) {
