@@ -19,12 +19,11 @@
 
 package ryey.easer.core.ui
 
+import android.app.Activity
 import android.content.*
 import android.os.Bundle
 import android.os.IBinder
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.ColorInt
@@ -35,14 +34,17 @@ import de.blox.graphview.*
 import de.blox.graphview.layered.SugiyamaAlgorithm
 import de.blox.graphview.layered.SugiyamaConfiguration
 import ryey.easer.R
+import ryey.easer.core.AsyncHelper
 import ryey.easer.core.EHService
 import ryey.easer.core.Lotus
 import ryey.easer.core.data.LogicGraph
 import ryey.easer.core.data.ScriptStructure
 import ryey.easer.core.data.storage.ScriptDataStorage
+import ryey.easer.core.ui.data.EditDataProto
+import ryey.easer.core.ui.data.profile.EditProfileActivity
+import ryey.easer.core.ui.data.script.EditScriptActivity
 import java.util.*
 import kotlin.collections.HashMap
-
 
 class PivotFragment: Fragment() {
 
@@ -59,6 +61,7 @@ class PivotFragment: Fragment() {
 
     var adapter: BaseGraphAdapter<ViewHolder>? = null
 
+    internal var loadProfileJobWrapper = AsyncHelper.DelayedLoadProfileJobsWrapper()
     private val serviceConnection = object: ServiceConnection{
         override fun onServiceDisconnected(name: ComponentName?) {
             binder = null
@@ -71,6 +74,8 @@ class PivotFragment: Fragment() {
         }
     }
     private var binder: EHService.EHBinder? = null
+
+    var currentView: View? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         activity?.title = getString(R.string.title_pivot)
@@ -124,12 +129,15 @@ class PivotFragment: Fragment() {
                     } else {
                         R.string.title_event
                     })
+
+                    viewHolder.setScriptContextMenu(activity!!.menuInflater, data.hasSuccessors)
                 } else {
                     viewHolder as SimpleViewHolder
                     viewHolder.layoutScriptExtra.visibility = View.GONE
                     if (data is ProfileInfo) {
                         viewHolder.tvName.text = data.name
                         viewHolder.setBackgroundColor(resources.getColor(R.color.nodeBackground_Profile))
+                        viewHolder.setProfileContextMenu(activity!!.menuInflater)
                     } else if (data is ServiceStart) {
                         viewHolder.tvName.text = getString(data.nameId())
                         viewHolder.setBackgroundColor(resources.getColor(R.color.nodeBackground_VirtualRoot))
@@ -149,13 +157,59 @@ class PivotFragment: Fragment() {
     override fun onResume() {
         super.onResume()
         LocalBroadcastManager.getInstance(context!!).registerReceiver(lotusStatusReceiver, lotusStateIntentFilter)
-        context!!.bindService(Intent(context, EHService::class.java), serviceConnection, 0)
     }
 
     override fun onPause() {
         super.onPause()
         LocalBroadcastManager.getInstance(context!!).unregisterReceiver(lotusStatusReceiver)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        context.bindService(Intent(context, EHService::class.java), serviceConnection, 0)
+        loadProfileJobWrapper.bindService(context)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        loadProfileJobWrapper.unbindService(context!!)
         context!!.unbindService(serviceConnection)
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        val name: String? = {
+            val tvName: TextView? = currentView?.findViewById(R.id.name)
+            tvName?.text.toString()
+        }()
+        when (item.itemId) {
+            R.id.action_add_successor_script -> {
+                EditDataProto.addScript(this, Intent(activity, EditScriptActivity::class.java), REQUEST_CODE, name!!)
+                return true
+            }
+            R.id.action_edit_script -> {
+                EditDataProto.edit(this, Intent(activity, EditScriptActivity::class.java), REQUEST_CODE, name!!)
+                return true
+            }
+            R.id.action_delete_script -> {
+                EditDataProto.delete(this, Intent(activity, EditScriptActivity::class.java), REQUEST_CODE, name!!)
+                return true
+            }
+            R.id.action_edit_profile -> {
+                EditDataProto.edit(this, Intent(activity, EditProfileActivity::class.java), REQUEST_CODE, name!!)
+                return true
+            }
+            R.id.action_trigger_profile -> {
+                loadProfileJobWrapper.triggerProfile(name!!)
+                return true
+            }
+            else -> return false
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            redrawGraph()
+        }
     }
 
     fun updateNodeStatus(id: String, satisfied: Boolean) {
@@ -166,6 +220,7 @@ class PivotFragment: Fragment() {
     }
 
     private fun updateNodeStatus(node: Node, satisfied: Boolean?) {
+        //TODO: partial update (requires upstream library support)
         redrawGraph()
     }
 
@@ -202,6 +257,8 @@ class PivotFragment: Fragment() {
     companion object {
         val lotusStateIntentFilter = IntentFilter(Lotus.ACTION_LOTUS_SATISFACTION_CHANGED)
 
+        val REQUEST_CODE = 10
+
         fun convertToGraph(logicGraph: LogicGraph, statusMap: Map<String, Boolean>?): Pair<Graph, Map<String, Node>> {
             val graph = Graph()
             val nodeMap = HashMap<String, Node>()
@@ -209,7 +266,7 @@ class PivotFragment: Fragment() {
             val queue = LinkedList<LogicGraph.LogicNode>()
 
             fun newNode(logicNode: LogicGraph.LogicNode): Node {
-                val checkpoint = Checkpoint.fromScript(logicNode.script)
+                val checkpoint = Checkpoint.fromScript(logicNode.script, (logicGraph.successors(logicNode)?.size ?: 0) > 0)
                 checkpoint.satisfied = statusMap?.get(checkpoint.name)
                 val node = Node(checkpoint)
                 graph.addNode(node)
@@ -253,7 +310,7 @@ class PivotFragment: Fragment() {
      *
      * TODO: Convert relevant interfaces to Kotlin so that this class can be written in kotlin
      */
-    class Checkpoint(val name: String, val enabled: Boolean, val valid: Boolean, val isCondition: Boolean) {
+    class Checkpoint(val name: String, val enabled: Boolean, val valid: Boolean, val isCondition: Boolean, val hasSuccessors: Boolean) {
 
         var satisfied: Boolean? = null
 
@@ -271,11 +328,11 @@ class PivotFragment: Fragment() {
 
         companion object {
 
-            fun fromScript(scriptStructure: ScriptStructure): Checkpoint {
+            fun fromScript(scriptStructure: ScriptStructure, hasSuccessors: Boolean): Checkpoint {
                 val name = scriptStructure.name
                 val enabled = scriptStructure.isActive
                 val valid = scriptStructure.isValid
-                return Checkpoint(name, enabled, valid, scriptStructure.isCondition)
+                return Checkpoint(name, enabled, valid, scriptStructure.isCondition, hasSuccessors)
             }
         }
 
@@ -290,7 +347,7 @@ class PivotFragment: Fragment() {
 
     class ProfileInfo internal constructor(val name: String)
 
-    class SimpleViewHolder internal constructor(itemView: View) : ViewHolder(itemView) {
+    inner class SimpleViewHolder internal constructor(itemView: View) : ViewHolder(itemView) {
         internal val tvName: TextView = itemView.findViewById(R.id.name)
         internal val layoutScriptExtra: ViewGroup = itemView.findViewById(R.id.extra_script_info)
         internal val tvType: TextView = itemView.findViewById(R.id.tv_type)
@@ -299,5 +356,21 @@ class PivotFragment: Fragment() {
         fun setBackgroundColor(@ColorInt color: Int) {
             itemView.setBackgroundColor(color)
         }
+
+        fun setScriptContextMenu(inflater: MenuInflater, hasSuccessors: Boolean) {
+            itemView.setOnCreateContextMenuListener { menu, v, menuInfo ->
+                currentView = itemView
+                inflater.inflate(R.menu.pivot_context_script, menu)
+                menu.findItem(R.id.action_delete_script).isVisible = !hasSuccessors
+            }
+        }
+
+        fun setProfileContextMenu(inflater: MenuInflater) {
+            itemView.setOnCreateContextMenuListener { menu, v, menuInfo ->
+                currentView = itemView
+                inflater.inflate(R.menu.pivot_context_profile, menu)
+            }
+        }
     }
+
 }

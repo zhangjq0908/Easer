@@ -7,7 +7,6 @@
     <string name="title_application">應用程式</string>
     <string name="title_activity_history">活動歷史記錄</string>
     <string name="title_setting">設定</string>
-    <string name="title_add">添加</string>
     <string name="title_edit">編輯</string>
     <string name="title_edit_event">編輯事件</string>
     <string name="title_edit_condition">編輯條件</string>
@@ -30,4 +29,5 @@
     <string name="pref_category_personalise">個人化</string>
     <string name="pref_category_data_manage">管理資料</string>
     <string name="pref_autostart_title">啟動時自動啟動</string>
+    <string name="title_add">添加</string>
 </resources>

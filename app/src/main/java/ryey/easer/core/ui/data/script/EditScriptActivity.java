@@ -33,6 +33,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.collection.ArraySet;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -44,6 +45,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Set;
 
 import ryey.easer.R;
@@ -62,6 +64,7 @@ import ryey.easer.core.data.storage.ProfileDataStorage;
 import ryey.easer.core.data.storage.RequiredDataNotFoundException;
 import ryey.easer.core.data.storage.ScriptDataStorage;
 import ryey.easer.core.ui.data.AbstractEditDataActivity;
+import ryey.easer.core.ui.data.EditDataProto;
 import ryey.easer.core.ui.data.event.EditEventDataFragment;
 
 /*
@@ -135,6 +138,9 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         mEditText_name = findViewById(R.id.editText_script_title);
 
         predecessorManager = new PredecessorManager(this, findViewById(R.id.chip_group_predecessors));
+        @Nullable String predecessor = getIntent().getStringExtra(EditDataProto.PREDECESSOR);
+        if (predecessor != null)
+            predecessorManager.setChosenPredecessors(Collections.singletonList(predecessor));
 
         sw_profile = new DataSelectSpinnerWrapper(this, (Spinner) findViewById(R.id.spinner_profile));
         sw_profile

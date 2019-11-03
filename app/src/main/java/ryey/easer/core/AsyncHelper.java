@@ -198,11 +198,11 @@ public final class AsyncHelper {
             this.connection = connection;
         }
 
-        public void bindService(Context context) {
+        public void bindService(@NonNull Context context) {
             context.bindService(new Intent(context, ProfileLoaderService.class), connection, Context.BIND_AUTO_CREATE);
         }
 
-        public void unbindService(Context context) {
+        public void unbindService(@NonNull Context context) {
             context.unbindService(connection);
         }
 
