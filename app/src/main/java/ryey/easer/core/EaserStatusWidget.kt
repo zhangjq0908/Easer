@@ -53,7 +53,7 @@ class EaserStatusWidget : AppWidgetProvider() {
         if (ACTION_CLICK == intent?.action || EHService.ACTION_STATE_CHANGED == intent?.action) {
             val views = createViews(context)
             AppWidgetManager.getInstance(context)
-                    .updateAppWidget(ComponentName(context, EaserStatusWidget::class.java), views)
+                    .updateAppWidget(ComponentName(context!!, EaserStatusWidget::class.java), views)
         } else {
             super.onReceive(context, intent)
         }

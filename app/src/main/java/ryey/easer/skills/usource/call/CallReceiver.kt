@@ -25,12 +25,17 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.telephony.TelephonyManager
 import ryey.easer.Utils
+import ryey.easer.commons.UnexpectedBehaviourError
 
 internal class CallReceiver(private val callEventHandler: CallEventHandler) : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
-        val state: String = intent.getStringExtra(TelephonyManager.EXTRA_STATE)
-        val number: String = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER)
+        val state: String = intent.getStringExtra(TelephonyManager.EXTRA_STATE)!!
+        val number: String = try {
+            intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER)!!
+        } catch (e: Error) {
+            throw UnexpectedBehaviourError("CallReceiver got intent but without TelephonyManager.EXTRA_INCOMING_NUMBER")
+        }
         when (state) {
             TelephonyManager.EXTRA_STATE_IDLE -> callEventHandler.onIdle(number)
             TelephonyManager.EXTRA_STATE_RINGING -> callEventHandler.onRinging(number)

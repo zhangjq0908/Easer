@@ -46,7 +46,7 @@ class ProfileLoadedLog : BasicLog {
     }
 
     constructor(parcel: Parcel) : super(parcel) {
-        profileName = parcel.readString()
+        profileName = parcel.readString()!!
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
