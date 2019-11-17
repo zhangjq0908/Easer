@@ -43,6 +43,7 @@ import ryey.easer.core.data.storage.ScriptDataStorage
 import ryey.easer.core.ui.data.EditDataProto
 import ryey.easer.core.ui.data.profile.EditProfileActivity
 import ryey.easer.core.ui.data.script.EditScriptActivity
+import java.lang.ref.WeakReference
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -56,26 +57,30 @@ class PivotFragment: Fragment() {
         }
     }
 
-    var graph: Graph? = null
-    private var checkpointNodeMap: Map<String, Node>? = null
+    val onViewJob = AsyncHelper.DelayedWhenSatisfied()
 
-    var adapter: BaseGraphAdapter<ViewHolder>? = null
+    private lateinit var checkpointNodeMap: Map<String, Node>
+    private lateinit var adapter: BaseGraphAdapter<ViewHolder>
 
-    internal var loadProfileJobWrapper = AsyncHelper.DelayedLoadProfileJobsWrapper()
+    private var loadProfileJobWrapper = AsyncHelper.DelayedLoadProfileJobsWrapper()
     private val serviceConnection = object: ServiceConnection{
         override fun onServiceDisconnected(name: ComponentName?) {
             binder = null
-            redrawGraph()
+            onViewJob.doAfter {
+                redrawGraph()
+                null
+            }
         }
 
         override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
             binder = service as EHService.EHBinder
-            redrawGraph()
+            onViewJob.doAfter {
+                redrawGraph()
+                null
+            }
         }
     }
     private var binder: EHService.EHBinder? = null
-
-    var currentView: View? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         activity?.title = getString(R.string.title_pivot)
@@ -84,74 +89,26 @@ class PivotFragment: Fragment() {
 
         val graphView = view.findViewById<GraphView>(R.id.graph)
 
-        recreateGraph()
-
-        adapter = object : BaseGraphAdapter<ViewHolder>(graph!!) {
-
-            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-                val v = LayoutInflater.from(parent.context).inflate(R.layout.node_script, parent, false)
-                return SimpleViewHolder(v)
-            }
-
-            override fun onBindViewHolder(viewHolder: ViewHolder, data: Any, position: Int) {
-                if (data is Checkpoint) {
-                    (viewHolder as SimpleViewHolder).tvName.text = data.name
-                    @ColorInt var color: Int
-                    color = if (data.valid) {
-                        R.color.nodeText_scriptValid
-                    } else {
-                        R.color.nodeText_scriptInvalid
-                    }
-                    viewHolder.tvName.setTextColor(resources.getColor(color))
-
-                    color = if (data.enabled) {
-                                R.color.nodeBackground_scriptActive
-                            } else {
-                                R.color.nodeBackground_scriptInactive
-                            }
-                    viewHolder.setBackgroundColor(resources.getColor(color))
-                    if (data.satisfied == null) {
-                        viewHolder.ivNodeStatus.visibility = View.INVISIBLE
-                    } else {
-                        viewHolder.ivNodeStatus.visibility = View.VISIBLE
-                        val drawable = context!!.resources.getDrawable(
-                                if (data.satisfied == true) {
-                                    R.drawable.ind_node_positive
-                                } else {
-                                    R.drawable.ind_node_negative
-                                })
-                        viewHolder.ivNodeStatus.setImageDrawable(drawable)
-                    }
-
-                    viewHolder.layoutScriptExtra.visibility = View.VISIBLE
-                    viewHolder.tvType.text = getString(if (data.isCondition) {
-                        R.string.title_condition
-                    } else {
-                        R.string.title_event
-                    })
-
-                    viewHolder.setScriptContextMenu(activity!!.menuInflater, data.hasSuccessors)
-                } else {
-                    viewHolder as SimpleViewHolder
-                    viewHolder.layoutScriptExtra.visibility = View.GONE
-                    if (data is ProfileInfo) {
-                        viewHolder.tvName.text = data.name
-                        viewHolder.setBackgroundColor(resources.getColor(R.color.nodeBackground_Profile))
-                        viewHolder.setProfileContextMenu(activity!!.menuInflater)
-                    } else if (data is ServiceStart) {
-                        viewHolder.tvName.text = getString(data.nameId())
-                        viewHolder.setBackgroundColor(resources.getColor(R.color.nodeBackground_VirtualRoot))
-                    }
-                }
-            }
-        }
+        val ret = recreateGraph()
+        checkpointNodeMap = ret.second
+        adapter = GraphAdapter(ret.first)
         graphView.adapter = adapter
 
         val configurationBuilder = SugiyamaConfiguration.Builder().setLevelSeparation(300).setNodeSeparation(100)
         val algorithm = SugiyamaAlgorithm(SugiyamaConfiguration(configurationBuilder))
-        adapter!!.algorithm = algorithm
+        adapter.algorithm = algorithm
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        onViewJob.onSatisfied()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        onViewJob.onUnsatisfied()
     }
 
     override fun onResume() {
@@ -178,7 +135,7 @@ class PivotFragment: Fragment() {
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
         val name: String? = {
-            val tvName: TextView? = currentView?.findViewById(R.id.name)
+            val tvName: TextView? = SimpleViewHolder.currentView?.get()?.findViewById(R.id.name)
             tvName?.text.toString()
         }()
         when (item.itemId) {
@@ -213,31 +170,33 @@ class PivotFragment: Fragment() {
     }
 
     fun updateNodeStatus(id: String, satisfied: Boolean) {
-        val node = checkpointNodeMap?.get(id)
-        if (node != null) {
-            updateNodeStatus(node, satisfied)
+        fun updateNodeStatus(node: Node, satisfied: Boolean?) {
+            //TODO: partial update (requires upstream library support)
+            redrawGraph()
+        }
+        onViewJob.doAfter {
+            val node = checkpointNodeMap[id]
+            if (node != null) {
+                updateNodeStatus(node, satisfied)
+            }
+            null
         }
     }
 
-    private fun updateNodeStatus(node: Node, satisfied: Boolean?) {
-        //TODO: partial update (requires upstream library support)
-        redrawGraph()
-    }
-
     private fun redrawGraph() {
-        recreateGraph()
-        adapter!!.graph = graph
-        adapter!!.notifyInvalidated()
+        val ret = recreateGraph()
+        val graph = ret.first
+        checkpointNodeMap = ret.second
+        adapter.graph = graph
+        adapter.notifyInvalidated()
     }
 
-    private fun recreateGraph() {
-        val ret = if (binder == null) {
+    private fun recreateGraph(): Pair<Graph, Map<String, Node>> {
+        return if (binder == null) {
             createBasicGraph()
         } else {
             createAdvancedGraph()
         }
-        graph = ret.first
-        checkpointNodeMap = ret.second
     }
 
     private fun createBasicGraph(): Pair<Graph, Map<String, Node>> {
@@ -257,7 +216,7 @@ class PivotFragment: Fragment() {
     companion object {
         val lotusStateIntentFilter = IntentFilter(Lotus.ACTION_LOTUS_SATISFACTION_CHANGED)
 
-        val REQUEST_CODE = 10
+        const val REQUEST_CODE = 10
 
         fun convertToGraph(logicGraph: LogicGraph, statusMap: Map<String, Boolean>?): Pair<Graph, Map<String, Node>> {
             val graph = Graph()
@@ -347,7 +306,7 @@ class PivotFragment: Fragment() {
 
     class ProfileInfo internal constructor(val name: String)
 
-    inner class SimpleViewHolder internal constructor(itemView: View) : ViewHolder(itemView) {
+    class SimpleViewHolder internal constructor(itemView: View) : ViewHolder(itemView) {
         internal val tvName: TextView = itemView.findViewById(R.id.name)
         internal val layoutScriptExtra: ViewGroup = itemView.findViewById(R.id.extra_script_info)
         internal val tvType: TextView = itemView.findViewById(R.id.tv_type)
@@ -359,7 +318,7 @@ class PivotFragment: Fragment() {
 
         fun setScriptContextMenu(inflater: MenuInflater, hasSuccessors: Boolean) {
             itemView.setOnCreateContextMenuListener { menu, v, menuInfo ->
-                currentView = itemView
+                currentView = WeakReference(itemView)
                 inflater.inflate(R.menu.pivot_context_script, menu)
                 menu.findItem(R.id.action_delete_script).isVisible = !hasSuccessors
             }
@@ -367,10 +326,73 @@ class PivotFragment: Fragment() {
 
         fun setProfileContextMenu(inflater: MenuInflater) {
             itemView.setOnCreateContextMenuListener { menu, v, menuInfo ->
-                currentView = itemView
+                currentView = WeakReference(itemView)
                 inflater.inflate(R.menu.pivot_context_profile, menu)
             }
         }
+
+        companion object {
+            var currentView: WeakReference<View>? = null
+        }
     }
 
+    inner class GraphAdapter(graph: Graph) : BaseGraphAdapter<ViewHolder>(graph) {
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+            val v = LayoutInflater.from(parent.context).inflate(R.layout.node_script, parent, false)
+            return SimpleViewHolder(v)
+        }
+
+        override fun onBindViewHolder(viewHolder: ViewHolder, data: Any, position: Int) {
+            if (data is Checkpoint) {
+                (viewHolder as SimpleViewHolder).tvName.text = data.name
+                @ColorInt var color: Int
+                color = if (data.valid) {
+                    R.color.nodeText_scriptValid
+                } else {
+                    R.color.nodeText_scriptInvalid
+                }
+                viewHolder.tvName.setTextColor(resources.getColor(color))
+
+                color = if (data.enabled) {
+                    R.color.nodeBackground_scriptActive
+                } else {
+                    R.color.nodeBackground_scriptInactive
+                }
+                viewHolder.setBackgroundColor(resources.getColor(color))
+                if (data.satisfied == null) {
+                    viewHolder.ivNodeStatus.visibility = View.INVISIBLE
+                } else {
+                    viewHolder.ivNodeStatus.visibility = View.VISIBLE
+                    val drawable = context!!.resources.getDrawable(
+                            if (data.satisfied == true) {
+                                R.drawable.ind_node_positive
+                            } else {
+                                R.drawable.ind_node_negative
+                            })
+                    viewHolder.ivNodeStatus.setImageDrawable(drawable)
+                }
+
+                viewHolder.layoutScriptExtra.visibility = View.VISIBLE
+                viewHolder.tvType.text = getString(if (data.isCondition) {
+                    R.string.title_condition
+                } else {
+                    R.string.title_event
+                })
+
+                viewHolder.setScriptContextMenu(activity!!.menuInflater, data.hasSuccessors)
+            } else {
+                viewHolder as SimpleViewHolder
+                viewHolder.layoutScriptExtra.visibility = View.GONE
+                if (data is ProfileInfo) {
+                    viewHolder.tvName.text = data.name
+                    viewHolder.setBackgroundColor(resources.getColor(R.color.nodeBackground_Profile))
+                    viewHolder.setProfileContextMenu(activity!!.menuInflater)
+                } else if (data is ServiceStart) {
+                    viewHolder.tvName.text = getString(data.nameId())
+                    viewHolder.setBackgroundColor(resources.getColor(R.color.nodeBackground_VirtualRoot))
+                }
+            }
+        }
+    }
 }
