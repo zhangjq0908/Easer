@@ -138,6 +138,7 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         mEditText_name = findViewById(R.id.editText_script_title);
 
         predecessorManager = new PredecessorManager(this, findViewById(R.id.chip_group_predecessors));
+        predecessorManager.addChoosePredecessorResponseView(findViewById(R.id.layout_predecessor));
         @Nullable String predecessor = getIntent().getStringExtra(EditDataProto.PREDECESSOR);
         if (predecessor != null)
             predecessorManager.setChosenPredecessors(Collections.singletonList(predecessor));
@@ -367,17 +368,19 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
         private final Set<String> chosenPredecessors = new ArraySet<>();
         private final Set<String> excludedPredecessors = new ArraySet<>();
 
+        private final View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PickPredecessorsDialogFragment dialog = PickPredecessorsDialogFragment.Companion.
+                        createInstance(chosenPredecessors, excludedPredecessors);
+                dialog.show(activity.getSupportFragmentManager(), TAG_DIALOG);
+            }
+        };
+
         PredecessorManager(EditScriptActivity activity, ChipGroup chipGroup) {
             this.activity = activity;
             this.chipGroup = chipGroup;
-            chipGroup.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    PickPredecessorsDialogFragment dialog = PickPredecessorsDialogFragment.Companion.
-                            createInstance(chosenPredecessors, excludedPredecessors);
-                    dialog.show(activity.getSupportFragmentManager(), TAG_DIALOG);
-                }
-            });
+            chipGroup.setOnClickListener(onClickListener);
         }
 
         public void setChosenPredecessors(@NonNull Collection<String> chosenPredecessors) {
@@ -405,5 +408,8 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
             excludedPredecessors.remove(excluded);
         }
 
+        public void addChoosePredecessorResponseView(View v) {
+            v.setOnClickListener(onClickListener);
+        }
     }
 }
