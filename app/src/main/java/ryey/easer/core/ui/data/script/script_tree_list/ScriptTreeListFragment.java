@@ -90,7 +90,7 @@ public class ScriptTreeListFragment extends Fragment implements DataListInterfac
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         scriptDataStorage = new ScriptDataStorage(getContext());
     }

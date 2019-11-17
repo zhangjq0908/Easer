@@ -21,9 +21,12 @@ package ryey.easer.core.data.storage;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -40,14 +43,14 @@ import ryey.easer.skills.operation.state_control.StateControlOperationSkill;
 
 public class ScriptDataStorage extends AbstractDataStorage<ScriptStructure, ScriptDataStorageBackendInterface> {
 
-    public ScriptDataStorage(Context context) {
+    public ScriptDataStorage(@NonNull Context context) {
         super(context, new ScriptDataStorageBackendInterface[] {
             new JsonScriptDataStorageBackend(context),
         });
     }
 
     @Override
-    boolean isSafeToDelete(String name) {
+    boolean isSafeToDelete(@NonNull String name) {
         for (ScriptStructure scriptStructure : allScripts()) {
             if (scriptStructure.getPredecessors().contains(name))
                 return false;
@@ -55,7 +58,12 @@ public class ScriptDataStorage extends AbstractDataStorage<ScriptStructure, Scri
         ProfileDataStorage profileDataStorage = new ProfileDataStorage(context);
         String s_id = (new StateControlOperationSkill()).id();
         for (String pname : profileDataStorage.list()) {
-            ProfileStructure profile = profileDataStorage.get(pname);
+            ProfileStructure profile = null;
+            try {
+                profile = profileDataStorage.get(pname);
+            } catch (RequiredDataNotFoundException e) {
+                return true;
+            }
             Collection<RemoteLocalOperationDataWrapper> dataCollection = profile.get(s_id);
             if (dataCollection != null) {
                 for (RemoteLocalOperationDataWrapper dataWrapper : dataCollection) {
@@ -76,23 +84,22 @@ public class ScriptDataStorage extends AbstractDataStorage<ScriptStructure, Scri
         return StorageHelper.logicGraphToTreeList(getLogicGraph());
     }
 
+    @NonNull
     public LogicGraph getLogicGraph() {
         return LogicGraph.createFromScriptList(allScripts());
     }
 
+    @NonNull
     List<ScriptStructure> allScripts() {
-        List<ScriptStructure> list = null;
+        List<ScriptStructure> list = new LinkedList<>();
         for (ScriptDataStorageBackendInterface backend : storage_backend_list) {
-            if (list == null)
-                list = backend.all();
-            else
-                list.addAll(backend.all());
+            list.addAll(backend.all());
         }
         return list;
     }
 
     @Override
-    protected void handleRename(String oldName, ScriptStructure script) throws IOException {
+    protected void handleRename(@NonNull String oldName, @NonNull ScriptStructure script) throws IOException {
         String name = script.getName();
         // alter subnodes to point to the new name
         List<ScriptStructure> successors = StorageHelper.scriptParentMap(allScripts()).get(oldName);

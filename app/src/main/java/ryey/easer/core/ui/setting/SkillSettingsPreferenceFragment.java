@@ -44,6 +44,7 @@ import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.storage.ConditionDataStorage;
 import ryey.easer.core.data.storage.EventDataStorage;
 import ryey.easer.core.data.storage.ProfileDataStorage;
+import ryey.easer.core.data.storage.RequiredDataNotFoundException;
 import ryey.easer.skills.LocalSkillRegistry;
 
 public class SkillSettingsPreferenceFragment extends PreferenceFragment implements RemotePluginCommunicationHelper.OnOperationPluginListObtainedCallback {
@@ -104,9 +105,15 @@ public class SkillSettingsPreferenceFragment extends PreferenceFragment implemen
         Set<String> skillSet = new ArraySet<>();
         EventDataStorage eventDataStorage = new EventDataStorage(context);
         for (String event : eventDataStorage.list()) {
-            EventData eventData = eventDataStorage.get(event).getEventData();
+            EventData eventData;
+            try {
+                eventData = eventDataStorage.get(event).getEventData();
+            } catch (RequiredDataNotFoundException e) {
+                throw new AssertionError(e);
+            }
             EventSkill eventSkill = LocalSkillRegistry.getInstance().event().findSkill(eventData);
-            skillSet.add(eventSkill.id());
+            if (eventSkill != null)
+                skillSet.add(eventSkill.id());
         }
         return skillSet;
     }
@@ -115,9 +122,15 @@ public class SkillSettingsPreferenceFragment extends PreferenceFragment implemen
         Set<String> skillSet = new ArraySet<>();
         ConditionDataStorage conditionDataStorage = new ConditionDataStorage(context);
         for (String condition : conditionDataStorage.list()) {
-            ConditionData conditionData = conditionDataStorage.get(condition).getData();
+            ConditionData conditionData;
+            try {
+                conditionData = conditionDataStorage.get(condition).getData();
+            } catch (RequiredDataNotFoundException e) {
+                throw new AssertionError(e);
+            }
             ConditionSkill conditionSkill = LocalSkillRegistry.getInstance().condition().findSkill(conditionData);
-            skillSet.add(conditionSkill.id());
+            if (conditionSkill != null)
+                skillSet.add(conditionSkill.id());
         }
         return skillSet;
     }
@@ -126,7 +139,12 @@ public class SkillSettingsPreferenceFragment extends PreferenceFragment implemen
         Set<String> skillSet = new ArraySet<>();
         ProfileDataStorage profileDataStorage = new ProfileDataStorage(context);
         for (String profile : profileDataStorage.list()) {
-            ProfileStructure profileStructure = profileDataStorage.get(profile);
+            ProfileStructure profileStructure;
+            try {
+                profileStructure = profileDataStorage.get(profile);
+            } catch (RequiredDataNotFoundException e) {
+                throw new AssertionError(e);
+            }
             skillSet.addAll(profileStructure.pluginIds());
         }
         return skillSet;

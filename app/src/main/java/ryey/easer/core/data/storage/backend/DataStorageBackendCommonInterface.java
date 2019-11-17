@@ -19,7 +19,9 @@
 
 package ryey.easer.core.data.storage.backend;
 
-import java.io.FileNotFoundException;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -33,15 +35,18 @@ import ryey.easer.core.data.Named;
  */
 public interface DataStorageBackendCommonInterface<T extends Named> {
 
-    boolean has(String name);
+    boolean has(@NonNull String name);
 
+    @NonNull
     List<String> list();
 
-    T get(String name) throws FileNotFoundException, IllegalStorageDataException;
+    @Nullable
+    T get(@NonNull String name) throws IllegalStorageDataException;
 
-    void write(T data) throws IOException;
+    void write(@NonNull T data) throws IOException;
 
-    void delete(String name);
+    void delete(@NonNull String name);
 
+    @NonNull
     List<T> all();
 }

@@ -17,14 +17,16 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.commons.local_skill;
+package ryey.easer.core.data.storage;
 
-public class InvalidDataInputException extends Exception {
-    public InvalidDataInputException() {
+import java.io.IOException;
 
+public class RequiredDataNotFoundException extends IOException {
+    public RequiredDataNotFoundException(String msg, Object ...args) {
+        super(String.format(msg, (Object[]) args));
     }
 
-    public InvalidDataInputException(String msg, String ...args) {
-        super(String.format(msg, (Object[]) args));
+    public RequiredDataNotFoundException(Exception e) {
+        super(e);
     }
 }

@@ -25,6 +25,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +44,7 @@ public class DataSelectSpinnerWrapper {
 
     private List<String> augmentedList = new ArrayList<>();
 
-    public DataSelectSpinnerWrapper(Context context, Spinner spinner) {
+    public DataSelectSpinnerWrapper(@NonNull Context context, @NonNull Spinner spinner) {
         this.context = context;
         this.spinner = spinner;
     }
@@ -56,7 +59,7 @@ public class DataSelectSpinnerWrapper {
         return this;
     }
 
-    public DataSelectSpinnerWrapper fillData(List<String> dataList) {
+    public DataSelectSpinnerWrapper fillData(@NonNull List<String> dataList) {
         augmentedList.addAll(dataList);
         return this;
     }
@@ -78,13 +81,14 @@ public class DataSelectSpinnerWrapper {
         });
     }
 
-    public void setSelection(String selection) {
+    public void setSelection(@Nullable String selection) {
         if (allowEmpty && selection == null)
             spinner.setSelection(0);
         else
             spinner.setSelection(augmentedList.indexOf(selection));
     }
 
+    @Nullable
     public String getSelection() {
         String selection = (String) spinner.getSelectedItem();
         if (allowEmpty && selection.equals(NON))

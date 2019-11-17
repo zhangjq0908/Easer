@@ -23,6 +23,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.orhanobut.logger.Logger;
 
@@ -71,6 +72,7 @@ public abstract class SkeletonTracker<D extends ConditionData> implements Tracke
         }
     }
 
+    @Nullable
     @Override
     public Boolean state() {
         return satisfied;

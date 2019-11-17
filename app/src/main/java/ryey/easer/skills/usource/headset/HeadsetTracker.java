@@ -95,7 +95,8 @@ public class HeadsetTracker extends SkeletonTracker<HeadsetUSourceData> {
     }
 
     @SuppressWarnings("RedundantIfStatement")
-    static Boolean determine_match(HeadsetUSourceData data, boolean plugging_in, @Nullable Boolean has_microphone) {
+    @Nullable
+    static Boolean determine_match(@NonNull HeadsetUSourceData data, boolean plugging_in, @Nullable Boolean has_microphone) {
         if (!(data.hs_state == HeadsetUSourceData.HeadsetState.any ||
                 plugging_in == (data.hs_state == HeadsetUSourceData.HeadsetState.plug_in)))
             return false;

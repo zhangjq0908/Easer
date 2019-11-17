@@ -90,6 +90,7 @@ public class RemotePluginCommunicationHelper {
 
     private Context context;
 
+    @Nullable
     private Messenger outMessenger;
     private IncomingHandler handler = new IncomingHandler(new WeakReference<>(this));
     public final Messenger inMessenger = new Messenger(handler);
@@ -250,7 +251,7 @@ public class RemotePluginCommunicationHelper {
         }
 
         @Override
-        public void handleMessage(Message msg) {
+        public void handleMessage(@NonNull Message msg) {
             Logger.d("[RemotePluginCommunicationHelper][handleMessage] %s", msg);
             if (msg.what == C.MSG_FIND_PLUGIN_RESPONSE) {
                 msg.getData().setClassLoader(RemotePluginInfo.class.getClassLoader());

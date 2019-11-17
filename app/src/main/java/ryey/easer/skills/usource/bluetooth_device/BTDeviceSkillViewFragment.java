@@ -146,6 +146,7 @@ public class BTDeviceSkillViewFragment extends SkillViewFragment<BTDeviceUSource
         return view;
     }
 
+    @Nullable
     private String resolveHWAddress(String hwaddress) {
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (bluetoothAdapter != null) {
@@ -190,6 +191,7 @@ public class BTDeviceSkillViewFragment extends SkillViewFragment<BTDeviceUSource
         BTDeviceWrapper(BluetoothDevice device) {
             this.device = device;
         }
+        @NonNull
         public String toString() {
             return device.getName();
         }

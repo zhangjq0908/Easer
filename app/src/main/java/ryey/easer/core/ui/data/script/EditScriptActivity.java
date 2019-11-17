@@ -38,6 +38,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.orhanobut.logger.Logger;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -58,6 +59,7 @@ import ryey.easer.core.data.ScriptStructure;
 import ryey.easer.core.data.storage.ConditionDataStorage;
 import ryey.easer.core.data.storage.EventDataStorage;
 import ryey.easer.core.data.storage.ProfileDataStorage;
+import ryey.easer.core.data.storage.RequiredDataNotFoundException;
 import ryey.easer.core.data.storage.ScriptDataStorage;
 import ryey.easer.core.ui.data.AbstractEditDataActivity;
 import ryey.easer.core.ui.data.event.EditEventDataFragment;
@@ -204,8 +206,13 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
                     showDynamicsNotReady();
                     return;
                 }
-                ProfileStructure profile = new ProfileDataStorage(EditScriptActivity.this).get(profileName);
-                placeholders.addAll(profile.placeholders());
+                ProfileStructure profile;
+                try {
+                    profile = new ProfileDataStorage(EditScriptActivity.this).get(profileName);
+                    placeholders.addAll(profile.placeholders());
+                } catch (RequiredDataNotFoundException e) {
+                    Logger.e(e, "Profile %s in Script not found", profileName);
+                }
                 intent.putStringArrayListExtra(ListDynamicsActivity.EXTRA_PLACEHOLDERS, placeholders);
                 if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_inline_event) {
                     EventData eventData;
@@ -219,13 +226,18 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
                     intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_DATA, eventData);
                 } else if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_event) {
                     EventDataStorage eventDataStorage = new EventDataStorage(EditScriptActivity.this);
-                    String event_name = sw_event.getSelection();
-                    if (event_name == null) {
+                    String eventName = sw_event.getSelection();
+                    if (eventName == null) {
                         showDynamicsNotReady();
                         return;
                     }
-                    EventStructure eventStructure = eventDataStorage.get(event_name);
-                    intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_DATA, eventStructure.getEventData());
+                    EventStructure eventStructure;
+                    try {
+                        eventStructure = eventDataStorage.get(eventName);
+                        intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_DATA, eventStructure.getEventData());
+                    } catch (RequiredDataNotFoundException e) {
+                        Logger.e(e, "Event %s in Script not found", eventName);
+                    }
                     intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_TYPE, ListDynamicsActivity.PLUGIN_TYPE_EVENT);
                 } else if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_condition) {
                     intent.putExtra(ListDynamicsActivity.EXTRA_PLUGIN_TYPE, ListDynamicsActivity.PLUGIN_TYPE_CONDITION);
@@ -297,14 +309,28 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
             script.setEventData(editEventDataFragment.saveToData());
         } else if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_event) {
             EventDataStorage eventDataStorage = new EventDataStorage(this);
-            String scenario_name = sw_event.getSelection();
-            script.setEvent(eventDataStorage.get(scenario_name));
+            String eventName = sw_event.getSelection();
+            if (eventName == null)
+                throw new InvalidDataInputException("Event not selected");
+            try {
+                script.setEvent(eventDataStorage.get(eventName));
+            } catch (RequiredDataNotFoundException e) {
+                Logger.e(e, "Event %s disappeared while editing Script", eventName);
+                throw new InvalidDataInputException("Event %s not found", eventName);
+            }
             script.setRepeatable(mSwitch_repeatable.isChecked());
             script.setPersistent(mSwitch_persistent.isChecked());
         } else if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_condition) {
             ConditionDataStorage conditionDataStorage = new ConditionDataStorage(this);
-            String condition_name = sw_condition.getSelection();
-            script.setCondition(conditionDataStorage.get(condition_name));
+            String conditionName = sw_condition.getSelection();
+            if (conditionName == null)
+                throw new InvalidDataInputException("Condition not selected");
+            try {
+                script.setCondition(conditionDataStorage.get(conditionName));
+            } catch (RequiredDataNotFoundException e) {
+                Logger.e(e, "Condition %s disappeared while editing Script", conditionName);
+                throw new InvalidDataInputException("Condition %s not found", conditionName);
+            }
         }
         script.setDynamicsLink(dynamicsLink);
         return script;

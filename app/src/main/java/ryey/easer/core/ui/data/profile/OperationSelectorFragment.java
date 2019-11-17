@@ -171,6 +171,7 @@ public class OperationSelectorFragment extends DialogFragment {
         public boolean isRemote() {
             return plugin == null;
         }
+        @NonNull
         public String toString() {
             return name;
         }

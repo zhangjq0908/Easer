@@ -71,6 +71,7 @@ public class NfcTagEventData extends AbstractEventData {
         parse(data, format, version);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return byteArray2hexString(id);

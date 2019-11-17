@@ -63,7 +63,7 @@ public class MainActivity extends CommonBaseActivity
     private final LocaleHelperActivityDelegate localeDelegate = new LocaleHelperActivityDelegateImpl();
 
     @Override
-    protected void attachBaseContext(Context newBase) {
+    protected void attachBaseContext(@NonNull Context newBase) {
         super.attachBaseContext(localeDelegate.attachBaseContext(newBase));
     }
 

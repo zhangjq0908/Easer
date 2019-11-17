@@ -52,7 +52,7 @@ public class WidgetEventSkill implements EventSkill<WidgetEventData> {
 
     @Override
     public Boolean checkPermissions(@NonNull Context context) {
-        return null;
+        return true;
     }
 
     @Override

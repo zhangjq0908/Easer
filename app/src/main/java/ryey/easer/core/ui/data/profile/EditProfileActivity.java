@@ -133,7 +133,7 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
                 profile.put(id, data);
             } catch (InvalidDataInputException e) {
                 fragment.setHighlight(true);
-                return null;
+                throw e;
             }
         }
 
@@ -147,7 +147,7 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
                 profile.put(id, data);
             } catch (InvalidDataInputException e) {
                 fragment.setHighlight(true);
-                return null;
+                throw e;
             }
         }
 

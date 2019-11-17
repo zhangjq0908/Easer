@@ -63,7 +63,7 @@ public class VolumeOperationData implements OperationData {
         parse(data, format, version);
     }
 
-    private static Integer optInteger(JSONObject jsonObject, String key) {
+    private static Integer optInteger(@NonNull JSONObject jsonObject, @NonNull String key) {
         int value = jsonObject.optInt(key, -1);
         if (value == -1)
             return null;

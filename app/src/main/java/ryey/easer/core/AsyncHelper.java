@@ -104,6 +104,7 @@ public final class AsyncHelper {
 
     public static class DelayedServiceBinderJobs<B> extends DelayedWhenSatisfied {
 
+        @Nullable
         protected B binder;
 
         public void onBind(B binder) {
@@ -246,6 +247,7 @@ public final class AsyncHelper {
             lckCallbackMap.lock();
             try {
                 T callback = callbackMap.get(uuid);
+                //noinspection VariableNotUsedInsideIf
                 if (callback != null)
                     callbackMap.remove(uuid);
                 return callback;

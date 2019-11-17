@@ -21,6 +21,9 @@ package ryey.easer.core.data.storage.backend.json.condition;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileNotFoundException;
@@ -46,10 +49,11 @@ public class JsonConditionDataStorageBackend implements ConditionDataStorageBack
     }
 
     @Override
-    public boolean has(String name) {
+    public boolean has(@NonNull String name) {
         return IOUtils.fileExists(dir, name + NC.SUFFIX);
     }
 
+    @NonNull
     @Override
     public List<String> list() {
         ArrayList<String> list = new ArrayList<>();
@@ -59,10 +63,15 @@ public class JsonConditionDataStorageBackend implements ConditionDataStorageBack
         return list;
     }
 
+    @Nullable
     @Override
-    public ConditionStructure get(String name) throws FileNotFoundException, IllegalStorageDataException {
+    public ConditionStructure get(@NonNull String name) throws IllegalStorageDataException {
         File file = new File(dir, name + NC.SUFFIX);
-        return get(file);
+        try {
+            return get(file);
+        } catch (FileNotFoundException e) {
+            return null;
+        }
     }
 
     private ConditionStructure get(File file) throws FileNotFoundException, IllegalStorageDataException {
@@ -71,19 +80,20 @@ public class JsonConditionDataStorageBackend implements ConditionDataStorageBack
     }
 
     @Override
-    public void write(ConditionStructure data) throws IOException {
+    public void write(@NonNull ConditionStructure data) throws IOException {
         File file = new File(dir, data.getName() + NC.SUFFIX);
         ConditionSerializer serializer = new ConditionSerializer();
         FileDataStorageBackendHelper.write(serializer, file, data);
     }
 
     @Override
-    public void delete(String name) {
+    public void delete(@NonNull String name) {
         File file = new File(dir, name + NC.SUFFIX);
         if (!file.delete())
             throw new IllegalStateException("Unable to delete " + file);
     }
 
+    @NonNull
     @Override
     public List<ConditionStructure> all() {
         List<ConditionStructure> list = new ArrayList<>();

@@ -74,7 +74,7 @@ public class HeadsetSlot extends AbstractSlot<HeadsetUSourceData> {
 
     private static boolean determine_match(HeadsetUSourceData eventData, boolean plug_in, boolean has_microphone) {
         //noinspection ConstantConditions
-        return HeadsetTracker.determine_match(eventData, plug_in, has_microphone);
+        return HeadsetTracker.determine_match(eventData, plug_in, has_microphone) == Boolean.TRUE;
     }
 
 }

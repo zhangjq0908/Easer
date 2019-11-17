@@ -43,6 +43,7 @@ import ryey.easer.core.data.ScriptStructure;
 import ryey.easer.core.data.storage.C;
 import ryey.easer.core.data.storage.ConditionDataStorage;
 import ryey.easer.core.data.storage.EventDataStorage;
+import ryey.easer.core.data.storage.RequiredDataNotFoundException;
 import ryey.easer.core.data.storage.backend.IOUtils;
 import ryey.easer.core.data.storage.backend.Parser;
 import ryey.easer.plugin.PluginDataFormat;
@@ -147,6 +148,8 @@ class ScriptParser implements Parser<ScriptStructure> {
             }
         } catch (JSONException e) {
             e.printStackTrace();
+            throw new IllegalStorageDataException(e);
+        } catch (RequiredDataNotFoundException e) {
             throw new IllegalStorageDataException(e);
         }
     }
