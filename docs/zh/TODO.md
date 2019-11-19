@@ -14,7 +14,6 @@ TODO
 		* 調整Event頁面，使用樹形顯示
 		* 完善*關於*界面
 			* 增加Contributor於其上
-			* 如果使用WebView，將返回的懸浮按鈕改爲WebView的上一頁；如果確定不使用，移除該懸浮按鈕
 	* Event
 		* 合併同類Event以降低耗電——通過減少監測器/`BroadcastReceiver`的數量
 * 代碼/開發
@@ -29,4 +28,3 @@ TODO
 待定
 =======
 * 增加*智能Event添加*界面，使得可以直接選擇所有想要的Event並自動分析並添加成樹
-* 將Event之間關係由樹改爲圖

@@ -1,36 +1,31 @@
 Supported Features
 ------
-### Event
-* *Condition* Event
+### Event & Condition
 * Date
 * Time
-* WiFi connection name (SSID)
-* Location (based on base station / cellular tower)
-* Battery status
+* WiFi connection
+* Cellular Location (based on base station / cellular tower)
+* Power status
 * Day of week
 * Bluetooth device connected
 * Connectivity status
+* Headset plugged in/out
+* Screen on/off
+
+### Event
+* *Condition* Event
 * Calendar Event
 * Any Broadcast/Intent
 * Designated SMSs
 * Incoming Notifications
 * Timer (Delay a while)
 * NFC tag scanned
-* Headset plug in/out
 * TCP communication (one round trip)
-* Screen on/off
+* Widget (on launcher / desktop / home screen)
 
 ### Condition
-* Battery status
-* Location (based on base station / cellular tower)
-* Bluetooth device connected
-* Connectivity status
-* Date
-* Day of week
-* Headset state
-* Screen state (on/off/unlocked)
-* Time
-* WiFi connection status
+* Calendar Event
+* Ringer mode
 
 ### Operation
 * WiFi switch
@@ -41,8 +36,10 @@ Supported Features
 * Screen brightness
 * Ringer mode
 * Execute commands
+* Control Hotspot switch
 * Enable or disable *account synchronization*
 * Send network messages
+* Send HTTP messages
 * Control media player
 * Toogle airplane mode
 * Send SMS
@@ -52,6 +49,7 @@ Supported Features
 * Control volume
 * Launch App
 * UI mode (e.g. car mode)
+* Play media (e.g. music)
 
 ### *Dynamics*
 * Dynamics is introduced to replace the old "formatting expression"

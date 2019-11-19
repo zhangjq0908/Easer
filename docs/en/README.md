@@ -26,11 +26,9 @@ Easer is also a coordinator of inter-app actions (e.g. communications) -- it can
 
 ### Custom Events
 
-You can chain *Script* (which specifies *Events* or *Condition* as well as its *Profile*) as trees (i.e. setting dependencies), by specifying its *Parent*. This mechanism allows Easer to (somewhat) create custom *Events* using Boolean logic (e.g. "and", "or").
+You can combine Scripts (which specifies *Events* or *Condition* as well as its *Profile*) using arbitrary logic operators by placing them in a logic graph. This mechanism allows Easer to create custom *Events* using Boolean logic (e.g. "and", "or").
 
-Easer is adding the support of *Condition* mechanism, and is transforming relevant *Event* to *Condition*, for better expressivity.
-
-When a node in the *Script* tree changes its state, Easer will take corresponding actions (e.g. when an Event happens, Easer will load its corresponding *Profile* and listen to children nodes).
+When a node in the *Script* graph changes its state, Easer will take corresponding actions (e.g. when an Event happens, Easer will load its corresponding *Profile* and listen to children nodes).
 
 ### Passing content from Event
 
