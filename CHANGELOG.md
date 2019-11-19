@@ -1,6 +1,20 @@
 CHANGELOG
 ======
 
+* v0.7.9: Graph structure for Script logic && Add ToastOperation && Fixes && i18n update
+	* Fully support graph data structure for script logic
+	* Add ToastOperation
+	* Support Dynamics on network and http Operations
+	* Fix SelfNotifiableSkeletonTracker not really listening (affecting Date, Time & DayOfWeek Condition)
+	* Fix RemotePlugin not correctly discovered
+	* Prevent Android 8 users from disabling foreground and notification setting
+	* Fix crash related to predecessor (of Script) empty
+	* Correctly allow remote Operation plugins to send back load result
+	* Update gradle and dependencies
+	* I18n update:
+		* New locale: Spanish (Latin America)
+		* Update: Japanese, Swedish, German, Danish, Norwegian Bokmål
+
 * v0.7.8.3: Async Operation loading && Bug fixes && Backend optimization && i18n update
 	* Make Operation Loader async
 		* Add reply from remote Operation plugin

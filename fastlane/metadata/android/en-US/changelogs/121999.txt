@@ -1,0 +1,6 @@
+Accept remote plugin reply && Locale update
+
+* Correctly allow remote Operation plugins to send back load result
+* Update i18n:
+	* New locale: Spanish (Latin America)
+	* Update: Danish, Norwegian Bokmål
