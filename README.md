@@ -10,9 +10,12 @@ See [README.en.md](README.en.md) for the English version.
 
 簡介
 -----
+Easer是一个讓智能手機更爲智能更爲自動化的軟件，能夠告訴手機在什麼情況下該做什麼事。Easer不僅可以處理事件，也可以檢查狀態，還能組合事件形成複雜的自定義事件。
+
+如要查看對Easer功能完整的介紹，請參見[網站](https://renyuneyun.github.io/Easer/)。
+
 本文主要描述Easer的開發相關事宜。
 
-如要查看對Easer功能的介紹，請參見[網站](https://renyuneyun.github.io/Easer/)。
 
 擴展Easer
 -----

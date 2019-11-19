@@ -189,4 +189,5 @@
     <string name="title_select_condition">Vælge tilstand</string>
     <string name="button_see_detail">Se oplysninger</string>
     <string name="title_data_collection">Data</string>
+    <string name="message_future_change_0_8">Trævisning af skripte fjernes i v0.8. Omdrejningspunkt giver et bedre overblik.</string>
 </resources>
