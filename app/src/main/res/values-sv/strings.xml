@@ -185,8 +185,9 @@
     <string name="title_select_event">Välj en händelse</string>
     <string name="title_select_condition">Välj ett villkor</string>
     <string name="button_see_detail">Se detaljer</string>
-    <string name="title_service_start">Service start</string>
+    <string name="title_service_start">Servicestart</string>
     <string name="prompt_dynamics_not_ready">Om du vill ställa in Dynamics måste du välja en giltig profil och en giltig utlösare (t. ex. händelse).</string>
     <string name="title_data_collection">Data</string>
     <string name="message_future_change_0_8">Trädvyn av skript kommer att tas bort i v 0.8. Pivot ger en bättre utsikt mot det.</string>
+    <string name="title_choose_predecessors">Välj föregångare</string>
 </resources>
