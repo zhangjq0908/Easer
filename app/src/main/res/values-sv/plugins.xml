@@ -212,4 +212,6 @@
     <string name="o_http_header">Sidhuvud (rad format: nyckel: värde)</string>
     <string name="o_http_content_type">Innehållstyp</string>
     <string name="o_http_post_data">Posta data</string>
+    <string name="operation_toast">Toast</string>
+    <string name="op_toast_hint_text">Text</string>
 </resources>
