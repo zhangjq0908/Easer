@@ -27,12 +27,12 @@
     <string name="usource_connectivity">Тип подключения</string>
     <string name="event_calendar">Календарное Событие</string>
     <string name="ecalendar_select_dialog_title">Выберите Календарь</string>
-    <string name="text_calendar_name">Имя календаря</string>
+    <string name="text_calendar_name">Название календаря</string>
     <string name="text_calendar">Календарь</string>
     <string name="indicator_when">Когда…</string>
     <string name="choice_start_of">Старт</string>
     <string name="choice_end_of">Конец</string>
-    <string name="choice_any_event">Любые События</string>
+    <string name="choice_any_event">Любое событие</string>
     <string name="event_broadcast">Получение Трансляции</string>
     <string name="broadcast_action">Действие</string>
     <string name="broadcast_category">Категория</string>
@@ -199,4 +199,19 @@
     <string name="o_http_header">Заголовок (формат строки: ключ: значение)</string>
     <string name="o_http_content_type">Тип контента</string>
     <string name="o_http_post_data">POST-данные</string>
+    <string name="condition_ringer_below">В большинстве</string>
+    <string name="condition_calendar_event_match_pattern">Соответствие шаблона</string>
+    <string name="condition_calendar_all_day_event">Соответствовать только событиям всего дня</string>
+    <string name="category_source_android">Андроид</string>
+    <string name="event_condition_event_dynamics_name">Название условия</string>
+    <string name="usource_cell_location_listening_title">Прослушивание</string>
+    <string name="event_widget_widget_label">ВиджетСобытия Виджет</string>
+    <string name="event_widget_default_text">ОТОБРАЗИТЬ ТЕКСТ</string>
+    <string name="usource_power__ac">ПЕРЕМЕННЫЙ ТОК</string>
+    <string name="usource_call_state_ringing">Звонок</string>
+    <string name="o_http_get">ПОЛУЧИТЬ</string>
+    <string name="o_http_post">ПОМЕСТИТЬ</string>
+    <string name="o_http_url">URL</string>
+    <string name="operation_toast">Тост</string>
+    <string name="op_toast_hint_text">Текст</string>
 </resources>
