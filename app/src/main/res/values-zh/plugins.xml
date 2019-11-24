@@ -37,9 +37,9 @@
     <string name="usource_wificonn_select_dialog_title">選擇WiFi AP</string>
     <string name="usource_wificonn_wait_for_result">等待WiFi掃描結果</string>
 
-    <string name="usource_cell_location">基站位置</string>
-    <string name="usource_cell_location_no_signal">無法獲取基站信息。請檢查信號。</string>
-    <string name="usource_cell_location_dynamics_cell_location">基站位置</string>
+    <string name="usource_cell_location">蜂窩位置</string>
+    <string name="usource_cell_location_no_signal">無法獲取蜂窩位置。請檢查信號。</string>
+    <string name="usource_cell_location_dynamics_cell_location">蜂窩位置</string>
 
     <string name="usource_power">電源狀態</string>
 
@@ -243,11 +243,25 @@
     <string name="event_widget_tag">標籤</string>
     <string name="event_widget_text">文本</string>
     <string name="event_widget_widget_label">微件事件用微件</string>
+    <string name="usource_power__ac">直流電源</string>
+    <string name="usource_power__any">任意</string>
+    <string name="usource_power__charging">充電中</string>
+    <string name="usource_power__discharging">放電中</string>
+    <string name="usource_power__usb">USB</string>
+    <string name="op_toast_hint_text">提示文字</string>
     <string name="usource_call">電話</string>
     <string name="usource_call_number">號碼</string>
     <string name="usource_call_state">通話狀況</string>
+    <string name="usource_call_state_idle">等待</string>
+    <string name="usource_call_state_ongoing">進行中</string>
+    <string name="usource_call_state_ringing">響鈴中</string>
+    <string name="usource_cell_location_listening_content">正在統合蜂窩位置…</string>
     <string name="o_http_header">請求頭（格式：鍵:值）</string>
+    <string name="o_http_content_type">Content type</string>
     <string name="o_http_method">方法</string>
+    <string name="o_http_get">GET</string>
+    <string name="o_http_post">POST</string>
+    <string name="o_http_url">URL</string>
     <string name="o_http_post_data">POST數據</string>
     <string name="operation_http_request">HTTP請求</string>
 

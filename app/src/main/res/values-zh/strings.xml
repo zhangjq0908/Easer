@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="easer">Easer</string>
-    <string name="drawer_tip">Ease your life!</string>
+    <string name="drawer_tip">方便你的生活！</string>
     <string name="hint_event_title">事件名</string>
     <string name="menu_start">啓動</string>
     <string name="menu_stop">停止</string>
@@ -15,7 +15,7 @@
     <string name="text_parent">父</string>
     <string name="text_title">名稱</string>
     <string name="title_about">關於</string>
-    <string name="title_delete">刪除</string>
+    <string name="title_delete">添加</string>
     <string name="title_edit">修改</string>
     <string name="title_event">事件</string>
     <string name="title_outline">概覽</string>
@@ -120,8 +120,8 @@
     <string name="alert_update_storage_data_title">發現舊版數據</string>
     <string name="alert_update_storage_data">你的（部分）數據似乎處於舊版之下，建議更新至新版，否則Easer可能無法正常使用。你可以在設置中選擇“轉換數據”來完成此事。</string>
     <string name="title_activity_history">活動記錄</string>
-    <string name="hint_script_title">事件腳本名稱</string>
-    <string name="title_script">事件腳本</string>
+    <string name="hint_script_title">腳本名稱</string>
+    <string name="title_script">腳本</string>
     <string name="title_condition">狀況</string>
     <string name="title_edit_condition">編輯狀況</string>
     <string name="hint_condition_title">狀況名</string>
@@ -130,7 +130,7 @@
     <string name="prompt_delete_failed">刪除失敗。請檢查此物是否被使用。</string>
     <string name="dynamics_time">當前時間</string>
     <string name="dynamics_date">當前日期</string>
-    <string name="dynamics_script_name">用戶腳本名稱</string>
+    <string name="dynamics_script_name">腳本名稱</string>
     <string name="dynamics_profile_name">行爲集名稱</string>
     <string name="title_trigger_profile">執行此行爲集</string>
     <string name="title_help">幫助</string>
@@ -165,15 +165,12 @@
     <string name="title_select_condition">選擇一個狀況</string>
     <string name="title_select_event">選擇一個事件</string>
     <string name="button_see_detail">查看詳情</string>
-    <string name="usource_power__ac">直流電源</string>
-    <string name="usource_power__any">任意</string>
-    <string name="usource_power__charging">充電中</string>
-    <string name="usource_power__discharging">放電中</string>
-    <string name="usource_power__usb">USB</string>
     <string name="title_data_collection">數據</string>
-    <string name="op_toast_hint_text">提示文字</string>
     <string name="text_unknown_skill">[未知技能]</string>
     <string name="title_add_child">添加子節點</string>
-    <string name="title_add">增加</string>
+    <string name="title_add">添加</string>
+    <string name="message_future_change_0_8">腳本的樹狀視圖將會在v0.8版本刪除。「樞律」取代它且提供更好的功能。</string>
+    <string name="title_choose_predecessors">選擇前驅</string>
+    <string name="title_remote_operation_plugin">遠程行爲插件</string>
 
 </resources>

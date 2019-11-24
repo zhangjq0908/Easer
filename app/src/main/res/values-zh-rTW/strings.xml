@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources><string name="drawer_tip">放鬆你的生活！</string>
     <string name="title_outline">輪廓</string>
-    <string name="title_profile">簡介</string>
+    <string name="title_profile">配置檔</string>
     <string name="title_script">腳本</string>
     <string name="title_condition">條件</string>
     <string name="title_application">應用程式</string>
     <string name="title_activity_history">活動歷史記錄</string>
     <string name="title_setting">設定</string>
     <string name="title_edit">編輯</string>
-    <string name="title_edit_event">編輯事件</string>
     <string name="title_edit_condition">編輯條件</string>
     <string name="title_edit_profile">編輯配置檔</string>
     <string name="title_select_operation">選擇一個操作</string>
     <string name="title_trigger_profile">觸發此設定檔</string>
-    <string name="title_remote_operation_plugin"></string>
     <string name="menu_start">開始</string>
     <string name="menu_clear">清除</string>
     <string name="service_indicator_positive">執行中</string>
@@ -21,13 +19,11 @@
     <string name="activity_history__extra">額外資訊</string>
     <string name="activity_history__start">開始</string>
     <string name="button_ok">確定</string>
-    <string name="text_profile">簡介</string>
     <string name="text_use_condition">使用條件</string>
     <string name="toggle_active">自動</string>
-    <string name="hint_script_title">腳本名稱</string>
     <string name="hint_condition_title">條件名稱</string>
     <string name="pref_category_personalise">個人化</string>
     <string name="pref_category_data_manage">管理資料</string>
     <string name="pref_autostart_title">啟動時自動啟動</string>
-    <string name="title_add">添加</string>
+    <string name="text_profile">配置檔</string>
 </resources>
