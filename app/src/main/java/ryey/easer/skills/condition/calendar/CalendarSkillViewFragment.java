@@ -76,7 +76,7 @@ public class CalendarSkillViewFragment extends SkillViewFragment<CalendarConditi
     };
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         context.registerReceiver(mReceiver, mFilter);
     }

@@ -88,7 +88,9 @@ public class EditExtraFragment extends Fragment {
         if (m_fragment_extra.size() > 0) {
             List<ExtraItem> extraItemList = new ArrayList<>(m_fragment_extra.size());
             for (ExtraItemFragment fragment : m_fragment_extra) {
-                extraItemList.add(fragment.getData());
+                ExtraItem extraItem = fragment.getData();
+                if (extraItem != null)
+                    extraItemList.add(extraItem);
             }
             return new Extras(extraItemList);
         }
@@ -130,6 +132,7 @@ public class EditExtraFragment extends Fragment {
             return view;
         }
 
+        @Nullable
         ExtraItem getData() {
             if (Utils.isBlank(editText_key.getText().toString()))
                 return null;

@@ -20,6 +20,7 @@
 package ryey.easer.core.data;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import ryey.easer.Utils;
 import ryey.easer.commons.C;
@@ -29,6 +30,7 @@ import ryey.easer.commons.local_skill.eventskill.EventData;
 public class EventStructure implements Named, Verifiable, WithCreatedVersion {
     private final int createdVersion;
 
+    @Nullable
     private final String name;
     private EventData eventData;
 

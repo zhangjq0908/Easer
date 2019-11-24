@@ -24,12 +24,10 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.net.Uri
 import android.os.*
 import android.util.Log
 import androidx.collection.ArrayMap
 import com.orhanobut.logger.Logger
-import ryey.easer.commons.local_skill.operationskill.OperationData
 import ryey.easer.core.RemotePluginCommunicationHelper.C
 import ryey.easer.plugin.operation.Category
 import ryey.easer.remote_plugin.RemoteOperationData
@@ -49,23 +47,26 @@ class RemotePluginRegistryService : Service() {
         override fun onReceive(context: Context, intent: Intent) {
             Logger.d("[RemotePluginRegistryService][onReceive] %s", intent)
             if (RemotePlugin.ACTION_RESPONSE_PLUGIN_INFO == intent.action) {
-                val packageName = intent.getStringExtra(RemotePlugin.EXTRA_PACKAGE_NAME)
-                val pluginId = intent.getStringExtra(RemotePlugin.EXTRA_PLUGIN_ID)
-                val pluginName = intent.getStringExtra(RemotePlugin.EXTRA_PLUGIN_NAME)
+                val packageName = intent.getStringExtra(RemotePlugin.EXTRA_PACKAGE_NAME)!!
+                val pluginId = intent.getStringExtra(RemotePlugin.EXTRA_PLUGIN_ID)!!
+                val pluginName = intent.getStringExtra(RemotePlugin.EXTRA_PLUGIN_NAME)!!
                 val activityEditData = intent.getStringExtra(RemotePlugin.EXTRA_ACTIVITY_EDIT_DATA)
                 val pluginType = intent.getStringExtra(RemotePlugin.EXTRA_PLUGIN_TYPE)
                 //TODO: More types
                 assert(pluginType == RemotePlugin.TYPE_OPERATION_PLUGIN)
                 val categoryString = intent.getStringExtra(RemotePlugin.OperationPlugin.EXTRA_PLUGIN_CATEGORY)
                 val category = try {
-                    Category.valueOf(categoryString)
+                    if (categoryString != null)
+                        Category.valueOf(categoryString)
+                    else
+                        Category.unknown
                 } catch (e: RuntimeException) {
                     Category.unknown
                 }
                 val info = RemoteOperationPluginInfo(packageName, pluginId, pluginName, activityEditData, category)
                 operationPluginInfos.add(info)
             } else if (RemotePlugin.OperationPlugin.ACTION_TRIGGER_RESULT == intent.action) {
-                val jobId: ParcelUuid = intent.getParcelableExtra(RemotePlugin.EXTRA_MESSAGE_ID)
+                val jobId: ParcelUuid = intent.getParcelableExtra(RemotePlugin.EXTRA_MESSAGE_ID)!!
                 if (!intent.hasExtra(RemotePlugin.OperationPlugin.EXTRA_SUCCESS)) {
                     Logger.w("Remote Operation Plugin load Operation returned WITHOUT success value. Using `false` instead.")
                 }
@@ -154,41 +155,41 @@ class RemotePluginRegistryService : Service() {
                 reply.data.putParcelable(C.EXTRA_MESSAGE_ID, jobId)
                 reply.data.putParcelableArrayList(C.EXTRA_PLUGIN_LIST, ArrayList<RemoteOperationPluginInfo>(service.operationPluginInfos))
                 rMessenger.send(reply)
-            } else if (message.what == C.MSG_PARSE_OPERATION_DATA) {
-                // FIXME: This branch seems not to be necessary nor possible. Remove when adding Event and Condition.
-                throw IllegalAccessError("This message is not yet in use")
-                Logger.d("[RemotePluginRegistryService] MSG_PARSE_OPERATION_DATA")
-                val id = message.data.getString(C.EXTRA_PLUGIN_ID)
-                val pluginInfo = service.infoForId(id)
-                val reply = Message.obtain()
-                reply.what = C.MSG_PARSE_OPERATION_DATA_RESPONSE
-                if (pluginInfo == null) {
-                    rMessenger.send(reply)
-                } else {
-                    val data = message.data.getString(C.EXTRA_RAW_DATA)
-                    val receiver: BroadcastReceiver = object : BroadcastReceiver() {
-                        override fun onReceive(p0: Context?, p1: Intent?) {
-                            if (RemotePlugin.ACTION_RESPONSE_PARSE_DATA == p1?.action) {
-                                val operationData: OperationData = p1.getParcelableExtra(RemotePlugin.EXTRA_DATA)
-                                reply.data.putParcelable(C.EXTRA_PLUGIN_DATA, operationData)
-                                rMessenger.send(reply)
-                                service.unregisterReceiver(this)
-                            }
-                        }
-                    }
-                    val uri: Uri = Uri.parse("re_ser://%d".format(receiver.hashCode()))
-                    val filter = IntentFilter()
-                    filter.addAction(RemotePlugin.ACTION_RESPONSE_PARSE_DATA)
-                    filter.addDataScheme(uri.scheme)
-                    filter.addDataAuthority(uri.authority, null)
-                    filter.addDataPath(uri.path, PatternMatcher.PATTERN_LITERAL)
-                    service.registerReceiver(receiver, filter)
-                    val intent = Intent(RemotePlugin.ACTION_REQUEST_PARSE_DATA)
-//                    intent.data = uri
-                    intent.`package` = pluginInfo.packageName
-                    intent.putExtra(RemotePlugin.EXTRA_DATA, data)
-                    service.sendBroadcast(intent)
-                }
+//            } else if (message.what == C.MSG_PARSE_OPERATION_DATA) {
+//                // FIXME: This branch seems not to be necessary nor possible. Remove when adding Event and Condition.
+//                throw IllegalAccessError("This message is not yet in use")
+//                Logger.d("[RemotePluginRegistryService] MSG_PARSE_OPERATION_DATA")
+//                val id = message.data.getString(C.EXTRA_PLUGIN_ID)
+//                val pluginInfo = service.infoForId(id)
+//                val reply = Message.obtain()
+//                reply.what = C.MSG_PARSE_OPERATION_DATA_RESPONSE
+//                if (pluginInfo == null) {
+//                    rMessenger.send(reply)
+//                } else {
+//                    val data = message.data.getString(C.EXTRA_RAW_DATA)
+//                    val receiver: BroadcastReceiver = object : BroadcastReceiver() {
+//                        override fun onReceive(p0: Context?, p1: Intent?) {
+//                            if (RemotePlugin.ACTION_RESPONSE_PARSE_DATA == p1?.action) {
+//                                val operationData: OperationData = p1.getParcelableExtra(RemotePlugin.EXTRA_DATA)
+//                                reply.data.putParcelable(C.EXTRA_PLUGIN_DATA, operationData)
+//                                rMessenger.send(reply)
+//                                service.unregisterReceiver(this)
+//                            }
+//                        }
+//                    }
+//                    val uri: Uri = Uri.parse("re_ser://%d".format(receiver.hashCode()))
+//                    val filter = IntentFilter()
+//                    filter.addAction(RemotePlugin.ACTION_RESPONSE_PARSE_DATA)
+//                    filter.addDataScheme(uri.scheme)
+//                    filter.addDataAuthority(uri.authority, null)
+//                    filter.addDataPath(uri.path, PatternMatcher.PATTERN_LITERAL)
+//                    service.registerReceiver(receiver, filter)
+//                    val intent = Intent(RemotePlugin.ACTION_REQUEST_PARSE_DATA)
+////                    intent.data = uri
+//                    intent.`package` = pluginInfo.packageName
+//                    intent.putExtra(RemotePlugin.EXTRA_DATA, data)
+//                    service.sendBroadcast(intent)
+//                }
             } else if (message.what == C.MSG_TRIGGER_OPERATION) {
                 Log.d("RemoPlRegistry", "MSG_TRIGGER_OPERATION")
                 message.data.classLoader = String::class.java.classLoader

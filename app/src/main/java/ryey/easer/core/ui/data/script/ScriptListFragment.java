@@ -32,6 +32,7 @@ import java.util.List;
 import ryey.easer.R;
 import ryey.easer.core.EHService;
 import ryey.easer.core.data.ScriptStructure;
+import ryey.easer.core.data.storage.RequiredDataNotFoundException;
 import ryey.easer.core.data.storage.ScriptDataStorage;
 import ryey.easer.core.ui.data.AbstractDataListFragment;
 import ryey.easer.core.ui.data.DataListContainerInterface;
@@ -79,7 +80,12 @@ public class ScriptListFragment extends AbstractDataListFragment {
         ScriptDataStorage dataStorage = new ScriptDataStorage(getContext());
         List<ListDataWrapper> dataWrapperList = new ArrayList<>();
         for (String name : dataStorage.list()) {
-            ScriptStructure script = dataStorage.get(name);
+            ScriptStructure script = null;
+            try {
+                script = dataStorage.get(name);
+            } catch (RequiredDataNotFoundException e) {
+                throw new AssertionError(e);
+            }
             if (script.isActive()) {
                 if (script.isValid()) {
                     dataWrapperList.add(new ListDataWrapper(name));

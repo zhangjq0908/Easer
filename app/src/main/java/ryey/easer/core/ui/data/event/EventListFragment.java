@@ -35,6 +35,7 @@ import ryey.easer.R;
 import ryey.easer.core.EHService;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.storage.EventDataStorage;
+import ryey.easer.core.data.storage.RequiredDataNotFoundException;
 import ryey.easer.core.ui.data.AbstractDataListFragment;
 import ryey.easer.skills.LocalSkillRegistry;
 
@@ -60,7 +61,12 @@ public class EventListFragment extends AbstractDataListFragment {
         EventDataStorage dataStorage = new EventDataStorage(getContext());
         List<ListDataWrapper> dataWrapperList = new ArrayList<>();
         for (String name : dataStorage.list()) {
-            EventStructure scenario = dataStorage.get(name);
+            EventStructure scenario = null;
+            try {
+                scenario = dataStorage.get(name);
+            } catch (RequiredDataNotFoundException e) {
+                throw new AssertionError(e);
+            }
             if (scenario.isValid()) {
                 dataWrapperList.add(new ListDataWrapper(name));
             } else {

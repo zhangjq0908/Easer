@@ -23,6 +23,7 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
@@ -64,6 +65,7 @@ public class IntentData implements Parcelable {
         return true;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return String.format("action:%s category:%s type:%s data:%s", action, category, type, data);

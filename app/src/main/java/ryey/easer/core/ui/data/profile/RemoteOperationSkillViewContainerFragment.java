@@ -110,10 +110,15 @@ public class RemoteOperationSkillViewContainerFragment extends AbstractSkillData
         super.onViewCreated(view, savedInstanceState);
         final TextView tv_name = view.findViewById(R.id.tv_plugin_name);
         final String id = getArguments().getString(ARG_ID);
-        helper.asyncFindPlugin(id, new RemotePluginCommunicationHelper.OnPluginFoundCallback() {
+        helper.asyncFindPlugin(id, new RemotePluginCommunicationHelper.OnFindPluginResultCallback() {
             @Override
-            public void onPluginFound(@Nullable RemotePluginInfo info) {
-                tv_name.setText(info.getPluginName());
+            public void onFindPluginResult(@Nullable RemotePluginInfo info) {
+                if (info == null) {
+                    tv_name.setText(R.string.text_unknown_skill);
+                    tv_name.setTextColor(getResources().getColor(R.color.colorAlert));
+                } else {
+                    tv_name.setText(info.getPluginName());
+                }
             }
         });
     }

@@ -133,6 +133,7 @@ class CellLocationSingleData implements Parcelable {
         return true;
     }
 
+    @NonNull
     public String toString() {
         return String.format(Locale.US, "%d-%d", cid, lac);
     }

@@ -74,7 +74,7 @@ public class WifiSkillViewFragment extends SkillViewFragment<WifiUSourceData> {
     ProgressDialog progressDialog;
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         context.registerReceiver(mReceiver, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
@@ -234,6 +234,7 @@ public class WifiSkillViewFragment extends SkillViewFragment<WifiUSourceData> {
             parcel.writeString(BSSID);
         }
 
+        @NonNull
         @Override
         public String toString() {
             return String.format("%s\n[%s]", SSID, BSSID);

@@ -57,8 +57,8 @@ public class ReusableDataTest {
                 @NonNull
                 @Override
                 public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
-                    fail();
-                    return null;
+                    fail(); //TODO?: test dynamics?
+                    return this;
                 }
             }
             StringOperationData data0 = new IStringOperationData();

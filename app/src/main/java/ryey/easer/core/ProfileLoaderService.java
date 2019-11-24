@@ -48,6 +48,7 @@ import ryey.easer.commons.local_skill.dynamics.SolidDynamicsAssignment;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.storage.ProfileDataStorage;
+import ryey.easer.core.data.storage.RequiredDataNotFoundException;
 import ryey.easer.core.dynamics.CoreDynamics;
 import ryey.easer.core.dynamics.CoreDynamicsInterface;
 import ryey.easer.core.log.ActivityLogService;
@@ -128,8 +129,11 @@ public class ProfileLoaderService extends Service {
         Logger.d("Loading profile <%s> by <%s>", name, event);
         ProfileStructure profile;
         ProfileDataStorage storage = new ProfileDataStorage(this);
-        profile = storage.get(name);
-        assert profile != null;
+        try {
+            profile = storage.get(name);
+        } catch (RequiredDataNotFoundException e) {
+            throw new AssertionError(e);
+        }
 
         DynamicsLink dynamicsLink = extras.getParcelable(EXTRA_DYNAMICS_LINK);
         Bundle macroData = extras.getBundle(EXTRA_DYNAMICS_PROPERTIES);

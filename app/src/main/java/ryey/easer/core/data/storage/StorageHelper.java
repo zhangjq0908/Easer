@@ -62,8 +62,12 @@ public class StorageHelper {
         };
         for (AbstractDataStorage<?, ?> dataStorage : dataStorages) {
             for (String name : dataStorage.list()) {
-                if (dataStorage.get(name).createdVersion() < C.VERSION_CURRENT) {
-                    return true;
+                try {
+                    if (dataStorage.get(name).createdVersion() < C.VERSION_CURRENT) {
+                        return true;
+                    }
+                } catch (RequiredDataNotFoundException e) {
+                    Logger.e(e, "Data disappeared during reading");
                 }
             }
         }

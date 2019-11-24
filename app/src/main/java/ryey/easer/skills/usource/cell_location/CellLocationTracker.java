@@ -27,6 +27,7 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import ryey.easer.skills.condition.SkeletonTracker;
 
@@ -56,12 +57,14 @@ public class CellLocationTracker extends SkeletonTracker<CellLocationUSourceData
         telephonyManager.listen(cellLocationListener, PhoneStateListener.LISTEN_NONE);
     }
 
+    @Nullable
     @SuppressLint("MissingPermission")
     @Override
     public Boolean state() {
         return match(telephonyManager.getCellLocation());
     }
 
+    @Nullable
     private Boolean match(CellLocation location) {
         CellLocationSingleData curr = CellLocationSingleData.fromCellLocation(location);
         if (curr == null)

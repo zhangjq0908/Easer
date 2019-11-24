@@ -29,6 +29,8 @@ import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.Objects;
+
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.local_skill.ValidData;
@@ -45,7 +47,7 @@ public class ConditionEventSkillViewFragment extends SkillViewFragment<Condition
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.skill_event__condition_event, container, false);
-        sw_condition = new DataSelectSpinnerWrapper(getContext(), (Spinner) view.findViewById(R.id.spinner_condition));
+        sw_condition = new DataSelectSpinnerWrapper(Objects.requireNonNull(getContext()), (Spinner) view.findViewById(R.id.spinner_condition));
         sw_condition
                 .beginInit()
                 .setAllowEmpty(false)

@@ -59,7 +59,7 @@ public class ScannerDialogFragment extends DialogFragment {
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         if (telephonyManager != null)
@@ -73,6 +73,7 @@ public class ScannerDialogFragment extends DialogFragment {
             telephonyManager.listen(cellLocationListener, PhoneStateListener.LISTEN_NONE);
     }
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         if (telephonyManager == null) {

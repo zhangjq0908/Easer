@@ -97,7 +97,8 @@ public class ActivityHistoryFragment extends Fragment {
     HistoryAdapter historyAdapter;
 
     boolean clearHistoryAfterBind = false;
-    ActivityLogService.ActivityLogServiceBinder serviceBinder;
+    @Nullable
+    private ActivityLogService.ActivityLogServiceBinder serviceBinder;
     ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -168,7 +169,7 @@ public class ActivityHistoryFragment extends Fragment {
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.activity_history, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
@@ -176,6 +177,7 @@ public class ActivityHistoryFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_clear) {
+            //noinspection VariableNotUsedInsideIf
             if (serviceBinder == null)
                 clearHistoryAfterBind = true;
             else

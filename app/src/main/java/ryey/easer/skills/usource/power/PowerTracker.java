@@ -27,6 +27,7 @@ import android.content.IntentFilter;
 import android.os.BatteryManager;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.orhanobut.logger.Logger;
 
@@ -75,6 +76,7 @@ public class PowerTracker extends SkeletonTracker<PowerUSourceData> {
         context.unregisterReceiver(receiver);
     }
 
+    @Nullable
     @Override
     public Boolean state() {
         Logger.d("PowerTracker.state()");

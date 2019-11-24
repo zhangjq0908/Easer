@@ -44,6 +44,7 @@ import ryey.easer.commons.local_skill.conditionskill.ConditionData;
 import ryey.easer.commons.local_skill.conditionskill.Tracker;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.storage.ConditionDataStorage;
+import ryey.easer.core.data.storage.RequiredDataNotFoundException;
 import ryey.easer.skills.LocalSkillRegistry;
 import ryey.easer.skills.event.condition_event.ConditionEventEventData;
 
@@ -135,7 +136,12 @@ public class ConditionHolderService extends Service {
             intent.setAction(ACTION_TRACKER_UNSATISFIED);
             PendingIntent negative = PendingIntent.getBroadcast(this, 0, intent, 0);
 
-            ConditionStructure conditionStructure = conditionDataStorage.get(name);
+            ConditionStructure conditionStructure = null;
+            try {
+                conditionStructure = conditionDataStorage.get(name);
+            } catch (RequiredDataNotFoundException e) {
+                throw new AssertionError(e);
+            }
             ConditionData conditionData = conditionStructure.getData();
             Tracker tracker = LocalSkillRegistry.getInstance().condition().findSkill(conditionData)
                     .tracker(this, conditionData, positive, negative);

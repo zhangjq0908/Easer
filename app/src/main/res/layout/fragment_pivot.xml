@@ -7,6 +7,7 @@
         android:id="@+id/graph"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:minZoom="0.1"
         app:maxZoomType="realZoom"
         app:maxZoom="4">
     </de.blox.graphview.GraphView>

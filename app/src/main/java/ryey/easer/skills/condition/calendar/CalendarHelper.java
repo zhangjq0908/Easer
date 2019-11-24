@@ -29,6 +29,7 @@ import android.text.format.DateUtils;
 
 import java.util.Calendar;
 
+@SuppressWarnings("ReturnOfNull") //TODO: Merge with Calendar event and solve this problem
 @SuppressLint("MissingPermission")
 class CalendarHelper {
 

@@ -19,20 +19,25 @@
 
 package ryey.easer.core.data;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import ryey.easer.commons.local_skill.operationskill.OperationData;
 import ryey.easer.remote_plugin.RemoteOperationData;
 
 public class RemoteLocalOperationDataWrapper {
 
+    @Nullable
     public final OperationData localData;
+    @Nullable
     public final RemoteOperationData remoteData;
 
-    public RemoteLocalOperationDataWrapper(OperationData localData) {
+    public RemoteLocalOperationDataWrapper(@NonNull OperationData localData) {
         this.localData = localData;
         this.remoteData = null;
     }
 
-    public RemoteLocalOperationDataWrapper(RemoteOperationData remoteData) {
+    public RemoteLocalOperationDataWrapper(@NonNull RemoteOperationData remoteData) {
         this.remoteData = remoteData;
         this.localData = null;
     }

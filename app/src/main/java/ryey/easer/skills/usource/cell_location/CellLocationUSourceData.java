@@ -111,6 +111,7 @@ public class CellLocationUSourceData implements USourceData {
         return true;
     }
 
+    @NonNull
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();

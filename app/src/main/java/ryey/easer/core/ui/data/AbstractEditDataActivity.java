@@ -27,6 +27,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.LayoutRes;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 
 import com.orhanobut.logger.Logger;
@@ -40,11 +41,13 @@ import ryey.easer.core.data.Named;
 import ryey.easer.core.data.Verifiable;
 import ryey.easer.core.data.WithCreatedVersion;
 import ryey.easer.core.data.storage.AbstractDataStorage;
+import ryey.easer.core.data.storage.RequiredDataNotFoundException;
 
 public abstract class AbstractEditDataActivity<T extends Named & Verifiable & WithCreatedVersion, T_storage extends AbstractDataStorage<T, ?>> extends CommonBaseActivity {
 
     protected static String TAG_DATA_TYPE = "<unspecified data type>";
 
+    @Nullable
     T_storage storage = null;
 
     EditDataProto.Purpose purpose;
@@ -118,19 +121,18 @@ public abstract class AbstractEditDataActivity<T extends Named & Verifiable & Wi
             setTitle(title());
             init();
             if (purpose == EditDataProto.Purpose.edit) {
-                T data = storage.get(oldName);
+                T data = null;
+                try {
+                    data = storage.get(oldName);
+                } catch (RequiredDataNotFoundException e) {
+                    throw new AssertionError(e);
+                }
                 loadFromData(data);
             }
         }
     }
 
     protected abstract void init();
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        storage = null;
-    }
 
     protected abstract void loadFromData(T data);
 

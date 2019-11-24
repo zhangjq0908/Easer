@@ -115,6 +115,7 @@ public abstract class SourceSkillViewPager<GD extends StorageData, GS extends Sk
 
         protected abstract SourceSkillViewContainerFragment<GD, GS> newFragment(GS skill);
 
+        @NonNull
         @Override
         public Fragment getItem(int position) {
             return newFragment(skillList.get(position));
@@ -132,7 +133,7 @@ public abstract class SourceSkillViewPager<GD extends StorageData, GS extends Sk
 
         @NonNull
         @Override
-        public Object instantiateItem(ViewGroup container, int position) {
+        public Object instantiateItem(@NonNull ViewGroup container, int position) {
             SourceSkillViewContainerFragment<GD, GS> fragment = (SourceSkillViewContainerFragment<GD, GS>) super.instantiateItem(container, position);
             synchronized (SourceSkillViewPager.this) {
                 if ((initial_position != null) && (position == initial_position)) {
@@ -144,7 +145,7 @@ public abstract class SourceSkillViewPager<GD extends StorageData, GS extends Sk
         }
 
         @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
+        public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
             registeredFragments.remove(position);
             super.destroyItem(container, position, object);
         }

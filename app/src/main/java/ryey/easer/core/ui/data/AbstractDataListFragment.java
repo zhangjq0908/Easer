@@ -47,6 +47,7 @@ import com.orhanobut.logger.Logger;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import ryey.easer.R;
 
@@ -63,7 +64,7 @@ public abstract class AbstractDataListFragment extends ListFragment implements D
     public abstract int helpTextRes();
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
         ListAdapter adapter = new IListAdapter(getActivity(), new ArrayList<ListDataWrapper>());
@@ -93,21 +94,21 @@ public abstract class AbstractDataListFragment extends ListFragment implements D
     }
 
     @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
+    public void onListItemClick(@NonNull ListView l, @NonNull View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         ListDataWrapper wrapper = (ListDataWrapper) l.getItemAtPosition(position);
         refContainer.get().editData(wrapper.name);
     }
 
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        MenuInflater inflater = getActivity().getMenuInflater();
+        MenuInflater inflater = Objects.requireNonNull(getActivity()).getMenuInflater();
         inflater.inflate(R.menu.list_context, menu);
     }
 
     @Override
-    public boolean onContextItemSelected(MenuItem item) {
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
         if (!refContainer.get().isVisibleToUser())
             return false;
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();

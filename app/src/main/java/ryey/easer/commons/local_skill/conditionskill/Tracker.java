@@ -19,6 +19,8 @@
 
 package ryey.easer.commons.local_skill.conditionskill;
 
+import androidx.annotation.Nullable;
+
 public interface Tracker<D extends ConditionData> {
 
     /**
@@ -37,6 +39,7 @@ public interface Tracker<D extends ConditionData> {
      */
     void stop();
 
+    @Nullable
     Boolean state();
 
 }

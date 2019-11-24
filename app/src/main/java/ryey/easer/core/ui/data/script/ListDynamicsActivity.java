@@ -258,7 +258,7 @@ public class ListDynamicsActivity extends CommonBaseActivity {
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             View view = convertView;
             ViewHolder viewHolder;
-            if (convertView == null) {
+            if (view == null) {
                 view = LayoutInflater.from(getContext()).inflate(R.layout.item_dynamics_link, parent, false);
                 viewHolder = new ViewHolder();
                 viewHolder.tv_placeholder = view.findViewById(R.id.tv_placeholder);
@@ -373,6 +373,7 @@ public class ListDynamicsActivity extends CommonBaseActivity {
                 return id.equals(((DynamicsWrapper) obj).id);
             }
 
+            @NonNull
             @Override
             public String toString() {
                 if (name != null)

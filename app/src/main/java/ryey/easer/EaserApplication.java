@@ -28,6 +28,7 @@ import android.content.res.Configuration;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import com.orhanobut.logger.AndroidLogAdapter;
@@ -75,7 +76,7 @@ public class EaserApplication extends Application {
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         localeAppDelegate.onConfigurationChanged(this);
     }

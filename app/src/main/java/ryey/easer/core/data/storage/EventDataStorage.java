@@ -21,6 +21,8 @@ package ryey.easer.core.data.storage;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import java.io.IOException;
 
 import ryey.easer.core.data.EventStructure;
@@ -30,14 +32,14 @@ import ryey.easer.core.data.storage.backend.json.event.JsonEventDataStorageBacke
 
 public class EventDataStorage extends AbstractDataStorage<EventStructure, EventDataStorageBackendInterface> {
 
-    public EventDataStorage(Context context) {
+    public EventDataStorage(@NonNull Context context) {
         super(context, new EventDataStorageBackendInterface[] {
                 new JsonEventDataStorageBackend(context),
         });
     }
 
     @Override
-    boolean isSafeToDelete(String name) {
+    boolean isSafeToDelete(@NonNull String name) {
         ScriptDataStorage scriptDataStorage = new ScriptDataStorage(context);
         for (ScriptStructure scriptStructure : scriptDataStorage.allScripts()) {
             if (scriptStructure.isEvent() && name.equals(scriptStructure.getEvent().getName()))
@@ -46,7 +48,7 @@ public class EventDataStorage extends AbstractDataStorage<EventStructure, EventD
         return true;
     }
 
-    protected void handleRename(String oldName, EventStructure newEvent) throws IOException {
+    protected void handleRename(@NonNull String oldName, @NonNull EventStructure newEvent) throws IOException {
         ScriptDataStorage scriptDataStorage = new ScriptDataStorage(context);
         for (ScriptStructure scriptStructure : scriptDataStorage.allScripts()) {
             if (scriptStructure.isEvent() && !scriptStructure.getEvent().isTmpEvent()
