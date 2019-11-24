@@ -27,4 +27,5 @@
     <string name="event_calendar">Takvim Etkinliği</string>
     <string name="ecalendar_select_dialog_title">Takvim Seç</string>
     <string name="text_calendar_name">Takvim Adı</string>
+    <string name="text_calendar">Takvim</string>
 </resources>
