@@ -38,7 +38,7 @@ import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.skills.SkillUtils;
 import ryey.easer.skills.SkillViewFragment;
 
-public class CellLocationSkillViewFragment extends SkillViewFragment<CellLocationUSourceData> implements ScannerDialogFragment.ScannerListener {
+public class CellLocationSkillViewFragment extends SkillViewFragment<CellLocationUSourceData> implements CellLocationScannerDialogFragment.OnPositiveButtonClickedListener<CellLocationSingleData> {
     private EditText editText;
 
     private static final int DIALOG_FRAGMENT = 1;
@@ -55,7 +55,7 @@ public class CellLocationSkillViewFragment extends SkillViewFragment<CellLocatio
                 if (!SkillUtils.checkPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION))
                     return;
 
-                DialogFragment dialogFrag = new ScannerDialogFragment();
+                DialogFragment dialogFrag = new CellLocationScannerDialogFragment();
                 dialogFrag.setTargetFragment(CellLocationSkillViewFragment.this, DIALOG_FRAGMENT);
                 dialogFrag.show(getFragmentManager(), "dialog");
 
@@ -81,7 +81,7 @@ public class CellLocationSkillViewFragment extends SkillViewFragment<CellLocatio
     }
 
     @Override
-    public void onPositiveClicked(@NonNull List<CellLocationSingleData> singleDataList) {
+    public boolean onPositiveClicked(@NonNull List<CellLocationSingleData> singleDataList) {
         String display_str = editText.getText().toString();
         StringBuilder stringBuilder = new StringBuilder(display_str);
         for (CellLocationSingleData singleData : singleDataList) {
@@ -91,5 +91,6 @@ public class CellLocationSkillViewFragment extends SkillViewFragment<CellLocatio
         if (stringBuilder.charAt(0) == '\n')
             stringBuilder.deleteCharAt(0);
         editText.setText(stringBuilder.toString());
+        return true;
     }
 }

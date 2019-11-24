@@ -22,44 +22,30 @@ package ryey.easer.skills.usource.cell_location;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.CellInfo;
 import android.telephony.CellLocation;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.DialogFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ryey.easer.R;
+import ryey.easer.skills.usource.ScannerDialogFragment;
 
-public class ScannerDialogFragment extends DialogFragment {
+public class CellLocationScannerDialogFragment extends ScannerDialogFragment<CellLocationSingleData> {
 
     private TelephonyManager telephonyManager;
     private final CellLocationListener cellLocationListener = new CellLocationListener();
 
-    private final List<CellLocationSingleData> singleDataList = new ArrayList<>();
-    private ArrayAdapter<CellLocationSingleData> cellLocationDataListAdapter;
-
-    public interface ScannerListener {
-        void onPositiveClicked(@NonNull List<CellLocationSingleData> singleData);
-    }
-
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         if (telephonyManager != null)
@@ -74,35 +60,25 @@ public class ScannerDialogFragment extends DialogFragment {
     }
 
     @Override
+    protected ScannerDialogFragment.GetInitialDataTask<CellLocationSingleData> getInitialDataTask(List<CellLocationSingleData> singleDataList, ArrayAdapter<CellLocationSingleData> dataListAdapter) {
+        return new GetInitialCellLocationDataTask(telephonyManager, singleDataList, dataListAdapter);
+    }
+
+    @Nullable
+    @Override
+    protected OnPositiveButtonClickedListener<CellLocationSingleData> positiveButtonClickedListener() {
+        return (OnPositiveButtonClickedListener<CellLocationSingleData>) getTargetFragment();
+    }
+
+    @NonNull
+    @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         if (telephonyManager == null) {
             Toast.makeText(getContext(), R.string.usource_cell_location_no_signal, Toast.LENGTH_SHORT).show();
             dismiss();
         }
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-
-        View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_scanner_cell_location, null);
-
-        ListView listView = v.findViewById(R.id.list);
-        cellLocationDataListAdapter = new ArrayAdapter<>(getContext(),
-                android.R.layout.simple_list_item_1,
-                singleDataList);
-        listView.setAdapter(cellLocationDataListAdapter);
-
-        builder.setView(v)
-                .setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        ((ScannerListener) getTargetFragment()).onPositiveClicked(singleDataList);
-                        dismiss();
-                    }
-                });
-
-        Dialog dialog = builder.create();
-
-        new GetInitialDataTask(telephonyManager, singleDataList, cellLocationDataListAdapter).execute();
-
-        return dialog;
+        return super.onCreateDialog(savedInstanceState);
     }
 
     private static void addData(@NonNull List<CellLocationSingleData> singleDataList,
@@ -116,10 +92,6 @@ public class ScannerDialogFragment extends DialogFragment {
         }
     }
 
-    private void addData(@Nullable CellLocationSingleData data) {
-        addData(singleDataList, cellLocationDataListAdapter, data);
-    }
-
     private class CellLocationListener extends PhoneStateListener {
         @Override
         synchronized public void onCellLocationChanged(CellLocation location) {
@@ -131,15 +103,15 @@ public class ScannerDialogFragment extends DialogFragment {
      * Permission is ensured before using this Fragment
      */
     @SuppressLint("MissingPermission")
-    private static class GetInitialDataTask extends AsyncTask<Void, CellLocationSingleData, Void> {
+    private static class GetInitialCellLocationDataTask extends GetInitialDataTask<CellLocationSingleData> {
 
         private TelephonyManager telephonyManager;
         private List<CellLocationSingleData> singleDataList;
         private ArrayAdapter<CellLocationSingleData> adapter;
 
-        private GetInitialDataTask(TelephonyManager telephonyManager,
-                                   List<CellLocationSingleData> singleDataList,
-                                   ArrayAdapter<CellLocationSingleData> adapter) {
+        private GetInitialCellLocationDataTask(TelephonyManager telephonyManager,
+                                               List<CellLocationSingleData> singleDataList,
+                                               ArrayAdapter<CellLocationSingleData> adapter) {
             this.telephonyManager = telephonyManager;
             this.singleDataList = singleDataList;
             this.adapter = adapter;
