@@ -224,4 +224,6 @@
     <string name="o_http_header">Hoved (linje format: nøgle: værdi)</string>
     <string name="o_http_content_type">Indhold type</string>
     <string name="o_http_post_data">Indsend data</string>
+    <string name="operation_toast">Påmindelse</string>
+    <string name="op_toast_hint_text">Tekst</string>
 </resources>
