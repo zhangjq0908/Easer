@@ -212,4 +212,6 @@
     <string name="o_http_header">En-tête (format de ligne : clé : valeur)</string>
     <string name="o_http_content_type">Type de contenu</string>
     <string name="o_http_post_data">Publier les données</string>
+    <string name="operation_toast">Toast</string>
+    <string name="op_toast_hint_text">Texte</string>
 </resources>
