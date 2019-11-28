@@ -1,6 +1,15 @@
 CHANGELOG
 ======
 
+* v0.7.9.1: Bug fixes && dev updates && i18n update
+	* Display "unknown" plugins in Profile
+	* Fix Pivot crash with one node
+	* Fix TcpEvent crash caused by sending network packet in main thread
+	* Fix kotlin type mismatches
+	* Update gradle, build tools, libraries
+	* More @Nullable @NotNull annotations
+	* I18n update: Russian & Japanese & German & Swedish & Turkish & Danish & French
+
 * v0.7.9: Graph structure for Script logic && Add ToastOperation && Fixes && i18n update
 	* Fully support graph data structure for script logic
 	* Add ToastOperation
