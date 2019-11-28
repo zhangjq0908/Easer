@@ -28,6 +28,8 @@ import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.Objects;
+
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.local_skill.ValidData;
@@ -43,7 +45,7 @@ public class StateControlSkillViewFragment extends SkillViewFragment<StateContro
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.skill_operation__event_control, container, false);
-        sw_script = new DataSelectSpinnerWrapper(getContext(), (Spinner) view.findViewById(R.id.spinner_event));
+        sw_script = new DataSelectSpinnerWrapper(Objects.requireNonNull(getContext()), (Spinner) view.findViewById(R.id.spinner_event));
         sw_script
                 .beginInit()
                 .setAllowEmpty(false)

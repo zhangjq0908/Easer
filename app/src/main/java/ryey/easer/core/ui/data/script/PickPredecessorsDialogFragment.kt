@@ -48,7 +48,7 @@ class PickPredecessorsDialogFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val selectedItems = ArrayList<Int>() // Where we track the selected items
-            val candidates = ScriptDataStorage(activity).list()
+            val candidates = ScriptDataStorage(it).list()
             arguments?.getStringArray(ARG_EXCLUDED)?.let { excludedPredecessors ->
                 for (excluded in excludedPredecessors) {
                     candidates.remove(excluded)

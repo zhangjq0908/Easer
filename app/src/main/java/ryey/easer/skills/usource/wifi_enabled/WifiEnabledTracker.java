@@ -27,6 +27,7 @@ import android.content.IntentFilter;
 import android.net.wifi.WifiManager;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import ryey.easer.skills.condition.SkeletonTracker;
 
@@ -74,6 +75,7 @@ public class WifiEnabledTracker extends SkeletonTracker<WifiEnabledUSourceData> 
         context.unregisterReceiver(broadcastReceiver);
     }
 
+    @Nullable
     @Override
     public Boolean state() {
         if (wifiManager == null)

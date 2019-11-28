@@ -35,12 +35,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 import ryey.easer.R;
 import ryey.easer.core.AsyncHelper;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.storage.ProfileDataStorage;
+import ryey.easer.core.data.storage.RequiredDataNotFoundException;
 import ryey.easer.core.ui.data.AbstractDataListFragment;
 import ryey.easer.skills.LocalSkillRegistry;
 import ryey.easer.skills.operation.state_control.StateControlOperationData;
@@ -78,13 +80,13 @@ public class ProfileListFragment extends AbstractDataListFragment {
     }
 
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        MenuInflater inflater = getActivity().getMenuInflater();
+    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
+        MenuInflater inflater = Objects.requireNonNull(getActivity()).getMenuInflater();
         inflater.inflate(R.menu.list_profile, menu);
     }
 
     @Override
-    public boolean onContextItemSelected(MenuItem item) {
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         ListDataWrapper wrapper = (ListDataWrapper) getListView().getItemAtPosition(info.position);
         String name = wrapper.name;
@@ -101,7 +103,12 @@ public class ProfileListFragment extends AbstractDataListFragment {
         ProfileDataStorage dataStorage = new ProfileDataStorage(getContext());
         List<ListDataWrapper> dataWrapperList = new ArrayList<>();
         for (String name : dataStorage.list()) {
-            ProfileStructure profile = dataStorage.get(name);
+            ProfileStructure profile = null;
+            try {
+                profile = dataStorage.get(name);
+            } catch (RequiredDataNotFoundException e) {
+                throw new AssertionError(e);
+            }
             boolean valid = profile.isValid();
             if (valid) {
                 Collection<RemoteLocalOperationDataWrapper> stateControlOperationData = profile.get(new StateControlOperationSkill().id());

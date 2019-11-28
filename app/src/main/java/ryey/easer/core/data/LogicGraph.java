@@ -32,7 +32,8 @@ import java.util.Set;
 
 public final class LogicGraph {
 
-    public static LogicGraph createFromScriptList(Collection<ScriptStructure> scripts) {
+    @NonNull
+    public static LogicGraph createFromScriptList(@NonNull Collection<ScriptStructure> scripts) {
         Set<LogicNode> initials = new ArraySet<>();
         Map<String, LogicNode> idToNode = new HashMap<>();
         Map<LogicNode, Set<LogicNode>> edge = new HashMap<>();

@@ -51,7 +51,7 @@ class ServiceLog : BasicLog {
     }
 
     constructor(parcel: Parcel) : super(parcel) {
-        serviceName = parcel.readString()
+        serviceName = parcel.readString()!!
         start = parcel.readByte() > 0
     }
 

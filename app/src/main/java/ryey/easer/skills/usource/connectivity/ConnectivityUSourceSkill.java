@@ -32,7 +32,6 @@ import ryey.easer.commons.local_skill.SkillView;
 import ryey.easer.commons.local_skill.SourceCategory;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.conditionskill.Tracker;
-import ryey.easer.commons.local_skill.eventskill.EventSkill;
 import ryey.easer.commons.local_skill.usource.USourceDataFactory;
 import ryey.easer.commons.local_skill.usource.USourceSkill;
 import ryey.easer.skills.SkillUtils;

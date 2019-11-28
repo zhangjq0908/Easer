@@ -59,6 +59,7 @@ class ServiceUtils {
                 builder = NotificationCompat.Builder(service, channelId)
                 builder.setAutoCancel(true)
             } else {
+                @Suppress("DEPRECATION")
                 builder = NotificationCompat.Builder(service)
                         .setPriority(NotificationCompat.PRIORITY_MIN)
             }

@@ -110,7 +110,7 @@ class ActivityLogService : Service() {
 
         @Synchronized
         fun recordProfile(bundle: Bundle) {
-            val activityLog: ActivityLog = bundle.getParcelable(EXTRA_ACTIVITY_LOG)
+            val activityLog: ActivityLog = bundle.getParcelable(EXTRA_ACTIVITY_LOG)!!
             activityLogList.addLast(activityLog)
         }
 

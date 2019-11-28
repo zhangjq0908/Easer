@@ -21,6 +21,9 @@ package ryey.easer.core.data.storage.backend.json.profile;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileNotFoundException;
@@ -46,10 +49,11 @@ public class JsonProfileDataStorageBackend implements ProfileDataStorageBackendI
     }
 
     @Override
-    public boolean has(String name) {
+    public boolean has(@NonNull String name) {
         return IOUtils.fileExists(dir, name + NC.SUFFIX);
     }
 
+    @NonNull
     @Override
     public List<String> list() {
         ArrayList<String> list = new ArrayList<>();
@@ -59,10 +63,15 @@ public class JsonProfileDataStorageBackend implements ProfileDataStorageBackendI
         return list;
     }
 
+    @Nullable
     @Override
-    public ProfileStructure get(String name) throws FileNotFoundException, IllegalStorageDataException {
+    public ProfileStructure get(@NonNull String name) throws IllegalStorageDataException {
         File file = new File(dir, name + NC.SUFFIX);
-        return get(file);
+        try {
+            return get(file);
+        } catch (FileNotFoundException e) {
+            return null;
+        }
     }
 
     private ProfileStructure get(File file) throws FileNotFoundException, IllegalStorageDataException {
@@ -72,19 +81,20 @@ public class JsonProfileDataStorageBackend implements ProfileDataStorageBackendI
     }
 
     @Override
-    public void write(ProfileStructure profile) throws IOException {
+    public void write(@NonNull ProfileStructure profile) throws IOException {
         File file = new File(dir, profile.getName() + NC.SUFFIX);
         ProfileSerializer serializer = new ProfileSerializer();
         FileDataStorageBackendHelper.write(serializer, file, profile);
     }
 
     @Override
-    public void delete(String name) {
+    public void delete(@NonNull String name) {
         File file = new File(dir, name + NC.SUFFIX);
         if (!file.delete())
             throw new IllegalStateException("Unable to delete " + file);
     }
 
+    @NonNull
     @Override
     public List<ProfileStructure> all() {
         List<ProfileStructure> list = new ArrayList<>();

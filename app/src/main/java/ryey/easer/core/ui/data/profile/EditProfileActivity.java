@@ -19,7 +19,6 @@
 
 package ryey.easer.core.ui.data.profile;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
@@ -39,7 +38,6 @@ import ryey.easer.commons.CommonSkillUtils;
 import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.local_skill.operationskill.OperationData;
 import ryey.easer.commons.local_skill.operationskill.OperationSkill;
-import ryey.easer.core.RemotePluginCommunicationHelper;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.storage.ProfileDataStorage;
@@ -52,8 +50,6 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
     static {
         TAG_DATA_TYPE = "profile";
     }
-
-    RemotePluginCommunicationHelper helper;
 
     EditText editText_profile_name = null;
 
@@ -77,13 +73,6 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        helper = new RemotePluginCommunicationHelper(this);
-        helper.begin();
-    }
-
-    @Override
     protected void init() {
         editText_profile_name = findViewById(R.id.editText_profile_title);
         operationSelectorFragment = new OperationSelectorFragment();
@@ -101,12 +90,6 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
             transaction.remove(fragment);
         }
         transaction.commit();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        helper.end();
     }
 
     @Override
@@ -150,7 +133,7 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
                 profile.put(id, data);
             } catch (InvalidDataInputException e) {
                 fragment.setHighlight(true);
-                return null;
+                throw e;
             }
         }
 
@@ -164,7 +147,7 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
                 profile.put(id, data);
             } catch (InvalidDataInputException e) {
                 fragment.setHighlight(true);
-                return null;
+                throw e;
             }
         }
 

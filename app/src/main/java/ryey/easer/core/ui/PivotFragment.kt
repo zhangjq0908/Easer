@@ -49,7 +49,7 @@ class PivotFragment: Fragment() {
     private val lotusStatusReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             val satisfied = intent!!.getBooleanExtra(Lotus.EXTRA_SATISFACTION, false)
-            val id = intent.getStringExtra(Lotus.EXTRA_SCRIPT_ID)
+            val id = intent.getStringExtra(Lotus.EXTRA_SCRIPT_ID)!!
             updateNodeStatus(id, satisfied)
         }
     }
@@ -186,7 +186,7 @@ class PivotFragment: Fragment() {
     }
 
     private fun createBasicGraph(): Pair<Graph, Map<String, Node>> {
-        val scriptDataStorage = ScriptDataStorage(context)
+        val scriptDataStorage = ScriptDataStorage(context!!)
 
         return convertToGraph(scriptDataStorage.logicGraph, null)
     }
@@ -194,7 +194,7 @@ class PivotFragment: Fragment() {
     private fun createAdvancedGraph(): Pair<Graph, Map<String, Node>> {
         val statusMap: Map<String, Boolean> = binder!!.lotusStatusMap()
 
-        val scriptDataStorage = ScriptDataStorage(context)
+        val scriptDataStorage = ScriptDataStorage(context!!)
 
         return convertToGraph(scriptDataStorage.logicGraph, statusMap)
     }
@@ -223,7 +223,7 @@ class PivotFragment: Fragment() {
             }
 
             while (queue.isNotEmpty()) {
-                val logicNode = queue.poll()
+                val logicNode = queue.poll()!!
                 val node = nodeMap[logicNode.id]!!
                 logicNode.script.profileName?.let {
                     val profileNode = Node(ProfileInfo(it))

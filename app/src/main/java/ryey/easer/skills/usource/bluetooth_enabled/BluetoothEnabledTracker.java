@@ -27,6 +27,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import ryey.easer.skills.condition.SkeletonTracker;
 
@@ -71,6 +72,7 @@ public class BluetoothEnabledTracker extends SkeletonTracker<BluetoothEnabledUSo
         context.unregisterReceiver(broadcastReceiver);
     }
 
+    @Nullable
     @Override
     public Boolean state() {
         if (bluetoothAdapter == null)

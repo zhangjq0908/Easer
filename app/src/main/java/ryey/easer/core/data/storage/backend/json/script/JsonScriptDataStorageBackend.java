@@ -21,6 +21,9 @@ package ryey.easer.core.data.storage.backend.json.script;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileNotFoundException;
@@ -46,10 +49,11 @@ public class JsonScriptDataStorageBackend implements ScriptDataStorageBackendInt
     }
 
     @Override
-    public boolean has(String name) {
+    public boolean has(@NonNull String name) {
         return IOUtils.fileExists(dir, name + NC.SUFFIX);
     }
 
+    @NonNull
     @Override
     public List<String> list() {
         ArrayList<String> list = new ArrayList<>();
@@ -59,10 +63,15 @@ public class JsonScriptDataStorageBackend implements ScriptDataStorageBackendInt
         return list;
     }
 
+    @Nullable
     @Override
-    public ScriptStructure get(String name) throws FileNotFoundException, IllegalStorageDataException {
+    public ScriptStructure get(@NonNull String name) throws IllegalStorageDataException {
         File file = new File(dir, name + NC.SUFFIX);
-        return get(file);
+        try {
+            return get(file);
+        } catch (FileNotFoundException e) {
+            return null;
+        }
     }
 
     private ScriptStructure get(File file) throws FileNotFoundException, IllegalStorageDataException {
@@ -71,14 +80,14 @@ public class JsonScriptDataStorageBackend implements ScriptDataStorageBackendInt
     }
 
     @Override
-    public void write(ScriptStructure event) throws IOException {
+    public void write(@NonNull ScriptStructure event) throws IOException {
         File file = new File(dir, event.getName() + NC.SUFFIX);
         ScriptSerializer serializer = new ScriptSerializer();
         FileDataStorageBackendHelper.write(serializer, file, event);
     }
 
     @Override
-    public void delete(String name) {
+    public void delete(@NonNull String name) {
         File file = new File(dir, name + NC.SUFFIX);
         if (!file.delete())
             throw new IllegalStateException("Unable to delete file " + file);
@@ -90,6 +99,7 @@ public class JsonScriptDataStorageBackend implements ScriptDataStorageBackendInt
         write(event);
     }
 
+    @NonNull
     @Override
     public List<ScriptStructure> all() {
         List<ScriptStructure> list = new ArrayList<>();

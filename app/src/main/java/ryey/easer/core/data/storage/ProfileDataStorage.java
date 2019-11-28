@@ -21,6 +21,8 @@ package ryey.easer.core.data.storage;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import java.io.IOException;
 
 import ryey.easer.core.data.ProfileStructure;
@@ -30,14 +32,14 @@ import ryey.easer.core.data.storage.backend.json.profile.JsonProfileDataStorageB
 
 public class ProfileDataStorage extends AbstractDataStorage<ProfileStructure, ProfileDataStorageBackendInterface> {
 
-    public ProfileDataStorage(Context context) {
+    public ProfileDataStorage(@NonNull Context context) {
         super(context, new ProfileDataStorageBackendInterface[] {
                 new JsonProfileDataStorageBackend(context),
         });
     }
 
     @Override
-    boolean isSafeToDelete(String name) {
+    boolean isSafeToDelete(@NonNull String name) {
         ScriptDataStorage scriptDataStorage = new ScriptDataStorage(context);
         for (ScriptStructure scriptStructure : scriptDataStorage.allScripts()) {
             if (name.equals(scriptStructure.getProfileName()))
@@ -47,7 +49,7 @@ public class ProfileDataStorage extends AbstractDataStorage<ProfileStructure, Pr
     }
 
     @Override
-    protected void handleRename(String oldName, ProfileStructure profile) throws IOException {
+    protected void handleRename(@NonNull String oldName, @NonNull ProfileStructure profile) throws IOException {
         ScriptDataStorage scriptDataStorage = new ScriptDataStorage(context);
         for (String scriptName : scriptDataStorage.list()) {
             ScriptStructure script = scriptDataStorage.get(scriptName);

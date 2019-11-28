@@ -116,6 +116,7 @@ public abstract class SourceSelectorDialogFragment<S extends Skill & SourceCateg
         public boolean isRemote() {
             return skill == null;
         }
+        @NonNull
         public String toString() {
             return name;
         }

@@ -35,6 +35,7 @@ import ryey.easer.R;
 import ryey.easer.core.EHService;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.storage.ConditionDataStorage;
+import ryey.easer.core.data.storage.RequiredDataNotFoundException;
 import ryey.easer.core.ui.data.AbstractDataListFragment;
 import ryey.easer.skills.LocalSkillRegistry;
 
@@ -60,7 +61,12 @@ public class ConditionListFragment extends AbstractDataListFragment {
         ConditionDataStorage dataStorage = new ConditionDataStorage(getContext());
         List<ListDataWrapper> dataWrapperList = new ArrayList<>();
         for (String name : dataStorage.list()) {
-            ConditionStructure condition = dataStorage.get(name);
+            ConditionStructure condition = null;
+            try {
+                condition = dataStorage.get(name);
+            } catch (RequiredDataNotFoundException e) {
+                throw new AssertionError(e);
+            }
             if (condition.isValid()) {
                 dataWrapperList.add(new ListDataWrapper(name));
             } else {

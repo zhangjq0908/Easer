@@ -1,0 +1,9 @@
+Bug fixes && dev updates && i18n update
+
+* Display "unknown" plugins in Profile
+* Fix Pivot crash with one node
+* Fix TcpEvent crash caused by sending network packet in main thread
+* Fix kotlin type mismatches
+* Update gradle, build tools, libraries
+* More @Nullable @NotNull annotations
+* I18n update: Russian & Japanese

@@ -45,7 +45,7 @@ public class ToastOperationData implements OperationData {
         this(new DynamicsEnabledString(text));
     }
 
-    ToastOperationData(DynamicsEnabledString text) {
+    ToastOperationData(@NonNull DynamicsEnabledString text) {
         this.text = text;
     }
 

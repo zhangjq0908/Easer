@@ -29,10 +29,10 @@ open class RemotePluginInfo(val packageName: String, val pluginId: String, val p
         get() = field ?: "$packageName.EditDataActivity"
 
     constructor(parcel: Parcel) : this(
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
+            parcel.readString()!!,
+            parcel.readString()!!,
+            parcel.readString()!!,
+            parcel.readString()!!,
             parcel.readString())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

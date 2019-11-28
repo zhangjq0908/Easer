@@ -26,11 +26,11 @@ import androidx.annotation.NonNull;
 
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SourceCategory;
-import ryey.easer.skills.SkillViewFragment;
 import ryey.easer.commons.local_skill.ValidData;
-import ryey.easer.skills.event.AbstractSlot;
 import ryey.easer.commons.local_skill.eventskill.EventDataFactory;
 import ryey.easer.commons.local_skill.eventskill.EventSkill;
+import ryey.easer.skills.SkillViewFragment;
+import ryey.easer.skills.event.AbstractSlot;
 
 public class WidgetEventSkill implements EventSkill<WidgetEventData> {
 
@@ -52,7 +52,7 @@ public class WidgetEventSkill implements EventSkill<WidgetEventData> {
 
     @Override
     public Boolean checkPermissions(@NonNull Context context) {
-        return null;
+        return true;
     }
 
     @Override

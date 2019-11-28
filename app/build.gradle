@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId 'ryey.easer'
@@ -40,8 +40,8 @@ android {
         beta {
             dimension 'dev'
             applicationIdSuffix ".beta"
-            versionCode 121999
-            versionName "0.7.9"
+            versionCode 122001
+            versionName "0.7.9.1-beta"
         }
     }
     dataBinding.enabled = true
@@ -52,19 +52,19 @@ android {
 }
 
 dependencies {
-    def acraVersion = '5.1.3'
+    def acraVersion = '5.3.0'
 
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':plugin')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.60"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.annotation:annotation:1.1.0'
-    implementation 'com.google.guava:guava:27.1-android'
-    implementation 'com.orhanobut:logger:2.1.1'
+    implementation 'com.google.guava:guava:28.1-android'
+    implementation 'com.orhanobut:logger:2.2.0'
     implementation 'org.apmem.tools:layouts:1.10@aar'
     implementation 'se.emilsjolander:stickylistheaders:2.7.0'
     implementation 'com.github.TellH:RecyclerTreeView:1.2.0'
@@ -75,7 +75,7 @@ dependencies {
     implementation "ch.acra:acra-core:$acraVersion"
     implementation "ch.acra:acra-toast:$acraVersion"
     testImplementation 'junit:junit:4.12'
-    testImplementation 'org.json:json:20160810'
+    testImplementation 'org.json:json:20190722'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test:rules:1.2.0'
 }

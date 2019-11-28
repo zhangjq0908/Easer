@@ -27,6 +27,7 @@ import android.provider.CalendarContract;
 
 import java.util.Calendar;
 
+@SuppressWarnings("ReturnOfNull") //TODO: Merge with Calendar condition and solve this problem
 @SuppressLint("MissingPermission")
 class CalendarHelper {
 

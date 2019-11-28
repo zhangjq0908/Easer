@@ -19,7 +19,7 @@
 
 package ryey.easer.core.data;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.collection.ArraySet;
 
 import com.google.common.collect.LinkedListMultimap;
@@ -76,7 +76,7 @@ final public class ProfileStructure implements Named, Verifiable, WithCreatedVer
         data.replaceValues(key, wrapperCollection);
     }
 
-    @Nullable
+    @NonNull
     public Set<String> placeholders() {
         Set<String> placeholders = new ArraySet<>();
         for (String key : data.keys()) {
