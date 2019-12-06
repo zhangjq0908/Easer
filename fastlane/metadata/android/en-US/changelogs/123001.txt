@@ -1,0 +1,7 @@
+Allow interact with Pivot && Add geo-location event & condition && Chinese optimize
+
+* Add interaction on Pivot
+	* Touch Script to edit
+	* Long-press to open context menu
+* Add geo-location event & condition (LocationUSource)
+* Optimize Chinese string resources
