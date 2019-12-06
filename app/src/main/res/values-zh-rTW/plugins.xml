@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources><string name="event_condition_event">條件事件</string>
-    <string name="event_condition_event_enter">輸入</string>
     <string name="usource_headset__plugged_in">插入</string>
     <string name="usource_wifi_enabled">啟用WiFi</string>
     <string name="usource_wifi_enabled_wifi_is_enabled">WiFi已啟用？</string>

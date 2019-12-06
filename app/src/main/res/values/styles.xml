@@ -40,13 +40,6 @@
         <item name="android:textColor">@color/colorDialogTitle</item>
     </style>
 
-    <style name="AppTheme.PluginViewPager">
-        <item name="android:paddingLeft">@dimen/eventpluginviewpager_horizontal_margin</item>
-        <item name="android:paddingRight">@dimen/eventpluginviewpager_horizontal_margin</item>
-        <item name="android:paddingTop">@dimen/eventpluginviewpager_vertical_margin</item>
-        <item name="android:paddingBottom">@dimen/eventpluginviewpager_vertical_margin</item>
-    </style>
-
     <style name="AppTheme.PluginEnableSettings" />
 
     <style name="AppTheme.PluginEnableSettings.PluginFeatureIcon">
@@ -110,35 +103,36 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="LR">
+    <style name="AppTheme.LR">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center_vertical</item>
     </style>
 
-    <style name="LR.Left">
+    <style name="AppTheme.LR.Left">
+        <item name="android:textColor">@android:color/tertiary_text_light</item>
         <item name="android:layout_weight">@integer/lr_weight_left</item>
         <item name="android:paddingLeft">@dimen/lr_padding_outer</item>
         <item name="android:paddingRight">@dimen/lr_padding_inner</item>
         <item name="android:gravity">center_vertical</item>
     </style>
 
-    <style name="LR.Right">
+    <style name="AppTheme.LR.Right">
         <item name="android:layout_weight">@integer/lr_weight_right</item>
         <item name="android:paddingLeft">@dimen/lr_padding_inner</item>
         <item name="android:paddingRight">@dimen/lr_padding_outer</item>
         <item name="android:gravity">center_vertical</item>
     </style>
 
-    <style name="LR.Input">
+    <style name="AppTheme.LR.Input">
         <item name="android:layout_gravity">top</item>
     </style>
 
-    <style name="LR.Input.Left">
+    <style name="AppTheme.LR.Input.Left">
         <item name="android:layout_weight">@integer/lr_input_weight_left</item>
     </style>
 
-    <style name="LR.Input.Right">
+    <style name="AppTheme.LR.Input.Right">
         <item name="android:layout_weight">@integer/lr_input_weight_right</item>
         <item name="android:ems">10</item>
     </style>

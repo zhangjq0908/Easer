@@ -134,21 +134,13 @@ public final class DataListContainerFragment extends Fragment implements DataLis
     }
 
     public void newData() {
-        Intent intent = currentDataList.intentForEditDataActivity();
-        intent.putExtra(EditDataProto.PURPOSE, EditDataProto.Purpose.add);
-        startActivityForResult(intent, request_code);
+        EditDataProto.add(this, currentDataList.intentForEditDataActivity(), request_code);
     }
     public void editData(@NonNull String name) {
-        Intent intent = currentDataList.intentForEditDataActivity();
-        intent.putExtra(EditDataProto.PURPOSE, EditDataProto.Purpose.edit);
-        intent.putExtra(EditDataProto.CONTENT_NAME, name);
-        startActivityForResult(intent, request_code);
+        EditDataProto.edit(this, currentDataList.intentForEditDataActivity(), request_code, name);
     }
     public void deleteData(@NonNull String name) {
-        Intent intent = currentDataList.intentForEditDataActivity();
-        intent.putExtra(EditDataProto.PURPOSE, EditDataProto.Purpose.delete);
-        intent.putExtra(EditDataProto.CONTENT_NAME, name);
-        startActivityForResult(intent, request_code);
+        EditDataProto.delete(this, currentDataList.intentForEditDataActivity(), request_code, name);
     }
 
     @Override

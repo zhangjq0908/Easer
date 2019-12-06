@@ -19,11 +19,43 @@
 
 package ryey.easer.core.ui.data;
 
+import android.content.Intent;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+@SuppressWarnings("WeakerAccess")
 public final class EditDataProto {
-    public static final String CONTENT_NAME = "ryey.easer.EVENT.NAME";
-    public static final String PURPOSE = "ryey.easer.PURPOSE";
+    public static final String CONTENT_NAME = "ryey.easer.RUNTIME.EditDataProto.CONTENT_NAME";
+    public static final String PREDECESSOR = "ryey.easer.RUNTIME.EditDataProto.PREDECESSOR";
+    public static final String PURPOSE = "ryey.easer.RUNTIME.EditDataProto.PURPOSE";
 
     public enum Purpose {
         add, edit, delete
+    }
+
+    public static void add(@NonNull Fragment fragment, @NonNull Intent intent, int requestCode) {
+        intent.putExtra(EditDataProto.PURPOSE, EditDataProto.Purpose.add);
+        fragment.startActivityForResult(intent, requestCode);
+    }
+
+    public static void addScript(@NonNull Fragment fragment, @NonNull Intent intent, int requestCode, @Nullable String predecessor) {
+        intent.putExtra(EditDataProto.PURPOSE, EditDataProto.Purpose.add);
+        if (predecessor != null)
+            intent.putExtra(EditDataProto.PREDECESSOR, predecessor);
+        fragment.startActivityForResult(intent, requestCode);
+    }
+
+    public static void edit(@NonNull Fragment fragment, @NonNull Intent intent, int requestCode, @NonNull String name) {
+        intent.putExtra(EditDataProto.PURPOSE, EditDataProto.Purpose.edit);
+        intent.putExtra(EditDataProto.CONTENT_NAME, name);
+        fragment.startActivityForResult(intent, requestCode);
+    }
+    
+    public static void delete(@NonNull Fragment fragment, @NonNull Intent intent, int requestCode, @NonNull String name) {
+        intent.putExtra(EditDataProto.PURPOSE, EditDataProto.Purpose.delete);
+        intent.putExtra(EditDataProto.CONTENT_NAME, name);
+        fragment.startActivityForResult(intent, requestCode);
     }
 }

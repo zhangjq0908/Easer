@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/textView14"
-        style="@style/LR.Input.Left"
+        style="@style/AppTheme.LR.Input.Left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -21,7 +21,7 @@
 
     <EditText
         android:id="@+id/text_action"
-        style="@style/LR.Input.Right"
+        style="@style/AppTheme.LR.Input.Right"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -33,7 +33,7 @@
 
     <TextView
         android:id="@+id/textView15"
-        style="@style/LR.Input.Left"
+        style="@style/AppTheme.LR.Input.Left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -45,7 +45,7 @@
 
     <EditText
         android:id="@+id/text_category"
-        style="@style/LR.Input.Right"
+        style="@style/AppTheme.LR.Input.Right"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -58,7 +58,7 @@
 
     <TextView
         android:id="@+id/textView16"
-        style="@style/LR.Input.Left"
+        style="@style/AppTheme.LR.Input.Left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -70,7 +70,7 @@
 
     <EditText
         android:id="@+id/text_type"
-        style="@style/LR.Input.Right"
+        style="@style/AppTheme.LR.Input.Right"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -83,7 +83,7 @@
 
     <TextView
         android:id="@+id/textView17"
-        style="@style/LR.Input.Left"
+        style="@style/AppTheme.LR.Input.Left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -95,7 +95,7 @@
 
     <EditText
         android:id="@+id/text_data"
-        style="@style/LR.Input.Right"
+        style="@style/AppTheme.LR.Input.Right"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
