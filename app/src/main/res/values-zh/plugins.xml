@@ -264,5 +264,10 @@
     <string name="o_http_url">URL</string>
     <string name="o_http_post_data">POST數據</string>
     <string name="operation_http_request">HTTP請求</string>
+    <string name="usource_location">地理位置</string>
+    <string name="usource_location__listen_min_time_seconds">監聽最短間隔（秒）</string>
+    <string name="usource_location__radius_meters">半徑（米）</string>
+    <string name="usource_location__threshold_accuracy_meters">精度閾值（米）</string>
+    <string name="usource_location__threshold_age_seconds">陳舊度閾值（秒）</string>
 
 </resources>
