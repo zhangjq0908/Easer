@@ -30,6 +30,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.dynamics.Dynamics;
@@ -162,7 +163,7 @@ public class LocationUSourceData implements USourceData {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeArray(locations.toArray());
+        dest.writeTypedArray(locations.toArray(new LatLong[0]), 0);
         dest.writeInt(radius);
         dest.writeLong(listenMinTime);
         dest.writeLong(thresholdAge);
@@ -181,7 +182,7 @@ public class LocationUSourceData implements USourceData {
     };
 
     private LocationUSourceData(Parcel in) {
-        locations = new ArraySet<>(Arrays.asList((LatLong[]) in.readArray(LatLong.class.getClassLoader())));
+        locations = new ArraySet<>(Arrays.asList(Objects.requireNonNull(in.createTypedArray(LatLong.CREATOR))));
         radius = in.readInt();
         listenMinTime = in.readLong();
         thresholdAge = in.readLong();
