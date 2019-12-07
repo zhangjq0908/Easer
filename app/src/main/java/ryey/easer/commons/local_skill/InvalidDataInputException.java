@@ -21,10 +21,13 @@ package ryey.easer.commons.local_skill;
 
 public class InvalidDataInputException extends Exception {
     public InvalidDataInputException() {
-
     }
 
     public InvalidDataInputException(String msg, String ...args) {
         super(String.format(msg, (Object[]) args));
+    }
+
+    public InvalidDataInputException(Exception e) {
+        super(e);
     }
 }

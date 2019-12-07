@@ -54,6 +54,7 @@ import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.local_skill.dynamics.DynamicsLink;
 import ryey.easer.commons.local_skill.eventskill.EventData;
 import ryey.easer.commons.ui.DataSelectSpinnerWrapper;
+import ryey.easer.core.data.BuilderInfoClashedException;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.ProfileStructure;
@@ -301,46 +302,50 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
 
     @Override
     protected ScriptStructure saveToData() throws InvalidDataInputException {
-        ScriptStructure script = new ScriptStructure(C.VERSION_CREATED_IN_RUNTIME);
-        script.setName(mEditText_name.getText().toString());
+        ScriptStructure.Builder builder = new ScriptStructure.Builder(C.VERSION_CREATED_IN_RUNTIME);
+        builder.setName(mEditText_name.getText().toString());
         String profile = sw_profile.getSelection();
-        script.setProfileName(profile);
-        script.setActive(isActive);
+        builder.setProfileName(profile);
+        builder.setActive(isActive);
 
-        script.setPredecessors(predecessorManager.getChosenPredecessors());
+        builder.setPredecessors(predecessorManager.getChosenPredecessors());
 
-        script.setReverse(mSwitch_reverse.isChecked());
+        builder.setReverse(mSwitch_reverse.isChecked());
 
         if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_inline_event) {
             EventDataStorage eventDataStorage = new EventDataStorage(this);
-            script.setEventData(editEventDataFragment.saveToData());
+            builder.setTmpEvent(editEventDataFragment.saveToData());
         } else if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_event) {
             EventDataStorage eventDataStorage = new EventDataStorage(this);
             String eventName = sw_event.getSelection();
             if (eventName == null)
                 throw new InvalidDataInputException("Event not selected");
             try {
-                script.setEvent(eventDataStorage.get(eventName));
+                builder.setEvent(eventDataStorage.get(eventName));
             } catch (RequiredDataNotFoundException e) {
                 Logger.e(e, "Event %s disappeared while editing Script", eventName);
                 throw new InvalidDataInputException("Event %s not found", eventName);
             }
-            script.setRepeatable(mSwitch_repeatable.isChecked());
-            script.setPersistent(mSwitch_persistent.isChecked());
+            builder.setRepeatable(mSwitch_repeatable.isChecked());
+            builder.setPersistent(mSwitch_persistent.isChecked());
         } else if (rg_mode.getCheckedRadioButtonId() == R.id.radioButton_condition) {
             ConditionDataStorage conditionDataStorage = new ConditionDataStorage(this);
             String conditionName = sw_condition.getSelection();
             if (conditionName == null)
                 throw new InvalidDataInputException("Condition not selected");
             try {
-                script.setCondition(conditionDataStorage.get(conditionName));
+                builder.setCondition(conditionDataStorage.get(conditionName));
             } catch (RequiredDataNotFoundException e) {
                 Logger.e(e, "Condition %s disappeared while editing Script", conditionName);
                 throw new InvalidDataInputException("Condition %s not found", conditionName);
             }
         }
-        script.setDynamicsLink(dynamicsLink);
-        return script;
+        builder.setDynamicsLink(dynamicsLink);
+        try {
+            return builder.build();
+        } catch (BuilderInfoClashedException e) {
+            throw new InvalidDataInputException(e);
+        }
     }
 
     @Override

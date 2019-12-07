@@ -38,6 +38,8 @@ import ryey.easer.commons.CommonSkillUtils;
 import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.local_skill.operationskill.OperationData;
 import ryey.easer.commons.local_skill.operationskill.OperationSkill;
+import ryey.easer.core.RemotePluginCommunicationHelper;
+import ryey.easer.core.data.BuilderInfoClashedException;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.storage.ProfileDataStorage;
@@ -118,8 +120,8 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
 
     @Override
     protected ProfileStructure saveToData() throws InvalidDataInputException {
-        ProfileStructure profile = new ProfileStructure(C.VERSION_CREATED_IN_RUNTIME);
-        profile.setName(editText_profile_name.getText().toString());
+        ProfileStructure.Builder builder = new ProfileStructure.Builder(C.VERSION_CREATED_IN_RUNTIME);
+        builder.setName(editText_profile_name.getText().toString());
 
         for (OperationSkillViewContainerFragment<?> fragment : operationViewList) {
             if (!fragment.isEnabled())
@@ -130,7 +132,7 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
                     throw new InvalidDataInputException();
                 fragment.setHighlight(false);
                 String id = LocalSkillRegistry.getInstance().operation().findSkill(data).id();
-                profile.put(id, data);
+                builder.put(id, data);
             } catch (InvalidDataInputException e) {
                 fragment.setHighlight(true);
                 throw e;
@@ -144,14 +146,18 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
                 RemoteOperationData data = fragment.getData();
                 fragment.setHighlight(false);
                 String id = fragment.id();
-                profile.put(id, data);
+                builder.put(id, data);
             } catch (InvalidDataInputException e) {
                 fragment.setHighlight(true);
                 throw e;
             }
         }
 
-        return profile;
+        try {
+            return builder.build();
+        } catch (BuilderInfoClashedException e) {
+            throw new InvalidDataInputException(e);
+        }
     }
 
     synchronized void clearPluginView() {

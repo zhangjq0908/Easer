@@ -22,24 +22,18 @@ package ryey.easer.core.data.storage;
 import android.content.Context;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-
 import com.orhanobut.logger.Logger;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import ryey.easer.R;
-import ryey.easer.core.data.LogicGraph;
 import ryey.easer.core.data.Named;
 import ryey.easer.core.data.ScriptStructure;
-import ryey.easer.core.data.ScriptTree;
 import ryey.easer.core.data.Verifiable;
 import ryey.easer.core.data.WithCreatedVersion;
 
@@ -157,19 +151,6 @@ public class StorageHelper {
             }
         }
         return scriptIntermediateDataMap;
-    }
-
-    static List<ScriptTree> logicGraphToTreeList(LogicGraph logicGraph) {
-        return recGraphToTreeList(logicGraph, logicGraph.initialNodes());
-    }
-
-    private static List<ScriptTree> recGraphToTreeList(@NonNull LogicGraph logicGraph, @NonNull Set<LogicGraph.LogicNode> nodes) {
-        List<ScriptTree> treeList = new LinkedList<>();
-        for (LogicGraph.LogicNode node : nodes) {
-            if (node.script.isValid())
-                treeList.add(new ScriptTree(node.script, recGraphToTreeList(logicGraph, logicGraph.successorsM(node))));
-        }
-        return treeList;
     }
 
     private static class ConvertFailedException extends IOException {

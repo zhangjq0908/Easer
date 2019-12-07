@@ -39,20 +39,18 @@ import ryey.easer.remote_plugin.RemoteOperationData;
  */
 final public class ProfileStructure implements Named, Verifiable, WithCreatedVersion {
     private final int createdVersion;
-    String name;
+    private final String name;
 
-    final Multimap<String, RemoteLocalOperationDataWrapper> data = LinkedListMultimap.create();
+    private final Multimap<String, RemoteLocalOperationDataWrapper> data;
 
-    public ProfileStructure(int createdVersion) {
+    public ProfileStructure(int createdVersion, String name, Multimap<String, RemoteLocalOperationDataWrapper> data) {
         this.createdVersion = createdVersion;
+        this.name = name;
+        this.data = data;
     }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     //TODO: concurrent
@@ -61,19 +59,6 @@ final public class ProfileStructure implements Named, Verifiable, WithCreatedVer
     }
     public Collection<RemoteLocalOperationDataWrapper> get(String key) {
         return data.get(key);
-    }
-    public void put(String key, RemoteOperationData value) {
-        data.put(key, new RemoteLocalOperationDataWrapper(value));
-    }
-    public void put(String key, OperationData value) {
-        data.put(key, new RemoteLocalOperationDataWrapper(value));
-    }
-    public void set(String key, Collection<OperationData> dataCollection) {
-        Collection<RemoteLocalOperationDataWrapper> wrapperCollection = new ArrayList<>(dataCollection.size());
-        for (OperationData operationData : dataCollection) {
-            wrapperCollection.add(new RemoteLocalOperationDataWrapper(operationData));
-        }
-        data.replaceValues(key, wrapperCollection);
     }
 
     @NonNull
@@ -114,5 +99,64 @@ final public class ProfileStructure implements Named, Verifiable, WithCreatedVer
     @Override
     public int createdVersion() {
         return createdVersion;
+    }
+
+    public Builder inBuilder() {
+        return new Builder(this);
+    }
+
+    public static class Builder {
+        private final int createdVersion;
+        String name;
+        Multimap<String, RemoteLocalOperationDataWrapper> data = LinkedListMultimap.create();
+
+        public Builder(int createdVersion) {
+            this.createdVersion = createdVersion;
+        }
+
+        public Builder(ProfileStructure copyFrom) {
+            this.createdVersion = copyFrom.createdVersion;
+            this.name = copyFrom.name;
+            this.data = copyFrom.data;
+        }
+
+        public ProfileStructure build() throws BuilderInfoClashedException {
+            if (createdVersion < -1)
+                throw new BuilderInfoClashedException("Profile createdVersion should not be less than -1");
+            if (name == null)
+                throw new BuilderInfoClashedException("Profile name shall not be null");
+            if (data == null)
+                throw new BuilderInfoClashedException("Profile data shall not be null");
+            return new ProfileStructure(createdVersion, name, data);
+        }
+
+        public Builder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder setData(Multimap<String, RemoteLocalOperationDataWrapper> data) {
+            this.data = data;
+            return this;
+        }
+
+        public Builder put(String key, RemoteOperationData value) {
+            data.put(key, new RemoteLocalOperationDataWrapper(value));
+            return this;
+        }
+
+        public Builder put(String key, OperationData value) {
+            data.put(key, new RemoteLocalOperationDataWrapper(value));
+            return this;
+        }
+
+        public Builder set(String key, Collection<OperationData> dataCollection) {
+            Collection<RemoteLocalOperationDataWrapper> wrapperCollection = new ArrayList<>(dataCollection.size());
+            for (OperationData operationData : dataCollection) {
+                wrapperCollection.add(new RemoteLocalOperationDataWrapper(operationData));
+            }
+            data.replaceValues(key, wrapperCollection);
+            return this;
+        }
     }
 }

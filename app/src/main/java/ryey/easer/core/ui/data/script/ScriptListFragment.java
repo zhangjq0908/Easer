@@ -20,11 +20,8 @@
 package ryey.easer.core.ui.data.script;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +32,6 @@ import ryey.easer.core.data.ScriptStructure;
 import ryey.easer.core.data.storage.RequiredDataNotFoundException;
 import ryey.easer.core.data.storage.ScriptDataStorage;
 import ryey.easer.core.ui.data.AbstractDataListFragment;
-import ryey.easer.core.ui.data.DataListContainerInterface;
 
 public class ScriptListFragment extends AbstractDataListFragment {
 
@@ -52,27 +48,6 @@ public class ScriptListFragment extends AbstractDataListFragment {
     @Override
     public int helpTextRes() {
         return R.string.help_script;
-    }
-
-    @Nullable
-    @Override
-    public Integer extraMenu() {
-        return R.menu.list_script_extra;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_tree_list) {
-            refContainer.get().switchContent(DataListContainerInterface.ListType.script_tree);
-            return true;
-        }
-        return false;
     }
 
     @Override

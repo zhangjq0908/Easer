@@ -31,11 +31,11 @@ import java.util.List;
 import java.util.Set;
 
 import ryey.easer.commons.local_skill.operationskill.OperationData;
+import ryey.easer.core.data.BuilderInfoClashedException;
 import ryey.easer.core.data.LogicGraph;
 import ryey.easer.core.data.ProfileStructure;
 import ryey.easer.core.data.RemoteLocalOperationDataWrapper;
 import ryey.easer.core.data.ScriptStructure;
-import ryey.easer.core.data.ScriptTree;
 import ryey.easer.core.data.storage.backend.ScriptDataStorageBackendInterface;
 import ryey.easer.core.data.storage.backend.json.script.JsonScriptDataStorageBackend;
 import ryey.easer.skills.operation.state_control.StateControlOperationData;
@@ -77,11 +77,6 @@ public class ScriptDataStorage extends AbstractDataStorage<ScriptStructure, Scri
             }
         }
         return true;
-    }
-
-    @Deprecated
-    public List<ScriptTree> getScriptTrees() {
-        return StorageHelper.logicGraphToTreeList(getLogicGraph());
     }
 
     @NonNull
@@ -138,7 +133,11 @@ public class ScriptDataStorage extends AbstractDataStorage<ScriptStructure, Scri
                         StateControlOperationData newData = new StateControlOperationData(operationData, name);
                         newDataCollection.add(newData);
                     }
-                    profile.set(s_id, newDataCollection);
+                    try {
+                        profile = profile.inBuilder().set(s_id, newDataCollection).build();
+                    } catch (BuilderInfoClashedException e) {
+                        throw new IllegalStateException(e);
+                    }
                     profileDataStorage.edit(pname, profile);
                 }
             }

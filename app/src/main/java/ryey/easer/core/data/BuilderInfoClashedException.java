@@ -17,25 +17,14 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.core.ui.data.script.script_tree_list;
+package ryey.easer.core.data;
 
-import ryey.easer.R;
-import tellh.com.recyclertreeview_lib.LayoutItemType;
-
-public final class EventItem implements LayoutItemType {
-
-    final String eventName;
-    final boolean active;
-    final boolean valid;
-
-    public EventItem(String eventName, boolean active, boolean valid) {
-        this.eventName = eventName;
-        this.active = active;
-        this.valid = valid;
+public class BuilderInfoClashedException extends Exception {
+    BuilderInfoClashedException(String msg) {
+        super(msg);
     }
 
-    @Override
-    public int getLayoutId() {
-        return R.layout.item_script_data_node;
+    BuilderInfoClashedException(Exception e) {
+        super(e);
     }
 }

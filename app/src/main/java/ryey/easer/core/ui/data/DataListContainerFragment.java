@@ -47,7 +47,6 @@ import ryey.easer.core.ui.data.condition.ConditionListFragment;
 import ryey.easer.core.ui.data.event.EventListFragment;
 import ryey.easer.core.ui.data.profile.ProfileListFragment;
 import ryey.easer.core.ui.data.script.ScriptListFragment;
-import ryey.easer.core.ui.data.script.script_tree_list.ScriptTreeListFragment;
 
 public final class DataListContainerFragment extends Fragment implements DataListContainerInterface {
 
@@ -150,9 +149,6 @@ public final class DataListContainerFragment extends Fragment implements DataLis
             case script:
                 currentFragment = new ScriptListFragment();
                 break;
-            case script_tree:
-                currentFragment = new ScriptTreeListFragment();
-                break;
             case event:
                 currentFragment = new EventListFragment();
                 break;
@@ -179,10 +175,7 @@ public final class DataListContainerFragment extends Fragment implements DataLis
         assert getParentFragment() != null;
         DataCollectionFragment parent = ((DataCollectionFragment) getParentFragment());
         int item = parent.currentItem();
-        ListType type = listType;
-        if (listType == ListType.script_tree)
-            type = ListType.script;
-        return item == DataCollectionFragment.PagerAdapter.Companion.getFragmentOrder().indexOf(type);
+        return item == DataCollectionFragment.PagerAdapter.Companion.getFragmentOrder().indexOf(listType);
     }
 
     @Override

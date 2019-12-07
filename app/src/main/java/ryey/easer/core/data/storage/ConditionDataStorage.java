@@ -26,6 +26,7 @@ import androidx.annotation.NonNull;
 import java.io.IOException;
 
 import ryey.easer.commons.local_skill.eventskill.EventData;
+import ryey.easer.core.data.BuilderInfoClashedException;
 import ryey.easer.core.data.ConditionStructure;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.ScriptStructure;
@@ -89,7 +90,11 @@ public class ConditionDataStorage extends AbstractDataStorage<ConditionStructure
             ScriptStructure script = scriptDataStorage.get(name);
             if (script.isCondition()) {
                 if (script.getCondition().getName().equals(oldName)) {
-                    script.setCondition(condition);
+                    try {
+                        script = script.inBuilder().setCondition(condition).build();
+                    } catch (BuilderInfoClashedException e) {
+                        throw new IllegalStateException(e);
+                    }
                     scriptDataStorage.update(script);
                 }
             }
@@ -104,7 +109,11 @@ public class ConditionDataStorage extends AbstractDataStorage<ConditionStructure
                 if (oldName.equals(((ConditionEventEventData) eventData).conditionName)) {
                     ConditionEventEventData newEventData =
                             new ConditionEventEventData((ConditionEventEventData) eventData, newName);
-                    event.setEventData(newEventData);
+                    try {
+                        event = event.inBuilder().setEventData(newEventData).build();
+                    } catch (BuilderInfoClashedException e) {
+                        throw new IllegalStateException(e);
+                    }
                     eventDataStorage.update(event);
                 }
             }
@@ -121,8 +130,12 @@ public class ConditionDataStorage extends AbstractDataStorage<ConditionStructure
                     if (eventData instanceof ConditionEventEventData) {
                         ConditionEventEventData newEventData =
                                 new ConditionEventEventData((ConditionEventEventData) eventData, newName);
-                        event.setEventData(newEventData);
-                        script.setEvent(event);
+                        try {
+                            event = event.inBuilder().setEventData(newEventData).build();
+                            script = script.inBuilder().setEvent(event).build();
+                        } catch (BuilderInfoClashedException e) {
+                            throw new IllegalStateException(e);
+                        }
                         scriptDataStorage.update(script);
                     }
                 }

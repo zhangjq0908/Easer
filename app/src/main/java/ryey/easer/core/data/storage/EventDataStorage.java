@@ -25,6 +25,7 @@ import androidx.annotation.NonNull;
 
 import java.io.IOException;
 
+import ryey.easer.core.data.BuilderInfoClashedException;
 import ryey.easer.core.data.EventStructure;
 import ryey.easer.core.data.ScriptStructure;
 import ryey.easer.core.data.storage.backend.EventDataStorageBackendInterface;
@@ -53,7 +54,11 @@ public class EventDataStorage extends AbstractDataStorage<EventStructure, EventD
         for (ScriptStructure scriptStructure : scriptDataStorage.allScripts()) {
             if (scriptStructure.isEvent() && !scriptStructure.getEvent().isTmpEvent()
                     && oldName.equals(scriptStructure.getEvent().getName())) {
-                scriptStructure.setEvent(newEvent);
+                try {
+                    scriptStructure = scriptStructure.inBuilder().setEvent(newEvent).build();
+                } catch (BuilderInfoClashedException e) {
+                    throw new IllegalStateException(e);
+                }
                 scriptDataStorage.update(scriptStructure);
             }
         }
