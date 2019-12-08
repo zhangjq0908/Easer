@@ -1,0 +1,4 @@
+Patch of v0.8-pre-beta: Fix Parcelable implementation of LocationUSource
+
+* Fix incorrect Parcelable implementation of LocationUSource
+	* This may relate to not being able to edit location event / condition
