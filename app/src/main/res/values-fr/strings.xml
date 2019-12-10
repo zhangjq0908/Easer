@@ -60,13 +60,13 @@
     <string name="text_dynamics">Dynamique</string>
     <string name="text_placeholder">Espace réservé</string>
     <string name="toggle_active">Actif</string>
-    <string name="hint_event_title">Titre de l\'événement</string>
+    <string name="hint_event_title">Titre de l\'évènement</string>
     <string name="hint_script_title">Titre du script</string>
     <string name="hint_profile_title">Titre du profil</string>
     <string name="hint_condition_title">Titre de la condition</string>
-    <string name="prompt_save_failed">Echec de la sauvegarde</string>
+    <string name="prompt_save_failed">Échec de la sauvegarde</string>
     <string name="prompt_delete">Êtes-vous sûr de vouloir supprimer %s \?</string>
-    <string name="prompt_delete_failed">Echec de la suppression. Vérifiez que l\'objet n\'est pas en cours de fonctionnement.</string>
+    <string name="prompt_delete_failed">Échec de la suppression. Vérifiez que l\'objet n\'est pas en cours de fonctionnement.</string>
     <string name="prompt_data_illegal">Prévention de la sauvegarde des données avec des champs invalides. Veuillez vérifier vos choix / entrées.</string>
     <string name="prompt_prevented_for_permission">Accorder à Easer &lt;%s&gt; la permission pour que cela fonctionne..</string>
     <string name="text_app_description">Simplifiez vous la vie en automatisant des actions / opérations routinières sur votre téléphone.
@@ -84,7 +84,7 @@
     <string name="pref_autostart_summary">Démarrer Easer en arrière-plan quand l\'appareil est allumé</string>
     <string name="pref_restart_after_upgrade_title">Démarrer le service après une mise-à-jour</string>
     <string name="pref_welcome_title">Montrer le message d\'accueil</string>
-    <string name="pref_welcome_summary">Montrer le message d\'accueil à l\'ouverture de l\'application</string>
+    <string name="pref_welcome_summary">Afficher le message d\'accueil au démarrage de l\'application</string>
     <string name="pref_logging_title">Activer la journalisation externe</string>
     <string name="pref_logging_summary">Journalisation sur périphériques de stockage externes (/sdcard/logger) pour faciliter les rapports de bogue. 
 \nLes modifications prendront effet au prochain démarrage de l\'application.</string>
@@ -115,9 +115,9 @@
     <string name="template_export">Exporté vers %s</string>
     <string name="version">Version</string>
     <string name="message_importing_invalid_data">Ce fichier ne semble pas être valide. Assurez-vous d\'importer un fichier exporté par Easer.</string>
-    <string name="dynamics_time">Heure courante</string>
-    <string name="dynamics_date">Date courante</string>
-    <string name="dynamics_script_name">Nom du scrript</string>
+    <string name="dynamics_time">Heure actuelle</string>
+    <string name="dynamics_date">Date actuelle</string>
+    <string name="dynamics_script_name">Nom du script</string>
     <string name="dynamics_profile_name">Nom du profil</string>
     <string name="title_help">Aide</string>
     <string name="help_script">Les « scripts » sont les conteneurs logiques. Connectez un événement ou une condition avec un profil dans un script, afin que Easer sache charger / exécuter ce profil lorsque cet événement se produit ou que la condition est remplie. 
@@ -136,7 +136,7 @@
     <string name="category_operation_system_config">Configuration du système</string>
     <string name="category_operation_easer">easer</string>
     <string name="category_operation_misc">Divers</string>
-    <string name="title_remote_operation_plugin">Plugin de fonctionnement à distance</string>
+    <string name="title_remote_operation_plugin">Extension de fonctionnement à distance</string>
     <string name="menu_clear">Effacer</string>
     <string name="category_operation_unknown">Inconnu</string>
     <string name="text_notification_running_indicator_content">%s est en cours d\'exécution en arrière-plan</string>
@@ -144,7 +144,7 @@
     <string name="pref_show_notification_title">Afficher notification</string>
     <string name="pref_show_notification_summary">Afficher une notification dans la bar de notification.</string>
     <string name="pref_foreground_title">Exécuter le service au premier plan</string>
-    <string name="pref_foreground_summary">Rend plus difficile pour le système de tuer le service. Une notification sera affichée. Ne peut pas être désactivé sur Android 8+ en raison d\'une exigence du système.</string>
+    <string name="pref_foreground_summary">Rend plus difficile l\'arrêt du service par le système. Affiche une notification. Ne peut pas être désactivé sur Android 8+ en raison des exigences du système.</string>
     <string name="menu_tree_list">Arborescence</string>
     <string name="menu_plain_list">Liste simple</string>
     <string name="title_pivot">Pivot</string>
@@ -174,17 +174,20 @@
 \n
 \n
 \nL\'extension des arbres aux graphiques est prévue mais n\'est pas encore mise en œuvre.</string>
-    <string name="title_welcome_message_privacy">Confidentialité !</string>
+    <string name="title_welcome_message_privacy">Vie privée !</string>
     <string name="welcome_message_privacy">La protection de la vie privée est importante !
 \n
 \nEaser est un <a href="https://en.wikipedia.org/wiki/Free_software">logiciel libre</a> (logiciel open-source), assurant que tout le monde l\'utilise, l\'étude, le modifie et le partage.
 \n
 \nVOUS possédez vos données. Tout reste présent sur votre appareil, y compris les fichiers de journalisation.</string>
-    <string name="title_service_start">Démarrage du service</string>
-    <string name="message_future_change_title">Bientôt en évolution</string>
+    <string name="title_service_start">Démarrer le service</string>
+    <string name="message_future_change_title">Changement prévu bientôt</string>
     <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
     <string name="pref_locale_custom">Localisation personnalisée</string>
     <string name="prompt_error_logged">Easer vient d\'enregistrer une erreur. Voir le sous-répertoire d\'erreur du répertoire de journalisation.</string>
-    <string name="prompt_dynamics_not_ready">Pour définir Dynamiques, vous devez sélectionner un profil valide et un déclencheur valide (ex. Evénement).</string>
-    <string name="button_see_detail">Voir détails</string>
+    <string name="prompt_dynamics_not_ready">Pour paramétrer Dynamics, vous devez sélectionner un profil valide et un déclencheur valide (exemple : évènement).</string>
+    <string name="button_see_detail">Voir les détails</string>
+    <string name="message_future_change_0_8">L\'affichage arborescent des scripts sera enlevé dans la v0.8. Le tableau pivot fournit une meilleure visualisation.</string>
+    <string name="title_choose_predecessors">Choisir les prédécesseurs</string>
+    <string name="text_unknown_skill">[Capacité inconnue]</string>
 </resources>
