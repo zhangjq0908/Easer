@@ -128,8 +128,8 @@
     <string name="o_nettrans_remote_address">Indirizzo Remoto</string>
     <string name="o_nettrans_remote_port">Porta Remota</string>
     <string name="o_nettrans_data">Dati</string>
-    <string name="operation_media_control">Controllo Multimediale</string>
-    <string name="text_play_pause">Play/Pausa</string>
+    <string name="operation_media_control">Controllo multimediale</string>
+    <string name="text_play_pause">Lettura/Pausa</string>
     <string name="text_play">Play</string>
     <string name="text_pause">Pausa</string>
     <string name="text_previous">Precedente</string>
@@ -156,12 +156,12 @@
     <string name="o_volume_notification">Notifiche</string>
     <string name="o_volume_bluetooth">Bluetooth</string>
     <string name="o_volume_delay">Ritardo (s)</string>
-    <string name="op_launch_app">Avvia App</string>
+    <string name="op_launch_app">Avvia l\'app</string>
     <string name="o_launch_app__launch_activity">Avvia Attività</string>
     <string name="op_launch_app_text_app">App</string>
-    <string name="op_launch_app_text_app_hint">Nome Pacchetto</string>
-    <string name="o_launch_app__text_class">Nome Classe</string>
-    <string name="o_launch_app__text_class_hint">Vuoto o Nome Classe Completo</string>
+    <string name="op_launch_app_text_app_hint">Nome del pacchetto</string>
+    <string name="o_launch_app__text_class">Nome della classe</string>
+    <string name="o_launch_app__text_class_hint">Vuoto o nome classe completo</string>
     <string name="op_ui_mode">Modalità Auto</string>
     <string name="op_car_mode">Modalità Auto</string>
     <string name="op_normal_mode">Modalità Normale</string>
