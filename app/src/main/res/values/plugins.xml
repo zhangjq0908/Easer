@@ -216,6 +216,14 @@
     <string name="usource__enabled_yes">Yes</string>
     <string name="usource__enabled_no">No</string>
 
+    <string name="usource_battery_level">Battery Level</string>
+    <string name="usource_battery_level__level_system">System level</string>
+    <string name="usource_battery_level__level_custom">Custom level</string>
+    <string name="usource_battery_level__ok_after_low">OK after low</string>
+    <string name="usource_battery_level__low">Low</string>
+    <string name="usource_battery_level__custom_battery_level">Minimum battery level (percentage)</string>
+    <string name="usource_battery_level__inclusive">Inclusive</string>
+
     <string name="usource_power">Power Status</string>
     <string name="usource_power__charging">Charging</string>
     <string name="usource_power__discharging">Discharging</string>
