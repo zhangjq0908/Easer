@@ -20,21 +20,64 @@
 package ryey.easer.skills.operation.hotspot;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
+import android.os.ResultReceiver;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import com.orhanobut.logger.Logger;
+
+
+
+import static android.content.Context.CONNECTIVITY_SERVICE;
+
 
 class HotspotHelper {
     private static HotspotHelper instance = null;
     private WifiManager wifiManager;
+    private ConnectivityManager connectivityManager;
+
+
+    private void callStartTethering(Object internalConnectivityManager) throws ReflectiveOperationException {
+        Class internalConnectivityManagerClass = Class.forName("android.net.IConnectivityManager");
+
+        ResultReceiver dummyResultReceiver = new ResultReceiver(null);
+
+        try {
+            Method startTetheringMethod = internalConnectivityManagerClass.getDeclaredMethod("startTethering",
+                    int.class,
+                    ResultReceiver.class,
+                    boolean.class);
+
+            startTetheringMethod.invoke(internalConnectivityManager,
+                    0,
+                    dummyResultReceiver,
+                    false);
+        } catch (NoSuchMethodException e) {
+            // Newer devices have "callingPkg" String argument at the end of this method.
+            Method startTetheringMethod = internalConnectivityManagerClass.getDeclaredMethod("startTethering",
+                    int.class,
+                    ResultReceiver.class,
+                    boolean.class,
+                    String.class);
+
+            startTetheringMethod.invoke(internalConnectivityManager,
+                    0,
+                    dummyResultReceiver,
+                    false,
+                    "ryey.easer");
+        }
+    }
 
     static synchronized HotspotHelper getInstance(Context context) {
         if (instance != null)
             return instance;
         instance = new HotspotHelper();
         instance.wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        instance.connectivityManager = (ConnectivityManager) context.getSystemService(CONNECTIVITY_SERVICE);
         return instance;
     }
 
@@ -60,9 +103,32 @@ class HotspotHelper {
         return netConfig;
     }
 
+    boolean setTethering(boolean enable){
+        boolean apStatus = false;
+        try {
+            Class<ConnectivityManager> connectivityClass = ConnectivityManager.class;
+            if (enable) {
+                Field internalConnectivityManagerField = ConnectivityManager.class.getDeclaredField("mService");
+                internalConnectivityManagerField.setAccessible(true);
+                callStartTethering(internalConnectivityManagerField.get(connectivityManager));
+            } else {
+                Method stopTetheringMethod = connectivityClass.getDeclaredMethod("stopTethering", int.class);
+                stopTetheringMethod.invoke(connectivityManager, 0);
+            }
+            apStatus = true;
+        } catch (Exception e) {
+            apStatus = false;
+            Logger.e(e,"Error while changing hotspot state in Tethering method");
+        }
+        return apStatus;
+    }
+
     boolean setApStatus(WifiConfiguration netConfig, boolean enable) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Method setWifiApMethod = wifiManager.getClass().getMethod("setWifiApEnabled", WifiConfiguration.class, boolean.class);
         boolean apStatus = (boolean) setWifiApMethod.invoke(wifiManager, netConfig, enable);
+        if (!apStatus) {
+            apStatus = setTethering(enable);
+        }
         return apStatus;
     }
 
