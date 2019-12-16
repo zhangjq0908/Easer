@@ -201,4 +201,13 @@
     <string name="usource_screen">Estado de la pantalla</string>
     <string name="usource_screen_text_screen_is">Cuando la pantalla esté…</string>
     <string name="usource_screen_on">Encendida</string>
+    <string name="operation_state_control">Estado del Nodo del Script de Control</string>
+    <string name="usource_screen_unlocked">Desbloqueado</string>
+    <string name="usource_time">Tiempo</string>
+    <string name="usource_wificonn">Conexión WiFi</string>
+    <string name="usource_wificonn_select_dialog_title">Seleccionar PA WiFi</string>
+    <string name="usource_wificonn_wait_for_result">Esperando al resultado del escaneo WiFi</string>
+    <string name="usource_wifi_enabled">WiFi Activada</string>
+    <string name="usource_wifi_enabled_wifi_is_enabled">Esta el WiFi activado\?</string>
+    <string name="op_toast_hint_text">Texto</string>
 </resources>

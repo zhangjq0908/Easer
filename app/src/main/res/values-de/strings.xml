@@ -189,4 +189,5 @@
     <string name="title_data_collection">Daten</string>
     <string name="message_future_change_0_8">Die Baumansicht der Skripte wird in v0.8 entfernt. Die Pivot-Tabelle bietet eine bessere Sicht darauf.</string>
     <string name="title_choose_predecessors">Vorgänger Wählen</string>
+    <string name="text_unknown_skill">[Unbekannte Fähigkeit]</string>
 </resources>

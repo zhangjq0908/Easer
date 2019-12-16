@@ -133,13 +133,13 @@
 \n
 \n
 \n(Sono tutti attivi per impostazione predefinita)</string>
-    <string name="welcome_message_3">Gli Script sono strutturati ad <a href="https://en.wikipedia.org/wiki/Tree_structure">albero</a>, scegliendo il genitore desiderato.
-\n
-\nIn ogni ramo viene eseguita la logica AND.
-\nTra i rami, viene eseguita la logica OR.
-\n
-\n
-\nÈ prevista l\'estensione da alberi a grafici, ma non è ancora implementata.</string>
+    <string name="welcome_message_3">Gli Script sono strutturati ad <a href="https://en.wikipedia.org/wiki/Tree_structure">albero</a>, scegliendo il genitore desiderato. 
+\n 
+\nIn ogni ramo viene eseguita la logica AND. 
+\nTra i rami, viene eseguita la logica OR. 
+\n 
+\n 
+\nPrevista l\'estensione da alberi a grafici, ma non è ancora implementata.</string>
     <string name="title_welcome_message_privacy">Privacy!</string>
     <string name="welcome_message_privacy">La privacy è importante! 
 \n 
@@ -187,4 +187,7 @@
     <string name="title_select_condition">Scegli una Condizione</string>
     <string name="button_see_detail">Vedi Dettagli</string>
     <string name="title_data_collection">Dati</string>
+    <string name="message_future_change_0_8">La vista ad albero degli Script verrà rimossa nella v0.8. Lo Schema offre una visualizzazione migliore.</string>
+    <string name="title_choose_predecessors">Scegli Predecessori</string>
+    <string name="text_unknown_skill">[Modulo Sconosciuto]</string>
 </resources>
