@@ -269,5 +269,12 @@
     <string name="usource_location__radius_meters">半徑（米）</string>
     <string name="usource_location__threshold_accuracy_meters">精度閾值（米）</string>
     <string name="usource_location__threshold_age_seconds">陳舊度閾值（秒）</string>
+    <string name="usource_battery_level">電池水平</string>
+    <string name="usource_battery_level__custom_battery_level">最低電量（百分比）</string>
+    <string name="usource_battery_level__inclusive">包含（上述值）</string>
+    <string name="usource_battery_level__level_custom">自定義水平</string>
+    <string name="usource_battery_level__level_system">系統水平</string>
+    <string name="usource_battery_level__low">低電量</string>
+    <string name="usource_battery_level__ok_after_low">（低電量後）正常</string>
 
 </resources>
