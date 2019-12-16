@@ -212,4 +212,6 @@
     <string name="usource_call_state">Anropstilstand</string>
     <string name="usource_call_state_idle">Tomgang</string>
     <string name="o_http_header">Hode (linjeformat: nøkkel: verdi)</string>
+    <string name="operation_toast">Oppsprettsmelding</string>
+    <string name="op_toast_hint_text">Tekst</string>
 </resources>
