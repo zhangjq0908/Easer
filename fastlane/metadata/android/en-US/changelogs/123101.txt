@@ -1,0 +1,9 @@
+Remove tree view of Scripts && add BatteryLevel skill && add alternative tether control method && i18n update
+
+* Remove tree view of Scripts (and remove the ScriptTree structure)
+* Add BatteryLevelUSourceSkill (event & condition)
+* Add alternative method to toggle tethering switch (#292, thanks @vasvlad)
+* Dev changes of `ryey.easer.core.data.*Structure`:
+	* Changed to immutable
+	* Implement `ScriptStructure.equals()`
+* I18n update: Japanese, Danish, Italian, German, French, Spanish (Latin America)
