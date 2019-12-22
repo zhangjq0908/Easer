@@ -71,7 +71,7 @@
     <string name="prompt_save_failed">Не удалось сохранить</string>
     <string name="prompt_delete">Вы уверены, что хотите удалить %s\?</string>
     <string name="prompt_delete_failed">Не удалось удалить. Проверьте, используется ли этот элемент.</string>
-    <string name="prompt_data_illegal">Предотвращено резервное копирования данных с неправильными полями. Пожалуйста, проверьте свой выбор/ввод.</string>
+    <string name="prompt_data_illegal">Предотвращено резервное копирование данных с неправильными полями. Пожалуйста, проверьте свой выбор/ввод.</string>
     <string name="prompt_prevented_for_permission">Easer требуется разрешение &lt;%s&gt; для этой функции.</string>
     <string name="text_app_description">Упростите свою жизнь, автоматизируя рутинные действия / операции на телефоне.
 \nУстановите связь между различными событиями и дайте им выполнить соответствующие действия. Больше не нужно беспокоиться об этом! 
@@ -189,4 +189,5 @@
 \nВЫ владеете каждой частью ваших данных. Всё хранится в вашем устройстве, включая логи.</string>
     <string name="prompt_error_logged">Easer зафиксировал ошибку. См. подкаталог директории лога.</string>
     <string name="message_future_change_0_8">Скрипты в виде дерева будут убраны в версии 0.8. Pivot планирует лучший вариант для этого.</string>
+    <string name="text_unknown_skill">[Неизвестный навык]</string>
 </resources>
