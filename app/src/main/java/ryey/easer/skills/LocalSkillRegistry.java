@@ -100,14 +100,14 @@ import ryey.easer.skills.usource.wifi_enabled.WifiEnabledUSourceSkill;
  */
 final public class LocalSkillRegistry {
 
+    private final Registry<ConditionSkill, ConditionData> conditionSkillRegistry = new Registry<>(CommonSkillUtils.TYPE_CONDITION, new String[][]{
+            {"battery", "power_status"}, // v0.7.8
+    });
     private final Registry<EventSkill, EventData> eventSkillRegistry = new Registry<>(CommonSkillUtils.TYPE_EVENT, new String[][]{
             {"battery", "power_status"}, // v0.7.8
     });
     private final Registry<OperationSkill, OperationData> operationSkillRegistry = new Registry<>(CommonSkillUtils.TYPE_OPERATION, new String[][]{
             {"event control", "state control"}, // (don't remember when)
-    });
-    private final Registry<ConditionSkill, ConditionData> conditionSkillRegistry = new Registry<>(CommonSkillUtils.TYPE_CONDITION, new String[][]{
-            {"battery", "power_status"}, // v0.7.8
     });
     private final OverallRegistry overallRegistry = new OverallRegistry(new SkillLookupper<?, ?>[] {
             eventSkillRegistry, operationSkillRegistry, conditionSkillRegistry,
@@ -116,7 +116,6 @@ final public class LocalSkillRegistry {
     {
         for (USourceSkill skill : new USourceSkill[] {
                 new BatteryLevelUSourceSkill(),
-                new PowerUSourceSkill(),
                 new BTDeviceUSourceSkill(),
                 new BluetoothEnabledUSourceSkill(),
                 new CallUSourceSkill(),
@@ -126,50 +125,52 @@ final public class LocalSkillRegistry {
                 new DayOfWeekEventSkill(),
                 new HeadsetUSourceSkill(),
                 new LocationUSourceSkill(),
+                new PowerUSourceSkill(),
                 new ScreenUSourceSkill(),
                 new TimeUSourceSkill(),
                 new WifiUSourceSkill(),
                 new WifiEnabledUSourceSkill(),
         }) {
-            event().registerSkill(skill.event());
             condition().registerSkill(skill.condition());
+            event().registerSkill(skill.event());
         }
-
-        event().registerSkill(ConditionEventEventSkill.class);
-        event().registerSkill(CalendarEventSkill.class);
-        event().registerSkill(BroadcastEventSkill.class);
-        event().registerSkill(SmsEventSkill.class);
-        event().registerSkill(NotificationEventSkill.class);
-        event().registerSkill(TimerEventSkill.class);
-        event().registerSkill(NfcTagEventSkill.class);
-        event().registerSkill(TcpTripEventSkill.class);
-        event().registerSkill(WidgetEventSkill.class);
 
         condition().registerSkill(CalendarConditionSkill.class);
         condition().registerSkill(RingerModeConditionSkill.class);
 
-        operation().registerSkill(WifiOperationSkill.class);
-        operation().registerSkill(CellularOperationSkill.class);
+        event().registerSkill(BroadcastEventSkill.class);
+        event().registerSkill(CalendarEventSkill.class);
+        event().registerSkill(ConditionEventEventSkill.class);
+        event().registerSkill(NfcTagEventSkill.class);
+        event().registerSkill(NotificationEventSkill.class);
+        event().registerSkill(SmsEventSkill.class);
+        event().registerSkill(TcpTripEventSkill.class);
+        event().registerSkill(TimerEventSkill.class);
+        event().registerSkill(WidgetEventSkill.class);
+
+        operation().registerSkill(AirplaneModeOperationSkill.class);
+        operation().registerSkill(AlarmOperationSkill.class);
         operation().registerSkill(BluetoothOperationSkill.class);
-        operation().registerSkill(RotationOperationSkill.class);
-        operation().registerSkill(BroadcastOperationSkill.class);
         operation().registerSkill(BrightnessOperationSkill.class);
-        operation().registerSkill(RingerModeOperationSkill.class);
+        operation().registerSkill(BroadcastOperationSkill.class);
+        operation().registerSkill(CellularOperationSkill.class);
         operation().registerSkill(CommandOperationSkill.class);
+        operation().registerSkill(LaunchAppOperationSkill.class);
         operation().registerSkill(HotspotOperationSkill.class);
-        operation().registerSkill(SynchronizationOperationSkill.class);
-        operation().registerSkill(NetworkTransmissionOperationSkill.class);
         operation().registerSkill(HttpRequestOperationSkill.class);
         operation().registerSkill(MediaControlOperationSkill.class);
-        operation().registerSkill(AirplaneModeOperationSkill.class);
-        operation().registerSkill(SendSmsOperationSkill.class);
-        operation().registerSkill(SendNotificationOperationSkill.class);
-        operation().registerSkill(AlarmOperationSkill.class);
-        operation().registerSkill(StateControlOperationSkill.class);
-        operation().registerSkill(VolumeOperationSkill.class);
-        operation().registerSkill(LaunchAppOperationSkill.class);
-        operation().registerSkill(UiModeOperationSkill.class);
+        operation().registerSkill(NetworkTransmissionOperationSkill.class);
         operation().registerSkill(PlayMediaOperationSkill.class);
+        operation().registerSkill(RingerModeOperationSkill.class);
+        operation().registerSkill(RotationOperationSkill.class);
+        operation().registerSkill(SendNotificationOperationSkill.class);
+        operation().registerSkill(SendSmsOperationSkill.class);
+        operation().registerSkill(StateControlOperationSkill.class);
+        operation().registerSkill(SynchronizationOperationSkill.class);
+        operation().registerSkill(UiModeOperationSkill.class);
+        operation().registerSkill(VolumeOperationSkill.class);
+        operation().registerSkill(WifiOperationSkill.class);
+
         //TODO: write more skills
     }
 
@@ -181,16 +182,16 @@ final public class LocalSkillRegistry {
 
     private LocalSkillRegistry() {}
 
+    public Registry<ConditionSkill, ConditionData> condition() {
+        return conditionSkillRegistry;
+    }
+
     public Registry<EventSkill, EventData> event() {
         return eventSkillRegistry;
     }
 
     public Registry<OperationSkill, OperationData> operation() {
         return operationSkillRegistry;
-    }
-
-    public Registry<ConditionSkill, ConditionData> condition() {
-        return conditionSkillRegistry;
     }
 
     public SkillLookupper<Skill, StorageData> all() {

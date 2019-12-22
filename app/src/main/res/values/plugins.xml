@@ -224,13 +224,6 @@
     <string name="usource_battery_level__custom_battery_level">Minimum battery level (percentage)</string>
     <string name="usource_battery_level__inclusive">Inclusive</string>
 
-    <string name="usource_power">Power Status</string>
-    <string name="usource_power__charging">Charging</string>
-    <string name="usource_power__discharging">Discharging</string>
-    <string name="usource_power__any">Any</string>
-    <string name="usource_power__usb">USB</string>
-    <string name="usource_power__ac">AC</string>
-
     <string name="usource_bluetooth_device">Bluetooth Device Connected</string>
     <string name="usource_bt_device_select_dialog_title">Select Bluetooth Device</string>
     <string name="usource_bt_device_unknown_device">Unknown device</string>
@@ -285,6 +278,13 @@
     <string name="usource_location__listen_min_time_seconds">Listen min time (seconds)</string>
     <string name="usource_location__threshold_age_seconds">Threshold age (seconds)</string>
     <string name="usource_location__threshold_accuracy_meters">Threshold accuracy (meters)</string>
+
+    <string name="usource_power">Power Status</string>
+    <string name="usource_power__charging">Charging</string>
+    <string name="usource_power__discharging">Discharging</string>
+    <string name="usource_power__any">Any</string>
+    <string name="usource_power__usb">USB</string>
+    <string name="usource_power__ac">AC</string>
 
     <string name="usource_screen">Screen Status</string>
     <string name="usource_screen_text_screen_is">When screen is…</string>
