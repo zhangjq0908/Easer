@@ -1,0 +1,5 @@
+Fix androidTest not passing && WifiUSource requires location permission && i18n update
+
+* Fix BatteryLevelUSourceData parcelable implementation
+* WifiUSource requires location permission
+* Update Norwegian Bokmål translation
