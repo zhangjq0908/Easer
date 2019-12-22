@@ -293,7 +293,7 @@ public class BatteryLevelUSourceData implements USourceData {
             return false;
         if (type != ((BatteryLevelUSourceData) obj).type)
             return false;
-        if (!level.equals(obj))
+        if (!level.equals(((BatteryLevelUSourceData) obj).level))
             return false;
         return true;
     }
