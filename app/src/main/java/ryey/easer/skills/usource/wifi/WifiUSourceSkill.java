@@ -60,14 +60,16 @@ public class WifiUSourceSkill implements USourceSkill<WifiUSourceData> {
     public Boolean checkPermissions(@NonNull Context context) {
         return SkillUtils.checkPermission(context,
                 Manifest.permission.ACCESS_WIFI_STATE,
-                Manifest.permission.CHANGE_WIFI_STATE);
+                Manifest.permission.CHANGE_WIFI_STATE,
+                Manifest.permission.ACCESS_COARSE_LOCATION);
     }
 
     @Override
     public void requestPermissions(@NonNull Activity activity, int requestCode) {
         SkillUtils.requestPermission(activity, requestCode,
                 Manifest.permission.ACCESS_WIFI_STATE,
-                Manifest.permission.CHANGE_WIFI_STATE);
+                Manifest.permission.CHANGE_WIFI_STATE,
+                Manifest.permission.ACCESS_COARSE_LOCATION);
     }
 
     @NonNull
