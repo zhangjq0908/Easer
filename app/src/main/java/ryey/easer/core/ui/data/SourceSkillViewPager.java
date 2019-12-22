@@ -105,7 +105,7 @@ public abstract class SourceSkillViewPager<GD extends StorageData, GS extends Sk
         final String[] titles;
 
         protected MyPagerAdapter(FragmentManager fm, Context context) {
-            super(fm);
+            super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
             this.context = context;
             titles = new String[skillList.size()];
             for (int i = 0; i < skillList.size(); i++) {
