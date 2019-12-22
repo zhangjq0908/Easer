@@ -188,4 +188,6 @@
     <string name="button_see_detail">Vis detaljer</string>
     <string name="title_data_collection">Data</string>
     <string name="message_future_change_0_8">Trevisning over skript vil bli fjernet i v0.8. Omdreiningspunkt gir bedre oversikt.</string>
+    <string name="title_choose_predecessors">Velg forgjengere</string>
+    <string name="text_unknown_skill">[Ukjent ferdighet]</string>
 </resources>
