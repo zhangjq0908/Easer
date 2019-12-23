@@ -33,6 +33,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import de.blox.graphview.*
 import de.blox.graphview.layered.SugiyamaAlgorithm
 import de.blox.graphview.layered.SugiyamaConfiguration
+import kotlinx.android.synthetic.main.fragment_pivot.*
 import ryey.easer.R
 import ryey.easer.core.AsyncHelper
 import ryey.easer.core.EHService
@@ -104,6 +105,10 @@ class PivotFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         onViewJob.onSatisfied()
+
+        fab.setOnClickListener {
+            EditDataProto.addScript(this, Intent(activity, EditScriptActivity::class.java), REQUEST_CODE, null)
+        }
     }
 
     override fun onDestroyView() {
