@@ -27,6 +27,7 @@ import androidx.annotation.Nullable;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import ryey.easer.R;
 import ryey.easer.Utils;
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.dynamics.Dynamics;
@@ -72,7 +73,22 @@ public class TcpTripEventData extends AbstractEventData {
     @Nullable
     @Override
     public Dynamics[] dynamics() {
-        return null;
+        if (check_reply) {
+            return new Dynamics[]{
+                    new RemoteHostDynamics(),
+                    new RemoteIPDynamics(),
+                    new RemotePortDynamics(),
+                    new SentDataDynamics(),
+                    new ReceivedDataDynamics(),
+            };
+        } else {
+            return new Dynamics[] {
+                    new RemoteHostDynamics(),
+                    new RemoteIPDynamics(),
+                    new RemotePortDynamics(),
+                    new SentDataDynamics(),
+            };
+        }
     }
 
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
@@ -173,6 +189,81 @@ public class TcpTripEventData extends AbstractEventData {
         check_reply = in.readByte() != 0;
         if (check_reply) {
             reply_data = in.readString();
+        }
+    }
+
+    static class RemoteHostDynamics implements Dynamics {
+
+        public static final String id = "ryey.easer.skills.event.tcp_trip.remote_host";
+
+        @Override
+        public String id() {
+            return id;
+        }
+
+        @Override
+        public int nameRes() {
+            return R.string.event_tcp_trip__dynamics_remote_host;
+        }
+    }
+
+    static class RemoteIPDynamics implements Dynamics {
+
+        public static final String id = "ryey.easer.skills.event.tcp_trip.remote_ip";
+
+        @Override
+        public String id() {
+            return id;
+        }
+
+        @Override
+        public int nameRes() {
+            return R.string.event_tcp_trip__dynamics_remote_ip;
+        }
+    }
+
+    static class RemotePortDynamics implements Dynamics {
+
+        public static final String id = "ryey.easer.skills.event.tcp_trip.remote_port";
+
+        @Override
+        public String id() {
+            return id;
+        }
+
+        @Override
+        public int nameRes() {
+            return R.string.event_tcp_trip__dynamics_remote_port;
+        }
+    }
+
+    static class SentDataDynamics implements Dynamics {
+
+        public static final String id = "ryey.easer.skills.event.tcp_trip.data_sent";
+
+        @Override
+        public String id() {
+            return id;
+        }
+
+        @Override
+        public int nameRes() {
+            return R.string.event_tcp_trip__dynamics_sent_data;
+        }
+    }
+
+    static class ReceivedDataDynamics implements Dynamics {
+
+        public static final String id = "ryey.easer.skills.event.tcp_trip.received_data";
+
+        @Override
+        public String id() {
+            return id;
+        }
+
+        @Override
+        public int nameRes() {
+            return R.string.event_tcp_trip__dynamics_received_data;
         }
     }
 }

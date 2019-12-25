@@ -29,6 +29,7 @@ import org.json.JSONObject;
 
 import java.util.Arrays;
 
+import ryey.easer.R;
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.dynamics.Dynamics;
 import ryey.easer.plugin.PluginDataFormat;
@@ -88,7 +89,7 @@ public class NfcTagEventData extends AbstractEventData {
     @Nullable
     @Override
     public Dynamics[] dynamics() {
-        return null;
+        return new Dynamics[]{new NfcTagIdDynamics()};
     }
 
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
@@ -156,5 +157,20 @@ public class NfcTagEventData extends AbstractEventData {
     private NfcTagEventData(Parcel in) {
         id = new byte[in.readInt()];
         in.readByteArray(id);
+    }
+
+    static class NfcTagIdDynamics implements Dynamics {
+
+        public static final String id = "ryey.easer.skills.event.nfc_tag.tag_id";
+
+        @Override
+        public String id() {
+            return id;
+        }
+
+        @Override
+        public int nameRes() {
+            return R.string.event_nfc_tag__dynamics_tag_id;
+        }
     }
 }

@@ -24,7 +24,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.nfc.Tag;
+import android.os.Bundle;
 import android.os.IBinder;
+
+import com.google.common.io.BaseEncoding;
 
 import java.util.Arrays;
 
@@ -70,7 +73,9 @@ public class NfcTagSlot extends AbstractSlot<NfcTagEventData> {
     void checkAndTrigger(final Tag tag) {
         byte[] tag_id = tag.getId();
         if (Arrays.equals(tag_id, eventData.id)) {
-            changeSatisfiedState(true);
+            Bundle dynamics = new Bundle();
+            dynamics.putString(NfcTagEventData.NfcTagIdDynamics.id, BaseEncoding.base16().lowerCase().encode(tag_id));
+            changeSatisfiedState(true, dynamics);
         } else {
             changeSatisfiedState(false);
         }

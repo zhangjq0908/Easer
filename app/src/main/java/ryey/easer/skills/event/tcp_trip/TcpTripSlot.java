@@ -21,6 +21,10 @@ package ryey.easer.skills.event.tcp_trip;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.orhanobut.logger.Logger;
 
@@ -61,7 +65,7 @@ public class TcpTripSlot extends AbstractSlot<TcpTripEventData> {
         task.cancel(true);
     }
 
-    static class SendTask extends AsyncTask<TcpTripEventData, Void, Boolean> {
+    static class SendTask extends AsyncTask<TcpTripEventData, Void, SendTask.Result> {
 
         private WeakReference<TcpTripSlot> slot;
 
@@ -70,10 +74,11 @@ public class TcpTripSlot extends AbstractSlot<TcpTripEventData> {
         }
 
         @Override
-        protected Boolean doInBackground(TcpTripEventData... tcpTripEventData) {
+        protected Result doInBackground(TcpTripEventData... tcpTripEventData) {
             assert tcpTripEventData != null;
             TcpTripEventData eventData = tcpTripEventData[0];
             assert eventData != null;
+            Result.Builder builder = Result.Builder.fromData(eventData);
             try {
                 Logger.v("sending TCP packet");
                 InetAddress remote_address = InetAddress.getByName(eventData.rAddr);
@@ -86,8 +91,9 @@ public class TcpTripSlot extends AbstractSlot<TcpTripEventData> {
                     }
                 }
                 Logger.v("TCP data sent");
+                builder.putIP(remote_address.getHostAddress());
                 if (!eventData.check_reply) {
-                    return true;
+                    return builder.success();
                 } else {
                     Logger.v("waiting for TCP response");
                     BufferedReader reader;
@@ -96,7 +102,8 @@ public class TcpTripSlot extends AbstractSlot<TcpTripEventData> {
                         Logger.v("Reader for TCP response got");
                     } catch (IOException e) {
                         Logger.v("no valid InputStream");
-                        return Utils.isBlank(eventData.reply_data);
+                        builder.putRecvData("");
+                        return builder.build(Utils.isBlank(eventData.reply_data));
                     }
                     int num_of_line = 0;
                     int tail = 0;
@@ -109,26 +116,28 @@ public class TcpTripSlot extends AbstractSlot<TcpTripEventData> {
                                 int end = Math.min(tail + line.length(), eventData.reply_data.length());
                                 if (!line.equals(eventData.reply_data.substring(tail, end))) {
                                     Logger.d("message is NOT correct on line %d", num_of_line);
-                                    return false;
+                                    return builder.fail();
                                 }
                                 Logger.d("message is correct on line %d", num_of_line++);
                                 tail += line.length();
                                 if (tail >= eventData.reply_data.length()) {
                                     Logger.i("got whole match for response");
-                                    return true;
+                                    builder.putRecvData(eventData.reply_data); // TODO: read until EOF of reply
+                                    return builder.success();
                                 }
                             } else {
                                 sleep(2 * 1000);
                             }
                         } catch (IOException e) { // socket is closed
                             Logger.i("Socket unexpectedly closed while waiting for (more) response");
-                            return false;
+                            return builder.fail();
                         } catch (InterruptedException e) {
                             break;
                         }
                     } while (!socket.isClosed());
                     if (tail == 0) {
-                        return Utils.isBlank(eventData.reply_data);
+                        builder.putRecvData("");
+                        return builder.build(Utils.isBlank(eventData.reply_data));
                     }
                     try {
                         reader.close();
@@ -146,13 +155,65 @@ public class TcpTripSlot extends AbstractSlot<TcpTripEventData> {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            return false;
+            return builder.fail();
         }
 
         @Override
-        protected void onPostExecute(Boolean result) {
+        protected void onPostExecute(Result result) {
             assert result != null;
-            slot.get().changeSatisfiedState(result);
+            slot.get().changeSatisfiedState(result.success, result.dynamics);
+        }
+
+        static final class Result {
+            final boolean success;
+            @NonNull final Bundle dynamics;
+
+            Result(boolean success) {
+                this.success = success;
+                this.dynamics = new Bundle();
+            }
+
+            Result(boolean success, @NonNull Bundle dynamics) {
+                this.success = success;
+                this.dynamics = dynamics;
+            }
+
+            static final class Builder {
+
+                @NonNull final Bundle dynamics = new Bundle();
+
+                static Builder fromData(TcpTripEventData data) {
+                    Builder builder = new Builder();
+                    builder.dynamics.putString(TcpTripEventData.RemoteHostDynamics.id, data.rAddr);
+                    builder.dynamics.putString(TcpTripEventData.RemotePortDynamics.id, Integer.toString(data.rPort));
+                    builder.dynamics.putString(TcpTripEventData.SentDataDynamics.id, data.send_data);
+                    return builder;
+                }
+
+                Builder putIP(String ip) {
+                    dynamics.putString(TcpTripEventData.RemoteIPDynamics.id, ip);
+                    return this;
+                }
+
+                Builder putRecvData(@Nullable String data) {
+                    if (data == null)
+                        data = "";
+                    dynamics.putString(TcpTripEventData.ReceivedDataDynamics.id, data);
+                    return this;
+                }
+
+                Result build(boolean success) {
+                    return new Result(success, dynamics);
+                }
+
+                Result success() {
+                    return build(true);
+                }
+
+                Result fail() {
+                    return build(false);
+                }
+            }
         }
     }
 

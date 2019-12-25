@@ -23,6 +23,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
@@ -40,7 +41,11 @@ public class WidgetSlot extends AbstractSlot<WidgetEventData> {
 //                intent.setExtrasClassLoader(String.class.getClassLoader());
                 String tag = intent.getStringExtra(UserActionWidget.Companion.getEXTRA_WIDGET_TAG());
                 if (eventData.widgetTag.equals(tag)) {
-                    changeSatisfiedState(true);
+                    String appWidgetId = intent.getStringExtra(UserActionWidget.Companion.getEXTRA_WIDGET_ID());
+                    Bundle dynamics = new Bundle();
+                    dynamics.putString(WidgetEventData.WidgetTagDynamics.id, tag);
+                    dynamics.putString(WidgetEventData.WidgetIdDynamics.id, appWidgetId);
+                    changeSatisfiedState(true, dynamics);
                 }
             }
         }

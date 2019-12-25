@@ -61,6 +61,7 @@ class UserActionWidget : AppWidgetProvider() {
 
         val ACTION_WIDGET_CLICKED = "ryey.easer.skills.widget.ACTION.WIDGET_CLICKED"
         val EXTRA_WIDGET_TAG = "ryey.easer.skills.widget.EXTRA.WIDGET_TAG"
+        val EXTRA_WIDGET_ID = "ryey.easer.skills.widget.EXTRA.WIDGET_ID"
 
         internal fun updateAppWidget(context: Context, appWidgetManager: AppWidgetManager,
                                      appWidgetId: Int) {
@@ -73,6 +74,7 @@ class UserActionWidget : AppWidgetProvider() {
 
             val intent = Intent(ACTION_WIDGET_CLICKED)
             intent.putExtra(EXTRA_WIDGET_TAG, widgetTag)
+            intent.putExtra(EXTRA_WIDGET_ID, appWidgetId)
             val pendingIntent = PendingIntent.getBroadcast(context, appWidgetId, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 
             views.setOnClickPendingIntent(R.id.layout, pendingIntent)

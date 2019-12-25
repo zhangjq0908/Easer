@@ -54,6 +54,7 @@
     <string name="event_nfc_tag__button_detect">Detect Tag</string>
     <string name="event_nfc_tag__prompt_enable_nfc_first">You need to enable NFC first</string>
     <string name="event_nfc_tag__prompt_wait_for_tag">Waiting for tag to be scanned…</string>
+    <string name="event_nfc_tag__dynamics_tag_id">Tag ID</string>
 
     <string name="event_notification">Notification received</string>
     <string name="event_notification__app">App</string>
@@ -76,6 +77,11 @@
     <string name="send_data">Send data</string>
     <string name="check_reply">Check reply</string>
     <string name="reply_data">Reply data</string>
+    <string name="event_tcp_trip__dynamics_remote_host">Remote host</string>
+    <string name="event_tcp_trip__dynamics_remote_ip">Remote IP</string>
+    <string name="event_tcp_trip__dynamics_remote_port">Remote port</string>
+    <string name="event_tcp_trip__dynamics_sent_data">Sent data</string>
+    <string name="event_tcp_trip__dynamics_received_data">Received_data</string>
 
     <string name="event_timer">Timer</string>
     <string name="event_timer_shorter_time">Shorter Time</string>
@@ -96,6 +102,8 @@
     <string name="event_widget_default_text">DISPLAY TEXT</string>
     <string name="event_widget_default_tag">TAG</string>
     <string name="event_widget_button_add_widget">Add widget</string>
+    <string name="event_widget__dynamics_widget_tag">Widget Tag</string>
+    <string name="event_widget__dynamics_widget_id">Widget ID</string>
 
     <!--Operation (o, op)-->
 

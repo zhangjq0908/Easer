@@ -27,6 +27,7 @@ import androidx.annotation.Nullable;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import ryey.easer.R;
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.dynamics.Dynamics;
 import ryey.easer.plugin.PluginDataFormat;
@@ -76,7 +77,10 @@ public class WidgetEventData extends AbstractEventData {
     @Nullable
     @Override
     public Dynamics[] dynamics() {
-        return null;
+        return new Dynamics[] {
+                new WidgetTagDynamics(),
+                new WidgetIdDynamics(),
+        };
     }
 
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
@@ -119,4 +123,35 @@ public class WidgetEventData extends AbstractEventData {
     private WidgetEventData(Parcel in) {
         widgetTag = in.readString();
     }
+
+    static class WidgetTagDynamics implements Dynamics {
+
+        public static final String id = "ryey.easer.skills.event.widget.widget_tag";
+
+        @Override
+        public String id() {
+            return id;
+        }
+
+        @Override
+        public int nameRes() {
+            return R.string.event_widget__dynamics_widget_tag;
+        }
+    }
+
+    static class WidgetIdDynamics implements Dynamics {
+
+        public static final String id = "ryey.easer.skills.event.widget.widget_id";
+
+        @Override
+        public String id() {
+            return id;
+        }
+
+        @Override
+        public int nameRes() {
+            return R.string.event_widget__dynamics_widget_id;
+        }
+    }
+
 }
