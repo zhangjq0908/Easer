@@ -53,7 +53,7 @@
     <string name="event_nfc_tag">NFC Tag</string>
     <string name="event_nfc_tag__button_detect">Detect Tag</string>
     <string name="event_nfc_tag__prompt_enable_nfc_first">You need to enable NFC first</string>
-    <string name="event_nfc_tag__prompt_wait_for_tag">Waiting for tag to be scanned…</string>
+    <string name="event_nfc_tag__prompt_wait_for_tag">Awaiting tag scanning…</string>
 
     <string name="event_notification">Notification received</string>
     <string name="event_notification__app">App</string>
@@ -65,7 +65,7 @@
     <string name="ev_notification_dynamics_title">Notification Title</string>
     <string name="ev_notification_dynamics_content">Notification Content</string>
 
-    <string name="event_sms">Receive Sms</string>
+    <string name="event_sms">Receive SMS</string>
     <string name="sender">Sender</string>
     <string name="content_contains">Content (contains…)</string>>
     <string name="ev_sms_dynamics_sender">SMS Sender</string>
@@ -149,7 +149,7 @@
     <string name="o_launch_app__text_class_hint">Empty or full class name</string>
 
     <string name="operation_media_control">Media Control</string>
-    <string name="text_play_pause">Toogle Play/Pause</string>
+    <string name="text_play_pause">Toogle play/pause</string>
     <string name="text_play">Play</string>
     <string name="text_pause">Pause</string>
     <string name="text_previous">Previous</string>
@@ -176,7 +176,7 @@
     <string name="ringer_mode_dnd_priority">Priority</string>
     <string name="ringer_mode_dnd_none">None</string>
     <string name="ringer_mode_dnd_alarms">Alarms</string>
-    <string name="ringing_items_in_do_not_disturb_mode">Ringing items in Do not Disturb mode</string>
+    <string name="ringing_items_in_do_not_disturb_mode">Ringing items in \"Do not Disturb\" mode</string>
     <string name="label_operation_ringer_mode_notification_listener_service">Silent Mode Switcher</string>
 
     <string name="operation_rotation">Auto Rotation</string>
@@ -192,7 +192,7 @@
     <string name="change_status_to">Change status to…</string>
     <string name="unsatisfied">Unsatisfied</string>
 
-    <string name="operation_synchronization">Account synchronization</string>
+    <string name="operation_synchronization">Account syncing</string>
 
     <string name="operation_toast">Toast</string>
     <string name="op_toast_hint_text">Text</string>
@@ -209,7 +209,7 @@
     <string name="o_volume_bluetooth">Bluetooth</string>
     <string name="o_volume_delay">Delay (s)</string>
 
-    <string name="operation_wifi">WiFi</string>
+    <string name="operation_wifi">Wi-Fi</string>
 
     <!--USource (us)-->
 
@@ -223,7 +223,7 @@
     <string name="usource_power__usb">USB</string>
     <string name="usource_power__ac">AC</string>
 
-    <string name="usource_bluetooth_device">Bluetooth Device Connected</string>
+    <string name="usource_bluetooth_device">Connected Bluetooth device</string>
     <string name="usource_bt_device_select_dialog_title">Select Bluetooth Device</string>
     <string name="usource_bt_device_unknown_device">Unknown device</string>
     <string name="usource_bt_device_dynamics_device_name">Device Name</string>
@@ -248,7 +248,7 @@
     <string name="usource_connectivity">Connectivity Type</string>
     <array name="usource_connectivity_type">
         <item>Not connected</item>
-        <item>WiFi</item>
+        <item>Wi-Fi</item>
         <item>Mobile</item>
         <item>Ethernet</item>
         <item>Bluetooth</item>
@@ -257,15 +257,15 @@
 
     <string name="usource_date">Date</string>
 
-    <string name="usource_day_of_week">Day of Week</string>
+    <string name="usource_day_of_week">Day of the Week</string>
 
     <string name="usource_headset">Headset</string>
     <string name="usource_headset__headset_state">Headset state</string>
     <string name="usource_headset__plugged_in">Plugged in</string>
     <string name="usource_headset__plugged_out">Plugged out</string>
     <string name="usource_headset__headset_action">Headset Action</string>
-    <string name="usource_headset__plug_in">Plug in</string>
-    <string name="usource_headset__plug_out">Plug out</string>
+    <string name="usource_headset__plug_in">Plugged in</string>
+    <string name="usource_headset__plug_out">Plugged out</string>
     <string name="usource_event_headset__plug_any">Any</string>
     <string name="usource_headset__with_microphone">With microphone?</string>
     <string name="usource_headset__microphone_true">Yes</string>
@@ -280,9 +280,9 @@
 
     <string name="usource_time">Time</string>
 
-    <string name="usource_wificonn">WiFi Connection</string>
-    <string name="usource_wificonn_select_dialog_title">Select WiFi AP</string>
-    <string name="usource_wificonn_wait_for_result">Waiting for WiFi scan result</string>
+    <string name="usource_wificonn">Wi-Fi Connection</string>
+    <string name="usource_wificonn_select_dialog_title">Select Wi-Fi AP</string>
+    <string name="usource_wificonn_wait_for_result">Awaiting Wi-Fi scan result</string>
 
     <string name="usource_wifi_enabled">WiFi Enabled</string>
     <string name="usource_wifi_enabled_wifi_is_enabled">WiFi is enabled?</string>
