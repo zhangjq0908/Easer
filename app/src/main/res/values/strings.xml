@@ -2,7 +2,7 @@
 <resources>
     <string name="easer">Easer</string>
     <string name="app_name" translatable="false">@string/easer</string>
-    <string name="drawer_tip">Ease your life!</string>
+    <string name="drawer_tip">Ease your life.</string>
     <string name="title_outline">Outline</string>
     <string name="title_pivot">Pivot</string>
     <string name="title_data_collection">Data</string>
@@ -82,7 +82,7 @@
     <string name="text_predefined_event">Predefined Event</string>
     <string name="text_inline_event">Inline Event</string>
     <string name="text_use_condition">Use Condition</string>
-    <string name="text_repeatable_desc">Repeatable when satisfied</string>
+    <string name="text_repeatable_desc">Reoccuring</string>
     <string name="text_reverse_desc">Reverse Scenario</string>
     <string name="text_volatile">Volatile</string>
     <string name="text_persistent">Persistent</string>
@@ -98,12 +98,13 @@
     <string name="hint_script_title">Script title</string>
     <string name="hint_profile_title">Profile title</string>
     <string name="hint_condition_title">Condition title</string>
-    <string name="prompt_save_failed">Failed to save</string>
+  
+    <string name="prompt_save_failed">Could not save</string>
     <string name="prompt_delete">Are you sure you want to delete %s\?</string>
-    <string name="prompt_delete_failed">Deletion failed. Check if this item is being used.</string>
+    <string name="prompt_delete_failed">Could not delete. Check whether this item is being used.</string>
     <string name="prompt_data_illegal">Prevented saving data with invalid field(s). Please recheck your choices / inputs.</string>
     <string name="prompt_dynamics_not_ready">To set Dynamics, you need to select a valid Profile and a valid trigger (e.g. Event).</string>
-    <string name="prompt_prevented_for_permission">Grant Easer &lt;%s&gt; permission for this to work..</string>
+    <string name="prompt_prevented_for_permission">Grant Easer &lt;%s&gt; permission for this to work.</string>
     <string name="prompt_error_logged">Easer just recorded an error. See the "error" subdirectory of log directory.</string>
 
     <string name="text_app_description">Ease your life by automating routine actions on your device(s).
@@ -123,8 +124,8 @@
     <string name="pref_category_data_manage">Manage data</string>
     <string name="pref_category_service">Service</string>
 
-    <string name="pref_autostart_title">Autostart on boot</string>
-    <string name="pref_autostart_summary">Starts Easer in the background when the device is turned on</string>
+    <string name="pref_autostart_title">Autostart</string>
+    <string name="pref_autostart_summary">Starts Easer in the background when the device is turned on.</string>
 
     <string name="pref_restart_after_upgrade_title">Start service after upgrade</string>
 
@@ -134,17 +135,17 @@
     <string name="pref_logging_summary">Logs to external storage devices (/sdcard/logger) to aid bug reports.
 \nChanges take effect at next app start.</string>
     <string name="pref_use_root_title">Use root features</string>
-    <string name="pref_use_root_summary">Use root permission for specific functions (skills), which may help resolve compatibility issue on some devices. It won\'t be used elsewhere.</string>
-    <string name="pref_cooldown_title">Cool down time</string>
-    <string name="pref_cooldown_summary">Minimal interval (in seconds) between two triggers of the same event</string>
-    <string name="cooldown_time_illformed">The number must not be lower than 0 and not too large to fit in a integer</string>
-    <string name="pref_enabled_skills_title">Active skills</string>
+    <string name="pref_use_root_summary">Use root permission for specific functions (skills) to help resolve compatibility issues on some devices.</string>
+    <string name="pref_cooldown_title">Event only once per…</string>
+    <string name="pref_cooldown_summary">Timeframe in seconds to treat two occurances as one event.</string>
+    <string name="cooldown_time_illformed">Your number is too high, or not a positive whole number.</string>
+    <string name="pref_enabled_skills_title">Activated skills</string>
     <string name="pref_enabled_skills_summary">Turn on or off certain skills</string>
     <string name="pref_use_12_hour_clock_title">Use 12-hour clock</string>
 
     <string name="pref_export_title">Export</string>
     <string name="pref_export_summary">Export all events and profiles to SD card.
-\nThe filename wil be a current timestamp.</string>
+\nThe current time as of saving will be used as filename.</string>
     <string name="pref_import_title">Import</string>
     <string name="pref_import_summary">Import all events and profiles in a ZIP file.
 \nExisting events and profiles with same name will be replaced.</string>
@@ -193,7 +194,7 @@
 \n
 \nYOU own every piece of your data. Everything lives on your device, including the logs.</string>
     <string name="alert_update_storage_data_title">Old data version found</string>
-    <string name="alert_update_storage_data">Select \"Convert Data\" in the settings to update your data to the new format for compatibility.</string>
+    <string name="alert_update_storage_data">Select \"Convert Data\" in the settings to update your data to the new format, for compatibility.</string>
 
     <string name="message_future_change_title">Changing soon</string>
     <string name="message_future_change_0_8">Tree view of Scripts will be removed in v0.8. Pivot provides a better view towards that.</string>
