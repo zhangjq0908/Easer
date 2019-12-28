@@ -23,7 +23,7 @@
     <string name="op_normal_mode">Normál mód</string>
     <string name="text_play">Lejátszás</string>
     <string name="operation_media_control_helper_service_label">Médiavezérlés segítője</string>
-    <string name="condition_calendar_any_event">Bármely esemény</string>
+    <string name="match_type_any_event">Bármely esemény</string>
     <string name="obroadcast_l_type">Típus:</string>
     <string name="operation_ringer_mode">Csengő mód</string>
     <string name="operation_media_control">Médiavezérlés</string>
@@ -79,7 +79,7 @@
     <string name="operation_wifi">WiFi</string>
     <string name="remote_host">Távoli állomás</string>
     <string name="operation_network_transmission">Hálózati átvitel</string>
-    <string name="ecalendar_select_dialog_title">Válasszon naptárt</string>
+    <string name="calendar_select_dialog_title">Válasszon naptárt</string>
     <string name="category_source_unknown">Ismeretlen</string>
     <string name="text_calendar">Naptár</string>
     <string name="event_notification__app">Alkalmazás</string>
@@ -116,7 +116,7 @@
     <string name="condition_ringer_mode">Csengő mód</string>
     <string name="operation_brightness">Fényerő</string>
     <string name="usource_bluetooth_device">Bluetooth-eszköz csatlakoztatva</string>
-    <string name="condition_calendar_all_day_event">Csak egész napos eseményekre vonatkozzon</string>
+    <string name="calendar_all_day_event_only">Csak egész napos eseményekre vonatkozzon</string>
     <string name="category_source_data_communication">Adatkommunikáció</string>
     <string name="usource_screen">Képernyő állapota</string>
     <string name="usource_headset__plugged_out">Kihúzva</string>
@@ -131,7 +131,7 @@
     <string name="usource_cell_location_dynamics_cell_location">Cellahely</string>
     <string name="text_extras">Extrák</string>
     <string name="minutes">Perc</string>
-    <string name="condition_calendar_event_match_pattern">Egyezési minta</string>
+    <string name="match_type_match_pattern">Egyezési minta</string>
     <string name="usource_headset__plugged_in">Bedugva</string>
     <string name="exact">Pontos</string>
     <string name="text_previous">Előző</string>
@@ -151,9 +151,9 @@
     <string name="operation_airplane_mode">Repülőgép üzemmód</string>
     <string name="event_notification__content">Tartalom (tartalmazza…)</string>
     <string name="ringer_mode_dnd_alarms">Riasztások</string>
-    <string name="event_calendar">Naptári esemény</string>
+    <string name="usource_calendar">Naptári esemény</string>
     <string name="condition_ringer_volume">Hangerő</string>
-    <string name="condition_calendar_event_title">Esemény címe</string>
+    <string name="match_event_title">Esemény címe</string>
     <string name="label_operation_ringer_mode_notification_listener_service">Csendes mód váltó</string>
     <string name="o_volume_notification">Értesítés</string>
     <string name="operation_alarm__absolute">Abszolút</string>
@@ -173,7 +173,6 @@
     <string name="check_reply">Ellenőrizze a választ</string>
     <string name="usource_headset__plug_in">Dugja be</string>
     <string name="usource_screen_text_screen_is">Amikor a képernyő…</string>
-    <string name="condition_calendar_name">Naptár neve</string>
     <string name="destination">Cél</string>
     <string name="ev_sms_dynamics_content">SMS tartalma</string>
     <string name="obroadcast_l_action">Tevékenység:</string>

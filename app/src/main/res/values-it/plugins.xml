@@ -30,8 +30,8 @@
     <string name="usource_bt_device_dynamics_device_name">Nome del dispositivo</string>
     <string name="usource_bt_device_dynamics_device_address">Indirizzo del dispositivo</string>
     <string name="usource_connectivity">Tipo di connessione</string>
-    <string name="event_calendar">Evento del calendario</string>
-    <string name="ecalendar_select_dialog_title">Seleziona il calendario</string>
+    <string name="usource_calendar">Evento del calendario</string>
+    <string name="calendar_select_dialog_title">Seleziona il calendario</string>
     <string name="text_calendar_name">Nome del calendario</string>
     <string name="text_calendar">Calendario</string>
     <string name="indicator_when">Quando…</string>
@@ -168,11 +168,10 @@
     <string name="o_play_media">Riproduci multimedia</string>
     <string name="o_play_media_text_file">Percorso file</string>
     <string name="condition__rel_after">Dopo</string>
-    <string name="condition_calendar_name">Nome del calendario</string>
-    <string name="condition_calendar_event_title">Titolo dell\'evento</string>
-    <string name="condition_calendar_any_event">Qualsiasi evento</string>
-    <string name="condition_calendar_event_match_pattern">Corrisponde allo schema</string>
-    <string name="condition_calendar_all_day_event">Corrisponde solo agli eventi «Tutto il giorno»</string>
+    <string name="match_event_title">Titolo dell\'evento</string>
+    <string name="match_type_any_event">Qualsiasi evento</string>
+    <string name="match_type_match_pattern">Corrisponde allo schema</string>
+    <string name="calendar_all_day_event_only">Corrisponde solo agli eventi «Tutto il giorno»</string>
     <string name="condition_ringer_mode">Modalità suoneria</string>
     <string name="condition_ringer_volume">Volume</string>
     <string name="condition_ringer_above">Minimo</string>

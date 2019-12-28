@@ -17,36 +17,30 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.condition.calendar;
-
+package ryey.easer.skills.usource.calendar;
 
 import androidx.annotation.NonNull;
 
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
-import ryey.easer.commons.local_skill.ValidData;
-import ryey.easer.commons.local_skill.conditionskill.ConditionDataFactory;
+import ryey.easer.commons.local_skill.usource.USourceDataFactory;
 import ryey.easer.plugin.PluginDataFormat;
 
-class CalendarConditionDataFactory implements ConditionDataFactory<CalendarConditionData> {
+public class CalendarUSourceDataFactory implements USourceDataFactory<CalendarUSourceData> {
     @NonNull
     @Override
-    public Class<CalendarConditionData> dataClass() {
-        return CalendarConditionData.class;
+    public Class<CalendarUSourceData> dataClass() {
+        return CalendarUSourceData.class;
     }
 
-    @ValidData
     @NonNull
     @Override
-    public CalendarConditionData dummyData() {
-        CalendarData calendarData = new CalendarData(20, CalendarConditionMatchType.ANY, "%", false);
-        CalendarConditionData dummyData = new CalendarConditionData(calendarData);
-        return dummyData;
+    public CalendarUSourceData dummyData() {
+        return new CalendarUSourceData(20, new CalConditionInnerData(CalendarMatchType.ANY, "%", false));
     }
 
-    @ValidData
     @NonNull
     @Override
-    public CalendarConditionData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
-        return new CalendarConditionData(data, format, version);
+    public CalendarUSourceData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
+        return new CalendarUSourceData(data, format, version);
     }
 }

@@ -26,8 +26,8 @@
         <item>Bluetooth</item>
         <item>Virtuelt privat netværk (VPN)</item>
     </array>
-    <string name="event_calendar">Kalender begivenhed</string>
-    <string name="ecalendar_select_dialog_title">Vælg kalender</string>
+    <string name="usource_calendar">Kalender begivenhed</string>
+    <string name="calendar_select_dialog_title">Vælg kalender</string>
     <string name="text_calendar_name">Kalender navn</string>
     <string name="text_calendar">Kalender</string>
     <string name="indicator_when">Når…</string>
@@ -185,11 +185,10 @@
     <string name="condition_ringer_above">Mindst</string>
     <string name="condition_ringer_below">Højst</string>
     <string name="condition_ringer_equals">Svarer til</string>
-    <string name="condition_calendar_name">Kalender navn</string>
-    <string name="condition_calendar_event_title">Hændelse titel</string>
-    <string name="condition_calendar_any_event">Enhver hændelse</string>
-    <string name="condition_calendar_event_match_pattern">Find mønster</string>
-    <string name="condition_calendar_all_day_event">Find kun hele-dagen hændelser</string>
+    <string name="match_event_title">Hændelse titel</string>
+    <string name="match_type_any_event">Enhver hændelse</string>
+    <string name="match_type_match_pattern">Find mønster</string>
+    <string name="calendar_all_day_event_only">Find kun hele-dagen hændelser</string>
     <string name="category_source_android">Android</string>
     <string name="category_source_date_time">Dato / tid</string>
     <string name="category_source_device">Enhed</string>

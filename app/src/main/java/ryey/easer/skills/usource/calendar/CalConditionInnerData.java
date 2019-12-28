@@ -17,51 +17,51 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.condition.calendar;
+package ryey.easer.skills.usource.calendar;
 
 import android.os.Parcel;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.orhanobut.logger.Logger;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Objects;
+
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
-import ryey.easer.commons.local_skill.conditionskill.ConditionData;
 import ryey.easer.plugin.PluginDataFormat;
 
 
-public class CalendarConditionData implements ConditionData {
+public class CalConditionInnerData implements CalendarUSourceData.InnerData {
 
-    private static final String T_calendar_id = "calendar_id";
     private static final String T_match_type = "match_type";
     private static final String T_match_pattern = "match_pattern";
     private static final String T_all_day = "all_day";
 
-    final CalendarData data;
+    @NonNull
+    final CalendarMatchType matchType;
+    @NonNull
+    final String matchPattern;
+    final boolean isAllDayEvent;
 
-    CalendarConditionData(CalendarData data) {
-        this.data = data;
+    CalConditionInnerData(@NonNull CalendarMatchType matchType, @NonNull String matchPattern, boolean isAllDayEvent) {
+        this.matchType = matchType;
+        this.matchPattern = matchPattern;
+        this.isAllDayEvent = isAllDayEvent;
     }
 
-    CalendarConditionData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
-        long calendar_id = -1;
-        CalendarConditionMatchType matchType = CalendarConditionMatchType.ANY;
-        String matchPattern = "%";
-        boolean isAllDayEvent = false;
+    CalConditionInnerData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         try {
             JSONObject jsonObject = new JSONObject(data);
-            calendar_id = jsonObject.optLong(T_calendar_id);
-            matchType = CalendarConditionMatchType.getById(jsonObject.optInt(T_match_type, 0));
+            matchType = CalendarMatchType.getById(jsonObject.optInt(T_match_type, 0));
             matchPattern = jsonObject.optString(T_match_pattern, "*");
             isAllDayEvent = jsonObject.getBoolean(T_all_day);
         } catch (JSONException e) {
-            Logger.e(e, "Error parsing %s data to SUFFIX", getClass().getSimpleName());
-            e.printStackTrace();
+            throw new IllegalStorageDataException(e);
         }
-        this.data = new CalendarData(calendar_id, matchType, matchPattern, isAllDayEvent);
     }
 
     @NonNull
@@ -72,13 +72,11 @@ public class CalendarConditionData implements ConditionData {
             default:
                 JSONObject jsonObject = new JSONObject();
                 try {
-                    jsonObject.put(T_calendar_id, data.calendar_id);
-                    jsonObject.put(T_match_type, data.matchType.getId());
-                    jsonObject.put(T_match_pattern, data.matchPattern);
-                    jsonObject.put(T_all_day, data.isAllDayEvent);
+                    jsonObject.put(T_match_type, matchType.getId());
+                    jsonObject.put(T_match_pattern, matchPattern);
+                    jsonObject.put(T_all_day, isAllDayEvent);
                 } catch (JSONException e) {
-                    Logger.e(e, "Error putting %s data", getClass().getSimpleName());
-                    e.printStackTrace();
+                    throw new IllegalAccessError("serialize shouldn't fail");
                 }
                 res = jsonObject.toString();
         }
@@ -88,10 +86,6 @@ public class CalendarConditionData implements ConditionData {
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
-        if (data == null || !(data instanceof CalendarData))
-            return false;
-        if (data.calendar_id == -1)
-            return false;
         return true;
     }
 
@@ -100,10 +94,15 @@ public class CalendarConditionData implements ConditionData {
     public boolean equals(Object obj) {
         if (obj == this)
             return true;
-        if (obj == null || !(obj instanceof CalendarConditionData))
+        if (!(obj instanceof CalConditionInnerData))
             return false;
-        if (!data.equals(((CalendarConditionData)obj).data))
+        if (isAllDayEvent != ((CalConditionInnerData) obj).isAllDayEvent
+                || matchType != ((CalConditionInnerData) obj).matchType) {
             return false;
+        }
+        if (matchType == CalendarMatchType.EVENT_TITLE && !(matchPattern.equals(((CalConditionInnerData) obj).matchPattern))) {
+            return false;
+        }
         return true;
     }
 
@@ -114,21 +113,25 @@ public class CalendarConditionData implements ConditionData {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(data);
+        dest.writeInt(matchType.getId());
+        dest.writeString(matchPattern);
+        dest.writeByte((byte) (isAllDayEvent ? 1 : 0));
     }
 
-    public static final Creator<CalendarConditionData> CREATOR
-            = new Creator<CalendarConditionData>() {
-        public CalendarConditionData createFromParcel(Parcel in) {
-            return new CalendarConditionData(in);
+    public static final Creator<CalConditionInnerData> CREATOR
+            = new Creator<CalConditionInnerData>() {
+        public CalConditionInnerData createFromParcel(Parcel in) {
+            return new CalConditionInnerData(in);
         }
 
-        public CalendarConditionData[] newArray(int size) {
-            return new CalendarConditionData[size];
+        public CalConditionInnerData[] newArray(int size) {
+            return new CalConditionInnerData[size];
         }
     };
 
-    private CalendarConditionData(Parcel in) {
-        data = (CalendarData) in.readValue(getClass().getClassLoader());
+    private CalConditionInnerData(Parcel in) {
+        matchType = CalendarMatchType.getById(in.readInt());
+        matchPattern = Objects.requireNonNull(in.readString());
+        isAllDayEvent = in.readByte() != 0;
     }
 }

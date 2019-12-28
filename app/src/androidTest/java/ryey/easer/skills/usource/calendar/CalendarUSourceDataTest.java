@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 - 2018 Rui Zhao <renyuneyun@gmail.com>
+ * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
  *
  * This file is part of Easer.
  *
@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.event.calendar;
+package ryey.easer.skills.usource.calendar;
 
 import android.os.Parcel;
 
@@ -27,13 +27,13 @@ import ryey.easer.skills.TestHelper;
 
 import static org.junit.Assert.assertEquals;
 
-public class CalendarEventDataTest {
+public class CalendarUSourceDataTest {
 
     @Test
     public void testParcel() {
-        CalendarEventData dummyData = new CalendarEventDataFactory().dummyData();
+        CalendarUSourceData dummyData = new CalendarUSourceDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
-        CalendarEventData parceledData = CalendarEventData.CREATOR.createFromParcel(parcel);
+        CalendarUSourceData parceledData = CalendarUSourceData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);
     }
 

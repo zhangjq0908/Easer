@@ -18,8 +18,8 @@
     <string name="usource_bt_device_select_dialog_title">Velg Blåtannsenhet</string>
     <string name="usource_bt_device_unknown_device">Ukjent enhet</string>
     <string name="usource_connectivity">Tilkoblingstype</string>
-    <string name="event_calendar">Kalenderhendelse</string>
-    <string name="ecalendar_select_dialog_title">Velg kalender</string>
+    <string name="usource_calendar">Kalenderhendelse</string>
+    <string name="calendar_select_dialog_title">Velg kalender</string>
     <string name="text_calendar_name">Kalendernavn</string>
     <string name="text_calendar">Kalender</string>
     <string name="indicator_when">Når…</string>
@@ -168,11 +168,10 @@
     <string name="o_launch_app__text_class_hint">Tomt eller fullt klassenavn</string>
     <string name="o_play_media">Spill av media</string>
     <string name="o_play_media_text_file">Filsti</string>
-    <string name="condition_calendar_name">Kalendernavn</string>
-    <string name="condition_calendar_event_title">Hendelsestittel</string>
-    <string name="condition_calendar_any_event">Enhver hendelse</string>
-    <string name="condition_calendar_event_match_pattern">Jamfør med</string>
-    <string name="condition_calendar_all_day_event">Kun jamfør heldagshendelser</string>
+    <string name="match_event_title">Hendelsestittel</string>
+    <string name="match_type_any_event">Enhver hendelse</string>
+    <string name="match_type_match_pattern">Jamfør med</string>
+    <string name="calendar_all_day_event_only">Kun jamfør heldagshendelser</string>
     <string name="condition_ringer_mode">Ringemodus</string>
     <string name="condition_ringer_volume">Lydstyrke</string>
     <string name="condition_ringer_above">Minst</string>

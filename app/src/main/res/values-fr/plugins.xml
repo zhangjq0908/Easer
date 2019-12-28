@@ -18,8 +18,8 @@
     <string name="usource_bt_device_select_dialog_title">Sélectionnez le périphérique Bluetooth</string>
     <string name="usource_bt_device_unknown_device">Périphérique inconnu</string>
     <string name="usource_connectivity">Type de connectivité</string>
-    <string name="event_calendar">Evénement du calendrier</string>
-    <string name="ecalendar_select_dialog_title">Sélectionnez le calendrier</string>
+    <string name="usource_calendar">Evénement du calendrier</string>
+    <string name="calendar_select_dialog_title">Sélectionnez le calendrier</string>
     <string name="text_calendar_name">Nom du calendrier</string>
     <string name="text_calendar">Calendrier</string>
     <string name="indicator_when">Quand…</string>
@@ -167,11 +167,10 @@
     <string name="condition_ringer_above">Au moins</string>
     <string name="condition_ringer_below">Au plus</string>
     <string name="condition_ringer_equals">Égale</string>
-    <string name="condition_calendar_name">Nom du calendrier</string>
-    <string name="condition_calendar_event_title">Titre de l\'événement</string>
-    <string name="condition_calendar_any_event">Tout événement</string>
-    <string name="condition_calendar_event_match_pattern">Modèle de correspondance</string>
-    <string name="condition_calendar_all_day_event">Seulement les événements sur toute la journée</string>
+    <string name="match_event_title">Titre de l\'événement</string>
+    <string name="match_type_any_event">Tout événement</string>
+    <string name="match_type_match_pattern">Modèle de correspondance</string>
+    <string name="calendar_all_day_event_only">Seulement les événements sur toute la journée</string>
     <string name="category_source_android">Android</string>
     <string name="category_source_date_time">Date / Heure</string>
     <string name="category_source_device">Appareil</string>

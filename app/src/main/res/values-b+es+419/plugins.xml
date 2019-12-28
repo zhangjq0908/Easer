@@ -7,11 +7,10 @@
     <string name="category_source_personal">Personal</string>
     <string name="category_source_unknown">Desconocido</string>
     <string name="condition__rel_after">Después</string>
-    <string name="condition_calendar_name">Nombre del calendario</string>
-    <string name="condition_calendar_event_title">Nombre del evento</string>
-    <string name="condition_calendar_any_event">Cualquier evento</string>
-    <string name="condition_calendar_event_match_pattern">Coincidir patrón</string>
-    <string name="condition_calendar_all_day_event">Sólo coincidir eventos de todo el día</string>
+    <string name="match_event_title">Nombre del evento</string>
+    <string name="match_type_any_event">Cualquier evento</string>
+    <string name="match_type_match_pattern">Coincidir patrón</string>
+    <string name="calendar_all_day_event_only">Sólo coincidir eventos de todo el día</string>
     <string name="condition_ringer_mode">Modo de llamada</string>
     <string name="condition_ringer_volume">Volumen</string>
     <string name="condition_ringer_above">Al menos</string>
@@ -22,8 +21,8 @@
     <string name="broadcast_category">Categoría</string>
     <string name="broadcast_type">Tipo</string>
     <string name="broadcast_data">Datos</string>
-    <string name="event_calendar">Evento de calendario</string>
-    <string name="ecalendar_select_dialog_title">Seleccionar calendario</string>
+    <string name="usource_calendar">Evento de calendario</string>
+    <string name="calendar_select_dialog_title">Seleccionar calendario</string>
     <string name="text_calendar_name">Nombre del calendario</string>
     <string name="text_calendar">Calendario</string>
     <string name="indicator_when">Cuando…</string>

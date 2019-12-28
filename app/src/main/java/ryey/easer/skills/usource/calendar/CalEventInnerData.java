@@ -17,74 +17,66 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.event.calendar;
+package ryey.easer.skills.usource.calendar;
 
 import android.os.Parcel;
-import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.collection.ArraySet;
-
-import com.orhanobut.logger.Logger;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.dynamics.Dynamics;
 import ryey.easer.plugin.PluginDataFormat;
-import ryey.easer.skills.event.AbstractEventData;
 
-public class CalendarEventData extends AbstractEventData {
-
-    private static final String T_calendar_id = "calendar_id";
+public class CalEventInnerData implements CalendarUSourceData.InnerData {
     private static final String T_condition = "condition";
 
-    CalendarData data;
+    static final String[] condition_name = new String[]{
+            "start",
+            "end",
+    };
 
-    CalendarEventData(CalendarData data) {
-        this.data = data;
+    @NonNull final Set<String> conditions;
+
+    CalEventInnerData(@Nullable Set<String> conditions) {
+        if (conditions == null)
+            conditions = new ArraySet<>(condition_name.length);
+        this.conditions = conditions;
     }
 
-    CalendarEventData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
-        parse(data, format, version);
+    CalEventInnerData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
+        switch (format) {
+            default:
+                try {
+                    JSONObject jsonObject = new JSONObject(data);
+                    this.conditions = new ArraySet<>();
+                    JSONArray jsonArray_conditions = jsonObject.optJSONArray(T_condition);
+                    for (int i = 0; i < jsonArray_conditions.length(); i++) {
+                        String condition = jsonArray_conditions.getString(i);
+                        for (int j = 0; j < condition_name.length; j++) {
+                            this.conditions.add(condition);
+                        }
+                    }
+                } catch (JSONException e) {
+                    throw new IllegalStorageDataException(e);
+                }
+        }
     }
 
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean isValid() {
-        if (data == null)
-            return false;
-        if (data.calendar_id == -1)
-            return false;
-        if (data.conditions.size() == 0)
+        if (conditions.size() == 0)
             return false;
         return true;
-    }
-
-    public void parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
-        switch (format) {
-            default:
-                try {
-                    JSONObject jsonObject = new JSONObject(data);
-                    this.data = new CalendarData();
-                    this.data.calendar_id = jsonObject.optLong(T_calendar_id);
-                    JSONArray jsonArray_conditions = jsonObject.optJSONArray(T_condition);
-                    for (int i = 0; i < jsonArray_conditions.length(); i++) {
-                        String condition = jsonArray_conditions.getString(i);
-                        for (int j = 0; j < CalendarData.condition_name.length; j++) {
-                            this.data.conditions.add(condition);
-                        }
-                    }
-                } catch (JSONException e) {
-                    Logger.e(e, "Error parsing %s data to SUFFIX", getClass().getSimpleName());
-                    e.printStackTrace();
-                }
-        }
     }
 
     @NonNull
@@ -95,15 +87,13 @@ public class CalendarEventData extends AbstractEventData {
             default:
                 JSONObject jsonObject = new JSONObject();
                 try {
-                    jsonObject.put(T_calendar_id, data.calendar_id);
                     JSONArray jsonArray_conditions = new JSONArray();
-                    for (String k : data.conditions) {
+                    for (String k : conditions) {
                         jsonArray_conditions.put(k);
                     }
                     jsonObject.put(T_condition, jsonArray_conditions);
                 } catch (JSONException e) {
-                    Logger.e(e, "Error putting %s data", getClass().getSimpleName());
-                    e.printStackTrace();
+                    throw new IllegalAccessError("CalEventInnerData serialize shouldn't fail");
                 }
                 res = jsonObject.toString();
         }
@@ -111,7 +101,6 @@ public class CalendarEventData extends AbstractEventData {
     }
 
     @Nullable
-    @Override
     public Dynamics[] dynamics() {
         return null;
     }
@@ -121,11 +110,9 @@ public class CalendarEventData extends AbstractEventData {
     public boolean equals(Object obj) {
         if (obj == this)
             return true;
-        if (!(obj instanceof CalendarEventData))
+        if (!(obj instanceof CalEventInnerData))
             return false;
-        if (data.calendar_id != ((CalendarEventData) obj).data.calendar_id)
-            return false;
-        if (!data.conditions.equals(((CalendarEventData) obj).data.conditions))
+        if (!conditions.equals(((CalEventInnerData) obj).conditions))
             return false;
         return true;
     }
@@ -137,26 +124,23 @@ public class CalendarEventData extends AbstractEventData {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeLong(data.calendar_id);
-        dest.writeList(new ArrayList<>(data.conditions));
+        dest.writeList(new ArrayList<>(conditions));
     }
 
-    public static final Parcelable.Creator<CalendarEventData> CREATOR
-            = new Parcelable.Creator<CalendarEventData>() {
-        public CalendarEventData createFromParcel(Parcel in) {
-            return new CalendarEventData(in);
+    public static final Creator<CalEventInnerData> CREATOR
+            = new Creator<CalEventInnerData>() {
+        public CalEventInnerData createFromParcel(Parcel in) {
+            return new CalEventInnerData(in);
         }
 
-        public CalendarEventData[] newArray(int size) {
-            return new CalendarEventData[size];
+        public CalEventInnerData[] newArray(int size) {
+            return new CalEventInnerData[size];
         }
     };
 
-    private CalendarEventData(Parcel in) {
-        data = new CalendarData();
-        data.calendar_id = in.readLong();
+    private CalEventInnerData(Parcel in) {
         ArrayList<String> list = new ArrayList<>();
         in.readList(list, null);
-        data.conditions = new ArraySet<>(list);
+        conditions = new ArraySet<>(list);
     }
 }

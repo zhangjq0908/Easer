@@ -2,11 +2,10 @@
 <resources><string name="event_condition_event">Conditie Gebeurtenis</string>
     <string name="event_condition_event_enter">Betreedt</string>
     <string name="event_condition_event_leave">Verlaat</string>
-    <string name="condition_calendar_name">Kalender Naam</string>
-    <string name="condition_calendar_event_title">Gebeurtenis Titel</string>
-    <string name="condition_calendar_any_event">Alle Gebeurtenissen</string>
-    <string name="condition_calendar_event_match_pattern">Vergelijkingspatroon</string>
-    <string name="condition_calendar_all_day_event">Alleen \'hele-dag\' gebeurtenissen</string>
+    <string name="match_event_title">Gebeurtenis Titel</string>
+    <string name="match_type_any_event">Alle Gebeurtenissen</string>
+    <string name="match_type_match_pattern">Vergelijkingspatroon</string>
+    <string name="calendar_all_day_event_only">Alleen \'hele-dag\' gebeurtenissen</string>
     <string name="usource_headset__headset_state">status Headset</string>
     <string name="usource_headset__plugged_in">Verbonden</string>
     <string name="usource_headset__plugged_out">Niet verbonden</string>
@@ -34,8 +33,8 @@
     <string name="usource_bt_device_select_dialog_title">Select Bluetooth apparaat</string>
     <string name="usource_bt_device_unknown_device">Onbekend apparaat</string>
     <string name="usource_connectivity">Verbindings Type</string>
-    <string name="event_calendar">Kalender gebeurtenis</string>
-    <string name="ecalendar_select_dialog_title">Selecteer Kalender</string>
+    <string name="usource_calendar">Kalender gebeurtenis</string>
+    <string name="calendar_select_dialog_title">Selecteer Kalender</string>
     <string name="text_calendar_name">Kalender Naam</string>
     <string name="text_calendar">Kalender</string>
     <string name="indicator_when">Wanneer…</string>

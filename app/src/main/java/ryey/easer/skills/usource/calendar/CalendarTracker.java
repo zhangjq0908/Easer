@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.condition.calendar;
+package ryey.easer.skills.usource.calendar;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -38,11 +38,7 @@ import java.util.Calendar;
 
 import ryey.easer.skills.condition.SkeletonTracker;
 
-import static ryey.easer.skills.condition.calendar.CalendarHelper.activeEventsCount;
-import static ryey.easer.skills.condition.calendar.CalendarHelper.currentEvent_match_end;
-import static ryey.easer.skills.condition.calendar.CalendarHelper.nextEvent_match_start;
-
-public class CalendarTracker extends SkeletonTracker<CalendarConditionData> {
+public class CalendarTracker extends SkeletonTracker<CalendarUSourceData> {
 
     private static final String ACTION_UPDATE= "ryey.easer.skills.condition.calendar.UPDATE";
 
@@ -69,10 +65,13 @@ public class CalendarTracker extends SkeletonTracker<CalendarConditionData> {
         }
     };
 
-    CalendarTracker(Context context, CalendarConditionData data,
+    private final CalConditionInnerData innerData;
+
+    CalendarTracker(Context context, CalendarUSourceData data,
                    @NonNull PendingIntent event_positive,
                    @NonNull PendingIntent event_negative) {
         super(context, data, event_positive, event_negative);
+        this.innerData = (CalConditionInnerData) data.data;
         if (mAlarmManager == null)
             mAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
     }
@@ -94,12 +93,12 @@ public class CalendarTracker extends SkeletonTracker<CalendarConditionData> {
 
     private void updateTracker() {
         Long nextRun;
-        if (activeEventsCount(context.getContentResolver(), data.data) > 0) {
+        if (CalendarHelper.activeEventsCount(context.getContentResolver(), data.calendar_id, innerData) > 0) {
             newSatisfiedState(true);
-            nextRun = currentEvent_match_end(context.getContentResolver(), data.data);
+            nextRun = CalendarHelper.currentEvent_match_end(context.getContentResolver(), data.calendar_id, innerData);
         } else {
             newSatisfiedState(false);
-            nextRun = nextEvent_match_start(context.getContentResolver(), data.data);
+            nextRun = CalendarHelper.nextEvent_match_start(context.getContentResolver(), data.calendar_id, innerData);
         }
         if (nextRun == null)
             nextRun = Calendar.getInstance().getTimeInMillis() + DateUtils.DAY_IN_MILLIS;

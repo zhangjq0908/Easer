@@ -17,10 +17,11 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.event.calendar;
+package ryey.easer.skills.usource.calendar;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
@@ -29,14 +30,13 @@ import androidx.annotation.Nullable;
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.SkillView;
 import ryey.easer.commons.local_skill.SourceCategory;
-import ryey.easer.commons.local_skill.ValidData;
-import ryey.easer.commons.local_skill.eventskill.EventDataFactory;
-import ryey.easer.commons.local_skill.eventskill.EventSkill;
+import ryey.easer.commons.local_skill.conditionskill.Tracker;
+import ryey.easer.commons.local_skill.eventskill.Slot;
+import ryey.easer.commons.local_skill.usource.USourceDataFactory;
+import ryey.easer.commons.local_skill.usource.USourceSkill;
 import ryey.easer.skills.SkillUtils;
-import ryey.easer.skills.event.AbstractSlot;
 
-public class CalendarEventSkill implements EventSkill<CalendarEventData> {
-
+public class CalendarUSourceSkill implements USourceSkill<CalendarUSourceData> {
     @NonNull
     @Override
     public String id() {
@@ -45,11 +45,17 @@ public class CalendarEventSkill implements EventSkill<CalendarEventData> {
 
     @Override
     public int name() {
-        return R.string.event_calendar;
+        return R.string.usource_calendar;
+    }
+
+    @NonNull
+    @Override
+    public SourceCategory category() {
+        return SourceCategory.personal;
     }
 
     @Override
-    public boolean isCompatible(@NonNull final Context context) {
+    public boolean isCompatible(@NonNull Context context) {
         return true;
     }
 
@@ -66,30 +72,28 @@ public class CalendarEventSkill implements EventSkill<CalendarEventData> {
 
     @NonNull
     @Override
-    public EventDataFactory<CalendarEventData> dataFactory() {
-        return new CalendarEventDataFactory();
+    public USourceDataFactory<CalendarUSourceData> dataFactory() {
+        return new CalendarUSourceDataFactory();
     }
 
     @NonNull
     @Override
-    public SourceCategory category() {
-        return SourceCategory.personal;
-    }
-
-    @NonNull
-    @Override
-    public SkillView<CalendarEventData> view() {
+    public SkillView<CalendarUSourceData> view() {
         return new CalendarSkillViewFragment();
     }
 
     @Override
-    public AbstractSlot<CalendarEventData> slot(@NonNull Context context, @ValidData @NonNull CalendarEventData data) {
+    public Slot<CalendarUSourceData> slot(@NonNull Context context, @NonNull CalendarUSourceData data) {
         return new CalendarSlot(context, data);
     }
 
     @Override
-    public AbstractSlot<CalendarEventData> slot(@NonNull Context context, @NonNull CalendarEventData data, boolean retriggerable, boolean persistent) {
+    public Slot<CalendarUSourceData> slot(@NonNull Context context, @NonNull CalendarUSourceData data, boolean retriggerable, boolean persistent) {
         return new CalendarSlot(context, data, retriggerable, persistent);
     }
 
+    @Override
+    public Tracker<CalendarUSourceData> tracker(@NonNull Context context, @NonNull CalendarUSourceData data, @NonNull PendingIntent event_positive, @NonNull PendingIntent event_negative) {
+        return new CalendarTracker(context, data, event_positive, event_negative);
+    }
 }

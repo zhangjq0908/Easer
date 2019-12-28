@@ -33,6 +33,7 @@ public class C {
     public static final String ON = "on";
 
     public static final String VERSION = "version";
+    public static final int VERSION_UNIFIED_CALENDAR = 16;
     public static final int VERSION_GRAPH_SCRIPT = 15;
     public static final int VERSION_RENAME_BATTERY_USOURCE = 14;
     public static final int VERSION_SEPARATED_EXTRAS = 13;
@@ -50,6 +51,6 @@ public class C {
     public static final int VERSION_FULL_MULTI = 1;
     public static final int VERSION_FALLBACK = 0;
     public static final int VERSION_CREATED_IN_RUNTIME = -1;
-    public static final int VERSION_CURRENT = VERSION_GRAPH_SCRIPT;
+    public static final int VERSION_CURRENT = VERSION_UNIFIED_CALENDAR;
 
 }

@@ -7,11 +7,10 @@
     <string name="event_condition_event_dynamics_name">狀況名</string>
 
 
-    <string name="condition_calendar_name">日曆名</string>
-    <string name="condition_calendar_event_title">事件標題</string>
-    <string name="condition_calendar_any_event">任何事件</string>
-    <string name="condition_calendar_event_match_pattern">匹配下面模式</string>
-    <string name="condition_calendar_all_day_event">僅對持續整日的事件進行匹配</string>
+    <string name="match_event_title">事件標題</string>
+    <string name="match_type_any_event">任何事件</string>
+    <string name="match_type_match_pattern">匹配下面模式</string>
+    <string name="calendar_all_day_event_only">僅對持續整日的事件進行匹配</string>
 
     <string name="usource_headset__headset_state">耳機狀態</string>
     <string name="usource_headset__plugged_in">已插入</string>
@@ -61,8 +60,8 @@
         <item>VPN</item>
     </array>
 
-    <string name="event_calendar">日曆事件</string>
-    <string name="ecalendar_select_dialog_title">選擇日曆</string>
+    <string name="usource_calendar">日曆事件</string>
+    <string name="calendar_select_dialog_title">選擇日曆</string>
     <string name="text_calendar_name">日曆名</string>
     <string name="text_calendar">日曆</string>
     <string name="indicator_when">當…</string>

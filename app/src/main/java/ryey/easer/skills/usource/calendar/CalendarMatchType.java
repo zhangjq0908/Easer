@@ -17,18 +17,29 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.event.calendar;
+package ryey.easer.skills.usource.calendar;
 
-import androidx.collection.ArraySet;
+import java.util.HashMap;
 
-import java.util.Set;
+public enum CalendarMatchType {
+    ANY(0),
+    EVENT_TITLE(1);
 
-class CalendarData {
-    static final String[] condition_name = new String[]{
-            "start",
-            "end",
-    };
+    private int id;
 
-    long calendar_id;
-    Set<String> conditions = new ArraySet<>(condition_name.length);
+    private static HashMap<Integer, CalendarMatchType> enumById = new HashMap<>();
+    static {
+        for (CalendarMatchType m: CalendarMatchType.values()) {
+            enumById.put(m.getId(), m);
+        }
+    }
+
+    CalendarMatchType(int id) { this.id = id; }
+
+    public static CalendarMatchType getById(int id) {
+        return enumById.get(id);
+    }
+    public int getId() {
+        return id;
+    }
 }

@@ -9,11 +9,10 @@
     <string name="category_source_personal">Kişisel</string>
     <string name="category_source_unknown">Bilinmeyen</string>
     <string name="condition__rel_after">Sonra</string>
-    <string name="condition_calendar_name">Takvim Adı</string>
-    <string name="condition_calendar_event_title">Etkinlik Başlığı</string>
-    <string name="condition_calendar_any_event">Herhangi bir olay</string>
-    <string name="condition_calendar_event_match_pattern">Eşleşme Deseni</string>
-    <string name="condition_calendar_all_day_event">Yalnızca tüm gün etkinlikleriyle eşleş</string>
+    <string name="match_event_title">Etkinlik Başlığı</string>
+    <string name="match_type_any_event">Herhangi bir olay</string>
+    <string name="match_type_match_pattern">Eşleşme Deseni</string>
+    <string name="calendar_all_day_event_only">Yalnızca tüm gün etkinlikleriyle eşleş</string>
     <string name="condition_ringer_mode">Zil Modu</string>
     <string name="condition_ringer_volume">Ses Düzeyi</string>
     <string name="condition_ringer_above">En azından</string>
@@ -24,8 +23,8 @@
     <string name="broadcast_category">Kategori</string>
     <string name="broadcast_type">Tür</string>
     <string name="broadcast_data">Veri</string>
-    <string name="event_calendar">Takvim Etkinliği</string>
-    <string name="ecalendar_select_dialog_title">Takvim Seç</string>
+    <string name="usource_calendar">Takvim Etkinliği</string>
+    <string name="calendar_select_dialog_title">Takvim Seç</string>
     <string name="text_calendar_name">Takvim Adı</string>
     <string name="text_calendar">Takvim</string>
 </resources>

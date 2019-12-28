@@ -30,8 +30,8 @@
     <string name="usource_bt_device_dynamics_device_name">Nome do dispositivo</string>
     <string name="usource_bt_device_dynamics_device_address">Endereço de dispositivo</string>
     <string name="usource_connectivity">Tipo de conectividade</string>
-    <string name="event_calendar">Evento do calendário</string>
-    <string name="ecalendar_select_dialog_title">Selecionar calendário</string>
+    <string name="usource_calendar">Evento do calendário</string>
+    <string name="calendar_select_dialog_title">Selecionar calendário</string>
     <string name="text_calendar_name">Nome do calendário</string>
     <string name="text_calendar">Calendário</string>
     <string name="indicator_when">Quando…</string>
@@ -173,11 +173,10 @@
     <string name="condition_ringer_above">Pelo menos</string>
     <string name="condition_ringer_below">No máximo</string>
     <string name="condition_ringer_equals">Igual a</string>
-    <string name="condition_calendar_name">Nome do calendário</string>
-    <string name="condition_calendar_event_title">Título do evento</string>
-    <string name="condition_calendar_any_event">Qualquer evento</string>
-    <string name="condition_calendar_event_match_pattern">Correspondência</string>
-    <string name="condition_calendar_all_day_event">Apenas corresponder eventos que durem o dia todo</string>
+    <string name="match_event_title">Título do evento</string>
+    <string name="match_type_any_event">Qualquer evento</string>
+    <string name="match_type_match_pattern">Correspondência</string>
+    <string name="calendar_all_day_event_only">Apenas corresponder eventos que durem o dia todo</string>
     <string name="category_source_android">Android</string>
     <string name="category_source_date_time">Data / Hora</string>
     <string name="category_source_device">Dispositivo</string>

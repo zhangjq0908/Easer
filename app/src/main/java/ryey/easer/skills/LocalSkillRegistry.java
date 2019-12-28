@@ -44,10 +44,8 @@ import ryey.easer.commons.local_skill.eventskill.EventSkill;
 import ryey.easer.commons.local_skill.operationskill.OperationData;
 import ryey.easer.commons.local_skill.operationskill.OperationSkill;
 import ryey.easer.commons.local_skill.usource.USourceSkill;
-import ryey.easer.skills.condition.calendar.CalendarConditionSkill;
 import ryey.easer.skills.condition.ringer_mode.RingerModeConditionSkill;
 import ryey.easer.skills.event.broadcast.BroadcastEventSkill;
-import ryey.easer.skills.event.calendar.CalendarEventSkill;
 import ryey.easer.skills.event.condition_event.ConditionEventEventSkill;
 import ryey.easer.skills.event.nfc_tag.NfcTagEventSkill;
 import ryey.easer.skills.event.notification.NotificationEventSkill;
@@ -80,6 +78,7 @@ import ryey.easer.skills.operation.wifi.WifiOperationSkill;
 import ryey.easer.skills.usource.battery_level.BatteryLevelUSourceSkill;
 import ryey.easer.skills.usource.bluetooth_device.BTDeviceUSourceSkill;
 import ryey.easer.skills.usource.bluetooth_enabled.BluetoothEnabledUSourceSkill;
+import ryey.easer.skills.usource.calendar.CalendarUSourceSkill;
 import ryey.easer.skills.usource.call.CallUSourceSkill;
 import ryey.easer.skills.usource.cell_location.CellLocationUSourceSkill;
 import ryey.easer.skills.usource.connectivity.ConnectivityUSourceSkill;
@@ -102,6 +101,7 @@ final public class LocalSkillRegistry {
 
     private final Registry<ConditionSkill, ConditionData> conditionSkillRegistry = new Registry<>(CommonSkillUtils.TYPE_CONDITION, new String[][]{
             {"battery", "power_status"}, // v0.7.8
+            {"calendar_condition", "calendar"}, // v0.8 (unified calendar condition & event)
     });
     private final Registry<EventSkill, EventData> eventSkillRegistry = new Registry<>(CommonSkillUtils.TYPE_EVENT, new String[][]{
             {"battery", "power_status"}, // v0.7.8
@@ -118,6 +118,7 @@ final public class LocalSkillRegistry {
                 new BatteryLevelUSourceSkill(),
                 new BTDeviceUSourceSkill(),
                 new BluetoothEnabledUSourceSkill(),
+                new CalendarUSourceSkill(),
                 new CallUSourceSkill(),
                 new CellLocationUSourceSkill(),
                 new ConnectivityUSourceSkill(),
@@ -135,11 +136,9 @@ final public class LocalSkillRegistry {
             event().registerSkill(skill.event());
         }
 
-        condition().registerSkill(CalendarConditionSkill.class);
         condition().registerSkill(RingerModeConditionSkill.class);
 
         event().registerSkill(BroadcastEventSkill.class);
-        event().registerSkill(CalendarEventSkill.class);
         event().registerSkill(ConditionEventEventSkill.class);
         event().registerSkill(NfcTagEventSkill.class);
         event().registerSkill(NotificationEventSkill.class);

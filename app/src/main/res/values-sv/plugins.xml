@@ -30,8 +30,8 @@
     <string name="usource_bt_device_dynamics_device_name">Enhetsnamn</string>
     <string name="usource_bt_device_dynamics_device_address">Enhetens adress</string>
     <string name="usource_connectivity">Anslutningstyp</string>
-    <string name="event_calendar">Kalenderhändelse</string>
-    <string name="ecalendar_select_dialog_title">Välj kalender</string>
+    <string name="usource_calendar">Kalenderhändelse</string>
+    <string name="calendar_select_dialog_title">Välj kalender</string>
     <string name="text_calendar_name">Kalendernamn</string>
     <string name="text_calendar">Kalender</string>
     <string name="indicator_when">När…</string>
@@ -172,10 +172,9 @@
     <string name="condition_ringer_above">Åtminstone</string>
     <string name="condition_ringer_below">Som mest</string>
     <string name="condition_ringer_equals">Motsvarar</string>
-    <string name="condition_calendar_name">Kalendernamn</string>
-    <string name="condition_calendar_event_title">Händelsetitel</string>
-    <string name="condition_calendar_any_event">Någon händelse</string>
-    <string name="condition_calendar_all_day_event">Matcha bara heldags-händelser</string>
+    <string name="match_event_title">Händelsetitel</string>
+    <string name="match_type_any_event">Någon händelse</string>
+    <string name="calendar_all_day_event_only">Matcha bara heldags-händelser</string>
     <string name="category_source_android">Android</string>
     <string name="category_source_date_time">Datum / Tid</string>
     <string name="category_source_device">Enhet</string>
@@ -185,7 +184,7 @@
     <string name="category_source_personal">Personlig</string>
     <string name="category_source_unknown">Okänd</string>
     <string name="condition_ringer_mode">Ringarläge</string>
-    <string name="condition_calendar_event_match_pattern">Matcha mönster</string>
+    <string name="match_type_match_pattern">Matcha mönster</string>
     <string name="event_widget">Widget</string>
     <string name="event_widget_widget_label">Widgethändelse Widget</string>
     <string name="event_widget_text">Text</string>

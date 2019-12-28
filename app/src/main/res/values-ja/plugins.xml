@@ -32,8 +32,8 @@
     <string name="usource_bt_device_select_dialog_title">Bluetoothデバイスを選択</string>
     <string name="usource_bt_device_unknown_device">不明なデバイス</string>
     <string name="usource_connectivity">接続タイプ</string>
-    <string name="event_calendar">カレンダーイベント</string>
-    <string name="ecalendar_select_dialog_title">カレンダーを選択</string>
+    <string name="usource_calendar">カレンダーイベント</string>
+    <string name="calendar_select_dialog_title">カレンダーを選択</string>
     <string name="text_calendar_name">カレンダー名</string>
     <string name="text_calendar">カレンダー</string>
     <string name="indicator_when">いつ…</string>
@@ -173,11 +173,10 @@
     <string name="condition_ringer_above">少なくとも</string>
     <string name="condition_ringer_below">最大</string>
     <string name="condition_ringer_equals">等しい</string>
-    <string name="condition_calendar_name">カレンダー名</string>
-    <string name="condition_calendar_event_title">イベントのタイトル</string>
-    <string name="condition_calendar_any_event">任意のイベント</string>
-    <string name="condition_calendar_event_match_pattern">一致パターン</string>
-    <string name="condition_calendar_all_day_event">終日のイベントのみに一致</string>
+    <string name="match_event_title">イベントのタイトル</string>
+    <string name="match_type_any_event">任意のイベント</string>
+    <string name="match_type_match_pattern">一致パターン</string>
+    <string name="calendar_all_day_event_only">終日のイベントのみに一致</string>
     <string name="category_source_android">Android</string>
     <string name="category_source_date_time">日付 / 時間</string>
     <string name="category_source_device">デバイス</string>

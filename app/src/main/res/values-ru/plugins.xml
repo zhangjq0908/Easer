@@ -25,8 +25,8 @@
     <string name="usource_bt_device_select_dialog_title">Выберите Bluetooth устройство</string>
     <string name="usource_bt_device_unknown_device">Неизвестное устройство</string>
     <string name="usource_connectivity">Тип подключения</string>
-    <string name="event_calendar">Календарное Событие</string>
-    <string name="ecalendar_select_dialog_title">Выберите Календарь</string>
+    <string name="usource_calendar">Календарное Событие</string>
+    <string name="calendar_select_dialog_title">Выберите Календарь</string>
     <string name="text_calendar_name">Название календаря</string>
     <string name="text_calendar">Календарь</string>
     <string name="indicator_when">Когда…</string>
@@ -166,9 +166,8 @@
     <string name="condition_ringer_volume">Громкость</string>
     <string name="condition_ringer_above">По крайней мере</string>
     <string name="condition_ringer_equals">Равно</string>
-    <string name="condition_calendar_name">Название календаря</string>
-    <string name="condition_calendar_event_title">Название события</string>
-    <string name="condition_calendar_any_event">Любое событие</string>
+    <string name="match_event_title">Название события</string>
+    <string name="match_type_any_event">Любое событие</string>
     <string name="category_source_date_time">Дата / Время</string>
     <string name="category_source_device">Устройство</string>
     <string name="category_source_easer">Easer</string>
@@ -200,8 +199,8 @@
     <string name="o_http_content_type">Тип контента</string>
     <string name="o_http_post_data">POST-данные</string>
     <string name="condition_ringer_below">В большинстве</string>
-    <string name="condition_calendar_event_match_pattern">Соответствие шаблона</string>
-    <string name="condition_calendar_all_day_event">Соответствовать только событиям всего дня</string>
+    <string name="match_type_match_pattern">Соответствие шаблона</string>
+    <string name="calendar_all_day_event_only">Соответствовать только событиям всего дня</string>
     <string name="category_source_android">Андроид</string>
     <string name="event_condition_event_dynamics_name">Название условия</string>
     <string name="usource_cell_location_listening_title">Прослушивание</string>

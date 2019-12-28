@@ -16,12 +16,6 @@
 
     <string name="condition__rel_after">After</string>
 
-    <string name="condition_calendar_name">Calendar Name</string>
-    <string name="condition_calendar_event_title">Event Title</string>
-    <string name="condition_calendar_any_event">Any Event</string>
-    <string name="condition_calendar_event_match_pattern">Match Pattern</string>
-    <string name="condition_calendar_all_day_event">Only match all-day events</string>
-
     <string name="condition_ringer_mode">Ringer Mode</string>
     <string name="condition_ringer_volume">Volume</string>
     <string name="condition_ringer_above">At least</string>
@@ -35,15 +29,6 @@
     <string name="broadcast_category">Category</string>
     <string name="broadcast_type">Type</string>
     <string name="broadcast_data">Data</string>
-
-    <string name="event_calendar">Calendar Event</string>
-    <string name="ecalendar_select_dialog_title">Select Calendar</string>
-    <string name="text_calendar_name">Calendar Name</string>
-    <string name="text_calendar">Calendar</string>
-    <string name="indicator_when">When…</string>
-    <string name="choice_start_of">Start of</string>
-    <string name="choice_end_of">End of</string>
-    <string name="choice_any_event">Any Event</string>
 
     <string name="event_condition_event">Condition Event</string>
     <string name="event_condition_event_enter">Enter</string>
@@ -240,6 +225,19 @@
 
     <string name="usource_bluetooth_enabled">Bluetooth Enabled</string>
     <string name="usource_bluetooth_enabled_bluetooth_is_enabled">Bluetooth is enabled?</string>
+
+    <string name="usource_calendar">Calendar</string>
+    <string name="calendar_select_dialog_title">Select Calendar</string>
+    <string name="text_calendar_name">Calendar Name</string>
+    <string name="text_calendar">Calendar</string>
+    <string name="indicator_when">When…</string>
+    <string name="choice_start_of">Start of</string>
+    <string name="choice_end_of">End of</string>
+    <string name="choice_any_event">Any Event</string>
+    <string name="match_event_title">Event Title</string>
+    <string name="match_type_any_event">Any Event</string>
+    <string name="match_type_match_pattern">Match Pattern</string>
+    <string name="calendar_all_day_event_only">Only match all-day events</string>
 
     <string name="usource_call">Call</string>
     <string name="usource_call_state">Call State</string>
