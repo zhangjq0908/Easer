@@ -27,8 +27,6 @@
     <string name="menu_stop">정지</string>
     <string name="menu_action_save">저장</string>
     <string name="menu_clear">삭제</string>
-    <string name="menu_tree_list">드롭다운 목록</string>
-    <string name="menu_plain_list">일반 목록</string>
     <string name="service_indicator_positive">실행 중</string>
     <string name="service_indicator_negative">실행하지 않음</string>
     <string name="activity_history__profile">\@string/title_profile</string>
@@ -51,9 +49,7 @@
     <string name="button_ok">확인</string>
     <string name="text_lack_permission">Easer에 필요한 모든 권한을 가지고 있지 않습니다.</string>
     <string name="text_notification_running_indicator_content">%s이(가) 백그라운드에서 실행 중입니다</string>
-    <string name="text_title">이름</string>
     <string name="text_predecessor_nodes">상위</string>
-    <string name="text_parent">상위</string>
     <string name="text_profile">프로필</string>
     <string name="text_predefined_event">미리 정의된 이벤트</string>
     <string name="text_use_condition">사용 조건</string>

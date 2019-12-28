@@ -46,9 +46,7 @@
     <string name="button_cancel">Annullere</string>
     <string name="button_ok">OK</string>
     <string name="text_lack_permission">Nogle færdigheder har IKKE nødvendige rettigheder.</string>
-    <string name="text_title">Titel</string>
     <string name="text_predecessor_nodes">Forælder</string>
-    <string name="text_parent">Forælder</string>
     <string name="text_profile">Profil</string>
     <string name="text_predefined_event">Forudbestemt hændelse</string>
     <string name="text_inline_event">Integreret hændelse</string>
@@ -147,8 +145,6 @@
     <string name="pref_show_notification_summary">Vis påmindelse i påmindelse bjælken.</string>
     <string name="pref_foreground_title">Køre tjeneste i forgrund</string>
     <string name="pref_foreground_summary">Gør det sværere for systemet at stoppe tjenesten. En påmindelse vil blive vist. Kan ikke deaktiveres på Android 8+ på grund af systemkrav.</string>
-    <string name="menu_tree_list">Trævisning</string>
-    <string name="menu_plain_list">Almindelig tekst</string>
     <string name="message_future_change_title">Ændres snart</string>
     <string name="welcome_message_1">Velkommen. 
 \n 

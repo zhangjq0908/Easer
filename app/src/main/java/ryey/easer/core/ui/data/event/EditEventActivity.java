@@ -41,7 +41,7 @@ public class EditEventActivity extends AbstractEditDataActivity<EventStructure, 
 
     @Override
     protected String title() {
-        return getString(R.string.title_event);
+        return getString(R.string.title_edit_event);
     }
 
     @Override

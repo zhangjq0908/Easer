@@ -127,7 +127,7 @@ public class EditScriptActivity extends AbstractEditDataActivity<ScriptStructure
 
     @Override
     protected String title() {
-        return getString(R.string.title_script);
+        return getString(R.string.title_edit_script);
     }
 
     @Override

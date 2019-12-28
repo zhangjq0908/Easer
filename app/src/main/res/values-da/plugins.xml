@@ -168,7 +168,6 @@
     <string name="event_timer_longer_time">Længere tid</string>
     <string name="event_timer_seconds">Sekund(er)</string>
     <string name="event_condition_event_dynamics_name">Tilstand navn</string>
-    <string name="usource_cell_location_listening_content">Sammenlæg celle placering…</string>
     <string name="usource_cell_location_dynamics_cell_location">Celle placering</string>
     <string name="usource_bt_device_dynamics_device_name">Enhed navn</string>
     <string name="usource_bt_device_dynamics_device_address">Enhed adresse</string>

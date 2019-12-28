@@ -34,8 +34,6 @@
     <string name="menu_stop">Parar</string>
     <string name="menu_action_save">Salvar</string>
     <string name="menu_clear">Limpar</string>
-    <string name="menu_tree_list">Lista em árvore</string>
-    <string name="menu_plain_list">Lista simples</string>
     <string name="service_indicator_positive">Executando</string>
     <string name="service_indicator_negative">Não está executando</string>
     <string name="activity_history__profile">\@string/title_profile</string>
@@ -58,9 +56,7 @@
     <string name="button_ok">OK</string>
     <string name="text_lack_permission">Algumas habilidades NÃO têm permissões suficientes.</string>
     <string name="text_notification_running_indicator_content">%s está executando em segundo plano</string>
-    <string name="text_title">Título</string>
     <string name="text_predecessor_nodes">Nó principal</string>
-    <string name="text_parent">Nó principal</string>
     <string name="text_profile">Perfil</string>
     <string name="text_predefined_event">Evento predefinido</string>
     <string name="text_inline_event">Evento em linha</string>

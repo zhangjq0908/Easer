@@ -254,7 +254,6 @@
     <string name="usource_call_state_idle">等待</string>
     <string name="usource_call_state_ongoing">進行中</string>
     <string name="usource_call_state_ringing">響鈴中</string>
-    <string name="usource_cell_location_listening_content">正在統合蜂窩位置…</string>
     <string name="o_http_header">請求頭（格式：鍵:值）</string>
     <string name="o_http_content_type">Content type</string>
     <string name="o_http_method">方法</string>

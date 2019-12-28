@@ -23,8 +23,6 @@
     <string name="menu_stop">Ferma</string>
     <string name="menu_action_save">Salva</string>
     <string name="menu_clear">Pulisci</string>
-    <string name="menu_tree_list">Lista ad Albero</string>
-    <string name="menu_plain_list">Lista semplice</string>
     <string name="service_indicator_positive">Avviato</string>
     <string name="service_indicator_negative">Fermo</string>
     <string name="activity_history__time">Tempo</string>
@@ -46,9 +44,7 @@
     <string name="button_ok">OK</string>
     <string name="text_lack_permission">Qualche Modulo NON dispone di sufficienti autorizzazioni.</string>
     <string name="text_notification_running_indicator_content">%s è in esecuzione in background</string>
-    <string name="text_title">Titolo</string>
     <string name="text_predecessor_nodes">Genitore</string>
-    <string name="text_parent">Genitore</string>
     <string name="text_profile">Profilo</string>
     <string name="text_predefined_event">Evento Predefinito</string>
     <string name="title_dynamics_link">Collegamento Dinamica</string>

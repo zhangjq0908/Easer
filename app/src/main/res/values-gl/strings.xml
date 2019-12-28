@@ -58,7 +58,6 @@
 
     <string name="text_notification_running_indicator_content">%s está a funcionar no segundo plano</string>
 
-    <string name="text_title">Título</string>
     <string name="text_profile">Perfil</string>
     <string name="text_predefined_event">Acontecemento predefinido</string>
     <string name="text_inline_event">Acontecemento en liña</string>

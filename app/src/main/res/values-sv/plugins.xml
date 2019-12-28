@@ -4,7 +4,6 @@
     <string name="event_condition_event_enter">Ange</string>
     <string name="event_condition_event_leave">Lämna</string>
     <string name="event_condition_event_dynamics_name">Villkorsnamn</string>
-    <string name="usource_cell_location_listening_content">Sammanställer cellplats…</string>
     <string name="usource_headset__headset_state">Headsetets tillstånd</string>
     <string name="usource_headset__plugged_in">Inkopplad</string>
     <string name="usource_headset__plugged_out">Urkopplad</string>

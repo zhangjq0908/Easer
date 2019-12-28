@@ -181,7 +181,6 @@
     <string name="usource_cell_location_no_signal">No se puede obtener la localización de celular. Verifica tu señal.</string>
     <string name="usource_cell_location_listening_title">Escuchando</string>
     <string name="usource_cell_location_dynamics_cell_location">Localización de celular</string>
-    <string name="usource_cell_location_listening_content">Agregando localización celular…</string>
     <string name="usource_connectivity">Tipo de conexión</string>
     <string name="usource_date">Fecha</string>
     <string name="usource_day_of_week">Día de la semana</string>

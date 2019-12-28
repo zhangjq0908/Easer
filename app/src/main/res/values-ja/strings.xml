@@ -20,8 +20,6 @@
     <string name="navigation_drawer_close">ナビゲーションドロワーを閉じる</string>
     <string name="button_cancel">キャンセル</string>
     <string name="button_ok">OK</string>
-    <string name="text_title">タイトル: </string>
-    <string name="text_parent">親: </string>
     <string name="text_profile">プロファイル: </string>
     <string name="hint_event_title">イベントのタイトル</string>
     <string name="hint_profile_title">プロファイルのタイトル</string>
@@ -146,14 +144,12 @@
     <string name="title_remote_operation_plugin">リモート操作プラグイン</string>
     <string name="category_operation_unknown">不明</string>
     <string name="menu_clear">クリア</string>
-    <string name="menu_tree_list">ツリーリスト</string>
     <string name="text_notification_running_indicator_content">%s はバックグラウンドで実行しています</string>
     <string name="pref_category_service">サービス</string>
     <string name="pref_show_notification_title">通知を表示</string>
     <string name="pref_show_notification_summary">通知バーに通知を表示します。</string>
     <string name="pref_foreground_title">フォアグラウンドでサービスを実行</string>
     <string name="pref_foreground_summary">システムによってサービスが終了する可能性が減ります。 通知を表示します。 システム要件のためにAndroid 8以降で無効にすることはできません。</string>
-    <string name="menu_plain_list">プレーンリスト</string>
     <string name="message_future_change_title">すぐに変更します</string>
     <string name="welcome_message_1">Easer へようこそ! 
 \n 

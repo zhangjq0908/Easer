@@ -12,8 +12,6 @@
     <string name="button_cancel">取消</string>
     <string name="button_ok">確認</string>
     <string name="text_predecessor_nodes">前驅節點</string>
-    <string name="text_parent">父</string>
-    <string name="text_title">名稱</string>
     <string name="title_about">關於</string>
     <string name="title_delete">添加</string>
     <string name="title_edit">修改</string>
@@ -143,8 +141,6 @@
     <string name="category_operation_misc">雜項</string>
     <string name="category_operation_android">Android</string>
     <string name="text_notification_running_indicator_content">%s正在後臺運行</string>
-    <string name="menu_tree_list">樹狀列表</string>
-    <string name="menu_plain_list">平鋪列表</string>
     <string name="message_future_change_title">近期改變</string>
     <string name="pref_category_service">服務</string>
     <string name="pref_show_notification_title">顯示通知</string>
@@ -172,5 +168,6 @@
     <string name="message_future_change_0_8">腳本的樹狀視圖將會在v0.8版本刪除。「樞律」取代它且提供更好的功能。</string>
     <string name="title_choose_predecessors">選擇前驅</string>
     <string name="title_remote_operation_plugin">遠程行爲插件</string>
+    <string name="title_edit_script">編輯腳本</string>
 
 </resources>

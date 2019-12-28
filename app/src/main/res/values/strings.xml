@@ -22,6 +22,7 @@
     <string name="title_edit_event">Edit Event</string>
     <string name="title_edit_condition">Edit Condition</string>
     <string name="title_edit_profile">Edit Profile</string>
+    <string name="title_edit_script">Edit Script</string>
     <string name="title_select_operation">Select an Operation</string>
     <string name="title_select_event">Choose an Event</string>
     <string name="title_select_condition">Choose a Condition</string>
@@ -43,8 +44,6 @@
     <string name="menu_stop">Stop</string>
     <string name="menu_action_save">Save</string>
     <string name="menu_clear">Clear</string>
-    <string name="menu_tree_list">Tree List</string>
-    <string name="menu_plain_list">Plain List</string>
 
     <string name="service_indicator_positive">Running</string>
     <string name="service_indicator_negative">Not running</string>
@@ -75,9 +74,7 @@
 
     <string name="text_notification_running_indicator_content">%s is running in the background</string>
 
-    <string name="text_title">Title</string>
     <string name="text_predecessor_nodes">Predecessors</string>
-    <string name="text_parent">Parent</string>
     <string name="text_profile">Profile</string>
     <string name="text_predefined_event">Predefined Event</string>
     <string name="text_inline_event">Inline Event</string>

@@ -27,7 +27,6 @@
     <string name="menu_stop">Стоп</string>
     <string name="menu_action_save">Сохранить</string>
     <string name="menu_clear">Очистить</string>
-    <string name="menu_tree_list">Выпадающий Список</string>
     <string name="service_indicator_positive">Работает</string>
     <string name="service_indicator_negative">Не работает</string>
     <string name="activity_history__profile">\@string/title_profile</string>
@@ -50,9 +49,7 @@
     <string name="button_ok">ОК</string>
     <string name="text_lack_permission">Некоторые навыки НЕ имеют достаточного разрешения.</string>
     <string name="text_notification_running_indicator_content">%s работает в фоне</string>
-    <string name="text_title">Название</string>
     <string name="text_predecessor_nodes">Родитель</string>
-    <string name="text_parent">Родитель</string>
     <string name="text_profile">Профиль</string>
     <string name="text_predefined_event">Предопределённое событие</string>
     <string name="text_inline_event">Случайное событие</string>
@@ -146,7 +143,6 @@
     <string name="category_operation_easer">\@string/easer</string>
     <string name="category_operation_misc">Разное</string>
     <string name="category_operation_unknown">Неизвестный</string>
-    <string name="menu_plain_list">Простой список</string>
     <string name="title_welcome_message_privacy">Конфиденциальность!</string>
     <string name="title_pivot">Пивот</string>
     <string name="title_service_start">Запустить Службу</string>

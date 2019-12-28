@@ -156,7 +156,6 @@
     <string name="op_normal_mode">通常モード</string>
     <string name="condition__rel_after">後</string>
     <string name="event_condition_event_dynamics_name">条件名</string>
-    <string name="usource_cell_location_listening_content">基地局位置を集約…</string>
     <string name="usource_cell_location_dynamics_cell_location">基地局位置</string>
     <string name="usource_bt_device_dynamics_device_name">デバイス名</string>
     <string name="usource_bt_device_dynamics_device_address">デバイスのアドレス</string>

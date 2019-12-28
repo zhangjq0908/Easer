@@ -37,9 +37,7 @@
     <string name="button_cancel">Abbrechen</string>
     <string name="button_ok">OK</string>
     <string name="text_lack_permission">Einige Plugins haben NICHT alle notwendigen Berechtigungen.</string>
-    <string name="text_title">Titel</string>
     <string name="text_predecessor_nodes">Übergeordnet</string>
-    <string name="text_parent">Übergeordnet</string>
     <string name="text_profile">Profil</string>
     <string name="text_predefined_event">Vordefiniertes Ereignis</string>
     <string name="text_inline_event">Integriertes Ereignis</string>
@@ -145,8 +143,6 @@
 \nBitte beachten Sie die <a href="https://github.com/renyuneyun/Easer/wiki">Dokumentation</a> für weitere Informationen.</string>
     <string name="category_operation_easer">\@string/easer</string>
     <string name="category_operation_unknown">Unbekannt</string>
-    <string name="menu_tree_list">Baum Ansicht</string>
-    <string name="menu_plain_list">Einfache Liste</string>
     <string name="message_future_change_title">Dies ändert sich bald</string>
     <string name="welcome_message_1">Willkommen. 
 \n 

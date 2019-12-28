@@ -144,7 +144,6 @@
 \n
 \n
 \nA fák gráfokká való kiterjesztése tervben van, de jelenleg még nincs megvalósítva.</string>
-    <string name="menu_plain_list">Egyszerű lista</string>
     <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
     <string name="title_script">Szkript</string>
     <string name="pref_logging_title">A külső naplózás bekapcsolása</string>
@@ -172,15 +171,12 @@
     <string name="button_read_next_time">Olvassa el legközelebb</string>
     <string name="pref_locale_custom">Egyéni területi beállítások</string>
     <string name="prompt_delete_failed">Törlés nem sikerült. Ellenőrizze, hogy az elem használatban van-e.</string>
-    <string name="menu_tree_list">Fa lista</string>
-    <string name="text_title">Cím</string>
     <string name="pref_use_root_title">Használja a root funkciókat</string>
     <string name="pref_category_service">Szolgáltatás</string>
     <string name="alert_update_storage_data_title">Régi adatverzió található</string>
     <string name="pref_restart_after_upgrade_title">Indítsa el a szolgáltatást frissítés után</string>
     <string name="title_help">Súgó</string>
     <string name="menu_action_save">Mentés</string>
-    <string name="text_parent">Szülő</string>
     <string name="hint_condition_title">Feltétel címe</string>
     <string name="pref_export_summary">Exportálja az összes eseményt és profilt az SD-kártyára.
 \nA fájlnév aktuális időbélyegző lesz.</string>

@@ -4,7 +4,6 @@
     <string name="event_condition_event_enter">Entrar</string>
     <string name="event_condition_event_leave">Sair</string>
     <string name="event_condition_event_dynamics_name">Nome da condição</string>
-    <string name="usource_cell_location_listening_content">Agregando local do celular…</string>
     <string name="usource_headset__headset_state">Estado do headset</string>
     <string name="usource_headset__plugged_in">Plugado</string>
     <string name="usource_headset__plugged_out">Desplugado</string>

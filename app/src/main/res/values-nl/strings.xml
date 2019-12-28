@@ -26,7 +26,6 @@
     <string name="menu_stop">Stop</string>
     <string name="menu_action_save">Opslaan</string>
     <string name="menu_clear">Legen</string>
-    <string name="menu_tree_list">Boom weergave</string>
     <string name="service_indicator_positive">In uitvoering</string>
     <string name="service_indicator_negative">Niet in uitvoering</string>
     <string name="activity_history__profile">\@string/title_profile</string>
@@ -49,9 +48,7 @@
     <string name="button_ok">OK</string>
     <string name="text_lack_permission">Easer heeft NIET alle benodigde toegangsrechten.</string>
     <string name="text_notification_running_indicator_content">%s wordt uitgevoerd in de achtergrond</string>
-    <string name="text_title">Titel</string>
     <string name="text_predecessor_nodes">Ouder</string>
-    <string name="text_parent">Ouder</string>
     <string name="text_profile">Profiel</string>
     <string name="text_predefined_event">Voorgedefinieerde Gebeurtenis</string>
     <string name="text_use_condition">Gebruik Conditie</string>

@@ -178,7 +178,6 @@
     <string name="usource_bt_device_dynamics_device_name">Имя устройства</string>
     <string name="usource_bt_device_dynamics_device_address">Адрес устройства</string>
     <string name="usource_cell_location_dynamics_cell_location">Местоположение ячейки</string>
-    <string name="usource_cell_location_listening_content">Агрегирование местоположения ячейки…</string>
     <string name="event_widget">Виджет</string>
     <string name="event_widget_text">Текст</string>
     <string name="event_widget_tag">Тег</string>

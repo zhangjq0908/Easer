@@ -46,9 +46,7 @@
     <string name="button_cancel">Annuler</string>
     <string name="button_ok">OK</string>
     <string name="text_lack_permission">Certaines compétences n\'ont PAS suffisamment d\'autorisations.</string>
-    <string name="text_title">Titre</string>
     <string name="text_predecessor_nodes">Parent</string>
-    <string name="text_parent">Parent</string>
     <string name="text_profile">Profil</string>
     <string name="text_predefined_event">Evénément prédéfini</string>
     <string name="text_inline_event">Événement en ligne</string>
@@ -145,8 +143,6 @@
     <string name="pref_show_notification_summary">Afficher une notification dans la bar de notification.</string>
     <string name="pref_foreground_title">Exécuter le service au premier plan</string>
     <string name="pref_foreground_summary">Rend plus difficile l\'arrêt du service par le système. Affiche une notification. Ne peut pas être désactivé sur Android 8+ en raison des exigences du système.</string>
-    <string name="menu_tree_list">Arborescence</string>
-    <string name="menu_plain_list">Liste simple</string>
     <string name="title_pivot">Pivot</string>
     <string name="title_source">Code source</string>
     <string name="title_author">Auteur·e</string>

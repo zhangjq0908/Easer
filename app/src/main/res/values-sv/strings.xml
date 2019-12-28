@@ -28,8 +28,6 @@
     <string name="menu_stop">Stanna</string>
     <string name="menu_action_save">Spara</string>
     <string name="menu_clear">Rensa</string>
-    <string name="menu_tree_list">Trädlista</string>
-    <string name="menu_plain_list">Vanlig lista</string>
     <string name="service_indicator_positive">Kör</string>
     <string name="service_indicator_negative">Kör inte</string>
     <string name="activity_history__profile">\@string/title_profile</string>
@@ -52,9 +50,7 @@
     <string name="button_ok">Okej</string>
     <string name="text_lack_permission">Vissa insticksmoduler har INTE tillräckliga behörigheter.</string>
     <string name="text_notification_running_indicator_content">%s körs i bakgrunden</string>
-    <string name="text_title">Titel</string>
     <string name="text_predecessor_nodes">Förälder</string>
-    <string name="text_parent">Förälder</string>
     <string name="text_profile">Profil</string>
     <string name="text_predefined_event">Fördefinierad händelse</string>
     <string name="text_inline_event">Integrerad händelse</string>

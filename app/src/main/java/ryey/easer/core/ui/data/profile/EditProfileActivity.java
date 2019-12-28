@@ -66,7 +66,7 @@ public class EditProfileActivity extends AbstractEditDataActivity<ProfileStructu
 
     @Override
     protected String title() {
-        return getString(R.string.title_profile);
+        return getString(R.string.title_edit_profile);
     }
 
     @Override

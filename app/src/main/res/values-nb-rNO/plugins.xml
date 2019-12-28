@@ -161,7 +161,6 @@
     <string name="usource_bt_device_dynamics_device_address">Enhetsadresse</string>
     <string name="broadcast_type">Type</string>
     <string name="broadcast_data">Data</string>
-    <string name="usource_cell_location_listening_content">Bestemmer celleplassering…</string>
     <string name="usource_cell_location_listening_title">Lytter</string>
     <string name="o_launch_app__launch_activity">Start aktivitet</string>
     <string name="o_launch_app__text_class">Klassenavn</string>

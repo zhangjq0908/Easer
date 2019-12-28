@@ -250,7 +250,6 @@
     <string name="usource_cell_location_no_signal">Can\'t get cell location. Check your signal.</string>
     <string name="usource_cell_location_listening_title">Listening</string>
     <string name="usource_cell_location_dynamics_cell_location">Cell Location</string>
-    <string name="usource_cell_location_listening_content">Aggregating cell location…</string>
 
     <string name="usource_connectivity">Connectivity Type</string>
     <array name="usource_connectivity_type">

@@ -4,7 +4,6 @@
     <string name="event_condition_event_enter">Entra</string>
     <string name="event_condition_event_leave">Esci</string>
     <string name="event_condition_event_dynamics_name">Nome della condizione</string>
-    <string name="usource_cell_location_listening_content">Recupero posizione cella…</string>
     <string name="usource_headset__headset_state">Stato delle cuffie</string>
     <string name="usource_headset__plugged_in">Inserite</string>
     <string name="usource_headset__plugged_out">Disinserite</string>
