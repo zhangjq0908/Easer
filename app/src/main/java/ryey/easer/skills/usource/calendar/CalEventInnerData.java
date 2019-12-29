@@ -100,11 +100,6 @@ public class CalEventInnerData implements CalendarUSourceData.InnerData {
         return res;
     }
 
-    @Nullable
-    public Dynamics[] dynamics() {
-        return null;
-    }
-
     @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
     @Override
     public boolean equals(Object obj) {

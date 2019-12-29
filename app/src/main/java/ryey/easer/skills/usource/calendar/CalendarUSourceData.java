@@ -33,7 +33,6 @@ import ryey.easer.commons.C;
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.StorageData;
 import ryey.easer.commons.local_skill.dynamics.Dynamics;
-import ryey.easer.commons.local_skill.eventskill.EventData;
 import ryey.easer.commons.local_skill.usource.USourceData;
 import ryey.easer.plugin.PluginDataFormat;
 
@@ -92,8 +91,6 @@ public class CalendarUSourceData implements USourceData {
     @Nullable
     @Override
     public Dynamics[] dynamics() {
-        if (data instanceof CalEventInnerData)
-            return ((EventData) data).dynamics();
         return null;
     }
 
