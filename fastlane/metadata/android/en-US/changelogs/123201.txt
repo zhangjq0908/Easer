@@ -1,0 +1,9 @@
+Added more Dynamics && Updates & Dev changes && I18n update
+
+* Added more Dynamics to various Events
+* Added floating action button to Pivot
+* Unified Calendar Event
+* Update gradle & dependencies
+* Removed some unused resources
+* Better English (#190)
+* I18n update: Russian, French
