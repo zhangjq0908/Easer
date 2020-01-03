@@ -1,2 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="easer">Easer</string>
+    <string name="drawer_tip">Zjednodušte svůj život!</string>
+    <string name="title_outline">Přehled</string>
+    <string name="title_pivot">Závislosti</string>
+    <string name="title_data_collection">Data</string>
+    <string name="title_operation">Úkon</string>
+    <string name="title_profile">Profil</string>
+    <string name="title_event">Událost</string>
+    <string name="title_script">Skript</string>
+    <string name="title_condition">Podmínka</string>
+    <string name="title_application">Aplikace</string>
+    <string name="title_activity_history">Historie Aktivit</string>
+    <string name="title_about">O aplikaci</string>
+    <string name="title_setting">Nastavení</string>
+    <string name="title_add">Přidat</string>
+    <string name="title_edit">Editovat</string>
+    <string name="title_delete">Odstranit</string>
+    <string name="title_edit_event">Editovat Událost</string>
+    <string name="title_edit_condition">Editovat Podmínku</string>
+    <string name="title_edit_profile">Editovat Profil</string>
+    <string name="title_select_operation">Vybrat Úkon</string>
+    <string name="title_select_event">Vybrat Událost</string>
+    <string name="title_select_condition">Vybrat Podmínku</string>
+    <string name="title_choose_predecessors">Vybrat Předchůdce</string>
+    <string name="title_dynamics_link">Dynamický Link</string>
+    <string name="title_new_dynamics_link">Nový Dynamický Link</string>
+    <string name="title_trigger_profile">Spustit tento Profil</string>
+    <string name="title_source">Zdrojový kód</string>
+    <string name="title_author">Autor</string>
+    <string name="title_donate">Darovat</string>
+    <string name="title_website">Webová stránka</string>
+    <string name="title_homepage">Domovská stránka</string>
+    <string name="title_service_start">Spustit Službu</string>
+    <string name="title_remote_operation_plugin">Plugin pro Dálkové Ovládání</string>
+    <string name="menu_start">Start</string>
+    <string name="menu_stop">Stop</string>
+    <string name="menu_action_save">Uložit</string>
+    <string name="menu_clear">Vyčistit</string>
+    <string name="menu_tree_list">Stromový seznam</string>
+    <string name="menu_plain_list">Prostý Seznam</string>
+    <string name="service_indicator_positive">Spuštěno</string>
+    <string name="service_indicator_negative">Není spuštěno</string>
+    <string name="activity_history__profile">\@string/title_profile</string>
+    <string name="activity_history__script">\@string/title_script</string>
+    <string name="activity_history__time">Čas</string>
+    <string name="activity_history__extra">Extra informace</string>
+    <string name="activity_history__satisfaction">Status</string>
+    <string name="activity_history__satisfied">Spokojen</string>
+    <string name="activity_history__unsatisfied">Nespokojen</string>
+    <string name="activity_history__service">Služba</string>
+    <string name="activity_history__status">Stav</string>
+    <string name="activity_history__start">Start</string>
+    <string name="activity_history__stop">Stop</string>
+    <string name="null_content">PRÁZDNÝ OBSAH</string>
+    <string name="navigation_drawer_open">Otevřít navigační zásuvku</string>
+    <string name="navigation_drawer_close">Zavřít navigační zásuvku</string>
+    <string name="button_read_next_time">Přečíst příště</string>
+    <string name="button_understand">Rozumím</string>
+    <string name="button_cancel">Zrušit</string>
+    <string name="button_ok">OK</string>
+    <string name="text_lack_permission">Některé dovednosti nemají dostatečná oprávnění.</string>
+    <string name="button_see_detail">Podrobnosti</string>
+    <string name="text_notification_running_indicator_content">%s běží na pozadí</string>
+    <string name="text_title">Název</string>
+    <string name="text_predecessor_nodes">Předchůdci</string>
+    <string name="text_parent">Rodič</string>
+    <string name="text_profile">Profil</string>
+    <string name="text_predefined_event">Předdefinovaná Událost</string>
+    <string name="text_inline_event">Vložená Událost</string>
+    <string name="text_use_condition">Použít Podmínku</string>
+    <string name="text_repeatable_desc">Opakovat při splnění</string>
+    <string name="text_reverse_desc">Reverzní Scénář</string>
+    <string name="text_volatile">Nestálý</string>
+    <string name="text_persistent">Přetrvávající</string>
+    <string name="text_unknown_skill">[Neznámá dovednost]</string>
+    <string name="text_dynamics">Dynamika</string>
+    <string name="text_placeholder">Zástupce</string>
+    <string name="toggle_active">Aktivní</string>
+    <string name="hint_event_title">Název události</string>
+    <string name="hint_script_title">Název skriptu</string>
+    <string name="hint_profile_title">Název profilu</string>
+    <string name="hint_condition_title">Název podmínky</string>
+    <string name="prompt_save_failed">Nepodařilo se uložit</string>
+    <string name="prompt_delete">Opravdu chcete odstranit %s\?</string>
+    <string name="prompt_delete_failed">Odstranění se nezdařilo. Zkontrolujte, zda je tato položka používána.</string>
+    <string name="prompt_data_illegal">Nelze uložit data s neplatnými poli. Zkontrolujte prosím své volby/vstupy.</string>
+    <string name="prompt_dynamics_not_ready">Chcete-li nastavit Dynamiky, je potřeba vybrat platný Profil a platný aktivační spouštěč (např. Událost).</string>
+    <string name="prompt_prevented_for_permission">Udělit Easeru oprávnění &lt;% s &gt;..</string>
+    <string name="prompt_error_logged">Easer právě zaznamenal chybu. Podívejte se do podadresáře error v adresáři záznamů.</string>
+    <string name="text_app_description">Zjednodušte svůj život automatizací rutinních akcí na vašem zařízení. 
+\nŘetězte různé události a nechat provést odpovídající akce. Už je nemusíte mít na paměti! 
+\nTato aplikace byla inspirována \"profilovým\" mechanizmem CyanogenMod a IFTTT. Původním záměrem byla Automatická změna profilu na určitou dobu nebo specifická připojení Wi-Fi a byla rozšířena pro obecnější použití. 
+\nPřipomínka: Easer je stále ve vývoji. Pravděpodobně obsahuje chyby a uživatelské rozhraní musí být jednoznačně vylepšeno. Podívejte se do TODO.en.md (nebo TODO.md, pokud umíte čínsky) v repozitáři.</string>
+    <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
+    <string name="text_license">Tento program je svobodný software: můžete jej šířit a/nebo upravovat podle podmínek GNU General Public Licence zveřejněné Free Software Foundation, buď verze 3 licence, nebo (podle vaší volby) jakékoli novější verze.
+\n Tento program je distribuován v naději, že bude užitečný, ale bez jakékoli záruky; bez ani předpokládané záruky prodejnosti nebo vhodnosti pro určitý účel. Další informace naleznete v GNU General Public License.
+\n Kopii GNU General Public License jste měli mít spolu s tímto programem. Pokud ne, viz https://www.gnu.org/licenses/</string>
+    <string name="pref_category_functionality">Funkce</string>
+    <string name="pref_category_personalise">Přizpůsobení</string>
+    <string name="pref_category_data_manage">Správa dat</string>
+    <string name="pref_category_service">Služby</string>
+    <string name="pref_autostart_title">Automaticky spustit při spuštění</string>
+    <string name="pref_autostart_summary">Spustí Easer na pozadí, když je zařízení zapnuto</string>
+    <string name="pref_restart_after_upgrade_title">Spustit službu po aktualizaci</string>
+    <string name="pref_welcome_title">Zobrazit uvítací zprávu</string>
+    <string name="pref_welcome_summary">Při otevírání aplikace zobrazit uvítací zprávu</string>
+    <string name="pref_logging_title">Zapnout externí protokolování</string>
+    <string name="pref_logging_summary">Zaznamenává do externích paměťových zařízení (/sdcard/logger) za účelem podpory hlášení chyb. 
+\nZměny se projeví při příštím spuštění aplikace.</string>
+    <string name="pref_use_root_title">Použití funkcí root</string>
+    <string name="pref_use_root_summary">Použijte oprávnění uživatele root pro specifické funkce (dovednosti), což může pomoci vyřešit problém s kompatibilitou u některých zařízení. Nebude použito jinde.</string>
+    <string name="pref_cooldown_title">Časový cool down limit</string>
+    <string name="pref_cooldown_summary">Minimální interval (v sekundách) mezi dvěma aktivačními spouštěči stejné události</string>
+    <string name="cooldown_time_illformed">Číslo nesmí být menší než 0 a nesmí být příliš velké, aby se vešlo do celého čísla (Integer, patrně 32,767)</string>
+    <string name="pref_enabled_skills_title">Aktivní dovednosti</string>
+    <string name="pref_enabled_skills_summary">Zapnutí nebo vypnutí určitých dovedností</string>
+    <string name="pref_use_12_hour_clock_title">Použít 12hodinový čas</string>
+    <string name="pref_export_title">Export</string>
+    <string name="pref_export_summary">Exportovat všechny události a profily na kartu SD. 
+\nNázvem souboru bude aktuální čas.</string>
+    <string name="pref_import_title">Import</string>
+    <string name="pref_import_summary">Importuje všechny události a profily ze souboru ZIP. 
+\nExistující události a profily se stejným názvem budou přepsány.</string>
+    <string name="pref_convert_data_title">Převod dat</string>
+    <string name="pref_convert_data_summary">Převést všechna data do doporučeného formátu</string>
+    <string name="pref_show_notification_title">Zobrazit upozornění</string>
+    <string name="pref_show_notification_summary">Zobrazit oznámení na oznamovací liště.</string>
+    <string name="pref_foreground_title">Spustit službu v popředí</string>
+    <string name="pref_foreground_summary">Ztěžte, aby systém službu zabíjel. Zobrazí se upozornění. Z důvodu systémového požadavku nelze vypnout v systému Android 8 +.</string>
+    <string name="pref_locale_custom">Vlastní národní prostředí</string>
+    <string name="message_skill_not_compatible">Toto zařízení nemůže spustit tuto dovednost.</string>
+    <string name="message_convert_data_start">Probíhá převod dat.</string>
+    <string name="message_convert_data_finish">Data převedena.</string>
+    <string name="message_convert_data_abort">Převod dat byl přerušen.</string>
+    <string name="message_convert_data_error">Nelze převést data. Podrobnosti naleznete v protokolu.</string>
+    <string name="title_welcome_message">Vítejte</string>
+    <string name="welcome_message_1">Vítejte. 
+\n 
+\nZde je několik základních informací, které je třeba přečíst před použitím Easeru. 
+\n 
+\nDalší detaily o použití jsou součástí wiki <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a>.</string>
+    <string name="welcome_message_2">Easer obsahuje několik modulů, které poskytují různé funkce. Zapněte nebo vypněte je v Nastavení.
+\n 
+\nOdpovídající oprávnění (pro každý aktivní modul) by měla být udělena před použitím.
+\n 
+\n(Ve výchozím nastavení je vše zapnuto.)</string>
+    <string name="welcome_message_3">Skripty jsou strukturovány do <a href="https://en.wikipedia.org/wiki/Tree_structure">stromové</a> struktury a to výběrem příslušného nadřazeného objektu. 
+\n 
+\nV každé větvi je prováděna logika AND. 
+\nMezi větvemi je prováděna logika OR. 
+\n 
+\nRozšiřování stromů na grafy je plánováno, ale není aktuálně implementováno.</string>
+    <string name="title_welcome_message_privacy">Soukromí!</string>
+    <string name="welcome_message_privacy">Ochrana soukromí je důležitá! 
+\n 
+\nEaser je <a href="https://en.wikipedia.org/wiki/Free_software">free software</a> (Open-source software), který zajišťuje, že kdokoliv jej může používat, studovat, měnit a sdílet. 
+\n 
+\nVlastníte veškerá svá data. Vše žije na vašem zařízení, včetně záznamů logů.</string>
+    <string name="alert_update_storage_data_title">Byla nalezena stará verze dat</string>
+    <string name="alert_update_storage_data">Chcete-li aktualizovat data do nového formátu pro kompatibilitu, vyberte v Nastavení položku Převést data.</string>
+    <string name="message_future_change_title">Brzy se změní</string>
+    <string name="message_future_change_0_8">Stromový pohled na skripty bude odebrán ve verzi 0.8. Závislosti umožňují lepší zobrazení.</string>
+    <string name="template_export">Exportováno do % s</string>
+    <string name="version">Verze</string>
+    <string name="message_importing_invalid_data">Tento soubor zřejmě není platný. Ujistěte se, že importujete soubor exportovaný pomocí Easeru.</string>
+    <string name="dynamics_time">Aktuální Čas</string>
+    <string name="dynamics_date">Aktuální datum</string>
+    <string name="dynamics_script_name">Název Skriptu</string>
+    <string name="dynamics_profile_name">Název profilu</string>
+    <string name="title_help">Nápověda</string>
+    <string name="help_script">\"Skripty\" jsou logické kontejnery. Propojte události nebo podmínky s profilem ve skriptu, aby bylo při výskytu této události nebo při splnění podmínky vlastnosti Easeru známo, že tento profil má být načten nebo spuštěn. 
+\nExistují také pokročilejší funkce, například obrácené události. 
+\nDalší informace získáte na <a href="https://github.com/renyuneyun/Easer/wiki">wiki</a>.</string>
+    <string name="help_event">\"Události\" představují krátkodobé (okamžité) výskyty v zařízení nebo vzdáleně. 
+\nJe například prohledáváno oznámení notifikace nebo tag NFC. 
+\nDalší informace získáte na <a href="https://github.com/renyuneyun/Easer/wiki">wiki</a>.</string>
+    <string name="help_condition">\"Podmínky\" reprezentují dlouhotrvající (ale obvykle ne věčně) stav vašeho zařízení nebo vzdáleně. 
+\nNapříklad při připojení Wi-Fi nebo při vypnutí obrazovky. 
+\nDalší informace získáte na <a href="https://github.com/renyuneyun/Easer/wiki">wiki</a>.</string>
+    <string name="help_profile">\"Profil\" je soubor operací. Každá operace představuje určitý typ akce. 
+\nNapříklad zapněte zařízení Bluetooth nebo odešlete server SMS. 
+\nDalší informace získáte na <a href="https://github.com/renyuneyun/Easer/wiki">wiki</a> .</string>
+    <string name="category_operation_android">Android</string>
+    <string name="category_operation_system_config">Konfigurace systému</string>
+    <string name="category_operation_easer">\@string/easer</string>
+    <string name="category_operation_misc">Různé</string>
+    <string name="category_operation_unknown">Neznámý</string>
+</resources>
