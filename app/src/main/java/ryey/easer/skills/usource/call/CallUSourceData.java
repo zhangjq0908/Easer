@@ -117,7 +117,7 @@ public class CallUSourceData implements USourceData {
                         }
                         jsonObject.put(K_STATE, jsonArray);
                     }
-                    if (Utils.isBlank(number)) {
+                    if (!Utils.isBlank(number)) {
                         jsonObject.put(K_NUMBER, number);
                     }
                     res = jsonObject.toString();
