@@ -41,7 +41,8 @@ public class DateTracker extends SelfNotifiableSkeletonTracker<DateUSourceData> 
             mAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
         Calendar cal = Calendar.getInstance();
-        if (cal.get(Calendar.DAY_OF_YEAR) >= data.date.get(Calendar.DAY_OF_YEAR)) {
+        if (cal.get(Calendar.YEAR) >= data.date.get(Calendar.YEAR)
+                && cal.get(Calendar.DAY_OF_YEAR) >= data.date.get(Calendar.DAY_OF_YEAR)) {
             newSatisfiedState(true);
         } else {
             newSatisfiedState(false);
