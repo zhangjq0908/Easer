@@ -71,14 +71,20 @@ class UserActionWidget : AppWidgetProvider() {
             // Construct the RemoteViews object
             val views = RemoteViews(context.packageName, R.layout.widget_event_widget)
             views.setTextViewText(R.id.appwidget_text, widgetText)
+            views.setImageViewResource(R.id.button_configure, R.drawable.ic_settings_black_24dp)
 
             val intent = Intent(ACTION_WIDGET_CLICKED)
             intent.putExtra(EXTRA_WIDGET_TAG, widgetTag)
             intent.putExtra(EXTRA_WIDGET_ID, appWidgetId)
             val pendingIntent = PendingIntent.getBroadcast(context, appWidgetId, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 
+            val configureIntent = Intent(context, UserActionWidgetConfigureActivity::class.java)
+            configureIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
+            val configurePendingIntent = PendingIntent.getActivity(context, appWidgetId, configureIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+
             views.setOnClickPendingIntent(R.id.layout, pendingIntent)
             views.setOnClickPendingIntent(R.id.appwidget_text, pendingIntent)
+            views.setOnClickPendingIntent(R.id.button_configure, configurePendingIntent)
 
             // Instruct the widget manager to update the widget
             appWidgetManager.updateAppWidget(appWidgetId, views)

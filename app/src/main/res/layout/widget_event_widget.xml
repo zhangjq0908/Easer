@@ -1,17 +1,17 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/layout"
     android:background="@color/transparent"
+    android:orientation="vertical"
     android:padding="@dimen/widget_margin">
 
     <TextView
         android:id="@+id/appwidget_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_margin="8dp"
+        android:layout_gravity="center"
         android:background="@color/semi_transparent"
         android:contentDescription="@string/event_widget_default_text"
         android:text="@string/event_widget_default_text"
@@ -19,4 +19,12 @@
         android:textSize="24sp"
         android:textStyle="bold|italic" />
 
-</RelativeLayout>
+    <ImageView
+        android:id="@+id/button_configure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:contentDescription="@string/title_setting"
+        app:srcCompat="@drawable/ic_settings_black_24dp" />
+
+</LinearLayout>

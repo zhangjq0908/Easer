@@ -86,7 +86,8 @@
     <string name="event_widget_tag">Tag</string>
     <string name="event_widget_default_text">DISPLAY TEXT</string>
     <string name="event_widget_default_tag">TAG</string>
-    <string name="event_widget_button_add_widget">Add widget</string>
+    <string name="event_widget_button_add_widget" translatable="false">Add widget</string> <!-- TODO: remove this (already replaced by event_widget_button_save_widget) -->
+    <string name="event_widget_button_save_widget">Save widget</string>
     <string name="event_widget__dynamics_widget_tag">Widget Tag</string>
     <string name="event_widget__dynamics_widget_id">Widget ID</string>
 
