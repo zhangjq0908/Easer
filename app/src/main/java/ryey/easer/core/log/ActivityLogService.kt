@@ -110,6 +110,7 @@ class ActivityLogService : Service() {
 
         @Synchronized
         fun recordProfile(bundle: Bundle) {
+            bundle.classLoader = BasicLog::class.java.classLoader
             val activityLog: ActivityLog = bundle.getParcelable(EXTRA_ACTIVITY_LOG)!!
             activityLogList.addLast(activityLog)
         }
