@@ -1,0 +1,7 @@
+A few fixes && I18n update
+
+* Fix Date Condition not respecting year
+* Fix Call USource number not saved
+* Add configuration button to widget (of Widget Event)
+* Potentially fix a ClassNotFoundError
+* I18n update: new language Czech & updated Swedish
