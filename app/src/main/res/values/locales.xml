@@ -5,6 +5,7 @@
     <string-array name="array_languages_values">
         <item>_</item>
         <item>zh</item>
+        <item>cs</item>
         <item>da</item>
         <item>nl</item>
         <item>en</item>
@@ -26,6 +27,7 @@
     <string-array name="array_languages">
         <item>&lt;Default&gt;</item>
         <item>Chinese</item>
+        <item>Czech</item>
         <item>Danish</item>
         <item>Dutch</item>
         <item>English</item>
