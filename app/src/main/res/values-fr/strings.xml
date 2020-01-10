@@ -81,7 +81,7 @@
     <string name="pref_category_personalise">Personnaliser</string>
     <string name="pref_category_data_manage">Gérer des données</string>
     <string name="pref_autostart_title">Lancement automatique au démarrage</string>
-    <string name="pref_autostart_summary">Démarrer Easer en arrière-plan quand l\'appareil est allumé</string>
+    <string name="pref_autostart_summary">Démarre Easer en arrière-plan lorsque l’appareil est allumé</string>
     <string name="pref_restart_after_upgrade_title">Démarrer le service après une mise-à-jour</string>
     <string name="pref_welcome_title">Montrer le message d\'accueil</string>
     <string name="pref_welcome_summary">Afficher le message d\'accueil au démarrage de l\'application</string>
@@ -184,7 +184,7 @@
     <string name="message_future_change_title">Changement prévu bientôt</string>
     <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
     <string name="pref_locale_custom">Localisation personnalisée</string>
-    <string name="prompt_error_logged">Easer vient d\'enregistrer une erreur. Voir le sous-répertoire d\'erreur du répertoire de journalisation.</string>
+    <string name="prompt_error_logged">Easer vient d’enregister une erreur. Voir le sous-répertoire « error » dans le répertoire « log ».</string>
     <string name="prompt_dynamics_not_ready">Pour paramétrer Dynamics, vous devez sélectionner un profil valide et un déclencheur valide (exemple : évènement).</string>
     <string name="button_see_detail">Voir les détails</string>
     <string name="message_future_change_0_8">L’affichage arborescent des scripts sera supprimé dans la version 0.8. Le tableau pivot fourni une meilleure visualisation.</string>
