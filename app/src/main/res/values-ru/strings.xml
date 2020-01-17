@@ -61,7 +61,7 @@
     <string name="text_reverse_desc">Обратный сценарий</string>
     <string name="text_volatile">Изменяемый</string>
     <string name="text_persistent">Постоянный</string>
-    <string name="text_dynamics">Динамика</string>
+    <string name="text_dynamics">Динамическая ссылка</string>
     <string name="text_placeholder">Держатель</string>
     <string name="toggle_active">Активный</string>
     <string name="hint_event_title">Название события</string>
@@ -90,8 +90,8 @@
     <string name="pref_restart_after_upgrade_title">Запустить сервис после обновления</string>
     <string name="pref_welcome_title">Показать сообщение приветствия</string>
     <string name="pref_welcome_summary">Показывать приветствующее сообщение при запуске приложения</string>
-    <string name="pref_logging_title">Включить внешнюю запись</string>
-    <string name="pref_logging_summary">Сохраняйте журналы на внешних запоминающих устройствах (/sdcard/logger), чтобы облегчить отправку сообщений об ошибках.
+    <string name="pref_logging_title">Включить запись логов на SD-карту</string>
+    <string name="pref_logging_summary">Сохраняйте журналы на внешнее запоминающее устройство (/sdcard/logger), чтобы облегчить отправку сообщений об ошибках. 
 \nИзменения вступают в силу при следующем запуске приложения.</string>
     <string name="pref_use_root_title">Использовать возможности root</string>
     <string name="pref_use_root_summary">Используйте root-разрешение для определенных функций (плагинов), которые могут помочь решить проблему совместимости на некоторых устройствах. Это нигде больше не будет использоваться.</string>
@@ -105,7 +105,7 @@
     <string name="pref_export_summary">Экспорт всех событий и профилей на SD-карту.
 \nФайл будет назван текущим временем.</string>
     <string name="pref_import_title">Импорт</string>
-    <string name="pref_import_summary">Импорт всех событий и профилей в ZIP файл. 
+    <string name="pref_import_summary">Импорт всех событий и профилей из ZIP файла. 
 \nСуществующие события и профили с одинаковым именем будут заменены.</string>
     <string name="pref_convert_data_title">Конвертировать данные</string>
     <string name="pref_convert_data_summary">Конвертировать все данные в рекомендуемый формат</string>
@@ -188,6 +188,7 @@
 \n
 \nВЫ владеете каждой частью ваших данных. Всё хранится в вашем устройстве, включая логи.</string>
     <string name="prompt_error_logged">Easer зафиксировал ошибку. См. подкаталог директории лога.</string>
-    <string name="message_future_change_0_8">Скрипты в виде дерева будут убраны в версии 0.8. Pivot планирует лучший вариант для этого.</string>
+    <string name="message_future_change_0_8">Скрипты в виде дерева будут убраны в версии 0.8. Pivot - это лучший вариант для этого.</string>
     <string name="text_unknown_skill">[Неизвестный навык]</string>
+    <string name="prompt_dynamics_not_ready">Для настройки Динамических Ссылок, вам необходимо выбрать существующий профиль и существующий триггер (например, Событие).</string>
 </resources>
