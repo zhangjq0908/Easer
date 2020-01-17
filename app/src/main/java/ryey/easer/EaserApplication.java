@@ -30,6 +30,7 @@ import android.preference.PreferenceManager;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.multidex.MultiDexApplication;
 
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.DiskLogAdapter;
@@ -47,7 +48,7 @@ import ryey.easer.core.log.ActivityLogService;
 @AcraCore(buildConfigClass = BuildConfig.class,
         reportSenderFactoryClasses = ErrorSenderFactory.class)
 @AcraToast(resText=R.string.prompt_error_logged)
-public class EaserApplication extends Application {
+public class EaserApplication extends MultiDexApplication {
 
     static final String LOG_DIR = new File(Environment.getExternalStorageDirectory(), "/logger/error").getAbsolutePath();
 
