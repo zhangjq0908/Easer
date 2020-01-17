@@ -134,7 +134,7 @@
     <string name="pref_use_root_title">Use root features</string>
     <string name="pref_use_root_summary">Use root permission for specific functions (skills) to help resolve compatibility issues on some devices.</string>
     <string name="pref_cooldown_title">Event only once per…</string>
-    <string name="pref_cooldown_summary">Timeframe in seconds to treat two occurances as one event.</string>
+    <string name="pref_cooldown_summary">Timeframe in seconds to treat two occurrences as one event.</string>
     <string name="cooldown_time_illformed">Your number is too high, or not a positive whole number.</string>
     <string name="pref_enabled_skills_title">Activated skills</string>
     <string name="pref_enabled_skills_summary">Turn on or off certain skills</string>
@@ -144,7 +144,7 @@
     <string name="pref_export_summary">Export all events and profiles to SD card.
 \nThe current time as of saving will be used as filename.</string>
     <string name="pref_import_title">Import</string>
-    <string name="pref_import_summary">Import all events and profiles in a ZIP file.
+    <string name="pref_import_summary">Import all events and profiles from a ZIP file.
 \nExisting events and profiles with same name will be replaced.</string>
     <string name="pref_convert_data_title">Convert data</string>
     <string name="pref_convert_data_summary">Convert all data to the recommended format</string>
@@ -210,7 +210,7 @@
     <string name="help_script">\"Scripts\" are the logic containers. Connect an event or a condition with a profile in a script, so that Easer knows to load/execute that profile when the event occurs, or the condition is met.
 \nThere are also more advanced functions, e.g. reversed events.
 \nPlease refer to the <a href="https://github.com/renyuneyun/Easer/wiki">document</a> for more info.</string>
-    <string name="help_event">\"Events\" represent short-time (instant) occurances on your device, or remotely.
+    <string name="help_event">\"Events\" represent short-time (instant) occurrences on your device, or remotely.
 \nFor example, receiving a notification, or an NFC tag is scanned.
 \nPlease refer to the <a href="https://github.com/renyuneyun/Easer/wiki">document</a> for more info.</string>
     <string name="help_condition">\"Condition\" represents a long-lasting (but usually not forever) condition on your device or remotely.
