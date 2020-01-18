@@ -1,0 +1,5 @@
+Fix crash of empty Pivot && No obfuscation in beta && I18n update
+
+* Fix crash when opening Pivot with empty Script (hopefully) (#309)
+* Slightly better English
+* Update i18n: French, Indonesian, Russian
