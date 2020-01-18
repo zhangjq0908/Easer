@@ -43,6 +43,7 @@ android {
             applicationIdSuffix ".beta"
             versionCode 123202
             versionName "0.8-pre3-beta2"
+            proguardFile 'proguard-rules-debug.pro'
         }
     }
     dataBinding.enabled = true
