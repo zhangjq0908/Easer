@@ -25,11 +25,18 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Objects;
+
 final class LatLong implements Parcelable {
 
-    static LatLong fromString(String repr) {
+    static LatLong fromString(String repr) throws ParseException {
         String[] parts = repr.split(", ");
-        return new LatLong(Double.valueOf(parts[0]), Double.valueOf(parts[1]));
+        NumberFormat nf = NumberFormat.getNumberInstance();
+        return new LatLong(
+                Objects.requireNonNull(nf.parse(parts[0])).doubleValue(),
+                Objects.requireNonNull(nf.parse(parts[1])).doubleValue());
     }
 
     final double latitude;
