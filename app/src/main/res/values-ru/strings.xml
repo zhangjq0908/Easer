@@ -30,8 +30,8 @@
     <string name="menu_tree_list">Выпадающий Список</string>
     <string name="service_indicator_positive">Работает</string>
     <string name="service_indicator_negative">Не работает</string>
-    <string name="activity_history__profile">\@string/title_profile</string>
-    <string name="activity_history__script">\@string/title_script</string>
+    <string name="activity_history__profile"></string>
+    <string name="activity_history__script"></string>
     <string name="activity_history__time">Время</string>
     <string name="activity_history__extra">Дополнительная информация</string>
     <string name="activity_history__satisfaction">Состояние</string>
@@ -65,7 +65,7 @@
     <string name="text_placeholder">Держатель</string>
     <string name="toggle_active">Активный</string>
     <string name="hint_event_title">Название события</string>
-    <string name="hint_script_title">Транскрипт события</string>
+    <string name="hint_script_title">Имя скрипта</string>
     <string name="hint_profile_title">Название профиля</string>
     <string name="hint_condition_title">Название условия</string>
     <string name="prompt_save_failed">Не удалось сохранить</string>
@@ -129,9 +129,10 @@
     <string name="dynamics_script_name">Название Скрипта</string>
     <string name="dynamics_profile_name">Название Профиля</string>
     <string name="title_help">Помощь</string>
-    <string name="help_script">\"Скрипт\" - это логический контейнер. Подключите событие или условие с профилем к скрипту так, чтобы Easer мог загрузить/исполнить данный профиль когда это событие произошло или условие было соблюдено. 
-\nЕсть также и расширенные функции, например, обратное событие. 
-\nПожалуйста, обратитесь к <a href="https://github.com/renyuneyun/Easer/wiki">документу</a> для более подробной информации.</string>
+    <string name="help_script">\"Скрипт\" - это логический контейнер. При помощи скрипта можно объединить событие или условие с профилем. Когда данное событие произойдет или условие будет выполненным, Easer активирует выбранный Вами профиль.
+\n
+\nТакже реализованы расширенные функции, такие как обратное событие. 
+\nЗа более подробной информации обратитесь, пожалуйста, к <a href="https://github.com/renyuneyun/Easer/wiki">документу</a>.</string>
     <string name="help_event">\"Событие\" представляет собой кратковременное (мгновенное) событие на вашем устройстве или удалённо. 
 \nНапример, получая оповещение, или при сканировании тэга NFC. 
 \nПожалуйста, обратитесь к <a href="https://github.com/renyuneyun/Easer/wiki">документу</a> для подробной информации.</string>
@@ -143,7 +144,7 @@
 \nПожалуйста, обратитесь к <a href="https://github.com/renyuneyun/Easer/wiki">документу</a> для подробной информации.</string>
     <string name="category_operation_android">Андроид</string>
     <string name="category_operation_system_config">Конфигурация системы</string>
-    <string name="category_operation_easer">\@string/easer</string>
+    <string name="category_operation_easer"></string>
     <string name="category_operation_misc">Разное</string>
     <string name="category_operation_unknown">Неизвестный</string>
     <string name="menu_plain_list">Простой список</string>
@@ -175,19 +176,19 @@
 \n
 \n
 \n(Всё включено по умолчанию.)</string>
-    <string name="welcome_message_3">Скрипты устроены как <a href="https://en.wikipedia.org/wiki/Tree_structure">деревья</a> с использованием соответствующего родителя.
-\n
-\nВ каждой ветке выполняется логика \"И\".
-\nМежду ветками выполняется логика \"ИЛИ\".
-\n
-\n
-\nПланируется расширение деревьев до графиков, но в настоящее время не реализовано.</string>
+    <string name="welcome_message_3">Скрипты организованны в виде <a href="https://en.wikipedia.org/wiki/Tree_structure">деревьев</a> . Для этого каждому скрипту можно задать скрипт-родитель. 
+\n 
+\nВ каждой ветке при переходе от родителя к наследнику применяется логическое \"И\". 
+\nМежду ветками выполняется логическое \"ИЛИ\". 
+\n 
+\n 
+\nВ будущем планируется переход с деревьев на графы.</string>
     <string name="welcome_message_privacy">Конфиденциальность важна!
 \n
 \nEaser - это <a href="https://en.wikipedia.org/wiki/Free_software">свободная программа</a> (программа с открытым исходным кодом), подразумевающая использование, изучение, изменение и распространение кем угодно.
 \n
 \nВЫ владеете каждой частью ваших данных. Всё хранится в вашем устройстве, включая логи.</string>
-    <string name="prompt_error_logged">Easer зафиксировал ошибку. См. подкаталог директории лога.</string>
+    <string name="prompt_error_logged">Easer зафиксировал ошибку. См. подкаталог ошибок директории лога.</string>
     <string name="message_future_change_0_8">Скрипты в виде дерева будут убраны в версии 0.8. Pivot - это лучший вариант для этого.</string>
     <string name="text_unknown_skill">[Неизвестный навык]</string>
     <string name="prompt_dynamics_not_ready">Для настройки Динамических Ссылок, вам необходимо выбрать существующий профиль и существующий триггер (например, Событие).</string>
