@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="easer">Easer</string>
-    <string name="drawer_tip">Mempermudah hidupmu!</string>
+    <string name="drawer_tip">Permudah hidupmu!</string>
     <string name="title_outline">Garis Besar</string>
     <string name="title_data_collection">Data</string>
     <string name="title_operation">Operasi</string>
@@ -13,5 +13,122 @@
     <string name="title_add">Tambah</string>
     <string name="title_edit">Sunting</string>
     <string name="title_delete">Hapus</string>
-    <string name="title_edit_event">Sunting Acara</string>
+    <string name="title_edit_event">Ubah Event</string>
+    <string name="title_pivot">Pivot</string>
+    <string name="title_event">Event</string>
+    <string name="title_script">Script</string>
+    <string name="title_application">Aplikasi</string>
+    <string name="title_edit_condition">Ubah Kondisi</string>
+    <string name="title_edit_profile">Ubah Profil</string>
+    <string name="title_select_operation">Pilih Pengoperasian</string>
+    <string name="title_select_event">Pilih Event</string>
+    <string name="title_select_condition">Pilih Kondisi</string>
+    <string name="title_dynamics_link">Dynamics Link</string>
+    <string name="title_new_dynamics_link">Dynamics Link Baru</string>
+    <string name="title_trigger_profile">Memicu Profil Ini</string>
+    <string name="title_source">Sumber Kode</string>
+    <string name="title_author">Pengarang</string>
+    <string name="title_donate">Donasi</string>
+    <string name="title_website">Situs</string>
+    <string name="title_homepage">Alamat Situs</string>
+    <string name="title_service_start">Service Mulai</string>
+    <string name="title_remote_operation_plugin">Plugin Pengoperasian Jarak Jauh</string>
+    <string name="menu_start">Mulai</string>
+    <string name="menu_stop">Stop</string>
+    <string name="menu_action_save">Simpan</string>
+    <string name="menu_clear">Bersihkan</string>
+    <string name="menu_tree_list">Daftar Rinci</string>
+    <string name="menu_plain_list">Daftar Normal</string>
+    <string name="service_indicator_positive">Berjalan</string>
+    <string name="service_indicator_negative">Tidak Berjalan</string>
+    <string name="activity_history__profile">\@string/judul_profil</string>
+    <string name="activity_history__script">\@string/judul_script</string>
+    <string name="activity_history__time">Waktu</string>
+    <string name="activity_history__extra">Info Tambahan</string>
+    <string name="activity_history__satisfaction">Status</string>
+    <string name="activity_history__satisfied">Puas</string>
+    <string name="activity_history__unsatisfied">Tidak Puas</string>
+    <string name="activity_history__service">Perbaikan</string>
+    <string name="activity_history__status">Status</string>
+    <string name="activity_history__start">Mulai</string>
+    <string name="activity_history__stop">Stop</string>
+    <string name="null_content">KONTEN KOSONG</string>
+    <string name="navigation_drawer_open">Buka jendela navigasi</string>
+    <string name="navigation_drawer_close">Tutup jendela navigasi</string>
+    <string name="button_read_next_time">Baca lain kali</string>
+    <string name="button_understand">Mengerti</string>
+    <string name="button_cancel">Batal</string>
+    <string name="button_ok">OK</string>
+    <string name="text_lack_permission">Sebagian skill TIDAK punya izin yang cukup.</string>
+    <string name="button_see_detail">Lihat Detail</string>
+    <string name="text_notification_running_indicator_content">%s sedang berjalan di latar belakang</string>
+    <string name="text_title">Judul</string>
+    <string name="text_parent">Induk</string>
+    <string name="text_profile">Profil</string>
+    <string name="text_repeatable_desc">Pengulangan jika puas</string>
+    <string name="text_reverse_desc">Skenario Terbalik</string>
+    <string name="toggle_active">Aktif</string>
+    <string name="hint_event_title">Judul Event</string>
+    <string name="hint_script_title">Judul Script</string>
+    <string name="hint_profile_title">Judul Profil</string>
+    <string name="hint_condition_title">Judul Kondisi</string>
+    <string name="prompt_save_failed">Gagal disimpan</string>
+    <string name="prompt_delete">Anda yakin ingin menghapus %s\?</string>
+    <string name="prompt_delete_failed">Gagal menghapus. Periksa jika item sedang digunakan.</string>
+    <string name="prompt_data_illegal">Batal menyimpan data dengan isian tidak sesuai. Silahkan periksa kembali pilihan/masukan.</string>
+    <string name="prompt_dynamics_not_ready">Untuk mengatur Dynamics, diperlukan Profil dan trigger yang sesuai (cth. Event)</string>
+    <string name="prompt_prevented_for_permission">Berikan Easer izin &lt;%s&gt; agar bisa dijalankan...</string>
+    <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
+    <string name="pref_category_functionality">Kegunaan</string>
+    <string name="pref_category_data_manage">Kelola Data</string>
+    <string name="pref_category_service">Layanan</string>
+    <string name="pref_autostart_summary">Jalankan Easer di latarbelakang saat perangkat dihidupkan</string>
+    <string name="pref_restart_after_upgrade_title">Mulai service setelah upgrade</string>
+    <string name="pref_welcome_title">Tampilan pesan selamat datang</string>
+    <string name="pref_welcome_summary">Tampilkan pesan selamat datang saat membuka aplikasi</string>
+    <string name="pref_logging_title">Hidupkan pencatatan log eksternal</string>
+    <string name="pref_logging_summary">Catat log ke penyimpanan eksternal (/sdcard/logger) untuk dukungan laporan bug.
+\nPerubahan akan dimulai saat aplikasi dijalankan ulang</string>
+    <string name="pref_use_root_title">Gunakan fasilitas root</string>
+    <string name="pref_use_root_summary">Gunakan fasilitas root untuk fungsi spesifik (skills), akan membantu permasalahan kesesuaian pada beberapa perangkat. Tidak akan digunakan untuk hal lain.</string>
+    <string name="pref_cooldown_title">Waktu Istirahat</string>
+    <string name="pref_cooldown_summary">Jarak minimal (dalam detik) antara 2 triggers pada event yang sama</string>
+    <string name="cooldown_time_illformed">Nomer tidak boleh lebih rendah dari 0 dan tidak lebih besar agar sesuai dengan integer</string>
+    <string name="pref_enabled_skills_title">Skill Aktif</string>
+    <string name="pref_enabled_skills_summary">Hidupkan atau matikan beberapa skills</string>
+    <string name="pref_use_12_hour_clock_title">Gunakan waktu 12 Jam</string>
+    <string name="pref_export_title">Ekspor</string>
+    <string name="pref_export_summary">Ekspor semua event dan profil ke SD card.
+\nNama file menggunakan waktu saat ini.</string>
+    <string name="pref_import_title">Impor</string>
+    <string name="pref_import_summary">Impor semua event dan profil dengan file ZIP.
+\nEvent dan profil saat ini yang sama akan digantikan.</string>
+    <string name="pref_convert_data_title">Rubah data</string>
+    <string name="pref_convert_data_summary">Rubah semua data ke format yang direkomendasikan</string>
+    <string name="pref_show_notification_title">Tampilkan Notifikasi</string>
+    <string name="pref_show_notification_summary">Tampilkan pemberitahuan pada baris notifikasi</string>
+    <string name="pref_foreground_title">Jalankan service di garis depan</string>
+    <string name="pref_foreground_summary">Buat agar sistem susah mematikan service yang berjalan. Pemberitahuan akan ditampilkan. Dapat dimatikan pada Android 8+ dikarenakan keperluan sistem</string>
+    <string name="message_skill_not_compatible">Perangkat ini tidak bisa menjalankan skill ini.</string>
+    <string name="message_convert_data_start">Sedang merubah data.</string>
+    <string name="message_convert_data_finish">Data sudah dirubah.</string>
+    <string name="message_convert_data_abort">Proses perubahan data dibatalkan.</string>
+    <string name="message_convert_data_error">Tidak dapat merubah data. Silahkan melihat log untuk rinciannya.</string>
+    <string name="title_welcome_message">Selamat Datang</string>
+    <string name="welcome_message_1">"Selamat Datang. 
+\n 
+\nBerikut beberapa info dasar untuk dibaca sebelum menggunakan Easer. 
+\n 
+\nTopik yang lebih dalam terangkum dalam  "<a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> project wiki.</string>
+    <string name="welcome_message_2">Easer memuat beberapa modul untuk fungsi yang berbeda. Hidupkan atau matikan pada Pengaturan. 
+\n 
+\nIzin yang berkaitan (untuk setiap modul yang aktif) harus diberikan ijin sebelum digunakan.
+\n 
+\n 
+\n(Semuanya hidup secara default.)</string>
+    <string name="category_operation_unknown">Tidak diketahui</string>
+    <string name="message_future_change_0_8">Tampilan Tree view dari script dihapus pada v0.8. Pivot menyediakan tampilan yang lebih baik.</string>
+    <string name="title_choose_predecessors">Pilih Pendahulu</string>
+    <string name="text_predecessor_nodes">Pendahulu</string>
+    <string name="text_unknown_skill">[Skill Tidak Diketahui]</string>
 </resources>

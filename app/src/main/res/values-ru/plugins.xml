@@ -17,11 +17,11 @@
     <string name="usource_wificonn">WiFi Соединение</string>
     <string name="usource_wificonn_select_dialog_title">Выберите точку доступа WiFi</string>
     <string name="usource_wificonn_wait_for_result">Ожидание результатов сканирования WiFi</string>
-    <string name="usource_cell_location">Местоположение сети</string>
-    <string name="usource_cell_location_no_signal">Не удалось получить местоположение сети. Проверьте Ваш сигнал.</string>
+    <string name="usource_cell_location">Сотовая вышка</string>
+    <string name="usource_cell_location_no_signal">Не удалось получить информацию о сотовой вышке. Проверьте Ваш сигнал.</string>
     <string name="usource_power">Состояние Батареи</string>
     <string name="usource_day_of_week">День Недели</string>
-    <string name="usource_bluetooth_device">Подключен Bluetooth девайс</string>
+    <string name="usource_bluetooth_device">Bluetooth устройство подключено</string>
     <string name="usource_bt_device_select_dialog_title">Выберите Bluetooth устройство</string>
     <string name="usource_bt_device_unknown_device">Неизвестное устройство</string>
     <string name="usource_connectivity">Тип подключения</string>
@@ -99,7 +99,7 @@
     <string name="text_type">Тип</string>
     <string name="operation_brightness">Яркость</string>
     <string name="operation_brightness_desc_autobrightness">Автоматическая яркось</string>
-    <string name="operation_ringer_mode">Режим со Звуком</string>
+    <string name="operation_ringer_mode">Режим Звонка</string>
     <string name="ringer_mode_normal">Обычный</string>
     <string name="ringer_mode_vibrate">Вибрация</string>
     <string name="ringer_mode_silent">Без звука</string>
@@ -177,7 +177,8 @@
     <string name="category_source_unknown">Неизвестный</string>
     <string name="usource_bt_device_dynamics_device_name">Имя устройства</string>
     <string name="usource_bt_device_dynamics_device_address">Адрес устройства</string>
-    <string name="usource_cell_location_dynamics_cell_location">Местоположение ячейки</string>
+    <string name="usource_cell_location_dynamics_cell_location">Сотовая вышка</string>
+    <string name="usource_cell_location_listening_content">Агрегирование местоположения ячейки…</string>
     <string name="event_widget">Виджет</string>
     <string name="event_widget_text">Текст</string>
     <string name="event_widget_tag">Тег</string>
@@ -202,10 +203,10 @@
     <string name="calendar_all_day_event_only">Соответствовать только событиям всего дня</string>
     <string name="category_source_android">Андроид</string>
     <string name="event_condition_event_dynamics_name">Название условия</string>
-    <string name="usource_cell_location_listening_title">Прослушивание</string>
-    <string name="event_widget_widget_label">ВиджетСобытия Виджет</string>
+    <string name="usource_cell_location_listening_title">Поиск</string>
+    <string name="event_widget_widget_label">Виджет События</string>
     <string name="event_widget_default_text">ОТОБРАЗИТЬ ТЕКСТ</string>
-    <string name="usource_power__ac">ПЕРЕМЕННЫЙ ТОК</string>
+    <string name="usource_power__ac">Переменный Ток</string>
     <string name="usource_call_state_ringing">Звонок</string>
     <string name="o_http_get">ПОЛУЧИТЬ</string>
     <string name="o_http_post">ПОМЕСТИТЬ</string>
