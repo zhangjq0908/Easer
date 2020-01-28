@@ -1,0 +1,8 @@
+Bug fixes && (actually) i18n update
+
+* Fix LocationUSource does not work in German (parse error of LatLong number) (#313)
+* Fix unittest of `operation.Extras` (#312)
+* Fix location range not correctly calculated (latitude and longitude to meter) (#319)
+* Fix for appcrash after start when lastLocation is null (#315)
+* Fix wrong name of "delete" in Chinese
+* Actually i18n update (last version didn't include)
