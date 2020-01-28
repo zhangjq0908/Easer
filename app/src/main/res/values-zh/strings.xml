@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="easer">Easer</string>
-    <string name="drawer_tip">方便你的生活！</string>
+    <string name="drawer_tip">便易你的生活！</string>
     <string name="hint_event_title">事件名</string>
     <string name="menu_start">啓動</string>
     <string name="menu_stop">停止</string>
@@ -13,7 +13,7 @@
     <string name="button_ok">確認</string>
     <string name="text_predecessor_nodes">前驅節點</string>
     <string name="title_about">關於</string>
-    <string name="title_delete">添加</string>
+    <string name="title_delete">刪除</string>
     <string name="title_edit">修改</string>
     <string name="title_event">事件</string>
     <string name="title_outline">概覽</string>
