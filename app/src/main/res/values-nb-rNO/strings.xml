@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="easer">Easer</string>
-    <string name="drawer_tip">Lett din hverdag.</string>
+    <string name="drawer_tip">Lett hverdagen din.</string>
     <string name="title_outline">Skisse</string>
     <string name="title_operation">Operasjon</string>
     <string name="title_profile">Profil</string>
@@ -45,7 +45,7 @@
     <string name="button_understand">Forstått</string>
     <string name="button_cancel">Avbryt</string>
     <string name="button_ok">OK</string>
-    <string name="text_lack_permission">Easer har ikke alle tilgangene det trenger.</string>
+    <string name="text_lack_permission">Noen programtillegg har ikke tilstrekkelige tilganger.</string>
     <string name="text_predecessor_nodes">Overordnet</string>
     <string name="text_profile">Profil</string>
     <string name="text_predefined_event">Forhåndsdefinert hendelse</string>
@@ -79,7 +79,7 @@
     <string name="pref_category_personalise">Personaliser</string>
     <string name="pref_category_data_manage">Behandle data</string>
     <string name="pref_autostart_title">Start sammen med enhet</string>
-    <string name="pref_autostart_summary">Starter Easer-bakgrunnstjeneste automatisk</string>
+    <string name="pref_autostart_summary">Starter Easer-bakgrunnstjeneste når enheten skrus på.</string>
     <string name="pref_restart_after_upgrade_title">Start tjeneste etter oppgradering</string>
     <string name="pref_welcome_title">Vis velkomstmelding</string>
     <string name="pref_welcome_summary">Vis velkomstmelding ved programstart</string>
@@ -127,7 +127,7 @@
     <string name="help_condition">\\\"Betingelse\\\" representerer en langtidsvarende (men vanligvis ikke evig) tilstand på din enhet eller annensteds hen. 
 \nFor eksempel, ved tilkobling til Wi-Fi, eller at skjermen slås av. 
 \nSjekk <a href="https://github.com/renyuneyun/Easer/wiki">dokumentet</a> for mer info.</string>
-    <string name="help_profile">\\\"Profil\\\" er et sett operasjoner. Hver operasjon representerer en bestemt handling. 
+    <string name="help_profile">\"Profil\" er et sett operasjoner. Hver operasjon representerer en bestemt handling. 
 \nSom for eksempel å slå på Blåtann, eller sende en SMS. 
 \nHenvend deg til <a href="https://github.com/renyuneyun/Easer/wiki">dokumentet</a> for mer info.</string>
     <string name="category_operation_android">Android</string>
@@ -186,4 +186,6 @@
     <string name="message_future_change_0_8">Trevisning over skript vil bli fjernet i v0.8. Omdreiningspunkt gir bedre oversikt.</string>
     <string name="title_choose_predecessors">Velg forgjengere</string>
     <string name="text_unknown_skill">[Ukjent ferdighet]</string>
+    <string name="title_add_child">Legg til underprosess</string>
+    <string name="title_edit_script">Rediger skript</string>
 </resources>
