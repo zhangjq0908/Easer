@@ -225,9 +225,9 @@
     <string name="operation_toast">Påmindelse</string>
     <string name="op_toast_hint_text">Tekst</string>
     <string name="event_nfc_tag__dynamics_tag_id">Mærke ID</string>
-    <string name="event_tcp_trip__dynamics_remote_host">Fjern vært</string>
-    <string name="event_tcp_trip__dynamics_remote_ip">Fjern vært IP</string>
-    <string name="event_tcp_trip__dynamics_remote_port">Fjern vært port</string>
+    <string name="event_tcp_trip__dynamics_remote_host">Fjernvært</string>
+    <string name="event_tcp_trip__dynamics_remote_ip">IP for fjernvært</string>
+    <string name="event_tcp_trip__dynamics_remote_port">Port for fjernvært</string>
     <string name="event_tcp_trip__dynamics_sent_data">Sendt data</string>
     <string name="event_tcp_trip__dynamics_received_data">Modtaget data</string>
     <string name="event_widget_button_save_widget">Gem kontrol</string>
