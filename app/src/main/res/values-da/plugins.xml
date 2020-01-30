@@ -71,7 +71,7 @@
     <string name="usource_headset__microphone_false">Nej</string>
     <string name="usource_headset__microphone_any">Enhver</string>
     <string name="event_tcp_trip">TCP rundtur tid</string>
-    <string name="remote_host">Fjern vært</string>
+    <string name="remote_host">Fjernvært</string>
     <string name="send_data">Send data</string>
     <string name="check_reply">Kontrollere svar</string>
     <string name="reply_data">Svar data</string>
