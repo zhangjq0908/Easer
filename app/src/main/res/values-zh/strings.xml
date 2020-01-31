@@ -170,5 +170,7 @@
     <string name="title_remote_operation_plugin">遠程行爲插件</string>
     <string name="title_edit_script">編輯腳本</string>
     <string name="event_widget_button_save_widget">保存微件</string>
+    <string name="prompt_data_clash">保存失敗。請檢查是否有命名衝突。</string>
+    <string name="prompt_data_save_io_exception">遭遇IOException。可能存儲器已滿？</string>
 
 </resources>

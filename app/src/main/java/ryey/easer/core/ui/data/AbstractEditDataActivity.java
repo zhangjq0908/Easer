@@ -37,6 +37,8 @@ import java.io.IOException;
 import ryey.easer.R;
 import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.ui.CommonBaseActivity;
+import ryey.easer.core.DataSavingFailedException;
+import ryey.easer.core.ItemBeingUsedException;
 import ryey.easer.core.data.Named;
 import ryey.easer.core.data.Verifiable;
 import ryey.easer.core.data.WithCreatedVersion;
@@ -123,6 +125,7 @@ public abstract class AbstractEditDataActivity<T extends Named & Verifiable & Wi
             if (purpose == EditDataProto.Purpose.edit) {
                 T data = null;
                 try {
+                    //noinspection ConstantConditions
                     data = storage.get(oldName);
                 } catch (RequiredDataNotFoundException e) {
                     throw new AssertionError(e);
@@ -138,54 +141,79 @@ public abstract class AbstractEditDataActivity<T extends Named & Verifiable & Wi
 
     protected abstract T saveToData() throws InvalidDataInputException;
 
-    protected boolean persistChange() {
+    @Nullable
+    protected Exception tryPersistChange() {
         try {
-            boolean success;
             if (purpose == EditDataProto.Purpose.delete) {
-                success = storage.delete(oldName);
+                //noinspection ConstantConditions
+                boolean success = storage.delete(oldName);
                 if (success) {
-                    setResult(RESULT_OK);
-                    Logger.d("Successfully deleted " + TAG_DATA_TYPE);
-                    finish();
+                    return null;
                 } else {
-                    Logger.e("Failed to delete " + TAG_DATA_TYPE);
-                    Toast.makeText(this, getString(R.string.prompt_delete_failed), Toast.LENGTH_SHORT).show();
+                    return new ItemBeingUsedException();
                 }
             } else {
+                T newData;
                 try {
-                    T newData = saveToData();
+                    newData = saveToData();
                     if (newData == null || !newData.isValid()) {
-                        Toast.makeText(this, getString(R.string.prompt_data_illegal), Toast.LENGTH_LONG).show();
-                        return false;
+                        throw new InvalidDataInputException();
                     }
+                } catch (InvalidDataInputException e) {
+                    return e;
+                } catch (Exception e) {
+                    return new InvalidDataInputException(e);
+                }
+                try {
+                    boolean success;
                     switch (purpose) {
                         case add:
+                            //noinspection ConstantConditions
                             success = storage.add(newData);
                             break;
                         case edit:
+                            //noinspection ConstantConditions
                             success = storage.edit(oldName, newData);
                             break;
                         default:
-                            Logger.wtf("Unexpected purpose: %s", purpose);
-                            throw new UnsupportedOperationException("Unknown Purpose");
+                            throw new IllegalAccessError("Unknown Purpose");
                     }
-                } catch (InvalidDataInputException e) {
-                    Toast.makeText(this, getString(R.string.prompt_data_illegal), Toast.LENGTH_LONG).show();
-                    return false;
-                }
-                if (success) {
-                    setResult(RESULT_OK);
-                    Logger.d("Successfully saved " + TAG_DATA_TYPE);
-                    finish();
-                } else {
-                    Logger.e("Failed to save " + TAG_DATA_TYPE);
-                    Toast.makeText(this, getString(R.string.prompt_save_failed), Toast.LENGTH_SHORT).show();
+                    if (success) {
+                        return null;
+                    } else {
+                        return new DataSavingFailedException();
+                    }
+                } catch (IOException e) {
+                    return e;
                 }
             }
-            return success;
-        } catch (IOException e) {
-            Logger.e(e, "IOException encountered when %s", purpose);
-            return false;
+        } catch (Exception e) {
+            return e;
+        }
+    }
+
+    protected void persistChange() {
+        Exception e = tryPersistChange();
+        if (e == null) {
+            setResult(RESULT_OK);
+            finish();
+            return;
+        }
+        if (e instanceof ItemBeingUsedException) {
+            Logger.d(e);
+            Toast.makeText(this, getString(R.string.prompt_delete_failed), Toast.LENGTH_SHORT).show();
+        } else if (e instanceof InvalidDataInputException) {
+            Logger.d(e);
+            Toast.makeText(this, getString(R.string.prompt_data_illegal), Toast.LENGTH_LONG).show();
+        } else if (e instanceof DataSavingFailedException) {
+            Logger.d(e);
+            Toast.makeText(this, getString(R.string.prompt_data_clash), Toast.LENGTH_LONG).show();
+        } else if (e instanceof IOException) {
+            Logger.d(e);
+            Toast.makeText(this, getString(R.string.prompt_data_save_io_exception), Toast.LENGTH_LONG).show();
+        } else {
+            Logger.e(e, "Unknown exception happened in persistChange()");
+            throw new RuntimeException(e);
         }
     }
 

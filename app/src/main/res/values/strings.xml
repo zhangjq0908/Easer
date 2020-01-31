@@ -100,6 +100,8 @@
     <string name="prompt_delete">Are you sure you want to delete %s\?</string>
     <string name="prompt_delete_failed">Could not delete. Check whether this item is being used.</string>
     <string name="prompt_data_illegal">Prevented saving data with invalid field(s). Please recheck your choices / inputs.</string>
+    <string name="prompt_data_clash">Failed to save data. Please check if there is naming clash.</string>
+    <string name="prompt_data_save_io_exception">IOException encountered. Perhaps storage is full?</string>
     <string name="prompt_dynamics_not_ready">To set Dynamics, you need to select a valid Profile and a valid trigger (e.g. Event).</string>
     <string name="prompt_prevented_for_permission">Grant Easer &lt;%s&gt; permission for this to work.</string>
     <string name="prompt_error_logged">Easer just recorded an error. See the "error" subdirectory of log directory.</string>
