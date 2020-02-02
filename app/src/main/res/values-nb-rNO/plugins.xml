@@ -186,9 +186,9 @@
     <string name="category_source_unknown">Ukjent</string>
     <string name="event_widget">Miniprogram</string>
     <string name="event_widget_text">Tekst</string>
-    <string name="event_widget_tag">Etikett</string>
+    <string name="event_widget_tag">Brikke</string>
     <string name="event_widget_default_text">VIS TEKST</string>
-    <string name="event_widget_default_tag">ETIKETT</string>
+    <string name="event_widget_default_tag">BRIKKE</string>
     <string name="event_widget_button_add_widget">Legg til miniprogram</string>
     <string name="usource_power__charging">Lader</string>
     <string name="usource_power__usb">USB</string>
@@ -212,4 +212,25 @@
     <string name="o_http_header">Hode (linjeformat: nøkkel: verdi)</string>
     <string name="operation_toast">Oppsprettsmelding</string>
     <string name="op_toast_hint_text">Tekst</string>
+    <string name="event_nfc_tag__dynamics_tag_id">Brikke-ID</string>
+    <string name="event_tcp_trip__dynamics_remote_host">Fjernvert</string>
+    <string name="event_tcp_trip__dynamics_remote_ip">Fjern-IP</string>
+    <string name="event_tcp_trip__dynamics_remote_port">Fjernport</string>
+    <string name="event_tcp_trip__dynamics_sent_data">Sendt data</string>
+    <string name="event_tcp_trip__dynamics_received_data">Mottatt data</string>
+    <string name="event_widget_button_save_widget">Lagre miniprogram</string>
+    <string name="event_widget__dynamics_widget_tag">Miniprogramsbrikke</string>
+    <string name="event_widget__dynamics_widget_id">Miniprograms-ID</string>
+    <string name="usource_battery_level">Batterinivå</string>
+    <string name="usource_battery_level__level_system">Systemnivå</string>
+    <string name="usource_battery_level__level_custom">Egendefinert nivå</string>
+    <string name="usource_battery_level__ok_after_low">OK etter lavt</string>
+    <string name="usource_battery_level__low">Lavt</string>
+    <string name="usource_battery_level__custom_battery_level">Minimalt batterinivå (%)</string>
+    <string name="usource_battery_level__inclusive">Inklusivt</string>
+    <string name="usource_location">Plassering</string>
+    <string name="usource_location__radius_meters">Radius (meter)</string>
+    <string name="usource_location__listen_min_time_seconds">Minimumslyttetid (sekunder)</string>
+    <string name="usource_location__threshold_age_seconds">Terskelalder (sekunder)</string>
+    <string name="usource_location__threshold_accuracy_meters">Terskelnøyaktighet (meter)</string>
 </resources>
