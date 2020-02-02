@@ -1,0 +1,4 @@
+Slight backend change && I18n update
+
+* Refactored AbstractEditDataActivity.persistChange() (better capture of exceptions)
+* I18n update: Danish, Norwegian Bokmål
