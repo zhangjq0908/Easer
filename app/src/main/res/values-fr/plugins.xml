@@ -72,7 +72,7 @@
     <string name="usource_screen_on">Allumé</string>
     <string name="usource_screen_off">Éteint</string>
     <string name="usource_screen_unlocked">Déverrouillé</string>
-    <string name="operation_wifi">WiFi</string>
+    <string name="operation_wifi">Wi-Fi</string>
     <string name="operation_cellular">Données mobiles</string>
     <string name="operation_bluetooth">Bluetooth</string>
     <string name="operation_rotation">Rotation automatique</string>
@@ -96,7 +96,7 @@
     <string name="ringer_mode_dnd_priority">Prioritaires</string>
     <string name="ringer_mode_dnd_none">Aucun</string>
     <string name="ringer_mode_dnd_alarms">Alarmes</string>
-    <string name="ringing_items_in_do_not_disturb_mode">Éléments autorisés en mode Ne pas déranger</string>
+    <string name="ringing_items_in_do_not_disturb_mode">Éléments autorisés en mode \"Ne pas déranger\"</string>
     <string name="label_operation_ringer_mode_notification_listener_service">Commutateur de mode silencieux</string>
     <string name="operation_command">Exécuter des commandes</string>
     <string name="operation_hotspot">Point d\'accès</string>
@@ -212,4 +212,7 @@
     <string name="o_http_post_data">Publier les données</string>
     <string name="operation_toast">Toast</string>
     <string name="op_toast_hint_text">Texte</string>
+    <string name="event_widget_button_save_widget">Sauvegarder un</string>
+    <string name="usource_battery_level">Niveau de batterie</string>
+    <string name="usource_battery_level__custom_battery_level">Niveau de batterie minimum (pourcentage)</string>
 </resources>
