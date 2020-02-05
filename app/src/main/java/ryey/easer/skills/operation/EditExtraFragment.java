@@ -92,7 +92,7 @@ public class EditExtraFragment extends Fragment {
                 if (extraItem != null)
                     extraItemList.add(extraItem);
             }
-            return new Extras(extraItemList);
+            return Extras.mayConstruct(extraItemList);
         }
         return null;
     }

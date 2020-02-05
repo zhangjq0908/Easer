@@ -86,7 +86,7 @@ public class BroadcastOperationData implements OperationData {
 
                     String strExtras = jsonObject.optString(EXTRAS);
                     if (strExtras != null) {
-                        intentData.extras = new Extras(strExtras, format, version);
+                        intentData.extras = Extras.mayParse(strExtras, format, version);
                     }
 
                     this.data = intentData;
@@ -229,7 +229,7 @@ public class BroadcastOperationData implements OperationData {
                 String type = extra.type;
                 extras.add(new ExtraItem(key, value, type));
             }
-            data.extras = new Extras(extras);
+            data.extras = Extras.mayConstruct(extras);
         }
         return new BroadcastOperationData(intentData);
     }

@@ -52,7 +52,7 @@ class BroadcastOperationDataFactory implements OperationDataFactory<BroadcastOpe
         ArrayList<ExtraItem> extras = new ArrayList<>();
         ExtraItem extraItem = new ExtraItem("extra_key1", "extra_value1", "string");
         extras.add(extraItem);
-        intentData.extras = new Extras(extras);
+        intentData.extras = Extras.mayConstruct(extras);
         return new BroadcastOperationData(intentData);
     }
 
