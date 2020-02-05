@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="easer">Easer</string>
-    <string name="drawer_tip">Zjednodušte svůj život!</string>
+    <string name="drawer_tip">Zjednodušte svůj život.</string>
     <string name="title_outline">Přehled</string>
     <string name="title_pivot">Závislosti</string>
     <string name="title_data_collection">Data</string>
@@ -70,7 +70,7 @@
     <string name="text_predefined_event">Předdefinovaná Událost</string>
     <string name="text_inline_event">Vložená Událost</string>
     <string name="text_use_condition">Použít Podmínku</string>
-    <string name="text_repeatable_desc">Opakovat při splnění</string>
+    <string name="text_repeatable_desc">Opakování</string>
     <string name="text_reverse_desc">Reverzní Scénář</string>
     <string name="text_volatile">Nestálý</string>
     <string name="text_persistent">Přetrvávající</string>
@@ -84,10 +84,10 @@
     <string name="hint_condition_title">Název podmínky</string>
     <string name="prompt_save_failed">Nepodařilo se uložit</string>
     <string name="prompt_delete">Opravdu chcete odstranit %s\?</string>
-    <string name="prompt_delete_failed">Odstranění se nezdařilo. Zkontrolujte, zda je tato položka používána.</string>
+    <string name="prompt_delete_failed">Odstranění se nezdařilo. Zkontrolujte, zda tato položka není aktivně používána.</string>
     <string name="prompt_data_illegal">Nelze uložit data s neplatnými poli. Zkontrolujte prosím své volby/vstupy.</string>
     <string name="prompt_dynamics_not_ready">Chcete-li nastavit Dynamiky, je potřeba vybrat platný Profil a platný aktivační spouštěč (např. Událost).</string>
-    <string name="prompt_prevented_for_permission">Udělit Easeru oprávnění &lt;% s &gt;..</string>
+    <string name="prompt_prevented_for_permission">Udělit Easeru oprávnění &lt;% s &gt;.</string>
     <string name="prompt_error_logged">Easer právě zaznamenal chybu. Podívejte se do podadresáře error v adresáři záznamů.</string>
     <string name="text_app_description">Zjednodušte svůj život automatizací rutinních akcí na vašem zařízení. 
 \nŘetězte různé události a nechat provést odpovídající akce. Už je nemusíte mít na paměti! 
@@ -102,7 +102,7 @@
     <string name="pref_category_data_manage">Správa dat</string>
     <string name="pref_category_service">Služby</string>
     <string name="pref_autostart_title">Automaticky spustit při spuštění</string>
-    <string name="pref_autostart_summary">Spustí Easer na pozadí, když je zařízení zapnuto</string>
+    <string name="pref_autostart_summary">Spustí Easer na pozadí, když je zařízení zapnuto.</string>
     <string name="pref_restart_after_upgrade_title">Spustit službu po aktualizaci</string>
     <string name="pref_welcome_title">Zobrazit uvítací zprávu</string>
     <string name="pref_welcome_summary">Při otevírání aplikace zobrazit uvítací zprávu</string>
@@ -110,11 +110,11 @@
     <string name="pref_logging_summary">Zaznamenává do externích paměťových zařízení (/sdcard/logger) za účelem podpory hlášení chyb. 
 \nZměny se projeví při příštím spuštění aplikace.</string>
     <string name="pref_use_root_title">Použití funkcí root</string>
-    <string name="pref_use_root_summary">Použijte oprávnění uživatele root pro specifické funkce (dovednosti), což může pomoci vyřešit problém s kompatibilitou u některých zařízení. Nebude použito jinde.</string>
-    <string name="pref_cooldown_title">Časový cool down limit</string>
-    <string name="pref_cooldown_summary">Minimální interval (v sekundách) mezi dvěma aktivačními spouštěči stejné události</string>
-    <string name="cooldown_time_illformed">Číslo nesmí být menší než 0 a nesmí být příliš velké, aby se vešlo do celého čísla (Integer, patrně 32,767)</string>
-    <string name="pref_enabled_skills_title">Aktivní dovednosti</string>
+    <string name="pref_use_root_summary">Použijte oprávnění uživatele root pro specifické funkce (dovednosti), pro řešení problémů s kompatibilitou u některých zařízení.</string>
+    <string name="pref_cooldown_title">Událost pouze jednou za…</string>
+    <string name="pref_cooldown_summary">Časový rámec (v sekundách), kdy dvě události budou vyhodnoceny jako jedna akce.</string>
+    <string name="cooldown_time_illformed">Číslo není kladné nebo je příliš velké.</string>
+    <string name="pref_enabled_skills_title">Aktivované dovednosti</string>
     <string name="pref_enabled_skills_summary">Zapnutí nebo vypnutí určitých dovedností</string>
     <string name="pref_use_12_hour_clock_title">Použít 12hodinový čas</string>
     <string name="pref_export_title">Export</string>
@@ -187,4 +187,8 @@
     <string name="category_operation_easer">\@string/easer</string>
     <string name="category_operation_misc">Různé</string>
     <string name="category_operation_unknown">Neznámý</string>
+    <string name="title_add_child">Přidat podřízený uzel</string>
+    <string name="title_edit_script">Editovat Skript</string>
+    <string name="prompt_data_clash">Uložení se nezdařilo. Zkontrolujte, zda nedošlo ke kolizi jména.</string>
+    <string name="prompt_data_save_io_exception">Chyba IOException. Možná plné úložiště\?</string>
 </resources>
