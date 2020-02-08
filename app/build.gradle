@@ -87,6 +87,7 @@ dependencies {
     implementation "ch.acra:acra-toast:$acraVersion"
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.json:json:20190722'
+    testImplementation "org.mockito:mockito-core:3.2.4"
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test:rules:1.2.0'
 }
