@@ -1,0 +1,4 @@
+Added tests to AbstractEditDataActivity && I18n update
+
+* Added tests to AbstractEditDataActivity for catching all exceptions when "save"
+* I18n update: Ukrainian, French, Czech

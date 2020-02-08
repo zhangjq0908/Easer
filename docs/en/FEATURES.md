@@ -11,10 +11,12 @@ Supported Features
 * Connectivity status
 * Headset plugged in/out
 * Screen on/off
+* Calendar event
+* (Geo-)Location
+* Battery level
 
 ### Event
 * *Condition* Event
-* Calendar Event
 * Any Broadcast/Intent
 * Designated SMSs
 * Incoming Notifications
@@ -24,7 +26,6 @@ Supported Features
 * Widget (on launcher / desktop / home screen)
 
 ### Condition
-* Calendar Event
 * Ringer mode
 
 ### Operation

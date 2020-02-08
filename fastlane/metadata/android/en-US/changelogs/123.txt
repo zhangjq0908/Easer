@@ -1,0 +1,40 @@
+Pivot now interactable && Remove tree view of Scripts && More skills && Bug fixes && I18n update && Dev changes
+
+* Add interaction on Pivot
+	* Touch Script to edit
+	* Long-press to open context menu
+	* Remove (Retire) tree view of Scripts
+* New skills:
+	* Add geo-location event & condition (LocationUSource)
+	* Add battery-level event & condition (BatteryLevelUSourceSkill)
+* Updates / Strengthens:
+	* Add alternative method to toggle tethering switch (#292)
+	* WifiUSource requires location permission
+	* Added more Dynamics to various Events
+	* Add configuration button to widget (of Widget Event)
+	* Added tests to AbstractEditDataActivity for catching all exceptions when "save"
+	* Update gradle & dependencies
+* (Bug) fixes:
+	* Fix BatteryLevelUSourceData parcelable implementation
+	* Fix Date Condition not respecting year
+	* Fix Call USource number not saved
+	* Potentially fix a ClassNotFoundError
+	* Fix crash when opening Pivot with empty Script (hopefully) (#309)
+	* Fix LocationUSource does not work in German (parse error of LatLong number) (#313)
+	* Fix unittest of `operation.Extras` (#312)
+	* Fix location range not correctly calculated (latitude and longitude to meter) (#319)
+	* Fix for appcrash after start when lastLocation is null (#315)
+	* Fix wrong name of "delete" in Chinese
+* I18n update:
+	* Better English (e.g. #190)
+	* Optimize Chinese string resources
+	* New locale: Czech
+	* Updated: Japanese, Danish, Italian, German, French, Spanish (Latin America), Norwegian Bokmål, Russian, Indonesian, Ukrainian
+* Dev changes:
+	* Remove the ScriptTree structure
+	* Changes of `ryey.easer.core.data.*Structure`:
+		* Changed to immutable
+		* Implement `ScriptStructure.equals()`
+	* Unified Calendar Event
+	* Removed some unused resources
+	* Refactored AbstractEditDataActivity.persistChange() (better capture of exceptions)
