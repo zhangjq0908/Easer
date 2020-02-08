@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="easer">Easer</string>
-    <string name="drawer_tip">Semplifica la vita!</string>
+    <string name="drawer_tip">Semplifica la vita.</string>
     <string name="title_outline">Generale</string>
     <string name="title_profile">Profilo</string>
     <string name="title_event">Evento</string>
@@ -71,7 +71,7 @@
     <string name="prompt_delete">Vuoi eliminare: %s\?</string>
     <string name="prompt_delete_failed">Eliminazione fallita. Controllare se questo elemento viene utilizzato.</string>
     <string name="prompt_data_illegal">Impedito il salvataggio dei dati con campi non validi. Controllare scelte e inserimenti.</string>
-    <string name="prompt_prevented_for_permission">Concedi a Easer l\'autorizzazione &lt;%s&gt; per farlo funzionare...</string>
+    <string name="prompt_prevented_for_permission">Concedi a Easer l\'autorizzazione &lt;%s&gt; per farlo funzionare.</string>
     <string name="text_app_description">Semplifica la tua vita automatizzando le azioni di routine sui tuoi dispositivi.
 \nCollega diversi eventi e lascia che le loro azioni corrispondenti siano eseguite. Non c\'è più bisogno di tenerle a mente! 
 \nQuesta applicazione è ispirata ai \"Profili\" di CyanogenMod e dall\'IFTTT. L\'intuizione originale era quella di cambiare automaticamente profilo a una certa ora o su specifiche connessioni Wi-Fi, fu poi ampliato per un uso più generale. 
@@ -84,8 +84,8 @@
     <string name="pref_category_personalise">Personalizza</string>
     <string name="pref_category_data_manage">Gestione Dati</string>
     <string name="pref_category_service">Servizio</string>
-    <string name="pref_autostart_title">Avvia al Boot</string>
-    <string name="pref_autostart_summary">Avvia Easer in background all\'accensione del dispositivo</string>
+    <string name="pref_autostart_title">Avvio Automatico</string>
+    <string name="pref_autostart_summary">Avvia Easer in background all\'accensione del dispositivo.</string>
     <string name="pref_restart_after_upgrade_title">Avvia Servizio dopo Aggiornamento</string>
     <string name="pref_welcome_title">Mostra Messaggio di Benvenuto</string>
     <string name="pref_welcome_summary">Mostra il messaggio di benvenuto aprendo l\'applicazione</string>
@@ -93,18 +93,18 @@
     <string name="pref_logging_summary">Salva i log su dispositivi di archiviazione esterni (/sdcard/logger) per facilitare le segnalazioni di bug. 
 \nLe modifiche avranno effetto al prossimo avvio dell\'app.</string>
     <string name="pref_use_root_title">Usa Funzionalità di Root</string>
-    <string name="pref_use_root_summary">Utilizza i permessi di root per funzioni specifiche (moduli), che potrebbero aiutare a risolvere il problemi di compatibilità su alcuni dispositivi. Non saranno usati altrove.</string>
-    <string name="pref_cooldown_title">Tempo di Raffreddamento</string>
-    <string name="pref_cooldown_summary">Intervallo minimo (in secondi) tra due trigger dello stesso evento</string>
-    <string name="cooldown_time_illformed">Il numero non deve essere inferiore a 0 e non troppo grande per essere contenuto in un intero</string>
+    <string name="pref_use_root_summary">Utilizza i permessi di root per funzioni specifiche (moduli), per aiutare a risolvere il problemi di compatibilità su alcuni dispositivi.</string>
+    <string name="pref_cooldown_title">Evento solo una volta ogni…</string>
+    <string name="pref_cooldown_summary">Intervallo di tempo in secondi per considerare due occorrenze come un solo evento.</string>
+    <string name="cooldown_time_illformed">Numero troppo alto o non un numero intero positivo.</string>
     <string name="pref_enabled_skills_title">Moduli Attivi</string>
     <string name="pref_enabled_skills_summary">Attiva o disattiva i Moduli</string>
     <string name="pref_use_12_hour_clock_title">Usa Orologio a 12 ore</string>
     <string name="pref_export_title">Esporta</string>
-    <string name="pref_export_summary">Esporta Eventi e Profili su scheda SD.
-\nIl nome del file sarà composto da data e ora correnti.</string>
+    <string name="pref_export_summary">Esporta Eventi e Profili su scheda SD. 
+\nData e ora correnti verranno usati come nome del file.</string>
     <string name="pref_import_title">Importa</string>
-    <string name="pref_import_summary">Importa Eventi e Profili in un file ZIP.
+    <string name="pref_import_summary">Importa Eventi e Profili da un file ZIP. 
 \nEventi e Profili con lo stesso nome verranno sostituiti.</string>
     <string name="pref_convert_data_title">Converti Dati</string>
     <string name="pref_convert_data_summary">Converti i dati nel formato consigliato</string>
@@ -186,4 +186,8 @@
     <string name="message_future_change_0_8">La vista ad albero degli Script verrà rimossa nella v0.8. Lo Schema offre una visualizzazione migliore.</string>
     <string name="title_choose_predecessors">Scegli Predecessori</string>
     <string name="text_unknown_skill">[Modulo Sconosciuto]</string>
+    <string name="title_add_child">Aggiungi Figlio</string>
+    <string name="title_edit_script">Modifica Script</string>
+    <string name="prompt_data_clash">Impossibile salvare i dati. Potrebberi esserci conflitti tra i nomi.</string>
+    <string name="prompt_data_save_io_exception">IOException rilevata. La memoria è piena\?</string>
 </resources>
