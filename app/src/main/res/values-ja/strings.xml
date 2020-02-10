@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="easer">Easer</string>
-    <string name="drawer_tip">便利にします!</string>
+    <string name="drawer_tip">便利になります。</string>
     <string name="title_outline">概要</string>
     <string name="title_profile">プロファイル</string>
     <string name="title_event">イベント</string>
@@ -23,7 +23,7 @@
     <string name="text_profile">プロファイル: </string>
     <string name="hint_event_title">イベントのタイトル</string>
     <string name="hint_profile_title">プロファイルのタイトル</string>
-    <string name="prompt_save_failed">保存に失敗しました</string>
+    <string name="prompt_save_failed">保存できませんでした</string>
     <string name="prompt_delete">削除してもよろしいですか: %s?</string>
     <string name="text_app_description">お使いの電話で定型的な操作を自動化して、生活を楽にします。
 \n異なるイベントを連鎖させて、対応するアクションを実行します。 もはやそれらを気に留める必要はありません!
@@ -70,7 +70,7 @@
     <string name="text_predefined_event">定義済みのイベント</string>
     <string name="text_inline_event">インラインイベント</string>
     <string name="text_use_condition">条件を使用する</string>
-    <string name="text_repeatable_desc">充足時に繰り返し可能</string>
+    <string name="text_repeatable_desc">繰り返し</string>
     <string name="text_reverse_desc">シナリオを逆にする</string>
     <string name="text_volatile">揮発性</string>
     <string name="text_persistent">永続的</string>
@@ -79,14 +79,14 @@
     <string name="toggle_active">有効</string>
     <string name="hint_script_title">スクリプトのタイトル</string>
     <string name="hint_condition_title">条件のタイトル</string>
-    <string name="prompt_delete_failed">削除に失敗しました。この項目が使用されているかを確認してください。</string>
+    <string name="prompt_delete_failed">削除できませんでした。この項目が使用されているかを確認してください。</string>
     <string name="prompt_data_illegal">無効なフィールドのデータを保存できませんでした。選択 / 入力を再確認してください。</string>
-    <string name="prompt_prevented_for_permission">動作するため、Easer に &lt;%s&gt; のアクセス許可を付与してください..</string>
+    <string name="prompt_prevented_for_permission">動作するため、Easer に &lt;%s&gt; のアクセス許可を付与してください。</string>
     <string name="pref_category_functionality">機能</string>
     <string name="pref_category_personalise">パーソナライズ</string>
     <string name="pref_category_data_manage">データ管理</string>
-    <string name="pref_autostart_title">ブート時に自動起動</string>
-    <string name="pref_autostart_summary">Easer を自動的にバックグラウンドサービスで開始します</string>
+    <string name="pref_autostart_title">自動起動</string>
+    <string name="pref_autostart_summary">Easer を自動的にバックグラウンドサービスで開始します。</string>
     <string name="pref_restart_after_upgrade_title">アップグレード後にサービスを開始</string>
     <string name="pref_welcome_title">ウェルカムメッセージを表示</string>
     <string name="pref_welcome_summary">アプリ起動時にウェルカムメッセージを表示します</string>
@@ -94,18 +94,18 @@
     <string name="pref_logging_summary">バグ報告のために外部記憶装置 (/sdcard/logger) にログを保存します。
 \nこの設定の変更は、次回の Easer 起動時から反映されます。</string>
     <string name="pref_use_root_title">root 機能を使用する</string>
-    <string name="pref_use_root_summary">特定の機能 (スキル) で root 権限を使用します。これは一部のデバイスで互換性の問題を解決するのに役立ちます。 これは他の場所では使用されません。</string>
-    <string name="pref_cooldown_title">クールダウン時間</string>
-    <string name="pref_cooldown_summary">同じイベントの 2 つのトリガー間の最小間隔 (秒)</string>
-    <string name="cooldown_time_illformed">数値は、0 以上で整数値の範囲に収まるようにする必要があります</string>
-    <string name="pref_enabled_skills_title">有効なプラグイン</string>
+    <string name="pref_use_root_summary">一部のデバイスで互換性の問題を解決するため、特定の機能 (スキル) で root 権限を使用します。</string>
+    <string name="pref_cooldown_title">イベントは1回だけ…</string>
+    <string name="pref_cooldown_summary">2つの発生を1つのイベントとして扱うための時間枠（秒単位）</string>
+    <string name="cooldown_time_illformed">数値が大きすぎるか、正の整数ではありません。</string>
+    <string name="pref_enabled_skills_title">有効なスキル</string>
     <string name="pref_enabled_skills_summary">特定のプラグインを有効または無効にします</string>
     <string name="pref_use_12_hour_clock_title">12 時間表記を使用する</string>
     <string name="pref_export_title">エクスポート</string>
-    <string name="pref_export_summary">すべてのイベントとプロファイルを SD カードにエクスポートします。
-\nファイルは現在の時刻が名前に付きます。</string>
+    <string name="pref_export_summary">すべてのイベントとプロファイルをSDカードにエクスポートします。
+\n保存時の時刻がファイル名として使用されます。</string>
     <string name="pref_import_title">インポート</string>
-    <string name="pref_import_summary">zip ファイル内のすべてのイベントおよびプロファイルをインポートします。
+    <string name="pref_import_summary">zip ファイルからすべてのイベントおよびプロファイルをインポートします。 
 \n同じ名前を持つ既存のイベントとプロファイルは置き換えられます。</string>
     <string name="pref_convert_data_title">データの変換</string>
     <string name="pref_convert_data_summary">すべてのデータを推奨される形式に変換します</string>
@@ -196,4 +196,8 @@
     <string name="message_future_change_0_8">スクリプトのツリービューは v0.8 で削除されます。ピボットが、それに向けて良いビューを提供します。</string>
     <string name="title_choose_predecessors">先行タスクの選択</string>
     <string name="text_unknown_skill">[不明なスキル]</string>
+    <string name="title_add_child">子を追加</string>
+    <string name="title_edit_script">スクリプトを編集</string>
+    <string name="prompt_data_clash">データの保存に失敗しました。名前の競合がないか確認してください。</string>
+    <string name="prompt_data_save_io_exception">IO 例外が発生しました。ストレージがいっぱいではありませんか\?</string>
 </resources>
