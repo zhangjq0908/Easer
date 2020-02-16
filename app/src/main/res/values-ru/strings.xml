@@ -29,8 +29,8 @@
     <string name="menu_clear">Очистить</string>
     <string name="service_indicator_positive">Работает</string>
     <string name="service_indicator_negative">Не работает</string>
-    <string name="activity_history__profile"></string>
-    <string name="activity_history__script"></string>
+    <string name="activity_history__profile"/>
+    <string name="activity_history__script"/>
     <string name="activity_history__time">Время</string>
     <string name="activity_history__extra">Дополнительная информация</string>
     <string name="activity_history__satisfaction">Состояние</string>
@@ -130,8 +130,8 @@
 \n
 \nТакже реализованы расширенные функции, такие как обратное событие. 
 \nЗа более подробной информации обратитесь, пожалуйста, к <a href="https://github.com/renyuneyun/Easer/wiki">документу</a>.</string>
-    <string name="help_event">\"Событие\" представляет собой кратковременное (мгновенное) событие на вашем устройстве или удалённо. 
-\nНапример, получая оповещение, или при сканировании тэга NFC. 
+    <string name="help_event">\"Событие\" представляет собой кратковременное (мгновенное) событие, происходящее на вашем устройстве или удалённо. 
+\nНапример, это может быть получение оповещения или сканирование тэга NFC. 
 \nПожалуйста, обратитесь к <a href="https://github.com/renyuneyun/Easer/wiki">документу</a> для подробной информации.</string>
     <string name="help_condition">\"Условие\" представляет собой длительное (но обычно не вечное) условие на вашем устройстве или удалённо. 
 \nНапример, подключение к WiFi, или выключение дисплея. 
@@ -141,7 +141,7 @@
 \nПожалуйста, обратитесь к <a href="https://github.com/renyuneyun/Easer/wiki">документу</a> для подробной информации.</string>
     <string name="category_operation_android">Андроид</string>
     <string name="category_operation_system_config">Конфигурация системы</string>
-    <string name="category_operation_easer"></string>
+    <string name="category_operation_easer"/>
     <string name="category_operation_misc">Разное</string>
     <string name="category_operation_unknown">Неизвестный</string>
     <string name="title_welcome_message_privacy">Конфиденциальность!</string>
@@ -188,4 +188,6 @@
     <string name="message_future_change_0_8">Скрипты в виде дерева будут убраны в версии 0.8. Pivot - это лучший вариант для этого.</string>
     <string name="text_unknown_skill">[Неизвестный навык]</string>
     <string name="prompt_dynamics_not_ready">Для настройки Динамических Ссылок, вам необходимо выбрать существующий профиль и существующий триггер (например, Событие).</string>
+    <string name="title_add_child">Добавить следствие</string>
+    <string name="title_edit_script">Редактировать скрипт</string>
 </resources>
