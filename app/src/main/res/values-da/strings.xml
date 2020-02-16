@@ -190,4 +190,6 @@
     <string name="text_unknown_skill">[Ukendt færdighed]</string>
     <string name="title_add_child">Tilføj underproces</string>
     <string name="title_edit_script">Redigere skript</string>
+    <string name="prompt_data_clash">Kunne ikke gemme data. Kontrollere om der er navne sammenfald.</string>
+    <string name="prompt_data_save_io_exception">IOException opstået. Er hukommelse lageret fuld\?</string>
 </resources>
