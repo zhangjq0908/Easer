@@ -1,2 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="easer">Easer</string>
+    <string name="drawer_tip">Facilita tu vida.</string>
+    <string name="title_outline">Esquema</string>
+    <string name="title_pivot">Eje</string>
+    <string name="title_data_collection">Datos</string>
+    <string name="title_operation">Operación</string>
+    <string name="title_profile">Perfil</string>
+    <string name="title_event">Evento</string>
+    <string name="title_script">Guión</string>
+    <string name="title_condition">Condición</string>
+    <string name="title_application">Aplicación</string>
+    <string name="title_activity_history">Historial de actividades</string>
+    <string name="title_about">A cerca de</string>
+    <string name="title_setting">Ajustes</string>
+    <string name="title_add">Añadir</string>
+    <string name="title_add_child">Añadir descendiente</string>
+    <string name="title_edit">Editar</string>
+    <string name="title_delete">Borrar</string>
+    <string name="title_edit_event">Editar evento</string>
+    <string name="title_edit_condition">Editar condición</string>
+    <string name="title_edit_profile">Editar perfil</string>
+    <string name="title_edit_script">Editar guión</string>
+    <string name="title_select_operation">Selecciona una operación</string>
+    <string name="title_select_event">Elige un evento</string>
+    <string name="title_select_condition">Elije una condición</string>
+    <string name="title_choose_predecessors">Elige antecedentes</string>
+    <string name="title_dynamics_link">Enlace a dinámicas</string>
+    <string name="title_new_dynamics_link">Nuevo enlace a dinámicas</string>
+    <string name="title_trigger_profile">Disparar este perfil</string>
+    <string name="title_source">Código fuente</string>
+    <string name="title_author">Autor</string>
+    <string name="title_donate">Donar</string>
+    <string name="title_website">Sitio web</string>
+    <string name="title_homepage">Página principal</string>
+    <string name="title_service_start">Activación del servicio</string>
+    <string name="title_remote_operation_plugin">Complemento de operaciones remotas</string>
+    <string name="menu_start">Arrancar</string>
+    <string name="menu_stop">Detener</string>
+    <string name="menu_action_save">Guardar</string>
+    <string name="menu_clear">Limpiar</string>
+    <string name="service_indicator_positive">Ejecutándose</string>
+    <string name="service_indicator_negative">No ejecutándose</string>
+    <string name="activity_history__profile">Perfil</string>
+    <string name="activity_history__script">Guión</string>
+    <string name="activity_history__time">Hora</string>
+    <string name="activity_history__extra">Información adicional</string>
+    <string name="activity_history__satisfaction">Estado</string>
+    <string name="activity_history__satisfied">Cumplida</string>
+    <string name="activity_history__unsatisfied">Incumplida</string>
+    <string name="activity_history__service">Servicio</string>
+    <string name="activity_history__status">Estado</string>
+    <string name="activity_history__start">Arrancar</string>
+    <string name="activity_history__stop">Detener</string>
+    <string name="null_content">CONTENIDO VACÍO</string>
+    <string name="navigation_drawer_open">Abrir la caja de navegación</string>
+    <string name="navigation_drawer_close">Cerrar la caja de navegación</string>
+    <string name="button_read_next_time">Leer la próxima vez</string>
+    <string name="button_understand">Entendido</string>
+    <string name="button_cancel">Cancelar</string>
+    <string name="button_ok">OK</string>
+    <string name="text_lack_permission">Algunas habilidades NO tienen permisos suficientes.</string>
+    <string name="button_see_detail">Ver detalles</string>
+    <string name="text_notification_running_indicator_content">%s está ejecutándose en segundo plano</string>
+    <string name="text_predecessor_nodes">Antecedentes</string>
+    <string name="text_profile">Perfil</string>
+    <string name="text_predefined_event">Evento predefinido</string>
+    <string name="text_inline_event">Evento en línea</string>
+    <string name="text_use_condition">Usar condicion</string>
+    <string name="text_repeatable_desc">Reapareciendo</string>
+    <string name="text_reverse_desc">Escenario inverso</string>
+    <string name="text_volatile">Volátil</string>
+    <string name="text_persistent">Persistente</string>
+    <string name="text_unknown_skill">[Habilidad desconocida]</string>
+    <string name="text_dynamics">Dinámica</string>
+    <string name="text_placeholder">Marcador de posición</string>
+    <string name="toggle_active">Activar</string>
+    <string name="hint_event_title">Título del evento</string>
+    <string name="hint_script_title">Título del guión</string>
+    <string name="hint_profile_title">Título del perfil</string>
+    <string name="hint_condition_title">Título de condición</string>
+    <string name="prompt_save_failed">No se pudo guardar</string>
+    <string name="prompt_delete">Estás segurx de que quieres borrar %s\?</string>
+    <string name="prompt_delete_failed">No se pudo eliminar. Verifica si este elemento se está utilizando.</string>
+    <string name="prompt_data_illegal">Se evitó guardar datos con campo(s) no válido(s). Vuelve a verificar tus opciones / entradas.</string>
+    <string name="prompt_data_clash">Error al guardar los datos. Por favor, comprueba si hay un conflicto con los nombres.</string>
+    <string name="prompt_data_save_io_exception">Se produjo un IOException. Es posible que el almacenamiento este lleno\?</string>
+    <string name="help_script">Los \"guiones\" son los contenedores lógicos. Conecta un evento o una condición con un perfil dentro de un guión, para que Easer sepa cargar/ejecutar ese perfil cuando el evento ocurra, o la condición se cumpla.
+\nHay también funciones mas avanzadas, p.e. eventos invertidos.
+\nPor favor, visita este &lt;a href=\"https://github.com/renyuneyun/Easer/wiki\"&gt;documento&lt;/a&gt; para obtener más información.<a href="https://github.com/renyuneyun/Easer/wiki">document</a> for more info.</string>
+    <string name="help_condition">"Una \"condición\" representa una condición duradera (pero generalmente no para siempre) en su dispositivo o de forma remota.
+\nPor ejemplo, al conectarse a Wi-Fi o cuando la pantalla se apaga.
+\nPor favor, visita este  &lt;a href=\"https://github.com/renyuneyun/Easer/wiki\"&gt;documento&lt;/a&gt; para obtener más información."<a href="https://github.com/renyuneyun/Easer/wiki">document</a> for more info.</string>
+</resources>
