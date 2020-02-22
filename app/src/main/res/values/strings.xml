@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="easer">Easer</string>
     <string name="app_name" translatable="false">@string/easer</string>
@@ -35,19 +35,14 @@
     <string name="title_donate">Donate</string>
     <string name="title_website">Website</string>
     <string name="title_homepage">Homepage</string>
-
     <string name="title_service_start">Service Start</string>
-
     <string name="title_remote_operation_plugin">Remote Operation Plugin</string>
-
     <string name="menu_start">Start</string>
     <string name="menu_stop">Stop</string>
     <string name="menu_action_save">Save</string>
     <string name="menu_clear">Clear</string>
-
     <string name="service_indicator_positive">Running</string>
     <string name="service_indicator_negative">Not running</string>
-
     <string name="activity_history__profile">@string/title_profile</string>
     <string name="activity_history__script">@string/title_script</string>
     <string name="activity_history__time">Time</string>
@@ -59,43 +54,33 @@
     <string name="activity_history__status">Status</string>
     <string name="activity_history__start">Start</string>
     <string name="activity_history__stop">Stop</string>
-
     <string name="null_content">NULL CONTENT</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="button_read_next_time">Read next time</string>
     <string name="button_understand">Understood</string>
     <string name="button_cancel">Cancel</string>
     <string name="button_ok">OK</string>
     <string name="text_lack_permission">Some skills do NOT have sufficient permissions.</string>
     <string name="button_see_detail">See Details</string>
-
     <string name="text_notification_running_indicator_content">%s is running in the background</string>
-
     <string name="text_predecessor_nodes">Predecessors</string>
     <string name="text_profile">Profile</string>
     <string name="text_predefined_event">Predefined Event</string>
     <string name="text_inline_event">Inline Event</string>
     <string name="text_use_condition">Use Condition</string>
-    <string name="text_repeatable_desc">Reoccuring</string>
+    <string name="text_repeatable_desc">Reoccurring</string>
     <string name="text_reverse_desc">Reverse Scenario</string>
     <string name="text_volatile">Volatile</string>
     <string name="text_persistent">Persistent</string>
-
     <string name="text_unknown_skill">[Unknown skill]</string>
-
     <string name="text_dynamics">Dynamics</string>
     <string name="text_placeholder">Placeholder</string>
-
     <string name="toggle_active">Active</string>
-
     <string name="hint_event_title">Event title</string>
     <string name="hint_script_title">Script title</string>
     <string name="hint_profile_title">Profile title</string>
     <string name="hint_condition_title">Condition title</string>
-  
     <string name="prompt_save_failed">Could not save</string>
     <string name="prompt_delete">Are you sure you want to delete %s\?</string>
     <string name="prompt_delete_failed">Could not delete. Check whether this item is being used.</string>
@@ -105,29 +90,22 @@
     <string name="prompt_dynamics_not_ready">To set Dynamics, you need to select a valid Profile and a valid trigger (e.g. Event).</string>
     <string name="prompt_prevented_for_permission">Grant Easer &lt;%s&gt; permission for this to work.</string>
     <string name="prompt_error_logged">Easer just recorded an error. See the "error" subdirectory of log directory.</string>
-
     <string name="text_app_description">Ease your life by automating routine actions on your device(s).
 \nChain different events and let their corresponding actions performed. No longer need to keep them in mind!
 \nThis app was inspired by CyanogenMod\'s \'profile\' mechanism and IFTTT. The original intuition was to automatically change the profile on certain time or specific Wi-Fi connections, and it was expanded for more general use then.
 \nReminder: Easer is still in development. It may contain bugs and the UI definitely needs to be improved. Have a look in TODO.en.md (or TODO.md if you can read Chinese) on the repo to help out.</string>
-
     <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
-
     <string name="text_license">This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n
         This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.\n
         You should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses/
     </string>
-
     <string name="pref_category_functionality">Functionality</string>
     <string name="pref_category_personalise">Personalise</string>
     <string name="pref_category_data_manage">Manage data</string>
     <string name="pref_category_service">Service</string>
-
     <string name="pref_autostart_title">Autostart</string>
     <string name="pref_autostart_summary">Starts Easer in the background when the device is turned on.</string>
-
     <string name="pref_restart_after_upgrade_title">Start service after upgrade</string>
-
     <string name="pref_welcome_title">Show welcome message</string>
     <string name="pref_welcome_summary">Show welcome message when opening app</string>
     <string name="pref_logging_title">Turn on external logging</string>
@@ -141,7 +119,6 @@
     <string name="pref_enabled_skills_title">Activated skills</string>
     <string name="pref_enabled_skills_summary">Turn on or off certain skills</string>
     <string name="pref_use_12_hour_clock_title">Use 12-hour clock</string>
-
     <string name="pref_export_title">Export</string>
     <string name="pref_export_summary">Export all events and profiles to SD card.
 \nThe current time as of saving will be used as filename.</string>
@@ -150,16 +127,12 @@
 \nExisting events and profiles with same name will be replaced.</string>
     <string name="pref_convert_data_title">Convert data</string>
     <string name="pref_convert_data_summary">Convert all data to the recommended format</string>
-
     <string name="pref_show_notification_title">Show notification</string>
     <string name="pref_show_notification_summary">Show a notification in the notification bar.</string>
     <string name="pref_foreground_title">Run service in foreground</string>
     <string name="pref_foreground_summary">Make it harder to for the system to kill the service. A notification will be shown. Can not be turned off on Android 8+ because of a system requirement.</string>
-
     <string name="pref_locale_custom">Custom locale</string>
-
     <string name="message_skill_not_compatible">This device can not run this skill.</string>
-
     <string name="message_convert_data_start">Converting data.</string>
     <string name="message_convert_data_finish">Data converted.</string>
     <string name="message_convert_data_abort">Data conversion aborted.</string>
@@ -183,7 +156,6 @@
 \n
 \n
 \nExtending trees to graphs is planned, but not currently implemented.</string>
-
     <string name="title_welcome_message_privacy">
         Privacy!
     </string>
@@ -194,21 +166,16 @@
 \nYOU own every piece of your data. Everything lives on your device, including the logs.</string>
     <string name="alert_update_storage_data_title">Old data version found</string>
     <string name="alert_update_storage_data">Select \"Convert Data\" in the settings to update your data to the new format, for compatibility.</string>
-
     <string name="message_future_change_title">Changing soon</string>
     <string name="message_future_change_0_8">Tree view of Scripts will be removed in v0.8. Pivot provides a better view towards that.</string>
-
     <string name="template_export">Exported to %s</string>
     <string name="version">Version</string>
     <string name="message_importing_invalid_data">This file doesn\'t seem to be valid. Make sure to import a file exported by Easer.</string>
-
     <string name="dynamics_time">Current Time</string>
     <string name="dynamics_date">Current Date</string>
     <string name="dynamics_script_name">Script Name</string>
     <string name="dynamics_profile_name">Profile Name</string>
-
     <string name="title_help">Help</string>
-
     <string name="help_script">\"Scripts\" are the logic containers. Connect an event or a condition with a profile in a script, so that Easer knows to load/execute that profile when the event occurs, or the condition is met.
 \nThere are also more advanced functions, e.g. reversed events.
 \nPlease refer to the <a href="https://github.com/renyuneyun/Easer/wiki">document</a> for more info.</string>
@@ -226,5 +193,4 @@
     <string name="category_operation_easer">@string/easer</string>
     <string name="category_operation_misc">Misc</string>
     <string name="category_operation_unknown">Unknown</string>
-
 </resources>
