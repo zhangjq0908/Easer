@@ -3,7 +3,7 @@
     <string name="easer">Easer</string>
     <string name="drawer_tip">Facilita tu vida.</string>
     <string name="title_outline">Esquema</string>
-    <string name="title_pivot">Eje</string>
+    <string name="title_pivot">Pivot</string>
     <string name="title_data_collection">Datos</string>
     <string name="title_operation">Operación</string>
     <string name="title_profile">Perfil</string>
@@ -89,7 +89,104 @@
     <string name="help_script">Los \"guiones\" son los contenedores lógicos. Conecta un evento o una condición con un perfil dentro de un guión, para que Easer sepa cargar/ejecutar ese perfil cuando el evento ocurra, o la condición se cumpla.
 \nHay también funciones mas avanzadas, p.e. eventos invertidos.
 \nPor favor, visita este &lt;a href=\"https://github.com/renyuneyun/Easer/wiki\"&gt;documento&lt;/a&gt; para obtener más información.<a href="https://github.com/renyuneyun/Easer/wiki">document</a> for more info.</string>
-    <string name="help_condition">"Una \"condición\" representa una condición duradera (pero generalmente no para siempre) en su dispositivo o de forma remota.
+    <string name="help_condition">Una \"condición\" representa una condición duradera (pero generalmente no para siempre) en su dispositivo o de forma remota.
 \nPor ejemplo, al conectarse a Wi-Fi o cuando la pantalla se apaga.
-\nPor favor, visita este  &lt;a href=\"https://github.com/renyuneyun/Easer/wiki\"&gt;documento&lt;/a&gt; para obtener más información."<a href="https://github.com/renyuneyun/Easer/wiki">document</a> for more info.</string>
+\nPor favor, visita este <a href="https://github.com/renyuneyun/Easer/wiki">documento</a> para obtener más información.</string>
+    <string name="prompt_dynamics_not_ready">Para fijar dinámicas, necesitas seleccionar un perfil y un disparador válidos (p.ej. un evento).</string>
+    <string name="prompt_prevented_for_permission">Concede a Easer &lt;%s&gt; pemisos para que pueda funcionar.</string>
+    <string name="prompt_error_logged">Easer acaba de grabar un error. Consulta el subdirectorio de error del directorio de registro.</string>
+    <string name="text_app_description">Facilita tu vida automatizando las acciones rutinarias de tu(s) dispositivo(s).
+\nEncadena diferentes eventos y deja que se realicen las acciones correspondientes. ¡Ya no es necesario prestarles atención!
+\nEsta aplicación se inspiró en el mecanismo de \'perfil\' de CyanogenMod y en IFTTT. La intención original era cambiar automáticamente el perfil en algún momento determinado o con conexiones Wi-Fi concretas, pero se amplió para un uso más general posteriormente.
+\nRecordatorio: Easer aún está en desarrollo. Puede contener errores y la interfaz de usuario necesita ser mejorada. Echa un vistazo en TODO.es.md (o TODO.md si sabes leer chino) para colaborar.</string>
+    <string name="url_donate">https://renyuneyun.github.io/Easer/es/DONATE.html</string>
+    <string name="text_license">Este programa es software libre: puedes redistribuirlo y/o modificarlo bajo los términos de la Licencia Pública General GNU publicada por la Free Software Foundation, ya sea la versión 3 de la Licencia o (a tu elección) cualquier versión posterior.
+\nEste programa se distribuye con la esperanza de que sea útil, pero SIN NINGUNA GARANTÍA; sin siquiera la garantía implícita de COMERCIABILIDAD o APTITUD PARA UN PROPÓSITO EN PARTICULAR. Consulta la Licencia Pública General de GNU para más detalles.
+\nDeberías haber recibido una copia de la Licencia Pública General de GNU junto con este programa. Si no, visita https://www.gnu.org/licenses/</string>
+    <string name="pref_category_functionality">Funcionalidad</string>
+    <string name="pref_category_personalise">Personalizar</string>
+    <string name="pref_category_data_manage">Administrar datos</string>
+    <string name="pref_category_service">Servicio</string>
+    <string name="pref_autostart_title">Autoarranque</string>
+    <string name="pref_autostart_summary">Activa Easer en segundo plano cuando el dispositivo se enciende.</string>
+    <string name="pref_restart_after_upgrade_title">Activar servicio después de actualizar</string>
+    <string name="pref_welcome_title">Mostrar mensaje de bienvenida</string>
+    <string name="pref_welcome_summary">Muestra un mensaje inicial cuando se abre una app</string>
+    <string name="pref_logging_title">Encender registro externo</string>
+    <string name="pref_logging_summary">Registra en un dispositivo de almacenamiento externo (/sdcard/logger) para apuntar los informes de fallo.
+\nLos cambios surten efecto la próxima vez que se abra la aplicación.</string>
+    <string name="pref_use_root_title">Usar características de root</string>
+    <string name="pref_use_root_summary">Usa permisos de administrador para funciones (habilidades) para ayudar a resolver problemas de compatibilidad en algunos dispositivos.</string>
+    <string name="pref_cooldown_title">Evento solo una vez cada…</string>
+    <string name="pref_cooldown_summary">Franja de segundos para tratar dos ocurrencias como un evento.</string>
+    <string name="cooldown_time_illformed">Tu número es demasiado alto, o no es un número entero positivo.</string>
+    <string name="pref_enabled_skills_title">Habilidades activadas</string>
+    <string name="pref_enabled_skills_summary">Enciende o apaga ciertas habilidades</string>
+    <string name="pref_use_12_hour_clock_title">Usar reloj de 12 horas</string>
+    <string name="pref_export_title">Exportar</string>
+    <string name="pref_export_summary">Exporta todos los eventos y perfiles a la tarjeta SD.
+\nLa hora actual se usará para darle nombre al fichero.</string>
+    <string name="pref_import_title">Importar</string>
+    <string name="pref_import_summary">Importa todos los eventos y perfiles desde un archivo ZIP.
+\nLos eventos y perfiles previos con identico nombre serán reemplazados.</string>
+    <string name="pref_convert_data_title">Convertir datos</string>
+    <string name="pref_convert_data_summary">Convierte todos los datos al formato recomendado</string>
+    <string name="pref_show_notification_title">Mostrar notificación</string>
+    <string name="pref_show_notification_summary">Muestra un aviso en la barra de notificaciones.</string>
+    <string name="pref_foreground_title">Ejecutar el servicio en segundo plano</string>
+    <string name="pref_foreground_summary">Hace más difícil para el sistema matar el servicio. Se mostrará una notificación. No se puede apagar en Android 8+ debido a un requisito del sistema.</string>
+    <string name="pref_locale_custom">Territorialidad personalizada</string>
+    <string name="message_skill_not_compatible">Este dispositivo no puede ejecutar esa habilidad.</string>
+    <string name="message_convert_data_start">Convirtiendo datos.</string>
+    <string name="message_convert_data_finish">Datos convertidos.</string>
+    <string name="message_convert_data_abort">Conversión de datos cancelada.</string>
+    <string name="message_convert_data_error">No puedes convertir los datos. Por favor, consulta el registro para más detalles.</string>
+    <string name="title_welcome_message">Bienvenidx</string>
+    <string name="welcome_message_1">Bienvenidx. 
+\n 
+\nAquí hay alguna información básica para leer antes de usar Easer. 
+\n 
+\nSe tratan más temas en la wiki del proyecto <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a>.</string>
+    <string name="welcome_message_2">Easer contiene varios módulos para proporcionar diferentes funciones. Enciéndelas o apágalas en Ajustes. 
+\n 
+\nLos permisos correspondientes (para cada módulo activo) deben concederse antes de poder usarlos.
+\n 
+\n 
+\n(Todo está encendido de manera predefinida.)</string>
+    <string name="welcome_message_3">Los guiones están estructurados como <a href="https://en.wikipedia.org/wiki/Tree_structure">árboles</a>, escogiendo el ascendiente relevante. 
+\n 
+\nDentro de cada rama rige la lógica Y.
+\nEntre ramas se cumple la lógica O.
+\n 
+\n 
+\nSe planea extender los árboles a los gráficos, pero aun no está disponible.</string>
+    <string name="title_welcome_message_privacy">Privacidad!</string>
+    <string name="welcome_message_privacy">La privacidad es importante!
+\n 
+\nEaser es <a href="https://en.wikipedia.org/wiki/Free_software">software libre</a> (software de código abierto), asegurando que todos pueden usarlo, estudiarlo, cambiarlo y compartirlo.
+\n 
+\nTÚ eres el dueño de tus datos. Todo se mantiene en tu dispositivo, incluidos los registros.</string>
+    <string name="alert_update_storage_data_title">Se ha encontrado una versión antigua de datos</string>
+    <string name="alert_update_storage_data">Selecciona \"Convertir datos\" en ajustes para actualizar tus datos al nuevo formato, para que sean compatibles.</string>
+    <string name="message_future_change_title">Se cambiará pronto</string>
+    <string name="message_future_change_0_8">La vista en árbol de Guiones será eliminada en la v0.8. Pivot proporcionará una vista mejor.</string>
+    <string name="template_export">Exportado a %s</string>
+    <string name="version">Versión</string>
+    <string name="message_importing_invalid_data">Este fichero no parece válido. Asegúrate de importar un fichero exportado por Easer.</string>
+    <string name="dynamics_time">Hora actual</string>
+    <string name="dynamics_date">Fecha actual</string>
+    <string name="dynamics_script_name">Nombre de guión</string>
+    <string name="dynamics_profile_name">Nombre de perfil</string>
+    <string name="title_help">Ayuda</string>
+    <string name="help_event">Los \"eventos\" representan acontecimientos de corta duración (instantáneos) en su dispositivo, o de forma remota.
+\nPor ejemplo, al recibir una notificación o escaneando una etiqueta NFC.
+\nConsulta este <a href="https://github.com/renyuneyun/Easer/wiki"> documento </a> para obtener más información.</string>
+    <string name="help_profile">El \"perfil\" es un conjunto de operaciones. Cada operación representa un tipo particular de acción.
+\nPor ejemplo, activar el Bluetooth o envíar un SMS.
+\nConsulta este <a href="https://github.com/renyuneyun/Easer/wiki"> documento </a> para obtener más información.</string>
+    <string name="category_operation_android">Android</string>
+    <string name="category_operation_system_config">Configuración de sistema</string>
+    <string name="category_operation_easer">\@string/easer</string>
+    <string name="category_operation_misc">Misc</string>
+    <string name="category_operation_unknown">Desconocido</string>
 </resources>
