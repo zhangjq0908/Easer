@@ -51,7 +51,7 @@
     <string name="text_predefined_event">Forudbestemt hændelse</string>
     <string name="text_inline_event">Integreret hændelse</string>
     <string name="text_use_condition">Brug tilstand</string>
-    <string name="text_repeatable_desc">Gentagbar</string>
+    <string name="text_repeatable_desc">Gentager</string>
     <string name="text_reverse_desc">Omvendt scenarie</string>
     <string name="text_volatile">Omskiftelig</string>
     <string name="text_persistent">Vedvarende</string>
