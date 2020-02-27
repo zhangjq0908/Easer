@@ -56,7 +56,7 @@
     <string name="button_cancel">Annulla</string>
     <string name="text_inline_event">Evento Inline</string>
     <string name="text_use_condition">Usa Condizione</string>
-    <string name="text_repeatable_desc">Ripetibile quando Soddisfatto</string>
+    <string name="text_repeatable_desc">Ricorrente</string>
     <string name="text_reverse_desc">Scenario Inverso</string>
     <string name="text_volatile">Volatile</string>
     <string name="text_persistent">Persistente</string>
@@ -67,9 +67,9 @@
     <string name="hint_script_title">Titolo Script</string>
     <string name="hint_profile_title">Titolo Profilo</string>
     <string name="hint_condition_title">Titolo Condizione</string>
-    <string name="prompt_save_failed">Salvataggio fallito</string>
+    <string name="prompt_save_failed">Impossobile salvare</string>
     <string name="prompt_delete">Vuoi eliminare: %s\?</string>
-    <string name="prompt_delete_failed">Eliminazione fallita. Controllare se questo elemento viene utilizzato.</string>
+    <string name="prompt_delete_failed">Impossibile eliminare. Controllare se questo elemento viene utilizzato.</string>
     <string name="prompt_data_illegal">Impedito il salvataggio dei dati con campi non validi. Controllare scelte e inserimenti.</string>
     <string name="prompt_prevented_for_permission">Concedi a Easer l\'autorizzazione &lt;%s&gt; per farlo funzionare.</string>
     <string name="text_app_description">Semplifica la tua vita automatizzando le azioni di routine sui tuoi dispositivi.
