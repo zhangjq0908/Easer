@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="easer">Easer</string>
-    <string name="drawer_tip">Erleichtere dein Leben!</string>
+    <string name="drawer_tip">Vereinfache dein Leben!</string>
     <string name="title_outline">Übersicht</string>
     <string name="title_profile">Profil</string>
     <string name="title_event">Ereignis</string>
@@ -56,12 +56,12 @@
     <string name="prompt_save_failed">Konnte nicht speichern</string>
     <string name="prompt_delete">Sind Sie sicher, dass Sie %s löschen möchten\?</string>
     <string name="prompt_delete_failed">Konnte nicht löschen. Überprüfen Sie, ob dieses Element verwendet wird.</string>
-    <string name="prompt_prevented_for_permission">Erlauben Sie Easer die Berechtigung &lt;%s&gt;, damit dies funktioniert.</string>
+    <string name="prompt_prevented_for_permission">Erteilen Sie Easer die Berechtigung &lt;%s&gt;, damit dies funktioniert.</string>
     <string name="pref_category_functionality">Funktionalität</string>
     <string name="pref_category_personalise">Personalisieren</string>
     <string name="pref_category_data_manage">Daten verwalten</string>
     <string name="pref_autostart_title">Autostart</string>
-    <string name="pref_autostart_summary">Startet Easer im Hintergrund, wenn das Gerät eingeschaltet wird</string>
+    <string name="pref_autostart_summary">Startet Easer beim Einschalten des Geräts im Hintergrund.</string>
     <string name="pref_restart_after_upgrade_title">Dienst nach der Aktualisierung starten</string>
     <string name="pref_welcome_title">Willkommensnachricht anzeigen</string>
     <string name="pref_welcome_summary">Willkommensnachricht beim App-Start anzeigen</string>
@@ -111,15 +111,15 @@
     <string name="pref_category_service">Dienst</string>
     <string name="pref_logging_summary">Protokolliert auf externe Speichergeräte (/sdcard/logger) zur Unterstützung von Fehlerberichten.
 \nÄnderungen werden beim nächsten Start der App wirksam.</string>
-    <string name="pref_use_root_summary">Verwenden Sie Root-Rechte für bestimmte Funktionen (Plugins), um Kompatibilitätsprobleme auf einigen Geräten zu beheben. Es wird nicht anderweitig verwendet.</string>
+    <string name="pref_use_root_summary">Verwenden Sie Root-Rechte für bestimmte Funktionen (Plugins), um Kompatibilitätsprobleme auf einigen Geräten zu beheben.</string>
     <string name="pref_cooldown_title">Termin nur einmal pro …</string>
-    <string name="pref_cooldown_summary">Minimales Intervall (in Sekunden) zwischen zwei Auslösern desselben Ereignisses</string>
-    <string name="cooldown_time_illformed">Die Zahl darf nicht kleiner als 0 und nicht größer als ein Integer sein</string>
-    <string name="pref_enabled_skills_title">Aktive Plugins</string>
+    <string name="pref_cooldown_summary">Zeitintervall (in Sekunden), innerhalb dem zwei gleiche Ereignisse als eines behandelt werden.</string>
+    <string name="cooldown_time_illformed">Die Zahl ist zu groß oder keine positive Ganzzahl.</string>
+    <string name="pref_enabled_skills_title">Aktivierte Plugins</string>
     <string name="pref_enabled_skills_summary">Bestimmte Plugins (de-)aktivieren</string>
     <string name="pref_export_summary">Alle Ereignisse und Profile auf die SD-Karte exportieren.
-\nDie Datei wird nach der aktuellen Zeit benannt.</string>
-    <string name="pref_import_summary">Alle Ereignisse und Profile in eine Zip-Datei importieren.
+\nDie aktuelle Zeit beim Speichern wird als Dateiname verwendet.</string>
+    <string name="pref_import_summary">Alle Ereignisse und Profile aus einer ZIP-Datei importieren.
 \nBestehende Events und Profile mit gleichem Namen werden ersetzt.</string>
     <string name="pref_show_notification_title">Benachrichtigung anzeigen</string>
     <string name="pref_show_notification_summary">Eine Benachrichtigung in der Benachrichtigungsleiste anzeigen.</string>
@@ -188,4 +188,6 @@
     <string name="text_unknown_skill">[Unbekannte Fähigkeit]</string>
     <string name="title_add_child">Kind hinzufügen</string>
     <string name="title_edit_script">Skript bearbeiten</string>
+    <string name="prompt_data_clash">Speichern fehlgeschlagen. Bitte auf Namenskonflikt prüfen.</string>
+    <string name="prompt_data_save_io_exception">Ein-/Ausgabefehler aufgetreten. Ist der Speicher voll\?</string>
 </resources>
