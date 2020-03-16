@@ -218,4 +218,6 @@
     <string name="event_nfc_tag__dynamics_tag_id">Identifiant de l’étiquette</string>
     <string name="event_tcp_trip__dynamics_remote_host">Hôte distant</string>
     <string name="event_tcp_trip__dynamics_remote_port">Port distant</string>
+    <string name="event_tcp_trip__dynamics_remote_ip">IP distante</string>
+    <string name="event_tcp_trip__dynamics_sent_data">"Données envoyés "</string>
 </resources>
