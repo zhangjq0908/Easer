@@ -29,7 +29,7 @@
     <string name="event_broadcast">Réception de la diffusion</string>
     <string name="broadcast_action">Action</string>
     <string name="broadcast_category">Catégorie</string>
-    <string name="event_sms">Réception d\'un SMS</string>
+    <string name="event_sms">Réception d’un SMS</string>
     <string name="sender">Emetteur</string>
     <string name="content_contains">Contenu (contient...)</string>
     <string name="event_notification">Réception d\'une notification</string>
@@ -52,7 +52,7 @@
     <string name="event_nfc_tag">Balise NFC</string>
     <string name="event_nfc_tag__button_detect">Détecter la balise</string>
     <string name="event_nfc_tag__prompt_enable_nfc_first">Vous devez activer le NFC</string>
-    <string name="event_nfc_tag__prompt_wait_for_tag">Attente de la détection de la balise…</string>
+    <string name="event_nfc_tag__prompt_wait_for_tag">Attente de la détection de l’étiquette…</string>
     <string name="usource_headset">Casque audio</string>
     <string name="usource_headset__headset_action">Action casque audio</string>
     <string name="usource_headset__plug_in">Branché</string>
@@ -215,4 +215,7 @@
     <string name="event_widget_button_save_widget">Sauvegarder un</string>
     <string name="usource_battery_level">Niveau de batterie</string>
     <string name="usource_battery_level__custom_battery_level">Niveau de batterie minimum (pourcentage)</string>
+    <string name="event_nfc_tag__dynamics_tag_id">Identifiant de l’étiquette</string>
+    <string name="event_tcp_trip__dynamics_remote_host">Hôte distant</string>
+    <string name="event_tcp_trip__dynamics_remote_port">Port distant</string>
 </resources>
