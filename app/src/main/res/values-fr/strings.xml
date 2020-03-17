@@ -64,7 +64,7 @@
     <string name="hint_condition_title">Titre de la condition</string>
     <string name="prompt_save_failed">Enregistrement impossible</string>
     <string name="prompt_delete">Êtes-vous sûr de vouloir supprimer %s \?</string>
-    <string name="prompt_delete_failed">Échec de la suppression. Vérifiez que cet item n’est pas en cours d’utilisation.</string>
+    <string name="prompt_delete_failed">Suppression impossible. Vérifiez que cet item n’est pas en cours d’utilisation.</string>
     <string name="prompt_data_illegal">Champs invalides. Veuillez vérifier vos choix ou saisies.</string>
     <string name="prompt_prevented_for_permission">Accorder à Easer &lt;%s&gt; la permission pour que cela fonctionne.</string>
     <string name="text_app_description">Simplifiez vous la vie en automatisant des actions / opérations routinières sur votre téléphone.
@@ -189,4 +189,5 @@
     <string name="title_add_child">Ajouter un enfant</string>
     <string name="prompt_data_clash">Échec de l\'enregistrement des données. Veuillez vous assurer qu\'il n\'y ait pas de conflit de noms.</string>
     <string name="prompt_data_save_io_exception">IOException survenue. L\'espace de stockage est peut-être plein \?</string>
+    <string name="title_edit_script">Modifier le script</string>
 </resources>
