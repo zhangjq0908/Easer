@@ -2,7 +2,7 @@
 <resources>
     <string name="category_source_date_time">Fecha / Hora</string>
     <string name="category_source_device">Dispositivo</string>
-    <string name="category_source_easer">Easer</string>
+    <string name="category_source_easer">Más fácil</string>
     <string name="category_source_misc">Misceláneo</string>
     <string name="category_source_personal">Personal</string>
     <string name="category_source_unknown">Desconocido</string>
@@ -36,7 +36,7 @@
     <string name="event_nfc_tag">Marca NFC</string>
     <string name="event_nfc_tag__button_detect">Detectar marca</string>
     <string name="event_nfc_tag__prompt_enable_nfc_first">Primero debes activar NFC</string>
-    <string name="event_nfc_tag__prompt_wait_for_tag">Esperando a que la marca sea escaneada…</string>
+    <string name="event_nfc_tag__prompt_wait_for_tag">En espera de escaneo de etiquetas …</string>
     <string name="event_notification">Notificación recibida</string>
     <string name="event_notification__app">Aplicación</string>
     <string name="event_notification__app_hint">Nombre del paquete de la aplicación completamente válido</string>
@@ -46,7 +46,7 @@
     <string name="ev_notification_dynamics_app">Aplicación notificadora</string>
     <string name="ev_notification_dynamics_title">Título de la notificación</string>
     <string name="ev_notification_dynamics_content">Contenido de la notificación</string>
-    <string name="event_sms">Recibir mensaje</string>
+    <string name="event_sms">Recibir mensajes</string>
     <string name="sender">Emisor</string>
     <string name="content_contains">Contenido (contiene…)</string>&gt;
     <string name="ev_sms_dynamics_sender">Autor del mensaje</string>
@@ -208,4 +208,29 @@
     <string name="usource_wifi_enabled">WiFi Activada</string>
     <string name="usource_wifi_enabled_wifi_is_enabled">Esta el WiFi activado\?</string>
     <string name="op_toast_hint_text">Texto</string>
+    <string name="category_source_android">Telefono inteligente</string>
+    <string name="category_source_data_communication">Comunicación de datos</string>
+    <string name="usource_screen_off">Apagado</string>
+    <string name="operation_toast">Brindis</string>
+    <string name="event_nfc_tag__dynamics_tag_id">Identificacion de etiqueta</string>
+    <string name="event_tcp_trip__dynamics_remote_host">Servidor remoto</string>
+    <string name="event_tcp_trip__dynamics_remote_ip">IP remoto</string>
+    <string name="event_tcp_trip__dynamics_remote_port">Puerto remoto</string>
+    <string name="event_tcp_trip__dynamics_sent_data">Enviar data</string>
+    <string name="event_tcp_trip__dynamics_received_data">Recivir_data</string>
+    <string name="event_widget_button_save_widget">Guardar widget</string>
+    <string name="event_widget__dynamics_widget_tag">Etiqueta de widget</string>
+    <string name="event_widget__dynamics_widget_id">ID del widget</string>
+    <string name="usource_battery_level">Nivel de bateria</string>
+    <string name="usource_battery_level__level_system">Nivel del sistema</string>
+    <string name="usource_battery_level__level_custom">Nivel personalizado</string>
+    <string name="usource_battery_level__ok_after_low">Ok después de baja</string>
+    <string name="usource_battery_level__low">bajo</string>
+    <string name="usource_battery_level__custom_battery_level">Nivel mínimo de batería (porcentaje)</string>
+    <string name="usource_battery_level__inclusive">Inclusivo</string>
+    <string name="usource_location">Localizacion</string>
+    <string name="usource_location__radius_meters">Radio (metros)</string>
+    <string name="usource_location__listen_min_time_seconds">Escuchar tiempo min (segundos)</string>
+    <string name="usource_location__threshold_age_seconds">Umbral de edad (segundos)</string>
+    <string name="usource_location__threshold_accuracy_meters">Precisión umbral (metros)</string>
 </resources>
