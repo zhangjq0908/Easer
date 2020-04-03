@@ -5,9 +5,11 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import ryey.easer.R;
+import ryey.easer.commons.local_skill.SkillView;
 import ryey.easer.skills.operation.OperationLoader;
 import ryey.easer.skills.operation.intent.IntentOperationData;
 import ryey.easer.skills.operation.intent.IntentOperationSkill;
+import ryey.easer.skills.operation.intent.IntentSkillViewFragment;
 
 public class BroadcastOperationSkill extends IntentOperationSkill {
     @NonNull
@@ -26,5 +28,11 @@ public class BroadcastOperationSkill extends IntentOperationSkill {
     @Override
     public OperationLoader<IntentOperationData> loader(@NonNull Context context) {
         return new BroadcastLoader(context);
+    }
+
+    @NonNull
+    @Override
+    public SkillView<IntentOperationData> view() {
+        return new IntentSkillViewFragment(){};
     }
 }

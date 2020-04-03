@@ -62,6 +62,9 @@ import ryey.easer.skills.operation.cellular.CellularOperationSkill;
 import ryey.easer.skills.operation.command.CommandOperationSkill;
 import ryey.easer.skills.operation.hotspot.HotspotOperationSkill;
 import ryey.easer.skills.operation.http_request.HttpRequestOperationSkill;
+import ryey.easer.skills.operation.intent.operations.ActivityOperationSkill;
+import ryey.easer.skills.operation.intent.operations.BroadcastOperationSkill;
+import ryey.easer.skills.operation.intent.operations.ServiceOperationSkill;
 import ryey.easer.skills.operation.launch_app.LaunchAppOperationSkill;
 import ryey.easer.skills.operation.media_control.MediaControlOperationSkill;
 import ryey.easer.skills.operation.network_transmission.NetworkTransmissionOperationSkill;
@@ -151,7 +154,6 @@ final public class LocalSkillRegistry {
         operation().registerSkill(AlarmOperationSkill.class);
         operation().registerSkill(BluetoothOperationSkill.class);
         operation().registerSkill(BrightnessOperationSkill.class);
-        operation().registerSkill(IntentOperationSkill.class);
         operation().registerSkill(CellularOperationSkill.class);
         operation().registerSkill(CommandOperationSkill.class);
         operation().registerSkill(LaunchAppOperationSkill.class);
@@ -169,6 +171,9 @@ final public class LocalSkillRegistry {
         operation().registerSkill(UiModeOperationSkill.class);
         operation().registerSkill(VolumeOperationSkill.class);
         operation().registerSkill(WifiOperationSkill.class);
+        operation().registerSkill(ActivityOperationSkill.class);
+        operation().registerSkill(BroadcastOperationSkill.class);
+        operation().registerSkill(ServiceOperationSkill.class);
 
         //TODO: write more skills
     }

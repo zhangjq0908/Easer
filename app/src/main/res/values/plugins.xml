@@ -108,6 +108,7 @@
 
     <string name="operation_broadcast">Send Broadcast</string>
     <string name="operation_start_activity">Start Activity</string>
+    <string name="operation_start_service">Start Service</string>
     <string name="obroadcast_l_action">Action:</string>
     <string name="obroadcast_l_category">Category:</string>
     <string name="obroadcast_l_type">Type:</string>
