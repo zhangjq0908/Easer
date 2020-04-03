@@ -33,7 +33,10 @@ public class ActivityOperationSkill extends IntentOperationSkill {
     @NonNull
     @Override
     public SkillView<IntentOperationData> view() {
-        return new IntentSkillViewFragment() {
-        };
+        return new DummyIntentSkillViewFragment();
+    }
+
+    public static class DummyIntentSkillViewFragment extends IntentSkillViewFragment {
+
     }
 }
