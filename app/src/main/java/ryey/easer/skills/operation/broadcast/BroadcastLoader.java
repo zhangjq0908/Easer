@@ -27,37 +27,19 @@ import androidx.annotation.NonNull;
 import ryey.easer.Utils;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.skills.operation.OperationLoader;
+import ryey.easer.skills.operation.intent.IntentData;
+import ryey.easer.skills.operation.intent.IntentLoader;
+import ryey.easer.skills.operation.intent.IntentOperationData;
 
-public class BroadcastLoader extends OperationLoader<BroadcastOperationData> {
+public class BroadcastLoader extends IntentLoader<IntentOperationData> {
     public BroadcastLoader(Context context) {
         super(context);
     }
 
     @Override
-    public void _load(@ValidData @NonNull BroadcastOperationData data, @NonNull OnResultCallback callback) {
-        IntentData iData = data.data;
-        Intent intent = new Intent();
-        intent.setAction(iData.action);
-        if (iData.category != null)
-            for (String category : iData.category) {
-                intent.addCategory(category);
-            }
-        boolean hasType = false, hasData = false;
-        if (!Utils.isBlank(iData.type))
-            hasType = true;
-        if (iData.data != null && !Utils.isBlank(iData.data.toString()))
-            hasData = true;
-        if (hasType && hasData) {
-            intent.setDataAndType(iData.data, iData.type);
-        } else if (hasType) {
-            intent.setType(iData.type);
-        } else if (hasData) {
-            intent.setData(iData.data);
-        }
-        if (iData.extras != null) {
-            intent.putExtras(iData.extras.asBundle());
-        }
-        context.sendBroadcast(intent);
+    public void _load(@ValidData @NonNull IntentOperationData data, @NonNull OnResultCallback callback) {
+
+        context.sendBroadcast(this.getIntent(data));
         callback.onResult(true);
     }
 }

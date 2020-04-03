@@ -57,7 +57,7 @@ import ryey.easer.skills.operation.airplane_mode.AirplaneModeOperationSkill;
 import ryey.easer.skills.operation.alarm.AlarmOperationSkill;
 import ryey.easer.skills.operation.bluetooth.BluetoothOperationSkill;
 import ryey.easer.skills.operation.brightness.BrightnessOperationSkill;
-import ryey.easer.skills.operation.broadcast.BroadcastOperationSkill;
+import ryey.easer.skills.operation.intent.IntentOperationSkill;
 import ryey.easer.skills.operation.cellular.CellularOperationSkill;
 import ryey.easer.skills.operation.command.CommandOperationSkill;
 import ryey.easer.skills.operation.hotspot.HotspotOperationSkill;
@@ -151,7 +151,7 @@ final public class LocalSkillRegistry {
         operation().registerSkill(AlarmOperationSkill.class);
         operation().registerSkill(BluetoothOperationSkill.class);
         operation().registerSkill(BrightnessOperationSkill.class);
-        operation().registerSkill(BroadcastOperationSkill.class);
+        operation().registerSkill(IntentOperationSkill.class);
         operation().registerSkill(CellularOperationSkill.class);
         operation().registerSkill(CommandOperationSkill.class);
         operation().registerSkill(LaunchAppOperationSkill.class);

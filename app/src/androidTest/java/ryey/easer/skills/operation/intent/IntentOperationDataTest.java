@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.operation.broadcast;
+package ryey.easer.skills.operation.intent;
 
 import android.os.Parcel;
 
@@ -29,23 +29,23 @@ import ryey.easer.skills.TestHelper;
 
 import static org.junit.Assert.assertEquals;
 
-public class BroadcastOperationDataTest {
+public class IntentOperationDataTest {
 
     @Test
     public void testParcel() {
-        BroadcastOperationData dummyData = new BroadcastOperationDataFactory().dummyData();
+        IntentOperationData dummyData = new IntentOperationDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
-        BroadcastOperationData parceledData = BroadcastOperationData.CREATOR.createFromParcel(parcel);
+        IntentOperationData parceledData = IntentOperationData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);
     }
 
     @Test
     public void testSerialize() throws Exception {
-        BroadcastOperationDataFactory factory = new BroadcastOperationDataFactory();
-        BroadcastOperationData dummyData = factory.dummyData();
+        IntentOperationDataFactory factory = new IntentOperationDataFactory();
+        IntentOperationData dummyData = factory.dummyData();
         for (PluginDataFormat format : PluginDataFormat.values()) {
             String serialized_data = dummyData.serialize(format);
-            BroadcastOperationData parsed_data = factory.parse(serialized_data, format, C.VERSION_CURRENT);
+            IntentOperationData parsed_data = factory.parse(serialized_data, format, C.VERSION_CURRENT);
             assertEquals(dummyData, parsed_data);
         }
     }

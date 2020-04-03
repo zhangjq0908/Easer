@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.operation.broadcast;
+package ryey.easer.skills.operation.intent;
 
 import android.net.Uri;
 import android.os.Parcel;
