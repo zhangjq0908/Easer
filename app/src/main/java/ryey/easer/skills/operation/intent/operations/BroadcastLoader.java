@@ -17,17 +17,13 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.operation.broadcast;
+package ryey.easer.skills.operation.intent.operations;
 
 import android.content.Context;
-import android.content.Intent;
 
 import androidx.annotation.NonNull;
 
-import ryey.easer.Utils;
 import ryey.easer.commons.local_skill.ValidData;
-import ryey.easer.skills.operation.OperationLoader;
-import ryey.easer.skills.operation.intent.IntentData;
 import ryey.easer.skills.operation.intent.IntentLoader;
 import ryey.easer.skills.operation.intent.IntentOperationData;
 

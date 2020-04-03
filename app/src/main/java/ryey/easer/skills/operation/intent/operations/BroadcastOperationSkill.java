@@ -1,4 +1,4 @@
-package ryey.easer.skills.operation.broadcast;
+package ryey.easer.skills.operation.intent.operations;
 
 import android.content.Context;
 
