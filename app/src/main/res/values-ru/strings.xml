@@ -82,7 +82,7 @@
     <string name="pref_category_personalise">Персонализировать</string>
     <string name="pref_category_data_manage">Управление данными</string>
     <string name="pref_category_service">Сервис</string>
-    <string name="pref_autostart_title">Автоматический запуск при включении</string>
+    <string name="pref_autostart_title">Автоматический запуск</string>
     <string name="pref_autostart_summary">Автоматически запускать сервис Easer в фоне, когда устройство включено</string>
     <string name="pref_restart_after_upgrade_title">Запустить сервис после обновления</string>
     <string name="pref_welcome_title">Показать сообщение приветствия</string>
@@ -191,5 +191,5 @@
     <string name="title_add_child">Добавить следствие</string>
     <string name="title_edit_script">Редактировать скрипт</string>
     <string name="prompt_data_clash">Не удалось сохранить данные. Проверьте, есть ли конфликт имён.</string>
-    <string name="prompt_data_save_io_exception">"Ошибка ввода/вывода. Возможно, память уже заполнена\? "</string>
+    <string name="prompt_data_save_io_exception">Возникло исключение IOException. Возможно, закончилось свободное место\?</string>
 </resources>
