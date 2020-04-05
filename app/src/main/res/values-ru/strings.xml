@@ -190,5 +190,5 @@
     <string name="prompt_dynamics_not_ready">Для настройки Динамических Ссылок, вам необходимо выбрать существующий профиль и существующий триггер (например, Событие).</string>
     <string name="title_add_child">Добавить следствие</string>
     <string name="title_edit_script">Редактировать скрипт</string>
-    <string name="prompt_data_clash">"Не удалось сохранить данные. Проверьте, есть ли конфликт имён. "</string>
+    <string name="prompt_data_clash">Не удалось сохранить данные. Проверьте, есть ли конфликт имён.</string>
 </resources>
