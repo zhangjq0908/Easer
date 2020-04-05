@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="easer">Easer</string>
-    <string name="drawer_tip">Облегчи свою жизнь!</string>
+    <string name="drawer_tip">Облегчи свою жизнь.</string>
     <string name="title_outline">План</string>
     <string name="title_operation">Операция</string>
     <string name="title_profile">Профиль</string>
