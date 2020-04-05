@@ -36,7 +36,7 @@
     <string name="event_broadcast">Получение Трансляции</string>
     <string name="broadcast_action">Действие</string>
     <string name="broadcast_category">Категория</string>
-    <string name="event_sms">Получить Sms</string>
+    <string name="event_sms">Получить SMS</string>
     <string name="sender">Отправитель</string>
     <string name="content_contains">Содержание (содержит…)</string>
     <string name="ev_sms_dynamics_sender">SMS Отправитель</string>
@@ -84,7 +84,7 @@
     <string name="usource_screen_on">Включен</string>
     <string name="usource_screen_off">Выключен</string>
     <string name="usource_screen_unlocked">Разблокирован</string>
-    <string name="operation_wifi">WiFi</string>
+    <string name="operation_wifi">Wi-Fi</string>
     <string name="operation_cellular">Мобильные данные</string>
     <string name="operation_bluetooth">Bluetooth</string>
     <string name="operation_rotation">Автоматический переворот</string>
@@ -108,7 +108,7 @@
     <string name="ringer_mode_dnd_priority">Приоритет</string>
     <string name="ringer_mode_dnd_none">Никакой</string>
     <string name="ringer_mode_dnd_alarms">Будильники</string>
-    <string name="ringing_items_in_do_not_disturb_mode">Звук элементов в режиме \"Не беспокоить\"</string>
+    <string name="ringing_items_in_do_not_disturb_mode">Звук элементов в режиме «Не беспокоить»</string>
     <string name="label_operation_ringer_mode_notification_listener_service">Переключатель режима Без Звука</string>
     <string name="operation_command">Запустить команды</string>
     <string name="operation_hotspot">Точка Доступа</string>
@@ -121,7 +121,7 @@
     <string name="o_nettrans_remote_port">Удалённый порт</string>
     <string name="o_nettrans_data">Данные</string>
     <string name="operation_media_control">Медиа Контроль</string>
-    <string name="text_play_pause">Переключение Играть/Пауза</string>
+    <string name="text_play_pause">Переключение играть/пауза</string>
     <string name="text_play">Играть</string>
     <string name="text_pause">Пауза</string>
     <string name="text_previous">Предыдущий</string>
@@ -213,4 +213,14 @@
     <string name="o_http_url">URL</string>
     <string name="operation_toast">Тост</string>
     <string name="op_toast_hint_text">Текст</string>
+    <string name="usource_battery_level">Уровень заряда батареи</string>
+    <string name="event_widget__dynamics_widget_id">ИД виджета</string>
+    <string name="event_widget__dynamics_widget_tag">Метка виджета</string>
+    <string name="event_widget_button_save_widget">Сохранить виджет</string>
+    <string name="event_tcp_trip__dynamics_received_data">Полученные_данные</string>
+    <string name="event_tcp_trip__dynamics_sent_data">Отправленные данные</string>
+    <string name="event_tcp_trip__dynamics_remote_port">Удалённый порт</string>
+    <string name="event_tcp_trip__dynamics_remote_ip">Удалённый IP-адрес</string>
+    <string name="event_tcp_trip__dynamics_remote_host">Удалённый хост</string>
+    <string name="event_nfc_tag__dynamics_tag_id">ИД тэга</string>
 </resources>
