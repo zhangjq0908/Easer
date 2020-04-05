@@ -54,7 +54,7 @@
     <string name="text_predefined_event">Предопределённое событие</string>
     <string name="text_inline_event">Случайное событие</string>
     <string name="text_use_condition">Использовать Условие</string>
-    <string name="text_repeatable_desc">Повторять при удовлетворении</string>
+    <string name="text_repeatable_desc">Повторяющиеся</string>
     <string name="text_reverse_desc">Обратный сценарий</string>
     <string name="text_volatile">Изменяемый</string>
     <string name="text_persistent">Постоянный</string>
@@ -91,7 +91,7 @@
     <string name="pref_logging_summary">Сохраняйте журналы на внешнее запоминающее устройство (/sdcard/logger), чтобы облегчить отправку сообщений об ошибках. 
 \nИзменения вступают в силу при следующем запуске приложения.</string>
     <string name="pref_use_root_title">Использовать возможности root</string>
-    <string name="pref_use_root_summary">Используйте root-разрешение для определенных функций (плагинов), которые могут помочь решить проблему совместимости на некоторых устройствах. Это нигде больше не будет использоваться.</string>
+    <string name="pref_use_root_summary">Используйте root-разрешение для определенных функций (плагинов), чтобы помочь решить проблему совместимости на некоторых устройствах.</string>
     <string name="pref_cooldown_title">Запускать событие только раз в…</string>
     <string name="pref_cooldown_summary">Временной промежуток в секундах, в течении которого два срабатывания считаются одним событием.</string>
     <string name="cooldown_time_illformed">Ваше число слишком большое или не является положительным целым числом.</string>
