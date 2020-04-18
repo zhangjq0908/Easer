@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="easer">Easer</string>
-    <string name="drawer_tip">便易你的生活！</string>
-    <string name="hint_event_title">事件名</string>
+    <string name="drawer_tip">便易你的生活。</string>
+    <string name="hint_event_title">活动标题</string>
     <string name="menu_start">啓動</string>
     <string name="menu_stop">停止</string>
-    <string name="prompt_delete">你確定要刪除%s嗎</string>
-    <string name="prompt_save_failed">保存失敗</string>
+    <string name="prompt_delete">您确定要删除％s吗？</string>
+    <string name="prompt_save_failed">无法保存</string>
     <string name="service_indicator_negative">未運行</string>
     <string name="service_indicator_positive">運行中</string>
     <string name="button_cancel">取消</string>
@@ -32,43 +32,41 @@
         串起不同事件，然後讓他們自行執行。再也不用費心去記住它們！\n
         此軟件本是受CyanogenMod的profile機制以及IFTTT啓發，本擬在特定時間或WiFi連接下自動切換profile，但後來擴展爲更通用的形式。\n
         注意：Easer還在開發中。其可能包含bug，並且界面必然需要改進。當前計劃列在源代碼倉庫的TODO.md文件中，如有興趣可以一看。</string>
-    <string name="hint_profile_title">行爲集名</string>
+    <string name="hint_profile_title">配置文件标题</string>
     <string name="text_profile">行爲集</string>
     <string name="title_profile">行爲集</string>
-    <string name="pref_autostart_summary">自動啓動Easer後臺服務</string>
-    <string name="pref_autostart_title">開機自啓動</string>
+    <string name="pref_autostart_summary">打开设备电源后，在后台启动Easer。</string>
+    <string name="pref_autostart_title">自动启动</string>
     <string name="title_setting">設置</string>
-    <string name="pref_welcome_summary">顯示歡迎消息</string>
+    <string name="pref_welcome_summary">打开应用程序时显示欢迎消息</string>
     <string name="pref_welcome_title">程序啓動時顯示歡迎消息</string>
     <string name="title_welcome_message">歡迎</string>
-    <string name="welcome_message_1">
-        歡迎使用Easer！
-        \n\n歡迎頁面包含一些基本信息。
-        \n\n使用前請仔細閱讀。
-        \n
-        \n\n另請移步項目wiki中的<a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a>部分。
-    </string>
-    <string name="welcome_message_2">
-        Easer依靠許多模塊來提供不同功能。你可以分別啓用/禁用它們。
-        \n\n對每個模塊，其相應權限需要在使用前被授予。
-        \n
-        \n\n（默認情況下所有模塊均被啓用。）
-    </string>
-    <string name="welcome_message_3">
-        用戶腳本可以組織成<a href="https://zh.wikipedia.org/wiki/%E6%A8%B9%E7%8B%80%E7%B5%90%E6%A7%8B">樹</a>形結構（通過選擇其父節點）。
-        \n\n在每個分支:“與（AND）”。
-        \n在不同枝之間:“或（OR）”。
-        \n
-        \n\n將來應該會將樹擴展爲圖，但目前暫未去實現。
-    </string>
+    <string name="welcome_message_1">欢迎。
+\n 
+\n这是使用Easer之前需要阅读的一些基本信息。
+\n 
+\n项目Wiki <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">常见问题解答</a>中涵盖了更多涉及的主题。</string>
+    <string name="welcome_message_2">Easer包含几个提供不同功能的模块。在“设置”中打开或关闭它们。
+\n 
+\n使用之前，应授予相应的权限（用于每个活动模块）。
+\n 
+\n 
+\n（默认情况下，所有功能均处于启用状态。）</string>
+    <string name="welcome_message_3">通过选择相关的父级，脚本的结构为<a href="https://en.wikipedia.org/wiki/Tree_structure">树</a>。
+\n 
+\n在每个分支中，执行AND逻辑。
+\n在分支之间，执行“或”逻辑。
+\n 
+\n 
+\n已计划将树扩展为图，但目前尚未实现。</string>
     <string name="title_welcome_message_privacy">
         隱私！
     </string>
-    <string name="welcome_message_privacy">
-        隱私十分重要！
-        \n\nEaser是<a href="https://zh.wikipedia.org/wiki/%E8%87%AA%E7%94%B1%E8%BD%AF%E4%BB%B6">自由軟件</a>，以保證任何人均可檢查代碼。
-        \n\n您擁有每一分數據。所有數據均存儲在您的設備中，包括日誌也是如此。
-    </string>
+    <string name="welcome_message_privacy">隐私很重要！
+\n 
+\nEaser是<a href="https://en.wikipedia.org/wiki/Free_software">免费软件</a>（开源软件），可确保所有人使用，研究，更改和共享该软件。
+\n 
+\n您拥有每条数据。一切都保存在您的设备上，包括日志。</string>
     <string name="null_content">空內容</string>
     <string name="button_read_next_time">以後再看</string>
     <string name="button_understand">明白了</string>
@@ -77,65 +75,76 @@
     <string name="title_edit_event">編輯事件</string>
     <string name="title_edit_profile">編輯行爲集</string>
     <string name="toggle_active">啓用</string>
-    <string name="pref_export_summary">導出所有事件和行爲集。\n文件名將包含當前時間。</string>
+    <string name="pref_export_summary">将所有事件和配置文件导出到SD卡。
+\n截至保存的当前时间将用作文件名。</string>
     <string name="pref_export_title">導出</string>
-    <string name="pref_import_summary">從zip文件中導入時間和行爲集。\n已經存在的同名事件和行爲集會被覆蓋。</string>
+    <string name="pref_import_summary">从ZIP文件导入所有事件和配置文件。
+\n具有相同名称的现有事件和配置文件将被替换。</string>
     <string name="pref_import_title">導入</string>
     <string name="template_export">已導出到%s</string>
     <string name="prompt_data_illegal">已阻止嘗試保存無效數據內容。請檢查選項/輸入。</string>
-    <string name="pref_logging_title">啓用外部日誌</string>
-    <string name="pref_logging_summary">保存日誌到外部存儲（/sdcard/logger）以方便bug報告。\n對該設置的改動將在下次Easer啓動時生效。</string>
-    <string name="prompt_prevented_for_permission">Easer需要 &lt;%s&gt; 權限以使用該功能。</string>
+    <string name="pref_logging_title">打开外部日志记录</string>
+    <string name="pref_logging_summary">登录到外部存储设备（/ sdcard / logger），以帮助报告错误。
+\n更改将在下次应用启动时生效。</string>
+    <string name="prompt_prevented_for_permission">授予Easer &lt;％s&gt;权限以使其起作用。</string>
     <string name="version">版本</string>
-    <string name="text_lack_permission">Easer尚不具有全部所需權限。</string>
+    <string name="text_lack_permission">有些技能没有足够的权限。</string>
     <string name="pref_use_root_title">使用root權限特性</string>
-    <string name="pref_use_root_summary">對特定功能（技能）啓用root權限，可能有助於解決部分設備兼容性問題。root權限不會被用在其他地方。</string>
-    <string name="pref_category_data_manage">數據管理</string>
+    <string name="pref_use_root_summary">对特定功能（技能）使用root用户权限可以帮助解决某些设备上的兼容性问题。</string>
+    <string name="pref_category_data_manage">管理数据</string>
     <string name="title_select_operation">選擇一個動作</string>
-    <string name="pref_enabled_skills_title">啓用技能</string>
+    <string name="pref_enabled_skills_title">激活技能</string>
     <string name="pref_enabled_skills_summary">啓用或禁用任意技能</string>
     <string name="title_operation">操作</string>
-    <string name="message_skill_not_compatible">該技能和此設備不兼容</string>
+    <string name="message_skill_not_compatible">该设备无法运行此技能。</string>
     <string name="pref_category_functionality">功能</string>
-    <string name="message_convert_data_start">正在轉換</string>
-    <string name="message_convert_data_finish">轉換完成</string>
-    <string name="message_convert_data_abort">轉換中止</string>
-    <string name="message_convert_data_error">轉換數據類型時遇到問題。獲取詳情請查看日誌。</string>
+    <string name="message_convert_data_start">转换数据。</string>
+    <string name="message_convert_data_finish">数据已转换。</string>
+    <string name="message_convert_data_abort">数据转换中止。</string>
+    <string name="message_convert_data_error">无法转换数据。请查看日志以获取详细信息。</string>
     <string name="pref_convert_data_title">轉換數據</string>
     <string name="pref_convert_data_summary">轉換所有數據至推薦格式</string>
-    <string name="pref_cooldown_title">冷卻時間</string>
-    <string name="pref_cooldown_summary">重複改變同一事件狀態的最短間隔（秒）</string>
-    <string name="cooldown_time_illformed">該數字必須不小於0，且不能過大（超過integer的範圍）</string>
+    <string name="pref_cooldown_title">每个活动只有一次…</string>
+    <string name="pref_cooldown_summary">将两次出现视为一个事件的时间范围（以秒为单位）。</string>
+    <string name="cooldown_time_illformed">您的数字太大，或者不是正整数。</string>
     <string name="text_predefined_event">預定義事件</string>
-    <string name="text_inline_event">嵌入事件</string>
-    <string name="text_repeatable_desc">滿足後可重複觸發</string>
+    <string name="text_inline_event">内联事件</string>
+    <string name="text_repeatable_desc">重现</string>
     <string name="text_reverse_desc">反轉情境</string>
     <string name="text_persistent">固定滿足態</string>
     <string name="text_volatile">不固定滿足態</string>
-    <string name="message_importing_invalid_data">這似乎是無效的文件。請僅導入一個之前由Easer導出的文件。</string>
+    <string name="message_importing_invalid_data">该文件似乎无效。确保导入由Easer导出的文件。</string>
     <string name="pref_category_personalise">個人偏好</string>
     <string name="pref_use_12_hour_clock_title">使用12小時時鐘</string>
     <string name="alert_update_storage_data_title">發現舊版數據</string>
-    <string name="alert_update_storage_data">你的（部分）數據似乎處於舊版之下，建議更新至新版，否則Easer可能無法正常使用。你可以在設置中選擇“轉換數據”來完成此事。</string>
+    <string name="alert_update_storage_data">为了兼容，请在设置中选择“转换数据”以将数据更新为新格式。</string>
     <string name="title_activity_history">活動記錄</string>
-    <string name="hint_script_title">腳本名稱</string>
+    <string name="hint_script_title">脚本标题</string>
     <string name="title_script">腳本</string>
     <string name="title_condition">狀況</string>
     <string name="title_edit_condition">編輯狀況</string>
-    <string name="hint_condition_title">狀況名</string>
+    <string name="hint_condition_title">条件标题</string>
     <string name="text_use_condition">使用狀況</string>
     <string name="pref_restart_after_upgrade_title">更新後自動重啓服務</string>
-    <string name="prompt_delete_failed">刪除失敗。請檢查此物是否被使用。</string>
+    <string name="prompt_delete_failed">无法删除。检查是否正在使用此项目。</string>
     <string name="dynamics_time">當前時間</string>
     <string name="dynamics_date">當前日期</string>
     <string name="dynamics_script_name">腳本名稱</string>
     <string name="dynamics_profile_name">行爲集名稱</string>
     <string name="title_trigger_profile">執行此行爲集</string>
     <string name="title_help">幫助</string>
-    <string name="help_script">事件腳本是邏輯的容器。在事件腳本中鏈接事件（或狀況）和行爲集，這樣Easer就能知道在事件發生時（或狀況滿足時）執行/載入對應的行爲集。 事件腳本中還有更多高級功能，比如反轉事件。 請參閱<a href="https://github.com/renyuneyun/Easer/wiki">文檔</a>以獲得更多信息。</string>
-    <string name="help_event">事件代表一個短時間（瞬時）的事件，通常在你手機上或是遠程。\n例如：收到通知，或掃描NFC設備。請參閱<a href="https://github.com/renyuneyun/Easer/wiki">文檔</a>以獲得更多信息。</string>
-    <string name="help_condition">狀況代表一個長期（但一般並非永久）的狀況，通常在你手機上或遠程。\n例如：鏈接到某WiFi，或屏幕處於關閉狀態。\n請參閱<a href="https://github.com/renyuneyun/Easer/wiki">文檔</a>以獲得更多信息。</string>
-    <string name="help_profile">行爲集是一組行爲/動作的集合。每個行爲/動作代表某一特定的操作。\n例如：打開藍牙，或發送短信。\n請參閱<a href="https://github.com/renyuneyun/Easer/wiki">文檔</a>以獲得更多信息。</string>
+    <string name="help_script">“脚本”是逻辑容器。将事件或条件与脚本中的配置文件相连接，以便Easer知道在事件发生或满足条件时加载/执行该配置文件。
+\n还有更多高级功能，例如反向事件。
+\n有关更多信息，请参考<a href="https://github.com/renyuneyun/Easer/wiki">文档</a>。</string>
+    <string name="help_event">“事件”表示设备上或远程发生的短暂（即时）事件。
+\n例如，接收通知或扫描NFC标签。
+\n有关更多信息，请参考<a href="https://github.com/renyuneyun/Easer/wiki">文档</a>。</string>
+    <string name="help_condition">“状态”表示设备上或远程存在的长期（但通常不是永远）状况。
+\n例如，在连接Wi-Fi或屏幕关闭时。
+\n有关更多信息，请参考<a href="https://github.com/renyuneyun/Easer/wiki">文档</a>。</string>
+    <string name="help_profile">“配置文件”是一组操作。每个操作代表一种特定类型的动作。
+\n例如，打开蓝牙或发送短信。
+\n有关更多信息，请参考<a href="https://github.com/renyuneyun/Easer/wiki">文档</a>。</string>
     <string name="category_operation_system_config">系統設置</string>
     <string name="category_operation_easer">@string/easer</string>
     <string name="category_operation_misc">雜項</string>
@@ -144,9 +153,9 @@
     <string name="message_future_change_title">近期改變</string>
     <string name="pref_category_service">服務</string>
     <string name="pref_show_notification_title">顯示通知</string>
-    <string name="pref_show_notification_summary">在通知欄顯示通知</string>
+    <string name="pref_show_notification_summary">在通知栏中显示通知。</string>
     <string name="pref_foreground_title">在前臺運行服務</string>
-    <string name="pref_foreground_summary">可以使得服務更不容易被系統誤殺。將會顯示通知。由於系統要求，不可在Android 8+版本禁用。</string>
+    <string name="pref_foreground_summary">使系统更难终止服务。将显示一个通知。由于系统要求，无法在Android 8+上关闭。</string>
     <string name="title_service_start">服務啓動</string>
     <string name="title_pivot">樞律</string>
     <string name="pref_locale_custom">自定義語文</string>
@@ -157,7 +166,7 @@
     <string name="title_homepage">個人主頁</string>
     <string name="title_source">源代碼</string>
     <string name="prompt_error_logged">Easer記錄了一次錯誤。請查看日誌目錄下的error子目錄。</string>
-    <string name="prompt_dynamics_not_ready">欲設置Dynamics，請選擇有效的行爲集以及有效的觸發設置（如事件）</string>
+    <string name="prompt_dynamics_not_ready">要设置动态，您需要选择一个有效的配置文件和一个有效的触发器（例如事件）。</string>
     <string name="title_select_condition">選擇一個狀況</string>
     <string name="title_select_event">選擇一個事件</string>
     <string name="button_see_detail">查看詳情</string>
@@ -172,5 +181,14 @@
     <string name="event_widget_button_save_widget">保存微件</string>
     <string name="prompt_data_clash">保存失敗。請檢查是否有命名衝突。</string>
     <string name="prompt_data_save_io_exception">遭遇IOException。可能存儲器已滿？</string>
-
+    <string name="category_operation_unknown">未知</string>
+    <string name="text_license">该程序是自由软件：您可以根据自由软件基金会发布的GNU通用公共许可证的条款（许可证的版本3）或（根据您的选择）任何更高版本来重新分发和/或修改它。
+\n 分发该程序是希望它会有用，但是没有任何保证；甚至没有对适销性或特定用途适用性的暗示保证。有关更多详细信息，请参见GNU通用公共许可证。
+\n 您应该已经与该程序一起收到了GNU通用公共许可证的副本。如果没有，请参阅https://www.gnu.org/licenses/</string>
+    <string name="text_placeholder">占位符</string>
+    <string name="text_dynamics">动力学</string>
+    <string name="navigation_drawer_close">关闭导航抽屉</string>
+    <string name="navigation_drawer_open">打开导航抽屉</string>
+    <string name="title_dynamics_link">动力学链接</string>
+    <string name="title_application">App</string>
 </resources>
