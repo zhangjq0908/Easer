@@ -191,4 +191,5 @@
     <string name="navigation_drawer_open">打开导航抽屉</string>
     <string name="title_dynamics_link">动力学链接</string>
     <string name="title_application">App</string>
+    <string name="title_new_dynamics_link">新的动态链接</string>
 </resources>
