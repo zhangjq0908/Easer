@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="easer">Easer</string>
-    <string name="drawer_tip">Vereinfache dein Leben!</string>
+    <string name="drawer_tip">Vereinfache dein Leben.</string>
     <string name="title_outline">Übersicht</string>
     <string name="title_profile">Profil</string>
     <string name="title_event">Ereignis</string>
