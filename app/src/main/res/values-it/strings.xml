@@ -185,7 +185,7 @@
     <string name="title_data_collection">Dati</string>
     <string name="message_future_change_0_8">La vista ad albero degli Script verrà rimossa nella v0.8. Lo Schema offre una visualizzazione migliore.</string>
     <string name="title_choose_predecessors">Scegli Predecessori</string>
-    <string name="text_unknown_skill">[Modulo Sconosciuto]</string>
+    <string name="text_unknown_skill">[Modulo sconosciuto]</string>
     <string name="title_add_child">Aggiungi Figlio</string>
     <string name="title_edit_script">Modifica Script</string>
     <string name="prompt_data_clash">Impossibile salvare i dati. Potrebberi esserci conflitti tra i nomi.</string>
