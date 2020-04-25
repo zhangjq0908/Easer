@@ -18,7 +18,7 @@
     <string name="title_edit_condition">Modifica Condizione</string>
     <string name="title_edit_profile">Modifica profilo</string>
     <string name="title_select_operation">Selezionare un\'Operazione</string>
-    <string name="title_trigger_profile">Esegui il profilo</string>
+    <string name="title_trigger_profile">Attiva Questo Profilo</string>
     <string name="menu_start">Avvia</string>
     <string name="menu_stop">Ferma</string>
     <string name="menu_action_save">Salva</string>
