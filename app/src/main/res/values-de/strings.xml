@@ -53,9 +53,9 @@
     <string name="hint_script_title">Skripttitel</string>
     <string name="hint_profile_title">Profiltitel</string>
     <string name="hint_condition_title">Zustandstitel</string>
-    <string name="prompt_save_failed">Konnte nicht speichern</string>
+    <string name="prompt_save_failed">Fehler beim Speichern</string>
     <string name="prompt_delete">Sind Sie sicher, dass Sie %s löschen möchten\?</string>
-    <string name="prompt_delete_failed">Konnte nicht löschen. Überprüfen Sie, ob dieses Element verwendet wird.</string>
+    <string name="prompt_delete_failed">Das Löschen ist fehlgeschlagen. Überprüfen Sie, ob dieses Element verwendet wird.</string>
     <string name="prompt_prevented_for_permission">Erteilen Sie Easer die Berechtigung &lt;%s&gt;, damit dies funktioniert.</string>
     <string name="pref_category_functionality">Funktionalität</string>
     <string name="pref_category_personalise">Personalisieren</string>
@@ -184,10 +184,10 @@
     <string name="button_see_detail">Details ansehen</string>
     <string name="title_data_collection">Daten</string>
     <string name="message_future_change_0_8">Die Baumansicht der Skripte wird in v0.8 entfernt. Die Pivot-Tabelle bietet eine bessere Sicht darauf.</string>
-    <string name="title_choose_predecessors">Vorgänger Wählen</string>
+    <string name="title_choose_predecessors">Vorgänger wählen</string>
     <string name="text_unknown_skill">[Unbekannte Fähigkeit]</string>
     <string name="title_add_child">Kind hinzufügen</string>
     <string name="title_edit_script">Skript bearbeiten</string>
-    <string name="prompt_data_clash">Speichern fehlgeschlagen. Bitte auf Namenskonflikt prüfen.</string>
+    <string name="prompt_data_clash">"Speichern nicht möglich. Bitte überprüfen Sie den Namen. "</string>
     <string name="prompt_data_save_io_exception">Ein-/Ausgabefehler aufgetreten. Ist der Speicher voll\?</string>
 </resources>
