@@ -232,4 +232,5 @@
     <string name="usource_location__listen_min_time_seconds">Tempo Minimo Attesa (secondi)</string>
     <string name="usource_location__threshold_age_seconds">Tempo Massimo Attesa (secondi)</string>
     <string name="usource_location__threshold_accuracy_meters">Livello Precisione (metri)</string>
+    <string name="usource_battery_level__ok_after_low">OK dopo basso</string>
 </resources>
