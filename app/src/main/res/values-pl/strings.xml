@@ -187,4 +187,6 @@
     <string name="title_activity_history">Historia aktywności</string>
     <string name="title_application">Aplikacja</string>
     <string name="title_condition">Warunek</string>
+    <string name="title_data_collection">Dane</string>
+    <string name="title_outline">Zarys</string>
 </resources>
