@@ -192,4 +192,5 @@
     <string name="category_source_device">Urządzenie</string>
     <string name="category_source_date_time">Data / Czas</string>
     <string name="category_source_android">Android</string>
+    <string name="condition__rel_after">Po</string>
 </resources>
