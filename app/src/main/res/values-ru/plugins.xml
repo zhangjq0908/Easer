@@ -223,4 +223,5 @@
     <string name="event_tcp_trip__dynamics_remote_ip">Удалённый IP-адрес</string>
     <string name="event_tcp_trip__dynamics_remote_host">Удалённый хост</string>
     <string name="event_nfc_tag__dynamics_tag_id">ИД тэга</string>
+    <string name="usource_battery_level__custom_battery_level">Минимальный заряд аккумулятора (процент)</string>
 </resources>
