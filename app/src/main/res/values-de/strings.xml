@@ -188,6 +188,6 @@
     <string name="text_unknown_skill">[Unbekannte Fähigkeit]</string>
     <string name="title_add_child">Kind hinzufügen</string>
     <string name="title_edit_script">Skript bearbeiten</string>
-    <string name="prompt_data_clash">"Speichern nicht möglich. Bitte überprüfen Sie den Namen. "</string>
+    <string name="prompt_data_clash">Speichern nicht möglich. Bitte überprüfen Sie, ob es Namenskonflikte gibt.</string>
     <string name="prompt_data_save_io_exception">Ein-/Ausgabefehler aufgetreten. Ist der Speicher voll\?</string>
 </resources>
