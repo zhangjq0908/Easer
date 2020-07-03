@@ -45,7 +45,7 @@
     <string name="navigation_drawer_close">Закрыть навигационную панель</string>
     <string name="button_read_next_time">Прочитать в следующий раз</string>
     <string name="button_understand">Понял</string>
-    <string name="button_cancel">Отменить</string>
+    <string name="button_cancel">Отмена</string>
     <string name="button_ok">ОК</string>
     <string name="text_lack_permission">Некоторые навыки НЕ имеют достаточного разрешения.</string>
     <string name="text_notification_running_indicator_content">%s работает в фоне</string>
