@@ -6,7 +6,7 @@
     <string name="title_profile">Profil</string>
     <string name="title_event">Ereignis</string>
     <string name="title_script">Skript</string>
-    <string name="title_condition">Zustand</string>
+    <string name="title_condition">Bedingung</string>
     <string name="title_application">App</string>
     <string name="title_activity_history">Aktivitätsprotokoll</string>
     <string name="title_about">Über</string>
@@ -41,7 +41,7 @@
     <string name="text_profile">Profil</string>
     <string name="text_predefined_event">Vordefiniertes Ereignis</string>
     <string name="text_inline_event">Integriertes Ereignis</string>
-    <string name="text_use_condition">Zustand verwenden</string>
+    <string name="text_use_condition">Bedingung verwenden</string>
     <string name="text_repeatable_desc">Wiederkehrend</string>
     <string name="text_reverse_desc">Szenario umkehren</string>
     <string name="text_volatile">Instabil</string>
@@ -52,16 +52,16 @@
     <string name="hint_event_title">Ereignistitel</string>
     <string name="hint_script_title">Skripttitel</string>
     <string name="hint_profile_title">Profiltitel</string>
-    <string name="hint_condition_title">Zustandstitel</string>
+    <string name="hint_condition_title">Titel der Bedingung</string>
     <string name="prompt_save_failed">Fehler beim Speichern</string>
     <string name="prompt_delete">Sind Sie sicher, dass Sie %s löschen möchten\?</string>
     <string name="prompt_delete_failed">Das Löschen ist fehlgeschlagen. Überprüfen Sie, ob dieses Element verwendet wird.</string>
-    <string name="prompt_prevented_for_permission">Erteilen Sie Easer die Berechtigung &lt;%s&gt;, damit dies funktioniert.</string>
+    <string name="prompt_prevented_for_permission">Erteilen Sie Easer für diese Funktionalität die Berechtigung &lt;%s&gt;.</string>
     <string name="pref_category_functionality">Funktionalität</string>
     <string name="pref_category_personalise">Personalisieren</string>
     <string name="pref_category_data_manage">Daten verwalten</string>
     <string name="pref_autostart_title">Autostart</string>
-    <string name="pref_autostart_summary">Startet Easer beim Einschalten des Geräts im Hintergrund.</string>
+    <string name="pref_autostart_summary">Beim Einschalten des Geräts Easer im Hintergrund starten.</string>
     <string name="pref_restart_after_upgrade_title">Dienst nach der Aktualisierung starten</string>
     <string name="pref_welcome_title">Willkommensnachricht anzeigen</string>
     <string name="pref_welcome_summary">Willkommensnachricht beim App-Start anzeigen</string>
@@ -112,32 +112,32 @@
     <string name="pref_logging_summary">Protokolliert auf externe Speichergeräte (/sdcard/logger) zur Unterstützung von Fehlerberichten.
 \nÄnderungen werden beim nächsten Start der App wirksam.</string>
     <string name="pref_use_root_summary">Verwenden Sie Root-Rechte für bestimmte Funktionen (Plugins), um Kompatibilitätsprobleme auf einigen Geräten zu beheben.</string>
-    <string name="pref_cooldown_title">Termin nur einmal pro …</string>
-    <string name="pref_cooldown_summary">Zeitintervall (in Sekunden), innerhalb dem zwei gleiche Ereignisse als eines behandelt werden.</string>
-    <string name="cooldown_time_illformed">Die Zahl ist zu groß oder keine positive Ganzzahl.</string>
-    <string name="pref_enabled_skills_title">Aktivierte Plugins</string>
+    <string name="pref_cooldown_title">Ausführen nur einmal pro …</string>
+    <string name="pref_cooldown_summary">Zeitintervall in Sekunden in dem zwei gleiche Ereignisse wie eines behandelt werden.</string>
+    <string name="cooldown_time_illformed">"Deine Zahl ist zu groß oder keine ganze positive Zahl. "</string>
+    <string name="pref_enabled_skills_title">Aktive Plugins</string>
     <string name="pref_enabled_skills_summary">Bestimmte Plugins (de-)aktivieren</string>
-    <string name="pref_export_summary">Alle Ereignisse und Profile auf die SD-Karte exportieren.
-\nDie aktuelle Zeit beim Speichern wird als Dateiname verwendet.</string>
+    <string name="pref_export_summary">Alle Ereignisse und Profile auf die SD-Karte exportieren. 
+\nDie Datei wird nach der aktuellen Zeit benannt.</string>
     <string name="pref_import_summary">Alle Ereignisse und Profile aus einer ZIP-Datei importieren.
 \nBestehende Events und Profile mit gleichem Namen werden ersetzt.</string>
     <string name="pref_show_notification_title">Benachrichtigung anzeigen</string>
     <string name="pref_show_notification_summary">Eine Benachrichtigung in der Benachrichtigungsleiste anzeigen.</string>
     <string name="pref_foreground_title">Dienst im Vordergrund ausführen</string>
     <string name="alert_update_storage_data">Wählen Sie in den Einstellungen \"Daten konvertieren\", um Ihre Daten aus Kompatibilitätsgründen auf das neue Format zu aktualisieren.</string>
-    <string name="help_script">\"Skripte\" sind die Logikbehälter. Verbinden Sie ein Ereignis oder eine Bedingung mit einem Profil in einem Skript, so dass Easer weiß, dass es dieses Profil lädt/ausführt, wenn das Ereignis eintritt oder die Bedingung erfüllt ist. 
+    <string name="help_script">\"Skripte\" sind die Logikbehälter. Verbinden Sie mit einem Skript ein Ereignis oder eine Bedingung mit einem Profil in einem Skript. Dieses Profil läd Easer oder führt es aus, wenn das Ereignis eintritt oder die Bedingung erfüllt ist. 
 \nEs gibt auch erweiterte Funktionen, z.B. umgekehrte Ereignisse. 
-\nBitte beachten Sie das <a href="https://github.com/renyuneyun/Easer/wiki">Dokument</a> für weitere Informationen.</string>
+\nWeitere Informationen finden Sie in der <a href="https://github.com/renyuneyun/Easer/wiki">Dokumentation im Wiki</a>.</string>
     <string name="message_skill_not_compatible">Dieses Gerät kann dieses Plugin nicht ausführen.</string>
     <string name="message_convert_data_abort">Datenkonvertierung abgebrochen.</string>
     <string name="message_convert_data_error">Die Daten konnten nicht konvertiert werden. Bitte lesen Sie das Protokoll für Details.</string>
     <string name="pref_foreground_summary">Macht es dem System schwerer, den Dienst zu beenden. Zeigt eine Benachrichtigung an. Kann unter Android &gt;=8 aufgrund der Systemanforderungen nicht deaktiviert werden.</string>
-    <string name="help_event">\"Ereignisse\" stellen kurzzeitige (sofortige) Ereignisse auf Ihrem Gerät oder aus der Ferne dar. 
+    <string name="help_event">\"Ereignisse\" stellen kurzzeitige (unmittelbare) Ereignisse auf Ihrem Gerät oder aus der Ferne dar. 
 \nZum Beispiel der Empfang einer Benachrichtigung oder das Scannen eines NFC-Tags. 
-\nBitte beachten Sie die <a href="https://github.com/renyuneyun/Easer/wiki">Dokumentation</a> für weitere Informationen.</string>
-    <string name="help_condition">\"Zustände\" stellen eine lang anhaltende (aber in der Regel nicht dauerhafte) Bedingung auf Ihrem Gerät oder aus der Ferne dar. 
-\nZum Beispiel bei einer Verbindung mit WLAN oder wenn sich der Bildschirm abschaltet. 
-\nBitte beachten Sie die <a href="https://github.com/renyuneyun/Easer/wiki">Dokumentation</a> für weitere Informationen.</string>
+\nWeitere Informationen finden Sie in der <a href="https://github.com/renyuneyun/Easer/wiki">Dokumentation im Wiki</a>.</string>
+    <string name="help_condition">Eine \"Bedingung\" ist eine lang anhaltende (aber in der Regel nicht dauerhafte) Bedingung auf Ihrem Gerät oder von einem Sensor. 
+\nZum Beispiel die Verbindung mit einem WLAN oder ein ausgeschalteter Bildschirm. 
+\nWeitere Informationen finden Sie in der <a href="https://github.com/renyuneyun/Easer/wiki">Dokumentation im Wiki</a>.</string>
     <string name="help_profile">\"Profil\" ist eine Reihe von Vorgängen. Jeder Vorgang entspricht einer bestimmten Art von Aktion. 
 \nSchalten Sie beispielsweise Bluetooth ein oder senden Sie eine SMS. 
 \nBitte beachten Sie die <a href="https://github.com/renyuneyun/Easer/wiki">Dokumentation</a> für weitere Informationen.</string>
@@ -168,7 +168,7 @@
 \nEaser ist eine <a href="https://en.wikipedia.org/wiki/Free_software">freie Software</a> (Open-Source-Software), die sicherstellt, dass jeder sie nutzen, überprüfen, verändern und teilen kann. 
 \n 
 \nSIE besitzen alle Ihre Daten. Alles bleibt auf Ihrem Gerät, einschließlich der Protokolle.</string>
-    <string name="title_pivot">Pivot-Tabelle</string>
+    <string name="title_pivot">Pivot</string>
     <string name="title_service_start">Dienststart</string>
     <string name="title_source">Quellcode</string>
     <string name="title_author">Autor</string>
@@ -180,10 +180,10 @@
     <string name="prompt_error_logged">Easer hat gerade einen Fehler aufgezeichnet. Sehen Sie sich das Fehlerunterverzeichnis des Log-Verzeichnisses an.</string>
     <string name="prompt_dynamics_not_ready">Um die Dynamik einzustellen, müssen Sie ein gültiges Profil und einen gültigen Auslöser (z.B. Ereignis) auswählen.</string>
     <string name="title_select_event">Wählen Sie ein Ereignis</string>
-    <string name="title_select_condition">Wählen Sie einen Zustand</string>
+    <string name="title_select_condition">Wählen Sie eine Bedingung</string>
     <string name="button_see_detail">Details ansehen</string>
     <string name="title_data_collection">Daten</string>
-    <string name="message_future_change_0_8">Die Baumansicht der Skripte wird in v0.8 entfernt. Die Pivot-Tabelle bietet eine bessere Sicht darauf.</string>
+    <string name="message_future_change_0_8">Die Baumansicht der Skripte wird in v0.8 entfernt. Die Pivot Ansicht bietet eine bessere Sicht darauf.</string>
     <string name="title_choose_predecessors">Vorgänger wählen</string>
     <string name="text_unknown_skill">[Unbekannte Fähigkeit]</string>
     <string name="title_add_child">Kind hinzufügen</string>
