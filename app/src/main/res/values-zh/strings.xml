@@ -45,13 +45,12 @@
 \n 
 \n这是使用Easer之前需要阅读的一些基本信息。
 \n 
-\n项目Wiki <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">常见问题解答</a>中涵盖了更多涉及的主题。</string>
+\n项目Wiki <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">常见问题解答</a>中涵盖了更多相关主题。</string>
     <string name="welcome_message_2">Easer包含几个提供不同功能的模块。在“设置”中打开或关闭它们。
 \n 
-\n使用之前，应授予相应的权限（用于每个活动模块）。
-\n 
-\n 
-\n（默认情况下，所有功能均处于启用状态。）</string>
+\n使用之前，应授予（每个活动模块）相应的权限。
+\n
+\n（默认情况下，所有模块均处于启用状态。）</string>
     <string name="welcome_message_3">通过选择相关的父级，脚本的结构为<a href="https://en.wikipedia.org/wiki/Tree_structure">树</a>。
 \n 
 \n在每个分支中，执行AND逻辑。
@@ -64,7 +63,7 @@
     </string>
     <string name="welcome_message_privacy">隐私很重要！
 \n 
-\nEaser是<a href="https://en.wikipedia.org/wiki/Free_software">免费软件</a>（开源软件），可确保所有人使用，研究，更改和共享该软件。
+\nEaser是<a href="https://en.wikipedia.org/wiki/Free_software">自由软件</a>（开源软件），确保所有人都可使用、研究、更改和共享它。
 \n 
 \n您拥有每条数据。一切都保存在您的设备上，包括日志。</string>
     <string name="null_content">空內容</string>
@@ -84,13 +83,13 @@
     <string name="template_export">已導出到%s</string>
     <string name="prompt_data_illegal">已阻止嘗試保存無效數據內容。請檢查選項/輸入。</string>
     <string name="pref_logging_title">打开外部日志记录</string>
-    <string name="pref_logging_summary">登录到外部存储设备（/ sdcard / logger），以帮助报告错误。
+    <string name="pref_logging_summary">保存日志到外部存储设备（/sdcard / logger），以帮助报告错误。
 \n更改将在下次应用启动时生效。</string>
-    <string name="prompt_prevented_for_permission">授予Easer &lt;％s&gt;权限以使其起作用。</string>
+    <string name="prompt_prevented_for_permission">要使其正常工作，请授予Easer &lt;％s&gt;权限。</string>
     <string name="version">版本</string>
     <string name="text_lack_permission">有些技能没有足够的权限。</string>
     <string name="pref_use_root_title">使用root權限特性</string>
-    <string name="pref_use_root_summary">对特定功能（技能）使用root用户权限可以帮助解决某些设备上的兼容性问题。</string>
+    <string name="pref_use_root_summary">对特定功能（技能）使用root权限可以帮助解决某些设备上的兼容性问题。</string>
     <string name="pref_category_data_manage">管理数据</string>
     <string name="title_select_operation">選擇一個動作</string>
     <string name="pref_enabled_skills_title">激活技能</string>
@@ -98,15 +97,15 @@
     <string name="title_operation">操作</string>
     <string name="message_skill_not_compatible">该设备无法运行此技能。</string>
     <string name="pref_category_functionality">功能</string>
-    <string name="message_convert_data_start">转换数据。</string>
+    <string name="message_convert_data_start">转换数据中.</string>
     <string name="message_convert_data_finish">数据已转换。</string>
     <string name="message_convert_data_abort">数据转换中止。</string>
     <string name="message_convert_data_error">无法转换数据。请查看日志以获取详细信息。</string>
     <string name="pref_convert_data_title">轉換數據</string>
     <string name="pref_convert_data_summary">轉換所有數據至推薦格式</string>
-    <string name="pref_cooldown_title">每个活动只有一次…</string>
-    <string name="pref_cooldown_summary">将两次出现视为一个事件的时间范围（以秒为单位）。</string>
-    <string name="cooldown_time_illformed">您的数字太大，或者不是正整数。</string>
+    <string name="pref_cooldown_title"></string>
+    <string name="pref_cooldown_summary">将两个相隔特定时间（以秒为单位）发生的事件视为一个事件</string>
+    <string name="cooldown_time_illformed">您的数字太大，或者不是一个正整数。</string>
     <string name="text_predefined_event">預定義事件</string>
     <string name="text_inline_event">内联事件</string>
     <string name="text_repeatable_desc">重现</string>
@@ -117,7 +116,7 @@
     <string name="pref_category_personalise">個人偏好</string>
     <string name="pref_use_12_hour_clock_title">使用12小時時鐘</string>
     <string name="alert_update_storage_data_title">發現舊版數據</string>
-    <string name="alert_update_storage_data">为了兼容，请在设置中选择“转换数据”以将数据更新为新格式。</string>
+    <string name="alert_update_storage_data">为了兼容性，请在设置中选择“转换数据”以将您的数据更新到新格式。</string>
     <string name="title_activity_history">活動記錄</string>
     <string name="hint_script_title">脚本标题</string>
     <string name="title_script">腳本</string>
@@ -126,14 +125,14 @@
     <string name="hint_condition_title">条件标题</string>
     <string name="text_use_condition">使用狀況</string>
     <string name="pref_restart_after_upgrade_title">更新後自動重啓服務</string>
-    <string name="prompt_delete_failed">无法删除。检查是否正在使用此项目。</string>
+    <string name="prompt_delete_failed">无法删除。检查是否正在使用此物品。</string>
     <string name="dynamics_time">當前時間</string>
     <string name="dynamics_date">當前日期</string>
     <string name="dynamics_script_name">腳本名稱</string>
     <string name="dynamics_profile_name">行爲集名稱</string>
     <string name="title_trigger_profile">執行此行爲集</string>
     <string name="title_help">幫助</string>
-    <string name="help_script">“脚本”是逻辑容器。将事件或条件与脚本中的配置文件相连接，以便Easer知道在事件发生或满足条件时加载/执行该配置文件。
+    <string name="help_script">“脚本”是逻辑容器。将事件或条件与脚本中的配置文件相连接，以便Easer知道在该事件发生或满足某一条件时加载/执行该配置文件。
 \n还有更多高级功能，例如反向事件。
 \n有关更多信息，请参考<a href="https://github.com/renyuneyun/Easer/wiki">文档</a>。</string>
     <string name="help_event">“事件”表示设备上或远程发生的短暂（即时）事件。
@@ -189,7 +188,7 @@
     <string name="text_dynamics">动力学</string>
     <string name="navigation_drawer_close">关闭导航抽屉</string>
     <string name="navigation_drawer_open">打开导航抽屉</string>
-    <string name="title_dynamics_link">动力学链接</string>
+    <string name="title_dynamics_link">动态链接</string>
     <string name="title_application">App</string>
     <string name="title_new_dynamics_link">新的动态链接</string>
 </resources>
