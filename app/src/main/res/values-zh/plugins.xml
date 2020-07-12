@@ -22,15 +22,15 @@
     <string name="usource__enabled_no">否</string>
     <string name="usource_date">日期</string>
     <string name="usource_time">時間</string>
-    <string name="usource_wificonn">WiFi連接</string>
-    <string name="usource_wificonn_select_dialog_title">選擇WiFi AP</string>
-    <string name="usource_wificonn_wait_for_result">等待WiFi掃描結果</string>
+    <string name="usource_wificonn">Wi-Fi连接</string>
+    <string name="usource_wificonn_select_dialog_title">选择Wi-Fi 接入点</string>
+    <string name="usource_wificonn_wait_for_result">等待Wi-Fi扫描结果中</string>
     <string name="usource_cell_location">蜂窩位置</string>
     <string name="usource_cell_location_no_signal">無法獲取蜂窩位置。請檢查信號。</string>
     <string name="usource_cell_location_dynamics_cell_location">蜂窩位置</string>
     <string name="usource_power">電源狀態</string>
-    <string name="usource_day_of_week">星期幾</string>
-    <string name="usource_bluetooth_device">連接的藍牙設備</string>
+    <string name="usource_day_of_week">一周中的某一天</string>
+    <string name="usource_bluetooth_device">连接的蓝牙设备</string>
     <string name="usource_bt_device_select_dialog_title">選擇藍牙設備</string>
     <string name="usource_bt_device_unknown_device">未知設備</string>
     <string name="usource_bt_device_dynamics_device_name">設備名</string>
@@ -46,7 +46,7 @@
     </array>
     <string name="usource_calendar">日曆事件</string>
     <string name="calendar_select_dialog_title">選擇日曆</string>
-    <string name="text_calendar_name">日曆名</string>
+    <string name="text_calendar_name">日历名称</string>
     <string name="text_calendar">日曆</string>
     <string name="indicator_when">當…</string>
     <string name="choice_start_of">開始時</string>
@@ -55,7 +55,7 @@
     <string name="event_broadcast">收到廣播</string>
     <string name="broadcast_action">Action</string>
     <string name="broadcast_category">Category</string>
-    <string name="event_sms">收到短信</string>
+    <string name="event_sms">接收短信</string>
     <string name="sender">發送人</string>
     <string name="content_contains">內容 (包含…)</string>
     <string name="ev_sms_dynamics_sender">短信發件人</string>
@@ -83,11 +83,11 @@
     <string name="event_nfc_tag">NFC標籤</string>
     <string name="event_nfc_tag__button_detect">檢測標籤</string>
     <string name="event_nfc_tag__prompt_enable_nfc_first">你需要先打開NFC</string>
-    <string name="event_nfc_tag__prompt_wait_for_tag">等待標籤被掃描中…</string>
+    <string name="event_nfc_tag__prompt_wait_for_tag">等待标签扫描…</string>
     <string name="usource_headset">耳機</string>
     <string name="usource_headset__headset_action">設備事件</string>
-    <string name="usource_headset__plug_in">插入</string>
-    <string name="usource_headset__plug_out">拔出</string>
+    <string name="usource_headset__plug_in">已插入</string>
+    <string name="usource_headset__plug_out">已拔出</string>
     <string name="usource_event_headset__plug_any">任意</string>
     <string name="usource_headset__with_microphone">帶有麥克風？</string>
     <string name="usource_headset__microphone_true">帶有</string>
@@ -118,7 +118,7 @@
     <string name="text_type">類型</string>
     <string name="operation_cellular">移動數據</string>
     <string name="operation_rotation">自動旋轉</string>
-    <string name="operation_wifi">WiFi</string>
+    <string name="operation_wifi">Wi-Fi</string>
     <string name="operation_ringer_mode">響鈴模式</string>
     <string name="ringer_mode_normal">普通</string>
     <string name="ringer_mode_vibrate">震動</string>
@@ -128,11 +128,11 @@
     <string name="ringer_mode_dnd_priority">僅優先通知</string>
     <string name="ringer_mode_dnd_none">全不</string>
     <string name="ringer_mode_dnd_alarms">鬧鈴</string>
-    <string name="ringing_items_in_do_not_disturb_mode">勿擾模式響鈴項</string>
+    <string name="ringing_items_in_do_not_disturb_mode"></string>
     <string name="label_operation_ringer_mode_notification_listener_service">切換靜音模式</string>
     <string name="operation_command">執行命令</string>
     <string name="operation_hotspot">移動熱點</string>
-    <string name="operation_synchronization">賬戶同步</string>
+    <string name="operation_synchronization">账户同步</string>
     <string name="operation_network_transmission">網絡傳輸</string>
     <string name="o_nettrans_protocol">協議</string>
     <string name="o_nettrans_tcp">TCP</string>
@@ -229,4 +229,17 @@
     <string name="usource_battery_level__low">低電量</string>
     <string name="usource_battery_level__ok_after_low">（低電量後）正常</string>
     <string name="broadcast_type">类型</string>
+    <string name="event_widget_default_text">显示文本</string>
+    <string name="operation_toast">悬浮窗口</string>
+    <string name="event_widget__dynamics_widget_id">小部件ID</string>
+    <string name="event_widget__dynamics_widget_tag">小部件标签</string>
+    <string name="event_widget_button_save_widget">保存小部件</string>
+    <string name="event_widget_default_tag">标签</string>
+    <string name="event_tcp_trip__dynamics_received_data">接收到数据</string>
+    <string name="event_tcp_trip__dynamics_sent_data">已发送数据</string>
+    <string name="event_tcp_trip__dynamics_remote_port">远程端口</string>
+    <string name="event_tcp_trip__dynamics_remote_ip">远程IP</string>
+    <string name="event_tcp_trip__dynamics_remote_host">远程主机</string>
+    <string name="event_nfc_tag__dynamics_tag_id">标签ID</string>
+    <string name="broadcast_data">数据</string>
 </resources>
