@@ -224,4 +224,11 @@
     <string name="event_tcp_trip__dynamics_remote_host">Удалённый хост</string>
     <string name="event_nfc_tag__dynamics_tag_id">ИД тэга</string>
     <string name="usource_battery_level__custom_battery_level">Минимальный заряд аккумулятора (процент)</string>
+    <string name="usource_location__listen_min_time_seconds">Мин. время прослушивания (секунды)</string>
+    <string name="usource_location">Местоположение</string>
+    <string name="usource_location__radius_meters">Радиус (метры)</string>
+    <string name="usource_battery_level__inclusive">Включительно</string>
+    <string name="usource_battery_level__low">Низкий</string>
+    <string name="usource_battery_level__level_custom">Пользовательский уровень</string>
+    <string name="usource_battery_level__level_system">Системный уровень</string>
 </resources>
