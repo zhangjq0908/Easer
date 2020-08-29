@@ -16,8 +16,8 @@
     <string name="null_content">NULL CONTENT</string>
     <string name="activity_history__script">\@string/title_script</string>
     <string name="activity_history__profile">\@string/title_profile</string>
-    <string name="service_indicator_negative">Nie działa</string>
-    <string name="service_indicator_positive">Działa</string>
+    <string name="service_indicator_negative">Nie uruchomiony</string>
+    <string name="service_indicator_positive">Uruchomiony</string>
     <string name="title_new_dynamics_link">Nowy Dynamics Link</string>
     <string name="title_dynamics_link">Dynamics Link</string>
     <string name="title_add_child">Dodaj dziecko</string>
