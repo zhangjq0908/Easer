@@ -61,7 +61,7 @@
     <string name="o_volume_bluetooth">Bluetooth</string>
     <string name="o_volume_notification">Powiadomienie</string>
     <string name="o_volume_alarm">Alarm</string>
-    <string name="o_volume_ring">Zadzwoń</string>
+    <string name="o_volume_ring">Dzwonek</string>
     <string name="o_volume_media">Media</string>
     <string name="operation_volume">Dostosuj głośność</string>
     <string name="op_normal_mode">Tryb normalny</string>
@@ -139,7 +139,7 @@
     <string name="minutes">Minuty</string>
     <string name="one_time">Jednorazowo</string>
     <string name="repeat">Powtórz</string>
-    <string name="event_timer">Timer</string>
+    <string name="event_timer">Regulator czasowy</string>
     <string name="event_notification__app_hint">W pełni kwalifikowana nazwa pakietu aplikacji</string>
     <string name="repeative_timer">Powtarzalny timer\?</string>
     <string name="inexact">Niedokładny</string>
@@ -225,4 +225,5 @@
     <string name="event_condition_event">Zdarzenie warunkowe</string>
     <string name="event_broadcast">Odbierz transmisję</string>
     <string name="category_source_data_communication">Przekazywanie danych</string>
+    <string name="condition_ringer_equals">Równa się</string>
 </resources>
