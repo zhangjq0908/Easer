@@ -114,7 +114,7 @@
     <string name="pref_use_root_summary">Verwenden Sie Root-Rechte für bestimmte Funktionen (Plugins), um Kompatibilitätsprobleme auf einigen Geräten zu beheben.</string>
     <string name="pref_cooldown_title">Ausführen nur einmal pro …</string>
     <string name="pref_cooldown_summary">Zeitintervall in Sekunden in dem zwei gleiche Ereignisse wie eines behandelt werden.</string>
-    <string name="cooldown_time_illformed">"Deine Zahl ist zu groß oder keine ganze positive Zahl. "</string>
+    <string name="cooldown_time_illformed">Deine Zahl ist zu groß oder keine ganze positive Zahl.</string>
     <string name="pref_enabled_skills_title">Aktive Plugins</string>
     <string name="pref_enabled_skills_summary">Bestimmte Plugins (de-)aktivieren</string>
     <string name="pref_export_summary">Alle Ereignisse und Profile auf die SD-Karte exportieren. 
