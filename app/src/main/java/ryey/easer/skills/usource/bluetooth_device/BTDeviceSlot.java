@@ -53,6 +53,8 @@ public class BTDeviceSlot extends AbstractSlot<BTDeviceUSourceData> {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 if (is_target(device)) {
                     matched_devices--;
+                    if (matched_devices<0)
+                        matched_devices = 0;
                     determine_satisfied(dynamicsForCurrentDevice(device));
                 }
             }
