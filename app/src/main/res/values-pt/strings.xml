@@ -85,24 +85,16 @@
 \nPor favor leia o &lt;a href=\"https://github.com/renyuneyun/Easer/wiki\"&gt;documento&lt;/a&gt; para mais informações.<a href="https://github.com/renyuneyun/Easer/wiki">document</a> for more info.</string>
     <string name="welcome_message_privacy">Privacidade é importante!
 \n
-\nEaser é &lt;a href=\"https://pt.wikipedia.org/wiki/Software_livre\"&gt;software livre&lt;/a&gt; (software de código aberto), garantindo que todos possam usá-lo, estudá-lo, alterá-lo e compartilhá-lo.
+\nEaser é <a href="https://pt.wikipedia.org/wiki/Software_livre">software livre</a> (software de código aberto), a garantir que todos possam usá-lo, estudá-lo, alterá-lo e compartilhá-lo.
 \n
-\nVOCÊ é dono(a) de cada parte dos seus dados. Todo fica no seu aparelho, inclusive os logs.<a href="https://en.wikipedia.org/wiki/Free_software">free software</a> (open-source software), ensuring everyone use, study, change and share it.
+\nVOCÊ é dono(a) de todos os seus dados. Tudo fica no seu aparelho, inclusive os logs.</string>
+    <string name="welcome_message_3">Scripts são estruturados como <a href="https://pt.wikipedia.org/wiki/Topologia_em_%C3%A1rvore">árvores</a>, a escolher o pai relevante.
 \n
-\nYOU own every piece of your data. Everything lives on your device, including the logs.</string>
-    <string name="welcome_message_3">Scripts são estruturados como &lt;a href=\"https://en.wikipedia.org/wiki/Tree_structure\"&gt;árvores&lt;/a&gt;, escolhendo o nó relevante.
-\n
-\nDentro de cada ramificação, a lógica AND é executada.
-\nEntre as ramificações, a lógica OR é executada.
-\n 
-\n
-\nEstender árvores para gráficos está nos planos, mas ainda não foi implementado.<a href="https://en.wikipedia.org/wiki/Tree_structure">trees</a>, by choosing the relevant parent.
-\n
-\nIn every branch, AND logic is performed.
-\nBetween branches, OR logic is performed.
+\nEm todos os ramos, a lógica E é executada.
+\nEntre ramos, a lógica OU é executada.
 \n
 \n
-\nExtending trees to graphs is planned, but not currently implemented.</string>
+\nA extensão de árvores para gráficos está planeada, mas atualmente não está implementada.</string>
     <string name="welcome_message_2">Easer contém vários módulos que trazem diferentes funções. Ative-os ou desative-os em Configurações.
 \n
 \nAs permissões correspondentes (para cada módulo ativo) deveriam ser concedidas antes do uso.
@@ -197,4 +189,8 @@
     <string name="pref_use_12_hour_clock_title">Usar relógio de 12 horas</string>
     <string name="pref_welcome_summary">Exibir mensagens de boas-vindas ao abrir a app</string>
     <string name="prompt_data_save_io_exception">Foi encontrado um IOException. Talvez o armazenamento esteja cheio\?</string>
+    <string name="bluetooth_maybe_not_supported">Este perfil do Easer usa um método que não é oficialmente suportado pelo Android. Pode não funcionar em todos os aparelhos.</string>
+    <string name="bluetooth_device_profile">Perfil de aparelhos Bluetooth</string>
+    <string name="mac_address">Endereço MAC (00:11:22:33:FF:EE)</string>
+    <string name="operation_bluetooth_connect">Conectar ao aparelho Bluetooth</string>
 </resources>
