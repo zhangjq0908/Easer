@@ -190,4 +190,8 @@
     <string name="title_edit_script">Rediger skript</string>
     <string name="prompt_data_clash">Klarte ikke å lagre data. Sjekk om navnene er i bruk.</string>
     <string name="prompt_data_save_io_exception">Lagringsproblem. Kanskje lagringsmediet er fullt\?</string>
+    <string name="mac_address">MAC-adresse (00:11:22:33:FF:EE)</string>
+    <string name="bluetooth_maybe_not_supported">Easer-profilen bruker en metode som ikke offisielt støttes av Android. Det kan hende det ikke virker på alle enheter.</string>
+    <string name="bluetooth_device_profile">Blåtanns-enhetsprofil</string>
+    <string name="operation_bluetooth_connect">Koble til Blåtannsenhet</string>
 </resources>
