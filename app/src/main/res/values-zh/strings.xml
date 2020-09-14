@@ -50,12 +50,17 @@
 \n 
 \n使用之前，应授予（每个活动模块）相应的权限。
 \n
-\n（默认情况下，所有模块均处于启用状态。）</string>
+\n
+\n
+\n
+\n(默认情况下，所有模块均处于启用状态。)</string>
     <string name="welcome_message_3">通过选择相关的父级，脚本的结构为<a href="https://en.wikipedia.org/wiki/Tree_structure">树</a>。
 \n 
 \n在每个分支中，执行AND逻辑。
 \n在分支之间，执行“或”逻辑。
 \n 
+\n
+\n
 \n 
 \n已计划将树扩展为图，但目前尚未实现。</string>
     <string name="title_welcome_message_privacy">
@@ -63,8 +68,10 @@
     </string>
     <string name="welcome_message_privacy">隐私很重要！
 \n 
+\n
 \nEaser是<a href="https://en.wikipedia.org/wiki/Free_software">自由软件</a>（开源软件），确保所有人都可使用、研究、更改和共享它。
 \n 
+\n
 \n您拥有每条数据。一切都保存在您的设备上，包括日志。</string>
     <string name="null_content">空內容</string>
     <string name="button_read_next_time">以後再看</string>
@@ -103,7 +110,7 @@
     <string name="message_convert_data_error">无法转换数据。请查看日志以获取详细信息。</string>
     <string name="pref_convert_data_title">轉換數據</string>
     <string name="pref_convert_data_summary">轉換所有數據至推薦格式</string>
-    <string name="pref_cooldown_title"></string>
+    <string name="pref_cooldown_title"/>
     <string name="pref_cooldown_summary">将两个相隔特定时间（以秒为单位）发生的事件视为一个事件</string>
     <string name="cooldown_time_illformed">您的数字太大，或者不是一个正整数。</string>
     <string name="text_predefined_event">預定義事件</string>
@@ -191,4 +198,8 @@
     <string name="title_dynamics_link">动态链接</string>
     <string name="title_application">App</string>
     <string name="title_new_dynamics_link">新的动态链接</string>
+    <string name="bluetooth_maybe_not_supported">这个Easer 配置使用了一个Android官方不支持的方法。它可能不会在所有设备上都正常运作。</string>
+    <string name="bluetooth_device_profile">蓝牙设备档案</string>
+    <string name="mac_address">MAC 地址 (00:11:22:33:FF:EE)</string>
+    <string name="operation_bluetooth_connect">连接到蓝牙设备</string>
 </resources>
