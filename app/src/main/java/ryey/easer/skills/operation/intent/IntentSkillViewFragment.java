@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.operation.broadcast;
+package ryey.easer.skills.operation.intent;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -36,7 +36,7 @@ import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.skills.SkillViewFragment;
 import ryey.easer.skills.operation.EditExtraFragment;
 
-public class BroadcastSkillViewFragment extends SkillViewFragment<BroadcastOperationData> {
+public class IntentSkillViewFragment extends SkillViewFragment<IntentOperationData> {
     private EditText m_text_action;
     private EditText m_text_category;
     private EditText m_text_type;
@@ -57,7 +57,7 @@ public class BroadcastSkillViewFragment extends SkillViewFragment<BroadcastOpera
     }
 
     @Override
-    protected void _fill(@ValidData @NonNull BroadcastOperationData data) {
+    protected void _fill(@ValidData @NonNull IntentOperationData data) {
         IntentData rdata = data.data;
         m_text_action.setText(rdata.action);
         m_text_category.setText(Utils.StringCollectionToString(rdata.category, false));
@@ -70,14 +70,14 @@ public class BroadcastSkillViewFragment extends SkillViewFragment<BroadcastOpera
     @ValidData
     @NonNull
     @Override
-    public BroadcastOperationData getData() throws InvalidDataInputException {
+    public IntentOperationData getData() throws InvalidDataInputException {
         IntentData data = new IntentData();
         data.action = m_text_action.getText().toString();
         data.category = Utils.stringToStringList(m_text_category.getText().toString());
         data.type = m_text_type.getText().toString();
         data.data = Uri.parse(m_text_data.getText().toString());
         data.extras = editExtraFragment.getExtras();
-        BroadcastOperationData broadcastOperationData = new BroadcastOperationData(data);
+        IntentOperationData broadcastOperationData = new IntentOperationData(data);
         return broadcastOperationData;
     }
 

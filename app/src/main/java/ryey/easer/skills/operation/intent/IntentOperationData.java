@@ -1,23 +1,4 @@
-/*
- * Copyright (c) 2016 - 2019 Rui Zhao <renyuneyun@gmail.com>
- *
- * This file is part of Easer.
- *
- * Easer is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Easer is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-package ryey.easer.skills.operation.broadcast;
+package ryey.easer.skills.operation.intent;
 
 import android.net.Uri;
 import android.os.Parcel;
@@ -42,8 +23,9 @@ import ryey.easer.commons.local_skill.operationskill.OperationData;
 import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.skills.operation.ExtraItem;
 import ryey.easer.skills.operation.Extras;
+import ryey.easer.skills.operation.intent.IntentOperationData;
 
-public class BroadcastOperationData implements OperationData {
+public class IntentOperationData implements OperationData {
     private static final String ns = null;
 
     private static final String ACTION = "action";
@@ -54,11 +36,11 @@ public class BroadcastOperationData implements OperationData {
 
     IntentData data = new IntentData();
 
-    BroadcastOperationData(IntentData data) {
+    IntentOperationData(IntentData data) {
         this.data = data;
     }
 
-    BroadcastOperationData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
+    IntentOperationData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         parse(data, format, version);
     }
 
@@ -153,9 +135,9 @@ public class BroadcastOperationData implements OperationData {
     public boolean equals(Object obj) {
         if (obj == this)
             return true;
-        if (!(obj instanceof BroadcastOperationData))
+        if (!(obj instanceof IntentOperationData))
             return false;
-        return data.equals(((BroadcastOperationData) obj).data);
+        return data.equals(((IntentOperationData) obj).data);
     }
 
     @Override
@@ -168,18 +150,18 @@ public class BroadcastOperationData implements OperationData {
         dest.writeParcelable(data, 0);
     }
 
-    public static final Parcelable.Creator<BroadcastOperationData> CREATOR
-            = new Parcelable.Creator<BroadcastOperationData>() {
-        public BroadcastOperationData createFromParcel(Parcel in) {
-            return new BroadcastOperationData(in);
+    public static final Parcelable.Creator<IntentOperationData> CREATOR
+            = new Parcelable.Creator<IntentOperationData>() {
+        public IntentOperationData createFromParcel(Parcel in) {
+            return new IntentOperationData(in);
         }
 
-        public BroadcastOperationData[] newArray(int size) {
-            return new BroadcastOperationData[size];
+        public IntentOperationData[] newArray(int size) {
+            return new IntentOperationData[size];
         }
     };
 
-    private BroadcastOperationData(Parcel in) {
+    private IntentOperationData(Parcel in) {
         data = in.readParcelable(IntentData.class.getClassLoader());
     }
 
@@ -231,6 +213,6 @@ public class BroadcastOperationData implements OperationData {
             }
             data.extras = new Extras(extras);
         }
-        return new BroadcastOperationData(intentData);
+        return new IntentOperationData(intentData);
     }
 }

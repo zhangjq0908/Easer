@@ -26,7 +26,7 @@ import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.commons.local_skill.DataFactory;
 import ryey.easer.commons.local_skill.Skill;
 import ryey.easer.commons.local_skill.StorageData;
-import ryey.easer.skills.operation.broadcast.BroadcastOperationSkill;
+import ryey.easer.skills.operation.intent.IntentOperationSkill;
 
 import static org.junit.Assert.assertEquals;
 
@@ -35,7 +35,7 @@ public class PluginDataTest {
     @Test
     public void testPluginData() throws Exception {
         for (Skill plugin : LocalSkillRegistry.getInstance().all().getAllSkills()) {
-            if (plugin instanceof BroadcastOperationSkill)
+            if (plugin instanceof IntentOperationSkill)
                 continue;
             DataFactory factory = plugin.dataFactory();
             StorageData dummyData = factory.dummyData();
