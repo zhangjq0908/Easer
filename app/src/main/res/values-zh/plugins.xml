@@ -128,7 +128,7 @@
     <string name="ringer_mode_dnd_priority">僅優先通知</string>
     <string name="ringer_mode_dnd_none">全不</string>
     <string name="ringer_mode_dnd_alarms">鬧鈴</string>
-    <string name="ringing_items_in_do_not_disturb_mode"></string>
+    <string name="ringing_items_in_do_not_disturb_mode"/>
     <string name="label_operation_ringer_mode_notification_listener_service">切換靜音模式</string>
     <string name="operation_command">執行命令</string>
     <string name="operation_hotspot">移動熱點</string>
@@ -242,4 +242,6 @@
     <string name="event_tcp_trip__dynamics_remote_host">远程主机</string>
     <string name="event_nfc_tag__dynamics_tag_id">标签ID</string>
     <string name="broadcast_data">数据</string>
+    <string name="operation_start_service">启动服务</string>
+    <string name="operation_start_activity">启动活动</string>
 </resources>
