@@ -232,4 +232,6 @@
     <string name="ringer_mode_normal">Normal</string>
     <string name="usource_bluetooth_enabled">Bluetooth ativado</string>
     <string name="ringing_items_in_do_not_disturb_mode">Itens que tocam em modo Não perturbe</string>
+    <string name="operation_start_service">Iniciar serviço</string>
+    <string name="operation_start_activity">Iniciar atividade</string>
 </resources>
