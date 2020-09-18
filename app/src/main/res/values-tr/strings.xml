@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="easer">Easer</string>
-    <string name="drawer_tip">Hayatınızı kolaylaştırın!</string>
+    <string name="drawer_tip">Hayatınızı kolaylaştırın.</string>
     <string name="title_outline">Anahat</string>
     <string name="title_pivot">Özet</string>
     <string name="title_operation">İşlem</string>
@@ -13,4 +13,9 @@
     <string name="title_activity_history">Etkinlik Geçmişi</string>
     <string name="title_about">Hakkında</string>
     <string name="title_setting">Ayarlar</string>
+    <string name="title_add">Ekle</string>
+    <string name="title_edit">Düzenle</string>
+    <string name="title_delete">Sil</string>
+    <string name="title_edit_profile">Profili Düzenle</string>
+    <string name="title_data_collection">Veri</string>
 </resources>
