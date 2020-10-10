@@ -200,4 +200,8 @@
     <string name="title_edit_script">スクリプトを編集</string>
     <string name="prompt_data_clash">データの保存に失敗しました。名前の競合がないか確認してください。</string>
     <string name="prompt_data_save_io_exception">IO 例外が発生しました。ストレージがいっぱいではありませんか\?</string>
+    <string name="bluetooth_maybe_not_supported">この Easer プロファイルは、Android で正式にサポートされていないメソッドを使用します。すべてのデバイスで動作しないことがあります。</string>
+    <string name="bluetooth_device_profile">Bluetoothデバイスプロファイル</string>
+    <string name="mac_address">MAC アドレス (00:11:22:33:FF:EE)</string>
+    <string name="operation_bluetooth_connect">Bluetoothデバイスに接続</string>
 </resources>
