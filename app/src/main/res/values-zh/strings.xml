@@ -5,7 +5,7 @@
     <string name="hint_event_title">活动标题</string>
     <string name="menu_start">啓動</string>
     <string name="menu_stop">停止</string>
-    <string name="prompt_delete">您确定要删除％s吗？</string>
+    <string name="prompt_delete">确定要删除%s\?</string>
     <string name="prompt_save_failed">无法保存</string>
     <string name="service_indicator_negative">未運行</string>
     <string name="service_indicator_positive">運行中</string>
@@ -51,26 +51,20 @@
 \n使用之前，应授予（每个活动模块）相应的权限。
 \n
 \n
-\n
-\n
 \n(默认情况下，所有模块均处于启用状态。)</string>
-    <string name="welcome_message_3">通过选择相关的父级，脚本的结构为<a href="https://en.wikipedia.org/wiki/Tree_structure">树</a>。
+    <string name="welcome_message_3">通过选择相关的父级，脚本为<a href="https://en.wikipedia.org/wiki/Tree_structure">树形结构</a>。
 \n 
-\n在每个分支中，执行AND逻辑。
-\n在分支之间，执行“或”逻辑。
-\n 
+\n每个分支中，执行“和”逻辑。
+\n分支之间，执行“或”逻辑。
 \n
 \n
-\n 
 \n已计划将树扩展为图，但目前尚未实现。</string>
     <string name="title_welcome_message_privacy">
         隱私！
     </string>
     <string name="welcome_message_privacy">隐私很重要！
-\n 
 \n
 \nEaser是<a href="https://en.wikipedia.org/wiki/Free_software">自由软件</a>（开源软件），确保所有人都可使用、研究、更改和共享它。
-\n 
 \n
 \n您拥有每条数据。一切都保存在您的设备上，包括日志。</string>
     <string name="null_content">空內容</string>
@@ -92,7 +86,7 @@
     <string name="pref_logging_title">打开外部日志记录</string>
     <string name="pref_logging_summary">保存日志到外部存储设备（/sdcard / logger），以帮助报告错误。
 \n更改将在下次应用启动时生效。</string>
-    <string name="prompt_prevented_for_permission">要使其正常工作，请授予Easer &lt;％s&gt;权限。</string>
+    <string name="prompt_prevented_for_permission">要使其正常工作，请授予Easer &lt;%s&gt; 权限。</string>
     <string name="version">版本</string>
     <string name="text_lack_permission">有些技能没有足够的权限。</string>
     <string name="pref_use_root_title">使用root權限特性</string>
@@ -111,7 +105,7 @@
     <string name="pref_convert_data_title">轉換數據</string>
     <string name="pref_convert_data_summary">轉換所有數據至推薦格式</string>
     <string name="pref_cooldown_title"/>
-    <string name="pref_cooldown_summary">将两个相隔特定时间（以秒为单位）发生的事件视为一个事件</string>
+    <string name="pref_cooldown_summary">将两个相隔特定时间（以秒为单位）发生的事件视为一个事件。</string>
     <string name="cooldown_time_illformed">您的数字太大，或者不是一个正整数。</string>
     <string name="text_predefined_event">預定義事件</string>
     <string name="text_inline_event">内联事件</string>
@@ -196,7 +190,7 @@
     <string name="navigation_drawer_close">关闭导航抽屉</string>
     <string name="navigation_drawer_open">打开导航抽屉</string>
     <string name="title_dynamics_link">动态链接</string>
-    <string name="title_application">App</string>
+    <string name="title_application">应用程序</string>
     <string name="title_new_dynamics_link">新的动态链接</string>
     <string name="bluetooth_maybe_not_supported">这个Easer 配置使用了一个Android官方不支持的方法。它可能不会在所有设备上都正常运作。</string>
     <string name="bluetooth_device_profile">蓝牙设备档案</string>
