@@ -231,9 +231,9 @@
     <string name="broadcast_type">类型</string>
     <string name="event_widget_default_text">显示文本</string>
     <string name="operation_toast">悬浮窗口</string>
-    <string name="event_widget__dynamics_widget_id">小部件ID</string>
-    <string name="event_widget__dynamics_widget_tag">小部件标签</string>
-    <string name="event_widget_button_save_widget">保存小部件</string>
+    <string name="event_widget__dynamics_widget_id">微件ID</string>
+    <string name="event_widget__dynamics_widget_tag">微件标签</string>
+    <string name="event_widget_button_save_widget">保存微件</string>
     <string name="event_widget_default_tag">标签</string>
     <string name="event_tcp_trip__dynamics_received_data">接收到数据</string>
     <string name="event_tcp_trip__dynamics_sent_data">已发送数据</string>
