@@ -128,7 +128,7 @@
     <string name="ringer_mode_dnd_priority">僅優先通知</string>
     <string name="ringer_mode_dnd_none">全不</string>
     <string name="ringer_mode_dnd_alarms">鬧鈴</string>
-    <string name="ringing_items_in_do_not_disturb_mode"/>
+    <string name="ringing_items_in_do_not_disturb_mode">“勿扰模式”下响铃项目</string>
     <string name="label_operation_ringer_mode_notification_listener_service">切換靜音模式</string>
     <string name="operation_command">執行命令</string>
     <string name="operation_hotspot">移動熱點</string>
