@@ -2,7 +2,7 @@
 <resources>
     <string name="easer">Easer</string>
     <string name="app_name">\@string/easer</string>
-    <string name="drawer_tip">Underlätta ditt liv!</string>
+    <string name="drawer_tip">Underlätta ditt liv.</string>
     <string name="title_outline">Översikt</string>
     <string name="title_operation">Åtgärd</string>
     <string name="title_profile">Profil</string>
@@ -55,7 +55,7 @@
     <string name="text_predefined_event">Fördefinierad händelse</string>
     <string name="text_inline_event">Integrerad händelse</string>
     <string name="text_use_condition">Använd villkor</string>
-    <string name="text_repeatable_desc">Repeterbar när det är uppfyllt</string>
+    <string name="text_repeatable_desc">Återkommande</string>
     <string name="text_reverse_desc">Omvända scenariot</string>
     <string name="text_volatile">Flyktig</string>
     <string name="text_persistent">Ihållande</string>
@@ -66,11 +66,11 @@
     <string name="hint_script_title">Skriptnamn</string>
     <string name="hint_profile_title">Profilnamn</string>
     <string name="hint_condition_title">Villkorsnamn</string>
-    <string name="prompt_save_failed">Kunde inte spara</string>
+    <string name="prompt_save_failed">Det gick inte att spara</string>
     <string name="prompt_delete">Vill du verkligen ta bort %s\?</string>
-    <string name="prompt_delete_failed">Borttagningen misslyckades. Kontrollera om objektet används.</string>
+    <string name="prompt_delete_failed">Det gick inte att ta bort. Kontrollera om det här objektet används.</string>
     <string name="prompt_data_illegal">Hindrade spara data med ogiltigt fält. Vänligen kontrollera dina val / ingångar.</string>
-    <string name="prompt_prevented_for_permission">"Ge Easer  behörigheten &lt;%s&gt; för att denna funktion ska fungera."</string>
+    <string name="prompt_prevented_for_permission">Ge Easer behörigheten &lt;%s&gt; för att denna funktion ska fungera.</string>
     <string name="text_app_description">Underlätta ditt liv genom att automatiskt utföra rutinmässiga åtgärder / operationer på din telefon.
 \n Kedja av olika händelser och låt deras motsvarande åtgärder som utförs. Behöver inte längre hålla dem i åtanke!
 \n Denna app var inspirerad av Cyanogenmod\'s \'profil\' mekanismen och IFTTT. Den ursprungliga intuitionen var att automatiskt ändra profil på viss tid eller visst WiFi-anslutningar, och det var expanderat för mer allmänt bruk sedan.
@@ -83,8 +83,8 @@
     <string name="pref_category_personalise">Anpassa</string>
     <string name="pref_category_data_manage">Hantera data</string>
     <string name="pref_category_service">Tjänst</string>
-    <string name="pref_autostart_title">Autostart vid uppstart</string>
-    <string name="pref_autostart_summary">Startar Easer som bakgrundstjänst när enheten startas</string>
+    <string name="pref_autostart_title">Automatisk uppstart</string>
+    <string name="pref_autostart_summary">Startar Easer som bakgrundstjänst när enheten startas.</string>
     <string name="pref_restart_after_upgrade_title">Starta tjänsten efter uppgradering</string>
     <string name="pref_welcome_title">Visa välkomstmeddelande</string>
     <string name="pref_welcome_summary">Visa välkomstmeddelande när appen öppnas</string>
@@ -92,15 +92,15 @@
     <string name="pref_logging_summary">Loggar till externa lagringsenheter (/sdcard/logger) till stöd för felrapporter. 
 \nÄndringar börjar gälla från nästa gång appen startar.</string>
     <string name="pref_use_root_title">Använd root-funktioner</string>
-    <string name="pref_use_root_summary">Använd rot-behörighet för specifika funktioner (insticksmoduler), som kan hjälpa till att lösa kompatibilitetsproblem på vissa enheter. Rot-behörigheten kommer inte att användas någon annanstans.</string>
-    <string name="pref_cooldown_title">Nedkylningstid</string>
-    <string name="pref_cooldown_summary">Minimala intervallet (i sekunder) mellan två utlösare av samma händelse</string>
-    <string name="cooldown_time_illformed">Numret får inte vara lägre än 0 och inte för stor för att rymma i ett heltal</string>
+    <string name="pref_use_root_summary">Använd rot-behörighet för specifika funktioner (insticksmoduler), för att lösa kompatibilitetsproblem på vissa enheter.</string>
+    <string name="pref_cooldown_title">Händelse bara en gång per…</string>
+    <string name="pref_cooldown_summary">Tidsram i sekunder för att behandla två förekomster som en händelse.</string>
+    <string name="cooldown_time_illformed">Ditt nummer är för högt eller inte ett positivt heltal.</string>
     <string name="pref_enabled_skills_title">Aktiverade insticksmoduler</string>
     <string name="pref_enabled_skills_summary">Aktivera eller inaktivera vissa insticksmoduler</string>
     <string name="pref_use_12_hour_clock_title">Använd 12-timmarsklocka</string>
     <string name="pref_export_title">Exportera</string>
-    <string name="pref_export_summary">Exportera alla händelser och profiler till SD-kortet .
+    <string name="pref_export_summary">Exportera alla händelser och profiler till SD-kortet.
 \nFilnamnet kommer att bestå av en aktuell tidsstämpel.</string>
     <string name="pref_import_title">Importera</string>
     <string name="pref_import_summary">Importera alla händelser och profiler i en ZIP-fil.
@@ -142,7 +142,7 @@
 \n
 \nDU äger varje bit av din data. Allting bor på din enhet, inklusive loggar.</string>
     <string name="alert_update_storage_data_title">Gammal dataversion hittades</string>
-    <string name="alert_update_storage_data">Välj \"Konvertera data\" i inställningarna för att uppdatera din data till det nya formatet för att bli kompatibelt.</string>
+    <string name="alert_update_storage_data">Välj \"Konvertera data\" i inställningarna för att uppdatera din data till det nya formatet, för att bli kompatibelt.</string>
     <string name="message_future_change_title">Ändras snart</string>
     <string name="template_export">Exporteras till %s</string>
     <string name="version">Version</string>
@@ -187,4 +187,12 @@
     <string name="message_future_change_0_8">Trädvyn av skript kommer att tas bort i v 0.8. Pivot ger en bättre utsikt mot det.</string>
     <string name="title_choose_predecessors">Välj föregångare</string>
     <string name="text_unknown_skill">[Okänd färdighet]</string>
+    <string name="bluetooth_maybe_not_supported">Denna Easer-profil använder en metod som inte stöds officiellt av Android. Det kanske inte fungerar på alla enheter.</string>
+    <string name="bluetooth_device_profile">Bluetooth-enhetsprofil</string>
+    <string name="mac_address">MAC-adress (00:11:22:33:FF:EE)</string>
+    <string name="operation_bluetooth_connect">Anslut till Bluetooth-enhet</string>
+    <string name="prompt_data_save_io_exception">IOException påträffades. Kanske är lagringen full\?</string>
+    <string name="prompt_data_clash">Det gick inte att spara data. Kontrollera om det finns en namnkollision.</string>
+    <string name="title_edit_script">Redigera skript</string>
+    <string name="title_add_child">Lägg till underordnad</string>
 </resources>
