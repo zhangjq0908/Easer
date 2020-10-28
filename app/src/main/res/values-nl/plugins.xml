@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources><string name="event_condition_event">Conditie Gebeurtenis</string>
+<resources>
+    <string name="event_condition_event">Conditie Gebeurtenis</string>
     <string name="event_condition_event_enter">Betreedt</string>
     <string name="event_condition_event_leave">Verlaat</string>
     <string name="match_event_title">Gebeurtenis Titel</string>
@@ -161,4 +162,9 @@
     <string name="op_car_mode">Auto modus</string>
     <string name="op_normal_mode">Normale modus</string>
     <string name="condition__rel_after">Na</string>
+    <string name="category_source_data_communication">Data communicatie</string>
+    <string name="category_source_easer">Easer</string>
+    <string name="category_source_device">Apparaat</string>
+    <string name="category_source_date_time">Datum en tijd</string>
+    <string name="category_source_android">Android</string>
 </resources>

@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.operation.broadcast;
+package ryey.easer.skills.operation.intent;
 
 import android.app.Activity;
 import android.content.Context;
@@ -25,26 +25,16 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import ryey.easer.R;
 import ryey.easer.commons.local_skill.SkillView;
 import ryey.easer.commons.local_skill.operationskill.OperationDataFactory;
 import ryey.easer.commons.local_skill.operationskill.OperationSkill;
 import ryey.easer.commons.local_skill.operationskill.PrivilegeUsage;
 import ryey.easer.plugin.operation.Category;
-import ryey.easer.skills.operation.OperationLoader;
 
-public class BroadcastOperationSkill implements OperationSkill<BroadcastOperationData> {
 
-    @NonNull
-    @Override
-    public String id() {
-        return "send_broadcast";
-    }
+public abstract class IntentOperationSkill implements OperationSkill<IntentOperationData> {
 
-    @Override
-    public int name() {
-        return R.string.operation_broadcast;
-    }
+
 
     @Override
     public boolean isCompatible(@NonNull final Context context) {
@@ -81,21 +71,16 @@ public class BroadcastOperationSkill implements OperationSkill<BroadcastOperatio
 
     @NonNull
     @Override
-    public OperationDataFactory<BroadcastOperationData> dataFactory() {
-        return new BroadcastOperationDataFactory();
+    public OperationDataFactory<IntentOperationData> dataFactory() {
+        return new IntentOperationDataFactory();
 
     }
 
     @NonNull
     @Override
-    public SkillView<BroadcastOperationData> view() {
-        return new BroadcastSkillViewFragment();
+    public SkillView<IntentOperationData> view() {
+        return new IntentSkillViewFragment();
     }
 
-    @NonNull
-    @Override
-    public OperationLoader<BroadcastOperationData> loader(@NonNull Context context) {
-        return new BroadcastLoader(context);
-    }
 
 }

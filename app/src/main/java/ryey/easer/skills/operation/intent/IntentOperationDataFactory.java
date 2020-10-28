@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.operation.broadcast;
+package ryey.easer.skills.operation.intent;
 
 import android.net.Uri;
 
@@ -32,17 +32,17 @@ import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.skills.operation.ExtraItem;
 import ryey.easer.skills.operation.Extras;
 
-class BroadcastOperationDataFactory implements OperationDataFactory<BroadcastOperationData> {
+class IntentOperationDataFactory implements OperationDataFactory<IntentOperationData> {
     @NonNull
     @Override
-    public Class<BroadcastOperationData> dataClass() {
-        return BroadcastOperationData.class;
+    public Class<IntentOperationData> dataClass() {
+        return IntentOperationData.class;
     }
 
     @ValidData
     @NonNull
     @Override
-    public BroadcastOperationData dummyData() {
+    public IntentOperationData dummyData() {
         IntentData intentData = new IntentData();
         intentData.action = "testAction";
         intentData.category = new ArrayList<>();
@@ -53,13 +53,13 @@ class BroadcastOperationDataFactory implements OperationDataFactory<BroadcastOpe
         ExtraItem extraItem = new ExtraItem("extra_key1", "extra_value1", "string");
         extras.add(extraItem);
         intentData.extras = Extras.mayConstruct(extras);
-        return new BroadcastOperationData(intentData);
+        return new IntentOperationData(intentData);
     }
 
     @ValidData
     @NonNull
     @Override
-    public BroadcastOperationData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
-        return new BroadcastOperationData(data, format, version);
+    public IntentOperationData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
+        return new IntentOperationData(data, format, version);
     }
 }

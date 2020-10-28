@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="easer">Easer</string>
+    <string name="easer">イーザー</string>
     <string name="drawer_tip">便利になります。</string>
     <string name="title_outline">概要</string>
     <string name="title_profile">プロファイル</string>
@@ -53,8 +53,8 @@
     <string name="title_new_dynamics_link">新しい動的リンク</string>
     <string name="title_trigger_profile">このプロファイルを起動</string>
     <string name="menu_action_save">保存</string>
-    <string name="activity_history__profile">@string/title_profile</string>
-    <string name="activity_history__script">@string/title_script</string>
+    <string name="activity_history__profile">\@文字列/タイトルプロファイル</string>
+    <string name="activity_history__script">\@文字列/タイトル脚本</string>
     <string name="activity_history__extra">追加情報</string>
     <string name="activity_history__satisfaction">ステータス</string>
     <string name="activity_history__satisfied">充足</string>
@@ -96,7 +96,7 @@
     <string name="pref_use_root_title">root 機能を使用する</string>
     <string name="pref_use_root_summary">一部のデバイスで互換性の問題を解決するため、特定の機能 (スキル) で root 権限を使用します。</string>
     <string name="pref_cooldown_title">イベントは1回だけ…</string>
-    <string name="pref_cooldown_summary">2つの発生を1つのイベントとして扱うための時間枠（秒単位）</string>
+    <string name="pref_cooldown_summary">2つの発生を1つのイベントとして扱うための時間枠（秒単位）。</string>
     <string name="cooldown_time_illformed">数値が大きすぎるか、正の整数ではありません。</string>
     <string name="pref_enabled_skills_title">有効なスキル</string>
     <string name="pref_enabled_skills_summary">特定のプラグインを有効または無効にします</string>
@@ -139,7 +139,7 @@
 \n詳細については <a href="https://github.com/renyuneyun/Easer/wiki">ドキュメント</a> を参照してください。</string>
     <string name="category_operation_android">Android</string>
     <string name="category_operation_system_config">システム設定</string>
-    <string name="category_operation_easer">\@string/easer</string>
+    <string name="category_operation_easer">\@文字列/イーザー</string>
     <string name="category_operation_misc">その他</string>
     <string name="title_remote_operation_plugin">リモート操作プラグイン</string>
     <string name="category_operation_unknown">不明</string>
@@ -200,4 +200,8 @@
     <string name="title_edit_script">スクリプトを編集</string>
     <string name="prompt_data_clash">データの保存に失敗しました。名前の競合がないか確認してください。</string>
     <string name="prompt_data_save_io_exception">IO 例外が発生しました。ストレージがいっぱいではありませんか\?</string>
+    <string name="bluetooth_maybe_not_supported">この Easer プロファイルは、Android で正式にサポートされていないメソッドを使用します。すべてのデバイスで動作しないことがあります。</string>
+    <string name="bluetooth_device_profile">Bluetoothデバイスプロファイル</string>
+    <string name="mac_address">MAC アドレス (00:11:22:33:FF:EE)</string>
+    <string name="operation_bluetooth_connect">Bluetoothデバイスに接続</string>
 </resources>

@@ -233,4 +233,6 @@
     <string name="usource_location__listen_min_time_seconds">待機時間 (秒)</string>
     <string name="usource_location__threshold_age_seconds">しきい値経過時間 (秒)</string>
     <string name="usource_location__threshold_accuracy_meters">しきい値精度 (メートル)</string>
+    <string name="operation_start_service">サービスの開始</string>
+    <string name="operation_start_activity">アクティビティの開始</string>
 </resources>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="easer">Easer</string>
-    <string name="drawer_tip">Облегчи свою жизнь!</string>
+    <string name="drawer_tip">Облегчи свою жизнь.</string>
     <string name="title_outline">План</string>
     <string name="title_operation">Операция</string>
     <string name="title_profile">Профиль</string>
@@ -29,8 +29,8 @@
     <string name="menu_clear">Очистить</string>
     <string name="service_indicator_positive">Работает</string>
     <string name="service_indicator_negative">Не работает</string>
-    <string name="activity_history__profile"></string>
-    <string name="activity_history__script"></string>
+    <string name="activity_history__profile">\@string/title_profile</string>
+    <string name="activity_history__script">\@string/title_script</string>
     <string name="activity_history__time">Время</string>
     <string name="activity_history__extra">Дополнительная информация</string>
     <string name="activity_history__satisfaction">Состояние</string>
@@ -45,7 +45,7 @@
     <string name="navigation_drawer_close">Закрыть навигационную панель</string>
     <string name="button_read_next_time">Прочитать в следующий раз</string>
     <string name="button_understand">Понял</string>
-    <string name="button_cancel">Отменить</string>
+    <string name="button_cancel">Отмена</string>
     <string name="button_ok">ОК</string>
     <string name="text_lack_permission">Некоторые навыки НЕ имеют достаточного разрешения.</string>
     <string name="text_notification_running_indicator_content">%s работает в фоне</string>
@@ -54,7 +54,7 @@
     <string name="text_predefined_event">Предопределённое событие</string>
     <string name="text_inline_event">Случайное событие</string>
     <string name="text_use_condition">Использовать Условие</string>
-    <string name="text_repeatable_desc">Повторять при удовлетворении</string>
+    <string name="text_repeatable_desc">Повторяющиеся</string>
     <string name="text_reverse_desc">Обратный сценарий</string>
     <string name="text_volatile">Изменяемый</string>
     <string name="text_persistent">Постоянный</string>
@@ -82,8 +82,8 @@
     <string name="pref_category_personalise">Персонализировать</string>
     <string name="pref_category_data_manage">Управление данными</string>
     <string name="pref_category_service">Сервис</string>
-    <string name="pref_autostart_title">Автоматический запуск при включении</string>
-    <string name="pref_autostart_summary">Автоматически запускать сервис Easer в фоне, когда устройство включено</string>
+    <string name="pref_autostart_title">Автоматический запуск</string>
+    <string name="pref_autostart_summary">Автоматически запускать сервис Easer в фоне, когда устройство включено.</string>
     <string name="pref_restart_after_upgrade_title">Запустить сервис после обновления</string>
     <string name="pref_welcome_title">Показать сообщение приветствия</string>
     <string name="pref_welcome_summary">Показывать приветствующее сообщение при запуске приложения</string>
@@ -91,19 +91,19 @@
     <string name="pref_logging_summary">Сохраняйте журналы на внешнее запоминающее устройство (/sdcard/logger), чтобы облегчить отправку сообщений об ошибках. 
 \nИзменения вступают в силу при следующем запуске приложения.</string>
     <string name="pref_use_root_title">Использовать возможности root</string>
-    <string name="pref_use_root_summary">Используйте root-разрешение для определенных функций (плагинов), которые могут помочь решить проблему совместимости на некоторых устройствах. Это нигде больше не будет использоваться.</string>
-    <string name="pref_cooldown_title">Время простоя</string>
-    <string name="pref_cooldown_summary">Минимальный интервал (в секундах) между двумя триггерами одного события</string>
-    <string name="cooldown_time_illformed">Число не должно быть меньше 0 и не должно быть слишком большим, чтобы поместиться тип данных Integer</string>
-    <string name="pref_enabled_skills_title">Включённые плагины</string>
+    <string name="pref_use_root_summary">Используйте root-разрешение для определенных функций (плагинов), чтобы помочь решить проблему совместимости на некоторых устройствах.</string>
+    <string name="pref_cooldown_title">Запускать событие только раз в…</string>
+    <string name="pref_cooldown_summary">Временной промежуток в секундах, в течении которого два срабатывания считаются одним событием.</string>
+    <string name="cooldown_time_illformed">Ваше число слишком большое или не является положительным целым числом.</string>
+    <string name="pref_enabled_skills_title">Включённые навыки</string>
     <string name="pref_enabled_skills_summary">Включить или отключить определённые плагины</string>
     <string name="pref_use_12_hour_clock_title">Использовать 12-часовой формат</string>
     <string name="pref_export_title">Экспорт</string>
-    <string name="pref_export_summary">Экспорт всех событий и профилей на SD-карту.
-\nФайл будет назван текущим временем.</string>
+    <string name="pref_export_summary">Экспорт всех событий и профилей на SD-карту. 
+\nВ качестве имени файла сохранения будет использовано текущее время.</string>
     <string name="pref_import_title">Импорт</string>
-    <string name="pref_import_summary">Импорт всех событий и профилей из ZIP файла. 
-\nСуществующие события и профили с одинаковым именем будут заменены.</string>
+    <string name="pref_import_summary">Импорт всех событий и профилей из ZIP-файла. 
+\nСуществующие события и профили с тем же самым именем будут заменены.</string>
     <string name="pref_convert_data_title">Конвертировать данные</string>
     <string name="pref_convert_data_summary">Конвертировать все данные в рекомендуемый формат</string>
     <string name="pref_show_notification_title">Показать оповещения</string>
@@ -117,7 +117,7 @@
     <string name="message_convert_data_error">Произошла ошибка при конвертировании данных. Пожалуйста, обратитесь к логу за подробностями.</string>
     <string name="title_welcome_message">Добро Пожаловать</string>
     <string name="alert_update_storage_data_title">Обнаружены данные старой версии</string>
-    <string name="alert_update_storage_data">Выберите \"Конвертирование данных\" в настройках, чтобы обновить ваши данные на новый формат для совместимости.</string>
+    <string name="alert_update_storage_data">Чтобы обновить ваши данные на новый формат выберите в настройках пункт «Конвертирование данных», для совместимости.</string>
     <string name="template_export">Экспортировано в %s</string>
     <string name="version">Версия</string>
     <string name="message_importing_invalid_data">Похоже, этот файл недействителен. Обязательно импортируйте файл, экспортированный Easer.</string>
@@ -130,8 +130,8 @@
 \n
 \nТакже реализованы расширенные функции, такие как обратное событие. 
 \nЗа более подробной информации обратитесь, пожалуйста, к <a href="https://github.com/renyuneyun/Easer/wiki">документу</a>.</string>
-    <string name="help_event">\"Событие\" представляет собой кратковременное (мгновенное) событие на вашем устройстве или удалённо. 
-\nНапример, получая оповещение, или при сканировании тэга NFC. 
+    <string name="help_event">\"Событие\" представляет собой кратковременное (мгновенное) событие, происходящее на вашем устройстве или удалённо. 
+\nНапример, это может быть получение оповещения или сканирование тэга NFC. 
 \nПожалуйста, обратитесь к <a href="https://github.com/renyuneyun/Easer/wiki">документу</a> для подробной информации.</string>
     <string name="help_condition">\"Условие\" представляет собой длительное (но обычно не вечное) условие на вашем устройстве или удалённо. 
 \nНапример, подключение к WiFi, или выключение дисплея. 
@@ -141,7 +141,7 @@
 \nПожалуйста, обратитесь к <a href="https://github.com/renyuneyun/Easer/wiki">документу</a> для подробной информации.</string>
     <string name="category_operation_android">Андроид</string>
     <string name="category_operation_system_config">Конфигурация системы</string>
-    <string name="category_operation_easer"></string>
+    <string name="category_operation_easer">\@string/easer</string>
     <string name="category_operation_misc">Разное</string>
     <string name="category_operation_unknown">Неизвестный</string>
     <string name="title_welcome_message_privacy">Конфиденциальность!</string>
@@ -188,4 +188,8 @@
     <string name="message_future_change_0_8">Скрипты в виде дерева будут убраны в версии 0.8. Pivot - это лучший вариант для этого.</string>
     <string name="text_unknown_skill">[Неизвестный навык]</string>
     <string name="prompt_dynamics_not_ready">Для настройки Динамических Ссылок, вам необходимо выбрать существующий профиль и существующий триггер (например, Событие).</string>
+    <string name="title_add_child">Добавить следствие</string>
+    <string name="title_edit_script">Редактировать скрипт</string>
+    <string name="prompt_data_clash">Не удалось сохранить данные. Проверьте, есть ли конфликт имён.</string>
+    <string name="prompt_data_save_io_exception">Возникло исключение IOException. Возможно, закончилось свободное место\?</string>
 </resources>

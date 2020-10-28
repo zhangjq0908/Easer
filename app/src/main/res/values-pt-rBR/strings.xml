@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="easer">Easer</string>
-    <string name="drawer_tip">Facilite sua vida!</string>
+    <string name="drawer_tip">Facilite a sua vida.</string>
     <string name="title_outline">Geral</string>
     <string name="title_pivot">Esquema</string>
     <string name="title_operation">Operação</string>
@@ -61,7 +61,7 @@
     <string name="text_predefined_event">Evento predefinido</string>
     <string name="text_inline_event">Evento em linha</string>
     <string name="text_use_condition">Usar condição</string>
-    <string name="text_repeatable_desc">Repetível quando satisfeito</string>
+    <string name="text_repeatable_desc">Recorrência</string>
     <string name="text_reverse_desc">Cenário inverso</string>
     <string name="text_volatile">Volátil</string>
     <string name="text_persistent">Persistente</string>
@@ -72,11 +72,11 @@
     <string name="hint_script_title">Título do script</string>
     <string name="hint_profile_title">Título do perfil</string>
     <string name="hint_condition_title">Título da condição</string>
-    <string name="prompt_save_failed">Falha ao salvar</string>
+    <string name="prompt_save_failed">Não foi possível salvar</string>
     <string name="prompt_delete">Tem certeza que deseja remover %s\?</string>
-    <string name="prompt_delete_failed">Falha na remoção. Verifique se este item está sendo usado.</string>
+    <string name="prompt_delete_failed">Não foi possível apagar. Verifique se este item está em uso.</string>
     <string name="prompt_data_illegal">Não foi possível salvar dados com campo(s) inválido(s). Por favor verifique novamente suas escolhas/entradas.</string>
-    <string name="prompt_prevented_for_permission">Conceda ao Easer a permissão para &lt;%s&gt; para que isso funcione...</string>
+    <string name="prompt_prevented_for_permission">Conceda ao Easer a permissão &lt;%s&gt; para que isso funcione.</string>
     <string name="prompt_error_logged">Easer acabou de gravar um erro. Veja o subdiretório de erros dentro do diretório do log.</string>
     <string name="text_app_description">Facilite sua vida automatizando ações rotineiras no(s) seu(s) dispositivo(s). 
 \nEncadeie eventos diferentes e deixe suas ações correspondentes serem executadas. Não se preocupe mais com elas!
@@ -90,8 +90,8 @@
     <string name="pref_category_personalise">Personalizar</string>
     <string name="pref_category_data_manage">Gerenciar dados</string>
     <string name="pref_category_service">Serviço</string>
-    <string name="pref_autostart_title">Iniciar durante o boot</string>
-    <string name="pref_autostart_summary">Inicia o Easer em segundo plano quando o dispositivo estiver ligado</string>
+    <string name="pref_autostart_title">Inicio automático</string>
+    <string name="pref_autostart_summary">Inicia o Easer em segundo plano quando o dispositivo estiver ligado.</string>
     <string name="pref_restart_after_upgrade_title">Iniciar serviço após atualização</string>
     <string name="pref_welcome_title">Exibir mensagem de boas-vindas</string>
     <string name="pref_welcome_summary">Exibir mensagens de boas-vindas ao abrir o aplicativo</string>
@@ -99,19 +99,19 @@
     <string name="pref_logging_summary">Logs nos dispositivos de armazenamento externos (/sdcard/logger) para auxiliar no relato de bugs.
 \nMudanças serão aplicadas na próxima vez que o aplicativo iniciar.</string>
     <string name="pref_use_root_title">Usar características root</string>
-    <string name="pref_use_root_summary">Usar permissões de root para funções específicas (skills), que podem ajudar a resolver problemas de compatibilidade em alguns dispositivos. Essas permissões não serão usadas em mais nenhum outro lugar.</string>
-    <string name="pref_cooldown_title">Tempo de resfriamento</string>
-    <string name="pref_cooldown_summary">Intervalo mínimo entre dois disparadores do mesmo evento</string>
-    <string name="cooldown_time_illformed">O número não deve ser menor que 0 e não muito grande para caber em um inteiro</string>
-    <string name="pref_enabled_skills_title">Skills ativas</string>
+    <string name="pref_use_root_summary">Usar permissões administrativas para funções específicas (skills), para ajudar a resolver problemas de compatibilidade em alguns dispositivos.</string>
+    <string name="pref_cooldown_title">Eventualmente apenas uma vez por…</string>
+    <string name="pref_cooldown_summary">Espaço de tempo em segundos para resolver duas ocorrências como se fosse apenas um evento.</string>
+    <string name="cooldown_time_illformed">O seu número é muito alto ou não é um número inteiro positivo.</string>
+    <string name="pref_enabled_skills_title">Habilidades ativadas</string>
     <string name="pref_enabled_skills_summary">Ligar ou desligar certas skills</string>
     <string name="pref_use_12_hour_clock_title">Usar relógio de 12 horas</string>
     <string name="pref_export_title">Exportar</string>
-    <string name="pref_export_summary">Exportar todos os eventos e perfis para o cartão SD.
-\nO nome do arquivo será o timestamp atual.</string>
+    <string name="pref_export_summary">Exportar todos os eventos e perfis para o cartão SD. 
+\nA informação do tempo atual será usada como nome do arquivo durante a gravação.</string>
     <string name="pref_import_title">Importar</string>
-    <string name="pref_import_summary">Importar todos os eventos e perfis em um arquivo ZIP.
-\nEventos e perfis existentes com o mesmo nome serão substituídos.</string>
+    <string name="pref_import_summary">Importar todos os eventos e perfis de um arquivo ZIP. 
+\nOs eventos e perfis existentes com o mesmo nome serão substituídos.</string>
     <string name="pref_convert_data_title">Converter dados</string>
     <string name="pref_convert_data_summary">Converter todos os dados para o formato recomendado</string>
     <string name="pref_show_notification_title">Exibir notificação</string>
@@ -149,7 +149,7 @@
 \n 
 \nVOCÊ é dono(a) de cada parte dos seus dados. Todo fica no seu dispositivo, inclusive os logs.</string>
     <string name="alert_update_storage_data_title">Encontrados dados de versão antiga</string>
-    <string name="alert_update_storage_data">Selecione \\\"Converter dados\\\" nas configurações para atualizar seus dados para o novo formato para compatibilidade.</string>
+    <string name="alert_update_storage_data">Selecione \"Converter dados\" nas configurações para atualizar seus dados para o novo formato, visando compatibilidade.</string>
     <string name="message_future_change_title">Mudanças em breve</string>
     <string name="template_export">Exportado para %s</string>
     <string name="version">Versão</string>
@@ -159,17 +159,17 @@
     <string name="dynamics_script_name">Nome do script</string>
     <string name="dynamics_profile_name">Nome do perfil</string>
     <string name="title_help">Ajuda</string>
-    <string name="help_script">\\\"Scripts\\\" são os contêineres lógicos. Conecte um evento ou uma condição com um perfil em um script para que o Easer saiba como carregar/executar esse perfil quando o evento ocorrer ou a condição for atendida. 
+    <string name="help_script">\"Scripts\" são os contêineres lógicos. Conecte um evento ou uma condição com um perfil em um script para que o Easer saiba como carregar/executar esse perfil quando o evento ocorrer ou a condição for atendida. 
 \nTambém há mais funções avançadas como eventos invertidos. 
 \nPor favor leia o <a href="https://github.com/renyuneyun/Easer/wiki">documento</a> para mais informações.</string>
-    <string name="help_event">\\\"Eventos\\\" representam ocorrências de curto prazo (instantâneas) no seu dispositivo ou remotamente. 
+    <string name="help_event">\"Eventos\" representam ocorrências de curto prazo (instantâneas) no seu dispositivo ou remotamente. 
 \nPor exemplo, receber uma notificação ou digitalizar uma etiqueta NFC. 
 \nPor favor leia o <a href="https://github.com/renyuneyun/Easer/wiki">documento</a> para mais informações.</string>
-    <string name="help_condition">\\ \"Condição \\\" representa uma condição duradoura (mas geralmente não é para sempre) no seu dispositivo ou remotamente.
-\nPor exemplo, após a conexão Wi-Fi ou quando a tela é desligada.
+    <string name="help_condition">\"Condição\" representa uma condição duradoura (mas geralmente não é para sempre) no seu dispositivo ou remotamente. 
+\nPor exemplo, após a conexão Wi-Fi ou quando a tela é desligada. 
 \nPor favor, consulte o <a href="https://github.com/renyuneyun/Easer/wiki"> documento </a> para mais informações.</string>
-    <string name="help_profile">\\ \"Perfil \\\" é um conjunto de operações. Cada operação representa um tipo específico de ação.
-\nPor exemplo, ative o Bluetooth ou envie um SMS.
+    <string name="help_profile">\"Perfil\" é um conjunto de operações. Cada operação representa um tipo específico de ação. 
+\nPor exemplo, ative o Bluetooth ou envie um SMS. 
 \nPor favor, consulte o <a href="https://github.com/renyuneyun/Easer/wiki"> documento </a> para mais informações.</string>
     <string name="category_operation_android">Android</string>
     <string name="category_operation_system_config">Configurações do sistema</string>
@@ -180,4 +180,12 @@
     <string name="title_select_event">Escolha um evento</string>
     <string name="title_select_condition">Escolher uma condição</string>
     <string name="button_see_detail">Ver Detalhes</string>
+    <string name="message_future_change_0_8">A visualização da árvore de Scripts será removida na versão v0.8. O Pivot fornece uma visão melhor para isso.</string>
+    <string name="prompt_data_save_io_exception">Foi encontrado um IOException. Talvez o armazenamento esteja cheio\?</string>
+    <string name="prompt_data_clash">Falha ao salvar os dados. Por favor, verifique se não há um conflito de nomes.</string>
+    <string name="text_unknown_skill">[Habilidade desconhecida]</string>
+    <string name="title_choose_predecessors">Escolha os Antecessores</string>
+    <string name="title_edit_script">Editar o Script</string>
+    <string name="title_add_child">Adicionar filho</string>
+    <string name="title_data_collection">Dados</string>
 </resources>

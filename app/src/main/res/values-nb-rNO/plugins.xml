@@ -233,4 +233,6 @@
     <string name="usource_location__listen_min_time_seconds">Minimumslyttetid (sekunder)</string>
     <string name="usource_location__threshold_age_seconds">Terskelalder (sekunder)</string>
     <string name="usource_location__threshold_accuracy_meters">Terskelnøyaktighet (meter)</string>
+    <string name="operation_start_service">Start tjeneste</string>
+    <string name="operation_start_activity">Start aktivitet</string>
 </resources>

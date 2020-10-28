@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="easer">Easer</string>
-    <string name="drawer_tip">Simplifiez-vous la vie !</string>
+    <string name="drawer_tip">Simplifiez-vous la vie.</string>
     <string name="title_outline">Aperçu</string>
     <string name="title_operation">Opération</string>
     <string name="title_profile">Profil</string>
@@ -27,8 +27,8 @@
     <string name="menu_action_save">Enregistrer</string>
     <string name="service_indicator_positive">En cours d’exécution</string>
     <string name="service_indicator_negative">Arrêté</string>
-    <string name="activity_history__profile">Titre du profil</string>
-    <string name="activity_history__script">Titre du script</string>
+    <string name="activity_history__profile">\@string/title_profile</string>
+    <string name="activity_history__script">\@string/title_script</string>
     <string name="activity_history__time">Heure</string>
     <string name="activity_history__extra">Informations supplémentaires</string>
     <string name="activity_history__satisfaction">Statut</string>
@@ -51,7 +51,7 @@
     <string name="text_predefined_event">Évènement prédéfini</string>
     <string name="text_inline_event">Évènement en ligne</string>
     <string name="text_use_condition">Utiliser la condition</string>
-    <string name="text_repeatable_desc">Répétable lorsque satisfait</string>
+    <string name="text_repeatable_desc">Récurrent</string>
     <string name="text_reverse_desc">Scénario inverse</string>
     <string name="text_volatile">Volatil</string>
     <string name="text_persistent">Persistant</string>
@@ -62,11 +62,11 @@
     <string name="hint_script_title">Titre du script</string>
     <string name="hint_profile_title">Titre du profil</string>
     <string name="hint_condition_title">Titre de la condition</string>
-    <string name="prompt_save_failed">Échec de l’enregistrement</string>
+    <string name="prompt_save_failed">Enregistrement impossible</string>
     <string name="prompt_delete">Êtes-vous sûr de vouloir supprimer %s \?</string>
-    <string name="prompt_delete_failed">Échec de la suppression. Vérifiez que cet item n’est pas en cours d’utilisation.</string>
+    <string name="prompt_delete_failed">Suppression impossible. Vérifiez que cet item n’est pas en cours d’utilisation.</string>
     <string name="prompt_data_illegal">Champs invalides. Veuillez vérifier vos choix ou saisies.</string>
-    <string name="prompt_prevented_for_permission">Accorder à Easer &lt;%s&gt; la permission pour que cela fonctionne..</string>
+    <string name="prompt_prevented_for_permission">Accorder à Easer &lt;%s&gt; la permission pour que cela fonctionne.</string>
     <string name="text_app_description">Simplifiez vous la vie en automatisant des actions / opérations routinières sur votre téléphone.
 \nFaites des liens entre différents événements et laissez leurs actions correspondantes être exécutées. Plus la peine de s\'en préocuper !
 \nCette application a été inspirée par le mécanisme de «profil» de CyanogenMod et IFTTT. L\'intention initiale était de changer automatiquement de profil en fonction de l\'heure ou d\'une connexion WiFi spécifique, et elle a ensuite été étendue à un usage plus général.
@@ -78,8 +78,8 @@
     <string name="pref_category_functionality">Fonctionnalité</string>
     <string name="pref_category_personalise">Personnaliser</string>
     <string name="pref_category_data_manage">Gérer des données</string>
-    <string name="pref_autostart_title">Lancement automatique au démarrage</string>
-    <string name="pref_autostart_summary">Démarre Easer en arrière-plan lorsque l’appareil est allumé</string>
+    <string name="pref_autostart_title">Démarrage automatique</string>
+    <string name="pref_autostart_summary">Démarre Easer en arrière-plan lorsque l’appareil est allumé.</string>
     <string name="pref_restart_after_upgrade_title">Démarrer le service après une mise-à-jour</string>
     <string name="pref_welcome_title">Montrer le message d\'accueil</string>
     <string name="pref_welcome_summary">Afficher le message d\'accueil au démarrage de l\'application</string>
@@ -87,19 +87,19 @@
     <string name="pref_logging_summary">Journalisation sur périphériques de stockage externes (/sdcard/logger) pour faciliter les rapports de bogue. 
 \nLes modifications prendront effet au prochain démarrage de l\'application.</string>
     <string name="pref_use_root_title">Utiliser les fonctionnalités root</string>
-    <string name="pref_use_root_summary">Utiliser les permissions root pour des fonctions spécifiques (compétences), ce qui peut permettre de résoudre des problèmes de compatibilités avec certains appareils. Cela ne sera pas utilisé ailleurs.</string>
-    <string name="pref_cooldown_title">Délai d\'attente</string>
-    <string name="pref_cooldown_summary">Intervalle minimal (en secondes) entre deux déclenchements d\'un même événement</string>
-    <string name="cooldown_time_illformed">"Le nombre ne doit pas être inférieur à 0 et pas trop grand pour tenir dans un entier "</string>
-    <string name="pref_enabled_skills_title">Plugins activés</string>
+    <string name="pref_use_root_summary">Utiliser les permissions root pour des fonctions spécifiques (compétences) afin de permettre la résolution des problèmes de compatibilités avec certains appareils.</string>
+    <string name="pref_cooldown_title">Évènement une fois par…</string>
+    <string name="pref_cooldown_summary">Période de temps en secondes pour traiter deux occurrences comme un seul évènement.</string>
+    <string name="cooldown_time_illformed">Votre nombre est trop grand, ou n\'est pas un entier naturel.</string>
+    <string name="pref_enabled_skills_title">Compétences activées</string>
     <string name="pref_enabled_skills_summary">Activer ou désactiver certains plugins</string>
     <string name="pref_use_12_hour_clock_title">Utiliser une horloge sur 12 heures</string>
     <string name="pref_export_title">Exporter</string>
-    <string name="pref_export_summary">Exporter tous les événements et profils vers la carte SD. 
-\nLe nom du fichier sera un horodatage courant.</string>
+    <string name="pref_export_summary">Exporter tous les évènements et profils vers la carte mémoire.
+\nL’horodatage de l’enregistrement sera utilisé comme nom du fichier.</string>
     <string name="pref_import_title">Importer</string>
-    <string name="pref_import_summary">"Importer tous les événements et profils dans un fichier ZIP. 
-\nLes événements  et profils avec le même nom seront remplacés."</string>
+    <string name="pref_import_summary">Importer tous les évènements et profils depuis un fichier ZIP.
+\nLes évènements et profils avec le même nom seront remplacés.</string>
     <string name="pref_convert_data_title">Convertir les données</string>
     <string name="pref_convert_data_summary">Conversion de toutes les données vers le format recommandé</string>
     <string name="message_skill_not_compatible">Ce plugin n\'est pas compatible avec cet appareil.</string>
@@ -109,7 +109,7 @@
     <string name="message_convert_data_error">Impossible de convertir les données. Veuillez regarder les fichiers de journalisation pour plus de détails.</string>
     <string name="title_welcome_message">Bienvenue</string>
     <string name="alert_update_storage_data_title">Ancienne version de données trouvée</string>
-    <string name="alert_update_storage_data">Sélectionnez « Convertir les données » dans les paramètres pour mettre à jour vos données vers le nouveau format pour la compatibilité.</string>
+    <string name="alert_update_storage_data">Sélectionnez « Convertir les données » dans les paramètres pour mettre à jour vos données vers le nouveau format pour la compatibilité.</string>
     <string name="template_export">Exporté vers %s</string>
     <string name="version">Version</string>
     <string name="message_importing_invalid_data">Ce fichier ne semble pas être valide. Assurez-vous d\'importer un fichier exporté par Easer.</string>
@@ -121,9 +121,9 @@
     <string name="help_script">Les « scripts » sont les conteneurs logiques. Connectez un événement ou une condition avec un profil dans un script, afin que Easer sache charger / exécuter ce profil lorsque cet événement se produit ou que la condition est remplie. 
 \nIl existe également des fonctions plus avancées, par ex. événements inversés. 
 \nVeuillez vous reporter au <a href="https://github.com/renyuneyun/Easer/wiki">document</a> pour plus d\'info.</string>
-    <string name="help_event">Les « Événements » représentent une occurence de courte durée (instantané) sur votre appareil ou à distance. 
-\nPar exemple, la réception d\'une notification ou d\'une balise NFC est analysée. 
-\nVeuillez vous reporter au <a href="https://github.com/renyuneyun/Easer/wiki">document</a> pour plus d\'info.</string>
+    <string name="help_event">Les « Évènements » représentent une occurrence de courte durée (instantané) sur votre appareil ou à distance.
+\nPar exemple, la réception d’une notification, ou lorsqu’une étiquette NFC est scannée.
+\nVeuillez vous reporter au <a href="https://github.com/renyuneyun/Easer/wiki">document</a> pour plus d’informations.</string>
     <string name="help_condition">La « Condition » représente une condition durable (mais généralement pas éternelle) sur votre appareil ou à distance. 
 \nPar exemple, lors de la connexion au WiFi, ou lorsque l\'écran s\'éteint. 
 \nVeuillez vous reporter au <a href="https://github.com/renyuneyun/Easer/wiki">document</a> pour plus d\'info.</string>
@@ -180,10 +180,14 @@
     <string name="message_future_change_title">Changement prévu bientôt</string>
     <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
     <string name="pref_locale_custom">Localisation personnalisée</string>
-    <string name="prompt_error_logged">Easer vient d’enregister une erreur. Voir le sous-répertoire « error » dans le répertoire « log ».</string>
+    <string name="prompt_error_logged">Easer a enregistré une erreur. Reportez-vous au sous-répertoire « error » dans le répertoire « log ».</string>
     <string name="prompt_dynamics_not_ready">Pour paramétrer Dynamics, vous devez sélectionner un profil valide et un déclencheur valide (exemple : évènement).</string>
     <string name="button_see_detail">Voir les détails</string>
-    <string name="message_future_change_0_8">L’affichage arborescent des scripts sera supprimé dans la version 0.8. Le tableau pivot fourni une meilleure visualisation.</string>
+    <string name="message_future_change_0_8">L’affichage arborescent des scripts sera supprimé dans la version 0.8. Le tableau pivot fournit une meilleure visualisation.</string>
     <string name="title_choose_predecessors">Choisir les prédécesseurs</string>
     <string name="text_unknown_skill">[Capacité inconnue]</string>
+    <string name="title_add_child">Ajouter un enfant</string>
+    <string name="prompt_data_clash">Échec de l\'enregistrement des données. Veuillez vous assurer qu\'il n\'y ait pas de conflit de noms.</string>
+    <string name="prompt_data_save_io_exception">IOException survenue. L\'espace de stockage est peut-être plein \?</string>
+    <string name="title_edit_script">Modifier le script</string>
 </resources>

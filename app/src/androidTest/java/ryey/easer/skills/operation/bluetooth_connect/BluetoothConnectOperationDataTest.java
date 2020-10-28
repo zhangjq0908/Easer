@@ -17,37 +17,24 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.operation.broadcast;
+package ryey.easer.skills.operation.bluetooth_connect;
 
 import android.os.Parcel;
 
 import org.junit.Test;
 
-import ryey.easer.commons.C;
-import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.skills.TestHelper;
 
 import static org.junit.Assert.assertEquals;
 
-public class BroadcastOperationDataTest {
+public class BluetoothConnectOperationDataTest {
 
     @Test
     public void testParcel() {
-        BroadcastOperationData dummyData = new BroadcastOperationDataFactory().dummyData();
+        BluetoothConnectOperationData dummyData = new BluetoothConnectOperationDataFactory().dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
-        BroadcastOperationData parceledData = BroadcastOperationData.CREATOR.createFromParcel(parcel);
+        BluetoothConnectOperationData parceledData = BluetoothConnectOperationData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);
-    }
-
-    @Test
-    public void testSerialize() throws Exception {
-        BroadcastOperationDataFactory factory = new BroadcastOperationDataFactory();
-        BroadcastOperationData dummyData = factory.dummyData();
-        for (PluginDataFormat format : PluginDataFormat.values()) {
-            String serialized_data = dummyData.serialize(format);
-            BroadcastOperationData parsed_data = factory.parse(serialized_data, format, C.VERSION_CURRENT);
-            assertEquals(dummyData, parsed_data);
-        }
     }
 
 }

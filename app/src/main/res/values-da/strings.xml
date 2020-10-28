@@ -51,7 +51,7 @@
     <string name="text_predefined_event">Forudbestemt hændelse</string>
     <string name="text_inline_event">Integreret hændelse</string>
     <string name="text_use_condition">Brug tilstand</string>
-    <string name="text_repeatable_desc">Gentagbar</string>
+    <string name="text_repeatable_desc">Gentager</string>
     <string name="text_reverse_desc">Omvendt scenarie</string>
     <string name="text_volatile">Omskiftelig</string>
     <string name="text_persistent">Vedvarende</string>
@@ -190,4 +190,6 @@
     <string name="text_unknown_skill">[Ukendt færdighed]</string>
     <string name="title_add_child">Tilføj underproces</string>
     <string name="title_edit_script">Redigere skript</string>
+    <string name="prompt_data_clash">Kunne ikke gemme data. Kontrollere om der er navne sammenfald.</string>
+    <string name="prompt_data_save_io_exception">IOException opstået. Er hukommelse lageret fuld\?</string>
 </resources>

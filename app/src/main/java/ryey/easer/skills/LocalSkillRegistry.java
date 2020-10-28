@@ -56,12 +56,16 @@ import ryey.easer.skills.event.widget.WidgetEventSkill;
 import ryey.easer.skills.operation.airplane_mode.AirplaneModeOperationSkill;
 import ryey.easer.skills.operation.alarm.AlarmOperationSkill;
 import ryey.easer.skills.operation.bluetooth.BluetoothOperationSkill;
+import ryey.easer.skills.operation.bluetooth_connect.BluetoothConnectOperationSkill;
 import ryey.easer.skills.operation.brightness.BrightnessOperationSkill;
-import ryey.easer.skills.operation.broadcast.BroadcastOperationSkill;
+import ryey.easer.skills.operation.intent.IntentOperationSkill;
 import ryey.easer.skills.operation.cellular.CellularOperationSkill;
 import ryey.easer.skills.operation.command.CommandOperationSkill;
 import ryey.easer.skills.operation.hotspot.HotspotOperationSkill;
 import ryey.easer.skills.operation.http_request.HttpRequestOperationSkill;
+import ryey.easer.skills.operation.intent.operations.ActivityOperationSkill;
+import ryey.easer.skills.operation.intent.operations.BroadcastOperationSkill;
+import ryey.easer.skills.operation.intent.operations.ServiceOperationSkill;
 import ryey.easer.skills.operation.launch_app.LaunchAppOperationSkill;
 import ryey.easer.skills.operation.media_control.MediaControlOperationSkill;
 import ryey.easer.skills.operation.network_transmission.NetworkTransmissionOperationSkill;
@@ -150,8 +154,8 @@ final public class LocalSkillRegistry {
         operation().registerSkill(AirplaneModeOperationSkill.class);
         operation().registerSkill(AlarmOperationSkill.class);
         operation().registerSkill(BluetoothOperationSkill.class);
+        operation().registerSkill(BluetoothConnectOperationSkill.class);
         operation().registerSkill(BrightnessOperationSkill.class);
-        operation().registerSkill(BroadcastOperationSkill.class);
         operation().registerSkill(CellularOperationSkill.class);
         operation().registerSkill(CommandOperationSkill.class);
         operation().registerSkill(LaunchAppOperationSkill.class);
@@ -169,6 +173,9 @@ final public class LocalSkillRegistry {
         operation().registerSkill(UiModeOperationSkill.class);
         operation().registerSkill(VolumeOperationSkill.class);
         operation().registerSkill(WifiOperationSkill.class);
+        operation().registerSkill(ActivityOperationSkill.class);
+        operation().registerSkill(BroadcastOperationSkill.class);
+        operation().registerSkill(ServiceOperationSkill.class);
 
         //TODO: write more skills
     }
