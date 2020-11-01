@@ -194,5 +194,4 @@
     <string name="bluetooth_device_profile">蓝牙设备档案</string>
     <string name="mac_address">MAC 地址 (00:11:22:33:FF:EE)</string>
     <string name="operation_bluetooth_connect">连接到蓝牙设备</string>
-    <string name="category_operation_unknown">未知</string>
 </resources>
