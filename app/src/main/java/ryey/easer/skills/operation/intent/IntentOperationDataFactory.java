@@ -52,7 +52,7 @@ class IntentOperationDataFactory implements OperationDataFactory<IntentOperation
         ArrayList<ExtraItem> extras = new ArrayList<>();
         ExtraItem extraItem = new ExtraItem("extra_key1", "extra_value1", "string");
         extras.add(extraItem);
-        intentData.extras = new Extras(extras);
+        intentData.extras = Extras.mayConstruct(extras);
         return new IntentOperationData(intentData);
     }
 
