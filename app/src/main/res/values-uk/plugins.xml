@@ -232,4 +232,6 @@
     <string name="usource_location__listen_min_time_seconds">Найменший час пошуку (у сек.)</string>
     <string name="usource_location__threshold_age_seconds">Віковий поріг (сек.)</string>
     <string name="usource_location__threshold_accuracy_meters">Точність порогу (м)</string>
+    <string name="operation_start_service">Запустити службу</string>
+    <string name="operation_start_activity">Почати діяльність</string>
 </resources>
