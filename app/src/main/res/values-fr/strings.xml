@@ -96,10 +96,10 @@
     <string name="pref_use_12_hour_clock_title">Utiliser une horloge sur 12 heures</string>
     <string name="pref_export_title">Exporter</string>
     <string name="pref_export_summary">Exporter tous les évènements et profils vers la carte mémoire.
-\nL’horodatage de l’enregistrement sera utilisé comme nom du fichier.</string>
+\nL’heure de l’enregistrement sera utilisée comme nom du fichier.</string>
     <string name="pref_import_title">Importer</string>
     <string name="pref_import_summary">Importer tous les évènements et profils depuis un fichier ZIP.
-\nLes évènements et profils avec le même nom seront remplacés.</string>
+\nLes évènements et profils existants avec le même nom seront remplacés.</string>
     <string name="pref_convert_data_title">Convertir les données</string>
     <string name="pref_convert_data_summary">Conversion de toutes les données vers le format recommandé</string>
     <string name="message_skill_not_compatible">Ce plugin n\'est pas compatible avec cet appareil.</string>
@@ -190,4 +190,8 @@
     <string name="prompt_data_clash">Échec de l\'enregistrement des données. Veuillez vous assurer qu\'il n\'y ait pas de conflit de noms.</string>
     <string name="prompt_data_save_io_exception">IOException survenue. L\'espace de stockage est peut-être plein \?</string>
     <string name="title_edit_script">Modifier le script</string>
+    <string name="bluetooth_maybe_not_supported">Ce profil Easer utilise une méthode qui n’est pas officiellement prise en charge par Android. Il peut donc ne pas fonctionner sur tous les appareils.</string>
+    <string name="bluetooth_device_profile">Profil de l’appareil Bluetooth</string>
+    <string name="mac_address">Adresse MAC (00:11:22:33:FF:EE)</string>
+    <string name="operation_bluetooth_connect">Se connecter à l’appareil via Bluetooth</string>
 </resources>
