@@ -233,4 +233,6 @@
     <string name="usource_location__listen_min_time_seconds">Durée d’écoute minimum (en secondes)</string>
     <string name="usource_location__threshold_age_seconds">Limite d’âge (en secondes)</string>
     <string name="usource_location__threshold_accuracy_meters">Limite de précision (en mètres)</string>
+    <string name="operation_start_service">Démarrer le service</string>
+    <string name="operation_start_activity">Démarrer l’activité</string>
 </resources>
