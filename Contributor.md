@@ -12,6 +12,10 @@ People who contributed to the app function and/or UI and/or test:
 * Danielsan <https://github.com/trikaphundo>
 * Sohalt <https://github.com/Sohalt>
 * DeathTickle (Léopold Delouche) <https://github.com/DeathTickle>
+* Uladzislau Vasilyeu <https://github.com/vasvlad>
+* fipwmaqzufheoxq92ebc <https://github.com/fipwmaqzufheoxq92ebc>
+* Daniel Landau <https://github.com/daniellandau>
+
 
 Logo contributed by [revilationer](https://github.com/revilationer)
 
