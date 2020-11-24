@@ -77,7 +77,7 @@ Acknowledgement
 
 The development of Easer receives the support and donation from the community. Thank you guys.
 
-The [Contributor][Contributor.md] document lists this in more detail.
+The [Contributor](Contributor.md) document lists this in more detail.
 
 ### Third-party
 
@@ -94,7 +94,7 @@ The [Contributor][Contributor.md] document lists this in more detail.
 
 Licensing
 ------
-Copyright (c) 2016 - 2019 Rui Zhao (renyuneyun) <renyuneyun@gmail.com>
+Copyright (c) 2016 - 2021 Rui Zhao (renyuneyun) <renyuneyun@gmail.com>
 
 Unless otherwise stated, the program is licensed under GPLv3+ (See LICENSE)
 
