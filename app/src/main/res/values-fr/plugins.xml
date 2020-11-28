@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="event_condition_event">Condition Événement</string>
+    <string name="event_condition_event">Condition Évènement</string>
     <string name="event_condition_event_enter">Entrer</string>
     <string name="event_condition_event_leave">Quitter</string>
     <string name="usource_headset__headset_state">État du casque</string>
@@ -18,7 +18,7 @@
     <string name="usource_bt_device_select_dialog_title">Sélectionnez le périphérique Bluetooth</string>
     <string name="usource_bt_device_unknown_device">Périphérique inconnu</string>
     <string name="usource_connectivity">Type de connectivité</string>
-    <string name="usource_calendar">Evénement du calendrier</string>
+    <string name="usource_calendar">Évènement du calendrier</string>
     <string name="calendar_select_dialog_title">Sélectionnez le calendrier</string>
     <string name="text_calendar_name">Nom du calendrier</string>
     <string name="text_calendar">Calendrier</string>
@@ -30,14 +30,14 @@
     <string name="broadcast_action">Action</string>
     <string name="broadcast_category">Catégorie</string>
     <string name="event_sms">Réception d’un SMS</string>
-    <string name="sender">Emetteur</string>
+    <string name="sender">Émetteur</string>
     <string name="content_contains">Contenu (contient...)</string>
     <string name="event_notification">Réception d\'une notification</string>
     <string name="event_notification__app">Application</string>
     <string name="event_notification__app_hint">Nom exact du paquet de l\'application</string>
     <string name="event_notification__title">Titre (contient...)</string>
     <string name="event_notification__content">Contenu (contient...)</string>
-    <string name="label_event_notification_listener_service">Auditeur d\'événement de notification</string>
+    <string name="label_event_notification_listener_service">Auditeur d\'évènement de notification</string>
     <string name="ev_notification_dynamics_app">Application expéditrice de la notification</string>
     <string name="ev_notification_dynamics_title">Titre de la notification</string>
     <string name="ev_notification_dynamics_content">Contenu de la notification</string>
@@ -96,7 +96,7 @@
     <string name="ringer_mode_dnd_priority">Prioritaires</string>
     <string name="ringer_mode_dnd_none">Aucun</string>
     <string name="ringer_mode_dnd_alarms">Alarmes</string>
-    <string name="ringing_items_in_do_not_disturb_mode">Éléments autorisés en mode \"Ne pas déranger\"</string>
+    <string name="ringing_items_in_do_not_disturb_mode">Éléments autorisés en mode « Ne pas déranger »</string>
     <string name="label_operation_ringer_mode_notification_listener_service">Commutateur de mode silencieux</string>
     <string name="operation_command">Exécuter des commandes</string>
     <string name="operation_hotspot">Point d\'accès</string>
@@ -167,10 +167,10 @@
     <string name="condition_ringer_above">Au moins</string>
     <string name="condition_ringer_below">Au plus</string>
     <string name="condition_ringer_equals">Égale</string>
-    <string name="match_event_title">Titre de l\'événement</string>
-    <string name="match_type_any_event">Tout événement</string>
+    <string name="match_event_title">Titre de l\'évènement</string>
+    <string name="match_type_any_event">Tout évènement</string>
     <string name="match_type_match_pattern">Modèle de correspondance</string>
-    <string name="calendar_all_day_event_only">Seulement les événements sur toute la journée</string>
+    <string name="calendar_all_day_event_only">Seulement les évènements sur toute la journée</string>
     <string name="category_source_android">Android</string>
     <string name="category_source_date_time">Date / Heure</string>
     <string name="category_source_device">Appareil</string>
