@@ -104,7 +104,7 @@
     <string name="exact">Genaue</string>
     <string name="exact_timer">Genaue Zeit\?</string>
     <string name="event_timer_seconds">Sekunde(n)</string>
-    <string name="event_timer">Schaltuhr</string>
+    <string name="event_timer">Zeitablauf</string>
     <string name="event_tcp_trip__dynamics_sent_data">Gesendete Daten</string>
     <string name="event_tcp_trip__dynamics_remote_host">Fern-Host</string>
     <string name="reply_data">Antwortdaten</string>
@@ -143,4 +143,8 @@
     <string name="category_source_device">Gerät</string>
     <string name="category_source_date_time">Datum / Zeit</string>
     <string name="category_source_android">Android</string>
+    <string name="ev_sms_dynamics_content">SMS Inhalt</string>
+    <string name="ev_sms_dynamics_sender">SMS Sender</string>
+    <string name="content_contains">Inhalt (enthält …)</string>&gt;
+    <string name="event_sms">SMS empfangen</string>
 </resources>
