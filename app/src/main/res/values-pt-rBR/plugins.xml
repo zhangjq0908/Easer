@@ -232,4 +232,6 @@
     <string name="event_tcp_trip__dynamics_remote_ip">IP remoto</string>
     <string name="event_tcp_trip__dynamics_remote_host">Host remoto</string>
     <string name="event_nfc_tag__dynamics_tag_id">Identificação da Etiqueta</string>
+    <string name="operation_start_service">Iniciar Serviço</string>
+    <string name="operation_start_activity">Adicionar widget</string>
 </resources>
