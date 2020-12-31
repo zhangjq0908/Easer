@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <!--Source Category (c)-->
+
     <string name="category_source_android">Android</string>
     <string name="category_source_date_time">Date / Time</string>
     <string name="category_source_device">Device</string>
@@ -9,28 +11,36 @@
     <string name="category_source_misc">Misc</string>
     <string name="category_source_personal">Personal</string>
     <string name="category_source_unknown">Unknown</string>
+
     <!--Condition (c)-->
+
     <string name="condition__rel_after">After</string>
+
     <string name="condition_ringer_mode">Ringer Mode</string>
     <string name="condition_ringer_volume">Volume</string>
     <string name="condition_ringer_above">At least</string>
     <string name="condition_ringer_below">At most</string>
     <string name="condition_ringer_equals">Equals</string>
+
     <!--Event (e, ev)-->
+
     <string name="event_broadcast">Receive Broadcast</string>
     <string name="broadcast_action">Action</string>
     <string name="broadcast_category">Category</string>
     <string name="broadcast_type">Type</string>
     <string name="broadcast_data">Data</string>
+
     <string name="event_condition_event">Condition Event</string>
     <string name="event_condition_event_enter">Enter</string>
     <string name="event_condition_event_leave">Leave</string>
     <string name="event_condition_event_dynamics_name">Condition Name</string>
+
     <string name="event_nfc_tag">NFC Tag</string>
     <string name="event_nfc_tag__button_detect">Detect Tag</string>
     <string name="event_nfc_tag__prompt_enable_nfc_first">You need to enable NFC first</string>
     <string name="event_nfc_tag__prompt_wait_for_tag">Awaiting tag scanning…</string>
     <string name="event_nfc_tag__dynamics_tag_id">Tag ID</string>
+
     <string name="event_notification">Notification received</string>
     <string name="event_notification__app">App</string>
     <string name="event_notification__app_hint">Fully qualified package name of the app</string>
@@ -40,11 +50,13 @@
     <string name="ev_notification_dynamics_app">Notification Sender App</string>
     <string name="ev_notification_dynamics_title">Notification Title</string>
     <string name="ev_notification_dynamics_content">Notification Content</string>
+
     <string name="event_sms">Receive SMS</string>
     <string name="sender">Sender</string>
-    <string name="content_contains">Content (contains…)</string>&gt;
+    <string name="content_contains">Content (contains…)</string>
     <string name="ev_sms_dynamics_sender">SMS Sender</string>
     <string name="ev_sms_dynamics_content">SMS Content</string>
+
     <string name="event_tcp_trip">TCP Trip</string>
     <string name="remote_host">Remote host</string>
     <string name="send_data">Send data</string>
@@ -55,6 +67,7 @@
     <string name="event_tcp_trip__dynamics_remote_port">Remote port</string>
     <string name="event_tcp_trip__dynamics_sent_data">Sent data</string>
     <string name="event_tcp_trip__dynamics_received_data">Received data</string>
+
     <string name="event_timer">Timer</string>
     <string name="event_timer_shorter_time">Shorter Time</string>
     <string name="event_timer_longer_time">Longer Time</string>
@@ -66,27 +79,33 @@
     <string name="repeat">Repeat</string>
     <string name="one_time">One time</string>
     <string name="minutes">Minutes</string>
+
     <string name="event_widget">Widget</string>
     <string name="event_widget_widget_label">WidgetEvent Widget</string>
     <string name="event_widget_text">Text</string>
     <string name="event_widget_tag">Tag</string>
     <string name="event_widget_default_text">DISPLAY TEXT</string>
     <string name="event_widget_default_tag">TAG</string>
-    <string name="event_widget_button_add_widget" translatable="false">Add widget</string>
-    <!-- TODO: remove this (already replaced by event_widget_button_save_widget) -->
+    <string name="event_widget_button_add_widget" translatable="false">Add widget</string> <!-- TODO: remove this (already replaced by event_widget_button_save_widget) -->
     <string name="event_widget_button_save_widget">Save widget</string>
     <string name="event_widget__dynamics_widget_tag">Widget Tag</string>
     <string name="event_widget__dynamics_widget_id">Widget ID</string>
+
     <!--Operation (o, op)-->
+
     <string name="operation_airplane_mode">Airplane Mode</string>
+
     <string name="operation_alarm">Set Alarm</string>
     <string name="operation_alarm__absolute">Absolute</string>
     <string name="operation_alarm__relative">Relative</string>
     <string name="operation_alarm__time">Time</string>
     <string name="operation_alarm__message">Message</string>
+
     <string name="operation_bluetooth">Bluetooth</string>
+
     <string name="operation_brightness">Brightness</string>
     <string name="operation_brightness_desc_autobrightness">Auto brightness</string>
+
     <string name="operation_broadcast">Send Broadcast</string>
     <string name="operation_start_activity">Start Activity</string>
     <string name="operation_start_service">Start Service</string>
@@ -102,9 +121,13 @@
         <item>string</item>
         <item>int</item>
     </array>
+
     <string name="operation_cellular">Mobile data</string>
+
     <string name="operation_command">Run commands</string>
+
     <string name="operation_hotspot">Hotspot</string>
+
     <string name="operation_http_request">HTTP request</string>
     <string name="o_http_method">Method</string>
     <string name="o_http_get">GET</string>
@@ -113,12 +136,14 @@
     <string name="o_http_header">Header (line format: "key: value")</string>
     <string name="o_http_content_type">Content type</string>
     <string name="o_http_post_data">Post data</string>
+
     <string name="op_launch_app">Launch App</string>
     <string name="o_launch_app__launch_activity">Launch Activity</string>
     <string name="op_launch_app_text_app">App</string>
     <string name="op_launch_app_text_app_hint">Package Name</string>
     <string name="o_launch_app__text_class">Class Name</string>
     <string name="o_launch_app__text_class_hint">Empty or full class name</string>
+
     <string name="operation_media_control">Media Control</string>
     <string name="text_play_pause">Toogle play/pause</string>
     <string name="text_play">Play</string>
@@ -126,6 +151,7 @@
     <string name="text_previous">Previous</string>
     <string name="text_next">Next</string>
     <string name="operation_media_control_helper_service_label">Helper for Media Control</string>
+
     <string name="operation_network_transmission">Network transmission</string>
     <string name="o_nettrans_protocol">Protocol</string>
     <string name="o_nettrans_tcp">TCP</string>
@@ -133,8 +159,10 @@
     <string name="o_nettrans_remote_address">Remote Address</string>
     <string name="o_nettrans_remote_port">Remote Port</string>
     <string name="o_nettrans_data">Data</string>
+
     <string name="o_play_media">Play Media</string>
     <string name="o_play_media_text_file">File Path</string>
+
     <string name="operation_ringer_mode">Ringer Mode</string>
     <string name="ringer_mode_normal">Normal</string>
     <string name="ringer_mode_vibrate">Vibrate</string>
@@ -146,21 +174,29 @@
     <string name="ringer_mode_dnd_alarms">Alarms</string>
     <string name="ringing_items_in_do_not_disturb_mode">Ringing items in \"Do not Disturb\" mode</string>
     <string name="label_operation_ringer_mode_notification_listener_service">Silent Mode Switcher</string>
+
     <string name="operation_rotation">Auto Rotation</string>
+
     <string name="operation_send_notification">Send Notification</string>
     <string name="title">Title</string>
+
     <string name="operation_send_sms">Send SMS</string>
     <string name="destination">Destination</string>
     <string name="content">Content</string>
+
     <string name="operation_state_control">Control Script Node Status</string>
     <string name="change_status_to">Change status to…</string>
     <string name="unsatisfied">Unsatisfied</string>
+
     <string name="operation_synchronization">Account syncing</string>
+
     <string name="operation_toast">Toast</string>
     <string name="op_toast_hint_text">Text</string>
+
     <string name="op_ui_mode">Car Mode</string>
     <string name="op_car_mode">Car Mode</string>
     <string name="op_normal_mode">Normal Mode</string>
+
     <string name="operation_volume">Adjust Volume</string>
     <string name="o_volume_ring">Ring</string>
     <string name="o_volume_media">Media</string>
@@ -168,10 +204,14 @@
     <string name="o_volume_notification">Notification</string>
     <string name="o_volume_bluetooth">Bluetooth</string>
     <string name="o_volume_delay">Delay (s)</string>
+
     <string name="operation_wifi">Wi-Fi</string>
+
     <!--USource (us)-->
+
     <string name="usource__enabled_yes">Yes</string>
     <string name="usource__enabled_no">No</string>
+
     <string name="usource_battery_level">Battery Level</string>
     <string name="usource_battery_level__level_system">System level</string>
     <string name="usource_battery_level__level_custom">Custom level</string>
@@ -179,13 +219,16 @@
     <string name="usource_battery_level__low">Low</string>
     <string name="usource_battery_level__custom_battery_level">Minimum battery level (percentage)</string>
     <string name="usource_battery_level__inclusive">Inclusive</string>
+
     <string name="usource_bluetooth_device">Connected Bluetooth device</string>
     <string name="usource_bt_device_select_dialog_title">Select Bluetooth Device</string>
     <string name="usource_bt_device_unknown_device">Unknown device</string>
     <string name="usource_bt_device_dynamics_device_name">Device Name</string>
     <string name="usource_bt_device_dynamics_device_address">Device Address</string>
+
     <string name="usource_bluetooth_enabled">Bluetooth Enabled</string>
     <string name="usource_bluetooth_enabled_bluetooth_is_enabled">Bluetooth is enabled?</string>
+
     <string name="usource_calendar">Calendar</string>
     <string name="calendar_select_dialog_title">Select Calendar</string>
     <string name="text_calendar_name">Calendar Name</string>
@@ -198,16 +241,19 @@
     <string name="match_type_any_event">Any Event</string>
     <string name="match_type_match_pattern">Match Pattern</string>
     <string name="calendar_all_day_event_only">Only match all-day events</string>
+
     <string name="usource_call">Call</string>
     <string name="usource_call_state">Call State</string>
     <string name="usource_call_state_idle">Idle</string>
     <string name="usource_call_state_ringing">Ringing</string>
     <string name="usource_call_state_ongoing">Ongoing</string>
     <string name="usource_call_number">Number</string>
+
     <string name="usource_cell_location">Cell Location</string>
     <string name="usource_cell_location_no_signal">Can\'t get cell location. Check your signal.</string>
     <string name="usource_cell_location_listening_title">Listening</string>
     <string name="usource_cell_location_dynamics_cell_location">Cell Location</string>
+
     <string name="usource_connectivity">Connectivity Type</string>
     <array name="usource_connectivity_type">
         <item>Not connected</item>
@@ -217,8 +263,11 @@
         <item>Bluetooth</item>
         <item>VPN</item>
     </array>
+
     <string name="usource_date">Date</string>
+
     <string name="usource_day_of_week">Day of the Week</string>
+
     <string name="usource_headset">Headset</string>
     <string name="usource_headset__headset_state">Headset state</string>
     <string name="usource_headset__plugged_in">Plugged in</string>
@@ -231,26 +280,33 @@
     <string name="usource_headset__microphone_true">Yes</string>
     <string name="usource_headset__microphone_false">No</string>
     <string name="usource_headset__microphone_any">Any</string>
+
     <string name="usource_location">Location</string>
     <string name="usource_location__radius_meters">Radius (meters)</string>
     <string name="usource_location__listen_min_time_seconds">Listen min time (seconds)</string>
     <string name="usource_location__threshold_age_seconds">Threshold age (seconds)</string>
     <string name="usource_location__threshold_accuracy_meters">Threshold accuracy (meters)</string>
+
     <string name="usource_power">Power Status</string>
     <string name="usource_power__charging">Charging</string>
     <string name="usource_power__discharging">Discharging</string>
     <string name="usource_power__any">Any</string>
     <string name="usource_power__usb">USB</string>
     <string name="usource_power__ac">AC</string>
+
     <string name="usource_screen">Screen Status</string>
     <string name="usource_screen_text_screen_is">When screen is…</string>
     <string name="usource_screen_on">On</string>
     <string name="usource_screen_off">Off</string>
     <string name="usource_screen_unlocked">Unlocked</string>
+
     <string name="usource_time">Time</string>
+
     <string name="usource_wificonn">Wi-Fi Connection</string>
     <string name="usource_wificonn_select_dialog_title">Select Wi-Fi AP</string>
     <string name="usource_wificonn_wait_for_result">Awaiting Wi-Fi scan result</string>
+
     <string name="usource_wifi_enabled">WiFi Enabled</string>
     <string name="usource_wifi_enabled_wifi_is_enabled">WiFi is enabled?</string>
+
 </resources>
