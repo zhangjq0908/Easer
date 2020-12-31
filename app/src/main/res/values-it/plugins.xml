@@ -37,7 +37,7 @@
     <string name="choice_start_of">Inizia</string>
     <string name="choice_end_of">Termina</string>
     <string name="choice_any_event">Qualsiasi evento</string>
-    <string name="event_broadcast">Ricezione Broadcast</string>
+    <string name="event_broadcast">Ricevi trasmissione</string>
     <string name="broadcast_action">Azione</string>
     <string name="broadcast_category">Categoria</string>
     <string name="broadcast_type">Tipo</string>
@@ -115,11 +115,11 @@
     <string name="ringer_mode_dnd_priority">Prioritari</string>
     <string name="ringer_mode_dnd_none">Nessuno</string>
     <string name="ringer_mode_dnd_alarms">Sveglie</string>
-    <string name="ringing_items_in_do_not_disturb_mode">Elementi consentiti in modalità \"Non Disturbare\"</string>
+    <string name="ringing_items_in_do_not_disturb_mode">Elementi consentiti in modalità «Non Disturbare»</string>
     <string name="label_operation_ringer_mode_notification_listener_service">Commutatore di modalità silenziosa</string>
     <string name="operation_command">Esegui il comando</string>
     <string name="operation_hotspot">Hotspot</string>
-    <string name="operation_synchronization">Sincronizzazione Account</string>
+    <string name="operation_synchronization">Sincronizzazione dell\'account</string>
     <string name="operation_network_transmission">Trasmissione in rete</string>
     <string name="o_nettrans_protocol">Protocollo</string>
     <string name="o_nettrans_tcp">TCP</string>
@@ -217,7 +217,7 @@
     <string name="event_tcp_trip__dynamics_remote_ip">IP Remoto</string>
     <string name="event_tcp_trip__dynamics_remote_port">Porta Remota</string>
     <string name="event_tcp_trip__dynamics_sent_data">Dati Inviati</string>
-    <string name="event_tcp_trip__dynamics_received_data">Dati Ricevuti</string>
+    <string name="event_tcp_trip__dynamics_received_data">Dati_ricevuti</string>
     <string name="event_widget_button_save_widget">Salva Widget</string>
     <string name="event_widget__dynamics_widget_tag">Tag Widget</string>
     <string name="event_widget__dynamics_widget_id">ID Widget</string>

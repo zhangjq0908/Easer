@@ -244,4 +244,8 @@
     <string name="broadcast_data">数据</string>
     <string name="operation_start_service">启动服务</string>
     <string name="operation_start_activity">启动活动</string>
+    <string name="bluetooth_maybe_not_supported">这个Easer 配置使用了一个Android官方不支持的方法。它可能不会在所有设备上都正常运作。</string>
+    <string name="bluetooth_device_profile">蓝牙设备档案</string>
+    <string name="mac_address">MAC 地址 (00:11:22:33:FF:EE)</string>
+    <string name="operation_bluetooth_connect">连接到蓝牙设备</string>
 </resources>

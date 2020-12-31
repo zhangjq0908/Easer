@@ -183,15 +183,8 @@
     <string name="text_license">该程序是自由软件：您可以根据自由软件基金会发布的GNU通用公共许可证的条款（许可证的版本3）或（根据您的选择）任何更高版本来重新分发和/或修改它。
 \n 分发该程序是希望它会有用，但是没有任何保证；甚至没有对适销性或特定用途适用性的暗示保证。有关更多详细信息，请参见GNU通用公共许可证。
 \n 您应该已经与该程序一起收到了GNU通用公共许可证的副本。如果没有，请参阅https://www.gnu.org/licenses/</string>
-    <string name="text_placeholder">占位符</string>
-    <string name="text_dynamics">动力学</string>
+    <string name="text_placeholder">佔位符</string>
     <string name="navigation_drawer_close">关闭导航抽屉</string>
     <string name="navigation_drawer_open">打开导航抽屉</string>
-    <string name="title_dynamics_link">动态链接</string>
     <string name="title_application">应用程序</string>
-    <string name="title_new_dynamics_link">新的动态链接</string>
-    <string name="bluetooth_maybe_not_supported">这个Easer 配置使用了一个Android官方不支持的方法。它可能不会在所有设备上都正常运作。</string>
-    <string name="bluetooth_device_profile">蓝牙设备档案</string>
-    <string name="mac_address">MAC 地址 (00:11:22:33:FF:EE)</string>
-    <string name="operation_bluetooth_connect">连接到蓝牙设备</string>
 </resources>

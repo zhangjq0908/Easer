@@ -193,8 +193,4 @@
     <string name="category_operation_easer">@string/easer</string>
     <string name="category_operation_misc">Misc</string>
     <string name="category_operation_unknown">Unknown</string>
-    <string name="operation_bluetooth_connect">Connect to Bluetooth device</string>
-    <string name="mac_address">MAC Address (00:11:22:33:FF:EE)</string>
-    <string name="bluetooth_device_profile">Bluetooth Device Profile</string>
-    <string name="bluetooth_maybe_not_supported">This Easer profile uses a method that is not officially supported by Android. It might not work on all devices.</string>
 </resources>

@@ -53,7 +53,7 @@
 
     <string name="event_sms">Receive SMS</string>
     <string name="sender">Sender</string>
-    <string name="content_contains">Content (contains…)</string>>
+    <string name="content_contains">Content (contains…)</string>
     <string name="ev_sms_dynamics_sender">SMS Sender</string>
     <string name="ev_sms_dynamics_content">SMS Content</string>
 
@@ -66,7 +66,7 @@
     <string name="event_tcp_trip__dynamics_remote_ip">Remote IP</string>
     <string name="event_tcp_trip__dynamics_remote_port">Remote port</string>
     <string name="event_tcp_trip__dynamics_sent_data">Sent data</string>
-    <string name="event_tcp_trip__dynamics_received_data">Received_data</string>
+    <string name="event_tcp_trip__dynamics_received_data">Received data</string>
 
     <string name="event_timer">Timer</string>
     <string name="event_timer_shorter_time">Shorter Time</string>
@@ -102,6 +102,11 @@
     <string name="operation_alarm__message">Message</string>
 
     <string name="operation_bluetooth">Bluetooth</string>
+
+    <string name="operation_bluetooth_connect">Connect to Bluetooth device</string>
+    <string name="mac_address">MAC Address (00:11:22:33:FF:EE)</string>
+    <string name="bluetooth_device_profile">Bluetooth Device Profile</string>
+    <string name="bluetooth_maybe_not_supported">This Easer profile uses a method that is not officially supported by Android. It might not work on all devices.</string>
 
     <string name="operation_brightness">Brightness</string>
     <string name="operation_brightness_desc_autobrightness">Auto brightness</string>

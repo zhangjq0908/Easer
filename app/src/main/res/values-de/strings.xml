@@ -7,7 +7,7 @@
     <string name="title_event">Ereignis</string>
     <string name="title_script">Skript</string>
     <string name="title_condition">Bedingung</string>
-    <string name="title_application">App</string>
+    <string name="title_application">Anwendung</string>
     <string name="title_activity_history">Aktivitätsprotokoll</string>
     <string name="title_about">Über</string>
     <string name="title_setting">Einstellungen</string>
@@ -24,7 +24,7 @@
     <string name="service_indicator_positive">Aktiv</string>
     <string name="service_indicator_negative">Nicht aktiv</string>
     <string name="activity_history__time">Zeit</string>
-    <string name="activity_history__extra">Zusätzliche Info</string>
+    <string name="activity_history__extra">Zusätzliche Infos</string>
     <string name="activity_history__satisfaction">Status</string>
     <string name="activity_history__satisfied">Erfüllt</string>
     <string name="activity_history__unsatisfied">Nicht erfüllt</string>
@@ -120,11 +120,11 @@
     <string name="pref_export_summary">Alle Ereignisse und Profile auf die SD-Karte exportieren. 
 \nDie Datei wird nach der aktuellen Zeit benannt.</string>
     <string name="pref_import_summary">Alle Ereignisse und Profile aus einer ZIP-Datei importieren.
-\nBestehende Events und Profile mit gleichem Namen werden ersetzt.</string>
+\nBestehende Ereignisse und Profile mit gleichem Namen werden ersetzt.</string>
     <string name="pref_show_notification_title">Benachrichtigung anzeigen</string>
     <string name="pref_show_notification_summary">Eine Benachrichtigung in der Benachrichtigungsleiste anzeigen.</string>
     <string name="pref_foreground_title">Dienst im Vordergrund ausführen</string>
-    <string name="alert_update_storage_data">Wählen Sie in den Einstellungen \"Daten konvertieren\", um Ihre Daten aus Kompatibilitätsgründen auf das neue Format zu aktualisieren.</string>
+    <string name="alert_update_storage_data">Wählen Sie in den Einstellungen „Daten konvertieren“, um Ihre Daten aus Kompatibilitätsgründen auf das neue Format zu aktualisieren.</string>
     <string name="help_script">\"Skripte\" sind die Logikbehälter. Verbinden Sie mit einem Skript ein Ereignis oder eine Bedingung mit einem Profil in einem Skript. Dieses Profil läd Easer oder führt es aus, wenn das Ereignis eintritt oder die Bedingung erfüllt ist. 
 \nEs gibt auch erweiterte Funktionen, z.B. umgekehrte Ereignisse. 
 \nWeitere Informationen finden Sie in der <a href="https://github.com/renyuneyun/Easer/wiki">Dokumentation im Wiki</a>.</string>
@@ -174,7 +174,7 @@
     <string name="title_author">Autor</string>
     <string name="title_donate">Spenden</string>
     <string name="title_website">Website</string>
-    <string name="title_homepage">Homepage</string>
+    <string name="title_homepage">Startseite</string>
     <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
     <string name="pref_locale_custom">Sprache</string>
     <string name="prompt_error_logged">Easer hat gerade einen Fehler aufgezeichnet. Sehen Sie sich das Fehlerunterverzeichnis des Log-Verzeichnisses an.</string>
@@ -190,4 +190,8 @@
     <string name="title_edit_script">Skript bearbeiten</string>
     <string name="prompt_data_clash">Speichern nicht möglich. Bitte überprüfen Sie, ob es Namenskonflikte gibt.</string>
     <string name="prompt_data_save_io_exception">Ein-/Ausgabefehler aufgetreten. Ist der Speicher voll\?</string>
+    <string name="bluetooth_maybe_not_supported">Dieses Easerprofil verwendet eine Methode, die nicht offiziell von Android unterstützt wird. Es funktioniert möglicherweise nicht auf allen Geräten.</string>
+    <string name="bluetooth_device_profile">Bluetoothgeräteprofil</string>
+    <string name="mac_address">MAC-Adresse (00:11:22:33:FF:EE)</string>
+    <string name="operation_bluetooth_connect">Mit Bluetoothgerät verbinden</string>
 </resources>
