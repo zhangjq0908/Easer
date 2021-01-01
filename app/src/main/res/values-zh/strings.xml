@@ -187,4 +187,8 @@
     <string name="navigation_drawer_close">关闭导航抽屉</string>
     <string name="navigation_drawer_open">打开导航抽屉</string>
     <string name="title_application">应用程序</string>
+    <string name="category_operation_unknown">未知</string>
+    <string name="text_dynamics">动态</string>
+    <string name="title_new_dynamics_link">新的动态链接</string>
+    <string name="title_dynamics_link">动态链接</string>
 </resources>
