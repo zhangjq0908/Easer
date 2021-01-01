@@ -1,0 +1,5 @@
+Update translations && Add new languages to language selection list
+
+- New locale: Catalan
+- Updated i18n: Ukrainian, French, German, Italian, Portuguese (Brazil)
+- Add new languages to language selection list (incl. forgotten ones)
