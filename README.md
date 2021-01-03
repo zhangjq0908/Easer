@@ -36,7 +36,7 @@ Easer是一个讓智能手機更爲智能更爲自動化的軟件，能夠告訴
 
 遠程技能是v0.7開始新增的功能，旨在通過獨立的軟件擴展Easer的功能。每個遠程技能是一個獨立的app；理論上也可以在一個app中包含多個遠程技能。注意該功能較新，接口暫不穩定（但應該不會大改）。
 
-暫時遠程技能僅有Operation，[該倉庫](https://github.com/renyuneyun/EaserOperationPluginExample)是一個示例。
+暫時遠程技能僅有Operation，[該倉庫](https://github.com/renyuneyun/EaserOperationPluginExample)是一個示例。本倉庫中[diagram目錄](diagram/)下有相關文件，比如其[時序圖](diagram/communication.png)。
 
 
 支持Easer
