@@ -8,6 +8,8 @@ Easer [![Build Status](https://travis-ci.org/renyuneyun/Easer.svg?branch=master)
 
 See [README.en.md](README.en.md) for the English version.
 
+**注意**：由於近期時間所限，Easer的維護速度會受到影響。不過由於程序主要框架已經穩定，除了增加對Event和Condition的遠程插件的支持（以及長期計劃中對多機器自動化互聯的支持）外，Easer的核心部分應當不會進行顯著修改。有興趣者可以查看下面的相關章節，理解如何爲Easer添加你需要的功能，或者如何定位錯誤。作者會儘量抽時間看PR，然後先發佈的beta版本測試，隨後發佈正式版本。
+
 簡介
 -----
 Easer是一个讓智能手機更爲智能更爲自動化的軟件，能夠告訴手機在什麼情況下該做什麼事。Easer不僅可以處理事件，也可以檢查狀態，還能組合事件形成複雜的自定義事件。

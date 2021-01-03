@@ -8,6 +8,8 @@ Easer [![Build Status](https://travis-ci.org/renyuneyun/Easer.svg?branch=master)
 
 Ease your life by automatically performing routine actions.
 
+**Notice**: Due to recent time constraints, Easer's maintainance speed will be affected. But since the main structure and hierarchy is stable, no drastic changes to Easer's structure will be made, except for supporting remote Plugins of Events and Conditions (and supported federated inter-machine automation, as the long-term vision). Interested people can read the relevant sections below to lear how to add the functions you would like to see, or how to locate bugs. PRs will be read whenever there is time, and be merged and release in the usual way -- beta first, and then stable.
+
 Introduction
 -----
 Make your smart phone smarter: tell it what to do under different situations. It can handle Events, Conditions, and combine events to new custom complex events.  
