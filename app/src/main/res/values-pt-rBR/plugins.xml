@@ -234,4 +234,6 @@
     <string name="event_nfc_tag__dynamics_tag_id">Identificação da Etiqueta</string>
     <string name="operation_start_service">Iniciar Serviço</string>
     <string name="operation_start_activity">Adicionar widget</string>
+    <string name="bluetooth_device_profile">Perfil do Dispositivo Bluetooth</string>
+    <string name="operation_bluetooth_connect">Conectar a dispositivo Bluetooth</string>
 </resources>
