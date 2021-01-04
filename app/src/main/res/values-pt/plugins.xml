@@ -234,4 +234,8 @@
     <string name="ringing_items_in_do_not_disturb_mode">Itens que tocam em modo Não perturbe</string>
     <string name="operation_start_service">Iniciar serviço</string>
     <string name="operation_start_activity">Iniciar atividade</string>
+    <string name="bluetooth_maybe_not_supported">Este perfil do Easer usa um método que não é oficialmente suportado pelo Android. Pode não funcionar em todos os aparelhos.</string>
+    <string name="bluetooth_device_profile">Perfil de aparelhos Bluetooth</string>
+    <string name="mac_address">Endereço MAC (00:11:22:33:FF:EE)</string>
+    <string name="operation_bluetooth_connect">Conectar ao aparelho Bluetooth</string>
 </resources>
