@@ -89,7 +89,7 @@
     <string name="prompt_prevented_for_permission">要使其正常工作，请授予Easer &lt;%s&gt; 权限。</string>
     <string name="version">版本</string>
     <string name="text_lack_permission">有些技能没有足够的权限。</string>
-    <string name="pref_use_root_title">使用root權限特性</string>
+    <string name="pref_use_root_title">使用root权限特性</string>
     <string name="pref_use_root_summary">对特定功能（技能）使用root权限可以帮助解决某些设备上的兼容性问题。</string>
     <string name="pref_category_data_manage">管理数据</string>
     <string name="title_select_operation">選擇一個動作</string>
@@ -104,7 +104,7 @@
     <string name="message_convert_data_error">无法转换数据。请查看日志以获取详细信息。</string>
     <string name="pref_convert_data_title">轉換數據</string>
     <string name="pref_convert_data_summary">轉換所有數據至推薦格式</string>
-    <string name="pref_cooldown_title"/>
+    <string name="pref_cooldown_title">每隔...才算一次事件</string>
     <string name="pref_cooldown_summary">将两个相隔特定时间（以秒为单位）发生的事件视为一个事件。</string>
     <string name="cooldown_time_illformed">您的数字太大，或者不是一个正整数。</string>
     <string name="text_predefined_event">預定義事件</string>
