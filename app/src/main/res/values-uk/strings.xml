@@ -1,2 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="title_outline">Структура</string>
+    <string name="text_placeholder">Утримувач</string>
+    <string name="welcome_message_1">Ласкаво просимо.
+\n
+\nОсь основна інформація до прочитання перед використанням Easer.
+\n
+\nДізнатися більше на Вікі-проєкті: <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a>.</string>
+    <string name="message_convert_data_start">Конвертування даних.</string>
+    <string name="category_operation_easer">\@string/easer</string>
+    <string name="category_operation_android">Android</string>
+    <string name="template_export">Експортовано до %s</string>
+    <string name="pref_export_summary">Експортуйте всі події та профілі на SD-карту.
+\nПоточний час збереження буде використано як ім\'я файла.</string>
+    <string name="pref_enabled_skills_summary">Увімкнення та вимкнення певних плагінів</string>
+    <string name="text_inline_event">Вбудована подія</string>
+    <string name="text_notification_running_indicator_content">%s працює у фоновому режимі</string>
+    <string name="title_remote_operation_plugin">Плагін віддаленого управління</string>
+    <string name="category_operation_unknown">Невідомий</string>
+    <string name="category_operation_misc">Різне</string>
+    <string name="category_operation_system_config">Конфігурація системи</string>
+    <string name="help_profile">\"Профіль\" - це набір операцій. Кожна операція являє собою певний тип дії.
+\nНаприклад, увімкнути Bluetooth або надіслати SMS.
+\nДля отримання додаткової інформації зверніться до <a href="https://github.com/renyuneyun/Easer/wiki">документа</a>.</string>
+    <string name="help_condition">\"Умова\" являє собою тривалу (але зазвичай не вічну) умову на вашому пристрої або віддалено.
+\nНаприклад, підключення до Wi-Fi, або вимкнення дисплея.
+\nБудь ласка, зверніться до <a href="https://github.com/renyuneyun/Easer/wiki">документу</a> для докладної інформації.</string>
+    <string name="help_event">\"Подія\" являє собою короткочасну (миттєву) подію, що відбувається на вашому пристрої або віддалено.
+\nНаприклад, це може бути отримання сповіщення або сканування тега NFC.
+\nБудь ласка, зверніться до <a href="https://github.com/renyuneyun/Easer/wiki">документу</a> для докладної інформації.</string>
+    <string name="help_script">\"Сценарій\" (англ. Script) - це логічний контейнер. За допомогою сценарію можна об\'єднати подію або умову з профілем. Коли ця подія відбудеться або умову буде виконано, Easer активує вибраний вами профіль.
+\nТакож реалізовані розширені функції, такі як зворотна подія.
+\nДля більш детальної інформації зверніться, будь ласка, до <a href="https://github.com/renyuneyun/Easer/wiki">документу</a>.</string>
+    <string name="title_help">Допомога</string>
+    <string name="dynamics_profile_name">Ім\'я профілю</string>
+    <string name="dynamics_script_name">Ім\'я сценарію</string>
+    <string name="dynamics_date">Поточна дата</string>
+    <string name="dynamics_time">Поточний час</string>
+    <string name="message_importing_invalid_data">Схоже, цей файл недійсний. Обов\'язково імпортуйте файл, що експортовано з Easer.</string>
+    <string name="version">Версія</string>
+    <string name="message_future_change_0_8">Деревоподібне представлення скриптів буде видалено у версії v0.8. Pivot - найкращий варіант для цього.</string>
+    <string name="message_future_change_title">Майбутні зміни</string>
+    <string name="alert_update_storage_data">Виберіть \"Конвертувати дані\" в налаштуваннях, щоб оновити дані в новий формат, для сумісності.</string>
+    <string name="alert_update_storage_data_title">Знайдено дані старої версії</string>
+    <string name="welcome_message_privacy">Конфіденційність важлива!
+\n
+\nEraser - це <a href="https://uk.wikipedia.org/wiki/Вільне_програмне_забезпечення">вільне програмне забезпечення</a> (програма з відкритим вихідним кодом), що передбачає використання, вивчення, зміну і поширення ким завгодно.
+\n
+\nВи володієте кожною частиною ваших даних. Все зберігається у вашому пристрої, включаючи логи.</string>
+    <string name="title_welcome_message_privacy">Конфіденційність!</string>
+    <string name="welcome_message_3">Скрипти організовані у вигляді <a href="https://uk.wikipedia.org/wiki/Ієрархічна_структура">дерев</a> . Для цього кожному скрипту можна задати скрипт-попередник.
+\n
+\nУ кожній гілці при переході від батька до спадкоємця застосовується логічне \"І\" (AND).
+\nМіж гілками виконується логічне \"АБО\" (OR).
+\n
+\n
+\nУ майбутньому планується перехід з дерев на графи.</string>
+    <string name="welcome_message_2">Eraser містить кілька модулів з різними функціями. Увімкніть або вимкніть їх у налаштуваннях.
+\n
+\nВідповідні дозволи (для кожного активного модуля) повинні бути надані перед використанням.
+\n
+\n
+\n(Все включено за замовчуванням.)</string>
+    <string name="title_welcome_message">Вітаємо</string>
+    <string name="message_convert_data_error">Не вдалося конвертувати дані. Будь ласка, передивіться журнал для отримання додаткової інформації.</string>
+    <string name="message_convert_data_abort">Конвертацію даних перервано.</string>
+    <string name="message_convert_data_finish">Дані перетворено.</string>
+    <string name="message_skill_not_compatible">Цей плагін не сумісний з вашим пристроєм.</string>
+    <string name="pref_locale_custom">Користувацька локаль</string>
+    <string name="pref_foreground_summary">Ускладнити для системи вбивство служби. Буде показано сповіщення. Неможливо вимкнути на Android 8+ через системні вимоги.</string>
+    <string name="pref_foreground_title">Запуск сервісу на передньому плані</string>
+    <string name="pref_show_notification_summary">Відобразити сповіщення на панелі сповіщень.</string>
+    <string name="pref_show_notification_title">Показати сповіщення</string>
+    <string name="pref_convert_data_summary">Конвертувати всі дані в рекомендований формат</string>
+    <string name="pref_convert_data_title">Конвертувати дані</string>
+    <string name="pref_import_summary">Імпорт усіх подій і профілів із ZIP-файлу.
+\nІснуючі події та профілі з однаковим ім\'я буде замінено.</string>
+    <string name="pref_import_title">Імпорт</string>
+    <string name="pref_export_title">Експорт</string>
+    <string name="pref_use_12_hour_clock_title">Використовувати 12-годинний формат</string>
+    <string name="pref_enabled_skills_title">Увімкнені навички</string>
+    <string name="cooldown_time_illformed">Ваше число занадто велике або не є додатним цілим числом.</string>
+    <string name="pref_cooldown_summary">Часовий проміжок в секундах, протягом якого два спрацьовування вважаються однією подією.</string>
+    <string name="pref_cooldown_title">Запускати подію лише один раз у…</string>
+    <string name="pref_use_root_summary">Використовуйте root-дозвіл для певних функцій (плагінів), щоб допомогти вирішити проблему сумісності на деяких пристроях.</string>
+    <string name="pref_use_root_title">Використовувати можливості root</string>
+    <string name="pref_logging_summary">Зберігайте журнали на зовнішні пристрої збереження даних (/sdcard/logger), щоб полегшити відправку повідомлень про помилки.
+\nЗміни вступають в силу при наступному запуску програми.</string>
+    <string name="pref_logging_title">Увімкніть запис журналу на SD-карту</string>
+    <string name="pref_welcome_summary">Показувати вітальне повідомлення під час відкриття програми</string>
+    <string name="pref_welcome_title">Показати вітальне повідомлення</string>
+    <string name="pref_restart_after_upgrade_title">Запустити сервіс після оновлення</string>
+    <string name="pref_autostart_summary">Запускає Easer у фоновому режимі, коли пристрій ввімкнено.</string>
+    <string name="pref_autostart_title">Автозапуск</string>
+    <string name="pref_category_service">Сервіс</string>
+    <string name="pref_category_data_manage">Керування даними</string>
+    <string name="pref_category_personalise">Персоналізувати</string>
+    <string name="pref_category_functionality">Функціональність</string>
+    <string name="text_license">Ця програма є безкоштовним програмним забезпеченням: ви можете поширювати його і/або модифікувати на умовах GNU General Public License, опублікованій Free Software Foundation, або версії 3 Ліцензії, або (на ваш вибір) будь-якої іншої пізньої версії.
+\n Дана програма поширюється в надії, що вона буде корисною, але БЕЗ БУДЬ-ЯКОЇ ГАРАНТІЇ; навіть без передбачуваної гарантії МЕРЧАНТАБІЛЬНОСТІ або ФІТНЕСУ ДЛЯ ПЕВНОГО ПРИЗНАЧЕННЯ. Докладніше див. у GNU General Public License.
+\n Ви повинні були отримати копію GNU General Public License разом з цією програмою. В іншому випадку, див.: http://www.gnu.org/licenses/</string>
+    <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
+    <string name="text_app_description">Полегшіть своє життя, автоматизуючи рутинні дії на вашому пристрої.
+\nВстановіть ланцюжок різних подій і дайте їм виконати відповідні дії. Більше не потрібно турбуватися про це!
+\nЦя програма була натхненна \"профільним\" механізмом CyanogenMod та IFTTT. Спочатку передбачалося автоматичне редагування профілів в залежності від часу доби або конкретного WiFi з\'єднання, а потім воно було розширене для більш загального використання.
+\nНагадування: Easer все ще знаходиться в розробці. Він може містити помилки, і його інтерфейс, безумовно, має бути покращений. Поточні проєкти описані в документі TODO.en.md (або TODO.md, якщо ви знаєте китайську) в репозиторії.</string>
+    <string name="prompt_error_logged">Easer щойно зафіксував помилку. Див. підкаталог помилок каталогу журналу.</string>
+    <string name="prompt_prevented_for_permission">Надайте Easer дозвіл &lt;%s&gt; для цієї функції.</string>
+    <string name="prompt_dynamics_not_ready">Для настройки Динамічних Посилань, вам необхідно вибрати існуючий профіль і існуючий тригер (наприклад, Подія).</string>
+    <string name="prompt_data_save_io_exception">Виявлено виняток IOException. Можливо, пам\'ять заповнена\?</string>
+    <string name="prompt_data_clash">Не вдалося зберегти дані. Будь ласка, перевірте, чи є конфлікт іменування.</string>
+    <string name="prompt_data_illegal">Попереджено резервне копіювання даних з неправильними полями. Будь ласка, перевірте ваш вибір / введення.</string>
+    <string name="prompt_delete_failed">Не вдалося видалити. Перевірте, чи використовується цей елемент.</string>
+    <string name="prompt_delete">Ви дійсно бажаєте видалити %s\?</string>
+    <string name="prompt_save_failed">Не вдалося зберегти</string>
+    <string name="hint_condition_title">Назва умови</string>
+    <string name="hint_profile_title">Назва профілю</string>
+    <string name="hint_script_title">Ім\'я скрипта</string>
+    <string name="hint_event_title">Назва події</string>
+    <string name="toggle_active">Активний</string>
+    <string name="text_dynamics">Динамічне посилання</string>
+    <string name="text_unknown_skill">[Невідомий навик]</string>
+    <string name="text_persistent">Постійний</string>
+    <string name="text_volatile">Змінюваний</string>
+    <string name="text_reverse_desc">Зворотний сценарій</string>
+    <string name="text_repeatable_desc">Повторюється</string>
+    <string name="text_use_condition">Використовувати Умову</string>
+    <string name="text_predefined_event">Попередньо визначена подія</string>
+    <string name="text_profile">Профіль</string>
+    <string name="text_predecessor_nodes">Попередник</string>
+    <string name="button_see_detail">Переглянути подробиці</string>
+    <string name="text_lack_permission">Деякі навички НЕ мають достатніх дозволів.</string>
+    <string name="button_ok">Гаразд</string>
+    <string name="button_cancel">Скасувати</string>
+    <string name="button_understand">Зрозумів</string>
+    <string name="button_read_next_time">Прочитати наступного разу</string>
+    <string name="navigation_drawer_close">Закрити панель навігації</string>
+    <string name="navigation_drawer_open">Відкрити панель навігації</string>
+    <string name="null_content">ПУСТИЙ ЗМІСТ</string>
+    <string name="activity_history__stop">Стоп</string>
+    <string name="activity_history__start">Старт</string>
+    <string name="activity_history__status">Статус</string>
+    <string name="activity_history__service">Сервіс</string>
+    <string name="activity_history__unsatisfied">Незадоволений</string>
+    <string name="activity_history__satisfied">Задоволений</string>
+    <string name="activity_history__satisfaction">Статус</string>
+    <string name="activity_history__extra">Додаткова інформація</string>
+    <string name="activity_history__time">Час</string>
+    <string name="activity_history__script">\@string/title_script</string>
+    <string name="activity_history__profile">\@string/title_profile</string>
+    <string name="service_indicator_negative">Не активно</string>
+    <string name="service_indicator_positive">Активно</string>
+    <string name="menu_clear">Очистити</string>
+    <string name="menu_action_save">Зберегти</string>
+    <string name="menu_start">Почати</string>
+    <string name="menu_stop">Зупинити</string>
+    <string name="title_service_start">Запуск служби</string>
+    <string name="title_homepage">Домашня сторінка</string>
+    <string name="title_website">Веб-сайт</string>
+    <string name="title_donate">Пожертвувати</string>
+    <string name="title_author">Автор</string>
+    <string name="title_source">Вихідний код</string>
+    <string name="title_trigger_profile">Задіяти цей профіль</string>
+    <string name="title_new_dynamics_link">Нове динамічне посилання</string>
+    <string name="title_dynamics_link">Динамічні посилання</string>
+    <string name="title_choose_predecessors">Виберіть попередників</string>
+    <string name="title_select_condition">Виберіть умову</string>
+    <string name="title_select_event">Оберіть подію</string>
+    <string name="title_select_operation">Виберіть операцію</string>
+    <string name="title_edit_script">Редагувати скрипт</string>
+    <string name="title_edit_profile">Редагувати профіль</string>
+    <string name="title_edit_condition">Редагувати умову</string>
+    <string name="title_edit_event">Редагувати подію</string>
+    <string name="title_delete">Видалити</string>
+    <string name="title_edit">Редагувати</string>
+    <string name="title_add_child">Додати наслідок</string>
+    <string name="title_add">Додати</string>
+    <string name="title_setting">Налаштування</string>
+    <string name="title_about">Про додаток</string>
+    <string name="title_activity_history">Історія діяльності</string>
+    <string name="title_application">Додаток</string>
+    <string name="title_condition">Умова</string>
+    <string name="title_script">Скрипт</string>
+    <string name="title_event">Подія</string>
+    <string name="title_profile">Профіль</string>
+    <string name="title_operation">Операція</string>
+    <string name="title_data_collection">Дані</string>
+    <string name="title_pivot">Півот</string>
+    <string name="drawer_tip">Полегшіть своє життя.</string>
+    <string name="easer">Easer</string>
+</resources>
