@@ -234,4 +234,8 @@
     <string name="usource_location__threshold_accuracy_meters">Точність порогу (м)</string>
     <string name="operation_start_service">Запустити службу</string>
     <string name="operation_start_activity">Почати діяльність</string>
+    <string name="bluetooth_maybe_not_supported">Цей профіль Easer використовує метод, який офіційно не підтримується Android. Можливо, він працюватиме не на всіх пристроях.</string>
+    <string name="bluetooth_device_profile">Профіль пристрою Bluetooth</string>
+    <string name="mac_address">MAC-адреса (00:11:22:33:FF:EE)</string>
+    <string name="operation_bluetooth_connect">Підключення до пристрою Bluetooth</string>
 </resources>
