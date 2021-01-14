@@ -235,4 +235,8 @@
     <string name="usource_location__threshold_accuracy_meters">Limite de précision (en mètres)</string>
     <string name="operation_start_service">Démarrer le service</string>
     <string name="operation_start_activity">Démarrer l’activité</string>
+    <string name="bluetooth_maybe_not_supported">Ce profil Easer utilise une méthode qui n’est pas officiellement pris en charge par Android. Cela peut donc ne pas fonctionner sur tous les périphériques.</string>
+    <string name="bluetooth_device_profile">Profil du périphérique Bluetooth</string>
+    <string name="mac_address">Adresse MAC (00:11:22:33:FF:EE)</string>
+    <string name="operation_bluetooth_connect">Se connecter au périphérique Bluetooth</string>
 </resources>
