@@ -236,4 +236,6 @@
     <string name="operation_start_activity">Adicionar widget</string>
     <string name="bluetooth_device_profile">Perfil do Dispositivo Bluetooth</string>
     <string name="operation_bluetooth_connect">Conectar a dispositivo Bluetooth</string>
+    <string name="bluetooth_maybe_not_supported">Este perfil utiliza um método que não é oficialmente compatível com o Android. Pode não funcionar com todos os dispositivos.</string>
+    <string name="mac_address">Endereço MAC (00:11:22:33:FF:EE)</string>
 </resources>
