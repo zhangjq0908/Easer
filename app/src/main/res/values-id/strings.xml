@@ -131,4 +131,10 @@
     <string name="title_choose_predecessors">Pilih Pendahulu</string>
     <string name="text_predecessor_nodes">Pendahulu</string>
     <string name="text_unknown_skill">[Skill Tidak Diketahui]</string>
+    <string name="prompt_data_clash">Gagal menyimpan data. Silakan cek jika ada penamaan yang sama.</string>
+    <string name="text_dynamics">Dinamis</string>
+    <string name="text_persistent">Persisten</string>
+    <string name="text_volatile">Volatil</string>
+    <string name="text_use_condition">Kondisi Pengunaaan</string>
+    <string name="title_edit_script">Sunting Skrip</string>
 </resources>
