@@ -189,8 +189,4 @@
     <string name="prompt_data_clash">Échec de l’enregistrement des données. Veuillez vous assurer qu’il n’y ait pas de conflit de noms.</string>
     <string name="prompt_data_save_io_exception">IOException survenue. L’espace de stockage est peut-être plein \?</string>
     <string name="title_edit_script">Modifier le script</string>
-    <string name="bluetooth_maybe_not_supported">Ce profil Easer utilise une méthode qui n’est pas officiellement prise en charge par Android. Il peut donc ne pas fonctionner sur tous les appareils.</string>
-    <string name="bluetooth_device_profile">Profil de l’appareil Bluetooth</string>
-    <string name="mac_address">Adresse MAC (00:11:22:33:FF:EE)</string>
-    <string name="operation_bluetooth_connect">Se connecter à l’appareil via Bluetooth</string>
 </resources>

@@ -187,7 +187,6 @@
     <string name="category_source_easer">Easer</string>
     <string name="category_source_misc">雜項</string>
     <string name="category_source_personal">個人</string>
-    <string name="category_operation_unknown">未知</string>
     <string name="category_source_unknown">未知</string>
     <string name="usource_bluetooth_enabled">藍牙啓用</string>
     <string name="usource_bluetooth_enabled_bluetooth_is_enabled">藍牙已啟用？</string>
