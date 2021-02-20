@@ -43,7 +43,7 @@ import ryey.easer.plugin.PluginDataFormat;
 /**
  * TODO: implements {@link ryey.easer.commons.local_skill.operationskill.OperationData} ? (especially placeholders)
  */
-public class Extras implements Parcelable {
+public final class Extras implements Parcelable {
 
     private static final String KEY = "key";
     private static final String VALUE = "value";
@@ -56,18 +56,25 @@ public class Extras implements Parcelable {
         return new Extras(data, format, version);
     }
 
+    @Nullable
+    public static Extras mayConstruct(@NonNull List<ExtraItem> extras) {
+        if (extras.size() == 0)
+            return null;
+        return new Extras(extras);
+    }
+
     @Nonnull
     public final List<ExtraItem> extras;
 
-    public Extras(@NonNull List<ExtraItem> extras) {
+    private Extras(@NonNull List<ExtraItem> extras) {
         this.extras = extras;
     }
 
-    public Extras(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
-        if (Utils.isBlank(data)) {
-            extras = new ArrayList<>();
-            return;
-        }
+    /**
+     * @param data : must be a non-empty String
+     * @throws IllegalStorageDataException
+     */
+    private Extras(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         switch (format) {
             default:
                 try {

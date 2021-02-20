@@ -1,0 +1,11 @@
+New skills && skill update && i18n update
+
+* Add ActivityOperation & ServiceOperation (#338 thanks @fipwmaqzufheoxq92ebc)
+	* Dev change: generify StartActivityOperation
+* Add BluetoothConnectOperation (#340 thanks @daniellandau)
+* Fix bluetooth match counter error (#332 thanks @vasvlad)
+* I180n update:
+	* New locale: Polish, Spanish, Portuguese
+	* Update locale: Italian, Japanese, Danish, German, Norwegian Bokmål, French, Portuguese (Brazil)
+* Dev change: Extras now must use static construct
+

@@ -5,6 +5,7 @@
     <string-array name="array_languages_values">
         <item>_</item>
         <item>zh</item>
+        <item>ca</item>
         <item>cs</item>
         <item>da</item>
         <item>nl</item>
@@ -18,15 +19,20 @@
         <item>ja</item>
         <item>ko</item>
         <item>nb</item>
+        <item>pl</item>
+        <item>pt</item>
         <item>pt-rBR</item>
         <item>ru</item>
         <item>sv</item>
+        <item>sv</item>
+        <item>tr</item>
         <item>uk</item>
     </string-array>
 
     <string-array name="array_languages">
         <item>&lt;Default&gt;</item>
         <item>Chinese</item>
+        <item>Catalan</item>
         <item>Czech</item>
         <item>Danish</item>
         <item>Dutch</item>
@@ -40,9 +46,13 @@
         <item>Japanese</item>
         <item>Korean</item>
         <item>Norwegian Bokmål</item>
+        <item>Polish</item>
+        <item>Portuguese</item>
         <item>Portuguese (Brazil)</item>
         <item>Russian</item>
+        <item>Spanish</item>
         <item>Swedish</item>
+        <item>Turkish</item>
         <item>Ukrainian</item>
     </string-array>
 
