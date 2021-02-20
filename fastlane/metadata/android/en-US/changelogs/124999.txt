@@ -1,0 +1,5 @@
+Some i18n updates & fix not correctly built
+
+* Updated i18n: Portuguese, French, Ukrainian, Portuguese (Brazil), Turkish, Indonesian
+* Fix not correctly built due to string resource duplication
+* Fix not merging some changes in the previous version
