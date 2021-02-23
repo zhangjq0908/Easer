@@ -235,4 +235,8 @@
     <string name="usource_battery_level__ok_after_low">OK dopo basso</string>
     <string name="operation_start_service">Avvia Servizio</string>
     <string name="operation_start_activity">Avvia Attività</string>
+    <string name="bluetooth_maybe_not_supported">Questo profilo di Easer utilizza un metodo non ufficialmente supportato da Android, quindi potrebbe non funzionare per tutti i dispositivi.</string>
+    <string name="bluetooth_device_profile">Profilo Dispositivo Bluetooth</string>
+    <string name="mac_address">Indirizzo MAC (00:11:22:33:FF:EE)</string>
+    <string name="operation_bluetooth_connect">Connetti a dispositivo Bluetooth</string>
 </resources>
