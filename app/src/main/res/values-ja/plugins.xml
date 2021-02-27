@@ -235,4 +235,8 @@
     <string name="usource_location__threshold_accuracy_meters">しきい値精度 (メートル)</string>
     <string name="operation_start_service">サービスの開始</string>
     <string name="operation_start_activity">アクティビティの開始</string>
+    <string name="bluetooth_maybe_not_supported">この Easer プロファイルは Android で公式にサポートされていない方法を使用しています。すべてのデバイスでは動作しない可能性があります。</string>
+    <string name="bluetooth_device_profile">Bluetooth デバイス プロファイル</string>
+    <string name="mac_address">MAC アドレス (00:11:22:33:FF:EE)</string>
+    <string name="operation_bluetooth_connect">Bluetoothデバイスに接続する</string>
 </resources>
