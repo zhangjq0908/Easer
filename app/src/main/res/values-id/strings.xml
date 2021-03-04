@@ -147,4 +147,5 @@
     <string name="version">Versi</string>
     <string name="template_export">Diekspor ke %s</string>
     <string name="title_add_child">Tambah anak</string>
+    <string name="category_operation_easer">\@string/easer</string>
 </resources>
