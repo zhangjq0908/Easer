@@ -190,8 +190,4 @@
     <string name="title_edit_script">Modifica Script</string>
     <string name="prompt_data_clash">Impossibile salvare i dati. Potrebberi esserci conflitti tra i nomi.</string>
     <string name="prompt_data_save_io_exception">IOException rilevata. La memoria è piena\?</string>
-    <string name="bluetooth_maybe_not_supported">Questo profilo di Easer utilizza un metodo che non è ufficialmente supportato da Android. Potrebbe non funzionare su tutti i dispositivi.</string>
-    <string name="bluetooth_device_profile">Profilo Dispositivo Bluetooth</string>
-    <string name="mac_address">Indirizzo MAC (00:11:22:33:FF:EE)</string>
-    <string name="operation_bluetooth_connect">Connessione a Dispositivo Bluetooth</string>
 </resources>
