@@ -79,6 +79,7 @@ import ryey.easer.skills.operation.synchronization.SynchronizationOperationSkill
 import ryey.easer.skills.operation.ui_mode.UiModeOperationSkill;
 import ryey.easer.skills.operation.volume.VolumeOperationSkill;
 import ryey.easer.skills.operation.wifi.WifiOperationSkill;
+import ryey.easer.skills.operation.wireguard.WireguardOperationSkill;
 import ryey.easer.skills.usource.battery_level.BatteryLevelUSourceSkill;
 import ryey.easer.skills.usource.bluetooth_device.BTDeviceUSourceSkill;
 import ryey.easer.skills.usource.bluetooth_enabled.BluetoothEnabledUSourceSkill;
@@ -173,6 +174,7 @@ final public class LocalSkillRegistry {
         operation().registerSkill(UiModeOperationSkill.class);
         operation().registerSkill(VolumeOperationSkill.class);
         operation().registerSkill(WifiOperationSkill.class);
+        operation().registerSkill(WireguardOperationSkill.class);
         operation().registerSkill(ActivityOperationSkill.class);
         operation().registerSkill(BroadcastOperationSkill.class);
         operation().registerSkill(ServiceOperationSkill.class);

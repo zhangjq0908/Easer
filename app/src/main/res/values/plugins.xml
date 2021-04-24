@@ -212,6 +212,16 @@
 
     <string name="operation_wifi">Wi-Fi</string>
 
+    <string name="operation_wireguard">Wireguard</string>
+    <string name="o_wireguard__set_tunnel_state">Set Tunnel State</string>
+    <string name="o_wireguard_tunnel_name">Tunnel Name</string>
+    <string name="o_wireguard_tunnel_name_hint">Tunnel name in Wireguard</string>
+    <string name="o_wireguard_tunnel_state">Tunnel State</string>
+    <array name="o_wireguard_tunnel_states">
+        <item>Up</item>
+        <item>Down</item>
+    </array>
+
     <!--USource (us)-->
 
     <string name="usource__enabled_yes">Yes</string>
