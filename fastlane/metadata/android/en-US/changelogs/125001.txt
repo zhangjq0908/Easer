@@ -1,0 +1,7 @@
+Added Wireguard Operation && Some i18n updates && Minor color update && Dependency updates
+
+* Added WireguardOperationSkill (PR #375, thanks @bontibon)
+* Minor color updates (may change if not working well)
+* Updated i18n: Italian, Indonesian, Japanese
+* Added locale: Esperanto
+* Updated dependencies to recent versions

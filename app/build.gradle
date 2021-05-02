@@ -50,8 +50,8 @@ android {
         beta {
             dimension 'dev'
             applicationIdSuffix ".beta"
-            versionCode 124999
-            versionName "0.8.1"
+            versionCode 125001
+            versionName "0.8.2-beta"
             proguardFile 'proguard-rules-debug.pro'
         }
     }
