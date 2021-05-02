@@ -30,6 +30,7 @@
         tools:ignore="ProtectedPermissions" /> <!-- This is for some operations which do not guarantee to work -->
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="com.wireguard.android.permission.CONTROL_TUNNELS"/>
 
     <application
         android:name=".EaserApplication"
@@ -232,4 +233,7 @@
 
     </application>
 
+    <queries>
+        <package android:name="com.wireguard.android" />
+    </queries>
 </manifest>
