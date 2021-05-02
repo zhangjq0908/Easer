@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="JingLan">#5698C3</color>
+    <color name="QunQing">#1772B4</color>
+    <color name="JingHong">#EEA6B7</color>
+
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
@@ -13,9 +17,9 @@
     <color name="colorText_scriptInactive">#9E9E9E</color>
     <color name="colorText_invalid">@android:color/holo_red_dark</color>
 
-    <color name="nodeBackground">@android:color/holo_blue_dark</color>
-    <color name="nodeBackground_VirtualRoot">@color/colorPrimary</color>
-    <color name="nodeBackground_Profile">@color/colorAccent</color>
+    <color name="nodeBackground">@color/JingLan</color>
+    <color name="nodeBackground_VirtualRoot">@color/QunQing</color>
+    <color name="nodeBackground_Profile">@color/JingHong</color>
     <color name="nodeBackground_scriptActive">@color/nodeBackground</color>
     <color name="nodeBackground_scriptInactive">#9E9E9E</color>
     <color name="nodeIndicator_neutral">@color/transparent</color>
