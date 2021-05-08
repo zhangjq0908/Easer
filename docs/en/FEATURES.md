@@ -42,7 +42,7 @@ Supported Features
 * Send network messages
 * Send HTTP messages
 * Control media player
-* Toogle airplane mode
+* Toggle airplane mode
 * Send SMS
 * Post Notifications
 * Set alarm
