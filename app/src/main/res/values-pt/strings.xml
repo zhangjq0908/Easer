@@ -114,7 +114,7 @@
 \nMudanças serão aplicadas na próxima vez que a app iniciar.</string>
     <string name="text_app_description">Facilite a sua vida automatizando ações rotineiras no(s) seu(s) aparelho(s).
 \nEncadeie eventos diferentes e deixe as suas ações correspondentes serem executadas. Não se preocupe mais com elas!
-\nEsta app foi inspirada no mecanismo \'perfil\' da CyanogenMod e IFTTT. A intenção original era alterar automaticamente o perfil em determinados horários ou conexões Wi-Fi específicas e acabou sendo expandido para uso mais geral.
+\nEsta app foi inspirada no mecanismo \'perfil\' da CyanogenMod e IFTTT. A intenção original era alterar automaticamente o perfil em determinados horários ou conexões Wi-Fi específicas e acabou a ser expandido para uso mais geral.
 \nLembrete: Easer ainda está em desenvolvimento. Pode conter erros e a interface do utilizador com certeza precisa ser melhorada. Dê uma olhada em TODO.en.md (ou TODO.md se souber ler em chinês) no repo para ajudar.</string>
     <string name="url_donate">https://renyuneyun.github.io/Easer/ptbr/DONATE.html</string>
     <string name="pref_use_root_title">Usar características root</string>
@@ -189,5 +189,4 @@
     <string name="pref_use_12_hour_clock_title">Usar relógio de 12 horas</string>
     <string name="pref_welcome_summary">Exibir mensagens de boas-vindas ao abrir a app</string>
     <string name="prompt_data_save_io_exception">Foi encontrado um IOException. Talvez o armazenamento esteja cheio\?</string>
-
 </resources>
