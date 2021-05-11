@@ -147,4 +147,6 @@
     <string name="ev_sms_dynamics_sender">SMS Sender</string>
     <string name="content_contains">Inhalt (enthält …)</string>&gt;
     <string name="event_sms">SMS empfangen</string>
+    <string name="bluetooth_maybe_not_supported">Dieses Easer Profil nutzt eine Funktion, die nicht offiziell von Android unterstützt wird. Sie funktioniert eventuell nicht auf jedem Gerät.</string>
+    <string name="operation_bluetooth_connect">Bluetooth Gerät verbinden</string>
 </resources>
