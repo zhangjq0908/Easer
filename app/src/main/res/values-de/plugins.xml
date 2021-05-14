@@ -149,4 +149,13 @@
     <string name="event_sms">SMS empfangen</string>
     <string name="bluetooth_maybe_not_supported">Dieses Easer Profil nutzt eine Funktion, die nicht offiziell von Android unterstützt wird. Sie funktioniert eventuell nicht auf jedem Gerät.</string>
     <string name="operation_bluetooth_connect">Bluetooth Gerät verbinden</string>
+    <string name="usource_cell_location_no_signal">Ort des Mobilfunkmasts nicht abrufbar. Überprüfen Sie Ihr Signal.</string>
+    <string name="usource_cell_location">Ort des Mobilfunk-Sendemastes</string>
+    <string name="o_volume_delay">Verzögerung (s)</string>
+    <string name="usource_battery_level__level_system">Minimum-Level (Systemeinstellung)</string>
+    <string name="usource_battery_level__level_custom">Minimum-Level (Benutzerdefiniert)</string>
+    <string name="usource_battery_level__ok_after_low">OK nach Minimal-Level</string>
+    <string name="operation_state_control">Kontrollskript für Knotenpunktstatus</string>
+    <string name="operation_rotation">Automatisches Drehen</string>
+    <string name="o_launch_app__text_class">Name der Klasse</string>
 </resources>
