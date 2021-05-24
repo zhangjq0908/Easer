@@ -16,7 +16,7 @@
     <string name="pref_enabled_skills_summary">Увімкнення та вимкнення певних плагінів</string>
     <string name="text_inline_event">Вбудована подія</string>
     <string name="text_notification_running_indicator_content">%s працює у фоновому режимі</string>
-    <string name="title_remote_operation_plugin">Плагін віддаленого управління</string>
+    <string name="title_remote_operation_plugin">Втулка віддаленого управління</string>
     <string name="category_operation_unknown">Невідомий</string>
     <string name="category_operation_misc">Різне</string>
     <string name="category_operation_system_config">Конфігурація системи</string>
@@ -33,8 +33,8 @@
 \nТакож реалізовані розширені функції, такі як зворотна подія.
 \nДля більш детальної інформації зверніться, будь ласка, до <a href="https://github.com/renyuneyun/Easer/wiki">документу</a>.</string>
     <string name="title_help">Допомога</string>
-    <string name="dynamics_profile_name">Ім\'я профілю</string>
-    <string name="dynamics_script_name">Ім\'я сценарію</string>
+    <string name="dynamics_profile_name">Назва профілю</string>
+    <string name="dynamics_script_name">Назва скрипта</string>
     <string name="dynamics_date">Поточна дата</string>
     <string name="dynamics_time">Поточний час</string>
     <string name="message_importing_invalid_data">Схоже, цей файл недійсний. Обов\'язково імпортуйте файл, що експортовано з Easer.</string>
@@ -70,14 +70,14 @@
     <string name="pref_locale_custom">Користувацька локаль</string>
     <string name="pref_foreground_summary">Ускладнити для системи вбивство служби. Буде показано сповіщення. Неможливо вимкнути на Android 8+ через системні вимоги.</string>
     <string name="pref_foreground_title">Запуск сервісу на передньому плані</string>
-    <string name="pref_show_notification_summary">Відобразити сповіщення на панелі сповіщень.</string>
-    <string name="pref_show_notification_title">Показати сповіщення</string>
+    <string name="pref_show_notification_summary">Відображати сповіщення на панелі сповіщень.</string>
+    <string name="pref_show_notification_title">Показувати сповіщення</string>
     <string name="pref_convert_data_summary">Конвертувати всі дані в рекомендований формат</string>
     <string name="pref_convert_data_title">Конвертувати дані</string>
     <string name="pref_import_summary">Імпорт усіх подій і профілів із ZIP-файлу.
 \nІснуючі події та профілі з однаковим ім\'я буде замінено.</string>
-    <string name="pref_import_title">Імпорт</string>
-    <string name="pref_export_title">Експорт</string>
+    <string name="pref_import_title">Імпортування</string>
+    <string name="pref_export_title">Експортування</string>
     <string name="pref_use_12_hour_clock_title">Використовувати 12-годинний формат</string>
     <string name="pref_enabled_skills_title">Увімкнені навички</string>
     <string name="cooldown_time_illformed">Ваше число занадто велике або не є додатним цілим числом.</string>
@@ -85,11 +85,11 @@
     <string name="pref_cooldown_title">Запускати подію лише один раз у…</string>
     <string name="pref_use_root_summary">Використовуйте root-дозвіл для певних функцій (плагінів), щоб допомогти вирішити проблему сумісності на деяких пристроях.</string>
     <string name="pref_use_root_title">Використовувати можливості root</string>
-    <string name="pref_logging_summary">Зберігайте журнали на зовнішні пристрої збереження даних (/sdcard/logger), щоб полегшити відправку повідомлень про помилки.
-\nЗміни вступають в силу при наступному запуску програми.</string>
-    <string name="pref_logging_title">Увімкніть запис журналу на SD-карту</string>
+    <string name="pref_logging_summary">Зберігайте журнали на зовнішні накопичувачі (/sdcard/logger), це полегшить надсилання звітів про помилки.
+\nЗміни вступлять у дію при наступному запуску програми.</string>
+    <string name="pref_logging_title">Увімкнути запис журналу на SD-карту</string>
     <string name="pref_welcome_summary">Показувати вітальне повідомлення під час відкриття програми</string>
-    <string name="pref_welcome_title">Показати вітальне повідомлення</string>
+    <string name="pref_welcome_title">Показувати вітальне повідомлення</string>
     <string name="pref_restart_after_upgrade_title">Запустити сервіс після оновлення</string>
     <string name="pref_autostart_summary">Запускає Easer у фоновому режимі, коли пристрій ввімкнено.</string>
     <string name="pref_autostart_title">Автозапуск</string>
@@ -107,8 +107,8 @@
 \nНагадування: Easer все ще знаходиться в розробці. Він може містити помилки, і його інтерфейс, безумовно, має бути покращений. Поточні проєкти описані в документі TODO.en.md (або TODO.md, якщо ви знаєте китайську) в репозиторії.</string>
     <string name="prompt_error_logged">Easer щойно зафіксував помилку. Див. підкаталог помилок каталогу журналу.</string>
     <string name="prompt_prevented_for_permission">Надайте Easer дозвіл &lt;%s&gt; для цієї функції.</string>
-    <string name="prompt_dynamics_not_ready">Для настройки Динамічних Посилань, вам необхідно вибрати існуючий профіль і існуючий тригер (наприклад, Подія).</string>
-    <string name="prompt_data_save_io_exception">Виявлено виняток IOException. Можливо, пам\'ять заповнена\?</string>
+    <string name="prompt_dynamics_not_ready">Щоб налаштувати динамічні посилання, вам потрібно вибрати наявний профіль і наявний тригер (напр., Подія).</string>
+    <string name="prompt_data_save_io_exception">Виявлено виняток IOException. Можливо, памʼять заповнена\?</string>
     <string name="prompt_data_clash">Не вдалося зберегти дані. Будь ласка, перевірте, чи є конфлікт іменування.</string>
     <string name="prompt_data_illegal">Попереджено резервне копіювання даних з неправильними полями. Будь ласка, перевірте ваш вибір / введення.</string>
     <string name="prompt_delete_failed">Не вдалося видалити. Перевірте, чи використовується цей елемент.</string>
@@ -116,35 +116,35 @@
     <string name="prompt_save_failed">Не вдалося зберегти</string>
     <string name="hint_condition_title">Назва умови</string>
     <string name="hint_profile_title">Назва профілю</string>
-    <string name="hint_script_title">Ім\'я скрипта</string>
+    <string name="hint_script_title">Назва скрипта</string>
     <string name="hint_event_title">Назва події</string>
     <string name="toggle_active">Активний</string>
     <string name="text_dynamics">Динамічне посилання</string>
-    <string name="text_unknown_skill">[Невідомий навик]</string>
+    <string name="text_unknown_skill">[Невідома навичка]</string>
     <string name="text_persistent">Постійний</string>
     <string name="text_volatile">Змінюваний</string>
     <string name="text_reverse_desc">Зворотний сценарій</string>
     <string name="text_repeatable_desc">Повторюється</string>
-    <string name="text_use_condition">Використовувати Умову</string>
+    <string name="text_use_condition">Використовувати умову</string>
     <string name="text_predefined_event">Попередньо визначена подія</string>
     <string name="text_profile">Профіль</string>
     <string name="text_predecessor_nodes">Попередник</string>
-    <string name="button_see_detail">Переглянути подробиці</string>
+    <string name="button_see_detail">Детальніше</string>
     <string name="text_lack_permission">Деякі навички НЕ мають достатніх дозволів.</string>
     <string name="button_ok">Гаразд</string>
     <string name="button_cancel">Скасувати</string>
-    <string name="button_understand">Зрозумів</string>
+    <string name="button_understand">Зрозуміло</string>
     <string name="button_read_next_time">Прочитати наступного разу</string>
     <string name="navigation_drawer_close">Закрити панель навігації</string>
     <string name="navigation_drawer_open">Відкрити панель навігації</string>
-    <string name="null_content">ПУСТИЙ ЗМІСТ</string>
+    <string name="null_content">ПОРОЖНІЙ ВМІСТ</string>
     <string name="activity_history__stop">Стоп</string>
     <string name="activity_history__start">Старт</string>
-    <string name="activity_history__status">Статус</string>
+    <string name="activity_history__status">Стан</string>
     <string name="activity_history__service">Сервіс</string>
     <string name="activity_history__unsatisfied">Незадоволений</string>
     <string name="activity_history__satisfied">Задоволений</string>
-    <string name="activity_history__satisfaction">Статус</string>
+    <string name="activity_history__satisfaction">Стан</string>
     <string name="activity_history__extra">Додаткова інформація</string>
     <string name="activity_history__time">Час</string>
     <string name="activity_history__script">\@string/title_script</string>
@@ -187,6 +187,6 @@
     <string name="title_operation">Операція</string>
     <string name="title_data_collection">Дані</string>
     <string name="title_pivot">Півот</string>
-    <string name="drawer_tip">Полегшіть своє життя.</string>
+    <string name="drawer_tip">Полегшіть собі життя.</string>
     <string name="easer">Easer</string>
 </resources>
