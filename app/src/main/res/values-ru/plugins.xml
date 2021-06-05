@@ -14,13 +14,13 @@
     <string name="usource__enabled_no">Нет</string>
     <string name="usource_time">Время</string>
     <string name="usource_date">Дата</string>
-    <string name="usource_wificonn">WiFi Соединение</string>
-    <string name="usource_wificonn_select_dialog_title">Выберите точку доступа WiFi</string>
+    <string name="usource_wificonn">Wi-Fi Соединение</string>
+    <string name="usource_wificonn_select_dialog_title">Выберите точку доступа Wi-Fi</string>
     <string name="usource_wificonn_wait_for_result">Ожидание результатов сканирования WiFi</string>
     <string name="usource_cell_location">Сотовая вышка</string>
     <string name="usource_cell_location_no_signal">Не удалось получить информацию о сотовой вышке. Проверьте Ваш сигнал.</string>
     <string name="usource_power">Состояние Батареи</string>
-    <string name="usource_day_of_week">День Недели</string>
+    <string name="usource_day_of_week">День недели</string>
     <string name="usource_bluetooth_device">Bluetooth устройство подключено</string>
     <string name="usource_bt_device_select_dialog_title">Выберите Bluetooth устройство</string>
     <string name="usource_bt_device_unknown_device">Неизвестное устройство</string>
@@ -67,8 +67,8 @@
     <string name="event_nfc_tag__prompt_wait_for_tag">Ожидаем сканирования тэга…</string>
     <string name="usource_headset">Гарнитура</string>
     <string name="usource_headset__headset_action">Действие Гарнитуры</string>
-    <string name="usource_headset__plug_in">Подключить</string>
-    <string name="usource_headset__plug_out">Отсоединить</string>
+    <string name="usource_headset__plug_in">Подключенный</string>
+    <string name="usource_headset__plug_out">Отключен</string>
     <string name="usource_event_headset__plug_any">Любой</string>
     <string name="usource_headset__with_microphone">С микрофоном\?</string>
     <string name="usource_headset__microphone_true">Да</string>
@@ -231,4 +231,13 @@
     <string name="usource_battery_level__low">Низкий</string>
     <string name="usource_battery_level__level_custom">Пользовательский уровень</string>
     <string name="usource_battery_level__level_system">Системный уровень</string>
+    <string name="usource_location__threshold_accuracy_meters">Точность порога (метры)</string>
+    <string name="usource_location__threshold_age_seconds">Пороговый возраст (секунды)</string>
+    <string name="usource_battery_level__ok_after_low">ОК после низкого</string>
+    <string name="operation_start_service">Запустить службу</string>
+    <string name="operation_start_activity">Запустить активити</string>
+    <string name="bluetooth_maybe_not_supported">В этом профиле Easer используется метод, официально не поддерживаемый Android. Это может работать не на всех устройствах.</string>
+    <string name="bluetooth_device_profile">Профиль устройства Bluetooth</string>
+    <string name="mac_address">MAC адрес (00:11:22:33:FF:EE)</string>
+    <string name="operation_bluetooth_connect">Подключиться к устройству Bluetooth</string>
 </resources>
