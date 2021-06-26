@@ -1,0 +1,5 @@
+Fixes && Updated i18n
+
+* Fixed tethercontrol for Andriod 10 (PR #374, thanks @vasvlad)
+* Added locale: Vietnamese
+* Updated i18n: Esperanto, Portuguese, German, Ukrainian, Russian, Turkish, Portuguese (Brazil)
