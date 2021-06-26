@@ -190,8 +190,4 @@
     <string name="title_edit_script">Skript bearbeiten</string>
     <string name="prompt_data_clash">Speichern nicht möglich. Bitte überprüfen Sie, ob es Namenskonflikte gibt.</string>
     <string name="prompt_data_save_io_exception">Ein-/Ausgabefehler aufgetreten. Ist der Speicher voll\?</string>
-    <string name="bluetooth_maybe_not_supported">Dieses Easerprofil verwendet eine Methode, die nicht offiziell von Android unterstützt wird. Es funktioniert möglicherweise nicht auf allen Geräten.</string>
-    <string name="bluetooth_device_profile">Bluetoothgeräteprofil</string>
-    <string name="mac_address">MAC-Adresse (00:11:22:33:FF:EE)</string>
-    <string name="operation_bluetooth_connect">Mit Bluetoothgerät verbinden</string>
 </resources>

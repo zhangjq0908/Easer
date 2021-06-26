@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="category_operation_unknown">Không xác định</string>
+    <string name="category_operation_misc">Khác</string>
+    <string name="category_operation_easer">\@string/easer</string>
+    <string name="category_operation_system_config">Thiết lập hệ thống</string>
+    <string name="category_operation_android">Android</string>
+    <string name="help_profile">\"Cấu hình\" là một tập hợp các hoạt động. Mỗi hoạt động đại diện cho một loại hành động cụ thể.
+\nVí dụ, bật Bluetooth, hoặc gửi một tin nhắn SMS.
+\nVui lòng tham khảo <a href="https://github.com/renyuneyun/Easer/wiki">tài liệu</a> để biết thêm thông tin.</string>
+    <string name="help_condition">\"Điều kiện\" đại diện cho một điều kiện kéo dài (nhưng thường là không phải mãi mãi) trên thiết bị của bạn hoặc từ xa.
+\nVí dụ, khi kết nối Wi-Fi, hoặc khi màn hình tắt.
+\nVui lòng tham khảo <a href="https://github.com/renyuneyun/Easer/wiki">tài liệu</a> để biết thêm thông tin.</string>
+    <string name="help_event">\"Sự kiện\" đại diện cho các sự việc xảy ra trong thời gian ngắn (ngay lập tức) trên thiết bị của bạn, hoặc từ xa.
+\nVí dụ, nhận một thông báo, hoặc một thẻ NFC được quét.
+\nVui lòng tham khảo <a href="https://github.com/renyuneyun/Easer/wiki">tài liệu</a> để biết thêm thông tin.</string>
+    <string name="help_script">\"Lệnh\" là các mục chứa logic. Hãy kết nối một sự kiện hoặc một điều kiện với một cấu hình trong một lệnh, để cho Easer biết là phải tải/thực thi cấu hình đó khi sự kiện đó xảy ra, hoặc điều kiện đó được đáp ứng.
+\nCũng có các chức năng nâng cao hơn, vd: sự kiện đảo ngược.
+\nVui lòng tham khảo <a href="https://github.com/renyuneyun/Easer/wiki">tài liệu</a> để biết thêm thông tin.</string>
+    <string name="title_help">Trợ giúp</string>
+    <string name="dynamics_profile_name">Tên cấu hình</string>
+    <string name="dynamics_script_name">Tên lệnh</string>
+    <string name="dynamics_date">Ngày hiện tại</string>
+    <string name="dynamics_time">Thời gian hiện tại</string>
+    <string name="message_importing_invalid_data">Tệp này có vẻ không hợp lệ. Hãy chắc chắn rằng bạn nhập một tệp được Easer xuất.</string>
+    <string name="version">Phiên bản</string>
+    <string name="template_export">Đã xuất ra %s</string>
+    <string name="message_future_change_0_8">Mục hiển thị cây của Lệnh sẽ bị xoá vào v0.8. Kế hoạch cung cấp mục hiển thị tốt hơn hướng đến cái đó.</string>
+    <string name="message_future_change_title">Sẽ thay đổi sớm</string>
+    <string name="alert_update_storage_data">Chọn \"Chuyển đổi dữ liệu\" trong cài đặt để cập nhật dữ liệu của bạn lên định dạng mới, vì sự tương thích.</string>
+    <string name="alert_update_storage_data_title">Đã tìm thấy phiên bản dữ liệu cũ</string>
+    <string name="welcome_message_privacy">Sự riêng tư rất quan trọng!
+\n
+\nEaser là <a href="https://en.wikipedia.org/wiki/Free_software">phần mềm tự do</a> (phần mềm mã nguồn mở), đảm bảo rằng mọi người sử dụng, nghiên cứu, thay đổi và chia sẻ nó.
+\n
+\nBẠN sở hữu mọi dữ liệu của bạn. Mọi thứ đều ở trên thiết bị của bạn, bao gồm cả nhật ký.</string>
+    <string name="title_welcome_message_privacy">Riêng tư!</string>
+    <string name="welcome_message_3">Các tập hợp lệnh được sắp xếp theo cấu trúc <a href="https://en.wikipedia.org/wiki/Tree_structure">cây</a>, bằng cách chọn mục mẹ liên quan.
+\n
+\nTrong mọi nhánh, logic AND được thực hiện.
+\nGiữa các nhánh, logic OR được thực hiện.
+\n
+\n
+\nViệc mở rộng các cây thành biểu đồ đã được lên kế hoạch, nhưng hiện chưa được thêm vào.</string>
+    <string name="welcome_message_2">Easer chứa nhiều mô-đun cung cấp các chức năng khác nhau. Hãy bật hoặc tắt chúng trong Cài đặt.
+\n
+\nCác quyền tương ứng (cho mọi mô-đun đang hoạt động) nên được cấp trước khi sử dụng.
+\n
+\n
+\n(Mọi thứ được bật theo mặc định.)</string>
+    <string name="welcome_message_1">Chào mừng.
+\n
+\nĐây là một số thông tin cơ bản để đọc trước khi sử dụng Easer.
+\n
+\nNhiều chủ đề có liên quan hơn được đề cập trong wiki của dự án <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a>.</string>
+    <string name="title_welcome_message">Chào mừng</string>
+    <string name="message_convert_data_error">Không thể chuyển đổi dữ liệu. Vui lòng xem nhật ký để biết thêm chi tiết.</string>
+    <string name="message_convert_data_abort">Đã huỷ chuyển đổi dữ liệu.</string>
+    <string name="message_convert_data_finish">Đã chuyển đổi dữ liệu.</string>
+    <string name="message_convert_data_start">Đang chuyển đổi dữ liệu.</string>
+    <string name="message_skill_not_compatible">Thiết bị này không thể chạy kỹ năng này.</string>
+    <string name="pref_locale_custom">Ngôn ngữ tuỳ chỉnh</string>
+    <string name="pref_foreground_summary">Làm cho hệ thống khó dừng dịch vụ hơn. Một thông báo sẽ được hiện. Không thể được tắt trên Android 8+ vì một yêu cầu hệ thống.</string>
+    <string name="pref_foreground_title">Chạy dịch vụ ở trước</string>
+    <string name="pref_show_notification_summary">Hiện một thông báo trong thanh thông báo.</string>
+    <string name="pref_show_notification_title">Hiện thông báo</string>
+    <string name="pref_convert_data_summary">Chuyển đổi tất cả dữ liệu thành định dạng được khuyên dùng</string>
+    <string name="pref_convert_data_title">Chuyển đổi dữ liệu</string>
+    <string name="pref_import_summary">Nhập tất cả sự kiện và cấu hình từ một tệp ZIP.
+\nCác sự kiện và cấu hình đang tồn tại có cùng tên sẽ bị thay thế.</string>
+    <string name="pref_import_title">Nhập</string>
+    <string name="pref_export_summary">Xuất tất cả sự kiện và cấu hình ra thẻ SD.
+\nThời gian hiện tại lúc lưu sẽ được sử dụng làm tên tệp.</string>
+    <string name="pref_export_title">Xuất</string>
+    <string name="pref_use_12_hour_clock_title">Sử dụng đồng hồ 12 giờ</string>
+    <string name="pref_enabled_skills_summary">Bật hoặc tắt các kỹ năng cụ thể</string>
+    <string name="pref_enabled_skills_title">Kỹ năng đã kích hoạt</string>
+    <string name="cooldown_time_illformed">Con số của bạn quá cao, hoặc không phải là số nguyên dương.</string>
+    <string name="pref_cooldown_summary">Phạm vi thời gian tính bằng giây để coi hai lần xảy ra là một sự kiện.</string>
+    <string name="pref_cooldown_title">Sự kiện chỉ một lần mỗi…</string>
+    <string name="pref_use_root_summary">Sử dụng quyền root cho các chức năng (kỹ năng) cụ thể để giúp giải quyết các vấn đề về sự tương thích trên một số thiết bị.</string>
+    <string name="pref_use_root_title">Sử dụng các tính năng root</string>
+    <string name="pref_logging_summary">Ghi nhật ký vào các thiết bị lưu trữ ngoài (/sdcard/logger/) để hỗ trợ các báo cáo lỗi.
+\nCác thay đổi sẽ có hiệu lực tại lần khởi động ứng dụng tiếp theo.</string>
+    <string name="pref_logging_title">Bật ghi nhật ký ngoài</string>
+    <string name="pref_welcome_summary">Hiện thông báo chào mừng khi mở ứng dụng</string>
+    <string name="pref_welcome_title">Hiện thông báo chào mừng</string>
+    <string name="pref_restart_after_upgrade_title">Khởi động dịch vụ sau khi nâng cấp</string>
+    <string name="pref_autostart_summary">Khởi động Easer trong nền khi thiết bị được bật.</string>
+    <string name="pref_autostart_title">Tự động khởi động</string>
+    <string name="pref_category_service">Dịch vụ</string>
+    <string name="pref_category_data_manage">Quản lý dữ liệu</string>
+    <string name="pref_category_personalise">Cá nhân hoá</string>
+    <string name="pref_category_functionality">Chức năng</string>
+    <string name="text_license">Chương trình này là phần mềm tự do: bạn có thể phân phát lại nó và/hoặc sửa đổi nó dưới các điều khoản của Giấy phép GNU General Public License như được xuất bản bởi Quỹ Phần mềm Tự do, phiên bản 3 của Giấy phép, hoặc (theo tuỳ chọn của bạn) bất kỳ phiên bản nào mới hơn.
+\nChương trình này được phân phát với hy vọng rằng nó sẽ hữu ích, nhưng KHÔNG CÓ BẢO ĐẢM; không có cả sự bảo đảm được ngụ ý về KHẢ NĂNG BUÔN BÁN hoặc SỰ PHÙ HỢP CHO MỘT MỤC ĐÍCH CỤ THỂ. Hãy xem GNU General Public License để biết thêm chi tiết.
+\nBạn có thể đã nhận được một bản sao của GNU General Public License cùng với chương trình này. Nếu không, hãy xem http://www.gnu.org/licenses/</string>
+    <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
+    <string name="text_app_description">Làm cuộc sống của bạn dễ dàng hơn bằng cách tự động hoá các hành động hàng ngày trên (các) thiết bị của bạn.
+\nXâu chuỗi các sự kiện khác nhau và để cho các hành động tương ứng của chúng được thực hiện. Không cần phải ghi nhớ chúng nữa!
+\nỨng dụng này được truyền cảm hứng từ cơ chế \'cấu hình\' của CyanogenMod và IFTTT. Mục đích ban đầu là để tự động thay đổi cấu hình vào thời gian cụ thể hoặc các kết nối Wi-Fi cụ thể, và sau đó nó đã được mở rộng vì mục đích sử dụng chung hơn.
+\nLời nhắc: Easer vẫn đang được phát triển. Nó có thể chứa lỗi và giao diện chắc chắn cần được cải thiện. Hãy xem TODO.en.md (hoặc TODO.md nếu bạn có thể đọc tiếng Trung Quốc) trên kho để giúp đỡ.</string>
+    <string name="prompt_error_logged">Easer vừa ghi lại một lỗi. Hãy xem thư mục con chứa lỗi trong thư mục nhật ký.</string>
+    <string name="prompt_prevented_for_permission">Hãy cấp quyền &lt;%s&gt; cho Easer để mục này có thể hoạt động.</string>
+    <string name="prompt_dynamics_not_ready">Để đặt Động, bạn cần chọn một cấu hình hợp lệ và một mục kích hoạt hợp lệ (vd: Sự kiện).</string>
+    <string name="prompt_data_save_io_exception">Đã xảy ra IOException. Có lẽ bộ nhớ bị đầy\?</string>
+    <string name="prompt_data_clash">Lưu dữ liệu thất bại. Vui lòng kiểm tra xem có xung đột về tên không.</string>
+    <string name="prompt_data_illegal">Đã ngăn chặn việc lưu dữ liệu có (các) trường không hợp lệ. Vui lòng kiểm tra lại các lựa chọn / đầu vào của bạn.</string>
+    <string name="text_dynamics">Động</string>
+    <string name="text_volatile">Không bền vững</string>
+    <string name="text_inline_event">Sự kiện tích hợp</string>
+    <string name="null_content">KHÔNG CÓ NỘI DUNG</string>
+    <string name="activity_history__script">\@string/title_script</string>
+    <string name="activity_history__profile">\@string/title_profile</string>
+    <string name="title_service_start">Bắt đầu dịch vụ</string>
+    <string name="title_new_dynamics_link">Liên kết động mới</string>
+    <string name="title_dynamics_link">Liên kết động</string>
+    <string name="title_pivot">Kế hoạch</string>
+    <string name="title_outline">Tổng quát</string>
+    <string name="prompt_delete_failed">Không thể xoá. Hãy kiểm tra xem mục này có đang được sử dụng không.</string>
+    <string name="prompt_delete">Bạn có chắc bạn muốn xoá %s không\?</string>
+    <string name="prompt_save_failed">Không thể lưu</string>
+    <string name="hint_condition_title">Tiêu đề điều kiện</string>
+    <string name="hint_profile_title">Tiêu đề cấu hình</string>
+    <string name="hint_script_title">Tiêu đề lệnh</string>
+    <string name="hint_event_title">Tiêu đề sự kiện</string>
+    <string name="toggle_active">Hoạt động</string>
+    <string name="text_placeholder">Chỗ giữ chỗ</string>
+    <string name="text_unknown_skill">[Kỹ năng không xác định]</string>
+    <string name="text_persistent">Liên tục</string>
+    <string name="text_reverse_desc">Ngữ cảnh đảo ngược</string>
+    <string name="text_repeatable_desc">Xảy ra lặp lại</string>
+    <string name="text_use_condition">Sử dụng điều kiện</string>
+    <string name="text_predefined_event">Sự kiện đã định nghĩa trước</string>
+    <string name="text_profile">Cấu hình</string>
+    <string name="text_predecessor_nodes">Mục tiền nhiệm</string>
+    <string name="text_notification_running_indicator_content">%s đang chạy trong nền</string>
+    <string name="button_see_detail">Xem chi tiết</string>
+    <string name="text_lack_permission">Một số kỹ năng KHÔNG có đủ quyền.</string>
+    <string name="button_ok">OK</string>
+    <string name="button_cancel">Huỷ</string>
+    <string name="button_understand">Đã hiểu</string>
+    <string name="button_read_next_time">Đọc lần sau</string>
+    <string name="navigation_drawer_close">Đóng ngăn điều hướng</string>
+    <string name="navigation_drawer_open">Mở ngăn điều hướng</string>
+    <string name="activity_history__stop">Dừng</string>
+    <string name="activity_history__start">Bắt đầu</string>
+    <string name="activity_history__status">Trạng thái</string>
+    <string name="activity_history__service">Dịch vụ</string>
+    <string name="activity_history__unsatisfied">Không thoả mãn</string>
+    <string name="activity_history__satisfied">Đã thoả mãn</string>
+    <string name="activity_history__satisfaction">Trạng thái</string>
+    <string name="activity_history__extra">Thêm thông tin</string>
+    <string name="activity_history__time">Thời gian</string>
+    <string name="service_indicator_negative">Đang không chạy</string>
+    <string name="service_indicator_positive">Đang chạy</string>
+    <string name="menu_clear">Xoá</string>
+    <string name="menu_action_save">Lưu</string>
+    <string name="menu_stop">Dừng</string>
+    <string name="menu_start">Bắt đầu</string>
+    <string name="title_remote_operation_plugin">Plugin hoạt động từ xa</string>
+    <string name="title_homepage">Trang chủ</string>
+    <string name="title_website">Trang web</string>
+    <string name="title_donate">Quyên góp</string>
+    <string name="title_author">Tác giả</string>
+    <string name="title_source">Mã nguồn</string>
+    <string name="title_trigger_profile">Kích hoạt cấu hình này</string>
+    <string name="title_choose_predecessors">Chọn các mục tiền nhiệm</string>
+    <string name="title_select_condition">Chọn một điều kiện</string>
+    <string name="title_select_event">Chọn một sự kiện</string>
+    <string name="title_select_operation">Chọn một hoạt động</string>
+    <string name="title_edit_script">Chỉnh sửa lệnh</string>
+    <string name="title_edit_profile">Chỉnh sửa cấu hình</string>
+    <string name="title_edit_condition">Chỉnh sửa điều kiện</string>
+    <string name="title_edit_event">Chỉnh sửa sự kiện</string>
+    <string name="title_delete">Xoá</string>
+    <string name="title_edit">Chỉnh sửa</string>
+    <string name="title_add_child">Thêm mục con</string>
+    <string name="title_add">Thêm</string>
+    <string name="title_setting">Cài đặt</string>
+    <string name="title_about">Giới thiệu</string>
+    <string name="title_activity_history">Lịch sử hoạt động</string>
+    <string name="title_application">Ứng dụng</string>
+    <string name="title_condition">Điều kiện</string>
+    <string name="title_script">Lệnh</string>
+    <string name="title_event">Sự kiện</string>
+    <string name="title_profile">Cấu hình</string>
+    <string name="title_operation">Hoạt động</string>
+    <string name="title_data_collection">Dữ liệu</string>
+    <string name="drawer_tip">Làm cuộc sống của bạn dễ dàng hơn.</string>
+    <string name="easer">Easer</string>
+</resources>

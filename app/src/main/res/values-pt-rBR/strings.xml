@@ -189,8 +189,4 @@
     <string name="title_edit_script">Editar o Script</string>
     <string name="title_add_child">Adicionar filho</string>
     <string name="title_data_collection">Dados</string>
-    <string name="bluetooth_maybe_not_supported">Este perfil Easer usa um método que não é suportado oficialmente pelo Android. Pode não funcionar em todos os dispositivos.</string>
-    <string name="bluetooth_device_profile">Perfil do dispositivo Bluetooth</string>
-    <string name="mac_address">Endereço MAC (00:11:22:33:FF:EE)</string>
-    <string name="operation_bluetooth_connect">Conecte-se ao dispositivo Bluetooth</string>
 </resources>

@@ -235,4 +235,8 @@
     <string name="usource_location__threshold_accuracy_meters">Terskelnøyaktighet (meter)</string>
     <string name="operation_start_service">Start tjeneste</string>
     <string name="operation_start_activity">Start aktivitet</string>
+    <string name="mac_address">MAC-adresse (00:11:22:33:FF:EE)</string>
+    <string name="bluetooth_maybe_not_supported">Easer-profilen bruker en metode som ikke offisielt støttes av Android. Det kan hende det ikke virker på alle enheter.</string>
+    <string name="bluetooth_device_profile">Blåtanns-enhetsprofil</string>
+    <string name="operation_bluetooth_connect">Koble til Blåtannsenhet</string>
 </resources>

@@ -124,8 +124,13 @@ class HotspotHelper {
     }
 
     boolean setApStatus(WifiConfiguration netConfig, boolean enable) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        Method setWifiApMethod = wifiManager.getClass().getMethod("setWifiApEnabled", WifiConfiguration.class, boolean.class);
-        boolean apStatus = (boolean) setWifiApMethod.invoke(wifiManager, netConfig, enable);
+        boolean apStatus = false;    
+        try {
+            Method setWifiApMethod = wifiManager.getClass().getMethod("setWifiApEnabled", WifiConfiguration.class, boolean.class);
+            apStatus = (boolean) setWifiApMethod.invoke(wifiManager, netConfig, enable);
+        } catch (NoSuchMethodException e) {
+            apStatus = false;
+        }
         if (!apStatus) {
             apStatus = setTethering(enable);
         }

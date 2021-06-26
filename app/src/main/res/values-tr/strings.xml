@@ -53,7 +53,7 @@
     <string name="text_reverse_desc">Ters Senaryo</string>
     <string name="text_repeatable_desc">Tekrarlayan</string>
     <string name="text_use_condition">Kullanım Durumu</string>
-    <string name="text_inline_event"></string>
+    <string name="text_inline_event"/>
     <string name="text_predefined_event">Önceden Tanımlanmış Etkinlik</string>
     <string name="text_profile">Profil</string>
     <string name="text_notification_running_indicator_content">%s arka planda çalışıyor</string>
@@ -72,4 +72,6 @@
     <string name="activity_history__service">Servis</string>
     <string name="title_remote_operation_plugin">Uzak İşlem Eklentisi</string>
     <string name="title_add_child">Çocuk ekle</string>
+    <string name="activity_history__script">\@string/title_script</string>
+    <string name="activity_history__profile">\@string/title_profile</string>
 </resources>
