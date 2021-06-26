@@ -187,10 +187,6 @@
     <string name="message_future_change_0_8">Trädvyn av skript kommer att tas bort i v 0.8. Pivot ger en bättre utsikt mot det.</string>
     <string name="title_choose_predecessors">Välj föregångare</string>
     <string name="text_unknown_skill">[Okänd färdighet]</string>
-    <string name="bluetooth_maybe_not_supported">Denna Easer-profil använder en metod som inte stöds officiellt av Android. Det kanske inte fungerar på alla enheter.</string>
-    <string name="bluetooth_device_profile">Bluetooth-enhetsprofil</string>
-    <string name="mac_address">MAC-adress (00:11:22:33:FF:EE)</string>
-    <string name="operation_bluetooth_connect">Anslut till Bluetooth-enhet</string>
     <string name="prompt_data_save_io_exception">IOException påträffades. Kanske är lagringen full\?</string>
     <string name="prompt_data_clash">Det gick inte att spara data. Kontrollera om det finns en namnkollision.</string>
     <string name="title_edit_script">Redigera skript</string>

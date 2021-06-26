@@ -212,4 +212,8 @@
     <string name="o_http_post_data">Posta data</string>
     <string name="operation_toast">Toast</string>
     <string name="op_toast_hint_text">Text</string>
+    <string name="bluetooth_maybe_not_supported">Denna Easer-profil använder en metod som inte stöds officiellt av Android. Det kanske inte fungerar på alla enheter.</string>
+    <string name="bluetooth_device_profile">Bluetooth-enhetsprofil</string>
+    <string name="mac_address">MAC-adress (00:11:22:33:FF:EE)</string>
+    <string name="operation_bluetooth_connect">Anslut till Bluetooth-enhet</string>
 </resources>
