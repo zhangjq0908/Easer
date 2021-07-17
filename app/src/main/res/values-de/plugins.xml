@@ -112,7 +112,7 @@
     <string name="send_data">Daten senden</string>
     <string name="ev_notification_dynamics_content">Benachrichtigungsinhalt</string>
     <string name="event_nfc_tag__prompt_wait_for_tag">Warten auf das Scannen der Markierung …</string>
-    <string name="event_condition_event_leave">Beenden</string>
+    <string name="event_condition_event_leave">Verlassen</string>
     <string name="ev_notification_dynamics_title">Benachrichtigungstitel</string>
     <string name="event_notification__content">Inhalt (enthält …)</string>
     <string name="event_notification__title">Titel (enthält …)</string>
