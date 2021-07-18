@@ -17,8 +17,8 @@
     <string name="title_edit">修改</string>
     <string name="title_event">事件</string>
     <string name="title_outline">概覽</string>
-    <string name="activity_history__profile">@string/title_profile</string>
-    <string name="activity_history__script">@string/title_script</string>
+    <string name="activity_history__profile">配置文件</string>
+    <string name="activity_history__script">脚本</string>
     <string name="activity_history__time">時間</string>
     <string name="activity_history__extra">更多信息</string>
     <string name="activity_history__satisfaction">狀態</string>
@@ -104,7 +104,7 @@
     <string name="message_convert_data_error">无法转换数据。请查看日志以获取详细信息。</string>
     <string name="pref_convert_data_title">轉換數據</string>
     <string name="pref_convert_data_summary">轉換所有數據至推薦格式</string>
-    <string name="pref_cooldown_title"></string>
+    <string name="pref_cooldown_title"/>
     <string name="pref_cooldown_summary">将两个相隔特定时间（以秒为单位）发生的事件视为一个事件。</string>
     <string name="cooldown_time_illformed">您的数字太大，或者不是一个正整数。</string>
     <string name="text_predefined_event">預定義事件</string>
