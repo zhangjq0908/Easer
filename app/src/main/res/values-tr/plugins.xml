@@ -52,4 +52,6 @@
     <string name="event_condition_event_dynamics_name">Koşul Adı</string>
     <string name="event_condition_event_leave">Çık</string>
     <string name="event_condition_event_enter">Gir</string>
+    <string name="check_reply">Yanıtları kontrol et</string>
+    <string name="event_condition_event">Olay koşulu</string>
 </resources>
