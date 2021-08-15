@@ -1,0 +1,10 @@
+Added Wireguard Operation && Color update && Fixes && Mention Privacy Declaration && Some i18n updates && Dependency updates
+
+* Added WireguardOperationSkill (PR #375, thanks @bontibon)
+* Fixed tethercontrol for Andriod 10 (PR #374, thanks @vasvlad)
+* Minor color updates (may change if not working well)
+* Mention Privacy Declaration in welcome page
+* Updated i18n: Italian, Indonesian, Japanese, Portuguese, German, Ukrainian, Russian, Turkish, Portuguese (Brazil)
+* Added locale: Esperanto, Vietnamese
+* Fix Chinese string resource
+* Updated dependencies to recent versions

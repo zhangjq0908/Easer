@@ -20,8 +20,8 @@ android {
         multiDexEnabled true
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 23
-        versionCode 124
-        versionName "0.8.1"
+        versionCode 125
+        versionName "0.8.2"
 
         vectorDrawables.useSupportLibrary = true
 
@@ -50,8 +50,8 @@ android {
         beta {
             dimension 'dev'
             applicationIdSuffix ".beta"
-            versionCode 125002
-            versionName "0.8.2-beta2"
+            versionCode 125999
+            versionName "0.8.2"
             proguardFile 'proguard-rules-debug.pro'
         }
     }

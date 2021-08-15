@@ -1,0 +1,5 @@
+Mention Privacy Declaration in app && I18n update
+
+* Mention Privacy Declaration in welcome page
+* Fix Chinese string resource
+* I18n updated: German, Turkish
