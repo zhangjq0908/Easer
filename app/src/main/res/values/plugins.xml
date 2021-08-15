@@ -167,6 +167,8 @@
 
     <string name="o_play_media">Play Media</string>
     <string name="o_play_media_text_file">File Path</string>
+    <string name="o_play_media_loop">Loop the media</string>
+    <string name="o_play_media_repeat_times">Times of repeats</string>
 
     <string name="operation_ringer_mode">Ringer Mode</string>
     <string name="ringer_mode_normal">Normal</string>

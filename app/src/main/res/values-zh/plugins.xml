@@ -179,6 +179,8 @@
     <string name="op_normal_mode">普通模式</string>
     <string name="o_play_media">播放媒體</string>
     <string name="o_play_media_text_file">文件路徑</string>
+    <string name="o_play_media_loop">循環播放</string>
+    <string name="o_play_media_repeat_times">重複次數</string>
     <string name="condition__rel_after">在此之後</string>
     <string name="category_source_android">Android</string>
     <string name="category_source_data_communication">數據通信</string>
