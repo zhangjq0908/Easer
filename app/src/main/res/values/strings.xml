@@ -163,7 +163,8 @@
 \n
 \nEaser is <a href="https://en.wikipedia.org/wiki/Free_software">free software</a> (open-source software), ensuring everyone use, study, change and share it.
 \n
-\nYOU own every piece of your data. Everything lives on your device, including the logs.</string>
+\nYOU own every piece of your data. Everything lives on your device, including the logs.
+\nSee the <a href="https://github.com/renyuneyun/Easer/blob/master/Privacy.md">Privacy Declaration</a> for more information</string>
     <string name="alert_update_storage_data_title">Old data version found</string>
     <string name="alert_update_storage_data">Select \"Convert Data\" in the settings to update your data to the new format, for compatibility.</string>
     <string name="message_future_change_title">Changing soon</string>

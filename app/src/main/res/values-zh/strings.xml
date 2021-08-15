@@ -66,7 +66,8 @@
 \n
 \nEaser是<a href="https://en.wikipedia.org/wiki/Free_software">自由软件</a>（开源软件），确保所有人都可使用、研究、更改和共享它。
 \n
-\n您拥有每条数据。一切都保存在您的设备上，包括日志。</string>
+\n您拥有每条数据。一切都保存在您的设备上，包括日志。
+\n另請參閱<a href="https://github.com/renyuneyun/Easer/blob/master/Privacy.md">隱私聲明</a>。</string>
     <string name="null_content">空內容</string>
     <string name="button_read_next_time">以後再看</string>
     <string name="button_understand">明白了</string>
