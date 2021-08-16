@@ -144,11 +144,12 @@
 \n 
 \nEstender árvores para gráficos está nos planos, mas ainda não foi implementado.</string>
     <string name="title_welcome_message_privacy">Privacidade!</string>
-    <string name="welcome_message_privacy">Privacidade é importante! 
-\n 
-\nEaser é <a href="https://pt.wikipedia.org/wiki/Software_livre">software livre</a> (software de código aberto), garantindo que todos possam usá-lo, estudá-lo, alterá-lo e compartilhá-lo. 
-\n 
-\nVOCÊ é dono(a) de cada parte dos seus dados. Todo fica no seu dispositivo, inclusive os logs.</string>
+    <string name="welcome_message_privacy">Privacidade é importante!
+\n
+\nEaser é <a href="https://pt.wikipedia.org/wiki/Software_livre">software livre</a> (software de código aberto), garantindo que todos possam usá-lo, estudá-lo, alterá-lo e compartilhá-lo.
+\n
+\nVOCÊ é dono(a) de cada parte dos seus dados. Todo fica no seu dispositivo, inclusive os logs.
+\nConsulte a <a href="https://github.com/renyuneyun/Easer/blob/master/Privacy.md">Declaração de privacidade</a> para mais informações</string>
     <string name="alert_update_storage_data_title">Encontrados dados de versão antiga</string>
     <string name="alert_update_storage_data">Selecione \"Converter dados\" nas configurações para atualizar seus dados para o novo formato, visando compatibilidade.</string>
     <string name="message_future_change_title">Mudanças em breve</string>
