@@ -238,4 +238,9 @@
     <string name="bluetooth_device_profile">Perfil do Dispositivo Bluetooth</string>
     <string name="mac_address">Endereço MAC (00:11:22:33:FF:EE)</string>
     <string name="operation_bluetooth_connect">Conecte ao dispositivo Bluetooth</string>
+    <string name="o_wireguard_tunnel_state">Condição geral do túnel</string>
+    <string name="o_wireguard_tunnel_name_hint">Nome do túnel no Wireguard</string>
+    <string name="o_wireguard_tunnel_name">Nome do túnel</string>
+    <string name="o_wireguard__set_tunnel_state">Defina o estado do túnel</string>
+    <string name="operation_wireguard">Wireguard</string>
 </resources>
