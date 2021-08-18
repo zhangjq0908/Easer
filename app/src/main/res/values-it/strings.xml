@@ -137,11 +137,12 @@
 \n 
 \nPrevista l\'estensione da alberi a grafici, ma non è ancora implementata.</string>
     <string name="title_welcome_message_privacy">Privacy!</string>
-    <string name="welcome_message_privacy">La privacy è importante! 
-\n 
-\nEaser è un <a href="https://en.wikipedia.org/wiki/Free_software">software libero</a> (open-source), quindi permette a chiunque l\'utilizzo, lo studio, il cambiamento e la condivisione del codice. 
-\n 
-\nTU possiedi i tuoi dati. Tutto rimane sul tuo dispositivo, compresi i log.</string>
+    <string name="welcome_message_privacy">La privacy è importante!
+\n
+\nEaser è un <a href="https://en.wikipedia.org/wiki/Free_software">software libero</a> (open-source), quindi permette a chiunque l\'utilizzo, lo studio, il cambiamento e la condivisione del codice.
+\n
+\nTU possiedi i tuoi dati. Tutto rimane sul tuo dispositivo, compresi i log.
+\nPer maggiori informazioni visita la pagina riguardo alla <a href="https://github.com/renyuneyun/Easer/blob/master/Privacy.md">dichiarazione sulla privacy</a></string>
     <string name="alert_update_storage_data_title">Vecchia Versione Dati trovata</string>
     <string name="alert_update_storage_data">Seleziona «Converti dati» nelle impostazioni per aggiornare i dati al nuovo formato, per compatibilità.</string>
     <string name="message_future_change_title">Cambiamento imminente</string>
