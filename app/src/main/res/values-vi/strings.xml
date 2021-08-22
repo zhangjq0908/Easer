@@ -33,7 +33,8 @@
 \n
 \nEaser là <a href="https://en.wikipedia.org/wiki/Free_software">phần mềm tự do</a> (phần mềm mã nguồn mở), đảm bảo rằng mọi người sử dụng, nghiên cứu, thay đổi và chia sẻ nó.
 \n
-\nBẠN sở hữu mọi dữ liệu của bạn. Mọi thứ đều ở trên thiết bị của bạn, bao gồm cả nhật ký.</string>
+\nBẠN sở hữu mọi dữ liệu của bạn. Mọi thứ đều ở trên thiết bị của bạn, bao gồm cả nhật ký.
+\nHãy xem <a href="https://github.com/renyuneyun/Easer/blob/master/Privacy.md">Tuyên bố về sự riêng tư</a> để biết thêm thông tin</string>
     <string name="title_welcome_message_privacy">Riêng tư!</string>
     <string name="welcome_message_3">Các tập hợp lệnh được sắp xếp theo cấu trúc <a href="https://en.wikipedia.org/wiki/Tree_structure">cây</a>, bằng cách chọn mục mẹ liên quan.
 \n
