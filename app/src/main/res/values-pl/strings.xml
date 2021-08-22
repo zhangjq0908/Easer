@@ -53,9 +53,10 @@
     <string name="alert_update_storage_data_title">Znaleziono starą wersję danych</string>
     <string name="welcome_message_privacy">Prywatność jest ważna!
 \n 
-\nEaser to <a href="https://pl.m.wikipedia.org/wiki/Wolne_oprogramowanie"> wolne oprogramowanie </a> (oprogramowanie typu open source), zapewniające wszystkim korzystanie, badanie, zmianę i udostępnianie.
+\nEaser to <a href="https://pl.m.wikipedia.org/wiki/Wolne_oprogramowanie">wolne oprogramowanie</a> (oprogramowanie typu open source), zapewniające wszystkim możliwość korzystania, badania, zmiany i udostępniania.
 \n 
-\nJesteś właścicielem każdego elementu swoich danych. Wszystko żyje na twoim urządzeniu, w tym logi.</string>
+\nJesteś właścicielem każdego elementu swoich danych. Wszystko żyje na twoim urządzeniu, w tym logi.
+\nZobacz <a href="https://github.com/renyuneyun/Easer/blob/master/Privacy.md">Deklarację Prywatności</a> aby dowiedzieć się więcej.</string>
     <string name="title_welcome_message_privacy">Prywatność!</string>
     <string name="welcome_message_3">Skrypty mają strukturę <a href="https://en.wikipedia.org/wiki/Tree_structure"> drzew </a>, wybierając odpowiedniego rodzica.
 \n 
