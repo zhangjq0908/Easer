@@ -170,11 +170,12 @@
 \n
 \nL\'extension des arbres aux graphiques est prévue mais n\'est pas encore mise en œuvre.</string>
     <string name="title_welcome_message_privacy">Vie privée !</string>
-    <string name="welcome_message_privacy">La protection de la vie privée est importante !
+    <string name="welcome_message_privacy">La protection de la vie privée est importante !
 \n
-\nEaser est un <a href="https://en.wikipedia.org/wiki/Free_software">logiciel libre</a> (logiciel open-source), assurant que tout le monde l\'utilise, l\'étude, le modifie et le partage.
+\nEaser est un <a href="https://en.wikipedia.org/wiki/Free_software">logiciel libre</a> (logiciel open source), assurant que tout le monde puisse l’utilise, l’étude, le modifie et le partage.
 \n
-\nVOUS possédez vos données. Tout reste présent sur votre appareil, y compris les fichiers de journalisation.</string>
+\nVOUS possédez toutes vos données. Tout reste présent sur votre appareil, y compris les fichiers de journalisation.
+\nVoyez la <a href="https://github.com/renyuneyun/Easer/blob/master/Privacy.md">déclaration de confidentialité</a> pour plus d’information</string>
     <string name="title_service_start">Démarrer le service</string>
     <string name="message_future_change_title">Changement prévu bientôt</string>
     <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
