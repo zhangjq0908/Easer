@@ -237,4 +237,10 @@
     <string name="usource_bluetooth_enabled_bluetooth_is_enabled">Bluetooth đang bật\?</string>
     <string name="usource_bluetooth_enabled">Bluetooth đã bật</string>
     <string name="usource_bt_device_dynamics_device_address">Địa chỉ thiết bị</string>
+    <string name="o_wireguard_tunnel_state">Trạng thái đường hầm</string>
+    <string name="o_wireguard_tunnel_name_hint">Tên đường hầm trong Wireguard</string>
+    <string name="o_wireguard_tunnel_name">Tên đường hầm</string>
+    <string name="o_wireguard__set_tunnel_state">Đặt trạng thái đường hầm</string>
+    <string name="operation_wireguard">Wireguard</string>
+    <string name="event_tcp_trip__dynamics_received_data">Dữ liệu đã nhận</string>
 </resources>
