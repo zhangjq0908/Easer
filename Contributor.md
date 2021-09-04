@@ -16,6 +16,8 @@ People who contributed to the app function and/or UI and/or test:
 * fipwmaqzufheoxq92ebc <https://github.com/fipwmaqzufheoxq92ebc>
 * Daniel Landau <https://github.com/daniellandau>
 * Tim Cooper <https://github.com/bontibon>
+* Yuhui Su <https://github.com/yuhuitech>
+* grmoth <https://github.com/grmoth>
 
 
 Logo contributed by [revilationer](https://github.com/revilationer)
