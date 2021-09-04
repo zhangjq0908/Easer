@@ -93,8 +93,12 @@ public class NotificationEventListenerService extends NotificationListenerServic
                 return false;
         }
         Bundle extras = sbn.getNotification().extras;
-        String title = extras.getString(Notification.EXTRA_TITLE);
-        String contentText = extras.getString(Notification.EXTRA_TEXT);
+        String title = extras.getCharSequence(Notification.EXTRA_TITLE) != null
+                ? extras.getCharSequence(Notification.EXTRA_TITLE).toString()
+                : null;
+        String contentText = extras.getCharSequence(Notification.EXTRA_TEXT) != null
+                ? extras.getCharSequence(Notification.EXTRA_TEXT).toString()
+                : null;
         if (t_title != null) {
             if (title == null || !title.contains(t_title))
                 return false;
@@ -115,8 +119,12 @@ public class NotificationEventListenerService extends NotificationListenerServic
                     : NotificationSlot.NotifyIntentPrototype.obtainNegativeIntent(compoundData.uri);
             intent.putExtra(NotificationEventData.AppDynamics.id, sbn.getPackageName());
             Bundle extras = sbn.getNotification().extras;
-            String title = extras.getString(Notification.EXTRA_TITLE);
-            String contentText = extras.getString(Notification.EXTRA_TEXT);
+            String title = extras.getCharSequence(Notification.EXTRA_TITLE) != null
+                    ? extras.getCharSequence(Notification.EXTRA_TITLE).toString()
+                    : null;
+            String contentText = extras.getCharSequence(Notification.EXTRA_TEXT) != null
+                    ? extras.getCharSequence(Notification.EXTRA_TEXT).toString()
+                    : null;
             intent.putExtra(NotificationEventData.TitleDynamics.id, title);
             intent.putExtra(NotificationEventData.ContentDynamics.id, contentText);
             sendBroadcast(intent);
