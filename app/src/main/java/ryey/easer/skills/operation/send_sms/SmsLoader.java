@@ -34,8 +34,8 @@ public class SmsLoader extends OperationLoader<SmsOperationData> {
 
     @Override
     public void _load(@ValidData @NonNull SmsOperationData data, @NonNull OnResultCallback callback) {
-        String destination = data.destination;
-        String content = data.content;
+        String destination = data.destination.toString();
+        String content = data.content.toString();
         SmsManager smsManager = SmsManager.getDefault();
         if (smsManager == null) {
             callback.onResult(false);
