@@ -37,7 +37,7 @@ class PlayMediaOperationDataFactory implements OperationDataFactory<PlayMediaOpe
     @NonNull
     @Override
     public PlayMediaOperationData dummyData() {
-        return new PlayMediaOperationData("/sdcard/dummy.ogg");
+        return new PlayMediaOperationData("/sdcard/dummy.ogg", true, 2);
     }
 
     @ValidData

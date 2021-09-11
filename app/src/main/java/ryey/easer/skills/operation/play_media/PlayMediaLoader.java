@@ -25,6 +25,7 @@ import android.media.MediaPlayer;
 import androidx.annotation.NonNull;
 
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.skills.operation.OperationLoader;
@@ -37,10 +38,19 @@ public class PlayMediaLoader extends OperationLoader<PlayMediaOperationData> {
     @Override
     public void _load(@ValidData @NonNull PlayMediaOperationData data, @NonNull OnResultCallback callback) {
         MediaPlayer mp = new MediaPlayer();
+        AtomicInteger repeated_times = new AtomicInteger(0);  // Must be (effectively) final to be used in lambda
         try {
             mp.setDataSource(data.filePath);
+            mp.setLooping(false);
             mp.prepare();
             mp.start();
+            mp.setOnCompletionListener(mp1 -> {
+                if (data.loop && repeated_times.addAndGet(1) < data.repeat_times) {
+                    mp1.start();
+                } else {
+                    mp1.release();
+                }
+            });
             callback.onResult(true);
         } catch (IOException e) {
             e.printStackTrace();
