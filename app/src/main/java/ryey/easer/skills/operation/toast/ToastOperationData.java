@@ -69,7 +69,7 @@ public class ToastOperationData implements OperationData {
             default:
                 try {
                     JSONObject jsonObject = new JSONObject();
-                    jsonObject.put(K_TEXT, text.str);
+                    jsonObject.put(K_TEXT, text.raw);
                     s = jsonObject.toString();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -113,7 +113,7 @@ public class ToastOperationData implements OperationData {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(text.str);
+        dest.writeString(text.raw);
     }
 
     public static final Creator<ToastOperationData> CREATOR

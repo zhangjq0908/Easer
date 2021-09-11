@@ -69,7 +69,7 @@ public class NetworkTransmissionSkillViewFragment extends SkillViewFragment<Netw
         }
         editText_remote_address.setText(data.remote_address);
         editText_remote_port.setText(String.valueOf(data.remote_port));
-        editText_data.setText(data.data.toString());
+        editText_data.setText(data.data.raw);
     }
 
     @ValidData

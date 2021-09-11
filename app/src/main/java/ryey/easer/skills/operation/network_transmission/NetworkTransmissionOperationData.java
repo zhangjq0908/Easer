@@ -100,7 +100,7 @@ public class NetworkTransmissionOperationData implements OperationData {
                     jsonObject.put(K_PROTOCOL, protocol.toString());
                     jsonObject.put(K_REMOTE_ADDRESS, remote_address);
                     jsonObject.put(K_REMOTE_PORT, remote_port);
-                    jsonObject.put(K_DATA, data.toString());
+                    jsonObject.put(K_DATA, data.raw);
                     res = jsonObject.toString();
                 } catch (JSONException e) {
                     e.printStackTrace();
