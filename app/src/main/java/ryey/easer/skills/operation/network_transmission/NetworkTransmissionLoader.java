@@ -69,7 +69,7 @@ public class NetworkTransmissionLoader extends OperationLoader<NetworkTransmissi
                                 try {
                                     DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
                                     try {
-                                        dataOutputStream.writeBytes(data.data.toString());
+                                        dataOutputStream.writeBytes(data.data.raw);
                                     } finally {
                                         dataOutputStream.flush();
                                         dataOutputStream.close();
@@ -87,7 +87,7 @@ public class NetworkTransmissionLoader extends OperationLoader<NetworkTransmissi
                         }
                         break;
                     case udp:
-                        DatagramPacket datagramPacket = new DatagramPacket(data.data.toString().getBytes(), data.data.toString().length(), remote_address, data.remote_port);
+                        DatagramPacket datagramPacket = new DatagramPacket(data.data.raw.getBytes(), data.data.raw.length(), remote_address, data.remote_port);
                         try {
                             DatagramSocket socket = new DatagramSocket();
                             socket.send(datagramPacket);

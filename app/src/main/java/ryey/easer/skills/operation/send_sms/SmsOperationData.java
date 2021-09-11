@@ -75,8 +75,8 @@ public class SmsOperationData implements OperationData {
             default:
                 try {
                     JSONObject jsonObject = new JSONObject();
-                    jsonObject.put(K_DEST, destination.toString());
-                    jsonObject.put(K_CONTENT, content.toString());
+                    jsonObject.put(K_DEST, destination.raw);
+                    jsonObject.put(K_CONTENT, content.raw);
                     res = jsonObject.toString();
                 } catch (JSONException e) {
                     Logger.e(e, "error");
@@ -91,7 +91,7 @@ public class SmsOperationData implements OperationData {
     public boolean isValid() {
         if (Utils.isBlank(destination))
             return false;
-        if (!PhoneNumberUtils.isWellFormedSmsAddress(destination.toString()))
+        if (!PhoneNumberUtils.isWellFormedSmsAddress(destination.raw))
             return false;
         if (Utils.isBlank(content))
             return false;
@@ -119,8 +119,8 @@ public class SmsOperationData implements OperationData {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(destination.toString());
-        dest.writeString(content.toString());
+        dest.writeString(destination.raw);
+        dest.writeString(content.raw);
     }
 
     public static final Parcelable.Creator<SmsOperationData> CREATOR

@@ -64,7 +64,7 @@ public class Utils {
     public static boolean isBlank(@Nullable DynamicsEnabledString str) {
         if (str == null)
             return true;
-        return isBlank(str.str);
+        return isBlank(str.raw);
     }
 
     public static boolean nullableEqual(@Nullable Object obj1, @Nullable Object obj2) {

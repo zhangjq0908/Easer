@@ -48,8 +48,8 @@ public class SmsSkillViewFragment extends SkillViewFragment<SmsOperationData> {
 
     @Override
     protected void _fill(@ValidData @NonNull SmsOperationData data) {
-        et_destination.setText(data.destination.toString());
-        et_content.setText(data.content.toString());
+        et_destination.setText(data.destination.raw);
+        et_content.setText(data.content.raw);
     }
 
     @ValidData

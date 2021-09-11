@@ -53,7 +53,7 @@ public class ToastSkillViewFragment extends SkillViewFragment<ToastOperationData
 
     @Override
     protected void _fill(@ValidData @NonNull ToastOperationData data) {
-        Objects.requireNonNull(textInputLayout.getEditText()).setText(data.text.str);
+        Objects.requireNonNull(textInputLayout.getEditText()).setText(data.text.raw);
     }
 
     @ValidData

@@ -33,7 +33,7 @@ public class ToastLoader extends OperationLoader<ToastOperationData> {
 
     @Override
     public void _load(@NonNull ToastOperationData data, @NonNull OnResultCallback callback) {
-        Toast.makeText(context, data.text.str, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, data.text.raw, Toast.LENGTH_SHORT).show();
         callback.onResult(true);
     }
 }
