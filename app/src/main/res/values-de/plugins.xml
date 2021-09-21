@@ -162,4 +162,6 @@
     <string name="o_launch_app__text_class">Name der Klasse</string>
     <string name="event_tcp_trip__dynamics_remote_port">Ziel Port</string>
     <string name="remote_host">Zielrechner</string>
+    <string name="event_condition_event_enter">Betreten</string>
+    <string name="event_broadcast">Broadcast empfangen</string>
 </resources>
