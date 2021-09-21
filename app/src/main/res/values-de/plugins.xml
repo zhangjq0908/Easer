@@ -144,7 +144,7 @@
     <string name="category_source_date_time">Datum / Zeit</string>
     <string name="category_source_android">Android</string>
     <string name="ev_sms_dynamics_content">SMS Inhalt</string>
-    <string name="ev_sms_dynamics_sender">SMS Sender</string>
+    <string name="ev_sms_dynamics_sender">SMS Absender</string>
     <string name="content_contains">Inhalt (enthält …)</string>&gt;
     <string name="event_sms">SMS empfangen</string>
     <string name="bluetooth_maybe_not_supported">Dieses Easer Profil nutzt eine Funktion, die nicht offiziell von Android unterstützt wird. Sie funktioniert eventuell nicht auf jedem Gerät.</string>
