@@ -54,4 +54,24 @@
     <string name="event_condition_event_enter">Gir</string>
     <string name="check_reply">Yanıtları kontrol et</string>
     <string name="event_condition_event">Olay koşulu</string>
+    <string name="event_widget_default_text">METNI GÖRÜNTÜLE</string>
+    <string name="event_widget_tag">Etiket</string>
+    <string name="event_widget_text">Metin</string>
+    <string name="event_widget_widget_label">WidgetEtkinlik Widget\'ı</string>
+    <string name="event_widget">Widget</string>
+    <string name="minutes">Dakika</string>
+    <string name="one_time">Bir sefer</string>
+    <string name="repeat">Tekrarla</string>
+    <string name="repeative_timer">Tekrarlayan zamanlayıcı\?</string>
+    <string name="inexact">Kesin değil</string>
+    <string name="exact">Kesin</string>
+    <string name="event_timer_seconds">Saniye</string>
+    <string name="event_timer_longer_time">Daha uzun süre</string>
+    <string name="event_timer_shorter_time">Daha kısa süre</string>
+    <string name="event_timer">Zamanlayıcı</string>
+    <string name="event_tcp_trip__dynamics_received_data">Alınan veriler</string>
+    <string name="event_tcp_trip__dynamics_sent_data">Gönderilen veriler</string>
+    <string name="event_tcp_trip__dynamics_remote_port">Uzak bağlantı noktası</string>
+    <string name="event_tcp_trip__dynamics_remote_ip">Uzak IP</string>
+    <string name="event_tcp_trip__dynamics_remote_host">Uzak sistem</string>
 </resources>
