@@ -74,4 +74,13 @@
     <string name="event_tcp_trip__dynamics_remote_port">Uzak bağlantı noktası</string>
     <string name="event_tcp_trip__dynamics_remote_ip">Uzak IP</string>
     <string name="event_tcp_trip__dynamics_remote_host">Uzak sistem</string>
+    <string name="operation_alarm__absolute">Mutlak</string>
+    <string name="operation_alarm">Alarm kur</string>
+    <string name="operation_airplane_mode">Uçak Modu</string>
+    <string name="event_widget__dynamics_widget_id">Widget Kimliği</string>
+    <string name="event_widget__dynamics_widget_tag">Widget Etiketi</string>
+    <string name="event_widget_button_save_widget">Widget\'ı kaydet</string>
+    <string name="event_widget_default_tag">ETİKET</string>
+    <string name="exact_timer">Tam zamanlayıcı\?</string>
+    <string name="reply_data">Verileri yanıtla</string>
 </resources>
