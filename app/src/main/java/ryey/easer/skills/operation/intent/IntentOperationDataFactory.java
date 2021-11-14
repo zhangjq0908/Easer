@@ -29,8 +29,8 @@ import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.operationskill.OperationDataFactory;
 import ryey.easer.plugin.PluginDataFormat;
-import ryey.easer.skills.operation.ExtraItem;
-import ryey.easer.skills.operation.Extras;
+import ryey.easer.skills.reusable.ExtraItem;
+import ryey.easer.skills.reusable.Extras;
 
 class IntentOperationDataFactory implements OperationDataFactory<IntentOperationData> {
     @NonNull

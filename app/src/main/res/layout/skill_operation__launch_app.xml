@@ -86,7 +86,7 @@
 
     <fragment
         android:id="@+id/fragment_edit_extra"
-        android:name="ryey.easer.skills.operation.EditExtraFragment"
+        android:name="ryey.easer.skills.reusable.EditExtraFragment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
