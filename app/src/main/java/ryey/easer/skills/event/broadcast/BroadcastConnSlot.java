@@ -28,6 +28,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 
 import ryey.easer.skills.event.AbstractSlot;
+import ryey.easer.skills.reusable.ExtraItem;
 
 public class BroadcastConnSlot extends AbstractSlot<BroadcastEventData> {
 
@@ -48,6 +49,15 @@ public class BroadcastConnSlot extends AbstractSlot<BroadcastEventData> {
     private final BroadcastReceiver connReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            if (intentData.extras != null) {
+                Bundle intExtras = intent.getExtras();
+                for (ExtraItem extra : intentData.extras.extras) {
+                    String value = intExtras.getString(extra.key);
+                    if (!intent.getExtras().getString(extra.key).equals(extra.value)) {
+                        return;
+                    }
+                }
+            }
             changeSatisfiedState(true, dynamicsForCurrent(intent));
         }
     };
