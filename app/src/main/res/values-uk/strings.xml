@@ -138,8 +138,8 @@
     <string name="navigation_drawer_close">Закрити панель навігації</string>
     <string name="navigation_drawer_open">Відкрити панель навігації</string>
     <string name="null_content">ПОРОЖНІЙ ВМІСТ</string>
-    <string name="activity_history__stop">Стоп</string>
-    <string name="activity_history__start">Старт</string>
+    <string name="activity_history__stop">Зупинити</string>
+    <string name="activity_history__start">Розпочати</string>
     <string name="activity_history__status">Стан</string>
     <string name="activity_history__service">Сервіс</string>
     <string name="activity_history__unsatisfied">Незадоволений</string>
@@ -149,8 +149,8 @@
     <string name="activity_history__time">Час</string>
     <string name="activity_history__script">\@string/title_script</string>
     <string name="activity_history__profile">\@string/title_profile</string>
-    <string name="service_indicator_negative">Не активно</string>
-    <string name="service_indicator_positive">Активно</string>
+    <string name="service_indicator_negative">Не запущено</string>
+    <string name="service_indicator_positive">Запущено</string>
     <string name="menu_clear">Очистити</string>
     <string name="menu_action_save">Зберегти</string>
     <string name="menu_start">Почати</string>

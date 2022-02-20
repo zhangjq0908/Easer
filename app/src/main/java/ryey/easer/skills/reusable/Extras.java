@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.operation;
+package ryey.easer.skills.reusable;
 
 import android.os.Bundle;
 import android.os.Parcel;

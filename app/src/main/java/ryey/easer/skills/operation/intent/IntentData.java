@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ryey.easer.Utils;
-import ryey.easer.skills.operation.Extras;
+import ryey.easer.skills.reusable.Extras;
 
 //TODO: Make fields final
 public class IntentData implements Parcelable {
