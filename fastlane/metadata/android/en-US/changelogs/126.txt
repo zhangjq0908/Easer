@@ -1,0 +1,8 @@
+Functionality updates && Bug fixes && i18n update
+
+* Support looping control in PlayMedia operation
+* Support Dynamics for SMS Operation destination
+* Fix notification event internally crash for collapsed text (#390)
+* Fix welcome page readability for larger text size (#387)
+* Fix Timer event not successfully cancel
+* Updated i18n: Chinese, Portuguese (Brazil), Italian, Polish, Vietnamese, French

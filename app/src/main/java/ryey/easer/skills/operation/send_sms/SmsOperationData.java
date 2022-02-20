@@ -38,28 +38,29 @@ import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.local_skill.operationskill.OperationData;
 import ryey.easer.plugin.PluginDataFormat;
+import ryey.easer.skills.operation.DynamicsEnabledString;
 
 public class SmsOperationData implements OperationData {
     private static final String K_DEST = "destination";
     private static final String K_CONTENT = "content";
 
-    String destination;
-    String content;
+    final DynamicsEnabledString destination;
+    final DynamicsEnabledString content;
 
     SmsOperationData(String destination, String content) {
+        this(new DynamicsEnabledString(destination), new DynamicsEnabledString(content));
+    }
+
+    private SmsOperationData(DynamicsEnabledString destination, DynamicsEnabledString content) {
         this.destination = destination;
         this.content = content;
     }
 
     SmsOperationData(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
-        parse(data, format, version);
-    }
-
-    public void parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
         try {
             JSONObject jsonObject = new JSONObject(data);
-            destination = jsonObject.getString(K_DEST);
-            content = jsonObject.getString(K_CONTENT);
+            destination = new DynamicsEnabledString(jsonObject.getString(K_DEST));
+            content = new DynamicsEnabledString(jsonObject.getString(K_CONTENT));
         } catch (JSONException e) {
             Logger.e(e, "error");
             throw new IllegalStateException(e);
@@ -74,8 +75,8 @@ public class SmsOperationData implements OperationData {
             default:
                 try {
                     JSONObject jsonObject = new JSONObject();
-                    jsonObject.put(K_DEST, destination);
-                    jsonObject.put(K_CONTENT, content);
+                    jsonObject.put(K_DEST, destination.raw);
+                    jsonObject.put(K_CONTENT, content.raw);
                     res = jsonObject.toString();
                 } catch (JSONException e) {
                     Logger.e(e, "error");
@@ -90,7 +91,7 @@ public class SmsOperationData implements OperationData {
     public boolean isValid() {
         if (Utils.isBlank(destination))
             return false;
-        if (!PhoneNumberUtils.isWellFormedSmsAddress(destination))
+        if (!PhoneNumberUtils.isWellFormedSmsAddress(destination.raw))
             return false;
         if (Utils.isBlank(content))
             return false;
@@ -118,8 +119,8 @@ public class SmsOperationData implements OperationData {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(destination);
-        dest.writeString(content);
+        dest.writeString(destination.raw);
+        dest.writeString(content.raw);
     }
 
     public static final Parcelable.Creator<SmsOperationData> CREATOR
@@ -134,20 +135,21 @@ public class SmsOperationData implements OperationData {
     };
 
     private SmsOperationData(Parcel in) {
-        destination = in.readString();
-        content = in.readString();
+        destination = new DynamicsEnabledString(in.readString());
+        content = new DynamicsEnabledString(in.readString());
     }
 
     @Nullable
     @Override
     public Set<String> placeholders() {
-        return Utils.extractPlaceholder(content);
+        Set<String> placeholders = destination.placeholders();
+        placeholders.addAll(content.placeholders());
+        return placeholders;
     }
 
     @NonNull
     @Override
     public OperationData applyDynamics(SolidDynamicsAssignment dynamicsAssignment) {
-        String new_content = Utils.applyDynamics(content, dynamicsAssignment);
-        return new SmsOperationData(destination, new_content);
+        return new SmsOperationData(destination.applyDynamics(dynamicsAssignment), content.applyDynamics(dynamicsAssignment));
     }
 }

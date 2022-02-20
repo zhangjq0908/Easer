@@ -69,10 +69,10 @@ public class HttpRequestSkillViewFragment extends SkillViewFragment<HttpRequestO
             default:
                 throw new IllegalAccessError();
         }
-        editText_url.setText(data.url.str);
-        editText_header.setText(data.requestHeader.str);
-        editText_contentType.setText(data.contentType.str);
-        editText_postData.setText(data.postData.str);
+        editText_url.setText(data.url.raw);
+        editText_header.setText(data.requestHeader.raw);
+        editText_contentType.setText(data.contentType.raw);
+        editText_postData.setText(data.postData.raw);
     }
 
     @ValidData

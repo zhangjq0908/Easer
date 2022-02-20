@@ -98,10 +98,10 @@ public class HttpRequestOperationData implements OperationData {
         try {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put(K_REQUEST_METHOD, requestMethod);
-            jsonObject.put(K_URL, url.toString());
-            jsonObject.put(K_REQUEST_HEADER, requestHeader.toString());
-            jsonObject.put(K_CONTENT_TYPE, contentType.toString());
-            jsonObject.put(K_POST_DATA, postData.toString());
+            jsonObject.put(K_URL, url.raw);
+            jsonObject.put(K_REQUEST_HEADER, requestHeader.raw);
+            jsonObject.put(K_CONTENT_TYPE, contentType.raw);
+            jsonObject.put(K_POST_DATA, postData.raw);
             return jsonObject.toString();
         } catch (JSONException e) {
             e.printStackTrace();
@@ -176,10 +176,10 @@ public class HttpRequestOperationData implements OperationData {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeSerializable(requestMethod);
-        dest.writeString(url.str);
-        dest.writeString(requestHeader.str);
-        dest.writeString(contentType.str);
-        dest.writeString(postData.str);
+        dest.writeString(url.raw);
+        dest.writeString(requestHeader.raw);
+        dest.writeString(contentType.raw);
+        dest.writeString(postData.raw);
     }
 
     public static final Creator<HttpRequestOperationData> CREATOR = new Creator<HttpRequestOperationData>() {

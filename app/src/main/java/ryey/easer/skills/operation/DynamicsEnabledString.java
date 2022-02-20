@@ -37,20 +37,20 @@ public class DynamicsEnabledString implements Parcelable {
         return new DynamicsEnabledString(editText.getText().toString());
     }
 
-    @NonNull public final String str;
+    @NonNull public final String raw;
 
-    public DynamicsEnabledString(@NonNull String str) {
-        this.str = str;
+    public DynamicsEnabledString(@NonNull String raw) {
+        this.raw = raw;
     }
 
     @NonNull
     public Set<String> placeholders() {
-        return Utils.extractPlaceholder(str);
+        return Utils.extractPlaceholder(raw);
     }
 
     @NonNull
     public DynamicsEnabledString applyDynamics(@NonNull SolidDynamicsAssignment dynamicsAssignment) {
-        String new_str = Utils.applyDynamics(str, dynamicsAssignment);
+        String new_str = Utils.applyDynamics(raw, dynamicsAssignment);
         return new DynamicsEnabledString(new_str);
     }
 
@@ -60,27 +60,21 @@ public class DynamicsEnabledString implements Parcelable {
             return true;
         if (!(obj instanceof  DynamicsEnabledString))
             return false;
-        return str.equals(((DynamicsEnabledString) obj).str);
-    }
-
-    @NonNull
-    @Override
-    public String toString() {
-        return str;
+        return raw.equals(((DynamicsEnabledString) obj).raw);
     }
 
     @Override
     public int hashCode() {
-        return str.hashCode();
+        return raw.hashCode();
     }
 
     protected DynamicsEnabledString(Parcel in) {
-        str = in.readString();
+        raw = in.readString();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(str);
+        dest.writeString(raw);
     }
 
     @Override

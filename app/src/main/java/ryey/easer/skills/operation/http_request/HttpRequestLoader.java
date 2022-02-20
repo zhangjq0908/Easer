@@ -57,12 +57,12 @@ public class HttpRequestLoader extends OperationLoader<HttpRequestOperationData>
             HttpURLConnection urlConnection = null;
 
             try {
-                final URL url = new URL(data.url.str);
+                final URL url = new URL(data.url.raw);
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod(data.requestMethod.name());
 
                 // set request header
-                final String[] headerLines = data.requestHeader.str.split("\r?\n");
+                final String[] headerLines = data.requestHeader.raw.split("\r?\n");
                 for (String headerLine : headerLines) {
                     if (headerLine.contains(":")) {
                         final String[] parts = headerLine.split(":", 2);
@@ -77,12 +77,12 @@ public class HttpRequestLoader extends OperationLoader<HttpRequestOperationData>
                     case POST:
                         // set header for POST request
                         urlConnection.setDoOutput(true);
-                        urlConnection.addRequestProperty("Content-Type", data.contentType.str);
-                        urlConnection.setFixedLengthStreamingMode(data.postData.str.length());
+                        urlConnection.addRequestProperty("Content-Type", data.contentType.raw);
+                        urlConnection.setFixedLengthStreamingMode(data.postData.raw.length());
 
                         // send POST data
                         try (final DataOutputStream out = new DataOutputStream(urlConnection.getOutputStream())) {
-                            out.writeBytes(data.postData.str);
+                            out.writeBytes(data.postData.raw);
                             out.flush();
                         }
                         break;

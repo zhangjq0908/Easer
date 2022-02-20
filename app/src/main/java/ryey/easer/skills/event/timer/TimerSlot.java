@@ -35,7 +35,7 @@ public class TimerSlot extends SelfNotifiableSlot<TimerEventData> {
     private static final int INTERVAL_MINUTE = 60 * 1000;
 
 //    private CountDownTimer countDownTimer;
-    private Handler handler = new Handler();
+    private final Handler handler = new Handler();
     private Runnable job;
 
     TimerSlot(Context context, TimerEventData data) {
@@ -112,7 +112,7 @@ public class TimerSlot extends SelfNotifiableSlot<TimerEventData> {
             if (eventData.shortTime) {
 //                if (countDownTimer != null)
 //                    countDownTimer.cancel();
-                handler.removeCallbacksAndMessages(job);
+                handler.removeCallbacks(job);
             } else {
                 mAlarmManager.cancel(notifySelfIntent_positive);
                 mAlarmManager.cancel(notifySelfIntent_negative);
