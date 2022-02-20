@@ -243,4 +243,6 @@
     <string name="usource_cell_location_dynamics_cell_location">מיקום האנטנה</string>
     <string name="usource_headset__plug_out">מנותקות</string>
     <string name="bluetooth_maybe_not_supported">פרופיל זה של Easer משתמש בשיטה שאינה נתמכת רשמית על ידי Android. יכול להיות שהיא לא תעבוד בחלק מהמכשירים.</string>
+    <string name="o_play_media_loop">חזרה על המדיה</string>
+    <string name="o_play_media_repeat_times">מספר החזרות</string>
 </resources>
