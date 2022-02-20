@@ -27,6 +27,19 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    flavorDimensions "dev"
+    productFlavors {
+        stable {
+            dimension 'dev'
+        }
+        beta {
+            dimension 'dev'
+            applicationIdSuffix ".beta"
+            versionCode 126999
+            versionName "0.8.2.1"
+            proguardFile 'proguard-rules-debug.pro'
+        }
+    }
     lintOptions {
         disable 'MissingTranslation', 'ExtraTranslation'
     }
@@ -40,19 +53,6 @@ android {
         }
         debug {
             testCoverageEnabled true
-        }
-    }
-    flavorDimensions "dev"
-    productFlavors {
-        stable {
-            dimension 'dev'
-        }
-        beta {
-            dimension 'dev'
-            applicationIdSuffix ".beta"
-            versionCode 126999
-            versionName "0.8.2.1"
-            proguardFile 'proguard-rules-debug.pro'
         }
     }
     buildFeatures.dataBinding true
