@@ -32,7 +32,7 @@ import ryey.easer.R;
 import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.skills.SkillViewFragment;
-import ryey.easer.skills.operation.EditExtraFragment;
+import ryey.easer.skills.reusable.EditExtraFragment;
 
 public class LaunchAppSkillViewFragment extends SkillViewFragment<LaunchAppOperationData> {
     EditText et_app_package;

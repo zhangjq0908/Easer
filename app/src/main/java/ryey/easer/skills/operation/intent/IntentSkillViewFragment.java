@@ -34,7 +34,7 @@ import ryey.easer.Utils;
 import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.skills.SkillViewFragment;
-import ryey.easer.skills.operation.EditExtraFragment;
+import ryey.easer.skills.reusable.EditExtraFragment;
 
 public class IntentSkillViewFragment extends SkillViewFragment<IntentOperationData> {
     private EditText m_text_action;

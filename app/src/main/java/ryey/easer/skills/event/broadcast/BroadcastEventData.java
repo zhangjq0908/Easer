@@ -35,11 +35,13 @@ import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.dynamics.Dynamics;
 import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.skills.event.AbstractEventData;
+import ryey.easer.skills.reusable.Extras;
 
 public class BroadcastEventData extends AbstractEventData {
 
     private static final String K_ACTION = "action";
     private static final String K_CATEGORY = "category";
+    private static final String K_EXTRAS = "extras";
 
     ReceiverSideIntentData intentData;
 
@@ -74,6 +76,10 @@ public class BroadcastEventData extends AbstractEventData {
                     for (int i = 0; i < jsonArray_category.length(); i++) {
                         intentData.category.add(jsonArray_category.getString(i));
                     }
+                    String strExtras = jsonObject.optString(K_EXTRAS);
+                    if (strExtras != null) {
+                        intentData.extras = Extras.mayParse(strExtras, format, version);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                     throw new IllegalStorageDataException(e);
@@ -103,6 +109,11 @@ public class BroadcastEventData extends AbstractEventData {
                         }
                     }
                     jsonObject.put(K_CATEGORY, jsonArray_category);
+                    if (intentData.extras != null) {
+                        if (intentData.extras.extras.size() > 0) { // Safety check, because old versions may serialise null extras. Should be removed in future.
+                            jsonObject.put(K_EXTRAS, intentData.extras.serialize(format));
+                        }
+                    }
                     res = jsonObject.toString();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -129,6 +140,8 @@ public class BroadcastEventData extends AbstractEventData {
             return false;
         if (!Utils.nullableEqual(intentData.category, ((BroadcastEventData) obj).intentData.category))
             return false;
+        if (!Utils.nullableEqual(intentData.extras, ((BroadcastEventData) obj).intentData.extras))
+            return false;
         return true;
     }
 
@@ -141,6 +154,7 @@ public class BroadcastEventData extends AbstractEventData {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeStringList(intentData.action);
         dest.writeStringList(intentData.category);
+        dest.writeParcelable(intentData.extras, 0);
     }
 
     public static final Parcelable.Creator<BroadcastEventData> CREATOR
@@ -158,6 +172,7 @@ public class BroadcastEventData extends AbstractEventData {
         intentData = new ReceiverSideIntentData();
         in.readStringList(intentData.action);
         in.readStringList(intentData.category);
+        intentData.extras = in.readParcelable(Extras.class.getClassLoader());
     }
 
     static class ActionDynamics implements Dynamics {

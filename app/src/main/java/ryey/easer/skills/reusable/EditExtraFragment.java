@@ -17,7 +17,7 @@
  * along with Easer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ryey.easer.skills.operation;
+package ryey.easer.skills.reusable;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -48,7 +48,7 @@ public class EditExtraFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.skill_operation__broadcast_fragment_edit_extra, container, false);
+        View view = inflater.inflate(R.layout.skill_reusable__intent_fragment_edit_extra, container, false);
 
         view.findViewById(R.id.button_add_extra).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +113,7 @@ public class EditExtraFragment extends Fragment {
         @Nullable
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.skill_operation__broadcast_fragment_extra_item, container, false);
+            View view = inflater.inflate(R.layout.skill_reusable__intent_fragment_extra_item, container, false);
             editText_key = view.findViewById(R.id.editText_key);
             editText_value = view.findViewById(R.id.editText_value);
             spinner_type = view.findViewById(R.id.spinner_type);

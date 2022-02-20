@@ -21,9 +21,8 @@ import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.local_skill.operationskill.OperationData;
 import ryey.easer.plugin.PluginDataFormat;
-import ryey.easer.skills.operation.ExtraItem;
-import ryey.easer.skills.operation.Extras;
-import ryey.easer.skills.operation.intent.IntentOperationData;
+import ryey.easer.skills.reusable.ExtraItem;
+import ryey.easer.skills.reusable.Extras;
 
 public class IntentOperationData implements OperationData {
     private static final String ns = null;

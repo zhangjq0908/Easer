@@ -151,13 +151,10 @@
     <string name="pref_foreground_title">フォアグラウンドでサービスを実行</string>
     <string name="pref_foreground_summary">システムによってサービスが終了する可能性が減ります。 通知を表示します。 システム要件のためにAndroid 8以降で無効にすることはできません。</string>
     <string name="message_future_change_title">すぐに変更します</string>
-    <string name="welcome_message_1">Easer へようこそ! 
-\n 
-\nウェルカムページにいくつかの基本的な情報があります。 
-\n 
-\n使用する前にお読みください。 
-\n 
-\n 
+    <string name="welcome_message_1">ようこそ。
+\n
+\nここには基本的な情報があります。Easer を使用する前にお読みください。
+\n
 \nプロジェクト wiki の <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> をご覧ください。</string>
     <string name="welcome_message_2">Easer には、異なる機能を提供するいくつかのモジュールが含まれています。設定で有効/無効にすることができます。 
 \n 
@@ -173,11 +170,12 @@
 \n 
 \nグラフにツリーの拡張は計画していますが、現在は実装されていません。</string>
     <string name="title_welcome_message_privacy">プライバシー!</string>
-    <string name="welcome_message_privacy">プライバシーは重要です! 
-\n 
-\nEaser は <a href="https://en.wikipedia.org/wiki/Free_software">フリーソフトウェア</a> (オープンソース ソフトウェア)です。誰でもコードを調べることができます。 
-\n 
-\nあなたはデータのすべての部分を所有します。ログを含めてすべてデバイスに含まれます。</string>
+    <string name="welcome_message_privacy">プライバシーは重要です!
+\n
+\nEaser は <a href="https://en.wikipedia.org/wiki/Free_software">フリーソフトウェア</a> (オープンソース ソフトウェア)です。誰でもコードを使用、学習、変更、共有することができます。
+\n
+\nあなたはご自身のデータ全体を所有します。ログを含めてすべてデバイス上に保持します。
+\n詳細は <a href="https://github.com/renyuneyun/Easer/blob/master/Privacy.md">プライバシー定義</a> をご覧ください</string>
     <string name="title_pivot">ピボット</string>
     <string name="title_service_start">サービス開始</string>
     <string name="title_source">ソースコード</string>

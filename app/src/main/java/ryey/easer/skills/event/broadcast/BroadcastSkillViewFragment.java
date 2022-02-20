@@ -33,10 +33,12 @@ import ryey.easer.Utils;
 import ryey.easer.commons.local_skill.InvalidDataInputException;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.skills.SkillViewFragment;
+import ryey.easer.skills.reusable.EditExtraFragment;
 
 public class BroadcastSkillViewFragment extends SkillViewFragment<BroadcastEventData> {
     private EditText editText_action;
     private EditText editText_category;
+    private EditExtraFragment editExtraFragment_extras;
 
     @NonNull
     @Override
@@ -44,6 +46,7 @@ public class BroadcastSkillViewFragment extends SkillViewFragment<BroadcastEvent
         View view = inflater.inflate(R.layout.skill_event__broadcast, container, false);
         editText_action = view.findViewById(R.id.editText_action);
         editText_category = view.findViewById(R.id.editText_category);
+        editExtraFragment_extras = (EditExtraFragment) getChildFragmentManager().findFragmentById(R.id.editExtraFragment_extras);
 
         return view;
     }
@@ -53,6 +56,7 @@ public class BroadcastSkillViewFragment extends SkillViewFragment<BroadcastEvent
         ReceiverSideIntentData intentData = data.intentData;
         editText_action.setText(Utils.StringCollectionToString(intentData.action, false));
         editText_category.setText(Utils.StringCollectionToString(intentData.category, false));
+        editExtraFragment_extras.fillExtras(intentData.extras);
     }
 
     @ValidData
@@ -62,6 +66,7 @@ public class BroadcastSkillViewFragment extends SkillViewFragment<BroadcastEvent
         ReceiverSideIntentData intentData = new ReceiverSideIntentData();
         intentData.action = Utils.stringToStringList(editText_action.getText().toString());
         intentData.category = Utils.stringToStringList(editText_category.getText().toString());
+        intentData.extras = editExtraFragment_extras.getExtras();
         return new BroadcastEventData(intentData);
     }
 }

@@ -34,7 +34,7 @@ import ryey.easer.commons.local_skill.IllegalStorageDataException;
 import ryey.easer.commons.local_skill.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.local_skill.operationskill.OperationData;
 import ryey.easer.plugin.PluginDataFormat;
-import ryey.easer.skills.operation.Extras;
+import ryey.easer.skills.reusable.Extras;
 
 public class LaunchAppOperationData implements OperationData {
     private static final String K_APP_PACKAGE = "package";

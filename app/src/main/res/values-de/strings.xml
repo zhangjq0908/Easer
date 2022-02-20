@@ -163,11 +163,12 @@
 \n 
 \nBäume zu Graphen zu erweitern ist geplant, aber derzeit nicht implementiert.</string>
     <string name="title_welcome_message_privacy">Datenschutz!</string>
-    <string name="welcome_message_privacy">Datenschutz ist wichtig! 
-\n 
-\nEaser ist eine <a href="https://en.wikipedia.org/wiki/Free_software">freie Software</a> (Open-Source-Software), die sicherstellt, dass jeder sie nutzen, überprüfen, verändern und teilen kann. 
-\n 
-\nSIE besitzen alle Ihre Daten. Alles bleibt auf Ihrem Gerät, einschließlich der Protokolle.</string>
+    <string name="welcome_message_privacy">Datenschutz ist wichtig!
+\n
+\nEaser ist eine <a href="https://de.m.wikipedia.org/wiki/Open_Source">freie Software</a> (Open-Source-Software), die sicherstellt, dass jeder sie nutzen, überprüfen, verändern und teilen kann.
+\n
+\nSIE besitzen alle Ihre Daten. Alles bleibt auf Ihrem Gerät, einschließlich der Protokolle.
+\nWeitere Informationen zum Datenschutz finden Sie <a href="https://github.com/renyuneyun/Easer/blob/master/Privacy.md">hier</a>.</string>
     <string name="title_pivot">Pivot</string>
     <string name="title_service_start">Dienststart</string>
     <string name="title_source">Quellcode</string>
