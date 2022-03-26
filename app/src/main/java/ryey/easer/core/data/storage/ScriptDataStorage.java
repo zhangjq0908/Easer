@@ -79,6 +79,10 @@ public class ScriptDataStorage extends AbstractDataStorage<ScriptStructure, Scri
         return true;
     }
 
+    /**
+     * This is the core entry for obtaining {@link LogicGraph}.
+     * @return The {@link LogicGraph} representing the data.
+     */
     @NonNull
     public LogicGraph getLogicGraph() {
         return LogicGraph.createFromScriptList(allScripts());

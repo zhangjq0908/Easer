@@ -150,6 +150,12 @@ public abstract class Lotus {
         onStateSignal(state, null);
     }
 
+    /**
+     * This method is called whenever there is a signal for this Lotus.
+     * Caller should take care not to call this unexpectedly (e.g. not call this multiple times for the same state unless really want).
+     * @param state The "current"/"new" state of the condition/event.
+     * @param extras Potential extra information for the condition/event.
+     */
     protected void onStateSignal(boolean state, @Nullable Bundle extras) {
         if (state != script().isReverse()) {
             onSatisfied(extras);
