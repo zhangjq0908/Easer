@@ -1,0 +1,7 @@
+Support matching extras in broadcast event && i18n update
+
+* Support matching extras in broadcast event (#402, thanks @mvn23)
+* Dev update: Extracted Extras to reusable (#402)
+* I18n updates:
+	* New language: Hebrew
+	* Updated: German, Ukrainian, Turkish, Japanese, Portuguese

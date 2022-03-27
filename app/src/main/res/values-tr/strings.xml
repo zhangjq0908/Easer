@@ -184,4 +184,9 @@
     <string name="hint_profile_title">Profil başlığı</string>
     <string name="hint_script_title">Script başlığı</string>
     <string name="text_predecessor_nodes">Öncüller</string>
+    <string name="help_script">\"Komut dosyaları\" mantıklı kapsayıcılarıdır. Bir eylem veya koşulu, bir komut dosyasındaki bir profile bağlayın, böylece Easer eylem meydana geldiğinde veya koşul karşılandığında bu profili yüklemeyi/yürütmeyi bilir.
+\nDaha gelişmiş işlevler de vardır, örn. tersine dönmüş olaylar
+\nDaha fazla bilgi için lütfen <a href="https://github.com/renyuneyun/Easer/wiki">belgesine</a> bakın.</string>
+    <string name="activity_history__unsatisfied">Memnun değil</string>
+    <string name="activity_history__satisfied">Memnun</string>
 </resources>

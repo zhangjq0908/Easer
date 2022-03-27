@@ -22,7 +22,13 @@ package ryey.easer.skills.event.broadcast;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
+import ryey.easer.skills.reusable.Extras;
+
 class ReceiverSideIntentData {
     List<String> action = new ArrayList<>();
     List<String> category = new ArrayList<>();
+    @Nullable
+    Extras extras;
 }

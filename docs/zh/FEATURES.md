@@ -53,9 +53,20 @@
 * 播放音頻（如音樂）
 
 ### *Dynamics*
-* Dynamics引入以取代舊的格式化表達式
-* Operation中以`<<YOUR_DYNAMICS>>`形式出現的內容均被認爲是Dynamics的佔位符，可被配置使用Dynamics
-* 在同一Profile中，所有相同的佔位符均被認爲是相同的，使用同一Dynamics
-* 若某佔位符未被配置Dynamics，則使用其字面值
-* 暫時支持Dynamics的Operation和之前支持格式化表達式的一致，但理論上所有可以由用戶輸入字符串數據的Operation均會支持
 
+*Dynamics*提供在Profile中使用實時的事件/狀況/環境信息的機制。它使得Profile擁有類似於模板的功能。
+
+若想使用，請遵循下面的說明。使用編輯腳本界面的「鎖鏈」/[連接」按鈕來調整*Dynamics*。
+
+#### 主（功能）信息
+
+* Operation中以`<<YOUR_DYNAMICS>>`形式出現的內容均被認爲是Dynamics的佔位符，可被配置使用Dynamics。
+* 佔位符按名稱識別。在同一Profile中，所有同名的佔位符均被認爲是相同的，使用同一Dynamics。
+* 若某佔位符未被配置Dynamics，則使用其字面值。
+* 若想使用*Dynamics*，點擊編輯腳本界面的「鎖鏈」/[連接」按鈕。注意需要先選擇一個Profile。
+
+#### 時效性信息
+
+* Dynamics引入以取代舊的格式化表達式。
+* 最初僅支持Dynamics的Operation和之前支持格式化表達式的一致。現在稍微擴展。理論上和計劃上所有可以由用戶輸入字符串數據的Operation均會支持。
+* *Dynamics*現在儘可使用當前腳本上的和環境信息。計劃遞歸支持圖中的全部前驅。

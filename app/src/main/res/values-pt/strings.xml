@@ -87,7 +87,8 @@
 \n
 \nEaser é <a href="https://pt.wikipedia.org/wiki/Software_livre">software livre</a> (software de código aberto), a garantir que todos possam usá-lo, estudá-lo, alterá-lo e compartilhá-lo.
 \n
-\nVOCÊ é dono(a) de todos os seus dados. Tudo fica no seu aparelho, inclusive os logs.</string>
+\nVOCÊ é dono(a) de todos os seus dados. Tudo fica no seu aparelho, inclusive os logs.
+\nConsulte a <a href="https://github.com/renyuneyun/Easer/blob/master/Privacy.md">Declaração de privacidade</a> para mais informações</string>
     <string name="welcome_message_3">Scripts são estruturados como <a href="https://pt.wikipedia.org/wiki/Topologia_em_%C3%A1rvore">árvores</a>, a escolher o pai relevante.
 \n
 \nEm todos os ramos, a lógica E é executada.
