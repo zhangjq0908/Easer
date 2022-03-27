@@ -336,7 +336,6 @@ public class EHService extends Service implements CoreServiceComponents.LogicMan
                     Logger.e("LML %s already activated from %s, but is activating again? Ignored.", object.node.id, from);
                     return;
                 }
-                Logger.d("LML %s increased from %d, because of %s", object.node.id, getCount(), from);
                 livePredecessors.add(from);
                 if (getCount() == 1) {
                     object.listen();
@@ -353,7 +352,6 @@ public class EHService extends Service implements CoreServiceComponents.LogicMan
                     Logger.e("LML %s was not activated from %s, but is deactivating? Ignored.", object.node.id, from);
                     return;
                 }
-                Logger.d("LML %s decreased from %d, because of %s", object.node.id, getCount(), from);
                 livePredecessors.remove(from);
                 if (getCount() == 0) {
                     object.cancel();
