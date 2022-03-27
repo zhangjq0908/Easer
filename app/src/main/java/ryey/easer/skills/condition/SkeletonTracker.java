@@ -33,6 +33,17 @@ import java.util.concurrent.locks.ReentrantLock;
 import ryey.easer.commons.local_skill.conditionskill.ConditionData;
 import ryey.easer.commons.local_skill.conditionskill.Tracker;
 
+/**
+ * A skeleton implementation for {@link Tracker<D>}.
+ * This should be the starting point for most (if not all) implementations.
+ * It contains the basic functionalities, including keeping track of states, and notifying the
+ * upstream (through sending out {@link #event_positive} and {@link #event_negative}).
+ * It should be concurrency safe.
+ *
+ * You may also be interested in {@link SelfNotifiableSkeletonTracker} for certain uses.
+ *
+ * @param <D> The data class for the relevant condition.
+ */
 public abstract class SkeletonTracker<D extends ConditionData> implements Tracker<D> {
 
     protected final Context context;
@@ -40,8 +51,16 @@ public abstract class SkeletonTracker<D extends ConditionData> implements Tracke
     protected final PendingIntent event_positive, event_negative;
 
     Lock lck_satisfied = new ReentrantLock();
-    protected Boolean satisfied;
+    protected Boolean satisfied = null;  // The current state; null represents unknown.
 
+    /**
+     * Initializes an Tracker object for the current condition.
+     * Implementors should also set the initial states (if any) in the constructor. Use {@link #newSatisfiedState(Boolean)} if so.
+     * @param context Context
+     * @param data The data to be used/checked in the condition
+     * @param event_positive The intent to send (to the upstream) when the condition becomes true
+     * @param event_negative The intent to send (to the upstream) when the condition becomes false
+     */
     protected SkeletonTracker(Context context, D data,
                               @NonNull PendingIntent event_positive,
                               @NonNull PendingIntent event_negative) {
@@ -51,6 +70,12 @@ public abstract class SkeletonTracker<D extends ConditionData> implements Tracke
         this.event_negative = event_negative;
     }
 
+    /**
+     * Call this method to notify about the (potentially changed) current state.
+     * It sends out the relevant intents so the upstream gets informed.
+     * This method checks if the state is really different. It will not do anything if so.
+     * @param newState The (potentially changed) newly-informed state.
+     */
     protected final void newSatisfiedState(Boolean newState) {
         lck_satisfied.lock();
         try {
@@ -72,6 +97,11 @@ public abstract class SkeletonTracker<D extends ConditionData> implements Tracke
         }
     }
 
+    /**
+     * Generally the subclasses do not need to override this method.
+     * To set initial states, do it in the constructor.
+     * @return The current state, or {@code null} representing unknown.
+     */
     @Nullable
     @Override
     public Boolean state() {

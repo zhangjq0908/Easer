@@ -33,7 +33,7 @@ import ryey.easer.skills.condition.SkeletonTracker;
 
 public class BluetoothEnabledTracker extends SkeletonTracker<BluetoothEnabledUSourceData> {
 
-    private BluetoothAdapter bluetoothAdapter;
+    private BluetoothAdapter bluetoothAdapter;  //TODO 1 20220327: Make static?
 
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -59,7 +59,9 @@ public class BluetoothEnabledTracker extends SkeletonTracker<BluetoothEnabledUSo
                    @NonNull PendingIntent event_negative) {
         super(context, data, event_positive, event_negative);
 
-        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (bluetoothAdapter == null)
+            bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        newSatisfiedState(bluetoothAdapter.isEnabled());
     }
 
     @Override
@@ -70,13 +72,5 @@ public class BluetoothEnabledTracker extends SkeletonTracker<BluetoothEnabledUSo
     @Override
     public void stop() {
         context.unregisterReceiver(broadcastReceiver);
-    }
-
-    @Nullable
-    @Override
-    public Boolean state() {
-        if (bluetoothAdapter == null)
-            return null;
-        return bluetoothAdapter.isEnabled();
     }
 }

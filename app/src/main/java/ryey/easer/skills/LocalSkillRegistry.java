@@ -298,8 +298,6 @@ final public class LocalSkillRegistry {
 
         @Nullable
         public T findSkill(String id) {
-            if (backwardNameMap.size() > 0)
-                Logger.d(backwardNameMap);
             if (backwardNameMap.containsKey(id))
                 id = backwardNameMap.get(id);
             for (T plugin : getAllSkills()) {

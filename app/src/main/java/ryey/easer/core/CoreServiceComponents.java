@@ -38,12 +38,35 @@ final class CoreServiceComponents {
 
 
     public interface LogicManager {
-        void activate(LogicGraph.LogicNode node);
 
-        void deactivate(LogicGraph.LogicNode node);
+        /**
+         * Attempt to activate the specified node.
+         * It should not be activated multiple times.
+         * @param node The node to activate.
+         * @param from The ID (of a node) from which to activate the specified node.
+         */
+        void activateNode(LogicGraph.LogicNode node, String from);
 
+        /**
+         * Attempt to deactivate the specified node.
+         * It should not be deactivated if still being used.
+         * @param node The node to deactivate.
+         * @param from The ID (of a node) from which to deactivate the specified node.
+         */
+        void deactivateNode(LogicGraph.LogicNode node, String from);
+
+        /**
+         * Activate the successors of the specified node.
+         * If a successor is activated already, it should not be activated for multiple times.
+         * @param node The node whose successors are to be be activated.
+         */
         void activateSuccessors(LogicGraph.LogicNode node);
 
+        /**
+         * Deactivate the successors of the specified node.
+         * If a successor is also activated by other nodes, it should not be deactivated.
+         * @param node The node whose successors are to be deactivated.
+         */
         void deactivateSuccessors(LogicGraph.LogicNode node);
     }
 

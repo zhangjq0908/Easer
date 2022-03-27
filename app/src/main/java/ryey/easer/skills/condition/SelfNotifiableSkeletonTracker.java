@@ -36,12 +36,18 @@ import java.util.Locale;
 
 import ryey.easer.commons.local_skill.conditionskill.ConditionData;
 
+/**
+ * A slightly extended variant of {@link SkeletonTracker<D>}.
+ * This class exists because some system-level checking mechanisms (e.g. data/time) need a
+ * PendingIntent. This class provides a common superclass to abstract this common pattern.
+ * @param <D> The data class for the relevant condition.
+ */
 public abstract class SelfNotifiableSkeletonTracker<D extends ConditionData> extends SkeletonTracker<D> {
     // Fields used in relevant Intent
     private static final String ACTION_SATISFIED = "ryey.easer.tracker.SATISFIED";
     private static final String ACTION_UNSATISFIED = "ryey.easer.tracker.UNSATISFIED";
     private static final String CATEGORY_NOTIFY_SLOT = "ryey.easer.tracker.category.NOTIFY_SLOT";
-    /*
+    /**
      * Mechanisms and fields used to notify the slot itself, and then proceed to `onPositiveNotified()`.
      * This is because some system-level checking mechanisms (e.g. data/time) need a PendingIntent.
      */
