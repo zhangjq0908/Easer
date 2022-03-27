@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Map;
 
 import ryey.easer.commons.CommonSkillUtils;
+import ryey.easer.commons.local_skill.Reused;
 import ryey.easer.commons.local_skill.Skill;
 import ryey.easer.commons.local_skill.SkillView;
 import ryey.easer.commons.local_skill.StorageData;
@@ -288,6 +289,8 @@ final public class LocalSkillRegistry {
 
         @Nullable
         public T findSkill(T_data data) {
+            if (data instanceof Reused)
+                return findSkill(((Reused) data).skillID());
             for (T plugin : getAllSkills()) {
                 if (data.getClass() == plugin.dataFactory().dataClass()) {
                     return plugin;
@@ -311,6 +314,8 @@ final public class LocalSkillRegistry {
         @Nullable
         @Override
         public T findSkill(SkillView view) {
+            if (view instanceof Reused)
+                return findSkill(((Reused) view).skillID());
             for (T plugin : getAllSkills()) {
                 if (view.getClass().equals(plugin.view().getClass()))
                     return plugin;
