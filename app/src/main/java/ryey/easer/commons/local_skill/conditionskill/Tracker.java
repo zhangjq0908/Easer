@@ -21,24 +21,30 @@ package ryey.easer.commons.local_skill.conditionskill;
 
 import androidx.annotation.Nullable;
 
+/**
+ * The basic interface for a Tracker, which tracks the state change of a condition.
+ * The implementation should take care of reporting the changed state to upstream.
+ * See {@link ryey.easer.skills.condition.SkeletonTracker<D>} if you want to implement a local
+ * condition skill.
+ * @param <D> The data class for the relevant condition.
+ */
 public interface Tracker<D extends ConditionData> {
 
     /**
-     * Start functioning as a top-level listener.
-     * When (probably satisfying) event happens, notify itself and finally proceed to {@link #changeSatisfiedState(boolean)}.
-     *
-     * Can be called multiply times (data remain the same).
+     * Start functioning as a listener.
+     * When the condition becomes true, send the notification to relevant receiver (upstream).
      */
     void start();
 
     /**
-     * Stop functioning as a top-level listener.
-     * No longer notify itself even when it is really satisfied.
-     *
-     * This methods doesn't prevent {@link #check()} to set itself satisfied.
+     * Stop functioning as a listener.
+     * No longer notify anyone when the condition is satisfied.
      */
     void stop();
 
+    /**
+     * @return The current state, or {@code null} representing unknown.
+     */
     @Nullable
     Boolean state();
 
