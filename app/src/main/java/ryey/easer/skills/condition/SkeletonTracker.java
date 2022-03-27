@@ -40,7 +40,7 @@ public abstract class SkeletonTracker<D extends ConditionData> implements Tracke
     protected final PendingIntent event_positive, event_negative;
 
     Lock lck_satisfied = new ReentrantLock();
-    protected Boolean satisfied;
+    protected Boolean satisfied = null;  // The current state; null represents unknown.
 
     protected SkeletonTracker(Context context, D data,
                               @NonNull PendingIntent event_positive,
@@ -72,6 +72,11 @@ public abstract class SkeletonTracker<D extends ConditionData> implements Tracke
         }
     }
 
+    /**
+     * Generally the subclasses do not need to override this method.
+     * To set initial states, do it in the constructor.
+     * @return The current state, or {@code null} representing unknown.
+     */
     @Nullable
     @Override
     public Boolean state() {

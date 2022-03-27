@@ -41,6 +41,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.locks.ReentrantLock;
 
 import ryey.easer.core.data.LogicGraph;
 import ryey.easer.core.data.storage.ScriptDataStorage;
@@ -226,6 +227,12 @@ public class EHService extends Service implements CoreServiceComponents.LogicMan
         return new EHBinder();
     }
 
+    /**
+     * {@inheritDoc}
+     * The current implementation tries to guarantee not to activate the node multiple times.
+     * @param node The node to activate.
+     * @param from The ID (of a node) from which to activate the specified node.
+     */
     @Override
     public void activateNode(LogicGraph.LogicNode node, @Nullable String from) {
         LogicManagedLotus logicManagedLotus = lotusMap.get(node.id);
@@ -236,6 +243,12 @@ public class EHService extends Service implements CoreServiceComponents.LogicMan
         logicManagedLotus.activateFrom(from);
     }
 
+    /**
+     * {@inheritDoc}
+     * The current implementation tries to guarantee not to deactivate the node if irrelevant.
+     * @param node The node to deactivate.
+     * @param from The ID (of a node) from which to deactivate the specified node.
+     */
     @Override
     public void deactivateNode(LogicGraph.LogicNode node, String from) {
         LogicManagedLotus logicManagedLotus = lotusMap.get(node.id);
@@ -245,7 +258,7 @@ public class EHService extends Service implements CoreServiceComponents.LogicMan
 
     @Override
     public void activateSuccessors(LogicGraph.LogicNode node) {
-        Logger.d("CL activating from %s", node.id);
+        Logger.d("LML activating from %s", node.id);
         Set<LogicGraph.LogicNode> successors = logicGraph.successors(node);
         if (successors != null) {
             for (LogicGraph.LogicNode successor : successors) {
@@ -297,8 +310,16 @@ public class EHService extends Service implements CoreServiceComponents.LogicMan
     public static class LogicManagedLotus {
         //TODO: Merge with lotusMap (and LogicGraph) into LiveLogicGraph
 
-        private Set<String> livePredecessors = new HashSet<>();  // Predecessors which are currently satisfied, thus activated this lotus.
-        private Lotus object;
+        private final ReentrantLock lck = new ReentrantLock();
+        /**
+         * Predecessors which are currently satisfied, thus activated this lotus.
+         * This may be overkill, because the current logic should already guarantee only one call
+         * from one predecessor is done.
+         * But in case this is violated (e.g. #414), this replaces the count-based mechanism. This
+         * mechanism allows better debugging (logging).
+         */
+        private final Set<String> livePredecessors = new HashSet<>();
+        private final Lotus object;
 
         public LogicManagedLotus(Lotus lotus) {
             this.object = lotus;
@@ -309,26 +330,36 @@ public class EHService extends Service implements CoreServiceComponents.LogicMan
         }
 
         public void activateFrom(@Nullable String from) {
-            if (livePredecessors.contains(from)) {
-                Logger.i("LML %s already activated from %s, but is activating again? Ignored.", object.node.id, from);
-                return;
-            }
-            Logger.d("LML %s increased from %d, because of %s", object.node.id, getCount(), from);
-            livePredecessors.add(from);
-            if (getCount() == 1) {
-                object.listen();
+            lck.lock();
+            try {
+                if (livePredecessors.contains(from)) {
+                    Logger.e("LML %s already activated from %s, but is activating again? Ignored.", object.node.id, from);
+                    return;
+                }
+                Logger.d("LML %s increased from %d, because of %s", object.node.id, getCount(), from);
+                livePredecessors.add(from);
+                if (getCount() == 1) {
+                    object.listen();
+                }
+            } finally {
+                lck.unlock();
             }
         }
 
         public void deactivateFrom(@Nullable String from) {
-            if (!livePredecessors.contains(from)) {
-                Logger.e("LML %s was not activated from %s, but is deactivating? Ignored.", object.node.id, from);
-                return;
-            }
-            Logger.d("LML %s decreased from %d, because of %s", object.node.id, getCount(), from);
-            livePredecessors.remove(from);
-            if (getCount() == 0) {
-                object.cancel();
+            lck.lock();
+            try {
+                if (!livePredecessors.contains(from)) {
+                    Logger.e("LML %s was not activated from %s, but is deactivating? Ignored.", object.node.id, from);
+                    return;
+                }
+                Logger.d("LML %s decreased from %d, because of %s", object.node.id, getCount(), from);
+                livePredecessors.remove(from);
+                if (getCount() == 0) {
+                    object.cancel();
+                }
+            } finally {
+                lck.unlock();
             }
         }
 

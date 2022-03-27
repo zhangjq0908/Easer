@@ -37,14 +37,16 @@ public class CellLocationTracker extends SkeletonTracker<CellLocationUSourceData
 
     private CellLocationListener cellLocationListener = new CellLocationListener();
 
+    @SuppressLint("MissingPermission")
     CellLocationTracker(Context context, CellLocationUSourceData data,
-                   @NonNull PendingIntent event_positive,
-                   @NonNull PendingIntent event_negative) {
+                        @NonNull PendingIntent event_positive,
+                        @NonNull PendingIntent event_negative) {
         super(context, data, event_positive, event_negative);
 
         if (telephonyManager == null) {
             telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         }
+        newSatisfiedState(match(telephonyManager.getCellLocation()));
     }
 
     @Override
@@ -55,13 +57,6 @@ public class CellLocationTracker extends SkeletonTracker<CellLocationUSourceData
     @Override
     public void stop() {
         telephonyManager.listen(cellLocationListener, PhoneStateListener.LISTEN_NONE);
-    }
-
-    @Nullable
-    @SuppressLint("MissingPermission")
-    @Override
-    public Boolean state() {
-        return match(telephonyManager.getCellLocation());
     }
 
     @Nullable
