@@ -241,4 +241,9 @@
     <string name="o_play_media_repeat_times">Cantidad de repeticiones</string>
     <string name="operation_start_activity">Iniciar Actividad</string>
     <string name="operation_start_service">Iniciar Servicio</string>
+    <string name="operation_wireguard">WireGuard</string>
+    <string name="o_wireguard_tunnel_name_hint">Nombre del túnel en WireGuard</string>
+    <string name="o_wireguard_tunnel_name">Nombre del túnel</string>
+    <string name="o_wireguard_tunnel_state">Estado del túnel</string>
+    <string name="o_wireguard__set_tunnel_state">Establecer el estado del túnel</string>
 </resources>
