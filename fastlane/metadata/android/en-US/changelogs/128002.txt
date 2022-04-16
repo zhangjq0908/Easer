@@ -1,0 +1,6 @@
+Update AppIntro && Update docs
+
+* Update AppIntro to 5.1.0
+	* Fixes the problem when building
+* Update welcome message related to logic
+	* It is a graph already
