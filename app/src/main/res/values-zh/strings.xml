@@ -52,13 +52,12 @@
 \n
 \n
 \n(默认情况下，所有模块均处于启用状态。)</string>
-    <string name="welcome_message_3">通过选择相关的父级，脚本为<a href="https://en.wikipedia.org/wiki/Tree_structure">树形结构</a>。
-\n 
-\n每个分支中，执行“和”逻辑。
-\n分支之间，执行“或”逻辑。
+    <string name="welcome_message_3">通過選擇相關的前驅節，腳本爲<a href="https://en.wikipedia.org/wiki/Graph_(abstract_data_type)">圖結構</a>。
 \n
-\n
-\n已计划将树扩展为图，但目前尚未实现。</string>
+\n概括來說：
+\n- 從前驅到後繼，執行“與”邏輯；
+\n- 在節點之間，執行“或”邏輯；
+\n- 在和後繼的關係上，多個前驅之間執行「與」邏輯。</string>
     <string name="title_welcome_message_privacy">
         隱私！
     </string>
