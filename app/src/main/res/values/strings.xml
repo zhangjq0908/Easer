@@ -149,13 +149,12 @@
 \n
 \n
 \n(Everything is on by default.)</string>
-    <string name="welcome_message_3">Scripts are structured as <a href="https://en.wikipedia.org/wiki/Tree_structure">trees</a>, by choosing the relevant parent.
+    <string name="welcome_message_3">Scripts are structured as <a href="https://en.wikipedia.org/wiki/Graph_(abstract_data_type)">graphs</a>, by choosing the relevant predecessors (parents).
 \n
-\nIn every branch, AND logic is performed.
-\nBetween branches, OR logic is performed.
-\n
-\n
-\nExtending trees to graphs is planned, but not currently implemented.</string>
+\nRoughly speaking:
+\n- From predecessors to successors, AND logic is performed.
+\n- Between nodes, OR logic is performed.
+\n- Multiple predecessors have AND relation, concerning the successor.</string>
     <string name="title_welcome_message_privacy">
         Privacy!
     </string>
