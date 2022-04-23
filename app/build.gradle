@@ -20,8 +20,8 @@ android {
         multiDexEnabled true
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 23
-        versionCode 127
-        versionName "0.8.2.2"
+        versionCode 128
+        versionName "0.8.2.3"
 
         vectorDrawables.useSupportLibrary = true
 
