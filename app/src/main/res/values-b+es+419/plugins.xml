@@ -233,4 +233,12 @@
     <string name="usource_location__listen_min_time_seconds">Escuchar tiempo min (segundos)</string>
     <string name="usource_location__threshold_age_seconds">Umbral de edad (segundos)</string>
     <string name="usource_location__threshold_accuracy_meters">Precisión umbral (metros)</string>
+    <string name="mac_address">Dirección MAC (00:11:22:33:FF:EE)</string>
+    <string name="bluetooth_device_profile">Perfil de dispositivo Bluetooth</string>
+    <string name="operation_bluetooth_connect">Conectar al dispositivo Bluetooth</string>
+    <string name="bluetooth_maybe_not_supported">Este perfil de Easer utiliza un método que no es oficialmente soportado por Android. Podría no funcionar en todos los dispositivos.</string>
+    <string name="o_play_media_loop">Ciclar el medio</string>
+    <string name="o_play_media_repeat_times">Cantidad de repeticiones</string>
+    <string name="operation_start_activity">Iniciar Actividad</string>
+    <string name="operation_start_service">Iniciar Servicio</string>
 </resources>

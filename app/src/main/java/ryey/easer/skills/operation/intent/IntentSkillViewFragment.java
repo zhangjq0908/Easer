@@ -31,12 +31,16 @@ import androidx.annotation.Nullable;
 
 import ryey.easer.R;
 import ryey.easer.Utils;
+import ryey.easer.commons.ImproperImplementationError;
 import ryey.easer.commons.local_skill.InvalidDataInputException;
+import ryey.easer.commons.local_skill.Reused;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.skills.SkillViewFragment;
 import ryey.easer.skills.reusable.EditExtraFragment;
 
-public class IntentSkillViewFragment extends SkillViewFragment<IntentOperationData> {
+public class IntentSkillViewFragment extends SkillViewFragment<IntentOperationData> implements Reused {
+    private String skillID;
+
     private EditText m_text_action;
     private EditText m_text_category;
     private EditText m_text_type;
@@ -78,7 +82,19 @@ public class IntentSkillViewFragment extends SkillViewFragment<IntentOperationDa
         data.data = Uri.parse(m_text_data.getText().toString());
         data.extras = editExtraFragment.getExtras();
         IntentOperationData broadcastOperationData = new IntentOperationData(data);
+        broadcastOperationData.setSkillID(skillID());
         return broadcastOperationData;
     }
 
+    @Override
+    public String skillID() {
+        if (skillID == null)
+            throw new ImproperImplementationError("The skillID should be set immediately after creating the object, but it didn't.");
+        return skillID;
+    }
+
+    @Override
+    public void setSkillID(String skillID) {
+        this.skillID = skillID;
+    }
 }

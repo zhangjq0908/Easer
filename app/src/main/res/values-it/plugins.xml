@@ -244,4 +244,6 @@
     <string name="o_wireguard_tunnel_name">Nome Tunnel</string>
     <string name="o_wireguard__set_tunnel_state">Imposta Stato Tunnel</string>
     <string name="operation_wireguard">Wireguard</string>
+    <string name="o_play_media_repeat_times">Numero di ripetizioni</string>
+    <string name="o_play_media_loop">Loop multimedia</string>
 </resources>

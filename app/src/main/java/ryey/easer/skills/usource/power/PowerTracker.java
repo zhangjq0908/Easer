@@ -63,7 +63,12 @@ public class PowerTracker extends SkeletonTracker<PowerUSourceData> {
                  @NonNull PendingIntent event_positive,
                  @NonNull PendingIntent event_negative) {
         super(context, data, event_positive, event_negative);
-        Logger.d("PowerTracker constructed");
+
+        Intent batteryStickyIntent = Utils.getBatteryStickyIntent(context);
+        int status = batteryStickyIntent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+        boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
+                status == BatteryManager.BATTERY_STATUS_FULL;
+        newSatisfiedState(Utils.determine(isCharging, data, batteryStickyIntent));
     }
 
     @Override
@@ -74,17 +79,6 @@ public class PowerTracker extends SkeletonTracker<PowerUSourceData> {
     @Override
     public void stop() {
         context.unregisterReceiver(receiver);
-    }
-
-    @Nullable
-    @Override
-    public Boolean state() {
-        Logger.d("PowerTracker.state()");
-        Intent batteryStickyIntent = Utils.getBatteryStickyIntent(context);
-        int status = batteryStickyIntent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
-        boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
-                status == BatteryManager.BATTERY_STATUS_FULL;
-        return Utils.determine(isCharging, data, batteryStickyIntent);
     }
 
     private void determineAndNotify(boolean isCharging) {

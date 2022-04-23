@@ -17,14 +17,16 @@ import java.util.List;
 import java.util.Set;
 
 import ryey.easer.Utils;
+import ryey.easer.commons.ImproperImplementationError;
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
+import ryey.easer.commons.local_skill.Reused;
 import ryey.easer.commons.local_skill.dynamics.SolidDynamicsAssignment;
 import ryey.easer.commons.local_skill.operationskill.OperationData;
 import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.skills.reusable.ExtraItem;
 import ryey.easer.skills.reusable.Extras;
 
-public class IntentOperationData implements OperationData {
+public class IntentOperationData implements OperationData, Reused {
     private static final String ns = null;
 
     private static final String ACTION = "action";
@@ -32,6 +34,8 @@ public class IntentOperationData implements OperationData {
     private static final String TYPE = "type";
     private static final String DATA = "data";
     private static final String EXTRAS = "extras";
+
+    private String skillID;
 
     IntentData data = new IntentData();
 
@@ -147,6 +151,7 @@ public class IntentOperationData implements OperationData {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeParcelable(data, 0);
+        dest.writeString(skillID());
     }
 
     public static final Parcelable.Creator<IntentOperationData> CREATOR
@@ -162,6 +167,8 @@ public class IntentOperationData implements OperationData {
 
     private IntentOperationData(Parcel in) {
         data = in.readParcelable(IntentData.class.getClassLoader());
+        String _skillID = in.readString();
+        setSkillID(_skillID);
     }
 
     @Nullable
@@ -212,6 +219,20 @@ public class IntentOperationData implements OperationData {
             }
             data.extras = Extras.mayConstruct(extras);
         }
-        return new IntentOperationData(intentData);
+        IntentOperationData ret = new IntentOperationData(intentData);
+        ret.setSkillID(skillID());
+        return ret;
+    }
+
+    @Override
+    public String skillID() {
+        if (skillID == null)
+            throw new ImproperImplementationError("The skillID should be set immediately after creating the object, but it didn't.");
+        return skillID;
+    }
+
+    @Override
+    public void setSkillID(String skillID) {
+        this.skillID = skillID;
     }
 }

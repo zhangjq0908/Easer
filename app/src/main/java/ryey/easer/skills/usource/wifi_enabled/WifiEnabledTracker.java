@@ -63,6 +63,7 @@ public class WifiEnabledTracker extends SkeletonTracker<WifiEnabledUSourceData> 
         super(context, data, event_positive, event_negative);
 
         wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        newSatisfiedState(wifiManager.isWifiEnabled());
     }
 
     @Override
@@ -73,13 +74,5 @@ public class WifiEnabledTracker extends SkeletonTracker<WifiEnabledUSourceData> 
     @Override
     public void stop() {
         context.unregisterReceiver(broadcastReceiver);
-    }
-
-    @Nullable
-    @Override
-    public Boolean state() {
-        if (wifiManager == null)
-            return null;
-        return wifiManager.isWifiEnabled();
     }
 }

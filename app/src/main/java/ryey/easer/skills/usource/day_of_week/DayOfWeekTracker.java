@@ -40,7 +40,7 @@ public class DayOfWeekTracker extends SelfNotifiableSkeletonTracker<DayOfWeekUSo
         if (mAlarmManager == null)
             mAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
-        Calendar cal = Calendar.getInstance(); // TODO: Make "super()" call "state()" and remove all these
+        Calendar cal = Calendar.getInstance();
         int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
         if (data.days.contains(dayOfWeek - 1))
             newSatisfiedState(true);

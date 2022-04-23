@@ -243,4 +243,6 @@
     <string name="o_wireguard__set_tunnel_state">Đặt trạng thái đường hầm</string>
     <string name="operation_wireguard">Wireguard</string>
     <string name="event_tcp_trip__dynamics_received_data">Dữ liệu đã nhận</string>
+    <string name="o_play_media_loop">Lặp phương tiện</string>
+    <string name="o_play_media_repeat_times">Số lần lặp lại</string>
 </resources>

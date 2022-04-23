@@ -31,14 +31,17 @@ import android.os.Binder;
 import android.os.IBinder;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.orhanobut.logger.Logger;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.locks.ReentrantLock;
 
 import ryey.easer.core.data.LogicGraph;
 import ryey.easer.core.data.storage.ScriptDataStorage;
@@ -62,7 +65,7 @@ public class EHService extends Service implements CoreServiceComponents.LogicMan
      * key: Script (node) name
      * value: lotus
      */
-    Map<String, CountedLotus> lotusMap = new HashMap<>(); //TODO: merge into LogicGraph ?
+    Map<String, LogicManagedLotus> lotusMap = new HashMap<>(); //TODO: merge into LogicGraph ?
     LogicGraph logicGraph;
 
     /**
@@ -179,8 +182,8 @@ public class EHService extends Service implements CoreServiceComponents.LogicMan
             Logger.v(TAG + "triggers reloading");
             binder.reload();
             for (LogicGraph.LogicNode node : logicGraph.initialNodes()) {
-                CountedLotus countedLotus = lotusMap.get(node.id);
-                if (countedLotus != null && countedLotus.getCount() > 0) {
+                LogicManagedLotus logicManagedLotus = lotusMap.get(node.id);
+                if (logicManagedLotus != null && logicManagedLotus.getCount() > 0) {
                     mCancelTriggers();
                     break;
                 }
@@ -193,9 +196,9 @@ public class EHService extends Service implements CoreServiceComponents.LogicMan
     private void mCancelTriggers() {
         jobCH.doAfter(binder -> {
             for (LogicGraph.LogicNode node : logicGraph.initialNodes()) {
-                CountedLotus countedLotus = lotusMap.get(node.id);
-                if (countedLotus != null && countedLotus.getCount() > 0) {
-                    countedLotus.decCount();
+                LogicManagedLotus logicManagedLotus = lotusMap.get(node.id);
+                if (logicManagedLotus != null && logicManagedLotus.getCount() > 0) {
+                    logicManagedLotus.deactivateFrom("mCancelTriggers");
                 }
             }
             lotusMap.clear();
@@ -212,7 +215,7 @@ public class EHService extends Service implements CoreServiceComponents.LogicMan
         for (LogicGraph.LogicNode node : logicGraph.initialNodes()) {
             Logger.v(TAG + "setting trigger for <%s>", node.id);
             if (node.active) {
-                activate(node);
+                activateNode(node, null);
                 Logger.v(TAG + "trigger for script node <%s> is set", node.id);
             }
         }
@@ -224,30 +227,43 @@ public class EHService extends Service implements CoreServiceComponents.LogicMan
         return new EHBinder();
     }
 
+    /**
+     * {@inheritDoc}
+     * The current implementation tries to guarantee not to activate the node multiple times.
+     * @param node The node to activate.
+     * @param from The ID (of a node) from which to activate the specified node.
+     */
     @Override
-    public void activate(LogicGraph.LogicNode node) {
-        CountedLotus countedLotus = lotusMap.get(node.id);
-        if (countedLotus == null) {
-            countedLotus = new CountedLotus(Lotus.createLotus(this, node, this, jobCH, jobLP));
-            lotusMap.put(node.id, countedLotus);
+    public void activateNode(LogicGraph.LogicNode node, @Nullable String from) {
+        LogicManagedLotus logicManagedLotus = lotusMap.get(node.id);
+        if (logicManagedLotus == null) {
+            logicManagedLotus = new LogicManagedLotus(Lotus.createLotus(this, node, this, jobCH, jobLP));
+            lotusMap.put(node.id, logicManagedLotus);
         }
-        countedLotus.incCount();
+        logicManagedLotus.activateFrom(from);
     }
 
+    /**
+     * {@inheritDoc}
+     * The current implementation tries to guarantee not to deactivate the node if irrelevant.
+     * @param node The node to deactivate.
+     * @param from The ID (of a node) from which to deactivate the specified node.
+     */
     @Override
-    public void deactivate(LogicGraph.LogicNode node) {
-        CountedLotus countedLotus = lotusMap.get(node.id);
-        if (countedLotus != null)
-            countedLotus.decCount();
+    public void deactivateNode(LogicGraph.LogicNode node, String from) {
+        LogicManagedLotus logicManagedLotus = lotusMap.get(node.id);
+        if (logicManagedLotus != null)
+            logicManagedLotus.deactivateFrom(from);
     }
 
     @Override
     public void activateSuccessors(LogicGraph.LogicNode node) {
+        Logger.d("LML activating from %s", node.id);
         Set<LogicGraph.LogicNode> successors = logicGraph.successors(node);
         if (successors != null) {
             for (LogicGraph.LogicNode successor : successors) {
                 if (successor.active)
-                    activate(successor);
+                    activateNode(successor, node.id);
             }
         }
     }
@@ -258,7 +274,7 @@ public class EHService extends Service implements CoreServiceComponents.LogicMan
         if (successors != null) {
             for (LogicGraph.LogicNode successor : successors) {
                 if (successor.active)
-                    deactivate(successor);
+                    deactivateNode(successor, node.id);
             }
         }
     }
@@ -273,16 +289,16 @@ public class EHService extends Service implements CoreServiceComponents.LogicMan
          * @return {@code true} if this event is listening; {@code false} otherwise
          */
         public boolean setLotusStatus(String scriptName, boolean status) {
-            CountedLotus countedLotus = lotusMap.get(scriptName);
-            if (countedLotus == null)
+            LogicManagedLotus logicManagedLotus = lotusMap.get(scriptName);
+            if (logicManagedLotus == null)
                 return false;
-            countedLotus.setLotusStatus(status);
+            logicManagedLotus.setLotusStatus(status);
             return true;
         }
 
         public Map<String, Boolean> lotusStatusMap() {
             Map<String, Boolean> statusMap = new HashMap<>(lotusMap.size());
-            for (Map.Entry<String, CountedLotus> entry : lotusMap.entrySet()) {
+            for (Map.Entry<String, LogicManagedLotus> entry : lotusMap.entrySet()) {
                 if (entry.getValue().getCount() > 0) {
                     statusMap.put(entry.getKey(), entry.getValue().getLotusStatus());
                 }
@@ -291,30 +307,57 @@ public class EHService extends Service implements CoreServiceComponents.LogicMan
         }
     }
 
-    public static class CountedLotus {
+    public static class LogicManagedLotus {
+        //TODO: Merge with lotusMap (and LogicGraph) into LiveLogicGraph
 
-        private int count = 0;
-        private Lotus object;
+        private final ReentrantLock lck = new ReentrantLock();
+        /**
+         * Predecessors which are currently satisfied, thus activated this lotus.
+         * This may be overkill, because the current logic should already guarantee only one call
+         * from one predecessor is done.
+         * But in case this is violated (e.g. #414), this replaces the count-based mechanism. This
+         * mechanism allows better debugging (logging).
+         */
+        private final Set<String> livePredecessors = new HashSet<>();
+        private final Lotus object;
 
-        public CountedLotus(Lotus lotus) {
+        public LogicManagedLotus(Lotus lotus) {
             this.object = lotus;
         }
 
         public int getCount() {
-            return count;
+            return livePredecessors.size();
         }
 
-        public void incCount() {
-            count++;
-            if (count == 1) {
-                object.listen();
+        public void activateFrom(@Nullable String from) {
+            lck.lock();
+            try {
+                if (livePredecessors.contains(from)) {
+                    Logger.e("LML %s already activated from %s, but is activating again? Ignored.", object.node.id, from);
+                    return;
+                }
+                livePredecessors.add(from);
+                if (getCount() == 1) {
+                    object.listen();
+                }
+            } finally {
+                lck.unlock();
             }
         }
 
-        public void decCount() {
-            count--;
-            if (count == 0) {
-                object.cancel();
+        public void deactivateFrom(@Nullable String from) {
+            lck.lock();
+            try {
+                if (!livePredecessors.contains(from)) {
+                    Logger.e("LML %s was not activated from %s, but is deactivating? Ignored.", object.node.id, from);
+                    return;
+                }
+                livePredecessors.remove(from);
+                if (getCount() == 0) {
+                    object.cancel();
+                }
+            } finally {
+                lck.unlock();
             }
         }
 
