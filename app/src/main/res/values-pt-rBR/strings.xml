@@ -136,13 +136,12 @@
 \n 
 \n 
 \n(Tudo vem habilitado por padrão)</string>
-    <string name="welcome_message_3">Scripts são estruturados como <a href="https://en.wikipedia.org/wiki/Tree_structure">trees</a>, escolhendo o nó relevante.
+    <string name="welcome_message_3">Scripts são estruturados como <a href="https://en.wikipedia.org/wiki/Graph_(abstract_data_type)">graphs</a>, escolhendo os seus sucessores anteriores (parentes).
 \n
-\nDentro de cada ramificação, a lógica AND é executada.
-\nEntre as ramificações, a lógica OR é executada.
-\n 
-\n 
-\nEstender árvores para gráficos está nos planos, mas ainda não foi implementado.</string>
+\nGrosseiramente falando:
+\n- Dos predecessores aos sucessores, onde a lógica AND é executada.
+\n- Entre os nós, onde a lógica OR é executada.
+\n- Múltiplos antecessores têm relação AND, com relação ao sucessor.</string>
     <string name="title_welcome_message_privacy">Privacidade!</string>
     <string name="welcome_message_privacy">Privacidade é importante!
 \n
