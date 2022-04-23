@@ -1,0 +1,9 @@
+Bug fixes && dev changes && i18n update
+
+* Fix successor scripts incorrectly retained (#414)
+* Fix incorrectly multiple triggering of conditions (root cause of #414)
+* Fix incorrect finding of shared/reused skill data (esp. intent) (#401)
+* Dev changes
+	* Better documentation
+	* Refactored CountedLotus to LogicManagedLotus
+* I18n updates: Hebrew, Portuguese (Brazil), Spanish (Latin America), Vietnamese, Italian

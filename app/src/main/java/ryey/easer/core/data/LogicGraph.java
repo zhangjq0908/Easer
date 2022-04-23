@@ -30,6 +30,13 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+import ryey.easer.core.data.storage.ScriptDataStorage;
+
+/**
+ * A graph (data structure) representing the logic relation between nodes (Scripts, and relevant Profiles).
+ * This should be the core and only class for this purpose: both EHService and Pivot works on top of this graph.
+ * See also {@link ScriptDataStorage#getLogicGraph()} for the method to obtain LogicGraph.
+ */
 public final class LogicGraph {
 
     @NonNull

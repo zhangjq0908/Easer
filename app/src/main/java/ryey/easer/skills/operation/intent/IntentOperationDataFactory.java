@@ -25,14 +25,18 @@ import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 
+import ryey.easer.commons.ImproperImplementationError;
 import ryey.easer.commons.local_skill.IllegalStorageDataException;
+import ryey.easer.commons.local_skill.Reused;
 import ryey.easer.commons.local_skill.ValidData;
 import ryey.easer.commons.local_skill.operationskill.OperationDataFactory;
 import ryey.easer.plugin.PluginDataFormat;
 import ryey.easer.skills.reusable.ExtraItem;
 import ryey.easer.skills.reusable.Extras;
 
-class IntentOperationDataFactory implements OperationDataFactory<IntentOperationData> {
+class IntentOperationDataFactory implements OperationDataFactory<IntentOperationData>, Reused {
+    private String skillID;
+
     @NonNull
     @Override
     public Class<IntentOperationData> dataClass() {
@@ -53,13 +57,29 @@ class IntentOperationDataFactory implements OperationDataFactory<IntentOperation
         ExtraItem extraItem = new ExtraItem("extra_key1", "extra_value1", "string");
         extras.add(extraItem);
         intentData.extras = Extras.mayConstruct(extras);
-        return new IntentOperationData(intentData);
+        IntentOperationData ret = new IntentOperationData(intentData);
+        ret.setSkillID(skillID());
+        return ret;
     }
 
     @ValidData
     @NonNull
     @Override
     public IntentOperationData parse(@NonNull String data, @NonNull PluginDataFormat format, int version) throws IllegalStorageDataException {
-        return new IntentOperationData(data, format, version);
+        IntentOperationData ret = new IntentOperationData(data, format, version);
+        ret.setSkillID(skillID());
+        return ret;
+    }
+
+    @Override
+    public String skillID() {
+        if (skillID == null)
+            throw new ImproperImplementationError("The skillID should be set immediately after creating the object, but it didn't.");
+        return skillID;
+    }
+
+    @Override
+    public void setSkillID(String skillID) {
+        this.skillID = skillID;
     }
 }

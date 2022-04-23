@@ -1,0 +1,13 @@
+Bug fixes && dev changes && i18n update && Update AppIntro && Update docs
+
+* Fix successor scripts incorrectly retained (#414)
+* Fix incorrectly multiple triggering of conditions (root cause of #414)
+* Fix incorrect finding of shared/reused skill data (esp. intent) (#401)
+* Dev changes
+	* Better documentation
+	* Refactored CountedLotus to LogicManagedLotus
+* I18n updates: Hebrew, Portuguese (Brazil), Spanish (Latin America), Vietnamese, Italian
+* Update AppIntro to 5.1.0
+	* Fixes the problem when building
+* Update welcome message related to logic
+	* It is a graph already

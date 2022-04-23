@@ -72,15 +72,18 @@ public abstract class IntentOperationSkill implements OperationSkill<IntentOpera
     @NonNull
     @Override
     public OperationDataFactory<IntentOperationData> dataFactory() {
-        return new IntentOperationDataFactory();
+        IntentOperationDataFactory ret = new IntentOperationDataFactory();
+        ret.setSkillID(id());
+        return ret;
 
     }
 
     @NonNull
     @Override
     public SkillView<IntentOperationData> view() {
-        return new IntentSkillViewFragment();
+        IntentSkillViewFragment ret = new IntentSkillViewFragment();
+        ret.setSkillID(id());
+        return ret;
     }
-
 
 }
