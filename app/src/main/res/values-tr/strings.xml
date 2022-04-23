@@ -44,7 +44,7 @@
     <string name="title_edit_condition">Koşulu Düzenle</string>
     <string name="title_edit_event">Olayı Düzenle</string>
     <string name="hint_event_title">Olay başlığı</string>
-    <string name="toggle_active">Aktif</string>
+    <string name="toggle_active">Etkin</string>
     <string name="text_placeholder">Yer tutucu</string>
     <string name="text_dynamics">Dinamik</string>
     <string name="text_unknown_skill">[Bilinmeyen beceri]</string>
@@ -74,10 +74,10 @@
     <string name="title_add_child">Çocuk ekle</string>
     <string name="activity_history__script">\@string/title_script</string>
     <string name="activity_history__profile">\@string/title_profile</string>
-    <string name="text_app_description">Cihazlarınızın rutin eylemlerini otomatize ederek hayatınızı kolaylaştırın.
+    <string name="text_app_description">Aygıtlarınızın düzenli eylemlerini otomatikleştirerek hayatınızı kolaylaştırın.
 \nSiz olayları ayarlayın, bırakın eylemler kendilerini gerçekleştirsin. Artık düşünmenize gerek yok.
-\nBu uygulama CyanogenMod uygulamasının \'profil\' ve IFTTT sisteminden ilham alınmıştır. Uygulamadaki özgün amaç belirli zamanlarda veya belirli Wİ-Fİ bağlantılarında ve otomatik olarak profil değiştirmeyi sağlamaktır. Uygulama genel kullanım için genişletilmiştir.
-\nHatırlatıcı: Easer halen geliştirme aşamasındadır. Belirli hatalar (buglar) içerebilir ve UI (Kullanıcı arayüzü) geliştirmesi gerekmektedir. Yardımcı olabilmek için repoda yer alan TODO.en.md (veya Çince biliyorsanız TODO.md) dosyasına bakabilirsiniz.</string>
+\nBu uygulama için CyanogenMod uygulamasının \'profil\' ve IFTTT sisteminden ilham alınmıştır. Uygulamadaki özgün amaç belirli zamanlarda veya belirli Wİ-Fİ bağlantılarında ve otomatik olarak profil değiştirmeyi sağlamaktır. Uygulama genel kullanım için genişletilmiştir.
+\nHatırlatıcı: Easer halen geliştirme aşamasındadır. Belirli hatalar içerebilir ve kullanıcı arayüzünün iyileştirilmesi gerekmektedir. Yardım etmek istiyorsanız depoda bulunan TODO.en.md (veya Çince biliyorsanız TODO.md) dosyasına bakabilirsiniz.</string>
     <string name="prompt_dynamics_not_ready">Dinamikleri ayarlamak için geçerli bir Profil ve geçerli bir tetikleyici kullanmalısınız (ö. Olay).</string>
     <string name="category_operation_unknown">Bilinmiyor</string>
     <string name="category_operation_misc">Diğer</string>
@@ -87,12 +87,12 @@
     <string name="help_profile">\"Profil\" operasyonlar dizisidir. Her bir operasyon belirli bir eylemi belirtir.
 \nÖrnek olarak Bluetooth\'un açılması veya SMS göndermek olabilir.
 \nDaha fazla bilgi için lütfen <a href="https://github.com/renyuneyun/Easer/wiki">dokümanlar</a> kısmını ziyaret ediniz.</string>
-    <string name="help_condition">\"Koşul\" cihazınızda veya uzaktan gerçekleştirilen uzun süreli (sonsuz değil) koşulları belirtir.
+    <string name="help_condition">\"Koşul\" aygıtınızda veya uzaktan gerçekleştirilen uzun süreli (sonsuz değil) koşulları belirtir.
 \nÖrnek olarak Wi-Fi bağlantısı veya ekranın açılıp kapanması gösterilebilir.
-\nDaha fazla bilgi için lütfen <a href="https://github.com/renyuneyun/Easer/wiki">dokümanlar</a> kısmını ziyaret ediniz.</string>
-    <string name="help_event">\"Olaylar\" cihazınızda veya uzaktan gerçekleştirilen kısa süreli (anlık) işlemleri belirtir.
+\nDaha fazla bilgi için lütfen <a href="https://github.com/renyuneyun/Easer/wiki">belgeler</a> kısmını ziyaret edin.</string>
+    <string name="help_event">\"Olaylar\" aygıtınızda veya uzaktan gerçekleştirilen kısa süreli (anlık) işlemleri belirtir.
 \nÖrnek olarak bildirim alınması veya bir NFC etiketi okutulması gösterilebilir.
-\nDaha fazla bilgi için lütfen <a href="https://github.com/renyuneyun/Easer/wiki">dokümanlar</a> kısmını ziyaret ediniz.</string>
+\nDaha fazla bilgi için lütfen <a href="https://github.com/renyuneyun/Easer/wiki">belgeler</a> kısmını ziyaret edin.</string>
     <string name="title_help">Yardım</string>
     <string name="dynamics_profile_name">Profil Adı</string>
     <string name="dynamics_script_name">Script Adı</string>
@@ -107,34 +107,34 @@
     <string name="alert_update_storage_data_title">Eski veri sürümü bulundu</string>
     <string name="welcome_message_privacy">Gizlilik önemlidir!
 \n
-\nEaser <a href="https://en.wikipedia.org/wiki/Free_software">ücretsiz bir yazılımdır</a> (açık kaynak kodlu bir yazılımdır), herkesin kullandığını, çalıştığını, değiştirdiğini ve paylaştığını temin eder.
+\nEaser <a href="https://en.wikipedia.org/wiki/Free_software">özgür bir yazılımdır</a> (açık kaynaklı yazılım), herkesin onu kullanmasını, çalışmasını, değiştirmesini ve paylaşmasını sağlar.
 \n
-\nVerilenizin sahibi SİZSİNİZ. Her şey cihazınızda yer alır, sistem günlükleri de buna dahildir.</string>
-    <string name="welcome_message_3">Scriptler ilgili parent sınıflar <a href="https://en.wikipedia.org/wiki/Tree_structure">ağaç</a> yapısında yapılmıştır.
+\nVerilenizin sahibi SİZSİNİZ. Günlük kayıtları dahil her şey aygıtınızda yer alır.
+\nDaha fazla bilgi için <a href="https://github.com/renyuneyun/Easer/blob/master/Privacy.md">Gizlilik Bildirimine</a> bakın</string>
+    <string name="welcome_message_3">Betikler, ilgili öncüller (ebeveynler) seçilerek <a href="https://en.wikipedia.org/wiki/Graph_(abstract_data_type)">grafikler</a> olarak yapılandırılır.
 \n
-\nHer dalda, AND mantığı kullanılmıştır.
-\nDallar arası, OR mantığı kullanılmıştır.
-\n
-\n
-\nAğaç yapısını grafiksel olarak görselleştirmek planlanmıştır nitekim henüz gerçekleştirilmemiştir.</string>
+\nKabaca anlatmak gerekirse:
+\n- Öncüllerden ardıllara, VE mantığı gerçekleştirilir.
+\n- Düğümler arasında VEYA mantığı gerçekleştirilir.
+\n- Birden çok öncül, ardılı ilgilendiren VE ilişkisine sahiptir.</string>
     <string name="title_welcome_message_privacy">Gizlilik!</string>
-    <string name="welcome_message_2">Easer farklı işlevleri sağlayabilmek için birçok modül kullanır. Ayarlardan açık kapatabilirsiniz.
+    <string name="welcome_message_2">Easer farklı işlevleri sağlayabilmek için birçok modül kullanır. Ayarlardan açıp kapatabilirsiniz.
 \n
-\nİlgili izinler (her bir aktif modül için) kullanım öncesinde verilmelidir.
+\nİlgili izinler (her etkin modül için) kullanım öncesinde verilmelidir.
 \n
 \n
-\n(Varsayılan ayarlarda bütün izinler açıktır.)</string>
-    <string name="welcome_message_1">Hoşgeldiniz.
+\n(Öntanımlı olarak bütün izinler açıktır.)</string>
+    <string name="welcome_message_1">Hoş geldiniz.
 \n
-\nEaser\'i kullanmaya başlamadan önce temel bilgiler.
+\nİşte size Easer\'i kullanmaya başlamadan önce birkaç temel bilgi.
 \n
-\nDaha kapsamlı konular proje wiki <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a> sayfasındadır.</string>
-    <string name="title_welcome_message">Hoşgeldiniz</string>
+\nDaha kapsamlı konular proje wiki <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">SSS</a> sayfasındadır.</string>
+    <string name="title_welcome_message">Hoş geldiniz</string>
     <string name="message_convert_data_error">Veri dönüştürülemedi. Detaylar için lütfen sistem günlüğüne bakınız.</string>
     <string name="message_convert_data_abort">Veri dönüştürme işlemi iptal edildi.</string>
     <string name="message_convert_data_finish">Veri dönüştürüldü.</string>
     <string name="message_convert_data_start">Veri dönüştürülüyor.</string>
-    <string name="message_skill_not_compatible">Yetenek bu cihazda gerçekleştirilemez.</string>
+    <string name="message_skill_not_compatible">Yetenek bu aygıtta gerçekleştirilemez.</string>
     <string name="pref_locale_custom">Özel alan</string>
     <string name="pref_foreground_summary">Sistemin servisi kapatmasını zorlaştır. Bir bildirim gösterilir. Android 8+ üzerinde sistem gereksinimi olduğundan dolayı kapatılamaz.</string>
     <string name="pref_foreground_title">Servisi ön planda çalıştır</string>
@@ -143,14 +143,14 @@
     <string name="pref_convert_data_summary">Bütün veriyi önerilen formata dönüştür</string>
     <string name="pref_convert_data_title">Veriyi dönüştür</string>
     <string name="pref_import_summary">Bir ZIP dosyasından büyün olayları ve profilleri içeri aktar.
-\nAynı isimle bulunan olaylar ve profiller değiştirilir.</string>
+\nAynı ada sahip olaylar ve profiller değiştirilecektir.</string>
     <string name="pref_import_title">İçeri aktar</string>
     <string name="pref_export_summary">Bütün olayları ve profilleri SD karta aktar.
 \nKaydedilen dosya adı kayıt gerçekleştirilen saat şeklindedir.</string>
     <string name="pref_export_title">Dışarı aktar</string>
     <string name="pref_use_12_hour_clock_title">12 saatlik zaman biçimi kullan</string>
     <string name="pref_enabled_skills_summary">Belirli yetenekleri aç veya kapat</string>
-    <string name="pref_enabled_skills_title">Aktif edilmiş yetenekler</string>
+    <string name="pref_enabled_skills_title">Etkinleştirilen yetenekler</string>
     <string name="cooldown_time_illformed">Seçtiğiniz rakamlar çok büyük veya pozitif bir tam sayı değil.</string>
     <string name="pref_cooldown_summary">Aynı olayın iki defa gerçekleşmesini düzeltmek için saniyeleri göster.</string>
     <string name="pref_cooldown_title">Olay aralığı…</string>
@@ -159,10 +159,10 @@
     <string name="pref_logging_summary">Hata raporlarına yardımcı olabilmesi için kayıtları harici depolama aygıtlarına kaydeder (/sdcard/logger).
 \nUygulamanın bir sonraki açılışında etkinleşir.</string>
     <string name="pref_logging_title">Harici sistem günlüğünü etkinleştir</string>
-    <string name="pref_welcome_summary">Uygulama açılırken hoşgeldin mesajı göster</string>
-    <string name="pref_welcome_title">Hoşgeldin mesajı göster</string>
+    <string name="pref_welcome_summary">Uygulama açılırken hoş geldiniz mesajı göster</string>
+    <string name="pref_welcome_title">Hoş geldiniz mesajı göster</string>
     <string name="pref_restart_after_upgrade_title">Yükseltme sonrası servisi başlat</string>
-    <string name="pref_autostart_summary">Cihaz çalıştırıldığında Easer\'i arka planda başlatır.</string>
+    <string name="pref_autostart_summary">Aygıt açıldığında Easer\'i arka planda başlatır.</string>
     <string name="pref_autostart_title">Otomatik başlangıç</string>
     <string name="pref_category_service">Servis</string>
     <string name="pref_category_data_manage">Verileri yönet</string>
@@ -175,9 +175,9 @@
     <string name="prompt_error_logged">Easer bir hata kaydetti. Hatayı sistem günlüğü alt dizininde görüntüleyin.</string>
     <string name="prompt_prevented_for_permission">Easer\'e bu görev için %s izni ver.</string>
     <string name="prompt_data_save_io_exception">IOException\'la karşılaşıldı. Depolama alanınız dolu olabilir mi\?</string>
-    <string name="prompt_data_clash">Veri kaydedilemedi. Çakışan isim olup olmadığını kontrol ediniz.</string>
-    <string name="prompt_data_illegal">"Geçersiz alan(lar)daki bilgi  girişi engellendi. Lütfen seçimlerinizi / girdilerinizi kontrol ediniz."</string>
-    <string name="prompt_delete_failed">Silinemedi. Kullanımda olup olmadığını kontrol ediniz.</string>
+    <string name="prompt_data_clash">Veri kaydedilemedi. Çakışan ad olup olmadığına bakın.</string>
+    <string name="prompt_data_illegal">Geçersiz alan(lar)a sahip bilgi girişi engellendi. Lütfen seçimlerinizi / girdilerinizi gözden geçirin.</string>
+    <string name="prompt_delete_failed">Silinemedi. Bu ögenin kullanılıp kullanılmadığına bakın.</string>
     <string name="prompt_delete">%s Bunu silmek istediğinizden emin misiniz\?</string>
     <string name="prompt_save_failed">Kaydedilemedi</string>
     <string name="hint_condition_title">Şartlar başlığı</string>
