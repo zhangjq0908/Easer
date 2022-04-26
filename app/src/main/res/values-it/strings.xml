@@ -129,13 +129,12 @@
 \n
 \n
 \n(Sono tutti attivi per impostazione predefinita)</string>
-    <string name="welcome_message_3">Gli Script sono strutturati ad <a href="https://en.wikipedia.org/wiki/Tree_structure">albero</a>, scegliendo il genitore desiderato. 
-\n 
-\nIn ogni ramo viene eseguita la logica AND. 
-\nTra i rami, viene eseguita la logica OR. 
-\n 
-\n 
-\nPrevista l\'estensione da alberi a grafici, ma non è ancora implementata.</string>
+    <string name="welcome_message_3">Gli Script hanno una struttura a <a href="https://en.wikipedia.org/wiki/Graph_(abstract_data_type)">grafi</a>, scegliendo il genitore desiderato.
+\n
+\nIn poche parole:
+\n- Dai genitori ai filgli, viene eseguita la logica AND.
+\n- Tra i nodi, viene eseguita la logica OR.
+\n- Per genitori multipli viene applicata la relazione AND, in rapporto al figlio.</string>
     <string name="title_welcome_message_privacy">Privacy!</string>
     <string name="welcome_message_privacy">La privacy è importante!
 \n
