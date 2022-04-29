@@ -87,7 +87,7 @@
     <string name="prompt_delete_failed">Odstranění se nezdařilo. Zkontrolujte, zda tato položka není aktivně používána.</string>
     <string name="prompt_data_illegal">Nelze uložit data s neplatnými poli. Zkontrolujte prosím své volby/vstupy.</string>
     <string name="prompt_dynamics_not_ready">Chcete-li nastavit Dynamiky, je potřeba vybrat platný Profil a platný aktivační spouštěč (např. Událost).</string>
-    <string name="prompt_prevented_for_permission">Udělit Easeru oprávnění &lt;% s &gt;.</string>
+    <string name="prompt_prevented_for_permission">Udělit Easeru oprávnění &lt;%s&gt;.</string>
     <string name="prompt_error_logged">Easer právě zaznamenal chybu. Podívejte se do podadresáře error v adresáři záznamů.</string>
     <string name="text_app_description">Zjednodušte svůj život automatizací rutinních akcí na vašem zařízení. 
 \nŘetězte různé události a nechat provést odpovídající akce. Už je nemusíte mít na paměti! 
@@ -162,7 +162,7 @@
     <string name="alert_update_storage_data">Chcete-li aktualizovat data do nového formátu pro kompatibilitu, vyberte v Nastavení položku Převést data.</string>
     <string name="message_future_change_title">Brzy se změní</string>
     <string name="message_future_change_0_8">Stromový pohled na skripty bude odebrán ve verzi 0.8. Závislosti umožňují lepší zobrazení.</string>
-    <string name="template_export">Exportováno do % s</string>
+    <string name="template_export">Exportováno do %s</string>
     <string name="version">Verze</string>
     <string name="message_importing_invalid_data">Tento soubor zřejmě není platný. Ujistěte se, že importujete soubor exportovaný pomocí Easeru.</string>
     <string name="dynamics_time">Aktuální Čas</string>
