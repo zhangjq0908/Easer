@@ -27,6 +27,7 @@ import android.telephony.TelephonyManager;
 
 import ryey.easer.skills.event.AbstractSlot;
 
+@SuppressWarnings({"MissingPermission"})
 public class CellLocationSlot extends AbstractSlot<CellLocationUSourceData> {
     private static TelephonyManager telephonyManager = null;
 
