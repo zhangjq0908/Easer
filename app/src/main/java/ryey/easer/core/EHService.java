@@ -61,6 +61,15 @@ public class EHService extends Service implements CoreServiceComponents.LogicMan
     private static final String SERVICE_NAME = "Easer";
 
     /**
+     * A piece of information in Intent to describe the current working context.
+     * This is designed for testing use only (at least yet), when binding service.
+     * If it's {@link #TEST}, then it returns {@link EHTestBinder} to allow more control from binder for testing.
+     * Anything other than {@link #TEST} means normal working context (not testing), and returns {@link EHBinder}.
+     */
+    static final String ARG_WORKING_CONTEXT = "working_context";
+    static final int TEST = 1;
+
+    /**
      * NEW
      * key: Script (node) name
      * value: lotus
@@ -224,7 +233,12 @@ public class EHService extends Service implements CoreServiceComponents.LogicMan
 
     @Override
     public IBinder onBind(Intent intent) {
-        return new EHBinder();
+        int working_context = intent.getIntExtra(ARG_WORKING_CONTEXT, 0);
+        if (working_context == TEST) {
+            return new EHTestBinder();
+        } else {
+            return new EHBinder();
+        }
     }
 
     /**
@@ -305,6 +319,10 @@ public class EHService extends Service implements CoreServiceComponents.LogicMan
             }
             return statusMap;
         }
+    }
+
+    public class EHTestBinder extends EHBinder {
+
     }
 
     public static class LogicManagedLotus {
