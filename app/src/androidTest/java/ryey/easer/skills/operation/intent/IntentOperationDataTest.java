@@ -21,6 +21,7 @@ package ryey.easer.skills.operation.intent;
 
 import android.os.Parcel;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import ryey.easer.commons.C;
@@ -31,9 +32,17 @@ import static org.junit.Assert.assertEquals;
 
 public class IntentOperationDataTest {
 
+    IntentOperationDataFactory factory;
+
+    @Before
+    public void setUp() {
+        factory = new IntentOperationDataFactory();
+        factory.setSkillID("testIntentOperationData");
+    }
+
     @Test
     public void testParcel() {
-        IntentOperationData dummyData = new IntentOperationDataFactory().dummyData();
+        IntentOperationData dummyData = factory.dummyData();
         Parcel parcel = TestHelper.writeToParcel(dummyData);
         IntentOperationData parceledData = IntentOperationData.CREATOR.createFromParcel(parcel);
         assertEquals(dummyData, parceledData);
@@ -41,7 +50,6 @@ public class IntentOperationDataTest {
 
     @Test
     public void testSerialize() throws Exception {
-        IntentOperationDataFactory factory = new IntentOperationDataFactory();
         IntentOperationData dummyData = factory.dummyData();
         for (PluginDataFormat format : PluginDataFormat.values()) {
             String serialized_data = dummyData.serialize(format);
