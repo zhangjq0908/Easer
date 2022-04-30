@@ -87,9 +87,12 @@ public class Helper {
             throw new InvalidExportedDataException("exported data is not valid");
         }
 
-        File output_dir = context.getFilesDir();
-
         InputStream inputStream = context.getContentResolver().openInputStream(uri);
+        import_data(context, inputStream);
+    }
+
+    public static void import_data(Context context, InputStream inputStream) throws IOException {
+        File output_dir = context.getFilesDir();
         ZipInputStream zip = new ZipInputStream(inputStream);
         byte[] buffer = new byte[1024];
 
