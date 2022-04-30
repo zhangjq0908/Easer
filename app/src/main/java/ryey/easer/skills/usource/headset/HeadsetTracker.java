@@ -69,6 +69,7 @@ public class HeadsetTracker extends SkeletonTracker<HeadsetUSourceData> {
 
         AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            // noinspection WrongConstant    Lint is wrong in this case
             AudioDeviceInfo[] audioDevices = audioManager.getDevices(AudioManager.GET_DEVICES_ALL);
             for (AudioDeviceInfo deviceInfo : audioDevices) {
                 if (deviceInfo.getType() == AudioDeviceInfo.TYPE_WIRED_HEADPHONES

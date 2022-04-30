@@ -95,6 +95,7 @@ public class WaitForNfcActivity extends CommonBaseActivity {
     @Override
     public void onNewIntent(Intent intent) {
         resolveIntent(intent);
+        super.onNewIntent(intent);
     }
 
     private void resolveIntent(Intent intent) {

@@ -31,6 +31,7 @@ import androidx.annotation.Nullable;
 
 import ryey.easer.skills.condition.SkeletonTracker;
 
+@SuppressWarnings({"MissingPermission"})
 public class CellLocationTracker extends SkeletonTracker<CellLocationUSourceData> {
 
     private static TelephonyManager telephonyManager = null;

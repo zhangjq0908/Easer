@@ -45,6 +45,7 @@ public class UiModeLoader extends OperationLoader<UiModeOperationData> {
         if (data.ui_mode == UiModeOperationData.UiMode.car) {
             uiModeManager.enableCarMode(0);
         } else { // if (data.ui_mode == UiModeOperationData.UiMode.normal) {
+            // noinspection WrongConstant    Lint is wrong in this case
             uiModeManager.disableCarMode(0);
         }
         callback.onResult(true);
