@@ -21,16 +21,38 @@ package ryey.easer.core
 import android.content.Context
 import android.content.Intent
 import androidx.test.core.app.ApplicationProvider
+import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ServiceTestRule
+import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
+import ryey.easer.core.data.Helper
+import ryey.easer.core.data.HelperTest
 
 class EHServiceTest {
     @get:Rule
     val serviceRule = ServiceTestRule()
 
     @Test
-    fun testWithBoundService() {
+    fun testWithBoundServiceWithData() {
+        HelperTest.setUpDirs();
+        val inputStream = InstrumentationRegistry.getInstrumentation()
+            .context.assets.open(ASSET_DATA_ZIP)
+        Helper.import_data(
+            InstrumentationRegistry.getInstrumentation().targetContext,
+            inputStream
+        )
+
+        serviceRule.startService(serviceIntent)
+        val binder: EHService.EHTestBinder = serviceRule.bindService(serviceIntent) as EHService.EHTestBinder
+        val logicGraph = binder.logicGraph
+        assertNotNull(logicGraph)
+        assertEquals(logicGraph.initialNodes().size, 1)
+
+        HelperTest.cleanUpData()
+    }
+
+    companion object {
         val serviceIntent = Intent(
             ApplicationProvider.getApplicationContext<Context>(),
             EHService::class.java
@@ -38,7 +60,6 @@ class EHServiceTest {
             putExtra(EHService.ARG_WORKING_CONTEXT, EHService.TEST)
         }
 
-        val binder: EHService.EHTestBinder = serviceRule.bindService(serviceIntent) as EHService.EHTestBinder
-
+        const val ASSET_DATA_ZIP = HelperTest.ASSET_NAME_EXPORTED_OK_FILE
     }
 }

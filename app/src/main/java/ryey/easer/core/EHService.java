@@ -322,7 +322,9 @@ public class EHService extends Service implements CoreServiceComponents.LogicMan
     }
 
     public class EHTestBinder extends EHBinder {
-
+        public LogicGraph getLogicGraph() {
+            return logicGraph;
+        }
     }
 
     public static class LogicManagedLotus {

@@ -66,7 +66,7 @@ public class HelperTest {
     }
 
     @AfterClass
-    public static void cleanUpAll() {
+    public static void cleanUpData() {
         File filesDir = InstrumentationRegistry.getInstrumentation().getTargetContext().getFilesDir();
         assertTrue(filesDir.exists());
         assertTrue(filesDir.isDirectory());
@@ -79,7 +79,10 @@ public class HelperTest {
             }
             assertTrue(dir.delete());
         }
+    }
 
+    @AfterClass
+    public static void cleanUpExported() {
         File outputDir = InstrumentationRegistry.getInstrumentation().getTargetContext().getFilesDir();
         File outputFile = new File(outputDir, FILENAME_EXPORTED);
         assertTrue(outputFile.delete());
