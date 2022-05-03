@@ -36,13 +36,12 @@
 \nBẠN sở hữu mọi dữ liệu của bạn. Mọi thứ đều ở trên thiết bị của bạn, bao gồm cả nhật ký.
 \nHãy xem <a href="https://github.com/renyuneyun/Easer/blob/master/Privacy.md">Tuyên bố về sự riêng tư</a> để biết thêm thông tin</string>
     <string name="title_welcome_message_privacy">Riêng tư!</string>
-    <string name="welcome_message_3">Các tập hợp lệnh được sắp xếp theo cấu trúc <a href="https://en.wikipedia.org/wiki/Tree_structure">cây</a>, bằng cách chọn mục mẹ liên quan.
+    <string name="welcome_message_3">Các tập hợp lệnh được sắp xếp theo cấu trúc <a href="https://en.wikipedia.org/wiki/Graph_(abstract_data_type)">biểu đồ</a>, bằng cách chọn mục tiền nhiệm liên quan (mục mẹ).
 \n
-\nTrong mọi nhánh, logic AND được thực hiện.
-\nGiữa các nhánh, logic OR được thực hiện.
-\n
-\n
-\nViệc mở rộng các cây thành biểu đồ đã được lên kế hoạch, nhưng hiện chưa được thêm vào.</string>
+\nNói tóm gọn:
+\n- Từ mục tiền nhiệm đến mục kế nhiệm, logic AND được thực hiện.
+\n- Giữa các node, logic OR được thực hiện.
+\n- Nhiều mục tiền nhiệm có quan hệ AND khi tính đến mục kế nhiệm.</string>
     <string name="welcome_message_2">Easer chứa nhiều mô-đun cung cấp các chức năng khác nhau. Hãy bật hoặc tắt chúng trong Cài đặt.
 \n
 \nCác quyền tương ứng (cho mọi mô-đun đang hoạt động) nên được cấp trước khi sử dụng.
