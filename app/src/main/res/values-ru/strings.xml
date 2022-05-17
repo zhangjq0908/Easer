@@ -29,8 +29,8 @@
     <string name="menu_clear">Очистить</string>
     <string name="service_indicator_positive">Служба запущена</string>
     <string name="service_indicator_negative">Служба остановлена</string>
-    <string name="activity_history__profile"></string>
-    <string name="activity_history__script"></string>
+    <string name="activity_history__profile"/>
+    <string name="activity_history__script"/>
     <string name="activity_history__time">Время</string>
     <string name="activity_history__extra">Дополнительно</string>
     <string name="activity_history__satisfaction">Состояние</string>
@@ -54,7 +54,7 @@
     <string name="text_predefined_event">Предопределённое событие</string>
     <string name="text_inline_event">Случайное событие</string>
     <string name="text_use_condition">Использовать связку</string>
-    <string name="text_repeatable_desc">Повторяющиеся</string>
+    <string name="text_repeatable_desc">Повторяющийся</string>
     <string name="text_reverse_desc">Обратный сценарий</string>
     <string name="text_volatile">Изменяемый</string>
     <string name="text_persistent">Постоянный</string>
@@ -138,7 +138,7 @@
 \nПодробности в <a href="https://github.com/renyuneyun/Easer/wiki">документации</a>.</string>
     <string name="category_operation_android">Android</string>
     <string name="category_operation_system_config">Системные настройки</string>
-    <string name="category_operation_easer"></string>
+    <string name="category_operation_easer"/>
     <string name="category_operation_misc">Прочее</string>
     <string name="category_operation_unknown">Неопознанное</string>
     <string name="title_welcome_message_privacy">Конфиденциальность!</string>
