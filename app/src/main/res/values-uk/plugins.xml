@@ -73,7 +73,7 @@
     <string name="ringer_mode_silent">Без звуку</string>
     <string name="ringer_mode_dnd">Не турбувати</string>
     <string name="ringer_mode_dnd_all">Усе</string>
-    <string name="ringer_mode_dnd_priority">Першовага</string>
+    <string name="ringer_mode_dnd_priority">Першість</string>
     <string name="ringer_mode_dnd_none">Немає</string>
     <string name="ringer_mode_dnd_alarms">Будильники</string>
     <string name="ringing_items_in_do_not_disturb_mode">Дзвінки в режимі \"Не турбувати\"</string>
@@ -88,13 +88,13 @@
     <string name="o_nettrans_remote_address">Віддалена адреса</string>
     <string name="o_nettrans_remote_port">Віддалений порт</string>
     <string name="o_nettrans_data">Дані</string>
-    <string name="operation_media_control">Медія-контроль</string>
+    <string name="operation_media_control">Медіа-контроль</string>
     <string name="text_play_pause">Відтворення/призупинення</string>
     <string name="text_play">Грати</string>
     <string name="text_pause">Призупинення</string>
     <string name="text_previous">Попередній</string>
     <string name="text_next">Наступний</string>
-    <string name="operation_media_control_helper_service_label">Помічник із медія-контролю</string>
+    <string name="operation_media_control_helper_service_label">Помічник із медіа-контролю</string>
     <string name="operation_airplane_mode">Режим \"польоту \"</string>
     <string name="operation_send_sms">Надіслати SMS</string>
     <string name="destination">Призначення</string>
@@ -111,7 +111,7 @@
     <string name="unsatisfied">Незадоволений</string>
     <string name="operation_volume">Регулювання гучності</string>
     <string name="o_volume_ring">Дзвінок</string>
-    <string name="o_volume_media">Медія</string>
+    <string name="o_volume_media">Медіа</string>
     <string name="o_volume_alarm">Будильник</string>
     <string name="o_volume_notification">Сповіщення</string>
     <string name="o_volume_bluetooth">Bluetooth</string>
@@ -125,7 +125,7 @@
     <string name="op_ui_mode">Режим автомобіля</string>
     <string name="op_car_mode">Режим автомобіля</string>
     <string name="op_normal_mode">Звичайний режим</string>
-    <string name="o_play_media">Відтворити медія</string>
+    <string name="o_play_media">Відтворити медіа</string>
     <string name="o_play_media_text_file">Шлях до файлу</string>
     <string name="category_source_android">Android</string>
     <string name="category_source_date_time">Дата / Час</string>
@@ -238,4 +238,11 @@
     <string name="bluetooth_device_profile">Профіль пристрою Bluetooth</string>
     <string name="mac_address">MAC-адреса (00:11:22:33:FF:EE)</string>
     <string name="operation_bluetooth_connect">Підключення до пристрою Bluetooth</string>
+    <string name="o_wireguard_tunnel_state">Стан тунелю</string>
+    <string name="o_play_media_loop">Повторювати медіа</string>
+    <string name="o_play_media_repeat_times">Кількість повторень</string>
+    <string name="operation_wireguard">WireGuard</string>
+    <string name="o_wireguard__set_tunnel_state">Задати стан тунелю</string>
+    <string name="o_wireguard_tunnel_name">Назва тунелю</string>
+    <string name="o_wireguard_tunnel_name_hint">Назва тунелю в WireGuard</string>
 </resources>
