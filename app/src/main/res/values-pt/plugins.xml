@@ -243,4 +243,5 @@
     <string name="o_wireguard_tunnel_name">Nome do túnel</string>
     <string name="o_wireguard_tunnel_state">Condição geral do túnel</string>
     <string name="o_wireguard_tunnel_name_hint">Nome do túnel no Wireguard</string>
+    <string name="o_play_media_repeat_times">Quantidade de repetições</string>
 </resources>
