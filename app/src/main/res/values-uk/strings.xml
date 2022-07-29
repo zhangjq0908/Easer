@@ -186,7 +186,7 @@
     <string name="title_profile">Профіль</string>
     <string name="title_operation">Операція</string>
     <string name="title_data_collection">Дані</string>
-    <string name="title_pivot">Півот</string>
+    <string name="title_pivot">Схема</string>
     <string name="drawer_tip">Полегшіть собі життя.</string>
     <string name="easer">Easer</string>
 </resources>
