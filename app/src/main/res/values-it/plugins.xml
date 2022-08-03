@@ -47,7 +47,7 @@
     <string name="content_contains">Contenuto (contiene...)</string>&gt;
     <string name="ev_sms_dynamics_sender">Mittente SMS</string>
     <string name="ev_sms_dynamics_content">Contenuto SMS</string>
-    <string name="event_notification">Notificazione ricevuta</string>
+    <string name="event_notification">Notifica ricevuta</string>
     <string name="event_notification__app">App</string>
     <string name="event_notification__app_hint">Nome completo del pacchetto dell\'app</string>
     <string name="event_notification__title">Titolo (contiene...)</string>
