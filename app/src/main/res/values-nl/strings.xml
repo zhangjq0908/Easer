@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources><string name="easer">Easer</string>
-    <string name="drawer_tip">Verreenvoudig uw leven!</string>
+<resources>
+    <string name="easer">Easer</string>
+    <string name="drawer_tip">Vereenvoudig uw leven.</string>
     <string name="title_outline">Overzicht</string>
     <string name="title_operation">Handeling/Bewerking</string>
     <string name="title_profile">Profiel</string>
@@ -18,7 +19,7 @@
     <string name="title_edit_condition">Bewerk Conditie</string>
     <string name="title_edit_profile">Bewerk Profiel</string>
     <string name="title_select_operation">Bewerk een Handeling</string>
-    <string name="title_dynamics_link">Dynamics Link</string>
+    <string name="title_dynamics_link">Dynamische Koppeling</string>
     <string name="title_new_dynamics_link">New Dynamics Link</string>
     <string name="title_trigger_profile">Activeer dit Profiel</string>
     <string name="title_remote_operation_plugin">Externe Handeling Plugin</string>
@@ -46,27 +47,27 @@
     <string name="button_understand">Begrepen</string>
     <string name="button_cancel">Annuleer</string>
     <string name="button_ok">OK</string>
-    <string name="text_lack_permission">Easer heeft NIET alle benodigde toegangsrechten.</string>
+    <string name="text_lack_permission">Easer heeft NIET alle benodigde machtigingen.</string>
     <string name="text_notification_running_indicator_content">%s wordt uitgevoerd in de achtergrond</string>
     <string name="text_predecessor_nodes">Ouder</string>
     <string name="text_profile">Profiel</string>
     <string name="text_predefined_event">Voorgedefinieerde Gebeurtenis</string>
     <string name="text_use_condition">Gebruik Conditie</string>
-    <string name="text_repeatable_desc">Herhaalbaar wanneer voldaan aan</string>
+    <string name="text_repeatable_desc">Opnieuw optredend</string>
     <string name="text_reverse_desc">Keer Scenario om</string>
     <string name="text_volatile">Vluchtig</string>
     <string name="text_persistent">Blijvend</string>
     <string name="text_placeholder">Tijdelijke invulling</string>
     <string name="toggle_active">Actief</string>
-    <string name="hint_event_title">gebeurtenis titel</string>
-    <string name="hint_script_title">script titel</string>
-    <string name="hint_profile_title">profiel titel</string>
-    <string name="hint_condition_title">conditie titel</string>
+    <string name="hint_event_title">Gebeurtenis titel</string>
+    <string name="hint_script_title">Script titel</string>
+    <string name="hint_profile_title">Profiel titel</string>
+    <string name="hint_condition_title">Conditie titel</string>
     <string name="prompt_save_failed">Opslaan mislukt</string>
     <string name="prompt_delete">Weet u zeker dat u %s wilt verwijderen\?</string>
     <string name="prompt_delete_failed">Verwijdering mislukt. Controleer of dit item wordt gebruikt.</string>
     <string name="prompt_data_illegal">Opslaan van data met incorrect(e) veld(en) voorkomen. Controleer alstublieft uw keuzes / invoer.</string>
-    <string name="prompt_prevented_for_permission">Easer heeft toegang &lt;%s&gt; nodig voor deze functie.</string>
+    <string name="prompt_prevented_for_permission">Easer heeft machtiging &lt;%s&gt; nodig voor deze functie.</string>
     <string name="text_app_description">"Vereenvoudig uw leven door routine acties op uw telefoon te automatiseren.
 \n- Verbind verschillende gebeurtenissen en laat hun overeenkomstige acties uitvoeren. U hoeft dit niet zelf meer te onthouden!
 \n- Deze app is geinspireerd op het CyanogenMod \"profiel\" mechanisme en IFTTT.  De oorspronkelijke opzet was om automatisch profielen te wijzigen op bepaalde tijdstippen of WiFi verbindingen, en het is toen uitgebreid voor meer algemeen gebruik.
@@ -79,19 +80,19 @@
     <string name="pref_category_personalise">Personaliseren</string>
     <string name="pref_category_data_manage">Beheer data</string>
     <string name="pref_category_service">Service</string>
-    <string name="pref_autostart_title">Automatisch starten bij boot</string>
+    <string name="pref_autostart_title">Automatisch starten bij start telefoon</string>
     <string name="pref_autostart_summary">Start de Easer achtergrond service automatisch</string>
     <string name="pref_restart_after_upgrade_title">Start service na upgrade</string>
     <string name="pref_welcome_title">Toon welkomstbericht</string>
-    <string name="pref_welcome_summary">Toon welkomstbericht bij starten app</string>
-    <string name="pref_logging_title">Maak externe logging mogelijk</string>
+    <string name="pref_welcome_summary">Toon welkomstbericht bij openen app</string>
+    <string name="pref_logging_title">Aanzetten externe logging</string>
     <string name="pref_logging_summary">Bewaar logs op externe opslagmedia (/sdcard/logger) om fout rapportage mogelijk te maken.
 \nAnpassing van deze instelling wordt actief na opnieuw startn van Easer.</string>
     <string name="pref_use_root_title">Gebruik root mogelijkheden</string>
-    <string name="pref_use_root_summary">Gebruik root toegang voor specifieke functies (plugins) om mogelijke compatibiliteits problemen te omzeilen op sommige toestellen. Root toegang wordt niet elders gebruikt.</string>
-    <string name="pref_cooldown_title">Afkoel tijd</string>
+    <string name="pref_use_root_summary">Gebruik root machtiging voor specifieke functies (plugins) om mogelijke compatibiliteits problemen te omzeilen op sommige toestellen. Root machtiging wordt verder nergens gebruikt.</string>
+    <string name="pref_cooldown_title">Gebeurtenis eens per…</string>
     <string name="pref_cooldown_summary">Minimale interval tussen twee triggers van dezelfde gebeurtenis</string>
-    <string name="cooldown_time_illformed">Het getal mag niet kleiner dan 0 zijn en niet groter dan een integer</string>
+    <string name="cooldown_time_illformed">Het getal is te groot of niet een positief geheel getal.</string>
     <string name="pref_enabled_skills_title">Geactiveerde plugins</string>
     <string name="pref_enabled_skills_summary">Activeer of de-activeer bepaalde plugins</string>
     <string name="pref_use_12_hour_clock_title">Gebruik 12-uurs tijd</string>
@@ -109,15 +110,15 @@
     <string name="pref_foreground_summary">Maak het moeilijker voor het systeem om de service te stoppen. Dit toont een notificatie. Dit werkt niet op Android 8+ vanwege systeem vereisten.</string>
     <string name="message_skill_not_compatible">De plugin is niet compatibel met dit toestel.</string>
     <string name="message_convert_data_start">Converteren van data.</string>
-    <string name="message_convert_data_finish">Geconverteerde data.</string>
-    <string name="message_convert_data_abort">Converteren van data afgebroken.</string>
-    <string name="message_convert_data_error">Fout opgetreden bij converteren van data. Bekijk aub de log voor details.</string>
+    <string name="message_convert_data_finish">Data geconverteerd.</string>
+    <string name="message_convert_data_abort">Dataconversie afgebroken.</string>
+    <string name="message_convert_data_error">Fout opgetreden bij de dataconversie. Bekijk aub de log voor details.</string>
     <string name="title_welcome_message">Welkom</string>
     <string name="alert_update_storage_data_title">Oude data versie gevonden</string>
-    <string name="alert_update_storage_data">Uw data werd gemaakt in een oudere versie. Het is aanbevolen over te gaan op de nieuwe versie omdat Easer anders mogelijk niet goed werkt. U kunt dit doen door te kiezen voor Converteer Data in de instellingen.</string>
+    <string name="alert_update_storage_data">Selecteer \"Converteer Data\" in de instellingen om uw data naar het nieuwe formaat om te zetten om compatibiliteit te behouden.</string>
     <string name="template_export">Geexporteerd naar %s</string>
     <string name="version">Versie</string>
-    <string name="message_importing_invalid_data">Dit bestand lijkt niet correct. Zorg ervoor dat u een bestand importeert dat eerder door Easer gexporteerd is.</string>
+    <string name="message_importing_invalid_data">Dit bestand lijkt niet correct. Zorg ervoor dat u een bestand importeert dat door Easer gexporteerd is.</string>
     <string name="dynamics_time">Huidige Tijd</string>
     <string name="dynamics_date">Huidige Datum</string>
     <string name="dynamics_script_name">Script Naam</string>
@@ -130,10 +131,10 @@
     <string name="help_event">Een Gebeurtenis representeert een kortdurende gebeurtenis op uw telefoon of van een externe gebeurtenis.
 \nBijvoorbeeld: het ontvangen van een notificatie/bericht, of wanneer een NFC tag gescand wordt.
 \nLees aub het <a href="https://github.com/renyuneyun/Easer/wiki">document</a> voor meer informatie.</string>
-    <string name="help_condition">Een Conditie reprsenteert een langdurende (maar niet voor altijd) gebeurtenis op uw telefoon of extern.
-\nBijvoorbeeld: vrbonden aan WiFi, of het scherm staat uit.
+    <string name="help_condition">Een Conditie representeert een langdurende (maar niet voor altijd) gebeurtenis op uw telefoon of extern.
+\nBijvoorbeeld: verbonden aan WiFi, of het scherm staat uit.
 \nLees aub het <a href="https://github.com/renyuneyun/Easer/wiki">document</a> voor meer informatie.</string>
-    <string name="help_profile">Een profiel is een set aan Operaties. Elke operatie represneteert een specifiek type actie.
+    <string name="help_profile">Een profiel is een set aan Operaties. Elke operatie representeert een specifiek type actie.
 \nBijvoorbeeld: Zet bluetooth aan of stuur een SMS.
 \nLees aub het <a href="https://github.com/renyuneyun/Easer/wiki">document</a> voor mer informatie.</string>
     <string name="category_operation_android">Android</string>
@@ -141,4 +142,51 @@
     <string name="category_operation_easer">\@string/easer</string>
     <string name="category_operation_misc">Diversen</string>
     <string name="category_operation_unknown">Onbekend</string>
+    <string name="title_edit_script">Bewerk script</string>
+    <string name="title_add_child">Kind relatie toevoegen</string>
+    <string name="welcome_message_2">Easer bevat verschillende modules die verschillende functies bieden.
+\n
+\nThe bijbehorende machtigingen (voor elke actieve module) moeten vooraf toegekend worden.
+\n
+\n
+\n(Alles staat standaard aan.)</string>
+    <string name="title_pivot">Pivot</string>
+    <string name="prompt_data_clash">Opslaan van data mislukt. Controleer of er een naamconflict is.</string>
+    <string name="text_dynamics">Dynamisch</string>
+    <string name="prompt_data_save_io_exception">IOExceptie opgetreden. Is de opslag vol\?</string>
+    <string name="text_unknown_skill">[Onbekende vaardigheid]</string>
+    <string name="title_choose_predecessors">Kies voorgangers</string>
+    <string name="title_data_collection">Data</string>
+    <string name="message_future_change_0_8">Het boom overzicht wordt verwijderd in v0.8. Pivot geeft daar een beter overzicht.</string>
+    <string name="title_select_condition">Kies een Conditie</string>
+    <string name="button_see_detail">Bekijk Details</string>
+    <string name="title_select_event">Kies een gebeurtenis</string>
+    <string name="prompt_error_logged">Easer heeft zojuist een fout geregistreerd. Zie de foutensubfolder van de log folder.</string>
+    <string name="url_donate">https://renyuneyun.github.io/Easer/en/DONATE.html</string>
+    <string name="title_donate">Doneer</string>
+    <string name="title_website">Website</string>
+    <string name="title_homepage">Startpagina</string>
+    <string name="title_source">Bron code</string>
+    <string name="title_author">Auteur</string>
+    <string name="title_service_start">Start Service</string>
+    <string name="message_future_change_title">Binnenkort verandert</string>
+    <string name="title_welcome_message_privacy">Privacy!</string>
+    <string name="pref_locale_custom">Aangepaste landinstelling</string>
+    <string name="welcome_message_1">Welkom.
+\n
+\nHier vindt u basis info voordat u begint met Easer.
+\n
+\nMeer onderwerpen worden beschreven in de project wiki <a href="https://github.com/renyuneyun/Easer/wiki/FAQ">FAQ</a>.</string>
+    <string name="welcome_message_privacy">Privacy is belangrijk!
+\n
+\nEaser is <a href="https://en.wikipedia.org/wiki/Free_software">open source software</a> voor iedereen om te gebruiken, te bestuderen, te wijzigen en om te delen.
+\n
+\nJIJ bent de eigenaar van je data. Alles bevindt zich alleen op jouw telefoon, inclusief de log bestanden.
+\nLees de <a href="https://github.com/renyuneyun/Easer/blob/master/Privacy.md">Privacyverklaring</a> voor meer informatie</string>
+    <string name="welcome_message_3">Scripts zijn gestructureerd als <a href="https://en.wikipedia.org/wiki/Graph_(abstract_data_type)">diagrammen</a>, door de relevante eerdere stappen te kiezen (ouders).
+\n
+\nIn het kort:
+\n- Van vorige stap naar opvolgende stap wordt een AND uitgevoerd.
+\n- Tussen knopen wordt een OR uitgevoerd.
+\n- Meerdere voorgaande stappen hebben een AND relatie met betrekking tot de volgende stap.</string>
 </resources>
