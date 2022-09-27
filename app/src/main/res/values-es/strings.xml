@@ -128,7 +128,7 @@
 \nLa hora actual se usará para darle nombre al fichero.</string>
     <string name="pref_import_title">Importar</string>
     <string name="pref_import_summary">Importa todos los eventos y perfiles desde un archivo ZIP.
-\nLos eventos y perfiles previos con identico nombre serán reemplazados.</string>
+\nLos eventos y perfiles previos con idéntico nombre serán reemplazados.</string>
     <string name="pref_convert_data_title">Convertir datos</string>
     <string name="pref_convert_data_summary">Convierte todos los datos al formato recomendado</string>
     <string name="pref_show_notification_title">Mostrar notificación</string>
@@ -182,7 +182,7 @@
 \nPor ejemplo, al recibir una notificación o escaneando una etiqueta NFC.
 \nConsulta este <a href="https://github.com/renyuneyun/Easer/wiki"> documento </a> para obtener más información.</string>
     <string name="help_profile">El \"perfil\" es un conjunto de operaciones. Cada operación representa un tipo particular de acción.
-\nPor ejemplo, activar el Bluetooth o envíar un SMS.
+\nPor ejemplo, activar el Bluetooth o enviar un SMS.
 \nConsulta este <a href="https://github.com/renyuneyun/Easer/wiki"> documento </a> para obtener más información.</string>
     <string name="category_operation_android">Android</string>
     <string name="category_operation_system_config">Configuración de sistema</string>
