@@ -232,4 +232,17 @@
     <string name="o_volume_delay">Retraso (s)</string>
     <string name="category_source_device">Dispositivo</string>
     <string name="usource_location__threshold_accuracy_meters">Umbral de precisión (metros)</string>
+    <string name="operation_bluetooth_connect">Conectar a dispositivo Bluetooth</string>
+    <string name="bluetooth_maybe_not_supported">Este perfil de Easer usa un método que no es oficialmente soportado por Android. Puede que no funcione el todos los dispositivos.</string>
+    <string name="o_play_media_loop">Loop multimedia</string>
+    <string name="o_play_media_repeat_times">Número de repeticiones</string>
+    <string name="operation_wireguard">Wireguard</string>
+    <string name="o_wireguard__set_tunnel_state">Configura el estado de túnel</string>
+    <string name="o_wireguard_tunnel_name">Nombre del Túnel</string>
+    <string name="o_wireguard_tunnel_name_hint">Nombre del Túnel en Wireguard</string>
+    <string name="o_wireguard_tunnel_state">Estado del Túnel</string>
+    <string name="operation_start_activity">Empieza Actividad</string>
+    <string name="operation_start_service">Arranca Servicio</string>
+    <string name="mac_address">Dirección MAC (00:11:22:33:FF:EE)</string>
+    <string name="bluetooth_device_profile">Perfil de dispositivo Bluetooth</string>
 </resources>
