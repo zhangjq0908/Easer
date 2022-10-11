@@ -22,7 +22,7 @@
     <string name="o_volume_alarm">Alarma</string>
     <string name="o_launch_app__text_class_hint">Nombre de clase vacío o completo</string>
     <string name="op_normal_mode">Modo normal</string>
-    <string name="text_play">Play</string>
+    <string name="text_play">Reproducir</string>
     <string name="operation_media_control_helper_service_label">Asistente para control de medios</string>
     <string name="obroadcast_l_type">Tipo:</string>
     <string name="operation_ringer_mode">Modo de timbre</string>
@@ -32,7 +32,7 @@
     <string name="label_event_notification_listener_service">Comprobador del evento de notificación</string>
     <string name="o_play_media">Reproducir medio</string>
     <string name="o_nettrans_remote_port">Puerto remoto</string>
-    <string name="operation_hotspot">Hotspot</string>
+    <string name="operation_hotspot">Punto de acceso</string>
     <string name="ev_sms_dynamics_sender">Remitente de SMS</string>
     <string name="o_nettrans_protocol">Protocolo</string>
     <string name="usource_event_headset__plug_any">Cualquier</string>
@@ -120,7 +120,7 @@
     <string name="ringer_mode_vibrate">Vibrar</string>
     <string name="event_tcp_trip__dynamics_remote_host">Huésped remoto</string>
     <string name="usource_call_state_ongoing">Saliente</string>
-    <string name="usource_screen_off">Off</string>
+    <string name="usource_screen_off">Apagado</string>
     <string name="text_value">Valor</string>
     <string name="calendar_all_day_event_only">Solo hacer coincidentes los eventos de día completo</string>
     <string name="event_timer_shorter_time">Tiempo inicial</string>
@@ -179,7 +179,7 @@
     <string name="text_pause">Pausa</string>
     <string name="event_widget_default_text">VISUALIZAR TEXTO</string>
     <string name="usource_battery_level__custom_battery_level">Nivel de batería mínimo (porcentaje)</string>
-    <string name="category_source_misc">Misc</string>
+    <string name="category_source_misc">Varios</string>
     <string name="usource_bt_device_dynamics_device_address">Dirección de dispositivo</string>
     <string name="match_type_any_event">Cualquier evento</string>
     <string name="ev_notification_dynamics_app">Aplicación remitente de notificación</string>
@@ -205,7 +205,7 @@
     <string name="o_volume_ring">Timbre</string>
     <string name="o_http_header">Cabecera (formato de línea: clave:valor)</string>
     <string name="ringer_mode_silent">Silencio</string>
-    <string name="operation_toast">Toast</string>
+    <string name="operation_toast">Notificación Toast</string>
     <string name="usource_location">Ubicación</string>
     <string name="event_condition_event_leave">Salir</string>
     <string name="o_play_media_text_file">Ruta del archivo</string>
@@ -234,15 +234,15 @@
     <string name="usource_location__threshold_accuracy_meters">Umbral de precisión (metros)</string>
     <string name="operation_bluetooth_connect">Conectar a dispositivo Bluetooth</string>
     <string name="bluetooth_maybe_not_supported">Este perfil de Easer usa un método que no es oficialmente soportado por Android. Puede que no funcione el todos los dispositivos.</string>
-    <string name="o_play_media_loop">Loop multimedia</string>
+    <string name="o_play_media_loop">Recorre los medios</string>
     <string name="o_play_media_repeat_times">Número de repeticiones</string>
-    <string name="operation_wireguard">Wireguard</string>
-    <string name="o_wireguard__set_tunnel_state">Configura el estado de túnel</string>
+    <string name="operation_wireguard">WireGuard Cliente VPN</string>
+    <string name="o_wireguard__set_tunnel_state">Establecer el estado del túnel</string>
     <string name="o_wireguard_tunnel_name">Nombre del Túnel</string>
     <string name="o_wireguard_tunnel_name_hint">Nombre del Túnel en Wireguard</string>
     <string name="o_wireguard_tunnel_state">Estado del Túnel</string>
-    <string name="operation_start_activity">Empieza Actividad</string>
-    <string name="operation_start_service">Arranca Servicio</string>
+    <string name="operation_start_activity">Iniciar la actividad</string>
+    <string name="operation_start_service">Iniciar el servicio</string>
     <string name="mac_address">Dirección MAC (00:11:22:33:FF:EE)</string>
     <string name="bluetooth_device_profile">Perfil de dispositivo Bluetooth</string>
 </resources>
