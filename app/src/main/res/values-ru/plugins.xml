@@ -204,7 +204,7 @@
     <string name="category_source_android">Android</string>
     <string name="event_condition_event_dynamics_name">Название условия</string>
     <string name="usource_cell_location_listening_title">Поиск</string>
-    <string name="event_widget_widget_label">Виджет События</string>
+    <string name="event_widget_widget_label">Виджет событий</string>
     <string name="event_widget_default_text">ОТОБРАЗИТЬ ТЕКСТ</string>
     <string name="usource_power__ac">Переменный ток</string>
     <string name="usource_call_state_ringing">Звонок</string>
