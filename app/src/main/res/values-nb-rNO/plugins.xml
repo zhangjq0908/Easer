@@ -239,4 +239,11 @@
     <string name="bluetooth_maybe_not_supported">Easer-profilen bruker en metode som ikke offisielt støttes av Android. Det kan hende det ikke virker på alle enheter.</string>
     <string name="bluetooth_device_profile">Blåtanns-enhetsprofil</string>
     <string name="operation_bluetooth_connect">Koble til Blåtannsenhet</string>
+    <string name="o_play_media_loop">Gjenta mediaen</string>
+    <string name="o_play_media_repeat_times">Antall gjentagelser</string>
+    <string name="operation_wireguard">WireGuard</string>
+    <string name="o_wireguard_tunnel_name">Tunnelnavn</string>
+    <string name="o_wireguard_tunnel_state">Tunneltilstand</string>
+    <string name="o_wireguard_tunnel_name_hint">Tunnelnavn i WireGuard</string>
+    <string name="o_wireguard__set_tunnel_state">Sett tunneltilstand</string>
 </resources>
