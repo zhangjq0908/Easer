@@ -58,13 +58,12 @@
 \nJesteś właścicielem każdego elementu swoich danych. Wszystko żyje na twoim urządzeniu, w tym logi.
 \nZobacz <a href="https://github.com/renyuneyun/Easer/blob/master/Privacy.md">Deklarację Prywatności</a> aby dowiedzieć się więcej.</string>
     <string name="title_welcome_message_privacy">Prywatność!</string>
-    <string name="welcome_message_3">Skrypty mają strukturę <a href="https://en.wikipedia.org/wiki/Tree_structure"> drzew </a>, wybierając odpowiedniego rodzica.
-\n 
-\nW każdej gałęzi wykonywana jest logika AND.
-\nPomiędzy gałęziami wykonywana jest logika OR.
-\n 
-\n 
-\nRozszerzenie drzew na wykresy jest planowane, ale nie jest obecnie realizowane.</string>
+    <string name="welcome_message_3">Skrypty są ustrukturyzowane jako <a href="https://pl.wikipedia.org/wiki/Reprezentacja_grafu">grafy</a> , poprzez wybór odpowiednich poprzedników (rodziców).
+\n
+\nZ grubsza rzecz biorąc:
+\n- Od poprzedników do następników wykonywana jest operacja logiczna AND.
+\n- Pomiędzy węzłami wykonywana jest operacja logiczna OR.
+\n- Wielokrotne poprzedniki mają relację AND, dotyczącą następnika.</string>
     <string name="welcome_message_2">Easer zawiera kilka modułów zapewniających różne funkcje. Włącz lub wyłącz je w Ustawieniach.
 \n 
 \nOdpowiednie uprawnienia (dla każdego aktywnego modułu) należy udzielić przed użyciem.
