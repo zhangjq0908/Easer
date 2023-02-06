@@ -13,9 +13,9 @@
     <string name="operation_rotation">Automatikus elforgatás</string>
     <string name="usource_cell_location">Cellahely</string>
     <string name="ringer_mode_dnd_none">Nincs</string>
-    <string name="event_nfc_tag__prompt_wait_for_tag">Várakozás a címke beolvasására…</string>
+    <string name="event_nfc_tag__prompt_wait_for_tag">Várakozás címke beolvasására…</string>
     <string name="broadcast_data">Adat</string>
-    <string name="ringing_items_in_do_not_disturb_mode">Csengő elemek „Ne zavarjon” módban</string>
+    <string name="ringing_items_in_do_not_disturb_mode">Csengő elemek „Ne zavarjanak” módban</string>
     <string name="title">Cím</string>
     <string name="event_nfc_tag__button_detect">Címke észlelése</string>
     <string name="o_volume_alarm">Riasztás</string>
@@ -122,7 +122,7 @@
     <string name="usource__enabled_yes">Igen</string>
     <string name="category_source_easer">Easer</string>
     <string name="text_calendar_name">Naptár neve</string>
-    <string name="text_play_pause">Lejátszás/Szünet átváltás</string>
+    <string name="text_play_pause">Lejátszás/Szünet átváltása</string>
     <string name="operation_send_sms">SMS küldése</string>
     <string name="usource_screen_unlocked">Feloldva</string>
     <string name="exact_timer">Pontos időzítő\?</string>
@@ -184,4 +184,22 @@
     <string name="usource_headset__headset_action">Fejhallgató tevékenység</string>
     <string name="o_volume_delay">Késleltetés</string>
     <string name="category_source_device">Eszköz</string>
+    <string name="event_tcp_trip__dynamics_received_data">Fogadott adat</string>
+    <string name="operation_bluetooth_connect">Bluetooth eszköz csatlakoztatása</string>
+    <string name="mac_address">MAC-cím (00:11:22:33:FF:EE)</string>
+    <string name="event_widget">Widget</string>
+    <string name="event_widget_text">Szöveg</string>
+    <string name="event_widget_default_text">MEGJELENŐ SZÖVEG</string>
+    <string name="event_widget_default_tag">CÍMKE</string>
+    <string name="event_nfc_tag__dynamics_tag_id">Címke azonosítója</string>
+    <string name="event_tcp_trip__dynamics_remote_host">Távoli állomás</string>
+    <string name="event_tcp_trip__dynamics_remote_ip">Távoli IP cím</string>
+    <string name="event_tcp_trip__dynamics_remote_port">Távoli port</string>
+    <string name="event_tcp_trip__dynamics_sent_data">Elküldött adat</string>
+    <string name="o_play_media_loop">Média ismétlése</string>
+    <string name="o_play_media_repeat_times">Ismétlések száma</string>
+    <string name="op_toast_hint_text">Szöveg</string>
+    <string name="operation_start_activity">Tevékenység indítása</string>
+    <string name="operation_start_service">Szolgáltatás indítása</string>
+    <string name="event_widget_tag">Címke</string>
 </resources>
