@@ -114,7 +114,7 @@
     <string name="message_convert_data_finish">Данные конвертированы.</string>
     <string name="message_convert_data_abort">Конвертация данных отменена.</string>
     <string name="message_convert_data_error">Произошла ошибка при конвертации данных. Подробности в журнале.</string>
-    <string name="title_welcome_message">Добро пожаловать!</string>
+    <string name="title_welcome_message">Добро пожаловать</string>
     <string name="alert_update_storage_data_title">Обнаружены данные старой версии</string>
     <string name="alert_update_storage_data">Чтобы обновить ваши данные на новый формат выберите в настройках пункт «Конвертировать данные», для совместимости.</string>
     <string name="template_export">Экспортировано в %s</string>
@@ -126,6 +126,7 @@
     <string name="dynamics_profile_name">Название сценария</string>
     <string name="title_help">Помощь</string>
     <string name="help_script">«Связка» — это логический контейнер. Она объединяет Событие или Условие со Сценарием. При наступлении События/выполнении Условия, Easer исполнит связанный Сценарий.
+\nВы можете использовать продвинутые функции типа исполнения событий в обратной последовательности.
 \nЗа подробностями работы продвинутых настроек типа обратных событий просьба обратиться к <a href="https://github.com/renyuneyun/Easer/wiki">документации</a>.</string>
     <string name="help_event">«Событие» — кратковременное (мгновенное) событие, произошедшее на устройстве или удалённо.
 \nНапример, получение уведомления или сканирование NFC-метки.
@@ -178,7 +179,8 @@
 \n
 \nEaser — это <a href="https://ru.wikipedia.org/wiki/Свободное_программное_обеспечение">свободная программа</a> (с открытым исходным кодом), позволяющая использование, изучение, изменение и распространение кем угодно.
 \n
-\nВсеми вашими данными владеете ВЫ. Всё, включая логи, хранится на вашем устройстве.</string>
+\nВсеми вашими данными владеете ВЫ. Всё, включая логи, хранится на вашем устройстве.
+\nЗа дополнительно информацией вы можете обратиться к <a href="https://github.com/renyuneyun/Easer/blob/master/Privacy.md">Privacy Declaration</a></string>
     <string name="prompt_error_logged">В Easer произошла ошибка. Подробности в каталоге с журналом программы.</string>
     <string name="message_future_change_0_8">Древовидное представление связок будет убрано в версии 0.8. Графы гораздо удобнее.</string>
     <string name="text_unknown_skill">[Неизвестный плагин]</string>
