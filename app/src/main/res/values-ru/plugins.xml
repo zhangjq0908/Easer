@@ -240,4 +240,9 @@
     <string name="bluetooth_device_profile">Профиль устройства Bluetooth</string>
     <string name="mac_address">MAC-адрес (00:11:22:33:FF:EE)</string>
     <string name="operation_bluetooth_connect">Подключиться к устройству Bluetooth</string>
+    <string name="operation_wireguard">Wireguard</string>
+    <string name="o_wireguard_tunnel_name_hint">Имя туннеля в Wireguard</string>
+    <string name="o_wireguard_tunnel_name">Имя туннеля</string>
+    <string name="o_wireguard_tunnel_state">Состояние туннеля</string>
+    <string name="o_wireguard__set_tunnel_state">Установить состояние туннеля</string>
 </resources>
