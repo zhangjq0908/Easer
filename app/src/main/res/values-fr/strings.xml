@@ -162,13 +162,12 @@
 \n
 \n
 \n(Tout est activé par défaut.)</string>
-    <string name="welcome_message_3">Les scripts sont structurés comme <a href="https://en.wikipedia.org/wiki/Tree_structure">arbres</a>, en choisissant un parent pertinent.
+    <string name="welcome_message_3">Les scripts sont structurés comme des <a href="https://fr.wikipedia.org/wiki/Graphe_(type_abstrait)">graphes</a>, en choisissant les prédécesseurs pertinents (parents).
 \n
-\nDans chaque branche, la logique ET est effectuée.
-\nEntre les branches, la logique OU est effectuée
-\n
-\n
-\nL\'extension des arbres aux graphiques est prévue mais n\'est pas encore mise en œuvre.</string>
+\nGrosso modo :
+\n– des prédécesseurs aux successeurs, la logique ET est appliquée ;
+\n– entre les nœuds, la logique OR est appliquée ;
+\n– de multiples prédécesseurs ont une relation ET, relativement au successeur.</string>
     <string name="title_welcome_message_privacy">Vie privée !</string>
     <string name="welcome_message_privacy">La protection de la vie privée est importante !
 \n
