@@ -1,2 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="title_application">ଆପ୍</string>
+    <string name="title_edit">ସମ୍ପାଦନା</string>
+    <string name="title_about">ଵିଷୟରେ</string>
+    <string name="title_setting">ସେଟିଂ</string>
+    <string name="title_add">ଯୋଡ଼ନ୍ତୁ</string>
+    <string name="title_author">ଲେଖକ</string>
+    <string name="title_donate">ଦାନ କରନ୍ତୁ</string>
+    <string name="title_homepage">ଗୃହପୃଷ୍ଠା</string>
+    <string name="title_service_start">ସେଵା ଆରମ୍ଭ</string>
+    <string name="service_indicator_positive">ଚାଲୁଛି</string>
+    <string name="activity_history__time">ସମୟ</string>
+    <string name="activity_history__satisfaction">ସ୍ଥିତି</string>
+    <string name="activity_history__satisfied">ସନ୍ତୁଷ୍ଟ</string>
+    <string name="activity_history__status">ସ୍ଥିତି</string>
+    <string name="button_ok">ଠିକ୍ ଅଛି</string>
+    <string name="toggle_active">ସକ୍ରିୟ</string>
+    <string name="service_indicator_negative">ଚାଲୁନି</string>
+    <string name="activity_history__service">ସେଵା</string>
+    <string name="button_understand">ବୁଝିପାରିଲେ</string>
+    <string name="activity_history__extra">ଅତିରିକ୍ତ ସୂଚନା</string>
+    <string name="activity_history__unsatisfied">ଅସନ୍ତୁଷ୍ଟ</string>
+</resources>
