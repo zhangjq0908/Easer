@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="category_source_date_time">日期/时间</string>
+    <string name="category_source_device">设备</string>
+    <string name="category_source_easer">Easer</string>
+    <string name="category_source_android">安卓</string>
+</resources>
