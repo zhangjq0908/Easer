@@ -1,6 +1,6 @@
 name: build
 
-on: [push, pull_request, workflow_dispatch]
+on: 
 
 jobs:
   build:
@@ -10,10 +10,10 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v1
 
-    - name: Setup JDK 11
+    - name: Setup JDK 17
       uses: actions/setup-java@v1
       with:
-        java-version: 11
+        java-version: 17
 
     - name: Build with Gradle
       run: ./gradlew assembleDebug
@@ -21,5 +21,16 @@ jobs:
     - uses: actions/upload-artifact@v3
       with:
         name: app-debug.apk
-        path: app/build/outputs/
+        path: app/build/outputs//apk/stable/debug/app-stable-debug.apk
+
+    - name: Create release
+      uses: marvinpinto/action-automatic-releases@latest
+      if: github.ref == 'refs/heads/master'
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        automatic_release_tag: "latest"
+        prerelease: false
+        title: ${{ github.sha }}
+        files: |
+          app/build/outputs//apk/stable/debug/app-stable-debug.apk
 
